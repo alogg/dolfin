@@ -858,6 +858,7 @@ Optional Features:
   --enable-maintainer-mode enable make rules and dependencies not useful
                           (and sometimes confusing) to the casual installer
   --enable-debug          Turn on debugging and warnings
+  --disable-curses        Compile without curses
 
 Some influential environment variables:
   CC          C compiler command
@@ -1601,6 +1602,13 @@ fi
 if test "${enable_debug+set}" = set; then
   enableval="$enable_debug"
   CXXFLAGS='-DDEBUG=1 -g -O2 -Wall'
+fi;
+
+# Option --disable-curses
+# Check whether --enable-curses or --disable-curses was given.
+if test "${enable_curses+set}" = set; then
+  enableval="$enable_curses"
+  CXXFLAGS=$CXXFLAGS' -DNO_CURSES=1'
 fi;
 
 # Checks for programs
