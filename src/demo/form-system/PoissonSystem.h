@@ -192,15 +192,15 @@ public:
   bool interior(real* block) const
   {
     // Compute geometry tensors
-    real G0_0 = det*c[0][0];
-    real G0_1 = det*c[0][1];
-    real G0_2 = det*c[0][2];
-    real G0_3 = det*c[0][3];
-    real G0_4 = det*c[0][4];
-    real G0_5 = det*c[0][5];
-    real G0_6 = det*c[0][6];
-    real G0_7 = det*c[0][7];
-    real G0_8 = det*c[0][8];
+    real G0_0 = det*w[0][0];
+    real G0_1 = det*w[0][1];
+    real G0_2 = det*w[0][2];
+    real G0_3 = det*w[0][3];
+    real G0_4 = det*w[0][4];
+    real G0_5 = det*w[0][5];
+    real G0_6 = det*w[0][6];
+    real G0_7 = det*w[0][7];
+    real G0_8 = det*w[0][8];
 
     // Compute element tensor
     block[0] = 0.0833333333333*G0_0 + 0.0416666666667*G0_1 + 0.0416666666667*G0_2;
