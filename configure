@@ -3856,7 +3856,9 @@ fi
 
 # Note: need to be in the correct order, and some are needed twice.
 # Not very pretty... Maybe someone knows how to fix this?
-DOLFIN_KERNEL="tanganyika io grid fem elements quadrature grid io fem la math common settings log settings common main tanganyika"
+#DOLFIN_KERNEL="ode io mesh fem element mesh io fem form quadrature map la math common settings log settings common main ode"
+DOLFIN_KERNEL="common element fem form io la log main map math mesh ode quadrature settings"
+DOLFIN_KERNEL="$DOLFIN_KERNEL $DOLFIN_KERNEL $DOLFIN_KERNEL"
 
 # Find modules
 cd src/modules
@@ -3903,7 +3905,7 @@ done
 # Create Makefiles Seems like automake cannot handle a variable
 # containing the list of files, so this cannot be done
 # automatically. We have to list all the files.
-                                                                                                                                                                                                                                                                                                                                                                                                                                              ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/grid/Makefile src/kernel/grid/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/kernel/tanganyika/Makefile src/kernel/tanganyika/dolfin/Makefile src/modules/Makefile src/modules/template/Makefile src/modules/poisson/Makefile src/modules/convdiff/Makefile src/modules/navierstokes/Makefile src/modules/ode/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/la/Makefile src/demo/solvers/Makefile src/demo/solvers/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/element/Makefile src/kernel/element/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/map/Makefile src/kernel/map/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/template/Makefile src/modules/poisson/Makefile src/modules/convdiff/Makefile src/modules/heat/Makefile src/modules/navierstokes/Makefile src/modules/odesolver/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/la/Makefile src/demo/solvers/Makefile src/demo/solvers/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4460,34 +4462,39 @@ do
   "src/kernel/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/Makefile" ;;
   "src/kernel/common/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/common/Makefile" ;;
   "src/kernel/common/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/common/dolfin/Makefile" ;;
-  "src/kernel/elements/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/elements/Makefile" ;;
-  "src/kernel/elements/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/elements/dolfin/Makefile" ;;
+  "src/kernel/element/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/element/Makefile" ;;
+  "src/kernel/element/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/element/dolfin/Makefile" ;;
   "src/kernel/fem/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/fem/Makefile" ;;
   "src/kernel/fem/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/fem/dolfin/Makefile" ;;
-  "src/kernel/grid/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/grid/Makefile" ;;
-  "src/kernel/grid/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/grid/dolfin/Makefile" ;;
+  "src/kernel/form/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/form/Makefile" ;;
+  "src/kernel/form/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/form/dolfin/Makefile" ;;
   "src/kernel/io/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/io/Makefile" ;;
   "src/kernel/io/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/io/dolfin/Makefile" ;;
   "src/kernel/la/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/la/Makefile" ;;
   "src/kernel/la/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/la/dolfin/Makefile" ;;
   "src/kernel/main/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/main/Makefile" ;;
   "src/kernel/main/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/main/dolfin/Makefile" ;;
+  "src/kernel/map/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/map/Makefile" ;;
+  "src/kernel/map/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/map/dolfin/Makefile" ;;
   "src/kernel/math/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/math/Makefile" ;;
   "src/kernel/math/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/math/dolfin/Makefile" ;;
+  "src/kernel/mesh/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/mesh/Makefile" ;;
+  "src/kernel/mesh/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/mesh/dolfin/Makefile" ;;
+  "src/kernel/ode/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/ode/Makefile" ;;
+  "src/kernel/ode/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/ode/dolfin/Makefile" ;;
   "src/kernel/quadrature/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/quadrature/Makefile" ;;
   "src/kernel/quadrature/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/quadrature/dolfin/Makefile" ;;
   "src/kernel/log/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/log/Makefile" ;;
   "src/kernel/log/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/log/dolfin/Makefile" ;;
   "src/kernel/settings/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/settings/Makefile" ;;
   "src/kernel/settings/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/settings/dolfin/Makefile" ;;
-  "src/kernel/tanganyika/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/tanganyika/Makefile" ;;
-  "src/kernel/tanganyika/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/tanganyika/dolfin/Makefile" ;;
   "src/modules/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/Makefile" ;;
   "src/modules/template/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/template/Makefile" ;;
   "src/modules/poisson/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/Makefile" ;;
   "src/modules/convdiff/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/convdiff/Makefile" ;;
+  "src/modules/heat/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/heat/Makefile" ;;
   "src/modules/navierstokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/Makefile" ;;
-  "src/modules/ode/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/ode/Makefile" ;;
+  "src/modules/odesolver/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/odesolver/Makefile" ;;
   "src/config/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/config/Makefile" ;;
   "src/post/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/post/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
