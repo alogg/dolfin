@@ -1274,10 +1274,10 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 PACKAGE=dolfin
-VERSION=0.3.0
+VERSION=0.3.1
 DOLFIN_MAIN="main"
 # Note: need to be in the correct order, and yes io should be included twice...
-DOLFIN_KERNEL="io grid fem elements common quadrature io la math"
+DOLFIN_KERNEL="io grid fem elements common quadrature io la math log"
 
 cd src/modules
 ./scanmodules.sh
@@ -3747,7 +3747,7 @@ for f in $DIRS; do
 done
 
 
-                                                                                                                                                                                                                                                                                                                                ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/grid/Makefile src/kernel/grid/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/modules/Makefile src/modules/poisson/Makefile src/modules/convdiff/Makefile src/modules/navierstokes/Makefile src/modules/template/Makefile src/config/Makefile src/demo/Makefile src/demo/solvers/Makefile src/utils/Makefile src/utils/inp2dx/Makefile"
+                                                                                                                                                                                                                                                                                                                                                              ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/grid/Makefile src/kernel/grid/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/modules/Makefile src/modules/poisson/Makefile src/modules/convdiff/Makefile src/modules/navierstokes/Makefile src/modules/template/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/solvers/Makefile src/utils/Makefile src/utils/inp2dx/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4320,12 +4320,15 @@ do
   "src/kernel/math/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/math/dolfin/Makefile" ;;
   "src/kernel/quadrature/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/quadrature/Makefile" ;;
   "src/kernel/quadrature/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/quadrature/dolfin/Makefile" ;;
+  "src/kernel/log/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/log/Makefile" ;;
+  "src/kernel/log/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/log/dolfin/Makefile" ;;
   "src/modules/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/Makefile" ;;
   "src/modules/poisson/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/Makefile" ;;
   "src/modules/convdiff/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/convdiff/Makefile" ;;
   "src/modules/navierstokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/Makefile" ;;
   "src/modules/template/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/template/Makefile" ;;
   "src/config/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/config/Makefile" ;;
+  "src/post/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/post/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
   "src/demo/solvers/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/Makefile" ;;
   "src/utils/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/Makefile" ;;
