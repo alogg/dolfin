@@ -866,7 +866,7 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-petsc-dir=<path> Specify path to PETSc
-  --with-petsc-bopt=<path>
+  --with-petsc-bopt=<bopt>
                           Specify compiler flag BOPT for PETSc (O_c++ or
                           g_c++)
   --with-petsc-version=<version>
