@@ -208,7 +208,8 @@ public:
   void F(const complex z[], complex y[])
   {
     // First equation: normalization
-    y[0] = sum(z) - 1.0;
+    const complex zsum = sum(z);
+    y[0] = zsum - 1.0;
     
     // Precompute scalar products
     real bsum = 0.0;
@@ -224,6 +225,12 @@ public:
     for (unsigned int i = 0; i < m; i++)
       product *= tmp1[i];
 
+    // Precompute dominating term
+    complex extra = zsum;
+    for (unsigned int i = 1; i < m; i++)
+      extra *= zsum;
+    extra -= 1.0;
+
     // Evaluate right-hand side
     for (unsigned int j = 1; j < n; j++)
     {
@@ -235,14 +242,16 @@ public:
 	sum += a[i][j] * tmp0[i] * std::pow(z[j], di) * product / tmp1[i];
 	sum -= w[i][j] * tmp;
       }
-      y[j] = sum;
+      y[j] = sum + extra;
     }
   }
 
   void JF(const complex z[], const complex x[], complex y[])
   {
     // First equation: normalization
-    y[0] = sum(x);
+    const complex zsum = sum(z);
+    const complex xsum = sum(x);
+    y[0] = xsum;
 
     // Precompute scalar products
     real bsum = 0.0;
@@ -264,6 +273,11 @@ public:
     complex rsum = 0.0;
     for (unsigned int r = 0; r < m; r++)
       rsum += (1.0 - b[r]) * tmp3[r] * product / tmp1[r];
+
+    // Precompute dominating term
+    complex extra = static_cast<complex>(m) * xsum;
+    for (unsigned int i = 1; i < m; i++)
+      extra *= zsum;
 
     // Add terms of Jacobian
     for (unsigned int j = 1; j < n; j++)
@@ -290,7 +304,7 @@ public:
 	// Fourth term
 	sum -= w[i][j] * std::pow(z[j], bsum) * rsum;
       }
-      y[j] = sum;
+      y[j] = sum + extra;
     }
   }
 
