@@ -7,6 +7,8 @@
 #include <dolfin.h>
 #include "Economy.h"
 
+using std::pow;
+
 using namespace dolfin;
 
 // Constant elasticity of substitution (CES) economy (rational form)
@@ -63,7 +65,7 @@ public:
     {
       complex sum = 0.0;
       for (unsigned int i = 0; i < m; i++)
-	sum += a[i][j] * std::pow(z[j], -b[i]) * tmp0[i] - w[i][j];
+	sum += a[i][j] * pow(z[j], -b[i]) * tmp0[i] - w[i][j];
       y[j] = sum;
     }
   }
@@ -84,7 +86,7 @@ public:
     {
       complex sum = 0.0;
       for (unsigned int i = 0; i < m; i++)
-	sum += a[i][j] * std::pow(z[j], -b[i]) * tmp0[i];
+	sum += a[i][j] * pow(z[j], -b[i]) * tmp0[i];
       y[j] = sum;
     }
 
@@ -99,7 +101,7 @@ public:
     {
       complex sum = 0.0;
       for (unsigned int i = 0; i < m; i++)
-	sum += a[i][j] * std::pow(z[j], -1.0 - b[i]) * x[j] * tmp0[i];
+	sum += a[i][j] * pow(z[j], -1.0 - b[i]) * x[j] * tmp0[i];
       y[j] -= sum;
     }
 
@@ -115,7 +117,7 @@ public:
     {
       complex sum = 0.0;
       for (unsigned int i = 0; i < m; i++)
-	sum += a[i][j] * std::pow(z[j], -b[i]) * tmp0[i];
+	sum += a[i][j] * pow(z[j], -b[i]) * tmp0[i];
       y[j] -= sum;
     }
   }
@@ -135,7 +137,7 @@ public:
     
     // Evaluate right-hand side
     for (unsigned int j = 1; j < n; j++)
-      y[j] = a[i][j] * std::pow(z[j], -b[i]) * tmp0[i] - w[i][j];
+      y[j] = a[i][j] * pow(z[j], -b[i]) * tmp0[i] - w[i][j];
   }
 
   void JG(const complex z[], const complex x[], complex y[])
@@ -151,14 +153,14 @@ public:
     complex az = bdot(a[i], z, 1.0 - b[i]);
     tmp0[i] = wx / az;
     for (unsigned int j = 1; j < n; j++)
-      y[j] = a[i][j] * std::pow(z[j], -b[i]) * tmp0[i];
+      y[j] = a[i][j] * pow(z[j], -b[i]) * tmp0[i];
 
     // Second term
     complex wz = dot(w[i], z);
     az = bdot(a[i], z, 1.0 - b[i]);
     tmp0[i] = b[i] * wz / az;
     for (unsigned int j = 1; j < n; j++)
-	y[j] -= a[i][j] * std::pow(z[j], -1.0 - b[i]) * x[j] * tmp0[i];
+	y[j] -= a[i][j] * pow(z[j], -1.0 - b[i]) * x[j] * tmp0[i];
     
     // Third term
     wz  = dot(w[i], z);
@@ -166,7 +168,7 @@ public:
     complex axz = bdot(a[i], x, z, -b[i]);
     tmp0[i] = (1.0 - b[i]) * wz * axz / (az * az);
     for (unsigned int j = 1; j < n; j++)
-      y[j] = a[i][j] * std::pow(z[j], -b[i]) * tmp0[i];
+      y[j] = a[i][j] * pow(z[j], -b[i]) * tmp0[i];
   }
 
   */
@@ -235,11 +237,11 @@ public:
     for (unsigned int j = 1; j < n; j++)
     {
       complex sum = 0.0;
-      const complex tmp = std::pow(z[j], bsum) * product;
+      const complex tmp = pow(z[j], bsum) * product;
       for (unsigned int i = 0; i < m; i++)
       {
 	const real di = bsum - b[i];
-	sum += a[i][j] * tmp0[i] * std::pow(z[j], di) * product / tmp1[i];
+	sum += a[i][j] * tmp0[i] * pow(z[j], di) * product / tmp1[i];
 	sum -= w[i][j] * tmp;
       }
       y[j] = sum + extra;
@@ -288,7 +290,7 @@ public:
 	const real di = bsum - b[i];
 	
 	// First term
-	sum += a[i][j]*(tmp2[i]*std::pow(z[j], di) + tmp0[i]*di*std::pow(z[j], di-1.0)*x[j]) *
+	sum += a[i][j]*(tmp2[i]*pow(z[j], di) + tmp0[i]*di*pow(z[j], di-1.0)*x[j]) *
 	  product / tmp1[i];
 
 	// Second term
@@ -296,13 +298,13 @@ public:
 	for (unsigned int r = 0; r < m; r++)
 	  if ( r != i )
 	    tmp += (1.0 - b[r]) * tmp3[r] * product / (tmp1[r] * tmp1[i]);
-	sum += a[i][j] * tmp0[i] * std::pow(z[j], di) * tmp;
+	sum += a[i][j] * tmp0[i] * pow(z[j], di) * tmp;
 
 	// Third term
-	sum -= w[i][j] * bsum * std::pow(z[j], bsum - 1.0) * x[j] * product;
+	sum -= w[i][j] * bsum * pow(z[j], bsum - 1.0) * x[j] * product;
 
 	// Fourth term
-	sum -= w[i][j] * std::pow(z[j], bsum) * rsum;
+	sum -= w[i][j] * pow(z[j], bsum) * rsum;
       }
       y[j] = sum + extra;
     }
