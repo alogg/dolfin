@@ -3505,7 +3505,8 @@ if test $libxml2_found = yes; then
 
 
 else
- 	echo "Couldn't find libxml2 on your system."
+ 	echo "- Couldn't find libxml2 development files on your system."
+        echo "- Perhaps you need to install the package libxml2-dev?"
 	exit
 fi
 
