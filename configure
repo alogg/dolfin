@@ -2360,7 +2360,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   for ac_declaration in \
-   '' \
+   ''\
+   '#include <stdlib.h>' \
    'extern "C" void std::exit (int) throw (); using std::exit;' \
    'extern "C" void std::exit (int); using std::exit;' \
    'extern "C" void exit (int) throw ();' \
@@ -2374,8 +2375,8 @@ _ACEOF
 cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
-$ac_declaration
 #include <stdlib.h>
+$ac_declaration
 int
 main ()
 {
@@ -2685,7 +2686,8 @@ else
   fi
 fi
 for ac_declaration in \
-   '' \
+   ''\
+   '#include <stdlib.h>' \
    'extern "C" void std::exit (int) throw (); using std::exit;' \
    'extern "C" void std::exit (int); using std::exit;' \
    'extern "C" void exit (int) throw ();' \
@@ -2699,8 +2701,8 @@ _ACEOF
 cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
-$ac_declaration
 #include <stdlib.h>
+$ac_declaration
 int
 main ()
 {
@@ -3831,7 +3833,7 @@ else
 fi
 
 
-DOLFIN_KERNEL="tanganyika io grid fem elements quadrature grid io la math common settings log settings common"
+DOLFIN_KERNEL="tanganyika io grid fem elements quadrature grid io la math common settings log settings common main tanganyika"
 
 cd src/modules
 ./scanmodules.sh
@@ -3869,7 +3871,7 @@ done
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/grid/Makefile src/kernel/grid/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/kernel/tanganyika/Makefile src/kernel/tanganyika/dolfin/Makefile src/modules/Makefile src/modules/poisson/Makefile src/modules/convdiff/Makefile src/modules/navierstokes/Makefile src/modules/template/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/solvers/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/grid/Makefile src/kernel/grid/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/kernel/tanganyika/Makefile src/kernel/tanganyika/dolfin/Makefile src/modules/Makefile src/modules/template/Makefile src/modules/poisson/Makefile src/modules/convdiff/Makefile src/modules/navierstokes/Makefile src/modules/ode/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/solvers/Makefile src/demo/solvers/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4449,14 +4451,16 @@ do
   "src/kernel/tanganyika/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/tanganyika/Makefile" ;;
   "src/kernel/tanganyika/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/tanganyika/dolfin/Makefile" ;;
   "src/modules/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/Makefile" ;;
+  "src/modules/template/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/template/Makefile" ;;
   "src/modules/poisson/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/Makefile" ;;
   "src/modules/convdiff/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/convdiff/Makefile" ;;
   "src/modules/navierstokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/Makefile" ;;
-  "src/modules/template/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/template/Makefile" ;;
+  "src/modules/ode/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/ode/Makefile" ;;
   "src/config/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/config/Makefile" ;;
   "src/post/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/post/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
   "src/demo/solvers/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/Makefile" ;;
+  "src/demo/solvers/ode/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/ode/Makefile" ;;
   "src/utils/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/Makefile" ;;
   "src/utils/inp2dx/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/inp2dx/Makefile" ;;
   "src/greeting/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/greeting/Makefile" ;;
