@@ -1596,7 +1596,7 @@ fi
 
 
 
-# Option --enable-dev
+# Option --enable-debug
 # Check whether --enable-debug or --disable-debug was given.
 if test "${enable_debug+set}" = set; then
   enableval="$enable_debug"
