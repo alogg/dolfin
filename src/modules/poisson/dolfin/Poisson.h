@@ -57,8 +57,7 @@ public:
   // FIXME: Only works for nodal basis
   inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
   {
-    Point p;
-    return p;
+    return cell.node(i).coord();
   }
 
 private:
