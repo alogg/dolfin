@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP PETSC_DIR BOPT petsc_found PETSC_ARCH PETSC_CFLAGS PETSC_VERSION mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP PETSC_DIR BOPT petsc_found mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -869,8 +869,6 @@ Optional Packages:
   --with-petsc-bopt=<bopt>
                           Specify compiler flag BOPT for PETSc (O_c++ or
                           g_c++)
-  --with-petsc-version=<version>
-                          Specify PETSc version
 
 Some influential environment variables:
   CC          C compiler command
@@ -1677,14 +1675,6 @@ fi;
 if test "${with_petsc_bopt+set}" = set; then
   withval="$with_petsc_bopt"
   BOPT=$with_petsc_bopt
-fi;
-
-# Option --with-petsc-version
-
-# Check whether --with-petsc-version or --without-petsc-version was given.
-if test "${with_petsc_version+set}" = set; then
-  withval="$with_petsc_version"
-  PETSC_VERSION=$with_petsc_version
 fi;
 
 # Standard tests
@@ -4077,77 +4067,8 @@ else
     echo "using BOPT=$BOPT"
 fi
 
-# Handle option --with-petsc-version=<version>. If not supplied,
-# we assume the version is 2.2.1. We can only handle 2.2.0 or 2.2.1.
-if test x$PETSC_VERSION = x; then
-    echo "assuming PETSc version is 2.2.1"
-    PETSC_VERSION="2.2.1"
-elif test $PETSC_VERSION = "2.2.0"; then
-    echo "using PETSc version $PETSC_VERSION"
-elif test $PETSC_VERSION = "2.2.1"; then
-    echo "using PETSc version $PETSC_VERSION"
-else
-    echo "*** Can only handle PETSc version 2.2.0 or 2.2.1."
-    exit 1
-fi
-
 # Check for PETSc
-if test $PETSC_VERSION = "2.2.0"; then
-    # Extract the first word of "petscarch", so it can be a program name with args.
-set dummy petscarch; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_petsc_found+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$petsc_found"; then
-  ac_cv_prog_petsc_found="$petsc_found" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_petsc_found="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_petsc_found" && ac_cv_prog_petsc_found="no"
-fi
-fi
-petsc_found=$ac_cv_prog_petsc_found
-if test -n "$petsc_found"; then
-  echo "$as_me:$LINENO: result: $petsc_found" >&5
-echo "${ECHO_T}$petsc_found" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-    if test $petsc_found = yes; then
-        PETSC_ARCH=`petscarch`
-        #BOPT='O_c++'
-        BOPT='g_c++'
-        PETSC_CFLAGS="-I$PETSC_DIR/include -DPETSC_DIR=$PETSC_DIR -DPETSC_ARCH=$PETSC_ARCH -DPETSC_USE_BOPT_g -DPETSC_USE_EXTERN_CXX -DPETSC_2_2_0"
-
-
-
-
-
-    else
-        echo "*** Unable to find PETSc on your system."
-        echo "*** Use --with-petsc-dir=<path> to specify the correct path for PETSc,"
-        echo "*** or set the environment variable PETSC_DIR to the correct path."
-        echo "*** Debian users need to install the package petsc-dev."
-        exit 1
-    fi
-else
-    # Extract the first word of "configarch", so it can be a program name with args.
+# Extract the first word of "configarch", so it can be a program name with args.
 set dummy configarch; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -4184,19 +4105,16 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-    if test $petsc_found = yes; then
-        # Extract PETSc variables from PETSC_DIR/bmake/common/variables
-        PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
-        PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
-        # Extra flag to choose correct version
-        PETSC_CFLAGS="$PETSC_CFLAGS -DPETSC_2_2_1"
-    else
-        echo "*** Unable to find PETSc on your system."
-        echo "*** Use --with-petsc-dir=<path> to specify the correct path for PETSc,"
-        echo "*** or set the environment variable PETSC_DIR to the correct path."
-        echo "*** PETSc is available at http://www-unix.mcs.anl.gov/petsc/petsc-2/"
-        exit 1
-    fi
+if test $petsc_found = yes; then
+    # Extract PETSc variables from PETSC_DIR/bmake/common/variables
+    PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
+    PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
+else
+    echo "*** Unable to find PETSc 2.2.1 on your system."
+    echo "*** Use --with-petsc-dir=<path> to specify the correct path for PETSc,"
+    echo "*** or set the environment variable PETSC_DIR to the correct path."
+    echo "*** PETSc is available at http://www-unix.mcs.anl.gov/petsc/petsc-2/"
+    exit 1
 fi
 
 # Check for MPI (needed by PETSc)
@@ -5082,9 +5000,6 @@ s,@EGREP@,$EGREP,;t t
 s,@PETSC_DIR@,$PETSC_DIR,;t t
 s,@BOPT@,$BOPT,;t t
 s,@petsc_found@,$petsc_found,;t t
-s,@PETSC_ARCH@,$PETSC_ARCH,;t t
-s,@PETSC_CFLAGS@,$PETSC_CFLAGS,;t t
-s,@PETSC_VERSION@,$PETSC_VERSION,;t t
 s,@mpi_found@,$mpi_found,;t t
 s,@MPI_CFLAGS@,$MPI_CFLAGS,;t t
 s,@libxml2_found@,$libxml2_found,;t t
