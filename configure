@@ -1279,7 +1279,7 @@ PACKAGE=dolfin
 VERSION=0.3.3
 DOLFIN_MAIN="main"
 
-DOLFIN_KERNEL="io grid fem elements quadrature io la math common settings log common"
+DOLFIN_KERNEL="io grid fem elements quadrature io la math common settings log settings common"
 
 cd src/modules
 ./scanmodules.sh
