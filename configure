@@ -1658,7 +1658,7 @@ fi;
 # Check whether --enable-curses or --disable-curses was given.
 if test "${enable_curses+set}" = set; then
   enableval="$enable_curses"
-  enable_curses=no
+  disable_curses=yes
 fi;
 
 # Option --with-petsc-dir
@@ -4043,7 +4043,7 @@ fi
     CURSES_CFLAGS=''
     CURSES_LIBS='-lncurses'
 else
-    echo "disabling curses, use --enable-curses to enable"
+    echo "disabling curses"
     CURSES_CFLAGS='-DNO_CURSES=1'
     CURSES_LIBS=''
 fi
