@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP petsc_found PETSC_ARCH PETSC_DIR BOPT PETSC_CFLAGS PETSC_VERSION mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP PETSC_DIR BOPT petsc_found PETSC_ARCH PETSC_CFLAGS PETSC_VERSION mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -4060,6 +4060,7 @@ fi
 if test x$PETSC_DIR = x; then
     echo "assuming path to PETSc is /usr/local/lib/petsc"
     PETSC_DIR="/usr/local/lib/petsc/"
+
 else
     echo "using PETSC_DIR=$PETSC_DIR"
 fi
@@ -4067,7 +4068,8 @@ fi
 # Handle option --with-petsc-bopt=<bopt>
 if test x$BOPT = x; then
     echo "assuming PETSc BOPT is g_c++"
-    PETSC_DIR="g_c++"
+    BOPT="g_c++"
+
 else
     echo "using BOPT=$BOPT"
 fi
@@ -4181,8 +4183,8 @@ fi
 
     if test $petsc_found = yes; then
         # Extract PETSc variables from PETSC_DIR/bmake/common/variables
-        PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs`
-        PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs`
+        PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
+        PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
         # Extra flag to choose correct version
         PETSC_CFLAGS="$PETSC_CFLAGS -DPETSC_2_2_1"
     else
@@ -5073,10 +5075,10 @@ s,@AWK@,$AWK,;t t
 s,@LN_S@,$LN_S,;t t
 s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
-s,@petsc_found@,$petsc_found,;t t
-s,@PETSC_ARCH@,$PETSC_ARCH,;t t
 s,@PETSC_DIR@,$PETSC_DIR,;t t
 s,@BOPT@,$BOPT,;t t
+s,@petsc_found@,$petsc_found,;t t
+s,@PETSC_ARCH@,$PETSC_ARCH,;t t
 s,@PETSC_CFLAGS@,$PETSC_CFLAGS,;t t
 s,@PETSC_VERSION@,$PETSC_VERSION,;t t
 s,@mpi_found@,$mpi_found,;t t
