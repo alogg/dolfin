@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP petsc_found PETSC_ARCH PETSC_DIR BOPT PETSC_CFLAGS mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP petsc_found PETSC_ARCH PETSC_DIR BOPT PETSC_CFLAGS PETSC_VERSION mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -862,6 +862,13 @@ Optional Features:
   --enable-optimization   Turn on optimization
   --disable-curses        Compile without curses
 
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-petsc=<path>     Specify path to PETSc
+  --with-petsc-version=<version>
+                          Specify PETSc version
+
 Some influential environment variables:
   CC          C compiler command
   CFLAGS      C compiler flags
@@ -1324,7 +1331,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 # Init automake
-am__api_version="1.4"
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
   if test -f $ac_dir/install-sh; then
@@ -1530,17 +1536,17 @@ fi
 
 
 missing_dir=`cd $ac_aux_dir && pwd`
-echo "$as_me:$LINENO: checking for working aclocal-${am__api_version}" >&5
-echo $ECHO_N "checking for working aclocal-${am__api_version}... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking for working aclocal" >&5
+echo $ECHO_N "checking for working aclocal... $ECHO_C" >&6
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
-if (aclocal-${am__api_version} --version) < /dev/null > /dev/null 2>&1; then
-   ACLOCAL=aclocal-${am__api_version}
+if (aclocal --version) < /dev/null > /dev/null 2>&1; then
+   ACLOCAL=aclocal
    echo "$as_me:$LINENO: result: found" >&5
 echo "${ECHO_T}found" >&6
 else
-   ACLOCAL="$missing_dir/missing aclocal-${am__api_version}"
+   ACLOCAL="$missing_dir/missing aclocal"
    echo "$as_me:$LINENO: result: missing" >&5
 echo "${ECHO_T}missing" >&6
 fi
@@ -1560,17 +1566,17 @@ else
 echo "${ECHO_T}missing" >&6
 fi
 
-echo "$as_me:$LINENO: checking for working automake-${am__api_version}" >&5
-echo $ECHO_N "checking for working automake-${am__api_version}... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking for working automake" >&5
+echo $ECHO_N "checking for working automake... $ECHO_C" >&6
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
-if (automake-${am__api_version} --version) < /dev/null > /dev/null 2>&1; then
-   AUTOMAKE=automake-${am__api_version}
+if (automake --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake
    echo "$as_me:$LINENO: result: found" >&5
 echo "${ECHO_T}found" >&6
 else
-   AUTOMAKE="$missing_dir/missing automake-${am__api_version}"
+   AUTOMAKE="$missing_dir/missing automake"
    echo "$as_me:$LINENO: result: missing" >&5
 echo "${ECHO_T}missing" >&6
 fi
@@ -1652,6 +1658,22 @@ fi;
 if test "${enable_curses+set}" = set; then
   enableval="$enable_curses"
   enable_curses=no
+fi;
+
+# Option --with-petsc
+
+# Check whether --with-petsc or --without-petsc was given.
+if test "${with_petsc+set}" = set; then
+  withval="$with_petsc"
+  PETSC_DIR=$with_petsc
+fi;
+
+# Option --with-petsc-version
+
+# Check whether --with-petsc-version or --without-petsc-version was given.
+if test "${with_petsc_version+set}" = set; then
+  withval="$with_petsc_version"
+  PETSC_VERSION=$with_petsc_version
 fi;
 
 # Standard tests
@@ -3870,21 +3892,24 @@ fi
 
 
 # Make debug option default so developers don't forget it
-echo "Turning on debugging and warnings (use --enable-optimization to avoid this)."
+echo "turning on debugging and warnings (use --enable-optimization to avoid this)."
 enable_debug="yes"
 
 # Handle option --enable-debug
 if test x$enable_debug = xyes; then
+    echo "enabling debugging compiler flags"
     CXXFLAGS='-DDEBUG=1 -g -O2 -Wall -Werror -pedantic -ansi -std=c++98'
 fi
 
 # Handle option --enable-optimization
 if test x$enable_optimization = xyes; then
+    echo "enabling optimizing compiler flags"
     CXXFLAGS='-O3 -Wall -Werror -pedantic -ansi -std=c++98'
 fi
 
 # Handle option --disable-curses
 if test x$disable_curses = x; then
+    echo "enabling curses, use --disable-curses to disable"
     echo "$as_me:$LINENO: checking for library containing wbkgdset" >&5
 echo $ECHO_N "checking for library containing wbkgdset... $ECHO_C" >&6
 if test "${ac_cv_search_wbkgdset+set}" = set; then
@@ -4015,12 +4040,39 @@ fi
     CURSES_CFLAGS=''
     CURSES_LIBS='-lncurses'
 else
+    echo "disabling curses, use --enable-curses to enable"
     CURSES_CFLAGS='-DNO_CURSES=1'
     CURSES_LIBS=''
 fi
 
+# Handle option --with-petsc=<path>. If user supplies this flag,
+# then use this directory for PETSc. If flag is not supported, then
+# the environment variable PETSC_DIR will be used. Otherwise, we
+# just assume that PETSC_DIR is /usr/lib/petsc
+if test x$PETSC_DIR = x; then
+    echo "assuming path to PETSc is /usr/lib/petsc"
+    PETSC_DIR="/usr/lib/petsc/"
+else
+    echo "using PETSC_DIR=$PETSC_DIR"
+fi
+
+# Handle option --with-petsc-version=<version>. If not supplied,
+# we assume the version is 2.2.0. We can only handle 2.2.0 or 2.2.1.
+if test x$PETSC_VERSION = x; then
+    echo "assuming PETSc version is 2.2.0"
+    PETSC_VERSION="2.2.0"
+elif test $PETSC_VERSION = "2.2.0"; then
+    echo "using PETSc version $PETSC_VERSION"
+elif test $PETSC_VERSION = "2.2.1"; then
+    echo "using PETSc version $PETSC_VERSION"
+else
+    echo "*** Can only handle PETSc version 2.2.0 or 2.2.1."
+    exit 1
+fi
+
 # Check for PETSc
-# Extract the first word of "petscarch", so it can be a program name with args.
+if test $PETSC_VERSION = "2.2.0"; then
+    # Extract the first word of "petscarch", so it can be a program name with args.
 set dummy petscarch; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -4056,20 +4108,76 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-if test $petsc_found = yes; then
-    # FIXME: Do correct test
-    PETSC_ARCH=`petscarch`
-    PETSC_DIR='/usr/lib/petsc'
-    BOPT='O_c++'
-    PETSC_CFLAGS="-DPETSC_DIR=$PETSC_DIR -DPETSC_ARCH=$PETSC_ARCH -DPETSC_USE_BOPT_O -DPETSC_USE_EXTERN_CXX"
+    if test $petsc_found = yes; then
+        PETSC_ARCH=`petscarch`
+        BOPT='O_c++'
+        PETSC_CFLAGS="-DPETSC_DIR=$PETSC_DIR -DPETSC_ARCH=$PETSC_ARCH -DPETSC_USE_BOPT_O -DPETSC_USE_EXTERN_CXX -DPETSC_2_2_0"
 
 
 
 
+
+    else
+        echo "*** Unable to find PETSc on your system."
+        echo "*** Use --with-petsc=<path> to specify the correct path for PETSc,"
+        echo "*** or set the environment variable PETSC_DIR to the correct path."
+        echo "*** Debian users need to install the package petsc-dev."
+        exit 1
+    fi
 else
-    echo "*** Unable to find PETSc on your system."
-    echo "*** Perhaps you need to install the package petsc-dev?"
-    exit 1
+    # Extract the first word of "configarch", so it can be a program name with args.
+set dummy configarch; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_petsc_found+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$petsc_found"; then
+  ac_cv_prog_petsc_found="$petsc_found" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+as_dummy="$PATH:$PETSC_DIR/bin"
+for as_dir in $as_dummy
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_petsc_found="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_prog_petsc_found" && ac_cv_prog_petsc_found="no"
+fi
+fi
+petsc_found=$ac_cv_prog_petsc_found
+if test -n "$petsc_found"; then
+  echo "$as_me:$LINENO: result: $petsc_found" >&5
+echo "${ECHO_T}$petsc_found" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+    if test $petsc_found = yes; then
+        PETSC_ARCH=`$PETSC_DIR/bin/configarch`
+        BOPT='O_c++'
+        PETSC_CFLAGS="-DPETSC_DIR=$PETSC_DIR -DPETSC_ARCH=$PETSC_ARCH -DPETSC_USE_BOPT_O -DPETSC_VERSION=$PETSC_VERSION -DPETSC_2_2_1"
+
+
+
+
+
+    else
+        echo "*** Unable to find PETSc on your system."
+        echo "*** Use --with-petsc=<path> to specify the correct path for PETSc,"
+        echo "*** or set the environment variable PETSC_DIR to the correct path."
+        echo "*** Debian users need to install the package petsc-dev."
+        exit 1
+    fi
 fi
 
 # Check for MPI (needed by PETSc)
@@ -4189,7 +4297,6 @@ KERNEL_CFLAGS="-I\$(top_builddir)/src/modules "
 for f in $DIRS; do
     KERNEL_CFLAGS="$KERNEL_CFLAGS-I\$(top_builddir)/src/kernel/$f "
 done
-echo $KERNEL_CFLAGS
 KERNEL_CFLAGS="$KERNEL_CFLAGS $CURSES_CFLAGS $PETSC_CFLAGS $MPI_CFLAGS $XML2_CFLAGS"
 
 
@@ -4957,6 +5064,7 @@ s,@PETSC_ARCH@,$PETSC_ARCH,;t t
 s,@PETSC_DIR@,$PETSC_DIR,;t t
 s,@BOPT@,$BOPT,;t t
 s,@PETSC_CFLAGS@,$PETSC_CFLAGS,;t t
+s,@PETSC_VERSION@,$PETSC_VERSION,;t t
 s,@mpi_found@,$mpi_found,;t t
 s,@MPI_CFLAGS@,$MPI_CFLAGS,;t t
 s,@libxml2_found@,$libxml2_found,;t t
