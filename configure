@@ -305,7 +305,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP libxml2_found XML2_INCLUDES MODULE_INCLUDES MAIN_INCLUDES DOLFIN_LFLAGS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP libxml2_found XML2_INCLUDES XML2_LFLAGS MODULE_INCLUDES MAIN_INCLUDES DOLFIN_LFLAGS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -3501,6 +3501,8 @@ fi
 
 if test $libxml2_found = yes; then
 	XML2_INCLUDES=`xml2-config --cflags`
+	XML2_LFLAGS=`xml2-config --libs`
+
 
 else
  	echo "Couldn't find libxml2 on your system."
@@ -4195,6 +4197,7 @@ s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
 s,@libxml2_found@,$libxml2_found,;t t
 s,@XML2_INCLUDES@,$XML2_INCLUDES,;t t
+s,@XML2_LFLAGS@,$XML2_LFLAGS,;t t
 s,@MODULE_INCLUDES@,$MODULE_INCLUDES,;t t
 s,@MAIN_INCLUDES@,$MAIN_INCLUDES,;t t
 s,@DOLFIN_LFLAGS@,$DOLFIN_LFLAGS,;t t
