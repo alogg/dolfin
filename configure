@@ -3833,7 +3833,7 @@ else
 fi
 
 
-DOLFIN_KERNEL="io grid fem elements quadrature io la math common settings log settings common"
+DOLFIN_KERNEL="io grid fem elements quadrature grid io la math common settings log settings common"
 
 cd src/modules
 ./scanmodules.sh
