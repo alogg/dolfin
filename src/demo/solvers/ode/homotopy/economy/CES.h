@@ -228,10 +228,10 @@ public:
       product *= tmp1[i];
 
     // Precompute dominating term
-    complex extra = zsum;
-    for (unsigned int i = 1; i < m; i++)
-      extra *= zsum;
-    extra -= 1.0;
+    // complex extra = zsum;
+    //     for (unsigned int i = 1; i < m; i++)
+    //       extra *= zsum;
+    //     extra -= 1.0;
 
     // Evaluate right-hand side
     for (unsigned int j = 1; j < n; j++)
@@ -244,7 +244,7 @@ public:
 	sum += a[i][j] * tmp0[i] * pow(z[j], di) * product / tmp1[i];
 	sum -= w[i][j] * tmp;
       }
-      y[j] = sum + extra;
+      y[j] = sum; // + extra;
     }
   }
 
@@ -277,9 +277,9 @@ public:
       rsum += (1.0 - b[r]) * tmp3[r] * product / tmp1[r];
 
     // Precompute dominating term
-    complex extra = static_cast<complex>(m) * xsum;
-    for (unsigned int i = 1; i < m; i++)
-      extra *= zsum;
+    // complex extra = static_cast<complex>(m) * xsum;
+//     for (unsigned int i = 1; i < m; i++)
+//       extra *= zsum;
 
     // Add terms of Jacobian
     for (unsigned int j = 1; j < n; j++)
@@ -306,7 +306,7 @@ public:
 	// Fourth term
 	sum -= w[i][j] * pow(z[j], bsum) * rsum;
       }
-      y[j] = sum + extra;
+      y[j] = sum; // + extra;
     }
   }
 
