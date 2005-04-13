@@ -177,7 +177,7 @@ public:
 
   };
 
-  BilinearForm(const NewFunction& w0, const real& c0, const real& c1) : dolfin::BilinearForm(1), c0(c0), c1(c1)
+  BilinearForm(NewFunction& w0, const real& c0, const real& c1) : dolfin::BilinearForm(1), c0(c0), c1(c1)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -450,7 +450,7 @@ public:
 
   };
 
-  LinearForm(const NewFunction& w0, const NewFunction& w1, const NewFunction& w2, const real& c0, const real& c1) : dolfin::LinearForm(3), c0(c0), c1(c1)
+  LinearForm(NewFunction& w0, NewFunction& w1, NewFunction& w2, const real& c0, const real& c1) : dolfin::LinearForm(3), c0(c0), c1(c1)
   {
     // Create finite element for test space
     _test = new TestElement();
