@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP PETSC_DIR BOPT petsc_found PETSC_CFLAGS mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP PETSC_DIR BOPT petsc_found PETSC_CFLAGS mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MODULE_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1332,7 +1332,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 # Init automake
-am__api_version="1.4"
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
   if test -f $ac_dir/install-sh; then
@@ -1538,17 +1537,17 @@ fi
 
 
 missing_dir=`cd $ac_aux_dir && pwd`
-echo "$as_me:$LINENO: checking for working aclocal-${am__api_version}" >&5
-echo $ECHO_N "checking for working aclocal-${am__api_version}... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking for working aclocal" >&5
+echo $ECHO_N "checking for working aclocal... $ECHO_C" >&6
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
-if (aclocal-${am__api_version} --version) < /dev/null > /dev/null 2>&1; then
-   ACLOCAL=aclocal-${am__api_version}
+if (aclocal --version) < /dev/null > /dev/null 2>&1; then
+   ACLOCAL=aclocal
    echo "$as_me:$LINENO: result: found" >&5
 echo "${ECHO_T}found" >&6
 else
-   ACLOCAL="$missing_dir/missing aclocal-${am__api_version}"
+   ACLOCAL="$missing_dir/missing aclocal"
    echo "$as_me:$LINENO: result: missing" >&5
 echo "${ECHO_T}missing" >&6
 fi
@@ -1568,17 +1567,17 @@ else
 echo "${ECHO_T}missing" >&6
 fi
 
-echo "$as_me:$LINENO: checking for working automake-${am__api_version}" >&5
-echo $ECHO_N "checking for working automake-${am__api_version}... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking for working automake" >&5
+echo $ECHO_N "checking for working automake... $ECHO_C" >&6
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
-if (automake-${am__api_version} --version) < /dev/null > /dev/null 2>&1; then
-   AUTOMAKE=automake-${am__api_version}
+if (automake --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake
    echo "$as_me:$LINENO: result: found" >&5
 echo "${ECHO_T}found" >&6
 else
-   AUTOMAKE="$missing_dir/missing automake-${am__api_version}"
+   AUTOMAKE="$missing_dir/missing automake"
    echo "$as_me:$LINENO: result: missing" >&5
 echo "${ECHO_T}missing" >&6
 fi
@@ -4213,37 +4212,27 @@ else
 fi
 
 # List of DOLFIN module libraries
-# FIXME: Rename when old modules are removed
-DOLFIN_MODULES_NEW="poisson convdiff elasticity"
+DOLFIN_MODULES="poisson convdiff elasticity"
 
 # List of DOLFIN kernel libraries
 DOLFIN_KERNEL="common fem form function io la log main math mesh ode quadrature settings common"
 
-# Find modules
-#cd src/modules
-#./scanmodules.sh
-#cd ../..
-#DOLFIN_MODULES=""
-#for l in `cat src/modules/modules.list | grep -v "#"`; do
-#    DOLFIN_MODULES="$DOLFIN_MODULES$l "
-#done
-
 # Generate include path for kernel
 KERNEL_CFLAGS=""
-DOLFIN_MAIN="main"
-DIRS="$DOLFIN_MAIN $DOLFIN_KERNEL"
-KERNEL_CFLAGS="-I\$(top_builddir)/src/modules "
-for f in $DIRS; do
-    KERNEL_CFLAGS="$KERNEL_CFLAGS-I\$(top_builddir)/src/kernel/$f "
+for f in $DOLFIN_KERNEL; do
+    KERNEL_CFLAGS="$KERNEL_CFLAGS -I\$(top_builddir)/src/kernel/$f"
 done
 KERNEL_CFLAGS="$KERNEL_CFLAGS $CURSES_CFLAGS $PETSC_CFLAGS $MPI_CFLAGS $XML2_CFLAGS"
 
 
+# Generate include path for modules
+MODULE_CFLAGS="$KERNEL_CFLAGS -I\$(top_builddir)/src/modules/"
+
+
 # Generate include path for main (including also module code)
 MAIN_CFLAGS=""
-DIRS="$DOLFIN_MODULES_NEW"
-for f in $DIRS; do
-    MAIN_CFLAGS="$MAIN_CFLAGS-I\$(top_builddir)/src/modules/$f "
+for f in $DOLFIN_MODULES; do
+    MAIN_CFLAGS="$MAIN_CFLAGS -I\$(top_builddir)/src/modules/$f "
 done
 MAIN_CFLAGS="$KERNEL_CFLAGS $MAIN_CFLAGS"
 
@@ -4251,9 +4240,9 @@ MAIN_CFLAGS="$KERNEL_CFLAGS $MAIN_CFLAGS"
 # Generate library list for linking in the correct order.
 # FIXME: Not very pretty to list the libraries multiple times
 DOLFIN_LIBS=""
-DIRS="$DOLFIN_MAIN $DOLFIN_MODULES_NEW $DOLFIN_KERNEL $DOLFIN_KERNEL $DOLFIN_KERNEL $DOLFIN_KERNEL"
+DIRS="$DOLFIN_MODULES $DOLFIN_KERNEL $DOLFIN_KERNEL $DOLFIN_KERNEL $DOLFIN_KERNEL"
 for f in $DIRS; do
-    DOLFIN_LIBS="$DOLFIN_LIBS-ldolfin-$f "
+    DOLFIN_LIBS="$DOLFIN_LIBS -ldolfin-$f"
 done
 DOLFIN_LIBS="$DOLFIN_LIBS $CURSES_LIBS $PETSC_LIBS $XML2_LIBS"
 
@@ -4266,7 +4255,7 @@ DOLFIN_LIBS="$DOLFIN_LIBS $CURSES_LIBS $PETSC_LIBS $XML2_LIBS"
 # Create Makefiles Seems like automake cannot handle a variable
 # containing the list of files, so this cannot be done
 # automatically. We have to list all the files.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/template/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/poisson-multigrid/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/euler/Makefile src/modules/heat/Makefile src/modules/heat/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/odesolver/Makefile src/modules/wave/Makefile src/modules/wave-vector/Makefile src/modules/elasticity-stationary/Makefile src/modules/elasticity-updated/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/la/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/stiff/Makefile src/demo/solvers/ode/mechanical/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/poisson-multigrid/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/heat/Makefile src/modules/heat/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/wave/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/la/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/stiff/Makefile src/demo/solvers/ode/mechanical/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4850,7 +4839,6 @@ do
   "src/kernel/settings/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/settings/dolfin/Makefile" ;;
   "src/modules/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/Makefile" ;;
   "src/modules/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/dolfin/Makefile" ;;
-  "src/modules/template/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/template/Makefile" ;;
   "src/modules/poisson/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/Makefile" ;;
   "src/modules/poisson/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/dolfin/Makefile" ;;
   "src/modules/poisson-multigrid/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson-multigrid/Makefile" ;;
@@ -4858,16 +4846,11 @@ do
   "src/modules/convdiff/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/convdiff/dolfin/Makefile" ;;
   "src/modules/elasticity/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/elasticity/Makefile" ;;
   "src/modules/elasticity/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/elasticity/dolfin/Makefile" ;;
-  "src/modules/euler/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/euler/Makefile" ;;
   "src/modules/heat/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/heat/Makefile" ;;
   "src/modules/heat/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/heat/dolfin/Makefile" ;;
   "src/modules/navierstokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/Makefile" ;;
   "src/modules/navierstokes/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/dolfin/Makefile" ;;
-  "src/modules/odesolver/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/odesolver/Makefile" ;;
   "src/modules/wave/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/wave/Makefile" ;;
-  "src/modules/wave-vector/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/wave-vector/Makefile" ;;
-  "src/modules/elasticity-stationary/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/elasticity-stationary/Makefile" ;;
-  "src/modules/elasticity-updated/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/elasticity-updated/Makefile" ;;
   "src/config/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/config/Makefile" ;;
   "src/post/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/post/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
@@ -5004,6 +4987,7 @@ s,@mpi_found@,$mpi_found,;t t
 s,@MPI_CFLAGS@,$MPI_CFLAGS,;t t
 s,@libxml2_found@,$libxml2_found,;t t
 s,@KERNEL_CFLAGS@,$KERNEL_CFLAGS,;t t
+s,@MODULE_CFLAGS@,$MODULE_CFLAGS,;t t
 s,@MAIN_CFLAGS@,$MAIN_CFLAGS,;t t
 s,@DOLFIN_LIBS@,$DOLFIN_LIBS,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
