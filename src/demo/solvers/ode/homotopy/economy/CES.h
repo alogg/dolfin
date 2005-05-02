@@ -306,7 +306,7 @@ public:
 	// Fourth term
 	sum -= w[i][j] * pow(z[j], bsum) * rsum;
       }
-      y[j] = sum; // + extra;
+      y[j] = sum + extra;
     }
   }
 
