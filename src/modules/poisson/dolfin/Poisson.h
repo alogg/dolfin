@@ -4,7 +4,7 @@
 #ifndef __POISSON_H
 #define __POISSON_H
 
-#include <dolfin/NewFiniteElement.h>
+#include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
@@ -17,11 +17,11 @@ class BilinearForm : public dolfin::BilinearForm
 {
 public:
 
-  class TestElement : public dolfin::NewFiniteElement
+  class TestElement : public dolfin::FiniteElement
   {
   public:
 
-    TestElement() : dolfin::NewFiniteElement(), tensordims(0)
+    TestElement() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -70,11 +70,11 @@ public:
 
   };
 
-  class TrialElement : public dolfin::NewFiniteElement
+  class TrialElement : public dolfin::FiniteElement
   {
   public:
 
-    TrialElement() : dolfin::NewFiniteElement(), tensordims(0)
+    TrialElement() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -163,11 +163,11 @@ class LinearForm : public dolfin::LinearForm
 {
 public:
 
-  class TestElement : public dolfin::NewFiniteElement
+  class TestElement : public dolfin::FiniteElement
   {
   public:
 
-    TestElement() : dolfin::NewFiniteElement(), tensordims(0)
+    TestElement() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -216,11 +216,11 @@ public:
 
   };
 
-  class FunctionElement_0 : public dolfin::NewFiniteElement
+  class FunctionElement_0 : public dolfin::FiniteElement
   {
   public:
 
-    FunctionElement_0() : dolfin::NewFiniteElement(), tensordims(0)
+    FunctionElement_0() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -269,7 +269,7 @@ public:
 
   };
 
-  LinearForm(NewFunction& w0) : dolfin::LinearForm(1)
+  LinearForm(Function& w0) : dolfin::LinearForm(1)
   {
     // Create finite element for test space
     _test = new TestElement();

@@ -4,7 +4,7 @@
 #ifndef __CONVECTIONDIFFUSION_H
 #define __CONVECTIONDIFFUSION_H
 
-#include <dolfin/NewFiniteElement.h>
+#include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
@@ -17,11 +17,11 @@ class BilinearForm : public dolfin::BilinearForm
 {
 public:
 
-  class TestElement : public dolfin::NewFiniteElement
+  class TestElement : public dolfin::FiniteElement
   {
   public:
 
-    TestElement() : dolfin::NewFiniteElement(), tensordims(0)
+    TestElement() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -70,11 +70,11 @@ public:
 
   };
 
-  class TrialElement : public dolfin::NewFiniteElement
+  class TrialElement : public dolfin::FiniteElement
   {
   public:
 
-    TrialElement() : dolfin::NewFiniteElement(), tensordims(0)
+    TrialElement() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -123,11 +123,11 @@ public:
 
   };
 
-  class FunctionElement_0 : public dolfin::NewFiniteElement
+  class FunctionElement_0 : public dolfin::FiniteElement
   {
   public:
 
-    FunctionElement_0() : dolfin::NewFiniteElement(), tensordims(0)
+    FunctionElement_0() : dolfin::FiniteElement(), tensordims(0)
     {
       tensordims = new unsigned int [1];
       tensordims[0] = 2;
@@ -177,7 +177,7 @@ public:
 
   };
 
-  BilinearForm(NewFunction& w0, const real& c0, const real& c1) : dolfin::BilinearForm(1), c0(c0), c1(c1)
+  BilinearForm(Function& w0, const real& c0, const real& c1) : dolfin::BilinearForm(1), c0(c0), c1(c1)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -237,11 +237,11 @@ class LinearForm : public dolfin::LinearForm
 {
 public:
 
-  class TestElement : public dolfin::NewFiniteElement
+  class TestElement : public dolfin::FiniteElement
   {
   public:
 
-    TestElement() : dolfin::NewFiniteElement(), tensordims(0)
+    TestElement() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -290,11 +290,11 @@ public:
 
   };
 
-  class FunctionElement_0 : public dolfin::NewFiniteElement
+  class FunctionElement_0 : public dolfin::FiniteElement
   {
   public:
 
-    FunctionElement_0() : dolfin::NewFiniteElement(), tensordims(0)
+    FunctionElement_0() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -343,11 +343,11 @@ public:
 
   };
 
-  class FunctionElement_1 : public dolfin::NewFiniteElement
+  class FunctionElement_1 : public dolfin::FiniteElement
   {
   public:
 
-    FunctionElement_1() : dolfin::NewFiniteElement(), tensordims(0)
+    FunctionElement_1() : dolfin::FiniteElement(), tensordims(0)
     {
       tensordims = new unsigned int [1];
       tensordims[0] = 2;
@@ -397,11 +397,11 @@ public:
 
   };
 
-  class FunctionElement_2 : public dolfin::NewFiniteElement
+  class FunctionElement_2 : public dolfin::FiniteElement
   {
   public:
 
-    FunctionElement_2() : dolfin::NewFiniteElement(), tensordims(0)
+    FunctionElement_2() : dolfin::FiniteElement(), tensordims(0)
     {
       // Do nothing
     }
@@ -450,7 +450,7 @@ public:
 
   };
 
-  LinearForm(NewFunction& w0, NewFunction& w1, NewFunction& w2, const real& c0, const real& c1) : dolfin::LinearForm(3), c0(c0), c1(c1)
+  LinearForm(Function& w0, Function& w1, Function& w2, const real& c0, const real& c1) : dolfin::LinearForm(3), c0(c0), c1(c1)
   {
     // Create finite element for test space
     _test = new TestElement();
