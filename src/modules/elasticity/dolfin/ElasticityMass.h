@@ -2,14 +2,14 @@
 // For further information, go to http://www/fenics.org/ffc/.
 // Licensed under the GNU GPL Version 2.
 
-#ifndef __./SRC/MODULES/ELASTICITY/DOLFIN/ELASTICITYMASS_H
-#define __./SRC/MODULES/ELASTICITY/DOLFIN/ELASTICITYMASS_H
+#ifndef __ELASTICITYMASS_H
+#define __ELASTICITYMASS_H
 
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
-namespace dolfin { namespace ./src/modules/elasticity/dolfin/ElasticityMass {
+namespace dolfin { namespace ElasticityMass {
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -67,7 +67,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -130,7 +130,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);

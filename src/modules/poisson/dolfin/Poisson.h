@@ -2,14 +2,14 @@
 // For further information, go to http://www/fenics.org/ffc/.
 // Licensed under the GNU GPL Version 2.
 
-#ifndef __./SRC/MODULES/POISSON/DOLFIN/POISSON_H
-#define __./SRC/MODULES/POISSON/DOLFIN/POISSON_H
+#ifndef __POISSON_H
+#define __POISSON_H
 
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
-namespace dolfin { namespace ./src/modules/poisson/dolfin/Poisson {
+namespace dolfin { namespace Poisson {
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -66,7 +66,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -127,7 +127,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -228,7 +228,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -289,7 +289,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);

@@ -2,14 +2,14 @@
 // For further information, go to http://www/fenics.org/ffc/.
 // Licensed under the GNU GPL Version 2.
 
-#ifndef __./SRC/MODULES/CONVDIFF/DOLFIN/CONVECTIONDIFFUSION_H
-#define __./SRC/MODULES/CONVDIFF/DOLFIN/CONVECTIONDIFFUSION_H
+#ifndef __CONVECTIONDIFFUSION_H
+#define __CONVECTIONDIFFUSION_H
 
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
-namespace dolfin { namespace ./src/modules/convdiff/dolfin/ConvectionDiffusion {
+namespace dolfin { namespace ConvectionDiffusion {
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -66,7 +66,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -127,7 +127,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -189,7 +189,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -310,7 +310,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -371,7 +371,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -433,7 +433,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
@@ -494,7 +494,7 @@ public:
     }
 
     // FIXME: New version replacing dof()
-    inline void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
