@@ -53,24 +53,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -114,24 +107,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -215,24 +201,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -276,24 +255,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:

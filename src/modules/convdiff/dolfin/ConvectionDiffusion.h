@@ -53,24 +53,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -114,24 +107,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -176,24 +162,21 @@ public:
       return 1;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return (i/3) * mesh.noNodes() + cell.nodeID(i % 3);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
+      int offset = mesh.noNodes();
+      dofs[3] = offset + cell.nodeID(0);
+      dofs[4] = offset + cell.nodeID(1);
+      dofs[5] = offset + cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i % 3).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -297,24 +280,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -358,24 +334,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -420,24 +389,21 @@ public:
       return 1;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return (i/3) * mesh.noNodes() + cell.nodeID(i % 3);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
+      int offset = mesh.noNodes();
+      dofs[3] = offset + cell.nodeID(0);
+      dofs[4] = offset + cell.nodeID(1);
+      dofs[5] = offset + cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i % 3).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
@@ -481,24 +447,17 @@ public:
       return 0;
     }
 
-    // FIXME: Only works for nodal basis
-    inline unsigned int dof(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      return cell.nodeID(i);
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
     }
 
     // FIXME: Only works for nodal basis
     inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
     {
       return cell.node(i).coord();
-    }
-
-    // FIXME: New version replacing dof()
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
     }
 
   private:
