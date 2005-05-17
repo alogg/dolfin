@@ -5,6 +5,7 @@
 #ifndef __ELASTICITYMASS_H
 #define __ELASTICITYMASS_H
 
+#include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
@@ -159,10 +160,10 @@ public:
     _trial = new TrialElement();
   }
 
-  bool interior(real* block) const
+  void eval(real block[], const AffineMap& map) const
   {
     // Compute geometry tensors
-    real G0_ = det;
+    real G0_ = map.det;
 
     // Compute element tensor
     block[0] = 1.666666666666662e-02*G0_;
@@ -310,7 +311,6 @@ public:
     block[142] = 8.333333333333312e-03*G0_;
     block[143] = 1.666666666666662e-02*G0_;
 
-    return true;
   }
 
 };

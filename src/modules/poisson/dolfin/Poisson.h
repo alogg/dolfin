@@ -5,6 +5,7 @@
 #ifndef __POISSON_H
 #define __POISSON_H
 
+#include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
@@ -135,13 +136,13 @@ public:
     _trial = new TrialElement();
   }
 
-  bool interior(real* block) const
+  void eval(real block[], const AffineMap& map) const
   {
     // Compute geometry tensors
-    real G0_0_0 = det*(g00*g00 + g01*g01);
-    real G0_0_1 = det*(g00*g10 + g01*g11);
-    real G0_1_0 = det*(g10*g00 + g11*g01);
-    real G0_1_1 = det*(g10*g10 + g11*g11);
+    real G0_0_0 = map.det*(map.g00*map.g00 + map.g01*map.g01);
+    real G0_0_1 = map.det*(map.g00*map.g10 + map.g01*map.g11);
+    real G0_1_0 = map.det*(map.g10*map.g00 + map.g11*map.g01);
+    real G0_1_1 = map.det*(map.g10*map.g10 + map.g11*map.g11);
 
     // Compute element tensor
     block[0] = 4.999999999999998e-01*G0_0_0 + 4.999999999999997e-01*G0_0_1 + 4.999999999999997e-01*G0_1_0 + 4.999999999999996e-01*G0_1_1;
@@ -154,7 +155,6 @@ public:
     block[7] = 4.999999999999997e-01*G0_1_0;
     block[8] = 4.999999999999996e-01*G0_1_1;
 
-    return true;
   }
 
 };
@@ -283,19 +283,18 @@ public:
     add(w0, new FunctionElement_0());
   }
 
-  bool interior(real* block) const
+  void eval(real block[], const AffineMap& map) const
   {
     // Compute geometry tensors
-    real G0_0 = det*w[0][0];
-    real G0_1 = det*w[0][1];
-    real G0_2 = det*w[0][2];
+    real G0_0 = map.det*w[0][0];
+    real G0_1 = map.det*w[0][1];
+    real G0_2 = map.det*w[0][2];
 
     // Compute element tensor
     block[0] = 8.333333333333318e-02*G0_0 + 4.166666666666659e-02*G0_1 + 4.166666666666658e-02*G0_2;
     block[1] = 4.166666666666659e-02*G0_0 + 8.333333333333318e-02*G0_1 + 4.166666666666659e-02*G0_2;
     block[2] = 4.166666666666658e-02*G0_0 + 4.166666666666659e-02*G0_1 + 8.333333333333316e-02*G0_2;
 
-    return true;
   }
 
 };
