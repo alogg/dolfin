@@ -60,11 +60,14 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
+    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
     {
-      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
+      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      components[0] = 0;
+      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      components[1] = 0;
+      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      components[2] = 0;
     }
 
   private:
@@ -115,11 +118,14 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
+    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
     {
-      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
+      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      components[0] = 0;
+      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      components[1] = 0;
+      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      components[2] = 0;
     }
 
   private:
@@ -209,11 +215,14 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
+    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
     {
-      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
+      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      components[0] = 0;
+      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      components[1] = 0;
+      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      components[2] = 0;
     }
 
   private:
@@ -264,11 +273,14 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
+    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
     {
-      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
-      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
+      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      components[0] = 0;
+      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      components[1] = 0;
+      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      components[2] = 0;
     }
 
   private:
