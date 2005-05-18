@@ -5,7 +5,6 @@
 #ifndef __ELASTICITYMASS_H
 #define __ELASTICITYMASS_H
 
-#include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
@@ -18,7 +17,7 @@ namespace dolfin { namespace ElasticityMass {
 class BilinearForm : public dolfin::BilinearForm
 {
 public:
-
+    
   class TestElement : public dolfin::FiniteElement
   {
   public:
@@ -73,10 +72,20 @@ public:
       dofs[11] = offset + cell.nodeID(3);
     }
 
-    // FIXME: Only works for nodal basis
-    inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
     {
-      return cell.node(i % 4).coord();
+      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 0);
+      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 0);
+      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00), 0);
+      coefficients[3] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00), 0);
+      coefficients[4] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 1);
+      coefficients[5] = function(map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 1);
+      coefficients[6] = function(map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00), 1);
+      coefficients[7] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00), 1);
+      coefficients[8] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 2);
+      coefficients[9] = function(map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 2);
+      coefficients[10] = function(map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00), 2);
+      coefficients[11] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00), 2);
     }
 
   private:
@@ -84,7 +93,7 @@ public:
     unsigned int* tensordims;
 
   };
-
+    
   class TrialElement : public dolfin::FiniteElement
   {
   public:
@@ -139,10 +148,20 @@ public:
       dofs[11] = offset + cell.nodeID(3);
     }
 
-    // FIXME: Only works for nodal basis
-    inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
     {
-      return cell.node(i % 4).coord();
+      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 0);
+      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 0);
+      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00), 0);
+      coefficients[3] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00), 0);
+      coefficients[4] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 1);
+      coefficients[5] = function(map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 1);
+      coefficients[6] = function(map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00), 1);
+      coefficients[7] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00), 1);
+      coefficients[8] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 2);
+      coefficients[9] = function(map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00), 2);
+      coefficients[10] = function(map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00), 2);
+      coefficients[11] = function(map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00), 2);
     }
 
   private:

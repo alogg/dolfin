@@ -5,7 +5,6 @@
 #ifndef __POISSON_H
 #define __POISSON_H
 
-#include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
@@ -18,7 +17,7 @@ namespace dolfin { namespace Poisson {
 class BilinearForm : public dolfin::BilinearForm
 {
 public:
-
+    
   class TestElement : public dolfin::FiniteElement
   {
   public:
@@ -61,10 +60,11 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    // FIXME: Only works for nodal basis
-    inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
     {
-      return cell.node(i).coord();
+      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
     }
 
   private:
@@ -72,7 +72,7 @@ public:
     unsigned int* tensordims;
 
   };
-
+    
   class TrialElement : public dolfin::FiniteElement
   {
   public:
@@ -115,10 +115,11 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    // FIXME: Only works for nodal basis
-    inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
     {
-      return cell.node(i).coord();
+      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
     }
 
   private:
@@ -165,7 +166,7 @@ public:
 class LinearForm : public dolfin::LinearForm
 {
 public:
-
+    
   class TestElement : public dolfin::FiniteElement
   {
   public:
@@ -208,10 +209,11 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    // FIXME: Only works for nodal basis
-    inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
     {
-      return cell.node(i).coord();
+      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
     }
 
   private:
@@ -219,7 +221,7 @@ public:
     unsigned int* tensordims;
 
   };
-
+    
   class FunctionElement_0 : public dolfin::FiniteElement
   {
   public:
@@ -262,10 +264,11 @@ public:
       dofs[2] = cell.nodeID(2);
     }
 
-    // FIXME: Only works for nodal basis
-    inline const Point coord(unsigned int i, const Cell& cell, const Mesh& mesh) const
+    void interpolate(const Function& function, real coefficients[], const AffineMap& map) const
     {
-      return cell.node(i).coord();
+      coefficients[0] = function(map(0.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[1] = function(map(1.000000000000000e+00, 0.000000000000000e+00));
+      coefficients[2] = function(map(0.000000000000000e+00, 1.000000000000000e+00));
     }
 
   private:
@@ -286,9 +289,9 @@ public:
   void eval(real block[], const AffineMap& map) const
   {
     // Compute geometry tensors
-    real G0_0 = map.det*w[0][0];
-    real G0_1 = map.det*w[0][1];
-    real G0_2 = map.det*w[0][2];
+    real G0_0 = map.det*c[0][0];
+    real G0_1 = map.det*c[0][1];
+    real G0_2 = map.det*c[0][2];
 
     // Compute element tensor
     block[0] = 8.333333333333318e-02*G0_0 + 4.166666666666659e-02*G0_1 + 4.166666666666658e-02*G0_2;
