@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP PETSC_DIR BOPT petsc_found PETSC_CFLAGS mpi_found MPI_CFLAGS libxml2_found KERNEL_CFLAGS MODULE_CFLAGS MAIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CXX CXXFLAGS ac_ct_CXX RANLIB ac_ct_RANLIB AWK LN_S CPP EGREP petsc_found mpi_found libxml2_found KERNEL_CFLAGS MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -861,6 +861,8 @@ Optional Features:
   --enable-debug          Turn on debugging and warnings (this is the default)
   --enable-optimization   Turn on optimization
   --disable-curses        Compile without curses
+  --disalbe-mpi           Compile without MPI (assuming PETSc does not use
+                          MPI)
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
@@ -1332,7 +1334,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 # Init automake
-am__api_version="1.4"
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
   if test -f $ac_dir/install-sh; then
@@ -1538,17 +1539,17 @@ fi
 
 
 missing_dir=`cd $ac_aux_dir && pwd`
-echo "$as_me:$LINENO: checking for working aclocal-${am__api_version}" >&5
-echo $ECHO_N "checking for working aclocal-${am__api_version}... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking for working aclocal" >&5
+echo $ECHO_N "checking for working aclocal... $ECHO_C" >&6
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
-if (aclocal-${am__api_version} --version) < /dev/null > /dev/null 2>&1; then
-   ACLOCAL=aclocal-${am__api_version}
+if (aclocal --version) < /dev/null > /dev/null 2>&1; then
+   ACLOCAL=aclocal
    echo "$as_me:$LINENO: result: found" >&5
 echo "${ECHO_T}found" >&6
 else
-   ACLOCAL="$missing_dir/missing aclocal-${am__api_version}"
+   ACLOCAL="$missing_dir/missing aclocal"
    echo "$as_me:$LINENO: result: missing" >&5
 echo "${ECHO_T}missing" >&6
 fi
@@ -1568,17 +1569,17 @@ else
 echo "${ECHO_T}missing" >&6
 fi
 
-echo "$as_me:$LINENO: checking for working automake-${am__api_version}" >&5
-echo $ECHO_N "checking for working automake-${am__api_version}... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking for working automake" >&5
+echo $ECHO_N "checking for working automake... $ECHO_C" >&6
 # Run test in a subshell; some versions of sh will print an error if
 # an executable is not found, even if stderr is redirected.
 # Redirect stdin to placate older versions of autoconf.  Sigh.
-if (automake-${am__api_version} --version) < /dev/null > /dev/null 2>&1; then
-   AUTOMAKE=automake-${am__api_version}
+if (automake --version) < /dev/null > /dev/null 2>&1; then
+   AUTOMAKE=automake
    echo "$as_me:$LINENO: result: found" >&5
 echo "${ECHO_T}found" >&6
 else
-   AUTOMAKE="$missing_dir/missing automake-${am__api_version}"
+   AUTOMAKE="$missing_dir/missing automake"
    echo "$as_me:$LINENO: result: missing" >&5
 echo "${ECHO_T}missing" >&6
 fi
@@ -1660,6 +1661,13 @@ fi;
 if test "${enable_curses+set}" = set; then
   enableval="$enable_curses"
   disable_curses=yes
+fi;
+
+# Option --disable-mpi
+# Check whether --enable-mpi or --disable-mpi was given.
+if test "${enable_mpi+set}" = set; then
+  enableval="$enable_mpi"
+  disable_mpi=yes
 fi;
 
 # Option --with-petsc-dir
@@ -4054,7 +4062,6 @@ fi
 if test x$PETSC_DIR = x; then
     echo "assuming path to PETSc is /usr/local/lib/petsc"
     PETSC_DIR="/usr/local/lib/petsc/"
-
 else
     echo "using PETSC_DIR=$PETSC_DIR"
 fi
@@ -4063,7 +4070,6 @@ fi
 if test x$BOPT = x; then
     echo "assuming PETSc BOPT is g_c++"
     BOPT="g_c++"
-
 else
     echo "using BOPT=$BOPT"
 fi
@@ -4110,7 +4116,6 @@ if test $petsc_found = yes; then
     # Extract PETSc variables from PETSC_DIR/bmake/common/variables
     PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
     PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs PETSC_DIR=$PETSC_DIR BOPT=$BOPT`
-
 else
     echo "*** Unable to find PETSc 2.2.1 on your system."
     echo "*** Use --with-petsc-dir=<path> to specify the correct path for PETSc,"
@@ -4120,7 +4125,8 @@ else
 fi
 
 # Check for MPI (needed by PETSc)
-# Extract the first word of "mpirun", so it can be a program name with args.
+if test x$disable_mpi = x; then
+    # Extract the first word of "mpirun", so it can be a program name with args.
 set dummy mpirun; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -4156,20 +4162,20 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-if test $mpi_found = yes; then
-    # FIXME: Do correct test
-    DIR=`which mpirun | sed 's/bin\/mpirun/include/'`
-    if  test -d $DIR/mpi ; then
-       MPI_CFLAGS="-I$DIR/mpi"
+    if test $mpi_found = yes; then
+        DIR=`which mpirun | sed 's/bin\/mpirun/include/'`
+        if  test -d $DIR/mpi ; then
+            MPI_CFLAGS="-I$DIR/mpi"
+        else
+	    MPI_CFLAGS="-I$DIR"
+        fi
     else
-       MPI_CFLAGS="-I$DIR"
+        echo "*** Unable to find MPI on your system."
+        echo "*** Perhaps you need to install the package mpich?"
+        exit 1
     fi
-    echo "MPI CFLAGS=$MPI_CFLAGS"
-
 else
-    echo "*** Unable to find MPI on your system."
-    echo "*** Perhaps you need to install the package mpich?"
-    exit 1
+    echo "disabling MPI (might not work if PETSc uses MPI)"
 fi
 
 # Check for libxml2
@@ -4241,7 +4247,7 @@ MAIN_CFLAGS=""
 for f in $DOLFIN_MODULES; do
     MAIN_CFLAGS="$MAIN_CFLAGS -I\$(top_builddir)/src/modules/$f "
 done
-MAIN_CFLAGS="$KERNEL_CFLAGS $MAIN_CFLAGS"
+DOLFIN_CFLAGS="$KERNEL_CFLAGS $MAIN_CFLAGS"
 
 
 # Generate library list for linking in the correct order.
@@ -4255,7 +4261,6 @@ DOLFIN_LIBS="$DOLFIN_LIBS $CURSES_LIBS $PETSC_LIBS $XML2_LIBS"
 
 
 # Export variables to makefiles
-
 
 
 
@@ -4984,16 +4989,12 @@ s,@AWK@,$AWK,;t t
 s,@LN_S@,$LN_S,;t t
 s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
-s,@PETSC_DIR@,$PETSC_DIR,;t t
-s,@BOPT@,$BOPT,;t t
 s,@petsc_found@,$petsc_found,;t t
-s,@PETSC_CFLAGS@,$PETSC_CFLAGS,;t t
 s,@mpi_found@,$mpi_found,;t t
-s,@MPI_CFLAGS@,$MPI_CFLAGS,;t t
 s,@libxml2_found@,$libxml2_found,;t t
 s,@KERNEL_CFLAGS@,$KERNEL_CFLAGS,;t t
 s,@MODULE_CFLAGS@,$MODULE_CFLAGS,;t t
-s,@MAIN_CFLAGS@,$MAIN_CFLAGS,;t t
+s,@DOLFIN_CFLAGS@,$DOLFIN_CFLAGS,;t t
 s,@DOLFIN_LIBS@,$DOLFIN_LIBS,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
