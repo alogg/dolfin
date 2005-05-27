@@ -2,14 +2,14 @@
 // For further information, go to http://www/fenics.org/ffc/.
 // Licensed under the GNU GPL Version 2.
 
-#ifndef __ELASTICITYUPDATEDSIGMA0_H
-#define __ELASTICITYUPDATEDSIGMA0_H
+#ifndef __ELASTICITYUPDATEDSIGMA1_H
+#define __ELASTICITYUPDATEDSIGMA1_H
 
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
-namespace dolfin { namespace ElasticityUpdatedSigma0 {
+namespace dolfin { namespace ElasticityUpdatedSigma1 {
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.

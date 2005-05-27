@@ -147,14 +147,6 @@ public:
       dofs[0] = 3*cell.id() + 0;
       dofs[1] = 3*cell.id() + 1;
       dofs[2] = 3*cell.id() + 2;
-      int offset = 3*mesh.noCells();
-      dofs[3] = offset + 3*cell.id() + 0;
-      dofs[4] = offset + 3*cell.id() + 1;
-      dofs[5] = offset + 3*cell.id() + 2;
-      offset = offset + 3*mesh.noCells();
-      dofs[6] = offset + 3*cell.id() + 0;
-      dofs[7] = offset + 3*cell.id() + 1;
-      dofs[8] = offset + 3*cell.id() + 2;
     }
 
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -214,14 +206,6 @@ public:
       dofs[0] = 3*cell.id() + 0;
       dofs[1] = 3*cell.id() + 1;
       dofs[2] = 3*cell.id() + 2;
-      int offset = 3*mesh.noCells();
-      dofs[3] = offset + 3*cell.id() + 0;
-      dofs[4] = offset + 3*cell.id() + 1;
-      dofs[5] = offset + 3*cell.id() + 2;
-      offset = offset + 3*mesh.noCells();
-      dofs[6] = offset + 3*cell.id() + 0;
-      dofs[7] = offset + 3*cell.id() + 1;
-      dofs[8] = offset + 3*cell.id() + 2;
     }
 
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -281,14 +265,6 @@ public:
       dofs[0] = 3*cell.id() + 0;
       dofs[1] = 3*cell.id() + 1;
       dofs[2] = 3*cell.id() + 2;
-      int offset = 3*mesh.noCells();
-      dofs[3] = offset + 3*cell.id() + 0;
-      dofs[4] = offset + 3*cell.id() + 1;
-      dofs[5] = offset + 3*cell.id() + 2;
-      offset = offset + 3*mesh.noCells();
-      dofs[6] = offset + 3*cell.id() + 0;
-      dofs[7] = offset + 3*cell.id() + 1;
-      dofs[8] = offset + 3*cell.id() + 2;
     }
 
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
