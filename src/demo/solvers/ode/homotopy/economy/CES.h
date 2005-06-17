@@ -11,35 +11,29 @@ using std::pow;
 
 using namespace dolfin;
 
-// Constant elasticity of substitution (CES) economy (rational form)
+/// Constant Elasticity of Substitution (CES) economy with m traders
+/// and n goods. The system is implemented in three different
+/// versions: rational form with rational exponents, polynomial form
+/// with rational exponents, and polynomial form with integer
+/// exponents (true polynomial form).
 
-class CES : public Economy
+/// This class implements the original rational form with rational exponents.
+
+class RationalRationalCES : public Economy
 {
 public:
 
-  CES(unsigned int m, unsigned int n, real epsilon) : Economy(m, n)
+  RationalRationalCES(unsigned int m, unsigned int n) : Economy(m, n)
   {
-    // Choose b such that epsilon < b_i < 1 for all i
     b = new real[m];
     for (unsigned int i = 0; i < m; i++)
-      b[i] = epsilon + dolfin::rand()*(1.0 - epsilon);
-
-    /*
-      a[0][0] = 2.0; a[0][1] = 1.0;
-      a[1][0] = 0.5; a[1][1] = 1.0;
-      
-      w[0][0] = 1.0; w[0][1] = 0.0;
-      w[1][0] = 0.0; w[1][1] = 1.0;
-      
-      b[0] = 0.1;
-      b[1] = 0.1;
-    */
-
+      b[i] = 0.0;
+    
     init(&tmp0);
     init(&tmp1);
   }
 
-  ~CES() { delete [] b; }
+  ~RationalRationalCES() { delete [] b; }
 
   /*
   complex z0(unsigned int i)
@@ -186,18 +180,17 @@ public:
   
 };
 
-// Constant elasticity of substitution (CES) economy (polynomial form)
+/// This class implements the polynomial form with rational exponents.
 
-class PolynomialCES : public Economy
+class PolynomialRationalCES : public Economy
 {
 public:
 
-  PolynomialCES(unsigned int m, unsigned int n, real epsilon) : Economy(m, n)
+  PolynomialRationalCES(unsigned int m, unsigned int n) : Economy(m, n)
   {
-    // Choose b such that epsilon < b_i < 1 for all i
     b = new real[m];
     for (unsigned int i = 0; i < m; i++)
-      b[i] = epsilon + dolfin::rand()*(1.0 - epsilon);
+      b[i] = 0.0;
 
     init(&tmp0);
     init(&tmp1);
@@ -205,7 +198,7 @@ public:
     init(&tmp3);
   }
 
-  ~PolynomialCES() { delete [] b; }
+  ~PolynomialRationalCES() { delete [] b; }
 
   void F(const complex z[], complex y[])
   {
@@ -228,10 +221,10 @@ public:
       product *= tmp1[i];
 
     // Precompute dominating term
-    complex extra = zsum;
-    for (unsigned int i = 1; i < m; i++)
-      extra *= zsum;
-    extra -= 1.0;
+    //complex extra = zsum;
+    //for (unsigned int i = 1; i < m; i++)
+    //  extra *= zsum;
+    //extra -= 1.0;
 
     // Evaluate right-hand side
     for (unsigned int j = 1; j < n; j++)
@@ -244,14 +237,14 @@ public:
 	sum += a[i][j] * tmp0[i] * pow(z[j], di) * product / tmp1[i];
 	sum -= w[i][j] * tmp;
       }
-      y[j] = sum + extra;
+      y[j] = sum; // + extra;
     }
   }
 
   void JF(const complex z[], const complex x[], complex y[])
   {
     // First equation: normalization
-    const complex zsum = sum(z);
+    //const complex zsum = sum(z);
     const complex xsum = sum(x);
     y[0] = xsum;
 
@@ -277,9 +270,9 @@ public:
       rsum += (1.0 - b[r]) * tmp3[r] * product / tmp1[r];
 
     // Precompute dominating term
-    complex extra = static_cast<complex>(m) * xsum;
-    for (unsigned int i = 1; i < m; i++)
-      extra *= zsum;
+    //complex extra = static_cast<complex>(m) * xsum;
+    //for (unsigned int i = 1; i < m; i++)
+    //  extra *= zsum;
 
     // Add terms of Jacobian
     for (unsigned int j = 1; j < n; j++)
@@ -306,7 +299,7 @@ public:
 	// Fourth term
 	sum -= w[i][j] * pow(z[j], bsum) * rsum;
       }
-      y[j] = sum + extra;
+      y[j] = sum; // + extra;
     }
   }
 
@@ -320,6 +313,135 @@ public:
   
   // Vector of exponents
   real* b;
+
+};
+
+/// This class implements the polynomial form with integer exponents.
+/// Note that the vector beta is used to represent the substituted
+/// values beta_i = b_i / epsilon and alpha = 1 / epsilon, with beta_i
+/// and alpha integers.
+
+class PolynomialIntegerCES : public Economy
+{
+public:
+
+  PolynomialIntegerCES(unsigned int m, unsigned int n) : Economy(m, n)
+  {
+    alpha = 1;
+    beta = new unsigned int[m];
+    for (unsigned int i = 0; i < m; i++)
+      beta[i] = 1;
+    
+    init(&tmp0);
+    init(&tmp1);
+    init(&tmp2);
+    init(&tmp3);
+  }
+
+  ~PolynomialIntegerCES() { delete [] beta; }
+
+  void F(const complex z[], complex y[])
+  {
+    // First equation: normalization
+    const complex zsum = bsum(z, alpha);
+    y[0] = zsum - 1.0;
+    
+    // Precompute scalar products
+    unsigned int bsum = 0;
+    for (unsigned int i = 0; i < m; i++)
+    {
+      tmp0[i] = bdot(w[i], z, alpha);
+      tmp1[i] = bdot(a[i], z, alpha - beta[i]);
+      bsum += beta[i];
+    }
+    
+    // Precompute product of all factors
+    complex product = 1.0;
+    for (unsigned int i = 0; i < m; i++)
+      product *= tmp1[i];
+
+    // Evaluate right-hand side
+    for (unsigned int j = 1; j < n; j++)
+    {
+      complex sum = 0.0;
+      const complex tmp = pow(z[j], bsum) * product;
+      for (unsigned int i = 0; i < m; i++)
+      {
+	sum += a[i][j] * tmp0[i] * pow(z[j], bsum - beta[i]) * product / tmp1[i];
+	sum -= w[i][j] * tmp;
+      }
+      y[j] = sum;
+    }
+  }
+
+  void JF(const complex z[], const complex x[], complex y[])
+  {
+    // First equation: normalization
+    const complex xsum = static_cast<real>(alpha) * bdot(x, z, alpha - 1);
+    y[0] = xsum;
+
+    // Precompute scalar products
+    unsigned int bsum = 0;
+    for (unsigned int i = 0; i < m; i++)
+    {
+      tmp0[i] = bdot(w[i], z, alpha);
+      tmp1[i] = bdot(a[i], z, alpha - beta[i]);
+      tmp2[i] = bdot(w[i], x, z, alpha - 1);
+      tmp3[i] = bdot(a[i], x, z, alpha - beta[i] - 1);
+      bsum += beta[i];
+    }
+    
+    // Precompute product of all factors
+    complex product = 1.0;
+    for (unsigned int i = 0; i < m; i++)
+      product *= tmp1[i];
+
+    // Precompute sum of all terms
+    complex rsum = 0.0;
+    for (unsigned int r = 0; r < m; r++)
+      rsum += static_cast<real>(alpha - beta[r]) * tmp3[r] * product / tmp1[r];
+
+    // Add terms of Jacobian
+    for (unsigned int j = 1; j < n; j++)
+    {
+      complex sum = 0.0;
+      for (unsigned int i = 0; i < m; i++)
+      {
+	// First term and second terms
+	sum += a[i][j]*(static_cast<real>(alpha)*tmp2[i]*pow(z[j], bsum - beta[i]) + 
+			tmp0[i]*static_cast<real>(bsum - beta[i])*
+			pow(z[j], bsum - beta[i] - 1)*x[j]) * product / tmp1[i];
+
+	// Third term
+	complex tmp = 0.0;
+	for (unsigned int r = 0; r < m; r++)
+	  if ( r != i )
+	    tmp += static_cast<real>(alpha - beta[r]) * tmp3[r] * product / (tmp1[r] * tmp1[i]);
+	sum += a[i][j] * tmp0[i] * pow(z[j], bsum - beta[i]) * tmp;
+
+	// Forth term
+	sum -= w[i][j] * static_cast<real>(bsum) * pow(z[j], bsum - 1) * x[j] * product;
+
+	// Fifth term
+	sum -= w[i][j] * pow(z[j], bsum) * rsum;
+      }
+      y[j] = sum;
+    }
+  }
+
+  unsigned int degree(unsigned int i) const
+  {
+    if ( i == 0 )
+      return 1;
+    else
+      return m;
+  }
+  
+  // Vector of exponents (substituted integer values)
+  unsigned int* beta;
+
+  // Scaled exponent of denominato (1 / epsilon)
+  unsigned int alpha;
 
 };
 
