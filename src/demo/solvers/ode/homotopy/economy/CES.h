@@ -325,13 +325,17 @@ class PolynomialIntegerCES : public Economy
 {
 public:
 
-  PolynomialIntegerCES(unsigned int m, unsigned int n) : Economy(m, n)
+  PolynomialIntegerCES(unsigned int m, unsigned int n, bool real_valued = false) : Economy(m, n)
   {
     alpha = 1;
     beta = new unsigned int[m];
     for (unsigned int i = 0; i < m; i++)
+    {
       beta[i] = 1;
+    }
     
+    this->real_valued = real_valued;
+
     init(&tmp0);
     init(&tmp1);
     init(&tmp2);
@@ -340,6 +344,7 @@ public:
 
   ~PolynomialIntegerCES() { delete [] beta; }
 
+  // System F(z) = 0
   void F(const complex z[], complex y[])
   {
     // First equation: normalization
@@ -374,6 +379,7 @@ public:
     }
   }
 
+  // Jacobian dF/dz of system F(z) = 0
   void JF(const complex z[], const complex x[], complex y[])
   {
     // First equation: normalization
@@ -429,6 +435,94 @@ public:
     }
   }
 
+  void modify(complex z[])
+  {
+    for (unsigned int j = 0; j < n; j++)
+      z[j] = std::pow(z[j], alpha);
+  }
+
+  bool verify(const complex z[])
+  {
+    const real tol = 2e-12;
+    bool ok = true;
+
+    dolfin_info("Verifying solution:");
+
+    // Check normalization
+    if ( std::abs(sum(z) - 1.0) < tol )
+      dolfin_info("  - Normalization:  ok");
+    else
+    {
+      ok = false;
+      dolfin_info("  - Normalization:  failed");
+    }
+
+    // Precompute scalar products
+    for (unsigned int i = 0; i < m; i++)
+    {
+      const real bi = static_cast<real>(beta[i]) / static_cast<real>(alpha);
+      tmp0[i] = dot(w[i], z) / bdot(a[i], z, 1.0 - bi);
+    }    
+
+    // Check first equation (the one replaced with normalization)
+    complex sum = 0.0;
+    for (unsigned int i = 0; i < m; i++)
+    {
+      const real bi = static_cast<real>(beta[i]) / static_cast<real>(alpha);
+      sum += a[i][0] * tmp0[i] / pow(z[0], bi) - w[i][0];
+    }
+    if ( std::abs(sum) < tol )
+      dolfin_info("  - First equation: ok");
+    else
+    {
+      ok = false;
+      dolfin_info("  - First equation: failed");
+    }
+
+    // Check remaining equations
+    real maxsum = 0.0;
+    for (unsigned int j = 1; j < n; j++)
+    {
+      complex sum = 0.0;
+      for (unsigned int i = 0; i < m; i++)
+      {
+	const real bi = static_cast<real>(beta[i]) / static_cast<real>(alpha);
+	sum += a[i][j] * tmp0[i] / pow(z[j], bi) - w[i][j];
+      }
+      maxsum = std::max(maxsum, std::abs(sum));
+    }
+    if ( std::abs(sum) < tol )
+      dolfin_info("  - Rest of system: ok");
+    else
+    {
+      ok = false;
+      dolfin_info("  - Rest of system: failed");
+    }
+
+    // Check if solution is real-valued
+    if ( real_valued )
+    {
+      bool all_real = true;
+      for (unsigned int j = 0; j < n; j++)
+      {
+	if ( std::abs(z[j].imag()) > tol )
+	{
+	  all_real = false;
+	  break;
+	}
+      }
+      if ( all_real )
+	dolfin_info("  - Real-valued:    ok");
+      else
+      {
+	ok = false;
+	dolfin_info("  - Real-valued:    failed");
+      }
+    }
+
+    return ok;
+  }
+
   unsigned int degree(unsigned int i) const
   {
     if ( i == 0 )
@@ -437,11 +531,16 @@ public:
       return m;
   }
   
-  // Vector of exponents (substituted integer values)
+  // Scaled exponents (substituted integer values)
   unsigned int* beta;
 
-  // Scaled exponent of denominato (1 / epsilon)
+  // Scaled exponent of numerator (1 / epsilon)
   unsigned int alpha;
+
+private:
+
+  // True if we only want real-valued solutions
+  bool real_valued;
 
 };
 
