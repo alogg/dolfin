@@ -438,7 +438,14 @@ public:
   void modify(complex z[])
   {
     for (unsigned int j = 0; j < n; j++)
+    {
+      // Scale back
       z[j] = std::pow(z[j], alpha);
+      
+      // Set almost zero imaginary parts to zero
+      if ( std::abs(z[j].imag()) < DOLFIN_EPS )
+	z[j] = z[j].real();
+    }
   }
 
   bool verify(const complex z[])
