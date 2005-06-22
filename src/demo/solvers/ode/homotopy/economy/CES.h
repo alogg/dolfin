@@ -172,7 +172,7 @@ public:
     if ( i == 0 )
       return 1;
     else
-      return m;
+      return m + 1;
   }
   
   // Vector of exponents
@@ -308,7 +308,7 @@ public:
     if ( i == 0 )
       return 1;
     else
-      return m;
+      return m + 1;
   }
   
   // Vector of exponents
@@ -335,6 +335,8 @@ public:
     }
     
     this->real_valued = real_valued;
+
+    tol = dolfin_get("homotopy solution tolerance");
 
     init(&tmp0);
     init(&tmp1);
@@ -441,16 +443,15 @@ public:
     {
       // Scale back
       z[j] = std::pow(z[j], alpha);
-      
-      // Set almost zero imaginary parts to zero
-      if ( std::abs(z[j].imag()) < DOLFIN_EPS )
+
+      // Set almost imaginary parts to zero
+      if ( std::abs(z[j].imag()) < tol )
 	z[j] = z[j].real();
     }
   }
 
   bool verify(const complex z[])
   {
-    const real tol = 2e-12;
     bool ok = true;
 
     dolfin_info("Verifying solution:");
@@ -512,6 +513,7 @@ public:
       bool all_real = true;
       for (unsigned int j = 0; j < n; j++)
       {
+	dolfin::cout << "checking: " << z[j] << dolfin::endl;
 	if ( std::abs(z[j].imag()) > tol )
 	{
 	  all_real = false;
@@ -533,9 +535,9 @@ public:
   unsigned int degree(unsigned int i) const
   {
     if ( i == 0 )
-      return 1;
+      return alpha;
     else
-      return m;
+      return alpha * (m + 1);
   }
   
   // Scaled exponents (substituted integer values)
