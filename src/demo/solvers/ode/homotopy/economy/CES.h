@@ -513,7 +513,6 @@ public:
       bool all_real = true;
       for (unsigned int j = 0; j < n; j++)
       {
-	dolfin::cout << "checking: " << z[j] << dolfin::endl;
 	if ( std::abs(z[j].imag()) > tol )
 	{
 	  all_real = false;
