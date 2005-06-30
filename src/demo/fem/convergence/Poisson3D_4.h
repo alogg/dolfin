@@ -56,7 +56,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][3] = {{0, 1, 2}, {2, 1, 0}};
-      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {1, 2, 0}, {1, 0, 2}, {2, 0, 1}, {2, 1, 0}};
+      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {2, 0, 1}, {1, 0, 2}, {1, 2, 0}, {2, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
@@ -225,7 +225,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][3] = {{0, 1, 2}, {2, 1, 0}};
-      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {1, 2, 0}, {1, 0, 2}, {2, 0, 1}, {2, 1, 0}};
+      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {2, 0, 1}, {1, 0, 2}, {1, 2, 0}, {2, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
@@ -1653,7 +1653,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][3] = {{0, 1, 2}, {2, 1, 0}};
-      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {1, 2, 0}, {1, 0, 2}, {2, 0, 1}, {2, 1, 0}};
+      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {2, 0, 1}, {1, 0, 2}, {1, 2, 0}, {2, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
@@ -1822,7 +1822,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][3] = {{0, 1, 2}, {2, 1, 0}};
-      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {1, 2, 0}, {1, 0, 2}, {2, 0, 1}, {2, 1, 0}};
+      static unsigned int face_reordering[6][3] = {{0, 1, 2}, {0, 2, 1}, {2, 0, 1}, {1, 0, 2}, {1, 2, 0}, {2, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);

@@ -56,7 +56,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {2, 4, 5, 1, 3, 0}, {2, 1, 0, 4, 3, 5}, {5, 3, 0, 4, 1, 2}, {5, 4, 2, 3, 1, 0}};
+      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
@@ -288,7 +288,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {2, 4, 5, 1, 3, 0}, {2, 1, 0, 4, 3, 5}, {5, 3, 0, 4, 1, 2}, {5, 4, 2, 3, 1, 0}};
+      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
@@ -3690,7 +3690,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {2, 4, 5, 1, 3, 0}, {2, 1, 0, 4, 3, 5}, {5, 3, 0, 4, 1, 2}, {5, 4, 2, 3, 1, 0}};
+      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
@@ -3922,7 +3922,7 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {2, 4, 5, 1, 3, 0}, {2, 1, 0, 4, 3, 5}, {5, 3, 0, 4, 1, 2}, {5, 4, 2, 3, 1, 0}};
+      static unsigned int face_reordering[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
       dofs[0] = cell.nodeID(0);
       dofs[1] = cell.nodeID(1);
       dofs[2] = cell.nodeID(2);
