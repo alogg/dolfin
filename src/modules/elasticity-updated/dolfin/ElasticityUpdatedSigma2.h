@@ -288,130 +288,8 @@ public:
     unsigned int* tensordims;
 
   };
-    
-  class FunctionElement_3 : public dolfin::FiniteElement
-  {
-  public:
 
-    FunctionElement_3() : dolfin::FiniteElement(), tensordims(0)
-    {
-      tensordims = new unsigned int [1];
-      tensordims[0] = 3;
-    }
-
-    ~FunctionElement_3()
-    {
-      if ( tensordims ) delete [] tensordims;
-    }
-
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-
-    inline unsigned int shapedim() const
-    {
-      return 3;
-    }
-
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_assert(i < 1);
-      return tensordims[i];
-    }
-
-    inline unsigned int rank() const
-    {
-      return 1;
-    }
-
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.id();
-      int offset = mesh.noCells();
-      dofs[1] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[2] = offset + cell.id();
-    }
-
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[1] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[2] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      components[0] = 0;
-      components[1] = 1;
-      components[2] = 2;
-    }
-
-  private:
-
-    unsigned int* tensordims;
-
-  };
-    
-  class FunctionElement_4 : public dolfin::FiniteElement
-  {
-  public:
-
-    FunctionElement_4() : dolfin::FiniteElement(), tensordims(0)
-    {
-      tensordims = new unsigned int [1];
-      tensordims[0] = 3;
-    }
-
-    ~FunctionElement_4()
-    {
-      if ( tensordims ) delete [] tensordims;
-    }
-
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-
-    inline unsigned int shapedim() const
-    {
-      return 3;
-    }
-
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_assert(i < 1);
-      return tensordims[i];
-    }
-
-    inline unsigned int rank() const
-    {
-      return 1;
-    }
-
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.id();
-      int offset = mesh.noCells();
-      dofs[1] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[2] = offset + cell.id();
-    }
-
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[1] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[2] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      components[0] = 0;
-      components[1] = 1;
-      components[2] = 2;
-    }
-
-  private:
-
-    unsigned int* tensordims;
-
-  };
-
-  LinearForm(Function& w0, Function& w1, Function& w2, Function& w3, Function& w4, const real& c0, const real& c1, const real& c2) : dolfin::LinearForm(5), c0(c0), c1(c1), c2(c2)
+  LinearForm(Function& w0, Function& w1, Function& w2, const real& c0, const real& c1, const real& c2) : dolfin::LinearForm(3), c0(c0), c1(c1), c2(c2)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -420,8 +298,6 @@ public:
     add(w0, new FunctionElement_0());
     add(w1, new FunctionElement_1());
     add(w2, new FunctionElement_2());
-    add(w3, new FunctionElement_3());
-    add(w4, new FunctionElement_4());
   }
 
   void eval(real block[], const AffineMap& map) const
@@ -481,23 +357,17 @@ public:
     real G2_2_9_0 = map.det*c1*c[0][9]*map.g02;
     real G2_2_10_1 = map.det*c1*c[0][10]*map.g12;
     real G2_2_11_2 = map.det*c1*c[0][11]*map.g22;
-    real G3_0_0 = map.det*c2*c0*c[4][0]*c[1][0];
-    real G4_1_0 = map.det*c2*c0*c[4][0]*c[2][1];
-    real G5_2_0 = map.det*c2*c0*c[4][0]*c[3][2];
-    real G6_0_0 = map.det*c2*c1*c[4][0]*c[3][0];
-    real G6_1_0 = map.det*c2*c1*c[4][0]*c[3][1];
-    real G6_2_0 = map.det*c2*c1*c[4][0]*c[3][2];
-    real G7_0 = map.det*c2*c0*c[1][0];
-    real G8_1 = map.det*c2*c0*c[2][1];
-    real G9_2 = map.det*c2*c0*c[3][2];
-    real G10_0 = map.det*c2*c1*c[3][0];
-    real G10_1 = map.det*c2*c1*c[3][1];
-    real G10_2 = map.det*c2*c1*c[3][2];
+    real G3_0_0 = map.det*c2*c1*c[2][0]*c[1][0];
+    real G3_1_0 = map.det*c2*c1*c[2][0]*c[1][1];
+    real G3_2_0 = map.det*c2*c1*c[2][0]*c[1][2];
+    real G4_0 = map.det*c2*c1*c[1][0];
+    real G4_1 = map.det*c2*c1*c[1][1];
+    real G4_2 = map.det*c2*c1*c[1][2];
 
     // Compute element tensor
-    block[0] = -1.666666666666665e-01*G1_0_0 - 1.666666666666665e-01*G1_0_1 - 1.666666666666664e-01*G1_0_2 + 1.666666666666665e-01*G1_1_0 + 1.666666666666665e-01*G1_2_1 + 1.666666666666665e-01*G1_3_2 - 1.666666666666665e-01*G2_0_8_0 - 1.666666666666665e-01*G2_0_8_1 - 1.666666666666665e-01*G2_0_8_2 + 1.666666666666665e-01*G2_0_9_0 + 1.666666666666665e-01*G2_0_10_1 + 1.666666666666665e-01*G2_0_11_2 + 1.666666666666665e-01*G6_0_0 - 1.666666666666665e-01*G10_0;
-    block[1] = -1.666666666666665e-01*G1_4_0 - 1.666666666666665e-01*G1_4_1 - 1.666666666666665e-01*G1_4_2 + 1.666666666666665e-01*G1_5_0 + 1.666666666666665e-01*G1_6_1 + 1.666666666666665e-01*G1_7_2 - 1.666666666666665e-01*G2_1_8_0 - 1.666666666666665e-01*G2_1_8_1 - 1.666666666666665e-01*G2_1_8_2 + 1.666666666666665e-01*G2_1_9_0 + 1.666666666666665e-01*G2_1_10_1 + 1.666666666666665e-01*G2_1_11_2 + 1.666666666666665e-01*G6_1_0 - 1.666666666666665e-01*G10_1;
-    block[2] = -3.333333333333329e-01*G0_0_0_0 - 3.333333333333329e-01*G0_0_0_1 - 3.333333333333329e-01*G0_0_0_2 + 3.333333333333329e-01*G0_0_1_0 + 3.333333333333329e-01*G0_0_2_1 + 3.333333333333329e-01*G0_0_3_2 - 3.333333333333329e-01*G0_1_4_0 - 3.333333333333329e-01*G0_1_4_1 - 3.333333333333329e-01*G0_1_4_2 + 3.333333333333329e-01*G0_1_5_0 + 3.333333333333329e-01*G0_1_6_1 + 3.333333333333329e-01*G0_1_7_2 - 3.333333333333329e-01*G0_2_8_0 - 3.333333333333329e-01*G0_2_8_1 - 3.333333333333329e-01*G0_2_8_2 + 3.333333333333329e-01*G0_2_9_0 + 3.333333333333329e-01*G0_2_10_1 + 3.333333333333329e-01*G0_2_11_2 - 1.666666666666665e-01*G1_8_0 - 1.666666666666665e-01*G1_8_1 - 1.666666666666665e-01*G1_8_2 + 1.666666666666665e-01*G1_9_0 + 1.666666666666665e-01*G1_10_1 + 1.666666666666665e-01*G1_11_2 - 1.666666666666665e-01*G2_2_8_0 - 1.666666666666665e-01*G2_2_8_1 - 1.666666666666665e-01*G2_2_8_2 + 1.666666666666665e-01*G2_2_9_0 + 1.666666666666665e-01*G2_2_10_1 + 1.666666666666665e-01*G2_2_11_2 + 3.333333333333329e-01*G3_0_0 + 3.333333333333329e-01*G4_1_0 + 3.333333333333329e-01*G5_2_0 + 1.666666666666665e-01*G6_2_0 - 3.333333333333329e-01*G7_0 - 3.333333333333329e-01*G8_1 - 3.333333333333329e-01*G9_2 - 1.666666666666665e-01*G10_2;
+    block[0] = -1.666666666666665e-01*G1_0_0 - 1.666666666666665e-01*G1_0_1 - 1.666666666666664e-01*G1_0_2 + 1.666666666666665e-01*G1_1_0 + 1.666666666666665e-01*G1_2_1 + 1.666666666666665e-01*G1_3_2 - 1.666666666666665e-01*G2_0_8_0 - 1.666666666666665e-01*G2_0_8_1 - 1.666666666666665e-01*G2_0_8_2 + 1.666666666666665e-01*G2_0_9_0 + 1.666666666666665e-01*G2_0_10_1 + 1.666666666666665e-01*G2_0_11_2 + 1.666666666666665e-01*G3_0_0 - 1.666666666666665e-01*G4_0;
+    block[1] = -1.666666666666665e-01*G1_4_0 - 1.666666666666665e-01*G1_4_1 - 1.666666666666665e-01*G1_4_2 + 1.666666666666665e-01*G1_5_0 + 1.666666666666665e-01*G1_6_1 + 1.666666666666665e-01*G1_7_2 - 1.666666666666665e-01*G2_1_8_0 - 1.666666666666665e-01*G2_1_8_1 - 1.666666666666665e-01*G2_1_8_2 + 1.666666666666665e-01*G2_1_9_0 + 1.666666666666665e-01*G2_1_10_1 + 1.666666666666665e-01*G2_1_11_2 + 1.666666666666665e-01*G3_1_0 - 1.666666666666665e-01*G4_1;
+    block[2] = -3.333333333333329e-01*G0_0_0_0 - 3.333333333333329e-01*G0_0_0_1 - 3.333333333333329e-01*G0_0_0_2 + 3.333333333333329e-01*G0_0_1_0 + 3.333333333333329e-01*G0_0_2_1 + 3.333333333333329e-01*G0_0_3_2 - 3.333333333333329e-01*G0_1_4_0 - 3.333333333333329e-01*G0_1_4_1 - 3.333333333333329e-01*G0_1_4_2 + 3.333333333333329e-01*G0_1_5_0 + 3.333333333333329e-01*G0_1_6_1 + 3.333333333333329e-01*G0_1_7_2 - 3.333333333333329e-01*G0_2_8_0 - 3.333333333333329e-01*G0_2_8_1 - 3.333333333333329e-01*G0_2_8_2 + 3.333333333333329e-01*G0_2_9_0 + 3.333333333333329e-01*G0_2_10_1 + 3.333333333333329e-01*G0_2_11_2 - 1.666666666666665e-01*G1_8_0 - 1.666666666666665e-01*G1_8_1 - 1.666666666666665e-01*G1_8_2 + 1.666666666666665e-01*G1_9_0 + 1.666666666666665e-01*G1_10_1 + 1.666666666666665e-01*G1_11_2 - 1.666666666666665e-01*G2_2_8_0 - 1.666666666666665e-01*G2_2_8_1 - 1.666666666666665e-01*G2_2_8_2 + 1.666666666666665e-01*G2_2_9_0 + 1.666666666666665e-01*G2_2_10_1 + 1.666666666666665e-01*G2_2_11_2 + 1.666666666666665e-01*G3_2_0 - 1.666666666666665e-01*G4_2;
 
   }
         
