@@ -150,64 +150,6 @@ public:
 
     inline unsigned int spacedim() const
     {
-      return 3;
-    }
-
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-    }
-
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-
-  private:
-
-    unsigned int* tensordims;
-
-  };
-    
-  class FunctionElement_1 : public dolfin::FiniteElement
-  {
-  public:
-
-    FunctionElement_1() : dolfin::FiniteElement(), tensordims(0)
-    {
-      // Do nothing
-    }
-
-    ~FunctionElement_1()
-    {
-      if ( tensordims ) delete [] tensordims;
-    }
-
-    inline unsigned int spacedim() const
-    {
       return 1;
     }
 
@@ -244,7 +186,7 @@ public:
 
   };
 
-  BilinearForm(Function& w0, Function& w1, const real& c0) : dolfin::BilinearForm(2), c0(c0)
+  BilinearForm(Function& w0, const real& c0) : dolfin::BilinearForm(1), c0(c0)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -254,35 +196,26 @@ public:
         
     // Add functions
     add(w0, new FunctionElement_0());
-    add(w1, new FunctionElement_1());
   }
 
   void eval(real block[], const AffineMap& map) const
   {
     // Compute geometry tensors
-    real G0_0_0_0_0 = map.det*c0*c[1][0]*c[0][0]*(map.g00*map.g00 + map.g01*map.g01);
-    real G0_0_0_0_1 = map.det*c0*c[1][0]*c[0][0]*(map.g00*map.g10 + map.g01*map.g11);
-    real G0_0_0_1_0 = map.det*c0*c[1][0]*c[0][0]*(map.g10*map.g00 + map.g11*map.g01);
-    real G0_0_0_1_1 = map.det*c0*c[1][0]*c[0][0]*(map.g10*map.g10 + map.g11*map.g11);
-    real G0_0_1_0_0 = map.det*c0*c[1][0]*c[0][1]*(map.g00*map.g00 + map.g01*map.g01);
-    real G0_0_1_0_1 = map.det*c0*c[1][0]*c[0][1]*(map.g00*map.g10 + map.g01*map.g11);
-    real G0_0_1_1_0 = map.det*c0*c[1][0]*c[0][1]*(map.g10*map.g00 + map.g11*map.g01);
-    real G0_0_1_1_1 = map.det*c0*c[1][0]*c[0][1]*(map.g10*map.g10 + map.g11*map.g11);
-    real G0_0_2_0_0 = map.det*c0*c[1][0]*c[0][2]*(map.g00*map.g00 + map.g01*map.g01);
-    real G0_0_2_0_1 = map.det*c0*c[1][0]*c[0][2]*(map.g00*map.g10 + map.g01*map.g11);
-    real G0_0_2_1_0 = map.det*c0*c[1][0]*c[0][2]*(map.g10*map.g00 + map.g11*map.g01);
-    real G0_0_2_1_1 = map.det*c0*c[1][0]*c[0][2]*(map.g10*map.g10 + map.g11*map.g11);
+    real G0_0_0_0_0 = map.det*c0*c[0][0]*c[0][0]*(map.g00*map.g00 + map.g01*map.g01);
+    real G0_0_0_0_1 = map.det*c0*c[0][0]*c[0][0]*(map.g00*map.g10 + map.g01*map.g11);
+    real G0_0_0_1_0 = map.det*c0*c[0][0]*c[0][0]*(map.g10*map.g00 + map.g11*map.g01);
+    real G0_0_0_1_1 = map.det*c0*c[0][0]*c[0][0]*(map.g10*map.g10 + map.g11*map.g11);
 
     // Compute element tensor
-    block[0] = 8.333333333333329e-02*G0_0_0_0_0 + 8.333333333333327e-02*G0_0_0_0_1 + 8.333333333333327e-02*G0_0_0_1_0 + 8.333333333333326e-02*G0_0_0_1_1 + 8.333333333333330e-02*G0_0_1_0_0 + 8.333333333333329e-02*G0_0_1_0_1 + 8.333333333333329e-02*G0_0_1_1_0 + 8.333333333333327e-02*G0_0_1_1_1 + 8.333333333333329e-02*G0_0_2_0_0 + 8.333333333333327e-02*G0_0_2_0_1 + 8.333333333333327e-02*G0_0_2_1_0 + 8.333333333333326e-02*G0_0_2_1_1;
-    block[1] = -8.333333333333329e-02*G0_0_0_0_0 - 8.333333333333327e-02*G0_0_0_1_0 - 8.333333333333330e-02*G0_0_1_0_0 - 8.333333333333329e-02*G0_0_1_1_0 - 8.333333333333329e-02*G0_0_2_0_0 - 8.333333333333327e-02*G0_0_2_1_0;
-    block[2] = -8.333333333333327e-02*G0_0_0_0_1 - 8.333333333333326e-02*G0_0_0_1_1 - 8.333333333333329e-02*G0_0_1_0_1 - 8.333333333333327e-02*G0_0_1_1_1 - 8.333333333333327e-02*G0_0_2_0_1 - 8.333333333333326e-02*G0_0_2_1_1;
-    block[3] = -8.333333333333329e-02*G0_0_0_0_0 - 8.333333333333327e-02*G0_0_0_0_1 - 8.333333333333330e-02*G0_0_1_0_0 - 8.333333333333329e-02*G0_0_1_0_1 - 8.333333333333329e-02*G0_0_2_0_0 - 8.333333333333327e-02*G0_0_2_0_1;
-    block[4] = 8.333333333333329e-02*G0_0_0_0_0 + 8.333333333333330e-02*G0_0_1_0_0 + 8.333333333333329e-02*G0_0_2_0_0;
-    block[5] = 8.333333333333327e-02*G0_0_0_0_1 + 8.333333333333329e-02*G0_0_1_0_1 + 8.333333333333327e-02*G0_0_2_0_1;
-    block[6] = -8.333333333333327e-02*G0_0_0_1_0 - 8.333333333333326e-02*G0_0_0_1_1 - 8.333333333333329e-02*G0_0_1_1_0 - 8.333333333333327e-02*G0_0_1_1_1 - 8.333333333333327e-02*G0_0_2_1_0 - 8.333333333333326e-02*G0_0_2_1_1;
-    block[7] = 8.333333333333327e-02*G0_0_0_1_0 + 8.333333333333329e-02*G0_0_1_1_0 + 8.333333333333327e-02*G0_0_2_1_0;
-    block[8] = 8.333333333333326e-02*G0_0_0_1_1 + 8.333333333333327e-02*G0_0_1_1_1 + 8.333333333333326e-02*G0_0_2_1_1;
+    block[0] = 2.499999999999999e-01*G0_0_0_0_0 + 2.499999999999998e-01*G0_0_0_0_1 + 2.499999999999998e-01*G0_0_0_1_0 + 2.499999999999998e-01*G0_0_0_1_1;
+    block[1] = -2.499999999999999e-01*G0_0_0_0_0 - 2.499999999999998e-01*G0_0_0_1_0;
+    block[2] = -2.499999999999998e-01*G0_0_0_0_1 - 2.499999999999998e-01*G0_0_0_1_1;
+    block[3] = -2.499999999999999e-01*G0_0_0_0_0 - 2.499999999999998e-01*G0_0_0_0_1;
+    block[4] = 2.499999999999999e-01*G0_0_0_0_0;
+    block[5] = 2.499999999999998e-01*G0_0_0_0_1;
+    block[6] = -2.499999999999998e-01*G0_0_0_1_0 - 2.499999999999998e-01*G0_0_0_1_1;
+    block[7] = 2.499999999999998e-01*G0_0_0_1_0;
+    block[8] = 2.499999999999998e-01*G0_0_0_1_1;
   }
         
 private:
@@ -424,543 +357,33 @@ public:
     unsigned int* tensordims;
 
   };
-    
-  class FunctionElement_1 : public dolfin::FiniteElement
-  {
-  public:
 
-    FunctionElement_1() : dolfin::FiniteElement(), tensordims(0)
-    {
-      tensordims = new unsigned int [1];
-      tensordims[0] = 2;
-    }
-
-    ~FunctionElement_1()
-    {
-      if ( tensordims ) delete [] tensordims;
-    }
-
-    inline unsigned int spacedim() const
-    {
-      return 6;
-    }
-
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_assert(i < 1);
-      return tensordims[i];
-    }
-
-    inline unsigned int rank() const
-    {
-      return 1;
-    }
-
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
-      dofs[3] = offset + cell.nodeID(0);
-      dofs[4] = offset + cell.nodeID(1);
-      dofs[5] = offset + cell.nodeID(2);
-    }
-
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      points[3] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[4] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[5] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-      components[3] = 1;
-      components[4] = 1;
-      components[5] = 1;
-    }
-
-  private:
-
-    unsigned int* tensordims;
-
-  };
-    
-  class FunctionElement_2 : public dolfin::FiniteElement
-  {
-  public:
-
-    FunctionElement_2() : dolfin::FiniteElement(), tensordims(0)
-    {
-      // Do nothing
-    }
-
-    ~FunctionElement_2()
-    {
-      if ( tensordims ) delete [] tensordims;
-    }
-
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-    }
-
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-
-  private:
-
-    unsigned int* tensordims;
-
-  };
-    
-  class FunctionElement_3 : public dolfin::FiniteElement
-  {
-  public:
-
-    FunctionElement_3() : dolfin::FiniteElement(), tensordims(0)
-    {
-      // Do nothing
-    }
-
-    ~FunctionElement_3()
-    {
-      if ( tensordims ) delete [] tensordims;
-    }
-
-    inline unsigned int spacedim() const
-    {
-      return 1;
-    }
-
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
-    {
-      dofs[0] = cell.id();
-    }
-
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(3.333333333333334e-01, 3.333333333333334e-01);
-      components[0] = 0;
-    }
-
-  private:
-
-    unsigned int* tensordims;
-
-  };
-
-  LinearForm(Function& w0, Function& w1, Function& w2, Function& w3, const real& c0) : dolfin::LinearForm(4), c0(c0)
+  LinearForm(Function& w0) : dolfin::LinearForm(1)
   {
     // Create finite element for test space
     _test = new TestElement();
         
     // Add functions
     add(w0, new FunctionElement_0());
-    add(w1, new FunctionElement_1());
-    add(w2, new FunctionElement_2());
-    add(w3, new FunctionElement_3());
   }
 
   void eval(real block[], const AffineMap& map) const
   {
     // Compute geometry tensors
-    real G0_0_0_0_0_0 = map.det*c0*c[3][0]*c[2][0]*c[1][0]*map.g00;
-    real G0_0_0_0_0_1 = map.det*c0*c[3][0]*c[2][0]*c[1][1]*map.g00;
-    real G0_0_0_0_0_2 = map.det*c0*c[3][0]*c[2][0]*c[1][2]*map.g00;
-    real G0_0_0_0_1_0 = map.det*c0*c[3][0]*c[2][0]*c[1][0]*map.g10;
-    real G0_0_0_0_1_1 = map.det*c0*c[3][0]*c[2][0]*c[1][1]*map.g10;
-    real G0_0_0_0_1_2 = map.det*c0*c[3][0]*c[2][0]*c[1][2]*map.g10;
-    real G0_0_0_1_0_3 = map.det*c0*c[3][0]*c[2][0]*c[1][3]*map.g01;
-    real G0_0_0_1_0_4 = map.det*c0*c[3][0]*c[2][0]*c[1][4]*map.g01;
-    real G0_0_0_1_0_5 = map.det*c0*c[3][0]*c[2][0]*c[1][5]*map.g01;
-    real G0_0_0_1_1_3 = map.det*c0*c[3][0]*c[2][0]*c[1][3]*map.g11;
-    real G0_0_0_1_1_4 = map.det*c0*c[3][0]*c[2][0]*c[1][4]*map.g11;
-    real G0_0_0_1_1_5 = map.det*c0*c[3][0]*c[2][0]*c[1][5]*map.g11;
-    real G0_0_1_0_0_0 = map.det*c0*c[3][0]*c[2][1]*c[1][0]*map.g00;
-    real G0_0_1_0_0_1 = map.det*c0*c[3][0]*c[2][1]*c[1][1]*map.g00;
-    real G0_0_1_0_0_2 = map.det*c0*c[3][0]*c[2][1]*c[1][2]*map.g00;
-    real G0_0_1_0_1_0 = map.det*c0*c[3][0]*c[2][1]*c[1][0]*map.g10;
-    real G0_0_1_0_1_1 = map.det*c0*c[3][0]*c[2][1]*c[1][1]*map.g10;
-    real G0_0_1_0_1_2 = map.det*c0*c[3][0]*c[2][1]*c[1][2]*map.g10;
-    real G0_0_1_1_0_3 = map.det*c0*c[3][0]*c[2][1]*c[1][3]*map.g01;
-    real G0_0_1_1_0_4 = map.det*c0*c[3][0]*c[2][1]*c[1][4]*map.g01;
-    real G0_0_1_1_0_5 = map.det*c0*c[3][0]*c[2][1]*c[1][5]*map.g01;
-    real G0_0_1_1_1_3 = map.det*c0*c[3][0]*c[2][1]*c[1][3]*map.g11;
-    real G0_0_1_1_1_4 = map.det*c0*c[3][0]*c[2][1]*c[1][4]*map.g11;
-    real G0_0_1_1_1_5 = map.det*c0*c[3][0]*c[2][1]*c[1][5]*map.g11;
-    real G0_0_2_0_0_0 = map.det*c0*c[3][0]*c[2][2]*c[1][0]*map.g00;
-    real G0_0_2_0_0_1 = map.det*c0*c[3][0]*c[2][2]*c[1][1]*map.g00;
-    real G0_0_2_0_0_2 = map.det*c0*c[3][0]*c[2][2]*c[1][2]*map.g00;
-    real G0_0_2_0_1_0 = map.det*c0*c[3][0]*c[2][2]*c[1][0]*map.g10;
-    real G0_0_2_0_1_1 = map.det*c0*c[3][0]*c[2][2]*c[1][1]*map.g10;
-    real G0_0_2_0_1_2 = map.det*c0*c[3][0]*c[2][2]*c[1][2]*map.g10;
-    real G0_0_2_1_0_3 = map.det*c0*c[3][0]*c[2][2]*c[1][3]*map.g01;
-    real G0_0_2_1_0_4 = map.det*c0*c[3][0]*c[2][2]*c[1][4]*map.g01;
-    real G0_0_2_1_0_5 = map.det*c0*c[3][0]*c[2][2]*c[1][5]*map.g01;
-    real G0_0_2_1_1_3 = map.det*c0*c[3][0]*c[2][2]*c[1][3]*map.g11;
-    real G0_0_2_1_1_4 = map.det*c0*c[3][0]*c[2][2]*c[1][4]*map.g11;
-    real G0_0_2_1_1_5 = map.det*c0*c[3][0]*c[2][2]*c[1][5]*map.g11;
-    real G1_0_0_0_0_0_0_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][0]*map.g00*map.g00;
-    real G1_0_0_0_0_0_0_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][0]*map.g00*map.g10;
-    real G1_0_0_0_0_0_0_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][1]*map.g00*map.g00;
-    real G1_0_0_0_0_0_0_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][2]*map.g00*map.g10;
-    real G1_0_0_0_0_0_1_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][0]*map.g00*map.g00;
-    real G1_0_0_0_0_0_1_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][0]*map.g00*map.g10;
-    real G1_0_0_0_0_0_1_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][1]*map.g00*map.g00;
-    real G1_0_0_0_0_0_1_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][2]*map.g00*map.g10;
-    real G1_0_0_0_0_0_2_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][0]*map.g00*map.g00;
-    real G1_0_0_0_0_0_2_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][0]*map.g00*map.g10;
-    real G1_0_0_0_0_0_2_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][1]*map.g00*map.g00;
-    real G1_0_0_0_0_0_2_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][2]*map.g00*map.g10;
-    real G1_0_0_0_0_1_0_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][0]*map.g10*map.g00;
-    real G1_0_0_0_0_1_0_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][0]*map.g10*map.g10;
-    real G1_0_0_0_0_1_0_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][1]*map.g10*map.g00;
-    real G1_0_0_0_0_1_0_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][2]*map.g10*map.g10;
-    real G1_0_0_0_0_1_1_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][0]*map.g10*map.g00;
-    real G1_0_0_0_0_1_1_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][0]*map.g10*map.g10;
-    real G1_0_0_0_0_1_1_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][1]*map.g10*map.g00;
-    real G1_0_0_0_0_1_1_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][2]*map.g10*map.g10;
-    real G1_0_0_0_0_1_2_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][0]*map.g10*map.g00;
-    real G1_0_0_0_0_1_2_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][0]*map.g10*map.g10;
-    real G1_0_0_0_0_1_2_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][1]*map.g10*map.g00;
-    real G1_0_0_0_0_1_2_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][2]*map.g10*map.g10;
-    real G1_0_0_0_1_0_3_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][0]*map.g00*map.g01;
-    real G1_0_0_0_1_0_3_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][0]*map.g00*map.g11;
-    real G1_0_0_0_1_0_3_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][1]*map.g00*map.g01;
-    real G1_0_0_0_1_0_3_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][2]*map.g00*map.g11;
-    real G1_0_0_0_1_0_4_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][0]*map.g00*map.g01;
-    real G1_0_0_0_1_0_4_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][0]*map.g00*map.g11;
-    real G1_0_0_0_1_0_4_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][1]*map.g00*map.g01;
-    real G1_0_0_0_1_0_4_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][2]*map.g00*map.g11;
-    real G1_0_0_0_1_0_5_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][0]*map.g00*map.g01;
-    real G1_0_0_0_1_0_5_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][0]*map.g00*map.g11;
-    real G1_0_0_0_1_0_5_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][1]*map.g00*map.g01;
-    real G1_0_0_0_1_0_5_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][2]*map.g00*map.g11;
-    real G1_0_0_0_1_1_3_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][0]*map.g10*map.g01;
-    real G1_0_0_0_1_1_3_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][0]*map.g10*map.g11;
-    real G1_0_0_0_1_1_3_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][1]*map.g10*map.g01;
-    real G1_0_0_0_1_1_3_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][2]*map.g10*map.g11;
-    real G1_0_0_0_1_1_4_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][0]*map.g10*map.g01;
-    real G1_0_0_0_1_1_4_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][0]*map.g10*map.g11;
-    real G1_0_0_0_1_1_4_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][1]*map.g10*map.g01;
-    real G1_0_0_0_1_1_4_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][2]*map.g10*map.g11;
-    real G1_0_0_0_1_1_5_0_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][0]*map.g10*map.g01;
-    real G1_0_0_0_1_1_5_0_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][0]*map.g10*map.g11;
-    real G1_0_0_0_1_1_5_1_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][1]*map.g10*map.g01;
-    real G1_0_0_0_1_1_5_2_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][2]*map.g10*map.g11;
-    real G1_0_0_1_0_0_0_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][3]*map.g01*map.g00;
-    real G1_0_0_1_0_0_0_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][3]*map.g01*map.g10;
-    real G1_0_0_1_0_0_0_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][4]*map.g01*map.g00;
-    real G1_0_0_1_0_0_0_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][5]*map.g01*map.g10;
-    real G1_0_0_1_0_0_1_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][3]*map.g01*map.g00;
-    real G1_0_0_1_0_0_1_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][3]*map.g01*map.g10;
-    real G1_0_0_1_0_0_1_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][4]*map.g01*map.g00;
-    real G1_0_0_1_0_0_1_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][5]*map.g01*map.g10;
-    real G1_0_0_1_0_0_2_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][3]*map.g01*map.g00;
-    real G1_0_0_1_0_0_2_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][3]*map.g01*map.g10;
-    real G1_0_0_1_0_0_2_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][4]*map.g01*map.g00;
-    real G1_0_0_1_0_0_2_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][5]*map.g01*map.g10;
-    real G1_0_0_1_0_1_0_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][3]*map.g11*map.g00;
-    real G1_0_0_1_0_1_0_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][3]*map.g11*map.g10;
-    real G1_0_0_1_0_1_0_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][4]*map.g11*map.g00;
-    real G1_0_0_1_0_1_0_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][0]*c[0][5]*map.g11*map.g10;
-    real G1_0_0_1_0_1_1_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][3]*map.g11*map.g00;
-    real G1_0_0_1_0_1_1_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][3]*map.g11*map.g10;
-    real G1_0_0_1_0_1_1_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][4]*map.g11*map.g00;
-    real G1_0_0_1_0_1_1_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][1]*c[0][5]*map.g11*map.g10;
-    real G1_0_0_1_0_1_2_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][3]*map.g11*map.g00;
-    real G1_0_0_1_0_1_2_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][3]*map.g11*map.g10;
-    real G1_0_0_1_0_1_2_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][4]*map.g11*map.g00;
-    real G1_0_0_1_0_1_2_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][2]*c[0][5]*map.g11*map.g10;
-    real G1_0_0_1_1_0_3_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][3]*map.g01*map.g01;
-    real G1_0_0_1_1_0_3_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][3]*map.g01*map.g11;
-    real G1_0_0_1_1_0_3_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][4]*map.g01*map.g01;
-    real G1_0_0_1_1_0_3_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][5]*map.g01*map.g11;
-    real G1_0_0_1_1_0_4_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][3]*map.g01*map.g01;
-    real G1_0_0_1_1_0_4_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][3]*map.g01*map.g11;
-    real G1_0_0_1_1_0_4_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][4]*map.g01*map.g01;
-    real G1_0_0_1_1_0_4_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][5]*map.g01*map.g11;
-    real G1_0_0_1_1_0_5_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][3]*map.g01*map.g01;
-    real G1_0_0_1_1_0_5_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][3]*map.g01*map.g11;
-    real G1_0_0_1_1_0_5_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][4]*map.g01*map.g01;
-    real G1_0_0_1_1_0_5_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][5]*map.g01*map.g11;
-    real G1_0_0_1_1_1_3_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][3]*map.g11*map.g01;
-    real G1_0_0_1_1_1_3_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][3]*map.g11*map.g11;
-    real G1_0_0_1_1_1_3_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][4]*map.g11*map.g01;
-    real G1_0_0_1_1_1_3_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][3]*c[0][5]*map.g11*map.g11;
-    real G1_0_0_1_1_1_4_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][3]*map.g11*map.g01;
-    real G1_0_0_1_1_1_4_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][3]*map.g11*map.g11;
-    real G1_0_0_1_1_1_4_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][4]*map.g11*map.g01;
-    real G1_0_0_1_1_1_4_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][4]*c[0][5]*map.g11*map.g11;
-    real G1_0_0_1_1_1_5_3_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][3]*map.g11*map.g01;
-    real G1_0_0_1_1_1_5_3_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][3]*map.g11*map.g11;
-    real G1_0_0_1_1_1_5_4_0 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][4]*map.g11*map.g01;
-    real G1_0_0_1_1_1_5_5_1 = map.det*c0*c[3][0]*c[2][0]*c[0][5]*c[0][5]*map.g11*map.g11;
-    real G1_0_1_0_0_0_0_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][0]*map.g00*map.g00;
-    real G1_0_1_0_0_0_0_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][0]*map.g00*map.g10;
-    real G1_0_1_0_0_0_0_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][1]*map.g00*map.g00;
-    real G1_0_1_0_0_0_0_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][2]*map.g00*map.g10;
-    real G1_0_1_0_0_0_1_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][0]*map.g00*map.g00;
-    real G1_0_1_0_0_0_1_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][0]*map.g00*map.g10;
-    real G1_0_1_0_0_0_1_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][1]*map.g00*map.g00;
-    real G1_0_1_0_0_0_1_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][2]*map.g00*map.g10;
-    real G1_0_1_0_0_0_2_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][0]*map.g00*map.g00;
-    real G1_0_1_0_0_0_2_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][0]*map.g00*map.g10;
-    real G1_0_1_0_0_0_2_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][1]*map.g00*map.g00;
-    real G1_0_1_0_0_0_2_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][2]*map.g00*map.g10;
-    real G1_0_1_0_0_1_0_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][0]*map.g10*map.g00;
-    real G1_0_1_0_0_1_0_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][0]*map.g10*map.g10;
-    real G1_0_1_0_0_1_0_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][1]*map.g10*map.g00;
-    real G1_0_1_0_0_1_0_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][2]*map.g10*map.g10;
-    real G1_0_1_0_0_1_1_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][0]*map.g10*map.g00;
-    real G1_0_1_0_0_1_1_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][0]*map.g10*map.g10;
-    real G1_0_1_0_0_1_1_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][1]*map.g10*map.g00;
-    real G1_0_1_0_0_1_1_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][2]*map.g10*map.g10;
-    real G1_0_1_0_0_1_2_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][0]*map.g10*map.g00;
-    real G1_0_1_0_0_1_2_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][0]*map.g10*map.g10;
-    real G1_0_1_0_0_1_2_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][1]*map.g10*map.g00;
-    real G1_0_1_0_0_1_2_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][2]*map.g10*map.g10;
-    real G1_0_1_0_1_0_3_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][0]*map.g00*map.g01;
-    real G1_0_1_0_1_0_3_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][0]*map.g00*map.g11;
-    real G1_0_1_0_1_0_3_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][1]*map.g00*map.g01;
-    real G1_0_1_0_1_0_3_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][2]*map.g00*map.g11;
-    real G1_0_1_0_1_0_4_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][0]*map.g00*map.g01;
-    real G1_0_1_0_1_0_4_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][0]*map.g00*map.g11;
-    real G1_0_1_0_1_0_4_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][1]*map.g00*map.g01;
-    real G1_0_1_0_1_0_4_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][2]*map.g00*map.g11;
-    real G1_0_1_0_1_0_5_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][0]*map.g00*map.g01;
-    real G1_0_1_0_1_0_5_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][0]*map.g00*map.g11;
-    real G1_0_1_0_1_0_5_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][1]*map.g00*map.g01;
-    real G1_0_1_0_1_0_5_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][2]*map.g00*map.g11;
-    real G1_0_1_0_1_1_3_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][0]*map.g10*map.g01;
-    real G1_0_1_0_1_1_3_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][0]*map.g10*map.g11;
-    real G1_0_1_0_1_1_3_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][1]*map.g10*map.g01;
-    real G1_0_1_0_1_1_3_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][2]*map.g10*map.g11;
-    real G1_0_1_0_1_1_4_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][0]*map.g10*map.g01;
-    real G1_0_1_0_1_1_4_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][0]*map.g10*map.g11;
-    real G1_0_1_0_1_1_4_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][1]*map.g10*map.g01;
-    real G1_0_1_0_1_1_4_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][2]*map.g10*map.g11;
-    real G1_0_1_0_1_1_5_0_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][0]*map.g10*map.g01;
-    real G1_0_1_0_1_1_5_0_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][0]*map.g10*map.g11;
-    real G1_0_1_0_1_1_5_1_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][1]*map.g10*map.g01;
-    real G1_0_1_0_1_1_5_2_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][2]*map.g10*map.g11;
-    real G1_0_1_1_0_0_0_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][3]*map.g01*map.g00;
-    real G1_0_1_1_0_0_0_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][3]*map.g01*map.g10;
-    real G1_0_1_1_0_0_0_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][4]*map.g01*map.g00;
-    real G1_0_1_1_0_0_0_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][5]*map.g01*map.g10;
-    real G1_0_1_1_0_0_1_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][3]*map.g01*map.g00;
-    real G1_0_1_1_0_0_1_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][3]*map.g01*map.g10;
-    real G1_0_1_1_0_0_1_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][4]*map.g01*map.g00;
-    real G1_0_1_1_0_0_1_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][5]*map.g01*map.g10;
-    real G1_0_1_1_0_0_2_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][3]*map.g01*map.g00;
-    real G1_0_1_1_0_0_2_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][3]*map.g01*map.g10;
-    real G1_0_1_1_0_0_2_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][4]*map.g01*map.g00;
-    real G1_0_1_1_0_0_2_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][5]*map.g01*map.g10;
-    real G1_0_1_1_0_1_0_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][3]*map.g11*map.g00;
-    real G1_0_1_1_0_1_0_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][3]*map.g11*map.g10;
-    real G1_0_1_1_0_1_0_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][4]*map.g11*map.g00;
-    real G1_0_1_1_0_1_0_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][0]*c[0][5]*map.g11*map.g10;
-    real G1_0_1_1_0_1_1_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][3]*map.g11*map.g00;
-    real G1_0_1_1_0_1_1_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][3]*map.g11*map.g10;
-    real G1_0_1_1_0_1_1_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][4]*map.g11*map.g00;
-    real G1_0_1_1_0_1_1_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][1]*c[0][5]*map.g11*map.g10;
-    real G1_0_1_1_0_1_2_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][3]*map.g11*map.g00;
-    real G1_0_1_1_0_1_2_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][3]*map.g11*map.g10;
-    real G1_0_1_1_0_1_2_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][4]*map.g11*map.g00;
-    real G1_0_1_1_0_1_2_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][2]*c[0][5]*map.g11*map.g10;
-    real G1_0_1_1_1_0_3_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][3]*map.g01*map.g01;
-    real G1_0_1_1_1_0_3_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][3]*map.g01*map.g11;
-    real G1_0_1_1_1_0_3_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][4]*map.g01*map.g01;
-    real G1_0_1_1_1_0_3_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][5]*map.g01*map.g11;
-    real G1_0_1_1_1_0_4_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][3]*map.g01*map.g01;
-    real G1_0_1_1_1_0_4_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][3]*map.g01*map.g11;
-    real G1_0_1_1_1_0_4_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][4]*map.g01*map.g01;
-    real G1_0_1_1_1_0_4_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][5]*map.g01*map.g11;
-    real G1_0_1_1_1_0_5_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][3]*map.g01*map.g01;
-    real G1_0_1_1_1_0_5_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][3]*map.g01*map.g11;
-    real G1_0_1_1_1_0_5_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][4]*map.g01*map.g01;
-    real G1_0_1_1_1_0_5_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][5]*map.g01*map.g11;
-    real G1_0_1_1_1_1_3_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][3]*map.g11*map.g01;
-    real G1_0_1_1_1_1_3_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][3]*map.g11*map.g11;
-    real G1_0_1_1_1_1_3_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][4]*map.g11*map.g01;
-    real G1_0_1_1_1_1_3_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][3]*c[0][5]*map.g11*map.g11;
-    real G1_0_1_1_1_1_4_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][3]*map.g11*map.g01;
-    real G1_0_1_1_1_1_4_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][3]*map.g11*map.g11;
-    real G1_0_1_1_1_1_4_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][4]*map.g11*map.g01;
-    real G1_0_1_1_1_1_4_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][4]*c[0][5]*map.g11*map.g11;
-    real G1_0_1_1_1_1_5_3_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][3]*map.g11*map.g01;
-    real G1_0_1_1_1_1_5_3_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][3]*map.g11*map.g11;
-    real G1_0_1_1_1_1_5_4_0 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][4]*map.g11*map.g01;
-    real G1_0_1_1_1_1_5_5_1 = map.det*c0*c[3][0]*c[2][1]*c[0][5]*c[0][5]*map.g11*map.g11;
-    real G1_0_2_0_0_0_0_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][0]*map.g00*map.g00;
-    real G1_0_2_0_0_0_0_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][0]*map.g00*map.g10;
-    real G1_0_2_0_0_0_0_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][1]*map.g00*map.g00;
-    real G1_0_2_0_0_0_0_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][2]*map.g00*map.g10;
-    real G1_0_2_0_0_0_1_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][0]*map.g00*map.g00;
-    real G1_0_2_0_0_0_1_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][0]*map.g00*map.g10;
-    real G1_0_2_0_0_0_1_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][1]*map.g00*map.g00;
-    real G1_0_2_0_0_0_1_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][2]*map.g00*map.g10;
-    real G1_0_2_0_0_0_2_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][0]*map.g00*map.g00;
-    real G1_0_2_0_0_0_2_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][0]*map.g00*map.g10;
-    real G1_0_2_0_0_0_2_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][1]*map.g00*map.g00;
-    real G1_0_2_0_0_0_2_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][2]*map.g00*map.g10;
-    real G1_0_2_0_0_1_0_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][0]*map.g10*map.g00;
-    real G1_0_2_0_0_1_0_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][0]*map.g10*map.g10;
-    real G1_0_2_0_0_1_0_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][1]*map.g10*map.g00;
-    real G1_0_2_0_0_1_0_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][2]*map.g10*map.g10;
-    real G1_0_2_0_0_1_1_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][0]*map.g10*map.g00;
-    real G1_0_2_0_0_1_1_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][0]*map.g10*map.g10;
-    real G1_0_2_0_0_1_1_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][1]*map.g10*map.g00;
-    real G1_0_2_0_0_1_1_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][2]*map.g10*map.g10;
-    real G1_0_2_0_0_1_2_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][0]*map.g10*map.g00;
-    real G1_0_2_0_0_1_2_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][0]*map.g10*map.g10;
-    real G1_0_2_0_0_1_2_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][1]*map.g10*map.g00;
-    real G1_0_2_0_0_1_2_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][2]*map.g10*map.g10;
-    real G1_0_2_0_1_0_3_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][0]*map.g00*map.g01;
-    real G1_0_2_0_1_0_3_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][0]*map.g00*map.g11;
-    real G1_0_2_0_1_0_3_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][1]*map.g00*map.g01;
-    real G1_0_2_0_1_0_3_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][2]*map.g00*map.g11;
-    real G1_0_2_0_1_0_4_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][0]*map.g00*map.g01;
-    real G1_0_2_0_1_0_4_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][0]*map.g00*map.g11;
-    real G1_0_2_0_1_0_4_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][1]*map.g00*map.g01;
-    real G1_0_2_0_1_0_4_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][2]*map.g00*map.g11;
-    real G1_0_2_0_1_0_5_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][0]*map.g00*map.g01;
-    real G1_0_2_0_1_0_5_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][0]*map.g00*map.g11;
-    real G1_0_2_0_1_0_5_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][1]*map.g00*map.g01;
-    real G1_0_2_0_1_0_5_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][2]*map.g00*map.g11;
-    real G1_0_2_0_1_1_3_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][0]*map.g10*map.g01;
-    real G1_0_2_0_1_1_3_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][0]*map.g10*map.g11;
-    real G1_0_2_0_1_1_3_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][1]*map.g10*map.g01;
-    real G1_0_2_0_1_1_3_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][2]*map.g10*map.g11;
-    real G1_0_2_0_1_1_4_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][0]*map.g10*map.g01;
-    real G1_0_2_0_1_1_4_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][0]*map.g10*map.g11;
-    real G1_0_2_0_1_1_4_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][1]*map.g10*map.g01;
-    real G1_0_2_0_1_1_4_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][2]*map.g10*map.g11;
-    real G1_0_2_0_1_1_5_0_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][0]*map.g10*map.g01;
-    real G1_0_2_0_1_1_5_0_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][0]*map.g10*map.g11;
-    real G1_0_2_0_1_1_5_1_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][1]*map.g10*map.g01;
-    real G1_0_2_0_1_1_5_2_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][2]*map.g10*map.g11;
-    real G1_0_2_1_0_0_0_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][3]*map.g01*map.g00;
-    real G1_0_2_1_0_0_0_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][3]*map.g01*map.g10;
-    real G1_0_2_1_0_0_0_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][4]*map.g01*map.g00;
-    real G1_0_2_1_0_0_0_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][5]*map.g01*map.g10;
-    real G1_0_2_1_0_0_1_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][3]*map.g01*map.g00;
-    real G1_0_2_1_0_0_1_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][3]*map.g01*map.g10;
-    real G1_0_2_1_0_0_1_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][4]*map.g01*map.g00;
-    real G1_0_2_1_0_0_1_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][5]*map.g01*map.g10;
-    real G1_0_2_1_0_0_2_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][3]*map.g01*map.g00;
-    real G1_0_2_1_0_0_2_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][3]*map.g01*map.g10;
-    real G1_0_2_1_0_0_2_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][4]*map.g01*map.g00;
-    real G1_0_2_1_0_0_2_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][5]*map.g01*map.g10;
-    real G1_0_2_1_0_1_0_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][3]*map.g11*map.g00;
-    real G1_0_2_1_0_1_0_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][3]*map.g11*map.g10;
-    real G1_0_2_1_0_1_0_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][4]*map.g11*map.g00;
-    real G1_0_2_1_0_1_0_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][0]*c[0][5]*map.g11*map.g10;
-    real G1_0_2_1_0_1_1_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][3]*map.g11*map.g00;
-    real G1_0_2_1_0_1_1_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][3]*map.g11*map.g10;
-    real G1_0_2_1_0_1_1_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][4]*map.g11*map.g00;
-    real G1_0_2_1_0_1_1_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][1]*c[0][5]*map.g11*map.g10;
-    real G1_0_2_1_0_1_2_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][3]*map.g11*map.g00;
-    real G1_0_2_1_0_1_2_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][3]*map.g11*map.g10;
-    real G1_0_2_1_0_1_2_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][4]*map.g11*map.g00;
-    real G1_0_2_1_0_1_2_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][2]*c[0][5]*map.g11*map.g10;
-    real G1_0_2_1_1_0_3_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][3]*map.g01*map.g01;
-    real G1_0_2_1_1_0_3_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][3]*map.g01*map.g11;
-    real G1_0_2_1_1_0_3_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][4]*map.g01*map.g01;
-    real G1_0_2_1_1_0_3_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][5]*map.g01*map.g11;
-    real G1_0_2_1_1_0_4_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][3]*map.g01*map.g01;
-    real G1_0_2_1_1_0_4_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][3]*map.g01*map.g11;
-    real G1_0_2_1_1_0_4_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][4]*map.g01*map.g01;
-    real G1_0_2_1_1_0_4_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][5]*map.g01*map.g11;
-    real G1_0_2_1_1_0_5_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][3]*map.g01*map.g01;
-    real G1_0_2_1_1_0_5_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][3]*map.g01*map.g11;
-    real G1_0_2_1_1_0_5_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][4]*map.g01*map.g01;
-    real G1_0_2_1_1_0_5_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][5]*map.g01*map.g11;
-    real G1_0_2_1_1_1_3_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][3]*map.g11*map.g01;
-    real G1_0_2_1_1_1_3_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][3]*map.g11*map.g11;
-    real G1_0_2_1_1_1_3_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][4]*map.g11*map.g01;
-    real G1_0_2_1_1_1_3_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][3]*c[0][5]*map.g11*map.g11;
-    real G1_0_2_1_1_1_4_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][3]*map.g11*map.g01;
-    real G1_0_2_1_1_1_4_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][3]*map.g11*map.g11;
-    real G1_0_2_1_1_1_4_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][4]*map.g11*map.g01;
-    real G1_0_2_1_1_1_4_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][4]*c[0][5]*map.g11*map.g11;
-    real G1_0_2_1_1_1_5_3_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][3]*map.g11*map.g01;
-    real G1_0_2_1_1_1_5_3_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][3]*map.g11*map.g11;
-    real G1_0_2_1_1_1_5_4_0 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][4]*map.g11*map.g01;
-    real G1_0_2_1_1_1_5_5_1 = map.det*c0*c[3][0]*c[2][2]*c[0][5]*c[0][5]*map.g11*map.g11;
-    real G2_0_0_0 = map.det*c[0][0]*map.g00;
-    real G2_0_0_1 = map.det*c[0][0]*map.g10;
-    real G2_0_1_0 = map.det*c[0][1]*map.g00;
-    real G2_0_2_1 = map.det*c[0][2]*map.g10;
-    real G2_1_3_0 = map.det*c[0][3]*map.g01;
-    real G2_1_3_1 = map.det*c[0][3]*map.g11;
-    real G2_1_4_0 = map.det*c[0][4]*map.g01;
-    real G2_1_5_1 = map.det*c[0][5]*map.g11;
+    real G0_0_0_0 = map.det*c[0][0]*map.g00;
+    real G0_0_0_1 = map.det*c[0][0]*map.g10;
+    real G0_0_1_0 = map.det*c[0][1]*map.g00;
+    real G0_0_2_1 = map.det*c[0][2]*map.g10;
+    real G0_1_3_0 = map.det*c[0][3]*map.g01;
+    real G0_1_3_1 = map.det*c[0][3]*map.g11;
+    real G0_1_4_0 = map.det*c[0][4]*map.g01;
+    real G0_1_5_1 = map.det*c[0][5]*map.g11;
 
     // Compute element tensor
-    block[0] = -4.166666666666660e-02*G0_0_0_0_0_0 - 2.083333333333330e-02*G0_0_0_0_0_1 - 2.083333333333330e-02*G0_0_0_0_0_2 - 4.166666666666659e-02*G0_0_0_0_1_0 - 2.083333333333330e-02*G0_0_0_0_1_1 - 2.083333333333329e-02*G0_0_0_0_1_2 - 4.166666666666660e-02*G0_0_0_1_0_3 - 2.083333333333330e-02*G0_0_0_1_0_4 - 2.083333333333330e-02*G0_0_0_1_0_5 - 4.166666666666659e-02*G0_0_0_1_1_3 - 2.083333333333330e-02*G0_0_0_1_1_4 - 2.083333333333329e-02*G0_0_0_1_1_5 - 2.083333333333330e-02*G0_0_1_0_0_0 - 4.166666666666660e-02*G0_0_1_0_0_1 - 2.083333333333330e-02*G0_0_1_0_0_2 - 2.083333333333330e-02*G0_0_1_0_1_0 - 4.166666666666659e-02*G0_0_1_0_1_1 - 2.083333333333330e-02*G0_0_1_0_1_2 - 2.083333333333330e-02*G0_0_1_1_0_3 - 4.166666666666660e-02*G0_0_1_1_0_4 - 2.083333333333330e-02*G0_0_1_1_0_5 - 2.083333333333330e-02*G0_0_1_1_1_3 - 4.166666666666659e-02*G0_0_1_1_1_4 - 2.083333333333330e-02*G0_0_1_1_1_5 - 2.083333333333330e-02*G0_0_2_0_0_0 - 2.083333333333330e-02*G0_0_2_0_0_1 - 4.166666666666660e-02*G0_0_2_0_0_2 - 2.083333333333329e-02*G0_0_2_0_1_0 - 2.083333333333330e-02*G0_0_2_0_1_1 - 4.166666666666659e-02*G0_0_2_0_1_2 - 2.083333333333330e-02*G0_0_2_1_0_3 - 2.083333333333330e-02*G0_0_2_1_0_4 - 4.166666666666660e-02*G0_0_2_1_0_5 - 2.083333333333329e-02*G0_0_2_1_1_3 - 2.083333333333330e-02*G0_0_2_1_1_4 - 4.166666666666659e-02*G0_0_2_1_1_5 - 4.166666666666661e-02*G1_0_0_0_0_0_0_0_0 - 4.166666666666660e-02*G1_0_0_0_0_0_0_0_1 + 4.166666666666661e-02*G1_0_0_0_0_0_0_1_0 + 4.166666666666660e-02*G1_0_0_0_0_0_0_2_1 - 2.083333333333330e-02*G1_0_0_0_0_0_1_0_0 - 2.083333333333330e-02*G1_0_0_0_0_0_1_0_1 + 2.083333333333330e-02*G1_0_0_0_0_0_1_1_0 + 2.083333333333330e-02*G1_0_0_0_0_0_1_2_1 - 2.083333333333330e-02*G1_0_0_0_0_0_2_0_0 - 2.083333333333330e-02*G1_0_0_0_0_0_2_0_1 + 2.083333333333330e-02*G1_0_0_0_0_0_2_1_0 + 2.083333333333330e-02*G1_0_0_0_0_0_2_2_1 - 4.166666666666660e-02*G1_0_0_0_0_1_0_0_0 - 4.166666666666659e-02*G1_0_0_0_0_1_0_0_1 + 4.166666666666660e-02*G1_0_0_0_0_1_0_1_0 + 4.166666666666659e-02*G1_0_0_0_0_1_0_2_1 - 2.083333333333330e-02*G1_0_0_0_0_1_1_0_0 - 2.083333333333330e-02*G1_0_0_0_0_1_1_0_1 + 2.083333333333330e-02*G1_0_0_0_0_1_1_1_0 + 2.083333333333330e-02*G1_0_0_0_0_1_1_2_1 - 2.083333333333329e-02*G1_0_0_0_0_1_2_0_0 - 2.083333333333329e-02*G1_0_0_0_0_1_2_0_1 + 2.083333333333329e-02*G1_0_0_0_0_1_2_1_0 + 2.083333333333329e-02*G1_0_0_0_0_1_2_2_1 - 4.166666666666661e-02*G1_0_0_0_1_0_3_0_0 - 4.166666666666660e-02*G1_0_0_0_1_0_3_0_1 + 4.166666666666661e-02*G1_0_0_0_1_0_3_1_0 + 4.166666666666660e-02*G1_0_0_0_1_0_3_2_1 - 2.083333333333330e-02*G1_0_0_0_1_0_4_0_0 - 2.083333333333330e-02*G1_0_0_0_1_0_4_0_1 + 2.083333333333330e-02*G1_0_0_0_1_0_4_1_0 + 2.083333333333330e-02*G1_0_0_0_1_0_4_2_1 - 2.083333333333330e-02*G1_0_0_0_1_0_5_0_0 - 2.083333333333330e-02*G1_0_0_0_1_0_5_0_1 + 2.083333333333330e-02*G1_0_0_0_1_0_5_1_0 + 2.083333333333330e-02*G1_0_0_0_1_0_5_2_1 - 4.166666666666660e-02*G1_0_0_0_1_1_3_0_0 - 4.166666666666659e-02*G1_0_0_0_1_1_3_0_1 + 4.166666666666660e-02*G1_0_0_0_1_1_3_1_0 + 4.166666666666659e-02*G1_0_0_0_1_1_3_2_1 - 2.083333333333330e-02*G1_0_0_0_1_1_4_0_0 - 2.083333333333330e-02*G1_0_0_0_1_1_4_0_1 + 2.083333333333330e-02*G1_0_0_0_1_1_4_1_0 + 2.083333333333330e-02*G1_0_0_0_1_1_4_2_1 - 2.083333333333329e-02*G1_0_0_0_1_1_5_0_0 - 2.083333333333329e-02*G1_0_0_0_1_1_5_0_1 + 2.083333333333329e-02*G1_0_0_0_1_1_5_1_0 + 2.083333333333329e-02*G1_0_0_0_1_1_5_2_1 - 4.166666666666661e-02*G1_0_0_1_0_0_0_3_0 - 4.166666666666660e-02*G1_0_0_1_0_0_0_3_1 + 4.166666666666661e-02*G1_0_0_1_0_0_0_4_0 + 4.166666666666660e-02*G1_0_0_1_0_0_0_5_1 - 2.083333333333330e-02*G1_0_0_1_0_0_1_3_0 - 2.083333333333330e-02*G1_0_0_1_0_0_1_3_1 + 2.083333333333330e-02*G1_0_0_1_0_0_1_4_0 + 2.083333333333330e-02*G1_0_0_1_0_0_1_5_1 - 2.083333333333330e-02*G1_0_0_1_0_0_2_3_0 - 2.083333333333330e-02*G1_0_0_1_0_0_2_3_1 + 2.083333333333330e-02*G1_0_0_1_0_0_2_4_0 + 2.083333333333330e-02*G1_0_0_1_0_0_2_5_1 - 4.166666666666660e-02*G1_0_0_1_0_1_0_3_0 - 4.166666666666659e-02*G1_0_0_1_0_1_0_3_1 + 4.166666666666660e-02*G1_0_0_1_0_1_0_4_0 + 4.166666666666659e-02*G1_0_0_1_0_1_0_5_1 - 2.083333333333330e-02*G1_0_0_1_0_1_1_3_0 - 2.083333333333330e-02*G1_0_0_1_0_1_1_3_1 + 2.083333333333330e-02*G1_0_0_1_0_1_1_4_0 + 2.083333333333330e-02*G1_0_0_1_0_1_1_5_1 - 2.083333333333329e-02*G1_0_0_1_0_1_2_3_0 - 2.083333333333329e-02*G1_0_0_1_0_1_2_3_1 + 2.083333333333329e-02*G1_0_0_1_0_1_2_4_0 + 2.083333333333329e-02*G1_0_0_1_0_1_2_5_1 - 4.166666666666661e-02*G1_0_0_1_1_0_3_3_0 - 4.166666666666660e-02*G1_0_0_1_1_0_3_3_1 + 4.166666666666661e-02*G1_0_0_1_1_0_3_4_0 + 4.166666666666660e-02*G1_0_0_1_1_0_3_5_1 - 2.083333333333330e-02*G1_0_0_1_1_0_4_3_0 - 2.083333333333330e-02*G1_0_0_1_1_0_4_3_1 + 2.083333333333330e-02*G1_0_0_1_1_0_4_4_0 + 2.083333333333330e-02*G1_0_0_1_1_0_4_5_1 - 2.083333333333330e-02*G1_0_0_1_1_0_5_3_0 - 2.083333333333330e-02*G1_0_0_1_1_0_5_3_1 + 2.083333333333330e-02*G1_0_0_1_1_0_5_4_0 + 2.083333333333330e-02*G1_0_0_1_1_0_5_5_1 - 4.166666666666660e-02*G1_0_0_1_1_1_3_3_0 - 4.166666666666659e-02*G1_0_0_1_1_1_3_3_1 + 4.166666666666660e-02*G1_0_0_1_1_1_3_4_0 + 4.166666666666659e-02*G1_0_0_1_1_1_3_5_1 - 2.083333333333330e-02*G1_0_0_1_1_1_4_3_0 - 2.083333333333330e-02*G1_0_0_1_1_1_4_3_1 + 2.083333333333330e-02*G1_0_0_1_1_1_4_4_0 + 2.083333333333330e-02*G1_0_0_1_1_1_4_5_1 - 2.083333333333329e-02*G1_0_0_1_1_1_5_3_0 - 2.083333333333329e-02*G1_0_0_1_1_1_5_3_1 + 2.083333333333329e-02*G1_0_0_1_1_1_5_4_0 + 2.083333333333329e-02*G1_0_0_1_1_1_5_5_1 - 2.083333333333330e-02*G1_0_1_0_0_0_0_0_0 - 2.083333333333330e-02*G1_0_1_0_0_0_0_0_1 + 2.083333333333330e-02*G1_0_1_0_0_0_0_1_0 + 2.083333333333330e-02*G1_0_1_0_0_0_0_2_1 - 4.166666666666661e-02*G1_0_1_0_0_0_1_0_0 - 4.166666666666660e-02*G1_0_1_0_0_0_1_0_1 + 4.166666666666661e-02*G1_0_1_0_0_0_1_1_0 + 4.166666666666660e-02*G1_0_1_0_0_0_1_2_1 - 2.083333333333331e-02*G1_0_1_0_0_0_2_0_0 - 2.083333333333330e-02*G1_0_1_0_0_0_2_0_1 + 2.083333333333331e-02*G1_0_1_0_0_0_2_1_0 + 2.083333333333330e-02*G1_0_1_0_0_0_2_2_1 - 2.083333333333330e-02*G1_0_1_0_0_1_0_0_0 - 2.083333333333330e-02*G1_0_1_0_0_1_0_0_1 + 2.083333333333330e-02*G1_0_1_0_0_1_0_1_0 + 2.083333333333330e-02*G1_0_1_0_0_1_0_2_1 - 4.166666666666660e-02*G1_0_1_0_0_1_1_0_0 - 4.166666666666659e-02*G1_0_1_0_0_1_1_0_1 + 4.166666666666660e-02*G1_0_1_0_0_1_1_1_0 + 4.166666666666659e-02*G1_0_1_0_0_1_1_2_1 - 2.083333333333330e-02*G1_0_1_0_0_1_2_0_0 - 2.083333333333330e-02*G1_0_1_0_0_1_2_0_1 + 2.083333333333330e-02*G1_0_1_0_0_1_2_1_0 + 2.083333333333330e-02*G1_0_1_0_0_1_2_2_1 - 2.083333333333330e-02*G1_0_1_0_1_0_3_0_0 - 2.083333333333330e-02*G1_0_1_0_1_0_3_0_1 + 2.083333333333330e-02*G1_0_1_0_1_0_3_1_0 + 2.083333333333330e-02*G1_0_1_0_1_0_3_2_1 - 4.166666666666661e-02*G1_0_1_0_1_0_4_0_0 - 4.166666666666660e-02*G1_0_1_0_1_0_4_0_1 + 4.166666666666661e-02*G1_0_1_0_1_0_4_1_0 + 4.166666666666660e-02*G1_0_1_0_1_0_4_2_1 - 2.083333333333331e-02*G1_0_1_0_1_0_5_0_0 - 2.083333333333330e-02*G1_0_1_0_1_0_5_0_1 + 2.083333333333331e-02*G1_0_1_0_1_0_5_1_0 + 2.083333333333330e-02*G1_0_1_0_1_0_5_2_1 - 2.083333333333330e-02*G1_0_1_0_1_1_3_0_0 - 2.083333333333330e-02*G1_0_1_0_1_1_3_0_1 + 2.083333333333330e-02*G1_0_1_0_1_1_3_1_0 + 2.083333333333330e-02*G1_0_1_0_1_1_3_2_1 - 4.166666666666660e-02*G1_0_1_0_1_1_4_0_0 - 4.166666666666659e-02*G1_0_1_0_1_1_4_0_1 + 4.166666666666660e-02*G1_0_1_0_1_1_4_1_0 + 4.166666666666659e-02*G1_0_1_0_1_1_4_2_1 - 2.083333333333330e-02*G1_0_1_0_1_1_5_0_0 - 2.083333333333330e-02*G1_0_1_0_1_1_5_0_1 + 2.083333333333330e-02*G1_0_1_0_1_1_5_1_0 + 2.083333333333330e-02*G1_0_1_0_1_1_5_2_1 - 2.083333333333330e-02*G1_0_1_1_0_0_0_3_0 - 2.083333333333330e-02*G1_0_1_1_0_0_0_3_1 + 2.083333333333330e-02*G1_0_1_1_0_0_0_4_0 + 2.083333333333330e-02*G1_0_1_1_0_0_0_5_1 - 4.166666666666661e-02*G1_0_1_1_0_0_1_3_0 - 4.166666666666660e-02*G1_0_1_1_0_0_1_3_1 + 4.166666666666661e-02*G1_0_1_1_0_0_1_4_0 + 4.166666666666660e-02*G1_0_1_1_0_0_1_5_1 - 2.083333333333331e-02*G1_0_1_1_0_0_2_3_0 - 2.083333333333330e-02*G1_0_1_1_0_0_2_3_1 + 2.083333333333331e-02*G1_0_1_1_0_0_2_4_0 + 2.083333333333330e-02*G1_0_1_1_0_0_2_5_1 - 2.083333333333330e-02*G1_0_1_1_0_1_0_3_0 - 2.083333333333330e-02*G1_0_1_1_0_1_0_3_1 + 2.083333333333330e-02*G1_0_1_1_0_1_0_4_0 + 2.083333333333330e-02*G1_0_1_1_0_1_0_5_1 - 4.166666666666660e-02*G1_0_1_1_0_1_1_3_0 - 4.166666666666659e-02*G1_0_1_1_0_1_1_3_1 + 4.166666666666660e-02*G1_0_1_1_0_1_1_4_0 + 4.166666666666659e-02*G1_0_1_1_0_1_1_5_1 - 2.083333333333330e-02*G1_0_1_1_0_1_2_3_0 - 2.083333333333330e-02*G1_0_1_1_0_1_2_3_1 + 2.083333333333330e-02*G1_0_1_1_0_1_2_4_0 + 2.083333333333330e-02*G1_0_1_1_0_1_2_5_1 - 2.083333333333330e-02*G1_0_1_1_1_0_3_3_0 - 2.083333333333330e-02*G1_0_1_1_1_0_3_3_1 + 2.083333333333330e-02*G1_0_1_1_1_0_3_4_0 + 2.083333333333330e-02*G1_0_1_1_1_0_3_5_1 - 4.166666666666661e-02*G1_0_1_1_1_0_4_3_0 - 4.166666666666660e-02*G1_0_1_1_1_0_4_3_1 + 4.166666666666661e-02*G1_0_1_1_1_0_4_4_0 + 4.166666666666660e-02*G1_0_1_1_1_0_4_5_1 - 2.083333333333331e-02*G1_0_1_1_1_0_5_3_0 - 2.083333333333330e-02*G1_0_1_1_1_0_5_3_1 + 2.083333333333331e-02*G1_0_1_1_1_0_5_4_0 + 2.083333333333330e-02*G1_0_1_1_1_0_5_5_1 - 2.083333333333330e-02*G1_0_1_1_1_1_3_3_0 - 2.083333333333330e-02*G1_0_1_1_1_1_3_3_1 + 2.083333333333330e-02*G1_0_1_1_1_1_3_4_0 + 2.083333333333330e-02*G1_0_1_1_1_1_3_5_1 - 4.166666666666660e-02*G1_0_1_1_1_1_4_3_0 - 4.166666666666659e-02*G1_0_1_1_1_1_4_3_1 + 4.166666666666660e-02*G1_0_1_1_1_1_4_4_0 + 4.166666666666659e-02*G1_0_1_1_1_1_4_5_1 - 2.083333333333330e-02*G1_0_1_1_1_1_5_3_0 - 2.083333333333330e-02*G1_0_1_1_1_1_5_3_1 + 2.083333333333330e-02*G1_0_1_1_1_1_5_4_0 + 2.083333333333330e-02*G1_0_1_1_1_1_5_5_1 - 2.083333333333330e-02*G1_0_2_0_0_0_0_0_0 - 2.083333333333330e-02*G1_0_2_0_0_0_0_0_1 + 2.083333333333330e-02*G1_0_2_0_0_0_0_1_0 + 2.083333333333330e-02*G1_0_2_0_0_0_0_2_1 - 2.083333333333331e-02*G1_0_2_0_0_0_1_0_0 - 2.083333333333330e-02*G1_0_2_0_0_0_1_0_1 + 2.083333333333331e-02*G1_0_2_0_0_0_1_1_0 + 2.083333333333330e-02*G1_0_2_0_0_0_1_2_1 - 4.166666666666661e-02*G1_0_2_0_0_0_2_0_0 - 4.166666666666660e-02*G1_0_2_0_0_0_2_0_1 + 4.166666666666661e-02*G1_0_2_0_0_0_2_1_0 + 4.166666666666660e-02*G1_0_2_0_0_0_2_2_1 - 2.083333333333330e-02*G1_0_2_0_0_1_0_0_0 - 2.083333333333329e-02*G1_0_2_0_0_1_0_0_1 + 2.083333333333330e-02*G1_0_2_0_0_1_0_1_0 + 2.083333333333329e-02*G1_0_2_0_0_1_0_2_1 - 2.083333333333330e-02*G1_0_2_0_0_1_1_0_0 - 2.083333333333330e-02*G1_0_2_0_0_1_1_0_1 + 2.083333333333330e-02*G1_0_2_0_0_1_1_1_0 + 2.083333333333330e-02*G1_0_2_0_0_1_1_2_1 - 4.166666666666660e-02*G1_0_2_0_0_1_2_0_0 - 4.166666666666659e-02*G1_0_2_0_0_1_2_0_1 + 4.166666666666660e-02*G1_0_2_0_0_1_2_1_0 + 4.166666666666659e-02*G1_0_2_0_0_1_2_2_1 - 2.083333333333330e-02*G1_0_2_0_1_0_3_0_0 - 2.083333333333330e-02*G1_0_2_0_1_0_3_0_1 + 2.083333333333330e-02*G1_0_2_0_1_0_3_1_0 + 2.083333333333330e-02*G1_0_2_0_1_0_3_2_1 - 2.083333333333331e-02*G1_0_2_0_1_0_4_0_0 - 2.083333333333330e-02*G1_0_2_0_1_0_4_0_1 + 2.083333333333331e-02*G1_0_2_0_1_0_4_1_0 + 2.083333333333330e-02*G1_0_2_0_1_0_4_2_1 - 4.166666666666661e-02*G1_0_2_0_1_0_5_0_0 - 4.166666666666660e-02*G1_0_2_0_1_0_5_0_1 + 4.166666666666661e-02*G1_0_2_0_1_0_5_1_0 + 4.166666666666660e-02*G1_0_2_0_1_0_5_2_1 - 2.083333333333330e-02*G1_0_2_0_1_1_3_0_0 - 2.083333333333329e-02*G1_0_2_0_1_1_3_0_1 + 2.083333333333330e-02*G1_0_2_0_1_1_3_1_0 + 2.083333333333329e-02*G1_0_2_0_1_1_3_2_1 - 2.083333333333330e-02*G1_0_2_0_1_1_4_0_0 - 2.083333333333330e-02*G1_0_2_0_1_1_4_0_1 + 2.083333333333330e-02*G1_0_2_0_1_1_4_1_0 + 2.083333333333330e-02*G1_0_2_0_1_1_4_2_1 - 4.166666666666660e-02*G1_0_2_0_1_1_5_0_0 - 4.166666666666659e-02*G1_0_2_0_1_1_5_0_1 + 4.166666666666660e-02*G1_0_2_0_1_1_5_1_0 + 4.166666666666659e-02*G1_0_2_0_1_1_5_2_1 - 2.083333333333330e-02*G1_0_2_1_0_0_0_3_0 - 2.083333333333330e-02*G1_0_2_1_0_0_0_3_1 + 2.083333333333330e-02*G1_0_2_1_0_0_0_4_0 + 2.083333333333330e-02*G1_0_2_1_0_0_0_5_1 - 2.083333333333331e-02*G1_0_2_1_0_0_1_3_0 - 2.083333333333330e-02*G1_0_2_1_0_0_1_3_1 + 2.083333333333331e-02*G1_0_2_1_0_0_1_4_0 + 2.083333333333330e-02*G1_0_2_1_0_0_1_5_1 - 4.166666666666661e-02*G1_0_2_1_0_0_2_3_0 - 4.166666666666660e-02*G1_0_2_1_0_0_2_3_1 + 4.166666666666661e-02*G1_0_2_1_0_0_2_4_0 + 4.166666666666660e-02*G1_0_2_1_0_0_2_5_1 - 2.083333333333330e-02*G1_0_2_1_0_1_0_3_0 - 2.083333333333329e-02*G1_0_2_1_0_1_0_3_1 + 2.083333333333330e-02*G1_0_2_1_0_1_0_4_0 + 2.083333333333329e-02*G1_0_2_1_0_1_0_5_1 - 2.083333333333330e-02*G1_0_2_1_0_1_1_3_0 - 2.083333333333330e-02*G1_0_2_1_0_1_1_3_1 + 2.083333333333330e-02*G1_0_2_1_0_1_1_4_0 + 2.083333333333330e-02*G1_0_2_1_0_1_1_5_1 - 4.166666666666660e-02*G1_0_2_1_0_1_2_3_0 - 4.166666666666659e-02*G1_0_2_1_0_1_2_3_1 + 4.166666666666660e-02*G1_0_2_1_0_1_2_4_0 + 4.166666666666659e-02*G1_0_2_1_0_1_2_5_1 - 2.083333333333330e-02*G1_0_2_1_1_0_3_3_0 - 2.083333333333330e-02*G1_0_2_1_1_0_3_3_1 + 2.083333333333330e-02*G1_0_2_1_1_0_3_4_0 + 2.083333333333330e-02*G1_0_2_1_1_0_3_5_1 - 2.083333333333331e-02*G1_0_2_1_1_0_4_3_0 - 2.083333333333330e-02*G1_0_2_1_1_0_4_3_1 + 2.083333333333331e-02*G1_0_2_1_1_0_4_4_0 + 2.083333333333330e-02*G1_0_2_1_1_0_4_5_1 - 4.166666666666661e-02*G1_0_2_1_1_0_5_3_0 - 4.166666666666660e-02*G1_0_2_1_1_0_5_3_1 + 4.166666666666661e-02*G1_0_2_1_1_0_5_4_0 + 4.166666666666660e-02*G1_0_2_1_1_0_5_5_1 - 2.083333333333330e-02*G1_0_2_1_1_1_3_3_0 - 2.083333333333329e-02*G1_0_2_1_1_1_3_3_1 + 2.083333333333330e-02*G1_0_2_1_1_1_3_4_0 + 2.083333333333329e-02*G1_0_2_1_1_1_3_5_1 - 2.083333333333330e-02*G1_0_2_1_1_1_4_3_0 - 2.083333333333330e-02*G1_0_2_1_1_1_4_3_1 + 2.083333333333330e-02*G1_0_2_1_1_1_4_4_0 + 2.083333333333330e-02*G1_0_2_1_1_1_4_5_1 - 4.166666666666660e-02*G1_0_2_1_1_1_5_3_0 - 4.166666666666659e-02*G1_0_2_1_1_1_5_3_1 + 4.166666666666660e-02*G1_0_2_1_1_1_5_4_0 + 4.166666666666659e-02*G1_0_2_1_1_1_5_5_1 + 1.666666666666665e-01*G2_0_0_0 + 1.666666666666665e-01*G2_0_0_1 - 1.666666666666665e-01*G2_0_1_0 - 1.666666666666665e-01*G2_0_2_1 + 1.666666666666665e-01*G2_1_3_0 + 1.666666666666665e-01*G2_1_3_1 - 1.666666666666665e-01*G2_1_4_0 - 1.666666666666665e-01*G2_1_5_1;
-    block[1] = 4.166666666666660e-02*G0_0_0_0_0_0 + 2.083333333333330e-02*G0_0_0_0_0_1 + 2.083333333333330e-02*G0_0_0_0_0_2 + 4.166666666666660e-02*G0_0_0_1_0_3 + 2.083333333333330e-02*G0_0_0_1_0_4 + 2.083333333333330e-02*G0_0_0_1_0_5 + 2.083333333333330e-02*G0_0_1_0_0_0 + 4.166666666666660e-02*G0_0_1_0_0_1 + 2.083333333333330e-02*G0_0_1_0_0_2 + 2.083333333333330e-02*G0_0_1_1_0_3 + 4.166666666666660e-02*G0_0_1_1_0_4 + 2.083333333333330e-02*G0_0_1_1_0_5 + 2.083333333333330e-02*G0_0_2_0_0_0 + 2.083333333333330e-02*G0_0_2_0_0_1 + 4.166666666666660e-02*G0_0_2_0_0_2 + 2.083333333333330e-02*G0_0_2_1_0_3 + 2.083333333333330e-02*G0_0_2_1_0_4 + 4.166666666666660e-02*G0_0_2_1_0_5 + 4.166666666666661e-02*G1_0_0_0_0_0_0_0_0 + 4.166666666666660e-02*G1_0_0_0_0_0_0_0_1 - 4.166666666666661e-02*G1_0_0_0_0_0_0_1_0 - 4.166666666666660e-02*G1_0_0_0_0_0_0_2_1 + 2.083333333333330e-02*G1_0_0_0_0_0_1_0_0 + 2.083333333333330e-02*G1_0_0_0_0_0_1_0_1 - 2.083333333333330e-02*G1_0_0_0_0_0_1_1_0 - 2.083333333333330e-02*G1_0_0_0_0_0_1_2_1 + 2.083333333333330e-02*G1_0_0_0_0_0_2_0_0 + 2.083333333333330e-02*G1_0_0_0_0_0_2_0_1 - 2.083333333333330e-02*G1_0_0_0_0_0_2_1_0 - 2.083333333333330e-02*G1_0_0_0_0_0_2_2_1 + 4.166666666666661e-02*G1_0_0_0_1_0_3_0_0 + 4.166666666666660e-02*G1_0_0_0_1_0_3_0_1 - 4.166666666666661e-02*G1_0_0_0_1_0_3_1_0 - 4.166666666666660e-02*G1_0_0_0_1_0_3_2_1 + 2.083333333333330e-02*G1_0_0_0_1_0_4_0_0 + 2.083333333333330e-02*G1_0_0_0_1_0_4_0_1 - 2.083333333333330e-02*G1_0_0_0_1_0_4_1_0 - 2.083333333333330e-02*G1_0_0_0_1_0_4_2_1 + 2.083333333333330e-02*G1_0_0_0_1_0_5_0_0 + 2.083333333333330e-02*G1_0_0_0_1_0_5_0_1 - 2.083333333333330e-02*G1_0_0_0_1_0_5_1_0 - 2.083333333333330e-02*G1_0_0_0_1_0_5_2_1 + 4.166666666666661e-02*G1_0_0_1_0_0_0_3_0 + 4.166666666666660e-02*G1_0_0_1_0_0_0_3_1 - 4.166666666666661e-02*G1_0_0_1_0_0_0_4_0 - 4.166666666666660e-02*G1_0_0_1_0_0_0_5_1 + 2.083333333333330e-02*G1_0_0_1_0_0_1_3_0 + 2.083333333333330e-02*G1_0_0_1_0_0_1_3_1 - 2.083333333333330e-02*G1_0_0_1_0_0_1_4_0 - 2.083333333333330e-02*G1_0_0_1_0_0_1_5_1 + 2.083333333333330e-02*G1_0_0_1_0_0_2_3_0 + 2.083333333333330e-02*G1_0_0_1_0_0_2_3_1 - 2.083333333333330e-02*G1_0_0_1_0_0_2_4_0 - 2.083333333333330e-02*G1_0_0_1_0_0_2_5_1 + 4.166666666666661e-02*G1_0_0_1_1_0_3_3_0 + 4.166666666666660e-02*G1_0_0_1_1_0_3_3_1 - 4.166666666666661e-02*G1_0_0_1_1_0_3_4_0 - 4.166666666666660e-02*G1_0_0_1_1_0_3_5_1 + 2.083333333333330e-02*G1_0_0_1_1_0_4_3_0 + 2.083333333333330e-02*G1_0_0_1_1_0_4_3_1 - 2.083333333333330e-02*G1_0_0_1_1_0_4_4_0 - 2.083333333333330e-02*G1_0_0_1_1_0_4_5_1 + 2.083333333333330e-02*G1_0_0_1_1_0_5_3_0 + 2.083333333333330e-02*G1_0_0_1_1_0_5_3_1 - 2.083333333333330e-02*G1_0_0_1_1_0_5_4_0 - 2.083333333333330e-02*G1_0_0_1_1_0_5_5_1 + 2.083333333333330e-02*G1_0_1_0_0_0_0_0_0 + 2.083333333333330e-02*G1_0_1_0_0_0_0_0_1 - 2.083333333333330e-02*G1_0_1_0_0_0_0_1_0 - 2.083333333333330e-02*G1_0_1_0_0_0_0_2_1 + 4.166666666666661e-02*G1_0_1_0_0_0_1_0_0 + 4.166666666666660e-02*G1_0_1_0_0_0_1_0_1 - 4.166666666666661e-02*G1_0_1_0_0_0_1_1_0 - 4.166666666666660e-02*G1_0_1_0_0_0_1_2_1 + 2.083333333333331e-02*G1_0_1_0_0_0_2_0_0 + 2.083333333333330e-02*G1_0_1_0_0_0_2_0_1 - 2.083333333333331e-02*G1_0_1_0_0_0_2_1_0 - 2.083333333333330e-02*G1_0_1_0_0_0_2_2_1 + 2.083333333333330e-02*G1_0_1_0_1_0_3_0_0 + 2.083333333333330e-02*G1_0_1_0_1_0_3_0_1 - 2.083333333333330e-02*G1_0_1_0_1_0_3_1_0 - 2.083333333333330e-02*G1_0_1_0_1_0_3_2_1 + 4.166666666666661e-02*G1_0_1_0_1_0_4_0_0 + 4.166666666666660e-02*G1_0_1_0_1_0_4_0_1 - 4.166666666666661e-02*G1_0_1_0_1_0_4_1_0 - 4.166666666666660e-02*G1_0_1_0_1_0_4_2_1 + 2.083333333333331e-02*G1_0_1_0_1_0_5_0_0 + 2.083333333333330e-02*G1_0_1_0_1_0_5_0_1 - 2.083333333333331e-02*G1_0_1_0_1_0_5_1_0 - 2.083333333333330e-02*G1_0_1_0_1_0_5_2_1 + 2.083333333333330e-02*G1_0_1_1_0_0_0_3_0 + 2.083333333333330e-02*G1_0_1_1_0_0_0_3_1 - 2.083333333333330e-02*G1_0_1_1_0_0_0_4_0 - 2.083333333333330e-02*G1_0_1_1_0_0_0_5_1 + 4.166666666666661e-02*G1_0_1_1_0_0_1_3_0 + 4.166666666666660e-02*G1_0_1_1_0_0_1_3_1 - 4.166666666666661e-02*G1_0_1_1_0_0_1_4_0 - 4.166666666666660e-02*G1_0_1_1_0_0_1_5_1 + 2.083333333333331e-02*G1_0_1_1_0_0_2_3_0 + 2.083333333333330e-02*G1_0_1_1_0_0_2_3_1 - 2.083333333333331e-02*G1_0_1_1_0_0_2_4_0 - 2.083333333333330e-02*G1_0_1_1_0_0_2_5_1 + 2.083333333333330e-02*G1_0_1_1_1_0_3_3_0 + 2.083333333333330e-02*G1_0_1_1_1_0_3_3_1 - 2.083333333333330e-02*G1_0_1_1_1_0_3_4_0 - 2.083333333333330e-02*G1_0_1_1_1_0_3_5_1 + 4.166666666666661e-02*G1_0_1_1_1_0_4_3_0 + 4.166666666666660e-02*G1_0_1_1_1_0_4_3_1 - 4.166666666666661e-02*G1_0_1_1_1_0_4_4_0 - 4.166666666666660e-02*G1_0_1_1_1_0_4_5_1 + 2.083333333333331e-02*G1_0_1_1_1_0_5_3_0 + 2.083333333333330e-02*G1_0_1_1_1_0_5_3_1 - 2.083333333333331e-02*G1_0_1_1_1_0_5_4_0 - 2.083333333333330e-02*G1_0_1_1_1_0_5_5_1 + 2.083333333333330e-02*G1_0_2_0_0_0_0_0_0 + 2.083333333333330e-02*G1_0_2_0_0_0_0_0_1 - 2.083333333333330e-02*G1_0_2_0_0_0_0_1_0 - 2.083333333333330e-02*G1_0_2_0_0_0_0_2_1 + 2.083333333333331e-02*G1_0_2_0_0_0_1_0_0 + 2.083333333333330e-02*G1_0_2_0_0_0_1_0_1 - 2.083333333333331e-02*G1_0_2_0_0_0_1_1_0 - 2.083333333333330e-02*G1_0_2_0_0_0_1_2_1 + 4.166666666666661e-02*G1_0_2_0_0_0_2_0_0 + 4.166666666666660e-02*G1_0_2_0_0_0_2_0_1 - 4.166666666666661e-02*G1_0_2_0_0_0_2_1_0 - 4.166666666666660e-02*G1_0_2_0_0_0_2_2_1 + 2.083333333333330e-02*G1_0_2_0_1_0_3_0_0 + 2.083333333333330e-02*G1_0_2_0_1_0_3_0_1 - 2.083333333333330e-02*G1_0_2_0_1_0_3_1_0 - 2.083333333333330e-02*G1_0_2_0_1_0_3_2_1 + 2.083333333333331e-02*G1_0_2_0_1_0_4_0_0 + 2.083333333333330e-02*G1_0_2_0_1_0_4_0_1 - 2.083333333333331e-02*G1_0_2_0_1_0_4_1_0 - 2.083333333333330e-02*G1_0_2_0_1_0_4_2_1 + 4.166666666666661e-02*G1_0_2_0_1_0_5_0_0 + 4.166666666666660e-02*G1_0_2_0_1_0_5_0_1 - 4.166666666666661e-02*G1_0_2_0_1_0_5_1_0 - 4.166666666666660e-02*G1_0_2_0_1_0_5_2_1 + 2.083333333333330e-02*G1_0_2_1_0_0_0_3_0 + 2.083333333333330e-02*G1_0_2_1_0_0_0_3_1 - 2.083333333333330e-02*G1_0_2_1_0_0_0_4_0 - 2.083333333333330e-02*G1_0_2_1_0_0_0_5_1 + 2.083333333333331e-02*G1_0_2_1_0_0_1_3_0 + 2.083333333333330e-02*G1_0_2_1_0_0_1_3_1 - 2.083333333333331e-02*G1_0_2_1_0_0_1_4_0 - 2.083333333333330e-02*G1_0_2_1_0_0_1_5_1 + 4.166666666666661e-02*G1_0_2_1_0_0_2_3_0 + 4.166666666666660e-02*G1_0_2_1_0_0_2_3_1 - 4.166666666666661e-02*G1_0_2_1_0_0_2_4_0 - 4.166666666666660e-02*G1_0_2_1_0_0_2_5_1 + 2.083333333333330e-02*G1_0_2_1_1_0_3_3_0 + 2.083333333333330e-02*G1_0_2_1_1_0_3_3_1 - 2.083333333333330e-02*G1_0_2_1_1_0_3_4_0 - 2.083333333333330e-02*G1_0_2_1_1_0_3_5_1 + 2.083333333333331e-02*G1_0_2_1_1_0_4_3_0 + 2.083333333333330e-02*G1_0_2_1_1_0_4_3_1 - 2.083333333333331e-02*G1_0_2_1_1_0_4_4_0 - 2.083333333333330e-02*G1_0_2_1_1_0_4_5_1 + 4.166666666666661e-02*G1_0_2_1_1_0_5_3_0 + 4.166666666666660e-02*G1_0_2_1_1_0_5_3_1 - 4.166666666666661e-02*G1_0_2_1_1_0_5_4_0 - 4.166666666666660e-02*G1_0_2_1_1_0_5_5_1 + 1.666666666666666e-01*G2_0_0_0 + 1.666666666666665e-01*G2_0_0_1 - 1.666666666666666e-01*G2_0_1_0 - 1.666666666666665e-01*G2_0_2_1 + 1.666666666666666e-01*G2_1_3_0 + 1.666666666666665e-01*G2_1_3_1 - 1.666666666666666e-01*G2_1_4_0 - 1.666666666666665e-01*G2_1_5_1;
-    block[2] = 4.166666666666659e-02*G0_0_0_0_1_0 + 2.083333333333330e-02*G0_0_0_0_1_1 + 2.083333333333329e-02*G0_0_0_0_1_2 + 4.166666666666659e-02*G0_0_0_1_1_3 + 2.083333333333330e-02*G0_0_0_1_1_4 + 2.083333333333329e-02*G0_0_0_1_1_5 + 2.083333333333330e-02*G0_0_1_0_1_0 + 4.166666666666659e-02*G0_0_1_0_1_1 + 2.083333333333330e-02*G0_0_1_0_1_2 + 2.083333333333330e-02*G0_0_1_1_1_3 + 4.166666666666659e-02*G0_0_1_1_1_4 + 2.083333333333330e-02*G0_0_1_1_1_5 + 2.083333333333329e-02*G0_0_2_0_1_0 + 2.083333333333330e-02*G0_0_2_0_1_1 + 4.166666666666659e-02*G0_0_2_0_1_2 + 2.083333333333329e-02*G0_0_2_1_1_3 + 2.083333333333330e-02*G0_0_2_1_1_4 + 4.166666666666659e-02*G0_0_2_1_1_5 + 4.166666666666660e-02*G1_0_0_0_0_1_0_0_0 + 4.166666666666659e-02*G1_0_0_0_0_1_0_0_1 - 4.166666666666660e-02*G1_0_0_0_0_1_0_1_0 - 4.166666666666659e-02*G1_0_0_0_0_1_0_2_1 + 2.083333333333330e-02*G1_0_0_0_0_1_1_0_0 + 2.083333333333330e-02*G1_0_0_0_0_1_1_0_1 - 2.083333333333330e-02*G1_0_0_0_0_1_1_1_0 - 2.083333333333330e-02*G1_0_0_0_0_1_1_2_1 + 2.083333333333329e-02*G1_0_0_0_0_1_2_0_0 + 2.083333333333329e-02*G1_0_0_0_0_1_2_0_1 - 2.083333333333329e-02*G1_0_0_0_0_1_2_1_0 - 2.083333333333329e-02*G1_0_0_0_0_1_2_2_1 + 4.166666666666660e-02*G1_0_0_0_1_1_3_0_0 + 4.166666666666659e-02*G1_0_0_0_1_1_3_0_1 - 4.166666666666660e-02*G1_0_0_0_1_1_3_1_0 - 4.166666666666659e-02*G1_0_0_0_1_1_3_2_1 + 2.083333333333330e-02*G1_0_0_0_1_1_4_0_0 + 2.083333333333330e-02*G1_0_0_0_1_1_4_0_1 - 2.083333333333330e-02*G1_0_0_0_1_1_4_1_0 - 2.083333333333330e-02*G1_0_0_0_1_1_4_2_1 + 2.083333333333329e-02*G1_0_0_0_1_1_5_0_0 + 2.083333333333329e-02*G1_0_0_0_1_1_5_0_1 - 2.083333333333329e-02*G1_0_0_0_1_1_5_1_0 - 2.083333333333329e-02*G1_0_0_0_1_1_5_2_1 + 4.166666666666660e-02*G1_0_0_1_0_1_0_3_0 + 4.166666666666659e-02*G1_0_0_1_0_1_0_3_1 - 4.166666666666660e-02*G1_0_0_1_0_1_0_4_0 - 4.166666666666659e-02*G1_0_0_1_0_1_0_5_1 + 2.083333333333330e-02*G1_0_0_1_0_1_1_3_0 + 2.083333333333330e-02*G1_0_0_1_0_1_1_3_1 - 2.083333333333330e-02*G1_0_0_1_0_1_1_4_0 - 2.083333333333330e-02*G1_0_0_1_0_1_1_5_1 + 2.083333333333329e-02*G1_0_0_1_0_1_2_3_0 + 2.083333333333329e-02*G1_0_0_1_0_1_2_3_1 - 2.083333333333329e-02*G1_0_0_1_0_1_2_4_0 - 2.083333333333329e-02*G1_0_0_1_0_1_2_5_1 + 4.166666666666660e-02*G1_0_0_1_1_1_3_3_0 + 4.166666666666659e-02*G1_0_0_1_1_1_3_3_1 - 4.166666666666660e-02*G1_0_0_1_1_1_3_4_0 - 4.166666666666659e-02*G1_0_0_1_1_1_3_5_1 + 2.083333333333330e-02*G1_0_0_1_1_1_4_3_0 + 2.083333333333330e-02*G1_0_0_1_1_1_4_3_1 - 2.083333333333330e-02*G1_0_0_1_1_1_4_4_0 - 2.083333333333330e-02*G1_0_0_1_1_1_4_5_1 + 2.083333333333329e-02*G1_0_0_1_1_1_5_3_0 + 2.083333333333329e-02*G1_0_0_1_1_1_5_3_1 - 2.083333333333329e-02*G1_0_0_1_1_1_5_4_0 - 2.083333333333329e-02*G1_0_0_1_1_1_5_5_1 + 2.083333333333330e-02*G1_0_1_0_0_1_0_0_0 + 2.083333333333330e-02*G1_0_1_0_0_1_0_0_1 - 2.083333333333330e-02*G1_0_1_0_0_1_0_1_0 - 2.083333333333330e-02*G1_0_1_0_0_1_0_2_1 + 4.166666666666660e-02*G1_0_1_0_0_1_1_0_0 + 4.166666666666659e-02*G1_0_1_0_0_1_1_0_1 - 4.166666666666660e-02*G1_0_1_0_0_1_1_1_0 - 4.166666666666659e-02*G1_0_1_0_0_1_1_2_1 + 2.083333333333330e-02*G1_0_1_0_0_1_2_0_0 + 2.083333333333330e-02*G1_0_1_0_0_1_2_0_1 - 2.083333333333330e-02*G1_0_1_0_0_1_2_1_0 - 2.083333333333330e-02*G1_0_1_0_0_1_2_2_1 + 2.083333333333330e-02*G1_0_1_0_1_1_3_0_0 + 2.083333333333330e-02*G1_0_1_0_1_1_3_0_1 - 2.083333333333330e-02*G1_0_1_0_1_1_3_1_0 - 2.083333333333330e-02*G1_0_1_0_1_1_3_2_1 + 4.166666666666660e-02*G1_0_1_0_1_1_4_0_0 + 4.166666666666659e-02*G1_0_1_0_1_1_4_0_1 - 4.166666666666660e-02*G1_0_1_0_1_1_4_1_0 - 4.166666666666659e-02*G1_0_1_0_1_1_4_2_1 + 2.083333333333330e-02*G1_0_1_0_1_1_5_0_0 + 2.083333333333330e-02*G1_0_1_0_1_1_5_0_1 - 2.083333333333330e-02*G1_0_1_0_1_1_5_1_0 - 2.083333333333330e-02*G1_0_1_0_1_1_5_2_1 + 2.083333333333330e-02*G1_0_1_1_0_1_0_3_0 + 2.083333333333330e-02*G1_0_1_1_0_1_0_3_1 - 2.083333333333330e-02*G1_0_1_1_0_1_0_4_0 - 2.083333333333330e-02*G1_0_1_1_0_1_0_5_1 + 4.166666666666660e-02*G1_0_1_1_0_1_1_3_0 + 4.166666666666659e-02*G1_0_1_1_0_1_1_3_1 - 4.166666666666660e-02*G1_0_1_1_0_1_1_4_0 - 4.166666666666659e-02*G1_0_1_1_0_1_1_5_1 + 2.083333333333330e-02*G1_0_1_1_0_1_2_3_0 + 2.083333333333330e-02*G1_0_1_1_0_1_2_3_1 - 2.083333333333330e-02*G1_0_1_1_0_1_2_4_0 - 2.083333333333330e-02*G1_0_1_1_0_1_2_5_1 + 2.083333333333330e-02*G1_0_1_1_1_1_3_3_0 + 2.083333333333330e-02*G1_0_1_1_1_1_3_3_1 - 2.083333333333330e-02*G1_0_1_1_1_1_3_4_0 - 2.083333333333330e-02*G1_0_1_1_1_1_3_5_1 + 4.166666666666660e-02*G1_0_1_1_1_1_4_3_0 + 4.166666666666659e-02*G1_0_1_1_1_1_4_3_1 - 4.166666666666660e-02*G1_0_1_1_1_1_4_4_0 - 4.166666666666659e-02*G1_0_1_1_1_1_4_5_1 + 2.083333333333330e-02*G1_0_1_1_1_1_5_3_0 + 2.083333333333330e-02*G1_0_1_1_1_1_5_3_1 - 2.083333333333330e-02*G1_0_1_1_1_1_5_4_0 - 2.083333333333330e-02*G1_0_1_1_1_1_5_5_1 + 2.083333333333330e-02*G1_0_2_0_0_1_0_0_0 + 2.083333333333329e-02*G1_0_2_0_0_1_0_0_1 - 2.083333333333330e-02*G1_0_2_0_0_1_0_1_0 - 2.083333333333329e-02*G1_0_2_0_0_1_0_2_1 + 2.083333333333330e-02*G1_0_2_0_0_1_1_0_0 + 2.083333333333330e-02*G1_0_2_0_0_1_1_0_1 - 2.083333333333330e-02*G1_0_2_0_0_1_1_1_0 - 2.083333333333330e-02*G1_0_2_0_0_1_1_2_1 + 4.166666666666660e-02*G1_0_2_0_0_1_2_0_0 + 4.166666666666659e-02*G1_0_2_0_0_1_2_0_1 - 4.166666666666660e-02*G1_0_2_0_0_1_2_1_0 - 4.166666666666659e-02*G1_0_2_0_0_1_2_2_1 + 2.083333333333330e-02*G1_0_2_0_1_1_3_0_0 + 2.083333333333329e-02*G1_0_2_0_1_1_3_0_1 - 2.083333333333330e-02*G1_0_2_0_1_1_3_1_0 - 2.083333333333329e-02*G1_0_2_0_1_1_3_2_1 + 2.083333333333330e-02*G1_0_2_0_1_1_4_0_0 + 2.083333333333330e-02*G1_0_2_0_1_1_4_0_1 - 2.083333333333330e-02*G1_0_2_0_1_1_4_1_0 - 2.083333333333330e-02*G1_0_2_0_1_1_4_2_1 + 4.166666666666660e-02*G1_0_2_0_1_1_5_0_0 + 4.166666666666659e-02*G1_0_2_0_1_1_5_0_1 - 4.166666666666660e-02*G1_0_2_0_1_1_5_1_0 - 4.166666666666659e-02*G1_0_2_0_1_1_5_2_1 + 2.083333333333330e-02*G1_0_2_1_0_1_0_3_0 + 2.083333333333329e-02*G1_0_2_1_0_1_0_3_1 - 2.083333333333330e-02*G1_0_2_1_0_1_0_4_0 - 2.083333333333329e-02*G1_0_2_1_0_1_0_5_1 + 2.083333333333330e-02*G1_0_2_1_0_1_1_3_0 + 2.083333333333330e-02*G1_0_2_1_0_1_1_3_1 - 2.083333333333330e-02*G1_0_2_1_0_1_1_4_0 - 2.083333333333330e-02*G1_0_2_1_0_1_1_5_1 + 4.166666666666660e-02*G1_0_2_1_0_1_2_3_0 + 4.166666666666659e-02*G1_0_2_1_0_1_2_3_1 - 4.166666666666660e-02*G1_0_2_1_0_1_2_4_0 - 4.166666666666659e-02*G1_0_2_1_0_1_2_5_1 + 2.083333333333330e-02*G1_0_2_1_1_1_3_3_0 + 2.083333333333329e-02*G1_0_2_1_1_1_3_3_1 - 2.083333333333330e-02*G1_0_2_1_1_1_3_4_0 - 2.083333333333329e-02*G1_0_2_1_1_1_3_5_1 + 2.083333333333330e-02*G1_0_2_1_1_1_4_3_0 + 2.083333333333330e-02*G1_0_2_1_1_1_4_3_1 - 2.083333333333330e-02*G1_0_2_1_1_1_4_4_0 - 2.083333333333330e-02*G1_0_2_1_1_1_4_5_1 + 4.166666666666660e-02*G1_0_2_1_1_1_5_3_0 + 4.166666666666659e-02*G1_0_2_1_1_1_5_3_1 - 4.166666666666660e-02*G1_0_2_1_1_1_5_4_0 - 4.166666666666659e-02*G1_0_2_1_1_1_5_5_1 + 1.666666666666665e-01*G2_0_0_0 + 1.666666666666665e-01*G2_0_0_1 - 1.666666666666665e-01*G2_0_1_0 - 1.666666666666665e-01*G2_0_2_1 + 1.666666666666665e-01*G2_1_3_0 + 1.666666666666665e-01*G2_1_3_1 - 1.666666666666665e-01*G2_1_4_0 - 1.666666666666665e-01*G2_1_5_1;
+    block[0] = 1.666666666666665e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_0_1 - 1.666666666666665e-01*G0_0_1_0 - 1.666666666666665e-01*G0_0_2_1 + 1.666666666666665e-01*G0_1_3_0 + 1.666666666666665e-01*G0_1_3_1 - 1.666666666666665e-01*G0_1_4_0 - 1.666666666666665e-01*G0_1_5_1;
+    block[1] = 1.666666666666666e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_0_1 - 1.666666666666666e-01*G0_0_1_0 - 1.666666666666665e-01*G0_0_2_1 + 1.666666666666666e-01*G0_1_3_0 + 1.666666666666665e-01*G0_1_3_1 - 1.666666666666666e-01*G0_1_4_0 - 1.666666666666665e-01*G0_1_5_1;
+    block[2] = 1.666666666666665e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_0_1 - 1.666666666666665e-01*G0_0_1_0 - 1.666666666666665e-01*G0_0_2_1 + 1.666666666666665e-01*G0_1_3_0 + 1.666666666666665e-01*G0_1_3_1 - 1.666666666666665e-01*G0_1_4_0 - 1.666666666666665e-01*G0_1_5_1;
   }
-        
-private:
-
-  const real& c0;
 
 };
 
