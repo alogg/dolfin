@@ -283,7 +283,7 @@ public:
     FunctionElement_2() : dolfin::FiniteElement(), tensordims(0)
     {
       tensordims = new unsigned int [1];
-      tensordims[0] = 9;
+      tensordims[0] = 1;
     }
 
     ~FunctionElement_2()
@@ -293,7 +293,7 @@ public:
 
     inline unsigned int spacedim() const
     {
-      return 9;
+      return 1;
     }
 
     inline unsigned int shapedim() const
@@ -315,44 +315,12 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.id();
-      int offset = mesh.noCells();
-      dofs[1] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[2] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[3] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[4] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[5] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[6] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[7] = offset + cell.id();
-      offset = offset + mesh.noCells();
-      dofs[8] = offset + cell.id();
     }
 
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
     {
       points[0] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[1] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[2] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[3] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[4] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[5] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[6] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[7] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
-      points[8] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
       components[0] = 0;
-      components[1] = 1;
-      components[2] = 2;
-      components[3] = 3;
-      components[4] = 4;
-      components[5] = 5;
-      components[6] = 6;
-      components[7] = 7;
-      components[8] = 8;
     }
 
   private:
