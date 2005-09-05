@@ -440,7 +440,9 @@ RECURSIVE              = YES
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
 # Doxygen has problems with Navier-Stokes, temporary fix /Anders 2005-05-12
-EXCLUDE                = src/modules/navierstokes
+# Exclude ConvectionDiffusion.h, Garth 2005-09-05
+EXCLUDE                = src/modules/navierstokes \
+                         src/modules/convdiff/dolfin/ConvectionDiffusion.h
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or directories 
 # that are symbolic links (a Unix filesystem feature) are excluded from the input.
