@@ -1,0 +1,215 @@
+\chapter{Installation}
+\index{installation}
+
+The source code of \dolfin{} is portable and should compile on any
+Unix system, although it is developed mainly under GNU/Linux
+(in particular Debian GNU/Linux). Questions, bug reports and patches
+concerning the installation should be directed to the
+\dolfin{} mailing list at the address
+\begin{verbatim}
+  dolfin-dev@fenics.org
+\end{verbatim}
+
+\dolfin{} must currently be compiled directly from source, but effort
+is underway to provide precompiled Debian packages of \dolfin{} and
+other \fenics{} components.
+
+%------------------------------------------------------------------------------
+\section{Installing from source}
+\index{dependencies}
+
+\subsection{Dependencies and requirements}
+
+\dolfin{} depends on a number of libraries that need to be installed on your
+system. These libraries include Libxml2 and PETSc. In addition to these libraries,
+you need to install \fiat{} and \ffc{} if you want to define your own variational forms.
+
+\subsubsection{Installing Libxml2}
+\index{Libxml2}
+
+Libxml2 is a library used by \dolfin{} to parse XML data files. Libxml2 can be obtained from
+\begin{verbatim}
+  http://xmlsoft.org/
+\end{verbatim}
+For Debian users, the package to install is \texttt{libxml2-dev}.
+
+\subsubsection{Installing PETSc}
+\index{PETSc}
+
+PETSc is a library for the solution of linear and nonlinear systems, functioning as the backend
+for the \dolfin{} linear algebra classes. \dolfin{} depends on PETSc version 2.3.0, which can be
+obtained from
+\begin{verbatim}
+  http://www-unix.mcs.anl.gov/petsc/petsc-2/
+\end{verbatim}
+
+Follow the installation instructions on the PETSc web page. Normally,
+you should only have to perform the following simple steps in the PETSc
+source directory:
+\begin{verbatim}
+  # export PETSC_DIR=`pwd`
+  # ./config/configure.py --with-clanguage=cxx --with-shared=1
+  # make all
+\end{verbatim}
+
+Add \texttt{--download-hypre=yes} to configure.py if you want to
+install Hypre which provides a collection of preconditioners,
+including algebraic multigrid (AMG).
+
+DOLFIN assumes that \texttt{PETSC\_DIR} is
+\texttt{/usr/local/lib/petsc/} but this can be controlled using the
+flag \texttt{--with-petsc-dir=<path>} when configuring DOLFIN (see
+below).
+
+\subsubsection{Installing FFC}
+\index{ffc}
+
+\dolfin{} uses the FEniCS Form Compiler \ffc{} to process variational
+forms. \ffc{} can be obtained from
+\begin{verbatim}
+  http://www.fenics.org/
+\end{verbatim}
+
+Follow the installation instructions given in the \ffc{}
+manual. \ffc{} follows the standard for Python packages, which means
+that normally you should only have to perform the following simple step
+in the \ffc{} source directory:
+\begin{verbatim}
+  # python setup.py install
+\end{verbatim}
+
+Note that \ffc{} depends on \fiat{} \index{fiat}, which in turn depends on
+the Python packages Numeric (Debian package \texttt{python-numeric}) and
+LinearAlgebra (Debian package \texttt{python-numeric-ext}). Refer to
+the \ffc{} manual for further details.
+
+\subsection{Downloading the source code}
+\index{downloading}
+\index{source code}
+
+The latest release of \dolfin{} can be obtained as a \texttt{tar.gz}
+archive in the download section at
+\begin{verbatim}
+  http://www.fenics.org/
+\end{verbatim}
+
+Download the latest release of \dolfin{}, for example \texttt{dolfin-0.5.0.tar.gz},
+and unpack using the command
+\begin{verbatim}
+  # tar zxfv dolfin-0.5.0.tar.gz
+\end{verbatim}
+
+This creates a directory \texttt{dolfin-0.5.0} containing the
+\dolfin{} source code.
+
+If you want the very latest version of \dolfin{}, there is also a
+version name \texttt{dolfin-cvs-current.tar.gz} which provides a
+snapshot of the current CVS version of \dolfin{}, updated
+automatically from the CVS repository each hour. This version may
+contain features not yet present in the latest release, but may also
+be less stable and even not work at all.
+
+\subsection{Compiling the source code}
+\index{compiling}
+
+\dolfin{} is built using the standard GNU Autotools (Automake,
+Autoconf), which means that the installation procedure is simple:
+\begin{verbatim}
+  # ./configure
+  # make
+\end{verbatim}
+followed by an optional
+\begin{verbatim}
+  # make install
+\end{verbatim}
+to install \dolfin{} on your system.
+
+The configure script will check for a number of libraries and try
+to figure out how compile \dolfin{} against these libraries. The
+configure script accepts a collection of optional arguments that can be
+used to control the compilation process. A few of these are listed
+below. Use the command
+\begin{verbatim}
+  # ./configure --help
+\end{verbatim}
+for a complete list of arguments.
+
+\begin{itemize}
+\item
+  Use the option \texttt{--prefix=<path>} to specify an alternative
+  directory for installation of \dolfin{}. The default directory is
+  \texttt{/usr/local/}, which means that header files will be
+  installed under \texttt{/usr/local/inlude/} and libraries will be
+  installed under \texttt{/usr/local/lib/}. This option can be useful
+  if you don't have root access but want to install \dolfin{} locally
+  on a user account as follows:
+  \begin{verbatim}
+    # mkdir ~/local
+    # ./configure --prefix=~/local
+    # make
+    # make install
+  \end{verbatim}
+\item
+  Use the option \texttt{--enable-debug} to compile \dolfin{} with
+  debugging symbols and assertions.
+\item
+  Use the option \texttt{--enable-optimization} to compile an
+  optimized version of \dolfin{} without debugging symbols
+  and assertions.
+\item
+  Use the option \texttt{--disable-curses} to compile \dolfin{}
+  without the curses interface (a text-mode graphical user interface).
+\item
+  Use the option \texttt{--disable-mpi} to compile \dolfin{} without
+  support for MPI (Message Passing Interface), assuming PETSc has been
+  compiled without support for MPI.
+\item
+  Use the option \texttt{--with-petsc-dir=<path>} to specify the
+  location of the PETSc directory. By default, \dolfin{} assumes that
+  PETSc has been installed in \texttt{/usr/local/lib/petsc/}.
+\end{itemize}
+
+\subsection{Compiling the demo programs}
+\index{demo programs}
+
+After compiling the \dolfin{} library according to the instructions
+above, you may want to try one of the demo programs in the
+subdirectory \texttt{src/demo/} of the \dolfin{} source tree.
+Just enter the directory containing the demo program you want to
+compile and type \texttt{make}. You may also compile all demo programs
+at once using the command
+\begin{verbatim}
+  # make demo
+\end{verbatim}
+
+\subsection{Compiling a program against \dolfin{}}
+\index{compiling}
+
+Whether you are writing your own Makefiles or using an automated build
+system such as GNU Autotools or BuildSystem, it is straightforward to
+compile a program against \dolfin{}. The necessary include and library
+paths can be obtained through the script \texttt{dolfin-config} which
+is automatically generated during the compilation of \dolfin{} and
+installed in the \texttt{bin} subdirectory of the \texttt{<path>}
+specified with \texttt{--prefix}. Assuming this directory is in your
+executable path (environment variable \texttt{PATH}), the include
+path for building \dolfin{} can be obtained from the command
+\begin{verbatim}
+  dolfin-config --cflags
+\end{verbatim}
+and the path to \dolfin{} libraries can be obtained from the command
+\begin{verbatim}
+  dolfin-config --libs
+\end{verbatim}
+If \texttt{dolfin-config} is not in your executable path, you need to
+provide the full path to \texttt{dolfin-config}.
+
+Examples of how to write a proper \texttt{Makefile} are provided with
+each of the example programs in the subdirectory \texttt{src/demo/} in
+the \dolfin{} source tree.
+
+%------------------------------------------------------------------------------
+\section{Debian package}
+\index{Debian package}
+
+In preparation.
