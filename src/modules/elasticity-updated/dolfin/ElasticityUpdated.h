@@ -5,8 +5,6 @@
 #ifndef __ELASTICITYUPDATED_H
 #define __ELASTICITYUPDATED_H
 
-#include <iostream>
-
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
@@ -368,9 +366,6 @@ public:
 
   LinearForm(Function& w0, Function& w1, Function& w2, const real& c0) : dolfin::LinearForm(3), c0(c0)
   {
-/*     std::cout << "c0a: " << c0 << std::endl; */
-/*     std::cout << "c0b: " << this->c0 << std::endl; */
-
     // Create finite element for test space
     _test = new TestElement();
         
@@ -382,8 +377,6 @@ public:
 
   void eval(real block[], const AffineMap& map) const
   {
-/*     std::cout << "c0: " << c0 << std::endl; */
-
     // Compute geometry tensors
     real G0_0 = map.det*c[0][0];
     real G0_1 = map.det*c[0][1];
@@ -469,7 +462,7 @@ public:
         
 private:
 
-  const real& c0;
+  const real c0;
 
 };
 
