@@ -6,9 +6,9 @@ Unix system, although it is developed mainly under GNU/Linux
 (in particular Debian GNU/Linux). Questions, bug reports and patches
 concerning the installation should be directed to the
 \dolfin{} mailing list at the address
-\begin{verbatim}
+\begin{code}
   dolfin-dev@fenics.org
-\end{verbatim}
+\end{code}
 
 \dolfin{} must currently be compiled directly from source, but effort
 is underway to provide precompiled Debian packages of \dolfin{} and
@@ -28,9 +28,9 @@ you need to install \fiat{} and \ffc{} if you want to define your own variationa
 \index{Libxml2}
 
 Libxml2 is a library used by \dolfin{} to parse XML data files. Libxml2 can be obtained from
-\begin{verbatim}
+\begin{code}
   http://xmlsoft.org/
-\end{verbatim}
+\end{code}
 For Debian users, the package to install is \texttt{libxml2-dev}.
 
 \subsubsection{Installing PETSc}
@@ -39,18 +39,18 @@ For Debian users, the package to install is \texttt{libxml2-dev}.
 PETSc is a library for the solution of linear and nonlinear systems, functioning as the backend
 for the \dolfin{} linear algebra classes. \dolfin{} depends on PETSc version 2.3.0, which can be
 obtained from
-\begin{verbatim}
+\begin{code}
   http://www-unix.mcs.anl.gov/petsc/petsc-2/
-\end{verbatim}
+\end{code}
 
 Follow the installation instructions on the PETSc web page. Normally,
 you should only have to perform the following simple steps in the PETSc
 source directory:
-\begin{verbatim}
+\begin{code}
   # export PETSC_DIR=`pwd`
   # ./config/configure.py --with-clanguage=cxx --with-shared=1
   # make all
-\end{verbatim}
+\end{code}
 
 Add \texttt{--download-hypre=yes} to configure.py if you want to
 install Hypre which provides a collection of preconditioners,
@@ -66,17 +66,17 @@ below).
 
 \dolfin{} uses the FEniCS Form Compiler \ffc{} to process variational
 forms. \ffc{} can be obtained from
-\begin{verbatim}
+\begin{code}
   http://www.fenics.org/
-\end{verbatim}
+\end{code}
 
 Follow the installation instructions given in the \ffc{}
 manual. \ffc{} follows the standard for Python packages, which means
 that normally you should only have to perform the following simple step
 in the \ffc{} source directory:
-\begin{verbatim}
+\begin{code}
   # python setup.py install
-\end{verbatim}
+\end{code}
 
 Note that \ffc{} depends on \fiat{} \index{fiat}, which in turn depends on
 the Python packages Numeric (Debian package \texttt{python-numeric}) and
@@ -89,15 +89,15 @@ the \ffc{} manual for further details.
 
 The latest release of \dolfin{} can be obtained as a \texttt{tar.gz}
 archive in the download section at
-\begin{verbatim}
+\begin{code}
   http://www.fenics.org/
-\end{verbatim}
+\end{code}
 
 Download the latest release of \dolfin{}, for example \texttt{dolfin-0.5.0.tar.gz},
 and unpack using the command
-\begin{verbatim}
+\begin{code}
   # tar zxfv dolfin-0.5.0.tar.gz
-\end{verbatim}
+\end{code}
 
 This creates a directory \texttt{dolfin-0.5.0} containing the
 \dolfin{} source code.
@@ -114,14 +114,14 @@ be less stable and even not work at all.
 
 \dolfin{} is built using the standard GNU Autotools (Automake,
 Autoconf), which means that the installation procedure is simple:
-\begin{verbatim}
+\begin{code}
   # ./configure
   # make
-\end{verbatim}
+\end{code}
 followed by an optional
-\begin{verbatim}
+\begin{code}
   # make install
-\end{verbatim}
+\end{code}
 to install \dolfin{} on your system.
 
 The configure script will check for a number of libraries and try
@@ -129,9 +129,9 @@ to figure out how compile \dolfin{} against these libraries. The
 configure script accepts a collection of optional arguments that can be
 used to control the compilation process. A few of these are listed
 below. Use the command
-\begin{verbatim}
+\begin{code}
   # ./configure --help
-\end{verbatim}
+\end{code}
 for a complete list of arguments.
 
 \begin{itemize}
@@ -143,12 +143,12 @@ for a complete list of arguments.
   installed under \texttt{/usr/local/lib/}. This option can be useful
   if you don't have root access but want to install \dolfin{} locally
   on a user account as follows:
-  \begin{verbatim}
+  \begin{code}
     # mkdir ~/local
     # ./configure --prefix=~/local
     # make
     # make install
-  \end{verbatim}
+  \end{code}
 \item
   Use the option \texttt{--enable-debug} to compile \dolfin{} with
   debugging symbols and assertions.
@@ -178,9 +178,9 @@ subdirectory \texttt{src/demo/} of the \dolfin{} source tree.
 Just enter the directory containing the demo program you want to
 compile and type \texttt{make}. You may also compile all demo programs
 at once using the command
-\begin{verbatim}
+\begin{code}
   # make demo
-\end{verbatim}
+\end{code}
 
 \subsection{Compiling a program against \dolfin{}}
 \index{compiling}
@@ -194,13 +194,13 @@ installed in the \texttt{bin} subdirectory of the \texttt{<path>}
 specified with \texttt{--prefix}. Assuming this directory is in your
 executable path (environment variable \texttt{PATH}), the include
 path for building \dolfin{} can be obtained from the command
-\begin{verbatim}
+\begin{code}
   dolfin-config --cflags
-\end{verbatim}
+\end{code}
 and the path to \dolfin{} libraries can be obtained from the command
-\begin{verbatim}
+\begin{code}
   dolfin-config --libs
-\end{verbatim}
+\end{code}
 If \texttt{dolfin-config} is not in your executable path, you need to
 provide the full path to \texttt{dolfin-config}.
 
