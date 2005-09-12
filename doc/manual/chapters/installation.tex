@@ -16,9 +16,9 @@ other \fenics{} components.
 
 %------------------------------------------------------------------------------
 \section{Installing from source}
-\index{dependencies}
 
 \subsection{Dependencies and requirements}
+\index{dependencies}
 
 \dolfin{} depends on a number of libraries that need to be installed on your
 system. These libraries include Libxml2 and PETSc. In addition to these libraries,
@@ -83,31 +83,8 @@ the Python packages Numeric (Debian package \texttt{python-numeric}) and
 LinearAlgebra (Debian package \texttt{python-numeric-ext}). Refer to
 the \ffc{} manual for further details.
 
-\subsection{Downloading the source code}
-\index{downloading}
-\index{source code}
-
-The latest release of \dolfin{} can be obtained as a \texttt{tar.gz}
-archive in the download section at
-\begin{code}
-  http://www.fenics.org/
-\end{code}
-
-Download the latest release of \dolfin{}, for example \texttt{dolfin-0.5.0.tar.gz},
-and unpack using the command
-\begin{code}
-  # tar zxfv dolfin-0.5.0.tar.gz
-\end{code}
-
-This creates a directory \texttt{dolfin-0.5.0} containing the
-\dolfin{} source code.
-
-If you want the very latest version of \dolfin{}, there is also a
-version name \texttt{dolfin-cvs-current.tar.gz} which provides a
-snapshot of the current CVS version of \dolfin{}, updated
-automatically from the CVS repository each hour. This version may
-contain features not yet present in the latest release, but may also
-be less stable and even not work at all.
+% Input section shared with FFC manual
+\input{chapters/installation-downloading.tex}
 
 \subsection{Compiling the source code}
 \index{compiling}
