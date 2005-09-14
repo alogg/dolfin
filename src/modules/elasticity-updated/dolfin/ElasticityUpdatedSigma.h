@@ -1114,7 +1114,7 @@ public:
         
 private:
 
-  const real c0;  const real c1;  const real c2;
+  const real& c0;  const real& c1;  const real& c2;
 
 };
 
