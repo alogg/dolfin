@@ -4211,7 +4211,7 @@ else
 fi
 
 # List of DOLFIN module libraries
-DOLFIN_MODULES="poisson convdiff navierstokes elasticity elasticity-updated"
+DOLFIN_MODULES="elasticity elasticity-updated convdiff navierstokes poisson stokes"
 
 # List of DOLFIN kernel libraries
 DOLFIN_KERNEL="common fem form function io la log main math mesh ode quadrature settings common"
@@ -4253,7 +4253,7 @@ DOLFIN_LIBS="$DOLFIN_LIBS $CURSES_LIBS $PETSC_LIBS $XML2_LIBS"
 # Create Makefiles Seems like automake cannot handle a variable
 # containing the list of files, so this cannot be done
 # automatically. We have to list all the files.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/fem/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/fem/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4837,8 +4837,6 @@ do
   "src/kernel/settings/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kernel/settings/dolfin/Makefile" ;;
   "src/modules/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/Makefile" ;;
   "src/modules/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/dolfin/Makefile" ;;
-  "src/modules/poisson/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/Makefile" ;;
-  "src/modules/poisson/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/dolfin/Makefile" ;;
   "src/modules/convdiff/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/convdiff/Makefile" ;;
   "src/modules/convdiff/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/convdiff/dolfin/Makefile" ;;
   "src/modules/elasticity/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/elasticity/Makefile" ;;
@@ -4847,6 +4845,10 @@ do
   "src/modules/elasticity-updated/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/elasticity-updated/dolfin/Makefile" ;;
   "src/modules/navierstokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/Makefile" ;;
   "src/modules/navierstokes/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/navierstokes/dolfin/Makefile" ;;
+  "src/modules/poisson/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/Makefile" ;;
+  "src/modules/poisson/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/dolfin/Makefile" ;;
+  "src/modules/stokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/stokes/Makefile" ;;
+  "src/modules/stokes/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/stokes/dolfin/Makefile" ;;
   "src/config/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/config/Makefile" ;;
   "src/post/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/post/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
