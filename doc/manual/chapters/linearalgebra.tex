@@ -1,3 +1,88 @@
 \chapter{Linear algebra}
 
+\dolfin{} uses PETSc for the linear algebra. For convenience \dolfin{} provide 
+wrappers for some of the most common linear algebra functionality.   
+
+
+\dolfin{} provide wrappers for the matrix and vector classes Mat and Vec in 
+PETSc.  
+
+\section{The Matrix class}
+
+The matrix class represents a matrix of dimension m x n. It is a
+simple wrapper for a PETSc matrix (Mat). The interface is
+intentionally simple. For advanced usage, access the PETSc Mat
+pointer using the function mat() and use the standard PETSc
+interface.
+
+\section{The VirtualMatrix class}
+
+This class represents a matrix-free matrix of dimension m x m.
+It is a simple wrapper for a PETSc shell matrix. The interface
+is intentionally simple. For advanced usage, access the PETSc
+Mat pointer using the function mat() and use the standard PETSc
+interface.
+
+The class VirtualMatrix enables the use of Krylov subspace
+methods for linear systems Ax = b, without having to explicitly
+store the matrix A. All that is needed is that the user-defined
+VirtualMatrix implements multiplication with vectors. Note that
+the multiplication operator needs to be defined in terms of
+PETSc data structures (Vec), since it will be called from PETSc.
+
+
+\section{The Vector class}
+
+The vector class represents a vector of dimension n. It is a
+simple wrapper for a PETSc vector (Vec). The interface is
+intentionally simple. For advanced usage, access the PETSc Vec
+pointer using the function vec() and use the standard PETSc
+interface.
+
+\section{The LinearSolver class}
+
+This class defines the interface of all linear solvers for
+systems of the form Ax = b.
+
+\section{The GMRES class}
+
+This class implements the GMRES method for linear systems
+of the form Ax = b. It is a wrapper for the GMRES solver
+of PETSc.
+
+\section{The LU class}
+
+This class implements the direct solution (LU factorization) for
+linear systems of the form Ax = b. It is a wrapper for the LU
+solver of PETSc.
+
+\section{The EigenvalueSolver class}
+
+This class computes eigenvalues of a matrix. It is 
+a wrapper for the eigenvalue solver of PETSc.
+
+\section{The Preconditioner class}
+
+This class specifies the interface for user-defined Krylov
+method preconditioners. A user wishing to implement her own
+preconditioner needs only supply a function that approximately
+solves the linear system given a right-hand side.
+
+\section{The PETScManager class}
+
+This class is responsible for initializing and (automatically)
+finalizing PETSc. To initialize PETSc, call PETScManager::init()
+once (additional calls will be ignored). Finalization will be
+handled automatically.
+
+\section{The PETSc system}
+
+PETSc is a suite of data structures and routines for the scalable 
+(parallel) solution of scientific applications modeled by partial 
+differential equations.  It employs the MPI standard for all message-passing communication.  
+
+\section{The Hypre system}
+
+Algebraic multigrid AMG
+
 \fixme{Write about the wrappers, PETSc, using mat() and vec() to do more advanced operations with PETSc etc.}
