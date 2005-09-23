@@ -3,14 +3,10 @@
 \dolfin{} uses PETSc for the linear algebra. For convenience \dolfin{} provide 
 wrappers for some of the most common linear algebra functionality.   
 
-
-\dolfin{} provide wrappers for the matrix and vector classes Mat and Vec in 
-PETSc.  
-
 \section{The Matrix class}
 
 The matrix class represents a matrix of dimension m x n. It is a
-simple wrapper for a PETSc matrix (Mat). The interface is
+simple wrapper for a PETSc matrix \texttt{Mat}. The interface is
 intentionally simple. For advanced usage, access the PETSc Mat
 pointer using the function mat() and use the standard PETSc
 interface.
@@ -28,13 +24,13 @@ methods for linear systems Ax = b, without having to explicitly
 store the matrix A. All that is needed is that the user-defined
 VirtualMatrix implements multiplication with vectors. Note that
 the multiplication operator needs to be defined in terms of
-PETSc data structures (Vec), since it will be called from PETSc.
+PETSc data structures (\texttt{Vec}), since it will be called from PETSc.
 
 
 \section{The Vector class}
 
 The vector class represents a vector of dimension n. It is a
-simple wrapper for a PETSc vector (Vec). The interface is
+simple wrapper for a PETSc vector \texttt{Vec}. The interface is
 intentionally simple. For advanced usage, access the PETSc Vec
 pointer using the function vec() and use the standard PETSc
 interface.
@@ -83,6 +79,16 @@ differential equations.  It employs the MPI standard for all message-passing com
 
 \section{The Hypre system}
 
-Algebraic multigrid AMG
+As a complement to PETSc, \dolfin{} also uses Hypre, which is a 
+library for solving large, sparse linear systems of equations on massively parallel computers. 
+
+To use a preconditioner from Hypre with your PETSc solver in \dolfin{}, write 
+\begin{code}
+PCSetType(PC pc, PCHYPRE );
+PCHYPRESetType(PC pc,"boomeramg");
+\end{code}
+
+In particular, the above preconditioner \texttt{boomeramg} is an algebraic multigrid 
+preconditioner, which may be very useful for some problems. 
 
 \fixme{Write about the wrappers, PETSc, using mat() and vec() to do more advanced operations with PETSc etc.}
