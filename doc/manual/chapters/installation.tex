@@ -3,10 +3,11 @@
 \index{installation}
 
 The source code of \dolfin{} is portable and should compile on any
-Unix system, although it is developed mainly under GNU/Linux
-(in particular Debian GNU/Linux). Questions, bug reports and patches
-concerning the installation should be directed to the
-\dolfin{} mailing list at the address
+Unix system, although it is developed mainly under GNU/Linux (in 
+particular Debian GNU/Linux). \dolfin{} can be compiled under Windows
+through Cygwin~\cite{www:Cygwin}. Questions, bug reports and patches
+concerning the installation should be directed to the \dolfin{} mailing 
+list at the address
 \begin{code}
   dolfin-dev@fenics.org
 \end{code}
@@ -32,7 +33,7 @@ Libxml2 is a library used by \dolfin{} to parse XML data files. Libxml2 can be o
 \begin{code}
   http://xmlsoft.org/
 \end{code}
-For Debian users, the package to install is \texttt{libxml2-dev}.
+Packages are available for most Linux distrubutions. For Debian users, the package to install is \texttt{libxml2-dev}.
 
 \subsubsection{Installing PETSc}
 \index{PETSc}
@@ -147,6 +148,7 @@ for a complete list of arguments.
   PETSc has been installed in \texttt{/usr/local/lib/petsc/}.
 \end{itemize}
 
+
 \subsection{Compiling the demo programs}
 \index{demo programs}
 
@@ -191,3 +193,34 @@ the \dolfin{} source tree.
 \index{Debian package}
 
 In preparation.
+
+
+%------------------------------------------------------------------------------
+\section{Installing from source under Windows}
+\label{app:cygwin}
+\index{Cygwin}
+
+\dolfin{} can be used under Windows using Cygwin, which provides a Linux-like
+environment. The installation process is largely the same as under GNU/Linux. 
+This section addresses some Cygwin specific issues.
+
+To use \dolfin{} under Cygwin, the Cygwin development tools must be installed. 
+Instructions for installing PETSc under Cygwin can be found on the  PETSc web 
+page. Installation of \ffc{} and \fiat{} is the same as under GNU/Linux. The 
+Python package Numeric is not available as a Cygwin package and must be 
+installed manually. To compile \dolfin{}, the Cygwin package  
+\texttt{libxml2-devel} must be installed. \dolfin{} does not link correctly with 
+the curses libraries of Cygwin, so under Cygwin, \dolfin{} can be built by:
+\begin{code}
+  # ./configure --disable-curses
+  # make
+\end{code}
+If MPI has not been installed:
+\begin{code}
+  # ./configure --disable-mpi --disable-curses
+  # make
+\end{code}
+
+Due to problems with the latest GCC compilers provided by Cygwin (GCC 3.4.4), compiling 
+\dolfin{} will lead to fatal errors. These problems can be avoided by using GCC version 
+3.3.3 provided by Cygwin.
