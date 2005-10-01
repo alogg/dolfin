@@ -157,10 +157,39 @@ files, so the main purpose of this format is to save and transfer data.
 
 \subsection{VTK}
 
-Data saved in VTK format can be visualized in
-ParaView~\cite{www:ParaView}. Alternatively, VTK data can be
-visualized in MayaVi~\cite{www:MayaVi} (recommended for quality
-PostScript output).
+Data saved in VTK format~\cite{www:VTK} can be visualized using various
+packages. The powerful and freely available ParaView~\cite{www:ParaView} 
+is recommended. Alternatively, VTK data can be visualized in 
+MayaVi~\cite{www:MayaVi}, which is recommended for quality vector PostScript 
+output. Time-dependent data is handled automatically in the VTK format.
+
+The below code illustrates how to export a function in VTK format:
+\begin{code}
+  Function u;
+
+  File out(``data.pvd'');
+  out << u;
+\end{code}
+The sample code produces the file \texttt{data.pvd}, which can be read 
+by ParaView. The file \texttt{data.pvd} contains a list of files which 
+contain the results computed by \dolfin{}. For the above example, these 
+files would be named \texttt{dataXXX.vtu}, where \texttt{XXX} is a counter 
+which is incremented each time the function is saved. If the function 
+\texttt{u} was to be saved three times, the files
+\begin{code}
+  data000000.vtu
+  data000001.vtu
+  data000002.vtu
+\end{code}
+would be produced. Individual snapshots can be visualized by opening the 
+desired file with the extension~\texttt{.vtu} using ParaView.
+
+ParaView can produce on-screen animations. High quality animations 
+in various formats can be produced using a combination of ParaView and 
+mencoder~\cite{www.mencoder}.
+
+\devnote{Add mencoder example.}
+
 
 \subsection{OpenDX}
 
