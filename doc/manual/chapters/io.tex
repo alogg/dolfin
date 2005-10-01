@@ -1,39 +1,236 @@
 \chapter{Input/output}
 \index{input/output}
 \index{I/O}
-
-%------------------------------------------------------------------------------
-\section{Pre- and post-processing}
 \index{pre-processing}
 \index{post-processing}
 
-\fixme{\dolfin{} relies on external programs for pre- and post-processing}
+\dolfin{} relies on external programs for pre- and post-processing,
+which means that computational meshes must be imported from file
+(pre-processing) and computed solutions must be exported to file and
+then imported into another program for visualization
+(post-processing). To simplify this process, \dolfin{} provides
+support for easy interaction with files and includes output formats
+for a number of visualization programs.
 
 %------------------------------------------------------------------------------
 \section{Files and objects}
+\index{object}
+\index{\texttt{File}}
 
-\fixme{Discuss operators \texttt{>>} and \texttt{<<}}
+A file in \dolfin{} is represented by the class \texttt{File} and
+reading/writing data is done using the standard C++ operators
+\texttt{>>} (read) and \texttt{<<} (write).
+
+Thus, if \texttt{file} is a \texttt{File} and \texttt{object} is an
+object of some class that can be written to file, then the object can
+be written to file as follows:
+\begin{code}
+  file << object;
+\end{code}
+Similarly, if \texttt{object} is an object of a class that can be read
+from file, then data can be read from file (overwriting any previous
+data held by the object) as follows:
+\begin{code}
+  file >> object;
+\end{code}
+
+The format (type) of a file is determined by its filename suffix, if
+not otherwise specified. Thus, the following code creates a
+\texttt{File} for reading/writing data in \dolfin{} XML format:
+\begin{code}
+  File file(``data.xml'');
+\end{code}
+A complete list of file formats and corresponding file name suffixes
+is given in Table~\ref{tab:formats}.
+
+Alternatively, the format of a file may be explicitly defined. One may
+thus create a file named \texttt{data.xml} for reading/writing data in
+GNU~Octave format:
+\begin{code}
+  File file(``data.xml'', File::octave);
+\end{code}
+
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular}{|l|l|l|}
+      \hline
+      Suffix & Format & Description \\
+      \hline
+      \hline
+      \texttt{.xml}/\texttt{.xml.gz} & \texttt{File::xml} & \dolfin{} XML \\
+      \hline
+      \texttt{.pvd} & \texttt{File::vtk} & VTK \\
+      \hline
+      \texttt{.dx} & \texttt{File::opendx} & OpenDX \\
+      \hline
+      \texttt{.m} & \texttt{File::octave} & GNU Octave \\
+      \hline
+      (\texttt{.m}) & \texttt{File::matlab} & MATLAB \\
+      \hline
+      \texttt{.tec} & \texttt{File::tecplot} & Tecplot \\
+      \hline
+      \texttt{.msh}/\texttt{.res} & \texttt{File::gid} & GiD \\
+      \hline
+    \end{tabular}
+    \caption{File formats and corresponding file name suffixes.}
+    \label{tab:formats}
+  \end{center}
+\end{table}
+
+Although many of the classes in \dolfin{} support file input/output,
+it is not supported by all classes and the support varies with the
+choice of file format. A summary of supported classes/formats is
+given in Table~\ref{tab:classes,formats}.
+
+\devnote{Some of the file formats are partly broken after changing the
+  linear algebra backend to PETSc. (Do \texttt{grep FIXME} in \texttt{src/kernel/io/}.)}
+
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular}{|l||c|c|c|c|c|}
+      \hline
+      Format           & \texttt{Vector} & \texttt{Matrix} & \texttt{Mesh} & \texttt{Function} & \texttt{Sample} \\
+      \hline
+      \hline
+      \texttt{File::xml}     & in/out & in/out & in/out & --- & --- \\
+      \hline
+      \texttt{File::vtk}     & ---    & ---    & out    & out & --- \\
+      \hline
+      \texttt{File::opendx}  & ---    & ---    & out    & out & --- \\
+      \hline
+      \texttt{File::octave}  & out    & out    & out    & out & out \\
+      \hline
+      \texttt{File::matlab}  & out    & out    & out    & out & out \\
+      \hline
+      \texttt{File::tecplot} & ---    & ---    & out    & out & ---  \\
+      \hline
+      \texttt{File::gid}     & ---    & ---    & out    & out & ---\\
+      \hline
+    \end{tabular}
+    \caption{Matrix of supported combinations of classes and file
+      formats for input/output in \dolfin{}.}
+    \label{tab:classes,formats}
+  \end{center}
+\end{table}
 
 %------------------------------------------------------------------------------
 \section{File formats}
 \index{file formats}
 
-\fixme{Insert table here of filename suffixes and corresponding formats.}
+In this section, we give some pointers to each of the file formats
+supported by \dolfin{}. For detailed information, we refer to the
+respective user manual of each format/program.
 
-\fixme{Matrix of classes and formats}
+\devnote{This section needs to be improved and expanded. Any
+  contributions are welcome.}
 
 \subsection{\dolfin{} XML}
 \index{XML}
 
-\fixme{The native format}
+\dolfin{} XML is the native format of \dolfin{}. As the name says,
+data is stored in XML ASCII format. This has the advantage of being a
+robust and human-readable format, and if the files are compressed
+there is little overhead in terms of file size compared to a binary
+format.
 
-\subsection{Another format}
+\dolfin{} automatically handles gzipped XML files, as
+illustrated by the following example which reads a \texttt{Mesh} from
+a compressed \dolfin{} XML file and saves the mesh to an uncompressed
+\dolfin{} XML file:
+\begin{code}
+  Mesh mesh;
 
-\subsection{Another format}
+  File in(``mesh.xml.gz'');
+  in >> mesh;
 
-\subsection{Another format}
+  File out(``mesh.xml'');
+  out << mesh;
+\end{code}
+The same thing can of course be accomplished by
+\begin{code}
+  # gunzip -c mesh.xml.gz > mesh.xml
+\end{code}
+on the command-line.
+
+There is currently no visualization tool that can read \dolfin{} XML
+files, so the main purpose of this format is to save and transfer data.
+
+\subsection{VTK}
+
+Data saved in VTK format can be visualized in
+ParaView~\cite{www:ParaView}. Alternatively, VTK data can be
+visualized in MayaVi~\cite{www:MayaVi} (recommended for quality
+PostScript output).
+
+\subsection{OpenDX}
+
+OpenDX~\cite{www:OpenDX} is a powerful free visualization tool based
+on IBM's \emph{Visualization Data Explorer}. To visualize data with
+OpenDX, a user needs to build a \emph{visual program} that instructs
+OpenDX how to extract and visualize relevant parts of your
+data. \dolfin{} provides a ready-made visual program suitable for
+visualization of \dolfin{} data in OpenDX. The visual program can be
+found in the subdirectory \texttt{src/utils/opendx/} of the \dolfin{}
+source tree (file \texttt{dolfin.net} and accompanying configuration
+\texttt{dolfin.cfg}).
+
+\subsection{GNU Octave}
+
+GNU~Octave~\cite{www:Octave} is a free clone of MATLAB that can be
+used to visualize solutions computed in \dolfin{}, using the commands
+\texttt{pdemesh}, \texttt{pdesurf} and \texttt{pdeplot}. These
+commands are normally not part of GNU~Octave but are
+provided by \dolfin{} in the subdirectory \texttt{src/utils/octave/} of
+the \dolfin{} source tree. These commands require the external program
+\texttt{ivview} included in the open source distribution of
+Open~Inventor~\cite{www:OpenInventor}. (Debian users install the
+package \texttt{inventor-clients}.)
+
+To visualize a solution computed with \dolfin{} and exported in
+GNU~Octave format, first load the solution into GNU~Octave by just
+typing the name of the file without the \texttt{.m} suffix. If the
+solution has been saved to the file \texttt{poisson.m}, then just type
+\begin{code}
+  octave:1> poisson
+\end{code}
+The solution can now be visualized using the command
+\begin{code}
+  octave:2> pdesurf(points, cells, u)
+\end{code}
+or to visualize just the mesh, type
+\begin{code}
+  octave:3> pdesurf(points, edges, cells)
+\end{code}
+
+\subsection{MATLAB}
+
+Since MATLAB~\cite{www:MATLAB} is not free, users are encouraged to
+use GNU~Octave whenever possible. That said, data is visualized in
+much the same way in MATLAB as in GNU~Octave, using the
+MATLAB~commands \texttt{pdemesh}, \texttt{pdesurf} and
+\texttt{pdeplot}.
+
+\subsection{Tecplot}
+
+Tecplot~\cite{www:Tecplot} is a proprietary visualization tool.
+The Tecplot format is not actively maintained and may be removed in
+future versions of \dolfin{} (if there is not sufficient interest to
+maintain the format).
+
+\subsection{GiD}
+
+GiD~\cite{www:GiD} is a proprietary visualization tool.
+The GiD format is not actively maintained and may be removed in
+future versions of \dolfin{} (if there is not sufficient interest to
+maintain the format).
 
 %------------------------------------------------------------------------------
-\section{Adding a new file format}
+\section{A note on new file formats}
 
-\fixme{Discuss classes File, GenericFile etc}
+With some effort, \dolfin{} can be expanded with new file formats. Any
+contributions are welcome. If you wish to contribute to \dolfin{},
+then adding a new file format (or improving upon an existing file
+format) is a good place to start. Take a look at one of the current
+formats in the subdirectory \texttt{src/kernel/io/} of the \dolfin{}
+source tree to get a feeling for how to design the file format, or ask
+at \texttt{dolfin-dev@fenics.org} for directions.
