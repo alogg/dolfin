@@ -1,94 +1,100 @@
 \chapter{Linear algebra}
 
-\dolfin{} uses PETSc for the linear algebra. For convenience \dolfin{} provide 
-wrappers for some of the most common linear algebra functionality.   
+\dolfin{} does not have its own linear algebra routines, 
+but instead use the exernal package {\em PETSc} \cite{www:petsc} 
+for linear algebra functionality.    
 
-\section{The Matrix class}
-
-The matrix class represents a matrix of dimension m x n. It is a
-simple wrapper for a PETSc matrix \texttt{Mat}. The interface is
-intentionally simple. For advanced usage, access the PETSc Mat
-pointer using the function mat() and use the standard PETSc
-interface.
-
-\section{The VirtualMatrix class}
-
-This class represents a matrix-free matrix of dimension m x m.
-It is a simple wrapper for a PETSc shell matrix. The interface
-is intentionally simple. For advanced usage, access the PETSc
-Mat pointer using the function mat() and use the standard PETSc
-interface.
-
-The class VirtualMatrix enables the use of Krylov subspace
-methods for linear systems Ax = b, without having to explicitly
-store the matrix A. All that is needed is that the user-defined
-VirtualMatrix implements multiplication with vectors. Note that
-the multiplication operator needs to be defined in terms of
-PETSc data structures (\texttt{Vec}), since it will be called from PETSc.
-
-
-\section{The Vector class}
-
-The vector class represents a vector of dimension n. It is a
-simple wrapper for a PETSc vector \texttt{Vec}. The interface is
-intentionally simple. For advanced usage, access the PETSc Vec
-pointer using the function vec() and use the standard PETSc
-interface.
-
-\section{The LinearSolver class}
-
-This class defines the interface of all linear solvers for
-systems of the form Ax = b.
-
-\section{The GMRES class}
-
-This class implements the GMRES method for linear systems
-of the form Ax = b. It is a wrapper for the GMRES solver
-of PETSc.
-
-\section{The LU class}
-
-This class implements the direct solution (LU factorization) for
-linear systems of the form Ax = b. It is a wrapper for the LU
-solver of PETSc.
-
-\section{The EigenvalueSolver class}
-
-This class computes eigenvalues of a matrix. It is 
-a wrapper for the eigenvalue solver of PETSc.
-
-\section{The Preconditioner class}
-
-This class specifies the interface for user-defined Krylov
-method preconditioners. A user wishing to implement her own
-preconditioner needs only supply a function that approximately
-solves the linear system given a right-hand side.
-
-\section{The PETScManager class}
-
-This class is responsible for initializing and (automatically)
-finalizing PETSc. To initialize PETSc, call PETScManager::init()
-once (additional calls will be ignored). Finalization will be
-handled automatically.
-
-\section{The PETSc system}
-
-PETSc is a suite of data structures and routines for the scalable 
+{\em PETSc} is a suite of data structures and routines for the scalable 
 (parallel) solution of scientific applications modeled by partial 
-differential equations.  It employs the MPI standard for all message-passing communication.  
+differential equations. 
+It employs the MPI standard for all message-passing communication.  
 
-\section{The Hypre system}
+For convenience \dolfin{} provide wrappers for some of the most 
+common linear algebra functionality. For more advanced usage of 
+{\em PETSc}, \dolfin{} provide direct access to the {\em PETSc} pointers 
+to be used with the standard {\em PETSc} interface. 
 
-As a complement to PETSc, \dolfin{} also uses Hypre, which is a 
-library for solving large, sparse linear systems of equations on massively parallel computers. 
+\section{Matrices and Vectors}
 
-To use a preconditioner from Hypre with your PETSc solver in \dolfin{}, write 
+The matrix class \texttt{Matrix} provides wrappers for initiating a 
+sequential sparse matrix, or a sequential sparse matrix in 
+block compressed row format. For parallel matrices one has to use 
+the {\em PETSc} interface directly. 
+
+The code for initializing a sequential sparse $M\times N$ matrix 
+take the form: 
+\begin{code}
+uint M = 100; 
+uint N = 100; 
+Matrix A(M,N);
+\end{code}
+
+Similarly, the vector class \texttt{Vector} allows for a simple 
+initialization of a M vector:  
+\begin{code}
+Vector b(M);
+\end{code}
+
+Further, wrappers for some basic functionality, such as matrix vector 
+multiplication, norms etc., are provided with an intentially simple interface, 
+e.g. matrix vector multiplication: 
+\begin{code}
+Vector Ax;
+A.mult(b,Ax);
+\end{code} 
+
+For more advanced operations, a pointer to the {\em PETSc} matrix and vector is 
+accessed by \texttt{mat()} and \texttt{vec()} respectively. 
+
+\section{Matrix-free matrices}
+
+The \dolfin{} class \texttt{VirtualMatrix} represents a matrix-free 
+matrix of dimension $M\times M$. 
+The matrix-free matrix is a simple wrapper for a {\em PETSc} shell matrix. 
+The interface is intentionally simple, and for advanced usage the 
+{\em PETSc} \texttt{Mat} pointer is accessed by the function \texttt{mat()}.  
+
+The class \texttt{VirtualMatrix} enables the use of Krylov subspace
+methods for linear systems $Ax = b$, without having to explicitly
+store the matrix $A$. All that is needed is that the user-defined
+\texttt{VirtualMatrix} implements multiplication with vectors. 
+Note that the multiplication operator needs to be defined in terms of
+{\em PETSc} data structures (\texttt{Vec}), since it will be called from {\em PETSc}.
+
+\section{Linear solvers}
+
+A general interface to all linear solvers for systems of the form 
+$Ax=b$ is provided through the class \texttt{LinearSolver}. 
+
+In particular, wrappers for a direct {\em LU} solver and an iterative 
+Krylov GMRES solver are implemented in the classes \texttt{LU} and \texttt{GMRES}. 
+
+To solve the linear system $Ax=b$ using GMRES in \dolfin{}, we simply write:  
+
+\begin{code} 
+GMRES solver; 
+solver.solve(A,x,b);
+\end{code} 
+
+\dolfin{} also provides a wrapper for an eigenvalue solver in {\em PETSc}. 
+
+\section{Preconditioning}
+
+The \texttt{Preconditioner} class specifies the interface for user-defined 
+Krylov method preconditioners. To implement our own preconditioner we only 
+need to supply a function that approximately solves the linear system given 
+a right-hand side.
+
+As a complement to {\em PETSc}, \dolfin{} also uses {\em Hypre}, which is a 
+library for solving large, sparse linear systems of equations on 
+massively parallel computers. 
+
+To use a preconditioner from {\em Hypre} with our {\em PETSc} solver in \dolfin{}, we write:  
 \begin{code}
 PCSetType(PC pc, PCHYPRE );
 PCHYPRESetType(PC pc,"boomeramg");
 \end{code}
 
 In particular, the above preconditioner \texttt{boomeramg} is an algebraic multigrid 
-preconditioner, which may be very useful for some problems. 
+preconditioner, which is very useful. 
 
-\fixme{Write about the wrappers, PETSc, using mat() and vec() to do more advanced operations with PETSc etc.}
