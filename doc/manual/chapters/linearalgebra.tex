@@ -1,7 +1,7 @@
 \chapter{Linear algebra}
 
 \dolfin{} does not have its own linear algebra routines, 
-but instead use the exernal package PETSc \cite{www:petsc} 
+but instead use the external package PETSc \cite{www:petsc} 
 for linear algebra functionality.    
 
 PETSc is a suite of data structures and routines for the scalable 
@@ -38,7 +38,7 @@ Vector b(M);
 \end{code}
 
 Further, wrappers for some basic functionality, such as matrix vector 
-multiplication, norms etc., are provided with an intentially simple interface, 
+multiplication, norms etc., are provided with an intentionally simple interface, 
 e.g. matrix vector multiplication: 
 %
 \begin{code}
@@ -80,7 +80,19 @@ GMRES solver;
 solver.solve(A,x,b);
 \end{code} 
 %
-\dolfin{} also provides a wrapper for an eigenvalue solver in PETSc. 
+\dolfin{} also provides a wrapper for an eigenvalue 
+solver\index{eigenvalue solver} in PETSc. The following code computes the 
+eigenvalues of the matrix $A$,
+\begin{code} 
+Vector er, ec;
+EigenvalueSolver esolver; 
+esolver.eigen(A,er,ec);
+\end{code} 
+The real components of the eigenvalues are returned in the vector \texttt{er} and
+the complex components of the eigenvalues are returned in the vector \texttt{ec}.
+The procedure for computing the eigenvalues of a matrix is computationally 
+intensive and should only be used for relatively small matrices.
+
 
 \section{Preconditioning}
 
