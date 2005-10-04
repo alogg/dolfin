@@ -2,28 +2,148 @@
 \index{functions}
 \index{Function}
 
-This chapter discusses the representation of functions in \dolfin{}. There are two type of functions; functions which belong to the finite element space and user-defined functions.
+\devnote{This chapter is currently being written\ldots}
+
+%This chapter discusses the representation of functions in \dolfin{}. 
+A function in \dolfin{} is represented by the class \texttt{Function}, and
+is either scalar or vector-valued. There are two type of functions in \dolfin{};
+functions which belong to the finite element space and user-defined functions.
+Both of these types of functions are discussed in this chapter. 
 
 
 
 \section{Functions in the finite element space}
 %
-A function in in the finite element space is defined in terms of a finite element, a mesh and a vector containing the the value of the function at a points (nodal points). For example, a scalar $u$ two dimensions is given by:
+A function in the finite element space is defined in terms of a finite
+element, a mesh and a vector containing the value of the function at a
+finite number of points (nodal points). For example, a scalar function $u$ in
+two dimensions is given by:
 \begin{equation}
-  u(x,y) = \sum_{i=1}^{n} N_{i}(x,y) u_{i},
+  u(x,y) = \sum_{i=1}^{N} \varphi_{i}(x,y) u_{i},
 \end{equation}
-where $N_{i}$ is the finite element shape function (basis function) associated with 
-node~$i$, $u_{i}$ is the value of the function at node~$i$ and $n$ is the number of nodes.
+where $\varphi_{i}$ is the finite element shape function (basis function)
+associated with node~$i$, $u_{i}$ is the value of the function $u$ at node~$i$
+and $N$ is the number of nodes. 
+
+\subsection{Intializing functions}
+A function can be initialized in several ways. An empty function \texttt{u}
+is initialized by:
+\begin{code}
+  Function u;
+\end{code}
+A function can also be created by:
+\begin{code}
+  Vector x;
+  Function u(x);
+\end{code}
+in which case the function is defined in terms of the vector~\texttt{x} which
+contains the terms~$u_{i}$. \dolfin{} will then choose the mesh and the finite
+element type automatically, which are necessary to define the basis functions
+$\{\varphi_{i}\}_{i=1}^{N}$. Creating a function with the code:
+\begin{code}
+  Vector x;
+  Mesh mesh;
+  Function u(x,mesh);
+\end{code}
+leads to a function \texttt{u} which is defined in terms of the vector
+\texttt{x} and the mesh \texttt{mesh}. \dolfin{} will select the finite element
+automatically. Finally, creating a function by 
+\begin{code}
+  Vector x;
+  Mesh mesh;
+  FiniteElement element;
+  Function u(x,mesh,element);
+\end{code}
+leads to a function \texttt{u} which is defined in terms of the vector
+\texttt{x}, the mesh \texttt{mesh} and the finite element \texttt{element}.
+
+After a function has been initialized, it is possible to associate a finite
+element using the function \texttt{set}. For example, 
+\begin{code}
+  Vector x;
+  Mesh mesh;
+  FiniteElement element;
+
+  Function u(x,mesh);
+  u.set(element); 
+\end{code}
+Usually, the finite element is given by the bilinear form defining the
+problem. Considering the Poisson example in Chapter~\ref{chap:quickstart}), a
+function \texttt{u} can be defined by: 
+\begin{code}
+  Vector x;
+  Mesh mesh;
+  FiniteElement element;
+
+  Poisson::BilinearForm a;
+  element = a.trial();
+
+  Function u(x,mesh);
+  u.set(element); 
+\end{code}
+The trial (basis) functions associated with the bilinear form \texttt{a} have
+been used to define this function.
+
+
+
+\subsection{Retrieving function details}
+%
+It is possible to find out with which vector, mesh and finite element a
+function is defined. Given a function \texttt{u}, the associated vector, mesh
+and finite element can be returned by:
+\begin{code}
+  Vector x;
+  Mesh mesh;
+  FiniteElement element;
+
+  x       = u.vector(); 
+  mesh    = u.mesh(); 
+  element = u.element(); 
+\end{code}
+
+
+
+
+\subsection{Evaluating functions}
+\index{evaluating functions}
+%
+%A function can be evaluated at a mesh vertexes. Given a \texttt{Node} and a
+%\texttt{Function}, the value of a scalar function at a given node $f$ is given
+%by: 
+%\begin{code}
+%  Node node;
+
+%  real f; 
+%  f = u.eval(node); 
+%\end{code}
+%The value of a component of a vector valued function a vertex is evaluated by
+%\begin{code}
+%  Node node
+
+% uint i;
+%  real f; 
+%  f = u.eval(node,i); 
+%\end{code}
+%where \texttt{i} indicates the vector component ($\texttt{i} \ge 0$).
+%The evaluation of functions at vertexes is currently limited continuous
+%functions only. 
+
+
+Functions can be output in various file formats which are examined in detail in
+Chapter~\ref{chapter:io}.
 
 
 \section{User-defined functions}
 \index{user-defined functions}
 %
-A user defined function is a function in terms of the spatial coordinates and possibly time. They are typically used for defining source terms and initial conditions. For example, a source could be given by
+A user defined function is a function in terms of the spatial coordinates and
+possibly time. They are typically used for defining source terms and initial
+conditions. For example, a source could be given by
 \begin{equation}
-  f = f(x,y) = y \sin(x / \pi).
+  f = f(x,y,z) = yz \sin(x / \pi).
 \end{equation}
 
-\devnote{This chapter is currently being written\ldots}
 
-% FIXME: Discuss the Function class and the different representations.
+\section{Time-dependent functions}
+Time-dependent and pseudo time-dependent functions.
+
