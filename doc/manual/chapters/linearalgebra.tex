@@ -1,7 +1,7 @@
 \chapter{Linear algebra}
 
 \dolfin{} does not have its own linear algebra routines, 
-but instead use the external package PETSc \cite{www:petsc} 
+but instead uses the external package PETSc \cite{www:petsc} 
 for linear algebra functionality.    
 
 PETSc is a suite of data structures and routines for the scalable 
@@ -9,20 +9,20 @@ PETSc is a suite of data structures and routines for the scalable
 differential equations. 
 It employs the MPI standard for all message-passing communication.  
 
-For convenience \dolfin{} provide wrappers for some of the most 
-common linear algebra functionality. For more advanced usage of 
-PETSc, \dolfin{} provide direct access to the PETSc pointers 
+For convenience \dolfin{} provides wrappers for some of the most 
+common linear algebra functionality. For more advanced usage, 
+\dolfin{} provides direct access to the PETSc pointers 
 to be used with the standard PETSc interface. 
 
 \section{Matrices and Vectors}
 
-The matrix class \texttt{Matrix} provides wrappers for initiating a 
-sequential sparse matrix, or a sequential sparse matrix in 
-block compressed row format. For parallel matrices one has to use 
-the PETSc interface directly. 
+The matrix class \texttt{Matrix} provides wrappers for initializing 
+a sequential sparse matrix, or a sequential sparse matrix in 
+block compressed row format. For parallel matrices the PETSc 
+interface has to be used directly. 
 
 The code for initializing a sequential sparse $M\times N$ matrix 
-take the form: 
+takes the form: 
 %
 \begin{code}
 uint M = 100; 
@@ -37,9 +37,9 @@ initialization of a M vector:
 Vector b(M);
 \end{code}
 
-Further, wrappers for some basic functionality, such as matrix vector 
+Further, wrappers for some basic linear algebra functionality, such as matrix vector 
 multiplication, norms etc., are provided with an intentionally simple interface, 
-e.g. matrix vector multiplication: 
+for exmple, matrix vector multiplication is defined by: 
 %
 \begin{code}
 Vector Ax;
@@ -72,7 +72,7 @@ $Ax=b$ is provided through the class \texttt{LinearSolver}.
 In particular, wrappers for a direct LU solver and an iterative 
 Krylov GMRES solver are implemented in the classes \texttt{LU} and \texttt{GMRES}. 
 
-To solve the linear system $Ax=b$ using GMRES in \dolfin{}, we simply write:  
+To solve the linear system $Ax=b$ using GMRES in \dolfin{}, simply write:  
 %
 \begin{code} 
 Vec x;
@@ -101,11 +101,22 @@ Krylov method preconditioners. To implement our own preconditioner we only
 need to supply a function that approximately solves the linear system given 
 a right-hand side.
 
-As a complement to PETSc, \dolfin{} also uses Hypre \cite{www:hypre}, which is a 
+To change the default preconditioner in the \dolfin{} GMRES solver, edit the 
+constructor of the \texttt{GMRES} class. For example, to choose the 
+ILU preconditioner for GMRES we write 
+%
+\begin{code}
+PC pc;
+KSPGetPC(ksp, &pc);
+PCSetType(pc, PCILU);
+\end{code}
+
+As a complement to the preconditioners avaliable in PETSc, 
+\dolfin{} also uses Hypre \cite{www:hypre}, which is a 
 library for solving large, sparse linear systems of equations on 
 massively parallel computers. 
 
-To use a preconditioner from Hypre with our PETSc solver in \dolfin{}, we write:  
+To use a preconditioner from Hypre together with a PETSc solver in \dolfin{}, we write:  
 %
 \begin{code}
 PCSetType(PC pc, PCHYPRE );
