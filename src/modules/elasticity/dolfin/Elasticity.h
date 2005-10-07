@@ -5,11 +5,6 @@
 #ifndef __ELASTICITY_H
 #define __ELASTICITY_H
 
-#include <dolfin/Mesh.h>
-#include <dolfin/Cell.h>
-#include <dolfin/Point.h>
-#include <dolfin/Vector.h>
-#include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
@@ -105,16 +100,6 @@ public:
       components[11] = 2;
     }
 
-    void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      values[0] = x(vertex);
-      int offset = mesh.noNodes();
-      values[1] = x(offset + vertex);
-      offset = offset + mesh.noNodes();
-      values[2] = x(offset + vertex);
-    }
-
   private:
 
     unsigned int* tensordims;
@@ -201,16 +186,6 @@ public:
       components[9] = 2;
       components[10] = 2;
       components[11] = 2;
-    }
-
-    void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      values[0] = x(vertex);
-      int offset = mesh.noNodes();
-      values[1] = x(offset + vertex);
-      offset = offset + mesh.noNodes();
-      values[2] = x(offset + vertex);
     }
 
   private:
@@ -636,16 +611,6 @@ public:
       components[11] = 2;
     }
 
-    void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      values[0] = x(vertex);
-      int offset = mesh.noNodes();
-      values[1] = x(offset + vertex);
-      offset = offset + mesh.noNodes();
-      values[2] = x(offset + vertex);
-    }
-
   private:
 
     unsigned int* tensordims;
@@ -734,16 +699,6 @@ public:
       components[11] = 2;
     }
 
-    void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      values[0] = x(vertex);
-      int offset = mesh.noNodes();
-      values[1] = x(offset + vertex);
-      offset = offset + mesh.noNodes();
-      values[2] = x(offset + vertex);
-    }
-
   private:
 
     unsigned int* tensordims;
@@ -776,18 +731,18 @@ public:
     real G0_11 = map.det*c[0][11];
 
     // Compute element tensor
-    block[0] = 1.666666666666662e-02*G0_0 + 8.333333333333309e-03*G0_1 + 8.333333333333307e-03*G0_2 + 8.333333333333311e-03*G0_3;
-    block[1] = 8.333333333333309e-03*G0_0 + 1.666666666666661e-02*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333307e-03*G0_3;
-    block[2] = 8.333333333333309e-03*G0_0 + 8.333333333333307e-03*G0_1 + 1.666666666666661e-02*G0_2 + 8.333333333333311e-03*G0_3;
-    block[3] = 8.333333333333311e-03*G0_0 + 8.333333333333307e-03*G0_1 + 8.333333333333311e-03*G0_2 + 1.666666666666662e-02*G0_3;
-    block[4] = 1.666666666666661e-02*G0_4 + 8.333333333333307e-03*G0_5 + 8.333333333333307e-03*G0_6 + 8.333333333333305e-03*G0_7;
-    block[5] = 8.333333333333307e-03*G0_4 + 1.666666666666662e-02*G0_5 + 8.333333333333311e-03*G0_6 + 8.333333333333311e-03*G0_7;
-    block[6] = 8.333333333333307e-03*G0_4 + 8.333333333333311e-03*G0_5 + 1.666666666666662e-02*G0_6 + 8.333333333333314e-03*G0_7;
-    block[7] = 8.333333333333305e-03*G0_4 + 8.333333333333311e-03*G0_5 + 8.333333333333314e-03*G0_6 + 1.666666666666662e-02*G0_7;
-    block[8] = 1.666666666666661e-02*G0_8 + 8.333333333333307e-03*G0_9 + 8.333333333333307e-03*G0_10 + 8.333333333333305e-03*G0_11;
-    block[9] = 8.333333333333307e-03*G0_8 + 1.666666666666662e-02*G0_9 + 8.333333333333311e-03*G0_10 + 8.333333333333311e-03*G0_11;
-    block[10] = 8.333333333333307e-03*G0_8 + 8.333333333333311e-03*G0_9 + 1.666666666666662e-02*G0_10 + 8.333333333333312e-03*G0_11;
-    block[11] = 8.333333333333305e-03*G0_8 + 8.333333333333311e-03*G0_9 + 8.333333333333312e-03*G0_10 + 1.666666666666662e-02*G0_11;
+    block[0] = 1.666666666666662e-02*G0_0 + 8.333333333333309e-03*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333312e-03*G0_3;
+    block[1] = 8.333333333333309e-03*G0_0 + 1.666666666666661e-02*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333311e-03*G0_3;
+    block[2] = 8.333333333333309e-03*G0_0 + 8.333333333333309e-03*G0_1 + 1.666666666666662e-02*G0_2 + 8.333333333333311e-03*G0_3;
+    block[3] = 8.333333333333312e-03*G0_0 + 8.333333333333311e-03*G0_1 + 8.333333333333312e-03*G0_2 + 1.666666666666662e-02*G0_3;
+    block[4] = 1.666666666666662e-02*G0_4 + 8.333333333333309e-03*G0_5 + 8.333333333333307e-03*G0_6 + 8.333333333333312e-03*G0_7;
+    block[5] = 8.333333333333309e-03*G0_4 + 1.666666666666662e-02*G0_5 + 8.333333333333311e-03*G0_6 + 8.333333333333312e-03*G0_7;
+    block[6] = 8.333333333333311e-03*G0_4 + 8.333333333333312e-03*G0_5 + 1.666666666666662e-02*G0_6 + 8.333333333333314e-03*G0_7;
+    block[7] = 8.333333333333312e-03*G0_4 + 8.333333333333312e-03*G0_5 + 8.333333333333314e-03*G0_6 + 1.666666666666662e-02*G0_7;
+    block[8] = 1.666666666666662e-02*G0_8 + 8.333333333333309e-03*G0_9 + 8.333333333333307e-03*G0_10 + 8.333333333333312e-03*G0_11;
+    block[9] = 8.333333333333309e-03*G0_8 + 1.666666666666662e-02*G0_9 + 8.333333333333311e-03*G0_10 + 8.333333333333312e-03*G0_11;
+    block[10] = 8.333333333333311e-03*G0_8 + 8.333333333333312e-03*G0_9 + 1.666666666666662e-02*G0_10 + 8.333333333333314e-03*G0_11;
+    block[11] = 8.333333333333312e-03*G0_8 + 8.333333333333312e-03*G0_9 + 8.333333333333314e-03*G0_10 + 1.666666666666662e-02*G0_11;
   }
 
 };
