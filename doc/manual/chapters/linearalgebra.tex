@@ -119,8 +119,8 @@ massively parallel computers.
 To use a preconditioner from Hypre together with a PETSc solver in \dolfin{}, we write:  
 %
 \begin{code}
-PCSetType(PC pc, PCHYPRE );
-PCHYPRESetType(PC pc,"boomeramg");
+PCSetType(pc, PCHYPRE );
+PCHYPRESetType(pc,"boomeramg");
 \end{code}
 
 In particular, the above preconditioner \texttt{boomeramg} is an algebraic multigrid 
