@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE RANLIB ac_ct_RANLIB LN_S CPP EGREP petsc_found mpi_found libxml2_found KERNEL_CFLAGS MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE RANLIB ac_ct_RANLIB LN_S CPP EGREP PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS petsc_found mpi_found libxml2_found KERNEL_CFLAGS MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -4323,6 +4323,375 @@ _ACEOF
 fi
 
 
+
+
+
+
+
+        if test -n "$PYTHON"; then
+      # If the user set $PYTHON, use it and don't search something else.
+      echo "$as_me:$LINENO: checking whether $PYTHON version >= 2.3" >&5
+echo $ECHO_N "checking whether $PYTHON version >= 2.3... $ECHO_C" >&6
+      prog="import sys, string
+# split strings by '.' and convert to numeric.  Append some zeros
+# because we need at least 4 digits for the hex conversion.
+minver = map(int, string.split('2.3', '.')) + [0, 0, 0]
+minverhex = 0
+for i in xrange(0, 4): minverhex = (minverhex << 8) + minver[i]
+sys.exit(sys.hexversion < minverhex)"
+  if { echo "$as_me:$LINENO: $PYTHON -c "$prog"" >&5
+   ($PYTHON -c "$prog") >&5 2>&5
+   ac_status=$?
+   echo "$as_me:$LINENO: \$? = $ac_status" >&5
+   (exit $ac_status); }; then
+  echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+else
+  { { echo "$as_me:$LINENO: error: too old" >&5
+echo "$as_me: error: too old" >&2;}
+   { (exit 1); exit 1; }; }
+fi
+
+      am_display_PYTHON=$PYTHON
+    else
+      # Otherwise, try each interpreter until we find one that satisfies
+      # VERSION.
+      echo "$as_me:$LINENO: checking for a Python interpreter with version >= 2.3" >&5
+echo $ECHO_N "checking for a Python interpreter with version >= 2.3... $ECHO_C" >&6
+if test "${am_cv_pathless_PYTHON+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+
+	for am_cv_pathless_PYTHON in python python2 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 none; do
+	  test "$am_cv_pathless_PYTHON" = none && break
+	  prog="import sys, string
+# split strings by '.' and convert to numeric.  Append some zeros
+# because we need at least 4 digits for the hex conversion.
+minver = map(int, string.split('2.3', '.')) + [0, 0, 0]
+minverhex = 0
+for i in xrange(0, 4): minverhex = (minverhex << 8) + minver[i]
+sys.exit(sys.hexversion < minverhex)"
+  if { echo "$as_me:$LINENO: $am_cv_pathless_PYTHON -c "$prog"" >&5
+   ($am_cv_pathless_PYTHON -c "$prog") >&5 2>&5
+   ac_status=$?
+   echo "$as_me:$LINENO: \$? = $ac_status" >&5
+   (exit $ac_status); }; then
+  break
+fi
+
+	done
+fi
+echo "$as_me:$LINENO: result: $am_cv_pathless_PYTHON" >&5
+echo "${ECHO_T}$am_cv_pathless_PYTHON" >&6
+      # Set $PYTHON to the absolute path of $am_cv_pathless_PYTHON.
+      if test "$am_cv_pathless_PYTHON" = none; then
+	PYTHON=:
+      else
+        # Extract the first word of "$am_cv_pathless_PYTHON", so it can be a program name with args.
+set dummy $am_cv_pathless_PYTHON; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_PYTHON+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $PYTHON in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PYTHON="$PYTHON" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PYTHON="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+PYTHON=$ac_cv_path_PYTHON
+
+if test -n "$PYTHON"; then
+  echo "$as_me:$LINENO: result: $PYTHON" >&5
+echo "${ECHO_T}$PYTHON" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+      fi
+      am_display_PYTHON=$am_cv_pathless_PYTHON
+    fi
+
+
+  if test "$PYTHON" = :; then
+      { { echo "$as_me:$LINENO: error: no suitable Python interpreter found" >&5
+echo "$as_me: error: no suitable Python interpreter found" >&2;}
+   { (exit 1); exit 1; }; }
+  else
+
+
+  echo "$as_me:$LINENO: checking for $am_display_PYTHON version" >&5
+echo $ECHO_N "checking for $am_display_PYTHON version... $ECHO_C" >&6
+if test "${am_cv_python_version+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  am_cv_python_version=`$PYTHON -c "import sys; print sys.version[:3]"`
+fi
+echo "$as_me:$LINENO: result: $am_cv_python_version" >&5
+echo "${ECHO_T}$am_cv_python_version" >&6
+  PYTHON_VERSION=$am_cv_python_version
+
+
+
+  PYTHON_PREFIX='${prefix}'
+
+  PYTHON_EXEC_PREFIX='${exec_prefix}'
+
+
+
+  echo "$as_me:$LINENO: checking for $am_display_PYTHON platform" >&5
+echo $ECHO_N "checking for $am_display_PYTHON platform... $ECHO_C" >&6
+if test "${am_cv_python_platform+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  am_cv_python_platform=`$PYTHON -c "import sys; print sys.platform"`
+fi
+echo "$as_me:$LINENO: result: $am_cv_python_platform" >&5
+echo "${ECHO_T}$am_cv_python_platform" >&6
+  PYTHON_PLATFORM=$am_cv_python_platform
+
+
+
+
+                echo "$as_me:$LINENO: checking for $am_display_PYTHON script directory" >&5
+echo $ECHO_N "checking for $am_display_PYTHON script directory... $ECHO_C" >&6
+if test "${am_cv_python_pythondir+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  am_cv_python_pythondir=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='$PYTHON_PREFIX')" 2>/dev/null ||
+     echo "$PYTHON_PREFIX/lib/python$PYTHON_VERSION/site-packages"`
+fi
+echo "$as_me:$LINENO: result: $am_cv_python_pythondir" >&5
+echo "${ECHO_T}$am_cv_python_pythondir" >&6
+  pythondir=$am_cv_python_pythondir
+
+
+
+  pkgpythondir=\${pythondir}/$PACKAGE
+
+
+            echo "$as_me:$LINENO: checking for $am_display_PYTHON extension module directory" >&5
+echo $ECHO_N "checking for $am_display_PYTHON extension module directory... $ECHO_C" >&6
+if test "${am_cv_python_pyexecdir+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  am_cv_python_pyexecdir=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_lib(1,0,prefix='$PYTHON_EXEC_PREFIX')" 2>/dev/null ||
+     echo "${PYTHON_EXEC_PREFIX}/lib/python${PYTHON_VERSION}/site-packages"`
+fi
+echo "$as_me:$LINENO: result: $am_cv_python_pyexecdir" >&5
+echo "${ECHO_T}$am_cv_python_pyexecdir" >&6
+  pyexecdir=$am_cv_python_pyexecdir
+
+
+
+  pkgpyexecdir=\${pyexecdir}/$PACKAGE
+
+
+
+  fi
+
+
+
+	#
+	# should allow for checking of python version here...
+	#
+
+
+	# Check for Python include path
+	echo "$as_me:$LINENO: checking for Python include path" >&5
+echo $ECHO_N "checking for Python include path... $ECHO_C" >&6
+	python_path=`echo $PYTHON | sed "s,/bin.*$,,"`
+	for i in "$python_path/include/python$PYTHON_VERSION/" "$python_path/include/python/" "$python_path/" ; do
+		python_path=`find $i -type f -name Python.h -print | sed "1q"`
+		if test -n "$python_path" ; then
+			break
+		fi
+	done
+	python_path=`echo $python_path | sed "s,/Python.h$,,"`
+	echo "$as_me:$LINENO: result: $python_path" >&5
+echo "${ECHO_T}$python_path" >&6
+	if test -z "$python_path" ; then
+		{ { echo "$as_me:$LINENO: error: cannot find Python include path" >&5
+echo "$as_me: error: cannot find Python include path" >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+	PYTHON_CPPFLAGS=-I$python_path
+
+
+	# Check for Python library path
+	echo "$as_me:$LINENO: checking for Python library path" >&5
+echo $ECHO_N "checking for Python library path... $ECHO_C" >&6
+	python_path=`echo $PYTHON | sed "s,/bin.*$,,"`
+	for i in "$python_path/lib/python$PYTHON_VERSION/config/" "$python_path/lib/python$PYTHON_VERSION/" "$python_path/lib/python/config/" "$python_path/lib/python/" "$python_path/" ; do
+		python_path=`find $i -type f -name libpython$PYTHON_VERSION.* -print | sed "1q"`
+		if test -n "$python_path" ; then
+			break
+		fi
+	done
+	python_path=`echo $python_path | sed "s,/libpython.*$,,"`
+	echo "$as_me:$LINENO: result: $python_path" >&5
+echo "${ECHO_T}$python_path" >&6
+	if test -z "$python_path" ; then
+		{ { echo "$as_me:$LINENO: error: cannot find Python library path" >&5
+echo "$as_me: error: cannot find Python library path" >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+	PYTHON_LDFLAGS="-L$python_path -lpython$PYTHON_VERSION"
+
+	#
+	python_site=`echo $python_path | sed "s/config/site-packages/"`
+	PYTHON_SITE_PKG=$python_site
+
+	#
+	# libraries which must be linked in when embedding
+	#
+	echo "$as_me:$LINENO: checking python extra libraries" >&5
+echo $ECHO_N "checking python extra libraries... $ECHO_C" >&6
+	PYTHON_EXTRA_LIBS=`$PYTHON -c "import distutils.sysconfig; \
+                conf = distutils.sysconfig.get_config_var; \
+                print conf('LOCALMODLIBS')+' '+conf('LIBS')"
+	echo "$as_me:$LINENO: result: $PYTHON_EXTRA_LIBS" >&5
+echo "${ECHO_T}$PYTHON_EXTRA_LIBS" >&6`
+
+
+
+        # Extract the first word of "swig", so it can be a program name with args.
+set dummy swig; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_SWIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $SWIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_SWIG="$SWIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_SWIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+SWIG=$ac_cv_path_SWIG
+
+if test -n "$SWIG"; then
+  echo "$as_me:$LINENO: result: $SWIG" >&5
+echo "${ECHO_T}$SWIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+        if test -z "$SWIG" ; then
+                { echo "$as_me:$LINENO: WARNING: cannot find 'swig' program. You should look at http://www.swig.org" >&5
+echo "$as_me: WARNING: cannot find 'swig' program. You should look at http://www.swig.org" >&2;}
+                SWIG='echo "Error: SWIG is not installed. You should look at http://www.swig.org" ; false'
+        elif test -n "1.3.25" ; then
+                echo "$as_me:$LINENO: checking for SWIG version" >&5
+echo $ECHO_N "checking for SWIG version... $ECHO_C" >&6
+                swig_version=`$SWIG -version 2>&1 | grep 'SWIG Version' | sed 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/g'`
+                echo "$as_me:$LINENO: result: $swig_version" >&5
+echo "${ECHO_T}$swig_version" >&6
+                if test -n "$swig_version" ; then
+                        # Calculate the required version number components
+                        required=1.3.25
+                        required_major=`echo $required | sed 's/[^0-9].*//'`
+                        if test -z "$required_major" ; then
+                                required_major=0
+                        fi
+                        required=`echo $required | sed 's/[0-9]*[^0-9]//'`
+                        required_minor=`echo $required | sed 's/[^0-9].*//'`
+                        if test -z "$required_minor" ; then
+                                required_minor=0
+                        fi
+                        required=`echo $required | sed 's/[0-9]*[^0-9]//'`
+                        required_patch=`echo $required | sed 's/[^0-9].*//'`
+                        if test -z "$required_patch" ; then
+                                required_patch=0
+                        fi
+                        # Calculate the available version number components
+                        available=$swig_version
+                        available_major=`echo $available | sed 's/[^0-9].*//'`
+                        if test -z "$available_major" ; then
+                                available_major=0
+                        fi
+                        available=`echo $available | sed 's/[0-9]*[^0-9]//'`
+                        available_minor=`echo $available | sed 's/[^0-9].*//'`
+                        if test -z "$available_minor" ; then
+                                available_minor=0
+                        fi
+                        available=`echo $available | sed 's/[0-9]*[^0-9]//'`
+                        available_patch=`echo $available | sed 's/[^0-9].*//'`
+                        if test -z "$available_patch" ; then
+                                available_patch=0
+                        fi
+                        if test $available_major -ne $required_major \
+                                -o $available_minor -ne $required_minor \
+                                -o $available_patch -lt $required_patch ; then
+                                { echo "$as_me:$LINENO: WARNING: SWIG version >= 1.3.25 is required.  You have $swig_version.  You should look at http://www.swig.org" >&5
+echo "$as_me: WARNING: SWIG version >= 1.3.25 is required.  You have $swig_version.  You should look at http://www.swig.org" >&2;}
+                                SWIG='echo "Error: SWIG version >= 1.3.25 is required.  You have '"$swig_version"'.  You should look at http://www.swig.org" ; false'
+                        else
+                                { echo "$as_me:$LINENO: SWIG executable is '$SWIG'" >&5
+echo "$as_me: SWIG executable is '$SWIG'" >&6;}
+                                SWIG_LIB=`$SWIG -swiglib`
+                                { echo "$as_me:$LINENO: SWIG library directory is '$SWIG_LIB'" >&5
+echo "$as_me: SWIG library directory is '$SWIG_LIB'" >&6;}
+                        fi
+                else
+                        { echo "$as_me:$LINENO: WARNING: cannot determine SWIG version" >&5
+echo "$as_me: WARNING: cannot determine SWIG version" >&2;}
+                        SWIG='echo "Error: Cannot determine SWIG version.  You should look at http://www.swig.org" ; false'
+                fi
+        fi
+
+
+
+
+
+        SWIG="$SWIG -c++"
+
+
+
+
+        test "x" != "xno" || swig_shadow=" -noproxy"
+        SWIG_PYTHON_OPT=-python$swig_shadow
+
+        SWIG_PYTHON_CPPFLAGS=$PYTHON_CPPFLAGS
+
+
+
+
 # Make debug option default so developers don't forget it
 echo "turning on debugging and warnings (use --enable-optimization to avoid this)."
 enable_debug="yes"
@@ -4692,7 +5061,7 @@ DOLFIN_LIBS="$DOLFIN_LIBS $CURSES_LIBS $PETSC_LIBS $XML2_LIBS"
 # Create Makefiles Seems like automake cannot handle a variable
 # containing the list of files, so this cannot be done
 # automatically. We have to list all the files.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/nlsolver/Makefile src/kernel/nlsolver/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/fem/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/demo/scripting/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/nlsolver/Makefile src/kernel/nlsolver/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/pydolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/fem/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/demo/scripting/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -5328,6 +5697,7 @@ do
   "src/modules/poisson/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/poisson/dolfin/Makefile" ;;
   "src/modules/stokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/stokes/Makefile" ;;
   "src/modules/stokes/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/stokes/dolfin/Makefile" ;;
+  "src/pydolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/pydolfin/Makefile" ;;
   "src/config/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/config/Makefile" ;;
   "src/post/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/post/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
@@ -5479,6 +5849,23 @@ s,@ac_ct_RANLIB@,$ac_ct_RANLIB,;t t
 s,@LN_S@,$LN_S,;t t
 s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
+s,@PYTHON@,$PYTHON,;t t
+s,@PYTHON_VERSION@,$PYTHON_VERSION,;t t
+s,@PYTHON_PREFIX@,$PYTHON_PREFIX,;t t
+s,@PYTHON_EXEC_PREFIX@,$PYTHON_EXEC_PREFIX,;t t
+s,@PYTHON_PLATFORM@,$PYTHON_PLATFORM,;t t
+s,@pythondir@,$pythondir,;t t
+s,@pkgpythondir@,$pkgpythondir,;t t
+s,@pyexecdir@,$pyexecdir,;t t
+s,@pkgpyexecdir@,$pkgpyexecdir,;t t
+s,@PYTHON_CPPFLAGS@,$PYTHON_CPPFLAGS,;t t
+s,@PYTHON_LDFLAGS@,$PYTHON_LDFLAGS,;t t
+s,@PYTHON_SITE_PKG@,$PYTHON_SITE_PKG,;t t
+s,@PYTHON_EXTRA_LIBS@,$PYTHON_EXTRA_LIBS,;t t
+s,@SWIG@,$SWIG,;t t
+s,@SWIG_LIB@,$SWIG_LIB,;t t
+s,@SWIG_PYTHON_OPT@,$SWIG_PYTHON_OPT,;t t
+s,@SWIG_PYTHON_CPPFLAGS@,$SWIG_PYTHON_CPPFLAGS,;t t
 s,@petsc_found@,$petsc_found,;t t
 s,@mpi_found@,$mpi_found,;t t
 s,@libxml2_found@,$libxml2_found,;t t
