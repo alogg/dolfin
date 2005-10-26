@@ -8430,6 +8430,7 @@ static PyObject *_wrap_GMRES_solve__SWIG_0(PyObject *, PyObject *args) {
     dolfin::Matrix *arg2 = 0 ;
     dolfin::Vector *arg3 = 0 ;
     dolfin::Vector *arg4 = 0 ;
+    dolfin::uint result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
@@ -8464,12 +8465,14 @@ static PyObject *_wrap_GMRES_solve__SWIG_0(PyObject *, PyObject *args) {
     }
     try {
         Swig::UnknownExceptionHandler dh;
-        (arg1)->solve((dolfin::Matrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
+        result = (dolfin::uint)(arg1)->solve((dolfin::Matrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    Py_INCREF(Py_None); resultobj = Py_None;
+    {
+        resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result)); 
+    }
     return resultobj;
     fail:
     return NULL;
@@ -8482,6 +8485,7 @@ static PyObject *_wrap_GMRES_solve__SWIG_1(PyObject *, PyObject *args) {
     dolfin::VirtualMatrix *arg2 = 0 ;
     dolfin::Vector *arg3 = 0 ;
     dolfin::Vector *arg4 = 0 ;
+    dolfin::uint result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
@@ -8516,12 +8520,14 @@ static PyObject *_wrap_GMRES_solve__SWIG_1(PyObject *, PyObject *args) {
     }
     try {
         Swig::UnknownExceptionHandler dh;
-        (arg1)->solve((dolfin::VirtualMatrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
+        result = (dolfin::uint)(arg1)->solve((dolfin::VirtualMatrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    Py_INCREF(Py_None); resultobj = Py_None;
+    {
+        resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result)); 
+    }
     return resultobj;
     fail:
     return NULL;
@@ -8895,6 +8901,7 @@ static PyObject *_wrap_LinearSolver_solve__SWIG_0(PyObject *, PyObject *args) {
     dolfin::Matrix *arg2 = 0 ;
     dolfin::Vector *arg3 = 0 ;
     dolfin::Vector *arg4 = 0 ;
+    dolfin::uint result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
@@ -8932,12 +8939,14 @@ static PyObject *_wrap_LinearSolver_solve__SWIG_0(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        (arg1)->solve((dolfin::Matrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
+        result = (dolfin::uint)(arg1)->solve((dolfin::Matrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    Py_INCREF(Py_None); resultobj = Py_None;
+    {
+        resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result)); 
+    }
     return resultobj;
     fail:
     return NULL;
@@ -8950,6 +8959,7 @@ static PyObject *_wrap_LinearSolver_solve__SWIG_1(PyObject *, PyObject *args) {
     dolfin::VirtualMatrix *arg2 = 0 ;
     dolfin::Vector *arg3 = 0 ;
     dolfin::Vector *arg4 = 0 ;
+    dolfin::uint result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
@@ -8987,12 +8997,14 @@ static PyObject *_wrap_LinearSolver_solve__SWIG_1(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        (arg1)->solve((dolfin::VirtualMatrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
+        result = (dolfin::uint)(arg1)->solve((dolfin::VirtualMatrix const &)*arg2,*arg3,(dolfin::Vector const &)*arg4);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    Py_INCREF(Py_None); resultobj = Py_None;
+    {
+        resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result)); 
+    }
     return resultobj;
     fail:
     return NULL;

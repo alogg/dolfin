@@ -4331,7 +4331,7 @@ _ACEOF
 fi
 
 
-
+# Test for PyDOLFIN
 
 
 
@@ -4696,7 +4696,6 @@ echo "$as_me: WARNING: cannot determine SWIG version" >&2;}
         SWIG_PYTHON_OPT=-python$swig_shadow
 
         SWIG_PYTHON_CPPFLAGS=$PYTHON_CPPFLAGS
-
 
 
 
@@ -5083,7 +5082,7 @@ DOLFIN_LIBS="$DOLFIN_LIBS $CURSES_LIBS $PETSC_LIBS $XML2_LIBS"
 
 
 
-# Create Makefiles Seems like automake cannot handle a variable
+# Create Makefiles, seems like automake cannot handle a variable
 # containing the list of files, so this cannot be done
 # automatically. We have to list all the files.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/kernel/settings/Makefile src/kernel/settings/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/pydolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/bench/Makefile src/demo/fem/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/demo/scripting/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
@@ -6380,3 +6379,37 @@ if test "$no_create" != yes; then
   $ac_cs_success || { (exit 1); exit 1; }
 fi
 
+
+# Display some configuration options
+echo '---------------------------------------------------------'
+echo 'Configuration of DOLFIN finished. Now type'
+echo ''
+echo '   make'
+echo '   make install'
+echo ''
+echo 'to install DOLFIN on your system. After DOLFIN has been'
+echo 'installed, you can compile all the demo programs in the'
+echo 'subdirectory src/demo by running'
+echo ''
+echo '   make demo'
+echo ''
+echo 'Note that you may need to be root in order to install.'
+echo 'To specify an alternative installation directory, rerun'
+echo 'configure with option --prefix=<path>. You may also run'
+echo './configure.local to configure for a local installation'
+echo 'in the DOLFIN source tree.'
+echo '---------------------------------------------------------'
+
+# Check that the installation directory is set up correctly
+__BINDIR=`echo $prefix/bin | sed 's/\//-/g'`
+__PATH=`echo $PATH | sed 's/\//-/g'`
+if test $__PATH = `echo $__PATH | sed s/$__BINDIR//`; then
+   echo 'Warning: installation directory is not in PATH.'
+   echo ''
+   echo 'To compile a program against DOLFIN (including the demos)'
+   echo 'you need to add the bin subdirectory of the installation'
+   echo 'diretory to your PATH which you can do with the command'
+   echo ''
+   echo "    export PATH=\"\$PATH:$prefix/bin\""
+   echo ''
+fi
