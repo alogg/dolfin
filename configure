@@ -1826,7 +1826,7 @@ if test "${with_petsc_dir+set}" = set; then
   PETSC_DIR=$with_petsc_dir
 fi;
 
-# Option --enable-optimization
+# Option --enable-pydolfin
 # Check whether --enable-pydolfin or --disable-pydolfin was given.
 if test "${enable_pydolfin+set}" = set; then
   enableval="$enable_pydolfin"
@@ -4332,6 +4332,7 @@ fi
 
 
 # Test for PyDOLFIN
+if test x$enable_pydolfin = xyes; then
 
 
 
@@ -4698,6 +4699,7 @@ echo "$as_me: WARNING: cannot determine SWIG version" >&2;}
         SWIG_PYTHON_CPPFLAGS=$PYTHON_CPPFLAGS
 
 
+fi
 
 # Make debug option default so developers don't forget it
 echo "turning on debugging and warnings (use --enable-optimization to avoid this)."
