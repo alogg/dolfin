@@ -106,9 +106,12 @@ public:
   
     FunctionElement_0() : dolfin::FiniteElement(), tensordims(0), subelements(0)
     {
-      // Element is scalar, don't need to initialize tensordims
+      tensordims = new unsigned int [1];
+      tensordims[0] = 3;
   
-      // Element is simple, don't need to initialize subelements
+      subelements = new FiniteElement* [2];
+      subelements[0] = new SubElement_0();
+      subelements[1] = new SubElement_1();
     }
   
     ~FunctionElement_0()
@@ -124,7 +127,7 @@ public:
   
     inline unsigned int spacedim() const
     {
-      return 1;
+      return 15;
     }
   
     inline unsigned int shapedim() const
@@ -134,44 +137,293 @@ public:
   
     inline unsigned int tensordim(unsigned int i) const
     {
-      dolfin_error("Element is scalar.");
-      return 0;
+      dolfin_assert(i < 1);
+      return tensordims[i];
     }
   
     inline unsigned int elementdim() const
     {
-      return 1;
+      return 2;
     }
   
     inline unsigned int rank() const
     {
-      return 0;
+      return 1;
     }
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.id();
+      dofs[0] = cell.nodeID(0);
+      dofs[1] = cell.nodeID(1);
+      dofs[2] = cell.nodeID(2);
+      int offset = mesh.noNodes();
+      dofs[3] = offset + cell.edgeID(0);
+      dofs[4] = offset + cell.edgeID(1);
+      dofs[5] = offset + cell.edgeID(2);
+      offset = offset + mesh.noEdges();
+      dofs[6] = offset + cell.nodeID(0);
+      dofs[7] = offset + cell.nodeID(1);
+      dofs[8] = offset + cell.nodeID(2);
+      offset = offset + mesh.noNodes();
+      dofs[9] = offset + cell.edgeID(0);
+      dofs[10] = offset + cell.edgeID(1);
+      dofs[11] = offset + cell.edgeID(2);
+      offset = offset + mesh.noEdges();
+      dofs[12] = offset + cell.nodeID(0);
+      dofs[13] = offset + cell.nodeID(1);
+      dofs[14] = offset + cell.nodeID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
     {
-      points[0] = map(3.333333333333334e-01, 3.333333333333334e-01);
+      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      points[3] = map(5.000000000000000e-01, 5.000000000000000e-01);
+      points[4] = map(0.000000000000000e+00, 5.000000000000000e-01);
+      points[5] = map(5.000000000000000e-01, 0.000000000000000e+00);
+      points[6] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      points[7] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      points[8] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      points[9] = map(5.000000000000000e-01, 5.000000000000000e-01);
+      points[10] = map(0.000000000000000e+00, 5.000000000000000e-01);
+      points[11] = map(5.000000000000000e-01, 0.000000000000000e+00);
       components[0] = 0;
+      components[1] = 0;
+      components[2] = 0;
+      components[3] = 0;
+      components[4] = 0;
+      components[5] = 0;
+      components[6] = 1;
+      components[7] = 1;
+      components[8] = 1;
+      components[9] = 1;
+      components[10] = 1;
+      components[11] = 1;
+      points[12] = map(0.000000000000000e+00, 0.000000000000000e+00);
+      points[13] = map(1.000000000000000e+00, 0.000000000000000e+00);
+      points[14] = map(0.000000000000000e+00, 1.000000000000000e+00);
+      components[12] = 2;
+      components[13] = 2;
+      components[14] = 2;
     }
   
     void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x(vertex);
+      int offset = mesh.noNodes() + mesh.noEdges();
+      values[1] = x(offset + vertex);
+      offset = offset + mesh.noNodes() + mesh.noEdges();
+      values[2] = x(offset + vertex);
     }
   
     const FiniteElement& operator[] (unsigned int i) const
     {
-      return *this;
+      return *subelements[i];
     }
     
   private:
-  
+    
+    class SubElement_0 : public dolfin::FiniteElement
+    {
+    public:
+    
+      SubElement_0() : dolfin::FiniteElement(), tensordims(0), subelements(0)
+      {
+        tensordims = new unsigned int [1];
+        tensordims[0] = 2;
+    
+        // Element is simple, don't need to initialize subelements
+      }
+    
+      ~SubElement_0()
+      {
+        if ( tensordims ) delete [] tensordims;
+        if ( subelements )
+        {
+          for (unsigned int i = 0; i < elementdim(); i++)
+            delete subelements[i];
+          delete [] subelements;
+        }
+      }
+    
+      inline unsigned int spacedim() const
+      {
+        return 12;
+      }
+    
+      inline unsigned int shapedim() const
+      {
+        return 2;
+      }
+    
+      inline unsigned int tensordim(unsigned int i) const
+      {
+        dolfin_assert(i < 1);
+        return tensordims[i];
+      }
+    
+      inline unsigned int elementdim() const
+      {
+        return 1;
+      }
+    
+      inline unsigned int rank() const
+      {
+        return 1;
+      }
+    
+      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      {
+        dofs[0] = cell.nodeID(0);
+        dofs[1] = cell.nodeID(1);
+        dofs[2] = cell.nodeID(2);
+        int offset = mesh.noNodes();
+        dofs[3] = offset + cell.edgeID(0);
+        dofs[4] = offset + cell.edgeID(1);
+        dofs[5] = offset + cell.edgeID(2);
+        offset = offset + mesh.noEdges();
+        dofs[6] = offset + cell.nodeID(0);
+        dofs[7] = offset + cell.nodeID(1);
+        dofs[8] = offset + cell.nodeID(2);
+        offset = offset + mesh.noNodes();
+        dofs[9] = offset + cell.edgeID(0);
+        dofs[10] = offset + cell.edgeID(1);
+        dofs[11] = offset + cell.edgeID(2);
+      }
+    
+      void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
+      {
+        points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+        points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+        points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+        points[3] = map(5.000000000000000e-01, 5.000000000000000e-01);
+        points[4] = map(0.000000000000000e+00, 5.000000000000000e-01);
+        points[5] = map(5.000000000000000e-01, 0.000000000000000e+00);
+        points[6] = map(0.000000000000000e+00, 0.000000000000000e+00);
+        points[7] = map(1.000000000000000e+00, 0.000000000000000e+00);
+        points[8] = map(0.000000000000000e+00, 1.000000000000000e+00);
+        points[9] = map(5.000000000000000e-01, 5.000000000000000e-01);
+        points[10] = map(0.000000000000000e+00, 5.000000000000000e-01);
+        points[11] = map(5.000000000000000e-01, 0.000000000000000e+00);
+        components[0] = 0;
+        components[1] = 0;
+        components[2] = 0;
+        components[3] = 0;
+        components[4] = 0;
+        components[5] = 0;
+        components[6] = 1;
+        components[7] = 1;
+        components[8] = 1;
+        components[9] = 1;
+        components[10] = 1;
+        components[11] = 1;
+      }
+    
+      void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
+      {
+        // FIXME: Temporary fix for Lagrange elements
+        values[0] = x(vertex);
+        int offset = mesh.noNodes() + mesh.noEdges();
+        values[1] = x(offset + vertex);
+      }
+    
+      const FiniteElement& operator[] (unsigned int i) const
+      {
+        return *this;
+      }
+      
+    private:
+    
+      unsigned int* tensordims;
+      FiniteElement** subelements;
+    
+    };
+      
+    class SubElement_1 : public dolfin::FiniteElement
+    {
+    public:
+    
+      SubElement_1() : dolfin::FiniteElement(), tensordims(0), subelements(0)
+      {
+        // Element is scalar, don't need to initialize tensordims
+    
+        // Element is simple, don't need to initialize subelements
+      }
+    
+      ~SubElement_1()
+      {
+        if ( tensordims ) delete [] tensordims;
+        if ( subelements )
+        {
+          for (unsigned int i = 0; i < elementdim(); i++)
+            delete subelements[i];
+          delete [] subelements;
+        }
+      }
+    
+      inline unsigned int spacedim() const
+      {
+        return 3;
+      }
+    
+      inline unsigned int shapedim() const
+      {
+        return 2;
+      }
+    
+      inline unsigned int tensordim(unsigned int i) const
+      {
+        dolfin_error("Element is scalar.");
+        return 0;
+      }
+    
+      inline unsigned int elementdim() const
+      {
+        return 1;
+      }
+    
+      inline unsigned int rank() const
+      {
+        return 0;
+      }
+    
+      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      {
+        dofs[0] = cell.nodeID(0);
+        dofs[1] = cell.nodeID(1);
+        dofs[2] = cell.nodeID(2);
+      }
+    
+      void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
+      {
+        points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+        points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+        points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+        components[0] = 0;
+        components[1] = 0;
+        components[2] = 0;
+      }
+    
+      void vertexeval(real values[], unsigned int vertex, const Vector& x, const Mesh& mesh) const
+      {
+        // FIXME: Temporary fix for Lagrange elements
+        values[0] = x(vertex);
+      }
+    
+      const FiniteElement& operator[] (unsigned int i) const
+      {
+        return *this;
+      }
+      
+    private:
+    
+      unsigned int* tensordims;
+      FiniteElement** subelements;
+    
+    };
+    
     unsigned int* tensordims;
     FiniteElement** subelements;
   
@@ -190,12 +442,70 @@ public:
   {
     // Compute coefficients
     const real c0_0 = c[0][0];
+    const real c0_1 = c[0][1];
+    const real c0_2 = c[0][2];
+    const real c0_3 = c[0][3];
+    const real c0_4 = c[0][4];
+    const real c0_5 = c[0][5];
+    const real c0_6 = c[0][6];
+    const real c0_7 = c[0][7];
+    const real c0_8 = c[0][8];
+    const real c0_9 = c[0][9];
+    const real c0_10 = c[0][10];
+    const real c0_11 = c[0][11];
 
     // Compute geometry tensors
     const real G0_0_0 = map.det*c0_0*c0_0;
+    const real G0_0_1 = map.det*c0_0*c0_1;
+    const real G0_0_2 = map.det*c0_0*c0_2;
+    const real G0_0_3 = map.det*c0_0*c0_3;
+    const real G0_1_0 = map.det*c0_1*c0_0;
+    const real G0_1_1 = map.det*c0_1*c0_1;
+    const real G0_1_2 = map.det*c0_1*c0_2;
+    const real G0_1_4 = map.det*c0_1*c0_4;
+    const real G0_2_0 = map.det*c0_2*c0_0;
+    const real G0_2_1 = map.det*c0_2*c0_1;
+    const real G0_2_2 = map.det*c0_2*c0_2;
+    const real G0_2_5 = map.det*c0_2*c0_5;
+    const real G0_3_0 = map.det*c0_3*c0_0;
+    const real G0_3_3 = map.det*c0_3*c0_3;
+    const real G0_3_4 = map.det*c0_3*c0_4;
+    const real G0_3_5 = map.det*c0_3*c0_5;
+    const real G0_4_1 = map.det*c0_4*c0_1;
+    const real G0_4_3 = map.det*c0_4*c0_3;
+    const real G0_4_4 = map.det*c0_4*c0_4;
+    const real G0_4_5 = map.det*c0_4*c0_5;
+    const real G0_5_2 = map.det*c0_5*c0_2;
+    const real G0_5_3 = map.det*c0_5*c0_3;
+    const real G0_5_4 = map.det*c0_5*c0_4;
+    const real G0_5_5 = map.det*c0_5*c0_5;
+    const real G1_6_6 = map.det*c0_6*c0_6;
+    const real G1_6_7 = map.det*c0_6*c0_7;
+    const real G1_6_8 = map.det*c0_6*c0_8;
+    const real G1_6_9 = map.det*c0_6*c0_9;
+    const real G1_7_6 = map.det*c0_7*c0_6;
+    const real G1_7_7 = map.det*c0_7*c0_7;
+    const real G1_7_8 = map.det*c0_7*c0_8;
+    const real G1_7_10 = map.det*c0_7*c0_10;
+    const real G1_8_6 = map.det*c0_8*c0_6;
+    const real G1_8_7 = map.det*c0_8*c0_7;
+    const real G1_8_8 = map.det*c0_8*c0_8;
+    const real G1_8_11 = map.det*c0_8*c0_11;
+    const real G1_9_6 = map.det*c0_9*c0_6;
+    const real G1_9_9 = map.det*c0_9*c0_9;
+    const real G1_9_10 = map.det*c0_9*c0_10;
+    const real G1_9_11 = map.det*c0_9*c0_11;
+    const real G1_10_7 = map.det*c0_10*c0_7;
+    const real G1_10_9 = map.det*c0_10*c0_9;
+    const real G1_10_10 = map.det*c0_10*c0_10;
+    const real G1_10_11 = map.det*c0_10*c0_11;
+    const real G1_11_8 = map.det*c0_11*c0_8;
+    const real G1_11_9 = map.det*c0_11*c0_9;
+    const real G1_11_10 = map.det*c0_11*c0_10;
+    const real G1_11_11 = map.det*c0_11*c0_11;
 
     // Compute element tensor
-    block[0] = 4.999999999999996e-01*G0_0_0;
+    block[0] = 1.666666666666665e-02*G0_0_0 - 2.777777777777774e-03*G0_0_1 - 2.777777777777775e-03*G0_0_2 - 1.111111111111110e-02*G0_0_3 - 2.777777777777774e-03*G0_1_0 + 1.666666666666665e-02*G0_1_1 - 2.777777777777776e-03*G0_1_2 - 1.111111111111111e-02*G0_1_4 - 2.777777777777775e-03*G0_2_0 - 2.777777777777776e-03*G0_2_1 + 1.666666666666666e-02*G0_2_2 - 1.111111111111111e-02*G0_2_5 - 1.111111111111110e-02*G0_3_0 + 8.888888888888882e-02*G0_3_3 + 4.444444444444443e-02*G0_3_4 + 4.444444444444443e-02*G0_3_5 - 1.111111111111111e-02*G0_4_1 + 4.444444444444443e-02*G0_4_3 + 8.888888888888884e-02*G0_4_4 + 4.444444444444442e-02*G0_4_5 - 1.111111111111111e-02*G0_5_2 + 4.444444444444443e-02*G0_5_3 + 4.444444444444443e-02*G0_5_4 + 8.888888888888882e-02*G0_5_5 + 1.666666666666665e-02*G1_6_6 - 2.777777777777774e-03*G1_6_7 - 2.777777777777774e-03*G1_6_8 - 1.111111111111109e-02*G1_6_9 - 2.777777777777774e-03*G1_7_6 + 1.666666666666665e-02*G1_7_7 - 2.777777777777775e-03*G1_7_8 - 1.111111111111111e-02*G1_7_10 - 2.777777777777774e-03*G1_8_6 - 2.777777777777775e-03*G1_8_7 + 1.666666666666666e-02*G1_8_8 - 1.111111111111111e-02*G1_8_11 - 1.111111111111109e-02*G1_9_6 + 8.888888888888882e-02*G1_9_9 + 4.444444444444443e-02*G1_9_10 + 4.444444444444443e-02*G1_9_11 - 1.111111111111111e-02*G1_10_7 + 4.444444444444443e-02*G1_10_9 + 8.888888888888884e-02*G1_10_10 + 4.444444444444442e-02*G1_10_11 - 1.111111111111111e-02*G1_11_8 + 4.444444444444443e-02*G1_11_9 + 4.444444444444443e-02*G1_11_10 + 8.888888888888882e-02*G1_11_11;
   }
 
 };
