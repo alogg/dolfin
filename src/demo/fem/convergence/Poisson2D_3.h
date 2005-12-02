@@ -74,11 +74,11 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][2] = {{0, 1}, {1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[3] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[4] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][1];
       alignment = cell.edgeAlignment(1);
@@ -189,11 +189,11 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][2] = {{0, 1}, {1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[3] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[4] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][1];
       alignment = cell.edgeAlignment(1);
@@ -433,11 +433,11 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][2] = {{0, 1}, {1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[3] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[4] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][1];
       alignment = cell.edgeAlignment(1);
@@ -548,11 +548,11 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][2] = {{0, 1}, {1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[3] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[4] = offset + 2*cell.edgeID(0) + edge_reordering_0[alignment][1];
       alignment = cell.edgeAlignment(1);

@@ -73,9 +73,9 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -161,9 +161,9 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -287,9 +287,9 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -375,9 +375,9 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -463,9 +463,9 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -535,9 +535,9 @@ public:
     const real G1_2 = map.det*c1_2;
 
     // Compute element tensor
-    block[0] = 4.999999999999998e-01*G0_0_0_0 + 4.999999999999997e-01*G0_0_0_1 - 4.999999999999998e-01*G0_0_1_0 - 4.999999999999997e-01*G0_0_2_1 + 4.999999999999997e-01*G0_1_0_0 + 4.999999999999996e-01*G0_1_0_1 - 4.999999999999997e-01*G0_1_1_0 - 4.999999999999996e-01*G0_1_2_1 - 8.333333333333318e-02*G1_0 - 4.166666666666659e-02*G1_1 - 4.166666666666657e-02*G1_2;
+    block[0] = 4.999999999999998e-01*G0_0_0_0 + 4.999999999999997e-01*G0_0_0_1 - 4.999999999999998e-01*G0_0_1_0 - 4.999999999999997e-01*G0_0_2_1 + 4.999999999999997e-01*G0_1_0_0 + 4.999999999999996e-01*G0_1_0_1 - 4.999999999999997e-01*G0_1_1_0 - 4.999999999999996e-01*G0_1_2_1 - 8.333333333333318e-02*G1_0 - 4.166666666666659e-02*G1_1 - 4.166666666666658e-02*G1_2;
     block[1] = -4.999999999999998e-01*G0_0_0_0 - 4.999999999999997e-01*G0_0_0_1 + 4.999999999999998e-01*G0_0_1_0 + 4.999999999999997e-01*G0_0_2_1 - 4.166666666666659e-02*G1_0 - 8.333333333333318e-02*G1_1 - 4.166666666666659e-02*G1_2;
-    block[2] = -4.999999999999997e-01*G0_1_0_0 - 4.999999999999996e-01*G0_1_0_1 + 4.999999999999997e-01*G0_1_1_0 + 4.999999999999996e-01*G0_1_2_1 - 4.166666666666657e-02*G1_0 - 4.166666666666659e-02*G1_1 - 8.333333333333316e-02*G1_2;
+    block[2] = -4.999999999999997e-01*G0_1_0_0 - 4.999999999999996e-01*G0_1_0_1 + 4.999999999999997e-01*G0_1_1_0 + 4.999999999999996e-01*G0_1_2_1 - 4.166666666666658e-02*G1_0 - 4.166666666666659e-02*G1_1 - 8.333333333333316e-02*G1_2;
   }
 
 };

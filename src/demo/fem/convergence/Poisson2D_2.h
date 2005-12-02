@@ -73,10 +73,10 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
@@ -171,10 +171,10 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
@@ -334,10 +334,10 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
@@ -432,10 +432,10 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);

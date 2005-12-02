@@ -75,12 +75,12 @@ public:
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
       static unsigned int face_reordering_0[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      dofs[3] = cell.nodeID(3);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -337,12 +337,12 @@ public:
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
       static unsigned int face_reordering_0[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      dofs[3] = cell.nodeID(3);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -3769,12 +3769,12 @@ public:
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
       static unsigned int face_reordering_0[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      dofs[3] = cell.nodeID(3);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -4031,12 +4031,12 @@ public:
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
       static unsigned int face_reordering_0[6][6] = {{0, 1, 2, 3, 4, 5}, {0, 3, 5, 1, 4, 2}, {5, 3, 0, 4, 1, 2}, {2, 1, 0, 4, 3, 5}, {2, 4, 5, 1, 3, 0}, {5, 4, 2, 3, 1, 0}};
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      dofs[3] = cell.nodeID(3);
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noNodes();
+      int offset = mesh.noVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];

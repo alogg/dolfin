@@ -76,25 +76,25 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[6] = offset + cell.nodeID(0);
-      dofs[7] = offset + cell.nodeID(1);
-      dofs[8] = offset + cell.nodeID(2);
-      offset = offset + mesh.noNodes();
+      dofs[6] = offset + cell.vertexID(0);
+      dofs[7] = offset + cell.vertexID(1);
+      dofs[8] = offset + cell.vertexID(2);
+      offset = offset + mesh.noVertices();
       dofs[9] = offset + cell.edgeID(0);
       dofs[10] = offset + cell.edgeID(1);
       dofs[11] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[12] = offset + cell.nodeID(0);
-      dofs[13] = offset + cell.nodeID(1);
-      dofs[14] = offset + cell.nodeID(2);
+      dofs[12] = offset + cell.vertexID(0);
+      dofs[13] = offset + cell.vertexID(1);
+      dofs[14] = offset + cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -135,9 +135,9 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noNodes() + mesh.noEdges();
+      int offset = mesh.noVertices() + mesh.noEdges();
       values[1] = x[offset + vertex];
-      offset = offset + mesh.noNodes() + mesh.noEdges();
+      offset = offset + mesh.noVertices() + mesh.noEdges();
       values[2] = x[offset + vertex];
     }
   
@@ -204,18 +204,18 @@ public:
     
       void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.nodeID(0);
-        dofs[1] = cell.nodeID(1);
-        dofs[2] = cell.nodeID(2);
-        int offset = mesh.noNodes();
+        dofs[0] = cell.vertexID(0);
+        dofs[1] = cell.vertexID(1);
+        dofs[2] = cell.vertexID(2);
+        int offset = mesh.noVertices();
         dofs[3] = offset + cell.edgeID(0);
         dofs[4] = offset + cell.edgeID(1);
         dofs[5] = offset + cell.edgeID(2);
         offset = offset + mesh.noEdges();
-        dofs[6] = offset + cell.nodeID(0);
-        dofs[7] = offset + cell.nodeID(1);
-        dofs[8] = offset + cell.nodeID(2);
-        offset = offset + mesh.noNodes();
+        dofs[6] = offset + cell.vertexID(0);
+        dofs[7] = offset + cell.vertexID(1);
+        dofs[8] = offset + cell.vertexID(2);
+        offset = offset + mesh.noVertices();
         dofs[9] = offset + cell.edgeID(0);
         dofs[10] = offset + cell.edgeID(1);
         dofs[11] = offset + cell.edgeID(2);
@@ -253,7 +253,7 @@ public:
       {
         // FIXME: Temporary fix for Lagrange elements
         values[0] = x[vertex];
-        int offset = mesh.noNodes() + mesh.noEdges();
+        int offset = mesh.noVertices() + mesh.noEdges();
         values[1] = x[offset + vertex];
       }
     
@@ -324,9 +324,9 @@ public:
     
       void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.nodeID(0);
-        dofs[1] = cell.nodeID(1);
-        dofs[2] = cell.nodeID(2);
+        dofs[0] = cell.vertexID(0);
+        dofs[1] = cell.vertexID(1);
+        dofs[2] = cell.vertexID(2);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -420,25 +420,25 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[6] = offset + cell.nodeID(0);
-      dofs[7] = offset + cell.nodeID(1);
-      dofs[8] = offset + cell.nodeID(2);
-      offset = offset + mesh.noNodes();
+      dofs[6] = offset + cell.vertexID(0);
+      dofs[7] = offset + cell.vertexID(1);
+      dofs[8] = offset + cell.vertexID(2);
+      offset = offset + mesh.noVertices();
       dofs[9] = offset + cell.edgeID(0);
       dofs[10] = offset + cell.edgeID(1);
       dofs[11] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[12] = offset + cell.nodeID(0);
-      dofs[13] = offset + cell.nodeID(1);
-      dofs[14] = offset + cell.nodeID(2);
+      dofs[12] = offset + cell.vertexID(0);
+      dofs[13] = offset + cell.vertexID(1);
+      dofs[14] = offset + cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -479,9 +479,9 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noNodes() + mesh.noEdges();
+      int offset = mesh.noVertices() + mesh.noEdges();
       values[1] = x[offset + vertex];
-      offset = offset + mesh.noNodes() + mesh.noEdges();
+      offset = offset + mesh.noVertices() + mesh.noEdges();
       values[2] = x[offset + vertex];
     }
   
@@ -548,18 +548,18 @@ public:
     
       void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.nodeID(0);
-        dofs[1] = cell.nodeID(1);
-        dofs[2] = cell.nodeID(2);
-        int offset = mesh.noNodes();
+        dofs[0] = cell.vertexID(0);
+        dofs[1] = cell.vertexID(1);
+        dofs[2] = cell.vertexID(2);
+        int offset = mesh.noVertices();
         dofs[3] = offset + cell.edgeID(0);
         dofs[4] = offset + cell.edgeID(1);
         dofs[5] = offset + cell.edgeID(2);
         offset = offset + mesh.noEdges();
-        dofs[6] = offset + cell.nodeID(0);
-        dofs[7] = offset + cell.nodeID(1);
-        dofs[8] = offset + cell.nodeID(2);
-        offset = offset + mesh.noNodes();
+        dofs[6] = offset + cell.vertexID(0);
+        dofs[7] = offset + cell.vertexID(1);
+        dofs[8] = offset + cell.vertexID(2);
+        offset = offset + mesh.noVertices();
         dofs[9] = offset + cell.edgeID(0);
         dofs[10] = offset + cell.edgeID(1);
         dofs[11] = offset + cell.edgeID(2);
@@ -597,7 +597,7 @@ public:
       {
         // FIXME: Temporary fix for Lagrange elements
         values[0] = x[vertex];
-        int offset = mesh.noNodes() + mesh.noEdges();
+        int offset = mesh.noVertices() + mesh.noEdges();
         values[1] = x[offset + vertex];
       }
     
@@ -668,9 +668,9 @@ public:
     
       void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.nodeID(0);
-        dofs[1] = cell.nodeID(1);
-        dofs[2] = cell.nodeID(2);
+        dofs[0] = cell.vertexID(0);
+        dofs[1] = cell.vertexID(1);
+        dofs[2] = cell.vertexID(2);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1030,25 +1030,25 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[6] = offset + cell.nodeID(0);
-      dofs[7] = offset + cell.nodeID(1);
-      dofs[8] = offset + cell.nodeID(2);
-      offset = offset + mesh.noNodes();
+      dofs[6] = offset + cell.vertexID(0);
+      dofs[7] = offset + cell.vertexID(1);
+      dofs[8] = offset + cell.vertexID(2);
+      offset = offset + mesh.noVertices();
       dofs[9] = offset + cell.edgeID(0);
       dofs[10] = offset + cell.edgeID(1);
       dofs[11] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[12] = offset + cell.nodeID(0);
-      dofs[13] = offset + cell.nodeID(1);
-      dofs[14] = offset + cell.nodeID(2);
+      dofs[12] = offset + cell.vertexID(0);
+      dofs[13] = offset + cell.vertexID(1);
+      dofs[14] = offset + cell.vertexID(2);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1089,9 +1089,9 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noNodes() + mesh.noEdges();
+      int offset = mesh.noVertices() + mesh.noEdges();
       values[1] = x[offset + vertex];
-      offset = offset + mesh.noNodes() + mesh.noEdges();
+      offset = offset + mesh.noVertices() + mesh.noEdges();
       values[2] = x[offset + vertex];
     }
   
@@ -1158,18 +1158,18 @@ public:
     
       void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.nodeID(0);
-        dofs[1] = cell.nodeID(1);
-        dofs[2] = cell.nodeID(2);
-        int offset = mesh.noNodes();
+        dofs[0] = cell.vertexID(0);
+        dofs[1] = cell.vertexID(1);
+        dofs[2] = cell.vertexID(2);
+        int offset = mesh.noVertices();
         dofs[3] = offset + cell.edgeID(0);
         dofs[4] = offset + cell.edgeID(1);
         dofs[5] = offset + cell.edgeID(2);
         offset = offset + mesh.noEdges();
-        dofs[6] = offset + cell.nodeID(0);
-        dofs[7] = offset + cell.nodeID(1);
-        dofs[8] = offset + cell.nodeID(2);
-        offset = offset + mesh.noNodes();
+        dofs[6] = offset + cell.vertexID(0);
+        dofs[7] = offset + cell.vertexID(1);
+        dofs[8] = offset + cell.vertexID(2);
+        offset = offset + mesh.noVertices();
         dofs[9] = offset + cell.edgeID(0);
         dofs[10] = offset + cell.edgeID(1);
         dofs[11] = offset + cell.edgeID(2);
@@ -1207,7 +1207,7 @@ public:
       {
         // FIXME: Temporary fix for Lagrange elements
         values[0] = x[vertex];
-        int offset = mesh.noNodes() + mesh.noEdges();
+        int offset = mesh.noVertices() + mesh.noEdges();
         values[1] = x[offset + vertex];
       }
     
@@ -1278,9 +1278,9 @@ public:
     
       void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.nodeID(0);
-        dofs[1] = cell.nodeID(1);
-        dofs[2] = cell.nodeID(2);
+        dofs[0] = cell.vertexID(0);
+        dofs[1] = cell.vertexID(1);
+        dofs[2] = cell.vertexID(2);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1372,18 +1372,18 @@ public:
   
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.nodeID(0);
-      dofs[1] = cell.nodeID(1);
-      dofs[2] = cell.nodeID(2);
-      int offset = mesh.noNodes();
+      dofs[0] = cell.vertexID(0);
+      dofs[1] = cell.vertexID(1);
+      dofs[2] = cell.vertexID(2);
+      int offset = mesh.noVertices();
       dofs[3] = offset + cell.edgeID(0);
       dofs[4] = offset + cell.edgeID(1);
       dofs[5] = offset + cell.edgeID(2);
       offset = offset + mesh.noEdges();
-      dofs[6] = offset + cell.nodeID(0);
-      dofs[7] = offset + cell.nodeID(1);
-      dofs[8] = offset + cell.nodeID(2);
-      offset = offset + mesh.noNodes();
+      dofs[6] = offset + cell.vertexID(0);
+      dofs[7] = offset + cell.vertexID(1);
+      dofs[8] = offset + cell.vertexID(2);
+      offset = offset + mesh.noVertices();
       dofs[9] = offset + cell.edgeID(0);
       dofs[10] = offset + cell.edgeID(1);
       dofs[11] = offset + cell.edgeID(2);
@@ -1421,7 +1421,7 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noNodes() + mesh.noEdges();
+      int offset = mesh.noVertices() + mesh.noEdges();
       values[1] = x[offset + vertex];
     }
   
