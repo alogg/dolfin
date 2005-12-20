@@ -2,7 +2,7 @@
 // Licensed under the GNU GPL Version 2.
 //
 // First added:  2005-04-05
-// Last changed: 2005
+// Last changed: 2005-12-19
 
 #ifndef __CES_H
 #define __CES_H
@@ -339,7 +339,7 @@ public:
     
     this->real_valued = real_valued;
 
-    tol = dolfin_get("homotopy solution tolerance");
+    tol = get("homotopy solution tolerance");
 
     init(&tmp0);
     init(&tmp1);
