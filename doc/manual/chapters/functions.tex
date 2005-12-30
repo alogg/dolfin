@@ -98,12 +98,12 @@ solution $w = (u, p)$ of a Stokes or Navier-Stokes system (with $u$ the vector-v
 velocity and $p$ the scalar pressure), the following example illustrates how to
 pick sub functions and components of \texttt{w}:
 \begin{code}
-  Function w;  // mixed Function (u, p)
-  u = w[0];    // first sub function (velocity)
-  p = w[1];    // second sub function (pressure)
-  u[0] = u[0]; // first component of the velocity
-  u[1] = u[1]; // second component of the velocity
-  u[2] = u[2]; // third component of the velocity
+  Function w; // mixed Function (u, p)
+  u = w[0];   // first sub function (velocity)
+  p = w[1];   // second sub function (pressure)
+  u0 = u[0];  // first component of the velocity
+  u1 = u[1];  // second component of the velocity
+  u2 = u[2];  // third component of the velocity
 \end{code}
 
 Note that picking a component or sub function creates a new
