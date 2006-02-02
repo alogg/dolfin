@@ -1508,32 +1508,31 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 #define SWIGTYPE_p_dolfin__TimeDependent swig_types[73]
 #define SWIGTYPE_p_dolfin__TimeSlab swig_types[74]
 #define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[75]
-#define SWIGTYPE_p_dolfin__TimeSlabSolver swig_types[76]
-#define SWIGTYPE_p_dolfin__TimeStepper swig_types[77]
-#define SWIGTYPE_p_dolfin__Triangle swig_types[78]
-#define SWIGTYPE_p_dolfin__UnitCube swig_types[79]
-#define SWIGTYPE_p_dolfin__UnitSquare swig_types[80]
-#define SWIGTYPE_p_dolfin__Variable swig_types[81]
-#define SWIGTYPE_p_dolfin__Vector swig_types[82]
-#define SWIGTYPE_p_dolfin__VectorElement swig_types[83]
-#define SWIGTYPE_p_dolfin__Vertex swig_types[84]
-#define SWIGTYPE_p_dolfin__VertexIterator swig_types[85]
-#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[86]
-#define SWIGTYPE_p_dolfin__cGqMethod swig_types[87]
-#define SWIGTYPE_p_dolfin__dGqMethod swig_types[88]
-#define SWIGTYPE_p_double swig_types[89]
-#define SWIGTYPE_p_int swig_types[90]
-#define SWIGTYPE_p_p_char swig_types[91]
-#define SWIGTYPE_p_std__complexTdouble_t swig_types[92]
-#define SWIGTYPE_p_std__setTint_t swig_types[93]
-#define SWIGTYPE_p_unsigned_int swig_types[94]
-#define SWIGTYPE_p_va_list swig_types[95]
-#define SWIGTYPE_ptrdiff_t swig_types[96]
-#define SWIGTYPE_size_t swig_types[97]
-#define SWIGTYPE_std__ptrdiff_t swig_types[98]
-#define SWIGTYPE_std__size_t swig_types[99]
-static swig_type_info *swig_types[101];
-static swig_module_info swig_module = {swig_types, 100, 0, 0, 0, 0};
+#define SWIGTYPE_p_dolfin__TimeStepper swig_types[76]
+#define SWIGTYPE_p_dolfin__Triangle swig_types[77]
+#define SWIGTYPE_p_dolfin__UnitCube swig_types[78]
+#define SWIGTYPE_p_dolfin__UnitSquare swig_types[79]
+#define SWIGTYPE_p_dolfin__Variable swig_types[80]
+#define SWIGTYPE_p_dolfin__Vector swig_types[81]
+#define SWIGTYPE_p_dolfin__VectorElement swig_types[82]
+#define SWIGTYPE_p_dolfin__Vertex swig_types[83]
+#define SWIGTYPE_p_dolfin__VertexIterator swig_types[84]
+#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[85]
+#define SWIGTYPE_p_dolfin__cGqMethod swig_types[86]
+#define SWIGTYPE_p_dolfin__dGqMethod swig_types[87]
+#define SWIGTYPE_p_double swig_types[88]
+#define SWIGTYPE_p_int swig_types[89]
+#define SWIGTYPE_p_p_char swig_types[90]
+#define SWIGTYPE_p_std__complexTdouble_t swig_types[91]
+#define SWIGTYPE_p_std__setTint_t swig_types[92]
+#define SWIGTYPE_p_unsigned_int swig_types[93]
+#define SWIGTYPE_p_va_list swig_types[94]
+#define SWIGTYPE_ptrdiff_t swig_types[95]
+#define SWIGTYPE_size_t swig_types[96]
+#define SWIGTYPE_std__ptrdiff_t swig_types[97]
+#define SWIGTYPE_std__size_t swig_types[98]
+static swig_type_info *swig_types[100];
+static swig_module_info swig_module = {swig_types, 99, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1730,6 +1729,99 @@ SWIG_Check_double(PyObject* obj)
 }
 
 
+SWIGINTERNINLINE int
+  SWIG_CheckUnsignedLongInRange(unsigned long value,
+				unsigned long max_value,
+				const char *errmsg) 
+{
+  if (value > max_value) {
+    if (errmsg) {
+      PyErr_Format(PyExc_OverflowError,
+		   "value %lu is greater than '%s' minimum %lu",
+		   value, errmsg, max_value);
+    }
+    return 0;
+  }
+  return 1;
+ }
+
+
+SWIGINTERN int
+  SWIG_AsVal_unsigned_SS_long(PyObject *obj, unsigned long *val) 
+{
+  if (PyLong_Check(obj)) {
+    unsigned long v = PyLong_AsUnsignedLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return 1;
+    } else {
+      if (!val) PyErr_Clear();
+      return 0;
+    }
+  } 
+  if (PyInt_Check(obj)) {
+    long v = PyInt_AsLong(obj);
+    if (v >= 0) {
+      if (val) *val = v;
+      return 1;
+    }   
+  }
+  if (val) {
+    SWIG_type_error("unsigned long", obj);
+  }
+  return 0;
+}
+
+
+#if UINT_MAX != ULONG_MAX
+SWIGINTERN int
+  SWIG_AsVal_unsigned_SS_int(PyObject *obj, unsigned int *val)
+{ 
+  const char* errmsg = val ? "unsigned int" : (char*)0;
+  unsigned long v;
+  if (SWIG_AsVal_unsigned_SS_long(obj, &v)) {
+    if (SWIG_CheckUnsignedLongInRange(v, INT_MAX, errmsg)) {
+      if (val) *val = static_cast<unsigned int >(v);
+      return 1;
+    }
+  } else {
+    PyErr_Clear();
+  }
+  if (val) {
+    SWIG_type_error(errmsg, obj);
+  }
+  return 0;    
+}
+#else
+SWIGINTERNINLINE unsigned int
+  SWIG_AsVal_unsigned_SS_int(PyObject *obj, unsigned int *val)
+{
+  return SWIG_AsVal_unsigned_SS_long(obj,(unsigned long *)val);
+}
+#endif
+
+
+SWIGINTERNINLINE unsigned int
+SWIG_As_unsigned_SS_int(PyObject* obj)
+{
+  unsigned int v;
+  if (!SWIG_AsVal_unsigned_SS_int(obj, &v)) {
+    /*
+      this is needed to make valgrind/purify happier. 
+     */
+    memset((void*)&v, 0, sizeof(unsigned int));
+  }
+  return v;
+}
+
+  
+SWIGINTERNINLINE int
+SWIG_Check_unsigned_SS_int(PyObject* obj)
+{
+  return SWIG_AsVal_unsigned_SS_int(obj, (unsigned int*)0);
+}
+
+
 /* returns SWIG_OLDOBJ if the input is a raw char*, SWIG_PYSTR if is a PyString */
 SWIGINTERN int
 SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize)
@@ -1877,99 +1969,6 @@ SWIGINTERNINLINE int
 SWIG_Check_bool(PyObject* obj)
 {
   return SWIG_AsVal_bool(obj, (bool*)0);
-}
-
-
-SWIGINTERNINLINE int
-  SWIG_CheckUnsignedLongInRange(unsigned long value,
-				unsigned long max_value,
-				const char *errmsg) 
-{
-  if (value > max_value) {
-    if (errmsg) {
-      PyErr_Format(PyExc_OverflowError,
-		   "value %lu is greater than '%s' minimum %lu",
-		   value, errmsg, max_value);
-    }
-    return 0;
-  }
-  return 1;
- }
-
-
-SWIGINTERN int
-  SWIG_AsVal_unsigned_SS_long(PyObject *obj, unsigned long *val) 
-{
-  if (PyLong_Check(obj)) {
-    unsigned long v = PyLong_AsUnsignedLong(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = v;
-      return 1;
-    } else {
-      if (!val) PyErr_Clear();
-      return 0;
-    }
-  } 
-  if (PyInt_Check(obj)) {
-    long v = PyInt_AsLong(obj);
-    if (v >= 0) {
-      if (val) *val = v;
-      return 1;
-    }   
-  }
-  if (val) {
-    SWIG_type_error("unsigned long", obj);
-  }
-  return 0;
-}
-
-
-#if UINT_MAX != ULONG_MAX
-SWIGINTERN int
-  SWIG_AsVal_unsigned_SS_int(PyObject *obj, unsigned int *val)
-{ 
-  const char* errmsg = val ? "unsigned int" : (char*)0;
-  unsigned long v;
-  if (SWIG_AsVal_unsigned_SS_long(obj, &v)) {
-    if (SWIG_CheckUnsignedLongInRange(v, INT_MAX, errmsg)) {
-      if (val) *val = static_cast<unsigned int >(v);
-      return 1;
-    }
-  } else {
-    PyErr_Clear();
-  }
-  if (val) {
-    SWIG_type_error(errmsg, obj);
-  }
-  return 0;    
-}
-#else
-SWIGINTERNINLINE unsigned int
-  SWIG_AsVal_unsigned_SS_int(PyObject *obj, unsigned int *val)
-{
-  return SWIG_AsVal_unsigned_SS_long(obj,(unsigned long *)val);
-}
-#endif
-
-
-SWIGINTERNINLINE unsigned int
-SWIG_As_unsigned_SS_int(PyObject* obj)
-{
-  unsigned int v;
-  if (!SWIG_AsVal_unsigned_SS_int(obj, &v)) {
-    /*
-      this is needed to make valgrind/purify happier. 
-     */
-    memset((void*)&v, 0, sizeof(unsigned int));
-  }
-  return v;
-}
-
-  
-SWIGINTERNINLINE int
-SWIG_Check_unsigned_SS_int(PyObject* obj)
-{
-  return SWIG_AsVal_unsigned_SS_int(obj, (unsigned int*)0);
 }
 
 
@@ -2727,6 +2726,78 @@ static PyObject *_wrap_dolfin_init(PyObject *, PyObject *args) {
     try {
         Swig::UnknownExceptionHandler dh;
         dolfin::dolfin_init(arg1,arg2);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_sqr(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::real arg1 ;
+    dolfin::real result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:sqr",&obj0)) goto fail;
+    {
+        arg1 = static_cast<dolfin::real >(SWIG_As_double(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::real)dolfin::sqr(arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_double(static_cast<double >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_rand(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::real result;
+    
+    if(!PyArg_ParseTuple(args,(char *)":rand")) goto fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::real)dolfin::rand();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_double(static_cast<double >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_seed(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    unsigned int arg1 ;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:seed",&obj0)) goto fail;
+    {
+        arg1 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        dolfin::seed(arg1);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -37061,60 +37132,6 @@ static PyObject * TimeSlabJacobian_swigregister(PyObject *, PyObject *args) {
     Py_INCREF(obj);
     return Py_BuildValue((char *)"");
 }
-static PyObject *_wrap_delete_TimeSlabSolver(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::TimeSlabSolver *arg1 = (dolfin::TimeSlabSolver *) 0 ;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:delete_TimeSlabSolver",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__TimeSlabSolver, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        delete arg1;
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_TimeSlabSolver_solve__SWIG_0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::TimeSlabSolver *arg1 = (dolfin::TimeSlabSolver *) 0 ;
-    bool result;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:TimeSlabSolver_solve",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__TimeSlabSolver, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (bool)(arg1)->solve();
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_bool(static_cast<bool >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject * TimeSlabSolver_swigregister(PyObject *, PyObject *args) {
-    PyObject *obj;
-    if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
-    SWIG_TypeClientData(SWIGTYPE_p_dolfin__TimeSlabSolver, obj);
-    Py_INCREF(obj);
-    return Py_BuildValue((char *)"");
-}
 static PyObject *_wrap_new_TimeStepper(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::ODE *arg1 = 0 ;
@@ -39882,6 +39899,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"realArray_getitem", _wrap_realArray_getitem, METH_VARARGS, NULL},
 	 { (char *)"realArray_setitem", _wrap_realArray_setitem, METH_VARARGS, NULL},
 	 { (char *)"dolfin_init", _wrap_dolfin_init, METH_VARARGS, NULL},
+	 { (char *)"sqr", _wrap_sqr, METH_VARARGS, NULL},
+	 { (char *)"rand", _wrap_rand, METH_VARARGS, NULL},
+	 { (char *)"seed", _wrap_seed, METH_VARARGS, NULL},
 	 { (char *)"new_TimeDependent", _wrap_new_TimeDependent, METH_VARARGS, NULL},
 	 { (char *)"delete_TimeDependent", _wrap_delete_TimeDependent, METH_VARARGS, NULL},
 	 { (char *)"TimeDependent_sync", _wrap_TimeDependent_sync, METH_VARARGS, NULL},
@@ -40618,8 +40638,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"TimeSlabJacobian_mult", _wrap_TimeSlabJacobian_mult, METH_VARARGS, NULL},
 	 { (char *)"TimeSlabJacobian_update", _wrap_TimeSlabJacobian_update, METH_VARARGS, NULL},
 	 { (char *)"TimeSlabJacobian_swigregister", TimeSlabJacobian_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_TimeSlabSolver", _wrap_delete_TimeSlabSolver, METH_VARARGS, NULL},
-	 { (char *)"TimeSlabSolver_swigregister", TimeSlabSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_TimeStepper", _wrap_new_TimeStepper, METH_VARARGS, NULL},
 	 { (char *)"delete_TimeStepper", _wrap_delete_TimeStepper, METH_VARARGS, NULL},
 	 { (char *)"TimeStepper_solve", _wrap_TimeStepper_solve, METH_VARARGS, NULL},
@@ -40860,7 +40878,6 @@ static swig_type_info _swigt__p_dolfin__Tetrahedron = {"_p_dolfin__Tetrahedron",
 static swig_type_info _swigt__p_dolfin__TimeDependent = {"_p_dolfin__TimeDependent", "dolfin::TimeDependent *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__TimeSlab = {"_p_dolfin__TimeSlab", "dolfin::TimeSlab *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__TimeSlabJacobian = {"_p_dolfin__TimeSlabJacobian", "dolfin::TimeSlabJacobian *", 0, 0, 0};
-static swig_type_info _swigt__p_dolfin__TimeSlabSolver = {"_p_dolfin__TimeSlabSolver", "dolfin::TimeSlabSolver *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__TimeStepper = {"_p_dolfin__TimeStepper", "dolfin::TimeStepper *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Triangle = {"_p_dolfin__Triangle", "dolfin::Triangle *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__UnitCube = {"_p_dolfin__UnitCube", "dolfin::UnitCube *", 0, 0, 0};
@@ -40962,7 +40979,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__TimeDependent,
   &_swigt__p_dolfin__TimeSlab,
   &_swigt__p_dolfin__TimeSlabJacobian,
-  &_swigt__p_dolfin__TimeSlabSolver,
   &_swigt__p_dolfin__TimeStepper,
   &_swigt__p_dolfin__Triangle,
   &_swigt__p_dolfin__UnitCube,
@@ -41064,7 +41080,6 @@ static swig_cast_info _swigc__p_dolfin__Tetrahedron[] = {  {&_swigt__p_dolfin__T
 static swig_cast_info _swigc__p_dolfin__TimeDependent[] = {  {&_swigt__p_dolfin__TimeDependent, 0, 0, 0},  {&_swigt__p_dolfin__BoundaryCondition, _p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__TimeDependent, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlab[] = {  {&_swigt__p_dolfin__TimeSlab, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlabJacobian[] = {  {&_swigt__p_dolfin__TimeSlabJacobian, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__TimeSlabSolver[] = {  {&_swigt__p_dolfin__TimeSlabSolver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeStepper[] = {  {&_swigt__p_dolfin__TimeStepper, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Triangle[] = {  {&_swigt__p_dolfin__Triangle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UnitCube[] = {  {&_swigt__p_dolfin__UnitCube, 0, 0, 0},{0, 0, 0, 0}};
@@ -41166,7 +41181,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__TimeDependent,
   _swigc__p_dolfin__TimeSlab,
   _swigc__p_dolfin__TimeSlabJacobian,
-  _swigc__p_dolfin__TimeSlabSolver,
   _swigc__p_dolfin__TimeStepper,
   _swigc__p_dolfin__Triangle,
   _swigc__p_dolfin__UnitCube,
