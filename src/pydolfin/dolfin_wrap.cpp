@@ -1526,13 +1526,12 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 #define SWIGTYPE_p_std__complexTdouble_t swig_types[91]
 #define SWIGTYPE_p_std__setTint_t swig_types[92]
 #define SWIGTYPE_p_unsigned_int swig_types[93]
-#define SWIGTYPE_p_va_list swig_types[94]
-#define SWIGTYPE_ptrdiff_t swig_types[95]
-#define SWIGTYPE_size_t swig_types[96]
-#define SWIGTYPE_std__ptrdiff_t swig_types[97]
-#define SWIGTYPE_std__size_t swig_types[98]
-static swig_type_info *swig_types[100];
-static swig_module_info swig_module = {swig_types, 99, 0, 0, 0, 0};
+#define SWIGTYPE_ptrdiff_t swig_types[94]
+#define SWIGTYPE_size_t swig_types[95]
+#define SWIGTYPE_std__ptrdiff_t swig_types[96]
+#define SWIGTYPE_std__size_t swig_types[97]
+static swig_type_info *swig_types[99];
+static swig_module_info swig_module = {swig_types, 98, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3423,79 +3422,6 @@ static PyObject *_wrap_tocd(PyObject *, PyObject *args) {
     {
         resultobj = SWIG_From_double(static_cast<double >(result)); 
     }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_dolfin_info__varargs__(PyObject *, PyObject *args, PyObject *varargs) {
-    PyObject *resultobj = NULL;
-    char *arg1 = (char *) 0 ;
-    void *arg2 = 0 ;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:dolfin_info",&obj0)) goto fail;
-    if (!SWIG_AsCharPtr(obj0, (char**)&arg1)) {
-        SWIG_arg_fail(1);SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        dolfin::dolfin_info((char const *)arg1,arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_dolfin_info(PyObject *self, PyObject *args) {
-    PyObject *resultobj;
-    PyObject *varargs;
-    PyObject *newargs;
-    
-    newargs = PyTuple_GetSlice(args,0,1);
-    varargs = PyTuple_GetSlice(args,1,PyTuple_Size(args)+1);
-    resultobj = _wrap_dolfin_info__varargs__(self,newargs,varargs);
-    Py_XDECREF(newargs);
-    Py_XDECREF(varargs);
-    return resultobj;
-}
-
-
-static PyObject *_wrap_dolfin_info_aptr(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    char *arg1 = (char *) 0 ;
-    va_list arg2 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:dolfin_info_aptr",&obj0,&obj1)) goto fail;
-    if (!SWIG_AsCharPtr(obj0, (char**)&arg1)) {
-        SWIG_arg_fail(1);SWIG_fail;
-    }
-    {
-        va_list * argp;
-        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_va_list, SWIG_POINTER_EXCEPTION);
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        if (argp == NULL) {
-            SWIG_null_ref("va_list");
-        }
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        arg2 = *argp;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        dolfin::dolfin_info_aptr((char const *)arg1,arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
     return NULL;
@@ -39921,8 +39847,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"tic", _wrap_tic, METH_VARARGS, NULL},
 	 { (char *)"toc", _wrap_toc, METH_VARARGS, NULL},
 	 { (char *)"tocd", _wrap_tocd, METH_VARARGS, NULL},
-	 { (char *)"dolfin_info", _wrap_dolfin_info, METH_VARARGS, NULL},
-	 { (char *)"dolfin_info_aptr", _wrap_dolfin_info_aptr, METH_VARARGS, NULL},
 	 { (char *)"dolfin_update", _wrap_dolfin_update, METH_VARARGS, NULL},
 	 { (char *)"dolfin_quit", _wrap_dolfin_quit, METH_VARARGS, NULL},
 	 { (char *)"dolfin_finished", _wrap_dolfin_finished, METH_VARARGS, NULL},
@@ -40896,7 +40820,6 @@ static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, 0};
 static swig_type_info _swigt__p_std__complexTdouble_t = {"_p_std__complexTdouble_t", "std::complex<double > *|dolfin::complex *", 0, 0, 0};
 static swig_type_info _swigt__p_std__setTint_t = {"_p_std__setTint_t", "std::set<int > *", 0, 0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *", 0, 0, 0};
-static swig_type_info _swigt__p_va_list = {"_p_va_list", "va_list *", 0, 0, 0};
 static swig_type_info _swigt__ptrdiff_t = {"_ptrdiff_t", "ptrdiff_t", 0, 0, 0};
 static swig_type_info _swigt__size_t = {"_size_t", "size_t", 0, 0, 0};
 static swig_type_info _swigt__std__ptrdiff_t = {"_std__ptrdiff_t", "std::ptrdiff_t", 0, 0, 0};
@@ -40997,7 +40920,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__complexTdouble_t,
   &_swigt__p_std__setTint_t,
   &_swigt__p_unsigned_int,
-  &_swigt__p_va_list,
   &_swigt__ptrdiff_t,
   &_swigt__size_t,
   &_swigt__std__ptrdiff_t,
@@ -41098,7 +41020,6 @@ static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_std__complexTdouble_t[] = {  {&_swigt__p_std__complexTdouble_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__setTint_t[] = {  {&_swigt__p_std__setTint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_va_list[] = {  {&_swigt__p_va_list, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__ptrdiff_t[] = {  {&_swigt__ptrdiff_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__size_t[] = {  {&_swigt__size_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__std__ptrdiff_t[] = {  {&_swigt__std__ptrdiff_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -41199,7 +41120,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__complexTdouble_t,
   _swigc__p_std__setTint_t,
   _swigc__p_unsigned_int,
-  _swigc__p_va_list,
   _swigc__ptrdiff_t,
   _swigc__size_t,
   _swigc__std__ptrdiff_t,
