@@ -5700,12 +5700,10 @@ static PyObject *_wrap_Vector_div(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::Vector *arg1 = (dolfin::Vector *) 0 ;
     dolfin::Vector *arg2 = 0 ;
-    dolfin::Vector *arg3 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_div",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_div",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Vector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -5716,17 +5714,9 @@ static PyObject *_wrap_Vector_div(PyObject *, PyObject *args) {
         }
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
-    {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__Vector, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(3)) SWIG_fail;
-        if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::Vector");
-        }
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
     try {
         Swig::UnknownExceptionHandler dh;
-        ((dolfin::Vector const *)arg1)->div((dolfin::Vector const &)*arg2,*arg3);
+        (arg1)->div((dolfin::Vector const &)*arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -5742,12 +5732,10 @@ static PyObject *_wrap_Vector_mult(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::Vector *arg1 = (dolfin::Vector *) 0 ;
     dolfin::Vector *arg2 = 0 ;
-    dolfin::Vector *arg3 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_mult",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_mult",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Vector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -5758,17 +5746,9 @@ static PyObject *_wrap_Vector_mult(PyObject *, PyObject *args) {
         }
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
-    {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__Vector, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(3)) SWIG_fail;
-        if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::Vector");
-        }
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
     try {
         Swig::UnknownExceptionHandler dh;
-        ((dolfin::Vector const *)arg1)->mult((dolfin::Vector const &)*arg2,*arg3);
+        (arg1)->mult((dolfin::Vector const &)*arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -6452,7 +6432,7 @@ static PyObject *_wrap_Vector_disp(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_Vector_getval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___getitem__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::Vector *arg1 = (dolfin::Vector *) 0 ;
     dolfin::uint arg2 ;
@@ -6460,7 +6440,7 @@ static PyObject *_wrap_Vector_getval(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_getval",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___getitem__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Vector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -6483,7 +6463,7 @@ static PyObject *_wrap_Vector_getval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_Vector_setval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___setitem__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::Vector *arg1 = (dolfin::Vector *) 0 ;
     dolfin::uint arg2 ;
@@ -6492,7 +6472,7 @@ static PyObject *_wrap_Vector_setval(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_setval",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector___setitem__",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Vector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -38393,8 +38373,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Vector_max", _wrap_Vector_max, METH_VARARGS, NULL},
 	 { (char *)"Vector_min", _wrap_Vector_min, METH_VARARGS, NULL},
 	 { (char *)"Vector_disp", _wrap_Vector_disp, METH_VARARGS, NULL},
-	 { (char *)"Vector_getval", _wrap_Vector_getval, METH_VARARGS, NULL},
-	 { (char *)"Vector_setval", _wrap_Vector_setval, METH_VARARGS, NULL},
+	 { (char *)"Vector___getitem__", _wrap_Vector___getitem__, METH_VARARGS, NULL},
+	 { (char *)"Vector___setitem__", _wrap_Vector___setitem__, METH_VARARGS, NULL},
 	 { (char *)"Vector_addval", _wrap_Vector_addval, METH_VARARGS, NULL},
 	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_VectorElement", _wrap_new_VectorElement, METH_VARARGS, NULL},
