@@ -464,11 +464,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-<<<<<<< /tmp/configure~base.UWonk7
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE RANLIB ac_ct_RANLIB LN_S CPP EGREP build build_cpu build_vendor build_os host host_cpu host_vendor host_os ECHO AR ac_ct_AR CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS COMPILE_PYDOLFIN_TRUE COMPILE_PYDOLFIN_FALSE petsc_found mpi_found libxml2_found KERNEL_CFLAGS MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_EXT_LIBS DOLFIN_LIBS DOLFIN_LTLIBS LIBOBJS LTLIBOBJS'
-=======
 ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE LN_S CPP EGREP build build_cpu build_vendor build_os host host_cpu host_vendor host_os ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS COMPILE_PYDOLFIN_TRUE COMPILE_PYDOLFIN_FALSE petsc_found mpi_found libxml2_found KERNEL_CFLAGS MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_EXT_LIBS DOLFIN_LIBS DOLFIN_LTLIBS LIBOBJS LTLIBOBJS'
->>>>>>> /tmp/configure~other.eJW3TR
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -3581,89 +3577,6 @@ else
 fi
 
 
-<<<<<<< /tmp/configure~base.UWonk7
-if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}ranlib", so it can be a program name with args.
-set dummy ${ac_tool_prefix}ranlib; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_RANLIB+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$RANLIB"; then
-  ac_cv_prog_RANLIB="$RANLIB" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_RANLIB="${ac_tool_prefix}ranlib"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-fi
-fi
-RANLIB=$ac_cv_prog_RANLIB
-if test -n "$RANLIB"; then
-  echo "$as_me:$LINENO: result: $RANLIB" >&5
-echo "${ECHO_T}$RANLIB" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-fi
-if test -z "$ac_cv_prog_RANLIB"; then
-  ac_ct_RANLIB=$RANLIB
-  # Extract the first word of "ranlib", so it can be a program name with args.
-set dummy ranlib; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_ac_ct_RANLIB+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_RANLIB"; then
-  ac_cv_prog_ac_ct_RANLIB="$ac_ct_RANLIB" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_ac_ct_RANLIB="ranlib"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_ac_ct_RANLIB" && ac_cv_prog_ac_ct_RANLIB=":"
-fi
-fi
-ac_ct_RANLIB=$ac_cv_prog_ac_ct_RANLIB
-if test -n "$ac_ct_RANLIB"; then
-  echo "$as_me:$LINENO: result: $ac_ct_RANLIB" >&5
-echo "${ECHO_T}$ac_ct_RANLIB" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-  RANLIB=$ac_ct_RANLIB
-else
-  RANLIB="$ac_cv_prog_RANLIB"
-fi
-
-=======
->>>>>>> /tmp/configure~other.eJW3TR
 for ac_prog in gawk mawk nawk awk
 do
   # Extract the first word of "$ac_prog", so it can be a program name with args.
@@ -4980,11 +4893,7 @@ linux*)
   lt_cv_deplibs_check_method=pass_all
   ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-netbsd* | knetbsd*-gnu)
-=======
 netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
   if echo __ELF__ | $CC -E - | grep __ELF__ > /dev/null; then
     lt_cv_deplibs_check_method='match_pattern /lib[^/]+(\.so\.[0-9]+\.[0-9]+|_pic\.a)$'
   else
@@ -5100,11 +5009,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-<<<<<<< /tmp/configure~base.UWonk7
-  echo '#line 5092 "configure"' > conftest.$ac_ext
-=======
   echo '#line 5012 "configure"' > conftest.$ac_ext
->>>>>>> /tmp/configure~other.eJW3TR
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -5737,11 +5642,7 @@ fi
 
 
 # Provide some information about the compiler.
-<<<<<<< /tmp/configure~base.UWonk7
-echo "$as_me:5725:" \
-=======
 echo "$as_me:5645:" \
->>>>>>> /tmp/configure~other.eJW3TR
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -6773,19 +6674,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:6757: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:6677: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:6761: \$? = $ac_status" >&5
-=======
    echo "$as_me:6681: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -7014,19 +6907,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:6990: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:6910: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:6994: \$? = $ac_status" >&5
-=======
    echo "$as_me:6914: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -7082,19 +6967,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:7050: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:6970: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:7054: \$? = $ac_status" >&5
-=======
    echo "$as_me:6974: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -7267,11 +7144,7 @@ EOF
       fi
       ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-    netbsd* | knetbsd*-gnu)
-=======
     netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
 	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
 	wlarc=
@@ -7789,11 +7662,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
       link_all_deplibs=yes
       ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-    netbsd* | knetbsd*-gnu)
-=======
     netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
 	archive_cmds='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
       else
@@ -8442,8 +8311,6 @@ linux*)
   dynamic_linker='GNU/Linux ld.so'
   ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-=======
 netbsdelf*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -8456,7 +8323,6 @@ netbsdelf*-gnu)
   dynamic_linker='NetBSD ld.elf_so'
   ;;
 
->>>>>>> /tmp/configure~other.eJW3TR
 knetbsd*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -9289,11 +9155,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-<<<<<<< /tmp/configure~base.UWonk7
-#line 9226 "configure"
-=======
 #line 9158 "configure"
->>>>>>> /tmp/configure~other.eJW3TR
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -9391,11 +9253,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-<<<<<<< /tmp/configure~base.UWonk7
-#line 9324 "configure"
-=======
 #line 9256 "configure"
->>>>>>> /tmp/configure~other.eJW3TR
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10906,11 +10764,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
 	;;
     esac
     ;;
-<<<<<<< /tmp/configure~base.UWonk7
-  netbsd* | knetbsd*-gnu)
-=======
   netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
     if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
       archive_cmds_CXX='$LD -Bshareable  -o $lib $predep_objects $libobjs $deplibs $postdep_objects $linker_flags'
       wlarc=
@@ -11465,11 +11319,7 @@ echo $ECHO_N "checking for $compiler option to produce PIC... $ECHO_C" >&6
 	    ;;
 	esac
 	;;
-<<<<<<< /tmp/configure~base.UWonk7
-      netbsd* | knetbsd*-gnu)
-=======
       netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
 	;;
       osf3* | osf4* | osf5*)
 	case $cc_basename in
@@ -11580,19 +11430,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:11501: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:11433: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:11505: \$? = $ac_status" >&5
-=======
    echo "$as_me:11437: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -11648,19 +11490,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:11561: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:11493: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:11565: \$? = $ac_status" >&5
-=======
    echo "$as_me:11497: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -12181,8 +12015,6 @@ linux*)
   dynamic_linker='GNU/Linux ld.so'
   ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-=======
 netbsdelf*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -12195,7 +12027,6 @@ netbsdelf*-gnu)
   dynamic_linker='NetBSD ld.elf_so'
   ;;
 
->>>>>>> /tmp/configure~other.eJW3TR
 knetbsd*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -13028,11 +12859,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-<<<<<<< /tmp/configure~base.UWonk7
-#line 12918 "configure"
-=======
 #line 12862 "configure"
->>>>>>> /tmp/configure~other.eJW3TR
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -13130,11 +12957,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-<<<<<<< /tmp/configure~base.UWonk7
-#line 13016 "configure"
-=======
 #line 12960 "configure"
->>>>>>> /tmp/configure~other.eJW3TR
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -13961,19 +13784,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:13843: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:13787: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:13847: \$? = $ac_status" >&5
-=======
    echo "$as_me:13791: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -14029,19 +13844,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:13903: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:13847: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:13907: \$? = $ac_status" >&5
-=======
    echo "$as_me:13851: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -14214,11 +14021,7 @@ EOF
       fi
       ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-    netbsd* | knetbsd*-gnu)
-=======
     netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
 	archive_cmds_F77='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
 	wlarc=
@@ -14716,11 +14519,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
       link_all_deplibs_F77=yes
       ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-    netbsd* | knetbsd*-gnu)
-=======
     netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
 	archive_cmds_F77='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
       else
@@ -15369,8 +15168,6 @@ linux*)
   dynamic_linker='GNU/Linux ld.so'
   ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-=======
 netbsdelf*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -15383,7 +15180,6 @@ netbsdelf*-gnu)
   dynamic_linker='NetBSD ld.elf_so'
   ;;
 
->>>>>>> /tmp/configure~other.eJW3TR
 knetbsd*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -16093,19 +15889,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:15936: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:15892: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:15940: \$? = $ac_status" >&5
-=======
    echo "$as_me:15896: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -16334,19 +16122,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:16169: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:16125: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:16173: \$? = $ac_status" >&5
-=======
    echo "$as_me:16129: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -16402,19 +16182,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-<<<<<<< /tmp/configure~base.UWonk7
-   (eval echo "\"\$as_me:16229: $lt_compile\"" >&5)
-=======
    (eval echo "\"\$as_me:16185: $lt_compile\"" >&5)
->>>>>>> /tmp/configure~other.eJW3TR
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-<<<<<<< /tmp/configure~base.UWonk7
-   echo "$as_me:16233: \$? = $ac_status" >&5
-=======
    echo "$as_me:16189: \$? = $ac_status" >&5
->>>>>>> /tmp/configure~other.eJW3TR
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -16587,11 +16359,7 @@ EOF
       fi
       ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-    netbsd* | knetbsd*-gnu)
-=======
     netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
 	archive_cmds_GCJ='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
 	wlarc=
@@ -17109,11 +16877,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
       link_all_deplibs_GCJ=yes
       ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-    netbsd* | knetbsd*-gnu)
-=======
     netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
->>>>>>> /tmp/configure~other.eJW3TR
       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
 	archive_cmds_GCJ='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
       else
@@ -17762,8 +17526,6 @@ linux*)
   dynamic_linker='GNU/Linux ld.so'
   ;;
 
-<<<<<<< /tmp/configure~base.UWonk7
-=======
 netbsdelf*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -17776,7 +17538,6 @@ netbsdelf*-gnu)
   dynamic_linker='NetBSD ld.elf_so'
   ;;
 
->>>>>>> /tmp/configure~other.eJW3TR
 knetbsd*-gnu)
   version_type=linux
   need_lib_prefix=no
@@ -18609,11 +18370,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-<<<<<<< /tmp/configure~base.UWonk7
-#line 18405 "configure"
-=======
 #line 18373 "configure"
->>>>>>> /tmp/configure~other.eJW3TR
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -18711,11 +18468,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-<<<<<<< /tmp/configure~base.UWonk7
-#line 18503 "configure"
-=======
 #line 18471 "configure"
->>>>>>> /tmp/configure~other.eJW3TR
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -19770,11 +19523,7 @@ if test "${am_cv_pathless_PYTHON+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
 
-<<<<<<< /tmp/configure~base.UWonk7
-	for am_cv_pathless_PYTHON in python python2 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 none; do
-=======
 	for am_cv_pathless_PYTHON in python python2 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 none; do
->>>>>>> /tmp/configure~other.eJW3TR
 	  test "$am_cv_pathless_PYTHON" = none && break
 	  prog="import sys, string
 # split strings by '.' and convert to numeric.  Append some zeros
@@ -20500,7 +20249,7 @@ done
 # Create Makefiles, seems like automake cannot handle a variable
 # containing the list of files, so this cannot be done
 # automatically. We have to list all the files.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/parameter/Makefile src/kernel/parameter/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/heat/Makefile src/modules/heat/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/lib/Makefile src/pydolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/fem/Makefile src/demo/nls/Makefile src/demo/pde/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/solvers/ode/Makefile src/demo/solvers/ode/modeling/Makefile src/demo/solvers/ode/homotopy/Makefile src/demo/scripting/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile src/Makefile src/pre/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/parameter/Makefile src/kernel/parameter/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/heat/Makefile src/modules/heat/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/lib/Makefile src/pydolfin/Makefile src/config/Makefile src/post/Makefile src/demo/Makefile src/demo/fem/Makefile src/demo/nls/Makefile src/demo/ode/Makefile src/demo/ode/modeling/Makefile src/demo/ode/homotopy/Makefile src/demo/pde/Makefile src/demo/pde/stokes/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/scripting/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/greeting/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -21152,12 +20901,13 @@ do
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
   "src/demo/fem/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/fem/Makefile" ;;
   "src/demo/nls/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/nls/Makefile" ;;
+  "src/demo/ode/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/ode/Makefile" ;;
+  "src/demo/ode/modeling/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/ode/modeling/Makefile" ;;
+  "src/demo/ode/homotopy/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/ode/homotopy/Makefile" ;;
   "src/demo/pde/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/pde/Makefile" ;;
+  "src/demo/pde/stokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/pde/stokes/Makefile" ;;
   "src/demo/solvers/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/Makefile" ;;
   "src/demo/solvers/navierstokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/navierstokes/Makefile" ;;
-  "src/demo/solvers/ode/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/ode/Makefile" ;;
-  "src/demo/solvers/ode/modeling/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/ode/modeling/Makefile" ;;
-  "src/demo/solvers/ode/homotopy/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/solvers/ode/homotopy/Makefile" ;;
   "src/demo/scripting/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/scripting/Makefile" ;;
   "src/utils/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/Makefile" ;;
   "src/utils/inp2dx/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/inp2dx/Makefile" ;;
@@ -21294,11 +21044,6 @@ s,@ac_ct_CXX@,$ac_ct_CXX,;t t
 s,@CXXDEPMODE@,$CXXDEPMODE,;t t
 s,@am__fastdepCXX_TRUE@,$am__fastdepCXX_TRUE,;t t
 s,@am__fastdepCXX_FALSE@,$am__fastdepCXX_FALSE,;t t
-<<<<<<< /tmp/configure~base.UWonk7
-s,@RANLIB@,$RANLIB,;t t
-s,@ac_ct_RANLIB@,$ac_ct_RANLIB,;t t
-=======
->>>>>>> /tmp/configure~other.eJW3TR
 s,@LN_S@,$LN_S,;t t
 s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
@@ -21313,11 +21058,8 @@ s,@host_os@,$host_os,;t t
 s,@ECHO@,$ECHO,;t t
 s,@AR@,$AR,;t t
 s,@ac_ct_AR@,$ac_ct_AR,;t t
-<<<<<<< /tmp/configure~base.UWonk7
-=======
 s,@RANLIB@,$RANLIB,;t t
 s,@ac_ct_RANLIB@,$ac_ct_RANLIB,;t t
->>>>>>> /tmp/configure~other.eJW3TR
 s,@CXXCPP@,$CXXCPP,;t t
 s,@F77@,$F77,;t t
 s,@FFLAGS@,$FFLAGS,;t t
