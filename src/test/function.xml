@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<dolfin xmlns:dolfin="http://www.fenics.org/dolfin/"> 
+ <function element="Lagrange">
+  <mesh>
+    <vertices size="3">
+      <vertex name="0" x="0.0" y="0.0" z="0.0"/>
+      <vertex name="1" x="1.0" y="0.0" z="0.0"/>
+      <vertex name="2" x="0.0" y="1.0" z="0.0"/>
+    </vertices>
+    <cells size="1">
+      <triangle name="0" n0="0" n1="1" n2="2"/>
+    </cells>
+  </mesh>
+  <vector size=" 3 "> 
+    <entry row="0" value="2.0"/>
+    <entry row="1" value="7.0"/>
+    <entry row="2" value="13.0"/>
+  </vector>
+ </function>
+</dolfin>
