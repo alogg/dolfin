@@ -11,6 +11,7 @@
 #include <dolfin/Vector.h>
 #include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
+#include <dolfin/FiniteElementSpec.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
@@ -137,6 +138,12 @@ public:
     {
       return *this;
     }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "tetrahedron", 1, 3);
+      return s;
+    }
     
   private:
   
@@ -258,6 +265,12 @@ public:
     FiniteElement& operator[] (unsigned int i)
     {
       return *this;
+    }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "tetrahedron", 1, 3);
+      return s;
     }
     
   private:
@@ -716,6 +729,12 @@ public:
     {
       return *this;
     }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "tetrahedron", 1, 3);
+      return s;
+    }
     
   private:
   
@@ -837,6 +856,12 @@ public:
     FiniteElement& operator[] (unsigned int i)
     {
       return *this;
+    }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "tetrahedron", 1, 3);
+      return s;
     }
     
   private:

@@ -11,6 +11,7 @@
 #include <dolfin/Vector.h>
 #include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
+#include <dolfin/FiniteElementSpec.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
@@ -96,6 +97,12 @@ public:
     FiniteElement& operator[] (unsigned int i)
     {
       return *this;
+    }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Discontinuous Lagrange", "triangle", 0);
+      return s;
     }
     
   private:
@@ -218,6 +225,12 @@ public:
     {
       return *this;
     }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "triangle", 2, 2);
+      return s;
+    }
     
   private:
   
@@ -338,6 +351,12 @@ public:
     FiniteElement& operator[] (unsigned int i)
     {
       return *this;
+    }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "triangle", 2, 2);
+      return s;
     }
     
   private:

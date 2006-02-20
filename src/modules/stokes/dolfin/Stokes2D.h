@@ -11,6 +11,7 @@
 #include <dolfin/Vector.h>
 #include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
+#include <dolfin/FiniteElementSpec.h>
 #include <dolfin/LinearForm.h>
 #include <dolfin/BilinearForm.h>
 
@@ -150,6 +151,12 @@ public:
     {
       return *subelements[i];
     }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("mixed");
+      return s;
+    }
     
   private:
     
@@ -266,6 +273,12 @@ public:
       {
         return *this;
       }
+    
+      FiniteElementSpec spec() const
+      {
+        FiniteElementSpec s("Vector Lagrange", "triangle", 2, 2);
+        return s;
+      }
       
     private:
     
@@ -353,6 +366,12 @@ public:
       FiniteElement& operator[] (unsigned int i)
       {
         return *this;
+      }
+    
+      FiniteElementSpec spec() const
+      {
+        FiniteElementSpec s("Lagrange", "triangle", 1);
+        return s;
       }
       
     private:
@@ -494,6 +513,12 @@ public:
     {
       return *subelements[i];
     }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("mixed");
+      return s;
+    }
     
   private:
     
@@ -610,6 +635,12 @@ public:
       {
         return *this;
       }
+    
+      FiniteElementSpec spec() const
+      {
+        FiniteElementSpec s("Vector Lagrange", "triangle", 2, 2);
+        return s;
+      }
       
     private:
     
@@ -697,6 +728,12 @@ public:
       FiniteElement& operator[] (unsigned int i)
       {
         return *this;
+      }
+    
+      FiniteElementSpec spec() const
+      {
+        FiniteElementSpec s("Lagrange", "triangle", 1);
+        return s;
       }
       
     private:
@@ -1104,6 +1141,12 @@ public:
     {
       return *subelements[i];
     }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("mixed");
+      return s;
+    }
     
   private:
     
@@ -1220,6 +1263,12 @@ public:
       {
         return *this;
       }
+    
+      FiniteElementSpec spec() const
+      {
+        FiniteElementSpec s("Vector Lagrange", "triangle", 2, 2);
+        return s;
+      }
       
     private:
     
@@ -1307,6 +1356,12 @@ public:
       FiniteElement& operator[] (unsigned int i)
       {
         return *this;
+      }
+    
+      FiniteElementSpec spec() const
+      {
+        FiniteElementSpec s("Lagrange", "triangle", 1);
+        return s;
       }
       
     private:
@@ -1433,6 +1488,12 @@ public:
     FiniteElement& operator[] (unsigned int i)
     {
       return *this;
+    }
+  
+    FiniteElementSpec spec() const
+    {
+      FiniteElementSpec s("Vector Lagrange", "triangle", 2, 2);
+      return s;
     }
     
   private:
