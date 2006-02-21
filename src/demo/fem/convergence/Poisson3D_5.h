@@ -81,7 +81,7 @@ public:
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -112,7 +112,7 @@ public:
       dofs[26] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][2];
       dofs[27] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][3];
       alignment = cell.faceAlignment(0);
-      offset = offset + 4*mesh.noEdges();
+      offset = offset + 4*mesh.numEdges();
       dofs[28] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][0];
       dofs[29] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][1];
       dofs[30] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][2];
@@ -140,7 +140,7 @@ public:
       dofs[49] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][3];
       dofs[50] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][4];
       dofs[51] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][5];
-      offset = offset + 6*mesh.noFaces();
+      offset = offset + 6*mesh.numFaces();
       dofs[52] = offset + 4*cell.id() + 0;
       dofs[53] = offset + 4*cell.id() + 1;
       dofs[54] = offset + 4*cell.id() + 2;
@@ -349,7 +349,7 @@ public:
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -380,7 +380,7 @@ public:
       dofs[26] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][2];
       dofs[27] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][3];
       alignment = cell.faceAlignment(0);
-      offset = offset + 4*mesh.noEdges();
+      offset = offset + 4*mesh.numEdges();
       dofs[28] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][0];
       dofs[29] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][1];
       dofs[30] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][2];
@@ -408,7 +408,7 @@ public:
       dofs[49] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][3];
       dofs[50] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][4];
       dofs[51] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][5];
-      offset = offset + 6*mesh.noFaces();
+      offset = offset + 6*mesh.numFaces();
       dofs[52] = offset + 4*cell.id() + 0;
       dofs[53] = offset + 4*cell.id() + 1;
       dofs[54] = offset + 4*cell.id() + 2;
@@ -3787,7 +3787,7 @@ public:
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -3818,7 +3818,7 @@ public:
       dofs[26] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][2];
       dofs[27] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][3];
       alignment = cell.faceAlignment(0);
-      offset = offset + 4*mesh.noEdges();
+      offset = offset + 4*mesh.numEdges();
       dofs[28] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][0];
       dofs[29] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][1];
       dofs[30] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][2];
@@ -3846,7 +3846,7 @@ public:
       dofs[49] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][3];
       dofs[50] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][4];
       dofs[51] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][5];
-      offset = offset + 6*mesh.noFaces();
+      offset = offset + 6*mesh.numFaces();
       dofs[52] = offset + 4*cell.id() + 0;
       dofs[53] = offset + 4*cell.id() + 1;
       dofs[54] = offset + 4*cell.id() + 2;
@@ -4055,7 +4055,7 @@ public:
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
       int alignment = cell.edgeAlignment(0);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
       dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
       dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
@@ -4086,7 +4086,7 @@ public:
       dofs[26] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][2];
       dofs[27] = offset + 4*cell.edgeID(5) + edge_reordering_0[alignment][3];
       alignment = cell.faceAlignment(0);
-      offset = offset + 4*mesh.noEdges();
+      offset = offset + 4*mesh.numEdges();
       dofs[28] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][0];
       dofs[29] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][1];
       dofs[30] = offset + 6*cell.faceID(0) + face_reordering_0[alignment][2];
@@ -4114,7 +4114,7 @@ public:
       dofs[49] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][3];
       dofs[50] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][4];
       dofs[51] = offset + 6*cell.faceID(3) + face_reordering_0[alignment][5];
-      offset = offset + 6*mesh.noFaces();
+      offset = offset + 6*mesh.numFaces();
       dofs[52] = offset + 4*cell.id() + 0;
       dofs[53] = offset + 4*cell.id() + 1;
       dofs[54] = offset + 4*cell.id() + 2;

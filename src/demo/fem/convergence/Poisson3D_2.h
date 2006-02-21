@@ -78,7 +78,7 @@ public:
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + cell.edgeID(0);
       dofs[5] = offset + cell.edgeID(1);
       dofs[6] = offset + cell.edgeID(2);
@@ -194,7 +194,7 @@ public:
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + cell.edgeID(0);
       dofs[5] = offset + cell.edgeID(1);
       dofs[6] = offset + cell.edgeID(2);
@@ -444,7 +444,7 @@ public:
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + cell.edgeID(0);
       dofs[5] = offset + cell.edgeID(1);
       dofs[6] = offset + cell.edgeID(2);
@@ -560,7 +560,7 @@ public:
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + cell.edgeID(0);
       dofs[5] = offset + cell.edgeID(1);
       dofs[6] = offset + cell.edgeID(2);

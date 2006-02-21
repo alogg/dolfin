@@ -76,21 +76,21 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.id();
-      int offset = mesh.noCells();
+      int offset = mesh.numCells();
       dofs[1] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[2] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[3] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[4] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[5] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[6] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[7] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[8] = offset + cell.id();
     }
   
@@ -120,21 +120,21 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noCells();
+      int offset = mesh.numCells();
       values[1] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[2] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[3] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[4] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[5] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[6] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[7] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[8] = x[offset + vertex];
     }
   
@@ -216,12 +216,12 @@ public:
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
       dofs[3] = cell.vertexID(3);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[4] = offset + cell.vertexID(0);
       dofs[5] = offset + cell.vertexID(1);
       dofs[6] = offset + cell.vertexID(2);
       dofs[7] = offset + cell.vertexID(3);
-      offset = offset + mesh.noVertices();
+      offset = offset + mesh.numVertices();
       dofs[8] = offset + cell.vertexID(0);
       dofs[9] = offset + cell.vertexID(1);
       dofs[10] = offset + cell.vertexID(2);
@@ -260,9 +260,9 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       values[1] = x[offset + vertex];
-      offset = offset + mesh.noVertices();
+      offset = offset + mesh.numVertices();
       values[2] = x[offset + vertex];
     }
   
@@ -341,21 +341,21 @@ public:
     void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
     {
       dofs[0] = cell.id();
-      int offset = mesh.noCells();
+      int offset = mesh.numCells();
       dofs[1] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[2] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[3] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[4] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[5] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[6] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[7] = offset + cell.id();
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       dofs[8] = offset + cell.id();
     }
   
@@ -385,21 +385,21 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noCells();
+      int offset = mesh.numCells();
       values[1] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[2] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[3] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[4] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[5] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[6] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[7] = x[offset + vertex];
-      offset = offset + mesh.noCells();
+      offset = offset + mesh.numCells();
       values[8] = x[offset + vertex];
     }
   

@@ -266,7 +266,7 @@ public:
       dofs[0] = cell.vertexID(0);
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[3] = offset + cell.vertexID(0);
       dofs[4] = offset + cell.vertexID(1);
       dofs[5] = offset + cell.vertexID(2);
@@ -292,7 +292,7 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       values[1] = x[offset + vertex];
     }
   
@@ -1283,7 +1283,7 @@ public:
       dofs[0] = cell.vertexID(0);
       dofs[1] = cell.vertexID(1);
       dofs[2] = cell.vertexID(2);
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       dofs[3] = offset + cell.vertexID(0);
       dofs[4] = offset + cell.vertexID(1);
       dofs[5] = offset + cell.vertexID(2);
@@ -1309,7 +1309,7 @@ public:
     {
       // FIXME: Temporary fix for Lagrange elements
       values[0] = x[vertex];
-      int offset = mesh.noVertices();
+      int offset = mesh.numVertices();
       values[1] = x[offset + vertex];
     }
   
