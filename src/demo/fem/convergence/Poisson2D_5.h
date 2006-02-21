@@ -72,35 +72,35 @@ public:
       return 0;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
       int offset = mesh.numVertices();
-      dofs[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
-      dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
-      dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
-      dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
+      nodes[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
+      nodes[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
+      nodes[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
+      nodes[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(1);
-      dofs[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
-      dofs[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
-      dofs[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
-      dofs[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
+      nodes[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
+      nodes[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
+      nodes[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
+      nodes[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(2);
-      dofs[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
-      dofs[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
-      dofs[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
-      dofs[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
+      nodes[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
+      nodes[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
+      nodes[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
+      nodes[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
       offset = offset + 4*mesh.numEdges();
-      dofs[15] = offset + 6*cell.id() + 0;
-      dofs[16] = offset + 6*cell.id() + 1;
-      dofs[17] = offset + 6*cell.id() + 2;
-      dofs[18] = offset + 6*cell.id() + 3;
-      dofs[19] = offset + 6*cell.id() + 4;
-      dofs[20] = offset + 6*cell.id() + 5;
+      nodes[15] = offset + 6*cell.id() + 0;
+      nodes[16] = offset + 6*cell.id() + 1;
+      nodes[17] = offset + 6*cell.id() + 2;
+      nodes[18] = offset + 6*cell.id() + 3;
+      nodes[19] = offset + 6*cell.id() + 4;
+      nodes[20] = offset + 6*cell.id() + 5;
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -226,35 +226,35 @@ public:
       return 0;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
       int offset = mesh.numVertices();
-      dofs[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
-      dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
-      dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
-      dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
+      nodes[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
+      nodes[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
+      nodes[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
+      nodes[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(1);
-      dofs[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
-      dofs[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
-      dofs[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
-      dofs[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
+      nodes[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
+      nodes[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
+      nodes[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
+      nodes[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(2);
-      dofs[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
-      dofs[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
-      dofs[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
-      dofs[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
+      nodes[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
+      nodes[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
+      nodes[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
+      nodes[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
       offset = offset + 4*mesh.numEdges();
-      dofs[15] = offset + 6*cell.id() + 0;
-      dofs[16] = offset + 6*cell.id() + 1;
-      dofs[17] = offset + 6*cell.id() + 2;
-      dofs[18] = offset + 6*cell.id() + 3;
-      dofs[19] = offset + 6*cell.id() + 4;
-      dofs[20] = offset + 6*cell.id() + 5;
+      nodes[15] = offset + 6*cell.id() + 0;
+      nodes[16] = offset + 6*cell.id() + 1;
+      nodes[17] = offset + 6*cell.id() + 2;
+      nodes[18] = offset + 6*cell.id() + 3;
+      nodes[19] = offset + 6*cell.id() + 4;
+      nodes[20] = offset + 6*cell.id() + 5;
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -850,35 +850,35 @@ public:
       return 0;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
       int offset = mesh.numVertices();
-      dofs[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
-      dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
-      dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
-      dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
+      nodes[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
+      nodes[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
+      nodes[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
+      nodes[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(1);
-      dofs[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
-      dofs[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
-      dofs[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
-      dofs[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
+      nodes[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
+      nodes[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
+      nodes[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
+      nodes[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(2);
-      dofs[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
-      dofs[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
-      dofs[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
-      dofs[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
+      nodes[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
+      nodes[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
+      nodes[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
+      nodes[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
       offset = offset + 4*mesh.numEdges();
-      dofs[15] = offset + 6*cell.id() + 0;
-      dofs[16] = offset + 6*cell.id() + 1;
-      dofs[17] = offset + 6*cell.id() + 2;
-      dofs[18] = offset + 6*cell.id() + 3;
-      dofs[19] = offset + 6*cell.id() + 4;
-      dofs[20] = offset + 6*cell.id() + 5;
+      nodes[15] = offset + 6*cell.id() + 0;
+      nodes[16] = offset + 6*cell.id() + 1;
+      nodes[17] = offset + 6*cell.id() + 2;
+      nodes[18] = offset + 6*cell.id() + 3;
+      nodes[19] = offset + 6*cell.id() + 4;
+      nodes[20] = offset + 6*cell.id() + 5;
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1004,35 +1004,35 @@ public:
       return 0;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
       static unsigned int edge_reordering_0[2][4] = {{0, 1, 2, 3}, {3, 2, 1, 0}};
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
       int alignment = cell.edgeAlignment(0);
       int offset = mesh.numVertices();
-      dofs[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
-      dofs[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
-      dofs[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
-      dofs[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
+      nodes[3] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][0];
+      nodes[4] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][1];
+      nodes[5] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][2];
+      nodes[6] = offset + 4*cell.edgeID(0) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(1);
-      dofs[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
-      dofs[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
-      dofs[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
-      dofs[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
+      nodes[7] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][0];
+      nodes[8] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][1];
+      nodes[9] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][2];
+      nodes[10] = offset + 4*cell.edgeID(1) + edge_reordering_0[alignment][3];
       alignment = cell.edgeAlignment(2);
-      dofs[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
-      dofs[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
-      dofs[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
-      dofs[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
+      nodes[11] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][0];
+      nodes[12] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][1];
+      nodes[13] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][2];
+      nodes[14] = offset + 4*cell.edgeID(2) + edge_reordering_0[alignment][3];
       offset = offset + 4*mesh.numEdges();
-      dofs[15] = offset + 6*cell.id() + 0;
-      dofs[16] = offset + 6*cell.id() + 1;
-      dofs[17] = offset + 6*cell.id() + 2;
-      dofs[18] = offset + 6*cell.id() + 3;
-      dofs[19] = offset + 6*cell.id() + 4;
-      dofs[20] = offset + 6*cell.id() + 5;
+      nodes[15] = offset + 6*cell.id() + 0;
+      nodes[16] = offset + 6*cell.id() + 1;
+      nodes[17] = offset + 6*cell.id() + 2;
+      nodes[18] = offset + 6*cell.id() + 3;
+      nodes[19] = offset + 6*cell.id() + 4;
+      nodes[20] = offset + 6*cell.id() + 5;
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const

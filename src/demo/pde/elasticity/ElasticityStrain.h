@@ -75,37 +75,37 @@ public:
       return 1;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
-      dofs[3] = cell.vertexID(3);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
+      nodes[3] = cell.vertexID(3);
       int offset = mesh.numVertices();
-      dofs[4] = offset + cell.vertexID(0);
-      dofs[5] = offset + cell.vertexID(1);
-      dofs[6] = offset + cell.vertexID(2);
-      dofs[7] = offset + cell.vertexID(3);
+      nodes[4] = offset + cell.vertexID(0);
+      nodes[5] = offset + cell.vertexID(1);
+      nodes[6] = offset + cell.vertexID(2);
+      nodes[7] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[8] = offset + cell.vertexID(0);
-      dofs[9] = offset + cell.vertexID(1);
-      dofs[10] = offset + cell.vertexID(2);
-      dofs[11] = offset + cell.vertexID(3);
+      nodes[8] = offset + cell.vertexID(0);
+      nodes[9] = offset + cell.vertexID(1);
+      nodes[10] = offset + cell.vertexID(2);
+      nodes[11] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[12] = offset + cell.vertexID(0);
-      dofs[13] = offset + cell.vertexID(1);
-      dofs[14] = offset + cell.vertexID(2);
-      dofs[15] = offset + cell.vertexID(3);
+      nodes[12] = offset + cell.vertexID(0);
+      nodes[13] = offset + cell.vertexID(1);
+      nodes[14] = offset + cell.vertexID(2);
+      nodes[15] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[16] = offset + cell.vertexID(0);
-      dofs[17] = offset + cell.vertexID(1);
-      dofs[18] = offset + cell.vertexID(2);
-      dofs[19] = offset + cell.vertexID(3);
+      nodes[16] = offset + cell.vertexID(0);
+      nodes[17] = offset + cell.vertexID(1);
+      nodes[18] = offset + cell.vertexID(2);
+      nodes[19] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[20] = offset + cell.vertexID(0);
-      dofs[21] = offset + cell.vertexID(1);
-      dofs[22] = offset + cell.vertexID(2);
-      dofs[23] = offset + cell.vertexID(3);
+      nodes[20] = offset + cell.vertexID(0);
+      nodes[21] = offset + cell.vertexID(1);
+      nodes[22] = offset + cell.vertexID(2);
+      nodes[23] = offset + cell.vertexID(3);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -243,22 +243,22 @@ public:
         return 1;
       }
     
-      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.vertexID(0);
-        dofs[1] = cell.vertexID(1);
-        dofs[2] = cell.vertexID(2);
-        dofs[3] = cell.vertexID(3);
+        nodes[0] = cell.vertexID(0);
+        nodes[1] = cell.vertexID(1);
+        nodes[2] = cell.vertexID(2);
+        nodes[3] = cell.vertexID(3);
         int offset = mesh.numVertices();
-        dofs[4] = offset + cell.vertexID(0);
-        dofs[5] = offset + cell.vertexID(1);
-        dofs[6] = offset + cell.vertexID(2);
-        dofs[7] = offset + cell.vertexID(3);
+        nodes[4] = offset + cell.vertexID(0);
+        nodes[5] = offset + cell.vertexID(1);
+        nodes[6] = offset + cell.vertexID(2);
+        nodes[7] = offset + cell.vertexID(3);
         offset = offset + mesh.numVertices();
-        dofs[8] = offset + cell.vertexID(0);
-        dofs[9] = offset + cell.vertexID(1);
-        dofs[10] = offset + cell.vertexID(2);
-        dofs[11] = offset + cell.vertexID(3);
+        nodes[8] = offset + cell.vertexID(0);
+        nodes[9] = offset + cell.vertexID(1);
+        nodes[10] = offset + cell.vertexID(2);
+        nodes[11] = offset + cell.vertexID(3);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -371,22 +371,22 @@ public:
         return 1;
       }
     
-      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.vertexID(0);
-        dofs[1] = cell.vertexID(1);
-        dofs[2] = cell.vertexID(2);
-        dofs[3] = cell.vertexID(3);
+        nodes[0] = cell.vertexID(0);
+        nodes[1] = cell.vertexID(1);
+        nodes[2] = cell.vertexID(2);
+        nodes[3] = cell.vertexID(3);
         int offset = mesh.numVertices();
-        dofs[4] = offset + cell.vertexID(0);
-        dofs[5] = offset + cell.vertexID(1);
-        dofs[6] = offset + cell.vertexID(2);
-        dofs[7] = offset + cell.vertexID(3);
+        nodes[4] = offset + cell.vertexID(0);
+        nodes[5] = offset + cell.vertexID(1);
+        nodes[6] = offset + cell.vertexID(2);
+        nodes[7] = offset + cell.vertexID(3);
         offset = offset + mesh.numVertices();
-        dofs[8] = offset + cell.vertexID(0);
-        dofs[9] = offset + cell.vertexID(1);
-        dofs[10] = offset + cell.vertexID(2);
-        dofs[11] = offset + cell.vertexID(3);
+        nodes[8] = offset + cell.vertexID(0);
+        nodes[9] = offset + cell.vertexID(1);
+        nodes[10] = offset + cell.vertexID(2);
+        nodes[11] = offset + cell.vertexID(3);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -506,37 +506,37 @@ public:
       return 1;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
-      dofs[3] = cell.vertexID(3);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
+      nodes[3] = cell.vertexID(3);
       int offset = mesh.numVertices();
-      dofs[4] = offset + cell.vertexID(0);
-      dofs[5] = offset + cell.vertexID(1);
-      dofs[6] = offset + cell.vertexID(2);
-      dofs[7] = offset + cell.vertexID(3);
+      nodes[4] = offset + cell.vertexID(0);
+      nodes[5] = offset + cell.vertexID(1);
+      nodes[6] = offset + cell.vertexID(2);
+      nodes[7] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[8] = offset + cell.vertexID(0);
-      dofs[9] = offset + cell.vertexID(1);
-      dofs[10] = offset + cell.vertexID(2);
-      dofs[11] = offset + cell.vertexID(3);
+      nodes[8] = offset + cell.vertexID(0);
+      nodes[9] = offset + cell.vertexID(1);
+      nodes[10] = offset + cell.vertexID(2);
+      nodes[11] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[12] = offset + cell.vertexID(0);
-      dofs[13] = offset + cell.vertexID(1);
-      dofs[14] = offset + cell.vertexID(2);
-      dofs[15] = offset + cell.vertexID(3);
+      nodes[12] = offset + cell.vertexID(0);
+      nodes[13] = offset + cell.vertexID(1);
+      nodes[14] = offset + cell.vertexID(2);
+      nodes[15] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[16] = offset + cell.vertexID(0);
-      dofs[17] = offset + cell.vertexID(1);
-      dofs[18] = offset + cell.vertexID(2);
-      dofs[19] = offset + cell.vertexID(3);
+      nodes[16] = offset + cell.vertexID(0);
+      nodes[17] = offset + cell.vertexID(1);
+      nodes[18] = offset + cell.vertexID(2);
+      nodes[19] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[20] = offset + cell.vertexID(0);
-      dofs[21] = offset + cell.vertexID(1);
-      dofs[22] = offset + cell.vertexID(2);
-      dofs[23] = offset + cell.vertexID(3);
+      nodes[20] = offset + cell.vertexID(0);
+      nodes[21] = offset + cell.vertexID(1);
+      nodes[22] = offset + cell.vertexID(2);
+      nodes[23] = offset + cell.vertexID(3);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -674,22 +674,22 @@ public:
         return 1;
       }
     
-      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.vertexID(0);
-        dofs[1] = cell.vertexID(1);
-        dofs[2] = cell.vertexID(2);
-        dofs[3] = cell.vertexID(3);
+        nodes[0] = cell.vertexID(0);
+        nodes[1] = cell.vertexID(1);
+        nodes[2] = cell.vertexID(2);
+        nodes[3] = cell.vertexID(3);
         int offset = mesh.numVertices();
-        dofs[4] = offset + cell.vertexID(0);
-        dofs[5] = offset + cell.vertexID(1);
-        dofs[6] = offset + cell.vertexID(2);
-        dofs[7] = offset + cell.vertexID(3);
+        nodes[4] = offset + cell.vertexID(0);
+        nodes[5] = offset + cell.vertexID(1);
+        nodes[6] = offset + cell.vertexID(2);
+        nodes[7] = offset + cell.vertexID(3);
         offset = offset + mesh.numVertices();
-        dofs[8] = offset + cell.vertexID(0);
-        dofs[9] = offset + cell.vertexID(1);
-        dofs[10] = offset + cell.vertexID(2);
-        dofs[11] = offset + cell.vertexID(3);
+        nodes[8] = offset + cell.vertexID(0);
+        nodes[9] = offset + cell.vertexID(1);
+        nodes[10] = offset + cell.vertexID(2);
+        nodes[11] = offset + cell.vertexID(3);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -802,22 +802,22 @@ public:
         return 1;
       }
     
-      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.vertexID(0);
-        dofs[1] = cell.vertexID(1);
-        dofs[2] = cell.vertexID(2);
-        dofs[3] = cell.vertexID(3);
+        nodes[0] = cell.vertexID(0);
+        nodes[1] = cell.vertexID(1);
+        nodes[2] = cell.vertexID(2);
+        nodes[3] = cell.vertexID(3);
         int offset = mesh.numVertices();
-        dofs[4] = offset + cell.vertexID(0);
-        dofs[5] = offset + cell.vertexID(1);
-        dofs[6] = offset + cell.vertexID(2);
-        dofs[7] = offset + cell.vertexID(3);
+        nodes[4] = offset + cell.vertexID(0);
+        nodes[5] = offset + cell.vertexID(1);
+        nodes[6] = offset + cell.vertexID(2);
+        nodes[7] = offset + cell.vertexID(3);
         offset = offset + mesh.numVertices();
-        dofs[8] = offset + cell.vertexID(0);
-        dofs[9] = offset + cell.vertexID(1);
-        dofs[10] = offset + cell.vertexID(2);
-        dofs[11] = offset + cell.vertexID(3);
+        nodes[8] = offset + cell.vertexID(0);
+        nodes[9] = offset + cell.vertexID(1);
+        nodes[10] = offset + cell.vertexID(2);
+        nodes[11] = offset + cell.vertexID(3);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1544,37 +1544,37 @@ public:
       return 1;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
-      dofs[3] = cell.vertexID(3);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
+      nodes[3] = cell.vertexID(3);
       int offset = mesh.numVertices();
-      dofs[4] = offset + cell.vertexID(0);
-      dofs[5] = offset + cell.vertexID(1);
-      dofs[6] = offset + cell.vertexID(2);
-      dofs[7] = offset + cell.vertexID(3);
+      nodes[4] = offset + cell.vertexID(0);
+      nodes[5] = offset + cell.vertexID(1);
+      nodes[6] = offset + cell.vertexID(2);
+      nodes[7] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[8] = offset + cell.vertexID(0);
-      dofs[9] = offset + cell.vertexID(1);
-      dofs[10] = offset + cell.vertexID(2);
-      dofs[11] = offset + cell.vertexID(3);
+      nodes[8] = offset + cell.vertexID(0);
+      nodes[9] = offset + cell.vertexID(1);
+      nodes[10] = offset + cell.vertexID(2);
+      nodes[11] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[12] = offset + cell.vertexID(0);
-      dofs[13] = offset + cell.vertexID(1);
-      dofs[14] = offset + cell.vertexID(2);
-      dofs[15] = offset + cell.vertexID(3);
+      nodes[12] = offset + cell.vertexID(0);
+      nodes[13] = offset + cell.vertexID(1);
+      nodes[14] = offset + cell.vertexID(2);
+      nodes[15] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[16] = offset + cell.vertexID(0);
-      dofs[17] = offset + cell.vertexID(1);
-      dofs[18] = offset + cell.vertexID(2);
-      dofs[19] = offset + cell.vertexID(3);
+      nodes[16] = offset + cell.vertexID(0);
+      nodes[17] = offset + cell.vertexID(1);
+      nodes[18] = offset + cell.vertexID(2);
+      nodes[19] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[20] = offset + cell.vertexID(0);
-      dofs[21] = offset + cell.vertexID(1);
-      dofs[22] = offset + cell.vertexID(2);
-      dofs[23] = offset + cell.vertexID(3);
+      nodes[20] = offset + cell.vertexID(0);
+      nodes[21] = offset + cell.vertexID(1);
+      nodes[22] = offset + cell.vertexID(2);
+      nodes[23] = offset + cell.vertexID(3);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1712,22 +1712,22 @@ public:
         return 1;
       }
     
-      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.vertexID(0);
-        dofs[1] = cell.vertexID(1);
-        dofs[2] = cell.vertexID(2);
-        dofs[3] = cell.vertexID(3);
+        nodes[0] = cell.vertexID(0);
+        nodes[1] = cell.vertexID(1);
+        nodes[2] = cell.vertexID(2);
+        nodes[3] = cell.vertexID(3);
         int offset = mesh.numVertices();
-        dofs[4] = offset + cell.vertexID(0);
-        dofs[5] = offset + cell.vertexID(1);
-        dofs[6] = offset + cell.vertexID(2);
-        dofs[7] = offset + cell.vertexID(3);
+        nodes[4] = offset + cell.vertexID(0);
+        nodes[5] = offset + cell.vertexID(1);
+        nodes[6] = offset + cell.vertexID(2);
+        nodes[7] = offset + cell.vertexID(3);
         offset = offset + mesh.numVertices();
-        dofs[8] = offset + cell.vertexID(0);
-        dofs[9] = offset + cell.vertexID(1);
-        dofs[10] = offset + cell.vertexID(2);
-        dofs[11] = offset + cell.vertexID(3);
+        nodes[8] = offset + cell.vertexID(0);
+        nodes[9] = offset + cell.vertexID(1);
+        nodes[10] = offset + cell.vertexID(2);
+        nodes[11] = offset + cell.vertexID(3);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1840,22 +1840,22 @@ public:
         return 1;
       }
     
-      void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+      void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
       {
-        dofs[0] = cell.vertexID(0);
-        dofs[1] = cell.vertexID(1);
-        dofs[2] = cell.vertexID(2);
-        dofs[3] = cell.vertexID(3);
+        nodes[0] = cell.vertexID(0);
+        nodes[1] = cell.vertexID(1);
+        nodes[2] = cell.vertexID(2);
+        nodes[3] = cell.vertexID(3);
         int offset = mesh.numVertices();
-        dofs[4] = offset + cell.vertexID(0);
-        dofs[5] = offset + cell.vertexID(1);
-        dofs[6] = offset + cell.vertexID(2);
-        dofs[7] = offset + cell.vertexID(3);
+        nodes[4] = offset + cell.vertexID(0);
+        nodes[5] = offset + cell.vertexID(1);
+        nodes[6] = offset + cell.vertexID(2);
+        nodes[7] = offset + cell.vertexID(3);
         offset = offset + mesh.numVertices();
-        dofs[8] = offset + cell.vertexID(0);
-        dofs[9] = offset + cell.vertexID(1);
-        dofs[10] = offset + cell.vertexID(2);
-        dofs[11] = offset + cell.vertexID(3);
+        nodes[8] = offset + cell.vertexID(0);
+        nodes[9] = offset + cell.vertexID(1);
+        nodes[10] = offset + cell.vertexID(2);
+        nodes[11] = offset + cell.vertexID(3);
       }
     
       void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1973,22 +1973,22 @@ public:
       return 1;
     }
   
-    void dofmap(int dofs[], const Cell& cell, const Mesh& mesh) const
+    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
     {
-      dofs[0] = cell.vertexID(0);
-      dofs[1] = cell.vertexID(1);
-      dofs[2] = cell.vertexID(2);
-      dofs[3] = cell.vertexID(3);
+      nodes[0] = cell.vertexID(0);
+      nodes[1] = cell.vertexID(1);
+      nodes[2] = cell.vertexID(2);
+      nodes[3] = cell.vertexID(3);
       int offset = mesh.numVertices();
-      dofs[4] = offset + cell.vertexID(0);
-      dofs[5] = offset + cell.vertexID(1);
-      dofs[6] = offset + cell.vertexID(2);
-      dofs[7] = offset + cell.vertexID(3);
+      nodes[4] = offset + cell.vertexID(0);
+      nodes[5] = offset + cell.vertexID(1);
+      nodes[6] = offset + cell.vertexID(2);
+      nodes[7] = offset + cell.vertexID(3);
       offset = offset + mesh.numVertices();
-      dofs[8] = offset + cell.vertexID(0);
-      dofs[9] = offset + cell.vertexID(1);
-      dofs[10] = offset + cell.vertexID(2);
-      dofs[11] = offset + cell.vertexID(3);
+      nodes[8] = offset + cell.vertexID(0);
+      nodes[9] = offset + cell.vertexID(1);
+      nodes[10] = offset + cell.vertexID(2);
+      nodes[11] = offset + cell.vertexID(3);
     }
   
     void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
