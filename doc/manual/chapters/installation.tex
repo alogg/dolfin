@@ -12,7 +12,7 @@ list at the address
   dolfin-dev@fenics.org
 \end{code}
 
-\dolfin{} must currently be compiled directly from source, but effort
+\dolfin{} must currently be compiled directly from source, but an effort
 is underway to provide precompiled Debian packages of \dolfin{} and
 other \fenics{} components.
 
@@ -95,7 +95,7 @@ the \ffc{} manual for further details.
 \index{compiling}
 
 \dolfin{} is built using the standard GNU Autotools (Automake,
-Autoconf), which means that the installation procedure is simple:
+Autoconf) and libtool, which means that the installation procedure is simple:
 \begin{code}
   # ./configure
   # make
@@ -202,26 +202,20 @@ In preparation.
 \index{Cygwin}
 
 \dolfin{} can be used under Windows using Cygwin, which provides a Linux-like
-environment. The installation process is largely the same as under GNU/Linux. 
-This section addresses some Cygwin specific issues.
-
+environment. The installation process is the same as under GNU/Linux. 
 To use \dolfin{} under Cygwin, the Cygwin development tools must be installed. 
 Instructions for installing PETSc under Cygwin can be found on the  PETSc web 
 page. Installation of \ffc{} and \fiat{} is the same as under GNU/Linux. The 
 Python package Numeric is not available as a Cygwin package and must be 
 installed manually. To compile \dolfin{}, the Cygwin package  
-\texttt{libxml2-devel} must be installed. \dolfin{} does not link correctly with 
-the curses libraries of Cygwin, so under Cygwin, \dolfin{} can be built by:
+\texttt{libxml2-devel} must be installed. The compilation procedure is then the
+same as under GNU/Linux. If MPI has not been installed:
 \begin{code}
-  # ./configure --disable-curses
+  # ./configure --disable-mpi
   # make
 \end{code}
-If MPI has not been installed:
+followed by an optional
 \begin{code}
-  # ./configure --disable-mpi --disable-curses
-  # make
+  # make install
 \end{code}
-
-Due to problems with the latest GCC compilers provided by Cygwin (GCC 3.4.4), compiling 
-\dolfin{} will lead to fatal errors. These problems can be avoided by using GCC version 
-3.3.3 provided by Cygwin.
+will compile \dolfin{} on your system.
