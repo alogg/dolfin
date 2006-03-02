@@ -635,15 +635,13 @@ HTML_FILE_EXTENSION    = .html
 # each generated HTML page. If it is left blank doxygen will generate a 
 # standard header.
 
-#HTML_HEADER            = doc/progr_reference/html/myheader.inc
-HTML_HEADER            = doc/progr_reference/html/test_header.inc
+HTML_HEADER            = doc/progr_reference/html/myheader.inc
 
 # The HTML_FOOTER tag can be used to specify a personal HTML footer for 
 # each generated HTML page. If it is left blank doxygen will generate a 
 # standard footer.
 
-#HTML_FOOTER            = doc/progr_reference/html/myfooter.inc
-HTML_FOOTER            = doc/progr_reference/html/test_footer.inc
+HTML_FOOTER            = doc/progr_reference/html/myfooter.inc
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading 
 # style sheet that is used by each HTML page. It can be used to 
@@ -652,7 +650,6 @@ HTML_FOOTER            = doc/progr_reference/html/test_footer.inc
 # the style sheet file to the HTML output directory, so don't put your own 
 # stylesheet in the HTML output directory as well, or it will be erased!
 
-#HTML_STYLESHEET        = doc/progr_reference/html/fenics.css 
 HTML_STYLESHEET        =
 
 # If the HTML_ALIGN_MEMBERS tag is set to YES, the members of classes, 
