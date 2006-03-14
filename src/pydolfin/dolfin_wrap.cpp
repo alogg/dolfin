@@ -9026,6 +9026,35 @@ static PyObject *_wrap_new_GMRES__SWIG_1(PyObject *, PyObject *args) {
 }
 
 
+static PyObject *_wrap_new_GMRES__SWIG_2(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    Preconditioner *arg1 = 0 ;
+    dolfin::GMRES *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_GMRES",&obj0)) goto fail;
+    {
+        SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(1)) SWIG_fail;
+        if (arg1 == NULL) {
+            SWIG_null_ref("Preconditioner");
+        }
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::GMRES *)new dolfin::GMRES(*arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__GMRES, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
 static PyObject *_wrap_new_GMRES(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[2];
@@ -9051,6 +9080,21 @@ static PyObject *_wrap_new_GMRES(PyObject *self, PyObject *args) {
         }
         if (_v) {
             return _wrap_new_GMRES__SWIG_1(self,args);
+        }
+    }
+    if (argc == 1) {
+        int _v;
+        {
+            void *ptr = 0;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = (ptr != 0);
+            }
+        }
+        if (_v) {
+            return _wrap_new_GMRES__SWIG_2(self,args);
         }
     }
     
@@ -9718,6 +9762,35 @@ static PyObject *_wrap_new_KrylovSolver__SWIG_2(PyObject *, PyObject *args) {
 
 static PyObject *_wrap_new_KrylovSolver__SWIG_3(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
+    Preconditioner *arg1 = 0 ;
+    dolfin::KrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
+    {
+        SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(1)) SWIG_fail;
+        if (arg1 == NULL) {
+            SWIG_null_ref("Preconditioner");
+        }
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::KrylovSolver *)new dolfin::KrylovSolver(*arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__KrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_4(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
     dolfin::KrylovSolver::Type arg1 ;
     Preconditioner::Type arg2 ;
     dolfin::KrylovSolver *result;
@@ -9742,6 +9815,41 @@ static PyObject *_wrap_new_KrylovSolver__SWIG_3(PyObject *, PyObject *args) {
     try {
         Swig::UnknownExceptionHandler dh;
         result = (dolfin::KrylovSolver *)new dolfin::KrylovSolver(arg1,arg2);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__KrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_5(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::KrylovSolver::Type arg1 ;
+    Preconditioner *arg2 = 0 ;
+    dolfin::KrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OO:new_KrylovSolver",&obj0,&obj1)) goto fail;
+    {
+        arg1 = static_cast<dolfin::KrylovSolver::Type >(SWIG_As_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    {
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (arg2 == NULL) {
+            SWIG_null_ref("Preconditioner");
+        }
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::KrylovSolver *)new dolfin::KrylovSolver(arg1,*arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -9782,6 +9890,21 @@ static PyObject *_wrap_new_KrylovSolver(PyObject *self, PyObject *args) {
     }
     if (argc == 1) {
         int _v;
+        {
+            void *ptr = 0;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = (ptr != 0);
+            }
+        }
+        if (_v) {
+            return _wrap_new_KrylovSolver__SWIG_3(self,args);
+        }
+    }
+    if (argc == 1) {
+        int _v;
         _v = SWIG_Check_int(argv[0]);
         if (_v) {
             return _wrap_new_KrylovSolver__SWIG_1(self,args);
@@ -9801,7 +9924,25 @@ static PyObject *_wrap_new_KrylovSolver(PyObject *self, PyObject *args) {
                 }
             }
             if (_v) {
-                return _wrap_new_KrylovSolver__SWIG_3(self,args);
+                return _wrap_new_KrylovSolver__SWIG_4(self,args);
+            }
+        }
+    }
+    if (argc == 2) {
+        int _v;
+        _v = SWIG_Check_int(argv[0]);
+        if (_v) {
+            {
+                void *ptr = 0;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = (ptr != 0);
+                }
+            }
+            if (_v) {
+                return _wrap_new_KrylovSolver__SWIG_5(self,args);
             }
         }
     }
@@ -10056,167 +10197,6 @@ static PyObject *_wrap_KrylovSolver_solve(PyObject *self, PyObject *args) {
     }
     
     PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'KrylovSolver_solve'");
-    return NULL;
-}
-
-
-static PyObject *_wrap_KrylovSolver_setType(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::KrylovSolver *arg1 = (dolfin::KrylovSolver *) 0 ;
-    dolfin::KrylovSolver::Type arg2 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:KrylovSolver_setType",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__KrylovSolver, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::KrylovSolver::Type const >(SWIG_As_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->setType(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_KrylovSolver_setPreconditioner__SWIG_0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::KrylovSolver *arg1 = (dolfin::KrylovSolver *) 0 ;
-    Preconditioner::Type arg2 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:KrylovSolver_setPreconditioner",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__KrylovSolver, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        Preconditioner::Type * argp;
-        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_Preconditioner__Type, SWIG_POINTER_EXCEPTION);
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        if (argp == NULL) {
-            SWIG_null_ref("Preconditioner::Type");
-        }
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        arg2 = *argp;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->setPreconditioner(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_KrylovSolver_setPreconditioner__SWIG_1(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::KrylovSolver *arg1 = (dolfin::KrylovSolver *) 0 ;
-    Preconditioner *arg2 = 0 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:KrylovSolver_setPreconditioner",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__KrylovSolver, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        if (arg2 == NULL) {
-            SWIG_null_ref("Preconditioner");
-        }
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->setPreconditioner(*arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_KrylovSolver_setPreconditioner(PyObject *self, PyObject *args) {
-    int argc;
-    PyObject *argv[3];
-    int ii;
-    
-    argc = PyObject_Length(args);
-    for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-        argv[ii] = PyTuple_GetItem(args,ii);
-    }
-    if (argc == 2) {
-        int _v;
-        {
-            void *ptr;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__KrylovSolver, 0) == -1) {
-                _v = 0;
-                PyErr_Clear();
-            } else {
-                _v = 1;
-            }
-        }
-        if (_v) {
-            {
-                void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner__Type, 0) == -1) {
-                    _v = 0;
-                    PyErr_Clear();
-                } else {
-                    _v = (ptr != 0);
-                }
-            }
-            if (_v) {
-                return _wrap_KrylovSolver_setPreconditioner__SWIG_0(self,args);
-            }
-        }
-    }
-    if (argc == 2) {
-        int _v;
-        {
-            void *ptr;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__KrylovSolver, 0) == -1) {
-                _v = 0;
-                PyErr_Clear();
-            } else {
-                _v = 1;
-            }
-        }
-        if (_v) {
-            {
-                void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
-                    _v = 0;
-                    PyErr_Clear();
-                } else {
-                    _v = (ptr != 0);
-                }
-            }
-            if (_v) {
-                return _wrap_KrylovSolver_setPreconditioner__SWIG_1(self,args);
-            }
-        }
-    }
-    
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'KrylovSolver_setPreconditioner'");
     return NULL;
 }
 
@@ -39541,8 +39521,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_KrylovSolver", _wrap_new_KrylovSolver, METH_VARARGS, NULL},
 	 { (char *)"delete_KrylovSolver", _wrap_delete_KrylovSolver, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_solve", _wrap_KrylovSolver_solve, METH_VARARGS, NULL},
-	 { (char *)"KrylovSolver_setType", _wrap_KrylovSolver_setType, METH_VARARGS, NULL},
-	 { (char *)"KrylovSolver_setPreconditioner", _wrap_KrylovSolver_setPreconditioner, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_solver", _wrap_KrylovSolver_solver, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_disp", _wrap_KrylovSolver_disp, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_swigregister", KrylovSolver_swigregister, METH_VARARGS, NULL},
