@@ -6817,6 +6817,31 @@ static PyObject *_wrap_new_Matrix__SWIG_0(PyObject *, PyObject *args) {
 
 static PyObject *_wrap_new_Matrix__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
+    dolfin::Matrix::Type arg1 ;
+    dolfin::Matrix *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Matrix",&obj0)) goto fail;
+    {
+        arg1 = static_cast<dolfin::Matrix::Type >(SWIG_As_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::Matrix *)new dolfin::Matrix(arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__Matrix, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_Matrix__SWIG_2(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
     Mat arg1 ;
     dolfin::Matrix *result;
     PyObject * obj0 = 0 ;
@@ -6846,7 +6871,7 @@ static PyObject *_wrap_new_Matrix__SWIG_1(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_new_Matrix__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_3(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::uint arg1 ;
     dolfin::uint arg2 ;
@@ -6877,7 +6902,44 @@ static PyObject *_wrap_new_Matrix__SWIG_2(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_new_Matrix__SWIG_3(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_4(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::uint arg1 ;
+    dolfin::uint arg2 ;
+    dolfin::Matrix::Type arg3 ;
+    dolfin::Matrix *result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    PyObject * obj2 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OOO:new_Matrix",&obj0,&obj1,&obj2)) goto fail;
+    {
+        arg1 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    {
+        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    {
+        arg3 = static_cast<dolfin::Matrix::Type >(SWIG_As_int(obj2)); 
+        if (SWIG_arg_fail(3)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::Matrix *)new dolfin::Matrix(arg1,arg2,arg3);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__Matrix, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_Matrix__SWIG_5(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::Matrix *arg1 = 0 ;
     dolfin::Matrix *result;
@@ -6908,11 +6970,11 @@ static PyObject *_wrap_new_Matrix__SWIG_3(PyObject *, PyObject *args) {
 
 static PyObject *_wrap_new_Matrix(PyObject *self, PyObject *args) {
     int argc;
-    PyObject *argv[3];
+    PyObject *argv[4];
     int ii;
     
     argc = PyObject_Length(args);
-    for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    for (ii = 0; (ii < argc) && (ii < 3); ii++) {
         argv[ii] = PyTuple_GetItem(args,ii);
     }
     if (argc == 0) {
@@ -6930,7 +6992,7 @@ static PyObject *_wrap_new_Matrix(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_Matrix__SWIG_1(self,args);
+            return _wrap_new_Matrix__SWIG_2(self,args);
         }
     }
     if (argc == 1) {
@@ -6945,7 +7007,14 @@ static PyObject *_wrap_new_Matrix(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_Matrix__SWIG_3(self,args);
+            return _wrap_new_Matrix__SWIG_5(self,args);
+        }
+    }
+    if (argc == 1) {
+        int _v;
+        _v = SWIG_Check_int(argv[0]);
+        if (_v) {
+            return _wrap_new_Matrix__SWIG_1(self,args);
         }
     }
     if (argc == 2) {
@@ -6954,7 +7023,20 @@ static PyObject *_wrap_new_Matrix(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_unsigned_SS_int(argv[1]);
             if (_v) {
-                return _wrap_new_Matrix__SWIG_2(self,args);
+                return _wrap_new_Matrix__SWIG_3(self,args);
+            }
+        }
+    }
+    if (argc == 3) {
+        int _v;
+        _v = SWIG_Check_unsigned_SS_int(argv[0]);
+        if (_v) {
+            _v = SWIG_Check_unsigned_SS_int(argv[1]);
+            if (_v) {
+                _v = SWIG_Check_int(argv[2]);
+                if (_v) {
+                    return _wrap_new_Matrix__SWIG_4(self,args);
+                }
             }
         }
     }
@@ -7731,6 +7813,29 @@ static PyObject *_wrap_Matrix_apply(PyObject *, PyObject *args) {
         SWIG_fail;
     }
     Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_Matrix_getMatrixType(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::Matrix *arg1 = (dolfin::Matrix *) 0 ;
+    dolfin::Matrix::Type result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_getMatrixType",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Matrix, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::Matrix::Type)((dolfin::Matrix const *)arg1)->getMatrixType();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_From_int((result));
     return resultobj;
     fail:
     return NULL;
@@ -10197,33 +10302,6 @@ static PyObject *_wrap_KrylovSolver_solve(PyObject *self, PyObject *args) {
     }
     
     PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'KrylovSolver_solve'");
-    return NULL;
-}
-
-
-static PyObject *_wrap_KrylovSolver_solver(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::KrylovSolver *arg1 = (dolfin::KrylovSolver *) 0 ;
-    KSP result;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:KrylovSolver_solver",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__KrylovSolver, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (arg1)->solver();
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        KSP * resultptr;
-        resultptr = new KSP(static_cast<KSP & >(result));
-        resultobj = SWIG_NewPointerObj((void *)(resultptr), SWIGTYPE_p_KSP, 1);
-    }
-    return resultobj;
-    fail:
     return NULL;
 }
 
@@ -39488,6 +39566,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Matrix_mult", _wrap_Matrix_mult, METH_VARARGS, NULL},
 	 { (char *)"Matrix_norm", _wrap_Matrix_norm, METH_VARARGS, NULL},
 	 { (char *)"Matrix_apply", _wrap_Matrix_apply, METH_VARARGS, NULL},
+	 { (char *)"Matrix_getMatrixType", _wrap_Matrix_getMatrixType, METH_VARARGS, NULL},
 	 { (char *)"Matrix_mat", _wrap_Matrix_mat, METH_VARARGS, NULL},
 	 { (char *)"Matrix_disp", _wrap_Matrix_disp, METH_VARARGS, NULL},
 	 { (char *)"Matrix___call__", _wrap_Matrix___call__, METH_VARARGS, NULL},
@@ -39521,7 +39600,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_KrylovSolver", _wrap_new_KrylovSolver, METH_VARARGS, NULL},
 	 { (char *)"delete_KrylovSolver", _wrap_delete_KrylovSolver, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_solve", _wrap_KrylovSolver_solve, METH_VARARGS, NULL},
-	 { (char *)"KrylovSolver_solver", _wrap_KrylovSolver_solver, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_disp", _wrap_KrylovSolver_disp, METH_VARARGS, NULL},
 	 { (char *)"KrylovSolver_swigregister", KrylovSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_EigenvalueSolver", _wrap_new_EigenvalueSolver, METH_VARARGS, NULL},
@@ -41105,6 +41183,18 @@ SWIGEXPORT void SWIG_init(void) {
     }
     {
         PyDict_SetItemString(d,"Vector_linf", SWIG_From_int(static_cast<int >(dolfin::Vector::linf))); 
+    }
+    {
+        PyDict_SetItemString(d,"Matrix_default_matrix", SWIG_From_int(static_cast<int >(dolfin::Matrix::default_matrix))); 
+    }
+    {
+        PyDict_SetItemString(d,"Matrix_spooles", SWIG_From_int(static_cast<int >(dolfin::Matrix::spooles))); 
+    }
+    {
+        PyDict_SetItemString(d,"Matrix_superlu", SWIG_From_int(static_cast<int >(dolfin::Matrix::superlu))); 
+    }
+    {
+        PyDict_SetItemString(d,"Matrix_umfpack", SWIG_From_int(static_cast<int >(dolfin::Matrix::umfpack))); 
     }
     {
         PyDict_SetItemString(d,"Matrix_l1", SWIG_From_int(static_cast<int >(dolfin::Matrix::l1))); 
