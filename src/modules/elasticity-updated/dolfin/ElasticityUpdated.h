@@ -655,6 +655,9 @@ public:
     block[11] = 8.333333333333309e-03*G0_8 + 8.333333333333311e-03*G0_9 + 8.333333333333311e-03*G0_10 + 1.666666666666662e-02*G0_11 - 1.666666666666665e-01*G7_2_2 - 1.666666666666665e-01*G8_5_2 - 1.666666666666665e-01*G9_8_2;
   }
 
+  // No contribution from the boundary
+  void eval(real block[], const AffineMap& map, unsigned int boundary) const {}   
+
 private:
 
   const real& c0;

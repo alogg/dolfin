@@ -550,6 +550,9 @@ public:
     block[143] = 2.777777777777770e-03*G0_0 + 2.777777777777771e-03*G0_1 + 2.777777777777771e-03*G0_2 + 8.333333333333311e-03*G0_3;
   }
 
+  // No contribution from the boundary
+  void eval(real block[], const AffineMap& map, unsigned int boundary) const {}   
+
 };
 
 } }

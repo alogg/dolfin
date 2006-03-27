@@ -259,6 +259,9 @@ public:
     block[15] = 1.666666666666665e-01*G0_2_2;
   }
 
+  // No contribution from the boundary
+  void eval(real block[], const AffineMap& map, unsigned int boundary) const {}   
+
 };
 
 /// This class contains the form to be evaluated, including
@@ -491,6 +494,9 @@ public:
     block[2] = 8.333333333333307e-03*G0_0 + 8.333333333333311e-03*G0_1 + 1.666666666666662e-02*G0_2 + 8.333333333333312e-03*G0_3;
     block[3] = 8.333333333333312e-03*G0_0 + 8.333333333333312e-03*G0_1 + 8.333333333333311e-03*G0_2 + 1.666666666666662e-02*G0_3;
   }
+
+  // No contribution from the boundary
+  void eval(real block[], const AffineMap& map, unsigned int boundary) const {}   
 
 };
 
