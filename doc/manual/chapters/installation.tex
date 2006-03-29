@@ -41,9 +41,9 @@ package to install is \texttt{libxml2-dev}.
 \subsubsection{Installing PETSc}
 \index{PETSc}
 
-PETSc is a library for the solution of linear and nonlinear systems, functioning as the backend
-for the \dolfin{} linear algebra classes. \dolfin{} depends on PETSc version 2.3.0, which can be
-obtained from
+PETSc is a library for the solution of linear and nonlinear systems, functioning
+as the backend for the \dolfin{} linear algebra classes. \dolfin{} depends on 
+PETSc version 2.3.1, which can be obtained from
 \begin{code}
   http://www-unix.mcs.anl.gov/petsc/petsc-2/
 \end{code}
@@ -59,12 +59,14 @@ source directory:
 
 Add \texttt{--download-hypre=yes} to configure.py if you want to
 install Hypre which provides a collection of preconditioners,
-including algebraic multigrid (AMG).
+including algebraic multigrid (AMG), and 
+\texttt{--download-umfpack=yes} to configure.py if you want to
+install UMFPACK which provided as fast direct linear solver.
+Both packages are highly recommended.
 
-DOLFIN assumes that \texttt{PETSC\_DIR} is
-\texttt{/usr/local/lib/petsc/} but this can be controlled using the
-flag \texttt{--with-petsc-dir=<path>} when configuring DOLFIN (see
-below).
+DOLFIN assumes that \texttt{PETSC\_DIR} is \texttt{/usr/local/lib/petsc/} but
+this can be controlled using the flag \texttt{--with-petsc-dir=<path>} when 
+configuring DOLFIN (see below).
 
 \subsubsection{Installing FFC}
 \index{FFC}
