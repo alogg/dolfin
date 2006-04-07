@@ -1724,6 +1724,27 @@ SWIG_Check_double(PyObject* obj)
 }
 
 
+static int *new_intArray(int nelements) { 
+  return new int[nelements]; 
+}
+
+static void delete_intArray(int *ary) { 
+  delete [] ary; 
+}
+
+static int intArray_getitem(int *ary, int index) {
+    return ary[index];
+}
+static void intArray_setitem(int *ary, int index, int value) {
+    ary[index] = value;
+}
+
+
+  /*@/usr/share/swig1.3/python/pymacros.swg,72,SWIG_define@*/
+#define SWIG_From_int PyInt_FromLong
+/*@@*/
+
+
 SWIGINTERNINLINE int
   SWIG_CheckUnsignedLongInRange(unsigned long value,
 				unsigned long max_value,
@@ -1891,11 +1912,6 @@ SWIGINTERNINLINE PyObject*
   {
     return SWIG_FromCharArray(s.data(), s.size());
   }
-
-
-  /*@/usr/share/swig1.3/python/pymacros.swg,72,SWIG_define@*/
-#define SWIG_From_int PyInt_FromLong
-/*@@*/
 
 
 SWIGINTERNINLINE int
@@ -2707,6 +2723,118 @@ static PyObject *_wrap_realArray_setitem(PyObject *, PyObject *args) {
     try {
         Swig::UnknownExceptionHandler dh;
         realArray_setitem(arg1,arg2,arg3);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_intArray(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    int arg1 ;
+    int *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_intArray",&obj0)) goto fail;
+    {
+        arg1 = static_cast<int >(SWIG_As_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (int *)new_intArray(arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_int, 0);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_delete_intArray(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    int *arg1 = (int *) 0 ;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:delete_intArray",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_int, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        delete_intArray(arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_intArray_getitem(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    int *arg1 = (int *) 0 ;
+    int arg2 ;
+    int result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OO:intArray_getitem",&obj0,&obj1)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_int, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    {
+        arg2 = static_cast<int >(SWIG_As_int(obj1)); 
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (int)intArray_getitem(arg1,arg2);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_int(static_cast<int >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_intArray_setitem(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    int *arg1 = (int *) 0 ;
+    int arg2 ;
+    int arg3 ;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    PyObject * obj2 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OOO:intArray_setitem",&obj0,&obj1,&obj2)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_int, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    {
+        arg2 = static_cast<int >(SWIG_As_int(obj1)); 
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    {
+        arg3 = static_cast<int >(SWIG_As_int(obj2)); 
+        if (SWIG_arg_fail(3)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        intArray_setitem(arg1,arg2,arg3);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -36119,78 +36247,6 @@ static PyObject *_wrap_ODE_save(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_ODE_size(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
-    dolfin::uint result;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:ODE_size",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::uint)((dolfin::ODE const *)arg1)->size();
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_unsigned_SS_int(static_cast<unsigned int >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ODE_endtime(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:ODE_endtime",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)((dolfin::ODE const *)arg1)->endtime();
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ODE_solve(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:ODE_solve",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->solve();
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
 static PyObject *_wrap_ODE_sparse__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
@@ -36297,6 +36353,78 @@ static PyObject *_wrap_ODE_sparse(PyObject *self, PyObject *args) {
     }
     
     PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'ODE_sparse'");
+    return NULL;
+}
+
+
+static PyObject *_wrap_ODE_size(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
+    dolfin::uint result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:ODE_size",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::uint)((dolfin::ODE const *)arg1)->size();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_unsigned_SS_int(static_cast<unsigned int >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_ODE_endtime(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
+    dolfin::real result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:ODE_endtime",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::real)((dolfin::ODE const *)arg1)->endtime();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_double(static_cast<double >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_ODE_solve(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:ODE_solve",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        (arg1)->solve();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
     return NULL;
 }
 
@@ -39278,6 +39406,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_realArray", _wrap_delete_realArray, METH_VARARGS, NULL},
 	 { (char *)"realArray_getitem", _wrap_realArray_getitem, METH_VARARGS, NULL},
 	 { (char *)"realArray_setitem", _wrap_realArray_setitem, METH_VARARGS, NULL},
+	 { (char *)"new_intArray", _wrap_new_intArray, METH_VARARGS, NULL},
+	 { (char *)"delete_intArray", _wrap_delete_intArray, METH_VARARGS, NULL},
+	 { (char *)"intArray_getitem", _wrap_intArray_getitem, METH_VARARGS, NULL},
+	 { (char *)"intArray_setitem", _wrap_intArray_setitem, METH_VARARGS, NULL},
 	 { (char *)"dolfin_init", _wrap_dolfin_init, METH_VARARGS, NULL},
 	 { (char *)"sqr", _wrap_sqr, METH_VARARGS, NULL},
 	 { (char *)"rand", _wrap_rand, METH_VARARGS, NULL},
@@ -39956,10 +40088,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ODE_timestep", _wrap_ODE_timestep, METH_VARARGS, NULL},
 	 { (char *)"ODE_update", _wrap_ODE_update, METH_VARARGS, NULL},
 	 { (char *)"ODE_save", _wrap_ODE_save, METH_VARARGS, NULL},
+	 { (char *)"ODE_sparse", _wrap_ODE_sparse, METH_VARARGS, NULL},
 	 { (char *)"ODE_size", _wrap_ODE_size, METH_VARARGS, NULL},
 	 { (char *)"ODE_endtime", _wrap_ODE_endtime, METH_VARARGS, NULL},
 	 { (char *)"ODE_solve", _wrap_ODE_solve, METH_VARARGS, NULL},
-	 { (char *)"ODE_sparse", _wrap_ODE_sparse, METH_VARARGS, NULL},
 	 { (char *)"disown_ODE", _wrap_disown_ODE, METH_VARARGS, NULL},
 	 { (char *)"ODE_swigregister", ODE_swigregister, METH_VARARGS, NULL},
 	 { (char *)"ODESolver_solve", _wrap_ODESolver_solve, METH_VARARGS, NULL},
