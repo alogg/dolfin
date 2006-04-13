@@ -6976,3 +6976,4 @@ AC_SUBST([am__untar])
 
 m4_include([m4/ac_pkg_swig.m4])
 m4_include([m4/ac_python_devel.m4])
+m4_include([m4/ax_compiler_vendor.m4])
