@@ -23,9 +23,19 @@ other \fenics{} components.
 \index{dependencies}
 
 \dolfin{} depends on a number of libraries that need to be installed on your
-system. These libraries include Libxml2 and PETSc. In addition to these 
+system. These libraries include Boost, Libxml2 and PETSc. In addition to these 
 libraries, you need to install \fiat{} and \ffc{} if you want to define your 
 own variational forms.
+
+\subsubsection{Installing Boost}
+\index{Boost}
+
+Boost is a collection of C++ source libraries. Boost can be obtained from
+\begin{code}
+  http://www.boost.org/
+\end{code}
+Packages are available for most Linux distributions. For Ubuntu/Debian users, the 
+package to install is \texttt{boost-dev}.
 
 \subsubsection{Installing Libxml2}
 \index{Libxml2}
@@ -35,7 +45,7 @@ obtained from
 \begin{code}
   http://xmlsoft.org/
 \end{code}
-Packages are available for most Linux distributions. For Debian users, the 
+Packages are available for most Linux distributions. For Ubuntu/Debian users, the 
 package to install is \texttt{libxml2-dev}.
 
 \subsubsection{Installing PETSc}
