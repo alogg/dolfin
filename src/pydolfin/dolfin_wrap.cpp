@@ -2410,23 +2410,24 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_dolfin__Triangle swig_types[79]
 #define SWIGTYPE_p_dolfin__UnitCube swig_types[80]
 #define SWIGTYPE_p_dolfin__UnitSquare swig_types[81]
-#define SWIGTYPE_p_dolfin__UtilBC swig_types[82]
-#define SWIGTYPE_p_dolfin__Variable swig_types[83]
-#define SWIGTYPE_p_dolfin__Vector swig_types[84]
-#define SWIGTYPE_p_dolfin__VectorElement swig_types[85]
-#define SWIGTYPE_p_dolfin__Vertex swig_types[86]
-#define SWIGTYPE_p_dolfin__VertexIterator swig_types[87]
-#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[88]
-#define SWIGTYPE_p_dolfin__cGqMethod swig_types[89]
-#define SWIGTYPE_p_dolfin__dGqMethod swig_types[90]
-#define SWIGTYPE_p_double swig_types[91]
-#define SWIGTYPE_p_int swig_types[92]
-#define SWIGTYPE_p_p_char swig_types[93]
-#define SWIGTYPE_p_std__complexTdouble_t swig_types[94]
-#define SWIGTYPE_p_std__setTint_t swig_types[95]
-#define SWIGTYPE_p_unsigned_int swig_types[96]
-static swig_type_info *swig_types[98];
-static swig_module_info swig_module = {swig_types, 97, 0, 0, 0, 0};
+#define SWIGTYPE_p_dolfin__UtilBC1 swig_types[82]
+#define SWIGTYPE_p_dolfin__UtilBC2 swig_types[83]
+#define SWIGTYPE_p_dolfin__Variable swig_types[84]
+#define SWIGTYPE_p_dolfin__Vector swig_types[85]
+#define SWIGTYPE_p_dolfin__VectorElement swig_types[86]
+#define SWIGTYPE_p_dolfin__Vertex swig_types[87]
+#define SWIGTYPE_p_dolfin__VertexIterator swig_types[88]
+#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[89]
+#define SWIGTYPE_p_dolfin__cGqMethod swig_types[90]
+#define SWIGTYPE_p_dolfin__dGqMethod swig_types[91]
+#define SWIGTYPE_p_double swig_types[92]
+#define SWIGTYPE_p_int swig_types[93]
+#define SWIGTYPE_p_p_char swig_types[94]
+#define SWIGTYPE_p_std__complexTdouble_t swig_types[95]
+#define SWIGTYPE_p_std__setTint_t swig_types[96]
+#define SWIGTYPE_p_unsigned_int swig_types[97]
+static swig_type_info *swig_types[99];
+static swig_module_info swig_module = {swig_types, 98, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -45138,23 +45139,23 @@ SWIGINTERN PyObject *ElasticityUpdatedODE_swigregister(PyObject *SWIGUNUSEDPARM(
     return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_UtilBC(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_UtilBC1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  dolfin::UtilBC *result = 0 ;
+  dolfin::UtilBC1 *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_UtilBC")) SWIG_fail;
-  result = (dolfin::UtilBC *)new dolfin::UtilBC();
+  if (!PyArg_ParseTuple(args,(char *)":new_UtilBC1")) SWIG_fail;
+  result = (dolfin::UtilBC1 *)new dolfin::UtilBC1();
   
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__UtilBC, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__UtilBC1, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_UtilBC_eval(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_UtilBC1_eval(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  dolfin::UtilBC *arg1 = (dolfin::UtilBC *) 0 ;
+  dolfin::UtilBC1 *arg1 = (dolfin::UtilBC1 *) 0 ;
   dolfin::BoundaryValue *arg2 = 0 ;
   dolfin::Point *arg3 = 0 ;
   unsigned int arg4 ;
@@ -45172,31 +45173,31 @@ SWIGINTERN PyObject *_wrap_UtilBC_eval(PyObject *SWIGUNUSEDPARM(self), PyObject 
   PyObject * obj3 = 0 ;
   Swig::Director *director = 0;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:UtilBC_eval",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__UtilBC, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:UtilBC1_eval",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__UtilBC1, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "UtilBC_eval" "', argument " "1"" of type '" "dolfin::UtilBC *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "UtilBC1_eval" "', argument " "1"" of type '" "dolfin::UtilBC1 *""'"); 
   }
-  arg1 = reinterpret_cast<dolfin::UtilBC * >(argp1);
+  arg1 = reinterpret_cast<dolfin::UtilBC1 * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__BoundaryValue,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "UtilBC_eval" "', argument " "2"" of type '" "dolfin::BoundaryValue &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "UtilBC1_eval" "', argument " "2"" of type '" "dolfin::BoundaryValue &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "UtilBC_eval" "', argument " "2"" of type '" "dolfin::BoundaryValue &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "UtilBC1_eval" "', argument " "2"" of type '" "dolfin::BoundaryValue &""'"); 
   }
   arg2 = reinterpret_cast<dolfin::BoundaryValue * >(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__Point,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "UtilBC_eval" "', argument " "3"" of type '" "dolfin::Point const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "UtilBC1_eval" "', argument " "3"" of type '" "dolfin::Point const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "UtilBC_eval" "', argument " "3"" of type '" "dolfin::Point const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "UtilBC1_eval" "', argument " "3"" of type '" "dolfin::Point const &""'"); 
   }
   arg3 = reinterpret_cast<dolfin::Point * >(argp3);
   ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "UtilBC_eval" "', argument " "4"" of type '" "unsigned int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "UtilBC1_eval" "', argument " "4"" of type '" "unsigned int""'");
   } 
   arg4 = static_cast<unsigned int >(val4);
   director = SWIG_DIRECTOR_CAST(arg1);
@@ -45215,10 +45216,94 @@ fail:
 }
 
 
-SWIGINTERN PyObject *UtilBC_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *UtilBC1_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-    SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__UtilBC, SWIG_NewClientData(obj));
+    SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__UtilBC1, SWIG_NewClientData(obj));
+    return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_UtilBC2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::UtilBC2 *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_UtilBC2")) SWIG_fail;
+  result = (dolfin::UtilBC2 *)new dolfin::UtilBC2();
+  
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__UtilBC2, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_UtilBC2_eval(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::UtilBC2 *arg1 = (dolfin::UtilBC2 *) 0 ;
+  dolfin::BoundaryValue *arg2 = 0 ;
+  dolfin::Point *arg3 = 0 ;
+  unsigned int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  unsigned int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:UtilBC2_eval",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__UtilBC2, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "UtilBC2_eval" "', argument " "1"" of type '" "dolfin::UtilBC2 *""'"); 
+  }
+  arg1 = reinterpret_cast<dolfin::UtilBC2 * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__BoundaryValue,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "UtilBC2_eval" "', argument " "2"" of type '" "dolfin::BoundaryValue &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "UtilBC2_eval" "', argument " "2"" of type '" "dolfin::BoundaryValue &""'"); 
+  }
+  arg2 = reinterpret_cast<dolfin::BoundaryValue * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__Point,  0  | 0);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "UtilBC2_eval" "', argument " "3"" of type '" "dolfin::Point const &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "UtilBC2_eval" "', argument " "3"" of type '" "dolfin::Point const &""'"); 
+  }
+  arg3 = reinterpret_cast<dolfin::Point * >(argp3);
+  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "UtilBC2_eval" "', argument " "4"" of type '" "unsigned int""'");
+  } 
+  arg4 = static_cast<unsigned int >(val4);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->eval(*arg2,(dolfin::Point const &)*arg3,arg4);
+    
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *UtilBC2_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+    PyObject *obj;
+    if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+    SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__UtilBC2, SWIG_NewClientData(obj));
     return SWIG_Py_Void();
 }
 
@@ -46174,9 +46259,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ElasticityUpdatedODE_solver_set", _wrap_ElasticityUpdatedODE_solver_set, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_solver_get", _wrap_ElasticityUpdatedODE_solver_get, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_swigregister", ElasticityUpdatedODE_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_UtilBC", _wrap_new_UtilBC, METH_VARARGS, NULL},
-	 { (char *)"UtilBC_eval", _wrap_UtilBC_eval, METH_VARARGS, NULL},
-	 { (char *)"UtilBC_swigregister", UtilBC_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_UtilBC1", _wrap_new_UtilBC1, METH_VARARGS, NULL},
+	 { (char *)"UtilBC1_eval", _wrap_UtilBC1_eval, METH_VARARGS, NULL},
+	 { (char *)"UtilBC1_swigregister", UtilBC1_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_UtilBC2", _wrap_new_UtilBC2, METH_VARARGS, NULL},
+	 { (char *)"UtilBC2_eval", _wrap_UtilBC2_eval, METH_VARARGS, NULL},
+	 { (char *)"UtilBC2_swigregister", UtilBC2_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -46210,8 +46298,11 @@ static void *_p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent(void *x) {
 static void *_p_dolfin__FunctionTo_p_dolfin__TimeDependent(void *x) {
     return (void *)((dolfin::TimeDependent *)  ((dolfin::Function *) x));
 }
-static void *_p_dolfin__UtilBCTo_p_dolfin__TimeDependent(void *x) {
-    return (void *)((dolfin::TimeDependent *) (dolfin::BoundaryCondition *) ((dolfin::UtilBC *) x));
+static void *_p_dolfin__UtilBC1To_p_dolfin__TimeDependent(void *x) {
+    return (void *)((dolfin::TimeDependent *) (dolfin::BoundaryCondition *) ((dolfin::UtilBC1 *) x));
+}
+static void *_p_dolfin__UtilBC2To_p_dolfin__TimeDependent(void *x) {
+    return (void *)((dolfin::TimeDependent *) (dolfin::BoundaryCondition *) ((dolfin::UtilBC2 *) x));
 }
 static void *_p_dolfin__MultiAdaptivePreconditionerTo_p_dolfin__Preconditioner(void *x) {
     return (void *)((dolfin::Preconditioner *)  ((dolfin::MultiAdaptivePreconditioner *) x));
@@ -46255,8 +46346,11 @@ static void *_p_dolfin__ParticleSystemTo_p_dolfin__ODE(void *x) {
 static void *_p_dolfin__ReducedModelTo_p_dolfin__ODE(void *x) {
     return (void *)((dolfin::ODE *)  ((dolfin::ReducedModel *) x));
 }
-static void *_p_dolfin__UtilBCTo_p_dolfin__BoundaryCondition(void *x) {
-    return (void *)((dolfin::BoundaryCondition *)  ((dolfin::UtilBC *) x));
+static void *_p_dolfin__UtilBC1To_p_dolfin__BoundaryCondition(void *x) {
+    return (void *)((dolfin::BoundaryCondition *)  ((dolfin::UtilBC1 *) x));
+}
+static void *_p_dolfin__UtilBC2To_p_dolfin__BoundaryCondition(void *x) {
+    return (void *)((dolfin::BoundaryCondition *)  ((dolfin::UtilBC2 *) x));
 }
 static swig_type_info _swigt__p_Boundary = {"_p_Boundary", "Boundary *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_DenseMatrix = {"_p_DenseMatrix", "DenseMatrix *", 0, 0, (void*)0, 0};
@@ -46340,7 +46434,8 @@ static swig_type_info _swigt__p_dolfin__TimeStepper = {"_p_dolfin__TimeStepper",
 static swig_type_info _swigt__p_dolfin__Triangle = {"_p_dolfin__Triangle", "dolfin::Triangle *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__UnitCube = {"_p_dolfin__UnitCube", "dolfin::UnitCube *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__UnitSquare = {"_p_dolfin__UnitSquare", "dolfin::UnitSquare *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__UtilBC = {"_p_dolfin__UtilBC", "dolfin::UtilBC *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_dolfin__UtilBC1 = {"_p_dolfin__UtilBC1", "dolfin::UtilBC1 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_dolfin__UtilBC2 = {"_p_dolfin__UtilBC2", "dolfin::UtilBC2 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Variable = {"_p_dolfin__Variable", "dolfin::Variable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Vector = {"_p_dolfin__Vector", "dolfin::Vector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__VectorElement = {"_p_dolfin__VectorElement", "dolfin::VectorElement *", 0, 0, (void*)0, 0};
@@ -46439,7 +46534,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__Triangle,
   &_swigt__p_dolfin__UnitCube,
   &_swigt__p_dolfin__UnitSquare,
-  &_swigt__p_dolfin__UtilBC,
+  &_swigt__p_dolfin__UtilBC1,
+  &_swigt__p_dolfin__UtilBC2,
   &_swigt__p_dolfin__Variable,
   &_swigt__p_dolfin__Vector,
   &_swigt__p_dolfin__VectorElement,
@@ -46476,7 +46572,7 @@ static swig_cast_info _swigc__p_dolfin__ArrayTstd__complexTdouble_t_p_t[] = {  {
 static swig_cast_info _swigc__p_dolfin__BLASFormData[] = {  {&_swigt__p_dolfin__BLASFormData, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__BilinearForm[] = {  {&_swigt__p_dolfin__BilinearForm, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Boundary[] = {  {&_swigt__p_dolfin__Boundary, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__BoundaryCondition[] = {  {&_swigt__p_dolfin__BoundaryCondition, 0, 0, 0},  {&_swigt__p_dolfin__UtilBC, _p_dolfin__UtilBCTo_p_dolfin__BoundaryCondition, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__BoundaryCondition[] = {  {&_swigt__p_dolfin__BoundaryCondition, 0, 0, 0},  {&_swigt__p_dolfin__UtilBC1, _p_dolfin__UtilBC1To_p_dolfin__BoundaryCondition, 0, 0},  {&_swigt__p_dolfin__UtilBC2, _p_dolfin__UtilBC2To_p_dolfin__BoundaryCondition, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__BoundaryValue[] = {  {&_swigt__p_dolfin__BoundaryValue, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Cell[] = {  {&_swigt__p_dolfin__Cell, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__CellIterator[] = {  {&_swigt__p_dolfin__CellIterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -46531,14 +46627,15 @@ static swig_cast_info _swigc__p_dolfin__Preconditioner[] = {  {&_swigt__p_dolfin
 static swig_cast_info _swigc__p_dolfin__ReducedModel[] = {  {&_swigt__p_dolfin__ReducedModel, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Sample[] = {  {&_swigt__p_dolfin__Sample, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Tetrahedron[] = {  {&_swigt__p_dolfin__Tetrahedron, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__TimeDependent[] = {  {&_swigt__p_dolfin__TimeDependent, 0, 0, 0},  {&_swigt__p_dolfin__BoundaryCondition, _p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC, _p_dolfin__UtilBCTo_p_dolfin__TimeDependent, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__TimeDependent[] = {  {&_swigt__p_dolfin__TimeDependent, 0, 0, 0},  {&_swigt__p_dolfin__BoundaryCondition, _p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC1, _p_dolfin__UtilBC1To_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC2, _p_dolfin__UtilBC2To_p_dolfin__TimeDependent, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlab[] = {  {&_swigt__p_dolfin__TimeSlab, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlabJacobian[] = {  {&_swigt__p_dolfin__TimeSlabJacobian, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeStepper[] = {  {&_swigt__p_dolfin__TimeStepper, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Triangle[] = {  {&_swigt__p_dolfin__Triangle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UnitCube[] = {  {&_swigt__p_dolfin__UnitCube, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UnitSquare[] = {  {&_swigt__p_dolfin__UnitSquare, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__UtilBC[] = {  {&_swigt__p_dolfin__UtilBC, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__UtilBC1[] = {  {&_swigt__p_dolfin__UtilBC1, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__UtilBC2[] = {  {&_swigt__p_dolfin__UtilBC2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Variable[] = {  {&_swigt__p_dolfin__UnitSquare, _p_dolfin__UnitSquareTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Variable, 0, 0, 0},  {&_swigt__p_dolfin__Vector, _p_dolfin__VectorTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__UnitCube, _p_dolfin__UnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Mesh, _p_dolfin__MeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Matrix, _p_dolfin__MatrixTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Sample, _p_dolfin__SampleTo_p_dolfin__Variable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Vector[] = {  {&_swigt__p_dolfin__Vector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__VectorElement[] = {  {&_swigt__p_dolfin__VectorElement, 0, 0, 0},{0, 0, 0, 0}};
@@ -46637,7 +46734,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__Triangle,
   _swigc__p_dolfin__UnitCube,
   _swigc__p_dolfin__UnitSquare,
-  _swigc__p_dolfin__UtilBC,
+  _swigc__p_dolfin__UtilBC1,
+  _swigc__p_dolfin__UtilBC2,
   _swigc__p_dolfin__Variable,
   _swigc__p_dolfin__Vector,
   _swigc__p_dolfin__VectorElement,
