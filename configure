@@ -1031,8 +1031,9 @@ Optional Features:
   --enable-debug          Turn on debugging and warnings (this is the default)
   --enable-optimization   Turn on optimization
   --enable-mpi            Compile with MPI
-  --disable-curses        Compile without curses
   --enable-pydolfin       Turn on compilation of PyDOLFIN
+  --disable-curses        Compile without curses
+  --disable-petsc         Compile without PETSc (some demos may not compile)
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --enable-shared[=PKGS]
@@ -1997,11 +1998,25 @@ if test "${enable_mpi+set}" = set; then
   enable_mpi=yes
 fi;
 
+# Option --enable-pydolfin
+# Check whether --enable-pydolfin or --disable-pydolfin was given.
+if test "${enable_pydolfin+set}" = set; then
+  enableval="$enable_pydolfin"
+  enable_pydolfin=yes
+fi;
+
 # Option --disable-curses
 # Check whether --enable-curses or --disable-curses was given.
 if test "${enable_curses+set}" = set; then
   enableval="$enable_curses"
   disable_curses=yes
+fi;
+
+# Option --disable-petsc
+# Check whether --enable-petsc or --disable-petsc was given.
+if test "${enable_petsc+set}" = set; then
+  enableval="$enable_petsc"
+  disable_petsc=yes
 fi;
 
 # Option --with-petsc-dir
@@ -2020,12 +2035,6 @@ if test "${with_boost_include+set}" = set; then
   BOOST_DIR=$with_boost_include
 fi;
 
-# Option --enable-pydolfin
-# Check whether --enable-pydolfin or --disable-pydolfin was given.
-if test "${enable_pydolfin+set}" = set; then
-  enableval="$enable_pydolfin"
-  enable_pydolfin=yes
-fi;
 
 # Standard tests
 ac_ext=c
@@ -5102,7 +5111,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 5105 "configure"' > conftest.$ac_ext
+  echo '#line 5114 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -5762,7 +5771,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:5765:" \
+echo "$as_me:5774:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -6823,11 +6832,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6826: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6835: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6830: \$? = $ac_status" >&5
+   echo "$as_me:6839: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7091,11 +7100,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7094: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7103: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7098: \$? = $ac_status" >&5
+   echo "$as_me:7107: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7195,11 +7204,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7198: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7207: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7202: \$? = $ac_status" >&5
+   echo "$as_me:7211: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -9553,7 +9562,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 9556 "configure"
+#line 9565 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -9653,7 +9662,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 9656 "configure"
+#line 9665 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -11991,11 +12000,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:11994: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12003: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:11998: \$? = $ac_status" >&5
+   echo "$as_me:12007: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -12095,11 +12104,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12098: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12107: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:12102: \$? = $ac_status" >&5
+   echo "$as_me:12111: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -13683,11 +13692,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13686: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13695: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:13690: \$? = $ac_status" >&5
+   echo "$as_me:13699: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -13787,11 +13796,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13790: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13799: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:13794: \$? = $ac_status" >&5
+   echo "$as_me:13803: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -16010,11 +16019,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16013: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16022: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16017: \$? = $ac_status" >&5
+   echo "$as_me:16026: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16278,11 +16287,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16281: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16290: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16285: \$? = $ac_status" >&5
+   echo "$as_me:16294: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16382,11 +16391,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16385: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16394: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:16389: \$? = $ac_status" >&5
+   echo "$as_me:16398: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -19622,14 +19631,6 @@ else
     CURSES_LIBS=""
 fi
 
-# Handle option --with-petsc-dir=<path>
-if test x$PETSC_DIR = x; then
-    echo "assuming path to PETSc is /usr/local/lib/petsc"
-    PETSC_DIR="/usr/local/lib/petsc/"
-else
-    echo "using PETSC_DIR=$PETSC_DIR"
-fi
-
 # Handle option --enable-pydolfin
 
 
@@ -19701,8 +19702,19 @@ else
     echo "disabling MPI (might not work if PETSc uses MPI)"
 fi
 
-# Check for PETSc
-# Extract the first word of "configarch", so it can be a program name with args.
+# Handle option --disable-petsc
+if test x$disable_petsc = x; then
+
+    # Handle option --with-petsc-dir=<path>
+    if test x$PETSC_DIR = x; then
+	PETSC_DIR="/usr/local/lib/petsc/"
+        echo "assuming path to PETSc is $PETSC_DIR"
+    else
+        echo "using PETSC_DIR=$PETSC_DIR"
+    fi
+
+    # Check for PETSc
+    # Extract the first word of "configarch", so it can be a program name with args.
 set dummy configarch; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -19739,16 +19751,27 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-if test $petsc_found = yes; then
-    # Extract PETSc variables from PETSC_DIR/bmake/common/variables
-    PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs PETSC_DIR=$PETSC_DIR`
-    PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs PETSC_DIR=$PETSC_DIR`
+    if test $petsc_found = yes; then
+        # Extract PETSc variables from PETSC_DIR/bmake/common/variables
+        PETSC_CFLAGS=`make -s -C $PETSC_DIR getincludedirs PETSC_DIR=$PETSC_DIR`
+	PETSC_LIBS=`make -s -C $PETSC_DIR getlinklibs PETSC_DIR=$PETSC_DIR`
+    else
+	echo "*** Unable to find PETSc 2.3.1 on your system."
+	echo "*** Use --with-petsc-dir=<path> to specify the correct path for PETSc,"
+	echo "*** or set the environment variable PETSC_DIR to the correct path."
+	echo "*** PETSc is available at http://www-unix.mcs.anl.gov/petsc/petsc-2/"
+	exit 1
+    fi
+
+    # Found PETSc, so set HAVE_PETSC_H
+    PETSC_CFLAGS="-DHAVE_PETSC_H=1 $PETSC_CFLAGS"
+
 else
-    echo "*** Unable to find PETSc 2.3.0 on your system."
-    echo "*** Use --with-petsc-dir=<path> to specify the correct path for PETSc,"
-    echo "*** or set the environment variable PETSC_DIR to the correct path."
-    echo "*** PETSc is available at http://www-unix.mcs.anl.gov/petsc/petsc-2/"
-    exit 1
+
+    # Compile without PETSc
+    echo "disabling PETSc (some demos may not compile)"
+    PETSC_CFLAGS=""
+
 fi
 
 # Check for Boost headers
