@@ -8,7 +8,6 @@
 #include <dolfin/Mesh.h>
 #include <dolfin/Cell.h>
 #include <dolfin/Point.h>
-#include <dolfin/Vector.h>
 #include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/FiniteElementSpec.h>
@@ -1494,7 +1493,7 @@ public:
   }
 
   // No contribution from the boundary
-  void eval(real block[], const AffineMap& map, unsigned int boundary) const {}   
+  void eval(real block[], const AffineMap& map, unsigned int facet) const {}   
 
 private:
 
@@ -2479,7 +2478,7 @@ public:
   
   };
   
-  LinearForm(Function& w0, Function& w1, Function& w2, Function& w3, Function& w4, const real& c0, const real& c1, const real& c2, const real& c3, const real& c4) : dolfin::LinearForm(5), c0(c0), c1(c1), c2(c2), c3(c3), c4(c4)
+  LinearForm(Function& w0, Function& w1, Function& w2, Function& w3, Function& w4, const real& c0, const real& c1, const real& c2) : dolfin::LinearForm(5), c0(c0), c1(c1), c2(c2)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -2611,15 +2610,15 @@ public:
     const real G1_2_4_1_0 = map.det*c2*c1*c4_2*c0_4*map.g10*map.g00 + map.det*c2*c1*c4_2*c0_4*map.g11*map.g01;
     const real G1_2_5_0_1 = map.det*c2*c1*c4_2*c0_5*map.g00*map.g10 + map.det*c2*c1*c4_2*c0_5*map.g01*map.g11;
     const real G1_2_5_1_1 = map.det*c2*c1*c4_2*c0_5*map.g10*map.g10 + map.det*c2*c1*c4_2*c0_5*map.g11*map.g11;
-    const real G2_0 = map.det*c2*c1*c3*c4*c0_0;
-    const real G2_1 = map.det*c2*c1*c3*c4*c0_1;
-    const real G2_2 = map.det*c2*c1*c3*c4*c0_2;
-    const real G3_0 = map.det*c2*c1*c3*c4*c1_0 + map.det*c2*c1*c4*c2_0;
-    const real G3_1 = map.det*c2*c1*c3*c4*c1_1 + map.det*c2*c1*c4*c2_1;
-    const real G3_2 = map.det*c2*c1*c3*c4*c1_2 + map.det*c2*c1*c4*c2_2;
-    const real G4_0 = map.det*c2*c1*c2*c4*c2_0;
-    const real G4_1 = map.det*c2*c1*c2*c4*c2_1;
-    const real G4_2 = map.det*c2*c1*c2*c4*c2_2;
+    const real G2_0 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_0;
+    const real G2_1 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_1;
+    const real G2_2 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_2;
+    const real G3_0 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_0 + map.det*c2*c1*(1.0/c2)*c2_0;
+    const real G3_1 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_1 + map.det*c2*c1*(1.0/c2)*c2_1;
+    const real G3_2 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_2 + map.det*c2*c1*(1.0/c2)*c2_2;
+    const real G4_0 = map.det*c2*c1*c2*(1.0/c2)*c2_0;
+    const real G4_1 = map.det*c2*c1*c2*(1.0/c2)*c2_1;
+    const real G4_2 = map.det*c2*c1*c2*(1.0/c2)*c2_2;
     const real G5_3 = map.det*c0_3;
     const real G5_4 = map.det*c0_4;
     const real G5_5 = map.det*c0_5;
@@ -2642,11 +2641,11 @@ public:
   }
 
   // No contribution from the boundary
-  void eval(real block[], const AffineMap& map, unsigned int boundary) const {}   
+  void eval(real block[], const AffineMap& map, unsigned int facet) const {}   
 
 private:
 
-  const real& c0;  const real& c1;  const real& c2;  const real& c3;  const real& c4;
+  const real& c0;  const real& c1;  const real& c2;
 
 };
 
