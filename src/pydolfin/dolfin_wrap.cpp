@@ -2404,35 +2404,36 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_dolfin__Partition swig_types[73]
 #define SWIGTYPE_p_dolfin__Point swig_types[74]
 #define SWIGTYPE_p_dolfin__Preconditioner swig_types[75]
-#define SWIGTYPE_p_dolfin__Sample swig_types[76]
-#define SWIGTYPE_p_dolfin__SparseMatrix swig_types[77]
-#define SWIGTYPE_p_dolfin__SparseMatrixElement swig_types[78]
-#define SWIGTYPE_p_dolfin__SparseVector swig_types[79]
-#define SWIGTYPE_p_dolfin__SparseVectorElement swig_types[80]
-#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[81]
-#define SWIGTYPE_p_dolfin__TimeDependent swig_types[82]
-#define SWIGTYPE_p_dolfin__TimeSlab swig_types[83]
-#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[84]
-#define SWIGTYPE_p_dolfin__TimeStepper swig_types[85]
-#define SWIGTYPE_p_dolfin__Triangle swig_types[86]
-#define SWIGTYPE_p_dolfin__UnitCube swig_types[87]
-#define SWIGTYPE_p_dolfin__UnitSquare swig_types[88]
-#define SWIGTYPE_p_dolfin__UtilBC1 swig_types[89]
-#define SWIGTYPE_p_dolfin__UtilBC2 swig_types[90]
-#define SWIGTYPE_p_dolfin__Variable swig_types[91]
-#define SWIGTYPE_p_dolfin__Vertex swig_types[92]
-#define SWIGTYPE_p_dolfin__VertexIterator swig_types[93]
-#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[94]
-#define SWIGTYPE_p_dolfin__cGqMethod swig_types[95]
-#define SWIGTYPE_p_dolfin__dGqMethod swig_types[96]
-#define SWIGTYPE_p_double swig_types[97]
-#define SWIGTYPE_p_int swig_types[98]
-#define SWIGTYPE_p_p_char swig_types[99]
-#define SWIGTYPE_p_std__complexTdouble_t swig_types[100]
-#define SWIGTYPE_p_std__setTint_t swig_types[101]
-#define SWIGTYPE_p_unsigned_int swig_types[102]
-static swig_type_info *swig_types[104];
-static swig_module_info swig_module = {swig_types, 103, 0, 0, 0, 0};
+#define SWIGTYPE_p_dolfin__Resistance swig_types[76]
+#define SWIGTYPE_p_dolfin__Sample swig_types[77]
+#define SWIGTYPE_p_dolfin__SparseMatrix swig_types[78]
+#define SWIGTYPE_p_dolfin__SparseMatrixElement swig_types[79]
+#define SWIGTYPE_p_dolfin__SparseVector swig_types[80]
+#define SWIGTYPE_p_dolfin__SparseVectorElement swig_types[81]
+#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[82]
+#define SWIGTYPE_p_dolfin__TimeDependent swig_types[83]
+#define SWIGTYPE_p_dolfin__TimeSlab swig_types[84]
+#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[85]
+#define SWIGTYPE_p_dolfin__TimeStepper swig_types[86]
+#define SWIGTYPE_p_dolfin__Triangle swig_types[87]
+#define SWIGTYPE_p_dolfin__UnitCube swig_types[88]
+#define SWIGTYPE_p_dolfin__UnitSquare swig_types[89]
+#define SWIGTYPE_p_dolfin__UtilBC1 swig_types[90]
+#define SWIGTYPE_p_dolfin__UtilBC2 swig_types[91]
+#define SWIGTYPE_p_dolfin__Variable swig_types[92]
+#define SWIGTYPE_p_dolfin__Vertex swig_types[93]
+#define SWIGTYPE_p_dolfin__VertexIterator swig_types[94]
+#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[95]
+#define SWIGTYPE_p_dolfin__cGqMethod swig_types[96]
+#define SWIGTYPE_p_dolfin__dGqMethod swig_types[97]
+#define SWIGTYPE_p_double swig_types[98]
+#define SWIGTYPE_p_int swig_types[99]
+#define SWIGTYPE_p_p_char swig_types[100]
+#define SWIGTYPE_p_std__complexTdouble_t swig_types[101]
+#define SWIGTYPE_p_std__setTint_t swig_types[102]
+#define SWIGTYPE_p_unsigned_int swig_types[103]
+static swig_type_info *swig_types[105];
+static swig_module_info swig_module = {swig_types, 104, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -41020,13 +41021,13 @@ SWIGINTERN PyObject *_wrap_new_ElasticityUpdatedSolver(PyObject *SWIGUNUSEDPARM(
   dolfin::Function *arg2 = 0 ;
   dolfin::Function *arg3 = 0 ;
   dolfin::Function *arg4 = 0 ;
-  dolfin::real *arg5 = 0 ;
-  dolfin::real *arg6 = 0 ;
-  dolfin::real *arg7 = 0 ;
-  dolfin::real *arg8 = 0 ;
+  dolfin::real arg5 ;
+  dolfin::real arg6 ;
+  dolfin::real arg7 ;
+  dolfin::real arg8 ;
   dolfin::BoundaryCondition *arg9 = 0 ;
-  dolfin::real *arg10 = 0 ;
-  dolfin::real *arg11 = 0 ;
+  dolfin::real arg10 ;
+  dolfin::real arg11 ;
   dolfin::ElasticityUpdatedSolver *result = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -41036,20 +41037,20 @@ SWIGINTERN PyObject *_wrap_new_ElasticityUpdatedSolver(PyObject *SWIGUNUSEDPARM(
   int res3 = 0 ;
   void *argp4 = 0 ;
   int res4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  void *argp6 = 0 ;
-  int res6 = 0 ;
-  void *argp7 = 0 ;
-  int res7 = 0 ;
-  void *argp8 = 0 ;
-  int res8 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  double val7 ;
+  int ecode7 = 0 ;
+  double val8 ;
+  int ecode8 = 0 ;
   void *argp9 = 0 ;
   int res9 = 0 ;
-  void *argp10 = 0 ;
-  int res10 = 0 ;
-  void *argp11 = 0 ;
-  int res11 = 0 ;
+  double val10 ;
+  int ecode10 = 0 ;
+  double val11 ;
+  int ecode11 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -41095,38 +41096,26 @@ SWIGINTERN PyObject *_wrap_new_ElasticityUpdatedSolver(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "4"" of type '" "dolfin::Function &""'"); 
   }
   arg4 = reinterpret_cast<dolfin::Function * >(argp4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "new_ElasticityUpdatedSolver" "', argument " "5"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp5) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "5"" of type '" "dolfin::real &""'"); 
-  }
-  arg5 = reinterpret_cast<dolfin::real * >(argp5);
-  res6 = SWIG_ConvertPtr(obj5, &argp6, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_ElasticityUpdatedSolver" "', argument " "6"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp6) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "6"" of type '" "dolfin::real &""'"); 
-  }
-  arg6 = reinterpret_cast<dolfin::real * >(argp6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res7)) {
-    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_ElasticityUpdatedSolver" "', argument " "7"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp7) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "7"" of type '" "dolfin::real &""'"); 
-  }
-  arg7 = reinterpret_cast<dolfin::real * >(argp7);
-  res8 = SWIG_ConvertPtr(obj7, &argp8, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res8)) {
-    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "new_ElasticityUpdatedSolver" "', argument " "8"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp8) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "8"" of type '" "dolfin::real &""'"); 
-  }
-  arg8 = reinterpret_cast<dolfin::real * >(argp8);
+  ecode5 = SWIG_AsVal_double(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_ElasticityUpdatedSolver" "', argument " "5"" of type '" "dolfin::real""'");
+  } 
+  arg5 = static_cast<dolfin::real >(val5);
+  ecode6 = SWIG_AsVal_double(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_ElasticityUpdatedSolver" "', argument " "6"" of type '" "dolfin::real""'");
+  } 
+  arg6 = static_cast<dolfin::real >(val6);
+  ecode7 = SWIG_AsVal_double(obj6, &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_ElasticityUpdatedSolver" "', argument " "7"" of type '" "dolfin::real""'");
+  } 
+  arg7 = static_cast<dolfin::real >(val7);
+  ecode8 = SWIG_AsVal_double(obj7, &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_ElasticityUpdatedSolver" "', argument " "8"" of type '" "dolfin::real""'");
+  } 
+  arg8 = static_cast<dolfin::real >(val8);
   res9 = SWIG_ConvertPtr(obj8, &argp9, SWIGTYPE_p_dolfin__BoundaryCondition,  0 );
   if (!SWIG_IsOK(res9)) {
     SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "new_ElasticityUpdatedSolver" "', argument " "9"" of type '" "dolfin::BoundaryCondition &""'"); 
@@ -41135,23 +41124,17 @@ SWIGINTERN PyObject *_wrap_new_ElasticityUpdatedSolver(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "9"" of type '" "dolfin::BoundaryCondition &""'"); 
   }
   arg9 = reinterpret_cast<dolfin::BoundaryCondition * >(argp9);
-  res10 = SWIG_ConvertPtr(obj9, &argp10, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res10)) {
-    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "new_ElasticityUpdatedSolver" "', argument " "10"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp10) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "10"" of type '" "dolfin::real &""'"); 
-  }
-  arg10 = reinterpret_cast<dolfin::real * >(argp10);
-  res11 = SWIG_ConvertPtr(obj10, &argp11, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res11)) {
-    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "new_ElasticityUpdatedSolver" "', argument " "11"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp11) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_ElasticityUpdatedSolver" "', argument " "11"" of type '" "dolfin::real &""'"); 
-  }
-  arg11 = reinterpret_cast<dolfin::real * >(argp11);
-  result = (dolfin::ElasticityUpdatedSolver *)new dolfin::ElasticityUpdatedSolver(*arg1,*arg2,*arg3,*arg4,*arg5,*arg6,*arg7,*arg8,*arg9,*arg10,*arg11);
+  ecode10 = SWIG_AsVal_double(obj9, &val10);
+  if (!SWIG_IsOK(ecode10)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "new_ElasticityUpdatedSolver" "', argument " "10"" of type '" "dolfin::real""'");
+  } 
+  arg10 = static_cast<dolfin::real >(val10);
+  ecode11 = SWIG_AsVal_double(obj10, &val11);
+  if (!SWIG_IsOK(ecode11)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "new_ElasticityUpdatedSolver" "', argument " "11"" of type '" "dolfin::real""'");
+  } 
+  arg11 = static_cast<dolfin::real >(val11);
+  result = (dolfin::ElasticityUpdatedSolver *)new dolfin::ElasticityUpdatedSolver(*arg1,*arg2,*arg3,*arg4,arg5,arg6,arg7,arg8,*arg9,arg10,arg11);
   
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__ElasticityUpdatedSolver, SWIG_POINTER_NEW |  0 );
   return resultobj;
@@ -41272,29 +41255,28 @@ fail:
 
 SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_gather(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  dolfin::ElasticityUpdatedSolver *arg1 = (dolfin::ElasticityUpdatedSolver *) 0 ;
+  dolfin::Vector *arg1 = 0 ;
   dolfin::Vector *arg2 = 0 ;
-  dolfin::Vector *arg3 = 0 ;
-  VecScatter *arg4 = 0 ;
+  VecScatter *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:ElasticityUpdatedSolver_gather",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__ElasticityUpdatedSolver, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:ElasticityUpdatedSolver_gather",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__SparseVector,  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedSolver_gather" "', argument " "1"" of type '" "dolfin::ElasticityUpdatedSolver *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedSolver_gather" "', argument " "1"" of type '" "dolfin::Vector &""'"); 
   }
-  arg1 = reinterpret_cast<dolfin::ElasticityUpdatedSolver * >(argp1);
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_gather" "', argument " "1"" of type '" "dolfin::Vector &""'"); 
+  }
+  arg1 = reinterpret_cast<dolfin::Vector * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__SparseVector,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedSolver_gather" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
@@ -41303,23 +41285,224 @@ SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_gather(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_gather" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
   }
   arg2 = reinterpret_cast<dolfin::Vector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_VecScatter,  0 );
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ElasticityUpdatedSolver_gather" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ElasticityUpdatedSolver_gather" "', argument " "3"" of type '" "VecScatter &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_gather" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_gather" "', argument " "3"" of type '" "VecScatter &""'"); 
   }
-  arg3 = reinterpret_cast<dolfin::Vector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_VecScatter,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "ElasticityUpdatedSolver_gather" "', argument " "4"" of type '" "VecScatter &""'"); 
+  arg3 = reinterpret_cast<VecScatter * >(argp3);
+  dolfin::ElasticityUpdatedSolver::gather(*arg1,*arg2,*arg3);
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_scatter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::Vector *arg1 = 0 ;
+  dolfin::Vector *arg2 = 0 ;
+  VecScatter *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:ElasticityUpdatedSolver_scatter",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedSolver_scatter" "', argument " "1"" of type '" "dolfin::Vector &""'"); 
   }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_gather" "', argument " "4"" of type '" "VecScatter &""'"); 
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_scatter" "', argument " "1"" of type '" "dolfin::Vector &""'"); 
   }
-  arg4 = reinterpret_cast<VecScatter * >(argp4);
-  (arg1)->gather(*arg2,*arg3,*arg4);
+  arg1 = reinterpret_cast<dolfin::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedSolver_scatter" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_scatter" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  arg2 = reinterpret_cast<dolfin::Vector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_VecScatter,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ElasticityUpdatedSolver_scatter" "', argument " "3"" of type '" "VecScatter &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_scatter" "', argument " "3"" of type '" "VecScatter &""'"); 
+  }
+  arg3 = reinterpret_cast<VecScatter * >(argp3);
+  dolfin::ElasticityUpdatedSolver::scatter(*arg1,*arg2,*arg3);
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_createScatterer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::Vector *arg1 = 0 ;
+  dolfin::Vector *arg2 = 0 ;
+  int arg3 ;
+  int arg4 ;
+  VecScatter *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:ElasticityUpdatedSolver_createScatterer",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedSolver_createScatterer" "', argument " "1"" of type '" "dolfin::Vector &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_createScatterer" "', argument " "1"" of type '" "dolfin::Vector &""'"); 
+  }
+  arg1 = reinterpret_cast<dolfin::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedSolver_createScatterer" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_createScatterer" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  arg2 = reinterpret_cast<dolfin::Vector * >(argp2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "ElasticityUpdatedSolver_createScatterer" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast<int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "ElasticityUpdatedSolver_createScatterer" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast<int >(val4);
+  result = (VecScatter *)dolfin::ElasticityUpdatedSolver::createScatterer(*arg1,*arg2,arg3,arg4);
+  
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VecScatter, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_fromArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::real *arg1 ;
+  dolfin::Vector *arg2 = 0 ;
+  dolfin::uint arg3 ;
+  dolfin::uint arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  unsigned int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:ElasticityUpdatedSolver_fromArray",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedSolver_fromArray" "', argument " "1"" of type '" "dolfin::real const []""'"); 
+  } 
+  arg1 = reinterpret_cast<dolfin::real * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedSolver_fromArray" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_fromArray" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  arg2 = reinterpret_cast<dolfin::Vector * >(argp2);
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "ElasticityUpdatedSolver_fromArray" "', argument " "3"" of type '" "dolfin::uint""'");
+  } 
+  arg3 = static_cast<dolfin::uint >(val3);
+  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "ElasticityUpdatedSolver_fromArray" "', argument " "4"" of type '" "dolfin::uint""'");
+  } 
+  arg4 = static_cast<dolfin::uint >(val4);
+  dolfin::ElasticityUpdatedSolver::fromArray((double const (*))arg1,*arg2,arg3,arg4);
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_toArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::real *arg1 ;
+  dolfin::Vector *arg2 = 0 ;
+  dolfin::uint arg3 ;
+  dolfin::uint arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  unsigned int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:ElasticityUpdatedSolver_toArray",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedSolver_toArray" "', argument " "1"" of type '" "dolfin::real []""'"); 
+  } 
+  arg1 = reinterpret_cast<dolfin::real * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__SparseVector,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedSolver_toArray" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_toArray" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
+  }
+  arg2 = reinterpret_cast<dolfin::Vector * >(argp2);
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "ElasticityUpdatedSolver_toArray" "', argument " "3"" of type '" "dolfin::uint""'");
+  } 
+  arg3 = static_cast<dolfin::uint >(val3);
+  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "ElasticityUpdatedSolver_toArray" "', argument " "4"" of type '" "dolfin::uint""'");
+  } 
+  arg4 = static_cast<dolfin::uint >(val4);
+  dolfin::ElasticityUpdatedSolver::toArray(arg1,*arg2,arg3,arg4);
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -41512,13 +41695,13 @@ SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_solve__SWIG_1(PyObject *SWIGU
   dolfin::Function *arg2 = 0 ;
   dolfin::Function *arg3 = 0 ;
   dolfin::Function *arg4 = 0 ;
-  dolfin::real *arg5 = 0 ;
-  dolfin::real *arg6 = 0 ;
-  dolfin::real *arg7 = 0 ;
-  dolfin::real *arg8 = 0 ;
+  dolfin::real arg5 ;
+  dolfin::real arg6 ;
+  dolfin::real arg7 ;
+  dolfin::real arg8 ;
   dolfin::BoundaryCondition *arg9 = 0 ;
-  dolfin::real *arg10 = 0 ;
-  dolfin::real *arg11 = 0 ;
+  dolfin::real arg10 ;
+  dolfin::real arg11 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -41527,20 +41710,20 @@ SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_solve__SWIG_1(PyObject *SWIGU
   int res3 = 0 ;
   void *argp4 = 0 ;
   int res4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  void *argp6 = 0 ;
-  int res6 = 0 ;
-  void *argp7 = 0 ;
-  int res7 = 0 ;
-  void *argp8 = 0 ;
-  int res8 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  double val7 ;
+  int ecode7 = 0 ;
+  double val8 ;
+  int ecode8 = 0 ;
   void *argp9 = 0 ;
   int res9 = 0 ;
-  void *argp10 = 0 ;
-  int res10 = 0 ;
-  void *argp11 = 0 ;
-  int res11 = 0 ;
+  double val10 ;
+  int ecode10 = 0 ;
+  double val11 ;
+  int ecode11 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -41586,38 +41769,26 @@ SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_solve__SWIG_1(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "4"" of type '" "dolfin::Function &""'"); 
   }
   arg4 = reinterpret_cast<dolfin::Function * >(argp4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "5"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp5) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "5"" of type '" "dolfin::real &""'"); 
-  }
-  arg5 = reinterpret_cast<dolfin::real * >(argp5);
-  res6 = SWIG_ConvertPtr(obj5, &argp6, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "6"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp6) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "6"" of type '" "dolfin::real &""'"); 
-  }
-  arg6 = reinterpret_cast<dolfin::real * >(argp6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res7)) {
-    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "7"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp7) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "7"" of type '" "dolfin::real &""'"); 
-  }
-  arg7 = reinterpret_cast<dolfin::real * >(argp7);
-  res8 = SWIG_ConvertPtr(obj7, &argp8, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res8)) {
-    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "8"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp8) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "8"" of type '" "dolfin::real &""'"); 
-  }
-  arg8 = reinterpret_cast<dolfin::real * >(argp8);
+  ecode5 = SWIG_AsVal_double(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "5"" of type '" "dolfin::real""'");
+  } 
+  arg5 = static_cast<dolfin::real >(val5);
+  ecode6 = SWIG_AsVal_double(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "6"" of type '" "dolfin::real""'");
+  } 
+  arg6 = static_cast<dolfin::real >(val6);
+  ecode7 = SWIG_AsVal_double(obj6, &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "7"" of type '" "dolfin::real""'");
+  } 
+  arg7 = static_cast<dolfin::real >(val7);
+  ecode8 = SWIG_AsVal_double(obj7, &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "8"" of type '" "dolfin::real""'");
+  } 
+  arg8 = static_cast<dolfin::real >(val8);
   res9 = SWIG_ConvertPtr(obj8, &argp9, SWIGTYPE_p_dolfin__BoundaryCondition,  0 );
   if (!SWIG_IsOK(res9)) {
     SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "9"" of type '" "dolfin::BoundaryCondition &""'"); 
@@ -41626,23 +41797,17 @@ SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_solve__SWIG_1(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "9"" of type '" "dolfin::BoundaryCondition &""'"); 
   }
   arg9 = reinterpret_cast<dolfin::BoundaryCondition * >(argp9);
-  res10 = SWIG_ConvertPtr(obj9, &argp10, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res10)) {
-    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "10"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp10) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "10"" of type '" "dolfin::real &""'"); 
-  }
-  arg10 = reinterpret_cast<dolfin::real * >(argp10);
-  res11 = SWIG_ConvertPtr(obj10, &argp11, SWIGTYPE_p_double,  0 );
-  if (!SWIG_IsOK(res11)) {
-    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "11"" of type '" "dolfin::real &""'"); 
-  }
-  if (!argp11) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedSolver_solve" "', argument " "11"" of type '" "dolfin::real &""'"); 
-  }
-  arg11 = reinterpret_cast<dolfin::real * >(argp11);
-  dolfin::ElasticityUpdatedSolver::solve(*arg1,*arg2,*arg3,*arg4,*arg5,*arg6,*arg7,*arg8,*arg9,*arg10,*arg11);
+  ecode10 = SWIG_AsVal_double(obj9, &val10);
+  if (!SWIG_IsOK(ecode10)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "10"" of type '" "dolfin::real""'");
+  } 
+  arg10 = static_cast<dolfin::real >(val10);
+  ecode11 = SWIG_AsVal_double(obj10, &val11);
+  if (!SWIG_IsOK(ecode11)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "ElasticityUpdatedSolver_solve" "', argument " "11"" of type '" "dolfin::real""'");
+  } 
+  arg11 = static_cast<dolfin::real >(val11);
+  dolfin::ElasticityUpdatedSolver::solve(*arg1,*arg2,*arg3,*arg4,arg5,arg6,arg7,arg8,*arg9,arg10,arg11);
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -41688,33 +41853,39 @@ SWIGINTERN PyObject *_wrap_ElasticityUpdatedSolver_solve(PyObject *self, PyObjec
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_dolfin__Function, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            void *vptr = 0;
-            int res = SWIG_ConvertPtr(argv[4], &vptr, SWIGTYPE_p_double, 0);
-            _v = SWIG_CheckState(res);
-            if (_v) {
-              void *vptr = 0;
-              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_double, 0);
+            {
+              int res = SWIG_AsVal_double(argv[4], NULL);
               _v = SWIG_CheckState(res);
-              if (_v) {
-                void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_double, 0);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_double(argv[5], NULL);
                 _v = SWIG_CheckState(res);
-                if (_v) {
-                  void *vptr = 0;
-                  int res = SWIG_ConvertPtr(argv[7], &vptr, SWIGTYPE_p_double, 0);
+              }
+              if (_v) {
+                {
+                  int res = SWIG_AsVal_double(argv[6], NULL);
                   _v = SWIG_CheckState(res);
+                }
+                if (_v) {
+                  {
+                    int res = SWIG_AsVal_double(argv[7], NULL);
+                    _v = SWIG_CheckState(res);
+                  }
                   if (_v) {
                     void *vptr = 0;
                     int res = SWIG_ConvertPtr(argv[8], &vptr, SWIGTYPE_p_dolfin__BoundaryCondition, 0);
                     _v = SWIG_CheckState(res);
                     if (_v) {
-                      void *vptr = 0;
-                      int res = SWIG_ConvertPtr(argv[9], &vptr, SWIGTYPE_p_double, 0);
-                      _v = SWIG_CheckState(res);
-                      if (_v) {
-                        void *vptr = 0;
-                        int res = SWIG_ConvertPtr(argv[10], &vptr, SWIGTYPE_p_double, 0);
+                      {
+                        int res = SWIG_AsVal_double(argv[9], NULL);
                         _v = SWIG_CheckState(res);
+                      }
+                      if (_v) {
+                        {
+                          int res = SWIG_AsVal_double(argv[10], NULL);
+                          _v = SWIG_CheckState(res);
+                        }
                         if (_v) {
                           return _wrap_ElasticityUpdatedSolver_solve__SWIG_1(self, args);
                         }
@@ -46673,128 +46844,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_ElasticityUpdatedODE_fromArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::ElasticityUpdatedODE *arg1 = (dolfin::ElasticityUpdatedODE *) 0 ;
-  dolfin::real *arg2 ;
-  dolfin::Vector *arg3 = 0 ;
-  dolfin::uint arg4 ;
-  dolfin::uint arg5 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  unsigned int val5 ;
-  int ecode5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:ElasticityUpdatedODE_fromArray",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__ElasticityUpdatedODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedODE_fromArray" "', argument " "1"" of type '" "dolfin::ElasticityUpdatedODE *""'"); 
-  }
-  arg1 = reinterpret_cast<dolfin::ElasticityUpdatedODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedODE_fromArray" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast<dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__SparseVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ElasticityUpdatedODE_fromArray" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedODE_fromArray" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
-  }
-  arg3 = reinterpret_cast<dolfin::Vector * >(argp3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "ElasticityUpdatedODE_fromArray" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast<dolfin::uint >(val4);
-  ecode5 = SWIG_AsVal_unsigned_SS_int(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "ElasticityUpdatedODE_fromArray" "', argument " "5"" of type '" "dolfin::uint""'");
-  } 
-  arg5 = static_cast<dolfin::uint >(val5);
-  (arg1)->fromArray((double const (*))arg2,*arg3,arg4,arg5);
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ElasticityUpdatedODE_toArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::ElasticityUpdatedODE *arg1 = (dolfin::ElasticityUpdatedODE *) 0 ;
-  dolfin::real *arg2 ;
-  dolfin::Vector *arg3 = 0 ;
-  dolfin::uint arg4 ;
-  dolfin::uint arg5 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  unsigned int val5 ;
-  int ecode5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:ElasticityUpdatedODE_toArray",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__ElasticityUpdatedODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ElasticityUpdatedODE_toArray" "', argument " "1"" of type '" "dolfin::ElasticityUpdatedODE *""'"); 
-  }
-  arg1 = reinterpret_cast<dolfin::ElasticityUpdatedODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ElasticityUpdatedODE_toArray" "', argument " "2"" of type '" "dolfin::real []""'"); 
-  } 
-  arg2 = reinterpret_cast<dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__SparseVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ElasticityUpdatedODE_toArray" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "ElasticityUpdatedODE_toArray" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
-  }
-  arg3 = reinterpret_cast<dolfin::Vector * >(argp3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "ElasticityUpdatedODE_toArray" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast<dolfin::uint >(val4);
-  ecode5 = SWIG_AsVal_unsigned_SS_int(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "ElasticityUpdatedODE_toArray" "', argument " "5"" of type '" "dolfin::uint""'");
-  } 
-  arg5 = static_cast<dolfin::uint >(val5);
-  (arg1)->toArray(arg2,*arg3,arg4,arg5);
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_ElasticityUpdatedODE_solver_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   dolfin::ElasticityUpdatedODE *arg1 = (dolfin::ElasticityUpdatedODE *) 0 ;
@@ -47027,6 +47076,79 @@ SWIGINTERN PyObject *UtilBC2_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
     SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__UtilBC2, SWIG_NewClientData(obj));
+    return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_Resistance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::Resistance *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_Resistance")) SWIG_fail;
+  result = (dolfin::Resistance *)new dolfin::Resistance();
+  
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__Resistance, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Resistance_eval(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::Resistance *arg1 = (dolfin::Resistance *) 0 ;
+  dolfin::Point *arg2 = 0 ;
+  unsigned int arg3 ;
+  dolfin::real result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Resistance_eval",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__Resistance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Resistance_eval" "', argument " "1"" of type '" "dolfin::Resistance *""'"); 
+  }
+  arg1 = reinterpret_cast<dolfin::Resistance * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__Point,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Resistance_eval" "', argument " "2"" of type '" "dolfin::Point const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Resistance_eval" "', argument " "2"" of type '" "dolfin::Point const &""'"); 
+  }
+  arg2 = reinterpret_cast<dolfin::Point * >(argp2);
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Resistance_eval" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = static_cast<unsigned int >(val3);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    result = (dolfin::real)(arg1)->eval((dolfin::Point const &)*arg2,arg3);
+    
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_double(static_cast<double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Resistance_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+    PyObject *obj;
+    if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+    SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__Resistance, SWIG_NewClientData(obj));
     return SWIG_Py_Void();
 }
 
@@ -47827,6 +47949,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ElasticityUpdatedSolver_oldstep", _wrap_ElasticityUpdatedSolver_oldstep, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedSolver_fu", _wrap_ElasticityUpdatedSolver_fu, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedSolver_gather", _wrap_ElasticityUpdatedSolver_gather, METH_VARARGS, NULL},
+	 { (char *)"ElasticityUpdatedSolver_scatter", _wrap_ElasticityUpdatedSolver_scatter, METH_VARARGS, NULL},
+	 { (char *)"ElasticityUpdatedSolver_createScatterer", _wrap_ElasticityUpdatedSolver_createScatterer, METH_VARARGS, NULL},
+	 { (char *)"ElasticityUpdatedSolver_fromArray", _wrap_ElasticityUpdatedSolver_fromArray, METH_VARARGS, NULL},
+	 { (char *)"ElasticityUpdatedSolver_toArray", _wrap_ElasticityUpdatedSolver_toArray, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedSolver_preparestep", _wrap_ElasticityUpdatedSolver_preparestep, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedSolver_prepareiteration", _wrap_ElasticityUpdatedSolver_prepareiteration, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedSolver_save", _wrap_ElasticityUpdatedSolver_save, METH_VARARGS, NULL},
@@ -47994,8 +48120,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ElasticityUpdatedODE_u0", _wrap_ElasticityUpdatedODE_u0, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_fmono", _wrap_ElasticityUpdatedODE_fmono, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_update", _wrap_ElasticityUpdatedODE_update, METH_VARARGS, NULL},
-	 { (char *)"ElasticityUpdatedODE_fromArray", _wrap_ElasticityUpdatedODE_fromArray, METH_VARARGS, NULL},
-	 { (char *)"ElasticityUpdatedODE_toArray", _wrap_ElasticityUpdatedODE_toArray, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_solver_set", _wrap_ElasticityUpdatedODE_solver_set, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_solver_get", _wrap_ElasticityUpdatedODE_solver_get, METH_VARARGS, NULL},
 	 { (char *)"ElasticityUpdatedODE_swigregister", ElasticityUpdatedODE_swigregister, METH_VARARGS, NULL},
@@ -48005,6 +48129,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_UtilBC2", _wrap_new_UtilBC2, METH_VARARGS, NULL},
 	 { (char *)"UtilBC2_eval", _wrap_UtilBC2_eval, METH_VARARGS, NULL},
 	 { (char *)"UtilBC2_swigregister", UtilBC2_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_Resistance", _wrap_new_Resistance, METH_VARARGS, NULL},
+	 { (char *)"Resistance_eval", _wrap_Resistance_eval, METH_VARARGS, NULL},
+	 { (char *)"Resistance_swigregister", Resistance_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -48013,6 +48140,9 @@ static PyMethodDef SwigMethods[] = {
 
 static void *_p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent(void *x) {
     return (void *)((dolfin::TimeDependent *)  ((dolfin::BoundaryCondition *) x));
+}
+static void *_p_dolfin__ResistanceTo_p_dolfin__TimeDependent(void *x) {
+    return (void *)((dolfin::TimeDependent *) (dolfin::Function *) ((dolfin::Resistance *) x));
 }
 static void *_p_dolfin__FunctionTo_p_dolfin__TimeDependent(void *x) {
     return (void *)((dolfin::TimeDependent *)  ((dolfin::Function *) x));
@@ -48043,6 +48173,9 @@ static void *_p_dolfin__ElasticityUpdatedODETo_p_dolfin__ODE(void *x) {
 }
 static void *_p_dolfin__ParticleSystemTo_p_dolfin__ODE(void *x) {
     return (void *)((dolfin::ODE *)  ((dolfin::ParticleSystem *) x));
+}
+static void *_p_dolfin__ResistanceTo_p_dolfin__Function(void *x) {
+    return (void *)((dolfin::Function *)  ((dolfin::Resistance *) x));
 }
 static void *_p_dolfin__SparseVectorTo_p_GenericVector(void *x) {
     return (void *)((GenericVector *)  ((dolfin::SparseVector *) x));
@@ -48076,6 +48209,9 @@ static void *_p_dolfin__KrylovSolverTo_p_dolfin__LinearSolver(void *x) {
 }
 static void *_p_dolfin__UnitSquareTo_p_dolfin__Variable(void *x) {
     return (void *)((dolfin::Variable *) (dolfin::Mesh *) ((dolfin::UnitSquare *) x));
+}
+static void *_p_dolfin__ResistanceTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *) (dolfin::Function *) ((dolfin::Resistance *) x));
 }
 static void *_p_dolfin__SparseVectorTo_p_dolfin__Variable(void *x) {
     return (void *)((dolfin::Variable *)  ((dolfin::SparseVector *) x));
@@ -48171,6 +48307,7 @@ static swig_type_info _swigt__p_dolfin__ParticleSystem = {"_p_dolfin__ParticleSy
 static swig_type_info _swigt__p_dolfin__Partition = {"_p_dolfin__Partition", "dolfin::Partition *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Point = {"_p_dolfin__Point", "dolfin::Point *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Preconditioner = {"_p_dolfin__Preconditioner", "dolfin::Preconditioner *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_dolfin__Resistance = {"_p_dolfin__Resistance", "dolfin::Resistance *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Sample = {"_p_dolfin__Sample", "dolfin::Sample *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__SparseMatrix = {"_p_dolfin__SparseMatrix", "dolfin::SparseMatrix *|dolfin::Matrix *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__SparseMatrixElement = {"_p_dolfin__SparseMatrixElement", "dolfin::SparseMatrixElement *", 0, 0, (void*)0, 0};
@@ -48276,6 +48413,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__Partition,
   &_swigt__p_dolfin__Point,
   &_swigt__p_dolfin__Preconditioner,
+  &_swigt__p_dolfin__Resistance,
   &_swigt__p_dolfin__Sample,
   &_swigt__p_dolfin__SparseMatrix,
   &_swigt__p_dolfin__SparseMatrixElement,
@@ -48349,7 +48487,7 @@ static swig_cast_info _swigc__p_dolfin__File[] = {  {&_swigt__p_dolfin__File, 0,
 static swig_cast_info _swigc__p_dolfin__FiniteElement[] = {  {&_swigt__p_dolfin__FiniteElement, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__FiniteElementSpec[] = {  {&_swigt__p_dolfin__FiniteElementSpec, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Form[] = {  {&_swigt__p_dolfin__Form, 0, 0, 0},  {&_swigt__p_dolfin__BilinearForm, _p_dolfin__BilinearFormTo_p_dolfin__Form, 0, 0},  {&_swigt__p_dolfin__LinearForm, _p_dolfin__LinearFormTo_p_dolfin__Form, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__Function[] = {  {&_swigt__p_dolfin__Function, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__Function[] = {  {&_swigt__p_dolfin__Resistance, _p_dolfin__ResistanceTo_p_dolfin__Function, 0, 0},  {&_swigt__p_dolfin__Function, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__GMRES[] = {  {&_swigt__p_dolfin__GMRES, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Homotopy[] = {  {&_swigt__p_dolfin__Homotopy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__HomotopyJacobian[] = {  {&_swigt__p_dolfin__HomotopyJacobian, 0, 0, 0},{0, 0, 0, 0}};
@@ -48381,13 +48519,14 @@ static swig_cast_info _swigc__p_dolfin__ParticleSystem[] = {  {&_swigt__p_dolfin
 static swig_cast_info _swigc__p_dolfin__Partition[] = {  {&_swigt__p_dolfin__Partition, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Point[] = {  {&_swigt__p_dolfin__Point, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Preconditioner[] = {  {&_swigt__p_dolfin__Preconditioner, 0, 0, 0},  {&_swigt__p_dolfin__MultiAdaptivePreconditioner, _p_dolfin__MultiAdaptivePreconditionerTo_p_dolfin__Preconditioner, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__Resistance[] = {  {&_swigt__p_dolfin__Resistance, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Sample[] = {  {&_swigt__p_dolfin__Sample, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__SparseMatrix[] = {  {&_swigt__p_dolfin__SparseMatrix, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__SparseMatrixElement[] = {  {&_swigt__p_dolfin__SparseMatrixElement, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__SparseVector[] = {  {&_swigt__p_dolfin__SparseVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__SparseVectorElement[] = {  {&_swigt__p_dolfin__SparseVectorElement, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Tetrahedron[] = {  {&_swigt__p_dolfin__Tetrahedron, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__TimeDependent[] = {  {&_swigt__p_dolfin__TimeDependent, 0, 0, 0},  {&_swigt__p_dolfin__BoundaryCondition, _p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC1, _p_dolfin__UtilBC1To_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC2, _p_dolfin__UtilBC2To_p_dolfin__TimeDependent, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__TimeDependent[] = {  {&_swigt__p_dolfin__TimeDependent, 0, 0, 0},  {&_swigt__p_dolfin__BoundaryCondition, _p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Resistance, _p_dolfin__ResistanceTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC1, _p_dolfin__UtilBC1To_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__UtilBC2, _p_dolfin__UtilBC2To_p_dolfin__TimeDependent, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlab[] = {  {&_swigt__p_dolfin__TimeSlab, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlabJacobian[] = {  {&_swigt__p_dolfin__TimeSlabJacobian, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeStepper[] = {  {&_swigt__p_dolfin__TimeStepper, 0, 0, 0},{0, 0, 0, 0}};
@@ -48396,7 +48535,7 @@ static swig_cast_info _swigc__p_dolfin__UnitCube[] = {  {&_swigt__p_dolfin__Unit
 static swig_cast_info _swigc__p_dolfin__UnitSquare[] = {  {&_swigt__p_dolfin__UnitSquare, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UtilBC1[] = {  {&_swigt__p_dolfin__UtilBC1, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UtilBC2[] = {  {&_swigt__p_dolfin__UtilBC2, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__Variable[] = {  {&_swigt__p_dolfin__UnitSquare, _p_dolfin__UnitSquareTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Variable, 0, 0, 0},  {&_swigt__p_dolfin__SparseVector, _p_dolfin__SparseVectorTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__UnitCube, _p_dolfin__UnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Mesh, _p_dolfin__MeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__SparseMatrix, _p_dolfin__SparseMatrixTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Sample, _p_dolfin__SampleTo_p_dolfin__Variable, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__Variable[] = {  {&_swigt__p_dolfin__UnitSquare, _p_dolfin__UnitSquareTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Resistance, _p_dolfin__ResistanceTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Variable, 0, 0, 0},  {&_swigt__p_dolfin__SparseVector, _p_dolfin__SparseVectorTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__UnitCube, _p_dolfin__UnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Mesh, _p_dolfin__MeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__SparseMatrix, _p_dolfin__SparseMatrixTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Sample, _p_dolfin__SampleTo_p_dolfin__Variable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Vertex[] = {  {&_swigt__p_dolfin__Vertex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__VertexIterator[] = {  {&_swigt__p_dolfin__VertexIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__VirtualMatrix[] = {  {&_swigt__p_dolfin__VirtualMatrix, 0, 0, 0},  {&_swigt__p_dolfin__HomotopyJacobian, _p_dolfin__HomotopyJacobianTo_p_dolfin__VirtualMatrix, 0, 0},  {&_swigt__p_dolfin__TimeSlabJacobian, _p_dolfin__TimeSlabJacobianTo_p_dolfin__VirtualMatrix, 0, 0},{0, 0, 0, 0}};
@@ -48486,6 +48625,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__Partition,
   _swigc__p_dolfin__Point,
   _swigc__p_dolfin__Preconditioner,
+  _swigc__p_dolfin__Resistance,
   _swigc__p_dolfin__Sample,
   _swigc__p_dolfin__SparseMatrix,
   _swigc__p_dolfin__SparseMatrixElement,
