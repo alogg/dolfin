@@ -8,7 +8,6 @@
 #include <dolfin/Mesh.h>
 #include <dolfin/Cell.h>
 #include <dolfin/Point.h>
-#include <dolfin/Vector.h>
 #include <dolfin/AffineMap.h>
 #include <dolfin/FiniteElement.h>
 #include <dolfin/FiniteElementSpec.h>
@@ -89,10 +88,10 @@ public:
       components[2] = 0;
     }
   
-    void vertexeval(real values[], unsigned int vertex, const real x[], const Mesh& mesh) const
+    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
     {
       // FIXME: Temporary fix for Lagrange elements
-      values[0] = x[vertex];
+      vertex_nodes[0] = vertex;
     }
   
     const FiniteElement& operator[] (unsigned int i) const
@@ -183,10 +182,10 @@ public:
       components[2] = 0;
     }
   
-    void vertexeval(real values[], unsigned int vertex, const real x[], const Mesh& mesh) const
+    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
     {
       // FIXME: Temporary fix for Lagrange elements
-      values[0] = x[vertex];
+      vertex_nodes[0] = vertex;
     }
   
     const FiniteElement& operator[] (unsigned int i) const
@@ -318,10 +317,10 @@ public:
       components[2] = 0;
     }
   
-    void vertexeval(real values[], unsigned int vertex, const real x[], const Mesh& mesh) const
+    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
     {
       // FIXME: Temporary fix for Lagrange elements
-      values[0] = x[vertex];
+      vertex_nodes[0] = vertex;
     }
   
     const FiniteElement& operator[] (unsigned int i) const
@@ -412,10 +411,10 @@ public:
       components[2] = 0;
     }
   
-    void vertexeval(real values[], unsigned int vertex, const real x[], const Mesh& mesh) const
+    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
     {
       // FIXME: Temporary fix for Lagrange elements
-      values[0] = x[vertex];
+      vertex_nodes[0] = vertex;
     }
   
     const FiniteElement& operator[] (unsigned int i) const
@@ -506,10 +505,10 @@ public:
       components[2] = 0;
     }
   
-    void vertexeval(real values[], unsigned int vertex, const real x[], const Mesh& mesh) const
+    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
     {
       // FIXME: Temporary fix for Lagrange elements
-      values[0] = x[vertex];
+      vertex_nodes[0] = vertex;
     }
   
     const FiniteElement& operator[] (unsigned int i) const
@@ -558,9 +557,9 @@ public:
     const real G0_2 = map.det*c0_2;
 
     // Compute element tensor
-    block[0] = 8.333333333333318e-02*G0_0 + 4.166666666666659e-02*G0_1 + 4.166666666666657e-02*G0_2;
+    block[0] = 8.333333333333318e-02*G0_0 + 4.166666666666659e-02*G0_1 + 4.166666666666658e-02*G0_2;
     block[1] = 4.166666666666659e-02*G0_0 + 8.333333333333318e-02*G0_1 + 4.166666666666659e-02*G0_2;
-    block[2] = 4.166666666666657e-02*G0_0 + 4.166666666666659e-02*G0_1 + 8.333333333333316e-02*G0_2;
+    block[2] = 4.166666666666658e-02*G0_0 + 4.166666666666659e-02*G0_1 + 8.333333333333316e-02*G0_2;
   }
 
   void eval(real block[], const AffineMap& map, unsigned int facet) const
@@ -580,7 +579,7 @@ public:
     {  
     case 0: 
       block[0] = 0.000000000000000e+00;
-      block[1] = 3.333333333333330e-01*G0_1 + 1.666666666666665e-01*G0_2;
+      block[1] = 3.333333333333331e-01*G0_1 + 1.666666666666666e-01*G0_2;
       block[2] = 1.666666666666665e-01*G0_1 + 3.333333333333330e-01*G0_2;
       break; 
  
@@ -592,7 +591,7 @@ public:
  
     case 2: 
       block[0] = 3.333333333333330e-01*G0_0 + 1.666666666666665e-01*G0_1;
-      block[1] = 1.666666666666665e-01*G0_0 + 3.333333333333330e-01*G0_1;
+      block[1] = 1.666666666666665e-01*G0_0 + 3.333333333333331e-01*G0_1;
       block[2] = 0.000000000000000e+00;
       break; 
     } 
