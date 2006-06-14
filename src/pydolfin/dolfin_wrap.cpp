@@ -1445,102 +1445,101 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 #define SWIGTYPE_p_LinearForm swig_types[10]
 #define SWIGTYPE_p_Mat swig_types[11]
 #define SWIGTYPE_p_Matrix swig_types[12]
-#define SWIGTYPE_p_PETScKrylovSolver swig_types[13]
-#define SWIGTYPE_p_PETScLU swig_types[14]
-#define SWIGTYPE_p_Preconditioner swig_types[15]
-#define SWIGTYPE_p_Preconditioner__Type swig_types[16]
-#define SWIGTYPE_p_Vec swig_types[17]
-#define SWIGTYPE_p_VecScatter swig_types[18]
-#define SWIGTYPE_p_Vector swig_types[19]
-#define SWIGTYPE_p_char swig_types[20]
-#define SWIGTYPE_p_dolfin__AffineMap swig_types[21]
-#define SWIGTYPE_p_dolfin__ArrayTdouble_t swig_types[22]
-#define SWIGTYPE_p_dolfin__ArrayTint_t swig_types[23]
-#define SWIGTYPE_p_dolfin__ArrayTstd__complexTdouble_t_p_t swig_types[24]
-#define SWIGTYPE_p_dolfin__BLASFormData swig_types[25]
-#define SWIGTYPE_p_dolfin__BilinearForm swig_types[26]
-#define SWIGTYPE_p_dolfin__Boundary swig_types[27]
-#define SWIGTYPE_p_dolfin__BoundaryCondition swig_types[28]
-#define SWIGTYPE_p_dolfin__BoundaryValue swig_types[29]
-#define SWIGTYPE_p_dolfin__Cell swig_types[30]
-#define SWIGTYPE_p_dolfin__CellIterator swig_types[31]
-#define SWIGTYPE_p_dolfin__ComplexODE swig_types[32]
-#define SWIGTYPE_p_dolfin__DenseVector swig_types[33]
-#define SWIGTYPE_p_dolfin__Dependencies swig_types[34]
-#define SWIGTYPE_p_dolfin__Edge swig_types[35]
-#define SWIGTYPE_p_dolfin__EdgeIterator swig_types[36]
-#define SWIGTYPE_p_dolfin__FEM swig_types[37]
-#define SWIGTYPE_p_dolfin__Face swig_types[38]
-#define SWIGTYPE_p_dolfin__FaceIterator swig_types[39]
-#define SWIGTYPE_p_dolfin__File swig_types[40]
-#define SWIGTYPE_p_dolfin__FiniteElement swig_types[41]
-#define SWIGTYPE_p_dolfin__FiniteElementSpec swig_types[42]
-#define SWIGTYPE_p_dolfin__Form swig_types[43]
-#define SWIGTYPE_p_dolfin__Function swig_types[44]
-#define SWIGTYPE_p_dolfin__GMRES swig_types[45]
-#define SWIGTYPE_p_dolfin__Homotopy swig_types[46]
-#define SWIGTYPE_p_dolfin__HomotopyJacobian swig_types[47]
-#define SWIGTYPE_p_dolfin__HomotopyODE swig_types[48]
-#define SWIGTYPE_p_dolfin__LinearForm swig_types[49]
-#define SWIGTYPE_p_dolfin__LinearSolver swig_types[50]
-#define SWIGTYPE_p_dolfin__Matrix swig_types[51]
-#define SWIGTYPE_p_dolfin__Mesh swig_types[52]
-#define SWIGTYPE_p_dolfin__MeshHierarchy swig_types[53]
-#define SWIGTYPE_p_dolfin__MeshIterator swig_types[54]
-#define SWIGTYPE_p_dolfin__Method swig_types[55]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveFixedPointSolver swig_types[56]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveJacobian swig_types[57]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveNewtonSolver swig_types[58]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveTimeSlab swig_types[59]
-#define SWIGTYPE_p_dolfin__MonoAdaptivity swig_types[60]
-#define SWIGTYPE_p_dolfin__MultiAdaptiveFixedPointSolver swig_types[61]
-#define SWIGTYPE_p_dolfin__MultiAdaptiveNewtonSolver swig_types[62]
-#define SWIGTYPE_p_dolfin__MultiAdaptivePreconditioner swig_types[63]
-#define SWIGTYPE_p_dolfin__MultiAdaptiveTimeSlab swig_types[64]
-#define SWIGTYPE_p_dolfin__MultiAdaptivity swig_types[65]
-#define SWIGTYPE_p_dolfin__ODE swig_types[66]
-#define SWIGTYPE_p_dolfin__ODESolver swig_types[67]
-#define SWIGTYPE_p_dolfin__PETScManager swig_types[68]
-#define SWIGTYPE_p_dolfin__PETScSparseMatrix swig_types[69]
-#define SWIGTYPE_p_dolfin__PETScSparseMatrixElement swig_types[70]
-#define SWIGTYPE_p_dolfin__PETScVector swig_types[71]
-#define SWIGTYPE_p_dolfin__PETScVectorElement swig_types[72]
-#define SWIGTYPE_p_dolfin__Parameter swig_types[73]
-#define SWIGTYPE_p_dolfin__ParameterList swig_types[74]
-#define SWIGTYPE_p_dolfin__ParticleSystem swig_types[75]
-#define SWIGTYPE_p_dolfin__Partition swig_types[76]
-#define SWIGTYPE_p_dolfin__Point swig_types[77]
-#define SWIGTYPE_p_dolfin__Preconditioner swig_types[78]
-#define SWIGTYPE_p_dolfin__Sample swig_types[79]
-#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[80]
-#define SWIGTYPE_p_dolfin__TimeDependent swig_types[81]
-#define SWIGTYPE_p_dolfin__TimeDependentODE swig_types[82]
-#define SWIGTYPE_p_dolfin__TimeDependentPDE swig_types[83]
-#define SWIGTYPE_p_dolfin__TimeSlab swig_types[84]
-#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[85]
-#define SWIGTYPE_p_dolfin__TimeStepper swig_types[86]
-#define SWIGTYPE_p_dolfin__Triangle swig_types[87]
-#define SWIGTYPE_p_dolfin__UnitCube swig_types[88]
-#define SWIGTYPE_p_dolfin__UnitSquare swig_types[89]
-#define SWIGTYPE_p_dolfin__Variable swig_types[90]
-#define SWIGTYPE_p_dolfin__Vertex swig_types[91]
-#define SWIGTYPE_p_dolfin__VertexIterator swig_types[92]
-#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[93]
-#define SWIGTYPE_p_dolfin__cGqMethod swig_types[94]
-#define SWIGTYPE_p_dolfin__dGqMethod swig_types[95]
-#define SWIGTYPE_p_dolfin__uBlasSparseMatrix swig_types[96]
-#define SWIGTYPE_p_double swig_types[97]
-#define SWIGTYPE_p_int swig_types[98]
-#define SWIGTYPE_p_p_char swig_types[99]
-#define SWIGTYPE_p_std__complexTdouble_t swig_types[100]
-#define SWIGTYPE_p_std__setTint_t swig_types[101]
-#define SWIGTYPE_p_unsigned_int swig_types[102]
-#define SWIGTYPE_ptrdiff_t swig_types[103]
-#define SWIGTYPE_size_t swig_types[104]
-#define SWIGTYPE_std__ptrdiff_t swig_types[105]
-#define SWIGTYPE_std__size_t swig_types[106]
-static swig_type_info *swig_types[108];
-static swig_module_info swig_module = {swig_types, 107, 0, 0, 0, 0};
+#define SWIGTYPE_p_PETScLU swig_types[13]
+#define SWIGTYPE_p_Preconditioner swig_types[14]
+#define SWIGTYPE_p_Preconditioner__Type swig_types[15]
+#define SWIGTYPE_p_Vec swig_types[16]
+#define SWIGTYPE_p_VecScatter swig_types[17]
+#define SWIGTYPE_p_Vector swig_types[18]
+#define SWIGTYPE_p_char swig_types[19]
+#define SWIGTYPE_p_dolfin__AffineMap swig_types[20]
+#define SWIGTYPE_p_dolfin__ArrayTdouble_t swig_types[21]
+#define SWIGTYPE_p_dolfin__ArrayTint_t swig_types[22]
+#define SWIGTYPE_p_dolfin__ArrayTstd__complexTdouble_t_p_t swig_types[23]
+#define SWIGTYPE_p_dolfin__BLASFormData swig_types[24]
+#define SWIGTYPE_p_dolfin__BilinearForm swig_types[25]
+#define SWIGTYPE_p_dolfin__Boundary swig_types[26]
+#define SWIGTYPE_p_dolfin__BoundaryCondition swig_types[27]
+#define SWIGTYPE_p_dolfin__BoundaryValue swig_types[28]
+#define SWIGTYPE_p_dolfin__Cell swig_types[29]
+#define SWIGTYPE_p_dolfin__CellIterator swig_types[30]
+#define SWIGTYPE_p_dolfin__ComplexODE swig_types[31]
+#define SWIGTYPE_p_dolfin__DenseVector swig_types[32]
+#define SWIGTYPE_p_dolfin__Dependencies swig_types[33]
+#define SWIGTYPE_p_dolfin__Edge swig_types[34]
+#define SWIGTYPE_p_dolfin__EdgeIterator swig_types[35]
+#define SWIGTYPE_p_dolfin__FEM swig_types[36]
+#define SWIGTYPE_p_dolfin__Face swig_types[37]
+#define SWIGTYPE_p_dolfin__FaceIterator swig_types[38]
+#define SWIGTYPE_p_dolfin__File swig_types[39]
+#define SWIGTYPE_p_dolfin__FiniteElement swig_types[40]
+#define SWIGTYPE_p_dolfin__FiniteElementSpec swig_types[41]
+#define SWIGTYPE_p_dolfin__Form swig_types[42]
+#define SWIGTYPE_p_dolfin__Function swig_types[43]
+#define SWIGTYPE_p_dolfin__GMRES swig_types[44]
+#define SWIGTYPE_p_dolfin__Homotopy swig_types[45]
+#define SWIGTYPE_p_dolfin__HomotopyJacobian swig_types[46]
+#define SWIGTYPE_p_dolfin__HomotopyODE swig_types[47]
+#define SWIGTYPE_p_dolfin__LinearForm swig_types[48]
+#define SWIGTYPE_p_dolfin__LinearSolver swig_types[49]
+#define SWIGTYPE_p_dolfin__Mesh swig_types[50]
+#define SWIGTYPE_p_dolfin__MeshHierarchy swig_types[51]
+#define SWIGTYPE_p_dolfin__MeshIterator swig_types[52]
+#define SWIGTYPE_p_dolfin__Method swig_types[53]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveFixedPointSolver swig_types[54]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveJacobian swig_types[55]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveNewtonSolver swig_types[56]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveTimeSlab swig_types[57]
+#define SWIGTYPE_p_dolfin__MonoAdaptivity swig_types[58]
+#define SWIGTYPE_p_dolfin__MultiAdaptiveFixedPointSolver swig_types[59]
+#define SWIGTYPE_p_dolfin__MultiAdaptiveNewtonSolver swig_types[60]
+#define SWIGTYPE_p_dolfin__MultiAdaptivePreconditioner swig_types[61]
+#define SWIGTYPE_p_dolfin__MultiAdaptiveTimeSlab swig_types[62]
+#define SWIGTYPE_p_dolfin__MultiAdaptivity swig_types[63]
+#define SWIGTYPE_p_dolfin__ODE swig_types[64]
+#define SWIGTYPE_p_dolfin__ODESolver swig_types[65]
+#define SWIGTYPE_p_dolfin__PETScKrylovSolver swig_types[66]
+#define SWIGTYPE_p_dolfin__PETScManager swig_types[67]
+#define SWIGTYPE_p_dolfin__PETScSparseMatrix swig_types[68]
+#define SWIGTYPE_p_dolfin__PETScSparseMatrixElement swig_types[69]
+#define SWIGTYPE_p_dolfin__PETScVector swig_types[70]
+#define SWIGTYPE_p_dolfin__PETScVectorElement swig_types[71]
+#define SWIGTYPE_p_dolfin__Parameter swig_types[72]
+#define SWIGTYPE_p_dolfin__ParameterList swig_types[73]
+#define SWIGTYPE_p_dolfin__ParticleSystem swig_types[74]
+#define SWIGTYPE_p_dolfin__Partition swig_types[75]
+#define SWIGTYPE_p_dolfin__Point swig_types[76]
+#define SWIGTYPE_p_dolfin__Preconditioner swig_types[77]
+#define SWIGTYPE_p_dolfin__Sample swig_types[78]
+#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[79]
+#define SWIGTYPE_p_dolfin__TimeDependent swig_types[80]
+#define SWIGTYPE_p_dolfin__TimeDependentODE swig_types[81]
+#define SWIGTYPE_p_dolfin__TimeDependentPDE swig_types[82]
+#define SWIGTYPE_p_dolfin__TimeSlab swig_types[83]
+#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[84]
+#define SWIGTYPE_p_dolfin__TimeStepper swig_types[85]
+#define SWIGTYPE_p_dolfin__Triangle swig_types[86]
+#define SWIGTYPE_p_dolfin__UnitCube swig_types[87]
+#define SWIGTYPE_p_dolfin__UnitSquare swig_types[88]
+#define SWIGTYPE_p_dolfin__Variable swig_types[89]
+#define SWIGTYPE_p_dolfin__Vertex swig_types[90]
+#define SWIGTYPE_p_dolfin__VertexIterator swig_types[91]
+#define SWIGTYPE_p_dolfin__VirtualMatrix swig_types[92]
+#define SWIGTYPE_p_dolfin__cGqMethod swig_types[93]
+#define SWIGTYPE_p_dolfin__dGqMethod swig_types[94]
+#define SWIGTYPE_p_dolfin__uBlasSparseMatrix swig_types[95]
+#define SWIGTYPE_p_double swig_types[96]
+#define SWIGTYPE_p_int swig_types[97]
+#define SWIGTYPE_p_p_char swig_types[98]
+#define SWIGTYPE_p_std__complexTdouble_t swig_types[99]
+#define SWIGTYPE_p_std__setTint_t swig_types[100]
+#define SWIGTYPE_p_unsigned_int swig_types[101]
+#define SWIGTYPE_ptrdiff_t swig_types[102]
+#define SWIGTYPE_size_t swig_types[103]
+#define SWIGTYPE_std__ptrdiff_t swig_types[104]
+#define SWIGTYPE_std__size_t swig_types[105]
+static swig_type_info *swig_types[107];
+static swig_module_info swig_module = {swig_types, 106, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -9672,6 +9671,545 @@ static PyObject * GMRES_swigregister(PyObject *, PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
     SWIG_TypeClientData(SWIGTYPE_p_dolfin__GMRES, obj);
+    Py_INCREF(obj);
+    return Py_BuildValue((char *)"");
+}
+static PyObject *_wrap_new_KrylovSolver__SWIG_0(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver *result;
+    
+    if(!PyArg_ParseTuple(args,(char *)":new_KrylovSolver")) goto fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_1(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver::Type arg1 ;
+    dolfin::PETScKrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
+    {
+        arg1 = static_cast<dolfin::PETScKrylovSolver::Type >(SWIG_As_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_2(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    Preconditioner::Type arg1 ;
+    dolfin::PETScKrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
+    {
+        Preconditioner::Type * argp;
+        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Preconditioner__Type, SWIG_POINTER_EXCEPTION);
+        if (SWIG_arg_fail(1)) SWIG_fail;
+        if (argp == NULL) {
+            SWIG_null_ref("Preconditioner::Type");
+        }
+        if (SWIG_arg_fail(1)) SWIG_fail;
+        arg1 = *argp;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_3(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    Preconditioner *arg1 = 0 ;
+    dolfin::PETScKrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
+    {
+        SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(1)) SWIG_fail;
+        if (arg1 == NULL) {
+            SWIG_null_ref("Preconditioner");
+        }
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(*arg1);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_4(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver::Type arg1 ;
+    Preconditioner::Type arg2 ;
+    dolfin::PETScKrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OO:new_KrylovSolver",&obj0,&obj1)) goto fail;
+    {
+        arg1 = static_cast<dolfin::PETScKrylovSolver::Type >(SWIG_As_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    {
+        Preconditioner::Type * argp;
+        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_Preconditioner__Type, SWIG_POINTER_EXCEPTION);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (argp == NULL) {
+            SWIG_null_ref("Preconditioner::Type");
+        }
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        arg2 = *argp;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1,arg2);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver__SWIG_5(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver::Type arg1 ;
+    Preconditioner *arg2 = 0 ;
+    dolfin::PETScKrylovSolver *result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OO:new_KrylovSolver",&obj0,&obj1)) goto fail;
+    {
+        arg1 = static_cast<dolfin::PETScKrylovSolver::Type >(SWIG_As_int(obj0)); 
+        if (SWIG_arg_fail(1)) SWIG_fail;
+    }
+    {
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (arg2 == NULL) {
+            SWIG_null_ref("Preconditioner");
+        }
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1,*arg2);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, 1);
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_new_KrylovSolver(PyObject *self, PyObject *args) {
+    int argc;
+    PyObject *argv[3];
+    int ii;
+    
+    argc = PyObject_Length(args);
+    for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+        argv[ii] = PyTuple_GetItem(args,ii);
+    }
+    if (argc == 0) {
+        return _wrap_new_KrylovSolver__SWIG_0(self,args);
+    }
+    if (argc == 1) {
+        int _v;
+        {
+            void *ptr = 0;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner__Type, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = (ptr != 0);
+            }
+        }
+        if (_v) {
+            return _wrap_new_KrylovSolver__SWIG_2(self,args);
+        }
+    }
+    if (argc == 1) {
+        int _v;
+        {
+            void *ptr = 0;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = (ptr != 0);
+            }
+        }
+        if (_v) {
+            return _wrap_new_KrylovSolver__SWIG_3(self,args);
+        }
+    }
+    if (argc == 1) {
+        int _v;
+        _v = SWIG_Check_int(argv[0]);
+        if (_v) {
+            return _wrap_new_KrylovSolver__SWIG_1(self,args);
+        }
+    }
+    if (argc == 2) {
+        int _v;
+        _v = SWIG_Check_int(argv[0]);
+        if (_v) {
+            {
+                void *ptr = 0;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner__Type, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = (ptr != 0);
+                }
+            }
+            if (_v) {
+                return _wrap_new_KrylovSolver__SWIG_4(self,args);
+            }
+        }
+    }
+    if (argc == 2) {
+        int _v;
+        _v = SWIG_Check_int(argv[0]);
+        if (_v) {
+            {
+                void *ptr = 0;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = (ptr != 0);
+                }
+            }
+            if (_v) {
+                return _wrap_new_KrylovSolver__SWIG_5(self,args);
+            }
+        }
+    }
+    
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_KrylovSolver'");
+    return NULL;
+}
+
+
+static PyObject *_wrap_delete_KrylovSolver(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:delete_KrylovSolver",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        delete arg1;
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_KrylovSolver_solve__SWIG_0(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
+    dolfin::PETScSparseMatrix *arg2 = 0 ;
+    dolfin::PETScVector *arg3 = 0 ;
+    dolfin::PETScVector *arg4 = 0 ;
+    dolfin::uint result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    PyObject * obj2 = 0 ;
+    PyObject * obj3 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:KrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    {
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (arg2 == NULL) {
+            SWIG_null_ref("dolfin::PETScSparseMatrix");
+        }
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    {
+        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(3)) SWIG_fail;
+        if (arg3 == NULL) {
+            SWIG_null_ref("dolfin::PETScVector");
+        }
+        if (SWIG_arg_fail(3)) SWIG_fail;
+    }
+    {
+        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(4)) SWIG_fail;
+        if (arg4 == NULL) {
+            SWIG_null_ref("dolfin::PETScVector");
+        }
+        if (SWIG_arg_fail(4)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::uint)(arg1)->solve((dolfin::PETScSparseMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_unsigned_SS_int(static_cast<unsigned int >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_KrylovSolver_solve__SWIG_1(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
+    dolfin::VirtualMatrix *arg2 = 0 ;
+    dolfin::PETScVector *arg3 = 0 ;
+    dolfin::PETScVector *arg4 = 0 ;
+    dolfin::uint result;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    PyObject * obj2 = 0 ;
+    PyObject * obj3 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:KrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    {
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__VirtualMatrix, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (arg2 == NULL) {
+            SWIG_null_ref("dolfin::VirtualMatrix");
+        }
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    {
+        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(3)) SWIG_fail;
+        if (arg3 == NULL) {
+            SWIG_null_ref("dolfin::PETScVector");
+        }
+        if (SWIG_arg_fail(3)) SWIG_fail;
+    }
+    {
+        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(4)) SWIG_fail;
+        if (arg4 == NULL) {
+            SWIG_null_ref("dolfin::PETScVector");
+        }
+        if (SWIG_arg_fail(4)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        result = (dolfin::uint)(arg1)->solve((dolfin::VirtualMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    {
+        resultobj = SWIG_From_unsigned_SS_int(static_cast<unsigned int >(result)); 
+    }
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_KrylovSolver_solve(PyObject *self, PyObject *args) {
+    int argc;
+    PyObject *argv[5];
+    int ii;
+    
+    argc = PyObject_Length(args);
+    for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+        argv[ii] = PyTuple_GetItem(args,ii);
+    }
+    if (argc == 4) {
+        int _v;
+        {
+            void *ptr;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScKrylovSolver, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = 1;
+            }
+        }
+        if (_v) {
+            {
+                void *ptr = 0;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_dolfin__PETScSparseMatrix, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = (ptr != 0);
+                }
+            }
+            if (_v) {
+                {
+                    void *ptr = 0;
+                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
+                        _v = 0;
+                        PyErr_Clear();
+                    } else {
+                        _v = (ptr != 0);
+                    }
+                }
+                if (_v) {
+                    {
+                        void *ptr = 0;
+                        if (SWIG_ConvertPtr(argv[3], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
+                            _v = 0;
+                            PyErr_Clear();
+                        } else {
+                            _v = (ptr != 0);
+                        }
+                    }
+                    if (_v) {
+                        return _wrap_KrylovSolver_solve__SWIG_0(self,args);
+                    }
+                }
+            }
+        }
+    }
+    if (argc == 4) {
+        int _v;
+        {
+            void *ptr;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScKrylovSolver, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = 1;
+            }
+        }
+        if (_v) {
+            {
+                void *ptr = 0;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_dolfin__VirtualMatrix, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = (ptr != 0);
+                }
+            }
+            if (_v) {
+                {
+                    void *ptr = 0;
+                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
+                        _v = 0;
+                        PyErr_Clear();
+                    } else {
+                        _v = (ptr != 0);
+                    }
+                }
+                if (_v) {
+                    {
+                        void *ptr = 0;
+                        if (SWIG_ConvertPtr(argv[3], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
+                            _v = 0;
+                            PyErr_Clear();
+                        } else {
+                            _v = (ptr != 0);
+                        }
+                    }
+                    if (_v) {
+                        return _wrap_KrylovSolver_solve__SWIG_1(self,args);
+                    }
+                }
+            }
+        }
+    }
+    
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'KrylovSolver_solve'");
+    return NULL;
+}
+
+
+static PyObject *_wrap_KrylovSolver_disp(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
+    PyObject * obj0 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"O:KrylovSolver_disp",&obj0)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    try {
+        Swig::UnknownExceptionHandler dh;
+        ((dolfin::PETScKrylovSolver const *)arg1)->disp();
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
+static PyObject * KrylovSolver_swigregister(PyObject *, PyObject *args) {
+    PyObject *obj;
+    if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
+    SWIG_TypeClientData(SWIGTYPE_p_dolfin__PETScKrylovSolver, obj);
     Py_INCREF(obj);
     return Py_BuildValue((char *)"");
 }
@@ -40718,64 +41256,22 @@ static PyObject *_wrap_load_parameters(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_assemble__SWIG_0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::LinearForm *arg1 = 0 ;
-    dolfin::Vector *arg2 = 0 ;
-    dolfin::Mesh *arg3 = 0 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:assemble",&obj0,&obj1,&obj2)) goto fail;
-    {
-        SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__LinearForm, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(1)) SWIG_fail;
-        if (arg1 == NULL) {
-            SWIG_null_ref("dolfin::LinearForm");
-        }
-        if (SWIG_arg_fail(1)) SWIG_fail;
-    }
-    {
-        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        if (arg2 == NULL) {
-            SWIG_null_ref("dolfin::Vector");
-        }
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__Mesh, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(3)) SWIG_fail;
-        if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::Mesh");
-        }
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        assemble(*arg1,*arg2,*arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_assemble__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_assemble(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::BilinearForm *arg1 = 0 ;
-    dolfin::Matrix *arg2 = 0 ;
-    dolfin::Mesh *arg3 = 0 ;
+    dolfin::LinearForm *arg2 = 0 ;
+    dolfin::PETScSparseMatrix *arg3 = 0 ;
+    dolfin::PETScVector *arg4 = 0 ;
+    dolfin::Mesh *arg5 = 0 ;
+    dolfin::BoundaryCondition *arg6 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
+    PyObject * obj3 = 0 ;
+    PyObject * obj4 = 0 ;
+    PyObject * obj5 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:assemble",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOOOO:assemble",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__BilinearForm, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -40785,229 +41281,48 @@ static PyObject *_wrap_assemble__SWIG_1(PyObject *, PyObject *args) {
         if (SWIG_arg_fail(1)) SWIG_fail;
     }
     {
-        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__Matrix, SWIG_POINTER_EXCEPTION | 0);
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__LinearForm, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(2)) SWIG_fail;
         if (arg2 == NULL) {
-            SWIG_null_ref("dolfin::Matrix");
+            SWIG_null_ref("dolfin::LinearForm");
         }
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
     {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__Mesh, SWIG_POINTER_EXCEPTION | 0);
+        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(3)) SWIG_fail;
         if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::Mesh");
-        }
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        assemble(*arg1,*arg2,*arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_assemble(PyObject *self, PyObject *args) {
-    int argc;
-    PyObject *argv[4];
-    int ii;
-    
-    argc = PyObject_Length(args);
-    for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-        argv[ii] = PyTuple_GetItem(args,ii);
-    }
-    if (argc == 3) {
-        int _v;
-        {
-            void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__LinearForm, 0) == -1) {
-                _v = 0;
-                PyErr_Clear();
-            } else {
-                _v = (ptr != 0);
-            }
-        }
-        if (_v) {
-            {
-                void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
-                    _v = 0;
-                    PyErr_Clear();
-                } else {
-                    _v = (ptr != 0);
-                }
-            }
-            if (_v) {
-                {
-                    void *ptr = 0;
-                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_dolfin__Mesh, 0) == -1) {
-                        _v = 0;
-                        PyErr_Clear();
-                    } else {
-                        _v = (ptr != 0);
-                    }
-                }
-                if (_v) {
-                    return _wrap_assemble__SWIG_0(self,args);
-                }
-            }
-        }
-    }
-    if (argc == 3) {
-        int _v;
-        {
-            void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__BilinearForm, 0) == -1) {
-                _v = 0;
-                PyErr_Clear();
-            } else {
-                _v = (ptr != 0);
-            }
-        }
-        if (_v) {
-            {
-                void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_dolfin__Matrix, 0) == -1) {
-                    _v = 0;
-                    PyErr_Clear();
-                } else {
-                    _v = (ptr != 0);
-                }
-            }
-            if (_v) {
-                {
-                    void *ptr = 0;
-                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_dolfin__Mesh, 0) == -1) {
-                        _v = 0;
-                        PyErr_Clear();
-                    } else {
-                        _v = (ptr != 0);
-                    }
-                }
-                if (_v) {
-                    return _wrap_assemble__SWIG_1(self,args);
-                }
-            }
-        }
-    }
-    
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'assemble'");
-    return NULL;
-}
-
-
-static PyObject *_wrap_applyBC__SWIG_0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::Vector *arg1 = 0 ;
-    dolfin::Mesh *arg2 = 0 ;
-    dolfin::FiniteElement *arg3 = 0 ;
-    dolfin::BoundaryCondition *arg4 = 0 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    PyObject * obj3 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:applyBC",&obj0,&obj1,&obj2,&obj3)) goto fail;
-    {
-        SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(1)) SWIG_fail;
-        if (arg1 == NULL) {
-            SWIG_null_ref("dolfin::Vector");
-        }
-        if (SWIG_arg_fail(1)) SWIG_fail;
-    }
-    {
-        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__Mesh, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        if (arg2 == NULL) {
-            SWIG_null_ref("dolfin::Mesh");
-        }
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__FiniteElement, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(3)) SWIG_fail;
-        if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::FiniteElement");
+            SWIG_null_ref("dolfin::PETScSparseMatrix");
         }
         if (SWIG_arg_fail(3)) SWIG_fail;
     }
     {
-        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__BoundaryCondition, SWIG_POINTER_EXCEPTION | 0);
+        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(4)) SWIG_fail;
         if (arg4 == NULL) {
-            SWIG_null_ref("dolfin::BoundaryCondition");
+            SWIG_null_ref("dolfin::PETScVector");
         }
         if (SWIG_arg_fail(4)) SWIG_fail;
     }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        applyBC(*arg1,*arg2,*arg3,*arg4);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_applyBC__SWIG_1(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::Matrix *arg1 = 0 ;
-    dolfin::Mesh *arg2 = 0 ;
-    dolfin::FiniteElement *arg3 = 0 ;
-    dolfin::BoundaryCondition *arg4 = 0 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    PyObject * obj3 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:applyBC",&obj0,&obj1,&obj2,&obj3)) goto fail;
     {
-        SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Matrix, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(1)) SWIG_fail;
-        if (arg1 == NULL) {
-            SWIG_null_ref("dolfin::Matrix");
-        }
-        if (SWIG_arg_fail(1)) SWIG_fail;
-    }
-    {
-        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__Mesh, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(2)) SWIG_fail;
-        if (arg2 == NULL) {
+        SWIG_Python_ConvertPtr(obj4, (void **)&arg5, SWIGTYPE_p_dolfin__Mesh, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(5)) SWIG_fail;
+        if (arg5 == NULL) {
             SWIG_null_ref("dolfin::Mesh");
         }
-        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (SWIG_arg_fail(5)) SWIG_fail;
     }
     {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__FiniteElement, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(3)) SWIG_fail;
-        if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::FiniteElement");
-        }
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    {
-        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__BoundaryCondition, SWIG_POINTER_EXCEPTION | 0);
-        if (SWIG_arg_fail(4)) SWIG_fail;
-        if (arg4 == NULL) {
+        SWIG_Python_ConvertPtr(obj5, (void **)&arg6, SWIGTYPE_p_dolfin__BoundaryCondition, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(6)) SWIG_fail;
+        if (arg6 == NULL) {
             SWIG_null_ref("dolfin::BoundaryCondition");
         }
-        if (SWIG_arg_fail(4)) SWIG_fail;
+        if (SWIG_arg_fail(6)) SWIG_fail;
     }
     try {
         Swig::UnknownExceptionHandler dh;
-        applyBC(*arg1,*arg2,*arg3,*arg4);
+        assemble(*arg1,*arg2,*arg3,*arg4,*arg5,*arg6);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -41015,117 +41330,6 @@ static PyObject *_wrap_applyBC__SWIG_1(PyObject *, PyObject *args) {
     Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_applyBC(PyObject *self, PyObject *args) {
-    int argc;
-    PyObject *argv[5];
-    int ii;
-    
-    argc = PyObject_Length(args);
-    for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-        argv[ii] = PyTuple_GetItem(args,ii);
-    }
-    if (argc == 4) {
-        int _v;
-        {
-            void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
-                _v = 0;
-                PyErr_Clear();
-            } else {
-                _v = (ptr != 0);
-            }
-        }
-        if (_v) {
-            {
-                void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_dolfin__Mesh, 0) == -1) {
-                    _v = 0;
-                    PyErr_Clear();
-                } else {
-                    _v = (ptr != 0);
-                }
-            }
-            if (_v) {
-                {
-                    void *ptr = 0;
-                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_dolfin__FiniteElement, 0) == -1) {
-                        _v = 0;
-                        PyErr_Clear();
-                    } else {
-                        _v = (ptr != 0);
-                    }
-                }
-                if (_v) {
-                    {
-                        void *ptr = 0;
-                        if (SWIG_ConvertPtr(argv[3], &ptr, SWIGTYPE_p_dolfin__BoundaryCondition, 0) == -1) {
-                            _v = 0;
-                            PyErr_Clear();
-                        } else {
-                            _v = (ptr != 0);
-                        }
-                    }
-                    if (_v) {
-                        return _wrap_applyBC__SWIG_0(self,args);
-                    }
-                }
-            }
-        }
-    }
-    if (argc == 4) {
-        int _v;
-        {
-            void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__Matrix, 0) == -1) {
-                _v = 0;
-                PyErr_Clear();
-            } else {
-                _v = (ptr != 0);
-            }
-        }
-        if (_v) {
-            {
-                void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_dolfin__Mesh, 0) == -1) {
-                    _v = 0;
-                    PyErr_Clear();
-                } else {
-                    _v = (ptr != 0);
-                }
-            }
-            if (_v) {
-                {
-                    void *ptr = 0;
-                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_dolfin__FiniteElement, 0) == -1) {
-                        _v = 0;
-                        PyErr_Clear();
-                    } else {
-                        _v = (ptr != 0);
-                    }
-                }
-                if (_v) {
-                    {
-                        void *ptr = 0;
-                        if (SWIG_ConvertPtr(argv[3], &ptr, SWIGTYPE_p_dolfin__BoundaryCondition, 0) == -1) {
-                            _v = 0;
-                            PyErr_Clear();
-                        } else {
-                            _v = (ptr != 0);
-                        }
-                    }
-                    if (_v) {
-                        return _wrap_applyBC__SWIG_1(self,args);
-                    }
-                }
-            }
-        }
-    }
-    
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'applyBC'");
     return NULL;
 }
 
@@ -41259,6 +41463,11 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_GMRES", _wrap_new_GMRES, METH_VARARGS, NULL},
 	 { (char *)"delete_GMRES", _wrap_delete_GMRES, METH_VARARGS, NULL},
 	 { (char *)"GMRES_swigregister", GMRES_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_KrylovSolver", _wrap_new_KrylovSolver, METH_VARARGS, NULL},
+	 { (char *)"delete_KrylovSolver", _wrap_delete_KrylovSolver, METH_VARARGS, NULL},
+	 { (char *)"KrylovSolver_solve", _wrap_KrylovSolver_solve, METH_VARARGS, NULL},
+	 { (char *)"KrylovSolver_disp", _wrap_KrylovSolver_disp, METH_VARARGS, NULL},
+	 { (char *)"KrylovSolver_swigregister", KrylovSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_LinearSolver", _wrap_new_LinearSolver, METH_VARARGS, NULL},
 	 { (char *)"delete_LinearSolver", _wrap_delete_LinearSolver, METH_VARARGS, NULL},
 	 { (char *)"LinearSolver_solve", _wrap_LinearSolver_solve, METH_VARARGS, NULL},
@@ -41938,7 +42147,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"get", _wrap_get, METH_VARARGS, NULL},
 	 { (char *)"load_parameters", _wrap_load_parameters, METH_VARARGS, NULL},
 	 { (char *)"assemble", _wrap_assemble, METH_VARARGS, NULL},
-	 { (char *)"applyBC", _wrap_applyBC, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -42024,7 +42232,6 @@ static swig_type_info _swigt__p_KSP = {"_p_KSP", "KSP *", 0, 0, 0};
 static swig_type_info _swigt__p_LinearForm = {"_p_LinearForm", "LinearForm *", 0, 0, 0};
 static swig_type_info _swigt__p_Mat = {"_p_Mat", "Mat *", 0, 0, 0};
 static swig_type_info _swigt__p_Matrix = {"_p_Matrix", "Matrix *", 0, 0, 0};
-static swig_type_info _swigt__p_PETScKrylovSolver = {"_p_PETScKrylovSolver", "PETScKrylovSolver *|dolfin::KrylovSolver *", 0, 0, 0};
 static swig_type_info _swigt__p_PETScLU = {"_p_PETScLU", "PETScLU *|dolfin::LU *", 0, 0, 0};
 static swig_type_info _swigt__p_Preconditioner = {"_p_Preconditioner", "Preconditioner *", 0, 0, 0};
 static swig_type_info _swigt__p_Preconditioner__Type = {"_p_Preconditioner__Type", "Preconditioner::Type *", 0, 0, 0};
@@ -42062,7 +42269,6 @@ static swig_type_info _swigt__p_dolfin__HomotopyJacobian = {"_p_dolfin__Homotopy
 static swig_type_info _swigt__p_dolfin__HomotopyODE = {"_p_dolfin__HomotopyODE", "dolfin::HomotopyODE *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__LinearForm = {"_p_dolfin__LinearForm", "dolfin::LinearForm *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__LinearSolver = {"_p_dolfin__LinearSolver", "dolfin::LinearSolver *", 0, 0, 0};
-static swig_type_info _swigt__p_dolfin__Matrix = {"_p_dolfin__Matrix", "dolfin::Matrix *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Mesh = {"_p_dolfin__Mesh", "dolfin::Mesh *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__MeshHierarchy = {"_p_dolfin__MeshHierarchy", "dolfin::MeshHierarchy *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__MeshIterator = {"_p_dolfin__MeshIterator", "dolfin::MeshIterator *", 0, 0, 0};
@@ -42079,10 +42285,11 @@ static swig_type_info _swigt__p_dolfin__MultiAdaptiveTimeSlab = {"_p_dolfin__Mul
 static swig_type_info _swigt__p_dolfin__MultiAdaptivity = {"_p_dolfin__MultiAdaptivity", "dolfin::MultiAdaptivity *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__ODE = {"_p_dolfin__ODE", "dolfin::ODE *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__ODESolver = {"_p_dolfin__ODESolver", "dolfin::ODESolver *", 0, 0, 0};
+static swig_type_info _swigt__p_dolfin__PETScKrylovSolver = {"_p_dolfin__PETScKrylovSolver", "dolfin::PETScKrylovSolver *|dolfin::KrylovSolver *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScManager = {"_p_dolfin__PETScManager", "dolfin::PETScManager *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScSparseMatrix = {"_p_dolfin__PETScSparseMatrix", "dolfin::PETScSparseMatrix *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScSparseMatrixElement = {"_p_dolfin__PETScSparseMatrixElement", "dolfin::PETScSparseMatrixElement *", 0, 0, 0};
-static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *|dolfin::Vector *", 0, 0, 0};
+static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScVectorElement = {"_p_dolfin__PETScVectorElement", "dolfin::PETScVectorElement *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Parameter = {"_p_dolfin__Parameter", "dolfin::Parameter *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__ParameterList = {"_p_dolfin__ParameterList", "dolfin::ParameterList *", 0, 0, 0};
@@ -42133,7 +42340,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_LinearForm,
   &_swigt__p_Mat,
   &_swigt__p_Matrix,
-  &_swigt__p_PETScKrylovSolver,
   &_swigt__p_PETScLU,
   &_swigt__p_Preconditioner,
   &_swigt__p_Preconditioner__Type,
@@ -42171,7 +42377,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__HomotopyODE,
   &_swigt__p_dolfin__LinearForm,
   &_swigt__p_dolfin__LinearSolver,
-  &_swigt__p_dolfin__Matrix,
   &_swigt__p_dolfin__Mesh,
   &_swigt__p_dolfin__MeshHierarchy,
   &_swigt__p_dolfin__MeshIterator,
@@ -42188,6 +42393,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__MultiAdaptivity,
   &_swigt__p_dolfin__ODE,
   &_swigt__p_dolfin__ODESolver,
+  &_swigt__p_dolfin__PETScKrylovSolver,
   &_swigt__p_dolfin__PETScManager,
   &_swigt__p_dolfin__PETScSparseMatrix,
   &_swigt__p_dolfin__PETScSparseMatrixElement,
@@ -42242,7 +42448,6 @@ static swig_cast_info _swigc__p_KSP[] = {  {&_swigt__p_KSP, 0, 0, 0},{0, 0, 0, 0
 static swig_cast_info _swigc__p_LinearForm[] = {  {&_swigt__p_LinearForm, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mat[] = {  {&_swigt__p_Mat, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Matrix[] = {  {&_swigt__p_Matrix, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PETScKrylovSolver[] = {  {&_swigt__p_PETScKrylovSolver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PETScLU[] = {  {&_swigt__p_PETScLU, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Preconditioner[] = {  {&_swigt__p_Preconditioner, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Preconditioner__Type[] = {  {&_swigt__p_Preconditioner__Type, 0, 0, 0},{0, 0, 0, 0}};
@@ -42280,7 +42485,6 @@ static swig_cast_info _swigc__p_dolfin__HomotopyJacobian[] = {  {&_swigt__p_dolf
 static swig_cast_info _swigc__p_dolfin__HomotopyODE[] = {  {&_swigt__p_dolfin__HomotopyODE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__LinearForm[] = {  {&_swigt__p_dolfin__LinearForm, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__LinearSolver[] = {  {&_swigt__p_dolfin__LinearSolver, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__Matrix[] = {  {&_swigt__p_dolfin__Matrix, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Mesh[] = {  {&_swigt__p_dolfin__UnitSquare, _p_dolfin__UnitSquareTo_p_dolfin__Mesh, 0, 0},  {&_swigt__p_dolfin__UnitCube, _p_dolfin__UnitCubeTo_p_dolfin__Mesh, 0, 0},  {&_swigt__p_dolfin__Mesh, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__MeshHierarchy[] = {  {&_swigt__p_dolfin__MeshHierarchy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__MeshIterator[] = {  {&_swigt__p_dolfin__MeshIterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -42297,6 +42501,7 @@ static swig_cast_info _swigc__p_dolfin__MultiAdaptiveTimeSlab[] = {  {&_swigt__p
 static swig_cast_info _swigc__p_dolfin__MultiAdaptivity[] = {  {&_swigt__p_dolfin__MultiAdaptivity, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__ODE[] = {  {&_swigt__p_dolfin__ODE, 0, 0, 0},  {&_swigt__p_dolfin__TimeDependentODE, _p_dolfin__TimeDependentODETo_p_dolfin__ODE, 0, 0},  {&_swigt__p_dolfin__ParticleSystem, _p_dolfin__ParticleSystemTo_p_dolfin__ODE, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__ODESolver[] = {  {&_swigt__p_dolfin__ODESolver, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__PETScKrylovSolver[] = {  {&_swigt__p_dolfin__PETScKrylovSolver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__PETScManager[] = {  {&_swigt__p_dolfin__PETScManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__PETScSparseMatrix[] = {  {&_swigt__p_dolfin__PETScSparseMatrix, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__PETScSparseMatrixElement[] = {  {&_swigt__p_dolfin__PETScSparseMatrixElement, 0, 0, 0},{0, 0, 0, 0}};
@@ -42351,7 +42556,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_LinearForm,
   _swigc__p_Mat,
   _swigc__p_Matrix,
-  _swigc__p_PETScKrylovSolver,
   _swigc__p_PETScLU,
   _swigc__p_Preconditioner,
   _swigc__p_Preconditioner__Type,
@@ -42389,7 +42593,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__HomotopyODE,
   _swigc__p_dolfin__LinearForm,
   _swigc__p_dolfin__LinearSolver,
-  _swigc__p_dolfin__Matrix,
   _swigc__p_dolfin__Mesh,
   _swigc__p_dolfin__MeshHierarchy,
   _swigc__p_dolfin__MeshIterator,
@@ -42406,6 +42609,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__MultiAdaptivity,
   _swigc__p_dolfin__ODE,
   _swigc__p_dolfin__ODESolver,
+  _swigc__p_dolfin__PETScKrylovSolver,
   _swigc__p_dolfin__PETScManager,
   _swigc__p_dolfin__PETScSparseMatrix,
   _swigc__p_dolfin__PETScSparseMatrixElement,
@@ -42949,6 +43153,18 @@ SWIGEXPORT void SWIG_init(void) {
     }
     {
         PyDict_SetItemString(d,"Matrix_frobenius", SWIG_From_int(static_cast<int >(dolfin::PETScSparseMatrix::frobenius))); 
+    }
+    {
+        PyDict_SetItemString(d,"KrylovSolver_bicgstab", SWIG_From_int(static_cast<int >(dolfin::PETScKrylovSolver::bicgstab))); 
+    }
+    {
+        PyDict_SetItemString(d,"KrylovSolver_cg", SWIG_From_int(static_cast<int >(dolfin::PETScKrylovSolver::cg))); 
+    }
+    {
+        PyDict_SetItemString(d,"KrylovSolver_default_solver", SWIG_From_int(static_cast<int >(dolfin::PETScKrylovSolver::default_solver))); 
+    }
+    {
+        PyDict_SetItemString(d,"KrylovSolver_gmres", SWIG_From_int(static_cast<int >(dolfin::PETScKrylovSolver::gmres))); 
     }
     {
         PyDict_SetItemString(d,"Preconditioner_default_pc", SWIG_From_int(static_cast<int >(dolfin::Preconditioner::default_pc))); 
