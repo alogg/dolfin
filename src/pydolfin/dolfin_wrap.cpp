@@ -6353,11 +6353,11 @@ static PyObject * uBlasKrylovMatrix_swigregister(PyObject *, PyObject *args) {
     Py_INCREF(obj);
     return Py_BuildValue((char *)"");
 }
-static PyObject *_wrap_new_PETScVector__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Vector__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *result;
     
-    if(!PyArg_ParseTuple(args,(char *)":new_PETScVector")) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)":new_Vector")) goto fail;
     try {
         Swig::UnknownExceptionHandler dh;
         result = (dolfin::PETScVector *)new dolfin::PETScVector();
@@ -6372,13 +6372,13 @@ static PyObject *_wrap_new_PETScVector__SWIG_0(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_new_PETScVector__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Vector__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::uint arg1 ;
     dolfin::PETScVector *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScVector",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Vector",&obj0)) goto fail;
     {
         arg1 = (dolfin::uint)(SWIG_As_unsigned_SS_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -6397,13 +6397,13 @@ static PyObject *_wrap_new_PETScVector__SWIG_1(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_new_PETScVector__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Vector__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     Vec arg1 ;
     dolfin::PETScVector *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScVector",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Vector",&obj0)) goto fail;
     {
         Vec * argp;
         SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Vec, SWIG_POINTER_EXCEPTION);
@@ -6428,13 +6428,13 @@ static PyObject *_wrap_new_PETScVector__SWIG_2(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_new_PETScVector__SWIG_3(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Vector__SWIG_3(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = 0 ;
     dolfin::PETScVector *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScVector",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Vector",&obj0)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -6457,7 +6457,7 @@ static PyObject *_wrap_new_PETScVector__SWIG_3(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_new_PETScVector(PyObject *self, PyObject *args) {
+static PyObject *_wrap_new_Vector(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[2];
     int ii;
@@ -6467,7 +6467,7 @@ static PyObject *_wrap_new_PETScVector(PyObject *self, PyObject *args) {
         argv[ii] = PyTuple_GetItem(args,ii);
     }
     if (argc == 0) {
-        return _wrap_new_PETScVector__SWIG_0(self,args);
+        return _wrap_new_Vector__SWIG_0(self,args);
     }
     if (argc == 1) {
         int _v;
@@ -6481,7 +6481,7 @@ static PyObject *_wrap_new_PETScVector(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_PETScVector__SWIG_2(self,args);
+            return _wrap_new_Vector__SWIG_2(self,args);
         }
     }
     if (argc == 1) {
@@ -6496,28 +6496,28 @@ static PyObject *_wrap_new_PETScVector(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_PETScVector__SWIG_3(self,args);
+            return _wrap_new_Vector__SWIG_3(self,args);
         }
     }
     if (argc == 1) {
         int _v;
         _v = SWIG_Check_unsigned_SS_int(argv[0]);
         if (_v) {
-            return _wrap_new_PETScVector__SWIG_1(self,args);
+            return _wrap_new_Vector__SWIG_1(self,args);
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScVector'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_Vector'");
     return NULL;
 }
 
 
-static PyObject *_wrap_delete_PETScVector(PyObject *, PyObject *args) {
+static PyObject *_wrap_delete_Vector(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:delete_PETScVector",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:delete_Vector",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -6534,7 +6534,7 @@ static PyObject *_wrap_delete_PETScVector(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_init(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_init(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint arg2 ;
@@ -6542,7 +6542,7 @@ static PyObject *_wrap_PETScVector_init(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_init",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_init",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -6565,12 +6565,12 @@ static PyObject *_wrap_PETScVector_init(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_clear(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_clear(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_clear",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_clear",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -6587,14 +6587,14 @@ static PyObject *_wrap_PETScVector_clear(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_size(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_size(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint result;
     PyObject * obj0 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_size",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_size",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
@@ -6615,13 +6615,13 @@ static PyObject *_wrap_PETScVector_size(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_vec(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_vec(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     Vec result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_vec",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_vec",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -6642,13 +6642,13 @@ static PyObject *_wrap_PETScVector_vec(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_array__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_array__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_array",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_array",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -6665,13 +6665,13 @@ static PyObject *_wrap_PETScVector_array__SWIG_0(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_array__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_array__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_array",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_array",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -6688,7 +6688,7 @@ static PyObject *_wrap_PETScVector_array__SWIG_1(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_array(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Vector_array(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[2];
     int ii;
@@ -6709,7 +6709,7 @@ static PyObject *_wrap_PETScVector_array(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_PETScVector_array__SWIG_0(self,args);
+            return _wrap_Vector_array__SWIG_0(self,args);
         }
     }
     if (argc == 1) {
@@ -6724,23 +6724,23 @@ static PyObject *_wrap_PETScVector_array(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_PETScVector_array__SWIG_1(self,args);
+            return _wrap_Vector_array__SWIG_1(self,args);
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_array'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Vector_array'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScVector_restore__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_restore__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *arg2 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_restore",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_restore",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -6759,14 +6759,14 @@ static PyObject *_wrap_PETScVector_restore__SWIG_0(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_restore__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_restore__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *arg2 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_restore",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_restore",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -6785,7 +6785,7 @@ static PyObject *_wrap_PETScVector_restore__SWIG_1(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_restore(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Vector_restore(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[3];
     int ii;
@@ -6816,7 +6816,7 @@ static PyObject *_wrap_PETScVector_restore(PyObject *self, PyObject *args) {
                 }
             }
             if (_v) {
-                return _wrap_PETScVector_restore__SWIG_0(self,args);
+                return _wrap_Vector_restore__SWIG_0(self,args);
             }
         }
     }
@@ -6842,17 +6842,17 @@ static PyObject *_wrap_PETScVector_restore(PyObject *self, PyObject *args) {
                 }
             }
             if (_v) {
-                return _wrap_PETScVector_restore__SWIG_1(self,args);
+                return _wrap_Vector_restore__SWIG_1(self,args);
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_restore'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Vector_restore'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScVector_axpy(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_axpy(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real arg2 ;
@@ -6861,7 +6861,7 @@ static PyObject *_wrap_PETScVector_axpy(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_axpy",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_axpy",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -6890,14 +6890,14 @@ static PyObject *_wrap_PETScVector_axpy(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_div(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_div(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_div",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_div",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -6922,14 +6922,14 @@ static PyObject *_wrap_PETScVector_div(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_mult(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_mult(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_mult",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_mult",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -6954,7 +6954,7 @@ static PyObject *_wrap_PETScVector_mult(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_set(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_set(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *arg2 ;
@@ -6966,7 +6966,7 @@ static PyObject *_wrap_PETScVector_set(PyObject *, PyObject *args) {
     PyObject * obj3 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_set",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Vector_set",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -6993,7 +6993,7 @@ static PyObject *_wrap_PETScVector_set(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_add(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_add(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *arg2 ;
@@ -7005,7 +7005,7 @@ static PyObject *_wrap_PETScVector_add(PyObject *, PyObject *args) {
     PyObject * obj3 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_add",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Vector_add",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -7032,7 +7032,7 @@ static PyObject *_wrap_PETScVector_add(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_get(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_get(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *arg2 ;
@@ -7044,7 +7044,7 @@ static PyObject *_wrap_PETScVector_get(PyObject *, PyObject *args) {
     PyObject * obj3 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_get",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Vector_get",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -7071,13 +7071,13 @@ static PyObject *_wrap_PETScVector_get(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_apply(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_apply(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     PyObject * obj0 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_apply",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_apply",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
@@ -7096,13 +7096,13 @@ static PyObject *_wrap_PETScVector_apply(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_zero(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_zero(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     PyObject * obj0 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_zero",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_zero",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
@@ -7121,7 +7121,7 @@ static PyObject *_wrap_PETScVector_zero(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector___call____SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___call____SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint arg2 ;
@@ -7129,7 +7129,7 @@ static PyObject *_wrap_PETScVector___call____SWIG_0(PyObject *, PyObject *args) 
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___call__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___call__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7154,7 +7154,7 @@ static PyObject *_wrap_PETScVector___call____SWIG_0(PyObject *, PyObject *args) 
 }
 
 
-static PyObject *_wrap_PETScVector___call____SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___call____SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint arg2 ;
@@ -7163,7 +7163,7 @@ static PyObject *_wrap_PETScVector___call____SWIG_1(PyObject *, PyObject *args) 
     PyObject * obj1 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___call__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___call__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7188,7 +7188,7 @@ static PyObject *_wrap_PETScVector___call____SWIG_1(PyObject *, PyObject *args) 
 }
 
 
-static PyObject *_wrap_PETScVector___call__(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Vector___call__(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[3];
     int ii;
@@ -7211,7 +7211,7 @@ static PyObject *_wrap_PETScVector___call__(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_unsigned_SS_int(argv[1]);
             if (_v) {
-                return _wrap_PETScVector___call____SWIG_0(self,args);
+                return _wrap_Vector___call____SWIG_0(self,args);
             }
         }
     }
@@ -7229,17 +7229,17 @@ static PyObject *_wrap_PETScVector___call__(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_unsigned_SS_int(argv[1]);
             if (_v) {
-                return _wrap_PETScVector___call____SWIG_1(self,args);
+                return _wrap_Vector___call____SWIG_1(self,args);
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector___call__'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Vector___call__'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScVector___iadd__(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___iadd__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7247,7 +7247,7 @@ static PyObject *_wrap_PETScVector___iadd__(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___iadd__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___iadd__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | SWIG_POINTER_DISOWN);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7275,7 +7275,7 @@ static PyObject *_wrap_PETScVector___iadd__(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector___isub__(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___isub__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7283,7 +7283,7 @@ static PyObject *_wrap_PETScVector___isub__(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___isub__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___isub__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | SWIG_POINTER_DISOWN);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7311,7 +7311,7 @@ static PyObject *_wrap_PETScVector___isub__(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector___imul__(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___imul__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real arg2 ;
@@ -7319,7 +7319,7 @@ static PyObject *_wrap_PETScVector___imul__(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___imul__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___imul__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | SWIG_POINTER_DISOWN);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7343,7 +7343,7 @@ static PyObject *_wrap_PETScVector___imul__(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector___idiv__(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___idiv__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real arg2 ;
@@ -7351,7 +7351,7 @@ static PyObject *_wrap_PETScVector___idiv__(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___idiv__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___idiv__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | SWIG_POINTER_DISOWN);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7375,7 +7375,7 @@ static PyObject *_wrap_PETScVector___idiv__(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector___mul__(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector___mul__(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7383,7 +7383,7 @@ static PyObject *_wrap_PETScVector___mul__(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___mul__",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector___mul__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7410,7 +7410,7 @@ static PyObject *_wrap_PETScVector___mul__(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_norm__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_norm__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::PETScVector::NormType arg2 ;
@@ -7418,7 +7418,7 @@ static PyObject *_wrap_PETScVector_norm__SWIG_0(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_norm",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_norm",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7441,13 +7441,13 @@ static PyObject *_wrap_PETScVector_norm__SWIG_0(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_norm__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_norm__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_norm",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_norm",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -7466,7 +7466,7 @@ static PyObject *_wrap_PETScVector_norm__SWIG_1(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_norm(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Vector_norm(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[3];
     int ii;
@@ -7487,7 +7487,7 @@ static PyObject *_wrap_PETScVector_norm(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_PETScVector_norm__SWIG_1(self,args);
+            return _wrap_Vector_norm__SWIG_1(self,args);
         }
     }
     if (argc == 2) {
@@ -7504,23 +7504,23 @@ static PyObject *_wrap_PETScVector_norm(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_int(argv[1]);
             if (_v) {
-                return _wrap_PETScVector_norm__SWIG_0(self,args);
+                return _wrap_Vector_norm__SWIG_0(self,args);
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_norm'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Vector_norm'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScVector_sum(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_sum(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_sum",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_sum",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -7539,13 +7539,13 @@ static PyObject *_wrap_PETScVector_sum(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_max(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_max(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_max",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_max",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -7564,13 +7564,13 @@ static PyObject *_wrap_PETScVector_max(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_min(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_min(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_min",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_min",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -7589,12 +7589,12 @@ static PyObject *_wrap_PETScVector_min(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_disp(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_disp(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScVector_disp",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Vector_disp",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -7611,7 +7611,7 @@ static PyObject *_wrap_PETScVector_disp(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_getval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_getval(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint arg2 ;
@@ -7619,7 +7619,7 @@ static PyObject *_wrap_PETScVector_getval(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_getval",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Vector_getval",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7642,7 +7642,7 @@ static PyObject *_wrap_PETScVector_getval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_setval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_setval(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint arg2 ;
@@ -7651,7 +7651,7 @@ static PyObject *_wrap_PETScVector_setval(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_setval",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_setval",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7676,7 +7676,7 @@ static PyObject *_wrap_PETScVector_setval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_addval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_addval(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::uint arg2 ;
@@ -7685,7 +7685,7 @@ static PyObject *_wrap_PETScVector_addval(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_addval",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_addval",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7710,7 +7710,7 @@ static PyObject *_wrap_PETScVector_addval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_createScatterer(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_createScatterer(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7722,7 +7722,7 @@ static PyObject *_wrap_PETScVector_createScatterer(PyObject *, PyObject *args) {
     PyObject * obj2 = 0 ;
     PyObject * obj3 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_createScatterer",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Vector_createScatterer",&obj0,&obj1,&obj2,&obj3)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -7761,7 +7761,7 @@ static PyObject *_wrap_PETScVector_createScatterer(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_gather(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_gather(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7770,7 +7770,7 @@ static PyObject *_wrap_PETScVector_gather(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_gather",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_gather",&obj0,&obj1,&obj2)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -7809,7 +7809,7 @@ static PyObject *_wrap_PETScVector_gather(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_scatter(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_scatter(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7818,7 +7818,7 @@ static PyObject *_wrap_PETScVector_scatter(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_scatter",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Vector_scatter",&obj0,&obj1,&obj2)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -7857,7 +7857,7 @@ static PyObject *_wrap_PETScVector_scatter(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_fromArray(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_fromArray(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::real *arg1 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7868,7 +7868,7 @@ static PyObject *_wrap_PETScVector_fromArray(PyObject *, PyObject *args) {
     PyObject * obj2 = 0 ;
     PyObject * obj3 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_fromArray",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Vector_fromArray",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7901,7 +7901,7 @@ static PyObject *_wrap_PETScVector_fromArray(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_toArray(PyObject *, PyObject *args) {
+static PyObject *_wrap_Vector_toArray(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::real *arg1 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -7912,7 +7912,7 @@ static PyObject *_wrap_PETScVector_toArray(PyObject *, PyObject *args) {
     PyObject * obj2 = 0 ;
     PyObject * obj3 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_toArray",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Vector_toArray",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -7945,7 +7945,7 @@ static PyObject *_wrap_PETScVector_toArray(PyObject *, PyObject *args) {
 }
 
 
-static PyObject * PETScVector_swigregister(PyObject *, PyObject *args) {
+static PyObject * Vector_swigregister(PyObject *, PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
     SWIG_TypeClientData(SWIGTYPE_p_dolfin__PETScVector, obj);
@@ -8835,11 +8835,11 @@ static PyObject * DenseVector_swigregister(PyObject *, PyObject *args) {
     Py_INCREF(obj);
     return Py_BuildValue((char *)"");
 }
-static PyObject *_wrap_new_PETScSparseMatrix__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *result;
     
-    if(!PyArg_ParseTuple(args,(char *)":new_PETScSparseMatrix")) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)":new_Matrix")) goto fail;
     try {
         Swig::UnknownExceptionHandler dh;
         result = (dolfin::PETScSparseMatrix *)new dolfin::PETScSparseMatrix();
@@ -8854,13 +8854,13 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_0(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScSparseMatrix__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix::Type arg1 ;
     dolfin::PETScSparseMatrix *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScSparseMatrix",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Matrix",&obj0)) goto fail;
     {
         arg1 = (dolfin::PETScSparseMatrix::Type)(SWIG_As_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -8879,13 +8879,13 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_1(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScSparseMatrix__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     Mat arg1 ;
     dolfin::PETScSparseMatrix *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScSparseMatrix",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Matrix",&obj0)) goto fail;
     {
         Mat * argp;
         SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Mat, SWIG_POINTER_EXCEPTION);
@@ -8910,7 +8910,7 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_2(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScSparseMatrix__SWIG_3(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_3(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::uint arg1 ;
     dolfin::uint arg2 ;
@@ -8918,7 +8918,7 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_3(PyObject *, PyObject *args)
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:new_PETScSparseMatrix",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:new_Matrix",&obj0,&obj1)) goto fail;
     {
         arg1 = (dolfin::uint)(SWIG_As_unsigned_SS_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -8941,7 +8941,7 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_3(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScSparseMatrix__SWIG_4(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_4(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::uint arg1 ;
     dolfin::uint arg2 ;
@@ -8951,7 +8951,7 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_4(PyObject *, PyObject *args)
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:new_PETScSparseMatrix",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:new_Matrix",&obj0,&obj1,&obj2)) goto fail;
     {
         arg1 = (dolfin::uint)(SWIG_As_unsigned_SS_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -8978,13 +8978,13 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_4(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScSparseMatrix__SWIG_5(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_Matrix__SWIG_5(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = 0 ;
     dolfin::PETScSparseMatrix *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScSparseMatrix",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_Matrix",&obj0)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -9007,7 +9007,7 @@ static PyObject *_wrap_new_PETScSparseMatrix__SWIG_5(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScSparseMatrix(PyObject *self, PyObject *args) {
+static PyObject *_wrap_new_Matrix(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[4];
     int ii;
@@ -9017,7 +9017,7 @@ static PyObject *_wrap_new_PETScSparseMatrix(PyObject *self, PyObject *args) {
         argv[ii] = PyTuple_GetItem(args,ii);
     }
     if (argc == 0) {
-        return _wrap_new_PETScSparseMatrix__SWIG_0(self,args);
+        return _wrap_new_Matrix__SWIG_0(self,args);
     }
     if (argc == 1) {
         int _v;
@@ -9031,7 +9031,7 @@ static PyObject *_wrap_new_PETScSparseMatrix(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_PETScSparseMatrix__SWIG_2(self,args);
+            return _wrap_new_Matrix__SWIG_2(self,args);
         }
     }
     if (argc == 1) {
@@ -9046,14 +9046,14 @@ static PyObject *_wrap_new_PETScSparseMatrix(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_PETScSparseMatrix__SWIG_5(self,args);
+            return _wrap_new_Matrix__SWIG_5(self,args);
         }
     }
     if (argc == 1) {
         int _v;
         _v = SWIG_Check_int(argv[0]);
         if (_v) {
-            return _wrap_new_PETScSparseMatrix__SWIG_1(self,args);
+            return _wrap_new_Matrix__SWIG_1(self,args);
         }
     }
     if (argc == 2) {
@@ -9062,7 +9062,7 @@ static PyObject *_wrap_new_PETScSparseMatrix(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_unsigned_SS_int(argv[1]);
             if (_v) {
-                return _wrap_new_PETScSparseMatrix__SWIG_3(self,args);
+                return _wrap_new_Matrix__SWIG_3(self,args);
             }
         }
     }
@@ -9074,23 +9074,23 @@ static PyObject *_wrap_new_PETScSparseMatrix(PyObject *self, PyObject *args) {
             if (_v) {
                 _v = SWIG_Check_int(argv[2]);
                 if (_v) {
-                    return _wrap_new_PETScSparseMatrix__SWIG_4(self,args);
+                    return _wrap_new_Matrix__SWIG_4(self,args);
                 }
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScSparseMatrix'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_Matrix'");
     return NULL;
 }
 
 
-static PyObject *_wrap_delete_PETScSparseMatrix(PyObject *, PyObject *args) {
+static PyObject *_wrap_delete_Matrix(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:delete_PETScSparseMatrix",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:delete_Matrix",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -9107,7 +9107,7 @@ static PyObject *_wrap_delete_PETScSparseMatrix(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_init__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_init__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -9117,7 +9117,7 @@ static PyObject *_wrap_PETScSparseMatrix_init__SWIG_0(PyObject *, PyObject *args
     PyObject * obj2 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_init",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_init",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9144,7 +9144,7 @@ static PyObject *_wrap_PETScSparseMatrix_init__SWIG_0(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_init__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_init__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -9156,7 +9156,7 @@ static PyObject *_wrap_PETScSparseMatrix_init__SWIG_1(PyObject *, PyObject *args
     PyObject * obj3 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScSparseMatrix_init",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Matrix_init",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9187,7 +9187,7 @@ static PyObject *_wrap_PETScSparseMatrix_init__SWIG_1(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_init__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_init__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -9200,7 +9200,7 @@ static PyObject *_wrap_PETScSparseMatrix_init__SWIG_2(PyObject *, PyObject *args
     PyObject * obj3 = 0 ;
     PyObject * obj4 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOOO:PETScSparseMatrix_init",&obj0,&obj1,&obj2,&obj3,&obj4)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOOO:Matrix_init",&obj0,&obj1,&obj2,&obj3,&obj4)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9233,7 +9233,7 @@ static PyObject *_wrap_PETScSparseMatrix_init__SWIG_2(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_init(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Matrix_init(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[6];
     int ii;
@@ -9258,7 +9258,7 @@ static PyObject *_wrap_PETScSparseMatrix_init(PyObject *self, PyObject *args) {
             if (_v) {
                 _v = SWIG_Check_unsigned_SS_int(argv[2]);
                 if (_v) {
-                    return _wrap_PETScSparseMatrix_init__SWIG_0(self,args);
+                    return _wrap_Matrix_init__SWIG_0(self,args);
                 }
             }
         }
@@ -9281,7 +9281,7 @@ static PyObject *_wrap_PETScSparseMatrix_init(PyObject *self, PyObject *args) {
                 if (_v) {
                     _v = SWIG_Check_unsigned_SS_int(argv[3]);
                     if (_v) {
-                        return _wrap_PETScSparseMatrix_init__SWIG_1(self,args);
+                        return _wrap_Matrix_init__SWIG_1(self,args);
                     }
                 }
             }
@@ -9307,7 +9307,7 @@ static PyObject *_wrap_PETScSparseMatrix_init(PyObject *self, PyObject *args) {
                     if (_v) {
                         _v = SWIG_Check_unsigned_SS_int(argv[4]);
                         if (_v) {
-                            return _wrap_PETScSparseMatrix_init__SWIG_2(self,args);
+                            return _wrap_Matrix_init__SWIG_2(self,args);
                         }
                     }
                 }
@@ -9315,12 +9315,12 @@ static PyObject *_wrap_PETScSparseMatrix_init(PyObject *self, PyObject *args) {
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScSparseMatrix_init'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Matrix_init'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_size(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_size(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -9329,7 +9329,7 @@ static PyObject *_wrap_PETScSparseMatrix_size(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScSparseMatrix_size",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Matrix_size",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9354,7 +9354,7 @@ static PyObject *_wrap_PETScSparseMatrix_size(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_nz(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_nz(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -9362,7 +9362,7 @@ static PyObject *_wrap_PETScSparseMatrix_nz(PyObject *, PyObject *args) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScSparseMatrix_nz",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Matrix_nz",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9385,13 +9385,13 @@ static PyObject *_wrap_PETScSparseMatrix_nz(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_nzsum(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_nzsum(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_nzsum",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_nzsum",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -9410,14 +9410,14 @@ static PyObject *_wrap_PETScSparseMatrix_nzsum(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_nzmax(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_nzmax(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint result;
     PyObject * obj0 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_nzmax",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_nzmax",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
@@ -9438,7 +9438,7 @@ static PyObject *_wrap_PETScSparseMatrix_nzmax(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_set(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_set(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::real *arg2 ;
@@ -9454,7 +9454,7 @@ static PyObject *_wrap_PETScSparseMatrix_set(PyObject *, PyObject *args) {
     PyObject * obj5 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOOOO:PETScSparseMatrix_set",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOOOO:Matrix_set",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -9487,7 +9487,7 @@ static PyObject *_wrap_PETScSparseMatrix_set(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_add(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_add(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::real *arg2 ;
@@ -9503,7 +9503,7 @@ static PyObject *_wrap_PETScSparseMatrix_add(PyObject *, PyObject *args) {
     PyObject * obj5 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOOOO:PETScSparseMatrix_add",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOOOO:Matrix_add",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -9536,7 +9536,7 @@ static PyObject *_wrap_PETScSparseMatrix_add(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_getRow(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_getRow(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -9549,7 +9549,7 @@ static PyObject *_wrap_PETScSparseMatrix_getRow(PyObject *, PyObject *args) {
     PyObject * obj3 = 0 ;
     PyObject * obj4 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOOO:PETScSparseMatrix_getRow",&obj0,&obj1,&obj2,&obj3,&obj4)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOOO:Matrix_getRow",&obj0,&obj1,&obj2,&obj3,&obj4)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9594,7 +9594,7 @@ static PyObject *_wrap_PETScSparseMatrix_getRow(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_ident(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_ident(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     int *arg2 ;
@@ -9604,7 +9604,7 @@ static PyObject *_wrap_PETScSparseMatrix_ident(PyObject *, PyObject *args) {
     PyObject * obj2 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_ident",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_ident",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_int, SWIG_POINTER_EXCEPTION | 0);
@@ -9629,7 +9629,7 @@ static PyObject *_wrap_PETScSparseMatrix_ident(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_mult__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -9638,7 +9638,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_0(PyObject *, PyObject *args
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_mult",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_mult",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9671,7 +9671,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_0(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_mult__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
@@ -9681,7 +9681,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_1(PyObject *, PyObject *args
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_mult",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_mult",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9712,7 +9712,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_1(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_mult__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::real *arg2 ;
@@ -9722,7 +9722,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_2(PyObject *, PyObject *args
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_mult",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_mult",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
@@ -9747,7 +9747,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult__SWIG_2(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_mult(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Matrix_mult(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[4];
     int ii;
@@ -9788,7 +9788,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult(PyObject *self, PyObject *args) {
                     }
                 }
                 if (_v) {
-                    return _wrap_PETScSparseMatrix_mult__SWIG_0(self,args);
+                    return _wrap_Matrix_mult__SWIG_0(self,args);
                 }
             }
         }
@@ -9817,7 +9817,7 @@ static PyObject *_wrap_PETScSparseMatrix_mult(PyObject *self, PyObject *args) {
             if (_v) {
                 _v = SWIG_Check_unsigned_SS_int(argv[2]);
                 if (_v) {
-                    return _wrap_PETScSparseMatrix_mult__SWIG_1(self,args);
+                    return _wrap_Matrix_mult__SWIG_1(self,args);
                 }
             }
         }
@@ -9846,25 +9846,25 @@ static PyObject *_wrap_PETScSparseMatrix_mult(PyObject *self, PyObject *args) {
             if (_v) {
                 _v = SWIG_Check_unsigned_SS_int(argv[2]);
                 if (_v) {
-                    return _wrap_PETScSparseMatrix_mult__SWIG_2(self,args);
+                    return _wrap_Matrix_mult__SWIG_2(self,args);
                 }
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScSparseMatrix_mult'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Matrix_mult'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_lump(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_lump(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::PETScVector *arg2 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScSparseMatrix_lump",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Matrix_lump",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9889,7 +9889,7 @@ static PyObject *_wrap_PETScSparseMatrix_lump(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_norm__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_norm__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::PETScSparseMatrix::Norm arg2 ;
@@ -9897,7 +9897,7 @@ static PyObject *_wrap_PETScSparseMatrix_norm__SWIG_0(PyObject *, PyObject *args
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScSparseMatrix_norm",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Matrix_norm",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -9920,13 +9920,13 @@ static PyObject *_wrap_PETScSparseMatrix_norm__SWIG_0(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_norm__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_norm__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::real result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_norm",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_norm",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -9945,7 +9945,7 @@ static PyObject *_wrap_PETScSparseMatrix_norm__SWIG_1(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_norm(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Matrix_norm(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[3];
     int ii;
@@ -9966,7 +9966,7 @@ static PyObject *_wrap_PETScSparseMatrix_norm(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_PETScSparseMatrix_norm__SWIG_1(self,args);
+            return _wrap_Matrix_norm__SWIG_1(self,args);
         }
     }
     if (argc == 2) {
@@ -9983,23 +9983,23 @@ static PyObject *_wrap_PETScSparseMatrix_norm(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_int(argv[1]);
             if (_v) {
-                return _wrap_PETScSparseMatrix_norm__SWIG_0(self,args);
+                return _wrap_Matrix_norm__SWIG_0(self,args);
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScSparseMatrix_norm'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Matrix_norm'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_apply(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_apply(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     PyObject * obj0 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_apply",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_apply",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
@@ -10018,13 +10018,13 @@ static PyObject *_wrap_PETScSparseMatrix_apply(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_zero(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_zero(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     PyObject * obj0 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_zero",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_zero",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
@@ -10043,13 +10043,13 @@ static PyObject *_wrap_PETScSparseMatrix_zero(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_type(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_type(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::PETScSparseMatrix::Type result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_type",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_type",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -10066,13 +10066,13 @@ static PyObject *_wrap_PETScSparseMatrix_type(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_mat(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_mat(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     Mat result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_mat",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_mat",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -10093,7 +10093,7 @@ static PyObject *_wrap_PETScSparseMatrix_mat(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_disp__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     bool arg2 ;
@@ -10102,7 +10102,7 @@ static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_0(PyObject *, PyObject *args
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_disp",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_disp",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10127,14 +10127,14 @@ static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_0(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_disp__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     bool arg2 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScSparseMatrix_disp",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:Matrix_disp",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10155,12 +10155,12 @@ static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_1(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_disp__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScSparseMatrix_disp",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:Matrix_disp",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -10177,7 +10177,7 @@ static PyObject *_wrap_PETScSparseMatrix_disp__SWIG_2(PyObject *, PyObject *args
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_disp(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Matrix_disp(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[4];
     int ii;
@@ -10198,7 +10198,7 @@ static PyObject *_wrap_PETScSparseMatrix_disp(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_PETScSparseMatrix_disp__SWIG_2(self,args);
+            return _wrap_Matrix_disp__SWIG_2(self,args);
         }
     }
     if (argc == 2) {
@@ -10215,7 +10215,7 @@ static PyObject *_wrap_PETScSparseMatrix_disp(PyObject *self, PyObject *args) {
         if (_v) {
             _v = SWIG_Check_bool(argv[1]);
             if (_v) {
-                return _wrap_PETScSparseMatrix_disp__SWIG_1(self,args);
+                return _wrap_Matrix_disp__SWIG_1(self,args);
             }
         }
     }
@@ -10235,18 +10235,18 @@ static PyObject *_wrap_PETScSparseMatrix_disp(PyObject *self, PyObject *args) {
             if (_v) {
                 _v = SWIG_Check_int(argv[2]);
                 if (_v) {
-                    return _wrap_PETScSparseMatrix_disp__SWIG_0(self,args);
+                    return _wrap_Matrix_disp__SWIG_0(self,args);
                 }
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScSparseMatrix_disp'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Matrix_disp'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix___call____SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix___call____SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -10256,7 +10256,7 @@ static PyObject *_wrap_PETScSparseMatrix___call____SWIG_0(PyObject *, PyObject *
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix___call__",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix___call__",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10283,7 +10283,7 @@ static PyObject *_wrap_PETScSparseMatrix___call____SWIG_0(PyObject *, PyObject *
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix___call____SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix___call____SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -10293,7 +10293,7 @@ static PyObject *_wrap_PETScSparseMatrix___call____SWIG_1(PyObject *, PyObject *
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix___call__",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix___call__",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10322,7 +10322,7 @@ static PyObject *_wrap_PETScSparseMatrix___call____SWIG_1(PyObject *, PyObject *
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix___call__(PyObject *self, PyObject *args) {
+static PyObject *_wrap_Matrix___call__(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[4];
     int ii;
@@ -10347,7 +10347,7 @@ static PyObject *_wrap_PETScSparseMatrix___call__(PyObject *self, PyObject *args
             if (_v) {
                 _v = SWIG_Check_unsigned_SS_int(argv[2]);
                 if (_v) {
-                    return _wrap_PETScSparseMatrix___call____SWIG_1(self,args);
+                    return _wrap_Matrix___call____SWIG_1(self,args);
                 }
             }
         }
@@ -10368,18 +10368,18 @@ static PyObject *_wrap_PETScSparseMatrix___call__(PyObject *self, PyObject *args
             if (_v) {
                 _v = SWIG_Check_unsigned_SS_int(argv[2]);
                 if (_v) {
-                    return _wrap_PETScSparseMatrix___call____SWIG_0(self,args);
+                    return _wrap_Matrix___call____SWIG_0(self,args);
                 }
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScSparseMatrix___call__'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'Matrix___call__'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_getval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_getval(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -10389,7 +10389,7 @@ static PyObject *_wrap_PETScSparseMatrix_getval(PyObject *, PyObject *args) {
     PyObject * obj1 = 0 ;
     PyObject * obj2 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScSparseMatrix_getval",&obj0,&obj1,&obj2)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOO:Matrix_getval",&obj0,&obj1,&obj2)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10416,7 +10416,7 @@ static PyObject *_wrap_PETScSparseMatrix_getval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_setval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_setval(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -10427,7 +10427,7 @@ static PyObject *_wrap_PETScSparseMatrix_setval(PyObject *, PyObject *args) {
     PyObject * obj2 = 0 ;
     PyObject * obj3 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScSparseMatrix_setval",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Matrix_setval",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10456,7 +10456,7 @@ static PyObject *_wrap_PETScSparseMatrix_setval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScSparseMatrix_addval(PyObject *, PyObject *args) {
+static PyObject *_wrap_Matrix_addval(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScSparseMatrix *arg1 = (dolfin::PETScSparseMatrix *) 0 ;
     dolfin::uint arg2 ;
@@ -10467,7 +10467,7 @@ static PyObject *_wrap_PETScSparseMatrix_addval(PyObject *, PyObject *args) {
     PyObject * obj2 = 0 ;
     PyObject * obj3 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScSparseMatrix_addval",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:Matrix_addval",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -10496,7 +10496,7 @@ static PyObject *_wrap_PETScSparseMatrix_addval(PyObject *, PyObject *args) {
 }
 
 
-static PyObject * PETScSparseMatrix_swigregister(PyObject *, PyObject *args) {
+static PyObject * Matrix_swigregister(PyObject *, PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
     SWIG_TypeClientData(SWIGTYPE_p_dolfin__PETScSparseMatrix, obj);
@@ -11108,11 +11108,11 @@ static PyObject * LinearSolver_swigregister(PyObject *, PyObject *args) {
     Py_INCREF(obj);
     return Py_BuildValue((char *)"");
 }
-static PyObject *_wrap_new_PETScKrylovSolver__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver *result;
     
-    if(!PyArg_ParseTuple(args,(char *)":new_PETScKrylovSolver")) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)":new_KrylovSolver")) goto fail;
     try {
         Swig::UnknownExceptionHandler dh;
         result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver();
@@ -11127,13 +11127,13 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_0(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScKrylovSolver__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver::Type arg1 ;
     dolfin::PETScKrylovSolver *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
     {
         arg1 = (dolfin::PETScKrylovSolver::Type)(SWIG_As_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -11152,13 +11152,13 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_1(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScKrylovSolver__SWIG_2(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     Preconditioner::Type arg1 ;
     dolfin::PETScKrylovSolver *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
     {
         Preconditioner::Type * argp;
         SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Preconditioner__Type, SWIG_POINTER_EXCEPTION);
@@ -11183,13 +11183,13 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_2(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScKrylovSolver__SWIG_3(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver__SWIG_3(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     Preconditioner *arg1 = 0 ;
     dolfin::PETScKrylovSolver *result;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:new_KrylovSolver",&obj0)) goto fail;
     {
         SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -11212,7 +11212,7 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_3(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScKrylovSolver__SWIG_4(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver__SWIG_4(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver::Type arg1 ;
     Preconditioner::Type arg2 ;
@@ -11220,7 +11220,7 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_4(PyObject *, PyObject *args)
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:new_PETScKrylovSolver",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:new_KrylovSolver",&obj0,&obj1)) goto fail;
     {
         arg1 = (dolfin::PETScKrylovSolver::Type)(SWIG_As_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -11249,7 +11249,7 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_4(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScKrylovSolver__SWIG_5(PyObject *, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver__SWIG_5(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver::Type arg1 ;
     Preconditioner *arg2 = 0 ;
@@ -11257,7 +11257,7 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_5(PyObject *, PyObject *args)
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"OO:new_PETScKrylovSolver",&obj0,&obj1)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OO:new_KrylovSolver",&obj0,&obj1)) goto fail;
     {
         arg1 = (dolfin::PETScKrylovSolver::Type)(SWIG_As_int(obj0)); 
         if (SWIG_arg_fail(1)) SWIG_fail;
@@ -11284,7 +11284,7 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_5(PyObject *, PyObject *args)
 }
 
 
-static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
+static PyObject *_wrap_new_KrylovSolver(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[3];
     int ii;
@@ -11294,7 +11294,7 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
         argv[ii] = PyTuple_GetItem(args,ii);
     }
     if (argc == 0) {
-        return _wrap_new_PETScKrylovSolver__SWIG_0(self,args);
+        return _wrap_new_KrylovSolver__SWIG_0(self,args);
     }
     if (argc == 1) {
         int _v;
@@ -11308,7 +11308,7 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_PETScKrylovSolver__SWIG_2(self,args);
+            return _wrap_new_KrylovSolver__SWIG_2(self,args);
         }
     }
     if (argc == 1) {
@@ -11323,14 +11323,14 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
             }
         }
         if (_v) {
-            return _wrap_new_PETScKrylovSolver__SWIG_3(self,args);
+            return _wrap_new_KrylovSolver__SWIG_3(self,args);
         }
     }
     if (argc == 1) {
         int _v;
         _v = SWIG_Check_int(argv[0]);
         if (_v) {
-            return _wrap_new_PETScKrylovSolver__SWIG_1(self,args);
+            return _wrap_new_KrylovSolver__SWIG_1(self,args);
         }
     }
     if (argc == 2) {
@@ -11347,7 +11347,7 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
                 }
             }
             if (_v) {
-                return _wrap_new_PETScKrylovSolver__SWIG_4(self,args);
+                return _wrap_new_KrylovSolver__SWIG_4(self,args);
             }
         }
     }
@@ -11365,22 +11365,22 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
                 }
             }
             if (_v) {
-                return _wrap_new_PETScKrylovSolver__SWIG_5(self,args);
+                return _wrap_new_KrylovSolver__SWIG_5(self,args);
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScKrylovSolver'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_KrylovSolver'");
     return NULL;
 }
 
 
-static PyObject *_wrap_delete_PETScKrylovSolver(PyObject *, PyObject *args) {
+static PyObject *_wrap_delete_KrylovSolver(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:delete_PETScKrylovSolver",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:delete_KrylovSolver",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -11397,7 +11397,7 @@ static PyObject *_wrap_delete_PETScKrylovSolver(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScKrylovSolver_solve__SWIG_0(PyObject *, PyObject *args) {
+static PyObject *_wrap_KrylovSolver_solve__SWIG_0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
     dolfin::PETScSparseMatrix *arg2 = 0 ;
@@ -11410,7 +11410,7 @@ static PyObject *_wrap_PETScKrylovSolver_solve__SWIG_0(PyObject *, PyObject *arg
     PyObject * obj3 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScKrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:KrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -11455,7 +11455,7 @@ static PyObject *_wrap_PETScKrylovSolver_solve__SWIG_0(PyObject *, PyObject *arg
 }
 
 
-static PyObject *_wrap_PETScKrylovSolver_solve__SWIG_1(PyObject *, PyObject *args) {
+static PyObject *_wrap_KrylovSolver_solve__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
     dolfin::VirtualMatrix *arg2 = 0 ;
@@ -11468,7 +11468,7 @@ static PyObject *_wrap_PETScKrylovSolver_solve__SWIG_1(PyObject *, PyObject *arg
     PyObject * obj3 = 0 ;
     Swig::Director *director = 0;
     
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScKrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:KrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
@@ -11513,7 +11513,7 @@ static PyObject *_wrap_PETScKrylovSolver_solve__SWIG_1(PyObject *, PyObject *arg
 }
 
 
-static PyObject *_wrap_PETScKrylovSolver_solve(PyObject *self, PyObject *args) {
+static PyObject *_wrap_KrylovSolver_solve(PyObject *self, PyObject *args) {
     int argc;
     PyObject *argv[5];
     int ii;
@@ -11564,7 +11564,7 @@ static PyObject *_wrap_PETScKrylovSolver_solve(PyObject *self, PyObject *args) {
                         }
                     }
                     if (_v) {
-                        return _wrap_PETScKrylovSolver_solve__SWIG_0(self,args);
+                        return _wrap_KrylovSolver_solve__SWIG_0(self,args);
                     }
                 }
             }
@@ -11612,24 +11612,24 @@ static PyObject *_wrap_PETScKrylovSolver_solve(PyObject *self, PyObject *args) {
                         }
                     }
                     if (_v) {
-                        return _wrap_PETScKrylovSolver_solve__SWIG_1(self,args);
+                        return _wrap_KrylovSolver_solve__SWIG_1(self,args);
                     }
                 }
             }
         }
     }
     
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScKrylovSolver_solve'");
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'KrylovSolver_solve'");
     return NULL;
 }
 
 
-static PyObject *_wrap_PETScKrylovSolver_disp(PyObject *, PyObject *args) {
+static PyObject *_wrap_KrylovSolver_disp(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
     PyObject * obj0 = 0 ;
     
-    if(!PyArg_ParseTuple(args,(char *)"O:PETScKrylovSolver_disp",&obj0)) goto fail;
+    if(!PyArg_ParseTuple(args,(char *)"O:KrylovSolver_disp",&obj0)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     try {
@@ -11646,7 +11646,7 @@ static PyObject *_wrap_PETScKrylovSolver_disp(PyObject *, PyObject *args) {
 }
 
 
-static PyObject * PETScKrylovSolver_swigregister(PyObject *, PyObject *args) {
+static PyObject * KrylovSolver_swigregister(PyObject *, PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
     SWIG_TypeClientData(SWIGTYPE_p_dolfin__PETScKrylovSolver, obj);
@@ -44872,42 +44872,42 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"uBlasKrylovMatrix_size", _wrap_uBlasKrylovMatrix_size, METH_VARARGS, NULL},
 	 { (char *)"uBlasKrylovMatrix_mult", _wrap_uBlasKrylovMatrix_mult, METH_VARARGS, NULL},
 	 { (char *)"uBlasKrylovMatrix_swigregister", uBlasKrylovMatrix_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScVector", _wrap_new_PETScVector, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScVector", _wrap_delete_PETScVector, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_init", _wrap_PETScVector_init, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_clear", _wrap_PETScVector_clear, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_size", _wrap_PETScVector_size, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_vec", _wrap_PETScVector_vec, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_array", _wrap_PETScVector_array, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_restore", _wrap_PETScVector_restore, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_axpy", _wrap_PETScVector_axpy, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_div", _wrap_PETScVector_div, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_mult", _wrap_PETScVector_mult, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_set", _wrap_PETScVector_set, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_add", _wrap_PETScVector_add, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_get", _wrap_PETScVector_get, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_apply", _wrap_PETScVector_apply, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_zero", _wrap_PETScVector_zero, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___call__", _wrap_PETScVector___call__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___iadd__", _wrap_PETScVector___iadd__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___isub__", _wrap_PETScVector___isub__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___imul__", _wrap_PETScVector___imul__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___idiv__", _wrap_PETScVector___idiv__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___mul__", _wrap_PETScVector___mul__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_norm", _wrap_PETScVector_norm, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_sum", _wrap_PETScVector_sum, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_max", _wrap_PETScVector_max, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_min", _wrap_PETScVector_min, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_disp", _wrap_PETScVector_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_getval", _wrap_PETScVector_getval, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_setval", _wrap_PETScVector_setval, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_addval", _wrap_PETScVector_addval, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_createScatterer", _wrap_PETScVector_createScatterer, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_gather", _wrap_PETScVector_gather, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_scatter", _wrap_PETScVector_scatter, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_fromArray", _wrap_PETScVector_fromArray, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_toArray", _wrap_PETScVector_toArray, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_swigregister", PETScVector_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_Vector", _wrap_new_Vector, METH_VARARGS, NULL},
+	 { (char *)"delete_Vector", _wrap_delete_Vector, METH_VARARGS, NULL},
+	 { (char *)"Vector_init", _wrap_Vector_init, METH_VARARGS, NULL},
+	 { (char *)"Vector_clear", _wrap_Vector_clear, METH_VARARGS, NULL},
+	 { (char *)"Vector_size", _wrap_Vector_size, METH_VARARGS, NULL},
+	 { (char *)"Vector_vec", _wrap_Vector_vec, METH_VARARGS, NULL},
+	 { (char *)"Vector_array", _wrap_Vector_array, METH_VARARGS, NULL},
+	 { (char *)"Vector_restore", _wrap_Vector_restore, METH_VARARGS, NULL},
+	 { (char *)"Vector_axpy", _wrap_Vector_axpy, METH_VARARGS, NULL},
+	 { (char *)"Vector_div", _wrap_Vector_div, METH_VARARGS, NULL},
+	 { (char *)"Vector_mult", _wrap_Vector_mult, METH_VARARGS, NULL},
+	 { (char *)"Vector_set", _wrap_Vector_set, METH_VARARGS, NULL},
+	 { (char *)"Vector_add", _wrap_Vector_add, METH_VARARGS, NULL},
+	 { (char *)"Vector_get", _wrap_Vector_get, METH_VARARGS, NULL},
+	 { (char *)"Vector_apply", _wrap_Vector_apply, METH_VARARGS, NULL},
+	 { (char *)"Vector_zero", _wrap_Vector_zero, METH_VARARGS, NULL},
+	 { (char *)"Vector___call__", _wrap_Vector___call__, METH_VARARGS, NULL},
+	 { (char *)"Vector___iadd__", _wrap_Vector___iadd__, METH_VARARGS, NULL},
+	 { (char *)"Vector___isub__", _wrap_Vector___isub__, METH_VARARGS, NULL},
+	 { (char *)"Vector___imul__", _wrap_Vector___imul__, METH_VARARGS, NULL},
+	 { (char *)"Vector___idiv__", _wrap_Vector___idiv__, METH_VARARGS, NULL},
+	 { (char *)"Vector___mul__", _wrap_Vector___mul__, METH_VARARGS, NULL},
+	 { (char *)"Vector_norm", _wrap_Vector_norm, METH_VARARGS, NULL},
+	 { (char *)"Vector_sum", _wrap_Vector_sum, METH_VARARGS, NULL},
+	 { (char *)"Vector_max", _wrap_Vector_max, METH_VARARGS, NULL},
+	 { (char *)"Vector_min", _wrap_Vector_min, METH_VARARGS, NULL},
+	 { (char *)"Vector_disp", _wrap_Vector_disp, METH_VARARGS, NULL},
+	 { (char *)"Vector_getval", _wrap_Vector_getval, METH_VARARGS, NULL},
+	 { (char *)"Vector_setval", _wrap_Vector_setval, METH_VARARGS, NULL},
+	 { (char *)"Vector_addval", _wrap_Vector_addval, METH_VARARGS, NULL},
+	 { (char *)"Vector_createScatterer", _wrap_Vector_createScatterer, METH_VARARGS, NULL},
+	 { (char *)"Vector_gather", _wrap_Vector_gather, METH_VARARGS, NULL},
+	 { (char *)"Vector_scatter", _wrap_Vector_scatter, METH_VARARGS, NULL},
+	 { (char *)"Vector_fromArray", _wrap_Vector_fromArray, METH_VARARGS, NULL},
+	 { (char *)"Vector_toArray", _wrap_Vector_toArray, METH_VARARGS, NULL},
+	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_PETScVectorElement", _wrap_new_PETScVectorElement, METH_VARARGS, NULL},
 	 { (char *)"PETScVectorElement___iadd__", _wrap_PETScVectorElement___iadd__, METH_VARARGS, NULL},
 	 { (char *)"PETScVectorElement___isub__", _wrap_PETScVectorElement___isub__, METH_VARARGS, NULL},
@@ -44927,30 +44927,30 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"DenseVector_zero", _wrap_DenseVector_zero, METH_VARARGS, NULL},
 	 { (char *)"DenseVector_disp", _wrap_DenseVector_disp, METH_VARARGS, NULL},
 	 { (char *)"DenseVector_swigregister", DenseVector_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScSparseMatrix", _wrap_new_PETScSparseMatrix, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScSparseMatrix", _wrap_delete_PETScSparseMatrix, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_init", _wrap_PETScSparseMatrix_init, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_size", _wrap_PETScSparseMatrix_size, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_nz", _wrap_PETScSparseMatrix_nz, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_nzsum", _wrap_PETScSparseMatrix_nzsum, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_nzmax", _wrap_PETScSparseMatrix_nzmax, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_set", _wrap_PETScSparseMatrix_set, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_add", _wrap_PETScSparseMatrix_add, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_getRow", _wrap_PETScSparseMatrix_getRow, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_ident", _wrap_PETScSparseMatrix_ident, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_mult", _wrap_PETScSparseMatrix_mult, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_lump", _wrap_PETScSparseMatrix_lump, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_norm", _wrap_PETScSparseMatrix_norm, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_apply", _wrap_PETScSparseMatrix_apply, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_zero", _wrap_PETScSparseMatrix_zero, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_type", _wrap_PETScSparseMatrix_type, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_mat", _wrap_PETScSparseMatrix_mat, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_disp", _wrap_PETScSparseMatrix_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix___call__", _wrap_PETScSparseMatrix___call__, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_getval", _wrap_PETScSparseMatrix_getval, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_setval", _wrap_PETScSparseMatrix_setval, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_addval", _wrap_PETScSparseMatrix_addval, METH_VARARGS, NULL},
-	 { (char *)"PETScSparseMatrix_swigregister", PETScSparseMatrix_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_Matrix", _wrap_new_Matrix, METH_VARARGS, NULL},
+	 { (char *)"delete_Matrix", _wrap_delete_Matrix, METH_VARARGS, NULL},
+	 { (char *)"Matrix_init", _wrap_Matrix_init, METH_VARARGS, NULL},
+	 { (char *)"Matrix_size", _wrap_Matrix_size, METH_VARARGS, NULL},
+	 { (char *)"Matrix_nz", _wrap_Matrix_nz, METH_VARARGS, NULL},
+	 { (char *)"Matrix_nzsum", _wrap_Matrix_nzsum, METH_VARARGS, NULL},
+	 { (char *)"Matrix_nzmax", _wrap_Matrix_nzmax, METH_VARARGS, NULL},
+	 { (char *)"Matrix_set", _wrap_Matrix_set, METH_VARARGS, NULL},
+	 { (char *)"Matrix_add", _wrap_Matrix_add, METH_VARARGS, NULL},
+	 { (char *)"Matrix_getRow", _wrap_Matrix_getRow, METH_VARARGS, NULL},
+	 { (char *)"Matrix_ident", _wrap_Matrix_ident, METH_VARARGS, NULL},
+	 { (char *)"Matrix_mult", _wrap_Matrix_mult, METH_VARARGS, NULL},
+	 { (char *)"Matrix_lump", _wrap_Matrix_lump, METH_VARARGS, NULL},
+	 { (char *)"Matrix_norm", _wrap_Matrix_norm, METH_VARARGS, NULL},
+	 { (char *)"Matrix_apply", _wrap_Matrix_apply, METH_VARARGS, NULL},
+	 { (char *)"Matrix_zero", _wrap_Matrix_zero, METH_VARARGS, NULL},
+	 { (char *)"Matrix_type", _wrap_Matrix_type, METH_VARARGS, NULL},
+	 { (char *)"Matrix_mat", _wrap_Matrix_mat, METH_VARARGS, NULL},
+	 { (char *)"Matrix_disp", _wrap_Matrix_disp, METH_VARARGS, NULL},
+	 { (char *)"Matrix___call__", _wrap_Matrix___call__, METH_VARARGS, NULL},
+	 { (char *)"Matrix_getval", _wrap_Matrix_getval, METH_VARARGS, NULL},
+	 { (char *)"Matrix_setval", _wrap_Matrix_setval, METH_VARARGS, NULL},
+	 { (char *)"Matrix_addval", _wrap_Matrix_addval, METH_VARARGS, NULL},
+	 { (char *)"Matrix_swigregister", Matrix_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_PETScSparseMatrixElement", _wrap_new_PETScSparseMatrixElement, METH_VARARGS, NULL},
 	 { (char *)"PETScSparseMatrixElement___iadd__", _wrap_PETScSparseMatrixElement___iadd__, METH_VARARGS, NULL},
 	 { (char *)"PETScSparseMatrixElement___isub__", _wrap_PETScSparseMatrixElement___isub__, METH_VARARGS, NULL},
@@ -44960,11 +44960,11 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_LinearSolver", _wrap_delete_LinearSolver, METH_VARARGS, NULL},
 	 { (char *)"LinearSolver_solve", _wrap_LinearSolver_solve, METH_VARARGS, NULL},
 	 { (char *)"LinearSolver_swigregister", LinearSolver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScKrylovSolver", _wrap_new_PETScKrylovSolver, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScKrylovSolver", _wrap_delete_PETScKrylovSolver, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovSolver_solve", _wrap_PETScKrylovSolver_solve, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovSolver_disp", _wrap_PETScKrylovSolver_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovSolver_swigregister", PETScKrylovSolver_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_KrylovSolver", _wrap_new_KrylovSolver, METH_VARARGS, NULL},
+	 { (char *)"delete_KrylovSolver", _wrap_delete_KrylovSolver, METH_VARARGS, NULL},
+	 { (char *)"KrylovSolver_solve", _wrap_KrylovSolver_solve, METH_VARARGS, NULL},
+	 { (char *)"KrylovSolver_disp", _wrap_KrylovSolver_disp, METH_VARARGS, NULL},
+	 { (char *)"KrylovSolver_swigregister", KrylovSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_uBlasKrylovSolver", _wrap_new_uBlasKrylovSolver, METH_VARARGS, NULL},
 	 { (char *)"delete_uBlasKrylovSolver", _wrap_delete_uBlasKrylovSolver, METH_VARARGS, NULL},
 	 { (char *)"uBlasKrylovSolver_solve", _wrap_uBlasKrylovSolver_solve, METH_VARARGS, NULL},
@@ -46726,13 +46726,13 @@ SWIGEXPORT void SWIG_init(void) {
         PyDict_SetItemString(d,"File_python", SWIG_From_int((int)(dolfin::File::python))); 
     }
     {
-        PyDict_SetItemString(d,"PETScVector_l1", SWIG_From_int((int)(dolfin::PETScVector::l1))); 
+        PyDict_SetItemString(d,"Vector_l1", SWIG_From_int((int)(dolfin::PETScVector::l1))); 
     }
     {
-        PyDict_SetItemString(d,"PETScVector_l2", SWIG_From_int((int)(dolfin::PETScVector::l2))); 
+        PyDict_SetItemString(d,"Vector_l2", SWIG_From_int((int)(dolfin::PETScVector::l2))); 
     }
     {
-        PyDict_SetItemString(d,"PETScVector_linf", SWIG_From_int((int)(dolfin::PETScVector::linf))); 
+        PyDict_SetItemString(d,"Vector_linf", SWIG_From_int((int)(dolfin::PETScVector::linf))); 
     }
     {
         PyDict_SetItemString(d,"DenseVector_l1", SWIG_From_int((int)(dolfin::DenseVector::l1))); 
@@ -46744,37 +46744,37 @@ SWIGEXPORT void SWIG_init(void) {
         PyDict_SetItemString(d,"DenseVector_linf", SWIG_From_int((int)(dolfin::DenseVector::linf))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_default_matrix", SWIG_From_int((int)(dolfin::PETScSparseMatrix::default_matrix))); 
+        PyDict_SetItemString(d,"Matrix_default_matrix", SWIG_From_int((int)(dolfin::PETScSparseMatrix::default_matrix))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_spooles", SWIG_From_int((int)(dolfin::PETScSparseMatrix::spooles))); 
+        PyDict_SetItemString(d,"Matrix_spooles", SWIG_From_int((int)(dolfin::PETScSparseMatrix::spooles))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_superlu", SWIG_From_int((int)(dolfin::PETScSparseMatrix::superlu))); 
+        PyDict_SetItemString(d,"Matrix_superlu", SWIG_From_int((int)(dolfin::PETScSparseMatrix::superlu))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_umfpack", SWIG_From_int((int)(dolfin::PETScSparseMatrix::umfpack))); 
+        PyDict_SetItemString(d,"Matrix_umfpack", SWIG_From_int((int)(dolfin::PETScSparseMatrix::umfpack))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_l1", SWIG_From_int((int)(dolfin::PETScSparseMatrix::l1))); 
+        PyDict_SetItemString(d,"Matrix_l1", SWIG_From_int((int)(dolfin::PETScSparseMatrix::l1))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_linf", SWIG_From_int((int)(dolfin::PETScSparseMatrix::linf))); 
+        PyDict_SetItemString(d,"Matrix_linf", SWIG_From_int((int)(dolfin::PETScSparseMatrix::linf))); 
     }
     {
-        PyDict_SetItemString(d,"PETScSparseMatrix_frobenius", SWIG_From_int((int)(dolfin::PETScSparseMatrix::frobenius))); 
+        PyDict_SetItemString(d,"Matrix_frobenius", SWIG_From_int((int)(dolfin::PETScSparseMatrix::frobenius))); 
     }
     {
-        PyDict_SetItemString(d,"PETScKrylovSolver_bicgstab", SWIG_From_int((int)(dolfin::PETScKrylovSolver::bicgstab))); 
+        PyDict_SetItemString(d,"KrylovSolver_bicgstab", SWIG_From_int((int)(dolfin::PETScKrylovSolver::bicgstab))); 
     }
     {
-        PyDict_SetItemString(d,"PETScKrylovSolver_cg", SWIG_From_int((int)(dolfin::PETScKrylovSolver::cg))); 
+        PyDict_SetItemString(d,"KrylovSolver_cg", SWIG_From_int((int)(dolfin::PETScKrylovSolver::cg))); 
     }
     {
-        PyDict_SetItemString(d,"PETScKrylovSolver_default_solver", SWIG_From_int((int)(dolfin::PETScKrylovSolver::default_solver))); 
+        PyDict_SetItemString(d,"KrylovSolver_default_solver", SWIG_From_int((int)(dolfin::PETScKrylovSolver::default_solver))); 
     }
     {
-        PyDict_SetItemString(d,"PETScKrylovSolver_gmres", SWIG_From_int((int)(dolfin::PETScKrylovSolver::gmres))); 
+        PyDict_SetItemString(d,"KrylovSolver_gmres", SWIG_From_int((int)(dolfin::PETScKrylovSolver::gmres))); 
     }
     {
         PyDict_SetItemString(d,"uBlasKrylovSolver_bicgstab", SWIG_From_int((int)(dolfin::uBlasKrylovSolver::bicgstab))); 
