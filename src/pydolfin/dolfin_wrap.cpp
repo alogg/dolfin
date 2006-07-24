@@ -44722,8 +44722,8 @@ static PyObject *_wrap_assemble(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::BilinearForm *arg1 = 0 ;
     dolfin::LinearForm *arg2 = 0 ;
-    dolfin::PETScSparseMatrix *arg3 = 0 ;
-    dolfin::PETScVector *arg4 = 0 ;
+    dolfin::GenericMatrix *arg3 = 0 ;
+    dolfin::GenericVector *arg4 = 0 ;
     dolfin::Mesh *arg5 = 0 ;
     dolfin::BoundaryCondition *arg6 = 0 ;
     PyObject * obj0 = 0 ;
@@ -44751,18 +44751,18 @@ static PyObject *_wrap_assemble(PyObject *, PyObject *args) {
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
     {
-        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__PETScSparseMatrix, SWIG_POINTER_EXCEPTION | 0);
+        SWIG_Python_ConvertPtr(obj2, (void **)&arg3, SWIGTYPE_p_dolfin__GenericMatrix, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(3)) SWIG_fail;
         if (arg3 == NULL) {
-            SWIG_null_ref("dolfin::PETScSparseMatrix");
+            SWIG_null_ref("dolfin::GenericMatrix");
         }
         if (SWIG_arg_fail(3)) SWIG_fail;
     }
     {
-        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
+        SWIG_Python_ConvertPtr(obj3, (void **)&arg4, SWIGTYPE_p_dolfin__GenericVector, SWIG_POINTER_EXCEPTION | 0);
         if (SWIG_arg_fail(4)) SWIG_fail;
         if (arg4 == NULL) {
-            SWIG_null_ref("dolfin::PETScVector");
+            SWIG_null_ref("dolfin::GenericVector");
         }
         if (SWIG_arg_fail(4)) SWIG_fail;
     }
@@ -45835,7 +45835,7 @@ static swig_type_info _swigt__p_dolfin__PETScKrylovSolver = {"_p_dolfin__PETScKr
 static swig_type_info _swigt__p_dolfin__PETScManager = {"_p_dolfin__PETScManager", "dolfin::PETScManager *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScSparseMatrix = {"_p_dolfin__PETScSparseMatrix", "dolfin::PETScSparseMatrix *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScSparseMatrixElement = {"_p_dolfin__PETScSparseMatrixElement", "dolfin::PETScSparseMatrixElement *", 0, 0, 0};
-static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *", 0, 0, 0};
+static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *|dolfin::Vector *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__PETScVectorElement = {"_p_dolfin__PETScVectorElement", "dolfin::PETScVectorElement *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Parameter = {"_p_dolfin__Parameter", "dolfin::Parameter *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__ParameterList = {"_p_dolfin__ParameterList", "dolfin::ParameterList *", 0, 0, 0};
