@@ -1612,7 +1612,7 @@ static swig_module_info swig_module = {swig_types, 163, 0, 0, 0, 0};
 
 #include <dolfin.h>
 
-#include "SettingsGlue.h"
+#include "dolfin_glue.h"
 
 #include <string>
   
