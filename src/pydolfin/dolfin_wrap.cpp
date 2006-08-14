@@ -5840,7 +5840,7 @@ static PyObject *_wrap_GenericMatrix_get(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2,arg3);
+        result = (dolfin::real)((dolfin::GenericMatrix const *)arg1)->get(arg2,arg3);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -6289,40 +6289,6 @@ static PyObject *_wrap_GenericVector_size(PyObject *, PyObject *args) {
 }
 
 
-static PyObject *_wrap_GenericVector___call__(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::GenericVector *arg1 = (dolfin::GenericVector *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:GenericVector___call__",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__GenericVector, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)((dolfin::GenericVector const *)arg1)->operator ()(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
 static PyObject *_wrap_GenericVector_get(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::GenericVector *arg1 = (dolfin::GenericVector *) 0 ;
@@ -6343,7 +6309,7 @@ static PyObject *_wrap_GenericVector_get(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2);
+        result = (dolfin::real)((dolfin::GenericVector const *)arg1)->get(arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -8833,7 +8799,7 @@ static PyObject *_wrap_PETScMatrix_get(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2,arg3);
+        result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->get(arg2,arg3);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -10668,7 +10634,7 @@ static PyObject *_wrap_PETScVector_get__SWIG_0(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2);
+        result = (dolfin::real)((dolfin::PETScVector const *)arg1)->get(arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -11411,7 +11377,6 @@ static PyObject *_wrap_PETScVector___call____SWIG_1(PyObject *, PyObject *args) 
     dolfin::real result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
     
     if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector___call__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
@@ -11420,8 +11385,6 @@ static PyObject *_wrap_PETScVector___call____SWIG_1(PyObject *, PyObject *args) 
         arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
         result = (dolfin::real)((dolfin::PETScVector const *)arg1)->operator ()(arg2);
@@ -14593,7 +14556,6 @@ static PyObject *_wrap_uBlasVector___call____SWIG_1(PyObject *, PyObject *args) 
     dolfin::real result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
     
     if(!PyArg_ParseTuple(args,(char *)"OO:uBlasVector___call__",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_EXCEPTION | 0);
@@ -14602,8 +14564,6 @@ static PyObject *_wrap_uBlasVector___call____SWIG_1(PyObject *, PyObject *args) 
         arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
         result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->operator ()(arg2);
@@ -14691,7 +14651,7 @@ static PyObject *_wrap_uBlasVector_get__SWIG_0(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2);
+        result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->get(arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -15449,7 +15409,7 @@ static PyObject *_wrap_uBlasSparseMatrix_get(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2,arg3);
+        result = (dolfin::real)((dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const *)arg1)->get(arg2,arg3);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -16411,7 +16371,7 @@ static PyObject *_wrap_uBlasDenseMatrix_get(PyObject *, PyObject *args) {
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->get(arg2,arg3);
+        result = (dolfin::real)((dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > const *)arg1)->get(arg2,arg3);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -58240,7 +58200,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_GenericVector", _wrap_delete_GenericVector, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_init", _wrap_GenericVector_init, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_size", _wrap_GenericVector_size, METH_VARARGS, NULL},
-	 { (char *)"GenericVector___call__", _wrap_GenericVector___call__, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_get", _wrap_GenericVector_get, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_set", _wrap_GenericVector_set, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_add", _wrap_GenericVector_add, METH_VARARGS, NULL},
