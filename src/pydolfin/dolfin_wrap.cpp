@@ -8856,6 +8856,46 @@ static PyObject *_wrap_PETScMatrix_set__SWIG_0(PyObject *, PyObject *args) {
 }
 
 
+static PyObject *_wrap_PETScMatrix_add__SWIG_0(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
+    dolfin::uint arg2 ;
+    dolfin::uint arg3 ;
+    dolfin::real arg4 ;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    PyObject * obj2 = 0 ;
+    PyObject * obj3 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScMatrix_add",&obj0,&obj1,&obj2,&obj3)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    {
+        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    {
+        arg3 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj2)); 
+        if (SWIG_arg_fail(3)) SWIG_fail;
+    }
+    {
+        arg4 = static_cast<dolfin::real const >(SWIG_As_double(obj3)); 
+        if (SWIG_arg_fail(4)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        (arg1)->add(arg2,arg3,arg4);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
 static PyObject *_wrap_PETScMatrix_set__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
@@ -8998,7 +9038,7 @@ static PyObject *_wrap_PETScMatrix_set(PyObject *self, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScMatrix_add(PyObject *, PyObject *args) {
+static PyObject *_wrap_PETScMatrix_add__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
     dolfin::real *arg2 ;
@@ -9043,6 +9083,99 @@ static PyObject *_wrap_PETScMatrix_add(PyObject *, PyObject *args) {
     Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_PETScMatrix_add(PyObject *self, PyObject *args) {
+    int argc;
+    PyObject *argv[7];
+    int ii;
+    
+    argc = PyObject_Length(args);
+    for (ii = 0; (ii < argc) && (ii < 6); ii++) {
+        argv[ii] = PyTuple_GetItem(args,ii);
+    }
+    if (argc == 4) {
+        int _v;
+        {
+            void *ptr;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScMatrix, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = 1;
+            }
+        }
+        if (_v) {
+            _v = SWIG_Check_unsigned_SS_int(argv[1]);
+            if (_v) {
+                _v = SWIG_Check_unsigned_SS_int(argv[2]);
+                if (_v) {
+                    _v = SWIG_Check_double(argv[3]);
+                    if (_v) {
+                        return _wrap_PETScMatrix_add__SWIG_0(self,args);
+                    }
+                }
+            }
+        }
+    }
+    if (argc == 6) {
+        int _v;
+        {
+            void *ptr;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScMatrix, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = 1;
+            }
+        }
+        if (_v) {
+            {
+                void *ptr;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_double, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = 1;
+                }
+            }
+            if (_v) {
+                {
+                    void *ptr;
+                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_int, 0) == -1) {
+                        _v = 0;
+                        PyErr_Clear();
+                    } else {
+                        _v = 1;
+                    }
+                }
+                if (_v) {
+                    _v = SWIG_Check_int(argv[3]);
+                    if (_v) {
+                        {
+                            void *ptr;
+                            if (SWIG_ConvertPtr(argv[4], &ptr, SWIGTYPE_p_int, 0) == -1) {
+                                _v = 0;
+                                PyErr_Clear();
+                            } else {
+                                _v = 1;
+                            }
+                        }
+                        if (_v) {
+                            _v = SWIG_Check_int(argv[5]);
+                            if (_v) {
+                                return _wrap_PETScMatrix_add__SWIG_1(self,args);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_add'");
     return NULL;
 }
 
@@ -9890,123 +10023,6 @@ static PyObject *_wrap_PETScMatrix___call__(PyObject *self, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScMatrix_getval(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::uint arg3 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_getval",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->getval(arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_PETScMatrix_setval(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::uint arg3 ;
-    dolfin::real arg4 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    PyObject * obj3 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScMatrix_setval",&obj0,&obj1,&obj2,&obj3)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    {
-        arg4 = static_cast<dolfin::real const >(SWIG_As_double(obj3)); 
-        if (SWIG_arg_fail(4)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->setval(arg2,arg3,arg4);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_PETScMatrix_addval(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::uint arg3 ;
-    dolfin::real arg4 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    PyObject * obj3 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:PETScMatrix_addval",&obj0,&obj1,&obj2,&obj3)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    {
-        arg4 = static_cast<dolfin::real const >(SWIG_As_double(obj3)); 
-        if (SWIG_arg_fail(4)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->addval(arg2,arg3,arg4);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
 static PyObject * PETScMatrix_swigregister(PyObject *, PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
@@ -10685,6 +10701,40 @@ static PyObject *_wrap_PETScVector_set__SWIG_0(PyObject *, PyObject *args) {
 }
 
 
+static PyObject *_wrap_PETScVector_add__SWIG_0(PyObject *, PyObject *args) {
+    PyObject *resultobj = NULL;
+    dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
+    dolfin::uint arg2 ;
+    dolfin::real arg3 ;
+    PyObject * obj0 = 0 ;
+    PyObject * obj1 = 0 ;
+    PyObject * obj2 = 0 ;
+    
+    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_add",&obj0,&obj1,&obj2)) goto fail;
+    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(1)) SWIG_fail;
+    {
+        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
+        if (SWIG_arg_fail(2)) SWIG_fail;
+    }
+    {
+        arg3 = static_cast<dolfin::real const >(SWIG_As_double(obj2)); 
+        if (SWIG_arg_fail(3)) SWIG_fail;
+    }
+    try {
+        Swig::UnknownExceptionHandler dh;
+        (arg1)->add(arg2,arg3);
+        
+    } catch (Swig::DirectorException&) {
+        SWIG_fail;
+    }
+    Py_INCREF(Py_None); resultobj = Py_None;
+    return resultobj;
+    fail:
+    return NULL;
+}
+
+
 static PyObject *_wrap_PETScVector_vec(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
@@ -11139,7 +11189,7 @@ static PyObject *_wrap_PETScVector_set(PyObject *self, PyObject *args) {
 }
 
 
-static PyObject *_wrap_PETScVector_add(PyObject *, PyObject *args) {
+static PyObject *_wrap_PETScVector_add__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
     dolfin::real *arg2 ;
@@ -11174,6 +11224,82 @@ static PyObject *_wrap_PETScVector_add(PyObject *, PyObject *args) {
     Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
+    return NULL;
+}
+
+
+static PyObject *_wrap_PETScVector_add(PyObject *self, PyObject *args) {
+    int argc;
+    PyObject *argv[5];
+    int ii;
+    
+    argc = PyObject_Length(args);
+    for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+        argv[ii] = PyTuple_GetItem(args,ii);
+    }
+    if (argc == 3) {
+        int _v;
+        {
+            void *ptr;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = 1;
+            }
+        }
+        if (_v) {
+            _v = SWIG_Check_unsigned_SS_int(argv[1]);
+            if (_v) {
+                _v = SWIG_Check_double(argv[2]);
+                if (_v) {
+                    return _wrap_PETScVector_add__SWIG_0(self,args);
+                }
+            }
+        }
+    }
+    if (argc == 4) {
+        int _v;
+        {
+            void *ptr;
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_dolfin__PETScVector, 0) == -1) {
+                _v = 0;
+                PyErr_Clear();
+            } else {
+                _v = 1;
+            }
+        }
+        if (_v) {
+            {
+                void *ptr;
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_double, 0) == -1) {
+                    _v = 0;
+                    PyErr_Clear();
+                } else {
+                    _v = 1;
+                }
+            }
+            if (_v) {
+                {
+                    void *ptr;
+                    if (SWIG_ConvertPtr(argv[2], &ptr, SWIGTYPE_p_int, 0) == -1) {
+                        _v = 0;
+                        PyErr_Clear();
+                    } else {
+                        _v = 1;
+                    }
+                }
+                if (_v) {
+                    _v = SWIG_Check_int(argv[3]);
+                    if (_v) {
+                        return _wrap_PETScVector_add__SWIG_1(self,args);
+                    }
+                }
+            }
+        }
+    }
+    
+    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_add'");
     return NULL;
 }
 
@@ -11940,105 +12066,6 @@ static PyObject *_wrap_PETScVector_disp(PyObject *, PyObject *args) {
     try {
         Swig::UnknownExceptionHandler dh;
         ((dolfin::PETScVector const *)arg1)->disp();
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_PETScVector_getval(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:PETScVector_getval",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)((dolfin::PETScVector const *)arg1)->getval(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_PETScVector_setval(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::real arg3 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_setval",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::real const >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->setval(arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_PETScVector_addval(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::real arg3 ;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_addval",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::real const >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        (arg1)->addval(arg2,arg3);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
@@ -58252,9 +58279,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"PETScMatrix_mat", _wrap_PETScMatrix_mat, METH_VARARGS, NULL},
 	 { (char *)"PETScMatrix_disp", _wrap_PETScMatrix_disp, METH_VARARGS, NULL},
 	 { (char *)"PETScMatrix___call__", _wrap_PETScMatrix___call__, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_getval", _wrap_PETScMatrix_getval, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_setval", _wrap_PETScMatrix_setval, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_addval", _wrap_PETScMatrix_addval, METH_VARARGS, NULL},
 	 { (char *)"PETScMatrix_swigregister", PETScMatrix_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_PETScMatrixElement", _wrap_new_PETScMatrixElement, METH_VARARGS, NULL},
 	 { (char *)"PETScMatrixElement___iadd__", _wrap_PETScMatrixElement___iadd__, METH_VARARGS, NULL},
@@ -58293,9 +58317,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"PETScVector_max", _wrap_PETScVector_max, METH_VARARGS, NULL},
 	 { (char *)"PETScVector_min", _wrap_PETScVector_min, METH_VARARGS, NULL},
 	 { (char *)"PETScVector_disp", _wrap_PETScVector_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_getval", _wrap_PETScVector_getval, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_setval", _wrap_PETScVector_setval, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_addval", _wrap_PETScVector_addval, METH_VARARGS, NULL},
 	 { (char *)"PETScVector_createScatterer", _wrap_PETScVector_createScatterer, METH_VARARGS, NULL},
 	 { (char *)"PETScVector_gather", _wrap_PETScVector_gather, METH_VARARGS, NULL},
 	 { (char *)"PETScVector_scatter", _wrap_PETScVector_scatter, METH_VARARGS, NULL},
