@@ -1442,7 +1442,7 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 #define SWIGTYPE_p_Mat swig_types[7]
 #define SWIGTYPE_p_Matrix swig_types[8]
 #define SWIGTYPE_p_PETScPreconditioner swig_types[9]
-#define SWIGTYPE_p_PETScPreconditioner__Type swig_types[10]
+#define SWIGTYPE_p_Preconditioner swig_types[10]
 #define SWIGTYPE_p_Vec swig_types[11]
 #define SWIGTYPE_p_VecScatter swig_types[12]
 #define SWIGTYPE_p_Vector swig_types[13]
@@ -1588,15 +1588,14 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 #define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[153]
 #define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[154]
 #define SWIGTYPE_p_uBlasPreconditioner swig_types[155]
-#define SWIGTYPE_p_uBlasPreconditioner__Type swig_types[156]
-#define SWIGTYPE_p_uBlasVector swig_types[157]
-#define SWIGTYPE_p_unsigned_int swig_types[158]
-#define SWIGTYPE_ptrdiff_t swig_types[159]
-#define SWIGTYPE_size_t swig_types[160]
-#define SWIGTYPE_std__ptrdiff_t swig_types[161]
-#define SWIGTYPE_std__size_t swig_types[162]
-static swig_type_info *swig_types[164];
-static swig_module_info swig_module = {swig_types, 163, 0, 0, 0, 0};
+#define SWIGTYPE_p_uBlasVector swig_types[156]
+#define SWIGTYPE_p_unsigned_int swig_types[157]
+#define SWIGTYPE_ptrdiff_t swig_types[158]
+#define SWIGTYPE_size_t swig_types[159]
+#define SWIGTYPE_std__ptrdiff_t swig_types[160]
+#define SWIGTYPE_std__size_t swig_types[161]
+static swig_type_info *swig_types[163];
+static swig_module_info swig_module = {swig_types, 162, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -6592,17 +6591,17 @@ static PyObject *_wrap_new_GMRES__SWIG_0(PyObject *, PyObject *args) {
 
 static PyObject *_wrap_new_GMRES__SWIG_1(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
-    PETScPreconditioner::Type arg1 ;
+    Preconditioner arg1 ;
     dolfin::GMRES *result;
     PyObject * obj0 = 0 ;
     
     if(!PyArg_ParseTuple(args,(char *)"O:new_GMRES",&obj0)) goto fail;
     {
-        PETScPreconditioner::Type * argp;
-        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_PETScPreconditioner__Type, SWIG_POINTER_EXCEPTION);
+        Preconditioner * argp;
+        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION);
         if (SWIG_arg_fail(1)) SWIG_fail;
         if (argp == NULL) {
-            SWIG_null_ref("PETScPreconditioner::Type");
+            SWIG_null_ref("Preconditioner");
         }
         if (SWIG_arg_fail(1)) SWIG_fail;
         arg1 = *argp;
@@ -6666,7 +6665,7 @@ static PyObject *_wrap_new_GMRES(PyObject *self, PyObject *args) {
         int _v;
         {
             void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_PETScPreconditioner__Type, 0) == -1) {
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
                 _v = 0;
                 PyErr_Clear();
             } else {
@@ -7207,17 +7206,17 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_1(PyObject *, PyObject *args)
 
 static PyObject *_wrap_new_PETScKrylovSolver__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
-    PETScPreconditioner::Type arg1 ;
+    Preconditioner arg1 ;
     dolfin::PETScKrylovSolver *result;
     PyObject * obj0 = 0 ;
     
     if(!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) goto fail;
     {
-        PETScPreconditioner::Type * argp;
-        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_PETScPreconditioner__Type, SWIG_POINTER_EXCEPTION);
+        Preconditioner * argp;
+        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION);
         if (SWIG_arg_fail(1)) SWIG_fail;
         if (argp == NULL) {
-            SWIG_null_ref("PETScPreconditioner::Type");
+            SWIG_null_ref("Preconditioner");
         }
         if (SWIG_arg_fail(1)) SWIG_fail;
         arg1 = *argp;
@@ -7268,7 +7267,7 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_3(PyObject *, PyObject *args)
 static PyObject *_wrap_new_PETScKrylovSolver__SWIG_4(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::PETScKrylovSolver::Type arg1 ;
-    PETScPreconditioner::Type arg2 ;
+    Preconditioner arg2 ;
     dolfin::PETScKrylovSolver *result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
@@ -7279,11 +7278,11 @@ static PyObject *_wrap_new_PETScKrylovSolver__SWIG_4(PyObject *, PyObject *args)
         if (SWIG_arg_fail(1)) SWIG_fail;
     }
     {
-        PETScPreconditioner::Type * argp;
-        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_PETScPreconditioner__Type, SWIG_POINTER_EXCEPTION);
+        Preconditioner * argp;
+        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION);
         if (SWIG_arg_fail(2)) SWIG_fail;
         if (argp == NULL) {
-            SWIG_null_ref("PETScPreconditioner::Type");
+            SWIG_null_ref("Preconditioner");
         }
         if (SWIG_arg_fail(2)) SWIG_fail;
         arg2 = *argp;
@@ -7353,7 +7352,7 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
         int _v;
         {
             void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_PETScPreconditioner__Type, 0) == -1) {
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
                 _v = 0;
                 PyErr_Clear();
             } else {
@@ -7392,7 +7391,7 @@ static PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
         if (_v) {
             {
                 void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_PETScPreconditioner__Type, 0) == -1) {
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
                     _v = 0;
                     PyErr_Clear();
                 } else {
@@ -12778,17 +12777,17 @@ static PyObject *_wrap_new_uBlasKrylovSolver__SWIG_1(PyObject *, PyObject *args)
 
 static PyObject *_wrap_new_uBlasKrylovSolver__SWIG_2(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
-    uBlasPreconditioner::Type arg1 ;
+    Preconditioner arg1 ;
     dolfin::uBlasKrylovSolver *result;
     PyObject * obj0 = 0 ;
     
     if(!PyArg_ParseTuple(args,(char *)"O:new_uBlasKrylovSolver",&obj0)) goto fail;
     {
-        uBlasPreconditioner::Type * argp;
-        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_uBlasPreconditioner__Type, SWIG_POINTER_EXCEPTION);
+        Preconditioner * argp;
+        SWIG_Python_ConvertPtr(obj0, (void **)&argp, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION);
         if (SWIG_arg_fail(1)) SWIG_fail;
         if (argp == NULL) {
-            SWIG_null_ref("uBlasPreconditioner::Type");
+            SWIG_null_ref("Preconditioner");
         }
         if (SWIG_arg_fail(1)) SWIG_fail;
         arg1 = *argp;
@@ -12839,7 +12838,7 @@ static PyObject *_wrap_new_uBlasKrylovSolver__SWIG_3(PyObject *, PyObject *args)
 static PyObject *_wrap_new_uBlasKrylovSolver__SWIG_4(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::uBlasKrylovSolver::Type arg1 ;
-    uBlasPreconditioner::Type arg2 ;
+    Preconditioner arg2 ;
     dolfin::uBlasKrylovSolver *result;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
@@ -12850,11 +12849,11 @@ static PyObject *_wrap_new_uBlasKrylovSolver__SWIG_4(PyObject *, PyObject *args)
         if (SWIG_arg_fail(1)) SWIG_fail;
     }
     {
-        uBlasPreconditioner::Type * argp;
-        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_uBlasPreconditioner__Type, SWIG_POINTER_EXCEPTION);
+        Preconditioner * argp;
+        SWIG_Python_ConvertPtr(obj1, (void **)&argp, SWIGTYPE_p_Preconditioner, SWIG_POINTER_EXCEPTION);
         if (SWIG_arg_fail(2)) SWIG_fail;
         if (argp == NULL) {
-            SWIG_null_ref("uBlasPreconditioner::Type");
+            SWIG_null_ref("Preconditioner");
         }
         if (SWIG_arg_fail(2)) SWIG_fail;
         arg2 = *argp;
@@ -12924,7 +12923,7 @@ static PyObject *_wrap_new_uBlasKrylovSolver(PyObject *self, PyObject *args) {
         int _v;
         {
             void *ptr = 0;
-            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_uBlasPreconditioner__Type, 0) == -1) {
+            if (SWIG_ConvertPtr(argv[0], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
                 _v = 0;
                 PyErr_Clear();
             } else {
@@ -12963,7 +12962,7 @@ static PyObject *_wrap_new_uBlasKrylovSolver(PyObject *self, PyObject *args) {
         if (_v) {
             {
                 void *ptr = 0;
-                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_uBlasPreconditioner__Type, 0) == -1) {
+                if (SWIG_ConvertPtr(argv[1], &ptr, SWIGTYPE_p_Preconditioner, 0) == -1) {
                     _v = 0;
                     PyErr_Clear();
                 } else {
@@ -59458,7 +59457,7 @@ static swig_type_info _swigt__p_KSP = {"_p_KSP", "KSP *", 0, 0, 0};
 static swig_type_info _swigt__p_Mat = {"_p_Mat", "Mat *", 0, 0, 0};
 static swig_type_info _swigt__p_Matrix = {"_p_Matrix", "Matrix *", 0, 0, 0};
 static swig_type_info _swigt__p_PETScPreconditioner = {"_p_PETScPreconditioner", "PETScPreconditioner *", 0, 0, 0};
-static swig_type_info _swigt__p_PETScPreconditioner__Type = {"_p_PETScPreconditioner__Type", "PETScPreconditioner::Type *", 0, 0, 0};
+static swig_type_info _swigt__p_Preconditioner = {"_p_Preconditioner", "Preconditioner *", 0, 0, 0};
 static swig_type_info _swigt__p_Vec = {"_p_Vec", "Vec *", 0, 0, 0};
 static swig_type_info _swigt__p_VecScatter = {"_p_VecScatter", "VecScatter *", 0, 0, 0};
 static swig_type_info _swigt__p_Vector = {"_p_Vector", "Vector *", 0, 0, 0};
@@ -59604,7 +59603,6 @@ static swig_type_info _swigt__p_std__setTint_t = {"_p_std__setTint_t", "std::set
 static swig_type_info _swigt__p_uBlasMatrixTdolfin__ublas_dense_matrix_t = {"_p_uBlasMatrixTdolfin__ublas_dense_matrix_t", "uBlasMatrix<dolfin::ublas_dense_matrix > *", 0, 0, 0};
 static swig_type_info _swigt__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t = {"_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t", "uBlasMatrix<dolfin::ublas_sparse_matrix > *", 0, 0, 0};
 static swig_type_info _swigt__p_uBlasPreconditioner = {"_p_uBlasPreconditioner", "uBlasPreconditioner *", 0, 0, 0};
-static swig_type_info _swigt__p_uBlasPreconditioner__Type = {"_p_uBlasPreconditioner__Type", "uBlasPreconditioner::Type *", 0, 0, 0};
 static swig_type_info _swigt__p_uBlasVector = {"_p_uBlasVector", "uBlasVector *", 0, 0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|dolfin::uint *", 0, 0, 0};
 static swig_type_info _swigt__ptrdiff_t = {"_ptrdiff_t", "ptrdiff_t", 0, 0, 0};
@@ -59623,7 +59621,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mat,
   &_swigt__p_Matrix,
   &_swigt__p_PETScPreconditioner,
-  &_swigt__p_PETScPreconditioner__Type,
+  &_swigt__p_Preconditioner,
   &_swigt__p_Vec,
   &_swigt__p_VecScatter,
   &_swigt__p_Vector,
@@ -59769,7 +59767,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_uBlasMatrixTdolfin__ublas_dense_matrix_t,
   &_swigt__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,
   &_swigt__p_uBlasPreconditioner,
-  &_swigt__p_uBlasPreconditioner__Type,
   &_swigt__p_uBlasVector,
   &_swigt__p_unsigned_int,
   &_swigt__ptrdiff_t,
@@ -59788,7 +59785,7 @@ static swig_cast_info _swigc__p_KSP[] = {  {&_swigt__p_KSP, 0, 0, 0},{0, 0, 0, 0
 static swig_cast_info _swigc__p_Mat[] = {  {&_swigt__p_Mat, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Matrix[] = {  {&_swigt__p_Matrix, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PETScPreconditioner[] = {  {&_swigt__p_PETScPreconditioner, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PETScPreconditioner__Type[] = {  {&_swigt__p_PETScPreconditioner__Type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Preconditioner[] = {  {&_swigt__p_Preconditioner, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Vec[] = {  {&_swigt__p_Vec, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VecScatter[] = {  {&_swigt__p_VecScatter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Vector[] = {  {&_swigt__p_Vector, 0, 0, 0},{0, 0, 0, 0}};
@@ -59934,7 +59931,6 @@ static swig_cast_info _swigc__p_std__setTint_t[] = {  {&_swigt__p_std__setTint_t
 static swig_cast_info _swigc__p_uBlasMatrixTdolfin__ublas_dense_matrix_t[] = {  {&_swigt__p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t[] = {  {&_swigt__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uBlasPreconditioner[] = {  {&_swigt__p_uBlasPreconditioner, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_uBlasPreconditioner__Type[] = {  {&_swigt__p_uBlasPreconditioner__Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uBlasVector[] = {  {&_swigt__p_uBlasVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__ptrdiff_t[] = {  {&_swigt__ptrdiff_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -59953,7 +59949,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mat,
   _swigc__p_Matrix,
   _swigc__p_PETScPreconditioner,
-  _swigc__p_PETScPreconditioner__Type,
+  _swigc__p_Preconditioner,
   _swigc__p_Vec,
   _swigc__p_VecScatter,
   _swigc__p_Vector,
@@ -60099,7 +60095,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_uBlasMatrixTdolfin__ublas_dense_matrix_t,
   _swigc__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,
   _swigc__p_uBlasPreconditioner,
-  _swigc__p_uBlasPreconditioner__Type,
   _swigc__p_uBlasVector,
   _swigc__p_unsigned_int,
   _swigc__ptrdiff_t,
@@ -60615,27 +60610,6 @@ SWIGEXPORT void SWIG_init(void) {
         PyDict_SetItemString(d,"PETScMatrix_frobenius", SWIG_From_int(static_cast<int >(dolfin::PETScMatrix::frobenius))); 
     }
     {
-        PyDict_SetItemString(d,"PETScPreconditioner_default_pc", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::default_pc))); 
-    }
-    {
-        PyDict_SetItemString(d,"PETScPreconditioner_hypre_amg", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::hypre_amg))); 
-    }
-    {
-        PyDict_SetItemString(d,"PETScPreconditioner_icc", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::icc))); 
-    }
-    {
-        PyDict_SetItemString(d,"PETScPreconditioner_ilu", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::ilu))); 
-    }
-    {
-        PyDict_SetItemString(d,"PETScPreconditioner_jacobi", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::jacobi))); 
-    }
-    {
-        PyDict_SetItemString(d,"PETScPreconditioner_sor", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::sor))); 
-    }
-    {
-        PyDict_SetItemString(d,"PETScPreconditioner_none", SWIG_From_int(static_cast<int >(dolfin::PETScPreconditioner::none))); 
-    }
-    {
         PyDict_SetItemString(d,"PETScVector_l1", SWIG_From_int(static_cast<int >(dolfin::PETScVector::l1))); 
     }
     {
@@ -60655,15 +60629,6 @@ SWIGEXPORT void SWIG_init(void) {
     }
     {
         PyDict_SetItemString(d,"uBlasKrylovSolver_gmres", SWIG_From_int(static_cast<int >(dolfin::uBlasKrylovSolver::gmres))); 
-    }
-    {
-        PyDict_SetItemString(d,"uBlasPreconditioner_default_pc", SWIG_From_int(static_cast<int >(dolfin::uBlasPreconditioner::default_pc))); 
-    }
-    {
-        PyDict_SetItemString(d,"uBlasPreconditioner_ilu", SWIG_From_int(static_cast<int >(dolfin::uBlasPreconditioner::ilu))); 
-    }
-    {
-        PyDict_SetItemString(d,"uBlasPreconditioner_none", SWIG_From_int(static_cast<int >(dolfin::uBlasPreconditioner::none))); 
     }
     {
         PyDict_SetItemString(d,"uBlasVector_l1", SWIG_From_int(static_cast<int >(dolfin::uBlasVector::l1))); 
