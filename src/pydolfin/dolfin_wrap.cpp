@@ -1538,70 +1538,69 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 #define SWIGTYPE_p_dolfin__PETScVectorElement swig_types[103]
 #define SWIGTYPE_p_dolfin__Parameter swig_types[104]
 #define SWIGTYPE_p_dolfin__ParameterList swig_types[105]
-#define SWIGTYPE_p_dolfin__ParticleSystem swig_types[106]
-#define SWIGTYPE_p_dolfin__Partition swig_types[107]
-#define SWIGTYPE_p_dolfin__Point swig_types[108]
-#define SWIGTYPE_p_dolfin__Sample swig_types[109]
-#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[110]
-#define SWIGTYPE_p_dolfin__TimeDependent swig_types[111]
-#define SWIGTYPE_p_dolfin__TimeDependentODE swig_types[112]
-#define SWIGTYPE_p_dolfin__TimeDependentPDE swig_types[113]
-#define SWIGTYPE_p_dolfin__TimeSlab swig_types[114]
-#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[115]
-#define SWIGTYPE_p_dolfin__TimeStepper swig_types[116]
-#define SWIGTYPE_p_dolfin__TopologyComputation swig_types[117]
-#define SWIGTYPE_p_dolfin__Triangle swig_types[118]
-#define SWIGTYPE_p_dolfin__UniformMeshRefinement swig_types[119]
-#define SWIGTYPE_p_dolfin__UnitCube swig_types[120]
-#define SWIGTYPE_p_dolfin__UnitSquare swig_types[121]
-#define SWIGTYPE_p_dolfin__Variable swig_types[122]
-#define SWIGTYPE_p_dolfin__Vertex swig_types[123]
-#define SWIGTYPE_p_dolfin__VertexIterator swig_types[124]
-#define SWIGTYPE_p_dolfin__cGqMethod swig_types[125]
-#define SWIGTYPE_p_dolfin__dGqMethod swig_types[126]
-#define SWIGTYPE_p_dolfin__uBlasDummyPreconditioner swig_types[127]
-#define SWIGTYPE_p_dolfin__uBlasILUPreconditioner swig_types[128]
-#define SWIGTYPE_p_dolfin__uBlasKrylovMatrix swig_types[129]
-#define SWIGTYPE_p_dolfin__uBlasKrylovSolver swig_types[130]
-#define SWIGTYPE_p_dolfin__uBlasLUSolver swig_types[131]
-#define SWIGTYPE_p_dolfin__uBlasLinearSolver swig_types[132]
-#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[133]
-#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[134]
-#define SWIGTYPE_p_dolfin__uBlasPreconditioner swig_types[135]
-#define SWIGTYPE_p_dolfin__uBlasVector swig_types[136]
-#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_dolfin__ublas__column_major_t swig_types[137]
-#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_t swig_types[138]
-#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__column_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[139]
-#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__row_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[140]
-#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t swig_types[141]
-#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t swig_types[142]
-#define SWIGTYPE_p_dolfin__ublas__matrix_columnTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[143]
-#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t_t swig_types[144]
-#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t_t swig_types[145]
-#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[146]
-#define SWIGTYPE_p_dolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t swig_types[147]
-#define SWIGTYPE_p_dolfin__ublas__vectorTdouble_t swig_types[148]
-#define SWIGTYPE_p_dolfin__ublas__vector_rangeTdolfin__ublas__vectorTdouble_t_t swig_types[149]
-#define SWIGTYPE_p_dolfin__ublas_dense_matrix swig_types[150]
-#define SWIGTYPE_p_dolfin__ublas_sparse_matrix swig_types[151]
-#define SWIGTYPE_p_double swig_types[152]
-#define SWIGTYPE_p_int swig_types[153]
-#define SWIGTYPE_p_p_char swig_types[154]
-#define SWIGTYPE_p_p_unsigned_int swig_types[155]
-#define SWIGTYPE_p_std__complexTdouble_t swig_types[156]
-#define SWIGTYPE_p_std__setTint_t swig_types[157]
-#define SWIGTYPE_p_uBlasKrylovMatrix swig_types[158]
-#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[159]
-#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[160]
-#define SWIGTYPE_p_uBlasPreconditioner swig_types[161]
-#define SWIGTYPE_p_uBlasVector swig_types[162]
-#define SWIGTYPE_p_unsigned_int swig_types[163]
-#define SWIGTYPE_ptrdiff_t swig_types[164]
-#define SWIGTYPE_size_t swig_types[165]
-#define SWIGTYPE_std__ptrdiff_t swig_types[166]
-#define SWIGTYPE_std__size_t swig_types[167]
-static swig_type_info *swig_types[169];
-static swig_module_info swig_module = {swig_types, 168, 0, 0, 0, 0};
+#define SWIGTYPE_p_dolfin__Partition swig_types[106]
+#define SWIGTYPE_p_dolfin__Point swig_types[107]
+#define SWIGTYPE_p_dolfin__Sample swig_types[108]
+#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[109]
+#define SWIGTYPE_p_dolfin__TimeDependent swig_types[110]
+#define SWIGTYPE_p_dolfin__TimeDependentODE swig_types[111]
+#define SWIGTYPE_p_dolfin__TimeDependentPDE swig_types[112]
+#define SWIGTYPE_p_dolfin__TimeSlab swig_types[113]
+#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[114]
+#define SWIGTYPE_p_dolfin__TimeStepper swig_types[115]
+#define SWIGTYPE_p_dolfin__TopologyComputation swig_types[116]
+#define SWIGTYPE_p_dolfin__Triangle swig_types[117]
+#define SWIGTYPE_p_dolfin__UniformMeshRefinement swig_types[118]
+#define SWIGTYPE_p_dolfin__UnitCube swig_types[119]
+#define SWIGTYPE_p_dolfin__UnitSquare swig_types[120]
+#define SWIGTYPE_p_dolfin__Variable swig_types[121]
+#define SWIGTYPE_p_dolfin__Vertex swig_types[122]
+#define SWIGTYPE_p_dolfin__VertexIterator swig_types[123]
+#define SWIGTYPE_p_dolfin__cGqMethod swig_types[124]
+#define SWIGTYPE_p_dolfin__dGqMethod swig_types[125]
+#define SWIGTYPE_p_dolfin__uBlasDummyPreconditioner swig_types[126]
+#define SWIGTYPE_p_dolfin__uBlasILUPreconditioner swig_types[127]
+#define SWIGTYPE_p_dolfin__uBlasKrylovMatrix swig_types[128]
+#define SWIGTYPE_p_dolfin__uBlasKrylovSolver swig_types[129]
+#define SWIGTYPE_p_dolfin__uBlasLUSolver swig_types[130]
+#define SWIGTYPE_p_dolfin__uBlasLinearSolver swig_types[131]
+#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[132]
+#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[133]
+#define SWIGTYPE_p_dolfin__uBlasPreconditioner swig_types[134]
+#define SWIGTYPE_p_dolfin__uBlasVector swig_types[135]
+#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_dolfin__ublas__column_major_t swig_types[136]
+#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_t swig_types[137]
+#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__column_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[138]
+#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__row_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[139]
+#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t swig_types[140]
+#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t swig_types[141]
+#define SWIGTYPE_p_dolfin__ublas__matrix_columnTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[142]
+#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t_t swig_types[143]
+#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t_t swig_types[144]
+#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[145]
+#define SWIGTYPE_p_dolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t swig_types[146]
+#define SWIGTYPE_p_dolfin__ublas__vectorTdouble_t swig_types[147]
+#define SWIGTYPE_p_dolfin__ublas__vector_rangeTdolfin__ublas__vectorTdouble_t_t swig_types[148]
+#define SWIGTYPE_p_dolfin__ublas_dense_matrix swig_types[149]
+#define SWIGTYPE_p_dolfin__ublas_sparse_matrix swig_types[150]
+#define SWIGTYPE_p_double swig_types[151]
+#define SWIGTYPE_p_int swig_types[152]
+#define SWIGTYPE_p_p_char swig_types[153]
+#define SWIGTYPE_p_p_unsigned_int swig_types[154]
+#define SWIGTYPE_p_std__complexTdouble_t swig_types[155]
+#define SWIGTYPE_p_std__setTint_t swig_types[156]
+#define SWIGTYPE_p_uBlasKrylovMatrix swig_types[157]
+#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[158]
+#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[159]
+#define SWIGTYPE_p_uBlasPreconditioner swig_types[160]
+#define SWIGTYPE_p_uBlasVector swig_types[161]
+#define SWIGTYPE_p_unsigned_int swig_types[162]
+#define SWIGTYPE_ptrdiff_t swig_types[163]
+#define SWIGTYPE_size_t swig_types[164]
+#define SWIGTYPE_std__ptrdiff_t swig_types[165]
+#define SWIGTYPE_std__size_t swig_types[166]
+static swig_type_info *swig_types[168];
+static swig_module_info swig_module = {swig_types, 167, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2249,38 +2248,6 @@ SwigDirector_ODE::SwigDirector_ODE(PyObject *self, dolfin::uint N, dolfin::real 
 
 
 
-dolfin::real SwigDirector_ODE::u0(dolfin::uint i) {
-    PyObject * obj0 = 0 ;
-    dolfin::real c_result ;
-    PyObject *result;
-    
-    if (swig_get_up()) {
-        Swig::DirectorPureVirtualException::raise("dolfin::ODE::u0(i).");
-    }
-    {
-        obj0 = SWIG_From_unsigned_SS_int(static_cast<dolfin::uint >(i)); 
-    }
-    if (!swig_get_self()) {
-        Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call ODE.__init__.");
-    }
-    result = PyObject_CallMethod(swig_get_self(), (char *)"u0", (char *)"(O)" ,obj0);
-    if (result == NULL) {
-        PyObject *error = PyErr_Occurred();
-        if (error != NULL) {
-            Swig::DirectorMethodException::raise("Error detected when calling ODE.u0.\n");
-        }
-    }
-    {
-        if (result) c_result = static_cast<dolfin::real >(SWIG_As_double(result));
-        if (!result || PyErr_Occurred())
-        Swig::DirectorTypeMismatchException::raise("Error converting Python object when using SWIG_As_double.");
-    }
-    Py_XDECREF(obj0);
-    Py_XDECREF(result);
-    return (dolfin::real) c_result;
-}
-
-
 void SwigDirector_ODE::f(dolfin::uBlasVector const &u, dolfin::real t, dolfin::uBlasVector &y) {
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
@@ -2414,6 +2381,27 @@ dolfin::real SwigDirector_ODE::timestep(dolfin::real t, dolfin::uint i, dolfin::
     Py_XDECREF(obj2);
     Py_XDECREF(result);
     return (dolfin::real) c_result;
+}
+
+
+void SwigDirector_ODE::u0(dolfin::uBlasVector &u) {
+    PyObject * obj0 = 0 ;
+    
+    if (swig_get_up()) {
+        Swig::DirectorPureVirtualException::raise("dolfin::ODE::u0(u).");
+    }
+    {
+        obj0 = SWIG_NewPointerObj(static_cast<void* >(static_cast<dolfin::uBlasVector * >(&u)), SWIGTYPE_p_dolfin__uBlasVector, 0);
+    }
+    if (!swig_get_self()) {
+        Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call ODE.__init__.");
+    }
+    (void) PyObject_CallMethod(swig_get_self(), (char *)"u0", (char *)"(O)" ,obj0);
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+        Swig::DirectorMethodException::raise("Error detected when calling ODE.u0.\n");
+    }
+    Py_XDECREF(obj0);
 }
 
 
@@ -47903,8 +47891,7 @@ static PyObject *_wrap_Homotopy_solutions(PyObject *, PyObject *args) {
 static PyObject *_wrap_Homotopy_z0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::Homotopy *arg1 = (dolfin::Homotopy *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::complex result;
+    dolfin::complex *arg2 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     Swig::Director *director = 0;
@@ -47912,24 +47899,18 @@ static PyObject *_wrap_Homotopy_z0(PyObject *, PyObject *args) {
     if(!PyArg_ParseTuple(args,(char *)"OO:Homotopy_z0",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__Homotopy, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
+    SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_std__complexTdouble_t, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(2)) SWIG_fail;
     director = SWIG_DIRECTOR_CAST(arg1);
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (arg1)->z0(arg2);
+        (arg1)->z0(arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    {
-        dolfin::complex * resultptr;
-        resultptr = new dolfin::complex(static_cast<dolfin::complex & >(result));
-        resultobj = SWIG_NewPointerObj((void *)(resultptr), SWIGTYPE_p_std__complexTdouble_t, 1);
-    }
+    Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
     return NULL;
@@ -48349,30 +48330,23 @@ static PyObject *_wrap_delete_HomotopyODE(PyObject *, PyObject *args) {
 static PyObject *_wrap_HomotopyODE_z0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::HomotopyODE *arg1 = (dolfin::HomotopyODE *) 0 ;
-    unsigned int arg2 ;
-    dolfin::complex result;
+    dolfin::complex *arg2 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     
     if(!PyArg_ParseTuple(args,(char *)"OO:HomotopyODE_z0",&obj0,&obj1)) goto fail;
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__HomotopyODE, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
+    SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_std__complexTdouble_t, SWIG_POINTER_EXCEPTION | 0);
+    if (SWIG_arg_fail(2)) SWIG_fail;
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (arg1)->z0(arg2);
+        (arg1)->z0(arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    {
-        dolfin::complex * resultptr;
-        resultptr = new dolfin::complex(static_cast<dolfin::complex & >(result));
-        resultobj = SWIG_NewPointerObj((void *)(resultptr), SWIGTYPE_p_std__complexTdouble_t, 1);
-    }
+    Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
     return NULL;
@@ -51344,8 +51318,7 @@ static PyObject *_wrap_delete_ODE(PyObject *, PyObject *args) {
 static PyObject *_wrap_ODE_u0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::ODE *arg1 = (dolfin::ODE *) 0 ;
-    dolfin::uint arg2 ;
-    dolfin::real result;
+    dolfin::uBlasVector *arg2 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     Swig::Director *director = 0;
@@ -51354,21 +51327,23 @@ static PyObject *_wrap_ODE_u0(PyObject *, PyObject *args) {
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ODE, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
-        arg2 = static_cast<dolfin::uint >(SWIG_As_unsigned_SS_int(obj1)); 
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (arg2 == NULL) {
+            SWIG_null_ref("dolfin::uBlasVector");
+        }
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
     director = SWIG_DIRECTOR_CAST(arg1);
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->u0(arg2);
+        (arg1)->u0(*arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
+    Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
     return NULL;
@@ -52218,645 +52193,6 @@ static PyObject * ODESolver_swigregister(PyObject *, PyObject *args) {
     PyObject *obj;
     if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
     SWIG_TypeClientData(SWIGTYPE_p_dolfin__ODESolver, obj);
-    Py_INCREF(obj);
-    return Py_BuildValue((char *)"");
-}
-static PyObject *_wrap_new_ParticleSystem__SWIG_0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    unsigned int arg1 ;
-    dolfin::real arg2 ;
-    unsigned int arg3 ;
-    dolfin::ParticleSystem *result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:new_ParticleSystem",&obj0,&obj1,&obj2)) goto fail;
-    {
-        arg1 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj0)); 
-        if (SWIG_arg_fail(1)) SWIG_fail;
-    }
-    {
-        arg2 = static_cast<dolfin::real >(SWIG_As_double(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::ParticleSystem *)new dolfin::ParticleSystem(arg1,arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__ParticleSystem, 1);
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_new_ParticleSystem__SWIG_1(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    unsigned int arg1 ;
-    dolfin::real arg2 ;
-    dolfin::ParticleSystem *result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:new_ParticleSystem",&obj0,&obj1)) goto fail;
-    {
-        arg1 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj0)); 
-        if (SWIG_arg_fail(1)) SWIG_fail;
-    }
-    {
-        arg2 = static_cast<dolfin::real >(SWIG_As_double(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::ParticleSystem *)new dolfin::ParticleSystem(arg1,arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    resultobj = SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_dolfin__ParticleSystem, 1);
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_new_ParticleSystem(PyObject *self, PyObject *args) {
-    int argc;
-    PyObject *argv[4];
-    int ii;
-    
-    argc = PyObject_Length(args);
-    for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-        argv[ii] = PyTuple_GetItem(args,ii);
-    }
-    if (argc == 2) {
-        int _v;
-        _v = SWIG_Check_unsigned_SS_int(argv[0]);
-        if (_v) {
-            _v = SWIG_Check_double(argv[1]);
-            if (_v) {
-                return _wrap_new_ParticleSystem__SWIG_1(self,args);
-            }
-        }
-    }
-    if (argc == 3) {
-        int _v;
-        _v = SWIG_Check_unsigned_SS_int(argv[0]);
-        if (_v) {
-            _v = SWIG_Check_double(argv[1]);
-            if (_v) {
-                _v = SWIG_Check_unsigned_SS_int(argv[2]);
-                if (_v) {
-                    return _wrap_new_ParticleSystem__SWIG_0(self,args);
-                }
-            }
-        }
-    }
-    
-    PyErr_SetString(PyExc_NotImplementedError,"No matching function for overloaded 'new_ParticleSystem'");
-    return NULL;
-}
-
-
-static PyObject *_wrap_delete_ParticleSystem(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    PyObject * obj0 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"O:delete_ParticleSystem",&obj0)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    try {
-        Swig::UnknownExceptionHandler dh;
-        delete arg1;
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    Py_INCREF(Py_None); resultobj = Py_None;
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_x0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_x0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->x0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_y0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_y0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->y0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_z0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_z0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->z0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_vx0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_vx0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->vx0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_vy0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_vy0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->vy0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_vz0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_vz0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->vz0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_Fx(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real arg3 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:ParticleSystem_Fx",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::real >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->Fx(arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_Fy(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real arg3 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:ParticleSystem_Fy",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::real >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->Fy(arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_Fz(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real arg3 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:ParticleSystem_Fz",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::real >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->Fz(arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_mass(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real arg3 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOO:ParticleSystem_mass",&obj0,&obj1,&obj2)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    {
-        arg3 = static_cast<dolfin::real >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->mass(arg2,arg3);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_k(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_k",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->k(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_u0(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    Swig::Director *director = 0;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_u0",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    director = SWIG_DIRECTOR_CAST(arg1);
-    if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->u0(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_f(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    dolfin::real *arg2 ;
-    dolfin::real arg3 ;
-    unsigned int arg4 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    PyObject * obj2 = 0 ;
-    PyObject * obj3 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OOOO:ParticleSystem_f",&obj0,&obj1,&obj2,&obj3)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_double, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(2)) SWIG_fail;
-    {
-        arg3 = static_cast<dolfin::real >(SWIG_As_double(obj2)); 
-        if (SWIG_arg_fail(3)) SWIG_fail;
-    }
-    {
-        arg4 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj3)); 
-        if (SWIG_arg_fail(4)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->f((double const (*))arg2,arg3,arg4);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject *_wrap_ParticleSystem_timestep(PyObject *, PyObject *args) {
-    PyObject *resultobj = NULL;
-    dolfin::ParticleSystem *arg1 = (dolfin::ParticleSystem *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
-    PyObject * obj0 = 0 ;
-    PyObject * obj1 = 0 ;
-    
-    if(!PyArg_ParseTuple(args,(char *)"OO:ParticleSystem_timestep",&obj0,&obj1)) goto fail;
-    SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__ParticleSystem, SWIG_POINTER_EXCEPTION | 0);
-    if (SWIG_arg_fail(1)) SWIG_fail;
-    {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
-        if (SWIG_arg_fail(2)) SWIG_fail;
-    }
-    try {
-        Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->timestep(arg2);
-        
-    } catch (Swig::DirectorException&) {
-        SWIG_fail;
-    }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
-    return resultobj;
-    fail:
-    return NULL;
-}
-
-
-static PyObject * ParticleSystem_swigregister(PyObject *, PyObject *args) {
-    PyObject *obj;
-    if (!PyArg_ParseTuple(args,(char*)"O", &obj)) return NULL;
-    SWIG_TypeClientData(SWIGTYPE_p_dolfin__ParticleSystem, obj);
     Py_INCREF(obj);
     return Py_BuildValue((char *)"");
 }
@@ -55944,8 +55280,7 @@ static PyObject *_wrap_new_TimeDependentODE(PyObject *, PyObject *args) {
 static PyObject *_wrap_TimeDependentODE_u0(PyObject *, PyObject *args) {
     PyObject *resultobj = NULL;
     dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-    unsigned int arg2 ;
-    dolfin::real result;
+    dolfin::uBlasVector *arg2 = 0 ;
     PyObject * obj0 = 0 ;
     PyObject * obj1 = 0 ;
     Swig::Director *director = 0;
@@ -55954,21 +55289,23 @@ static PyObject *_wrap_TimeDependentODE_u0(PyObject *, PyObject *args) {
     SWIG_Python_ConvertPtr(obj0, (void **)&arg1, SWIGTYPE_p_dolfin__TimeDependentODE, SWIG_POINTER_EXCEPTION | 0);
     if (SWIG_arg_fail(1)) SWIG_fail;
     {
-        arg2 = static_cast<unsigned int >(SWIG_As_unsigned_SS_int(obj1)); 
+        SWIG_Python_ConvertPtr(obj1, (void **)&arg2, SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_EXCEPTION | 0);
+        if (SWIG_arg_fail(2)) SWIG_fail;
+        if (arg2 == NULL) {
+            SWIG_null_ref("dolfin::uBlasVector");
+        }
         if (SWIG_arg_fail(2)) SWIG_fail;
     }
     director = SWIG_DIRECTOR_CAST(arg1);
     if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
     try {
         Swig::UnknownExceptionHandler dh;
-        result = (dolfin::real)(arg1)->u0(arg2);
+        (arg1)->u0(*arg2);
         
     } catch (Swig::DirectorException&) {
         SWIG_fail;
     }
-    {
-        resultobj = SWIG_From_double(static_cast<double >(result)); 
-    }
+    Py_INCREF(Py_None); resultobj = Py_None;
     return resultobj;
     fail:
     return NULL;
@@ -60964,23 +60301,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ODE_swigregister", ODE_swigregister, METH_VARARGS, NULL},
 	 { (char *)"ODESolver_solve", _wrap_ODESolver_solve, METH_VARARGS, NULL},
 	 { (char *)"ODESolver_swigregister", ODESolver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_ParticleSystem", _wrap_new_ParticleSystem, METH_VARARGS, NULL},
-	 { (char *)"delete_ParticleSystem", _wrap_delete_ParticleSystem, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_x0", _wrap_ParticleSystem_x0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_y0", _wrap_ParticleSystem_y0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_z0", _wrap_ParticleSystem_z0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_vx0", _wrap_ParticleSystem_vx0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_vy0", _wrap_ParticleSystem_vy0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_vz0", _wrap_ParticleSystem_vz0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_Fx", _wrap_ParticleSystem_Fx, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_Fy", _wrap_ParticleSystem_Fy, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_Fz", _wrap_ParticleSystem_Fz, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_mass", _wrap_ParticleSystem_mass, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_k", _wrap_ParticleSystem_k, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_u0", _wrap_ParticleSystem_u0, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_f", _wrap_ParticleSystem_f, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_timestep", _wrap_ParticleSystem_timestep, METH_VARARGS, NULL},
-	 { (char *)"ParticleSystem_swigregister", ParticleSystem_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Partition", _wrap_new_Partition, METH_VARARGS, NULL},
 	 { (char *)"delete_Partition", _wrap_delete_Partition, METH_VARARGS, NULL},
 	 { (char *)"Partition_size", _wrap_Partition_size, METH_VARARGS, NULL},
@@ -61201,9 +60521,6 @@ static void *_p_dolfin__NewCellIteratorTo_p_dolfin__MeshEntityIterator(void *x) 
 static void *_p_dolfin__TimeDependentODETo_p_dolfin__ODE(void *x) {
     return (void *)((dolfin::ODE *)  ((dolfin::TimeDependentODE *) x));
 }
-static void *_p_dolfin__ParticleSystemTo_p_dolfin__ODE(void *x) {
-    return (void *)((dolfin::ODE *)  ((dolfin::ParticleSystem *) x));
-}
 static void *_p_dolfin__PETScVectorTo_p_dolfin__GenericVector(void *x) {
     return (void *)((dolfin::GenericVector *)  ((dolfin::PETScVector *) x));
 }
@@ -61412,7 +60729,6 @@ static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector",
 static swig_type_info _swigt__p_dolfin__PETScVectorElement = {"_p_dolfin__PETScVectorElement", "dolfin::PETScVectorElement *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Parameter = {"_p_dolfin__Parameter", "dolfin::Parameter *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__ParameterList = {"_p_dolfin__ParameterList", "dolfin::ParameterList *", 0, 0, 0};
-static swig_type_info _swigt__p_dolfin__ParticleSystem = {"_p_dolfin__ParticleSystem", "dolfin::ParticleSystem *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Partition = {"_p_dolfin__Partition", "dolfin::Partition *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Point = {"_p_dolfin__Point", "dolfin::Point *", 0, 0, 0};
 static swig_type_info _swigt__p_dolfin__Sample = {"_p_dolfin__Sample", "dolfin::Sample *", 0, 0, 0};
@@ -61582,7 +60898,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__PETScVectorElement,
   &_swigt__p_dolfin__Parameter,
   &_swigt__p_dolfin__ParameterList,
-  &_swigt__p_dolfin__ParticleSystem,
   &_swigt__p_dolfin__Partition,
   &_swigt__p_dolfin__Point,
   &_swigt__p_dolfin__Sample,
@@ -61738,7 +61053,7 @@ static swig_cast_info _swigc__p_dolfin__NewUnitCube[] = {  {&_swigt__p_dolfin__N
 static swig_cast_info _swigc__p_dolfin__NewUnitSquare[] = {  {&_swigt__p_dolfin__NewUnitSquare, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__NewVertex[] = {  {&_swigt__p_dolfin__NewVertex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__NewVertexIterator[] = {  {&_swigt__p_dolfin__NewVertexIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__ODE[] = {  {&_swigt__p_dolfin__ODE, 0, 0, 0},  {&_swigt__p_dolfin__TimeDependentODE, _p_dolfin__TimeDependentODETo_p_dolfin__ODE, 0, 0},  {&_swigt__p_dolfin__ParticleSystem, _p_dolfin__ParticleSystemTo_p_dolfin__ODE, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__ODE[] = {  {&_swigt__p_dolfin__ODE, 0, 0, 0},  {&_swigt__p_dolfin__TimeDependentODE, _p_dolfin__TimeDependentODETo_p_dolfin__ODE, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__ODESolver[] = {  {&_swigt__p_dolfin__ODESolver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__PETScKrylovMatrix[] = {  {&_swigt__p_dolfin__PETScKrylovMatrix, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__PETScKrylovSolver[] = {  {&_swigt__p_dolfin__PETScKrylovSolver, 0, 0, 0},{0, 0, 0, 0}};
@@ -61752,7 +61067,6 @@ static swig_cast_info _swigc__p_dolfin__PETScVector[] = {  {&_swigt__p_dolfin__P
 static swig_cast_info _swigc__p_dolfin__PETScVectorElement[] = {  {&_swigt__p_dolfin__PETScVectorElement, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Parameter[] = {  {&_swigt__p_dolfin__Parameter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__ParameterList[] = {  {&_swigt__p_dolfin__ParameterList, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__ParticleSystem[] = {  {&_swigt__p_dolfin__ParticleSystem, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Partition[] = {  {&_swigt__p_dolfin__Partition, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Point[] = {  {&_swigt__p_dolfin__Point, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Sample[] = {  {&_swigt__p_dolfin__Sample, 0, 0, 0},{0, 0, 0, 0}};
@@ -61922,7 +61236,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__PETScVectorElement,
   _swigc__p_dolfin__Parameter,
   _swigc__p_dolfin__ParameterList,
-  _swigc__p_dolfin__ParticleSystem,
   _swigc__p_dolfin__Partition,
   _swigc__p_dolfin__Point,
   _swigc__p_dolfin__Sample,
