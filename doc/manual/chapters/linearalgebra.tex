@@ -2,54 +2,77 @@
 
 \devnote{This chapter is currently being written\ldots}
 
-\dolfin{} does not have its own linear algebra routines, 
-but instead uses the external package PETSc \cite{www:petsc} 
-for linear algebra functionality.    
+\dolfin{} does not have its own linear algebra routines,
+but instead uses the external packages PETSc \cite{www:petsc}
+and uBLAS \cite{www:ublas} for linear algebra functionality.
 
-PETSc is a suite of data structures and routines for the scalable 
-(parallel) solution of scientific applications modeled by partial 
-differential equations. 
-It employs the MPI standard for all message-passing communication.  
+PETSc is a suite of data structures and routines for the scalable
+(parallel) solution of scientific applications modeled by partial
+differential equations.
+It employs the MPI standard for all message-passing communication.
 
-For convenience \dolfin{} provides wrappers for some of the most 
-common linear algebra functionality. For more advanced usage, 
-\dolfin{} provides direct access to the PETSc pointers 
-to be used with the standard PETSc interface. 
+uBLAS is a C++ template class library that provides BLAS level 1, 2, 3
+functionality for dense, packed and sparse matrices.
+The design and implementation unify mathematical notation via operator
+overloading and efficient code generation via expression templates.
+
+For convenience \dolfin{} provides wrappers for some of the most
+common linear algebra functionality of PETSc and uBLAS.
+For more advanced usage,
+\dolfin{} provides direct access to the PETSc/uBLAS pointers
+to be used with the standard PETSc/uBLAS interfaces.
+
+
+\section{PETSc}
+
+\section{uBLAS}
+
+uBLAS provides templated C++ classes for dense, unit and sparse vectors,
+dense, identity, triangular, banded, symmetric, hermitian and sparse matrices. 
+Views into vectors and matrices can be constructed via ranges or slices and 
+adaptor classes. The library covers the usual basic linear algebra operations on
+vectors and matrices: reductions like different norms, addition and subtraction 
+of vectors and matrices and multiplication with a scalar, inner and outer 
+products of vectors, matrix vector and matrix matrix products and triangular 
+solver. The glue between containers, views and expression templated operations 
+is a mostly STL conforming iterator interface.
+
+
 
 \section{Matrices and Vectors}
 
-The matrix class \texttt{Matrix} provides wrappers for initializing 
-a sequential sparse matrix, or a sequential sparse matrix in 
-block compressed row format. For parallel matrices the PETSc 
-interface has to be used directly. 
+\dolfin{} differs between sparse and dense data structures, but provide
+the classes \texttt{GenericMatrix} and \texttt{GenericVector}, that define
+common matrix and vector interfaces for sparse and dense data structures.
 
-The code for initializing a sequential sparse $M\times N$ matrix 
-takes the form: 
-%
-\begin{code}
-uint M = 100; 
-uint N = 100; 
-Matrix A(M,N);
-\end{code}
+The default type \texttt{DenseMatrix} is \texttt{uBlasDenseMatrix} and
+the default type \texttt{SparseMatrix} is \texttt{PETScMatrix} if
+PETSc is enables, and otherwise \texttt{uBlasSparseMatrix}.
+The corresponding vector default types are defined similarly.
 
-Similarly, the vector class \texttt{Vector} allows for a simple 
-initialization of a M vector:  
-%
-\begin{code}
-Vector b(M);
-\end{code}
+The default types \texttt{Matrix} and \texttt{Vector} are set
+to \texttt{SparseMatrix} and \texttt{SparseVector}.
 
-Further, wrappers for some basic linear algebra functionality, such as matrix vector 
-multiplication, norms etc., are provided with an intentionally simple interface, 
-for example, matrix vector multiplication is defined by: 
-%
-\begin{code}
-Vector Ax;
-A.mult(b,Ax);
-\end{code} 
+\texttt{uBlasDenseMatrix} and \texttt{uBlasSparseMatrix} have
+a common implementation in \texttt{uBLASMatrix}, which is a wrapper
+for a Boost uBLAS matrix of type \texttt{Mat}.
+The intention is to provide a uniform interface with respect to other
+matrix data types in \dolfin().
+For advanced usage, refer to the documentation for
+uBLAS which can be found at \cite{www:ublas}.
 
-For more advanced operations, a pointer to the PETSc matrix and vector is 
-accessed by \texttt{mat()} and \texttt{vec()} respectively. 
+\texttt{PETScMatrix} is a simple wrapper for the PETSc matrix
+pointer \texttt{Mat}. Again the interface is intentionally simple.
+For advanced usage, access the PETSc Mat pointer using the function
+\texttt{mat()} and use the standard PETSc interface
+\texttt{petsc:www}.
+For parallel matrices, the PETSc interface has to be used directly.
+
+Similarly, \texttt{PETScVector} and \texttt{uBLASVector} are
+simple wrappers of the PETSc vector pointer \texttt{Vec} and
+the Boost ublas \texttt{vector}.
+
+% class diagram
 
 \section{Matrix-free matrices}
 
@@ -128,3 +151,10 @@ PCHYPRESetType(pc,"boomeramg");
 In particular, the above preconditioner \texttt{boomeramg} is an algebraic multigrid 
 preconditioner, which is very useful. 
 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.95\textwidth]{eps/class-diagram-la.eps}
+    \caption{Class diagram of the linear algebra classes in \dolfin{}.}
+    \label{fig:laclasses}
+  \end{center}
+\end{figure}
