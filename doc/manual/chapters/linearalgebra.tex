@@ -1,196 +1,323 @@
 \chapter{Linear algebra}
 
-\devnote{This chapter is currently being written\ldots}
+\dolfin{} provides a high-performance linear algebra library,
+including matrices and vectors, a set of linear solvers,
+preconditioners, and an eigenvalue solver. The core part of the
+functionality is provided through a wrappers that provide a common
+interface to the functionality of the linear algebra libraries
+uBlas~\cite{www:ublas} and PETSc~\cite{www:petsc}.
 
-\dolfin{} does not have its own linear algebra data structures,
-but instead uses the external libraries PETSc \cite{www:petsc}
-and uBLAS \cite{www:ublas} for linear algebra functionality.
+%------------------------------------------------------------------------------
+\section{Matrices and vectors}
+\index{\texttt{Matrix}}
+\index{\texttt{Vector}}
+
+The two basic linear algebra data structures are the classes
+\texttt{Matrix} and \texttt{Vector}, representing a (sparse) $M\times
+N$ matrix and a vector of length $N$ respectively.
+
+The following code demonstrates how to create a matrix and a vector:
+\begin{code}
+  Matrix A(M, N);
+  Vector x(N);
+\end{code}
+Alternatively, the matrix and the vector may be created by
+\begin{code}
+  Matrix A;
+  Vector x;
+
+  A.init(M, N);
+  x.init(N);
+\end{code}
+
+The following code demonstrates how to access the size and the
+elements of a matrix and a vector:
+\begin{code}
+  A(5, 5) = 1.0;
+  real a = A(4, 3);
+
+  x(3) = 2.0;
+  real b = x(5);
+
+  unsigned int M = A.size(0);
+  unsigned int N = A.size(1);
+
+  N = x.size();
+\end{code}
+
+In addition, \dolfin{} provides optimized functions for setting the
+values of a set of entries in a matrix or vector:
+\begin{code}
+  real block[] = \{2, 4, 6\};
+  int rows[] = \{0, 1, 2\};
+  int cols[] = \{0, 1, 2\};
+  
+  A.set(block, rows, cols, 3);
+\end{code}
+Alternatively, the set of values given by the array \texttt{block} can
+be added to the entries given by the arrays \texttt{rows} and
+\texttt{cols}:
+\begin{code}
+  real block[] = \{2, 4, 6\};
+  int rows[] = \{0, 1, 2\};
+  int cols[] = \{0, 1, 2\};
+  
+  A.add(block, rows, cols, 3);
+\end{code}
+These functions are particularly useful for efficient assembly of a (sparse)
+matrix from a bilinear form.
+
+\subsection{Sparse matrices}
+\index{sparse matrix}
+
+The default \dolfin{} class \texttt{Matrix} is a sparse matrix, which
+efficiently represents the discretization of a partial differential
+equation where most entries in the matrix are zero. Alternatively,
+the class \texttt{SparseMatrix} may be used which is identical with
+the class \texttt{Matrix}\footnote{The class \texttt{Matrix} is a
+\texttt{typedef} for the class \texttt{SparseMatrix}.}.
+
+If \dolfin{} has been compiled with support for PETSc, then the sparse
+matrix is represented as a sparse PETSc matrix\footnote{By default, the
+sparse matrix is represented as a PETSc \texttt{MATSEQAIJ} matrix, but
+other PETSc representations are also available.}. Alternatively, the
+class \texttt{PETScMatrix} may be used, together with the corresponding
+class \texttt{PETScVector}.
+
+If \dolfin{} has been compiled without support for PETSc, then the
+sparse matrix is represented as a uBlas sparse matrix. Alternatively,
+the class \texttt{uBlasSparseMatrix} may be used, together with the
+corresponding class \texttt{uBlasVector}.
+
+\subsection{Dense matrices}
+\index{dense matrix}
+
+\dolfin{} provides the class \texttt{DenseMatrix} for representation
+of dense matrices. A dense matrix representation is often preferable
+when computing with matrices of small to moderate size. In particular,
+accessing individual elements (and solving linear systems with a
+direct solver) is more efficient with a dense matrix representation.
+
+A \texttt{DenseMatrix} is represented as uBlas dense matrix and
+alternatively the class \texttt{uBlasDenseMatrix} may be used,
+together with the corresponding class \texttt{uBlasVector}.
+
+\subsection{The common interface}
+\index{\texttt{GenericMatrix}}
+\index{\texttt{GenericVector}}
+
+Although \dolfin{} differentiates between sparse and dense data
+structures, the two classes \texttt{GenericMatrix} and
+\texttt{GenericVector} define a common interface to all matrices and
+vectors. Refer to the \emph{DOLFIN programmer's reference} for the
+exact specification of these interfaces.
+
+%------------------------------------------------------------------------------
+\section{Solving linear systems}
+\index{linear systems}
+
+\dolfin{} provides a set of efficient solvers for linear systems of
+the form
+\begin{equation}
+  Ax = b,
+\end{equation}
+where $A$ is an $N\times N$ matrix and where $x$ and $b$ are vectors
+of length $N$. Both iterative (Krylov subspace) solvers and direct
+(LU) solvers are provided.
+
+\subsection{Iterative methods}
+\index{iterative methods}
+\index{\texttt{GMRES}}
+\index{GMRES method}
+\index{\texttt{KrylovSolver}}
+\index{Krylov subspace methods}
+
+A linear system may be solved by the GMRES Krylov method as follows:
+\begin{code}
+  Matrix A;
+  Vector x, b:
+
+  GMRES::solve(A, x, b);
+\end{code}
+Alternatively, the linear system may be solved by first creating an
+object of the class \texttt{KrylovSolver}, which is more efficient for
+repeated solution of linear systems and also allows the specification
+of both the Krylov method and the preconditioner:
+\begin{code}
+  KrylovSolver solver(gmres, ilu);
+  solver.solve(A, x, b);
+\end{code}
+
+For uBlas matrices and vectors, the class \texttt{uBlasKrylovSolver}
+may be used and for PETSc matrices and vectors, the class
+\texttt{PETScKrylovSolver} may be used.
+
+\subsubsection{Krylov methods}
+\index{conjugate gradient method}
+\index{BiCGStab}
+
+\dolfin{} provides the following set of Krylov methods:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\texttt{cg}              & The conjugate gradient method \\
+\hline
+\texttt{gmres}           & The GMRES method \\
+\hline
+\texttt{bicgstab}        & The stabilized biconjugate gradient squared
+method \\
+\hline
+\texttt{default\_method} & Default choice of Krylov method \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Preconditioners}
+\index{preconditioners}
+\index{ILU}
+\index{incomplete LU factorization}
+\index{SOR}
+\index{successive over-relaxation}
+\index{Jacobi}
+\index{AMG}
+\index{algebraic multigrid}
+
+\dolfin{} provides the following set of preconditioners:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\texttt{none}        & No preconditioning \\
+\hline
+\texttt{jacobi}      & Simple Jacobi preconditioning \\
+\hline
+\texttt{sor}         & SOR, successive over-relaxation \\
+\hline
+\texttt{ilu}         & Incomplete LU factorization \\
+\hline
+\texttt{icc}         & Incomplete Cholesky factorization \\
+\hline
+\texttt{amg}         & Algebraic multigrid (through Hypre when available) \\
+\hline
+\texttt{default\_pc} & Default choice of preconditioner \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Matrix-free solvers}
+\index{matrix-free solvers}
+\index{virtual matrix}
+
+The \dolfin{} Krylov solvers may be used without direct access to a
+matrix representation. All that is needed is to provide the
+size of the linear system, the right-hand side, and a method
+implementing the multiplication of the matrix with any given vector.
+
+Such a ``virtual matrix'' may be defined by implementing the
+interface defined by either the class \texttt{uBlasKrylovMatrix} of
+\texttt{PETScKrylovMatrix}. The matrix may then be used together with
+either the class \texttt{uBlasKrylovSolver} or \texttt{PETScKrylovSolver}.
+
+\subsection{Direct methods}
+\index{\texttt{LU}}
+\index{\texttt{LUSolver}}
+\index{direct methods}
+\index{LU factorization}
+
+A linear system may be solved by a direct LU factorization as follows:
+\begin{code}
+  Matrix A;
+  Vector x, b;
+  
+  LU::solve(A, x, b);
+\end{code}
+Alternatively, the linear system may be solved by first creating an
+object of the class \texttt{LUSolver}, which may be more efficient for
+repeated solution of linear systems:
+\begin{code}
+  LUSolver solver;
+  solver.solve(A, x, b);
+\end{code}
+
+For uBlas matrices and vectors, the class \texttt{uBlasLUSolver} may
+be used and for PETSc matrices and vectors, the class
+\texttt{PETScLUSolver} may be used.
+
+%------------------------------------------------------------------------------
+\section{Solving eigenvalue problems}
+\index{eigenvalue problems}
+\index{SLEPc}
+
+\dolfin{} also provides a solver for eigenvalue
+problems\index{eigenvalue solver}. The solver is only available when
+\dolfin{} has been compiled with support for PETSc and SLEPc \cite{www:slepc}.
+
+For the basic eigenvalue problem
+\begin{equation}
+  Ax = \lambda x,
+\end{equation}
+the following code demonstrates how to compute the zeroth eigenpair:
+\begin{code} 
+  PETScEigenvalueSolver esolver; 
+  esolver.solve(A);
+
+  real lr, lc;
+  PETScVector xr, xc;
+  esolver.getEigenpair(lr, lc, xr, xc, 0);
+\end{code} 
+The real and complex components of the eigenvalue are returned in \texttt{lr}
+and \texttt{lc}, respectively, and the real and complex parts of the eigenvector
+are returned in \texttt{xr} and \texttt{xc}, respectively.
+
+For the generalized eigenvalue problem
+\begin{equation}
+  A x = \lambda B x,
+\end{equation}
+the following code demonstrates how to compute the second eigenpair:
+\begin{code} 
+  PETScEigenvalueSolver esolver; 
+  esolver.solve(A, B);
+
+  real lr, lc;
+  PETScVector xr, xc;
+  esolver.getEigenpair(lr, lc, xr, xc, 2);
+\end{code} 
+
+%------------------------------------------------------------------------------
+\section{Linear algebra backends}
+\index{linear algebra backends}
+
+\subsection{uBlas}
+\index{uBlas}
+
+uBlas is a C++ template library that provides BLAS level 1, 2 and 3
+functionality (and more) for dense, packed and sparse matrices.
+The design and implementation unify mathematical notation via operator
+overloading and efficient code generation via expression templates.
+
+\dolfin{} wrappers for uBlas linear algebra is provided through the
+classes \texttt{uBlasSparseMatrix}, \texttt{uBlasDenseMatrix} and
+\texttt{uBlasVector}. These classes are implemented by subclassing the
+corresponding uBlas classes, which means that all standard
+\texttt{uBlas} operations are supported for these classes. For
+advanced usage not covered by the common \dolfin{} interface specified
+by the classes \texttt{GenericMatrix} and \texttt{GenericVector},
+refer directly to the documentation of \texttt{uBlas}.
+
+\subsection{PETSc}
+\index{PETSc}
 
 PETSc is a suite of data structures and routines for the scalable
 (parallel) solution of scientific applications modeled by partial
 differential equations. It employs the MPI standard for all 
 message-passing communication.
 
-uBLAS is a C++ template library that provides BLAS level 1, 2, 3
-functionality (and more) for dense, packed and sparse matrices.
-The design and implementation unify mathematical notation via operator
-overloading and efficient code generation via expression templates.
-
-For convenience \dolfin{} provides wrappers for some of the most
-% common linear algebra functionality of PETSc and uBLAS.
-For more advanced usage, \dolfin{} provides direct access to the pointers
-to the underlying PETSc object that can be used with the standard PETSc 
-interfaces. In the case if uBLAS-based objects, DOLFIN classes are derived
-from uBLAS classes, hence the uBLAS provided functions can be used directly.
-
-
-\section{PETSc}
-
-\section{uBLAS}
-%
-uBLAS provides templated C++ classes for dense, unit and sparse vectors,
-dense, identity, triangular, banded, symmetric, hermitian and sparse matrices. 
-Views into vectors and matrices can be constructed via ranges or slices and 
-adaptor classes. The library covers the usual basic linear algebra operations on
-vectors and matrices: reductions like different norms, addition and subtraction 
-of vectors and matrices and multiplication with a scalar, inner and outer 
-products of vectors, matrix vector and matrix matrix products and triangular 
-solver. The glue between containers, views and expression templated operations 
-is a mostly STL conforming iterator interface.
-
-
-\section{Matrices and Vectors}
-
-\dolfin{} differentiates between sparse and dense data structures, but provides
-the classes \texttt{GenericMatrix} and \texttt{GenericVector}, that define
-common matrix and vector interfaces for sparse and dense data structures.
-
-The default type \texttt{DenseMatrix} is \texttt{uBlasDenseMatrix} and the 
-default type \texttt{SparseMatrix} is \texttt{uBlasSparseMatrix}. If PETSc is 
-enabled, the default type \texttt{SparseMatrix} is  \texttt{PETScMatrix}. The 
-corresponding vector default types are defined similarly. The default types 
-\texttt{Matrix} and \texttt{Vector} are set to \texttt{SparseMatrix} and 
-\texttt{SparseVector}.
-
-\texttt{uBlasDenseMatrix} and \texttt{uBlasSparseMatrix} have
-a common implementation in \texttt{uBLASMatrix}, which is a wrapper
-for a Boost uBLAS matrix of type \texttt{Mat}.
-The intention is to provide a uniform interface with respect to other
-matrix data types in \dolfin().
-For advanced usage, refer to the documentation for
-uBLAS which can be found at \cite{www:ublas}.
-
-\texttt{PETScMatrix} is a simple wrapper for the PETSc matrix
-pointer \texttt{Mat}. Again the interface is intentionally simple.
-For advanced usage, access the PETSc Mat pointer using the function
-\texttt{mat()} and use the standard PETSc interface
-\texttt{www:petsc}.
-For parallel matrices, the PETSc interface has to be used directly.
-
-Similarly, \texttt{PETScVector} and \texttt{uBLASVector} are
-simple wrappers of the PETSc vector pointer \texttt{Vec} and
-the Boost ublas \texttt{vector}.
-
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=0.95\textwidth]{eps/class-diagram-la.eps}
-    \caption{Class diagram of the linear algebra classes in \dolfin{}.}
-    \label{fig:laclasses}
-  \end{center}
-\end{figure}
-
-\section{Matrix-free matrices}
-
-The \dolfin{} class \texttt{VirtualMatrix} represents a matrix-free 
-matrix of dimension $M\times M$. 
-The matrix-free matrix is a simple wrapper for a PETSc shell matrix. 
-The interface is intentionally simple, and for advanced usage the 
-PETSc \texttt{Mat} pointer is accessed by the function \texttt{mat()}.  
-
-The class \texttt{VirtualMatrix} enables the use of Krylov subspace
-methods for linear systems $Ax = b$, without having to explicitly
-store the matrix $A$. All that is needed is that the user-defined
-\texttt{VirtualMatrix} implements multiplication with vectors. 
-Note that the multiplication operator needs to be defined in terms of
-PETSc data structures (\texttt{Vec}), since it will be called from PETSc.
-
-\section{Linear solvers}
-
-A general interface to all linear solvers for systems of the form 
-$Ax=b$ is provided through the class \texttt{LinearSolver}. 
-
-In particular, wrappers for a direct LU solver and an iterative 
-Krylov GMRES solver are implemented in the classes \texttt{LU} and \texttt{GMRES}. 
-
-To solve the linear system $Ax=b$ using GMRES in \dolfin{}, simply write:  
-%
-\begin{code} 
-Vec x;
-GMRES solver; 
-solver.solve(A,x,b);
-\end{code} 
-%
-
-
-\section{Preconditioning}
-
-The \texttt{Preconditioner} class specifies the interface for user-defined 
-Krylov method preconditioners. To implement our own preconditioner we only 
-need to supply a function that approximately solves the linear system given 
-a right-hand side.
-
-To change the default preconditioner in the \dolfin{} GMRES solver, edit the 
-constructor of the \texttt{GMRES} class. For example, to choose the 
-ILU preconditioner for GMRES we write 
-%
-\begin{code}
-PC pc;
-KSPGetPC(ksp, &pc);
-PCSetType(pc, PCILU);
-\end{code}
-
-As a complement to the preconditioners available in PETSc, 
-\dolfin{} also uses Hypre \cite{www:hypre}, which is a 
-library for solving large, sparse linear systems of equations on 
-massively parallel computers. 
-
-To use a preconditioner from Hypre together with a PETSc solver in \dolfin{}, we write:  
-%
-\begin{code}
-PCSetType(pc, PCHYPRE );
-PCHYPRESetType(pc,"boomeramg");
-\end{code}
-
-In particular, the above preconditioner \texttt{boomeramg} is an algebraic multigrid 
-preconditioner, which is very useful. 
-
-
-\section{Eigenvalue solvers}
-
-\dolfin{} also provides wrappers for an eigenvalue solver\index{eigenvalue solver} 
-when PETSc is configured and SLEPc \cite{www:slepc} is installed.
-
-The zeroth eigenpair for the problem 
-\begin{equation}
-  Ax = \lambda x
-\end{equation}
-can be computed by the following code
-\begin{code} 
-PETScEigenvalueSolver esolver; 
-esolver.solve(A);
-
-real xr, xc;
-PETScVector r, c;
-getEigenpair(xr, xc, r, c, 0);
-\end{code} 
-%
-The real and complex components of the eigenvalue are returned in \texttt{xr}
-and \texttt{xc}, respectively, and the real and complex parts of the eigenvector
-are returned in \texttt{r} and \texttt{x}, respectively.
-
-For the generalied eigenvalue problem
-\begin{equation}
-  A x = \lambda B x,
-\end{equation}
-%
-the second eigenpair can be computed by the following code
-%
-\begin{code} 
-PETScEigenvalueSolver esolver; 
-esolver.solve(A, M);
-
-real xr, xc;
-PETScVector r, c;
-getEigenpair(xr, xc, r, c, 2);
-\end{code} 
-
-
-
-
-
-
-
-
-
-
-
+\dolfin{} wrappers for PETSc linear algebra is provided through the
+classes \texttt{PETScMatrix} and \texttt{PETScVector}. Direct access
+to the PETSc data structures is available through the member functions
+\texttt{mat()} and \texttt{vec()}, which return the PETSc \texttt{Mat}
+and \texttt{Vec} pointers respectively. For advanced usage not covered
+by the common \dolfin{} interface specified by the classes
+\texttt{GenericMatrix} and \texttt{GenericVector}, refer directly to
+the documentation of PETSc.
