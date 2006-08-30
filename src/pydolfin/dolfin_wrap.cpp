@@ -58072,6 +58072,42 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_FEM_lump(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::PETScMatrix *arg1 = 0 ;
+  dolfin::PETScVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:FEM_lump",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScMatrix,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FEM_lump" "', argument " "1"" of type '" "dolfin::PETScMatrix const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FEM_lump" "', argument " "1"" of type '" "dolfin::PETScMatrix const &""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FEM_lump" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FEM_lump" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
+  }
+  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
+  dolfin::FEM::SWIGTEMPLATEDISAMBIGUATOR lump<Matrix,Vector >((dolfin::PETScMatrix const &)*arg1,*arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *FEM_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -59462,6 +59498,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"FEM_assembleResidualBC", _wrap_FEM_assembleResidualBC, METH_VARARGS, NULL},
 	 { (char *)"FEM_size", _wrap_FEM_size, METH_VARARGS, NULL},
 	 { (char *)"FEM_disp", _wrap_FEM_disp, METH_VARARGS, NULL},
+	 { (char *)"FEM_lump", _wrap_FEM_lump, METH_VARARGS, NULL},
 	 { (char *)"FEM_swigregister", FEM_swigregister, METH_VARARGS, NULL},
 	 { (char *)"set", _wrap_set, METH_VARARGS, NULL},
 	 { (char *)"get", _wrap_get, METH_VARARGS, NULL},
@@ -59727,7 +59764,7 @@ static swig_type_info _swigt__p_dolfin__PETScManager = {"_p_dolfin__PETScManager
 static swig_type_info _swigt__p_dolfin__PETScMatrix = {"_p_dolfin__PETScMatrix", "dolfin::PETScMatrix *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__PETScMatrixElement = {"_p_dolfin__PETScMatrixElement", "dolfin::PETScMatrixElement *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__PETScPreconditioner = {"_p_dolfin__PETScPreconditioner", "dolfin::PETScPreconditioner *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *|dolfin::Vector *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__PETScVectorElement = {"_p_dolfin__PETScVectorElement", "dolfin::PETScVectorElement *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Parameter = {"_p_dolfin__Parameter", "dolfin::Parameter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__ParameterList = {"_p_dolfin__ParameterList", "dolfin::ParameterList *", 0, 0, (void*)0, 0};
