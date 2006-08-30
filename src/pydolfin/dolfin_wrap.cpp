@@ -2466,165 +2466,144 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Face swig_types[3]
 #define SWIGTYPE_p_FunctionPointer swig_types[4]
 #define SWIGTYPE_p_Index swig_types[5]
-#define SWIGTYPE_p_KSP swig_types[6]
-#define SWIGTYPE_p_KrylovMethod swig_types[7]
-#define SWIGTYPE_p_Mat swig_types[8]
-#define SWIGTYPE_p_Matrix swig_types[9]
-#define SWIGTYPE_p_PETScKrylovMatrix swig_types[10]
-#define SWIGTYPE_p_PETScMatrix swig_types[11]
-#define SWIGTYPE_p_PETScPreconditioner swig_types[12]
-#define SWIGTYPE_p_PETScVector swig_types[13]
-#define SWIGTYPE_p_Preconditioner swig_types[14]
-#define SWIGTYPE_p_Vec swig_types[15]
-#define SWIGTYPE_p_VecScatter swig_types[16]
-#define SWIGTYPE_p_Vector swig_types[17]
-#define SWIGTYPE_p_char swig_types[18]
-#define SWIGTYPE_p_dolfin__AffineMap swig_types[19]
-#define SWIGTYPE_p_dolfin__ArrayTdolfin__ArrayTunsigned_int_t_t swig_types[20]
-#define SWIGTYPE_p_dolfin__ArrayTdouble_t swig_types[21]
-#define SWIGTYPE_p_dolfin__ArrayTint_t swig_types[22]
-#define SWIGTYPE_p_dolfin__ArrayTstd__complexTdouble_t_p_t swig_types[23]
-#define SWIGTYPE_p_dolfin__ArrayTunsigned_int_t swig_types[24]
-#define SWIGTYPE_p_dolfin__BLASFormData swig_types[25]
-#define SWIGTYPE_p_dolfin__BilinearForm swig_types[26]
-#define SWIGTYPE_p_dolfin__Boundary swig_types[27]
-#define SWIGTYPE_p_dolfin__BoundaryComputation swig_types[28]
-#define SWIGTYPE_p_dolfin__BoundaryCondition swig_types[29]
-#define SWIGTYPE_p_dolfin__BoundaryMesh swig_types[30]
-#define SWIGTYPE_p_dolfin__BoundaryValue swig_types[31]
-#define SWIGTYPE_p_dolfin__Cell swig_types[32]
-#define SWIGTYPE_p_dolfin__CellIterator swig_types[33]
-#define SWIGTYPE_p_dolfin__CellType swig_types[34]
-#define SWIGTYPE_p_dolfin__Dependencies swig_types[35]
-#define SWIGTYPE_p_dolfin__Edge swig_types[36]
-#define SWIGTYPE_p_dolfin__EdgeIterator swig_types[37]
-#define SWIGTYPE_p_dolfin__FEM swig_types[38]
-#define SWIGTYPE_p_dolfin__Face swig_types[39]
-#define SWIGTYPE_p_dolfin__FaceIterator swig_types[40]
-#define SWIGTYPE_p_dolfin__File swig_types[41]
-#define SWIGTYPE_p_dolfin__FiniteElement swig_types[42]
-#define SWIGTYPE_p_dolfin__FiniteElementSpec swig_types[43]
-#define SWIGTYPE_p_dolfin__Form swig_types[44]
-#define SWIGTYPE_p_dolfin__Function swig_types[45]
-#define SWIGTYPE_p_dolfin__GMRES swig_types[46]
-#define SWIGTYPE_p_dolfin__GenericMatrix swig_types[47]
-#define SWIGTYPE_p_dolfin__GenericVector swig_types[48]
-#define SWIGTYPE_p_dolfin__Homotopy swig_types[49]
-#define SWIGTYPE_p_dolfin__HomotopyJacobian swig_types[50]
-#define SWIGTYPE_p_dolfin__HomotopyODE swig_types[51]
-#define SWIGTYPE_p_dolfin__Interval swig_types[52]
-#define SWIGTYPE_p_dolfin__LU swig_types[53]
-#define SWIGTYPE_p_dolfin__LinearForm swig_types[54]
-#define SWIGTYPE_p_dolfin__Mesh swig_types[55]
-#define SWIGTYPE_p_dolfin__MeshConnectivity swig_types[56]
-#define SWIGTYPE_p_dolfin__MeshEditor swig_types[57]
-#define SWIGTYPE_p_dolfin__MeshEntity swig_types[58]
-#define SWIGTYPE_p_dolfin__MeshEntityIterator swig_types[59]
-#define SWIGTYPE_p_dolfin__MeshGeometry swig_types[60]
-#define SWIGTYPE_p_dolfin__MeshHierarchy swig_types[61]
-#define SWIGTYPE_p_dolfin__MeshIterator swig_types[62]
-#define SWIGTYPE_p_dolfin__MeshTopology swig_types[63]
-#define SWIGTYPE_p_dolfin__Method swig_types[64]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveFixedPointSolver swig_types[65]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveJacobian swig_types[66]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveNewtonSolver swig_types[67]
-#define SWIGTYPE_p_dolfin__MonoAdaptiveTimeSlab swig_types[68]
-#define SWIGTYPE_p_dolfin__MonoAdaptivity swig_types[69]
-#define SWIGTYPE_p_dolfin__MultiAdaptiveFixedPointSolver swig_types[70]
-#define SWIGTYPE_p_dolfin__MultiAdaptiveNewtonSolver swig_types[71]
-#define SWIGTYPE_p_dolfin__MultiAdaptivePreconditioner swig_types[72]
-#define SWIGTYPE_p_dolfin__MultiAdaptiveTimeSlab swig_types[73]
-#define SWIGTYPE_p_dolfin__MultiAdaptivity swig_types[74]
-#define SWIGTYPE_p_dolfin__NewCell swig_types[75]
-#define SWIGTYPE_p_dolfin__NewCellIterator swig_types[76]
-#define SWIGTYPE_p_dolfin__NewEdge swig_types[77]
-#define SWIGTYPE_p_dolfin__NewEdgeIterator swig_types[78]
-#define SWIGTYPE_p_dolfin__NewFace swig_types[79]
-#define SWIGTYPE_p_dolfin__NewFaceIterator swig_types[80]
-#define SWIGTYPE_p_dolfin__NewFacet swig_types[81]
-#define SWIGTYPE_p_dolfin__NewFacetIterator swig_types[82]
-#define SWIGTYPE_p_dolfin__NewMesh swig_types[83]
-#define SWIGTYPE_p_dolfin__NewMeshData swig_types[84]
-#define SWIGTYPE_p_dolfin__NewPoint swig_types[85]
-#define SWIGTYPE_p_dolfin__NewTetrahedron swig_types[86]
-#define SWIGTYPE_p_dolfin__NewTriangle swig_types[87]
-#define SWIGTYPE_p_dolfin__NewUnitCube swig_types[88]
-#define SWIGTYPE_p_dolfin__NewUnitSquare swig_types[89]
-#define SWIGTYPE_p_dolfin__NewVertex swig_types[90]
-#define SWIGTYPE_p_dolfin__NewVertexIterator swig_types[91]
-#define SWIGTYPE_p_dolfin__ODE swig_types[92]
-#define SWIGTYPE_p_dolfin__ODESolver swig_types[93]
-#define SWIGTYPE_p_dolfin__PETScKrylovMatrix swig_types[94]
-#define SWIGTYPE_p_dolfin__PETScKrylovSolver swig_types[95]
-#define SWIGTYPE_p_dolfin__PETScLUSolver swig_types[96]
-#define SWIGTYPE_p_dolfin__PETScLinearSolver swig_types[97]
-#define SWIGTYPE_p_dolfin__PETScManager swig_types[98]
-#define SWIGTYPE_p_dolfin__PETScMatrix swig_types[99]
-#define SWIGTYPE_p_dolfin__PETScMatrixElement swig_types[100]
-#define SWIGTYPE_p_dolfin__PETScPreconditioner swig_types[101]
-#define SWIGTYPE_p_dolfin__PETScVector swig_types[102]
-#define SWIGTYPE_p_dolfin__PETScVectorElement swig_types[103]
-#define SWIGTYPE_p_dolfin__Parameter swig_types[104]
-#define SWIGTYPE_p_dolfin__ParameterList swig_types[105]
-#define SWIGTYPE_p_dolfin__Partition swig_types[106]
-#define SWIGTYPE_p_dolfin__Point swig_types[107]
-#define SWIGTYPE_p_dolfin__Sample swig_types[108]
-#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[109]
-#define SWIGTYPE_p_dolfin__TimeDependent swig_types[110]
-#define SWIGTYPE_p_dolfin__TimeDependentODE swig_types[111]
-#define SWIGTYPE_p_dolfin__TimeDependentPDE swig_types[112]
-#define SWIGTYPE_p_dolfin__TimeSlab swig_types[113]
-#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[114]
-#define SWIGTYPE_p_dolfin__TimeStepper swig_types[115]
-#define SWIGTYPE_p_dolfin__TopologyComputation swig_types[116]
-#define SWIGTYPE_p_dolfin__Triangle swig_types[117]
-#define SWIGTYPE_p_dolfin__UniformMeshRefinement swig_types[118]
-#define SWIGTYPE_p_dolfin__UnitCube swig_types[119]
-#define SWIGTYPE_p_dolfin__UnitSquare swig_types[120]
-#define SWIGTYPE_p_dolfin__Variable swig_types[121]
-#define SWIGTYPE_p_dolfin__Vertex swig_types[122]
-#define SWIGTYPE_p_dolfin__VertexIterator swig_types[123]
-#define SWIGTYPE_p_dolfin__cGqMethod swig_types[124]
-#define SWIGTYPE_p_dolfin__dGqMethod swig_types[125]
-#define SWIGTYPE_p_dolfin__uBlasDummyPreconditioner swig_types[126]
-#define SWIGTYPE_p_dolfin__uBlasILUPreconditioner swig_types[127]
-#define SWIGTYPE_p_dolfin__uBlasKrylovMatrix swig_types[128]
-#define SWIGTYPE_p_dolfin__uBlasKrylovSolver swig_types[129]
-#define SWIGTYPE_p_dolfin__uBlasLUSolver swig_types[130]
-#define SWIGTYPE_p_dolfin__uBlasLinearSolver swig_types[131]
-#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[132]
-#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[133]
-#define SWIGTYPE_p_dolfin__uBlasPreconditioner swig_types[134]
-#define SWIGTYPE_p_dolfin__uBlasVector swig_types[135]
-#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_dolfin__ublas__column_major_t swig_types[136]
-#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_t swig_types[137]
-#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__column_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[138]
-#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__row_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[139]
-#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t swig_types[140]
-#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t swig_types[141]
-#define SWIGTYPE_p_dolfin__ublas__matrix_columnTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[142]
-#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t_t swig_types[143]
-#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t_t swig_types[144]
-#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[145]
-#define SWIGTYPE_p_dolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t swig_types[146]
-#define SWIGTYPE_p_dolfin__ublas__vectorTdouble_t swig_types[147]
-#define SWIGTYPE_p_dolfin__ublas__vector_rangeTdolfin__ublas__vectorTdouble_t_t swig_types[148]
-#define SWIGTYPE_p_dolfin__ublas_dense_matrix swig_types[149]
-#define SWIGTYPE_p_dolfin__ublas_sparse_matrix swig_types[150]
-#define SWIGTYPE_p_double swig_types[151]
-#define SWIGTYPE_p_int swig_types[152]
-#define SWIGTYPE_p_p_char swig_types[153]
-#define SWIGTYPE_p_p_unsigned_int swig_types[154]
-#define SWIGTYPE_p_std__complexTdouble_t swig_types[155]
-#define SWIGTYPE_p_std__setTint_t swig_types[156]
-#define SWIGTYPE_p_uBlasKrylovMatrix swig_types[157]
-#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[158]
-#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[159]
-#define SWIGTYPE_p_uBlasPreconditioner swig_types[160]
-#define SWIGTYPE_p_uBlasVector swig_types[161]
-#define SWIGTYPE_p_unsigned_int swig_types[162]
-static swig_type_info *swig_types[164];
-static swig_module_info swig_module = {swig_types, 163, 0, 0, 0, 0};
+#define SWIGTYPE_p_KrylovMethod swig_types[6]
+#define SWIGTYPE_p_Matrix swig_types[7]
+#define SWIGTYPE_p_Preconditioner swig_types[8]
+#define SWIGTYPE_p_Vector swig_types[9]
+#define SWIGTYPE_p_char swig_types[10]
+#define SWIGTYPE_p_dolfin__AffineMap swig_types[11]
+#define SWIGTYPE_p_dolfin__ArrayTdolfin__ArrayTunsigned_int_t_t swig_types[12]
+#define SWIGTYPE_p_dolfin__ArrayTdouble_t swig_types[13]
+#define SWIGTYPE_p_dolfin__ArrayTint_t swig_types[14]
+#define SWIGTYPE_p_dolfin__ArrayTstd__complexTdouble_t_p_t swig_types[15]
+#define SWIGTYPE_p_dolfin__ArrayTunsigned_int_t swig_types[16]
+#define SWIGTYPE_p_dolfin__BLASFormData swig_types[17]
+#define SWIGTYPE_p_dolfin__BilinearForm swig_types[18]
+#define SWIGTYPE_p_dolfin__Boundary swig_types[19]
+#define SWIGTYPE_p_dolfin__BoundaryComputation swig_types[20]
+#define SWIGTYPE_p_dolfin__BoundaryCondition swig_types[21]
+#define SWIGTYPE_p_dolfin__BoundaryMesh swig_types[22]
+#define SWIGTYPE_p_dolfin__BoundaryValue swig_types[23]
+#define SWIGTYPE_p_dolfin__Cell swig_types[24]
+#define SWIGTYPE_p_dolfin__CellIterator swig_types[25]
+#define SWIGTYPE_p_dolfin__CellType swig_types[26]
+#define SWIGTYPE_p_dolfin__Dependencies swig_types[27]
+#define SWIGTYPE_p_dolfin__Edge swig_types[28]
+#define SWIGTYPE_p_dolfin__EdgeIterator swig_types[29]
+#define SWIGTYPE_p_dolfin__FEM swig_types[30]
+#define SWIGTYPE_p_dolfin__Face swig_types[31]
+#define SWIGTYPE_p_dolfin__FaceIterator swig_types[32]
+#define SWIGTYPE_p_dolfin__File swig_types[33]
+#define SWIGTYPE_p_dolfin__FiniteElement swig_types[34]
+#define SWIGTYPE_p_dolfin__FiniteElementSpec swig_types[35]
+#define SWIGTYPE_p_dolfin__Form swig_types[36]
+#define SWIGTYPE_p_dolfin__Function swig_types[37]
+#define SWIGTYPE_p_dolfin__GMRES swig_types[38]
+#define SWIGTYPE_p_dolfin__GenericMatrix swig_types[39]
+#define SWIGTYPE_p_dolfin__GenericVector swig_types[40]
+#define SWIGTYPE_p_dolfin__Homotopy swig_types[41]
+#define SWIGTYPE_p_dolfin__HomotopyJacobian swig_types[42]
+#define SWIGTYPE_p_dolfin__HomotopyODE swig_types[43]
+#define SWIGTYPE_p_dolfin__Interval swig_types[44]
+#define SWIGTYPE_p_dolfin__LU swig_types[45]
+#define SWIGTYPE_p_dolfin__LinearForm swig_types[46]
+#define SWIGTYPE_p_dolfin__Mesh swig_types[47]
+#define SWIGTYPE_p_dolfin__MeshConnectivity swig_types[48]
+#define SWIGTYPE_p_dolfin__MeshEditor swig_types[49]
+#define SWIGTYPE_p_dolfin__MeshEntity swig_types[50]
+#define SWIGTYPE_p_dolfin__MeshEntityIterator swig_types[51]
+#define SWIGTYPE_p_dolfin__MeshGeometry swig_types[52]
+#define SWIGTYPE_p_dolfin__MeshHierarchy swig_types[53]
+#define SWIGTYPE_p_dolfin__MeshIterator swig_types[54]
+#define SWIGTYPE_p_dolfin__MeshTopology swig_types[55]
+#define SWIGTYPE_p_dolfin__Method swig_types[56]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveFixedPointSolver swig_types[57]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveJacobian swig_types[58]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveNewtonSolver swig_types[59]
+#define SWIGTYPE_p_dolfin__MonoAdaptiveTimeSlab swig_types[60]
+#define SWIGTYPE_p_dolfin__MonoAdaptivity swig_types[61]
+#define SWIGTYPE_p_dolfin__MultiAdaptiveFixedPointSolver swig_types[62]
+#define SWIGTYPE_p_dolfin__MultiAdaptiveNewtonSolver swig_types[63]
+#define SWIGTYPE_p_dolfin__MultiAdaptivePreconditioner swig_types[64]
+#define SWIGTYPE_p_dolfin__MultiAdaptiveTimeSlab swig_types[65]
+#define SWIGTYPE_p_dolfin__MultiAdaptivity swig_types[66]
+#define SWIGTYPE_p_dolfin__NewCell swig_types[67]
+#define SWIGTYPE_p_dolfin__NewCellIterator swig_types[68]
+#define SWIGTYPE_p_dolfin__NewEdge swig_types[69]
+#define SWIGTYPE_p_dolfin__NewEdgeIterator swig_types[70]
+#define SWIGTYPE_p_dolfin__NewFace swig_types[71]
+#define SWIGTYPE_p_dolfin__NewFaceIterator swig_types[72]
+#define SWIGTYPE_p_dolfin__NewFacet swig_types[73]
+#define SWIGTYPE_p_dolfin__NewFacetIterator swig_types[74]
+#define SWIGTYPE_p_dolfin__NewMesh swig_types[75]
+#define SWIGTYPE_p_dolfin__NewMeshData swig_types[76]
+#define SWIGTYPE_p_dolfin__NewPoint swig_types[77]
+#define SWIGTYPE_p_dolfin__NewTetrahedron swig_types[78]
+#define SWIGTYPE_p_dolfin__NewTriangle swig_types[79]
+#define SWIGTYPE_p_dolfin__NewUnitCube swig_types[80]
+#define SWIGTYPE_p_dolfin__NewUnitSquare swig_types[81]
+#define SWIGTYPE_p_dolfin__NewVertex swig_types[82]
+#define SWIGTYPE_p_dolfin__NewVertexIterator swig_types[83]
+#define SWIGTYPE_p_dolfin__ODE swig_types[84]
+#define SWIGTYPE_p_dolfin__ODESolver swig_types[85]
+#define SWIGTYPE_p_dolfin__Parameter swig_types[86]
+#define SWIGTYPE_p_dolfin__ParameterList swig_types[87]
+#define SWIGTYPE_p_dolfin__Partition swig_types[88]
+#define SWIGTYPE_p_dolfin__Point swig_types[89]
+#define SWIGTYPE_p_dolfin__Sample swig_types[90]
+#define SWIGTYPE_p_dolfin__Tetrahedron swig_types[91]
+#define SWIGTYPE_p_dolfin__TimeDependent swig_types[92]
+#define SWIGTYPE_p_dolfin__TimeSlab swig_types[93]
+#define SWIGTYPE_p_dolfin__TimeSlabJacobian swig_types[94]
+#define SWIGTYPE_p_dolfin__TimeStepper swig_types[95]
+#define SWIGTYPE_p_dolfin__TopologyComputation swig_types[96]
+#define SWIGTYPE_p_dolfin__Triangle swig_types[97]
+#define SWIGTYPE_p_dolfin__UniformMeshRefinement swig_types[98]
+#define SWIGTYPE_p_dolfin__UnitCube swig_types[99]
+#define SWIGTYPE_p_dolfin__UnitSquare swig_types[100]
+#define SWIGTYPE_p_dolfin__Variable swig_types[101]
+#define SWIGTYPE_p_dolfin__Vertex swig_types[102]
+#define SWIGTYPE_p_dolfin__VertexIterator swig_types[103]
+#define SWIGTYPE_p_dolfin__cGqMethod swig_types[104]
+#define SWIGTYPE_p_dolfin__dGqMethod swig_types[105]
+#define SWIGTYPE_p_dolfin__uBlasDummyPreconditioner swig_types[106]
+#define SWIGTYPE_p_dolfin__uBlasILUPreconditioner swig_types[107]
+#define SWIGTYPE_p_dolfin__uBlasKrylovMatrix swig_types[108]
+#define SWIGTYPE_p_dolfin__uBlasKrylovSolver swig_types[109]
+#define SWIGTYPE_p_dolfin__uBlasLUSolver swig_types[110]
+#define SWIGTYPE_p_dolfin__uBlasLinearSolver swig_types[111]
+#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[112]
+#define SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[113]
+#define SWIGTYPE_p_dolfin__uBlasPreconditioner swig_types[114]
+#define SWIGTYPE_p_dolfin__uBlasVector swig_types[115]
+#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_dolfin__ublas__column_major_t swig_types[116]
+#define SWIGTYPE_p_dolfin__ublas__compressed_matrixTdouble_t swig_types[117]
+#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__column_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[118]
+#define SWIGTYPE_p_dolfin__ublas__generalized_vector_of_vectorTdouble_dolfin__ublas__row_major_dolfin__ublas__vectorTdolfin__ublas__compressed_vectorTdouble_t_t_t swig_types[119]
+#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t swig_types[120]
+#define SWIGTYPE_p_dolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t swig_types[121]
+#define SWIGTYPE_p_dolfin__ublas__matrix_columnTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[122]
+#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__column_major_t_t swig_types[123]
+#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__matrixTdouble_dolfin__ublas__row_major_dolfin__ublas__unbounded_arrayTdouble_t_t_t swig_types[124]
+#define SWIGTYPE_p_dolfin__ublas__matrix_rangeTdolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t_t swig_types[125]
+#define SWIGTYPE_p_dolfin__ublas__triangular_matrixTdouble_dolfin__ublas__upper_dolfin__ublas__column_major_t swig_types[126]
+#define SWIGTYPE_p_dolfin__ublas__vectorTdouble_t swig_types[127]
+#define SWIGTYPE_p_dolfin__ublas__vector_rangeTdolfin__ublas__vectorTdouble_t_t swig_types[128]
+#define SWIGTYPE_p_dolfin__ublas_dense_matrix swig_types[129]
+#define SWIGTYPE_p_dolfin__ublas_sparse_matrix swig_types[130]
+#define SWIGTYPE_p_double swig_types[131]
+#define SWIGTYPE_p_int swig_types[132]
+#define SWIGTYPE_p_p_char swig_types[133]
+#define SWIGTYPE_p_p_unsigned_int swig_types[134]
+#define SWIGTYPE_p_std__complexTdouble_t swig_types[135]
+#define SWIGTYPE_p_std__setTint_t swig_types[136]
+#define SWIGTYPE_p_uBlasKrylovMatrix swig_types[137]
+#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t swig_types[138]
+#define SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t swig_types[139]
+#define SWIGTYPE_p_uBlasPreconditioner swig_types[140]
+#define SWIGTYPE_p_unsigned_int swig_types[141]
+static swig_type_info *swig_types[143];
+static swig_module_info swig_module = {swig_types, 142, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3670,184 +3649,6 @@ bool SwigDirector_ODE::update(dolfin::uBlasVector const &u, dolfin::real t, bool
   }
   swig_c_result = static_cast< bool >(val);
   return (bool) swig_c_result;
-}
-
-
-SwigDirector_TimeDependentPDE::SwigDirector_TimeDependentPDE(PyObject *self, dolfin::BilinearForm &a, dolfin::LinearForm &L, dolfin::Mesh &mesh, dolfin::BoundaryCondition &bc, int N, dolfin::real k, dolfin::real T): dolfin::TimeDependentPDE(a, L, mesh, bc, N, k, T), Swig::Director(self) {
-  SWIG_DIRECTOR_RGTR((dolfin::TimeDependentPDE *)this, this); 
-}
-
-
-
-
-dolfin::uint SwigDirector_TimeDependentPDE::solve(dolfin::Function &u) {
-  if (swig_get_up()) {
-    return dolfin::TimeDependentPDE::solve(u);
-  }
-  dolfin::uint swig_c_result;
-  swig::PyObject_var obj0;
-  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&u), SWIGTYPE_p_dolfin__Function,  0 );
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call TimeDependentPDE.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 0;
-  const char * const swig_method_name = "solve";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
-#else
-  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"solve", (char *)"(O)" ,(PyObject *)obj0);
-#endif
-  if (result == NULL) {
-    PyObject *error = PyErr_Occurred();
-    if (error != NULL) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'TimeDependentPDE.solve'");
-    }
-  }
-  unsigned int val;
-  int res = SWIG_AsVal_unsigned_SS_int(result, &val);
-  if (!SWIG_IsOK(res)) {
-    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(res)), "in output value of type '""dolfin::uint""'");
-  }
-  swig_c_result = static_cast< dolfin::uint >(val);
-  return (dolfin::uint) swig_c_result;
-}
-
-
-void SwigDirector_TimeDependentPDE::init(dolfin::Function &U) {
-  if (swig_get_up()) {
-    dolfin::TimeDependentPDE::init(U);
-    return;
-  }
-  swig::PyObject_var obj0;
-  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&U), SWIGTYPE_p_dolfin__Function,  0 );
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call TimeDependentPDE.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 1;
-  const char * const swig_method_name = "init";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
-#else
-  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"init", (char *)"(O)" ,(PyObject *)obj0);
-#endif
-  if (result == NULL) {
-    PyObject *error = PyErr_Occurred();
-    if (error != NULL) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'TimeDependentPDE.init'");
-    }
-  }
-}
-
-
-void SwigDirector_TimeDependentPDE::save(dolfin::Function &U, dolfin::real t) {
-  if (swig_get_up()) {
-    dolfin::TimeDependentPDE::save(U,t);
-    return;
-  }
-  swig::PyObject_var obj0;
-  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&U), SWIGTYPE_p_dolfin__Function,  0 );
-  swig::PyObject_var obj1;
-  obj1 = SWIG_From_double(static_cast< double >(t));
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call TimeDependentPDE.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 2;
-  const char * const swig_method_name = "save";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
-#else
-  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"save", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
-#endif
-  if (result == NULL) {
-    PyObject *error = PyErr_Occurred();
-    if (error != NULL) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'TimeDependentPDE.save'");
-    }
-  }
-}
-
-
-void SwigDirector_TimeDependentPDE::preparestep() {
-  if (swig_get_up()) {
-    dolfin::TimeDependentPDE::preparestep();
-    return;
-  }
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call TimeDependentPDE.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 3;
-  const char * const swig_method_name = "preparestep";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
-#else
-  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "preparestep", NULL);
-#endif
-  if (result == NULL) {
-    PyObject *error = PyErr_Occurred();
-    if (error != NULL) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'TimeDependentPDE.preparestep'");
-    }
-  }
-}
-
-
-void SwigDirector_TimeDependentPDE::fu(dolfin::Vector const &x, dolfin::Vector &dotx, dolfin::real t) {
-  if (swig_get_up()) {
-    dolfin::TimeDependentPDE::fu(x,dotx,t);
-    return;
-  }
-  swig::PyObject_var obj0;
-  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&x), SWIGTYPE_p_dolfin__PETScVector,  0 );
-  swig::PyObject_var obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(&dotx), SWIGTYPE_p_dolfin__PETScVector,  0 );
-  swig::PyObject_var obj2;
-  obj2 = SWIG_From_double(static_cast< double >(t));
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call TimeDependentPDE.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 4;
-  const char * const swig_method_name = "fu";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(OOO)" ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2);
-#else
-  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"fu", (char *)"(OOO)" ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2);
-#endif
-  if (result == NULL) {
-    PyObject *error = PyErr_Occurred();
-    if (error != NULL) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'TimeDependentPDE.fu'");
-    }
-  }
-}
-
-
-void SwigDirector_TimeDependentPDE::prepareiteration() {
-  if (swig_get_up()) {
-    dolfin::TimeDependentPDE::prepareiteration();
-    return;
-  }
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' unitialized, maybe you forgot to call TimeDependentPDE.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 5;
-  const char * const swig_method_name = "prepareiteration";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
-#else
-  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "prepareiteration", NULL);
-#endif
-  if (result == NULL) {
-    PyObject *error = PyErr_Occurred();
-    if (error != NULL) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'TimeDependentPDE.prepareiteration'");
-    }
-  }
 }
 
 
@@ -7480,11 +7281,951 @@ SWIGINTERN PyObject *GenericVector_swigregister(PyObject *SWIGUNUSEDPARM(self), 
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_new_uBlasVector__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_uBlasVector")) SWIG_fail;
+  result = (dolfin::uBlasVector *)new dolfin::uBlasVector();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_uBlasVector__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uint arg1 ;
+  dolfin::uBlasVector *result = 0 ;
+  unsigned int val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_uBlasVector",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_uBlasVector" "', argument " "1"" of type '" "dolfin::uint""'");
+  } 
+  arg1 = static_cast< dolfin::uint >(val1);
+  result = (dolfin::uBlasVector *)new dolfin::uBlasVector(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_uBlasVector(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[2];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 1); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_new_uBlasVector__SWIG_0(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      return _wrap_new_uBlasVector__SWIG_1(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_uBlasVector'");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_uBlasVector(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_uBlasVector",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_uBlasVector" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_init",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_init" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_init" "', argument " "2"" of type '" "dolfin::uint""'");
+  } 
+  arg2 = static_cast< dolfin::uint >(val2);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->init(arg2);
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_copy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::real arg2 ;
+  dolfin::uBlasVector *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_copy",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_copy" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_copy" "', argument " "2"" of type '" "dolfin::real""'");
+  } 
+  arg2 = static_cast< dolfin::real >(val2);
+  {
+    dolfin::uBlasVector const &_result_ref = (arg1)->operator =(arg2);
+    result = (dolfin::uBlasVector *) &_result_ref;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_size",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_size" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    result = (dolfin::uint)((dolfin::uBlasVector const *)arg1)->size();
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint arg2 ;
+  dolfin::real *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector___call__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector___call__" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector___call__" "', argument " "2"" of type '" "dolfin::uint""'");
+  } 
+  arg2 = static_cast< dolfin::uint >(val2);
+  {
+    dolfin::real &_result_ref = (arg1)->operator ()(arg2);
+    result = (dolfin::real *) &_result_ref;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint arg2 ;
+  dolfin::real result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector___call__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector___call__" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector___call__" "', argument " "2"" of type '" "dolfin::uint""'");
+  } 
+  arg2 = static_cast< dolfin::uint >(val2);
+  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->operator ()(arg2);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector___call__(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_uBlasVector___call____SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_uBlasVector___call____SWIG_1(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector___call__'");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_get__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint arg2 ;
+  dolfin::real result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_get",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_get" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_get" "', argument " "2"" of type '" "dolfin::uint""'");
+  } 
+  arg2 = static_cast< dolfin::uint >(val2);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->get(arg2);
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_set__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint arg2 ;
+  dolfin::real arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:uBlasVector_set",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_set" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_set" "', argument " "2"" of type '" "dolfin::uint""'");
+  } 
+  arg2 = static_cast< dolfin::uint >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "uBlasVector_set" "', argument " "3"" of type '" "dolfin::real""'");
+  } 
+  arg3 = static_cast< dolfin::real >(val3);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->set(arg2,arg3);
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_set__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::real *arg2 ;
+  int *arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:uBlasVector_set",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_set" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasVector_set" "', argument " "2"" of type '" "dolfin::real const []""'"); 
+  } 
+  arg2 = reinterpret_cast< dolfin::real * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasVector_set" "', argument " "3"" of type '" "int const []""'"); 
+  } 
+  arg3 = reinterpret_cast< int * >(argp3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "uBlasVector_set" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->set((dolfin::real const (*))arg2,(int const (*))arg3,arg4);
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_set(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[5];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_uBlasVector_set__SWIG_0(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_uBlasVector_set__SWIG_1(self, args);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_set'");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_add(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::real *arg2 ;
+  int *arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:uBlasVector_add",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_add" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasVector_add" "', argument " "2"" of type '" "dolfin::real const []""'"); 
+  } 
+  arg2 = reinterpret_cast< dolfin::real * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasVector_add" "', argument " "3"" of type '" "int const []""'"); 
+  } 
+  arg3 = reinterpret_cast< int * >(argp3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "uBlasVector_add" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->add((dolfin::real const (*))arg2,(int const (*))arg3,arg4);
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_get__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::real *arg2 ;
+  int *arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:uBlasVector_get",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_get" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasVector_get" "', argument " "2"" of type '" "dolfin::real []""'"); 
+  } 
+  arg2 = reinterpret_cast< dolfin::real * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasVector_get" "', argument " "3"" of type '" "int const []""'"); 
+  } 
+  arg3 = reinterpret_cast< int * >(argp3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "uBlasVector_get" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ((dolfin::uBlasVector const *)arg1)->get(arg2,(int const (*))arg3,arg4);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_get(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[5];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_uBlasVector_get__SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_uBlasVector_get__SWIG_1(self, args);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_get'");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_norm__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uBlasVector::NormType arg2 ;
+  dolfin::real result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_norm",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_norm" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_norm" "', argument " "2"" of type '" "dolfin::uBlasVector::NormType""'");
+  } 
+  arg2 = static_cast< dolfin::uBlasVector::NormType >(val2);
+  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->norm(arg2);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_norm__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::real result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_norm",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_norm" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->norm();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_norm(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_uBlasVector_norm__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_uBlasVector_norm__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_norm'");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_sum(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::real result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_sum",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_sum" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->sum();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_apply(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_apply",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_apply" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->apply();
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_zero(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_zero",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_zero" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
+  try {
+    Swig::UnknownExceptionHandler dh;
+    (arg1)->zero();
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_disp__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  dolfin::uint arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_disp",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_disp" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_disp" "', argument " "2"" of type '" "dolfin::uint""'");
+  } 
+  arg2 = static_cast< dolfin::uint >(val2);
+  ((dolfin::uBlasVector const *)arg1)->disp(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_disp__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_disp",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_disp" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
+  }
+  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
+  ((dolfin::uBlasVector const *)arg1)->disp();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_uBlasVector_disp(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_uBlasVector_disp__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_uBlasVector_disp__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_disp'");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *uBlasVector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__uBlasVector, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
+  uBlasMatrix<dolfin::ublas_dense_matrix > *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   Preconditioner arg4 ;
   dolfin::uint result;
   void *argp1 = 0 ;
@@ -7501,30 +8242,30 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj3 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScMatrix,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
-  arg1 = reinterpret_cast< PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
+  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
   {
     res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Preconditioner,  0  | 0);
     if (!SWIG_IsOK(res4)) {
@@ -7538,7 +8279,7 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), P
       if (SWIG_IsNewObj(res4)) delete temp;
     }
   }
-  result = (dolfin::uint)dolfin::GMRES::solve((PETScMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3,arg4);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3,arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7548,9 +8289,9 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
+  uBlasMatrix<dolfin::ublas_dense_matrix > *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   dolfin::uint result;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7563,31 +8304,31 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj2 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:GMRES_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScMatrix,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
-  arg1 = reinterpret_cast< PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
+  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
-  result = (dolfin::uint)dolfin::GMRES::solve((PETScMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7597,9 +8338,9 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScKrylovMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
+  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   Preconditioner arg4 ;
   dolfin::uint result;
   void *argp1 = 0 ;
@@ -7616,30 +8357,30 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_2(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj3 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScKrylovMatrix,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
-  arg1 = reinterpret_cast< PETScKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
+  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
   {
     res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Preconditioner,  0  | 0);
     if (!SWIG_IsOK(res4)) {
@@ -7653,7 +8394,7 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_2(PyObject *SWIGUNUSEDPARM(self), P
       if (SWIG_IsNewObj(res4)) delete temp;
     }
   }
-  result = (dolfin::uint)dolfin::GMRES::solve((PETScKrylovMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3,arg4);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3,arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7663,9 +8404,9 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScKrylovMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
+  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   dolfin::uint result;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7678,31 +8419,31 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_3(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj2 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:GMRES_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScKrylovMatrix,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
-  arg1 = reinterpret_cast< PETScKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
+  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
-  result = (dolfin::uint)dolfin::GMRES::solve((PETScKrylovMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7712,10 +8453,10 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
-  PETScPreconditioner *arg4 = 0 ;
+  uBlasKrylovMatrix *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
+  Preconditioner arg4 ;
   dolfin::uint result;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7723,7 +8464,7 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_4(PyObject *SWIGUNUSEDPARM(self), P
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
-  void *argp4 = 0 ;
+  void *argp4 ;
   int res4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -7731,39 +8472,44 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_4(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj3 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScMatrix,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasKrylovMatrix,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
   }
-  arg1 = reinterpret_cast< PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
+  arg1 = reinterpret_cast< uBlasKrylovMatrix * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_PETScPreconditioner,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "PETScPreconditioner &""'"); 
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  {
+    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Preconditioner,  0  | 0);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'");
+    } else {
+      Preconditioner * temp = reinterpret_cast< Preconditioner * >(argp4);
+      arg4 = *temp;
+      if (SWIG_IsNewObj(res4)) delete temp;
+    }
   }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "PETScPreconditioner &""'"); 
-  }
-  arg4 = reinterpret_cast< PETScPreconditioner * >(argp4);
-  result = (dolfin::uint)dolfin::GMRES::solve((PETScMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3,*arg4);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasKrylovMatrix const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3,arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7773,10 +8519,9 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScKrylovMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
-  PETScPreconditioner *arg4 = 0 ;
+  uBlasKrylovMatrix *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   dolfin::uint result;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7784,47 +8529,36 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_5(PyObject *SWIGUNUSEDPARM(self), P
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScKrylovMatrix,  0  | 0);
+  if (!PyArg_ParseTuple(args,(char *)"OOO:GMRES_solve",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasKrylovMatrix,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
   }
-  arg1 = reinterpret_cast< PETScKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
+  arg1 = reinterpret_cast< uBlasKrylovMatrix * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_PETScPreconditioner,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "PETScPreconditioner &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "PETScPreconditioner &""'"); 
-  }
-  arg4 = reinterpret_cast< PETScPreconditioner * >(argp4);
-  result = (dolfin::uint)dolfin::GMRES::solve((PETScKrylovMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3,*arg4);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasKrylovMatrix const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7835,9 +8569,9 @@ fail:
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_6(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   uBlasMatrix<dolfin::ublas_dense_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  Preconditioner arg4 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
+  uBlasPreconditioner *arg4 = 0 ;
   dolfin::uint result;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7845,7 +8579,7 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_6(PyObject *SWIGUNUSEDPARM(self), P
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
-  void *argp4 ;
+  void *argp4 = 0 ;
   int res4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -7861,36 +8595,31 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_6(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
   arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  {
-    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Preconditioner,  0  | 0);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'"); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'");
-    } else {
-      Preconditioner * temp = reinterpret_cast< Preconditioner * >(argp4);
-      arg4 = *temp;
-      if (SWIG_IsNewObj(res4)) delete temp;
-    }
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_uBlasPreconditioner,  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
   }
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3,arg4);
+  if (!argp4) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
+  }
+  arg4 = reinterpret_cast< uBlasPreconditioner * >(argp4);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3,*arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7900,9 +8629,10 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_7(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  uBlasMatrix<dolfin::ublas_dense_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
+  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
+  uBlasPreconditioner *arg4 = 0 ;
   dolfin::uint result;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7910,36 +8640,47 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_7(PyObject *SWIGUNUSEDPARM(self), P
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:GMRES_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t,  0  | 0);
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
-  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
+  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_uBlasPreconditioner,  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
+  }
+  if (!argp4) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
+  }
+  arg4 = reinterpret_cast< uBlasPreconditioner * >(argp4);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3,*arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -7949,361 +8690,9 @@ fail:
 
 SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_8(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  Preconditioner arg4 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
-  }
-  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  {
-    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Preconditioner,  0  | 0);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'"); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'");
-    } else {
-      Preconditioner * temp = reinterpret_cast< Preconditioner * >(argp4);
-      arg4 = *temp;
-      if (SWIG_IsNewObj(res4)) delete temp;
-    }
-  }
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3,arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_9(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:GMRES_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
-  }
-  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_10(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
   uBlasKrylovMatrix *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  Preconditioner arg4 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasKrylovMatrix,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
-  }
-  arg1 = reinterpret_cast< uBlasKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  {
-    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Preconditioner,  0  | 0);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'"); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "Preconditioner""'");
-    } else {
-      Preconditioner * temp = reinterpret_cast< Preconditioner * >(argp4);
-      arg4 = *temp;
-      if (SWIG_IsNewObj(res4)) delete temp;
-    }
-  }
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasKrylovMatrix const &)*arg1,*arg2,(uBlasVector const &)*arg3,arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_11(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  uBlasKrylovMatrix *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:GMRES_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasKrylovMatrix,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
-  }
-  arg1 = reinterpret_cast< uBlasKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasKrylovMatrix const &)*arg1,*arg2,(uBlasVector const &)*arg3);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_12(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  uBlasMatrix<dolfin::ublas_dense_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  uBlasPreconditioner *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
-  }
-  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_uBlasPreconditioner,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
-  }
-  arg4 = reinterpret_cast< uBlasPreconditioner * >(argp4);
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3,*arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_13(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
-  uBlasPreconditioner *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:GMRES_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
-  }
-  arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_uBlasPreconditioner,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
-  }
-  arg4 = reinterpret_cast< uBlasPreconditioner * >(argp4);
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3,*arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_14(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  uBlasKrylovMatrix *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   uBlasPreconditioner *arg4 = 0 ;
   dolfin::uint result;
   void *argp1 = 0 ;
@@ -8328,22 +8717,22 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_14(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "1"" of type '" "uBlasKrylovMatrix const &""'"); 
   }
   arg1 = reinterpret_cast< uBlasKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_uBlasPreconditioner,  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
@@ -8352,7 +8741,7 @@ SWIGINTERN PyObject *_wrap_GMRES_solve__SWIG_14(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GMRES_solve" "', argument " "4"" of type '" "uBlasPreconditioner &""'"); 
   }
   arg4 = reinterpret_cast< uBlasPreconditioner * >(argp4);
-  result = (dolfin::uint)dolfin::GMRES::solve((uBlasKrylovMatrix const &)*arg1,*arg2,(uBlasVector const &)*arg3,*arg4);
+  result = (dolfin::uint)dolfin::GMRES::solve((uBlasKrylovMatrix const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3,*arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -8372,51 +8761,17 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
   }
   if (argc == 3) {
     int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_GMRES_solve__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_GMRES_solve__SWIG_3(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
     int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_GMRES_solve__SWIG_7(self, args);
+          return _wrap_GMRES_solve__SWIG_1(self, args);
         }
       }
     }
@@ -8427,13 +8782,13 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_GMRES_solve__SWIG_9(self, args);
+          return _wrap_GMRES_solve__SWIG_3(self, args);
         }
       }
     }
@@ -8444,35 +8799,13 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_GMRES_solve__SWIG_11(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_PETScPreconditioner, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_GMRES_solve__SWIG_5(self, args);
-          }
+          return _wrap_GMRES_solve__SWIG_5(self, args);
         }
       }
     }
@@ -8483,73 +8816,10 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Preconditioner, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_GMRES_solve__SWIG_6(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Preconditioner, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_GMRES_solve__SWIG_2(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Preconditioner, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_GMRES_solve__SWIG_8(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
           int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Preconditioner, 0);
@@ -8567,60 +8837,16 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
           int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Preconditioner, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_GMRES_solve__SWIG_10(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_PETScPreconditioner, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
             return _wrap_GMRES_solve__SWIG_4(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_uBlasPreconditioner, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_GMRES_solve__SWIG_12(self, args);
           }
         }
       }
@@ -8632,17 +8858,60 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Preconditioner, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_GMRES_solve__SWIG_2(self, args);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
           void *vptr = 0;
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_uBlasPreconditioner, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_GMRES_solve__SWIG_13(self, args);
+            return _wrap_GMRES_solve__SWIG_6(self, args);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          void *vptr = 0;
+          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_uBlasPreconditioner, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_GMRES_solve__SWIG_7(self, args);
           }
         }
       }
@@ -8654,17 +8923,17 @@ SWIGINTERN PyObject *_wrap_GMRES_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
           void *vptr = 0;
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_uBlasPreconditioner, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_GMRES_solve__SWIG_14(self, args);
+            return _wrap_GMRES_solve__SWIG_8(self, args);
           }
         }
       }
@@ -8686,105 +8955,9 @@ SWIGINTERN PyObject *GMRES_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
 
 SWIGINTERN PyObject *_wrap_LU_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  PETScMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:LU_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScMatrix,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LU_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "1"" of type '" "PETScMatrix const &""'"); 
-  }
-  arg1 = reinterpret_cast< PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LU_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "LU_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
-  dolfin::LU::solve((PETScMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_LU_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PETScKrylovMatrix *arg1 = 0 ;
-  PETScVector *arg2 = 0 ;
-  PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:LU_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScKrylovMatrix,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LU_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "1"" of type '" "PETScKrylovMatrix const &""'"); 
-  }
-  arg1 = reinterpret_cast< PETScKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LU_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "2"" of type '" "PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "LU_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "3"" of type '" "PETScVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< PETScVector * >(argp3);
-  dolfin::LU::solve((PETScKrylovMatrix const &)*arg1,*arg2,(PETScVector const &)*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_LU_solve__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
   uBlasMatrix<dolfin::ublas_dense_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -8804,23 +8977,23 @@ SWIGINTERN PyObject *_wrap_LU_solve__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
   arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LU_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LU_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "LU_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "LU_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  dolfin::LU::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  dolfin::LU::solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8828,11 +9001,11 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_LU_solve__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_LU_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -8852,23 +9025,23 @@ SWIGINTERN PyObject *_wrap_LU_solve__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "1"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
   arg1 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LU_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LU_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "LU_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "LU_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "LU_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  dolfin::LU::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(uBlasVector const &)*arg3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  dolfin::LU::solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2,(dolfin::uBlasVector const &)*arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8888,51 +9061,17 @@ SWIGINTERN PyObject *_wrap_LU_solve(PyObject *self, PyObject *args) {
   }
   if (argc == 3) {
     int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_LU_solve__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_LU_solve__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
     int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_LU_solve__SWIG_2(self, args);
+          return _wrap_LU_solve__SWIG_0(self, args);
         }
       }
     }
@@ -8943,13 +9082,13 @@ SWIGINTERN PyObject *_wrap_LU_solve(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_uBlasVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_uBlasVector, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_LU_solve__SWIG_3(self, args);
+          return _wrap_LU_solve__SWIG_1(self, args);
         }
       }
     }
@@ -8965,5775 +9104,6 @@ SWIGINTERN PyObject *LU_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__LU, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_delete_PETScKrylovMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScKrylovMatrix",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScKrylovMatrix" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_init__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScKrylovMatrix_init",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_init" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScKrylovMatrix_init" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovMatrix_init" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScKrylovMatrix_init" "', argument " "3"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovMatrix_init" "', argument " "3"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  (arg1)->init((dolfin::PETScVector const &)*arg2,(dolfin::PETScVector const &)*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_init__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScKrylovMatrix_init",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_init" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScKrylovMatrix_init" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScKrylovMatrix_init" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  (arg1)->init(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_init(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_PETScKrylovMatrix_init__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScKrylovMatrix_init__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScKrylovMatrix_init'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScKrylovMatrix_size",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_size" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScKrylovMatrix_size" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  result = (dolfin::uint)((dolfin::PETScKrylovMatrix const *)arg1)->size(arg2);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_mat(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  Mat result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScKrylovMatrix_mat",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_mat" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  result = ((dolfin::PETScKrylovMatrix const *)arg1)->mat();
-  resultobj = SWIG_NewPointerObj((new Mat(static_cast< const Mat& >(result))), SWIGTYPE_p_Mat, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_mult(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScKrylovMatrix_mult",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_mult" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScKrylovMatrix_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovMatrix_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScKrylovMatrix_mult" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovMatrix_mult" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    ((dolfin::PETScKrylovMatrix const *)arg1)->mult((dolfin::PETScVector const &)*arg2,*arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_disp__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  bool arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScKrylovMatrix_disp",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_disp" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScKrylovMatrix_disp" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScKrylovMatrix_disp" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  ((dolfin::PETScKrylovMatrix const *)arg1)->disp(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_disp__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScKrylovMatrix_disp",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_disp" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScKrylovMatrix_disp" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  ((dolfin::PETScKrylovMatrix const *)arg1)->disp(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_disp__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovMatrix *arg1 = (dolfin::PETScKrylovMatrix *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScKrylovMatrix_disp",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovMatrix_disp" "', argument " "1"" of type '" "dolfin::PETScKrylovMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp1);
-  ((dolfin::PETScKrylovMatrix const *)arg1)->disp();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovMatrix_disp(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_PETScKrylovMatrix_disp__SWIG_2(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScKrylovMatrix_disp__SWIG_1(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScKrylovMatrix_disp__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScKrylovMatrix_disp'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScKrylovMatrix_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScKrylovMatrix, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  KrylovMethod arg1 ;
-  Preconditioner arg2 ;
-  dolfin::PETScKrylovSolver *result = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_PETScKrylovSolver",&obj0,&obj1)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_KrylovMethod,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "KrylovMethod""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "KrylovMethod""'");
-    } else {
-      KrylovMethod * temp = reinterpret_cast< KrylovMethod * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  {
-    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Preconditioner,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_PETScKrylovSolver" "', argument " "2"" of type '" "Preconditioner""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "2"" of type '" "Preconditioner""'");
-    } else {
-      Preconditioner * temp = reinterpret_cast< Preconditioner * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1,arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  KrylovMethod arg1 ;
-  dolfin::PETScKrylovSolver *result = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_KrylovMethod,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "KrylovMethod""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "KrylovMethod""'");
-    } else {
-      KrylovMethod * temp = reinterpret_cast< KrylovMethod * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovSolver *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_PETScKrylovSolver")) SWIG_fail;
-  result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Preconditioner arg1 ;
-  dolfin::PETScKrylovSolver *result = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Preconditioner,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "Preconditioner""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "Preconditioner""'");
-    } else {
-      Preconditioner * temp = reinterpret_cast< Preconditioner * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PETScPreconditioner *arg1 = 0 ;
-  dolfin::PETScKrylovSolver *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScKrylovSolver",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_PETScPreconditioner,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "PETScPreconditioner &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "PETScPreconditioner &""'"); 
-  }
-  arg1 = reinterpret_cast< PETScPreconditioner * >(argp1);
-  result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  KrylovMethod arg1 ;
-  PETScPreconditioner *arg2 = 0 ;
-  dolfin::PETScKrylovSolver *result = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_PETScKrylovSolver",&obj0,&obj1)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_KrylovMethod,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "KrylovMethod""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "1"" of type '" "KrylovMethod""'");
-    } else {
-      KrylovMethod * temp = reinterpret_cast< KrylovMethod * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PETScPreconditioner,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_PETScKrylovSolver" "', argument " "2"" of type '" "PETScPreconditioner &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScKrylovSolver" "', argument " "2"" of type '" "PETScPreconditioner &""'"); 
-  }
-  arg2 = reinterpret_cast< PETScPreconditioner * >(argp2);
-  result = (dolfin::PETScKrylovSolver *)new dolfin::PETScKrylovSolver(arg1,*arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScKrylovSolver(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_PETScKrylovSolver__SWIG_2(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_KrylovMethod, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScKrylovSolver__SWIG_1(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Preconditioner, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScKrylovSolver__SWIG_3(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_PETScPreconditioner, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScKrylovSolver__SWIG_4(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_KrylovMethod, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_Preconditioner, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_new_PETScKrylovSolver__SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_KrylovMethod, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_PETScPreconditioner, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_new_PETScKrylovSolver__SWIG_5(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScKrylovSolver'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_PETScKrylovSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScKrylovSolver",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScKrylovSolver" "', argument " "1"" of type '" "dolfin::PETScKrylovSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovSolver * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovSolver_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
-  dolfin::PETScMatrix *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  dolfin::PETScVector *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScKrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovSolver_solve" "', argument " "1"" of type '" "dolfin::PETScKrylovSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScMatrix,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScMatrix * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScKrylovSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "PETScKrylovSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::PETScVector * >(argp4);
-  result = (dolfin::uint)(arg1)->solve((dolfin::PETScMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovSolver_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
-  dolfin::PETScKrylovMatrix *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  dolfin::PETScVector *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScKrylovSolver_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovSolver_solve" "', argument " "1"" of type '" "dolfin::PETScKrylovSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScKrylovMatrix,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::PETScKrylovMatrix const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::PETScKrylovMatrix const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScKrylovSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "PETScKrylovSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScKrylovSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::PETScVector * >(argp4);
-  result = (dolfin::uint)(arg1)->solve((dolfin::PETScKrylovMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovSolver_solve(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovSolver, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_PETScKrylovSolver_solve__SWIG_0(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScKrylovSolver, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_PETScKrylovSolver_solve__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScKrylovSolver_solve'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScKrylovSolver_disp(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScKrylovSolver *arg1 = (dolfin::PETScKrylovSolver *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScKrylovSolver_disp",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScKrylovSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScKrylovSolver_disp" "', argument " "1"" of type '" "dolfin::PETScKrylovSolver const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScKrylovSolver * >(argp1);
-  ((dolfin::PETScKrylovSolver const *)arg1)->disp();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScKrylovSolver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScKrylovSolver, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_delete_PETScLinearSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLinearSolver *arg1 = (dolfin::PETScLinearSolver *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScLinearSolver",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScLinearSolver, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScLinearSolver" "', argument " "1"" of type '" "dolfin::PETScLinearSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScLinearSolver * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScLinearSolver_solve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLinearSolver *arg1 = (dolfin::PETScLinearSolver *) 0 ;
-  dolfin::PETScMatrix *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  dolfin::PETScVector *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScLinearSolver_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScLinearSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScLinearSolver_solve" "', argument " "1"" of type '" "dolfin::PETScLinearSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScLinearSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScMatrix,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScLinearSolver_solve" "', argument " "2"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLinearSolver_solve" "', argument " "2"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScMatrix * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScLinearSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLinearSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "PETScLinearSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLinearSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::PETScVector * >(argp4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)(arg1)->solve((dolfin::PETScMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScLinearSolver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScLinearSolver, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_PETScLUSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLUSolver *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_PETScLUSolver")) SWIG_fail;
-  result = (dolfin::PETScLUSolver *)new dolfin::PETScLUSolver();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScLUSolver, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_PETScLUSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLUSolver *arg1 = (dolfin::PETScLUSolver *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScLUSolver",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScLUSolver, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScLUSolver" "', argument " "1"" of type '" "dolfin::PETScLUSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScLUSolver * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScLUSolver_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLUSolver *arg1 = (dolfin::PETScLUSolver *) 0 ;
-  dolfin::PETScMatrix *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  dolfin::PETScVector *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScLUSolver_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScLUSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScLUSolver_solve" "', argument " "1"" of type '" "dolfin::PETScLUSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScLUSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScMatrix,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScLUSolver_solve" "', argument " "2"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLUSolver_solve" "', argument " "2"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScMatrix * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScLUSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLUSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "PETScLUSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLUSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::PETScVector * >(argp4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)(arg1)->solve((dolfin::PETScMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScLUSolver_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLUSolver *arg1 = (dolfin::PETScLUSolver *) 0 ;
-  dolfin::PETScKrylovMatrix *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  dolfin::PETScVector *arg4 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScLUSolver_solve",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScLUSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScLUSolver_solve" "', argument " "1"" of type '" "dolfin::PETScLUSolver *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScLUSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScKrylovMatrix,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScLUSolver_solve" "', argument " "2"" of type '" "dolfin::PETScKrylovMatrix const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLUSolver_solve" "', argument " "2"" of type '" "dolfin::PETScKrylovMatrix const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScKrylovMatrix * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScLUSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLUSolver_solve" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "PETScLUSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScLUSolver_solve" "', argument " "4"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::PETScVector * >(argp4);
-  result = (dolfin::uint)(arg1)->solve((dolfin::PETScKrylovMatrix const &)*arg2,*arg3,(dolfin::PETScVector const &)*arg4);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScLUSolver_solve(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScLUSolver, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_PETScLUSolver_solve__SWIG_0(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScLUSolver, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScKrylovMatrix, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_PETScLUSolver_solve__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScLUSolver_solve'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScLUSolver_disp(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScLUSolver *arg1 = (dolfin::PETScLUSolver *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScLUSolver_disp",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScLUSolver, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScLUSolver_disp" "', argument " "1"" of type '" "dolfin::PETScLUSolver const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScLUSolver * >(argp1);
-  ((dolfin::PETScLUSolver const *)arg1)->disp();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScLUSolver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScLUSolver, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_PETScManager_init__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)":PETScManager_init")) SWIG_fail;
-  dolfin::PETScManager::init();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScManager_init__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  char **arg2 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScManager_init",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "PETScManager_init" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_char, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScManager_init" "', argument " "2"" of type '" "char *[]""'"); 
-  } 
-  arg2 = reinterpret_cast< char ** >(argp2);
-  dolfin::PETScManager::init(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScManager_init(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_PETScManager_init__SWIG_0(self, args);
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_p_char, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_PETScManager_init__SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScManager_init'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScManager_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScManager, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_PETScMatrix")) SWIG_fail;
-  result = (dolfin::PETScMatrix *)new dolfin::PETScMatrix();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix::Type arg1 ;
-  dolfin::PETScMatrix *result = 0 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScMatrix",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "dolfin::PETScMatrix::Type""'");
-  } 
-  arg1 = static_cast< dolfin::PETScMatrix::Type >(val1);
-  result = (dolfin::PETScMatrix *)new dolfin::PETScMatrix(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Mat arg1 ;
-  dolfin::PETScMatrix *result = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScMatrix",&obj0)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Mat,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "Mat""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "Mat""'");
-    } else {
-      Mat * temp = reinterpret_cast< Mat * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  result = (dolfin::PETScMatrix *)new dolfin::PETScMatrix(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uint arg1 ;
-  dolfin::uint arg2 ;
-  dolfin::PETScMatrix *result = 0 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_PETScMatrix",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "dolfin::uint""'");
-  } 
-  arg1 = static_cast< dolfin::uint >(val1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_PETScMatrix" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  result = (dolfin::PETScMatrix *)new dolfin::PETScMatrix(arg1,arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uint arg1 ;
-  dolfin::uint arg2 ;
-  dolfin::PETScMatrix::Type arg3 ;
-  dolfin::PETScMatrix *result = 0 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_PETScMatrix",&obj0,&obj1,&obj2)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "dolfin::uint""'");
-  } 
-  arg1 = static_cast< dolfin::uint >(val1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_PETScMatrix" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_PETScMatrix" "', argument " "3"" of type '" "dolfin::PETScMatrix::Type""'");
-  } 
-  arg3 = static_cast< dolfin::PETScMatrix::Type >(val3);
-  result = (dolfin::PETScMatrix *)new dolfin::PETScMatrix(arg1,arg2,arg3);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = 0 ;
-  dolfin::PETScMatrix *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScMatrix",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScMatrix,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScMatrix" "', argument " "1"" of type '" "dolfin::PETScMatrix const &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  result = (dolfin::PETScMatrix *)new dolfin::PETScMatrix((dolfin::PETScMatrix const &)*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrix(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_PETScMatrix__SWIG_0(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Mat, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScMatrix__SWIG_2(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScMatrix__SWIG_5(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_PETScMatrix__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_PETScMatrix__SWIG_3(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_new_PETScMatrix__SWIG_4(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScMatrix'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_PETScMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScMatrix",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScMatrix" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_init__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_init",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_init" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_init" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_init" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->init(arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_init__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::uint arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScMatrix_init",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_init" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_init" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_init" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScMatrix_init" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast< dolfin::uint >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->init(arg2,arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_init__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::uint arg4 ;
-  dolfin::uint arg5 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  unsigned int val5 ;
-  int ecode5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:PETScMatrix_init",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_init" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_init" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_init" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScMatrix_init" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast< dolfin::uint >(val4);
-  ecode5 = SWIG_AsVal_unsigned_SS_int(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "PETScMatrix_init" "', argument " "5"" of type '" "dolfin::uint""'");
-  } 
-  arg5 = static_cast< dolfin::uint >(val5);
-  (arg1)->init(arg2,arg3,arg4,arg5);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_init(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[6];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScMatrix_init__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_PETScMatrix_init__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_unsigned_SS_int(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              return _wrap_PETScMatrix_init__SWIG_2(self, args);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_init'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrix_size",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_size" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_size" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)((dolfin::PETScMatrix const *)arg1)->size(arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_nz(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrix_nz",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_nz" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_nz" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  result = (dolfin::uint)((dolfin::PETScMatrix const *)arg1)->nz(arg2);
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_nzsum(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_nzsum",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_nzsum" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  result = (dolfin::uint)((dolfin::PETScMatrix const *)arg1)->nzsum();
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_nzmax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_nzmax",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_nzmax" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)((dolfin::PETScMatrix const *)arg1)->nzmax();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_get",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_get" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_get" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_get" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->get(arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_set__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::real arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  double val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScMatrix_set",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_set" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_set" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_set" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  ecode4 = SWIG_AsVal_double(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScMatrix_set" "', argument " "4"" of type '" "dolfin::real""'");
-  } 
-  arg4 = static_cast< dolfin::real >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->set(arg2,arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_add__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::real arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  double val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScMatrix_add",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_add" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_add" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_add" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  ecode4 = SWIG_AsVal_double(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScMatrix_add" "', argument " "4"" of type '" "dolfin::real""'");
-  } 
-  arg4 = static_cast< dolfin::real >(val4);
-  (arg1)->add(arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_set__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  int *arg5 ;
-  int arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  int val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:PETScMatrix_set",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_set" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_set" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScMatrix_set" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScMatrix_set" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "PETScMatrix_set" "', argument " "5"" of type '" "int const []""'"); 
-  } 
-  arg5 = reinterpret_cast< int * >(argp5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "PETScMatrix_set" "', argument " "6"" of type '" "int""'");
-  } 
-  arg6 = static_cast< int >(val6);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->set((dolfin::real const (*))arg2,(int const (*))arg3,arg4,(int const (*))arg5,arg6);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_set(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[7];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 6); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_double(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_PETScMatrix_set__SWIG_0(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            void *vptr = 0;
-            int res = SWIG_ConvertPtr(argv[4], &vptr, SWIGTYPE_p_int, 0);
-            _v = SWIG_CheckState(res);
-            if (_v) {
-              {
-                int res = SWIG_AsVal_int(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_PETScMatrix_set__SWIG_1(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_set'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_add__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  int *arg5 ;
-  int arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  int val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:PETScMatrix_add",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_add" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_add" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScMatrix_add" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScMatrix_add" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "PETScMatrix_add" "', argument " "5"" of type '" "int const []""'"); 
-  } 
-  arg5 = reinterpret_cast< int * >(argp5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "PETScMatrix_add" "', argument " "6"" of type '" "int""'");
-  } 
-  arg6 = static_cast< int >(val6);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->add((dolfin::real const (*))arg2,(int const (*))arg3,arg4,(int const (*))arg5,arg6);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_add(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[7];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 6); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_double(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_PETScMatrix_add__SWIG_0(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            void *vptr = 0;
-            int res = SWIG_ConvertPtr(argv[4], &vptr, SWIGTYPE_p_int, 0);
-            _v = SWIG_CheckState(res);
-            if (_v) {
-              {
-                int res = SWIG_AsVal_int(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_PETScMatrix_add__SWIG_1(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_add'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_getRow(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  int *arg3 = 0 ;
-  dolfin::Array<int > *arg4 = 0 ;
-  dolfin::Array<dolfin::real > *arg5 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:PETScMatrix_getRow",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_getRow" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_getRow" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_int,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScMatrix_getRow" "', argument " "3"" of type '" "int &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_getRow" "', argument " "3"" of type '" "int &""'"); 
-  }
-  arg3 = reinterpret_cast< int * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__ArrayTint_t,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "PETScMatrix_getRow" "', argument " "4"" of type '" "dolfin::Array<int > &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_getRow" "', argument " "4"" of type '" "dolfin::Array<int > &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::Array<int > * >(argp4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5, SWIGTYPE_p_dolfin__ArrayTdouble_t,  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "PETScMatrix_getRow" "', argument " "5"" of type '" "dolfin::Array<dolfin::real > &""'"); 
-  }
-  if (!argp5) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_getRow" "', argument " "5"" of type '" "dolfin::Array<dolfin::real > &""'"); 
-  }
-  arg5 = reinterpret_cast< dolfin::Array<dolfin::real > * >(argp5);
-  ((dolfin::PETScMatrix const *)arg1)->getRow(arg2,*arg3,*arg4,*arg5);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_ident(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  int *arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_ident",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_ident" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_ident" "', argument " "2"" of type '" "int const []""'"); 
-  } 
-  arg2 = reinterpret_cast< int * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_ident" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->ident((int const (*))arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_mult__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_mult",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_mult" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScMatrix_mult" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_mult" "', argument " "3"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  ((dolfin::PETScMatrix const *)arg1)->mult((dolfin::PETScVector const &)*arg2,*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_mult__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::uint arg3 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_mult",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_mult" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_mult" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->mult((dolfin::PETScVector const &)*arg2,arg3);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_mult__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::real *arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_mult",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_mult" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_mult" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_mult" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->mult((dolfin::real const (*))arg2,arg3);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_mult(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_PETScMatrix_mult__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScMatrix_mult__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScMatrix_mult__SWIG_2(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_mult'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_lump(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrix_lump",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_lump" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScMatrix_lump" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScMatrix_lump" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  ((dolfin::PETScMatrix const *)arg1)->lump(*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_norm__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::PETScMatrix::Norm arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrix_norm",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_norm" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_norm" "', argument " "2"" of type '" "dolfin::PETScMatrix::Norm""'");
-  } 
-  arg2 = static_cast< dolfin::PETScMatrix::Norm >(val2);
-  result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->norm(arg2);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_norm__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_norm",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_norm" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->norm();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_norm(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_PETScMatrix_norm__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScMatrix_norm__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_norm'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_apply(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_apply",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_apply" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->apply();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_zero(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_zero",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_zero" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->zero();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_type(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::PETScMatrix::Type result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_type",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_type" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  result = (dolfin::PETScMatrix::Type)((dolfin::PETScMatrix const *)arg1)->type();
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_mat(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  Mat result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_mat",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_mat" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  result = ((dolfin::PETScMatrix const *)arg1)->mat();
-  resultobj = SWIG_NewPointerObj((new Mat(static_cast< const Mat& >(result))), SWIGTYPE_p_Mat, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_disp__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  bool arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix_disp",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_disp" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_disp" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix_disp" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  ((dolfin::PETScMatrix const *)arg1)->disp(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_disp__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrix_disp",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_disp" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix_disp" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  ((dolfin::PETScMatrix const *)arg1)->disp(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_disp__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScMatrix_disp",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix_disp" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ((dolfin::PETScMatrix const *)arg1)->disp();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix_disp(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_PETScMatrix_disp__SWIG_2(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScMatrix_disp__SWIG_1(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScMatrix_disp__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix_disp'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix___call__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix___call__" "', argument " "1"" of type '" "dolfin::PETScMatrix const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix___call__" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix___call__" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  result = (dolfin::real)((dolfin::PETScMatrix const *)arg1)->operator ()(arg2,arg3);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = (dolfin::PETScMatrix *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::uint arg3 ;
-  SwigValueWrapper<dolfin::PETScMatrixElement > result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScMatrix___call__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrix___call__" "', argument " "1"" of type '" "dolfin::PETScMatrix *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrix___call__" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScMatrix___call__" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  result = (arg1)->operator ()(arg2,arg3);
-  resultobj = SWIG_NewPointerObj((new dolfin::PETScMatrixElement(static_cast< const dolfin::PETScMatrixElement& >(result))), SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrix___call__(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScMatrix___call____SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScMatrix___call____SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScMatrix___call__'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScMatrix_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScMatrix, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrixElement__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uint arg1 ;
-  dolfin::uint arg2 ;
-  dolfin::PETScMatrix *arg3 = 0 ;
-  dolfin::PETScMatrixElement *result = 0 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_PETScMatrixElement",&obj0,&obj1,&obj2)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_PETScMatrixElement" "', argument " "1"" of type '" "dolfin::uint""'");
-  } 
-  arg1 = static_cast< dolfin::uint >(val1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_PETScMatrixElement" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScMatrix,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_PETScMatrixElement" "', argument " "3"" of type '" "dolfin::PETScMatrix &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScMatrixElement" "', argument " "3"" of type '" "dolfin::PETScMatrix &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScMatrix * >(argp3);
-  result = (dolfin::PETScMatrixElement *)new dolfin::PETScMatrixElement(arg1,arg2,*arg3);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrixElement__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrixElement *arg1 = 0 ;
-  dolfin::PETScMatrixElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScMatrixElement",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScMatrixElement,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScMatrixElement" "', argument " "1"" of type '" "dolfin::PETScMatrixElement const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScMatrixElement" "', argument " "1"" of type '" "dolfin::PETScMatrixElement const &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrixElement * >(argp1);
-  result = (dolfin::PETScMatrixElement *)new dolfin::PETScMatrixElement((dolfin::PETScMatrixElement const &)*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScMatrixElement(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_dolfin__PETScMatrixElement, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScMatrixElement__SWIG_1(self, args);
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_dolfin__PETScMatrix, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_new_PETScMatrixElement__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScMatrixElement'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrixElement___iadd__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrixElement *arg1 = (dolfin::PETScMatrixElement *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScMatrixElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrixElement___iadd__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrixElement___iadd__" "', argument " "1"" of type '" "dolfin::PETScMatrixElement *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrixElement * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrixElement___iadd__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScMatrixElement const &_result_ref = (arg1)->operator +=(arg2);
-    result = (dolfin::PETScMatrixElement *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrixElement___isub__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrixElement *arg1 = (dolfin::PETScMatrixElement *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScMatrixElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrixElement___isub__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrixElement___isub__" "', argument " "1"" of type '" "dolfin::PETScMatrixElement *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrixElement * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrixElement___isub__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScMatrixElement const &_result_ref = (arg1)->operator -=(arg2);
-    result = (dolfin::PETScMatrixElement *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScMatrixElement___imul__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScMatrixElement *arg1 = (dolfin::PETScMatrixElement *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScMatrixElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScMatrixElement___imul__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScMatrixElement___imul__" "', argument " "1"" of type '" "dolfin::PETScMatrixElement *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScMatrixElement * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScMatrixElement___imul__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScMatrixElement const &_result_ref = (arg1)->operator *=(arg2);
-    result = (dolfin::PETScMatrixElement *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScMatrixElement_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScMatrixElement, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_delete_PETScPreconditioner(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScPreconditioner *arg1 = (dolfin::PETScPreconditioner *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScPreconditioner",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScPreconditioner, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScPreconditioner" "', argument " "1"" of type '" "dolfin::PETScPreconditioner *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScPreconditioner * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScPreconditioner_setup(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  KSP arg1 ;
-  dolfin::PETScPreconditioner *arg2 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScPreconditioner_setup",&obj0,&obj1)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_KSP,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScPreconditioner_setup" "', argument " "1"" of type '" "KSP const""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScPreconditioner_setup" "', argument " "1"" of type '" "KSP const""'");
-    } else {
-      KSP * temp = reinterpret_cast< KSP * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScPreconditioner,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScPreconditioner_setup" "', argument " "2"" of type '" "dolfin::PETScPreconditioner &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScPreconditioner_setup" "', argument " "2"" of type '" "dolfin::PETScPreconditioner &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScPreconditioner * >(argp2);
-  dolfin::PETScPreconditioner::setup(arg1,*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScPreconditioner_solve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScPreconditioner *arg1 = (dolfin::PETScPreconditioner *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScPreconditioner_solve",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScPreconditioner, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScPreconditioner_solve" "', argument " "1"" of type '" "dolfin::PETScPreconditioner *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScPreconditioner * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScPreconditioner_solve" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScPreconditioner_solve" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScPreconditioner_solve" "', argument " "3"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScPreconditioner_solve" "', argument " "3"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->solve(*arg2,(dolfin::PETScVector const &)*arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScPreconditioner_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScPreconditioner, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_PETScVector__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_PETScVector")) SWIG_fail;
-  result = (dolfin::PETScVector *)new dolfin::PETScVector();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScVector__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uint arg1 ;
-  dolfin::PETScVector *result = 0 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScVector",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_PETScVector" "', argument " "1"" of type '" "dolfin::uint""'");
-  } 
-  arg1 = static_cast< dolfin::uint >(val1);
-  result = (dolfin::PETScVector *)new dolfin::PETScVector(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScVector__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Vec arg1 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScVector",&obj0)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Vec,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScVector" "', argument " "1"" of type '" "Vec""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScVector" "', argument " "1"" of type '" "Vec""'");
-    } else {
-      Vec * temp = reinterpret_cast< Vec * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
-  }
-  result = (dolfin::PETScVector *)new dolfin::PETScVector(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScVector__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = 0 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScVector",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScVector" "', argument " "1"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScVector" "', argument " "1"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::PETScVector *)new dolfin::PETScVector((dolfin::PETScVector const &)*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScVector(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[2];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 1); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_PETScVector__SWIG_0(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Vec, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScVector__SWIG_2(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScVector__SWIG_3(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_PETScVector__SWIG_1(self, args);
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScVector'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_PETScVector(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_PETScVector",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PETScVector" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_init" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_init" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->init(arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_clear",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_clear" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  (arg1)->clear();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_size",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_size" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)((dolfin::PETScVector const *)arg1)->size();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_get__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_get",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_get" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_get" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::real)((dolfin::PETScVector const *)arg1)->get(arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_set__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_set",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_set" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_set" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScVector_set" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->set(arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_add__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_add",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_add" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_add" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScVector_add" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  (arg1)->add(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_vec(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  Vec result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_vec",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_vec" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = ((dolfin::PETScVector const *)arg1)->vec();
-  resultobj = SWIG_NewPointerObj((new Vec(static_cast< const Vec& >(result))), SWIGTYPE_p_Vec, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_array__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_array",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_array" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::real *)(arg1)->array();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_array__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_array",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_array" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::real *)((dolfin::PETScVector const *)arg1)->array();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_array(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[2];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 1); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_PETScVector_array__SWIG_0(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_PETScVector_array__SWIG_1(self, args);
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_array'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_restore__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_restore",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_restore" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_restore" "', argument " "2"" of type '" "dolfin::real []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  (arg1)->restore(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_restore__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_restore",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_restore" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_restore" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  ((dolfin::PETScVector const *)arg1)->restore((dolfin::real const (*))arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_restore(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_PETScVector_restore__SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_PETScVector_restore__SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_restore'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_axpy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_axpy",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_axpy" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_axpy" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScVector_axpy" "', argument " "3"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_axpy" "', argument " "3"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::PETScVector * >(argp3);
-  ((dolfin::PETScVector const *)arg1)->axpy(arg2,(dolfin::PETScVector const &)*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_div(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_div",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_div" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_div" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_div" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  (arg1)->div((dolfin::PETScVector const &)*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_mult(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_mult",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_mult" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_mult" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  (arg1)->mult((dolfin::PETScVector const &)*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_set__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_set",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_set" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_set" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScVector_set" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScVector_set" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->set((dolfin::real const (*))arg2,(int const (*))arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_set(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScVector_set__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_PETScVector_set__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_set'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_add__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_add",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_add" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_add" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScVector_add" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScVector_add" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->add((dolfin::real const (*))arg2,(int const (*))arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_add(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_PETScVector_add__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_PETScVector_add__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_add'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_get__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_get",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_get" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_get" "', argument " "2"" of type '" "dolfin::real []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScVector_get" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScVector_get" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ((dolfin::PETScVector const *)arg1)->get(arg2,(int const (*))arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_get(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScVector_get__SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_PETScVector_get__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_get'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_apply(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_apply",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_apply" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->apply();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_zero(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_zero",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_zero" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->zero();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint arg2 ;
-  SwigValueWrapper<dolfin::PETScVectorElement > result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___call__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___call__" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector___call__" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  result = (arg1)->operator ()(arg2);
-  resultobj = SWIG_NewPointerObj((new dolfin::PETScVectorElement(static_cast< const dolfin::PETScVectorElement& >(result))), SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___call__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___call__" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector___call__" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  result = (dolfin::real)((dolfin::PETScVector const *)arg1)->operator ()(arg2);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___call__(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScVector___call____SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScVector___call____SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector___call__'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_copy__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_copy",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_copy" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_copy" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_copy" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  {
-    dolfin::PETScVector const &_result_ref = (arg1)->operator =((dolfin::PETScVector const &)*arg2);
-    result = (dolfin::PETScVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_copy__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_copy",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_copy" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_copy" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScVector const &_result_ref = (arg1)->operator =(arg2);
-    result = (dolfin::PETScVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_copy(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_PETScVector_copy__SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScVector_copy__SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_copy'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___iadd__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___iadd__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___iadd__" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector___iadd__" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector___iadd__" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  {
-    dolfin::PETScVector const &_result_ref = (arg1)->operator +=((dolfin::PETScVector const &)*arg2);
-    result = (dolfin::PETScVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___isub__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___isub__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___isub__" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector___isub__" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector___isub__" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  {
-    dolfin::PETScVector const &_result_ref = (arg1)->operator -=((dolfin::PETScVector const &)*arg2);
-    result = (dolfin::PETScVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___imul__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___imul__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___imul__" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector___imul__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScVector const &_result_ref = (arg1)->operator *=(arg2);
-    result = (dolfin::PETScVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___idiv__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___idiv__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___idiv__" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector___idiv__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScVector const &_result_ref = (arg1)->operator /=(arg2);
-    result = (dolfin::PETScVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector___mul__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector___mul__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector___mul__" "', argument " "1"" of type '" "dolfin::PETScVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector___mul__" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector___mul__" "', argument " "2"" of type '" "dolfin::PETScVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  result = (dolfin::real)(arg1)->operator *((dolfin::PETScVector const &)*arg2);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_norm__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::PETScVector::NormType arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVector_norm",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_norm" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVector_norm" "', argument " "2"" of type '" "dolfin::PETScVector::NormType""'");
-  } 
-  arg2 = static_cast< dolfin::PETScVector::NormType >(val2);
-  result = (dolfin::real)((dolfin::PETScVector const *)arg1)->norm(arg2);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_norm__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_norm",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_norm" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::real)((dolfin::PETScVector const *)arg1)->norm();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_norm(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_PETScVector_norm__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_PETScVector_norm__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'PETScVector_norm'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_sum(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_sum",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_sum" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::real)((dolfin::PETScVector const *)arg1)->sum();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_max(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_max",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_max" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::real)((dolfin::PETScVector const *)arg1)->max();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_min(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_min",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_min" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  result = (dolfin::real)((dolfin::PETScVector const *)arg1)->min();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_disp(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = (dolfin::PETScVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:PETScVector_disp",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_disp" "', argument " "1"" of type '" "dolfin::PETScVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  ((dolfin::PETScVector const *)arg1)->disp();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_createScatterer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  int arg3 ;
-  int arg4 ;
-  VecScatter *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_createScatterer",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_createScatterer" "', argument " "1"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_createScatterer" "', argument " "1"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_createScatterer" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_createScatterer" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScVector_createScatterer" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScVector_createScatterer" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  result = (VecScatter *)dolfin::PETScVector::createScatterer(*arg1,*arg2,arg3,arg4);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VecScatter, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_gather(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  VecScatter *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_gather",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_gather" "', argument " "1"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_gather" "', argument " "1"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_gather" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_gather" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_VecScatter,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScVector_gather" "', argument " "3"" of type '" "VecScatter &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_gather" "', argument " "3"" of type '" "VecScatter &""'"); 
-  }
-  arg3 = reinterpret_cast< VecScatter * >(argp3);
-  dolfin::PETScVector::gather(*arg1,*arg2,*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_scatter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVector *arg1 = 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  VecScatter *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:PETScVector_scatter",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_scatter" "', argument " "1"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_scatter" "', argument " "1"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_scatter" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_scatter" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_VecScatter,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PETScVector_scatter" "', argument " "3"" of type '" "VecScatter &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_scatter" "', argument " "3"" of type '" "VecScatter &""'"); 
-  }
-  arg3 = reinterpret_cast< VecScatter * >(argp3);
-  dolfin::PETScVector::scatter(*arg1,*arg2,*arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_fromArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::real *arg1 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::uint arg3 ;
-  dolfin::uint arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_fromArray",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_fromArray" "', argument " "1"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg1 = reinterpret_cast< dolfin::real * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_fromArray" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_fromArray" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScVector_fromArray" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScVector_fromArray" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast< dolfin::uint >(val4);
-  dolfin::PETScVector::fromArray((double const (*))arg1,*arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVector_toArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::real *arg1 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::uint arg3 ;
-  dolfin::uint arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:PETScVector_toArray",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVector_toArray" "', argument " "1"" of type '" "dolfin::real []""'"); 
-  } 
-  arg1 = reinterpret_cast< dolfin::real * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PETScVector_toArray" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PETScVector_toArray" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "PETScVector_toArray" "', argument " "3"" of type '" "dolfin::uint""'");
-  } 
-  arg3 = static_cast< dolfin::uint >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "PETScVector_toArray" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast< dolfin::uint >(val4);
-  dolfin::PETScVector::toArray(arg1,*arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScVector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScVector, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_PETScVectorElement__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uint arg1 ;
-  dolfin::PETScVector *arg2 = 0 ;
-  dolfin::PETScVectorElement *result = 0 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_PETScVectorElement",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_PETScVectorElement" "', argument " "1"" of type '" "dolfin::uint""'");
-  } 
-  arg1 = static_cast< dolfin::uint >(val1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_PETScVectorElement" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScVectorElement" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  result = (dolfin::PETScVectorElement *)new dolfin::PETScVectorElement(arg1,*arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScVectorElement__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVectorElement *arg1 = 0 ;
-  dolfin::PETScVectorElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_PETScVectorElement",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScVectorElement,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PETScVectorElement" "', argument " "1"" of type '" "dolfin::PETScVectorElement const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_PETScVectorElement" "', argument " "1"" of type '" "dolfin::PETScVectorElement const &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVectorElement * >(argp1);
-  result = (dolfin::PETScVectorElement *)new dolfin::PETScVectorElement((dolfin::PETScVectorElement const &)*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_PETScVectorElement(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_dolfin__PETScVectorElement, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_PETScVectorElement__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_new_PETScVectorElement__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_PETScVectorElement'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVectorElement___iadd__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVectorElement *arg1 = (dolfin::PETScVectorElement *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVectorElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVectorElement___iadd__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVectorElement___iadd__" "', argument " "1"" of type '" "dolfin::PETScVectorElement *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVectorElement * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVectorElement___iadd__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScVectorElement const &_result_ref = (arg1)->operator +=(arg2);
-    result = (dolfin::PETScVectorElement *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVectorElement___isub__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVectorElement *arg1 = (dolfin::PETScVectorElement *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVectorElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVectorElement___isub__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVectorElement___isub__" "', argument " "1"" of type '" "dolfin::PETScVectorElement *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVectorElement * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVectorElement___isub__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScVectorElement const &_result_ref = (arg1)->operator -=(arg2);
-    result = (dolfin::PETScVectorElement *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_PETScVectorElement___imul__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::PETScVectorElement *arg1 = (dolfin::PETScVectorElement *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::PETScVectorElement *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:PETScVectorElement___imul__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PETScVectorElement___imul__" "', argument " "1"" of type '" "dolfin::PETScVectorElement *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::PETScVectorElement * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PETScVectorElement___imul__" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::PETScVectorElement const &_result_ref = (arg1)->operator *=(arg2);
-    result = (dolfin::PETScVectorElement *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *PETScVectorElement_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__PETScVectorElement, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -14775,8 +9145,8 @@ fail:
 SWIGINTERN PyObject *_wrap_uBlasDummyPreconditioner_solve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   dolfin::uBlasDummyPreconditioner *arg1 = (dolfin::uBlasDummyPreconditioner *) 0 ;
-  uBlasVector *arg2 = 0 ;
-  uBlasVector *arg3 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
+  dolfin::uBlasVector *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -14793,23 +9163,23 @@ SWIGINTERN PyObject *_wrap_uBlasDummyPreconditioner_solve(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasDummyPreconditioner_solve" "', argument " "1"" of type '" "dolfin::uBlasDummyPreconditioner const *""'"); 
   }
   arg1 = reinterpret_cast< dolfin::uBlasDummyPreconditioner * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasDummyPreconditioner_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasDummyPreconditioner_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasDummyPreconditioner_solve" "', argument " "2"" of type '" "uBlasVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasDummyPreconditioner_solve" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasVector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_uBlasVector,  0  | 0);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasDummyPreconditioner_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasDummyPreconditioner_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasDummyPreconditioner_solve" "', argument " "3"" of type '" "uBlasVector const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasDummyPreconditioner_solve" "', argument " "3"" of type '" "dolfin::uBlasVector const &""'"); 
   }
-  arg3 = reinterpret_cast< uBlasVector * >(argp3);
-  ((dolfin::uBlasDummyPreconditioner const *)arg1)->solve(*arg2,(uBlasVector const &)*arg3);
+  arg3 = reinterpret_cast< dolfin::uBlasVector * >(argp3);
+  ((dolfin::uBlasDummyPreconditioner const *)arg1)->solve(*arg2,(dolfin::uBlasVector const &)*arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -15227,7 +9597,7 @@ fail:
 SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   dolfin::uBlasKrylovSolver *arg1 = (dolfin::uBlasKrylovSolver *) 0 ;
-  uBlasMatrix<dolfin::ublas_dense_matrix > *arg2 = 0 ;
+  dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > *arg2 = 0 ;
   dolfin::uBlasVector *arg3 = 0 ;
   dolfin::uBlasVector *arg4 = 0 ;
   dolfin::uint result;
@@ -15250,14 +9620,14 @@ SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve__SWIG_0(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasKrylovSolver_solve" "', argument " "1"" of type '" "dolfin::uBlasKrylovSolver *""'"); 
   }
   arg1 = reinterpret_cast< dolfin::uBlasKrylovSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t,  0  | 0);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > const &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp2);
+  arg2 = reinterpret_cast< dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > * >(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasKrylovSolver_solve" "', argument " "3"" of type '" "dolfin::uBlasVector &""'"); 
@@ -15274,7 +9644,7 @@ SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve__SWIG_0(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasKrylovSolver_solve" "', argument " "4"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   arg4 = reinterpret_cast< dolfin::uBlasVector * >(argp4);
-  result = (dolfin::uint)(arg1)->solve((uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg2,*arg3,(dolfin::uBlasVector const &)*arg4);
+  result = (dolfin::uint)(arg1)->solve((dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > const &)*arg2,*arg3,(dolfin::uBlasVector const &)*arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -15285,7 +9655,7 @@ fail:
 SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   dolfin::uBlasKrylovSolver *arg1 = (dolfin::uBlasKrylovSolver *) 0 ;
-  uBlasMatrix<dolfin::ublas_sparse_matrix > *arg2 = 0 ;
+  dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > *arg2 = 0 ;
   dolfin::uBlasVector *arg3 = 0 ;
   dolfin::uBlasVector *arg4 = 0 ;
   dolfin::uint result;
@@ -15308,14 +9678,14 @@ SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve__SWIG_1(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasKrylovSolver_solve" "', argument " "1"" of type '" "dolfin::uBlasKrylovSolver *""'"); 
   }
   arg1 = reinterpret_cast< dolfin::uBlasKrylovSolver * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasKrylovSolver_solve" "', argument " "2"" of type '" "dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
-  arg2 = reinterpret_cast< uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp2);
+  arg2 = reinterpret_cast< dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasKrylovSolver_solve" "', argument " "3"" of type '" "dolfin::uBlasVector &""'"); 
@@ -15332,7 +9702,7 @@ SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve__SWIG_1(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "uBlasKrylovSolver_solve" "', argument " "4"" of type '" "dolfin::uBlasVector const &""'"); 
   }
   arg4 = reinterpret_cast< dolfin::uBlasVector * >(argp4);
-  result = (dolfin::uint)(arg1)->solve((uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg2,*arg3,(dolfin::uBlasVector const &)*arg4);
+  result = (dolfin::uint)(arg1)->solve((dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg2,*arg3,(dolfin::uBlasVector const &)*arg4);
   resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
@@ -15414,7 +9784,7 @@ SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve(PyObject *self, PyObject *arg
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasKrylovSolver, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0);
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         void *vptr = 0;
@@ -15436,7 +9806,7 @@ SWIGINTERN PyObject *_wrap_uBlasKrylovSolver_solve(PyObject *self, PyObject *arg
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasKrylovSolver, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t, 0);
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         void *vptr = 0;
@@ -16480,946 +10850,6 @@ SWIGINTERN PyObject *uBlasPreconditioner_swigregister(PyObject *SWIGUNUSEDPARM(s
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__uBlasPreconditioner, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_uBlasVector__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_uBlasVector")) SWIG_fail;
-  result = (dolfin::uBlasVector *)new dolfin::uBlasVector();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_uBlasVector__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uint arg1 ;
-  dolfin::uBlasVector *result = 0 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_uBlasVector",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_uBlasVector" "', argument " "1"" of type '" "dolfin::uint""'");
-  } 
-  arg1 = static_cast< dolfin::uint >(val1);
-  result = (dolfin::uBlasVector *)new dolfin::uBlasVector(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_uBlasVector(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[2];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 1); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_uBlasVector__SWIG_0(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_uBlasVector__SWIG_1(self, args);
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'new_uBlasVector'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_uBlasVector(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_uBlasVector",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_uBlasVector" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_init" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_init" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->init(arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_copy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::uBlasVector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_copy",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_copy" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_copy" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  {
-    dolfin::uBlasVector const &_result_ref = (arg1)->operator =(arg2);
-    result = (dolfin::uBlasVector *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_size",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_size" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)((dolfin::uBlasVector const *)arg1)->size();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector___call__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector___call__" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector___call__" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  {
-    dolfin::real &_result_ref = (arg1)->operator ()(arg2);
-    result = (dolfin::real *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector___call__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector___call__" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector___call__" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->operator ()(arg2);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector___call__(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_uBlasVector___call____SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_uBlasVector___call____SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector___call__'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_get__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_get",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_get" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_get" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->get(arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_set__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint arg2 ;
-  dolfin::real arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:uBlasVector_set",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_set" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_set" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "uBlasVector_set" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->set(arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_set__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:uBlasVector_set",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_set" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasVector_set" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasVector_set" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "uBlasVector_set" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->set((dolfin::real const (*))arg2,(int const (*))arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_set(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_uBlasVector_set__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_uBlasVector_set__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_set'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_add(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:uBlasVector_add",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_add" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasVector_add" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasVector_add" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "uBlasVector_add" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->add((dolfin::real const (*))arg2,(int const (*))arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_get__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::real *arg2 ;
-  int *arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:uBlasVector_get",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_get" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "uBlasVector_get" "', argument " "2"" of type '" "dolfin::real []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "uBlasVector_get" "', argument " "3"" of type '" "int const []""'"); 
-  } 
-  arg3 = reinterpret_cast< int * >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "uBlasVector_get" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ((dolfin::uBlasVector const *)arg1)->get(arg2,(int const (*))arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_get(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_uBlasVector_get__SWIG_0(self, args);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_int, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_uBlasVector_get__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_get'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_norm__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uBlasVector::NormType arg2 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_norm",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_norm" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_norm" "', argument " "2"" of type '" "dolfin::uBlasVector::NormType""'");
-  } 
-  arg2 = static_cast< dolfin::uBlasVector::NormType >(val2);
-  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->norm(arg2);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_norm__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_norm",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_norm" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->norm();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_norm(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_uBlasVector_norm__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_uBlasVector_norm__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_norm'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_sum(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_sum",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_sum" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  result = (dolfin::real)((dolfin::uBlasVector const *)arg1)->sum();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_apply(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_apply",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_apply" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->apply();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_zero(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_zero",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_zero" "', argument " "1"" of type '" "dolfin::uBlasVector *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->zero();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_disp__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  dolfin::uint arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:uBlasVector_disp",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_disp" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "uBlasVector_disp" "', argument " "2"" of type '" "dolfin::uint""'");
-  } 
-  arg2 = static_cast< dolfin::uint >(val2);
-  ((dolfin::uBlasVector const *)arg1)->disp(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_disp__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::uBlasVector *arg1 = (dolfin::uBlasVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:uBlasVector_disp",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "uBlasVector_disp" "', argument " "1"" of type '" "dolfin::uBlasVector const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::uBlasVector * >(argp1);
-  ((dolfin::uBlasVector const *)arg1)->disp();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_uBlasVector_disp(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_uBlasVector_disp__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_uBlasVector_disp__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'uBlasVector_disp'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *uBlasVector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__uBlasVector, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -19776,7 +13206,7 @@ SWIGINTERN PyObject *_wrap_new_Function__SWIG_5(PyObject *SWIGUNUSEDPARM(self), 
   
   if (!PyArg_ParseTuple(args,(char *)"OO:new_Function",&obj0,&obj1)) SWIG_fail;
   arg1 = obj0;
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Function" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
   }
@@ -19814,7 +13244,7 @@ SWIGINTERN PyObject *_wrap_new_Function__SWIG_6(PyObject *SWIGUNUSEDPARM(self), 
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:new_Function",&obj0,&obj1,&obj2)) SWIG_fail;
   arg1 = obj0;
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Function" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
   }
@@ -19864,7 +13294,7 @@ SWIGINTERN PyObject *_wrap_new_Function__SWIG_7(PyObject *SWIGUNUSEDPARM(self), 
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:new_Function",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
   arg1 = obj0;
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Function" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
   }
@@ -20015,7 +13445,7 @@ SWIGINTERN PyObject *_wrap_new_Function(PyObject *self, PyObject *args) {
     _v = (argv[0] != 0);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_new_Function__SWIG_5(self, args);
@@ -20064,7 +13494,7 @@ SWIGINTERN PyObject *_wrap_new_Function(PyObject *self, PyObject *args) {
     _v = (argv[0] != 0);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         void *vptr = 0;
@@ -20115,7 +13545,7 @@ SWIGINTERN PyObject *_wrap_new_Function(PyObject *self, PyObject *args) {
     _v = (argv[0] != 0);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         void *vptr = 0;
@@ -20663,7 +14093,7 @@ SWIGINTERN PyObject *_wrap_Function_vector(PyObject *SWIGUNUSEDPARM(self), PyObj
     dolfin::Vector &_result_ref = (arg1)->vector();
     result = (dolfin::Vector *) &_result_ref;
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__uBlasVector, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -20741,7 +14171,7 @@ SWIGINTERN PyObject *_wrap_Function_attach__SWIG_0(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Function_attach" "', argument " "1"" of type '" "dolfin::Function *""'"); 
   }
   arg1 = reinterpret_cast< dolfin::Function * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Function_attach" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
   }
@@ -20779,7 +14209,7 @@ SWIGINTERN PyObject *_wrap_Function_attach__SWIG_1(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Function_attach" "', argument " "1"" of type '" "dolfin::Function *""'"); 
   }
   arg1 = reinterpret_cast< dolfin::Function * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Function_attach" "', argument " "2"" of type '" "dolfin::Vector &""'"); 
   }
@@ -20962,7 +14392,7 @@ SWIGINTERN PyObject *_wrap_Function_attach(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_Function_attach__SWIG_1(self, args);
@@ -21004,7 +14434,7 @@ SWIGINTERN PyObject *_wrap_Function_attach(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__PETScVector, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         {
@@ -53737,1131 +47167,6 @@ SWIGINTERN PyObject *dGqMethod_swigregister(PyObject *SWIGUNUSEDPARM(self), PyOb
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_TimeDependentPDE(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PyObject *arg1 = (PyObject *) 0 ;
-  dolfin::BilinearForm *arg2 = 0 ;
-  dolfin::LinearForm *arg3 = 0 ;
-  dolfin::Mesh *arg4 = 0 ;
-  dolfin::BoundaryCondition *arg5 = 0 ;
-  int arg6 ;
-  dolfin::real arg7 ;
-  dolfin::real arg8 ;
-  dolfin::TimeDependentPDE *result = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  int val6 ;
-  int ecode6 = 0 ;
-  double val7 ;
-  int ecode7 = 0 ;
-  double val8 ;
-  int ecode8 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOO:new_TimeDependentPDE",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7)) SWIG_fail;
-  arg1 = obj0;
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__BilinearForm,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_TimeDependentPDE" "', argument " "2"" of type '" "dolfin::BilinearForm &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_TimeDependentPDE" "', argument " "2"" of type '" "dolfin::BilinearForm &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::BilinearForm * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__LinearForm,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_TimeDependentPDE" "', argument " "3"" of type '" "dolfin::LinearForm &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_TimeDependentPDE" "', argument " "3"" of type '" "dolfin::LinearForm &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::LinearForm * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__Mesh,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_TimeDependentPDE" "', argument " "4"" of type '" "dolfin::Mesh &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_TimeDependentPDE" "', argument " "4"" of type '" "dolfin::Mesh &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::Mesh * >(argp4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5, SWIGTYPE_p_dolfin__BoundaryCondition,  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "new_TimeDependentPDE" "', argument " "5"" of type '" "dolfin::BoundaryCondition &""'"); 
-  }
-  if (!argp5) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_TimeDependentPDE" "', argument " "5"" of type '" "dolfin::BoundaryCondition &""'"); 
-  }
-  arg5 = reinterpret_cast< dolfin::BoundaryCondition * >(argp5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_TimeDependentPDE" "', argument " "6"" of type '" "int""'");
-  } 
-  arg6 = static_cast< int >(val6);
-  ecode7 = SWIG_AsVal_double(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_TimeDependentPDE" "', argument " "7"" of type '" "dolfin::real""'");
-  } 
-  arg7 = static_cast< dolfin::real >(val7);
-  ecode8 = SWIG_AsVal_double(obj7, &val8);
-  if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_TimeDependentPDE" "', argument " "8"" of type '" "dolfin::real""'");
-  } 
-  arg8 = static_cast< dolfin::real >(val8);
-  if ( arg1 != Py_None ) {
-    /* subclassed */
-    result = (dolfin::TimeDependentPDE *)new SwigDirector_TimeDependentPDE(arg1,*arg2,*arg3,*arg4,*arg5,arg6,arg7,arg8); 
-  } else {
-    result = (dolfin::TimeDependentPDE *)new dolfin::TimeDependentPDE(*arg2,*arg3,*arg4,*arg5,arg6,arg7,arg8); 
-  }
-  
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__TimeDependentPDE, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_TimeDependentPDE(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_TimeDependentPDE",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_TimeDependentPDE" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_solve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Function *arg2 = 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:TimeDependentPDE_solve",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_solve" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__Function,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentPDE_solve" "', argument " "2"" of type '" "dolfin::Function &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentPDE_solve" "', argument " "2"" of type '" "dolfin::Function &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::Function * >(argp2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::uint)(arg1)->solve(*arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_fu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Vector *arg2 = 0 ;
-  dolfin::Vector *arg3 = 0 ;
-  dolfin::real arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  double val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:TimeDependentPDE_fu",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_fu" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentPDE_fu" "', argument " "2"" of type '" "dolfin::Vector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentPDE_fu" "', argument " "2"" of type '" "dolfin::Vector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::Vector * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_dolfin__PETScVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "TimeDependentPDE_fu" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentPDE_fu" "', argument " "3"" of type '" "dolfin::Vector &""'"); 
-  }
-  arg3 = reinterpret_cast< dolfin::Vector * >(argp3);
-  ecode4 = SWIG_AsVal_double(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "TimeDependentPDE_fu" "', argument " "4"" of type '" "dolfin::real""'");
-  } 
-  arg4 = static_cast< dolfin::real >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->fu((dolfin::Vector const &)*arg2,*arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Function *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:TimeDependentPDE_init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_init" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__Function,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentPDE_init" "', argument " "2"" of type '" "dolfin::Function &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentPDE_init" "', argument " "2"" of type '" "dolfin::Function &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::Function * >(argp2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->init(*arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_save(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Function *arg2 = 0 ;
-  dolfin::real arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:TimeDependentPDE_save",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_save" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__Function,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentPDE_save" "', argument " "2"" of type '" "dolfin::Function &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentPDE_save" "', argument " "2"" of type '" "dolfin::Function &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::Function * >(argp2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "TimeDependentPDE_save" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->save(*arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_preparestep(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_preparestep",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_preparestep" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->preparestep();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_prepareiteration(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_prepareiteration",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_prepareiteration" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->prepareiteration();
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_elementdim(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::uint result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_elementdim",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_elementdim" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  result = (dolfin::uint)(arg1)->elementdim();
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_a(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::BilinearForm *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_a",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_a" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  {
-    dolfin::BilinearForm &_result_ref = (arg1)->a();
-    result = (dolfin::BilinearForm *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__BilinearForm, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_L(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::LinearForm *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_L",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_L" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  {
-    dolfin::LinearForm &_result_ref = (arg1)->L();
-    result = (dolfin::LinearForm *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__LinearForm, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_mesh(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Mesh *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_mesh",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_mesh" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  {
-    dolfin::Mesh &_result_ref = (arg1)->mesh();
-    result = (dolfin::Mesh *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__Mesh, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_bc(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::BoundaryCondition *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_bc",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_bc" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  {
-    dolfin::BoundaryCondition &_result_ref = (arg1)->bc();
-    result = (dolfin::BoundaryCondition *) &_result_ref;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__BoundaryCondition, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_x_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Vector *arg2 = (dolfin::Vector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:TimeDependentPDE_x_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_x_set" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentPDE_x_set" "', argument " "2"" of type '" "dolfin::Vector *""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::Vector * >(argp2);
-  if (arg1) (arg1)->x = arg2;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_x_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Vector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_x_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_x_get" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  result = (dolfin::Vector *) ((arg1)->x);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_dotx_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Vector *arg2 = (dolfin::Vector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:TimeDependentPDE_dotx_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_dotx_set" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_dolfin__PETScVector, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentPDE_dotx_set" "', argument " "2"" of type '" "dolfin::Vector *""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::Vector * >(argp2);
-  if (arg1) (arg1)->dotx = arg2;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_dotx_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::Vector *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_dotx_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_dotx_get" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  result = (dolfin::Vector *) ((arg1)->dotx);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__PETScVector, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_k_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::real arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:TimeDependentPDE_k_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_k_set" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "TimeDependentPDE_k_set" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  if (arg1) (arg1)->k = arg2;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentPDE_k_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:TimeDependentPDE_k_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentPDE_k_get" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  result = (dolfin::real) ((arg1)->k);
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_disown_TimeDependentPDE(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = (dolfin::TimeDependentPDE *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:disown_TimeDependentPDE",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentPDE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_TimeDependentPDE" "', argument " "1"" of type '" "dolfin::TimeDependentPDE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  {
-    Swig::Director *director = dynamic_cast<Swig::Director *>(arg1);
-    if (director) director->swig_disown();
-  }
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *TimeDependentPDE_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__TimeDependentPDE, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_TimeDependentODE(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentPDE *arg1 = 0 ;
-  int arg2 ;
-  dolfin::real arg3 ;
-  dolfin::TimeDependentODE *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_TimeDependentODE",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__TimeDependentPDE,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_TimeDependentODE" "', argument " "1"" of type '" "dolfin::TimeDependentPDE &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_TimeDependentODE" "', argument " "1"" of type '" "dolfin::TimeDependentPDE &""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentPDE * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_TimeDependentODE" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_TimeDependentODE" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  result = (dolfin::TimeDependentODE *)new dolfin::TimeDependentODE(*arg1,arg2,arg3);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_dolfin__TimeDependentODE, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_u0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-  dolfin::uBlasVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:TimeDependentODE_u0",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentODE_u0" "', argument " "1"" of type '" "dolfin::TimeDependentODE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentODE_u0" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentODE_u0" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->u0(*arg2);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_timestep(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-  dolfin::real arg2 ;
-  dolfin::real arg3 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:TimeDependentODE_timestep",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentODE_timestep" "', argument " "1"" of type '" "dolfin::TimeDependentODE const *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentODE * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "TimeDependentODE_timestep" "', argument " "2"" of type '" "dolfin::real""'");
-  } 
-  arg2 = static_cast< dolfin::real >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "TimeDependentODE_timestep" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::real)((dolfin::TimeDependentODE const *)arg1)->timestep(arg2,arg3);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_f__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-  dolfin::uBlasVector *arg2 = 0 ;
-  dolfin::real arg3 ;
-  dolfin::uBlasVector *arg4 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:TimeDependentODE_f",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentODE_f" "', argument " "1"" of type '" "dolfin::TimeDependentODE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentODE_f" "', argument " "2"" of type '" "dolfin::uBlasVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentODE_f" "', argument " "2"" of type '" "dolfin::uBlasVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "TimeDependentODE_f" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_dolfin__uBlasVector,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "TimeDependentODE_f" "', argument " "4"" of type '" "dolfin::uBlasVector &""'"); 
-  }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentODE_f" "', argument " "4"" of type '" "dolfin::uBlasVector &""'"); 
-  }
-  arg4 = reinterpret_cast< dolfin::uBlasVector * >(argp4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->f((dolfin::uBlasVector const &)*arg2,arg3,*arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_f__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-  dolfin::uBlasVector *arg2 = 0 ;
-  dolfin::real arg3 ;
-  dolfin::uint arg4 ;
-  dolfin::real result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:TimeDependentODE_f",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentODE_f" "', argument " "1"" of type '" "dolfin::TimeDependentODE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentODE_f" "', argument " "2"" of type '" "dolfin::uBlasVector const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "TimeDependentODE_f" "', argument " "2"" of type '" "dolfin::uBlasVector const &""'"); 
-  }
-  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "TimeDependentODE_f" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "TimeDependentODE_f" "', argument " "4"" of type '" "dolfin::uint""'");
-  } 
-  arg4 = static_cast< dolfin::uint >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (dolfin::real)(arg1)->f((dolfin::uBlasVector const &)*arg2,arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_f(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__TimeDependentODE, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_dolfin__uBlasVector, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_TimeDependentODE_f__SWIG_0(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_dolfin__TimeDependentODE, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_dolfin__uBlasVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_TimeDependentODE_f__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"No matching function for overloaded 'TimeDependentODE_f'");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_fmono(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-  dolfin::real *arg2 ;
-  dolfin::real arg3 ;
-  dolfin::real *arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:TimeDependentODE_fmono",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentODE_fmono" "', argument " "1"" of type '" "dolfin::TimeDependentODE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentODE_fmono" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "TimeDependentODE_fmono" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "TimeDependentODE_fmono" "', argument " "4"" of type '" "dolfin::real []""'"); 
-  } 
-  arg4 = reinterpret_cast< dolfin::real * >(argp4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    (arg1)->f((dolfin::real const (*))arg2,arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_TimeDependentODE_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  dolfin::TimeDependentODE *arg1 = (dolfin::TimeDependentODE *) 0 ;
-  dolfin::real *arg2 ;
-  dolfin::real arg3 ;
-  bool arg4 ;
-  bool result;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  bool val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  Swig::Director *director = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:TimeDependentODE_update",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_dolfin__TimeDependentODE, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TimeDependentODE_update" "', argument " "1"" of type '" "dolfin::TimeDependentODE *""'"); 
-  }
-  arg1 = reinterpret_cast< dolfin::TimeDependentODE * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TimeDependentODE_update" "', argument " "2"" of type '" "dolfin::real const []""'"); 
-  } 
-  arg2 = reinterpret_cast< dolfin::real * >(argp2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "TimeDependentODE_update" "', argument " "3"" of type '" "dolfin::real""'");
-  } 
-  arg3 = static_cast< dolfin::real >(val3);
-  ecode4 = SWIG_AsVal_bool(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "TimeDependentODE_update" "', argument " "4"" of type '" "bool""'");
-  } 
-  arg4 = static_cast< bool >(val4);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  if (director && (director->swig_get_self()==obj0)) director->swig_set_up();
-  try {
-    Swig::UnknownExceptionHandler dh;
-    result = (bool)(arg1)->update((dolfin::real const (*))arg2,arg3,arg4);
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *TimeDependentODE_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_dolfin__TimeDependentODE, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
 SWIGINTERN PyObject *_wrap_delete_FiniteElement(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   dolfin::FiniteElement *arg1 = (dolfin::FiniteElement *) 0 ;
@@ -58074,8 +50379,8 @@ fail:
 
 SWIGINTERN PyObject *_wrap_FEM_lump(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  dolfin::PETScMatrix *arg1 = 0 ;
-  dolfin::PETScVector *arg2 = 0 ;
+  dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > *arg1 = 0 ;
+  dolfin::uBlasVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -58084,23 +50389,23 @@ SWIGINTERN PyObject *_wrap_FEM_lump(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:FEM_lump",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__PETScMatrix,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FEM_lump" "', argument " "1"" of type '" "dolfin::PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FEM_lump" "', argument " "1"" of type '" "dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FEM_lump" "', argument " "1"" of type '" "dolfin::PETScMatrix const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FEM_lump" "', argument " "1"" of type '" "dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const &""'"); 
   }
-  arg1 = reinterpret_cast< dolfin::PETScMatrix * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__PETScVector,  0 );
+  arg1 = reinterpret_cast< dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_dolfin__uBlasVector,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FEM_lump" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FEM_lump" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FEM_lump" "', argument " "2"" of type '" "dolfin::PETScVector &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FEM_lump" "', argument " "2"" of type '" "dolfin::uBlasVector &""'"); 
   }
-  arg2 = reinterpret_cast< dolfin::PETScVector * >(argp2);
-  dolfin::FEM::SWIGTEMPLATEDISAMBIGUATOR lump<Matrix,Vector >((dolfin::PETScMatrix const &)*arg1,*arg2);
+  arg2 = reinterpret_cast< dolfin::uBlasVector * >(argp2);
+  dolfin::FEM::SWIGTEMPLATEDISAMBIGUATOR lump<Matrix,Vector >((dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > const &)*arg1,*arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -58465,102 +50770,25 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"GenericVector_apply", _wrap_GenericVector_apply, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_zero", _wrap_GenericVector_zero, METH_VARARGS, NULL},
 	 { (char *)"GenericVector_swigregister", GenericVector_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_uBlasVector", _wrap_new_uBlasVector, METH_VARARGS, NULL},
+	 { (char *)"delete_uBlasVector", _wrap_delete_uBlasVector, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_init", _wrap_uBlasVector_init, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_copy", _wrap_uBlasVector_copy, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_size", _wrap_uBlasVector_size, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector___call__", _wrap_uBlasVector___call__, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_set", _wrap_uBlasVector_set, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_add", _wrap_uBlasVector_add, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_get", _wrap_uBlasVector_get, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_norm", _wrap_uBlasVector_norm, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_sum", _wrap_uBlasVector_sum, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_apply", _wrap_uBlasVector_apply, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_zero", _wrap_uBlasVector_zero, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_disp", _wrap_uBlasVector_disp, METH_VARARGS, NULL},
+	 { (char *)"uBlasVector_swigregister", uBlasVector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"GMRES_solve", _wrap_GMRES_solve, METH_VARARGS, NULL},
 	 { (char *)"GMRES_swigregister", GMRES_swigregister, METH_VARARGS, NULL},
 	 { (char *)"LU_solve", _wrap_LU_solve, METH_VARARGS, NULL},
 	 { (char *)"LU_swigregister", LU_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScKrylovMatrix", _wrap_delete_PETScKrylovMatrix, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovMatrix_init", _wrap_PETScKrylovMatrix_init, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovMatrix_size", _wrap_PETScKrylovMatrix_size, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovMatrix_mat", _wrap_PETScKrylovMatrix_mat, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovMatrix_mult", _wrap_PETScKrylovMatrix_mult, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovMatrix_disp", _wrap_PETScKrylovMatrix_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovMatrix_swigregister", PETScKrylovMatrix_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScKrylovSolver", _wrap_new_PETScKrylovSolver, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScKrylovSolver", _wrap_delete_PETScKrylovSolver, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovSolver_solve", _wrap_PETScKrylovSolver_solve, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovSolver_disp", _wrap_PETScKrylovSolver_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScKrylovSolver_swigregister", PETScKrylovSolver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScLinearSolver", _wrap_delete_PETScLinearSolver, METH_VARARGS, NULL},
-	 { (char *)"PETScLinearSolver_solve", _wrap_PETScLinearSolver_solve, METH_VARARGS, NULL},
-	 { (char *)"PETScLinearSolver_swigregister", PETScLinearSolver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScLUSolver", _wrap_new_PETScLUSolver, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScLUSolver", _wrap_delete_PETScLUSolver, METH_VARARGS, NULL},
-	 { (char *)"PETScLUSolver_solve", _wrap_PETScLUSolver_solve, METH_VARARGS, NULL},
-	 { (char *)"PETScLUSolver_disp", _wrap_PETScLUSolver_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScLUSolver_swigregister", PETScLUSolver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"PETScManager_init", _wrap_PETScManager_init, METH_VARARGS, NULL},
-	 { (char *)"PETScManager_swigregister", PETScManager_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScMatrix", _wrap_new_PETScMatrix, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScMatrix", _wrap_delete_PETScMatrix, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_init", _wrap_PETScMatrix_init, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_size", _wrap_PETScMatrix_size, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_nz", _wrap_PETScMatrix_nz, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_nzsum", _wrap_PETScMatrix_nzsum, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_nzmax", _wrap_PETScMatrix_nzmax, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_get", _wrap_PETScMatrix_get, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_set", _wrap_PETScMatrix_set, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_add", _wrap_PETScMatrix_add, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_getRow", _wrap_PETScMatrix_getRow, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_ident", _wrap_PETScMatrix_ident, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_mult", _wrap_PETScMatrix_mult, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_lump", _wrap_PETScMatrix_lump, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_norm", _wrap_PETScMatrix_norm, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_apply", _wrap_PETScMatrix_apply, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_zero", _wrap_PETScMatrix_zero, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_type", _wrap_PETScMatrix_type, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_mat", _wrap_PETScMatrix_mat, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_disp", _wrap_PETScMatrix_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix___call__", _wrap_PETScMatrix___call__, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrix_swigregister", PETScMatrix_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScMatrixElement", _wrap_new_PETScMatrixElement, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrixElement___iadd__", _wrap_PETScMatrixElement___iadd__, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrixElement___isub__", _wrap_PETScMatrixElement___isub__, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrixElement___imul__", _wrap_PETScMatrixElement___imul__, METH_VARARGS, NULL},
-	 { (char *)"PETScMatrixElement_swigregister", PETScMatrixElement_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScPreconditioner", _wrap_delete_PETScPreconditioner, METH_VARARGS, NULL},
-	 { (char *)"PETScPreconditioner_setup", _wrap_PETScPreconditioner_setup, METH_VARARGS, NULL},
-	 { (char *)"PETScPreconditioner_solve", _wrap_PETScPreconditioner_solve, METH_VARARGS, NULL},
-	 { (char *)"PETScPreconditioner_swigregister", PETScPreconditioner_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScVector", _wrap_new_PETScVector, METH_VARARGS, NULL},
-	 { (char *)"delete_PETScVector", _wrap_delete_PETScVector, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_init", _wrap_PETScVector_init, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_clear", _wrap_PETScVector_clear, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_size", _wrap_PETScVector_size, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_vec", _wrap_PETScVector_vec, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_array", _wrap_PETScVector_array, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_restore", _wrap_PETScVector_restore, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_axpy", _wrap_PETScVector_axpy, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_div", _wrap_PETScVector_div, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_mult", _wrap_PETScVector_mult, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_set", _wrap_PETScVector_set, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_add", _wrap_PETScVector_add, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_get", _wrap_PETScVector_get, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_apply", _wrap_PETScVector_apply, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_zero", _wrap_PETScVector_zero, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___call__", _wrap_PETScVector___call__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_copy", _wrap_PETScVector_copy, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___iadd__", _wrap_PETScVector___iadd__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___isub__", _wrap_PETScVector___isub__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___imul__", _wrap_PETScVector___imul__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___idiv__", _wrap_PETScVector___idiv__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector___mul__", _wrap_PETScVector___mul__, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_norm", _wrap_PETScVector_norm, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_sum", _wrap_PETScVector_sum, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_max", _wrap_PETScVector_max, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_min", _wrap_PETScVector_min, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_disp", _wrap_PETScVector_disp, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_createScatterer", _wrap_PETScVector_createScatterer, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_gather", _wrap_PETScVector_gather, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_scatter", _wrap_PETScVector_scatter, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_fromArray", _wrap_PETScVector_fromArray, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_toArray", _wrap_PETScVector_toArray, METH_VARARGS, NULL},
-	 { (char *)"PETScVector_swigregister", PETScVector_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_PETScVectorElement", _wrap_new_PETScVectorElement, METH_VARARGS, NULL},
-	 { (char *)"PETScVectorElement___iadd__", _wrap_PETScVectorElement___iadd__, METH_VARARGS, NULL},
-	 { (char *)"PETScVectorElement___isub__", _wrap_PETScVectorElement___isub__, METH_VARARGS, NULL},
-	 { (char *)"PETScVectorElement___imul__", _wrap_PETScVectorElement___imul__, METH_VARARGS, NULL},
-	 { (char *)"PETScVectorElement_swigregister", PETScVectorElement_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_uBlasDummyPreconditioner", _wrap_new_uBlasDummyPreconditioner, METH_VARARGS, NULL},
 	 { (char *)"delete_uBlasDummyPreconditioner", _wrap_delete_uBlasDummyPreconditioner, METH_VARARGS, NULL},
 	 { (char *)"uBlasDummyPreconditioner_solve", _wrap_uBlasDummyPreconditioner_solve, METH_VARARGS, NULL},
@@ -58589,21 +50817,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"uBlasPreconditioner_init", _wrap_uBlasPreconditioner_init, METH_VARARGS, NULL},
 	 { (char *)"uBlasPreconditioner_solve", _wrap_uBlasPreconditioner_solve, METH_VARARGS, NULL},
 	 { (char *)"uBlasPreconditioner_swigregister", uBlasPreconditioner_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_uBlasVector", _wrap_new_uBlasVector, METH_VARARGS, NULL},
-	 { (char *)"delete_uBlasVector", _wrap_delete_uBlasVector, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_init", _wrap_uBlasVector_init, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_copy", _wrap_uBlasVector_copy, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_size", _wrap_uBlasVector_size, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector___call__", _wrap_uBlasVector___call__, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_set", _wrap_uBlasVector_set, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_add", _wrap_uBlasVector_add, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_get", _wrap_uBlasVector_get, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_norm", _wrap_uBlasVector_norm, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_sum", _wrap_uBlasVector_sum, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_apply", _wrap_uBlasVector_apply, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_zero", _wrap_uBlasVector_zero, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_disp", _wrap_uBlasVector_disp, METH_VARARGS, NULL},
-	 { (char *)"uBlasVector_swigregister", uBlasVector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_uBlasSparseMatrix", _wrap_new_uBlasSparseMatrix, METH_VARARGS, NULL},
 	 { (char *)"delete_uBlasSparseMatrix", _wrap_delete_uBlasSparseMatrix, METH_VARARGS, NULL},
 	 { (char *)"uBlasSparseMatrix_size", _wrap_uBlasSparseMatrix_size, METH_VARARGS, NULL},
@@ -59396,34 +51609,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"dGqMethod_error", _wrap_dGqMethod_error, METH_VARARGS, NULL},
 	 { (char *)"dGqMethod_disp", _wrap_dGqMethod_disp, METH_VARARGS, NULL},
 	 { (char *)"dGqMethod_swigregister", dGqMethod_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_TimeDependentPDE", _wrap_new_TimeDependentPDE, METH_VARARGS, NULL},
-	 { (char *)"delete_TimeDependentPDE", _wrap_delete_TimeDependentPDE, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_solve", _wrap_TimeDependentPDE_solve, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_fu", _wrap_TimeDependentPDE_fu, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_init", _wrap_TimeDependentPDE_init, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_save", _wrap_TimeDependentPDE_save, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_preparestep", _wrap_TimeDependentPDE_preparestep, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_prepareiteration", _wrap_TimeDependentPDE_prepareiteration, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_elementdim", _wrap_TimeDependentPDE_elementdim, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_a", _wrap_TimeDependentPDE_a, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_L", _wrap_TimeDependentPDE_L, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_mesh", _wrap_TimeDependentPDE_mesh, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_bc", _wrap_TimeDependentPDE_bc, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_x_set", _wrap_TimeDependentPDE_x_set, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_x_get", _wrap_TimeDependentPDE_x_get, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_dotx_set", _wrap_TimeDependentPDE_dotx_set, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_dotx_get", _wrap_TimeDependentPDE_dotx_get, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_k_set", _wrap_TimeDependentPDE_k_set, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_k_get", _wrap_TimeDependentPDE_k_get, METH_VARARGS, NULL},
-	 { (char *)"disown_TimeDependentPDE", _wrap_disown_TimeDependentPDE, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentPDE_swigregister", TimeDependentPDE_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_TimeDependentODE", _wrap_new_TimeDependentODE, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentODE_u0", _wrap_TimeDependentODE_u0, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentODE_timestep", _wrap_TimeDependentODE_timestep, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentODE_f", _wrap_TimeDependentODE_f, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentODE_fmono", _wrap_TimeDependentODE_fmono, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentODE_update", _wrap_TimeDependentODE_update, METH_VARARGS, NULL},
-	 { (char *)"TimeDependentODE_swigregister", TimeDependentODE_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_FiniteElement", _wrap_delete_FiniteElement, METH_VARARGS, NULL},
 	 { (char *)"FiniteElement_spacedim", _wrap_FiniteElement_spacedim, METH_VARARGS, NULL},
 	 { (char *)"FiniteElement_shapedim", _wrap_FiniteElement_shapedim, METH_VARARGS, NULL},
@@ -59557,12 +51742,6 @@ static void *_p_dolfin__NewFacetIteratorTo_p_dolfin__MeshEntityIterator(void *x)
 static void *_p_dolfin__NewCellIteratorTo_p_dolfin__MeshEntityIterator(void *x) {
     return (void *)((dolfin::MeshEntityIterator *)  ((dolfin::NewCellIterator *) x));
 }
-static void *_p_dolfin__TimeDependentODETo_p_dolfin__ODE(void *x) {
-    return (void *)((dolfin::ODE *)  ((dolfin::TimeDependentODE *) x));
-}
-static void *_p_dolfin__PETScVectorTo_p_dolfin__GenericVector(void *x) {
-    return (void *)((dolfin::GenericVector *)  ((dolfin::PETScVector *) x));
-}
 static void *_p_dolfin__uBlasVectorTo_p_dolfin__GenericVector(void *x) {
     return (void *)((dolfin::GenericVector *)  ((dolfin::uBlasVector *) x));
 }
@@ -59599,9 +51778,6 @@ static void *_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__Ge
 static void *_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__GenericMatrix(void *x) {
     return (void *)((dolfin::GenericMatrix *)  ((dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > *) x));
 }
-static void *_p_dolfin__PETScMatrixTo_p_dolfin__GenericMatrix(void *x) {
-    return (void *)((dolfin::GenericMatrix *)  ((dolfin::PETScMatrix *) x));
-}
 static void *_p_dolfin__cGqMethodTo_p_dolfin__Method(void *x) {
     return (void *)((dolfin::Method *)  ((dolfin::cGqMethod *) x));
 }
@@ -59614,53 +51790,44 @@ static void *_p_dolfin__UnitSquareTo_p_dolfin__Mesh(void *x) {
 static void *_p_dolfin__UnitCubeTo_p_dolfin__Mesh(void *x) {
     return (void *)((dolfin::Mesh *)  ((dolfin::UnitCube *) x));
 }
-static void *_p_dolfin__PETScLUSolverTo_p_dolfin__PETScLinearSolver(void *x) {
-    return (void *)((dolfin::PETScLinearSolver *)  ((dolfin::PETScLUSolver *) x));
-}
 static void *_p_dolfin__uBlasLUSolverTo_p_dolfin__uBlasLinearSolver(void *x) {
     return (void *)((dolfin::uBlasLinearSolver *)  ((dolfin::uBlasLUSolver *) x));
 }
-static void *_p_dolfin__BoundaryMeshTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *) (dolfin::NewMesh *) ((dolfin::BoundaryMesh *) x));
-}
-static void *_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *)  ((dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > *) x));
-}
-static void *_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *)  ((dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > *) x));
-}
-static void *_p_dolfin__FunctionTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *)  ((dolfin::Function *) x));
-}
-static void *_p_dolfin__NewUnitCubeTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *) (dolfin::NewMesh *) ((dolfin::NewUnitCube *) x));
-}
-static void *_p_dolfin__UnitCubeTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *) (dolfin::Mesh *) ((dolfin::UnitCube *) x));
+static void *_p_dolfin__UnitSquareTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *) (dolfin::Mesh *) ((dolfin::UnitSquare *) x));
 }
 static void *_p_dolfin__NewMeshTo_p_dolfin__Variable(void *x) {
     return (void *)((dolfin::Variable *)  ((dolfin::NewMesh *) x));
 }
-static void *_p_dolfin__PETScMatrixTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *)  ((dolfin::PETScMatrix *) x));
-}
-static void *_p_dolfin__MeshTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *)  ((dolfin::Mesh *) x));
+static void *_p_dolfin__NewUnitSquareTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *) (dolfin::NewMesh *) ((dolfin::NewUnitSquare *) x));
 }
 static void *_p_dolfin__uBlasVectorTo_p_dolfin__Variable(void *x) {
     return (void *)((dolfin::Variable *)  ((dolfin::uBlasVector *) x));
 }
-static void *_p_dolfin__PETScVectorTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *)  ((dolfin::PETScVector *) x));
+static void *_p_dolfin__MeshTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *)  ((dolfin::Mesh *) x));
+}
+static void *_p_dolfin__FunctionTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *)  ((dolfin::Function *) x));
+}
+static void *_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *)  ((dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > *) x));
+}
+static void *_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *)  ((dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > *) x));
+}
+static void *_p_dolfin__UnitCubeTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *) (dolfin::Mesh *) ((dolfin::UnitCube *) x));
+}
+static void *_p_dolfin__NewUnitCubeTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *) (dolfin::NewMesh *) ((dolfin::NewUnitCube *) x));
 }
 static void *_p_dolfin__SampleTo_p_dolfin__Variable(void *x) {
     return (void *)((dolfin::Variable *)  ((dolfin::Sample *) x));
 }
-static void *_p_dolfin__NewUnitSquareTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *) (dolfin::NewMesh *) ((dolfin::NewUnitSquare *) x));
-}
-static void *_p_dolfin__UnitSquareTo_p_dolfin__Variable(void *x) {
-    return (void *)((dolfin::Variable *) (dolfin::Mesh *) ((dolfin::UnitSquare *) x));
+static void *_p_dolfin__BoundaryMeshTo_p_dolfin__Variable(void *x) {
+    return (void *)((dolfin::Variable *) (dolfin::NewMesh *) ((dolfin::BoundaryMesh *) x));
 }
 static swig_type_info _swigt__p_Boundary = {"_p_Boundary", "Boundary *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CellType__Type = {"_p_CellType__Type", "CellType::Type *", 0, 0, (void*)0, 0};
@@ -59668,17 +51835,9 @@ static swig_type_info _swigt__p_Edge = {"_p_Edge", "Edge *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Face = {"_p_Face", "Face *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_FunctionPointer = {"_p_FunctionPointer", "FunctionPointer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Index = {"_p_Index", "Index *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_KSP = {"_p_KSP", "KSP *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_KrylovMethod = {"_p_KrylovMethod", "KrylovMethod *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Mat = {"_p_Mat", "Mat *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Matrix = {"_p_Matrix", "Matrix *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PETScKrylovMatrix = {"_p_PETScKrylovMatrix", "PETScKrylovMatrix *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PETScMatrix = {"_p_PETScMatrix", "PETScMatrix *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PETScPreconditioner = {"_p_PETScPreconditioner", "PETScPreconditioner *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PETScVector = {"_p_PETScVector", "PETScVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Preconditioner = {"_p_Preconditioner", "Preconditioner *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Vec = {"_p_Vec", "Vec *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_VecScatter = {"_p_VecScatter", "VecScatter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Vector = {"_p_Vector", "Vector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__AffineMap = {"_p_dolfin__AffineMap", "dolfin::AffineMap *", 0, 0, (void*)0, 0};
@@ -59756,16 +51915,6 @@ static swig_type_info _swigt__p_dolfin__NewVertex = {"_p_dolfin__NewVertex", "do
 static swig_type_info _swigt__p_dolfin__NewVertexIterator = {"_p_dolfin__NewVertexIterator", "dolfin::NewVertexIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__ODE = {"_p_dolfin__ODE", "dolfin::ODE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__ODESolver = {"_p_dolfin__ODESolver", "dolfin::ODESolver *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScKrylovMatrix = {"_p_dolfin__PETScKrylovMatrix", "dolfin::PETScKrylovMatrix *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScKrylovSolver = {"_p_dolfin__PETScKrylovSolver", "dolfin::PETScKrylovSolver *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScLUSolver = {"_p_dolfin__PETScLUSolver", "dolfin::PETScLUSolver *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScLinearSolver = {"_p_dolfin__PETScLinearSolver", "dolfin::PETScLinearSolver *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScManager = {"_p_dolfin__PETScManager", "dolfin::PETScManager *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScMatrix = {"_p_dolfin__PETScMatrix", "dolfin::PETScMatrix *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScMatrixElement = {"_p_dolfin__PETScMatrixElement", "dolfin::PETScMatrixElement *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScPreconditioner = {"_p_dolfin__PETScPreconditioner", "dolfin::PETScPreconditioner *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScVector = {"_p_dolfin__PETScVector", "dolfin::PETScVector *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__PETScVectorElement = {"_p_dolfin__PETScVectorElement", "dolfin::PETScVectorElement *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Parameter = {"_p_dolfin__Parameter", "dolfin::Parameter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__ParameterList = {"_p_dolfin__ParameterList", "dolfin::ParameterList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Partition = {"_p_dolfin__Partition", "dolfin::Partition *", 0, 0, (void*)0, 0};
@@ -59773,8 +51922,6 @@ static swig_type_info _swigt__p_dolfin__Point = {"_p_dolfin__Point", "dolfin::Po
 static swig_type_info _swigt__p_dolfin__Sample = {"_p_dolfin__Sample", "dolfin::Sample *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__Tetrahedron = {"_p_dolfin__Tetrahedron", "dolfin::Tetrahedron *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__TimeDependent = {"_p_dolfin__TimeDependent", "dolfin::TimeDependent *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__TimeDependentODE = {"_p_dolfin__TimeDependentODE", "dolfin::TimeDependentODE *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__TimeDependentPDE = {"_p_dolfin__TimeDependentPDE", "dolfin::TimeDependentPDE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__TimeSlab = {"_p_dolfin__TimeSlab", "dolfin::TimeSlab *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__TimeSlabJacobian = {"_p_dolfin__TimeSlabJacobian", "dolfin::TimeSlabJacobian *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__TimeStepper = {"_p_dolfin__TimeStepper", "dolfin::TimeStepper *", 0, 0, (void*)0, 0};
@@ -59795,7 +51942,7 @@ static swig_type_info _swigt__p_dolfin__uBlasKrylovSolver = {"_p_dolfin__uBlasKr
 static swig_type_info _swigt__p_dolfin__uBlasLUSolver = {"_p_dolfin__uBlasLUSolver", "dolfin::uBlasLUSolver *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__uBlasLinearSolver = {"_p_dolfin__uBlasLinearSolver", "dolfin::uBlasLinearSolver *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t = {"_p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t", "dolfin::uBlasMatrix<dolfin::ublas_dense_matrix > *|dolfin::uBlasDenseMatrix *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t = {"_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t", "dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > *|dolfin::uBlasSparseMatrix *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t = {"_p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t", "dolfin::uBlasMatrix<dolfin::ublas_sparse_matrix > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__uBlasPreconditioner = {"_p_dolfin__uBlasPreconditioner", "dolfin::uBlasPreconditioner *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__uBlasVector = {"_p_dolfin__uBlasVector", "dolfin::uBlasVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_dolfin__ublas__compressed_matrixTdouble_dolfin__ublas__column_major_t = {"_p_dolfin__ublas__compressed_matrixTdouble_dolfin__ublas__column_major_t", "dolfin::ublas::compressed_matrix<double,dolfin::ublas::column_major > *|dolfin::ublas_sparse_matrix_cmajor *", 0, 0, (void*)0, 0};
@@ -59823,7 +51970,6 @@ static swig_type_info _swigt__p_uBlasKrylovMatrix = {"_p_uBlasKrylovMatrix", "uB
 static swig_type_info _swigt__p_uBlasMatrixTdolfin__ublas_dense_matrix_t = {"_p_uBlasMatrixTdolfin__ublas_dense_matrix_t", "uBlasMatrix<dolfin::ublas_dense_matrix > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t = {"_p_uBlasMatrixTdolfin__ublas_sparse_matrix_t", "uBlasMatrix<dolfin::ublas_sparse_matrix > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_uBlasPreconditioner = {"_p_uBlasPreconditioner", "uBlasPreconditioner *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_uBlasVector = {"_p_uBlasVector", "uBlasVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|dolfin::uint *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
@@ -59833,17 +51979,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Face,
   &_swigt__p_FunctionPointer,
   &_swigt__p_Index,
-  &_swigt__p_KSP,
   &_swigt__p_KrylovMethod,
-  &_swigt__p_Mat,
   &_swigt__p_Matrix,
-  &_swigt__p_PETScKrylovMatrix,
-  &_swigt__p_PETScMatrix,
-  &_swigt__p_PETScPreconditioner,
-  &_swigt__p_PETScVector,
   &_swigt__p_Preconditioner,
-  &_swigt__p_Vec,
-  &_swigt__p_VecScatter,
   &_swigt__p_Vector,
   &_swigt__p_char,
   &_swigt__p_dolfin__AffineMap,
@@ -59921,16 +52059,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__NewVertexIterator,
   &_swigt__p_dolfin__ODE,
   &_swigt__p_dolfin__ODESolver,
-  &_swigt__p_dolfin__PETScKrylovMatrix,
-  &_swigt__p_dolfin__PETScKrylovSolver,
-  &_swigt__p_dolfin__PETScLUSolver,
-  &_swigt__p_dolfin__PETScLinearSolver,
-  &_swigt__p_dolfin__PETScManager,
-  &_swigt__p_dolfin__PETScMatrix,
-  &_swigt__p_dolfin__PETScMatrixElement,
-  &_swigt__p_dolfin__PETScPreconditioner,
-  &_swigt__p_dolfin__PETScVector,
-  &_swigt__p_dolfin__PETScVectorElement,
   &_swigt__p_dolfin__Parameter,
   &_swigt__p_dolfin__ParameterList,
   &_swigt__p_dolfin__Partition,
@@ -59938,8 +52066,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_dolfin__Sample,
   &_swigt__p_dolfin__Tetrahedron,
   &_swigt__p_dolfin__TimeDependent,
-  &_swigt__p_dolfin__TimeDependentODE,
-  &_swigt__p_dolfin__TimeDependentPDE,
   &_swigt__p_dolfin__TimeSlab,
   &_swigt__p_dolfin__TimeSlabJacobian,
   &_swigt__p_dolfin__TimeStepper,
@@ -59988,7 +52114,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_uBlasMatrixTdolfin__ublas_dense_matrix_t,
   &_swigt__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,
   &_swigt__p_uBlasPreconditioner,
-  &_swigt__p_uBlasVector,
   &_swigt__p_unsigned_int,
 };
 
@@ -59998,17 +52123,9 @@ static swig_cast_info _swigc__p_Edge[] = {  {&_swigt__p_Edge, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_Face[] = {  {&_swigt__p_Face, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_FunctionPointer[] = {  {&_swigt__p_FunctionPointer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Index[] = {  {&_swigt__p_Index, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_KSP[] = {  {&_swigt__p_KSP, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_KrylovMethod[] = {  {&_swigt__p_KrylovMethod, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mat[] = {  {&_swigt__p_Mat, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Matrix[] = {  {&_swigt__p_Matrix, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PETScKrylovMatrix[] = {  {&_swigt__p_PETScKrylovMatrix, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PETScMatrix[] = {  {&_swigt__p_PETScMatrix, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PETScPreconditioner[] = {  {&_swigt__p_PETScPreconditioner, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PETScVector[] = {  {&_swigt__p_PETScVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Preconditioner[] = {  {&_swigt__p_Preconditioner, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Vec[] = {  {&_swigt__p_Vec, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_VecScatter[] = {  {&_swigt__p_VecScatter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Vector[] = {  {&_swigt__p_Vector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__AffineMap[] = {  {&_swigt__p_dolfin__AffineMap, 0, 0, 0},{0, 0, 0, 0}};
@@ -60039,8 +52156,8 @@ static swig_cast_info _swigc__p_dolfin__FiniteElementSpec[] = {  {&_swigt__p_dol
 static swig_cast_info _swigc__p_dolfin__Form[] = {  {&_swigt__p_dolfin__Form, 0, 0, 0},  {&_swigt__p_dolfin__BilinearForm, _p_dolfin__BilinearFormTo_p_dolfin__Form, 0, 0},  {&_swigt__p_dolfin__LinearForm, _p_dolfin__LinearFormTo_p_dolfin__Form, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Function[] = {  {&_swigt__p_dolfin__Function, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__GMRES[] = {  {&_swigt__p_dolfin__GMRES, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__GenericMatrix[] = {  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__GenericMatrix, 0, 0},  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__GenericMatrix, 0, 0},  {&_swigt__p_dolfin__GenericMatrix, 0, 0, 0},  {&_swigt__p_dolfin__PETScMatrix, _p_dolfin__PETScMatrixTo_p_dolfin__GenericMatrix, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__GenericVector[] = {  {&_swigt__p_dolfin__GenericVector, 0, 0, 0},  {&_swigt__p_dolfin__PETScVector, _p_dolfin__PETScVectorTo_p_dolfin__GenericVector, 0, 0},  {&_swigt__p_dolfin__uBlasVector, _p_dolfin__uBlasVectorTo_p_dolfin__GenericVector, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__GenericMatrix[] = {  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__GenericMatrix, 0, 0},  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__GenericMatrix, 0, 0},  {&_swigt__p_dolfin__GenericMatrix, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__GenericVector[] = {  {&_swigt__p_dolfin__GenericVector, 0, 0, 0},  {&_swigt__p_dolfin__uBlasVector, _p_dolfin__uBlasVectorTo_p_dolfin__GenericVector, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Homotopy[] = {  {&_swigt__p_dolfin__Homotopy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__HomotopyJacobian[] = {  {&_swigt__p_dolfin__HomotopyJacobian, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__HomotopyODE[] = {  {&_swigt__p_dolfin__HomotopyODE, 0, 0, 0},{0, 0, 0, 0}};
@@ -60084,18 +52201,8 @@ static swig_cast_info _swigc__p_dolfin__NewUnitCube[] = {  {&_swigt__p_dolfin__N
 static swig_cast_info _swigc__p_dolfin__NewUnitSquare[] = {  {&_swigt__p_dolfin__NewUnitSquare, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__NewVertex[] = {  {&_swigt__p_dolfin__NewVertex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__NewVertexIterator[] = {  {&_swigt__p_dolfin__NewVertexIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__ODE[] = {  {&_swigt__p_dolfin__ODE, 0, 0, 0},  {&_swigt__p_dolfin__TimeDependentODE, _p_dolfin__TimeDependentODETo_p_dolfin__ODE, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__ODE[] = {  {&_swigt__p_dolfin__ODE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__ODESolver[] = {  {&_swigt__p_dolfin__ODESolver, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScKrylovMatrix[] = {  {&_swigt__p_dolfin__PETScKrylovMatrix, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScKrylovSolver[] = {  {&_swigt__p_dolfin__PETScKrylovSolver, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScLUSolver[] = {  {&_swigt__p_dolfin__PETScLUSolver, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScLinearSolver[] = {  {&_swigt__p_dolfin__PETScLinearSolver, 0, 0, 0},  {&_swigt__p_dolfin__PETScLUSolver, _p_dolfin__PETScLUSolverTo_p_dolfin__PETScLinearSolver, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScManager[] = {  {&_swigt__p_dolfin__PETScManager, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScMatrix[] = {  {&_swigt__p_dolfin__PETScMatrix, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScMatrixElement[] = {  {&_swigt__p_dolfin__PETScMatrixElement, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScPreconditioner[] = {  {&_swigt__p_dolfin__PETScPreconditioner, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScVector[] = {  {&_swigt__p_dolfin__PETScVector, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__PETScVectorElement[] = {  {&_swigt__p_dolfin__PETScVectorElement, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Parameter[] = {  {&_swigt__p_dolfin__Parameter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__ParameterList[] = {  {&_swigt__p_dolfin__ParameterList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Partition[] = {  {&_swigt__p_dolfin__Partition, 0, 0, 0},{0, 0, 0, 0}};
@@ -60103,8 +52210,6 @@ static swig_cast_info _swigc__p_dolfin__Point[] = {  {&_swigt__p_dolfin__Point, 
 static swig_cast_info _swigc__p_dolfin__Sample[] = {  {&_swigt__p_dolfin__Sample, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Tetrahedron[] = {  {&_swigt__p_dolfin__Tetrahedron, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeDependent[] = {  {&_swigt__p_dolfin__TimeDependent, 0, 0, 0},  {&_swigt__p_dolfin__BoundaryCondition, _p_dolfin__BoundaryConditionTo_p_dolfin__TimeDependent, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__TimeDependent, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__TimeDependentODE[] = {  {&_swigt__p_dolfin__TimeDependentODE, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__TimeDependentPDE[] = {  {&_swigt__p_dolfin__TimeDependentPDE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlab[] = {  {&_swigt__p_dolfin__TimeSlab, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeSlabJacobian[] = {  {&_swigt__p_dolfin__TimeSlabJacobian, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__TimeStepper[] = {  {&_swigt__p_dolfin__TimeStepper, 0, 0, 0},{0, 0, 0, 0}};
@@ -60113,7 +52218,7 @@ static swig_cast_info _swigc__p_dolfin__Triangle[] = {  {&_swigt__p_dolfin__Tria
 static swig_cast_info _swigc__p_dolfin__UniformMeshRefinement[] = {  {&_swigt__p_dolfin__UniformMeshRefinement, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UnitCube[] = {  {&_swigt__p_dolfin__UnitCube, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__UnitSquare[] = {  {&_swigt__p_dolfin__UnitSquare, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_dolfin__Variable[] = {  {&_swigt__p_dolfin__BoundaryMesh, _p_dolfin__BoundaryMeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Mesh, _p_dolfin__MeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__NewUnitCube, _p_dolfin__NewUnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__UnitCube, _p_dolfin__UnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__NewMesh, _p_dolfin__NewMeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__PETScMatrix, _p_dolfin__PETScMatrixTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Sample, _p_dolfin__SampleTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Variable, 0, 0, 0},  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__uBlasVector, _p_dolfin__uBlasVectorTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__PETScVector, _p_dolfin__PETScVectorTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__NewUnitSquare, _p_dolfin__NewUnitSquareTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__UnitSquare, _p_dolfin__UnitSquareTo_p_dolfin__Variable, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_dolfin__Variable[] = {  {&_swigt__p_dolfin__UnitSquare, _p_dolfin__UnitSquareTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__NewMesh, _p_dolfin__NewMeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__NewUnitSquare, _p_dolfin__NewUnitSquareTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_dense_matrix_tTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Variable, 0, 0, 0},  {&_swigt__p_dolfin__uBlasVector, _p_dolfin__uBlasVectorTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Function, _p_dolfin__FunctionTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__NewUnitCube, _p_dolfin__NewUnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_t, _p_dolfin__uBlasMatrixTdolfin__ublas_sparse_matrix_tTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__UnitCube, _p_dolfin__UnitCubeTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Mesh, _p_dolfin__MeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__BoundaryMesh, _p_dolfin__BoundaryMeshTo_p_dolfin__Variable, 0, 0},  {&_swigt__p_dolfin__Sample, _p_dolfin__SampleTo_p_dolfin__Variable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__Vertex[] = {  {&_swigt__p_dolfin__Vertex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__VertexIterator[] = {  {&_swigt__p_dolfin__VertexIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_dolfin__cGqMethod[] = {  {&_swigt__p_dolfin__cGqMethod, 0, 0, 0},{0, 0, 0, 0}};
@@ -60153,7 +52258,6 @@ static swig_cast_info _swigc__p_uBlasKrylovMatrix[] = {  {&_swigt__p_uBlasKrylov
 static swig_cast_info _swigc__p_uBlasMatrixTdolfin__ublas_dense_matrix_t[] = {  {&_swigt__p_uBlasMatrixTdolfin__ublas_dense_matrix_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t[] = {  {&_swigt__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uBlasPreconditioner[] = {  {&_swigt__p_uBlasPreconditioner, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_uBlasVector[] = {  {&_swigt__p_uBlasVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
@@ -60163,17 +52267,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Face,
   _swigc__p_FunctionPointer,
   _swigc__p_Index,
-  _swigc__p_KSP,
   _swigc__p_KrylovMethod,
-  _swigc__p_Mat,
   _swigc__p_Matrix,
-  _swigc__p_PETScKrylovMatrix,
-  _swigc__p_PETScMatrix,
-  _swigc__p_PETScPreconditioner,
-  _swigc__p_PETScVector,
   _swigc__p_Preconditioner,
-  _swigc__p_Vec,
-  _swigc__p_VecScatter,
   _swigc__p_Vector,
   _swigc__p_char,
   _swigc__p_dolfin__AffineMap,
@@ -60251,16 +52347,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__NewVertexIterator,
   _swigc__p_dolfin__ODE,
   _swigc__p_dolfin__ODESolver,
-  _swigc__p_dolfin__PETScKrylovMatrix,
-  _swigc__p_dolfin__PETScKrylovSolver,
-  _swigc__p_dolfin__PETScLUSolver,
-  _swigc__p_dolfin__PETScLinearSolver,
-  _swigc__p_dolfin__PETScManager,
-  _swigc__p_dolfin__PETScMatrix,
-  _swigc__p_dolfin__PETScMatrixElement,
-  _swigc__p_dolfin__PETScPreconditioner,
-  _swigc__p_dolfin__PETScVector,
-  _swigc__p_dolfin__PETScVectorElement,
   _swigc__p_dolfin__Parameter,
   _swigc__p_dolfin__ParameterList,
   _swigc__p_dolfin__Partition,
@@ -60268,8 +52354,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_dolfin__Sample,
   _swigc__p_dolfin__Tetrahedron,
   _swigc__p_dolfin__TimeDependent,
-  _swigc__p_dolfin__TimeDependentODE,
-  _swigc__p_dolfin__TimeDependentPDE,
   _swigc__p_dolfin__TimeSlab,
   _swigc__p_dolfin__TimeSlabJacobian,
   _swigc__p_dolfin__TimeStepper,
@@ -60318,7 +52402,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_uBlasMatrixTdolfin__ublas_dense_matrix_t,
   _swigc__p_uBlasMatrixTdolfin__ublas_sparse_matrix_t,
   _swigc__p_uBlasPreconditioner,
-  _swigc__p_uBlasVector,
   _swigc__p_unsigned_int,
 };
 
@@ -60836,16 +52919,6 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "File_tecplot",SWIG_From_int(static_cast< int >(dolfin::File::tecplot)));
   SWIG_Python_SetConstant(d, "File_vtk",SWIG_From_int(static_cast< int >(dolfin::File::vtk)));
   SWIG_Python_SetConstant(d, "File_python",SWIG_From_int(static_cast< int >(dolfin::File::python)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_default_matrix",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::default_matrix)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_spooles",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::spooles)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_superlu",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::superlu)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_umfpack",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::umfpack)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_l1",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::l1)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_linf",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::linf)));
-  SWIG_Python_SetConstant(d, "PETScMatrix_frobenius",SWIG_From_int(static_cast< int >(dolfin::PETScMatrix::frobenius)));
-  SWIG_Python_SetConstant(d, "PETScVector_l1",SWIG_From_int(static_cast< int >(dolfin::PETScVector::l1)));
-  SWIG_Python_SetConstant(d, "PETScVector_l2",SWIG_From_int(static_cast< int >(dolfin::PETScVector::l2)));
-  SWIG_Python_SetConstant(d, "PETScVector_linf",SWIG_From_int(static_cast< int >(dolfin::PETScVector::linf)));
   SWIG_Python_SetConstant(d, "uBlasVector_l1",SWIG_From_int(static_cast< int >(dolfin::uBlasVector::l1)));
   SWIG_Python_SetConstant(d, "uBlasVector_l2",SWIG_From_int(static_cast< int >(dolfin::uBlasVector::l2)));
   SWIG_Python_SetConstant(d, "uBlasVector_linf",SWIG_From_int(static_cast< int >(dolfin::uBlasVector::linf)));
