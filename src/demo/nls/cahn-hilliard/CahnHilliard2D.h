@@ -913,384 +913,8 @@ public:
     FiniteElement** subelements;
   
   };
-    
-  class FunctionElement_1 : public dolfin::FiniteElement
-  {
-  public:
   
-    FunctionElement_1() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-    {
-      // Element is scalar, don't need to initialize tensordims
-  
-      // Element is simple, don't need to initialize subelements
-    }
-  
-    ~FunctionElement_1()
-    {
-      if ( tensordims ) delete [] tensordims;
-      if ( subelements )
-      {
-        for (unsigned int i = 0; i < elementdim(); i++)
-          delete subelements[i];
-        delete [] subelements;
-      }
-    }
-  
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-  
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-  
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-  
-    inline unsigned int elementdim() const
-    {
-      return 1;
-    }
-  
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-  
-    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-    {
-      nodes[0] = cell.vertexID(0);
-      nodes[1] = cell.vertexID(1);
-      nodes[2] = cell.vertexID(2);
-    }
-  
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-  
-    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      vertex_nodes[0] = vertex;
-    }
-  
-    const FiniteElement& operator[] (unsigned int i) const
-    {
-      return *this;
-    }
-  
-    FiniteElement& operator[] (unsigned int i)
-    {
-      return *this;
-    }
-  
-    FiniteElementSpec spec() const
-    {
-      FiniteElementSpec s("Lagrange", "triangle", 1);
-      return s;
-    }
-    
-  private:
-  
-    unsigned int* tensordims;
-    FiniteElement** subelements;
-  
-  };
-    
-  class FunctionElement_2 : public dolfin::FiniteElement
-  {
-  public:
-  
-    FunctionElement_2() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-    {
-      // Element is scalar, don't need to initialize tensordims
-  
-      // Element is simple, don't need to initialize subelements
-    }
-  
-    ~FunctionElement_2()
-    {
-      if ( tensordims ) delete [] tensordims;
-      if ( subelements )
-      {
-        for (unsigned int i = 0; i < elementdim(); i++)
-          delete subelements[i];
-        delete [] subelements;
-      }
-    }
-  
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-  
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-  
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-  
-    inline unsigned int elementdim() const
-    {
-      return 1;
-    }
-  
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-  
-    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-    {
-      nodes[0] = cell.vertexID(0);
-      nodes[1] = cell.vertexID(1);
-      nodes[2] = cell.vertexID(2);
-    }
-  
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-  
-    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      vertex_nodes[0] = vertex;
-    }
-  
-    const FiniteElement& operator[] (unsigned int i) const
-    {
-      return *this;
-    }
-  
-    FiniteElement& operator[] (unsigned int i)
-    {
-      return *this;
-    }
-  
-    FiniteElementSpec spec() const
-    {
-      FiniteElementSpec s("Lagrange", "triangle", 1);
-      return s;
-    }
-    
-  private:
-  
-    unsigned int* tensordims;
-    FiniteElement** subelements;
-  
-  };
-    
-  class FunctionElement_3 : public dolfin::FiniteElement
-  {
-  public:
-  
-    FunctionElement_3() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-    {
-      // Element is scalar, don't need to initialize tensordims
-  
-      // Element is simple, don't need to initialize subelements
-    }
-  
-    ~FunctionElement_3()
-    {
-      if ( tensordims ) delete [] tensordims;
-      if ( subelements )
-      {
-        for (unsigned int i = 0; i < elementdim(); i++)
-          delete subelements[i];
-        delete [] subelements;
-      }
-    }
-  
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-  
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-  
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-  
-    inline unsigned int elementdim() const
-    {
-      return 1;
-    }
-  
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-  
-    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-    {
-      nodes[0] = cell.vertexID(0);
-      nodes[1] = cell.vertexID(1);
-      nodes[2] = cell.vertexID(2);
-    }
-  
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-  
-    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      vertex_nodes[0] = vertex;
-    }
-  
-    const FiniteElement& operator[] (unsigned int i) const
-    {
-      return *this;
-    }
-  
-    FiniteElement& operator[] (unsigned int i)
-    {
-      return *this;
-    }
-  
-    FiniteElementSpec spec() const
-    {
-      FiniteElementSpec s("Lagrange", "triangle", 1);
-      return s;
-    }
-    
-  private:
-  
-    unsigned int* tensordims;
-    FiniteElement** subelements;
-  
-  };
-    
-  class FunctionElement_4 : public dolfin::FiniteElement
-  {
-  public:
-  
-    FunctionElement_4() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-    {
-      // Element is scalar, don't need to initialize tensordims
-  
-      // Element is simple, don't need to initialize subelements
-    }
-  
-    ~FunctionElement_4()
-    {
-      if ( tensordims ) delete [] tensordims;
-      if ( subelements )
-      {
-        for (unsigned int i = 0; i < elementdim(); i++)
-          delete subelements[i];
-        delete [] subelements;
-      }
-    }
-  
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-  
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-  
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-  
-    inline unsigned int elementdim() const
-    {
-      return 1;
-    }
-  
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-  
-    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-    {
-      nodes[0] = cell.vertexID(0);
-      nodes[1] = cell.vertexID(1);
-      nodes[2] = cell.vertexID(2);
-    }
-  
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-  
-    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      vertex_nodes[0] = vertex;
-    }
-  
-    const FiniteElement& operator[] (unsigned int i) const
-    {
-      return *this;
-    }
-  
-    FiniteElement& operator[] (unsigned int i)
-    {
-      return *this;
-    }
-  
-    FiniteElementSpec spec() const
-    {
-      FiniteElementSpec s("Lagrange", "triangle", 1);
-      return s;
-    }
-    
-  private:
-  
-    unsigned int* tensordims;
-    FiniteElement** subelements;
-  
-  };
-  
-  BilinearForm(Function& w0, Function& w1, Function& w2, Function& w3, Function& w4, const real& c0, const real& c1, const real& c2) : dolfin::BilinearForm(5), c0(c0), c1(c1), c2(c2)
+  BilinearForm(Function& w0, const real& c0, const real& c1, const real& c2) : dolfin::BilinearForm(1), c0(c0), c1(c1), c2(c2)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -1300,10 +924,6 @@ public:
 
     // Add functions
     add(w0, new FunctionElement_0());
-    add(w1, new FunctionElement_1());
-    add(w2, new FunctionElement_2());
-    add(w3, new FunctionElement_3());
-    add(w4, new FunctionElement_4());
   }
 
   void eval(real block[], const AffineMap& map) const
@@ -1312,184 +932,196 @@ public:
     const real c0_0 = c[0][0];
     const real c0_1 = c[0][1];
     const real c0_2 = c[0][2];
-    const real c1_0 = c[1][0];
-    const real c1_1 = c[1][1];
-    const real c1_2 = c[1][2];
-    const real c2_0 = c[2][0];
-    const real c2_1 = c[2][1];
-    const real c2_2 = c[2][2];
-    const real c3_0 = c[3][0];
-    const real c3_1 = c[3][1];
-    const real c3_2 = c[3][2];
-    const real c4_0 = c[4][0];
-    const real c4_1 = c[4][1];
-    const real c4_2 = c[4][2];
 
     // Compute geometry tensors
     const real G0_ = map.det;
-    const real G1_0_0_0_0 = map.det*c2*c1*c3_0*c1_0*map.g00*map.g00 + map.det*c2*c1*c3_0*c1_0*map.g01*map.g01;
-    const real G1_0_0_0_1 = map.det*c2*c1*c3_0*c1_0*map.g00*map.g10 + map.det*c2*c1*c3_0*c1_0*map.g01*map.g11;
-    const real G1_0_0_1_0 = map.det*c2*c1*c3_0*c1_0*map.g10*map.g00 + map.det*c2*c1*c3_0*c1_0*map.g11*map.g01;
-    const real G1_0_0_1_1 = map.det*c2*c1*c3_0*c1_0*map.g10*map.g10 + map.det*c2*c1*c3_0*c1_0*map.g11*map.g11;
-    const real G1_0_1_0_0 = map.det*c2*c1*c3_0*c1_1*map.g00*map.g00 + map.det*c2*c1*c3_0*c1_1*map.g01*map.g01;
-    const real G1_0_1_0_1 = map.det*c2*c1*c3_0*c1_1*map.g00*map.g10 + map.det*c2*c1*c3_0*c1_1*map.g01*map.g11;
-    const real G1_0_1_1_0 = map.det*c2*c1*c3_0*c1_1*map.g10*map.g00 + map.det*c2*c1*c3_0*c1_1*map.g11*map.g01;
-    const real G1_0_1_1_1 = map.det*c2*c1*c3_0*c1_1*map.g10*map.g10 + map.det*c2*c1*c3_0*c1_1*map.g11*map.g11;
-    const real G1_0_2_0_0 = map.det*c2*c1*c3_0*c1_2*map.g00*map.g00 + map.det*c2*c1*c3_0*c1_2*map.g01*map.g01;
-    const real G1_0_2_0_1 = map.det*c2*c1*c3_0*c1_2*map.g00*map.g10 + map.det*c2*c1*c3_0*c1_2*map.g01*map.g11;
-    const real G1_0_2_1_0 = map.det*c2*c1*c3_0*c1_2*map.g10*map.g00 + map.det*c2*c1*c3_0*c1_2*map.g11*map.g01;
-    const real G1_0_2_1_1 = map.det*c2*c1*c3_0*c1_2*map.g10*map.g10 + map.det*c2*c1*c3_0*c1_2*map.g11*map.g11;
-    const real G1_1_0_0_0 = map.det*c2*c1*c3_1*c1_0*map.g00*map.g00 + map.det*c2*c1*c3_1*c1_0*map.g01*map.g01;
-    const real G1_1_0_0_1 = map.det*c2*c1*c3_1*c1_0*map.g00*map.g10 + map.det*c2*c1*c3_1*c1_0*map.g01*map.g11;
-    const real G1_1_0_1_0 = map.det*c2*c1*c3_1*c1_0*map.g10*map.g00 + map.det*c2*c1*c3_1*c1_0*map.g11*map.g01;
-    const real G1_1_0_1_1 = map.det*c2*c1*c3_1*c1_0*map.g10*map.g10 + map.det*c2*c1*c3_1*c1_0*map.g11*map.g11;
-    const real G1_1_1_0_0 = map.det*c2*c1*c3_1*c1_1*map.g00*map.g00 + map.det*c2*c1*c3_1*c1_1*map.g01*map.g01;
-    const real G1_1_1_0_1 = map.det*c2*c1*c3_1*c1_1*map.g00*map.g10 + map.det*c2*c1*c3_1*c1_1*map.g01*map.g11;
-    const real G1_1_1_1_0 = map.det*c2*c1*c3_1*c1_1*map.g10*map.g00 + map.det*c2*c1*c3_1*c1_1*map.g11*map.g01;
-    const real G1_1_1_1_1 = map.det*c2*c1*c3_1*c1_1*map.g10*map.g10 + map.det*c2*c1*c3_1*c1_1*map.g11*map.g11;
-    const real G1_1_2_0_0 = map.det*c2*c1*c3_1*c1_2*map.g00*map.g00 + map.det*c2*c1*c3_1*c1_2*map.g01*map.g01;
-    const real G1_1_2_0_1 = map.det*c2*c1*c3_1*c1_2*map.g00*map.g10 + map.det*c2*c1*c3_1*c1_2*map.g01*map.g11;
-    const real G1_1_2_1_0 = map.det*c2*c1*c3_1*c1_2*map.g10*map.g00 + map.det*c2*c1*c3_1*c1_2*map.g11*map.g01;
-    const real G1_1_2_1_1 = map.det*c2*c1*c3_1*c1_2*map.g10*map.g10 + map.det*c2*c1*c3_1*c1_2*map.g11*map.g11;
-    const real G1_2_0_0_0 = map.det*c2*c1*c3_2*c1_0*map.g00*map.g00 + map.det*c2*c1*c3_2*c1_0*map.g01*map.g01;
-    const real G1_2_0_0_1 = map.det*c2*c1*c3_2*c1_0*map.g00*map.g10 + map.det*c2*c1*c3_2*c1_0*map.g01*map.g11;
-    const real G1_2_0_1_0 = map.det*c2*c1*c3_2*c1_0*map.g10*map.g00 + map.det*c2*c1*c3_2*c1_0*map.g11*map.g01;
-    const real G1_2_0_1_1 = map.det*c2*c1*c3_2*c1_0*map.g10*map.g10 + map.det*c2*c1*c3_2*c1_0*map.g11*map.g11;
-    const real G1_2_1_0_0 = map.det*c2*c1*c3_2*c1_1*map.g00*map.g00 + map.det*c2*c1*c3_2*c1_1*map.g01*map.g01;
-    const real G1_2_1_0_1 = map.det*c2*c1*c3_2*c1_1*map.g00*map.g10 + map.det*c2*c1*c3_2*c1_1*map.g01*map.g11;
-    const real G1_2_1_1_0 = map.det*c2*c1*c3_2*c1_1*map.g10*map.g00 + map.det*c2*c1*c3_2*c1_1*map.g11*map.g01;
-    const real G1_2_1_1_1 = map.det*c2*c1*c3_2*c1_1*map.g10*map.g10 + map.det*c2*c1*c3_2*c1_1*map.g11*map.g11;
-    const real G1_2_2_0_0 = map.det*c2*c1*c3_2*c1_2*map.g00*map.g00 + map.det*c2*c1*c3_2*c1_2*map.g01*map.g01;
-    const real G1_2_2_0_1 = map.det*c2*c1*c3_2*c1_2*map.g00*map.g10 + map.det*c2*c1*c3_2*c1_2*map.g01*map.g11;
-    const real G1_2_2_1_0 = map.det*c2*c1*c3_2*c1_2*map.g10*map.g00 + map.det*c2*c1*c3_2*c1_2*map.g11*map.g01;
-    const real G1_2_2_1_1 = map.det*c2*c1*c3_2*c1_2*map.g10*map.g10 + map.det*c2*c1*c3_2*c1_2*map.g11*map.g11;
-    const real G2_0_0_0_0_0 = map.det*c2*c1*c4_0*c1_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_0*c1_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g01*map.g01;
-    const real G2_0_0_0_0_1 = map.det*c2*c1*c4_0*c1_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_0*c1_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g01*map.g11;
-    const real G2_0_0_0_1_0 = map.det*c2*c1*c4_0*c1_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_0*c1_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g11*map.g01;
-    const real G2_0_0_0_1_1 = map.det*c2*c1*c4_0*c1_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_0*c1_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_0*c2_0*c0_0*map.g11*map.g11;
-    const real G2_0_0_1_0_0 = map.det*c2*c1*c4_0*c1_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_0*c1_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_0*c2_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_0*c2_0*c0_1*map.g01*map.g01;
-    const real G2_0_0_1_1_0 = map.det*c2*c1*c4_0*c1_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_0*c1_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_0*c2_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_0*c2_0*c0_1*map.g11*map.g01;
-    const real G2_0_0_2_0_1 = map.det*c2*c1*c4_0*c1_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_0*c1_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_0*c2_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_0*c2_0*c0_2*map.g01*map.g11;
-    const real G2_0_0_2_1_1 = map.det*c2*c1*c4_0*c1_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_0*c1_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_0*c2_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_0*c2_0*c0_2*map.g11*map.g11;
-    const real G2_0_1_0_0_0 = map.det*c2*c1*c4_0*c1_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_0*c1_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g01*map.g01;
-    const real G2_0_1_0_0_1 = map.det*c2*c1*c4_0*c1_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_0*c1_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g01*map.g11;
-    const real G2_0_1_0_1_0 = map.det*c2*c1*c4_0*c1_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_0*c1_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g11*map.g01;
-    const real G2_0_1_0_1_1 = map.det*c2*c1*c4_0*c1_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_0*c1_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_0*c2_1*c0_0*map.g11*map.g11;
-    const real G2_0_1_1_0_0 = map.det*c2*c1*c4_0*c1_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_0*c1_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_0*c2_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_0*c2_1*c0_1*map.g01*map.g01;
-    const real G2_0_1_1_1_0 = map.det*c2*c1*c4_0*c1_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_0*c1_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_0*c2_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_0*c2_1*c0_1*map.g11*map.g01;
-    const real G2_0_1_2_0_1 = map.det*c2*c1*c4_0*c1_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_0*c1_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_0*c2_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_0*c2_1*c0_2*map.g01*map.g11;
-    const real G2_0_1_2_1_1 = map.det*c2*c1*c4_0*c1_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_0*c1_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_0*c2_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_0*c2_1*c0_2*map.g11*map.g11;
-    const real G2_0_2_0_0_0 = map.det*c2*c1*c4_0*c1_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_0*c1_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g01*map.g01;
-    const real G2_0_2_0_0_1 = map.det*c2*c1*c4_0*c1_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_0*c1_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g01*map.g11;
-    const real G2_0_2_0_1_0 = map.det*c2*c1*c4_0*c1_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_0*c1_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g11*map.g01;
-    const real G2_0_2_0_1_1 = map.det*c2*c1*c4_0*c1_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_0*c1_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_0*c2_2*c0_0*map.g11*map.g11;
-    const real G2_0_2_1_0_0 = map.det*c2*c1*c4_0*c1_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_0*c1_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_0*c2_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_0*c2_2*c0_1*map.g01*map.g01;
-    const real G2_0_2_1_1_0 = map.det*c2*c1*c4_0*c1_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_0*c1_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_0*c2_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_0*c2_2*c0_1*map.g11*map.g01;
-    const real G2_0_2_2_0_1 = map.det*c2*c1*c4_0*c1_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_0*c1_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_0*c2_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_0*c2_2*c0_2*map.g01*map.g11;
-    const real G2_0_2_2_1_1 = map.det*c2*c1*c4_0*c1_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_0*c1_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_0*c2_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_0*c2_2*c0_2*map.g11*map.g11;
-    const real G2_1_0_0_0_0 = map.det*c2*c1*c4_1*c1_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_1*c1_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g01*map.g01;
-    const real G2_1_0_0_0_1 = map.det*c2*c1*c4_1*c1_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_1*c1_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g01*map.g11;
-    const real G2_1_0_0_1_0 = map.det*c2*c1*c4_1*c1_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_1*c1_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g11*map.g01;
-    const real G2_1_0_0_1_1 = map.det*c2*c1*c4_1*c1_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_1*c1_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_1*c2_0*c0_0*map.g11*map.g11;
-    const real G2_1_0_1_0_0 = map.det*c2*c1*c4_1*c1_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_1*c1_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_1*c2_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_1*c2_0*c0_1*map.g01*map.g01;
-    const real G2_1_0_1_1_0 = map.det*c2*c1*c4_1*c1_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_1*c1_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_1*c2_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_1*c2_0*c0_1*map.g11*map.g01;
-    const real G2_1_0_2_0_1 = map.det*c2*c1*c4_1*c1_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_1*c1_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_1*c2_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_1*c2_0*c0_2*map.g01*map.g11;
-    const real G2_1_0_2_1_1 = map.det*c2*c1*c4_1*c1_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_1*c1_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_1*c2_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_1*c2_0*c0_2*map.g11*map.g11;
-    const real G2_1_1_0_0_0 = map.det*c2*c1*c4_1*c1_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_1*c1_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g01*map.g01;
-    const real G2_1_1_0_0_1 = map.det*c2*c1*c4_1*c1_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_1*c1_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g01*map.g11;
-    const real G2_1_1_0_1_0 = map.det*c2*c1*c4_1*c1_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_1*c1_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g11*map.g01;
-    const real G2_1_1_0_1_1 = map.det*c2*c1*c4_1*c1_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_1*c1_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_1*c2_1*c0_0*map.g11*map.g11;
-    const real G2_1_1_1_0_0 = map.det*c2*c1*c4_1*c1_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_1*c1_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_1*c2_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_1*c2_1*c0_1*map.g01*map.g01;
-    const real G2_1_1_1_1_0 = map.det*c2*c1*c4_1*c1_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_1*c1_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_1*c2_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_1*c2_1*c0_1*map.g11*map.g01;
-    const real G2_1_1_2_0_1 = map.det*c2*c1*c4_1*c1_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_1*c1_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_1*c2_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_1*c2_1*c0_2*map.g01*map.g11;
-    const real G2_1_1_2_1_1 = map.det*c2*c1*c4_1*c1_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_1*c1_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_1*c2_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_1*c2_1*c0_2*map.g11*map.g11;
-    const real G2_1_2_0_0_0 = map.det*c2*c1*c4_1*c1_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_1*c1_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g01*map.g01;
-    const real G2_1_2_0_0_1 = map.det*c2*c1*c4_1*c1_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_1*c1_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g01*map.g11;
-    const real G2_1_2_0_1_0 = map.det*c2*c1*c4_1*c1_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_1*c1_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g11*map.g01;
-    const real G2_1_2_0_1_1 = map.det*c2*c1*c4_1*c1_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_1*c1_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_1*c2_2*c0_0*map.g11*map.g11;
-    const real G2_1_2_1_0_0 = map.det*c2*c1*c4_1*c1_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_1*c1_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_1*c2_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_1*c2_2*c0_1*map.g01*map.g01;
-    const real G2_1_2_1_1_0 = map.det*c2*c1*c4_1*c1_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_1*c1_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_1*c2_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_1*c2_2*c0_1*map.g11*map.g01;
-    const real G2_1_2_2_0_1 = map.det*c2*c1*c4_1*c1_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_1*c1_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_1*c2_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_1*c2_2*c0_2*map.g01*map.g11;
-    const real G2_1_2_2_1_1 = map.det*c2*c1*c4_1*c1_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_1*c1_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_1*c2_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_1*c2_2*c0_2*map.g11*map.g11;
-    const real G2_2_0_0_0_0 = map.det*c2*c1*c4_2*c1_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_2*c1_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g01*map.g01;
-    const real G2_2_0_0_0_1 = map.det*c2*c1*c4_2*c1_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_2*c1_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g01*map.g11;
-    const real G2_2_0_0_1_0 = map.det*c2*c1*c4_2*c1_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_2*c1_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g11*map.g01;
-    const real G2_2_0_0_1_1 = map.det*c2*c1*c4_2*c1_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_2*c1_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_2*c2_0*c0_0*map.g11*map.g11;
-    const real G2_2_0_1_0_0 = map.det*c2*c1*c4_2*c1_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_2*c1_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_2*c2_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_2*c2_0*c0_1*map.g01*map.g01;
-    const real G2_2_0_1_1_0 = map.det*c2*c1*c4_2*c1_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_2*c1_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_2*c2_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_2*c2_0*c0_1*map.g11*map.g01;
-    const real G2_2_0_2_0_1 = map.det*c2*c1*c4_2*c1_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_2*c1_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_2*c2_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_2*c2_0*c0_2*map.g01*map.g11;
-    const real G2_2_0_2_1_1 = map.det*c2*c1*c4_2*c1_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_2*c1_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_2*c2_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_2*c2_0*c0_2*map.g11*map.g11;
-    const real G2_2_1_0_0_0 = map.det*c2*c1*c4_2*c1_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_2*c1_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g01*map.g01;
-    const real G2_2_1_0_0_1 = map.det*c2*c1*c4_2*c1_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_2*c1_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g01*map.g11;
-    const real G2_2_1_0_1_0 = map.det*c2*c1*c4_2*c1_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_2*c1_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g11*map.g01;
-    const real G2_2_1_0_1_1 = map.det*c2*c1*c4_2*c1_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_2*c1_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_2*c2_1*c0_0*map.g11*map.g11;
-    const real G2_2_1_1_0_0 = map.det*c2*c1*c4_2*c1_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_2*c1_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_2*c2_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_2*c2_1*c0_1*map.g01*map.g01;
-    const real G2_2_1_1_1_0 = map.det*c2*c1*c4_2*c1_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_2*c1_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_2*c2_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_2*c2_1*c0_1*map.g11*map.g01;
-    const real G2_2_1_2_0_1 = map.det*c2*c1*c4_2*c1_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_2*c1_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_2*c2_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_2*c2_1*c0_2*map.g01*map.g11;
-    const real G2_2_1_2_1_1 = map.det*c2*c1*c4_2*c1_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_2*c1_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_2*c2_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_2*c2_1*c0_2*map.g11*map.g11;
-    const real G2_2_2_0_0_0 = map.det*c2*c1*c4_2*c1_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_2*c1_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g01*map.g01;
-    const real G2_2_2_0_0_1 = map.det*c2*c1*c4_2*c1_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_2*c1_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g01*map.g11;
-    const real G2_2_2_0_1_0 = map.det*c2*c1*c4_2*c1_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_2*c1_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g11*map.g01;
-    const real G2_2_2_0_1_1 = map.det*c2*c1*c4_2*c1_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_2*c1_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c3_2*c2_2*c0_0*map.g11*map.g11;
-    const real G2_2_2_1_0_0 = map.det*c2*c1*c4_2*c1_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_2*c1_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c3_2*c2_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c3_2*c2_2*c0_1*map.g01*map.g01;
-    const real G2_2_2_1_1_0 = map.det*c2*c1*c4_2*c1_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_2*c1_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c3_2*c2_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c3_2*c2_2*c0_1*map.g11*map.g01;
-    const real G2_2_2_2_0_1 = map.det*c2*c1*c4_2*c1_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_2*c1_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c3_2*c2_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c3_2*c2_2*c0_2*map.g01*map.g11;
-    const real G2_2_2_2_1_1 = map.det*c2*c1*c4_2*c1_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_2*c1_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c3_2*c2_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c3_2*c2_2*c0_2*map.g11*map.g11;
-    const real G3_0_0_0 = map.det*c2*c1*c3_0*map.g00*map.g00 + map.det*c2*c1*c3_0*map.g01*map.g01;
-    const real G3_0_0_1 = map.det*c2*c1*c3_0*map.g00*map.g10 + map.det*c2*c1*c3_0*map.g01*map.g11;
-    const real G3_0_1_0 = map.det*c2*c1*c3_0*map.g10*map.g00 + map.det*c2*c1*c3_0*map.g11*map.g01;
-    const real G3_0_1_1 = map.det*c2*c1*c3_0*map.g10*map.g10 + map.det*c2*c1*c3_0*map.g11*map.g11;
-    const real G3_1_0_0 = map.det*c2*c1*c3_1*map.g00*map.g00 + map.det*c2*c1*c3_1*map.g01*map.g01;
-    const real G3_1_0_1 = map.det*c2*c1*c3_1*map.g00*map.g10 + map.det*c2*c1*c3_1*map.g01*map.g11;
-    const real G3_1_1_0 = map.det*c2*c1*c3_1*map.g10*map.g00 + map.det*c2*c1*c3_1*map.g11*map.g01;
-    const real G3_1_1_1 = map.det*c2*c1*c3_1*map.g10*map.g10 + map.det*c2*c1*c3_1*map.g11*map.g11;
-    const real G3_2_0_0 = map.det*c2*c1*c3_2*map.g00*map.g00 + map.det*c2*c1*c3_2*map.g01*map.g01;
-    const real G3_2_0_1 = map.det*c2*c1*c3_2*map.g00*map.g10 + map.det*c2*c1*c3_2*map.g01*map.g11;
-    const real G3_2_1_0 = map.det*c2*c1*c3_2*map.g10*map.g00 + map.det*c2*c1*c3_2*map.g11*map.g01;
-    const real G3_2_1_1 = map.det*c2*c1*c3_2*map.g10*map.g10 + map.det*c2*c1*c3_2*map.g11*map.g11;
-    const real G4_ = map.det;
-    const real G5_0_0 = map.det*c0*map.g00*map.g00 + map.det*c0*map.g01*map.g01;
-    const real G5_0_1 = map.det*c0*map.g00*map.g10 + map.det*c0*map.g01*map.g11;
-    const real G5_1_0 = map.det*c0*map.g10*map.g00 + map.det*c0*map.g11*map.g01;
-    const real G5_1_1 = map.det*c0*map.g10*map.g10 + map.det*c0*map.g11*map.g11;
+    const real G1_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01;
+    const real G1_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11;
+    const real G1_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01;
+    const real G1_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11;
+    const real G1_0_1_0_0 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01;
+    const real G1_0_1_0_1 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g11;
+    const real G1_0_1_1_0 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01;
+    const real G1_0_1_1_1 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g11;
+    const real G1_0_2_0_0 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g01;
+    const real G1_0_2_0_1 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11;
+    const real G1_0_2_1_0 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g01;
+    const real G1_0_2_1_1 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11;
+    const real G1_1_0_0_0 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01;
+    const real G1_1_0_0_1 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11;
+    const real G1_1_0_1_0 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01;
+    const real G1_1_0_1_1 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11;
+    const real G1_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01;
+    const real G1_1_1_0_1 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g11;
+    const real G1_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01;
+    const real G1_1_1_1_1 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g11;
+    const real G1_1_2_0_0 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g01;
+    const real G1_1_2_0_1 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11;
+    const real G1_1_2_1_0 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g01;
+    const real G1_1_2_1_1 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11;
+    const real G1_2_0_0_0 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01;
+    const real G1_2_0_0_1 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11;
+    const real G1_2_0_1_0 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01;
+    const real G1_2_0_1_1 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11;
+    const real G1_2_1_0_0 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01;
+    const real G1_2_1_0_1 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g11;
+    const real G1_2_1_1_0 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01;
+    const real G1_2_1_1_1 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g11;
+    const real G1_2_2_0_0 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g01;
+    const real G1_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11;
+    const real G1_2_2_1_0 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g01;
+    const real G1_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11;
+    const real G2_0_0_0 = map.det*c2*c1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*map.g01*map.g01;
+    const real G2_0_0_1 = map.det*c2*c1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*map.g01*map.g11;
+    const real G2_0_1_0 = map.det*c2*c1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*map.g11*map.g01;
+    const real G2_0_1_1 = map.det*c2*c1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*map.g11*map.g11;
+    const real G2_1_0_0 = map.det*c2*c1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*map.g01*map.g01;
+    const real G2_1_0_1 = map.det*c2*c1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*map.g01*map.g11 + map.det*c2*c1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*map.g01*map.g11;
+    const real G2_1_1_0 = map.det*c2*c1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*map.g11*map.g01;
+    const real G2_1_1_1 = map.det*c2*c1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*map.g11*map.g11 + map.det*c2*c1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*map.g11*map.g11;
+    const real G2_2_0_0 = map.det*c2*c1*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_2*map.g01*map.g01 + map.det*c2*c1*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_2*map.g01*map.g01;
+    const real G2_2_0_1 = map.det*c2*c1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*map.g01*map.g11;
+    const real G2_2_1_0 = map.det*c2*c1*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_2*map.g11*map.g01 + map.det*c2*c1*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_2*map.g11*map.g01;
+    const real G2_2_1_1 = map.det*c2*c1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*map.g11*map.g11;
+    const real G3_0_0 = map.det*c2*c1*map.g00*map.g00 + map.det*c2*c1*map.g01*map.g01;
+    const real G3_0_1 = map.det*c2*c1*map.g00*map.g10 + map.det*c2*c1*map.g01*map.g11;
+    const real G3_1_0 = map.det*c2*c1*map.g10*map.g00 + map.det*c2*c1*map.g11*map.g01;
+    const real G3_1_1 = map.det*c2*c1*map.g10*map.g10 + map.det*c2*c1*map.g11*map.g11;
+    const real G4_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01;
+    const real G4_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11;
+    const real G4_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01;
+    const real G4_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11;
+    const real G4_0_1_0_0 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01;
+    const real G4_0_1_0_1 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g11;
+    const real G4_0_1_1_0 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01;
+    const real G4_0_1_1_1 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g11;
+    const real G4_0_2_0_0 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g01;
+    const real G4_0_2_0_1 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11;
+    const real G4_0_2_1_0 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g01;
+    const real G4_0_2_1_1 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11;
+    const real G4_1_0_0_0 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01;
+    const real G4_1_0_0_1 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11;
+    const real G4_1_0_1_0 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01;
+    const real G4_1_0_1_1 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11;
+    const real G4_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01;
+    const real G4_1_1_0_1 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g11;
+    const real G4_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01;
+    const real G4_1_1_1_1 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g11;
+    const real G4_1_2_0_0 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g01;
+    const real G4_1_2_0_1 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11;
+    const real G4_1_2_1_0 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g01;
+    const real G4_1_2_1_1 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11;
+    const real G4_2_0_0_0 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01;
+    const real G4_2_0_0_1 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11;
+    const real G4_2_0_1_0 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01;
+    const real G4_2_0_1_1 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11;
+    const real G4_2_1_0_0 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01;
+    const real G4_2_1_0_1 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g11;
+    const real G4_2_1_1_0 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01;
+    const real G4_2_1_1_1 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g11;
+    const real G4_2_2_0_0 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g01;
+    const real G4_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11;
+    const real G4_2_2_1_0 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g01;
+    const real G4_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11;
+    const real G5_0_0_0 = map.det*c2*c1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*map.g01*map.g01;
+    const real G5_0_0_1 = map.det*c2*c1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*map.g01*map.g11;
+    const real G5_0_1_0 = map.det*c2*c1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*map.g11*map.g01;
+    const real G5_0_1_1 = map.det*c2*c1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*map.g11*map.g11;
+    const real G5_1_0_0 = map.det*c2*c1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*map.g01*map.g01;
+    const real G5_1_0_1 = map.det*c2*c1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*map.g01*map.g11;
+    const real G5_1_1_0 = map.det*c2*c1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*map.g11*map.g01;
+    const real G5_1_1_1 = map.det*c2*c1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*map.g11*map.g11;
+    const real G5_2_0_0 = map.det*c2*c1*c0_2*map.g00*map.g00 + map.det*c2*c1*c0_2*map.g01*map.g01;
+    const real G5_2_0_1 = map.det*c2*c1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*map.g01*map.g11;
+    const real G5_2_1_0 = map.det*c2*c1*c0_2*map.g10*map.g00 + map.det*c2*c1*c0_2*map.g11*map.g01;
+    const real G5_2_1_1 = map.det*c2*c1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*map.g11*map.g11;
+    const real G9_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01;
+    const real G9_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11;
+    const real G9_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01;
+    const real G9_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11;
+    const real G9_0_1_0_0 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01;
+    const real G9_0_1_0_1 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g11;
+    const real G9_0_1_1_0 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01;
+    const real G9_0_1_1_1 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g11;
+    const real G9_0_2_0_1 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11;
+    const real G9_0_2_1_1 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11;
+    const real G9_1_0_0_0 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01;
+    const real G9_1_0_0_1 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11;
+    const real G9_1_0_1_0 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01;
+    const real G9_1_0_1_1 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11;
+    const real G9_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01;
+    const real G9_1_1_0_1 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g11;
+    const real G9_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01;
+    const real G9_1_1_1_1 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g11;
+    const real G9_1_2_0_1 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11;
+    const real G9_1_2_1_1 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11;
+    const real G9_2_0_0_0 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01;
+    const real G9_2_0_0_1 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11;
+    const real G9_2_0_1_0 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01;
+    const real G9_2_0_1_1 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11;
+    const real G9_2_1_0_0 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01;
+    const real G9_2_1_0_1 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g11;
+    const real G9_2_1_1_0 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01;
+    const real G9_2_1_1_1 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g11;
+    const real G9_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11;
+    const real G9_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11;
+    const real G10_0_0_0 = map.det*c2*c1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*map.g01*map.g01;
+    const real G10_0_0_1 = map.det*c2*c1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*map.g01*map.g11;
+    const real G10_0_1_0 = map.det*c2*c1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*map.g11*map.g01;
+    const real G10_0_1_1 = map.det*c2*c1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*map.g11*map.g11;
+    const real G10_1_0_0 = map.det*c2*c1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*map.g01*map.g01;
+    const real G10_1_0_1 = map.det*c2*c1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*map.g01*map.g11;
+    const real G10_1_1_0 = map.det*c2*c1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*map.g11*map.g01;
+    const real G10_1_1_1 = map.det*c2*c1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*map.g11*map.g11;
+    const real G10_2_0_1 = map.det*c2*c1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*map.g01*map.g11;
+    const real G10_2_1_1 = map.det*c2*c1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*map.g11*map.g11;
+    const real G11_0_0 = map.det*c2*c1*map.g00*map.g00 + map.det*c2*c1*map.g01*map.g01;
+    const real G11_0_1 = map.det*c2*c1*map.g00*map.g10 + map.det*c2*c1*map.g01*map.g11;
+    const real G11_1_0 = map.det*c2*c1*map.g10*map.g00 + map.det*c2*c1*map.g11*map.g01;
+    const real G11_1_1 = map.det*c2*c1*map.g10*map.g10 + map.det*c2*c1*map.g11*map.g11;
+    const real G12_ = map.det;
+    const real G13_0_0 = map.det*c0*map.g00*map.g00 + map.det*c0*map.g01*map.g01;
+    const real G13_0_1 = map.det*c0*map.g00*map.g10 + map.det*c0*map.g01*map.g11;
+    const real G13_1_0 = map.det*c0*map.g10*map.g00 + map.det*c0*map.g11*map.g01;
+    const real G13_1_1 = map.det*c0*map.g10*map.g10 + map.det*c0*map.g11*map.g11;
 
     // Compute element tensor
-    block[0] = 8.333333333333318e-02*G0_ + 8.333333333333320e-02*G1_0_0_0_0 + 8.333333333333319e-02*G1_0_0_0_1 + 8.333333333333319e-02*G1_0_0_1_0 + 8.333333333333318e-02*G1_0_0_1_1 + 4.166666666666660e-02*G1_0_1_0_0 + 4.166666666666659e-02*G1_0_1_0_1 + 4.166666666666659e-02*G1_0_1_1_0 + 4.166666666666659e-02*G1_0_1_1_1 + 4.166666666666659e-02*G1_0_2_0_0 + 4.166666666666659e-02*G1_0_2_0_1 + 4.166666666666659e-02*G1_0_2_1_0 + 4.166666666666658e-02*G1_0_2_1_1 + 4.166666666666660e-02*G1_1_0_0_0 + 4.166666666666659e-02*G1_1_0_0_1 + 4.166666666666659e-02*G1_1_0_1_0 + 4.166666666666659e-02*G1_1_0_1_1 + 8.333333333333320e-02*G1_1_1_0_0 + 8.333333333333319e-02*G1_1_1_0_1 + 8.333333333333319e-02*G1_1_1_1_0 + 8.333333333333318e-02*G1_1_1_1_1 + 4.166666666666661e-02*G1_1_2_0_0 + 4.166666666666660e-02*G1_1_2_0_1 + 4.166666666666660e-02*G1_1_2_1_0 + 4.166666666666659e-02*G1_1_2_1_1 + 4.166666666666659e-02*G1_2_0_0_0 + 4.166666666666659e-02*G1_2_0_0_1 + 4.166666666666659e-02*G1_2_0_1_0 + 4.166666666666658e-02*G1_2_0_1_1 + 4.166666666666661e-02*G1_2_1_0_0 + 4.166666666666660e-02*G1_2_1_0_1 + 4.166666666666660e-02*G1_2_1_1_0 + 4.166666666666659e-02*G1_2_1_1_1 + 8.333333333333320e-02*G1_2_2_0_0 + 8.333333333333318e-02*G1_2_2_0_1 + 8.333333333333318e-02*G1_2_2_1_0 + 8.333333333333316e-02*G1_2_2_1_1 + 4.999999999999992e-02*G2_0_0_0_0_0 + 4.999999999999991e-02*G2_0_0_0_0_1 + 4.999999999999991e-02*G2_0_0_0_1_0 + 4.999999999999990e-02*G2_0_0_0_1_1 - 4.999999999999992e-02*G2_0_0_1_0_0 - 4.999999999999991e-02*G2_0_0_1_1_0 - 4.999999999999991e-02*G2_0_0_2_0_1 - 4.999999999999990e-02*G2_0_0_2_1_1 + 1.666666666666664e-02*G2_0_1_0_0_0 + 1.666666666666664e-02*G2_0_1_0_0_1 + 1.666666666666664e-02*G2_0_1_0_1_0 + 1.666666666666664e-02*G2_0_1_0_1_1 - 1.666666666666664e-02*G2_0_1_1_0_0 - 1.666666666666664e-02*G2_0_1_1_1_0 - 1.666666666666664e-02*G2_0_1_2_0_1 - 1.666666666666664e-02*G2_0_1_2_1_1 + 1.666666666666664e-02*G2_0_2_0_0_0 + 1.666666666666664e-02*G2_0_2_0_0_1 + 1.666666666666664e-02*G2_0_2_0_1_0 + 1.666666666666663e-02*G2_0_2_0_1_1 - 1.666666666666664e-02*G2_0_2_1_0_0 - 1.666666666666664e-02*G2_0_2_1_1_0 - 1.666666666666664e-02*G2_0_2_2_0_1 - 1.666666666666663e-02*G2_0_2_2_1_1 + 1.666666666666664e-02*G2_1_0_0_0_0 + 1.666666666666664e-02*G2_1_0_0_0_1 + 1.666666666666664e-02*G2_1_0_0_1_0 + 1.666666666666664e-02*G2_1_0_0_1_1 - 1.666666666666664e-02*G2_1_0_1_0_0 - 1.666666666666664e-02*G2_1_0_1_1_0 - 1.666666666666664e-02*G2_1_0_2_0_1 - 1.666666666666664e-02*G2_1_0_2_1_1 + 1.666666666666664e-02*G2_1_1_0_0_0 + 1.666666666666664e-02*G2_1_1_0_0_1 + 1.666666666666664e-02*G2_1_1_0_1_0 + 1.666666666666663e-02*G2_1_1_0_1_1 - 1.666666666666664e-02*G2_1_1_1_0_0 - 1.666666666666664e-02*G2_1_1_1_1_0 - 1.666666666666664e-02*G2_1_1_2_0_1 - 1.666666666666663e-02*G2_1_1_2_1_1 + 8.333333333333321e-03*G2_1_2_0_0_0 + 8.333333333333319e-03*G2_1_2_0_0_1 + 8.333333333333319e-03*G2_1_2_0_1_0 + 8.333333333333318e-03*G2_1_2_0_1_1 - 8.333333333333321e-03*G2_1_2_1_0_0 - 8.333333333333319e-03*G2_1_2_1_1_0 - 8.333333333333319e-03*G2_1_2_2_0_1 - 8.333333333333318e-03*G2_1_2_2_1_1 + 1.666666666666664e-02*G2_2_0_0_0_0 + 1.666666666666664e-02*G2_2_0_0_0_1 + 1.666666666666664e-02*G2_2_0_0_1_0 + 1.666666666666663e-02*G2_2_0_0_1_1 - 1.666666666666664e-02*G2_2_0_1_0_0 - 1.666666666666664e-02*G2_2_0_1_1_0 - 1.666666666666664e-02*G2_2_0_2_0_1 - 1.666666666666663e-02*G2_2_0_2_1_1 + 8.333333333333319e-03*G2_2_1_0_0_0 + 8.333333333333319e-03*G2_2_1_0_0_1 + 8.333333333333319e-03*G2_2_1_0_1_0 + 8.333333333333316e-03*G2_2_1_0_1_1 - 8.333333333333319e-03*G2_2_1_1_0_0 - 8.333333333333319e-03*G2_2_1_1_1_0 - 8.333333333333319e-03*G2_2_1_2_0_1 - 8.333333333333316e-03*G2_2_1_2_1_1 + 1.666666666666664e-02*G2_2_2_0_0_0 + 1.666666666666664e-02*G2_2_2_0_0_1 + 1.666666666666664e-02*G2_2_2_0_1_0 + 1.666666666666663e-02*G2_2_2_0_1_1 - 1.666666666666664e-02*G2_2_2_1_0_0 - 1.666666666666664e-02*G2_2_2_1_1_0 - 1.666666666666664e-02*G2_2_2_2_0_1 - 1.666666666666663e-02*G2_2_2_2_1_1;
-    block[1] = 4.166666666666659e-02*G0_ - 8.333333333333320e-02*G1_0_0_0_0 - 8.333333333333319e-02*G1_0_0_1_0 - 4.166666666666660e-02*G1_0_1_0_0 - 4.166666666666659e-02*G1_0_1_1_0 - 4.166666666666659e-02*G1_0_2_0_0 - 4.166666666666659e-02*G1_0_2_1_0 - 4.166666666666660e-02*G1_1_0_0_0 - 4.166666666666659e-02*G1_1_0_1_0 - 8.333333333333320e-02*G1_1_1_0_0 - 8.333333333333319e-02*G1_1_1_1_0 - 4.166666666666661e-02*G1_1_2_0_0 - 4.166666666666660e-02*G1_1_2_1_0 - 4.166666666666659e-02*G1_2_0_0_0 - 4.166666666666659e-02*G1_2_0_1_0 - 4.166666666666661e-02*G1_2_1_0_0 - 4.166666666666660e-02*G1_2_1_1_0 - 8.333333333333320e-02*G1_2_2_0_0 - 8.333333333333318e-02*G1_2_2_1_0 + 1.666666666666664e-02*G2_0_0_0_0_0 + 1.666666666666664e-02*G2_0_0_0_0_1 + 1.666666666666664e-02*G2_0_0_0_1_0 + 1.666666666666664e-02*G2_0_0_0_1_1 - 1.666666666666664e-02*G2_0_0_1_0_0 - 1.666666666666664e-02*G2_0_0_1_1_0 - 1.666666666666664e-02*G2_0_0_2_0_1 - 1.666666666666664e-02*G2_0_0_2_1_1 + 1.666666666666664e-02*G2_0_1_0_0_0 + 1.666666666666664e-02*G2_0_1_0_0_1 + 1.666666666666664e-02*G2_0_1_0_1_0 + 1.666666666666663e-02*G2_0_1_0_1_1 - 1.666666666666664e-02*G2_0_1_1_0_0 - 1.666666666666664e-02*G2_0_1_1_1_0 - 1.666666666666664e-02*G2_0_1_2_0_1 - 1.666666666666663e-02*G2_0_1_2_1_1 + 8.333333333333319e-03*G2_0_2_0_0_0 + 8.333333333333318e-03*G2_0_2_0_0_1 + 8.333333333333318e-03*G2_0_2_0_1_0 + 8.333333333333318e-03*G2_0_2_0_1_1 - 8.333333333333319e-03*G2_0_2_1_0_0 - 8.333333333333318e-03*G2_0_2_1_1_0 - 8.333333333333318e-03*G2_0_2_2_0_1 - 8.333333333333318e-03*G2_0_2_2_1_1 + 1.666666666666664e-02*G2_1_0_0_0_0 + 1.666666666666664e-02*G2_1_0_0_0_1 + 1.666666666666664e-02*G2_1_0_0_1_0 + 1.666666666666663e-02*G2_1_0_0_1_1 - 1.666666666666664e-02*G2_1_0_1_0_0 - 1.666666666666664e-02*G2_1_0_1_1_0 - 1.666666666666664e-02*G2_1_0_2_0_1 - 1.666666666666663e-02*G2_1_0_2_1_1 + 4.999999999999993e-02*G2_1_1_0_0_0 + 4.999999999999992e-02*G2_1_1_0_0_1 + 4.999999999999992e-02*G2_1_1_0_1_0 + 4.999999999999991e-02*G2_1_1_0_1_1 - 4.999999999999993e-02*G2_1_1_1_0_0 - 4.999999999999992e-02*G2_1_1_1_1_0 - 4.999999999999992e-02*G2_1_1_2_0_1 - 4.999999999999991e-02*G2_1_1_2_1_1 + 1.666666666666665e-02*G2_1_2_0_0_0 + 1.666666666666664e-02*G2_1_2_0_0_1 + 1.666666666666664e-02*G2_1_2_0_1_0 + 1.666666666666664e-02*G2_1_2_0_1_1 - 1.666666666666665e-02*G2_1_2_1_0_0 - 1.666666666666664e-02*G2_1_2_1_1_0 - 1.666666666666664e-02*G2_1_2_2_0_1 - 1.666666666666664e-02*G2_1_2_2_1_1 + 8.333333333333319e-03*G2_2_0_0_0_0 + 8.333333333333318e-03*G2_2_0_0_0_1 + 8.333333333333318e-03*G2_2_0_0_1_0 + 8.333333333333318e-03*G2_2_0_0_1_1 - 8.333333333333319e-03*G2_2_0_1_0_0 - 8.333333333333318e-03*G2_2_0_1_1_0 - 8.333333333333318e-03*G2_2_0_2_0_1 - 8.333333333333318e-03*G2_2_0_2_1_1 + 1.666666666666665e-02*G2_2_1_0_0_0 + 1.666666666666664e-02*G2_2_1_0_0_1 + 1.666666666666664e-02*G2_2_1_0_1_0 + 1.666666666666664e-02*G2_2_1_0_1_1 - 1.666666666666665e-02*G2_2_1_1_0_0 - 1.666666666666664e-02*G2_2_1_1_1_0 - 1.666666666666664e-02*G2_2_1_2_0_1 - 1.666666666666664e-02*G2_2_1_2_1_1 + 1.666666666666665e-02*G2_2_2_0_0_0 + 1.666666666666664e-02*G2_2_2_0_0_1 + 1.666666666666664e-02*G2_2_2_0_1_0 + 1.666666666666664e-02*G2_2_2_0_1_1 - 1.666666666666665e-02*G2_2_2_1_0_0 - 1.666666666666664e-02*G2_2_2_1_1_0 - 1.666666666666664e-02*G2_2_2_2_0_1 - 1.666666666666664e-02*G2_2_2_2_1_1;
-    block[2] = 4.166666666666658e-02*G0_ - 8.333333333333319e-02*G1_0_0_0_1 - 8.333333333333318e-02*G1_0_0_1_1 - 4.166666666666659e-02*G1_0_1_0_1 - 4.166666666666659e-02*G1_0_1_1_1 - 4.166666666666659e-02*G1_0_2_0_1 - 4.166666666666658e-02*G1_0_2_1_1 - 4.166666666666659e-02*G1_1_0_0_1 - 4.166666666666659e-02*G1_1_0_1_1 - 8.333333333333319e-02*G1_1_1_0_1 - 8.333333333333318e-02*G1_1_1_1_1 - 4.166666666666660e-02*G1_1_2_0_1 - 4.166666666666659e-02*G1_1_2_1_1 - 4.166666666666659e-02*G1_2_0_0_1 - 4.166666666666658e-02*G1_2_0_1_1 - 4.166666666666660e-02*G1_2_1_0_1 - 4.166666666666659e-02*G1_2_1_1_1 - 8.333333333333318e-02*G1_2_2_0_1 - 8.333333333333316e-02*G1_2_2_1_1 + 1.666666666666664e-02*G2_0_0_0_0_0 + 1.666666666666664e-02*G2_0_0_0_0_1 + 1.666666666666664e-02*G2_0_0_0_1_0 + 1.666666666666663e-02*G2_0_0_0_1_1 - 1.666666666666664e-02*G2_0_0_1_0_0 - 1.666666666666664e-02*G2_0_0_1_1_0 - 1.666666666666664e-02*G2_0_0_2_0_1 - 1.666666666666663e-02*G2_0_0_2_1_1 + 8.333333333333319e-03*G2_0_1_0_0_0 + 8.333333333333318e-03*G2_0_1_0_0_1 + 8.333333333333318e-03*G2_0_1_0_1_0 + 8.333333333333316e-03*G2_0_1_0_1_1 - 8.333333333333319e-03*G2_0_1_1_0_0 - 8.333333333333318e-03*G2_0_1_1_1_0 - 8.333333333333318e-03*G2_0_1_2_0_1 - 8.333333333333316e-03*G2_0_1_2_1_1 + 1.666666666666664e-02*G2_0_2_0_0_0 + 1.666666666666664e-02*G2_0_2_0_0_1 + 1.666666666666664e-02*G2_0_2_0_1_0 + 1.666666666666663e-02*G2_0_2_0_1_1 - 1.666666666666664e-02*G2_0_2_1_0_0 - 1.666666666666664e-02*G2_0_2_1_1_0 - 1.666666666666664e-02*G2_0_2_2_0_1 - 1.666666666666663e-02*G2_0_2_2_1_1 + 8.333333333333319e-03*G2_1_0_0_0_0 + 8.333333333333318e-03*G2_1_0_0_0_1 + 8.333333333333318e-03*G2_1_0_0_1_0 + 8.333333333333316e-03*G2_1_0_0_1_1 - 8.333333333333319e-03*G2_1_0_1_0_0 - 8.333333333333318e-03*G2_1_0_1_1_0 - 8.333333333333318e-03*G2_1_0_2_0_1 - 8.333333333333316e-03*G2_1_0_2_1_1 + 1.666666666666664e-02*G2_1_1_0_0_0 + 1.666666666666664e-02*G2_1_1_0_0_1 + 1.666666666666664e-02*G2_1_1_0_1_0 + 1.666666666666664e-02*G2_1_1_0_1_1 - 1.666666666666664e-02*G2_1_1_1_0_0 - 1.666666666666664e-02*G2_1_1_1_1_0 - 1.666666666666664e-02*G2_1_1_2_0_1 - 1.666666666666664e-02*G2_1_1_2_1_1 + 1.666666666666665e-02*G2_1_2_0_0_0 + 1.666666666666664e-02*G2_1_2_0_0_1 + 1.666666666666664e-02*G2_1_2_0_1_0 + 1.666666666666664e-02*G2_1_2_0_1_1 - 1.666666666666665e-02*G2_1_2_1_0_0 - 1.666666666666664e-02*G2_1_2_1_1_0 - 1.666666666666664e-02*G2_1_2_2_0_1 - 1.666666666666664e-02*G2_1_2_2_1_1 + 1.666666666666664e-02*G2_2_0_0_0_0 + 1.666666666666664e-02*G2_2_0_0_0_1 + 1.666666666666664e-02*G2_2_0_0_1_0 + 1.666666666666663e-02*G2_2_0_0_1_1 - 1.666666666666664e-02*G2_2_0_1_0_0 - 1.666666666666664e-02*G2_2_0_1_1_0 - 1.666666666666664e-02*G2_2_0_2_0_1 - 1.666666666666663e-02*G2_2_0_2_1_1 + 1.666666666666664e-02*G2_2_1_0_0_0 + 1.666666666666664e-02*G2_2_1_0_0_1 + 1.666666666666664e-02*G2_2_1_0_1_0 + 1.666666666666664e-02*G2_2_1_0_1_1 - 1.666666666666664e-02*G2_2_1_1_0_0 - 1.666666666666664e-02*G2_2_1_1_1_0 - 1.666666666666664e-02*G2_2_1_2_0_1 - 1.666666666666664e-02*G2_2_1_2_1_1 + 4.999999999999992e-02*G2_2_2_0_0_0 + 4.999999999999991e-02*G2_2_2_0_0_1 + 4.999999999999991e-02*G2_2_2_0_1_0 + 4.999999999999990e-02*G2_2_2_0_1_1 - 4.999999999999992e-02*G2_2_2_1_0_0 - 4.999999999999991e-02*G2_2_2_1_1_0 - 4.999999999999991e-02*G2_2_2_2_0_1 - 4.999999999999990e-02*G2_2_2_2_1_1;
-    block[3] = -1.666666666666666e-01*G3_0_0_0 - 1.666666666666665e-01*G3_0_0_1 - 1.666666666666665e-01*G3_0_1_0 - 1.666666666666665e-01*G3_0_1_1 - 1.666666666666666e-01*G3_1_0_0 - 1.666666666666666e-01*G3_1_0_1 - 1.666666666666666e-01*G3_1_1_0 - 1.666666666666665e-01*G3_1_1_1 - 1.666666666666666e-01*G3_2_0_0 - 1.666666666666665e-01*G3_2_0_1 - 1.666666666666665e-01*G3_2_1_0 - 1.666666666666665e-01*G3_2_1_1;
-    block[4] = 1.666666666666666e-01*G3_0_0_0 + 1.666666666666665e-01*G3_0_1_0 + 1.666666666666666e-01*G3_1_0_0 + 1.666666666666666e-01*G3_1_1_0 + 1.666666666666666e-01*G3_2_0_0 + 1.666666666666665e-01*G3_2_1_0;
-    block[5] = 1.666666666666665e-01*G3_0_0_1 + 1.666666666666665e-01*G3_0_1_1 + 1.666666666666666e-01*G3_1_0_1 + 1.666666666666665e-01*G3_1_1_1 + 1.666666666666665e-01*G3_2_0_1 + 1.666666666666665e-01*G3_2_1_1;
-    block[6] = 4.166666666666659e-02*G0_ - 8.333333333333320e-02*G1_0_0_0_0 - 8.333333333333319e-02*G1_0_0_0_1 - 4.166666666666660e-02*G1_0_1_0_0 - 4.166666666666659e-02*G1_0_1_0_1 - 4.166666666666659e-02*G1_0_2_0_0 - 4.166666666666659e-02*G1_0_2_0_1 - 4.166666666666660e-02*G1_1_0_0_0 - 4.166666666666659e-02*G1_1_0_0_1 - 8.333333333333320e-02*G1_1_1_0_0 - 8.333333333333319e-02*G1_1_1_0_1 - 4.166666666666661e-02*G1_1_2_0_0 - 4.166666666666660e-02*G1_1_2_0_1 - 4.166666666666659e-02*G1_2_0_0_0 - 4.166666666666659e-02*G1_2_0_0_1 - 4.166666666666661e-02*G1_2_1_0_0 - 4.166666666666660e-02*G1_2_1_0_1 - 8.333333333333320e-02*G1_2_2_0_0 - 8.333333333333318e-02*G1_2_2_0_1 - 4.999999999999992e-02*G2_0_0_0_0_0 - 4.999999999999991e-02*G2_0_0_0_0_1 + 4.999999999999992e-02*G2_0_0_1_0_0 + 4.999999999999991e-02*G2_0_0_2_0_1 - 1.666666666666664e-02*G2_0_1_0_0_0 - 1.666666666666664e-02*G2_0_1_0_0_1 + 1.666666666666664e-02*G2_0_1_1_0_0 + 1.666666666666664e-02*G2_0_1_2_0_1 - 1.666666666666664e-02*G2_0_2_0_0_0 - 1.666666666666664e-02*G2_0_2_0_0_1 + 1.666666666666664e-02*G2_0_2_1_0_0 + 1.666666666666664e-02*G2_0_2_2_0_1 - 1.666666666666664e-02*G2_1_0_0_0_0 - 1.666666666666664e-02*G2_1_0_0_0_1 + 1.666666666666664e-02*G2_1_0_1_0_0 + 1.666666666666664e-02*G2_1_0_2_0_1 - 1.666666666666664e-02*G2_1_1_0_0_0 - 1.666666666666664e-02*G2_1_1_0_0_1 + 1.666666666666664e-02*G2_1_1_1_0_0 + 1.666666666666664e-02*G2_1_1_2_0_1 - 8.333333333333321e-03*G2_1_2_0_0_0 - 8.333333333333319e-03*G2_1_2_0_0_1 + 8.333333333333321e-03*G2_1_2_1_0_0 + 8.333333333333319e-03*G2_1_2_2_0_1 - 1.666666666666664e-02*G2_2_0_0_0_0 - 1.666666666666664e-02*G2_2_0_0_0_1 + 1.666666666666664e-02*G2_2_0_1_0_0 + 1.666666666666664e-02*G2_2_0_2_0_1 - 8.333333333333319e-03*G2_2_1_0_0_0 - 8.333333333333319e-03*G2_2_1_0_0_1 + 8.333333333333319e-03*G2_2_1_1_0_0 + 8.333333333333319e-03*G2_2_1_2_0_1 - 1.666666666666664e-02*G2_2_2_0_0_0 - 1.666666666666664e-02*G2_2_2_0_0_1 + 1.666666666666664e-02*G2_2_2_1_0_0 + 1.666666666666664e-02*G2_2_2_2_0_1;
-    block[7] = 8.333333333333318e-02*G0_ + 8.333333333333320e-02*G1_0_0_0_0 + 4.166666666666660e-02*G1_0_1_0_0 + 4.166666666666659e-02*G1_0_2_0_0 + 4.166666666666660e-02*G1_1_0_0_0 + 8.333333333333320e-02*G1_1_1_0_0 + 4.166666666666661e-02*G1_1_2_0_0 + 4.166666666666659e-02*G1_2_0_0_0 + 4.166666666666661e-02*G1_2_1_0_0 + 8.333333333333320e-02*G1_2_2_0_0 - 1.666666666666664e-02*G2_0_0_0_0_0 - 1.666666666666664e-02*G2_0_0_0_0_1 + 1.666666666666664e-02*G2_0_0_1_0_0 + 1.666666666666664e-02*G2_0_0_2_0_1 - 1.666666666666664e-02*G2_0_1_0_0_0 - 1.666666666666664e-02*G2_0_1_0_0_1 + 1.666666666666664e-02*G2_0_1_1_0_0 + 1.666666666666664e-02*G2_0_1_2_0_1 - 8.333333333333319e-03*G2_0_2_0_0_0 - 8.333333333333318e-03*G2_0_2_0_0_1 + 8.333333333333319e-03*G2_0_2_1_0_0 + 8.333333333333318e-03*G2_0_2_2_0_1 - 1.666666666666664e-02*G2_1_0_0_0_0 - 1.666666666666664e-02*G2_1_0_0_0_1 + 1.666666666666664e-02*G2_1_0_1_0_0 + 1.666666666666664e-02*G2_1_0_2_0_1 - 4.999999999999993e-02*G2_1_1_0_0_0 - 4.999999999999992e-02*G2_1_1_0_0_1 + 4.999999999999993e-02*G2_1_1_1_0_0 + 4.999999999999992e-02*G2_1_1_2_0_1 - 1.666666666666665e-02*G2_1_2_0_0_0 - 1.666666666666664e-02*G2_1_2_0_0_1 + 1.666666666666665e-02*G2_1_2_1_0_0 + 1.666666666666664e-02*G2_1_2_2_0_1 - 8.333333333333319e-03*G2_2_0_0_0_0 - 8.333333333333318e-03*G2_2_0_0_0_1 + 8.333333333333319e-03*G2_2_0_1_0_0 + 8.333333333333318e-03*G2_2_0_2_0_1 - 1.666666666666665e-02*G2_2_1_0_0_0 - 1.666666666666664e-02*G2_2_1_0_0_1 + 1.666666666666665e-02*G2_2_1_1_0_0 + 1.666666666666664e-02*G2_2_1_2_0_1 - 1.666666666666665e-02*G2_2_2_0_0_0 - 1.666666666666664e-02*G2_2_2_0_0_1 + 1.666666666666665e-02*G2_2_2_1_0_0 + 1.666666666666664e-02*G2_2_2_2_0_1;
-    block[8] = 4.166666666666659e-02*G0_ + 8.333333333333319e-02*G1_0_0_0_1 + 4.166666666666659e-02*G1_0_1_0_1 + 4.166666666666659e-02*G1_0_2_0_1 + 4.166666666666659e-02*G1_1_0_0_1 + 8.333333333333319e-02*G1_1_1_0_1 + 4.166666666666660e-02*G1_1_2_0_1 + 4.166666666666659e-02*G1_2_0_0_1 + 4.166666666666660e-02*G1_2_1_0_1 + 8.333333333333318e-02*G1_2_2_0_1 - 1.666666666666664e-02*G2_0_0_0_0_0 - 1.666666666666664e-02*G2_0_0_0_0_1 + 1.666666666666664e-02*G2_0_0_1_0_0 + 1.666666666666664e-02*G2_0_0_2_0_1 - 8.333333333333319e-03*G2_0_1_0_0_0 - 8.333333333333318e-03*G2_0_1_0_0_1 + 8.333333333333319e-03*G2_0_1_1_0_0 + 8.333333333333318e-03*G2_0_1_2_0_1 - 1.666666666666664e-02*G2_0_2_0_0_0 - 1.666666666666664e-02*G2_0_2_0_0_1 + 1.666666666666664e-02*G2_0_2_1_0_0 + 1.666666666666664e-02*G2_0_2_2_0_1 - 8.333333333333319e-03*G2_1_0_0_0_0 - 8.333333333333318e-03*G2_1_0_0_0_1 + 8.333333333333319e-03*G2_1_0_1_0_0 + 8.333333333333318e-03*G2_1_0_2_0_1 - 1.666666666666664e-02*G2_1_1_0_0_0 - 1.666666666666664e-02*G2_1_1_0_0_1 + 1.666666666666664e-02*G2_1_1_1_0_0 + 1.666666666666664e-02*G2_1_1_2_0_1 - 1.666666666666665e-02*G2_1_2_0_0_0 - 1.666666666666664e-02*G2_1_2_0_0_1 + 1.666666666666665e-02*G2_1_2_1_0_0 + 1.666666666666664e-02*G2_1_2_2_0_1 - 1.666666666666664e-02*G2_2_0_0_0_0 - 1.666666666666664e-02*G2_2_0_0_0_1 + 1.666666666666664e-02*G2_2_0_1_0_0 + 1.666666666666664e-02*G2_2_0_2_0_1 - 1.666666666666664e-02*G2_2_1_0_0_0 - 1.666666666666664e-02*G2_2_1_0_0_1 + 1.666666666666664e-02*G2_2_1_1_0_0 + 1.666666666666664e-02*G2_2_1_2_0_1 - 4.999999999999992e-02*G2_2_2_0_0_0 - 4.999999999999991e-02*G2_2_2_0_0_1 + 4.999999999999992e-02*G2_2_2_1_0_0 + 4.999999999999991e-02*G2_2_2_2_0_1;
-    block[9] = 1.666666666666666e-01*G3_0_0_0 + 1.666666666666665e-01*G3_0_0_1 + 1.666666666666666e-01*G3_1_0_0 + 1.666666666666666e-01*G3_1_0_1 + 1.666666666666666e-01*G3_2_0_0 + 1.666666666666665e-01*G3_2_0_1;
-    block[10] = -1.666666666666666e-01*G3_0_0_0 - 1.666666666666666e-01*G3_1_0_0 - 1.666666666666666e-01*G3_2_0_0;
-    block[11] = -1.666666666666665e-01*G3_0_0_1 - 1.666666666666666e-01*G3_1_0_1 - 1.666666666666665e-01*G3_2_0_1;
-    block[12] = 4.166666666666658e-02*G0_ - 8.333333333333319e-02*G1_0_0_1_0 - 8.333333333333318e-02*G1_0_0_1_1 - 4.166666666666659e-02*G1_0_1_1_0 - 4.166666666666659e-02*G1_0_1_1_1 - 4.166666666666659e-02*G1_0_2_1_0 - 4.166666666666658e-02*G1_0_2_1_1 - 4.166666666666659e-02*G1_1_0_1_0 - 4.166666666666659e-02*G1_1_0_1_1 - 8.333333333333319e-02*G1_1_1_1_0 - 8.333333333333318e-02*G1_1_1_1_1 - 4.166666666666660e-02*G1_1_2_1_0 - 4.166666666666659e-02*G1_1_2_1_1 - 4.166666666666659e-02*G1_2_0_1_0 - 4.166666666666658e-02*G1_2_0_1_1 - 4.166666666666660e-02*G1_2_1_1_0 - 4.166666666666659e-02*G1_2_1_1_1 - 8.333333333333318e-02*G1_2_2_1_0 - 8.333333333333316e-02*G1_2_2_1_1 - 4.999999999999991e-02*G2_0_0_0_1_0 - 4.999999999999990e-02*G2_0_0_0_1_1 + 4.999999999999991e-02*G2_0_0_1_1_0 + 4.999999999999990e-02*G2_0_0_2_1_1 - 1.666666666666664e-02*G2_0_1_0_1_0 - 1.666666666666664e-02*G2_0_1_0_1_1 + 1.666666666666664e-02*G2_0_1_1_1_0 + 1.666666666666664e-02*G2_0_1_2_1_1 - 1.666666666666664e-02*G2_0_2_0_1_0 - 1.666666666666663e-02*G2_0_2_0_1_1 + 1.666666666666664e-02*G2_0_2_1_1_0 + 1.666666666666663e-02*G2_0_2_2_1_1 - 1.666666666666664e-02*G2_1_0_0_1_0 - 1.666666666666664e-02*G2_1_0_0_1_1 + 1.666666666666664e-02*G2_1_0_1_1_0 + 1.666666666666664e-02*G2_1_0_2_1_1 - 1.666666666666664e-02*G2_1_1_0_1_0 - 1.666666666666663e-02*G2_1_1_0_1_1 + 1.666666666666664e-02*G2_1_1_1_1_0 + 1.666666666666663e-02*G2_1_1_2_1_1 - 8.333333333333319e-03*G2_1_2_0_1_0 - 8.333333333333318e-03*G2_1_2_0_1_1 + 8.333333333333319e-03*G2_1_2_1_1_0 + 8.333333333333318e-03*G2_1_2_2_1_1 - 1.666666666666664e-02*G2_2_0_0_1_0 - 1.666666666666663e-02*G2_2_0_0_1_1 + 1.666666666666664e-02*G2_2_0_1_1_0 + 1.666666666666663e-02*G2_2_0_2_1_1 - 8.333333333333319e-03*G2_2_1_0_1_0 - 8.333333333333316e-03*G2_2_1_0_1_1 + 8.333333333333319e-03*G2_2_1_1_1_0 + 8.333333333333316e-03*G2_2_1_2_1_1 - 1.666666666666664e-02*G2_2_2_0_1_0 - 1.666666666666663e-02*G2_2_2_0_1_1 + 1.666666666666664e-02*G2_2_2_1_1_0 + 1.666666666666663e-02*G2_2_2_2_1_1;
-    block[13] = 4.166666666666659e-02*G0_ + 8.333333333333319e-02*G1_0_0_1_0 + 4.166666666666659e-02*G1_0_1_1_0 + 4.166666666666659e-02*G1_0_2_1_0 + 4.166666666666659e-02*G1_1_0_1_0 + 8.333333333333319e-02*G1_1_1_1_0 + 4.166666666666660e-02*G1_1_2_1_0 + 4.166666666666659e-02*G1_2_0_1_0 + 4.166666666666660e-02*G1_2_1_1_0 + 8.333333333333318e-02*G1_2_2_1_0 - 1.666666666666664e-02*G2_0_0_0_1_0 - 1.666666666666664e-02*G2_0_0_0_1_1 + 1.666666666666664e-02*G2_0_0_1_1_0 + 1.666666666666664e-02*G2_0_0_2_1_1 - 1.666666666666664e-02*G2_0_1_0_1_0 - 1.666666666666663e-02*G2_0_1_0_1_1 + 1.666666666666664e-02*G2_0_1_1_1_0 + 1.666666666666663e-02*G2_0_1_2_1_1 - 8.333333333333318e-03*G2_0_2_0_1_0 - 8.333333333333318e-03*G2_0_2_0_1_1 + 8.333333333333318e-03*G2_0_2_1_1_0 + 8.333333333333318e-03*G2_0_2_2_1_1 - 1.666666666666664e-02*G2_1_0_0_1_0 - 1.666666666666663e-02*G2_1_0_0_1_1 + 1.666666666666664e-02*G2_1_0_1_1_0 + 1.666666666666663e-02*G2_1_0_2_1_1 - 4.999999999999992e-02*G2_1_1_0_1_0 - 4.999999999999991e-02*G2_1_1_0_1_1 + 4.999999999999992e-02*G2_1_1_1_1_0 + 4.999999999999991e-02*G2_1_1_2_1_1 - 1.666666666666664e-02*G2_1_2_0_1_0 - 1.666666666666664e-02*G2_1_2_0_1_1 + 1.666666666666664e-02*G2_1_2_1_1_0 + 1.666666666666664e-02*G2_1_2_2_1_1 - 8.333333333333318e-03*G2_2_0_0_1_0 - 8.333333333333318e-03*G2_2_0_0_1_1 + 8.333333333333318e-03*G2_2_0_1_1_0 + 8.333333333333318e-03*G2_2_0_2_1_1 - 1.666666666666664e-02*G2_2_1_0_1_0 - 1.666666666666664e-02*G2_2_1_0_1_1 + 1.666666666666664e-02*G2_2_1_1_1_0 + 1.666666666666664e-02*G2_2_1_2_1_1 - 1.666666666666664e-02*G2_2_2_0_1_0 - 1.666666666666664e-02*G2_2_2_0_1_1 + 1.666666666666664e-02*G2_2_2_1_1_0 + 1.666666666666664e-02*G2_2_2_2_1_1;
-    block[14] = 8.333333333333316e-02*G0_ + 8.333333333333318e-02*G1_0_0_1_1 + 4.166666666666659e-02*G1_0_1_1_1 + 4.166666666666658e-02*G1_0_2_1_1 + 4.166666666666659e-02*G1_1_0_1_1 + 8.333333333333318e-02*G1_1_1_1_1 + 4.166666666666659e-02*G1_1_2_1_1 + 4.166666666666658e-02*G1_2_0_1_1 + 4.166666666666659e-02*G1_2_1_1_1 + 8.333333333333316e-02*G1_2_2_1_1 - 1.666666666666664e-02*G2_0_0_0_1_0 - 1.666666666666663e-02*G2_0_0_0_1_1 + 1.666666666666664e-02*G2_0_0_1_1_0 + 1.666666666666663e-02*G2_0_0_2_1_1 - 8.333333333333318e-03*G2_0_1_0_1_0 - 8.333333333333316e-03*G2_0_1_0_1_1 + 8.333333333333318e-03*G2_0_1_1_1_0 + 8.333333333333316e-03*G2_0_1_2_1_1 - 1.666666666666664e-02*G2_0_2_0_1_0 - 1.666666666666663e-02*G2_0_2_0_1_1 + 1.666666666666664e-02*G2_0_2_1_1_0 + 1.666666666666663e-02*G2_0_2_2_1_1 - 8.333333333333318e-03*G2_1_0_0_1_0 - 8.333333333333316e-03*G2_1_0_0_1_1 + 8.333333333333318e-03*G2_1_0_1_1_0 + 8.333333333333316e-03*G2_1_0_2_1_1 - 1.666666666666664e-02*G2_1_1_0_1_0 - 1.666666666666664e-02*G2_1_1_0_1_1 + 1.666666666666664e-02*G2_1_1_1_1_0 + 1.666666666666664e-02*G2_1_1_2_1_1 - 1.666666666666664e-02*G2_1_2_0_1_0 - 1.666666666666664e-02*G2_1_2_0_1_1 + 1.666666666666664e-02*G2_1_2_1_1_0 + 1.666666666666664e-02*G2_1_2_2_1_1 - 1.666666666666664e-02*G2_2_0_0_1_0 - 1.666666666666663e-02*G2_2_0_0_1_1 + 1.666666666666664e-02*G2_2_0_1_1_0 + 1.666666666666663e-02*G2_2_0_2_1_1 - 1.666666666666664e-02*G2_2_1_0_1_0 - 1.666666666666664e-02*G2_2_1_0_1_1 + 1.666666666666664e-02*G2_2_1_1_1_0 + 1.666666666666664e-02*G2_2_1_2_1_1 - 4.999999999999991e-02*G2_2_2_0_1_0 - 4.999999999999990e-02*G2_2_2_0_1_1 + 4.999999999999991e-02*G2_2_2_1_1_0 + 4.999999999999990e-02*G2_2_2_2_1_1;
-    block[15] = 1.666666666666665e-01*G3_0_1_0 + 1.666666666666665e-01*G3_0_1_1 + 1.666666666666666e-01*G3_1_1_0 + 1.666666666666665e-01*G3_1_1_1 + 1.666666666666665e-01*G3_2_1_0 + 1.666666666666665e-01*G3_2_1_1;
-    block[16] = -1.666666666666665e-01*G3_0_1_0 - 1.666666666666666e-01*G3_1_1_0 - 1.666666666666665e-01*G3_2_1_0;
-    block[17] = -1.666666666666665e-01*G3_0_1_1 - 1.666666666666665e-01*G3_1_1_1 - 1.666666666666665e-01*G3_2_1_1;
-    block[18] = 4.999999999999998e-01*G5_0_0 + 4.999999999999997e-01*G5_0_1 + 4.999999999999997e-01*G5_1_0 + 4.999999999999996e-01*G5_1_1;
-    block[19] = -4.999999999999998e-01*G5_0_0 - 4.999999999999997e-01*G5_1_0;
-    block[20] = -4.999999999999997e-01*G5_0_1 - 4.999999999999996e-01*G5_1_1;
-    block[21] = 8.333333333333318e-02*G4_;
-    block[22] = 4.166666666666659e-02*G4_;
-    block[23] = 4.166666666666658e-02*G4_;
-    block[24] = -4.999999999999998e-01*G5_0_0 - 4.999999999999997e-01*G5_0_1;
-    block[25] = 4.999999999999998e-01*G5_0_0;
-    block[26] = 4.999999999999997e-01*G5_0_1;
-    block[27] = 4.166666666666659e-02*G4_;
-    block[28] = 8.333333333333318e-02*G4_;
-    block[29] = 4.166666666666659e-02*G4_;
-    block[30] = -4.999999999999997e-01*G5_1_0 - 4.999999999999996e-01*G5_1_1;
-    block[31] = 4.999999999999997e-01*G5_1_0;
-    block[32] = 4.999999999999996e-01*G5_1_1;
-    block[33] = 4.166666666666658e-02*G4_;
-    block[34] = 4.166666666666659e-02*G4_;
-    block[35] = 8.333333333333316e-02*G4_;
+    block[0] = 8.333333333333318e-02*G0_ + 1.666666666666664e+01*G1_0_0_0_0 + 1.666666666666664e+01*G1_0_0_0_1 + 1.666666666666664e+01*G1_0_0_1_0 + 1.666666666666664e+01*G1_0_0_1_1 + 8.333333333333321e+00*G1_0_1_0_0 + 8.333333333333320e+00*G1_0_1_0_1 + 8.333333333333320e+00*G1_0_1_1_0 + 8.333333333333316e+00*G1_0_1_1_1 + 8.333333333333321e+00*G1_0_2_0_0 + 8.333333333333320e+00*G1_0_2_0_1 + 8.333333333333320e+00*G1_0_2_1_0 + 8.333333333333318e+00*G1_0_2_1_1 + 8.333333333333321e+00*G1_1_0_0_0 + 8.333333333333320e+00*G1_1_0_0_1 + 8.333333333333320e+00*G1_1_0_1_0 + 8.333333333333318e+00*G1_1_0_1_1 + 1.666666666666664e+01*G1_1_1_0_0 + 1.666666666666664e+01*G1_1_1_0_1 + 1.666666666666664e+01*G1_1_1_1_0 + 1.666666666666664e+01*G1_1_1_1_1 + 8.333333333333321e+00*G1_1_2_0_0 + 8.333333333333321e+00*G1_1_2_0_1 + 8.333333333333321e+00*G1_1_2_1_0 + 8.333333333333318e+00*G1_1_2_1_1 + 8.333333333333320e+00*G1_2_0_0_0 + 8.333333333333318e+00*G1_2_0_0_1 + 8.333333333333318e+00*G1_2_0_1_0 + 8.333333333333316e+00*G1_2_0_1_1 + 8.333333333333321e+00*G1_2_1_0_0 + 8.333333333333320e+00*G1_2_1_0_1 + 8.333333333333320e+00*G1_2_1_1_0 + 8.333333333333318e+00*G1_2_1_1_1 + 1.666666666666664e+01*G1_2_2_0_0 + 1.666666666666664e+01*G1_2_2_0_1 + 1.666666666666664e+01*G1_2_2_1_0 + 1.666666666666664e+01*G1_2_2_1_1 - 3.333333333333331e+01*G2_0_0_0 - 3.333333333333331e+01*G2_0_0_1 - 3.333333333333331e+01*G2_0_1_0 - 3.333333333333330e+01*G2_0_1_1 - 3.333333333333332e+01*G2_1_0_0 - 3.333333333333331e+01*G2_1_0_1 - 3.333333333333331e+01*G2_1_1_0 - 3.333333333333331e+01*G2_1_1_1 - 3.333333333333331e+01*G2_2_0_0 - 3.333333333333331e+01*G2_2_0_1 - 3.333333333333331e+01*G2_2_1_0 - 3.333333333333330e+01*G2_2_1_1 + 9.999999999999997e+01*G3_0_0 + 9.999999999999994e+01*G3_0_1 + 9.999999999999994e+01*G3_1_0 + 9.999999999999991e+01*G3_1_1 + 6.666666666666657e+01*G4_0_0_0_0 + 6.666666666666656e+01*G4_0_0_0_1 + 6.666666666666656e+01*G4_0_0_1_0 + 6.666666666666654e+01*G4_0_0_1_1 + 3.333333333333329e+01*G4_0_1_0_0 + 3.333333333333328e+01*G4_0_1_0_1 + 3.333333333333328e+01*G4_0_1_1_0 + 3.333333333333326e+01*G4_0_1_1_1 + 3.333333333333329e+01*G4_0_2_0_0 + 3.333333333333328e+01*G4_0_2_0_1 + 3.333333333333328e+01*G4_0_2_1_0 + 3.333333333333327e+01*G4_0_2_1_1 + 3.333333333333329e+01*G4_1_0_0_0 + 3.333333333333328e+01*G4_1_0_0_1 + 3.333333333333328e+01*G4_1_0_1_0 + 3.333333333333327e+01*G4_1_0_1_1 + 6.666666666666657e+01*G4_1_1_0_0 + 6.666666666666656e+01*G4_1_1_0_1 + 6.666666666666656e+01*G4_1_1_1_0 + 6.666666666666654e+01*G4_1_1_1_1 + 3.333333333333329e+01*G4_1_2_0_0 + 3.333333333333329e+01*G4_1_2_0_1 + 3.333333333333329e+01*G4_1_2_1_0 + 3.333333333333327e+01*G4_1_2_1_1 + 3.333333333333328e+01*G4_2_0_0_0 + 3.333333333333327e+01*G4_2_0_0_1 + 3.333333333333327e+01*G4_2_0_1_0 + 3.333333333333326e+01*G4_2_0_1_1 + 3.333333333333329e+01*G4_2_1_0_0 + 3.333333333333328e+01*G4_2_1_0_1 + 3.333333333333328e+01*G4_2_1_1_0 + 3.333333333333327e+01*G4_2_1_1_1 + 6.666666666666657e+01*G4_2_2_0_0 + 6.666666666666656e+01*G4_2_2_0_1 + 6.666666666666656e+01*G4_2_2_1_0 + 6.666666666666654e+01*G4_2_2_1_1 - 1.333333333333333e+02*G5_0_0_0 - 1.333333333333332e+02*G5_0_0_1 - 1.333333333333332e+02*G5_0_1_0 - 1.333333333333332e+02*G5_0_1_1 - 1.333333333333333e+02*G5_1_0_0 - 1.333333333333333e+02*G5_1_0_1 - 1.333333333333333e+02*G5_1_1_0 - 1.333333333333332e+02*G5_1_1_1 - 1.333333333333333e+02*G5_2_0_0 - 1.333333333333332e+02*G5_2_0_1 - 1.333333333333332e+02*G5_2_1_0 - 1.333333333333332e+02*G5_2_1_1 + 1.999999999999997e+02*G9_0_0_0_0 + 1.999999999999997e+02*G9_0_0_0_1 + 1.999999999999997e+02*G9_0_0_1_0 + 1.999999999999996e+02*G9_0_0_1_1 - 1.999999999999997e+02*G9_0_1_0_0 - 1.899249771737785e-14*G9_0_1_0_1 - 1.999999999999997e+02*G9_0_1_1_0 - 1.899249771737784e-14*G9_0_1_1_1 - 1.999999999999997e+02*G9_0_2_0_1 - 1.999999999999996e+02*G9_0_2_1_1 + 9.999999999999984e+01*G9_1_0_0_0 + 9.999999999999982e+01*G9_1_0_0_1 + 9.999999999999982e+01*G9_1_0_1_0 + 9.999999999999980e+01*G9_1_0_1_1 - 9.999999999999984e+01*G9_1_1_0_0 - 9.999999999999982e+01*G9_1_1_1_0 - 9.999999999999982e+01*G9_1_2_0_1 - 9.999999999999980e+01*G9_1_2_1_1 + 9.999999999999984e+01*G9_2_0_0_0 + 9.999999999999983e+01*G9_2_0_0_1 + 9.999999999999983e+01*G9_2_0_1_0 + 9.999999999999980e+01*G9_2_0_1_1 - 9.999999999999984e+01*G9_2_1_0_0 - 9.999999999999983e+01*G9_2_1_1_0 - 9.999999999999983e+01*G9_2_2_0_1 - 9.999999999999980e+01*G9_2_2_1_1 - 1.999999999999999e+02*G10_0_0_0 - 1.999999999999998e+02*G10_0_0_1 - 1.999999999999998e+02*G10_0_1_0 - 1.999999999999998e+02*G10_0_1_1 + 1.999999999999999e+02*G10_1_0_0 + 1.899750543270699e-14*G10_1_0_1 + 1.999999999999998e+02*G10_1_1_0 + 1.899750543270699e-14*G10_1_1_1 + 1.999999999999998e+02*G10_2_0_1 + 1.999999999999998e+02*G10_2_1_1;
+    block[1] = 4.166666666666659e-02*G0_ - 1.666666666666664e+01*G1_0_0_0_0 - 1.666666666666664e+01*G1_0_0_1_0 - 8.333333333333321e+00*G1_0_1_0_0 - 8.333333333333320e+00*G1_0_1_1_0 - 8.333333333333321e+00*G1_0_2_0_0 - 8.333333333333320e+00*G1_0_2_1_0 - 8.333333333333321e+00*G1_1_0_0_0 - 8.333333333333320e+00*G1_1_0_1_0 - 1.666666666666664e+01*G1_1_1_0_0 - 1.666666666666664e+01*G1_1_1_1_0 - 8.333333333333321e+00*G1_1_2_0_0 - 8.333333333333321e+00*G1_1_2_1_0 - 8.333333333333320e+00*G1_2_0_0_0 - 8.333333333333318e+00*G1_2_0_1_0 - 8.333333333333321e+00*G1_2_1_0_0 - 8.333333333333320e+00*G1_2_1_1_0 - 1.666666666666664e+01*G1_2_2_0_0 - 1.666666666666664e+01*G1_2_2_1_0 + 3.333333333333331e+01*G2_0_0_0 + 3.333333333333331e+01*G2_0_1_0 + 3.333333333333332e+01*G2_1_0_0 + 3.333333333333331e+01*G2_1_1_0 + 3.333333333333331e+01*G2_2_0_0 + 3.333333333333331e+01*G2_2_1_0 - 9.999999999999997e+01*G3_0_0 - 9.999999999999994e+01*G3_1_0 - 6.666666666666657e+01*G4_0_0_0_0 - 6.666666666666656e+01*G4_0_0_1_0 - 3.333333333333329e+01*G4_0_1_0_0 - 3.333333333333328e+01*G4_0_1_1_0 - 3.333333333333329e+01*G4_0_2_0_0 - 3.333333333333328e+01*G4_0_2_1_0 - 3.333333333333329e+01*G4_1_0_0_0 - 3.333333333333328e+01*G4_1_0_1_0 - 6.666666666666657e+01*G4_1_1_0_0 - 6.666666666666656e+01*G4_1_1_1_0 - 3.333333333333329e+01*G4_1_2_0_0 - 3.333333333333329e+01*G4_1_2_1_0 - 3.333333333333328e+01*G4_2_0_0_0 - 3.333333333333327e+01*G4_2_0_1_0 - 3.333333333333329e+01*G4_2_1_0_0 - 3.333333333333328e+01*G4_2_1_1_0 - 6.666666666666657e+01*G4_2_2_0_0 - 6.666666666666656e+01*G4_2_2_1_0 + 1.333333333333333e+02*G5_0_0_0 + 1.266500362180466e-14*G5_0_0_1 + 1.333333333333332e+02*G5_0_1_0 + 1.266500362180466e-14*G5_0_1_1 + 1.333333333333333e+02*G5_1_0_0 + 1.266500362180466e-14*G5_1_0_1 + 1.333333333333333e+02*G5_1_1_0 + 1.266500362180466e-14*G5_1_1_1 + 1.333333333333333e+02*G5_2_0_0 + 1.266500362180466e-14*G5_2_0_1 + 1.333333333333332e+02*G5_2_1_0 + 1.266500362180466e-14*G5_2_1_1 + 9.999999999999984e+01*G9_0_0_0_0 + 9.999999999999982e+01*G9_0_0_0_1 + 9.999999999999982e+01*G9_0_0_1_0 + 9.999999999999982e+01*G9_0_0_1_1 - 9.999999999999984e+01*G9_0_1_0_0 - 9.999999999999982e+01*G9_0_1_1_0 - 9.999999999999982e+01*G9_0_2_0_1 - 9.999999999999982e+01*G9_0_2_1_1 + 1.999999999999997e+02*G9_1_0_0_0 + 1.999999999999997e+02*G9_1_0_0_1 + 1.999999999999997e+02*G9_1_0_1_0 + 1.999999999999997e+02*G9_1_0_1_1 - 1.999999999999997e+02*G9_1_1_0_0 - 1.899249771737785e-14*G9_1_1_0_1 - 1.999999999999997e+02*G9_1_1_1_0 - 1.899249771737784e-14*G9_1_1_1_1 - 1.999999999999997e+02*G9_1_2_0_1 - 1.999999999999997e+02*G9_1_2_1_1 + 9.999999999999986e+01*G9_2_0_0_0 + 9.999999999999984e+01*G9_2_0_0_1 + 9.999999999999984e+01*G9_2_0_1_0 + 9.999999999999983e+01*G9_2_0_1_1 - 9.999999999999986e+01*G9_2_1_0_0 - 9.999999999999984e+01*G9_2_1_1_0 - 9.999999999999984e+01*G9_2_2_0_1 - 9.999999999999983e+01*G9_2_2_1_1 - 1.999999999999999e+02*G10_0_0_0 - 1.999999999999999e+02*G10_0_0_1 - 1.999999999999999e+02*G10_0_1_0 - 1.999999999999998e+02*G10_0_1_1 + 1.999999999999999e+02*G10_1_0_0 + 1.899750543270699e-14*G10_1_0_1 + 1.999999999999999e+02*G10_1_1_0 + 1.899750543270699e-14*G10_1_1_1 + 1.999999999999999e+02*G10_2_0_1 + 1.999999999999998e+02*G10_2_1_1;
+    block[2] = 4.166666666666658e-02*G0_ - 1.666666666666664e+01*G1_0_0_0_1 - 1.666666666666664e+01*G1_0_0_1_1 - 8.333333333333320e+00*G1_0_1_0_1 - 8.333333333333316e+00*G1_0_1_1_1 - 8.333333333333320e+00*G1_0_2_0_1 - 8.333333333333318e+00*G1_0_2_1_1 - 8.333333333333320e+00*G1_1_0_0_1 - 8.333333333333318e+00*G1_1_0_1_1 - 1.666666666666664e+01*G1_1_1_0_1 - 1.666666666666664e+01*G1_1_1_1_1 - 8.333333333333321e+00*G1_1_2_0_1 - 8.333333333333318e+00*G1_1_2_1_1 - 8.333333333333318e+00*G1_2_0_0_1 - 8.333333333333316e+00*G1_2_0_1_1 - 8.333333333333320e+00*G1_2_1_0_1 - 8.333333333333318e+00*G1_2_1_1_1 - 1.666666666666664e+01*G1_2_2_0_1 - 1.666666666666664e+01*G1_2_2_1_1 + 3.333333333333331e+01*G2_0_0_1 + 3.333333333333330e+01*G2_0_1_1 + 3.333333333333331e+01*G2_1_0_1 + 3.333333333333331e+01*G2_1_1_1 + 3.333333333333331e+01*G2_2_0_1 + 3.333333333333330e+01*G2_2_1_1 - 9.999999999999994e+01*G3_0_1 - 9.999999999999991e+01*G3_1_1 - 6.666666666666656e+01*G4_0_0_0_1 - 6.666666666666654e+01*G4_0_0_1_1 - 3.333333333333328e+01*G4_0_1_0_1 - 3.333333333333326e+01*G4_0_1_1_1 - 3.333333333333328e+01*G4_0_2_0_1 - 3.333333333333327e+01*G4_0_2_1_1 - 3.333333333333328e+01*G4_1_0_0_1 - 3.333333333333327e+01*G4_1_0_1_1 - 6.666666666666656e+01*G4_1_1_0_1 - 6.666666666666654e+01*G4_1_1_1_1 - 3.333333333333329e+01*G4_1_2_0_1 - 3.333333333333327e+01*G4_1_2_1_1 - 3.333333333333327e+01*G4_2_0_0_1 - 3.333333333333326e+01*G4_2_0_1_1 - 3.333333333333328e+01*G4_2_1_0_1 - 3.333333333333327e+01*G4_2_1_1_1 - 6.666666666666656e+01*G4_2_2_0_1 - 6.666666666666654e+01*G4_2_2_1_1 + 1.333333333333332e+02*G5_0_0_1 + 1.333333333333332e+02*G5_0_1_1 + 1.333333333333333e+02*G5_1_0_1 + 1.333333333333332e+02*G5_1_1_1 + 1.333333333333332e+02*G5_2_0_1 + 1.333333333333332e+02*G5_2_1_1 + 9.999999999999983e+01*G9_0_0_0_0 + 9.999999999999983e+01*G9_0_0_0_1 + 9.999999999999983e+01*G9_0_0_1_0 + 9.999999999999980e+01*G9_0_0_1_1 - 9.999999999999983e+01*G9_0_1_0_0 - 9.999999999999983e+01*G9_0_1_1_0 - 9.999999999999983e+01*G9_0_2_0_1 - 9.999999999999980e+01*G9_0_2_1_1 + 9.999999999999986e+01*G9_1_0_0_0 + 9.999999999999984e+01*G9_1_0_0_1 + 9.999999999999984e+01*G9_1_0_1_0 + 9.999999999999983e+01*G9_1_0_1_1 - 9.999999999999986e+01*G9_1_1_0_0 - 9.999999999999984e+01*G9_1_1_1_0 - 9.999999999999984e+01*G9_1_2_0_1 - 9.999999999999983e+01*G9_1_2_1_1 + 1.999999999999997e+02*G9_2_0_0_0 + 1.999999999999996e+02*G9_2_0_0_1 + 1.999999999999996e+02*G9_2_0_1_0 + 1.999999999999996e+02*G9_2_0_1_1 - 1.999999999999997e+02*G9_2_1_0_0 - 1.900752086336522e-14*G9_2_1_0_1 - 1.999999999999996e+02*G9_2_1_1_0 - 1.900752086336522e-14*G9_2_1_1_1 - 1.999999999999996e+02*G9_2_2_0_1 - 1.999999999999996e+02*G9_2_2_1_1 - 1.999999999999999e+02*G10_0_0_0 - 1.999999999999998e+02*G10_0_0_1 - 1.999999999999998e+02*G10_0_1_0 - 1.999999999999998e+02*G10_0_1_1 + 1.999999999999999e+02*G10_1_0_0 + 1.899750543270699e-14*G10_1_0_1 + 1.999999999999998e+02*G10_1_1_0 + 1.899750543270699e-14*G10_1_1_1 + 1.999999999999998e+02*G10_2_0_1 + 1.999999999999998e+02*G10_2_1_1;
+    block[3] = -4.999999999999998e-01*G11_0_0 - 4.999999999999997e-01*G11_0_1 - 4.999999999999997e-01*G11_1_0 - 4.999999999999996e-01*G11_1_1;
+    block[4] = 4.999999999999998e-01*G11_0_0 + 4.999999999999997e-01*G11_1_0;
+    block[5] = 4.999999999999997e-01*G11_0_1 + 4.999999999999996e-01*G11_1_1;
+    block[6] = 4.166666666666659e-02*G0_ - 1.666666666666664e+01*G1_0_0_0_0 - 1.666666666666664e+01*G1_0_0_0_1 - 8.333333333333321e+00*G1_0_1_0_0 - 8.333333333333320e+00*G1_0_1_0_1 - 8.333333333333321e+00*G1_0_2_0_0 - 8.333333333333320e+00*G1_0_2_0_1 - 8.333333333333321e+00*G1_1_0_0_0 - 8.333333333333320e+00*G1_1_0_0_1 - 1.666666666666664e+01*G1_1_1_0_0 - 1.666666666666664e+01*G1_1_1_0_1 - 8.333333333333321e+00*G1_1_2_0_0 - 8.333333333333321e+00*G1_1_2_0_1 - 8.333333333333320e+00*G1_2_0_0_0 - 8.333333333333318e+00*G1_2_0_0_1 - 8.333333333333321e+00*G1_2_1_0_0 - 8.333333333333320e+00*G1_2_1_0_1 - 1.666666666666664e+01*G1_2_2_0_0 - 1.666666666666664e+01*G1_2_2_0_1 + 3.333333333333331e+01*G2_0_0_0 + 3.333333333333331e+01*G2_0_0_1 + 3.333333333333332e+01*G2_1_0_0 + 3.333333333333331e+01*G2_1_0_1 + 3.333333333333331e+01*G2_2_0_0 + 3.333333333333331e+01*G2_2_0_1 - 9.999999999999997e+01*G3_0_0 - 9.999999999999994e+01*G3_0_1 - 6.666666666666657e+01*G4_0_0_0_0 - 6.666666666666656e+01*G4_0_0_0_1 - 3.333333333333329e+01*G4_0_1_0_0 - 3.333333333333328e+01*G4_0_1_0_1 - 3.333333333333329e+01*G4_0_2_0_0 - 3.333333333333328e+01*G4_0_2_0_1 - 3.333333333333329e+01*G4_1_0_0_0 - 3.333333333333328e+01*G4_1_0_0_1 - 6.666666666666657e+01*G4_1_1_0_0 - 6.666666666666656e+01*G4_1_1_0_1 - 3.333333333333329e+01*G4_1_2_0_0 - 3.333333333333329e+01*G4_1_2_0_1 - 3.333333333333328e+01*G4_2_0_0_0 - 3.333333333333327e+01*G4_2_0_0_1 - 3.333333333333329e+01*G4_2_1_0_0 - 3.333333333333328e+01*G4_2_1_0_1 - 6.666666666666657e+01*G4_2_2_0_0 - 6.666666666666656e+01*G4_2_2_0_1 + 1.333333333333333e+02*G5_0_0_0 + 1.333333333333332e+02*G5_0_0_1 + 1.266500362180466e-14*G5_0_1_0 + 1.266500362180466e-14*G5_0_1_1 + 1.333333333333333e+02*G5_1_0_0 + 1.333333333333333e+02*G5_1_0_1 + 1.266500362180466e-14*G5_1_1_0 + 1.266500362180466e-14*G5_1_1_1 + 1.333333333333333e+02*G5_2_0_0 + 1.333333333333332e+02*G5_2_0_1 + 1.266500362180466e-14*G5_2_1_0 + 1.266500362180466e-14*G5_2_1_1 - 1.999999999999997e+02*G9_0_0_0_0 - 1.999999999999997e+02*G9_0_0_0_1 - 1.899249771737785e-14*G9_0_0_1_0 - 1.899249771737784e-14*G9_0_0_1_1 + 1.999999999999997e+02*G9_0_1_0_0 + 1.899249771737785e-14*G9_0_1_0_1 + 1.899249771737785e-14*G9_0_1_1_0 + 1.999999999999997e+02*G9_0_2_0_1 + 1.899249771737784e-14*G9_0_2_1_1 - 9.999999999999984e+01*G9_1_0_0_0 - 9.999999999999982e+01*G9_1_0_0_1 + 9.999999999999984e+01*G9_1_1_0_0 + 9.999999999999982e+01*G9_1_2_0_1 - 9.999999999999984e+01*G9_2_0_0_0 - 9.999999999999983e+01*G9_2_0_0_1 + 9.999999999999984e+01*G9_2_1_0_0 + 9.999999999999983e+01*G9_2_2_0_1 + 1.999999999999999e+02*G10_0_0_0 + 1.999999999999998e+02*G10_0_0_1 + 1.899750543270699e-14*G10_0_1_0 + 1.899750543270699e-14*G10_0_1_1 - 1.999999999999999e+02*G10_1_0_0 - 1.899750543270699e-14*G10_1_0_1 - 1.899750543270699e-14*G10_1_1_0 - 1.999999999999998e+02*G10_2_0_1 - 1.899750543270699e-14*G10_2_1_1;
+    block[7] = 8.333333333333318e-02*G0_ + 1.666666666666664e+01*G1_0_0_0_0 + 8.333333333333321e+00*G1_0_1_0_0 + 8.333333333333321e+00*G1_0_2_0_0 + 8.333333333333321e+00*G1_1_0_0_0 + 1.666666666666664e+01*G1_1_1_0_0 + 8.333333333333321e+00*G1_1_2_0_0 + 8.333333333333320e+00*G1_2_0_0_0 + 8.333333333333321e+00*G1_2_1_0_0 + 1.666666666666664e+01*G1_2_2_0_0 - 3.333333333333331e+01*G2_0_0_0 - 3.333333333333332e+01*G2_1_0_0 - 3.333333333333331e+01*G2_2_0_0 + 9.999999999999997e+01*G3_0_0 + 6.666666666666657e+01*G4_0_0_0_0 + 3.333333333333329e+01*G4_0_1_0_0 + 3.333333333333329e+01*G4_0_2_0_0 + 3.333333333333329e+01*G4_1_0_0_0 + 6.666666666666657e+01*G4_1_1_0_0 + 3.333333333333329e+01*G4_1_2_0_0 + 3.333333333333328e+01*G4_2_0_0_0 + 3.333333333333329e+01*G4_2_1_0_0 + 6.666666666666657e+01*G4_2_2_0_0 - 1.333333333333333e+02*G5_0_0_0 - 1.266500362180466e-14*G5_0_0_1 - 1.266500362180466e-14*G5_0_1_0 - 1.333333333333333e+02*G5_1_0_0 - 1.266500362180466e-14*G5_1_0_1 - 1.266500362180466e-14*G5_1_1_0 - 1.333333333333333e+02*G5_2_0_0 - 1.266500362180466e-14*G5_2_0_1 - 1.266500362180466e-14*G5_2_1_0 - 9.999999999999984e+01*G9_0_0_0_0 - 9.999999999999982e+01*G9_0_0_0_1 + 9.999999999999984e+01*G9_0_1_0_0 + 9.999999999999982e+01*G9_0_2_0_1 - 1.999999999999997e+02*G9_1_0_0_0 - 1.999999999999997e+02*G9_1_0_0_1 - 1.899249771737785e-14*G9_1_0_1_0 - 1.899249771737784e-14*G9_1_0_1_1 + 1.999999999999997e+02*G9_1_1_0_0 + 1.899249771737785e-14*G9_1_1_0_1 + 1.899249771737785e-14*G9_1_1_1_0 + 1.999999999999997e+02*G9_1_2_0_1 + 1.899249771737784e-14*G9_1_2_1_1 - 9.999999999999986e+01*G9_2_0_0_0 - 9.999999999999984e+01*G9_2_0_0_1 + 9.999999999999986e+01*G9_2_1_0_0 + 9.999999999999984e+01*G9_2_2_0_1 + 1.999999999999999e+02*G10_0_0_0 + 1.999999999999999e+02*G10_0_0_1 + 1.899750543270700e-14*G10_0_1_0 + 1.899750543270699e-14*G10_0_1_1 - 1.999999999999999e+02*G10_1_0_0 - 1.899750543270699e-14*G10_1_0_1 - 1.899750543270700e-14*G10_1_1_0 - 1.999999999999999e+02*G10_2_0_1 - 1.899750543270699e-14*G10_2_1_1;
+    block[8] = 4.166666666666659e-02*G0_ + 1.666666666666664e+01*G1_0_0_0_1 + 8.333333333333320e+00*G1_0_1_0_1 + 8.333333333333320e+00*G1_0_2_0_1 + 8.333333333333320e+00*G1_1_0_0_1 + 1.666666666666664e+01*G1_1_1_0_1 + 8.333333333333321e+00*G1_1_2_0_1 + 8.333333333333318e+00*G1_2_0_0_1 + 8.333333333333320e+00*G1_2_1_0_1 + 1.666666666666664e+01*G1_2_2_0_1 - 3.333333333333331e+01*G2_0_0_1 - 3.333333333333331e+01*G2_1_0_1 - 3.333333333333331e+01*G2_2_0_1 + 9.999999999999994e+01*G3_0_1 + 6.666666666666656e+01*G4_0_0_0_1 + 3.333333333333328e+01*G4_0_1_0_1 + 3.333333333333328e+01*G4_0_2_0_1 + 3.333333333333328e+01*G4_1_0_0_1 + 6.666666666666656e+01*G4_1_1_0_1 + 3.333333333333329e+01*G4_1_2_0_1 + 3.333333333333327e+01*G4_2_0_0_1 + 3.333333333333328e+01*G4_2_1_0_1 + 6.666666666666656e+01*G4_2_2_0_1 - 1.333333333333332e+02*G5_0_0_1 - 1.266500362180466e-14*G5_0_1_1 - 1.333333333333333e+02*G5_1_0_1 - 1.266500362180466e-14*G5_1_1_1 - 1.333333333333332e+02*G5_2_0_1 - 1.266500362180466e-14*G5_2_1_1 - 9.999999999999983e+01*G9_0_0_0_0 - 9.999999999999983e+01*G9_0_0_0_1 + 9.999999999999983e+01*G9_0_1_0_0 + 9.999999999999983e+01*G9_0_2_0_1 - 9.999999999999986e+01*G9_1_0_0_0 - 9.999999999999984e+01*G9_1_0_0_1 + 9.999999999999986e+01*G9_1_1_0_0 + 9.999999999999984e+01*G9_1_2_0_1 - 1.999999999999997e+02*G9_2_0_0_0 - 1.999999999999996e+02*G9_2_0_0_1 - 1.900752086336522e-14*G9_2_0_1_0 - 1.900752086336522e-14*G9_2_0_1_1 + 1.999999999999997e+02*G9_2_1_0_0 + 1.900752086336522e-14*G9_2_1_0_1 + 1.900752086336522e-14*G9_2_1_1_0 + 1.999999999999996e+02*G9_2_2_0_1 + 1.900752086336522e-14*G9_2_2_1_1 + 1.999999999999999e+02*G10_0_0_0 + 1.999999999999998e+02*G10_0_0_1 + 1.899750543270699e-14*G10_0_1_0 + 1.899750543270699e-14*G10_0_1_1 - 1.999999999999999e+02*G10_1_0_0 - 1.899750543270699e-14*G10_1_0_1 - 1.899750543270699e-14*G10_1_1_0 - 1.999999999999998e+02*G10_2_0_1 - 1.899750543270699e-14*G10_2_1_1;
+    block[9] = 4.999999999999998e-01*G11_0_0 + 4.999999999999997e-01*G11_0_1;
+    block[10] = -4.999999999999998e-01*G11_0_0;
+    block[11] = -4.999999999999997e-01*G11_0_1;
+    block[12] = 4.166666666666658e-02*G0_ - 1.666666666666664e+01*G1_0_0_1_0 - 1.666666666666664e+01*G1_0_0_1_1 - 8.333333333333320e+00*G1_0_1_1_0 - 8.333333333333316e+00*G1_0_1_1_1 - 8.333333333333320e+00*G1_0_2_1_0 - 8.333333333333318e+00*G1_0_2_1_1 - 8.333333333333320e+00*G1_1_0_1_0 - 8.333333333333318e+00*G1_1_0_1_1 - 1.666666666666664e+01*G1_1_1_1_0 - 1.666666666666664e+01*G1_1_1_1_1 - 8.333333333333321e+00*G1_1_2_1_0 - 8.333333333333318e+00*G1_1_2_1_1 - 8.333333333333318e+00*G1_2_0_1_0 - 8.333333333333316e+00*G1_2_0_1_1 - 8.333333333333320e+00*G1_2_1_1_0 - 8.333333333333318e+00*G1_2_1_1_1 - 1.666666666666664e+01*G1_2_2_1_0 - 1.666666666666664e+01*G1_2_2_1_1 + 3.333333333333331e+01*G2_0_1_0 + 3.333333333333330e+01*G2_0_1_1 + 3.333333333333331e+01*G2_1_1_0 + 3.333333333333331e+01*G2_1_1_1 + 3.333333333333331e+01*G2_2_1_0 + 3.333333333333330e+01*G2_2_1_1 - 9.999999999999994e+01*G3_1_0 - 9.999999999999991e+01*G3_1_1 - 6.666666666666656e+01*G4_0_0_1_0 - 6.666666666666654e+01*G4_0_0_1_1 - 3.333333333333328e+01*G4_0_1_1_0 - 3.333333333333326e+01*G4_0_1_1_1 - 3.333333333333328e+01*G4_0_2_1_0 - 3.333333333333327e+01*G4_0_2_1_1 - 3.333333333333328e+01*G4_1_0_1_0 - 3.333333333333327e+01*G4_1_0_1_1 - 6.666666666666656e+01*G4_1_1_1_0 - 6.666666666666654e+01*G4_1_1_1_1 - 3.333333333333329e+01*G4_1_2_1_0 - 3.333333333333327e+01*G4_1_2_1_1 - 3.333333333333327e+01*G4_2_0_1_0 - 3.333333333333326e+01*G4_2_0_1_1 - 3.333333333333328e+01*G4_2_1_1_0 - 3.333333333333327e+01*G4_2_1_1_1 - 6.666666666666656e+01*G4_2_2_1_0 - 6.666666666666654e+01*G4_2_2_1_1 + 1.333333333333332e+02*G5_0_1_0 + 1.333333333333332e+02*G5_0_1_1 + 1.333333333333333e+02*G5_1_1_0 + 1.333333333333332e+02*G5_1_1_1 + 1.333333333333332e+02*G5_2_1_0 + 1.333333333333332e+02*G5_2_1_1 - 1.999999999999997e+02*G9_0_0_1_0 - 1.999999999999996e+02*G9_0_0_1_1 + 1.999999999999997e+02*G9_0_1_1_0 + 1.899249771737784e-14*G9_0_1_1_1 + 1.999999999999996e+02*G9_0_2_1_1 - 9.999999999999982e+01*G9_1_0_1_0 - 9.999999999999980e+01*G9_1_0_1_1 + 9.999999999999982e+01*G9_1_1_1_0 + 9.999999999999980e+01*G9_1_2_1_1 - 9.999999999999983e+01*G9_2_0_1_0 - 9.999999999999980e+01*G9_2_0_1_1 + 9.999999999999983e+01*G9_2_1_1_0 + 9.999999999999980e+01*G9_2_2_1_1 + 1.999999999999998e+02*G10_0_1_0 + 1.999999999999998e+02*G10_0_1_1 - 1.999999999999998e+02*G10_1_1_0 - 1.899750543270699e-14*G10_1_1_1 - 1.999999999999998e+02*G10_2_1_1;
+    block[13] = 4.166666666666659e-02*G0_ + 1.666666666666664e+01*G1_0_0_1_0 + 8.333333333333320e+00*G1_0_1_1_0 + 8.333333333333320e+00*G1_0_2_1_0 + 8.333333333333320e+00*G1_1_0_1_0 + 1.666666666666664e+01*G1_1_1_1_0 + 8.333333333333321e+00*G1_1_2_1_0 + 8.333333333333318e+00*G1_2_0_1_0 + 8.333333333333320e+00*G1_2_1_1_0 + 1.666666666666664e+01*G1_2_2_1_0 - 3.333333333333331e+01*G2_0_1_0 - 3.333333333333331e+01*G2_1_1_0 - 3.333333333333331e+01*G2_2_1_0 + 9.999999999999994e+01*G3_1_0 + 6.666666666666656e+01*G4_0_0_1_0 + 3.333333333333328e+01*G4_0_1_1_0 + 3.333333333333328e+01*G4_0_2_1_0 + 3.333333333333328e+01*G4_1_0_1_0 + 6.666666666666656e+01*G4_1_1_1_0 + 3.333333333333329e+01*G4_1_2_1_0 + 3.333333333333327e+01*G4_2_0_1_0 + 3.333333333333328e+01*G4_2_1_1_0 + 6.666666666666656e+01*G4_2_2_1_0 - 1.333333333333332e+02*G5_0_1_0 - 1.266500362180466e-14*G5_0_1_1 - 1.333333333333333e+02*G5_1_1_0 - 1.266500362180466e-14*G5_1_1_1 - 1.333333333333332e+02*G5_2_1_0 - 1.266500362180466e-14*G5_2_1_1 - 9.999999999999982e+01*G9_0_0_1_0 - 9.999999999999982e+01*G9_0_0_1_1 + 9.999999999999982e+01*G9_0_1_1_0 + 9.999999999999982e+01*G9_0_2_1_1 - 1.999999999999997e+02*G9_1_0_1_0 - 1.999999999999997e+02*G9_1_0_1_1 + 1.999999999999997e+02*G9_1_1_1_0 + 1.899249771737784e-14*G9_1_1_1_1 + 1.999999999999997e+02*G9_1_2_1_1 - 9.999999999999984e+01*G9_2_0_1_0 - 9.999999999999983e+01*G9_2_0_1_1 + 9.999999999999984e+01*G9_2_1_1_0 + 9.999999999999983e+01*G9_2_2_1_1 + 1.999999999999999e+02*G10_0_1_0 + 1.999999999999998e+02*G10_0_1_1 - 1.999999999999999e+02*G10_1_1_0 - 1.899750543270699e-14*G10_1_1_1 - 1.999999999999998e+02*G10_2_1_1;
+    block[14] = 8.333333333333316e-02*G0_ + 1.666666666666664e+01*G1_0_0_1_1 + 8.333333333333316e+00*G1_0_1_1_1 + 8.333333333333318e+00*G1_0_2_1_1 + 8.333333333333318e+00*G1_1_0_1_1 + 1.666666666666664e+01*G1_1_1_1_1 + 8.333333333333318e+00*G1_1_2_1_1 + 8.333333333333316e+00*G1_2_0_1_1 + 8.333333333333318e+00*G1_2_1_1_1 + 1.666666666666664e+01*G1_2_2_1_1 - 3.333333333333330e+01*G2_0_1_1 - 3.333333333333331e+01*G2_1_1_1 - 3.333333333333330e+01*G2_2_1_1 + 9.999999999999991e+01*G3_1_1 + 6.666666666666654e+01*G4_0_0_1_1 + 3.333333333333326e+01*G4_0_1_1_1 + 3.333333333333327e+01*G4_0_2_1_1 + 3.333333333333327e+01*G4_1_0_1_1 + 6.666666666666654e+01*G4_1_1_1_1 + 3.333333333333327e+01*G4_1_2_1_1 + 3.333333333333326e+01*G4_2_0_1_1 + 3.333333333333327e+01*G4_2_1_1_1 + 6.666666666666654e+01*G4_2_2_1_1 - 1.333333333333332e+02*G5_0_1_1 - 1.333333333333332e+02*G5_1_1_1 - 1.333333333333332e+02*G5_2_1_1 - 9.999999999999983e+01*G9_0_0_1_0 - 9.999999999999980e+01*G9_0_0_1_1 + 9.999999999999983e+01*G9_0_1_1_0 + 9.999999999999980e+01*G9_0_2_1_1 - 9.999999999999984e+01*G9_1_0_1_0 - 9.999999999999983e+01*G9_1_0_1_1 + 9.999999999999984e+01*G9_1_1_1_0 + 9.999999999999983e+01*G9_1_2_1_1 - 1.999999999999996e+02*G9_2_0_1_0 - 1.999999999999996e+02*G9_2_0_1_1 + 1.999999999999996e+02*G9_2_1_1_0 + 1.900752086336522e-14*G9_2_1_1_1 + 1.999999999999996e+02*G9_2_2_1_1 + 1.999999999999998e+02*G10_0_1_0 + 1.999999999999998e+02*G10_0_1_1 - 1.999999999999998e+02*G10_1_1_0 - 1.899750543270699e-14*G10_1_1_1 - 1.999999999999998e+02*G10_2_1_1;
+    block[15] = 4.999999999999997e-01*G11_1_0 + 4.999999999999996e-01*G11_1_1;
+    block[16] = -4.999999999999997e-01*G11_1_0;
+    block[17] = -4.999999999999996e-01*G11_1_1;
+    block[18] = 4.999999999999998e-01*G13_0_0 + 4.999999999999997e-01*G13_0_1 + 4.999999999999997e-01*G13_1_0 + 4.999999999999996e-01*G13_1_1;
+    block[19] = -4.999999999999998e-01*G13_0_0 - 4.999999999999997e-01*G13_1_0;
+    block[20] = -4.999999999999997e-01*G13_0_1 - 4.999999999999996e-01*G13_1_1;
+    block[21] = 8.333333333333318e-02*G12_;
+    block[22] = 4.166666666666659e-02*G12_;
+    block[23] = 4.166666666666658e-02*G12_;
+    block[24] = -4.999999999999998e-01*G13_0_0 - 4.999999999999997e-01*G13_0_1;
+    block[25] = 4.999999999999998e-01*G13_0_0;
+    block[26] = 4.999999999999997e-01*G13_0_1;
+    block[27] = 4.166666666666659e-02*G12_;
+    block[28] = 8.333333333333318e-02*G12_;
+    block[29] = 4.166666666666659e-02*G12_;
+    block[30] = -4.999999999999997e-01*G13_1_0 - 4.999999999999996e-01*G13_1_1;
+    block[31] = 4.999999999999997e-01*G13_1_0;
+    block[32] = 4.999999999999996e-01*G13_1_1;
+    block[33] = 4.166666666666658e-02*G12_;
+    block[34] = 4.166666666666659e-02*G12_;
+    block[35] = 8.333333333333316e-02*G12_;
   }
 
   // No contribution from the boundary
@@ -2289,196 +1921,8 @@ public:
     FiniteElement** subelements;
   
   };
-    
-  class FunctionElement_3 : public dolfin::FiniteElement
-  {
-  public:
   
-    FunctionElement_3() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-    {
-      // Element is scalar, don't need to initialize tensordims
-  
-      // Element is simple, don't need to initialize subelements
-    }
-  
-    ~FunctionElement_3()
-    {
-      if ( tensordims ) delete [] tensordims;
-      if ( subelements )
-      {
-        for (unsigned int i = 0; i < elementdim(); i++)
-          delete subelements[i];
-        delete [] subelements;
-      }
-    }
-  
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-  
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-  
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-  
-    inline unsigned int elementdim() const
-    {
-      return 1;
-    }
-  
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-  
-    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-    {
-      nodes[0] = cell.vertexID(0);
-      nodes[1] = cell.vertexID(1);
-      nodes[2] = cell.vertexID(2);
-    }
-  
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-  
-    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      vertex_nodes[0] = vertex;
-    }
-  
-    const FiniteElement& operator[] (unsigned int i) const
-    {
-      return *this;
-    }
-  
-    FiniteElement& operator[] (unsigned int i)
-    {
-      return *this;
-    }
-  
-    FiniteElementSpec spec() const
-    {
-      FiniteElementSpec s("Lagrange", "triangle", 1);
-      return s;
-    }
-    
-  private:
-  
-    unsigned int* tensordims;
-    FiniteElement** subelements;
-  
-  };
-    
-  class FunctionElement_4 : public dolfin::FiniteElement
-  {
-  public:
-  
-    FunctionElement_4() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-    {
-      // Element is scalar, don't need to initialize tensordims
-  
-      // Element is simple, don't need to initialize subelements
-    }
-  
-    ~FunctionElement_4()
-    {
-      if ( tensordims ) delete [] tensordims;
-      if ( subelements )
-      {
-        for (unsigned int i = 0; i < elementdim(); i++)
-          delete subelements[i];
-        delete [] subelements;
-      }
-    }
-  
-    inline unsigned int spacedim() const
-    {
-      return 3;
-    }
-  
-    inline unsigned int shapedim() const
-    {
-      return 2;
-    }
-  
-    inline unsigned int tensordim(unsigned int i) const
-    {
-      dolfin_error("Element is scalar.");
-      return 0;
-    }
-  
-    inline unsigned int elementdim() const
-    {
-      return 1;
-    }
-  
-    inline unsigned int rank() const
-    {
-      return 0;
-    }
-  
-    void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-    {
-      nodes[0] = cell.vertexID(0);
-      nodes[1] = cell.vertexID(1);
-      nodes[2] = cell.vertexID(2);
-    }
-  
-    void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-    {
-      points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
-      points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
-      points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
-      components[0] = 0;
-      components[1] = 0;
-      components[2] = 0;
-    }
-  
-    void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-    {
-      // FIXME: Temporary fix for Lagrange elements
-      vertex_nodes[0] = vertex;
-    }
-  
-    const FiniteElement& operator[] (unsigned int i) const
-    {
-      return *this;
-    }
-  
-    FiniteElement& operator[] (unsigned int i)
-    {
-      return *this;
-    }
-  
-    FiniteElementSpec spec() const
-    {
-      FiniteElementSpec s("Lagrange", "triangle", 1);
-      return s;
-    }
-    
-  private:
-  
-    unsigned int* tensordims;
-    FiniteElement** subelements;
-  
-  };
-  
-  LinearForm(Function& w0, Function& w1, Function& w2, Function& w3, Function& w4, const real& c0, const real& c1, const real& c2) : dolfin::LinearForm(5), c0(c0), c1(c1), c2(c2)
+  LinearForm(Function& w0, Function& w1, Function& w2, const real& c0, const real& c1, const real& c2) : dolfin::LinearForm(3), c0(c0), c1(c1), c2(c2)
   {
     // Create finite element for test space
     _test = new TestElement();
@@ -2487,8 +1931,6 @@ public:
     add(w0, new FunctionElement_0());
     add(w1, new FunctionElement_1());
     add(w2, new FunctionElement_2());
-    add(w3, new FunctionElement_3());
-    add(w4, new FunctionElement_4());
   }
 
   void eval(real block[], const AffineMap& map) const
@@ -2506,138 +1948,250 @@ public:
     const real c2_0 = c[2][0];
     const real c2_1 = c[2][1];
     const real c2_2 = c[2][2];
-    const real c3_0 = c[3][0];
-    const real c3_1 = c[3][1];
-    const real c3_2 = c[3][2];
-    const real c4_0 = c[4][0];
-    const real c4_1 = c[4][1];
-    const real c4_2 = c[4][2];
 
     // Compute geometry tensors
-    const real G0_0_0_0_0_0 = map.det*c2*c1*c4_0*c3_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_0*c3_0*c0_0*map.g01*map.g01;
-    const real G0_0_0_0_0_1 = map.det*c2*c1*c4_0*c3_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_0*c3_0*c0_0*map.g01*map.g11;
-    const real G0_0_0_0_1_0 = map.det*c2*c1*c4_0*c3_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_0*c3_0*c0_0*map.g11*map.g01;
-    const real G0_0_0_0_1_1 = map.det*c2*c1*c4_0*c3_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_0*c3_0*c0_0*map.g11*map.g11;
-    const real G0_0_0_1_0_0 = map.det*c2*c1*c4_0*c3_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_0*c3_0*c0_1*map.g01*map.g01;
-    const real G0_0_0_1_1_0 = map.det*c2*c1*c4_0*c3_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_0*c3_0*c0_1*map.g11*map.g01;
-    const real G0_0_0_2_0_1 = map.det*c2*c1*c4_0*c3_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_0*c3_0*c0_2*map.g01*map.g11;
-    const real G0_0_0_2_1_1 = map.det*c2*c1*c4_0*c3_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_0*c3_0*c0_2*map.g11*map.g11;
-    const real G0_0_1_0_0_0 = map.det*c2*c1*c4_0*c3_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_0*c3_1*c0_0*map.g01*map.g01;
-    const real G0_0_1_0_0_1 = map.det*c2*c1*c4_0*c3_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_0*c3_1*c0_0*map.g01*map.g11;
-    const real G0_0_1_0_1_0 = map.det*c2*c1*c4_0*c3_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_0*c3_1*c0_0*map.g11*map.g01;
-    const real G0_0_1_0_1_1 = map.det*c2*c1*c4_0*c3_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_0*c3_1*c0_0*map.g11*map.g11;
-    const real G0_0_1_1_0_0 = map.det*c2*c1*c4_0*c3_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_0*c3_1*c0_1*map.g01*map.g01;
-    const real G0_0_1_1_1_0 = map.det*c2*c1*c4_0*c3_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_0*c3_1*c0_1*map.g11*map.g01;
-    const real G0_0_1_2_0_1 = map.det*c2*c1*c4_0*c3_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_0*c3_1*c0_2*map.g01*map.g11;
-    const real G0_0_1_2_1_1 = map.det*c2*c1*c4_0*c3_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_0*c3_1*c0_2*map.g11*map.g11;
-    const real G0_0_2_0_0_0 = map.det*c2*c1*c4_0*c3_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_0*c3_2*c0_0*map.g01*map.g01;
-    const real G0_0_2_0_0_1 = map.det*c2*c1*c4_0*c3_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_0*c3_2*c0_0*map.g01*map.g11;
-    const real G0_0_2_0_1_0 = map.det*c2*c1*c4_0*c3_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_0*c3_2*c0_0*map.g11*map.g01;
-    const real G0_0_2_0_1_1 = map.det*c2*c1*c4_0*c3_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_0*c3_2*c0_0*map.g11*map.g11;
-    const real G0_0_2_1_0_0 = map.det*c2*c1*c4_0*c3_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_0*c3_2*c0_1*map.g01*map.g01;
-    const real G0_0_2_1_1_0 = map.det*c2*c1*c4_0*c3_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_0*c3_2*c0_1*map.g11*map.g01;
-    const real G0_0_2_2_0_1 = map.det*c2*c1*c4_0*c3_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_0*c3_2*c0_2*map.g01*map.g11;
-    const real G0_0_2_2_1_1 = map.det*c2*c1*c4_0*c3_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_0*c3_2*c0_2*map.g11*map.g11;
-    const real G0_1_0_0_0_0 = map.det*c2*c1*c4_1*c3_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_1*c3_0*c0_0*map.g01*map.g01;
-    const real G0_1_0_0_0_1 = map.det*c2*c1*c4_1*c3_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_1*c3_0*c0_0*map.g01*map.g11;
-    const real G0_1_0_0_1_0 = map.det*c2*c1*c4_1*c3_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_1*c3_0*c0_0*map.g11*map.g01;
-    const real G0_1_0_0_1_1 = map.det*c2*c1*c4_1*c3_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_1*c3_0*c0_0*map.g11*map.g11;
-    const real G0_1_0_1_0_0 = map.det*c2*c1*c4_1*c3_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_1*c3_0*c0_1*map.g01*map.g01;
-    const real G0_1_0_1_1_0 = map.det*c2*c1*c4_1*c3_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_1*c3_0*c0_1*map.g11*map.g01;
-    const real G0_1_0_2_0_1 = map.det*c2*c1*c4_1*c3_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_1*c3_0*c0_2*map.g01*map.g11;
-    const real G0_1_0_2_1_1 = map.det*c2*c1*c4_1*c3_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_1*c3_0*c0_2*map.g11*map.g11;
-    const real G0_1_1_0_0_0 = map.det*c2*c1*c4_1*c3_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_1*c3_1*c0_0*map.g01*map.g01;
-    const real G0_1_1_0_0_1 = map.det*c2*c1*c4_1*c3_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_1*c3_1*c0_0*map.g01*map.g11;
-    const real G0_1_1_0_1_0 = map.det*c2*c1*c4_1*c3_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_1*c3_1*c0_0*map.g11*map.g01;
-    const real G0_1_1_0_1_1 = map.det*c2*c1*c4_1*c3_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_1*c3_1*c0_0*map.g11*map.g11;
-    const real G0_1_1_1_0_0 = map.det*c2*c1*c4_1*c3_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_1*c3_1*c0_1*map.g01*map.g01;
-    const real G0_1_1_1_1_0 = map.det*c2*c1*c4_1*c3_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_1*c3_1*c0_1*map.g11*map.g01;
-    const real G0_1_1_2_0_1 = map.det*c2*c1*c4_1*c3_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_1*c3_1*c0_2*map.g01*map.g11;
-    const real G0_1_1_2_1_1 = map.det*c2*c1*c4_1*c3_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_1*c3_1*c0_2*map.g11*map.g11;
-    const real G0_1_2_0_0_0 = map.det*c2*c1*c4_1*c3_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_1*c3_2*c0_0*map.g01*map.g01;
-    const real G0_1_2_0_0_1 = map.det*c2*c1*c4_1*c3_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_1*c3_2*c0_0*map.g01*map.g11;
-    const real G0_1_2_0_1_0 = map.det*c2*c1*c4_1*c3_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_1*c3_2*c0_0*map.g11*map.g01;
-    const real G0_1_2_0_1_1 = map.det*c2*c1*c4_1*c3_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_1*c3_2*c0_0*map.g11*map.g11;
-    const real G0_1_2_1_0_0 = map.det*c2*c1*c4_1*c3_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_1*c3_2*c0_1*map.g01*map.g01;
-    const real G0_1_2_1_1_0 = map.det*c2*c1*c4_1*c3_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_1*c3_2*c0_1*map.g11*map.g01;
-    const real G0_1_2_2_0_1 = map.det*c2*c1*c4_1*c3_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_1*c3_2*c0_2*map.g01*map.g11;
-    const real G0_1_2_2_1_1 = map.det*c2*c1*c4_1*c3_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_1*c3_2*c0_2*map.g11*map.g11;
-    const real G0_2_0_0_0_0 = map.det*c2*c1*c4_2*c3_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_2*c3_0*c0_0*map.g01*map.g01;
-    const real G0_2_0_0_0_1 = map.det*c2*c1*c4_2*c3_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_2*c3_0*c0_0*map.g01*map.g11;
-    const real G0_2_0_0_1_0 = map.det*c2*c1*c4_2*c3_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_2*c3_0*c0_0*map.g11*map.g01;
-    const real G0_2_0_0_1_1 = map.det*c2*c1*c4_2*c3_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_2*c3_0*c0_0*map.g11*map.g11;
-    const real G0_2_0_1_0_0 = map.det*c2*c1*c4_2*c3_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_2*c3_0*c0_1*map.g01*map.g01;
-    const real G0_2_0_1_1_0 = map.det*c2*c1*c4_2*c3_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_2*c3_0*c0_1*map.g11*map.g01;
-    const real G0_2_0_2_0_1 = map.det*c2*c1*c4_2*c3_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_2*c3_0*c0_2*map.g01*map.g11;
-    const real G0_2_0_2_1_1 = map.det*c2*c1*c4_2*c3_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_2*c3_0*c0_2*map.g11*map.g11;
-    const real G0_2_1_0_0_0 = map.det*c2*c1*c4_2*c3_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_2*c3_1*c0_0*map.g01*map.g01;
-    const real G0_2_1_0_0_1 = map.det*c2*c1*c4_2*c3_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_2*c3_1*c0_0*map.g01*map.g11;
-    const real G0_2_1_0_1_0 = map.det*c2*c1*c4_2*c3_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_2*c3_1*c0_0*map.g11*map.g01;
-    const real G0_2_1_0_1_1 = map.det*c2*c1*c4_2*c3_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_2*c3_1*c0_0*map.g11*map.g11;
-    const real G0_2_1_1_0_0 = map.det*c2*c1*c4_2*c3_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_2*c3_1*c0_1*map.g01*map.g01;
-    const real G0_2_1_1_1_0 = map.det*c2*c1*c4_2*c3_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_2*c3_1*c0_1*map.g11*map.g01;
-    const real G0_2_1_2_0_1 = map.det*c2*c1*c4_2*c3_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_2*c3_1*c0_2*map.g01*map.g11;
-    const real G0_2_1_2_1_1 = map.det*c2*c1*c4_2*c3_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_2*c3_1*c0_2*map.g11*map.g11;
-    const real G0_2_2_0_0_0 = map.det*c2*c1*c4_2*c3_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c4_2*c3_2*c0_0*map.g01*map.g01;
-    const real G0_2_2_0_0_1 = map.det*c2*c1*c4_2*c3_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c4_2*c3_2*c0_0*map.g01*map.g11;
-    const real G0_2_2_0_1_0 = map.det*c2*c1*c4_2*c3_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c4_2*c3_2*c0_0*map.g11*map.g01;
-    const real G0_2_2_0_1_1 = map.det*c2*c1*c4_2*c3_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c4_2*c3_2*c0_0*map.g11*map.g11;
-    const real G0_2_2_1_0_0 = map.det*c2*c1*c4_2*c3_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c4_2*c3_2*c0_1*map.g01*map.g01;
-    const real G0_2_2_1_1_0 = map.det*c2*c1*c4_2*c3_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c4_2*c3_2*c0_1*map.g11*map.g01;
-    const real G0_2_2_2_0_1 = map.det*c2*c1*c4_2*c3_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c4_2*c3_2*c0_2*map.g01*map.g11;
-    const real G0_2_2_2_1_1 = map.det*c2*c1*c4_2*c3_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c4_2*c3_2*c0_2*map.g11*map.g11;
-    const real G1_0_3_0_0 = map.det*c2*c1*c4_0*c0_3*map.g00*map.g00 + map.det*c2*c1*c4_0*c0_3*map.g01*map.g01;
-    const real G1_0_3_0_1 = map.det*c2*c1*c4_0*c0_3*map.g00*map.g10 + map.det*c2*c1*c4_0*c0_3*map.g01*map.g11;
-    const real G1_0_3_1_0 = map.det*c2*c1*c4_0*c0_3*map.g10*map.g00 + map.det*c2*c1*c4_0*c0_3*map.g11*map.g01;
-    const real G1_0_3_1_1 = map.det*c2*c1*c4_0*c0_3*map.g10*map.g10 + map.det*c2*c1*c4_0*c0_3*map.g11*map.g11;
-    const real G1_0_4_0_0 = map.det*c2*c1*c4_0*c0_4*map.g00*map.g00 + map.det*c2*c1*c4_0*c0_4*map.g01*map.g01;
-    const real G1_0_4_1_0 = map.det*c2*c1*c4_0*c0_4*map.g10*map.g00 + map.det*c2*c1*c4_0*c0_4*map.g11*map.g01;
-    const real G1_0_5_0_1 = map.det*c2*c1*c4_0*c0_5*map.g00*map.g10 + map.det*c2*c1*c4_0*c0_5*map.g01*map.g11;
-    const real G1_0_5_1_1 = map.det*c2*c1*c4_0*c0_5*map.g10*map.g10 + map.det*c2*c1*c4_0*c0_5*map.g11*map.g11;
-    const real G1_1_3_0_0 = map.det*c2*c1*c4_1*c0_3*map.g00*map.g00 + map.det*c2*c1*c4_1*c0_3*map.g01*map.g01;
-    const real G1_1_3_0_1 = map.det*c2*c1*c4_1*c0_3*map.g00*map.g10 + map.det*c2*c1*c4_1*c0_3*map.g01*map.g11;
-    const real G1_1_3_1_0 = map.det*c2*c1*c4_1*c0_3*map.g10*map.g00 + map.det*c2*c1*c4_1*c0_3*map.g11*map.g01;
-    const real G1_1_3_1_1 = map.det*c2*c1*c4_1*c0_3*map.g10*map.g10 + map.det*c2*c1*c4_1*c0_3*map.g11*map.g11;
-    const real G1_1_4_0_0 = map.det*c2*c1*c4_1*c0_4*map.g00*map.g00 + map.det*c2*c1*c4_1*c0_4*map.g01*map.g01;
-    const real G1_1_4_1_0 = map.det*c2*c1*c4_1*c0_4*map.g10*map.g00 + map.det*c2*c1*c4_1*c0_4*map.g11*map.g01;
-    const real G1_1_5_0_1 = map.det*c2*c1*c4_1*c0_5*map.g00*map.g10 + map.det*c2*c1*c4_1*c0_5*map.g01*map.g11;
-    const real G1_1_5_1_1 = map.det*c2*c1*c4_1*c0_5*map.g10*map.g10 + map.det*c2*c1*c4_1*c0_5*map.g11*map.g11;
-    const real G1_2_3_0_0 = map.det*c2*c1*c4_2*c0_3*map.g00*map.g00 + map.det*c2*c1*c4_2*c0_3*map.g01*map.g01;
-    const real G1_2_3_0_1 = map.det*c2*c1*c4_2*c0_3*map.g00*map.g10 + map.det*c2*c1*c4_2*c0_3*map.g01*map.g11;
-    const real G1_2_3_1_0 = map.det*c2*c1*c4_2*c0_3*map.g10*map.g00 + map.det*c2*c1*c4_2*c0_3*map.g11*map.g01;
-    const real G1_2_3_1_1 = map.det*c2*c1*c4_2*c0_3*map.g10*map.g10 + map.det*c2*c1*c4_2*c0_3*map.g11*map.g11;
-    const real G1_2_4_0_0 = map.det*c2*c1*c4_2*c0_4*map.g00*map.g00 + map.det*c2*c1*c4_2*c0_4*map.g01*map.g01;
-    const real G1_2_4_1_0 = map.det*c2*c1*c4_2*c0_4*map.g10*map.g00 + map.det*c2*c1*c4_2*c0_4*map.g11*map.g01;
-    const real G1_2_5_0_1 = map.det*c2*c1*c4_2*c0_5*map.g00*map.g10 + map.det*c2*c1*c4_2*c0_5*map.g01*map.g11;
-    const real G1_2_5_1_1 = map.det*c2*c1*c4_2*c0_5*map.g10*map.g10 + map.det*c2*c1*c4_2*c0_5*map.g11*map.g11;
-    const real G2_0 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_0;
-    const real G2_1 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_1;
-    const real G2_2 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_2;
-    const real G3_0 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_0 + map.det*c2*c1*(1.0/c2)*c2_0;
-    const real G3_1 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_1 + map.det*c2*c1*(1.0/c2)*c2_1;
-    const real G3_2 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_2 + map.det*c2*c1*(1.0/c2)*c2_2;
-    const real G4_0 = map.det*c2*c1*c2*(1.0/c2)*c2_0;
-    const real G4_1 = map.det*c2*c1*c2*(1.0/c2)*c2_1;
-    const real G4_2 = map.det*c2*c1*c2*(1.0/c2)*c2_2;
-    const real G5_3 = map.det*c0_3;
-    const real G5_4 = map.det*c0_4;
-    const real G5_5 = map.det*c0_5;
-    const real G6_0_0_0 = map.det*c0*c0_0*map.g00*map.g00 + map.det*c0*c0_0*map.g01*map.g01;
-    const real G6_0_0_1 = map.det*c0*c0_0*map.g00*map.g10 + map.det*c0*c0_0*map.g01*map.g11;
-    const real G6_0_1_0 = map.det*c0*c0_0*map.g10*map.g00 + map.det*c0*c0_0*map.g11*map.g01;
-    const real G6_0_1_1 = map.det*c0*c0_0*map.g10*map.g10 + map.det*c0*c0_0*map.g11*map.g11;
-    const real G6_1_0_0 = map.det*c0*c0_1*map.g00*map.g00 + map.det*c0*c0_1*map.g01*map.g01;
-    const real G6_1_1_0 = map.det*c0*c0_1*map.g10*map.g00 + map.det*c0*c0_1*map.g11*map.g01;
-    const real G6_2_0_1 = map.det*c0*c0_2*map.g00*map.g10 + map.det*c0*c0_2*map.g01*map.g11;
-    const real G6_2_1_1 = map.det*c0*c0_2*map.g10*map.g10 + map.det*c0*c0_2*map.g11*map.g11;
+    const real G0_0_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g01*map.g01;
+    const real G0_0_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g01*map.g11;
+    const real G0_0_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g11*map.g01;
+    const real G0_0_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g11*map.g11;
+    const real G0_0_0_1_0_0 = map.det*c2*c1*c0_0*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g01*map.g01;
+    const real G0_0_0_1_1_0 = map.det*c2*c1*c0_0*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g11*map.g01;
+    const real G0_0_0_2_0_1 = map.det*c2*c1*c0_0*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g01*map.g11;
+    const real G0_0_0_2_1_1 = map.det*c2*c1*c0_0*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g11*map.g11;
+    const real G0_0_1_0_0_0 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g01*map.g01;
+    const real G0_0_1_0_0_1 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g01*map.g11;
+    const real G0_0_1_0_1_0 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g11*map.g01;
+    const real G0_0_1_0_1_1 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g11*map.g11;
+    const real G0_0_1_1_0_0 = map.det*c2*c1*c0_0*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g01*map.g01;
+    const real G0_0_1_1_1_0 = map.det*c2*c1*c0_0*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g11*map.g01;
+    const real G0_0_1_2_0_1 = map.det*c2*c1*c0_0*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g01*map.g11;
+    const real G0_0_1_2_1_1 = map.det*c2*c1*c0_0*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g11*map.g11;
+    const real G0_0_2_0_0_0 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g01*map.g01;
+    const real G0_0_2_0_0_1 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g01*map.g11;
+    const real G0_0_2_0_1_0 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g11*map.g01;
+    const real G0_0_2_0_1_1 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g11*map.g11;
+    const real G0_0_2_1_0_0 = map.det*c2*c1*c0_0*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g01*map.g01;
+    const real G0_0_2_1_1_0 = map.det*c2*c1*c0_0*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g11*map.g01;
+    const real G0_0_2_2_0_1 = map.det*c2*c1*c0_0*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g01*map.g11;
+    const real G0_0_2_2_1_1 = map.det*c2*c1*c0_0*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g11*map.g11;
+    const real G0_1_0_0_0_0 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g01*map.g01;
+    const real G0_1_0_0_0_1 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g01*map.g11;
+    const real G0_1_0_0_1_0 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g11*map.g01;
+    const real G0_1_0_0_1_1 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g11*map.g11;
+    const real G0_1_0_1_0_0 = map.det*c2*c1*c0_1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g01*map.g01;
+    const real G0_1_0_1_1_0 = map.det*c2*c1*c0_1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g11*map.g01;
+    const real G0_1_0_2_0_1 = map.det*c2*c1*c0_1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g01*map.g11;
+    const real G0_1_0_2_1_1 = map.det*c2*c1*c0_1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g11*map.g11;
+    const real G0_1_1_0_0_0 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g01*map.g01;
+    const real G0_1_1_0_0_1 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g01*map.g11;
+    const real G0_1_1_0_1_0 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g11*map.g01;
+    const real G0_1_1_0_1_1 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g11*map.g11;
+    const real G0_1_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g01*map.g01;
+    const real G0_1_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g11*map.g01;
+    const real G0_1_1_2_0_1 = map.det*c2*c1*c0_1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g01*map.g11;
+    const real G0_1_1_2_1_1 = map.det*c2*c1*c0_1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g11*map.g11;
+    const real G0_1_2_0_0_0 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g01*map.g01;
+    const real G0_1_2_0_0_1 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g01*map.g11;
+    const real G0_1_2_0_1_0 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g11*map.g01;
+    const real G0_1_2_0_1_1 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g11*map.g11;
+    const real G0_1_2_1_0_0 = map.det*c2*c1*c0_1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g01*map.g01;
+    const real G0_1_2_1_1_0 = map.det*c2*c1*c0_1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g11*map.g01;
+    const real G0_1_2_2_0_1 = map.det*c2*c1*c0_1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g01*map.g11;
+    const real G0_1_2_2_1_1 = map.det*c2*c1*c0_1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g11*map.g11;
+    const real G0_2_0_0_0_0 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g01*map.g01;
+    const real G0_2_0_0_0_1 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g01*map.g11;
+    const real G0_2_0_0_1_0 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g11*map.g01;
+    const real G0_2_0_0_1_1 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g11*map.g11;
+    const real G0_2_0_1_0_0 = map.det*c2*c1*c0_2*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g01*map.g01;
+    const real G0_2_0_1_1_0 = map.det*c2*c1*c0_2*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g11*map.g01;
+    const real G0_2_0_2_0_1 = map.det*c2*c1*c0_2*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g01*map.g11;
+    const real G0_2_0_2_1_1 = map.det*c2*c1*c0_2*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g11*map.g11;
+    const real G0_2_1_0_0_0 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g01*map.g01;
+    const real G0_2_1_0_0_1 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g01*map.g11;
+    const real G0_2_1_0_1_0 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g11*map.g01;
+    const real G0_2_1_0_1_1 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g11*map.g11;
+    const real G0_2_1_1_0_0 = map.det*c2*c1*c0_2*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g01*map.g01;
+    const real G0_2_1_1_1_0 = map.det*c2*c1*c0_2*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g11*map.g01;
+    const real G0_2_1_2_0_1 = map.det*c2*c1*c0_2*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g01*map.g11;
+    const real G0_2_1_2_1_1 = map.det*c2*c1*c0_2*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g11*map.g11;
+    const real G0_2_2_0_0_0 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g01*map.g01;
+    const real G0_2_2_0_0_1 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g01*map.g11;
+    const real G0_2_2_0_1_0 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g11*map.g01;
+    const real G0_2_2_0_1_1 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g11*map.g11;
+    const real G0_2_2_1_0_0 = map.det*c2*c1*c0_2*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g01*map.g01;
+    const real G0_2_2_1_1_0 = map.det*c2*c1*c0_2*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g11*map.g01;
+    const real G0_2_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g01*map.g11;
+    const real G0_2_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g11*map.g11;
+    const real G1_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01;
+    const real G1_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11;
+    const real G1_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01;
+    const real G1_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11;
+    const real G1_0_1_0_0 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01;
+    const real G1_0_1_1_0 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01;
+    const real G1_0_2_0_1 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11;
+    const real G1_0_2_1_1 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11;
+    const real G1_1_0_0_0 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01;
+    const real G1_1_0_0_1 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11;
+    const real G1_1_0_1_0 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01;
+    const real G1_1_0_1_1 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11;
+    const real G1_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01;
+    const real G1_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01;
+    const real G1_1_2_0_1 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11;
+    const real G1_1_2_1_1 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11;
+    const real G1_2_0_0_0 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01;
+    const real G1_2_0_0_1 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11;
+    const real G1_2_0_1_0 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01;
+    const real G1_2_0_1_1 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11;
+    const real G1_2_1_0_0 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01 + map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01;
+    const real G1_2_1_1_0 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01 + map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01;
+    const real G1_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11 + map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11;
+    const real G1_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11 + map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11;
+    const real G2_0_0_0 = map.det*c2*c1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*map.g01*map.g01;
+    const real G2_0_0_1 = map.det*c2*c1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*map.g01*map.g11;
+    const real G2_0_1_0 = map.det*c2*c1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*map.g11*map.g01;
+    const real G2_0_1_1 = map.det*c2*c1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*map.g11*map.g11;
+    const real G2_1_0_0 = map.det*c2*c1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*map.g01*map.g01;
+    const real G2_1_1_0 = map.det*c2*c1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*map.g11*map.g01;
+    const real G2_2_0_1 = map.det*c2*c1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*map.g01*map.g11;
+    const real G2_2_1_1 = map.det*c2*c1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*map.g11*map.g11;
+    const real G3_0_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g01*map.g01;
+    const real G3_0_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g01*map.g11;
+    const real G3_0_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g11*map.g01;
+    const real G3_0_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_0*map.g11*map.g11;
+    const real G3_0_0_1_0_0 = map.det*c2*c1*c0_0*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g01*map.g01;
+    const real G3_0_0_1_1_0 = map.det*c2*c1*c0_0*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*c0_1*map.g11*map.g01;
+    const real G3_0_0_2_0_1 = map.det*c2*c1*c0_0*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g01*map.g11;
+    const real G3_0_0_2_1_1 = map.det*c2*c1*c0_0*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*c0_2*map.g11*map.g11;
+    const real G3_0_1_0_0_0 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g01*map.g01;
+    const real G3_0_1_0_0_1 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g01*map.g11;
+    const real G3_0_1_0_1_0 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g11*map.g01;
+    const real G3_0_1_0_1_1 = map.det*c2*c1*c0_0*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_0*map.g11*map.g11;
+    const real G3_0_1_1_0_0 = map.det*c2*c1*c0_0*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g01*map.g01;
+    const real G3_0_1_1_1_0 = map.det*c2*c1*c0_0*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*c0_1*map.g11*map.g01;
+    const real G3_0_1_2_0_1 = map.det*c2*c1*c0_0*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g01*map.g11;
+    const real G3_0_1_2_1_1 = map.det*c2*c1*c0_0*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*c0_2*map.g11*map.g11;
+    const real G3_0_2_0_0_0 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g01*map.g01;
+    const real G3_0_2_0_0_1 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g01*map.g11;
+    const real G3_0_2_0_1_0 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g11*map.g01;
+    const real G3_0_2_0_1_1 = map.det*c2*c1*c0_0*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_0*map.g11*map.g11;
+    const real G3_0_2_1_0_0 = map.det*c2*c1*c0_0*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g01*map.g01;
+    const real G3_0_2_1_1_0 = map.det*c2*c1*c0_0*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_2*c0_1*map.g11*map.g01;
+    const real G3_0_2_2_0_1 = map.det*c2*c1*c0_0*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g01*map.g11;
+    const real G3_0_2_2_1_1 = map.det*c2*c1*c0_0*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*c0_2*map.g11*map.g11;
+    const real G3_1_0_0_0_0 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g01*map.g01;
+    const real G3_1_0_0_0_1 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g01*map.g11;
+    const real G3_1_0_0_1_0 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g11*map.g01;
+    const real G3_1_0_0_1_1 = map.det*c2*c1*c0_1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_0*map.g11*map.g11;
+    const real G3_1_0_1_0_0 = map.det*c2*c1*c0_1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g01*map.g01;
+    const real G3_1_0_1_1_0 = map.det*c2*c1*c0_1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*c0_1*map.g11*map.g01;
+    const real G3_1_0_2_0_1 = map.det*c2*c1*c0_1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g01*map.g11;
+    const real G3_1_0_2_1_1 = map.det*c2*c1*c0_1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*c0_2*map.g11*map.g11;
+    const real G3_1_1_0_0_0 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g01*map.g01;
+    const real G3_1_1_0_0_1 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g01*map.g11;
+    const real G3_1_1_0_1_0 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g11*map.g01;
+    const real G3_1_1_0_1_1 = map.det*c2*c1*c0_1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_0*map.g11*map.g11;
+    const real G3_1_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g01*map.g01;
+    const real G3_1_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*c0_1*map.g11*map.g01;
+    const real G3_1_1_2_0_1 = map.det*c2*c1*c0_1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g01*map.g11;
+    const real G3_1_1_2_1_1 = map.det*c2*c1*c0_1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*c0_2*map.g11*map.g11;
+    const real G3_1_2_0_0_0 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g01*map.g01;
+    const real G3_1_2_0_0_1 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g01*map.g11;
+    const real G3_1_2_0_1_0 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g11*map.g01;
+    const real G3_1_2_0_1_1 = map.det*c2*c1*c0_1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_0*map.g11*map.g11;
+    const real G3_1_2_1_0_0 = map.det*c2*c1*c0_1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g01*map.g01;
+    const real G3_1_2_1_1_0 = map.det*c2*c1*c0_1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_2*c0_1*map.g11*map.g01;
+    const real G3_1_2_2_0_1 = map.det*c2*c1*c0_1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g01*map.g11;
+    const real G3_1_2_2_1_1 = map.det*c2*c1*c0_1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*c0_2*map.g11*map.g11;
+    const real G3_2_0_0_0_0 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g01*map.g01;
+    const real G3_2_0_0_0_1 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g01*map.g11;
+    const real G3_2_0_0_1_0 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g11*map.g01;
+    const real G3_2_0_0_1_1 = map.det*c2*c1*c0_2*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_0*map.g11*map.g11;
+    const real G3_2_0_1_0_0 = map.det*c2*c1*c0_2*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g01*map.g01;
+    const real G3_2_0_1_1_0 = map.det*c2*c1*c0_2*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*c0_1*map.g11*map.g01;
+    const real G3_2_0_2_0_1 = map.det*c2*c1*c0_2*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g01*map.g11;
+    const real G3_2_0_2_1_1 = map.det*c2*c1*c0_2*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*c0_2*map.g11*map.g11;
+    const real G3_2_1_0_0_0 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g01*map.g01;
+    const real G3_2_1_0_0_1 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g01*map.g11;
+    const real G3_2_1_0_1_0 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g11*map.g01;
+    const real G3_2_1_0_1_1 = map.det*c2*c1*c0_2*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_0*map.g11*map.g11;
+    const real G3_2_1_1_0_0 = map.det*c2*c1*c0_2*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g01*map.g01;
+    const real G3_2_1_1_1_0 = map.det*c2*c1*c0_2*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*c0_1*map.g11*map.g01;
+    const real G3_2_1_2_0_1 = map.det*c2*c1*c0_2*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g01*map.g11;
+    const real G3_2_1_2_1_1 = map.det*c2*c1*c0_2*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*c0_2*map.g11*map.g11;
+    const real G3_2_2_0_0_0 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g01*map.g01;
+    const real G3_2_2_0_0_1 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g01*map.g11;
+    const real G3_2_2_0_1_0 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g11*map.g01;
+    const real G3_2_2_0_1_1 = map.det*c2*c1*c0_2*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_0*map.g11*map.g11;
+    const real G3_2_2_1_0_0 = map.det*c2*c1*c0_2*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g01*map.g01;
+    const real G3_2_2_1_1_0 = map.det*c2*c1*c0_2*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_2*c0_1*map.g11*map.g01;
+    const real G3_2_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g01*map.g11;
+    const real G3_2_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*c0_2*map.g11*map.g11;
+    const real G4_0_0_0_0 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g01;
+    const real G4_0_0_0_1 = map.det*c2*c1*c0_0*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g01*map.g11;
+    const real G4_0_0_1_0 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g01;
+    const real G4_0_0_1_1 = map.det*c2*c1*c0_0*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_0*map.g11*map.g11;
+    const real G4_0_1_0_0 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g01;
+    const real G4_0_1_0_1 = map.det*c2*c1*c0_0*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g01*map.g11;
+    const real G4_0_1_1_0 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g01;
+    const real G4_0_1_1_1 = map.det*c2*c1*c0_0*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_1*map.g11*map.g11;
+    const real G4_0_2_0_1 = map.det*c2*c1*c0_0*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g01*map.g11;
+    const real G4_0_2_1_1 = map.det*c2*c1*c0_0*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_0*c0_2*map.g11*map.g11;
+    const real G4_1_0_0_0 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g01;
+    const real G4_1_0_0_1 = map.det*c2*c1*c0_1*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g01*map.g11;
+    const real G4_1_0_1_0 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g01;
+    const real G4_1_0_1_1 = map.det*c2*c1*c0_1*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_0*map.g11*map.g11;
+    const real G4_1_1_0_0 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g01;
+    const real G4_1_1_0_1 = map.det*c2*c1*c0_1*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g01*map.g11;
+    const real G4_1_1_1_0 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g01;
+    const real G4_1_1_1_1 = map.det*c2*c1*c0_1*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_1*map.g11*map.g11;
+    const real G4_1_2_0_1 = map.det*c2*c1*c0_1*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g01*map.g11;
+    const real G4_1_2_1_1 = map.det*c2*c1*c0_1*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_1*c0_2*map.g11*map.g11;
+    const real G4_2_0_0_0 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g01;
+    const real G4_2_0_0_1 = map.det*c2*c1*c0_2*c0_0*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g01*map.g11;
+    const real G4_2_0_1_0 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g01;
+    const real G4_2_0_1_1 = map.det*c2*c1*c0_2*c0_0*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_0*map.g11*map.g11;
+    const real G4_2_1_0_0 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g01;
+    const real G4_2_1_0_1 = map.det*c2*c1*c0_2*c0_1*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g01*map.g11;
+    const real G4_2_1_1_0 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g00 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g01;
+    const real G4_2_1_1_1 = map.det*c2*c1*c0_2*c0_1*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_1*map.g11*map.g11;
+    const real G4_2_2_0_1 = map.det*c2*c1*c0_2*c0_2*map.g00*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g01*map.g11;
+    const real G4_2_2_1_1 = map.det*c2*c1*c0_2*c0_2*map.g10*map.g10 + map.det*c2*c1*c0_2*c0_2*map.g11*map.g11;
+    const real G5_3_0_0 = map.det*c2*c1*c0_3*map.g00*map.g00 + map.det*c2*c1*c0_3*map.g01*map.g01;
+    const real G5_3_0_1 = map.det*c2*c1*c0_3*map.g00*map.g10 + map.det*c2*c1*c0_3*map.g01*map.g11;
+    const real G5_3_1_0 = map.det*c2*c1*c0_3*map.g10*map.g00 + map.det*c2*c1*c0_3*map.g11*map.g01;
+    const real G5_3_1_1 = map.det*c2*c1*c0_3*map.g10*map.g10 + map.det*c2*c1*c0_3*map.g11*map.g11;
+    const real G5_4_0_0 = map.det*c2*c1*c0_4*map.g00*map.g00 + map.det*c2*c1*c0_4*map.g01*map.g01;
+    const real G5_4_1_0 = map.det*c2*c1*c0_4*map.g10*map.g00 + map.det*c2*c1*c0_4*map.g11*map.g01;
+    const real G5_5_0_1 = map.det*c2*c1*c0_5*map.g00*map.g10 + map.det*c2*c1*c0_5*map.g01*map.g11;
+    const real G5_5_1_1 = map.det*c2*c1*c0_5*map.g10*map.g10 + map.det*c2*c1*c0_5*map.g11*map.g11;
+    const real G6_0 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_0;
+    const real G6_1 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_1;
+    const real G6_2 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c0_2;
+    const real G7_0 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_0 + map.det*c2*c1*(1.0/c2)*c2_0;
+    const real G7_1 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_1 + map.det*c2*c1*(1.0/c2)*c2_1;
+    const real G7_2 = map.det*c2*c1*(1.0/c1)*(1.0/c2)*c1_2 + map.det*c2*c1*(1.0/c2)*c2_2;
+    const real G8_0 = map.det*c2*c1*c2*(1.0/c2)*c2_0;
+    const real G8_1 = map.det*c2*c1*c2*(1.0/c2)*c2_1;
+    const real G8_2 = map.det*c2*c1*c2*(1.0/c2)*c2_2;
+    const real G9_3 = map.det*c0_3;
+    const real G9_4 = map.det*c0_4;
+    const real G9_5 = map.det*c0_5;
+    const real G10_0_0_0 = map.det*c0*c0_0*map.g00*map.g00 + map.det*c0*c0_0*map.g01*map.g01;
+    const real G10_0_0_1 = map.det*c0*c0_0*map.g00*map.g10 + map.det*c0*c0_0*map.g01*map.g11;
+    const real G10_0_1_0 = map.det*c0*c0_0*map.g10*map.g00 + map.det*c0*c0_0*map.g11*map.g01;
+    const real G10_0_1_1 = map.det*c0*c0_0*map.g10*map.g10 + map.det*c0*c0_0*map.g11*map.g11;
+    const real G10_1_0_0 = map.det*c0*c0_1*map.g00*map.g00 + map.det*c0*c0_1*map.g01*map.g01;
+    const real G10_1_1_0 = map.det*c0*c0_1*map.g10*map.g00 + map.det*c0*c0_1*map.g11*map.g01;
+    const real G10_2_0_1 = map.det*c0*c0_2*map.g00*map.g10 + map.det*c0*c0_2*map.g01*map.g11;
+    const real G10_2_1_1 = map.det*c0*c0_2*map.g10*map.g10 + map.det*c0*c0_2*map.g11*map.g11;
 
     // Compute element tensor
-    block[0] = -8.333333333333320e-02*G0_0_0_0_0_0 - 8.333333333333319e-02*G0_0_0_0_0_1 - 8.333333333333319e-02*G0_0_0_0_1_0 - 8.333333333333318e-02*G0_0_0_0_1_1 + 8.333333333333320e-02*G0_0_0_1_0_0 + 8.333333333333319e-02*G0_0_0_1_1_0 + 8.333333333333319e-02*G0_0_0_2_0_1 + 8.333333333333318e-02*G0_0_0_2_1_1 - 4.166666666666660e-02*G0_0_1_0_0_0 - 4.166666666666659e-02*G0_0_1_0_0_1 - 4.166666666666659e-02*G0_0_1_0_1_0 - 4.166666666666659e-02*G0_0_1_0_1_1 + 4.166666666666660e-02*G0_0_1_1_0_0 + 4.166666666666659e-02*G0_0_1_1_1_0 + 4.166666666666659e-02*G0_0_1_2_0_1 + 4.166666666666659e-02*G0_0_1_2_1_1 - 4.166666666666659e-02*G0_0_2_0_0_0 - 4.166666666666659e-02*G0_0_2_0_0_1 - 4.166666666666659e-02*G0_0_2_0_1_0 - 4.166666666666658e-02*G0_0_2_0_1_1 + 4.166666666666659e-02*G0_0_2_1_0_0 + 4.166666666666659e-02*G0_0_2_1_1_0 + 4.166666666666659e-02*G0_0_2_2_0_1 + 4.166666666666658e-02*G0_0_2_2_1_1 - 4.166666666666660e-02*G0_1_0_0_0_0 - 4.166666666666659e-02*G0_1_0_0_0_1 - 4.166666666666659e-02*G0_1_0_0_1_0 - 4.166666666666659e-02*G0_1_0_0_1_1 + 4.166666666666660e-02*G0_1_0_1_0_0 + 4.166666666666659e-02*G0_1_0_1_1_0 + 4.166666666666659e-02*G0_1_0_2_0_1 + 4.166666666666659e-02*G0_1_0_2_1_1 - 8.333333333333320e-02*G0_1_1_0_0_0 - 8.333333333333319e-02*G0_1_1_0_0_1 - 8.333333333333319e-02*G0_1_1_0_1_0 - 8.333333333333318e-02*G0_1_1_0_1_1 + 8.333333333333320e-02*G0_1_1_1_0_0 + 8.333333333333319e-02*G0_1_1_1_1_0 + 8.333333333333319e-02*G0_1_1_2_0_1 + 8.333333333333318e-02*G0_1_1_2_1_1 - 4.166666666666661e-02*G0_1_2_0_0_0 - 4.166666666666660e-02*G0_1_2_0_0_1 - 4.166666666666660e-02*G0_1_2_0_1_0 - 4.166666666666659e-02*G0_1_2_0_1_1 + 4.166666666666661e-02*G0_1_2_1_0_0 + 4.166666666666660e-02*G0_1_2_1_1_0 + 4.166666666666660e-02*G0_1_2_2_0_1 + 4.166666666666659e-02*G0_1_2_2_1_1 - 4.166666666666659e-02*G0_2_0_0_0_0 - 4.166666666666659e-02*G0_2_0_0_0_1 - 4.166666666666659e-02*G0_2_0_0_1_0 - 4.166666666666658e-02*G0_2_0_0_1_1 + 4.166666666666659e-02*G0_2_0_1_0_0 + 4.166666666666659e-02*G0_2_0_1_1_0 + 4.166666666666659e-02*G0_2_0_2_0_1 + 4.166666666666658e-02*G0_2_0_2_1_1 - 4.166666666666661e-02*G0_2_1_0_0_0 - 4.166666666666660e-02*G0_2_1_0_0_1 - 4.166666666666660e-02*G0_2_1_0_1_0 - 4.166666666666659e-02*G0_2_1_0_1_1 + 4.166666666666661e-02*G0_2_1_1_0_0 + 4.166666666666660e-02*G0_2_1_1_1_0 + 4.166666666666660e-02*G0_2_1_2_0_1 + 4.166666666666659e-02*G0_2_1_2_1_1 - 8.333333333333320e-02*G0_2_2_0_0_0 - 8.333333333333318e-02*G0_2_2_0_0_1 - 8.333333333333318e-02*G0_2_2_0_1_0 - 8.333333333333316e-02*G0_2_2_0_1_1 + 8.333333333333320e-02*G0_2_2_1_0_0 + 8.333333333333318e-02*G0_2_2_1_1_0 + 8.333333333333318e-02*G0_2_2_2_0_1 + 8.333333333333316e-02*G0_2_2_2_1_1 + 1.666666666666666e-01*G1_0_3_0_0 + 1.666666666666665e-01*G1_0_3_0_1 + 1.666666666666665e-01*G1_0_3_1_0 + 1.666666666666665e-01*G1_0_3_1_1 - 1.666666666666666e-01*G1_0_4_0_0 - 1.666666666666665e-01*G1_0_4_1_0 - 1.666666666666665e-01*G1_0_5_0_1 - 1.666666666666665e-01*G1_0_5_1_1 + 1.666666666666666e-01*G1_1_3_0_0 + 1.666666666666666e-01*G1_1_3_0_1 + 1.666666666666666e-01*G1_1_3_1_0 + 1.666666666666665e-01*G1_1_3_1_1 - 1.666666666666666e-01*G1_1_4_0_0 - 1.666666666666666e-01*G1_1_4_1_0 - 1.666666666666666e-01*G1_1_5_0_1 - 1.666666666666665e-01*G1_1_5_1_1 + 1.666666666666666e-01*G1_2_3_0_0 + 1.666666666666665e-01*G1_2_3_0_1 + 1.666666666666665e-01*G1_2_3_1_0 + 1.666666666666665e-01*G1_2_3_1_1 - 1.666666666666666e-01*G1_2_4_0_0 - 1.666666666666665e-01*G1_2_4_1_0 - 1.666666666666665e-01*G1_2_5_0_1 - 1.666666666666665e-01*G1_2_5_1_1 - 8.333333333333318e-02*G2_0 - 4.166666666666659e-02*G2_1 - 4.166666666666658e-02*G2_2 + 8.333333333333318e-02*G3_0 + 4.166666666666659e-02*G3_1 + 4.166666666666658e-02*G3_2 - 8.333333333333318e-02*G4_0 - 4.166666666666659e-02*G4_1 - 4.166666666666658e-02*G4_2;
-    block[1] = 8.333333333333320e-02*G0_0_0_0_0_0 + 8.333333333333319e-02*G0_0_0_0_0_1 - 8.333333333333320e-02*G0_0_0_1_0_0 - 8.333333333333319e-02*G0_0_0_2_0_1 + 4.166666666666660e-02*G0_0_1_0_0_0 + 4.166666666666659e-02*G0_0_1_0_0_1 - 4.166666666666660e-02*G0_0_1_1_0_0 - 4.166666666666659e-02*G0_0_1_2_0_1 + 4.166666666666659e-02*G0_0_2_0_0_0 + 4.166666666666659e-02*G0_0_2_0_0_1 - 4.166666666666659e-02*G0_0_2_1_0_0 - 4.166666666666659e-02*G0_0_2_2_0_1 + 4.166666666666660e-02*G0_1_0_0_0_0 + 4.166666666666659e-02*G0_1_0_0_0_1 - 4.166666666666660e-02*G0_1_0_1_0_0 - 4.166666666666659e-02*G0_1_0_2_0_1 + 8.333333333333320e-02*G0_1_1_0_0_0 + 8.333333333333319e-02*G0_1_1_0_0_1 - 8.333333333333320e-02*G0_1_1_1_0_0 - 8.333333333333319e-02*G0_1_1_2_0_1 + 4.166666666666661e-02*G0_1_2_0_0_0 + 4.166666666666660e-02*G0_1_2_0_0_1 - 4.166666666666661e-02*G0_1_2_1_0_0 - 4.166666666666660e-02*G0_1_2_2_0_1 + 4.166666666666659e-02*G0_2_0_0_0_0 + 4.166666666666659e-02*G0_2_0_0_0_1 - 4.166666666666659e-02*G0_2_0_1_0_0 - 4.166666666666659e-02*G0_2_0_2_0_1 + 4.166666666666661e-02*G0_2_1_0_0_0 + 4.166666666666660e-02*G0_2_1_0_0_1 - 4.166666666666661e-02*G0_2_1_1_0_0 - 4.166666666666660e-02*G0_2_1_2_0_1 + 8.333333333333320e-02*G0_2_2_0_0_0 + 8.333333333333318e-02*G0_2_2_0_0_1 - 8.333333333333320e-02*G0_2_2_1_0_0 - 8.333333333333318e-02*G0_2_2_2_0_1 - 1.666666666666666e-01*G1_0_3_0_0 - 1.666666666666665e-01*G1_0_3_0_1 + 1.666666666666666e-01*G1_0_4_0_0 + 1.666666666666665e-01*G1_0_5_0_1 - 1.666666666666666e-01*G1_1_3_0_0 - 1.666666666666666e-01*G1_1_3_0_1 + 1.666666666666666e-01*G1_1_4_0_0 + 1.666666666666666e-01*G1_1_5_0_1 - 1.666666666666666e-01*G1_2_3_0_0 - 1.666666666666665e-01*G1_2_3_0_1 + 1.666666666666666e-01*G1_2_4_0_0 + 1.666666666666665e-01*G1_2_5_0_1 - 4.166666666666659e-02*G2_0 - 8.333333333333318e-02*G2_1 - 4.166666666666659e-02*G2_2 + 4.166666666666659e-02*G3_0 + 8.333333333333318e-02*G3_1 + 4.166666666666659e-02*G3_2 - 4.166666666666659e-02*G4_0 - 8.333333333333318e-02*G4_1 - 4.166666666666659e-02*G4_2;
-    block[2] = 8.333333333333319e-02*G0_0_0_0_1_0 + 8.333333333333318e-02*G0_0_0_0_1_1 - 8.333333333333319e-02*G0_0_0_1_1_0 - 8.333333333333318e-02*G0_0_0_2_1_1 + 4.166666666666659e-02*G0_0_1_0_1_0 + 4.166666666666659e-02*G0_0_1_0_1_1 - 4.166666666666659e-02*G0_0_1_1_1_0 - 4.166666666666659e-02*G0_0_1_2_1_1 + 4.166666666666659e-02*G0_0_2_0_1_0 + 4.166666666666658e-02*G0_0_2_0_1_1 - 4.166666666666659e-02*G0_0_2_1_1_0 - 4.166666666666658e-02*G0_0_2_2_1_1 + 4.166666666666659e-02*G0_1_0_0_1_0 + 4.166666666666659e-02*G0_1_0_0_1_1 - 4.166666666666659e-02*G0_1_0_1_1_0 - 4.166666666666659e-02*G0_1_0_2_1_1 + 8.333333333333319e-02*G0_1_1_0_1_0 + 8.333333333333318e-02*G0_1_1_0_1_1 - 8.333333333333319e-02*G0_1_1_1_1_0 - 8.333333333333318e-02*G0_1_1_2_1_1 + 4.166666666666660e-02*G0_1_2_0_1_0 + 4.166666666666659e-02*G0_1_2_0_1_1 - 4.166666666666660e-02*G0_1_2_1_1_0 - 4.166666666666659e-02*G0_1_2_2_1_1 + 4.166666666666659e-02*G0_2_0_0_1_0 + 4.166666666666658e-02*G0_2_0_0_1_1 - 4.166666666666659e-02*G0_2_0_1_1_0 - 4.166666666666658e-02*G0_2_0_2_1_1 + 4.166666666666660e-02*G0_2_1_0_1_0 + 4.166666666666659e-02*G0_2_1_0_1_1 - 4.166666666666660e-02*G0_2_1_1_1_0 - 4.166666666666659e-02*G0_2_1_2_1_1 + 8.333333333333318e-02*G0_2_2_0_1_0 + 8.333333333333316e-02*G0_2_2_0_1_1 - 8.333333333333318e-02*G0_2_2_1_1_0 - 8.333333333333316e-02*G0_2_2_2_1_1 - 1.666666666666665e-01*G1_0_3_1_0 - 1.666666666666665e-01*G1_0_3_1_1 + 1.666666666666665e-01*G1_0_4_1_0 + 1.666666666666665e-01*G1_0_5_1_1 - 1.666666666666666e-01*G1_1_3_1_0 - 1.666666666666665e-01*G1_1_3_1_1 + 1.666666666666666e-01*G1_1_4_1_0 + 1.666666666666665e-01*G1_1_5_1_1 - 1.666666666666665e-01*G1_2_3_1_0 - 1.666666666666665e-01*G1_2_3_1_1 + 1.666666666666665e-01*G1_2_4_1_0 + 1.666666666666665e-01*G1_2_5_1_1 - 4.166666666666658e-02*G2_0 - 4.166666666666659e-02*G2_1 - 8.333333333333316e-02*G2_2 + 4.166666666666658e-02*G3_0 + 4.166666666666659e-02*G3_1 + 8.333333333333316e-02*G3_2 - 4.166666666666658e-02*G4_0 - 4.166666666666659e-02*G4_1 - 8.333333333333316e-02*G4_2;
-    block[3] = -8.333333333333318e-02*G5_3 - 4.166666666666659e-02*G5_4 - 4.166666666666658e-02*G5_5 - 4.999999999999998e-01*G6_0_0_0 - 4.999999999999997e-01*G6_0_0_1 - 4.999999999999997e-01*G6_0_1_0 - 4.999999999999996e-01*G6_0_1_1 + 4.999999999999998e-01*G6_1_0_0 + 4.999999999999997e-01*G6_1_1_0 + 4.999999999999997e-01*G6_2_0_1 + 4.999999999999996e-01*G6_2_1_1;
-    block[4] = -4.166666666666659e-02*G5_3 - 8.333333333333318e-02*G5_4 - 4.166666666666659e-02*G5_5 + 4.999999999999998e-01*G6_0_0_0 + 4.999999999999997e-01*G6_0_0_1 - 4.999999999999998e-01*G6_1_0_0 - 4.999999999999997e-01*G6_2_0_1;
-    block[5] = -4.166666666666658e-02*G5_3 - 4.166666666666659e-02*G5_4 - 8.333333333333316e-02*G5_5 + 4.999999999999997e-01*G6_0_1_0 + 4.999999999999996e-01*G6_0_1_1 - 4.999999999999997e-01*G6_1_1_0 - 4.999999999999996e-01*G6_2_1_1;
+    block[0] = -1.666666666666664e+01*G0_0_0_0_0_0 - 1.666666666666664e+01*G0_0_0_0_0_1 - 1.666666666666664e+01*G0_0_0_0_1_0 - 1.666666666666664e+01*G0_0_0_0_1_1 + 1.666666666666664e+01*G0_0_0_1_0_0 + 1.666666666666664e+01*G0_0_0_1_1_0 + 1.666666666666664e+01*G0_0_0_2_0_1 + 1.666666666666664e+01*G0_0_0_2_1_1 - 8.333333333333321e+00*G0_0_1_0_0_0 - 8.333333333333320e+00*G0_0_1_0_0_1 - 8.333333333333320e+00*G0_0_1_0_1_0 - 8.333333333333316e+00*G0_0_1_0_1_1 + 8.333333333333321e+00*G0_0_1_1_0_0 + 8.333333333333320e+00*G0_0_1_1_1_0 + 8.333333333333320e+00*G0_0_1_2_0_1 + 8.333333333333316e+00*G0_0_1_2_1_1 - 8.333333333333321e+00*G0_0_2_0_0_0 - 8.333333333333320e+00*G0_0_2_0_0_1 - 8.333333333333320e+00*G0_0_2_0_1_0 - 8.333333333333318e+00*G0_0_2_0_1_1 + 8.333333333333321e+00*G0_0_2_1_0_0 + 8.333333333333320e+00*G0_0_2_1_1_0 + 8.333333333333320e+00*G0_0_2_2_0_1 + 8.333333333333318e+00*G0_0_2_2_1_1 - 8.333333333333321e+00*G0_1_0_0_0_0 - 8.333333333333320e+00*G0_1_0_0_0_1 - 8.333333333333320e+00*G0_1_0_0_1_0 - 8.333333333333318e+00*G0_1_0_0_1_1 + 8.333333333333321e+00*G0_1_0_1_0_0 + 8.333333333333320e+00*G0_1_0_1_1_0 + 8.333333333333320e+00*G0_1_0_2_0_1 + 8.333333333333318e+00*G0_1_0_2_1_1 - 1.666666666666664e+01*G0_1_1_0_0_0 - 1.666666666666664e+01*G0_1_1_0_0_1 - 1.666666666666664e+01*G0_1_1_0_1_0 - 1.666666666666664e+01*G0_1_1_0_1_1 + 1.666666666666664e+01*G0_1_1_1_0_0 + 1.666666666666664e+01*G0_1_1_1_1_0 + 1.666666666666664e+01*G0_1_1_2_0_1 + 1.666666666666664e+01*G0_1_1_2_1_1 - 8.333333333333321e+00*G0_1_2_0_0_0 - 8.333333333333321e+00*G0_1_2_0_0_1 - 8.333333333333321e+00*G0_1_2_0_1_0 - 8.333333333333318e+00*G0_1_2_0_1_1 + 8.333333333333321e+00*G0_1_2_1_0_0 + 8.333333333333321e+00*G0_1_2_1_1_0 + 8.333333333333321e+00*G0_1_2_2_0_1 + 8.333333333333318e+00*G0_1_2_2_1_1 - 8.333333333333320e+00*G0_2_0_0_0_0 - 8.333333333333318e+00*G0_2_0_0_0_1 - 8.333333333333318e+00*G0_2_0_0_1_0 - 8.333333333333316e+00*G0_2_0_0_1_1 + 8.333333333333320e+00*G0_2_0_1_0_0 + 8.333333333333318e+00*G0_2_0_1_1_0 + 8.333333333333318e+00*G0_2_0_2_0_1 + 8.333333333333316e+00*G0_2_0_2_1_1 - 8.333333333333321e+00*G0_2_1_0_0_0 - 8.333333333333320e+00*G0_2_1_0_0_1 - 8.333333333333320e+00*G0_2_1_0_1_0 - 8.333333333333318e+00*G0_2_1_0_1_1 + 8.333333333333321e+00*G0_2_1_1_0_0 + 8.333333333333320e+00*G0_2_1_1_1_0 + 8.333333333333320e+00*G0_2_1_2_0_1 + 8.333333333333318e+00*G0_2_1_2_1_1 - 1.666666666666664e+01*G0_2_2_0_0_0 - 1.666666666666664e+01*G0_2_2_0_0_1 - 1.666666666666664e+01*G0_2_2_0_1_0 - 1.666666666666664e+01*G0_2_2_0_1_1 + 1.666666666666664e+01*G0_2_2_1_0_0 + 1.666666666666664e+01*G0_2_2_1_1_0 + 1.666666666666664e+01*G0_2_2_2_0_1 + 1.666666666666664e+01*G0_2_2_2_1_1 + 3.333333333333331e+01*G1_0_0_0_0 + 3.333333333333331e+01*G1_0_0_0_1 + 3.333333333333331e+01*G1_0_0_1_0 + 3.333333333333330e+01*G1_0_0_1_1 - 3.333333333333331e+01*G1_0_1_0_0 - 3.333333333333331e+01*G1_0_1_1_0 - 3.333333333333331e+01*G1_0_2_0_1 - 3.333333333333330e+01*G1_0_2_1_1 + 3.333333333333332e+01*G1_1_0_0_0 + 3.333333333333331e+01*G1_1_0_0_1 + 3.333333333333331e+01*G1_1_0_1_0 + 3.333333333333331e+01*G1_1_0_1_1 - 3.333333333333332e+01*G1_1_1_0_0 - 3.333333333333331e+01*G1_1_1_1_0 - 3.333333333333331e+01*G1_1_2_0_1 - 3.333333333333331e+01*G1_1_2_1_1 + 3.333333333333331e+01*G1_2_0_0_0 + 3.333333333333331e+01*G1_2_0_0_1 + 3.333333333333331e+01*G1_2_0_1_0 + 3.333333333333330e+01*G1_2_0_1_1 - 3.333333333333331e+01*G1_2_1_0_0 - 3.333333333333331e+01*G1_2_1_1_0 - 3.333333333333331e+01*G1_2_2_0_1 - 3.333333333333330e+01*G1_2_2_1_1 - 9.999999999999997e+01*G2_0_0_0 - 9.999999999999994e+01*G2_0_0_1 - 9.999999999999994e+01*G2_0_1_0 - 9.999999999999991e+01*G2_0_1_1 + 9.999999999999997e+01*G2_1_0_0 + 9.999999999999994e+01*G2_1_1_0 + 9.999999999999994e+01*G2_2_0_1 + 9.999999999999991e+01*G2_2_1_1 - 6.666666666666657e+01*G3_0_0_0_0_0 - 6.666666666666656e+01*G3_0_0_0_0_1 - 6.666666666666656e+01*G3_0_0_0_1_0 - 6.666666666666654e+01*G3_0_0_0_1_1 + 6.666666666666657e+01*G3_0_0_1_0_0 + 6.666666666666656e+01*G3_0_0_1_1_0 + 6.666666666666656e+01*G3_0_0_2_0_1 + 6.666666666666654e+01*G3_0_0_2_1_1 - 3.333333333333329e+01*G3_0_1_0_0_0 - 3.333333333333328e+01*G3_0_1_0_0_1 - 3.333333333333328e+01*G3_0_1_0_1_0 - 3.333333333333326e+01*G3_0_1_0_1_1 + 3.333333333333329e+01*G3_0_1_1_0_0 + 3.333333333333328e+01*G3_0_1_1_1_0 + 3.333333333333328e+01*G3_0_1_2_0_1 + 3.333333333333326e+01*G3_0_1_2_1_1 - 3.333333333333329e+01*G3_0_2_0_0_0 - 3.333333333333328e+01*G3_0_2_0_0_1 - 3.333333333333328e+01*G3_0_2_0_1_0 - 3.333333333333327e+01*G3_0_2_0_1_1 + 3.333333333333329e+01*G3_0_2_1_0_0 + 3.333333333333328e+01*G3_0_2_1_1_0 + 3.333333333333328e+01*G3_0_2_2_0_1 + 3.333333333333327e+01*G3_0_2_2_1_1 - 3.333333333333329e+01*G3_1_0_0_0_0 - 3.333333333333328e+01*G3_1_0_0_0_1 - 3.333333333333328e+01*G3_1_0_0_1_0 - 3.333333333333327e+01*G3_1_0_0_1_1 + 3.333333333333329e+01*G3_1_0_1_0_0 + 3.333333333333328e+01*G3_1_0_1_1_0 + 3.333333333333328e+01*G3_1_0_2_0_1 + 3.333333333333327e+01*G3_1_0_2_1_1 - 6.666666666666657e+01*G3_1_1_0_0_0 - 6.666666666666656e+01*G3_1_1_0_0_1 - 6.666666666666656e+01*G3_1_1_0_1_0 - 6.666666666666654e+01*G3_1_1_0_1_1 + 6.666666666666657e+01*G3_1_1_1_0_0 + 6.666666666666656e+01*G3_1_1_1_1_0 + 6.666666666666656e+01*G3_1_1_2_0_1 + 6.666666666666654e+01*G3_1_1_2_1_1 - 3.333333333333329e+01*G3_1_2_0_0_0 - 3.333333333333329e+01*G3_1_2_0_0_1 - 3.333333333333329e+01*G3_1_2_0_1_0 - 3.333333333333327e+01*G3_1_2_0_1_1 + 3.333333333333329e+01*G3_1_2_1_0_0 + 3.333333333333329e+01*G3_1_2_1_1_0 + 3.333333333333329e+01*G3_1_2_2_0_1 + 3.333333333333327e+01*G3_1_2_2_1_1 - 3.333333333333328e+01*G3_2_0_0_0_0 - 3.333333333333327e+01*G3_2_0_0_0_1 - 3.333333333333327e+01*G3_2_0_0_1_0 - 3.333333333333326e+01*G3_2_0_0_1_1 + 3.333333333333328e+01*G3_2_0_1_0_0 + 3.333333333333327e+01*G3_2_0_1_1_0 + 3.333333333333327e+01*G3_2_0_2_0_1 + 3.333333333333326e+01*G3_2_0_2_1_1 - 3.333333333333329e+01*G3_2_1_0_0_0 - 3.333333333333328e+01*G3_2_1_0_0_1 - 3.333333333333328e+01*G3_2_1_0_1_0 - 3.333333333333327e+01*G3_2_1_0_1_1 + 3.333333333333329e+01*G3_2_1_1_0_0 + 3.333333333333328e+01*G3_2_1_1_1_0 + 3.333333333333328e+01*G3_2_1_2_0_1 + 3.333333333333327e+01*G3_2_1_2_1_1 - 6.666666666666657e+01*G3_2_2_0_0_0 - 6.666666666666656e+01*G3_2_2_0_0_1 - 6.666666666666656e+01*G3_2_2_0_1_0 - 6.666666666666654e+01*G3_2_2_0_1_1 + 6.666666666666657e+01*G3_2_2_1_0_0 + 6.666666666666656e+01*G3_2_2_1_1_0 + 6.666666666666656e+01*G3_2_2_2_0_1 + 6.666666666666654e+01*G3_2_2_2_1_1 + 1.333333333333333e+02*G4_0_0_0_0 + 1.333333333333332e+02*G4_0_0_0_1 + 1.333333333333332e+02*G4_0_0_1_0 + 1.333333333333332e+02*G4_0_0_1_1 - 1.333333333333333e+02*G4_0_1_0_0 - 1.266500362180466e-14*G4_0_1_0_1 - 1.333333333333332e+02*G4_0_1_1_0 - 1.266500362180466e-14*G4_0_1_1_1 - 1.333333333333332e+02*G4_0_2_0_1 - 1.333333333333332e+02*G4_0_2_1_1 + 1.333333333333333e+02*G4_1_0_0_0 + 1.333333333333333e+02*G4_1_0_0_1 + 1.333333333333333e+02*G4_1_0_1_0 + 1.333333333333332e+02*G4_1_0_1_1 - 1.333333333333333e+02*G4_1_1_0_0 - 1.266500362180466e-14*G4_1_1_0_1 - 1.333333333333333e+02*G4_1_1_1_0 - 1.266500362180466e-14*G4_1_1_1_1 - 1.333333333333333e+02*G4_1_2_0_1 - 1.333333333333332e+02*G4_1_2_1_1 + 1.333333333333333e+02*G4_2_0_0_0 + 1.333333333333332e+02*G4_2_0_0_1 + 1.333333333333332e+02*G4_2_0_1_0 + 1.333333333333332e+02*G4_2_0_1_1 - 1.333333333333333e+02*G4_2_1_0_0 - 1.266500362180466e-14*G4_2_1_0_1 - 1.333333333333332e+02*G4_2_1_1_0 - 1.266500362180466e-14*G4_2_1_1_1 - 1.333333333333332e+02*G4_2_2_0_1 - 1.333333333333332e+02*G4_2_2_1_1 + 4.999999999999998e-01*G5_3_0_0 + 4.999999999999997e-01*G5_3_0_1 + 4.999999999999997e-01*G5_3_1_0 + 4.999999999999996e-01*G5_3_1_1 - 4.999999999999998e-01*G5_4_0_0 - 4.999999999999997e-01*G5_4_1_0 - 4.999999999999997e-01*G5_5_0_1 - 4.999999999999996e-01*G5_5_1_1 - 8.333333333333318e-02*G6_0 - 4.166666666666659e-02*G6_1 - 4.166666666666658e-02*G6_2 + 8.333333333333318e-02*G7_0 + 4.166666666666659e-02*G7_1 + 4.166666666666658e-02*G7_2 - 8.333333333333318e-02*G8_0 - 4.166666666666659e-02*G8_1 - 4.166666666666658e-02*G8_2;
+    block[1] = 1.666666666666664e+01*G0_0_0_0_0_0 + 1.666666666666664e+01*G0_0_0_0_0_1 - 1.666666666666664e+01*G0_0_0_1_0_0 - 1.666666666666664e+01*G0_0_0_2_0_1 + 8.333333333333321e+00*G0_0_1_0_0_0 + 8.333333333333320e+00*G0_0_1_0_0_1 - 8.333333333333321e+00*G0_0_1_1_0_0 - 8.333333333333320e+00*G0_0_1_2_0_1 + 8.333333333333321e+00*G0_0_2_0_0_0 + 8.333333333333320e+00*G0_0_2_0_0_1 - 8.333333333333321e+00*G0_0_2_1_0_0 - 8.333333333333320e+00*G0_0_2_2_0_1 + 8.333333333333321e+00*G0_1_0_0_0_0 + 8.333333333333320e+00*G0_1_0_0_0_1 - 8.333333333333321e+00*G0_1_0_1_0_0 - 8.333333333333320e+00*G0_1_0_2_0_1 + 1.666666666666664e+01*G0_1_1_0_0_0 + 1.666666666666664e+01*G0_1_1_0_0_1 - 1.666666666666664e+01*G0_1_1_1_0_0 - 1.666666666666664e+01*G0_1_1_2_0_1 + 8.333333333333321e+00*G0_1_2_0_0_0 + 8.333333333333321e+00*G0_1_2_0_0_1 - 8.333333333333321e+00*G0_1_2_1_0_0 - 8.333333333333321e+00*G0_1_2_2_0_1 + 8.333333333333320e+00*G0_2_0_0_0_0 + 8.333333333333318e+00*G0_2_0_0_0_1 - 8.333333333333320e+00*G0_2_0_1_0_0 - 8.333333333333318e+00*G0_2_0_2_0_1 + 8.333333333333321e+00*G0_2_1_0_0_0 + 8.333333333333320e+00*G0_2_1_0_0_1 - 8.333333333333321e+00*G0_2_1_1_0_0 - 8.333333333333320e+00*G0_2_1_2_0_1 + 1.666666666666664e+01*G0_2_2_0_0_0 + 1.666666666666664e+01*G0_2_2_0_0_1 - 1.666666666666664e+01*G0_2_2_1_0_0 - 1.666666666666664e+01*G0_2_2_2_0_1 - 3.333333333333331e+01*G1_0_0_0_0 - 3.333333333333331e+01*G1_0_0_0_1 + 3.333333333333331e+01*G1_0_1_0_0 + 3.333333333333331e+01*G1_0_2_0_1 - 3.333333333333332e+01*G1_1_0_0_0 - 3.333333333333331e+01*G1_1_0_0_1 + 3.333333333333332e+01*G1_1_1_0_0 + 3.333333333333331e+01*G1_1_2_0_1 - 3.333333333333331e+01*G1_2_0_0_0 - 3.333333333333331e+01*G1_2_0_0_1 + 3.333333333333331e+01*G1_2_1_0_0 + 3.333333333333331e+01*G1_2_2_0_1 + 9.999999999999997e+01*G2_0_0_0 + 9.999999999999994e+01*G2_0_0_1 - 9.999999999999997e+01*G2_1_0_0 - 9.999999999999994e+01*G2_2_0_1 + 6.666666666666657e+01*G3_0_0_0_0_0 + 6.666666666666656e+01*G3_0_0_0_0_1 - 6.666666666666657e+01*G3_0_0_1_0_0 - 6.666666666666656e+01*G3_0_0_2_0_1 + 3.333333333333329e+01*G3_0_1_0_0_0 + 3.333333333333328e+01*G3_0_1_0_0_1 - 3.333333333333329e+01*G3_0_1_1_0_0 - 3.333333333333328e+01*G3_0_1_2_0_1 + 3.333333333333329e+01*G3_0_2_0_0_0 + 3.333333333333328e+01*G3_0_2_0_0_1 - 3.333333333333329e+01*G3_0_2_1_0_0 - 3.333333333333328e+01*G3_0_2_2_0_1 + 3.333333333333329e+01*G3_1_0_0_0_0 + 3.333333333333328e+01*G3_1_0_0_0_1 - 3.333333333333329e+01*G3_1_0_1_0_0 - 3.333333333333328e+01*G3_1_0_2_0_1 + 6.666666666666657e+01*G3_1_1_0_0_0 + 6.666666666666656e+01*G3_1_1_0_0_1 - 6.666666666666657e+01*G3_1_1_1_0_0 - 6.666666666666656e+01*G3_1_1_2_0_1 + 3.333333333333329e+01*G3_1_2_0_0_0 + 3.333333333333329e+01*G3_1_2_0_0_1 - 3.333333333333329e+01*G3_1_2_1_0_0 - 3.333333333333329e+01*G3_1_2_2_0_1 + 3.333333333333328e+01*G3_2_0_0_0_0 + 3.333333333333327e+01*G3_2_0_0_0_1 - 3.333333333333328e+01*G3_2_0_1_0_0 - 3.333333333333327e+01*G3_2_0_2_0_1 + 3.333333333333329e+01*G3_2_1_0_0_0 + 3.333333333333328e+01*G3_2_1_0_0_1 - 3.333333333333329e+01*G3_2_1_1_0_0 - 3.333333333333328e+01*G3_2_1_2_0_1 + 6.666666666666657e+01*G3_2_2_0_0_0 + 6.666666666666656e+01*G3_2_2_0_0_1 - 6.666666666666657e+01*G3_2_2_1_0_0 - 6.666666666666656e+01*G3_2_2_2_0_1 - 1.333333333333333e+02*G4_0_0_0_0 - 1.333333333333332e+02*G4_0_0_0_1 - 1.266500362180466e-14*G4_0_0_1_0 - 1.266500362180466e-14*G4_0_0_1_1 + 1.333333333333333e+02*G4_0_1_0_0 + 1.266500362180466e-14*G4_0_1_0_1 + 1.266500362180466e-14*G4_0_1_1_0 + 1.333333333333332e+02*G4_0_2_0_1 + 1.266500362180466e-14*G4_0_2_1_1 - 1.333333333333333e+02*G4_1_0_0_0 - 1.333333333333333e+02*G4_1_0_0_1 - 1.266500362180466e-14*G4_1_0_1_0 - 1.266500362180466e-14*G4_1_0_1_1 + 1.333333333333333e+02*G4_1_1_0_0 + 1.266500362180466e-14*G4_1_1_0_1 + 1.266500362180466e-14*G4_1_1_1_0 + 1.333333333333333e+02*G4_1_2_0_1 + 1.266500362180466e-14*G4_1_2_1_1 - 1.333333333333333e+02*G4_2_0_0_0 - 1.333333333333332e+02*G4_2_0_0_1 - 1.266500362180466e-14*G4_2_0_1_0 - 1.266500362180466e-14*G4_2_0_1_1 + 1.333333333333333e+02*G4_2_1_0_0 + 1.266500362180466e-14*G4_2_1_0_1 + 1.266500362180466e-14*G4_2_1_1_0 + 1.333333333333332e+02*G4_2_2_0_1 + 1.266500362180466e-14*G4_2_2_1_1 - 4.999999999999998e-01*G5_3_0_0 - 4.999999999999997e-01*G5_3_0_1 + 4.999999999999998e-01*G5_4_0_0 + 4.999999999999997e-01*G5_5_0_1 - 4.166666666666659e-02*G6_0 - 8.333333333333318e-02*G6_1 - 4.166666666666659e-02*G6_2 + 4.166666666666659e-02*G7_0 + 8.333333333333318e-02*G7_1 + 4.166666666666659e-02*G7_2 - 4.166666666666659e-02*G8_0 - 8.333333333333318e-02*G8_1 - 4.166666666666659e-02*G8_2;
+    block[2] = 1.666666666666664e+01*G0_0_0_0_1_0 + 1.666666666666664e+01*G0_0_0_0_1_1 - 1.666666666666664e+01*G0_0_0_1_1_0 - 1.666666666666664e+01*G0_0_0_2_1_1 + 8.333333333333320e+00*G0_0_1_0_1_0 + 8.333333333333316e+00*G0_0_1_0_1_1 - 8.333333333333320e+00*G0_0_1_1_1_0 - 8.333333333333316e+00*G0_0_1_2_1_1 + 8.333333333333320e+00*G0_0_2_0_1_0 + 8.333333333333318e+00*G0_0_2_0_1_1 - 8.333333333333320e+00*G0_0_2_1_1_0 - 8.333333333333318e+00*G0_0_2_2_1_1 + 8.333333333333320e+00*G0_1_0_0_1_0 + 8.333333333333318e+00*G0_1_0_0_1_1 - 8.333333333333320e+00*G0_1_0_1_1_0 - 8.333333333333318e+00*G0_1_0_2_1_1 + 1.666666666666664e+01*G0_1_1_0_1_0 + 1.666666666666664e+01*G0_1_1_0_1_1 - 1.666666666666664e+01*G0_1_1_1_1_0 - 1.666666666666664e+01*G0_1_1_2_1_1 + 8.333333333333321e+00*G0_1_2_0_1_0 + 8.333333333333318e+00*G0_1_2_0_1_1 - 8.333333333333321e+00*G0_1_2_1_1_0 - 8.333333333333318e+00*G0_1_2_2_1_1 + 8.333333333333318e+00*G0_2_0_0_1_0 + 8.333333333333316e+00*G0_2_0_0_1_1 - 8.333333333333318e+00*G0_2_0_1_1_0 - 8.333333333333316e+00*G0_2_0_2_1_1 + 8.333333333333320e+00*G0_2_1_0_1_0 + 8.333333333333318e+00*G0_2_1_0_1_1 - 8.333333333333320e+00*G0_2_1_1_1_0 - 8.333333333333318e+00*G0_2_1_2_1_1 + 1.666666666666664e+01*G0_2_2_0_1_0 + 1.666666666666664e+01*G0_2_2_0_1_1 - 1.666666666666664e+01*G0_2_2_1_1_0 - 1.666666666666664e+01*G0_2_2_2_1_1 - 3.333333333333331e+01*G1_0_0_1_0 - 3.333333333333330e+01*G1_0_0_1_1 + 3.333333333333331e+01*G1_0_1_1_0 + 3.333333333333330e+01*G1_0_2_1_1 - 3.333333333333331e+01*G1_1_0_1_0 - 3.333333333333331e+01*G1_1_0_1_1 + 3.333333333333331e+01*G1_1_1_1_0 + 3.333333333333331e+01*G1_1_2_1_1 - 3.333333333333331e+01*G1_2_0_1_0 - 3.333333333333330e+01*G1_2_0_1_1 + 3.333333333333331e+01*G1_2_1_1_0 + 3.333333333333330e+01*G1_2_2_1_1 + 9.999999999999994e+01*G2_0_1_0 + 9.999999999999991e+01*G2_0_1_1 - 9.999999999999994e+01*G2_1_1_0 - 9.999999999999991e+01*G2_2_1_1 + 6.666666666666656e+01*G3_0_0_0_1_0 + 6.666666666666654e+01*G3_0_0_0_1_1 - 6.666666666666656e+01*G3_0_0_1_1_0 - 6.666666666666654e+01*G3_0_0_2_1_1 + 3.333333333333328e+01*G3_0_1_0_1_0 + 3.333333333333326e+01*G3_0_1_0_1_1 - 3.333333333333328e+01*G3_0_1_1_1_0 - 3.333333333333326e+01*G3_0_1_2_1_1 + 3.333333333333328e+01*G3_0_2_0_1_0 + 3.333333333333327e+01*G3_0_2_0_1_1 - 3.333333333333328e+01*G3_0_2_1_1_0 - 3.333333333333327e+01*G3_0_2_2_1_1 + 3.333333333333328e+01*G3_1_0_0_1_0 + 3.333333333333327e+01*G3_1_0_0_1_1 - 3.333333333333328e+01*G3_1_0_1_1_0 - 3.333333333333327e+01*G3_1_0_2_1_1 + 6.666666666666656e+01*G3_1_1_0_1_0 + 6.666666666666654e+01*G3_1_1_0_1_1 - 6.666666666666656e+01*G3_1_1_1_1_0 - 6.666666666666654e+01*G3_1_1_2_1_1 + 3.333333333333329e+01*G3_1_2_0_1_0 + 3.333333333333327e+01*G3_1_2_0_1_1 - 3.333333333333329e+01*G3_1_2_1_1_0 - 3.333333333333327e+01*G3_1_2_2_1_1 + 3.333333333333327e+01*G3_2_0_0_1_0 + 3.333333333333326e+01*G3_2_0_0_1_1 - 3.333333333333327e+01*G3_2_0_1_1_0 - 3.333333333333326e+01*G3_2_0_2_1_1 + 3.333333333333328e+01*G3_2_1_0_1_0 + 3.333333333333327e+01*G3_2_1_0_1_1 - 3.333333333333328e+01*G3_2_1_1_1_0 - 3.333333333333327e+01*G3_2_1_2_1_1 + 6.666666666666656e+01*G3_2_2_0_1_0 + 6.666666666666654e+01*G3_2_2_0_1_1 - 6.666666666666656e+01*G3_2_2_1_1_0 - 6.666666666666654e+01*G3_2_2_2_1_1 - 1.333333333333332e+02*G4_0_0_1_0 - 1.333333333333332e+02*G4_0_0_1_1 + 1.333333333333332e+02*G4_0_1_1_0 + 1.266500362180466e-14*G4_0_1_1_1 + 1.333333333333332e+02*G4_0_2_1_1 - 1.333333333333333e+02*G4_1_0_1_0 - 1.333333333333332e+02*G4_1_0_1_1 + 1.333333333333333e+02*G4_1_1_1_0 + 1.266500362180466e-14*G4_1_1_1_1 + 1.333333333333332e+02*G4_1_2_1_1 - 1.333333333333332e+02*G4_2_0_1_0 - 1.333333333333332e+02*G4_2_0_1_1 + 1.333333333333332e+02*G4_2_1_1_0 + 1.266500362180466e-14*G4_2_1_1_1 + 1.333333333333332e+02*G4_2_2_1_1 - 4.999999999999997e-01*G5_3_1_0 - 4.999999999999996e-01*G5_3_1_1 + 4.999999999999997e-01*G5_4_1_0 + 4.999999999999996e-01*G5_5_1_1 - 4.166666666666658e-02*G6_0 - 4.166666666666659e-02*G6_1 - 8.333333333333316e-02*G6_2 + 4.166666666666658e-02*G7_0 + 4.166666666666659e-02*G7_1 + 8.333333333333316e-02*G7_2 - 4.166666666666658e-02*G8_0 - 4.166666666666659e-02*G8_1 - 8.333333333333316e-02*G8_2;
+    block[3] = -8.333333333333318e-02*G9_3 - 4.166666666666659e-02*G9_4 - 4.166666666666658e-02*G9_5 - 4.999999999999998e-01*G10_0_0_0 - 4.999999999999997e-01*G10_0_0_1 - 4.999999999999997e-01*G10_0_1_0 - 4.999999999999996e-01*G10_0_1_1 + 4.999999999999998e-01*G10_1_0_0 + 4.999999999999997e-01*G10_1_1_0 + 4.999999999999997e-01*G10_2_0_1 + 4.999999999999996e-01*G10_2_1_1;
+    block[4] = -4.166666666666659e-02*G9_3 - 8.333333333333318e-02*G9_4 - 4.166666666666659e-02*G9_5 + 4.999999999999998e-01*G10_0_0_0 + 4.999999999999997e-01*G10_0_0_1 - 4.999999999999998e-01*G10_1_0_0 - 4.999999999999997e-01*G10_2_0_1;
+    block[5] = -4.166666666666658e-02*G9_3 - 4.166666666666659e-02*G9_4 - 8.333333333333316e-02*G9_5 + 4.999999999999997e-01*G10_0_1_0 + 4.999999999999996e-01*G10_0_1_1 - 4.999999999999997e-01*G10_1_1_0 - 4.999999999999996e-01*G10_2_1_1;
   }
 
   // No contribution from the boundary
