@@ -23,7 +23,7 @@ other \fenics{} components.
 \index{dependencies}
 
 \dolfin{} depends on a number of libraries that need to be installed on your
-system. These libraries include Boost, Libxml2 and PETSc. In addition to these 
+system. These libraries include Boost, Libxml2 and (optionally) PETSc. In addition to these 
 libraries, you need to install \fiat{} and \ffc{} if you want to define your 
 own variational forms.
 
@@ -50,6 +50,10 @@ package to install is \texttt{libxml2-dev}.
 
 \subsubsection{Installing PETSc}
 \index{PETSc}
+
+Optionally, \dolfin{} may be compiled with support for PETSc. To
+compile \dolfin{} with PETSc, add the flag \texttt{--enable-petsc}
+during the initial configuration of \dolfin{}.
 
 PETSc is a library for the solution of linear and nonlinear systems, functioning
 as the backend for the \dolfin{} linear algebra classes. \dolfin{} depends on 
@@ -153,6 +157,12 @@ for a complete list of arguments.
 \item
   Use the option \texttt{--disable-curses} to compile \dolfin{}
   without the curses interface (a text-mode graphical user interface).
+\item
+  Use the option \texttt{--enable-petsc} to compile \dolfin{} with
+  support for PETSc.
+\item
+  Use the option \texttt{--disable-pydolfin} to compile without
+  support for PyDOLFIN.
 \item
   Use the option \texttt{--disable-mpi} to compile \dolfin{} without
   support for MPI (Message Passing Interface), assuming PETSc has been
