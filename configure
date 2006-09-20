@@ -21951,7 +21951,6 @@ for i in $CXXFLAGS; do
 done
 
 
-
 # External libraries which DOLFIN depends on
 DOLFIN_EXT_LIBS="$CURSES_LIBS $PETSC_LIBS $SLEPC_LIBS $XML_LIBS $UMFPACK_LIBS "
 
