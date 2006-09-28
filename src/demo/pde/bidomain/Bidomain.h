@@ -50,7 +50,11 @@ public:
   BilinearForm(Function& w0, Function& w1, Function& w2, Function& w3, Function& w4, Function& w5, Function& w6, Function& w7, Function& w8);
   
 
+  bool interior_contribution() const;
+
   void eval(real block[], const AffineMap& map) const;
+
+  bool boundary_contribution() const;
 
   void eval(real block[], const AffineMap& map, unsigned int facet) const;
 
@@ -1062,6 +1066,9 @@ BilinearForm::BilinearForm(Function& w0, Function& w1, Function& w2, Function& w
   initFunction(8, w8, new FunctionElement_8());
 }
 
+// Contribution from the interior
+bool BilinearForm::interior_contribution() const { return true; }
+
 void BilinearForm::eval(real block[], const AffineMap& map) const
 {
   // Compute coefficients
@@ -1106,7 +1113,10 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
 }
 
 // No contribution from the boundary
-void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}   
+bool BilinearForm::boundary_contribution() const { return false; }
+
+void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+
 } }
 
 #endif

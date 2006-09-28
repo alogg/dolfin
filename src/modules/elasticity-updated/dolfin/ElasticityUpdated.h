@@ -36,7 +36,11 @@ public:
   LinearForm(Function& w0, Function& w1, Function& w2, const real& c0);
   
 
+  bool interior_contribution() const;
+
   void eval(real block[], const AffineMap& map) const;
+
+  bool boundary_contribution() const;
 
   void eval(real block[], const AffineMap& map, unsigned int facet) const;
 
@@ -587,6 +591,9 @@ LinearForm::LinearForm(Function& w0, Function& w1, Function& w2, const real& c0)
   initFunction(2, w2, new FunctionElement_2());
 }
 
+// Contribution from the interior
+bool LinearForm::interior_contribution() const { return true; }
+
 void LinearForm::eval(real block[], const AffineMap& map) const
 {
   // Compute coefficients
@@ -678,7 +685,10 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 }
 
 // No contribution from the boundary
-void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}   
+bool LinearForm::boundary_contribution() const { return false; }
+
+void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+
 } }
 
 #endif

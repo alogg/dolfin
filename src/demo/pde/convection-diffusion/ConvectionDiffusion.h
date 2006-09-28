@@ -34,7 +34,11 @@ public:
   BilinearForm(Function& w0);
   
 
+  bool interior_contribution() const;
+
   void eval(real block[], const AffineMap& map) const;
+
+  bool boundary_contribution() const;
 
   void eval(real block[], const AffineMap& map, unsigned int facet) const;
 
@@ -367,6 +371,9 @@ BilinearForm::BilinearForm(Function& w0) : dolfin::BilinearForm(1)
   initFunction(0, w0, new FunctionElement_0());
 }
 
+// Contribution from the interior
+bool BilinearForm::interior_contribution() const { return true; }
+
 void BilinearForm::eval(real block[], const AffineMap& map) const
 {
   // Compute coefficients
@@ -427,7 +434,10 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
 }
 
 // No contribution from the boundary
-void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}   
+bool BilinearForm::boundary_contribution() const { return false; }
+
+void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
 
@@ -446,7 +456,11 @@ public:
   LinearForm(Function& w0, Function& w1, Function& w2);
   
 
+  bool interior_contribution() const;
+
   void eval(real block[], const AffineMap& map) const;
+
+  bool boundary_contribution() const;
 
   void eval(real block[], const AffineMap& map, unsigned int facet) const;
 
@@ -872,6 +886,9 @@ LinearForm::LinearForm(Function& w0, Function& w1, Function& w2) : dolfin::Linea
   initFunction(2, w2, new FunctionElement_2());
 }
 
+// Contribution from the interior
+bool LinearForm::interior_contribution() const { return true; }
+
 void LinearForm::eval(real block[], const AffineMap& map) const
 {
   // Compute coefficients
@@ -965,7 +982,10 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 }
 
 // No contribution from the boundary
-void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}   
+bool LinearForm::boundary_contribution() const { return false; }
+
+void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+
 } }
 
 #endif

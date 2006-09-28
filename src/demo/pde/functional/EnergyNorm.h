@@ -31,7 +31,11 @@ public:
   
   real operator() (Function& w0, Mesh& mesh);
 
+  bool interior_contribution() const;
+
   void eval(real block[], const AffineMap& map) const;
+
+  bool boundary_contribution() const;
 
   void eval(real block[], const AffineMap& map, unsigned int facet) const;
 
@@ -154,6 +158,9 @@ real Functional::operator() (Function& w0, Mesh& mesh)
   return FEM::assemble(*this, mesh);
 }
 
+// Contribution from the interior
+bool Functional::interior_contribution() const { return true; }
+
 void Functional::eval(real block[], const AffineMap& map) const
 {
   // Compute coefficients
@@ -259,7 +266,10 @@ void Functional::eval(real block[], const AffineMap& map) const
 }
 
 // No contribution from the boundary
-void Functional::eval(real block[], const AffineMap& map, unsigned int facet) const {}   
+bool Functional::boundary_contribution() const { return false; }
+
+void Functional::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+
 } }
 
 #endif
