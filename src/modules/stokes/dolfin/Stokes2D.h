@@ -95,25 +95,25 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[12] = offset + cell.vertexID(0);
-    nodes[13] = offset + cell.vertexID(1);
-    nodes[14] = offset + cell.vertexID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[12] = offset + cell.connections(0)[0];
+    nodes[13] = offset + cell.connections(0)[1];
+    nodes[14] = offset + cell.connections(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -154,9 +154,9 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numVertices() + mesh.numEdges();
+    offset = offset + mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[2] = offset + vertex;
   }
 
@@ -229,21 +229,21 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -278,7 +278,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -355,9 +355,9 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -457,25 +457,25 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[12] = offset + cell.vertexID(0);
-    nodes[13] = offset + cell.vertexID(1);
-    nodes[14] = offset + cell.vertexID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[12] = offset + cell.connections(0)[0];
+    nodes[13] = offset + cell.connections(0)[1];
+    nodes[14] = offset + cell.connections(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -516,9 +516,9 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numVertices() + mesh.numEdges();
+    offset = offset + mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[2] = offset + vertex;
   }
 
@@ -591,21 +591,21 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -640,7 +640,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -717,9 +717,9 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -799,11 +799,11 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   const real G5_1 = map.det*map.g11;
 
   // Compute element tensor
-  block[0] = 4.999999999999992e-01*G0_0_0 + 4.999999999999991e-01*G0_0_1 + 4.999999999999991e-01*G0_1_0 + 4.999999999999991e-01*G0_1_1;
-  block[1] = 1.666666666666663e-01*G0_0_0 + 1.666666666666664e-01*G0_1_0;
-  block[2] = 1.666666666666665e-01*G0_0_1 + 1.666666666666665e-01*G0_1_1;
+  block[0] = 4.999999999999991e-01*G0_0_0 + 4.999999999999991e-01*G0_0_1 + 4.999999999999991e-01*G0_1_0 + 4.999999999999991e-01*G0_1_1;
+  block[1] = 1.666666666666664e-01*G0_0_0 + 1.666666666666664e-01*G0_1_0;
+  block[2] = 1.666666666666666e-01*G0_0_1 + 1.666666666666665e-01*G0_1_1;
   block[3] = 0.000000000000000e+00;
-  block[4] = -6.666666666666657e-01*G0_0_1 - 6.666666666666656e-01*G0_1_1;
+  block[4] = -6.666666666666656e-01*G0_0_1 - 6.666666666666656e-01*G0_1_1;
   block[5] = -6.666666666666655e-01*G0_0_0 - 6.666666666666655e-01*G0_1_0;
   block[6] = 0.000000000000000e+00;
   block[7] = 0.000000000000000e+00;
@@ -811,15 +811,15 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[9] = 0.000000000000000e+00;
   block[10] = 0.000000000000000e+00;
   block[11] = 0.000000000000000e+00;
-  block[12] = 1.666666666666664e-01*G2_0 + 1.666666666666663e-01*G2_1;
+  block[12] = 1.666666666666663e-01*G2_0 + 1.666666666666663e-01*G2_1;
   block[13] = 0.000000000000000e+00;
   block[14] = 0.000000000000000e+00;
-  block[15] = 1.666666666666663e-01*G0_0_0 + 1.666666666666664e-01*G0_0_1;
-  block[16] = 4.999999999999992e-01*G0_0_0;
+  block[15] = 1.666666666666664e-01*G0_0_0 + 1.666666666666664e-01*G0_0_1;
+  block[16] = 4.999999999999990e-01*G0_0_0;
   block[17] = -1.666666666666664e-01*G0_0_1;
-  block[18] = 6.666666666666654e-01*G0_0_1;
+  block[18] = 6.666666666666653e-01*G0_0_1;
   block[19] = 0.000000000000000e+00;
-  block[20] = -6.666666666666654e-01*G0_0_0 - 6.666666666666656e-01*G0_0_1;
+  block[20] = -6.666666666666654e-01*G0_0_0 - 6.666666666666653e-01*G0_0_1;
   block[21] = 0.000000000000000e+00;
   block[22] = 0.000000000000000e+00;
   block[23] = 0.000000000000000e+00;
@@ -827,9 +827,9 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[25] = 0.000000000000000e+00;
   block[26] = 0.000000000000000e+00;
   block[27] = 0.000000000000000e+00;
-  block[28] = -1.666666666666664e-01*G2_0;
+  block[28] = -1.666666666666663e-01*G2_0;
   block[29] = 0.000000000000000e+00;
-  block[30] = 1.666666666666665e-01*G0_1_0 + 1.666666666666665e-01*G0_1_1;
+  block[30] = 1.666666666666666e-01*G0_1_0 + 1.666666666666665e-01*G0_1_1;
   block[31] = -1.666666666666664e-01*G0_1_0;
   block[32] = 4.999999999999991e-01*G0_1_1;
   block[33] = 6.666666666666653e-01*G0_1_0;
@@ -847,8 +847,8 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[45] = 0.000000000000000e+00;
   block[46] = 6.666666666666654e-01*G0_1_0;
   block[47] = 6.666666666666653e-01*G0_0_1;
-  block[48] = 1.333333333333330e+00*G0_0_0 + 6.666666666666652e-01*G0_0_1 + 6.666666666666652e-01*G0_1_0 + 1.333333333333330e+00*G0_1_1;
-  block[49] = -1.333333333333331e+00*G0_0_0 - 6.666666666666656e-01*G0_0_1 - 6.666666666666653e-01*G0_1_0;
+  block[48] = 1.333333333333330e+00*G0_0_0 + 6.666666666666650e-01*G0_0_1 + 6.666666666666650e-01*G0_1_0 + 1.333333333333331e+00*G0_1_1;
+  block[49] = -1.333333333333331e+00*G0_0_0 - 6.666666666666656e-01*G0_0_1 - 6.666666666666652e-01*G0_1_0;
   block[50] = -6.666666666666652e-01*G0_0_1 - 6.666666666666653e-01*G0_1_0 - 1.333333333333331e+00*G0_1_1;
   block[51] = 0.000000000000000e+00;
   block[52] = 0.000000000000000e+00;
@@ -862,9 +862,9 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[60] = -6.666666666666656e-01*G0_1_0 - 6.666666666666656e-01*G0_1_1;
   block[61] = 0.000000000000000e+00;
   block[62] = -6.666666666666654e-01*G0_0_1 - 6.666666666666659e-01*G0_1_1;
-  block[63] = -1.333333333333331e+00*G0_0_0 - 6.666666666666653e-01*G0_0_1 - 6.666666666666656e-01*G0_1_0;
+  block[63] = -1.333333333333331e+00*G0_0_0 - 6.666666666666652e-01*G0_0_1 - 6.666666666666656e-01*G0_1_0;
   block[64] = 1.333333333333331e+00*G0_0_0 + 6.666666666666656e-01*G0_0_1 + 6.666666666666657e-01*G0_1_0 + 1.333333333333331e+00*G0_1_1;
-  block[65] = 6.666666666666654e-01*G0_0_1 + 6.666666666666655e-01*G0_1_0;
+  block[65] = 6.666666666666653e-01*G0_0_1 + 6.666666666666654e-01*G0_1_0;
   block[66] = 0.000000000000000e+00;
   block[67] = 0.000000000000000e+00;
   block[68] = 0.000000000000000e+00;
@@ -874,12 +874,12 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[72] = 1.666666666666663e-01*G2_0 - 1.666666666666664e-01*G2_1;
   block[73] = 1.666666666666664e-01*G2_0;
   block[74] = 3.333333333333327e-01*G2_0 + 1.666666666666664e-01*G2_1;
-  block[75] = -6.666666666666655e-01*G0_0_0 - 6.666666666666656e-01*G0_0_1;
-  block[76] = -6.666666666666654e-01*G0_0_0 - 6.666666666666656e-01*G0_1_0;
+  block[75] = -6.666666666666656e-01*G0_0_0 - 6.666666666666656e-01*G0_0_1;
+  block[76] = -6.666666666666654e-01*G0_0_0 - 6.666666666666654e-01*G0_1_0;
   block[77] = 0.000000000000000e+00;
-  block[78] = -6.666666666666652e-01*G0_0_1 - 6.666666666666653e-01*G0_1_0 - 1.333333333333331e+00*G0_1_1;
-  block[79] = 6.666666666666657e-01*G0_0_1 + 6.666666666666654e-01*G0_1_0;
-  block[80] = 1.333333333333331e+00*G0_0_0 + 6.666666666666656e-01*G0_0_1 + 6.666666666666656e-01*G0_1_0 + 1.333333333333331e+00*G0_1_1;
+  block[78] = -6.666666666666652e-01*G0_0_1 - 6.666666666666652e-01*G0_1_0 - 1.333333333333331e+00*G0_1_1;
+  block[79] = 6.666666666666656e-01*G0_0_1 + 6.666666666666654e-01*G0_1_0;
+  block[80] = 1.333333333333331e+00*G0_0_0 + 6.666666666666655e-01*G0_0_1 + 6.666666666666655e-01*G0_1_0 + 1.333333333333331e+00*G0_1_1;
   block[81] = 0.000000000000000e+00;
   block[82] = 0.000000000000000e+00;
   block[83] = 0.000000000000000e+00;
@@ -887,7 +887,7 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[85] = 0.000000000000000e+00;
   block[86] = 0.000000000000000e+00;
   block[87] = -1.666666666666664e-01*G2_0 + 1.666666666666664e-01*G2_1;
-  block[88] = 1.666666666666664e-01*G2_0 + 3.333333333333328e-01*G2_1;
+  block[88] = 1.666666666666663e-01*G2_0 + 3.333333333333328e-01*G2_1;
   block[89] = 1.666666666666664e-01*G2_1;
   block[90] = 0.000000000000000e+00;
   block[91] = 0.000000000000000e+00;
@@ -895,11 +895,11 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[93] = 0.000000000000000e+00;
   block[94] = 0.000000000000000e+00;
   block[95] = 0.000000000000000e+00;
-  block[96] = 4.999999999999991e-01*G1_0_0 + 4.999999999999991e-01*G1_0_1 + 4.999999999999991e-01*G1_1_0 + 4.999999999999991e-01*G1_1_1;
+  block[96] = 4.999999999999991e-01*G1_0_0 + 4.999999999999990e-01*G1_0_1 + 4.999999999999991e-01*G1_1_0 + 4.999999999999990e-01*G1_1_1;
   block[97] = 1.666666666666664e-01*G1_0_0 + 1.666666666666664e-01*G1_1_0;
   block[98] = 1.666666666666666e-01*G1_0_1 + 1.666666666666665e-01*G1_1_1;
   block[99] = 0.000000000000000e+00;
-  block[100] = -6.666666666666656e-01*G1_0_1 - 6.666666666666656e-01*G1_1_1;
+  block[100] = -6.666666666666657e-01*G1_0_1 - 6.666666666666656e-01*G1_1_1;
   block[101] = -6.666666666666655e-01*G1_0_0 - 6.666666666666655e-01*G1_1_0;
   block[102] = 1.666666666666663e-01*G3_0 + 1.666666666666663e-01*G3_1;
   block[103] = 0.000000000000000e+00;
@@ -910,14 +910,14 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[108] = 0.000000000000000e+00;
   block[109] = 0.000000000000000e+00;
   block[110] = 0.000000000000000e+00;
-  block[111] = 1.666666666666663e-01*G1_0_0 + 1.666666666666664e-01*G1_0_1;
-  block[112] = 4.999999999999992e-01*G1_0_0;
+  block[111] = 1.666666666666664e-01*G1_0_0 + 1.666666666666664e-01*G1_0_1;
+  block[112] = 4.999999999999990e-01*G1_0_0;
   block[113] = -1.666666666666664e-01*G1_0_1;
-  block[114] = 6.666666666666654e-01*G1_0_1;
+  block[114] = 6.666666666666653e-01*G1_0_1;
   block[115] = 0.000000000000000e+00;
-  block[116] = -6.666666666666654e-01*G1_0_0 - 6.666666666666656e-01*G1_0_1;
+  block[116] = -6.666666666666654e-01*G1_0_0 - 6.666666666666653e-01*G1_0_1;
   block[117] = 0.000000000000000e+00;
-  block[118] = -1.666666666666664e-01*G3_0;
+  block[118] = -1.666666666666663e-01*G3_0;
   block[119] = 0.000000000000000e+00;
   block[120] = 0.000000000000000e+00;
   block[121] = 0.000000000000000e+00;
@@ -943,8 +943,8 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[141] = 0.000000000000000e+00;
   block[142] = 6.666666666666654e-01*G1_1_0;
   block[143] = 6.666666666666653e-01*G1_0_1;
-  block[144] = 1.333333333333330e+00*G1_0_0 + 6.666666666666652e-01*G1_0_1 + 6.666666666666652e-01*G1_1_0 + 1.333333333333330e+00*G1_1_1;
-  block[145] = -1.333333333333331e+00*G1_0_0 - 6.666666666666656e-01*G1_0_1 - 6.666666666666653e-01*G1_1_0;
+  block[144] = 1.333333333333330e+00*G1_0_0 + 6.666666666666650e-01*G1_0_1 + 6.666666666666650e-01*G1_1_0 + 1.333333333333331e+00*G1_1_1;
+  block[145] = -1.333333333333331e+00*G1_0_0 - 6.666666666666656e-01*G1_0_1 - 6.666666666666652e-01*G1_1_0;
   block[146] = -6.666666666666652e-01*G1_0_1 - 6.666666666666653e-01*G1_1_0 - 1.333333333333331e+00*G1_1_1;
   block[147] = -1.666666666666663e-01*G3_0 - 1.666666666666664e-01*G3_1;
   block[148] = -1.666666666666663e-01*G3_0 - 3.333333333333327e-01*G3_1;
@@ -955,12 +955,12 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[153] = 0.000000000000000e+00;
   block[154] = 0.000000000000000e+00;
   block[155] = 0.000000000000000e+00;
-  block[156] = -6.666666666666656e-01*G1_1_0 - 6.666666666666656e-01*G1_1_1;
+  block[156] = -6.666666666666657e-01*G1_1_0 - 6.666666666666656e-01*G1_1_1;
   block[157] = 0.000000000000000e+00;
   block[158] = -6.666666666666654e-01*G1_0_1 - 6.666666666666659e-01*G1_1_1;
-  block[159] = -1.333333333333331e+00*G1_0_0 - 6.666666666666653e-01*G1_0_1 - 6.666666666666656e-01*G1_1_0;
+  block[159] = -1.333333333333331e+00*G1_0_0 - 6.666666666666652e-01*G1_0_1 - 6.666666666666656e-01*G1_1_0;
   block[160] = 1.333333333333331e+00*G1_0_0 + 6.666666666666656e-01*G1_0_1 + 6.666666666666657e-01*G1_1_0 + 1.333333333333331e+00*G1_1_1;
-  block[161] = 6.666666666666654e-01*G1_0_1 + 6.666666666666655e-01*G1_1_0;
+  block[161] = 6.666666666666653e-01*G1_0_1 + 6.666666666666654e-01*G1_1_0;
   block[162] = 1.666666666666663e-01*G3_0 - 1.666666666666664e-01*G3_1;
   block[163] = 1.666666666666664e-01*G3_0;
   block[164] = 3.333333333333327e-01*G3_0 + 1.666666666666664e-01*G3_1;
@@ -970,16 +970,16 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[168] = 0.000000000000000e+00;
   block[169] = 0.000000000000000e+00;
   block[170] = 0.000000000000000e+00;
-  block[171] = -6.666666666666656e-01*G1_0_0 - 6.666666666666656e-01*G1_0_1;
-  block[172] = -6.666666666666654e-01*G1_0_0 - 6.666666666666656e-01*G1_1_0;
+  block[171] = -6.666666666666656e-01*G1_0_0 - 6.666666666666655e-01*G1_0_1;
+  block[172] = -6.666666666666654e-01*G1_0_0 - 6.666666666666654e-01*G1_1_0;
   block[173] = 0.000000000000000e+00;
-  block[174] = -6.666666666666652e-01*G1_0_1 - 6.666666666666653e-01*G1_1_0 - 1.333333333333331e+00*G1_1_1;
-  block[175] = 6.666666666666657e-01*G1_0_1 + 6.666666666666654e-01*G1_1_0;
-  block[176] = 1.333333333333331e+00*G1_0_0 + 6.666666666666656e-01*G1_0_1 + 6.666666666666656e-01*G1_1_0 + 1.333333333333331e+00*G1_1_1;
+  block[174] = -6.666666666666652e-01*G1_0_1 - 6.666666666666652e-01*G1_1_0 - 1.333333333333331e+00*G1_1_1;
+  block[175] = 6.666666666666656e-01*G1_0_1 + 6.666666666666654e-01*G1_1_0;
+  block[176] = 1.333333333333331e+00*G1_0_0 + 6.666666666666655e-01*G1_0_1 + 6.666666666666655e-01*G1_1_0 + 1.333333333333331e+00*G1_1_1;
   block[177] = -1.666666666666664e-01*G3_0 + 1.666666666666664e-01*G3_1;
-  block[178] = 1.666666666666664e-01*G3_0 + 3.333333333333328e-01*G3_1;
+  block[178] = 1.666666666666663e-01*G3_0 + 3.333333333333328e-01*G3_1;
   block[179] = 1.666666666666664e-01*G3_1;
-  block[180] = -1.666666666666664e-01*G4_0 - 1.666666666666663e-01*G4_1;
+  block[180] = -1.666666666666663e-01*G4_0 - 1.666666666666663e-01*G4_1;
   block[181] = 0.000000000000000e+00;
   block[182] = 0.000000000000000e+00;
   block[183] = 1.666666666666663e-01*G4_0 + 1.666666666666664e-01*G4_1;
@@ -995,15 +995,15 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   block[193] = 0.000000000000000e+00;
   block[194] = 0.000000000000000e+00;
   block[195] = 0.000000000000000e+00;
-  block[196] = 1.666666666666664e-01*G4_0;
+  block[196] = 1.666666666666663e-01*G4_0;
   block[197] = 0.000000000000000e+00;
-  block[198] = 1.666666666666663e-01*G4_0 + 3.333333333333326e-01*G4_1;
+  block[198] = 1.666666666666663e-01*G4_0 + 3.333333333333327e-01*G4_1;
   block[199] = -1.666666666666664e-01*G4_0;
   block[200] = -1.666666666666664e-01*G4_0 - 3.333333333333328e-01*G4_1;
   block[201] = 0.000000000000000e+00;
-  block[202] = 1.666666666666664e-01*G5_0;
+  block[202] = 1.666666666666663e-01*G5_0;
   block[203] = 0.000000000000000e+00;
-  block[204] = 1.666666666666663e-01*G5_0 + 3.333333333333326e-01*G5_1;
+  block[204] = 1.666666666666663e-01*G5_0 + 3.333333333333327e-01*G5_1;
   block[205] = -1.666666666666664e-01*G5_0;
   block[206] = -1.666666666666664e-01*G5_0 - 3.333333333333328e-01*G5_1;
   block[207] = 0.000000000000000e+00;
@@ -1108,25 +1108,25 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[12] = offset + cell.vertexID(0);
-    nodes[13] = offset + cell.vertexID(1);
-    nodes[14] = offset + cell.vertexID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[12] = offset + cell.connections(0)[0];
+    nodes[13] = offset + cell.connections(0)[1];
+    nodes[14] = offset + cell.connections(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1167,9 +1167,9 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numVertices() + mesh.numEdges();
+    offset = offset + mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[2] = offset + vertex;
   }
 
@@ -1242,21 +1242,21 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1291,7 +1291,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -1368,9 +1368,9 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1468,21 +1468,21 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
     int offset = mesh.numVertices();
-    nodes[3] = offset + cell.edgeID(0);
-    nodes[4] = offset + cell.edgeID(1);
-    nodes[5] = offset + cell.edgeID(2);
-    offset = offset + mesh.numEdges();
-    nodes[6] = offset + cell.vertexID(0);
-    nodes[7] = offset + cell.vertexID(1);
-    nodes[8] = offset + cell.vertexID(2);
+    nodes[3] = offset + cell.connections(1)[0];
+    nodes[4] = offset + cell.connections(1)[1];
+    nodes[5] = offset + cell.connections(1)[2];
+    offset = offset + mesh.topology().size(1);
+    nodes[6] = offset + cell.connections(0)[0];
+    nodes[7] = offset + cell.connections(0)[1];
+    nodes[8] = offset + cell.connections(0)[2];
     offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.edgeID(0);
-    nodes[10] = offset + cell.edgeID(1);
-    nodes[11] = offset + cell.edgeID(2);
+    nodes[9] = offset + cell.connections(1)[0];
+    nodes[10] = offset + cell.connections(1)[1];
+    nodes[11] = offset + cell.connections(1)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -1517,7 +1517,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.numEdges();
+    int offset = mesh.numVertices() + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -1588,17 +1588,17 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 
   // Compute element tensor
   block[0] = 1.666666666666665e-02*G0_0 - 2.777777777777774e-03*G0_1 - 2.777777777777775e-03*G0_2 - 1.111111111111110e-02*G0_3;
-  block[1] = -2.777777777777774e-03*G0_0 + 1.666666666666665e-02*G0_1 - 2.777777777777776e-03*G0_2 - 1.111111111111111e-02*G0_4;
-  block[2] = -2.777777777777775e-03*G0_0 - 2.777777777777776e-03*G0_1 + 1.666666666666666e-02*G0_2 - 1.111111111111111e-02*G0_5;
+  block[1] = -2.777777777777774e-03*G0_0 + 1.666666666666665e-02*G0_1 - 2.777777777777775e-03*G0_2 - 1.111111111111111e-02*G0_4;
+  block[2] = -2.777777777777775e-03*G0_0 - 2.777777777777774e-03*G0_1 + 1.666666666666665e-02*G0_2 - 1.111111111111111e-02*G0_5;
   block[3] = -1.111111111111110e-02*G0_0 + 8.888888888888882e-02*G0_3 + 4.444444444444443e-02*G0_4 + 4.444444444444443e-02*G0_5;
-  block[4] = -1.111111111111111e-02*G0_1 + 4.444444444444443e-02*G0_3 + 8.888888888888884e-02*G0_4 + 4.444444444444442e-02*G0_5;
-  block[5] = -1.111111111111111e-02*G0_2 + 4.444444444444443e-02*G0_3 + 4.444444444444443e-02*G0_4 + 8.888888888888882e-02*G0_5;
-  block[6] = 1.666666666666665e-02*G1_6 - 2.777777777777774e-03*G1_7 - 2.777777777777774e-03*G1_8 - 1.111111111111109e-02*G1_9;
-  block[7] = -2.777777777777774e-03*G1_6 + 1.666666666666665e-02*G1_7 - 2.777777777777775e-03*G1_8 - 1.111111111111111e-02*G1_10;
-  block[8] = -2.777777777777774e-03*G1_6 - 2.777777777777775e-03*G1_7 + 1.666666666666666e-02*G1_8 - 1.111111111111111e-02*G1_11;
+  block[4] = -1.111111111111111e-02*G0_1 + 4.444444444444443e-02*G0_3 + 8.888888888888881e-02*G0_4 + 4.444444444444442e-02*G0_5;
+  block[5] = -1.111111111111111e-02*G0_2 + 4.444444444444444e-02*G0_3 + 4.444444444444443e-02*G0_4 + 8.888888888888884e-02*G0_5;
+  block[6] = 1.666666666666665e-02*G1_6 - 2.777777777777773e-03*G1_7 - 2.777777777777775e-03*G1_8 - 1.111111111111109e-02*G1_9;
+  block[7] = -2.777777777777773e-03*G1_6 + 1.666666666666665e-02*G1_7 - 2.777777777777775e-03*G1_8 - 1.111111111111111e-02*G1_10;
+  block[8] = -2.777777777777775e-03*G1_6 - 2.777777777777775e-03*G1_7 + 1.666666666666665e-02*G1_8 - 1.111111111111111e-02*G1_11;
   block[9] = -1.111111111111109e-02*G1_6 + 8.888888888888882e-02*G1_9 + 4.444444444444443e-02*G1_10 + 4.444444444444443e-02*G1_11;
-  block[10] = -1.111111111111111e-02*G1_7 + 4.444444444444443e-02*G1_9 + 8.888888888888884e-02*G1_10 + 4.444444444444442e-02*G1_11;
-  block[11] = -1.111111111111111e-02*G1_8 + 4.444444444444443e-02*G1_9 + 4.444444444444443e-02*G1_10 + 8.888888888888882e-02*G1_11;
+  block[10] = -1.111111111111111e-02*G1_7 + 4.444444444444443e-02*G1_9 + 8.888888888888881e-02*G1_10 + 4.444444444444442e-02*G1_11;
+  block[11] = -1.111111111111111e-02*G1_8 + 4.444444444444444e-02*G1_9 + 4.444444444444443e-02*G1_10 + 8.888888888888884e-02*G1_11;
   block[12] = 0.000000000000000e+00;
   block[13] = 0.000000000000000e+00;
   block[14] = 0.000000000000000e+00;

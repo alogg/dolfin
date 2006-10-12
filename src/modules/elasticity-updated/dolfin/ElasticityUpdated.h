@@ -101,20 +101,20 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
-    nodes[3] = cell.vertexID(3);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
+    nodes[3] = cell.connections(0)[3];
     int offset = mesh.numVertices();
-    nodes[4] = offset + cell.vertexID(0);
-    nodes[5] = offset + cell.vertexID(1);
-    nodes[6] = offset + cell.vertexID(2);
-    nodes[7] = offset + cell.vertexID(3);
+    nodes[4] = offset + cell.connections(0)[0];
+    nodes[5] = offset + cell.connections(0)[1];
+    nodes[6] = offset + cell.connections(0)[2];
+    nodes[7] = offset + cell.connections(0)[3];
     offset = offset + mesh.numVertices();
-    nodes[8] = offset + cell.vertexID(0);
-    nodes[9] = offset + cell.vertexID(1);
-    nodes[10] = offset + cell.vertexID(2);
-    nodes[11] = offset + cell.vertexID(3);
+    nodes[8] = offset + cell.connections(0)[0];
+    nodes[9] = offset + cell.connections(0)[1];
+    nodes[10] = offset + cell.connections(0)[2];
+    nodes[11] = offset + cell.connections(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -229,20 +229,20 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
-    nodes[3] = cell.vertexID(3);
+    nodes[0] = cell.connections(0)[0];
+    nodes[1] = cell.connections(0)[1];
+    nodes[2] = cell.connections(0)[2];
+    nodes[3] = cell.connections(0)[3];
     int offset = mesh.numVertices();
-    nodes[4] = offset + cell.vertexID(0);
-    nodes[5] = offset + cell.vertexID(1);
-    nodes[6] = offset + cell.vertexID(2);
-    nodes[7] = offset + cell.vertexID(3);
+    nodes[4] = offset + cell.connections(0)[0];
+    nodes[5] = offset + cell.connections(0)[1];
+    nodes[6] = offset + cell.connections(0)[2];
+    nodes[7] = offset + cell.connections(0)[3];
     offset = offset + mesh.numVertices();
-    nodes[8] = offset + cell.vertexID(0);
-    nodes[9] = offset + cell.vertexID(1);
-    nodes[10] = offset + cell.vertexID(2);
-    nodes[11] = offset + cell.vertexID(3);
+    nodes[8] = offset + cell.connections(0)[0];
+    nodes[9] = offset + cell.connections(0)[1];
+    nodes[10] = offset + cell.connections(0)[2];
+    nodes[11] = offset + cell.connections(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -357,23 +357,23 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.id();
+    nodes[0] = cell.index();
     int offset = mesh.numCells();
-    nodes[1] = offset + cell.id();
+    nodes[1] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[2] = offset + cell.id();
+    nodes[2] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[3] = offset + cell.id();
+    nodes[3] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[4] = offset + cell.id();
+    nodes[4] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[5] = offset + cell.id();
+    nodes[5] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[6] = offset + cell.id();
+    nodes[6] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[7] = offset + cell.id();
+    nodes[7] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[8] = offset + cell.id();
+    nodes[8] = offset + cell.index();
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -494,23 +494,23 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.id();
+    nodes[0] = cell.index();
     int offset = mesh.numCells();
-    nodes[1] = offset + cell.id();
+    nodes[1] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[2] = offset + cell.id();
+    nodes[2] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[3] = offset + cell.id();
+    nodes[3] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[4] = offset + cell.id();
+    nodes[4] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[5] = offset + cell.id();
+    nodes[5] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[6] = offset + cell.id();
+    nodes[6] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[7] = offset + cell.id();
+    nodes[7] = offset + cell.index();
     offset = offset + mesh.numCells();
-    nodes[8] = offset + cell.id();
+    nodes[8] = offset + cell.index();
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -670,18 +670,18 @@ void LinearForm::eval(real block[], const AffineMap& map) const
   const real G9_8_2 = map.det*c1_8*map.g22 + map.det*c0*c2_8*map.g22;
 
   // Compute element tensor
-  block[0] = 1.666666666666662e-02*G0_0 + 8.333333333333309e-03*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333311e-03*G0_3 + 1.666666666666664e-01*G1_0_0 + 1.666666666666665e-01*G1_0_1 + 1.666666666666664e-01*G1_0_2 + 1.666666666666664e-01*G2_3_0 + 1.666666666666665e-01*G2_3_1 + 1.666666666666664e-01*G2_3_2 + 1.666666666666664e-01*G3_6_0 + 1.666666666666665e-01*G3_6_1 + 1.666666666666664e-01*G3_6_2;
-  block[1] = 8.333333333333307e-03*G0_0 + 1.666666666666661e-02*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333309e-03*G0_3 - 1.666666666666664e-01*G1_0_0 - 1.666666666666664e-01*G2_3_0 - 1.666666666666664e-01*G3_6_0;
+  block[0] = 1.666666666666662e-02*G0_0 + 8.333333333333309e-03*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333312e-03*G0_3 + 1.666666666666665e-01*G1_0_0 + 1.666666666666665e-01*G1_0_1 + 1.666666666666664e-01*G1_0_2 + 1.666666666666665e-01*G2_3_0 + 1.666666666666665e-01*G2_3_1 + 1.666666666666664e-01*G2_3_2 + 1.666666666666665e-01*G3_6_0 + 1.666666666666665e-01*G3_6_1 + 1.666666666666664e-01*G3_6_2;
+  block[1] = 8.333333333333309e-03*G0_0 + 1.666666666666661e-02*G0_1 + 8.333333333333309e-03*G0_2 + 8.333333333333311e-03*G0_3 - 1.666666666666665e-01*G1_0_0 - 1.666666666666665e-01*G2_3_0 - 1.666666666666665e-01*G3_6_0;
   block[2] = 8.333333333333309e-03*G0_0 + 8.333333333333309e-03*G0_1 + 1.666666666666662e-02*G0_2 + 8.333333333333311e-03*G0_3 - 1.666666666666665e-01*G1_0_1 - 1.666666666666665e-01*G2_3_1 - 1.666666666666665e-01*G3_6_1;
-  block[3] = 8.333333333333311e-03*G0_0 + 8.333333333333307e-03*G0_1 + 8.333333333333311e-03*G0_2 + 1.666666666666662e-02*G0_3 - 1.666666666666665e-01*G1_0_2 - 1.666666666666665e-01*G2_3_2 - 1.666666666666665e-01*G3_6_2;
-  block[4] = 1.666666666666662e-02*G0_4 + 8.333333333333307e-03*G0_5 + 8.333333333333309e-03*G0_6 + 8.333333333333309e-03*G0_7 + 1.666666666666664e-01*G4_1_0 + 1.666666666666665e-01*G4_1_1 + 1.666666666666665e-01*G4_1_2 + 1.666666666666664e-01*G5_4_0 + 1.666666666666665e-01*G5_4_1 + 1.666666666666665e-01*G5_4_2 + 1.666666666666664e-01*G6_7_0 + 1.666666666666665e-01*G6_7_1 + 1.666666666666665e-01*G6_7_2;
-  block[5] = 8.333333333333307e-03*G0_4 + 1.666666666666662e-02*G0_5 + 8.333333333333312e-03*G0_6 + 8.333333333333311e-03*G0_7 - 1.666666666666664e-01*G4_1_0 - 1.666666666666664e-01*G5_4_0 - 1.666666666666664e-01*G6_7_0;
+  block[3] = 8.333333333333312e-03*G0_0 + 8.333333333333311e-03*G0_1 + 8.333333333333312e-03*G0_2 + 1.666666666666662e-02*G0_3 - 1.666666666666665e-01*G1_0_2 - 1.666666666666665e-01*G2_3_2 - 1.666666666666665e-01*G3_6_2;
+  block[4] = 1.666666666666662e-02*G0_4 + 8.333333333333309e-03*G0_5 + 8.333333333333307e-03*G0_6 + 8.333333333333312e-03*G0_7 + 1.666666666666665e-01*G4_1_0 + 1.666666666666665e-01*G4_1_1 + 1.666666666666665e-01*G4_1_2 + 1.666666666666665e-01*G5_4_0 + 1.666666666666665e-01*G5_4_1 + 1.666666666666665e-01*G5_4_2 + 1.666666666666665e-01*G6_7_0 + 1.666666666666665e-01*G6_7_1 + 1.666666666666665e-01*G6_7_2;
+  block[5] = 8.333333333333309e-03*G0_4 + 1.666666666666662e-02*G0_5 + 8.333333333333311e-03*G0_6 + 8.333333333333312e-03*G0_7 - 1.666666666666665e-01*G4_1_0 - 1.666666666666665e-01*G5_4_0 - 1.666666666666665e-01*G6_7_0;
   block[6] = 8.333333333333311e-03*G0_4 + 8.333333333333312e-03*G0_5 + 1.666666666666662e-02*G0_6 + 8.333333333333314e-03*G0_7 - 1.666666666666665e-01*G4_1_1 - 1.666666666666665e-01*G5_4_1 - 1.666666666666665e-01*G6_7_1;
-  block[7] = 8.333333333333309e-03*G0_4 + 8.333333333333311e-03*G0_5 + 8.333333333333314e-03*G0_6 + 1.666666666666662e-02*G0_7 - 1.666666666666665e-01*G4_1_2 - 1.666666666666665e-01*G5_4_2 - 1.666666666666665e-01*G6_7_2;
-  block[8] = 1.666666666666662e-02*G0_8 + 8.333333333333309e-03*G0_9 + 8.333333333333307e-03*G0_10 + 8.333333333333309e-03*G0_11 + 1.666666666666664e-01*G7_2_0 + 1.666666666666665e-01*G7_2_1 + 1.666666666666665e-01*G7_2_2 + 1.666666666666664e-01*G8_5_0 + 1.666666666666665e-01*G8_5_1 + 1.666666666666665e-01*G8_5_2 + 1.666666666666664e-01*G9_8_0 + 1.666666666666665e-01*G9_8_1 + 1.666666666666665e-01*G9_8_2;
-  block[9] = 8.333333333333309e-03*G0_8 + 1.666666666666662e-02*G0_9 + 8.333333333333311e-03*G0_10 + 8.333333333333312e-03*G0_11 - 1.666666666666664e-01*G7_2_0 - 1.666666666666664e-01*G8_5_0 - 1.666666666666664e-01*G9_8_0;
-  block[10] = 8.333333333333307e-03*G0_8 + 8.333333333333311e-03*G0_9 + 1.666666666666662e-02*G0_10 + 8.333333333333311e-03*G0_11 - 1.666666666666665e-01*G7_2_1 - 1.666666666666665e-01*G8_5_1 - 1.666666666666665e-01*G9_8_1;
-  block[11] = 8.333333333333309e-03*G0_8 + 8.333333333333311e-03*G0_9 + 8.333333333333311e-03*G0_10 + 1.666666666666662e-02*G0_11 - 1.666666666666665e-01*G7_2_2 - 1.666666666666665e-01*G8_5_2 - 1.666666666666665e-01*G9_8_2;
+  block[7] = 8.333333333333312e-03*G0_4 + 8.333333333333312e-03*G0_5 + 8.333333333333314e-03*G0_6 + 1.666666666666662e-02*G0_7 - 1.666666666666665e-01*G4_1_2 - 1.666666666666665e-01*G5_4_2 - 1.666666666666665e-01*G6_7_2;
+  block[8] = 1.666666666666662e-02*G0_8 + 8.333333333333309e-03*G0_9 + 8.333333333333307e-03*G0_10 + 8.333333333333312e-03*G0_11 + 1.666666666666665e-01*G7_2_0 + 1.666666666666665e-01*G7_2_1 + 1.666666666666665e-01*G7_2_2 + 1.666666666666665e-01*G8_5_0 + 1.666666666666665e-01*G8_5_1 + 1.666666666666665e-01*G8_5_2 + 1.666666666666665e-01*G9_8_0 + 1.666666666666665e-01*G9_8_1 + 1.666666666666665e-01*G9_8_2;
+  block[9] = 8.333333333333309e-03*G0_8 + 1.666666666666662e-02*G0_9 + 8.333333333333311e-03*G0_10 + 8.333333333333312e-03*G0_11 - 1.666666666666665e-01*G7_2_0 - 1.666666666666665e-01*G8_5_0 - 1.666666666666665e-01*G9_8_0;
+  block[10] = 8.333333333333311e-03*G0_8 + 8.333333333333312e-03*G0_9 + 1.666666666666662e-02*G0_10 + 8.333333333333314e-03*G0_11 - 1.666666666666665e-01*G7_2_1 - 1.666666666666665e-01*G8_5_1 - 1.666666666666665e-01*G9_8_1;
+  block[11] = 8.333333333333312e-03*G0_8 + 8.333333333333312e-03*G0_9 + 8.333333333333314e-03*G0_10 + 1.666666666666662e-02*G0_11 - 1.666666666666665e-01*G7_2_2 - 1.666666666666665e-01*G8_5_2 - 1.666666666666665e-01*G9_8_2;
 }
 
 // No contribution from the boundary
