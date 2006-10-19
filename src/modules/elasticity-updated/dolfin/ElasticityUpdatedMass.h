@@ -95,20 +95,20 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.connections(0)[0];
-    nodes[1] = cell.connections(0)[1];
-    nodes[2] = cell.connections(0)[2];
-    nodes[3] = cell.connections(0)[3];
-    int offset = mesh.numVertices();
-    nodes[4] = offset + cell.connections(0)[0];
-    nodes[5] = offset + cell.connections(0)[1];
-    nodes[6] = offset + cell.connections(0)[2];
-    nodes[7] = offset + cell.connections(0)[3];
-    offset = offset + mesh.numVertices();
-    nodes[8] = offset + cell.connections(0)[0];
-    nodes[9] = offset + cell.connections(0)[1];
-    nodes[10] = offset + cell.connections(0)[2];
-    nodes[11] = offset + cell.connections(0)[3];
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    nodes[3] = cell.entities(0)[3];
+    int offset = mesh.topology().size(0);
+    nodes[4] = offset + cell.entities(0)[0];
+    nodes[5] = offset + cell.entities(0)[1];
+    nodes[6] = offset + cell.entities(0)[2];
+    nodes[7] = offset + cell.entities(0)[3];
+    offset = offset + mesh.topology().size(0);
+    nodes[8] = offset + cell.entities(0)[0];
+    nodes[9] = offset + cell.entities(0)[1];
+    nodes[10] = offset + cell.entities(0)[2];
+    nodes[11] = offset + cell.entities(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -143,9 +143,9 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices();
+    int offset = mesh.topology().size(0);
     vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numVertices();
+    offset = offset + mesh.topology().size(0);
     vertex_nodes[2] = offset + vertex;
   }
 
@@ -223,20 +223,20 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.connections(0)[0];
-    nodes[1] = cell.connections(0)[1];
-    nodes[2] = cell.connections(0)[2];
-    nodes[3] = cell.connections(0)[3];
-    int offset = mesh.numVertices();
-    nodes[4] = offset + cell.connections(0)[0];
-    nodes[5] = offset + cell.connections(0)[1];
-    nodes[6] = offset + cell.connections(0)[2];
-    nodes[7] = offset + cell.connections(0)[3];
-    offset = offset + mesh.numVertices();
-    nodes[8] = offset + cell.connections(0)[0];
-    nodes[9] = offset + cell.connections(0)[1];
-    nodes[10] = offset + cell.connections(0)[2];
-    nodes[11] = offset + cell.connections(0)[3];
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    nodes[3] = cell.entities(0)[3];
+    int offset = mesh.topology().size(0);
+    nodes[4] = offset + cell.entities(0)[0];
+    nodes[5] = offset + cell.entities(0)[1];
+    nodes[6] = offset + cell.entities(0)[2];
+    nodes[7] = offset + cell.entities(0)[3];
+    offset = offset + mesh.topology().size(0);
+    nodes[8] = offset + cell.entities(0)[0];
+    nodes[9] = offset + cell.entities(0)[1];
+    nodes[10] = offset + cell.entities(0)[2];
+    nodes[11] = offset + cell.entities(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -271,9 +271,9 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices();
+    int offset = mesh.topology().size(0);
     vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numVertices();
+    offset = offset + mesh.topology().size(0);
     vertex_nodes[2] = offset + vertex;
   }
 
@@ -350,10 +350,10 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.connections(0)[0];
-    nodes[1] = cell.connections(0)[1];
-    nodes[2] = cell.connections(0)[2];
-    nodes[3] = cell.connections(0)[3];
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    nodes[3] = cell.entities(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const

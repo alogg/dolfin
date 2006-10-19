@@ -183,21 +183,21 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.connections(0)[0];
-    nodes[1] = cell.connections(0)[1];
-    nodes[2] = cell.connections(0)[2];
-    int offset = mesh.numVertices();
-    nodes[3] = offset + cell.connections(1)[0];
-    nodes[4] = offset + cell.connections(1)[1];
-    nodes[5] = offset + cell.connections(1)[2];
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    int offset = mesh.topology().size(0);
+    nodes[3] = offset + cell.entities(1)[0];
+    nodes[4] = offset + cell.entities(1)[1];
+    nodes[5] = offset + cell.entities(1)[2];
     offset = offset + mesh.topology().size(1);
-    nodes[6] = offset + cell.connections(0)[0];
-    nodes[7] = offset + cell.connections(0)[1];
-    nodes[8] = offset + cell.connections(0)[2];
-    offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.connections(1)[0];
-    nodes[10] = offset + cell.connections(1)[1];
-    nodes[11] = offset + cell.connections(1)[2];
+    nodes[6] = offset + cell.entities(0)[0];
+    nodes[7] = offset + cell.entities(0)[1];
+    nodes[8] = offset + cell.entities(0)[2];
+    offset = offset + mesh.topology().size(0);
+    nodes[9] = offset + cell.entities(1)[0];
+    nodes[10] = offset + cell.entities(1)[1];
+    nodes[11] = offset + cell.entities(1)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -232,7 +232,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.topology().size(1);
+    int offset = mesh.topology().size(0) + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -310,21 +310,21 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.connections(0)[0];
-    nodes[1] = cell.connections(0)[1];
-    nodes[2] = cell.connections(0)[2];
-    int offset = mesh.numVertices();
-    nodes[3] = offset + cell.connections(1)[0];
-    nodes[4] = offset + cell.connections(1)[1];
-    nodes[5] = offset + cell.connections(1)[2];
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    int offset = mesh.topology().size(0);
+    nodes[3] = offset + cell.entities(1)[0];
+    nodes[4] = offset + cell.entities(1)[1];
+    nodes[5] = offset + cell.entities(1)[2];
     offset = offset + mesh.topology().size(1);
-    nodes[6] = offset + cell.connections(0)[0];
-    nodes[7] = offset + cell.connections(0)[1];
-    nodes[8] = offset + cell.connections(0)[2];
-    offset = offset + mesh.numVertices();
-    nodes[9] = offset + cell.connections(1)[0];
-    nodes[10] = offset + cell.connections(1)[1];
-    nodes[11] = offset + cell.connections(1)[2];
+    nodes[6] = offset + cell.entities(0)[0];
+    nodes[7] = offset + cell.entities(0)[1];
+    nodes[8] = offset + cell.entities(0)[2];
+    offset = offset + mesh.topology().size(0);
+    nodes[9] = offset + cell.entities(1)[0];
+    nodes[10] = offset + cell.entities(1)[1];
+    nodes[11] = offset + cell.entities(1)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -359,7 +359,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices() + mesh.topology().size(1);
+    int offset = mesh.topology().size(0) + mesh.topology().size(1);
     vertex_nodes[1] = offset + vertex;
   }
 
