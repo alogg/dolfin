@@ -94,9 +94,9 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -188,9 +188,9 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -282,7 +282,7 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.id();
+    nodes[0] = cell.index();
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -441,9 +441,9 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -536,13 +536,13 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
-    int offset = mesh.numVertices();
-    nodes[3] = offset + cell.vertexID(0);
-    nodes[4] = offset + cell.vertexID(1);
-    nodes[5] = offset + cell.vertexID(2);
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    int offset = mesh.topology().size(0);
+    nodes[3] = offset + cell.entities(0)[0];
+    nodes[4] = offset + cell.entities(0)[1];
+    nodes[5] = offset + cell.entities(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -565,7 +565,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices();
+    int offset = mesh.topology().size(0);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -643,13 +643,13 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.vertexID(0);
-    nodes[1] = cell.vertexID(1);
-    nodes[2] = cell.vertexID(2);
-    int offset = mesh.numVertices();
-    nodes[3] = offset + cell.vertexID(0);
-    nodes[4] = offset + cell.vertexID(1);
-    nodes[5] = offset + cell.vertexID(2);
+    nodes[0] = cell.entities(0)[0];
+    nodes[1] = cell.entities(0)[1];
+    nodes[2] = cell.entities(0)[2];
+    int offset = mesh.topology().size(0);
+    nodes[3] = offset + cell.entities(0)[0];
+    nodes[4] = offset + cell.entities(0)[1];
+    nodes[5] = offset + cell.entities(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
@@ -672,7 +672,7 @@ public:
   {
     // FIXME: Temporary fix for Lagrange elements
     vertex_nodes[0] = vertex;
-    int offset = mesh.numVertices();
+    int offset = mesh.topology().size(0);
     vertex_nodes[1] = offset + vertex;
   }
 
@@ -749,7 +749,7 @@ public:
 
   void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
   {
-    nodes[0] = cell.id();
+    nodes[0] = cell.index();
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
