@@ -1033,7 +1033,7 @@ Optional Features:
                           --enable-debug
   --enable-optimization   Turn on optimizations
   --enable-mpi            Compile with suport for MPI
-  --enable-pydolfin       Disable compilation of PyDOLFIN, the DOLFIN Python
+  --disable-pydolfin      Disable compilation of PyDOLFIN, the DOLFIN Python
                           interface
   --disable-curses        Disable compilation of the curses interface
   --enable-petsc          Compile with support for PETSc linear algebra
@@ -21295,7 +21295,7 @@ if test `uname -m` = x86_64; then
 fi
 
 # Handle option --disable-curses
-if test x$disable_curses = x; then
+if test x$enable_curses = xyes; then
     echo "enabling curses, use --disable-curses to disable"
     echo "$as_me:$LINENO: checking for library containing wbkgdset" >&5
 echo $ECHO_N "checking for library containing wbkgdset... $ECHO_C" >&6
@@ -21433,7 +21433,6 @@ else
     CURSES_CFLAGS="-DNO_CURSES=1"
     CURSES_LIBS=""
 fi
-echo "curses libs $CURSES_LIBS"
 
 # Handle option --enable-pydolfin
 
