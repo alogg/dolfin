@@ -2,8 +2,8 @@
 // For further information, go to http://www/fenics.org/ffc/.
 // Licensed under the GNU GPL Version 2.
 
-#ifndef __NSECONTINUITY3D_H
-#define __NSECONTINUITY3D_H
+#ifndef __NSEDUALCONTINUITY3D_H
+#define __NSEDUALCONTINUITY3D_H
 
 #include <dolfin/Mesh.h>
 #include <dolfin/Cell.h>
@@ -16,7 +16,7 @@
 #include <dolfin/Functional.h>
 #include <dolfin/FEM.h>
 
-namespace dolfin { namespace NSEContinuity3D {
+namespace dolfin { namespace NSEDualContinuity3D {
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.

@@ -2,8 +2,8 @@
 // For further information, go to http://www/fenics.org/ffc/.
 // Licensed under the GNU GPL Version 2.
 
-#ifndef __NSECONTINUITY3D_H
-#define __NSECONTINUITY3D_H
+#ifndef __NSEDUALCONTINUITY2D_H
+#define __NSEDUALCONTINUITY2D_H
 
 #include <dolfin/Mesh.h>
 #include <dolfin/Cell.h>
@@ -16,7 +16,7 @@
 #include <dolfin/Functional.h>
 #include <dolfin/FEM.h>
 
-namespace dolfin { namespace NSEContinuity3D {
+namespace dolfin { namespace NSEDualContinuity2D {
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -68,12 +68,12 @@ public:
 
   inline unsigned int spacedim() const
   {
-    return 4;
+    return 3;
   }
 
   inline unsigned int shapedim() const
   {
-    return 3;
+    return 2;
   }
 
   inline unsigned int tensordim(unsigned int i) const
@@ -97,19 +97,16 @@ public:
     nodes[0] = cell.entities(0)[0];
     nodes[1] = cell.entities(0)[1];
     nodes[2] = cell.entities(0)[2];
-    nodes[3] = cell.entities(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
   {
-    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00);
-    points[3] = map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00);
+    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
     components[0] = 0;
     components[1] = 0;
     components[2] = 0;
-    components[3] = 0;
   }
 
   void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
@@ -130,7 +127,7 @@ public:
 
   FiniteElementSpec spec() const
   {
-    FiniteElementSpec s("Lagrange", "tetrahedron", 1);
+    FiniteElementSpec s("Lagrange", "triangle", 1);
     return s;
   }
   
@@ -165,12 +162,12 @@ public:
 
   inline unsigned int spacedim() const
   {
-    return 4;
+    return 3;
   }
 
   inline unsigned int shapedim() const
   {
-    return 3;
+    return 2;
   }
 
   inline unsigned int tensordim(unsigned int i) const
@@ -194,19 +191,16 @@ public:
     nodes[0] = cell.entities(0)[0];
     nodes[1] = cell.entities(0)[1];
     nodes[2] = cell.entities(0)[2];
-    nodes[3] = cell.entities(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
   {
-    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00);
-    points[3] = map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00);
+    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
     components[0] = 0;
     components[1] = 0;
     components[2] = 0;
-    components[3] = 0;
   }
 
   void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
@@ -227,7 +221,7 @@ public:
 
   FiniteElementSpec spec() const
   {
-    FiniteElementSpec s("Lagrange", "tetrahedron", 1);
+    FiniteElementSpec s("Lagrange", "triangle", 1);
     return s;
   }
   
@@ -267,7 +261,7 @@ public:
 
   inline unsigned int shapedim() const
   {
-    return 3;
+    return 2;
   }
 
   inline unsigned int tensordim(unsigned int i) const
@@ -293,7 +287,7 @@ public:
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
   {
-    points[0] = map(2.500000000000000e-01, 2.500000000000000e-01, 2.500000000000000e-01);
+    points[0] = map(3.333333333333334e-01, 3.333333333333334e-01);
     components[0] = 0;
   }
 
@@ -315,7 +309,7 @@ public:
 
   FiniteElementSpec spec() const
   {
-    FiniteElementSpec s("Discontinuous Lagrange", "tetrahedron", 0);
+    FiniteElementSpec s("Discontinuous Lagrange", "triangle", 0);
     return s;
   }
   
@@ -347,33 +341,21 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   const real c0_0 = c[0][0];
 
   // Compute geometry tensors
-  const real G0_0_0_0 = map.det*c0_0*map.g00*map.g00 + map.det*c0_0*map.g01*map.g01 + map.det*c0_0*map.g02*map.g02;
-  const real G0_0_0_1 = map.det*c0_0*map.g00*map.g10 + map.det*c0_0*map.g01*map.g11 + map.det*c0_0*map.g02*map.g12;
-  const real G0_0_0_2 = map.det*c0_0*map.g00*map.g20 + map.det*c0_0*map.g01*map.g21 + map.det*c0_0*map.g02*map.g22;
-  const real G0_0_1_0 = map.det*c0_0*map.g10*map.g00 + map.det*c0_0*map.g11*map.g01 + map.det*c0_0*map.g12*map.g02;
-  const real G0_0_1_1 = map.det*c0_0*map.g10*map.g10 + map.det*c0_0*map.g11*map.g11 + map.det*c0_0*map.g12*map.g12;
-  const real G0_0_1_2 = map.det*c0_0*map.g10*map.g20 + map.det*c0_0*map.g11*map.g21 + map.det*c0_0*map.g12*map.g22;
-  const real G0_0_2_0 = map.det*c0_0*map.g20*map.g00 + map.det*c0_0*map.g21*map.g01 + map.det*c0_0*map.g22*map.g02;
-  const real G0_0_2_1 = map.det*c0_0*map.g20*map.g10 + map.det*c0_0*map.g21*map.g11 + map.det*c0_0*map.g22*map.g12;
-  const real G0_0_2_2 = map.det*c0_0*map.g20*map.g20 + map.det*c0_0*map.g21*map.g21 + map.det*c0_0*map.g22*map.g22;
+  const real G0_0_0_0 = map.det*c0_0*map.g00*map.g00 + map.det*c0_0*map.g01*map.g01;
+  const real G0_0_0_1 = map.det*c0_0*map.g00*map.g10 + map.det*c0_0*map.g01*map.g11;
+  const real G0_0_1_0 = map.det*c0_0*map.g10*map.g00 + map.det*c0_0*map.g11*map.g01;
+  const real G0_0_1_1 = map.det*c0_0*map.g10*map.g10 + map.det*c0_0*map.g11*map.g11;
 
   // Compute element tensor
-  block[0] = 1.666666666666665e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_0_1 + 1.666666666666664e-01*G0_0_0_2 + 1.666666666666665e-01*G0_0_1_0 + 1.666666666666665e-01*G0_0_1_1 + 1.666666666666664e-01*G0_0_1_2 + 1.666666666666664e-01*G0_0_2_0 + 1.666666666666664e-01*G0_0_2_1 + 1.666666666666664e-01*G0_0_2_2;
-  block[1] = -1.666666666666665e-01*G0_0_0_0 - 1.666666666666665e-01*G0_0_1_0 - 1.666666666666664e-01*G0_0_2_0;
-  block[2] = -1.666666666666665e-01*G0_0_0_1 - 1.666666666666665e-01*G0_0_1_1 - 1.666666666666664e-01*G0_0_2_1;
-  block[3] = -1.666666666666665e-01*G0_0_0_2 - 1.666666666666665e-01*G0_0_1_2 - 1.666666666666664e-01*G0_0_2_2;
-  block[4] = -1.666666666666665e-01*G0_0_0_0 - 1.666666666666665e-01*G0_0_0_1 - 1.666666666666664e-01*G0_0_0_2;
-  block[5] = 1.666666666666665e-01*G0_0_0_0;
-  block[6] = 1.666666666666665e-01*G0_0_0_1;
-  block[7] = 1.666666666666665e-01*G0_0_0_2;
-  block[8] = -1.666666666666665e-01*G0_0_1_0 - 1.666666666666665e-01*G0_0_1_1 - 1.666666666666664e-01*G0_0_1_2;
-  block[9] = 1.666666666666665e-01*G0_0_1_0;
-  block[10] = 1.666666666666665e-01*G0_0_1_1;
-  block[11] = 1.666666666666665e-01*G0_0_1_2;
-  block[12] = -1.666666666666665e-01*G0_0_2_0 - 1.666666666666665e-01*G0_0_2_1 - 1.666666666666664e-01*G0_0_2_2;
-  block[13] = 1.666666666666665e-01*G0_0_2_0;
-  block[14] = 1.666666666666665e-01*G0_0_2_1;
-  block[15] = 1.666666666666665e-01*G0_0_2_2;
+  block[0] = 4.999999999999998e-01*G0_0_0_0 + 4.999999999999997e-01*G0_0_0_1 + 4.999999999999997e-01*G0_0_1_0 + 4.999999999999996e-01*G0_0_1_1;
+  block[1] = -4.999999999999998e-01*G0_0_0_0 - 4.999999999999997e-01*G0_0_1_0;
+  block[2] = -4.999999999999997e-01*G0_0_0_1 - 4.999999999999996e-01*G0_0_1_1;
+  block[3] = -4.999999999999998e-01*G0_0_0_0 - 4.999999999999997e-01*G0_0_0_1;
+  block[4] = 4.999999999999998e-01*G0_0_0_0;
+  block[5] = 4.999999999999997e-01*G0_0_0_1;
+  block[6] = -4.999999999999997e-01*G0_0_1_0 - 4.999999999999996e-01*G0_0_1_1;
+  block[7] = 4.999999999999997e-01*G0_0_1_0;
+  block[8] = 4.999999999999996e-01*G0_0_1_1;
 }
 
 // No contribution from the boundary
@@ -429,12 +411,12 @@ public:
 
   inline unsigned int spacedim() const
   {
-    return 4;
+    return 3;
   }
 
   inline unsigned int shapedim() const
   {
-    return 3;
+    return 2;
   }
 
   inline unsigned int tensordim(unsigned int i) const
@@ -458,19 +440,16 @@ public:
     nodes[0] = cell.entities(0)[0];
     nodes[1] = cell.entities(0)[1];
     nodes[2] = cell.entities(0)[2];
-    nodes[3] = cell.entities(0)[3];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
   {
-    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00);
-    points[3] = map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00);
+    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
     components[0] = 0;
     components[1] = 0;
     components[2] = 0;
-    components[3] = 0;
   }
 
   void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
@@ -491,7 +470,7 @@ public:
 
   FiniteElementSpec spec() const
   {
-    FiniteElementSpec s("Lagrange", "tetrahedron", 1);
+    FiniteElementSpec s("Lagrange", "triangle", 1);
     return s;
   }
   
@@ -509,7 +488,7 @@ public:
   FunctionElement_0() : dolfin::FiniteElement(), tensordims(0), subelements(0)
   {
     tensordims = new unsigned int [1];
-    tensordims[0] = 3;
+    tensordims[0] = 2;
 
     // Element is simple, don't need to initialize subelements
   }
@@ -527,12 +506,12 @@ public:
 
   inline unsigned int spacedim() const
   {
-    return 12;
+    return 6;
   }
 
   inline unsigned int shapedim() const
   {
-    return 3;
+    return 2;
   }
 
   inline unsigned int tensordim(unsigned int i) const
@@ -556,45 +535,26 @@ public:
     nodes[0] = cell.entities(0)[0];
     nodes[1] = cell.entities(0)[1];
     nodes[2] = cell.entities(0)[2];
-    nodes[3] = cell.entities(0)[3];
     int offset = mesh.topology().size(0);
-    nodes[4] = offset + cell.entities(0)[0];
-    nodes[5] = offset + cell.entities(0)[1];
-    nodes[6] = offset + cell.entities(0)[2];
-    nodes[7] = offset + cell.entities(0)[3];
-    offset = offset + mesh.topology().size(0);
-    nodes[8] = offset + cell.entities(0)[0];
-    nodes[9] = offset + cell.entities(0)[1];
-    nodes[10] = offset + cell.entities(0)[2];
-    nodes[11] = offset + cell.entities(0)[3];
+    nodes[3] = offset + cell.entities(0)[0];
+    nodes[4] = offset + cell.entities(0)[1];
+    nodes[5] = offset + cell.entities(0)[2];
   }
 
   void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
   {
-    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00);
-    points[3] = map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00);
-    points[4] = map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[5] = map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[6] = map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00);
-    points[7] = map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00);
-    points[8] = map(0.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[9] = map(1.000000000000000e+00, 0.000000000000000e+00, 0.000000000000000e+00);
-    points[10] = map(0.000000000000000e+00, 1.000000000000000e+00, 0.000000000000000e+00);
-    points[11] = map(0.000000000000000e+00, 0.000000000000000e+00, 1.000000000000000e+00);
+    points[0] = map(0.000000000000000e+00, 0.000000000000000e+00);
+    points[1] = map(1.000000000000000e+00, 0.000000000000000e+00);
+    points[2] = map(0.000000000000000e+00, 1.000000000000000e+00);
+    points[3] = map(0.000000000000000e+00, 0.000000000000000e+00);
+    points[4] = map(1.000000000000000e+00, 0.000000000000000e+00);
+    points[5] = map(0.000000000000000e+00, 1.000000000000000e+00);
     components[0] = 0;
     components[1] = 0;
     components[2] = 0;
-    components[3] = 0;
+    components[3] = 1;
     components[4] = 1;
     components[5] = 1;
-    components[6] = 1;
-    components[7] = 1;
-    components[8] = 2;
-    components[9] = 2;
-    components[10] = 2;
-    components[11] = 2;
   }
 
   void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
@@ -603,8 +563,6 @@ public:
     vertex_nodes[0] = vertex;
     int offset = mesh.topology().size(0);
     vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.topology().size(0);
-    vertex_nodes[2] = offset + vertex;
   }
 
   const FiniteElement& operator[] (unsigned int i) const
@@ -619,7 +577,7 @@ public:
 
   FiniteElementSpec spec() const
   {
-    FiniteElementSpec s("Vector Lagrange", "tetrahedron", 1, 3);
+    FiniteElementSpec s("Vector Lagrange", "triangle", 1, 2);
     return s;
   }
   
@@ -651,38 +609,21 @@ void LinearForm::eval(real block[], const AffineMap& map) const
   const real c0_3 = c[0][3];
   const real c0_4 = c[0][4];
   const real c0_5 = c[0][5];
-  const real c0_6 = c[0][6];
-  const real c0_7 = c[0][7];
-  const real c0_8 = c[0][8];
-  const real c0_9 = c[0][9];
-  const real c0_10 = c[0][10];
-  const real c0_11 = c[0][11];
 
   // Compute geometry tensors
   const real G0_0_0_0 = map.det*c0_0*map.g00;
   const real G0_0_1_0 = map.det*c0_0*map.g10;
-  const real G0_0_2_0 = map.det*c0_0*map.g20;
   const real G0_1_0_0 = map.det*c0_1*map.g00;
   const real G0_2_1_0 = map.det*c0_2*map.g10;
-  const real G0_3_2_0 = map.det*c0_3*map.g20;
+  const real G0_3_0_1 = map.det*c0_3*map.g01;
+  const real G0_3_1_1 = map.det*c0_3*map.g11;
   const real G0_4_0_1 = map.det*c0_4*map.g01;
-  const real G0_4_1_1 = map.det*c0_4*map.g11;
-  const real G0_4_2_1 = map.det*c0_4*map.g21;
-  const real G0_5_0_1 = map.det*c0_5*map.g01;
-  const real G0_6_1_1 = map.det*c0_6*map.g11;
-  const real G0_7_2_1 = map.det*c0_7*map.g21;
-  const real G0_8_0_2 = map.det*c0_8*map.g02;
-  const real G0_8_1_2 = map.det*c0_8*map.g12;
-  const real G0_8_2_2 = map.det*c0_8*map.g22;
-  const real G0_9_0_2 = map.det*c0_9*map.g02;
-  const real G0_10_1_2 = map.det*c0_10*map.g12;
-  const real G0_11_2_2 = map.det*c0_11*map.g22;
+  const real G0_5_1_1 = map.det*c0_5*map.g11;
 
   // Compute element tensor
-  block[0] = 4.166666666666662e-02*G0_0_0_0 + 4.166666666666662e-02*G0_0_1_0 + 4.166666666666662e-02*G0_0_2_0 - 4.166666666666662e-02*G0_1_0_0 - 4.166666666666662e-02*G0_2_1_0 - 4.166666666666662e-02*G0_3_2_0 + 4.166666666666662e-02*G0_4_0_1 + 4.166666666666662e-02*G0_4_1_1 + 4.166666666666662e-02*G0_4_2_1 - 4.166666666666662e-02*G0_5_0_1 - 4.166666666666662e-02*G0_6_1_1 - 4.166666666666662e-02*G0_7_2_1 + 4.166666666666662e-02*G0_8_0_2 + 4.166666666666662e-02*G0_8_1_2 + 4.166666666666662e-02*G0_8_2_2 - 4.166666666666662e-02*G0_9_0_2 - 4.166666666666662e-02*G0_10_1_2 - 4.166666666666662e-02*G0_11_2_2;
-  block[1] = 4.166666666666662e-02*G0_0_0_0 + 4.166666666666662e-02*G0_0_1_0 + 4.166666666666661e-02*G0_0_2_0 - 4.166666666666662e-02*G0_1_0_0 - 4.166666666666662e-02*G0_2_1_0 - 4.166666666666662e-02*G0_3_2_0 + 4.166666666666662e-02*G0_4_0_1 + 4.166666666666662e-02*G0_4_1_1 + 4.166666666666661e-02*G0_4_2_1 - 4.166666666666662e-02*G0_5_0_1 - 4.166666666666662e-02*G0_6_1_1 - 4.166666666666662e-02*G0_7_2_1 + 4.166666666666662e-02*G0_8_0_2 + 4.166666666666662e-02*G0_8_1_2 + 4.166666666666661e-02*G0_8_2_2 - 4.166666666666662e-02*G0_9_0_2 - 4.166666666666662e-02*G0_10_1_2 - 4.166666666666662e-02*G0_11_2_2;
-  block[2] = 4.166666666666662e-02*G0_0_0_0 + 4.166666666666662e-02*G0_0_1_0 + 4.166666666666661e-02*G0_0_2_0 - 4.166666666666662e-02*G0_1_0_0 - 4.166666666666662e-02*G0_2_1_0 - 4.166666666666662e-02*G0_3_2_0 + 4.166666666666662e-02*G0_4_0_1 + 4.166666666666662e-02*G0_4_1_1 + 4.166666666666661e-02*G0_4_2_1 - 4.166666666666662e-02*G0_5_0_1 - 4.166666666666662e-02*G0_6_1_1 - 4.166666666666662e-02*G0_7_2_1 + 4.166666666666662e-02*G0_8_0_2 + 4.166666666666662e-02*G0_8_1_2 + 4.166666666666661e-02*G0_8_2_2 - 4.166666666666662e-02*G0_9_0_2 - 4.166666666666662e-02*G0_10_1_2 - 4.166666666666662e-02*G0_11_2_2;
-  block[3] = 4.166666666666662e-02*G0_0_0_0 + 4.166666666666662e-02*G0_0_1_0 + 4.166666666666661e-02*G0_0_2_0 - 4.166666666666662e-02*G0_1_0_0 - 4.166666666666662e-02*G0_2_1_0 - 4.166666666666662e-02*G0_3_2_0 + 4.166666666666662e-02*G0_4_0_1 + 4.166666666666662e-02*G0_4_1_1 + 4.166666666666661e-02*G0_4_2_1 - 4.166666666666662e-02*G0_5_0_1 - 4.166666666666662e-02*G0_6_1_1 - 4.166666666666662e-02*G0_7_2_1 + 4.166666666666662e-02*G0_8_0_2 + 4.166666666666662e-02*G0_8_1_2 + 4.166666666666661e-02*G0_8_2_2 - 4.166666666666662e-02*G0_9_0_2 - 4.166666666666662e-02*G0_10_1_2 - 4.166666666666662e-02*G0_11_2_2;
+  block[0] = 1.666666666666665e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_1_0 - 1.666666666666665e-01*G0_1_0_0 - 1.666666666666665e-01*G0_2_1_0 + 1.666666666666665e-01*G0_3_0_1 + 1.666666666666665e-01*G0_3_1_1 - 1.666666666666665e-01*G0_4_0_1 - 1.666666666666665e-01*G0_5_1_1;
+  block[1] = 1.666666666666666e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_1_0 - 1.666666666666666e-01*G0_1_0_0 - 1.666666666666665e-01*G0_2_1_0 + 1.666666666666666e-01*G0_3_0_1 + 1.666666666666665e-01*G0_3_1_1 - 1.666666666666666e-01*G0_4_0_1 - 1.666666666666665e-01*G0_5_1_1;
+  block[2] = 1.666666666666665e-01*G0_0_0_0 + 1.666666666666665e-01*G0_0_1_0 - 1.666666666666665e-01*G0_1_0_0 - 1.666666666666665e-01*G0_2_1_0 + 1.666666666666665e-01*G0_3_0_1 + 1.666666666666665e-01*G0_3_1_1 - 1.666666666666665e-01*G0_4_0_1 - 1.666666666666665e-01*G0_5_1_1;
 }
 
 // No contribution from the boundary
