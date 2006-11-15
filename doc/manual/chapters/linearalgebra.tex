@@ -18,51 +18,51 @@ N$ matrix and a vector of length $N$ respectively.
 
 The following code demonstrates how to create a matrix and a vector:
 \begin{code}
-  Matrix A(M, N);
-  Vector x(N);
+Matrix A(M, N);
+Vector x(N);
 \end{code}
 Alternatively, the matrix and the vector may be created by
 \begin{code}
-  Matrix A;
-  Vector x;
+Matrix A;
+Vector x;
 
-  A.init(M, N);
-  x.init(N);
+A.init(M, N);
+x.init(N);
 \end{code}
 
 The following code demonstrates how to access the size and the
 elements of a matrix and a vector:
 \begin{code}
-  A(5, 5) = 1.0;
-  real a = A(4, 3);
+A(5, 5) = 1.0;
+real a = A(4, 3);
 
-  x(3) = 2.0;
-  real b = x(5);
+x(3) = 2.0;
+real b = x(5);
 
-  unsigned int M = A.size(0);
-  unsigned int N = A.size(1);
+unsigned int M = A.size(0);
+unsigned int N = A.size(1);
 
-  N = x.size();
+N = x.size();
 \end{code}
 
 In addition, \dolfin{} provides optimized functions for setting the
 values of a set of entries in a matrix or vector:
 \begin{code}
-  real block[] = \{2, 4, 6\};
-  int rows[] = \{0, 1, 2\};
-  int cols[] = \{0, 1, 2\};
+real block[] = {2, 4, 6};
+int rows[] = {0, 1, 2};
+int cols[] = {0, 1, 2};
   
-  A.set(block, rows, cols, 3);
+A.set(block, rows, cols, 3);
 \end{code}
 Alternatively, the set of values given by the array \texttt{block} can
 be added to the entries given by the arrays \texttt{rows} and
 \texttt{cols}:
 \begin{code}
-  real block[] = \{2, 4, 6\};
-  int rows[] = \{0, 1, 2\};
-  int cols[] = \{0, 1, 2\};
+real block[] = {2, 4, 6};
+int rows[] = {0, 1, 2};
+int cols[] = {0, 1, 2};
   
-  A.add(block, rows, cols, 3);
+A.add(block, rows, cols, 3);
 \end{code}
 These functions are particularly useful for efficient assembly of a (sparse)
 matrix from a bilinear form.
@@ -134,18 +134,18 @@ of length $N$. Both iterative (Krylov subspace) solvers and direct
 
 A linear system may be solved by the GMRES Krylov method as follows:
 \begin{code}
-  Matrix A;
-  Vector x, b:
+Matrix A;
+Vector x, b:
 
-  GMRES::solve(A, x, b);
+GMRES::solve(A, x, b);
 \end{code}
 Alternatively, the linear system may be solved by first creating an
 object of the class \texttt{KrylovSolver}, which is more efficient for
 repeated solution of linear systems and also allows the specification
 of both the Krylov method and the preconditioner:
 \begin{code}
-  KrylovSolver solver(gmres, ilu);
-  solver.solve(A, x, b);
+KrylovSolver solver(gmres, ilu);
+solver.solve(A, x, b);
 \end{code}
 
 For uBlas matrices and vectors, the class \texttt{uBlasKrylovSolver}
@@ -227,17 +227,17 @@ either the class \texttt{uBlasKrylovSolver} or \texttt{PETScKrylovSolver}.
 
 A linear system may be solved by a direct LU factorization as follows:
 \begin{code}
-  Matrix A;
-  Vector x, b;
+Matrix A;
+Vector x, b;
   
-  LU::solve(A, x, b);
+LU::solve(A, x, b);
 \end{code}
 Alternatively, the linear system may be solved by first creating an
 object of the class \texttt{LUSolver}, which may be more efficient for
 repeated solution of linear systems:
 \begin{code}
-  LUSolver solver;
-  solver.solve(A, x, b);
+LUSolver solver;
+solver.solve(A, x, b);
 \end{code}
 
 For uBlas matrices and vectors, the class \texttt{uBlasLUSolver} may
@@ -259,12 +259,12 @@ For the basic eigenvalue problem
 \end{equation}
 the following code demonstrates how to compute the zeroth eigenpair:
 \begin{code} 
-  PETScEigenvalueSolver esolver; 
-  esolver.solve(A);
+PETScEigenvalueSolver esolver; 
+esolver.solve(A);
 
-  real lr, lc;
-  PETScVector xr, xc;
-  esolver.getEigenpair(lr, lc, xr, xc, 0);
+real lr, lc;
+PETScVector xr, xc;
+esolver.getEigenpair(lr, lc, xr, xc, 0);
 \end{code} 
 The real and complex components of the eigenvalue are returned in \texttt{lr}
 and \texttt{lc}, respectively, and the real and complex parts of the eigenvector
@@ -272,16 +272,16 @@ are returned in \texttt{xr} and \texttt{xc}, respectively.
 
 For the generalized eigenvalue problem
 \begin{equation}
-  A x = \lambda B x,
+ A x = \lambda B x,
 \end{equation}
 the following code demonstrates how to compute the second eigenpair:
 \begin{code} 
-  PETScEigenvalueSolver esolver; 
-  esolver.solve(A, B);
+PETScEigenvalueSolver esolver; 
+esolver.solve(A, B);
 
-  real lr, lc;
-  PETScVector xr, xc;
-  esolver.getEigenpair(lr, lc, xr, xc, 2);
+real lr, lc;
+PETScVector xr, xc;
+esolver.getEigenpair(lr, lc, xr, xc, 2);
 \end{code} 
 
 %------------------------------------------------------------------------------
