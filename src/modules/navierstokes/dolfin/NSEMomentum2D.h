@@ -40,15 +40,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 private:
 
@@ -570,7 +570,7 @@ BilinearForm::BilinearForm(Function& w0, Function& w1, Function& w2, const real&
 // Contribution from the interior
 bool BilinearForm::interior_contribution() const { return true; }
 
-void BilinearForm::eval(real block[], const AffineMap& map) const
+void BilinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute coefficients
   const real c0_0 = c[0][0];
@@ -585,59 +585,59 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
   const real c3_1 = 3.333333333333333e-01*c[0][3] + 3.333333333333334e-01*c[0][4] + 3.333333333333333e-01*c[0][5];
 
   // Compute geometry tensors
-  const real G0_ = map.det;
-  const real G1_0_0 = map.det*c0*c1*map.g00*map.g00 + map.det*c0*c1*map.g01*map.g01;
-  const real G1_0_1 = map.det*c0*c1*map.g00*map.g10 + map.det*c0*c1*map.g01*map.g11;
-  const real G1_1_0 = map.det*c0*c1*map.g10*map.g00 + map.det*c0*c1*map.g11*map.g01;
-  const real G1_1_1 = map.det*c0*c1*map.g10*map.g10 + map.det*c0*c1*map.g11*map.g11;
-  const real G2_0_0 = map.det*c0*c1*map.g00*map.g00 + map.det*c0*c1*map.g01*map.g01;
-  const real G2_0_1 = map.det*c0*c1*map.g00*map.g10 + map.det*c0*c1*map.g01*map.g11;
-  const real G2_1_0 = map.det*c0*c1*map.g10*map.g00 + map.det*c0*c1*map.g11*map.g01;
-  const real G2_1_1 = map.det*c0*c1*map.g10*map.g10 + map.det*c0*c1*map.g11*map.g11;
-  const real G3_0_0_0 = map.det*c0*c0_0*map.g00;
-  const real G3_0_0_1 = map.det*c0*c0_0*map.g10;
-  const real G3_0_1_0 = map.det*c0*c0_1*map.g00;
-  const real G3_0_1_1 = map.det*c0*c0_1*map.g10;
-  const real G3_0_2_0 = map.det*c0*c0_2*map.g00;
-  const real G3_0_2_1 = map.det*c0*c0_2*map.g10;
-  const real G3_1_3_0 = map.det*c0*c0_3*map.g01;
-  const real G3_1_3_1 = map.det*c0*c0_3*map.g11;
-  const real G3_1_4_0 = map.det*c0*c0_4*map.g01;
-  const real G3_1_4_1 = map.det*c0*c0_4*map.g11;
-  const real G3_1_5_0 = map.det*c0*c0_5*map.g01;
-  const real G3_1_5_1 = map.det*c0*c0_5*map.g11;
-  const real G4_0_0_0_0_0_0_0 = map.det*c0*c1_0*c3_0*c3_0*map.g00*map.g00;
-  const real G4_0_0_0_0_0_0_1 = map.det*c0*c1_0*c3_0*c3_0*map.g00*map.g10;
-  const real G4_0_0_0_0_1_0_0 = map.det*c0*c1_0*c3_0*c3_0*map.g10*map.g00;
-  const real G4_0_0_0_0_1_0_1 = map.det*c0*c1_0*c3_0*c3_0*map.g10*map.g10;
-  const real G4_0_0_1_0_0_1_0 = map.det*c0*c1_0*c3_1*c3_0*map.g01*map.g00;
-  const real G4_0_0_1_0_0_1_1 = map.det*c0*c1_0*c3_1*c3_0*map.g01*map.g10;
-  const real G4_0_0_1_0_1_1_0 = map.det*c0*c1_0*c3_1*c3_0*map.g11*map.g00;
-  const real G4_0_0_1_0_1_1_1 = map.det*c0*c1_0*c3_1*c3_0*map.g11*map.g10;
-  const real G4_1_0_0_1_0_0_0 = map.det*c0*c1_0*c3_0*c3_1*map.g00*map.g01;
-  const real G4_1_0_0_1_0_0_1 = map.det*c0*c1_0*c3_0*c3_1*map.g00*map.g11;
-  const real G4_1_0_0_1_1_0_0 = map.det*c0*c1_0*c3_0*c3_1*map.g10*map.g01;
-  const real G4_1_0_0_1_1_0_1 = map.det*c0*c1_0*c3_0*c3_1*map.g10*map.g11;
-  const real G4_1_0_1_1_0_1_0 = map.det*c0*c1_0*c3_1*c3_1*map.g01*map.g01;
-  const real G4_1_0_1_1_0_1_1 = map.det*c0*c1_0*c3_1*c3_1*map.g01*map.g11;
-  const real G4_1_0_1_1_1_1_0 = map.det*c0*c1_0*c3_1*c3_1*map.g11*map.g01;
-  const real G4_1_0_1_1_1_1_1 = map.det*c0*c1_0*c3_1*c3_1*map.g11*map.g11;
-  const real G5_0_0_0_0_0 = map.det*c0*c2_0*map.g00*map.g00;
-  const real G5_0_0_0_0_1 = map.det*c0*c2_0*map.g00*map.g01;
-  const real G5_0_0_0_1_0 = map.det*c0*c2_0*map.g00*map.g10;
-  const real G5_0_0_0_1_1 = map.det*c0*c2_0*map.g00*map.g11;
-  const real G5_0_0_1_0_0 = map.det*c0*c2_0*map.g01*map.g00;
-  const real G5_0_0_1_0_1 = map.det*c0*c2_0*map.g01*map.g01;
-  const real G5_0_0_1_1_0 = map.det*c0*c2_0*map.g01*map.g10;
-  const real G5_0_0_1_1_1 = map.det*c0*c2_0*map.g01*map.g11;
-  const real G5_0_1_0_0_0 = map.det*c0*c2_0*map.g10*map.g00;
-  const real G5_0_1_0_0_1 = map.det*c0*c2_0*map.g10*map.g01;
-  const real G5_0_1_0_1_0 = map.det*c0*c2_0*map.g10*map.g10;
-  const real G5_0_1_0_1_1 = map.det*c0*c2_0*map.g10*map.g11;
-  const real G5_0_1_1_0_0 = map.det*c0*c2_0*map.g11*map.g00;
-  const real G5_0_1_1_0_1 = map.det*c0*c2_0*map.g11*map.g01;
-  const real G5_0_1_1_1_0 = map.det*c0*c2_0*map.g11*map.g10;
-  const real G5_0_1_1_1_1 = map.det*c0*c2_0*map.g11*map.g11;
+  const real G0_ = det;
+  const real G1_0_0 = det*c0*c1*map.g00*map.g00 + det*c0*c1*map.g01*map.g01;
+  const real G1_0_1 = det*c0*c1*map.g00*map.g10 + det*c0*c1*map.g01*map.g11;
+  const real G1_1_0 = det*c0*c1*map.g10*map.g00 + det*c0*c1*map.g11*map.g01;
+  const real G1_1_1 = det*c0*c1*map.g10*map.g10 + det*c0*c1*map.g11*map.g11;
+  const real G2_0_0 = det*c0*c1*map.g00*map.g00 + det*c0*c1*map.g01*map.g01;
+  const real G2_0_1 = det*c0*c1*map.g00*map.g10 + det*c0*c1*map.g01*map.g11;
+  const real G2_1_0 = det*c0*c1*map.g10*map.g00 + det*c0*c1*map.g11*map.g01;
+  const real G2_1_1 = det*c0*c1*map.g10*map.g10 + det*c0*c1*map.g11*map.g11;
+  const real G3_0_0_0 = det*c0*c0_0*map.g00;
+  const real G3_0_0_1 = det*c0*c0_0*map.g10;
+  const real G3_0_1_0 = det*c0*c0_1*map.g00;
+  const real G3_0_1_1 = det*c0*c0_1*map.g10;
+  const real G3_0_2_0 = det*c0*c0_2*map.g00;
+  const real G3_0_2_1 = det*c0*c0_2*map.g10;
+  const real G3_1_3_0 = det*c0*c0_3*map.g01;
+  const real G3_1_3_1 = det*c0*c0_3*map.g11;
+  const real G3_1_4_0 = det*c0*c0_4*map.g01;
+  const real G3_1_4_1 = det*c0*c0_4*map.g11;
+  const real G3_1_5_0 = det*c0*c0_5*map.g01;
+  const real G3_1_5_1 = det*c0*c0_5*map.g11;
+  const real G4_0_0_0_0_0_0_0 = det*c0*c1_0*c3_0*c3_0*map.g00*map.g00;
+  const real G4_0_0_0_0_0_0_1 = det*c0*c1_0*c3_0*c3_0*map.g00*map.g10;
+  const real G4_0_0_0_0_1_0_0 = det*c0*c1_0*c3_0*c3_0*map.g10*map.g00;
+  const real G4_0_0_0_0_1_0_1 = det*c0*c1_0*c3_0*c3_0*map.g10*map.g10;
+  const real G4_0_0_1_0_0_1_0 = det*c0*c1_0*c3_1*c3_0*map.g01*map.g00;
+  const real G4_0_0_1_0_0_1_1 = det*c0*c1_0*c3_1*c3_0*map.g01*map.g10;
+  const real G4_0_0_1_0_1_1_0 = det*c0*c1_0*c3_1*c3_0*map.g11*map.g00;
+  const real G4_0_0_1_0_1_1_1 = det*c0*c1_0*c3_1*c3_0*map.g11*map.g10;
+  const real G4_1_0_0_1_0_0_0 = det*c0*c1_0*c3_0*c3_1*map.g00*map.g01;
+  const real G4_1_0_0_1_0_0_1 = det*c0*c1_0*c3_0*c3_1*map.g00*map.g11;
+  const real G4_1_0_0_1_1_0_0 = det*c0*c1_0*c3_0*c3_1*map.g10*map.g01;
+  const real G4_1_0_0_1_1_0_1 = det*c0*c1_0*c3_0*c3_1*map.g10*map.g11;
+  const real G4_1_0_1_1_0_1_0 = det*c0*c1_0*c3_1*c3_1*map.g01*map.g01;
+  const real G4_1_0_1_1_0_1_1 = det*c0*c1_0*c3_1*c3_1*map.g01*map.g11;
+  const real G4_1_0_1_1_1_1_0 = det*c0*c1_0*c3_1*c3_1*map.g11*map.g01;
+  const real G4_1_0_1_1_1_1_1 = det*c0*c1_0*c3_1*c3_1*map.g11*map.g11;
+  const real G5_0_0_0_0_0 = det*c0*c2_0*map.g00*map.g00;
+  const real G5_0_0_0_0_1 = det*c0*c2_0*map.g00*map.g01;
+  const real G5_0_0_0_1_0 = det*c0*c2_0*map.g00*map.g10;
+  const real G5_0_0_0_1_1 = det*c0*c2_0*map.g00*map.g11;
+  const real G5_0_0_1_0_0 = det*c0*c2_0*map.g01*map.g00;
+  const real G5_0_0_1_0_1 = det*c0*c2_0*map.g01*map.g01;
+  const real G5_0_0_1_1_0 = det*c0*c2_0*map.g01*map.g10;
+  const real G5_0_0_1_1_1 = det*c0*c2_0*map.g01*map.g11;
+  const real G5_0_1_0_0_0 = det*c0*c2_0*map.g10*map.g00;
+  const real G5_0_1_0_0_1 = det*c0*c2_0*map.g10*map.g01;
+  const real G5_0_1_0_1_0 = det*c0*c2_0*map.g10*map.g10;
+  const real G5_0_1_0_1_1 = det*c0*c2_0*map.g10*map.g11;
+  const real G5_0_1_1_0_0 = det*c0*c2_0*map.g11*map.g00;
+  const real G5_0_1_1_0_1 = det*c0*c2_0*map.g11*map.g01;
+  const real G5_0_1_1_1_0 = det*c0*c2_0*map.g11*map.g10;
+  const real G5_0_1_1_1_1 = det*c0*c2_0*map.g11*map.g11;
 
   // Compute element tensor
   block[0] = 8.333333333333318e-02*G0_ + 2.499999999999999e-01*G1_0_0 + 2.499999999999998e-01*G1_0_1 + 2.499999999999998e-01*G1_1_0 + 2.499999999999998e-01*G1_1_1 - 4.166666666666659e-02*G3_0_0_0 - 4.166666666666659e-02*G3_0_0_1 - 2.083333333333330e-02*G3_0_1_0 - 2.083333333333329e-02*G3_0_1_1 - 2.083333333333329e-02*G3_0_2_0 - 2.083333333333329e-02*G3_0_2_1 - 4.166666666666659e-02*G3_1_3_0 - 4.166666666666659e-02*G3_1_3_1 - 2.083333333333330e-02*G3_1_4_0 - 2.083333333333329e-02*G3_1_4_1 - 2.083333333333329e-02*G3_1_5_0 - 2.083333333333329e-02*G3_1_5_1 + 2.499999999999999e-01*G4_0_0_0_0_0_0_0 + 2.499999999999998e-01*G4_0_0_0_0_0_0_1 + 2.499999999999998e-01*G4_0_0_0_0_1_0_0 + 2.499999999999998e-01*G4_0_0_0_0_1_0_1 + 2.499999999999999e-01*G4_0_0_1_0_0_1_0 + 2.499999999999998e-01*G4_0_0_1_0_0_1_1 + 2.499999999999998e-01*G4_0_0_1_0_1_1_0 + 2.499999999999998e-01*G4_0_0_1_0_1_1_1 + 2.499999999999999e-01*G4_1_0_0_1_0_0_0 + 2.499999999999998e-01*G4_1_0_0_1_0_0_1 + 2.499999999999998e-01*G4_1_0_0_1_1_0_0 + 2.499999999999998e-01*G4_1_0_0_1_1_0_1 + 2.499999999999999e-01*G4_1_0_1_1_0_1_0 + 2.499999999999998e-01*G4_1_0_1_1_0_1_1 + 2.499999999999998e-01*G4_1_0_1_1_1_1_0 + 2.499999999999998e-01*G4_1_0_1_1_1_1_1 + 2.499999999999999e-01*G5_0_0_0_0_0 + 2.499999999999998e-01*G5_0_0_0_1_0 + 2.499999999999998e-01*G5_0_1_0_0_0 + 2.499999999999998e-01*G5_0_1_0_1_0;
@@ -681,12 +681,12 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool BilinearForm::boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void BilinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool BilinearForm::interior_boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -714,15 +714,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 private:
 
@@ -1445,7 +1445,7 @@ LinearForm::LinearForm(Function& w0, Function& w1, Function& w2, Function& w3, F
 // Contribution from the interior
 bool LinearForm::interior_contribution() const { return true; }
 
-void LinearForm::eval(real block[], const AffineMap& map) const
+void LinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute coefficients
   const real c0_0 = c[0][0];
@@ -1475,184 +1475,184 @@ void LinearForm::eval(real block[], const AffineMap& map) const
   const real c6_1 = 3.333333333333333e-01*c[0][3] + 3.333333333333334e-01*c[0][4] + 3.333333333333333e-01*c[0][5];
 
   // Compute geometry tensors
-  const real G0_0 = map.det*c1_0 + map.det*c0*c2_0;
-  const real G0_1 = map.det*c1_1 + map.det*c0*c2_1;
-  const real G0_2 = map.det*c1_2 + map.det*c0*c2_2;
-  const real G0_3 = map.det*c1_3 + map.det*c0*c2_3;
-  const real G0_4 = map.det*c1_4 + map.det*c0*c2_4;
-  const real G0_5 = map.det*c1_5 + map.det*c0*c2_5;
-  const real G1_0_0_0 = map.det*c0*c3_0*map.g00;
-  const real G1_0_0_1 = map.det*c0*c3_1*map.g00;
-  const real G1_0_0_2 = map.det*c0*c3_2*map.g00;
-  const real G1_0_1_0 = map.det*c0*c3_0*map.g01;
-  const real G1_0_1_1 = map.det*c0*c3_1*map.g01;
-  const real G1_0_1_2 = map.det*c0*c3_2*map.g01;
-  const real G1_1_0_0 = map.det*c0*c3_0*map.g10;
-  const real G1_1_0_1 = map.det*c0*c3_1*map.g10;
-  const real G1_1_0_2 = map.det*c0*c3_2*map.g10;
-  const real G1_1_1_0 = map.det*c0*c3_0*map.g11;
-  const real G1_1_1_1 = map.det*c0*c3_1*map.g11;
-  const real G1_1_1_2 = map.det*c0*c3_2*map.g11;
-  const real G2_0_0_0 = map.det*c0*c1*c1_0*map.g00*map.g00 + map.det*c0*c1*c1_0*map.g01*map.g01;
-  const real G2_0_0_1 = map.det*c0*c1*c1_0*map.g00*map.g10 + map.det*c0*c1*c1_0*map.g01*map.g11;
-  const real G2_0_1_0 = map.det*c0*c1*c1_0*map.g10*map.g00 + map.det*c0*c1*c1_0*map.g11*map.g01;
-  const real G2_0_1_1 = map.det*c0*c1*c1_0*map.g10*map.g10 + map.det*c0*c1*c1_0*map.g11*map.g11;
-  const real G2_1_0_0 = map.det*c0*c1*c1_1*map.g00*map.g00 + map.det*c0*c1*c1_1*map.g01*map.g01;
-  const real G2_1_1_0 = map.det*c0*c1*c1_1*map.g10*map.g00 + map.det*c0*c1*c1_1*map.g11*map.g01;
-  const real G2_2_0_1 = map.det*c0*c1*c1_2*map.g00*map.g10 + map.det*c0*c1*c1_2*map.g01*map.g11;
-  const real G2_2_1_1 = map.det*c0*c1*c1_2*map.g10*map.g10 + map.det*c0*c1*c1_2*map.g11*map.g11;
-  const real G3_3_0_0 = map.det*c0*c1*c1_3*map.g00*map.g00 + map.det*c0*c1*c1_3*map.g01*map.g01;
-  const real G3_3_0_1 = map.det*c0*c1*c1_3*map.g00*map.g10 + map.det*c0*c1*c1_3*map.g01*map.g11;
-  const real G3_3_1_0 = map.det*c0*c1*c1_3*map.g10*map.g00 + map.det*c0*c1*c1_3*map.g11*map.g01;
-  const real G3_3_1_1 = map.det*c0*c1*c1_3*map.g10*map.g10 + map.det*c0*c1*c1_3*map.g11*map.g11;
-  const real G3_4_0_0 = map.det*c0*c1*c1_4*map.g00*map.g00 + map.det*c0*c1*c1_4*map.g01*map.g01;
-  const real G3_4_1_0 = map.det*c0*c1*c1_4*map.g10*map.g00 + map.det*c0*c1*c1_4*map.g11*map.g01;
-  const real G3_5_0_1 = map.det*c0*c1*c1_5*map.g00*map.g10 + map.det*c0*c1*c1_5*map.g01*map.g11;
-  const real G3_5_1_1 = map.det*c0*c1*c1_5*map.g10*map.g10 + map.det*c0*c1*c1_5*map.g11*map.g11;
-  const real G4_0_0_0_0 = map.det*c0*c0_0*c1_0*map.g00;
-  const real G4_0_0_0_1 = map.det*c0*c0_0*c1_0*map.g10;
-  const real G4_0_0_1_0 = map.det*c0*c0_0*c1_1*map.g00;
-  const real G4_0_0_2_1 = map.det*c0*c0_0*c1_2*map.g10;
-  const real G4_0_0_3_0 = map.det*c0*c0_0*c1_3*map.g00;
-  const real G4_0_0_3_1 = map.det*c0*c0_0*c1_3*map.g10;
-  const real G4_0_0_4_0 = map.det*c0*c0_0*c1_4*map.g00;
-  const real G4_0_0_5_1 = map.det*c0*c0_0*c1_5*map.g10;
-  const real G4_0_1_0_0 = map.det*c0*c0_1*c1_0*map.g00;
-  const real G4_0_1_0_1 = map.det*c0*c0_1*c1_0*map.g10;
-  const real G4_0_1_1_0 = map.det*c0*c0_1*c1_1*map.g00;
-  const real G4_0_1_2_1 = map.det*c0*c0_1*c1_2*map.g10;
-  const real G4_0_1_3_0 = map.det*c0*c0_1*c1_3*map.g00;
-  const real G4_0_1_3_1 = map.det*c0*c0_1*c1_3*map.g10;
-  const real G4_0_1_4_0 = map.det*c0*c0_1*c1_4*map.g00;
-  const real G4_0_1_5_1 = map.det*c0*c0_1*c1_5*map.g10;
-  const real G4_0_2_0_0 = map.det*c0*c0_2*c1_0*map.g00;
-  const real G4_0_2_0_1 = map.det*c0*c0_2*c1_0*map.g10;
-  const real G4_0_2_1_0 = map.det*c0*c0_2*c1_1*map.g00;
-  const real G4_0_2_2_1 = map.det*c0*c0_2*c1_2*map.g10;
-  const real G4_0_2_3_0 = map.det*c0*c0_2*c1_3*map.g00;
-  const real G4_0_2_3_1 = map.det*c0*c0_2*c1_3*map.g10;
-  const real G4_0_2_4_0 = map.det*c0*c0_2*c1_4*map.g00;
-  const real G4_0_2_5_1 = map.det*c0*c0_2*c1_5*map.g10;
-  const real G4_1_3_0_0 = map.det*c0*c0_3*c1_0*map.g01;
-  const real G4_1_3_0_1 = map.det*c0*c0_3*c1_0*map.g11;
-  const real G4_1_3_1_0 = map.det*c0*c0_3*c1_1*map.g01;
-  const real G4_1_3_2_1 = map.det*c0*c0_3*c1_2*map.g11;
-  const real G4_1_3_3_0 = map.det*c0*c0_3*c1_3*map.g01;
-  const real G4_1_3_3_1 = map.det*c0*c0_3*c1_3*map.g11;
-  const real G4_1_3_4_0 = map.det*c0*c0_3*c1_4*map.g01;
-  const real G4_1_3_5_1 = map.det*c0*c0_3*c1_5*map.g11;
-  const real G4_1_4_0_0 = map.det*c0*c0_4*c1_0*map.g01;
-  const real G4_1_4_0_1 = map.det*c0*c0_4*c1_0*map.g11;
-  const real G4_1_4_1_0 = map.det*c0*c0_4*c1_1*map.g01;
-  const real G4_1_4_2_1 = map.det*c0*c0_4*c1_2*map.g11;
-  const real G4_1_4_3_0 = map.det*c0*c0_4*c1_3*map.g01;
-  const real G4_1_4_3_1 = map.det*c0*c0_4*c1_3*map.g11;
-  const real G4_1_4_4_0 = map.det*c0*c0_4*c1_4*map.g01;
-  const real G4_1_4_5_1 = map.det*c0*c0_4*c1_5*map.g11;
-  const real G4_1_5_0_0 = map.det*c0*c0_5*c1_0*map.g01;
-  const real G4_1_5_0_1 = map.det*c0*c0_5*c1_0*map.g11;
-  const real G4_1_5_1_0 = map.det*c0*c0_5*c1_1*map.g01;
-  const real G4_1_5_2_1 = map.det*c0*c0_5*c1_2*map.g11;
-  const real G4_1_5_3_0 = map.det*c0*c0_5*c1_3*map.g01;
-  const real G4_1_5_3_1 = map.det*c0*c0_5*c1_3*map.g11;
-  const real G4_1_5_4_0 = map.det*c0*c0_5*c1_4*map.g01;
-  const real G4_1_5_5_1 = map.det*c0*c0_5*c1_5*map.g11;
-  const real G5_0_0_0_0_0_0_0_0 = map.det*c0*c4_0*c6_0*c6_0*c1_0*map.g00*map.g00;
-  const real G5_0_0_0_0_0_0_0_1 = map.det*c0*c4_0*c6_0*c6_0*c1_0*map.g00*map.g10;
-  const real G5_0_0_0_0_0_0_1_0 = map.det*c0*c4_0*c6_0*c6_0*c1_1*map.g00*map.g00;
-  const real G5_0_0_0_0_0_0_2_1 = map.det*c0*c4_0*c6_0*c6_0*c1_2*map.g00*map.g10;
-  const real G5_0_0_0_0_0_0_3_0 = map.det*c0*c4_0*c6_0*c6_0*c1_3*map.g00*map.g00;
-  const real G5_0_0_0_0_0_0_3_1 = map.det*c0*c4_0*c6_0*c6_0*c1_3*map.g00*map.g10;
-  const real G5_0_0_0_0_0_0_4_0 = map.det*c0*c4_0*c6_0*c6_0*c1_4*map.g00*map.g00;
-  const real G5_0_0_0_0_0_0_5_1 = map.det*c0*c4_0*c6_0*c6_0*c1_5*map.g00*map.g10;
-  const real G5_0_0_0_0_1_0_0_0 = map.det*c0*c4_0*c6_0*c6_0*c1_0*map.g10*map.g00;
-  const real G5_0_0_0_0_1_0_0_1 = map.det*c0*c4_0*c6_0*c6_0*c1_0*map.g10*map.g10;
-  const real G5_0_0_0_0_1_0_1_0 = map.det*c0*c4_0*c6_0*c6_0*c1_1*map.g10*map.g00;
-  const real G5_0_0_0_0_1_0_2_1 = map.det*c0*c4_0*c6_0*c6_0*c1_2*map.g10*map.g10;
-  const real G5_0_0_0_0_1_0_3_0 = map.det*c0*c4_0*c6_0*c6_0*c1_3*map.g10*map.g00;
-  const real G5_0_0_0_0_1_0_3_1 = map.det*c0*c4_0*c6_0*c6_0*c1_3*map.g10*map.g10;
-  const real G5_0_0_0_0_1_0_4_0 = map.det*c0*c4_0*c6_0*c6_0*c1_4*map.g10*map.g00;
-  const real G5_0_0_0_0_1_0_5_1 = map.det*c0*c4_0*c6_0*c6_0*c1_5*map.g10*map.g10;
-  const real G5_0_0_1_0_0_1_0_0 = map.det*c0*c4_0*c6_1*c6_0*c1_0*map.g01*map.g00;
-  const real G5_0_0_1_0_0_1_0_1 = map.det*c0*c4_0*c6_1*c6_0*c1_0*map.g01*map.g10;
-  const real G5_0_0_1_0_0_1_1_0 = map.det*c0*c4_0*c6_1*c6_0*c1_1*map.g01*map.g00;
-  const real G5_0_0_1_0_0_1_2_1 = map.det*c0*c4_0*c6_1*c6_0*c1_2*map.g01*map.g10;
-  const real G5_0_0_1_0_0_1_3_0 = map.det*c0*c4_0*c6_1*c6_0*c1_3*map.g01*map.g00;
-  const real G5_0_0_1_0_0_1_3_1 = map.det*c0*c4_0*c6_1*c6_0*c1_3*map.g01*map.g10;
-  const real G5_0_0_1_0_0_1_4_0 = map.det*c0*c4_0*c6_1*c6_0*c1_4*map.g01*map.g00;
-  const real G5_0_0_1_0_0_1_5_1 = map.det*c0*c4_0*c6_1*c6_0*c1_5*map.g01*map.g10;
-  const real G5_0_0_1_0_1_1_0_0 = map.det*c0*c4_0*c6_1*c6_0*c1_0*map.g11*map.g00;
-  const real G5_0_0_1_0_1_1_0_1 = map.det*c0*c4_0*c6_1*c6_0*c1_0*map.g11*map.g10;
-  const real G5_0_0_1_0_1_1_1_0 = map.det*c0*c4_0*c6_1*c6_0*c1_1*map.g11*map.g00;
-  const real G5_0_0_1_0_1_1_2_1 = map.det*c0*c4_0*c6_1*c6_0*c1_2*map.g11*map.g10;
-  const real G5_0_0_1_0_1_1_3_0 = map.det*c0*c4_0*c6_1*c6_0*c1_3*map.g11*map.g00;
-  const real G5_0_0_1_0_1_1_3_1 = map.det*c0*c4_0*c6_1*c6_0*c1_3*map.g11*map.g10;
-  const real G5_0_0_1_0_1_1_4_0 = map.det*c0*c4_0*c6_1*c6_0*c1_4*map.g11*map.g00;
-  const real G5_0_0_1_0_1_1_5_1 = map.det*c0*c4_0*c6_1*c6_0*c1_5*map.g11*map.g10;
-  const real G5_1_0_0_1_0_0_0_0 = map.det*c0*c4_0*c6_0*c6_1*c1_0*map.g00*map.g01;
-  const real G5_1_0_0_1_0_0_0_1 = map.det*c0*c4_0*c6_0*c6_1*c1_0*map.g00*map.g11;
-  const real G5_1_0_0_1_0_0_1_0 = map.det*c0*c4_0*c6_0*c6_1*c1_1*map.g00*map.g01;
-  const real G5_1_0_0_1_0_0_2_1 = map.det*c0*c4_0*c6_0*c6_1*c1_2*map.g00*map.g11;
-  const real G5_1_0_0_1_0_0_3_0 = map.det*c0*c4_0*c6_0*c6_1*c1_3*map.g00*map.g01;
-  const real G5_1_0_0_1_0_0_3_1 = map.det*c0*c4_0*c6_0*c6_1*c1_3*map.g00*map.g11;
-  const real G5_1_0_0_1_0_0_4_0 = map.det*c0*c4_0*c6_0*c6_1*c1_4*map.g00*map.g01;
-  const real G5_1_0_0_1_0_0_5_1 = map.det*c0*c4_0*c6_0*c6_1*c1_5*map.g00*map.g11;
-  const real G5_1_0_0_1_1_0_0_0 = map.det*c0*c4_0*c6_0*c6_1*c1_0*map.g10*map.g01;
-  const real G5_1_0_0_1_1_0_0_1 = map.det*c0*c4_0*c6_0*c6_1*c1_0*map.g10*map.g11;
-  const real G5_1_0_0_1_1_0_1_0 = map.det*c0*c4_0*c6_0*c6_1*c1_1*map.g10*map.g01;
-  const real G5_1_0_0_1_1_0_2_1 = map.det*c0*c4_0*c6_0*c6_1*c1_2*map.g10*map.g11;
-  const real G5_1_0_0_1_1_0_3_0 = map.det*c0*c4_0*c6_0*c6_1*c1_3*map.g10*map.g01;
-  const real G5_1_0_0_1_1_0_3_1 = map.det*c0*c4_0*c6_0*c6_1*c1_3*map.g10*map.g11;
-  const real G5_1_0_0_1_1_0_4_0 = map.det*c0*c4_0*c6_0*c6_1*c1_4*map.g10*map.g01;
-  const real G5_1_0_0_1_1_0_5_1 = map.det*c0*c4_0*c6_0*c6_1*c1_5*map.g10*map.g11;
-  const real G5_1_0_1_1_0_1_0_0 = map.det*c0*c4_0*c6_1*c6_1*c1_0*map.g01*map.g01;
-  const real G5_1_0_1_1_0_1_0_1 = map.det*c0*c4_0*c6_1*c6_1*c1_0*map.g01*map.g11;
-  const real G5_1_0_1_1_0_1_1_0 = map.det*c0*c4_0*c6_1*c6_1*c1_1*map.g01*map.g01;
-  const real G5_1_0_1_1_0_1_2_1 = map.det*c0*c4_0*c6_1*c6_1*c1_2*map.g01*map.g11;
-  const real G5_1_0_1_1_0_1_3_0 = map.det*c0*c4_0*c6_1*c6_1*c1_3*map.g01*map.g01;
-  const real G5_1_0_1_1_0_1_3_1 = map.det*c0*c4_0*c6_1*c6_1*c1_3*map.g01*map.g11;
-  const real G5_1_0_1_1_0_1_4_0 = map.det*c0*c4_0*c6_1*c6_1*c1_4*map.g01*map.g01;
-  const real G5_1_0_1_1_0_1_5_1 = map.det*c0*c4_0*c6_1*c6_1*c1_5*map.g01*map.g11;
-  const real G5_1_0_1_1_1_1_0_0 = map.det*c0*c4_0*c6_1*c6_1*c1_0*map.g11*map.g01;
-  const real G5_1_0_1_1_1_1_0_1 = map.det*c0*c4_0*c6_1*c6_1*c1_0*map.g11*map.g11;
-  const real G5_1_0_1_1_1_1_1_0 = map.det*c0*c4_0*c6_1*c6_1*c1_1*map.g11*map.g01;
-  const real G5_1_0_1_1_1_1_2_1 = map.det*c0*c4_0*c6_1*c6_1*c1_2*map.g11*map.g11;
-  const real G5_1_0_1_1_1_1_3_0 = map.det*c0*c4_0*c6_1*c6_1*c1_3*map.g11*map.g01;
-  const real G5_1_0_1_1_1_1_3_1 = map.det*c0*c4_0*c6_1*c6_1*c1_3*map.g11*map.g11;
-  const real G5_1_0_1_1_1_1_4_0 = map.det*c0*c4_0*c6_1*c6_1*c1_4*map.g11*map.g01;
-  const real G5_1_0_1_1_1_1_5_1 = map.det*c0*c4_0*c6_1*c6_1*c1_5*map.g11*map.g11;
-  const real G6_0_0_0_0_0_0 = map.det*c0*c5_0*c1_0*map.g00*map.g00;
-  const real G6_0_0_0_0_1_0 = map.det*c0*c5_0*c1_0*map.g00*map.g10;
-  const real G6_0_0_0_1_0_0 = map.det*c0*c5_0*c1_1*map.g00*map.g00;
-  const real G6_0_0_0_2_1_0 = map.det*c0*c5_0*c1_2*map.g00*map.g10;
-  const real G6_0_0_0_3_0_1 = map.det*c0*c5_0*c1_3*map.g00*map.g01;
-  const real G6_0_0_0_3_1_1 = map.det*c0*c5_0*c1_3*map.g00*map.g11;
-  const real G6_0_0_0_4_0_1 = map.det*c0*c5_0*c1_4*map.g00*map.g01;
-  const real G6_0_0_0_5_1_1 = map.det*c0*c5_0*c1_5*map.g00*map.g11;
-  const real G6_0_0_1_0_0_0 = map.det*c0*c5_0*c1_0*map.g01*map.g00;
-  const real G6_0_0_1_0_1_0 = map.det*c0*c5_0*c1_0*map.g01*map.g10;
-  const real G6_0_0_1_1_0_0 = map.det*c0*c5_0*c1_1*map.g01*map.g00;
-  const real G6_0_0_1_2_1_0 = map.det*c0*c5_0*c1_2*map.g01*map.g10;
-  const real G6_0_0_1_3_0_1 = map.det*c0*c5_0*c1_3*map.g01*map.g01;
-  const real G6_0_0_1_3_1_1 = map.det*c0*c5_0*c1_3*map.g01*map.g11;
-  const real G6_0_0_1_4_0_1 = map.det*c0*c5_0*c1_4*map.g01*map.g01;
-  const real G6_0_0_1_5_1_1 = map.det*c0*c5_0*c1_5*map.g01*map.g11;
-  const real G6_0_1_0_0_0_0 = map.det*c0*c5_0*c1_0*map.g10*map.g00;
-  const real G6_0_1_0_0_1_0 = map.det*c0*c5_0*c1_0*map.g10*map.g10;
-  const real G6_0_1_0_1_0_0 = map.det*c0*c5_0*c1_1*map.g10*map.g00;
-  const real G6_0_1_0_2_1_0 = map.det*c0*c5_0*c1_2*map.g10*map.g10;
-  const real G6_0_1_0_3_0_1 = map.det*c0*c5_0*c1_3*map.g10*map.g01;
-  const real G6_0_1_0_3_1_1 = map.det*c0*c5_0*c1_3*map.g10*map.g11;
-  const real G6_0_1_0_4_0_1 = map.det*c0*c5_0*c1_4*map.g10*map.g01;
-  const real G6_0_1_0_5_1_1 = map.det*c0*c5_0*c1_5*map.g10*map.g11;
-  const real G6_0_1_1_0_0_0 = map.det*c0*c5_0*c1_0*map.g11*map.g00;
-  const real G6_0_1_1_0_1_0 = map.det*c0*c5_0*c1_0*map.g11*map.g10;
-  const real G6_0_1_1_1_0_0 = map.det*c0*c5_0*c1_1*map.g11*map.g00;
-  const real G6_0_1_1_2_1_0 = map.det*c0*c5_0*c1_2*map.g11*map.g10;
-  const real G6_0_1_1_3_0_1 = map.det*c0*c5_0*c1_3*map.g11*map.g01;
-  const real G6_0_1_1_3_1_1 = map.det*c0*c5_0*c1_3*map.g11*map.g11;
-  const real G6_0_1_1_4_0_1 = map.det*c0*c5_0*c1_4*map.g11*map.g01;
-  const real G6_0_1_1_5_1_1 = map.det*c0*c5_0*c1_5*map.g11*map.g11;
+  const real G0_0 = det*c1_0 + det*c0*c2_0;
+  const real G0_1 = det*c1_1 + det*c0*c2_1;
+  const real G0_2 = det*c1_2 + det*c0*c2_2;
+  const real G0_3 = det*c1_3 + det*c0*c2_3;
+  const real G0_4 = det*c1_4 + det*c0*c2_4;
+  const real G0_5 = det*c1_5 + det*c0*c2_5;
+  const real G1_0_0_0 = det*c0*c3_0*map.g00;
+  const real G1_0_0_1 = det*c0*c3_1*map.g00;
+  const real G1_0_0_2 = det*c0*c3_2*map.g00;
+  const real G1_0_1_0 = det*c0*c3_0*map.g01;
+  const real G1_0_1_1 = det*c0*c3_1*map.g01;
+  const real G1_0_1_2 = det*c0*c3_2*map.g01;
+  const real G1_1_0_0 = det*c0*c3_0*map.g10;
+  const real G1_1_0_1 = det*c0*c3_1*map.g10;
+  const real G1_1_0_2 = det*c0*c3_2*map.g10;
+  const real G1_1_1_0 = det*c0*c3_0*map.g11;
+  const real G1_1_1_1 = det*c0*c3_1*map.g11;
+  const real G1_1_1_2 = det*c0*c3_2*map.g11;
+  const real G2_0_0_0 = det*c0*c1*c1_0*map.g00*map.g00 + det*c0*c1*c1_0*map.g01*map.g01;
+  const real G2_0_0_1 = det*c0*c1*c1_0*map.g00*map.g10 + det*c0*c1*c1_0*map.g01*map.g11;
+  const real G2_0_1_0 = det*c0*c1*c1_0*map.g10*map.g00 + det*c0*c1*c1_0*map.g11*map.g01;
+  const real G2_0_1_1 = det*c0*c1*c1_0*map.g10*map.g10 + det*c0*c1*c1_0*map.g11*map.g11;
+  const real G2_1_0_0 = det*c0*c1*c1_1*map.g00*map.g00 + det*c0*c1*c1_1*map.g01*map.g01;
+  const real G2_1_1_0 = det*c0*c1*c1_1*map.g10*map.g00 + det*c0*c1*c1_1*map.g11*map.g01;
+  const real G2_2_0_1 = det*c0*c1*c1_2*map.g00*map.g10 + det*c0*c1*c1_2*map.g01*map.g11;
+  const real G2_2_1_1 = det*c0*c1*c1_2*map.g10*map.g10 + det*c0*c1*c1_2*map.g11*map.g11;
+  const real G3_3_0_0 = det*c0*c1*c1_3*map.g00*map.g00 + det*c0*c1*c1_3*map.g01*map.g01;
+  const real G3_3_0_1 = det*c0*c1*c1_3*map.g00*map.g10 + det*c0*c1*c1_3*map.g01*map.g11;
+  const real G3_3_1_0 = det*c0*c1*c1_3*map.g10*map.g00 + det*c0*c1*c1_3*map.g11*map.g01;
+  const real G3_3_1_1 = det*c0*c1*c1_3*map.g10*map.g10 + det*c0*c1*c1_3*map.g11*map.g11;
+  const real G3_4_0_0 = det*c0*c1*c1_4*map.g00*map.g00 + det*c0*c1*c1_4*map.g01*map.g01;
+  const real G3_4_1_0 = det*c0*c1*c1_4*map.g10*map.g00 + det*c0*c1*c1_4*map.g11*map.g01;
+  const real G3_5_0_1 = det*c0*c1*c1_5*map.g00*map.g10 + det*c0*c1*c1_5*map.g01*map.g11;
+  const real G3_5_1_1 = det*c0*c1*c1_5*map.g10*map.g10 + det*c0*c1*c1_5*map.g11*map.g11;
+  const real G4_0_0_0_0 = det*c0*c0_0*c1_0*map.g00;
+  const real G4_0_0_0_1 = det*c0*c0_0*c1_0*map.g10;
+  const real G4_0_0_1_0 = det*c0*c0_0*c1_1*map.g00;
+  const real G4_0_0_2_1 = det*c0*c0_0*c1_2*map.g10;
+  const real G4_0_0_3_0 = det*c0*c0_0*c1_3*map.g00;
+  const real G4_0_0_3_1 = det*c0*c0_0*c1_3*map.g10;
+  const real G4_0_0_4_0 = det*c0*c0_0*c1_4*map.g00;
+  const real G4_0_0_5_1 = det*c0*c0_0*c1_5*map.g10;
+  const real G4_0_1_0_0 = det*c0*c0_1*c1_0*map.g00;
+  const real G4_0_1_0_1 = det*c0*c0_1*c1_0*map.g10;
+  const real G4_0_1_1_0 = det*c0*c0_1*c1_1*map.g00;
+  const real G4_0_1_2_1 = det*c0*c0_1*c1_2*map.g10;
+  const real G4_0_1_3_0 = det*c0*c0_1*c1_3*map.g00;
+  const real G4_0_1_3_1 = det*c0*c0_1*c1_3*map.g10;
+  const real G4_0_1_4_0 = det*c0*c0_1*c1_4*map.g00;
+  const real G4_0_1_5_1 = det*c0*c0_1*c1_5*map.g10;
+  const real G4_0_2_0_0 = det*c0*c0_2*c1_0*map.g00;
+  const real G4_0_2_0_1 = det*c0*c0_2*c1_0*map.g10;
+  const real G4_0_2_1_0 = det*c0*c0_2*c1_1*map.g00;
+  const real G4_0_2_2_1 = det*c0*c0_2*c1_2*map.g10;
+  const real G4_0_2_3_0 = det*c0*c0_2*c1_3*map.g00;
+  const real G4_0_2_3_1 = det*c0*c0_2*c1_3*map.g10;
+  const real G4_0_2_4_0 = det*c0*c0_2*c1_4*map.g00;
+  const real G4_0_2_5_1 = det*c0*c0_2*c1_5*map.g10;
+  const real G4_1_3_0_0 = det*c0*c0_3*c1_0*map.g01;
+  const real G4_1_3_0_1 = det*c0*c0_3*c1_0*map.g11;
+  const real G4_1_3_1_0 = det*c0*c0_3*c1_1*map.g01;
+  const real G4_1_3_2_1 = det*c0*c0_3*c1_2*map.g11;
+  const real G4_1_3_3_0 = det*c0*c0_3*c1_3*map.g01;
+  const real G4_1_3_3_1 = det*c0*c0_3*c1_3*map.g11;
+  const real G4_1_3_4_0 = det*c0*c0_3*c1_4*map.g01;
+  const real G4_1_3_5_1 = det*c0*c0_3*c1_5*map.g11;
+  const real G4_1_4_0_0 = det*c0*c0_4*c1_0*map.g01;
+  const real G4_1_4_0_1 = det*c0*c0_4*c1_0*map.g11;
+  const real G4_1_4_1_0 = det*c0*c0_4*c1_1*map.g01;
+  const real G4_1_4_2_1 = det*c0*c0_4*c1_2*map.g11;
+  const real G4_1_4_3_0 = det*c0*c0_4*c1_3*map.g01;
+  const real G4_1_4_3_1 = det*c0*c0_4*c1_3*map.g11;
+  const real G4_1_4_4_0 = det*c0*c0_4*c1_4*map.g01;
+  const real G4_1_4_5_1 = det*c0*c0_4*c1_5*map.g11;
+  const real G4_1_5_0_0 = det*c0*c0_5*c1_0*map.g01;
+  const real G4_1_5_0_1 = det*c0*c0_5*c1_0*map.g11;
+  const real G4_1_5_1_0 = det*c0*c0_5*c1_1*map.g01;
+  const real G4_1_5_2_1 = det*c0*c0_5*c1_2*map.g11;
+  const real G4_1_5_3_0 = det*c0*c0_5*c1_3*map.g01;
+  const real G4_1_5_3_1 = det*c0*c0_5*c1_3*map.g11;
+  const real G4_1_5_4_0 = det*c0*c0_5*c1_4*map.g01;
+  const real G4_1_5_5_1 = det*c0*c0_5*c1_5*map.g11;
+  const real G5_0_0_0_0_0_0_0_0 = det*c0*c4_0*c6_0*c6_0*c1_0*map.g00*map.g00;
+  const real G5_0_0_0_0_0_0_0_1 = det*c0*c4_0*c6_0*c6_0*c1_0*map.g00*map.g10;
+  const real G5_0_0_0_0_0_0_1_0 = det*c0*c4_0*c6_0*c6_0*c1_1*map.g00*map.g00;
+  const real G5_0_0_0_0_0_0_2_1 = det*c0*c4_0*c6_0*c6_0*c1_2*map.g00*map.g10;
+  const real G5_0_0_0_0_0_0_3_0 = det*c0*c4_0*c6_0*c6_0*c1_3*map.g00*map.g00;
+  const real G5_0_0_0_0_0_0_3_1 = det*c0*c4_0*c6_0*c6_0*c1_3*map.g00*map.g10;
+  const real G5_0_0_0_0_0_0_4_0 = det*c0*c4_0*c6_0*c6_0*c1_4*map.g00*map.g00;
+  const real G5_0_0_0_0_0_0_5_1 = det*c0*c4_0*c6_0*c6_0*c1_5*map.g00*map.g10;
+  const real G5_0_0_0_0_1_0_0_0 = det*c0*c4_0*c6_0*c6_0*c1_0*map.g10*map.g00;
+  const real G5_0_0_0_0_1_0_0_1 = det*c0*c4_0*c6_0*c6_0*c1_0*map.g10*map.g10;
+  const real G5_0_0_0_0_1_0_1_0 = det*c0*c4_0*c6_0*c6_0*c1_1*map.g10*map.g00;
+  const real G5_0_0_0_0_1_0_2_1 = det*c0*c4_0*c6_0*c6_0*c1_2*map.g10*map.g10;
+  const real G5_0_0_0_0_1_0_3_0 = det*c0*c4_0*c6_0*c6_0*c1_3*map.g10*map.g00;
+  const real G5_0_0_0_0_1_0_3_1 = det*c0*c4_0*c6_0*c6_0*c1_3*map.g10*map.g10;
+  const real G5_0_0_0_0_1_0_4_0 = det*c0*c4_0*c6_0*c6_0*c1_4*map.g10*map.g00;
+  const real G5_0_0_0_0_1_0_5_1 = det*c0*c4_0*c6_0*c6_0*c1_5*map.g10*map.g10;
+  const real G5_0_0_1_0_0_1_0_0 = det*c0*c4_0*c6_1*c6_0*c1_0*map.g01*map.g00;
+  const real G5_0_0_1_0_0_1_0_1 = det*c0*c4_0*c6_1*c6_0*c1_0*map.g01*map.g10;
+  const real G5_0_0_1_0_0_1_1_0 = det*c0*c4_0*c6_1*c6_0*c1_1*map.g01*map.g00;
+  const real G5_0_0_1_0_0_1_2_1 = det*c0*c4_0*c6_1*c6_0*c1_2*map.g01*map.g10;
+  const real G5_0_0_1_0_0_1_3_0 = det*c0*c4_0*c6_1*c6_0*c1_3*map.g01*map.g00;
+  const real G5_0_0_1_0_0_1_3_1 = det*c0*c4_0*c6_1*c6_0*c1_3*map.g01*map.g10;
+  const real G5_0_0_1_0_0_1_4_0 = det*c0*c4_0*c6_1*c6_0*c1_4*map.g01*map.g00;
+  const real G5_0_0_1_0_0_1_5_1 = det*c0*c4_0*c6_1*c6_0*c1_5*map.g01*map.g10;
+  const real G5_0_0_1_0_1_1_0_0 = det*c0*c4_0*c6_1*c6_0*c1_0*map.g11*map.g00;
+  const real G5_0_0_1_0_1_1_0_1 = det*c0*c4_0*c6_1*c6_0*c1_0*map.g11*map.g10;
+  const real G5_0_0_1_0_1_1_1_0 = det*c0*c4_0*c6_1*c6_0*c1_1*map.g11*map.g00;
+  const real G5_0_0_1_0_1_1_2_1 = det*c0*c4_0*c6_1*c6_0*c1_2*map.g11*map.g10;
+  const real G5_0_0_1_0_1_1_3_0 = det*c0*c4_0*c6_1*c6_0*c1_3*map.g11*map.g00;
+  const real G5_0_0_1_0_1_1_3_1 = det*c0*c4_0*c6_1*c6_0*c1_3*map.g11*map.g10;
+  const real G5_0_0_1_0_1_1_4_0 = det*c0*c4_0*c6_1*c6_0*c1_4*map.g11*map.g00;
+  const real G5_0_0_1_0_1_1_5_1 = det*c0*c4_0*c6_1*c6_0*c1_5*map.g11*map.g10;
+  const real G5_1_0_0_1_0_0_0_0 = det*c0*c4_0*c6_0*c6_1*c1_0*map.g00*map.g01;
+  const real G5_1_0_0_1_0_0_0_1 = det*c0*c4_0*c6_0*c6_1*c1_0*map.g00*map.g11;
+  const real G5_1_0_0_1_0_0_1_0 = det*c0*c4_0*c6_0*c6_1*c1_1*map.g00*map.g01;
+  const real G5_1_0_0_1_0_0_2_1 = det*c0*c4_0*c6_0*c6_1*c1_2*map.g00*map.g11;
+  const real G5_1_0_0_1_0_0_3_0 = det*c0*c4_0*c6_0*c6_1*c1_3*map.g00*map.g01;
+  const real G5_1_0_0_1_0_0_3_1 = det*c0*c4_0*c6_0*c6_1*c1_3*map.g00*map.g11;
+  const real G5_1_0_0_1_0_0_4_0 = det*c0*c4_0*c6_0*c6_1*c1_4*map.g00*map.g01;
+  const real G5_1_0_0_1_0_0_5_1 = det*c0*c4_0*c6_0*c6_1*c1_5*map.g00*map.g11;
+  const real G5_1_0_0_1_1_0_0_0 = det*c0*c4_0*c6_0*c6_1*c1_0*map.g10*map.g01;
+  const real G5_1_0_0_1_1_0_0_1 = det*c0*c4_0*c6_0*c6_1*c1_0*map.g10*map.g11;
+  const real G5_1_0_0_1_1_0_1_0 = det*c0*c4_0*c6_0*c6_1*c1_1*map.g10*map.g01;
+  const real G5_1_0_0_1_1_0_2_1 = det*c0*c4_0*c6_0*c6_1*c1_2*map.g10*map.g11;
+  const real G5_1_0_0_1_1_0_3_0 = det*c0*c4_0*c6_0*c6_1*c1_3*map.g10*map.g01;
+  const real G5_1_0_0_1_1_0_3_1 = det*c0*c4_0*c6_0*c6_1*c1_3*map.g10*map.g11;
+  const real G5_1_0_0_1_1_0_4_0 = det*c0*c4_0*c6_0*c6_1*c1_4*map.g10*map.g01;
+  const real G5_1_0_0_1_1_0_5_1 = det*c0*c4_0*c6_0*c6_1*c1_5*map.g10*map.g11;
+  const real G5_1_0_1_1_0_1_0_0 = det*c0*c4_0*c6_1*c6_1*c1_0*map.g01*map.g01;
+  const real G5_1_0_1_1_0_1_0_1 = det*c0*c4_0*c6_1*c6_1*c1_0*map.g01*map.g11;
+  const real G5_1_0_1_1_0_1_1_0 = det*c0*c4_0*c6_1*c6_1*c1_1*map.g01*map.g01;
+  const real G5_1_0_1_1_0_1_2_1 = det*c0*c4_0*c6_1*c6_1*c1_2*map.g01*map.g11;
+  const real G5_1_0_1_1_0_1_3_0 = det*c0*c4_0*c6_1*c6_1*c1_3*map.g01*map.g01;
+  const real G5_1_0_1_1_0_1_3_1 = det*c0*c4_0*c6_1*c6_1*c1_3*map.g01*map.g11;
+  const real G5_1_0_1_1_0_1_4_0 = det*c0*c4_0*c6_1*c6_1*c1_4*map.g01*map.g01;
+  const real G5_1_0_1_1_0_1_5_1 = det*c0*c4_0*c6_1*c6_1*c1_5*map.g01*map.g11;
+  const real G5_1_0_1_1_1_1_0_0 = det*c0*c4_0*c6_1*c6_1*c1_0*map.g11*map.g01;
+  const real G5_1_0_1_1_1_1_0_1 = det*c0*c4_0*c6_1*c6_1*c1_0*map.g11*map.g11;
+  const real G5_1_0_1_1_1_1_1_0 = det*c0*c4_0*c6_1*c6_1*c1_1*map.g11*map.g01;
+  const real G5_1_0_1_1_1_1_2_1 = det*c0*c4_0*c6_1*c6_1*c1_2*map.g11*map.g11;
+  const real G5_1_0_1_1_1_1_3_0 = det*c0*c4_0*c6_1*c6_1*c1_3*map.g11*map.g01;
+  const real G5_1_0_1_1_1_1_3_1 = det*c0*c4_0*c6_1*c6_1*c1_3*map.g11*map.g11;
+  const real G5_1_0_1_1_1_1_4_0 = det*c0*c4_0*c6_1*c6_1*c1_4*map.g11*map.g01;
+  const real G5_1_0_1_1_1_1_5_1 = det*c0*c4_0*c6_1*c6_1*c1_5*map.g11*map.g11;
+  const real G6_0_0_0_0_0_0 = det*c0*c5_0*c1_0*map.g00*map.g00;
+  const real G6_0_0_0_0_1_0 = det*c0*c5_0*c1_0*map.g00*map.g10;
+  const real G6_0_0_0_1_0_0 = det*c0*c5_0*c1_1*map.g00*map.g00;
+  const real G6_0_0_0_2_1_0 = det*c0*c5_0*c1_2*map.g00*map.g10;
+  const real G6_0_0_0_3_0_1 = det*c0*c5_0*c1_3*map.g00*map.g01;
+  const real G6_0_0_0_3_1_1 = det*c0*c5_0*c1_3*map.g00*map.g11;
+  const real G6_0_0_0_4_0_1 = det*c0*c5_0*c1_4*map.g00*map.g01;
+  const real G6_0_0_0_5_1_1 = det*c0*c5_0*c1_5*map.g00*map.g11;
+  const real G6_0_0_1_0_0_0 = det*c0*c5_0*c1_0*map.g01*map.g00;
+  const real G6_0_0_1_0_1_0 = det*c0*c5_0*c1_0*map.g01*map.g10;
+  const real G6_0_0_1_1_0_0 = det*c0*c5_0*c1_1*map.g01*map.g00;
+  const real G6_0_0_1_2_1_0 = det*c0*c5_0*c1_2*map.g01*map.g10;
+  const real G6_0_0_1_3_0_1 = det*c0*c5_0*c1_3*map.g01*map.g01;
+  const real G6_0_0_1_3_1_1 = det*c0*c5_0*c1_3*map.g01*map.g11;
+  const real G6_0_0_1_4_0_1 = det*c0*c5_0*c1_4*map.g01*map.g01;
+  const real G6_0_0_1_5_1_1 = det*c0*c5_0*c1_5*map.g01*map.g11;
+  const real G6_0_1_0_0_0_0 = det*c0*c5_0*c1_0*map.g10*map.g00;
+  const real G6_0_1_0_0_1_0 = det*c0*c5_0*c1_0*map.g10*map.g10;
+  const real G6_0_1_0_1_0_0 = det*c0*c5_0*c1_1*map.g10*map.g00;
+  const real G6_0_1_0_2_1_0 = det*c0*c5_0*c1_2*map.g10*map.g10;
+  const real G6_0_1_0_3_0_1 = det*c0*c5_0*c1_3*map.g10*map.g01;
+  const real G6_0_1_0_3_1_1 = det*c0*c5_0*c1_3*map.g10*map.g11;
+  const real G6_0_1_0_4_0_1 = det*c0*c5_0*c1_4*map.g10*map.g01;
+  const real G6_0_1_0_5_1_1 = det*c0*c5_0*c1_5*map.g10*map.g11;
+  const real G6_0_1_1_0_0_0 = det*c0*c5_0*c1_0*map.g11*map.g00;
+  const real G6_0_1_1_0_1_0 = det*c0*c5_0*c1_0*map.g11*map.g10;
+  const real G6_0_1_1_1_0_0 = det*c0*c5_0*c1_1*map.g11*map.g00;
+  const real G6_0_1_1_2_1_0 = det*c0*c5_0*c1_2*map.g11*map.g10;
+  const real G6_0_1_1_3_0_1 = det*c0*c5_0*c1_3*map.g11*map.g01;
+  const real G6_0_1_1_3_1_1 = det*c0*c5_0*c1_3*map.g11*map.g11;
+  const real G6_0_1_1_4_0_1 = det*c0*c5_0*c1_4*map.g11*map.g01;
+  const real G6_0_1_1_5_1_1 = det*c0*c5_0*c1_5*map.g11*map.g11;
 
   // Compute element tensor
   block[0] = 8.333333333333318e-02*G0_0 + 4.166666666666659e-02*G0_1 + 4.166666666666657e-02*G0_2 - 1.666666666666665e-01*G1_0_0_0 - 1.666666666666666e-01*G1_0_0_1 - 1.666666666666665e-01*G1_0_0_2 - 1.666666666666665e-01*G1_1_0_0 - 1.666666666666665e-01*G1_1_0_1 - 1.666666666666665e-01*G1_1_0_2 - 2.499999999999999e-01*G2_0_0_0 - 2.499999999999998e-01*G2_0_0_1 - 2.499999999999998e-01*G2_0_1_0 - 2.499999999999998e-01*G2_0_1_1 + 2.499999999999999e-01*G2_1_0_0 + 2.499999999999998e-01*G2_1_1_0 + 2.499999999999998e-01*G2_2_0_1 + 2.499999999999998e-01*G2_2_1_1 + 4.166666666666659e-02*G4_0_0_0_0 + 4.166666666666659e-02*G4_0_0_0_1 - 4.166666666666659e-02*G4_0_0_1_0 - 4.166666666666659e-02*G4_0_0_2_1 + 2.083333333333330e-02*G4_0_1_0_0 + 2.083333333333329e-02*G4_0_1_0_1 - 2.083333333333330e-02*G4_0_1_1_0 - 2.083333333333329e-02*G4_0_1_2_1 + 2.083333333333329e-02*G4_0_2_0_0 + 2.083333333333329e-02*G4_0_2_0_1 - 2.083333333333329e-02*G4_0_2_1_0 - 2.083333333333329e-02*G4_0_2_2_1 + 4.166666666666659e-02*G4_1_3_0_0 + 4.166666666666659e-02*G4_1_3_0_1 - 4.166666666666659e-02*G4_1_3_1_0 - 4.166666666666659e-02*G4_1_3_2_1 + 2.083333333333330e-02*G4_1_4_0_0 + 2.083333333333329e-02*G4_1_4_0_1 - 2.083333333333330e-02*G4_1_4_1_0 - 2.083333333333329e-02*G4_1_4_2_1 + 2.083333333333329e-02*G4_1_5_0_0 + 2.083333333333329e-02*G4_1_5_0_1 - 2.083333333333329e-02*G4_1_5_1_0 - 2.083333333333329e-02*G4_1_5_2_1 - 2.499999999999999e-01*G5_0_0_0_0_0_0_0_0 - 2.499999999999998e-01*G5_0_0_0_0_0_0_0_1 + 2.499999999999999e-01*G5_0_0_0_0_0_0_1_0 + 2.499999999999998e-01*G5_0_0_0_0_0_0_2_1 - 2.499999999999998e-01*G5_0_0_0_0_1_0_0_0 - 2.499999999999998e-01*G5_0_0_0_0_1_0_0_1 + 2.499999999999998e-01*G5_0_0_0_0_1_0_1_0 + 2.499999999999998e-01*G5_0_0_0_0_1_0_2_1 - 2.499999999999999e-01*G5_0_0_1_0_0_1_0_0 - 2.499999999999998e-01*G5_0_0_1_0_0_1_0_1 + 2.499999999999999e-01*G5_0_0_1_0_0_1_1_0 + 2.499999999999998e-01*G5_0_0_1_0_0_1_2_1 - 2.499999999999998e-01*G5_0_0_1_0_1_1_0_0 - 2.499999999999998e-01*G5_0_0_1_0_1_1_0_1 + 2.499999999999998e-01*G5_0_0_1_0_1_1_1_0 + 2.499999999999998e-01*G5_0_0_1_0_1_1_2_1 - 2.499999999999999e-01*G5_1_0_0_1_0_0_0_0 - 2.499999999999998e-01*G5_1_0_0_1_0_0_0_1 + 2.499999999999999e-01*G5_1_0_0_1_0_0_1_0 + 2.499999999999998e-01*G5_1_0_0_1_0_0_2_1 - 2.499999999999998e-01*G5_1_0_0_1_1_0_0_0 - 2.499999999999998e-01*G5_1_0_0_1_1_0_0_1 + 2.499999999999998e-01*G5_1_0_0_1_1_0_1_0 + 2.499999999999998e-01*G5_1_0_0_1_1_0_2_1 - 2.499999999999999e-01*G5_1_0_1_1_0_1_0_0 - 2.499999999999998e-01*G5_1_0_1_1_0_1_0_1 + 2.499999999999999e-01*G5_1_0_1_1_0_1_1_0 + 2.499999999999998e-01*G5_1_0_1_1_0_1_2_1 - 2.499999999999998e-01*G5_1_0_1_1_1_1_0_0 - 2.499999999999998e-01*G5_1_0_1_1_1_1_0_1 + 2.499999999999998e-01*G5_1_0_1_1_1_1_1_0 + 2.499999999999998e-01*G5_1_0_1_1_1_1_2_1 - 2.499999999999999e-01*G6_0_0_0_0_0_0 - 2.499999999999998e-01*G6_0_0_0_0_1_0 + 2.499999999999999e-01*G6_0_0_0_1_0_0 + 2.499999999999998e-01*G6_0_0_0_2_1_0 - 2.499999999999999e-01*G6_0_0_0_3_0_1 - 2.499999999999998e-01*G6_0_0_0_3_1_1 + 2.499999999999999e-01*G6_0_0_0_4_0_1 + 2.499999999999998e-01*G6_0_0_0_5_1_1 - 2.499999999999998e-01*G6_0_1_0_0_0_0 - 2.499999999999998e-01*G6_0_1_0_0_1_0 + 2.499999999999998e-01*G6_0_1_0_1_0_0 + 2.499999999999998e-01*G6_0_1_0_2_1_0 - 2.499999999999998e-01*G6_0_1_0_3_0_1 - 2.499999999999998e-01*G6_0_1_0_3_1_1 + 2.499999999999998e-01*G6_0_1_0_4_0_1 + 2.499999999999998e-01*G6_0_1_0_5_1_1;
@@ -1666,12 +1666,12 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool LinearForm::boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void LinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool LinearForm::interior_boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 } }
 

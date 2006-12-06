@@ -34,15 +34,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 };
 
@@ -1026,54 +1026,54 @@ BilinearForm::BilinearForm() : dolfin::BilinearForm(0)
 // Contribution from the interior
 bool BilinearForm::interior_contribution() const { return true; }
 
-void BilinearForm::eval(real block[], const AffineMap& map) const
+void BilinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute geometry tensors
-  const real G0_0_0 = map.det*map.g00*map.g00 + map.det*map.g01*map.g01 + map.det*map.g02*map.g02;
-  const real G0_0_1 = map.det*map.g00*map.g10 + map.det*map.g01*map.g11 + map.det*map.g02*map.g12;
-  const real G0_0_2 = map.det*map.g00*map.g20 + map.det*map.g01*map.g21 + map.det*map.g02*map.g22;
-  const real G0_1_0 = map.det*map.g10*map.g00 + map.det*map.g11*map.g01 + map.det*map.g12*map.g02;
-  const real G0_1_1 = map.det*map.g10*map.g10 + map.det*map.g11*map.g11 + map.det*map.g12*map.g12;
-  const real G0_1_2 = map.det*map.g10*map.g20 + map.det*map.g11*map.g21 + map.det*map.g12*map.g22;
-  const real G0_2_0 = map.det*map.g20*map.g00 + map.det*map.g21*map.g01 + map.det*map.g22*map.g02;
-  const real G0_2_1 = map.det*map.g20*map.g10 + map.det*map.g21*map.g11 + map.det*map.g22*map.g12;
-  const real G0_2_2 = map.det*map.g20*map.g20 + map.det*map.g21*map.g21 + map.det*map.g22*map.g22;
-  const real G1_0_0 = map.det*map.g00*map.g00 + map.det*map.g01*map.g01 + map.det*map.g02*map.g02;
-  const real G1_0_1 = map.det*map.g00*map.g10 + map.det*map.g01*map.g11 + map.det*map.g02*map.g12;
-  const real G1_0_2 = map.det*map.g00*map.g20 + map.det*map.g01*map.g21 + map.det*map.g02*map.g22;
-  const real G1_1_0 = map.det*map.g10*map.g00 + map.det*map.g11*map.g01 + map.det*map.g12*map.g02;
-  const real G1_1_1 = map.det*map.g10*map.g10 + map.det*map.g11*map.g11 + map.det*map.g12*map.g12;
-  const real G1_1_2 = map.det*map.g10*map.g20 + map.det*map.g11*map.g21 + map.det*map.g12*map.g22;
-  const real G1_2_0 = map.det*map.g20*map.g00 + map.det*map.g21*map.g01 + map.det*map.g22*map.g02;
-  const real G1_2_1 = map.det*map.g20*map.g10 + map.det*map.g21*map.g11 + map.det*map.g22*map.g12;
-  const real G1_2_2 = map.det*map.g20*map.g20 + map.det*map.g21*map.g21 + map.det*map.g22*map.g22;
-  const real G2_0_0 = map.det*map.g00*map.g00 + map.det*map.g01*map.g01 + map.det*map.g02*map.g02;
-  const real G2_0_1 = map.det*map.g00*map.g10 + map.det*map.g01*map.g11 + map.det*map.g02*map.g12;
-  const real G2_0_2 = map.det*map.g00*map.g20 + map.det*map.g01*map.g21 + map.det*map.g02*map.g22;
-  const real G2_1_0 = map.det*map.g10*map.g00 + map.det*map.g11*map.g01 + map.det*map.g12*map.g02;
-  const real G2_1_1 = map.det*map.g10*map.g10 + map.det*map.g11*map.g11 + map.det*map.g12*map.g12;
-  const real G2_1_2 = map.det*map.g10*map.g20 + map.det*map.g11*map.g21 + map.det*map.g12*map.g22;
-  const real G2_2_0 = map.det*map.g20*map.g00 + map.det*map.g21*map.g01 + map.det*map.g22*map.g02;
-  const real G2_2_1 = map.det*map.g20*map.g10 + map.det*map.g21*map.g11 + map.det*map.g22*map.g12;
-  const real G2_2_2 = map.det*map.g20*map.g20 + map.det*map.g21*map.g21 + map.det*map.g22*map.g22;
-  const real G3_0 = map.det*map.g00;
-  const real G3_1 = map.det*map.g10;
-  const real G3_2 = map.det*map.g20;
-  const real G4_0 = map.det*map.g01;
-  const real G4_1 = map.det*map.g11;
-  const real G4_2 = map.det*map.g21;
-  const real G5_0 = map.det*map.g02;
-  const real G5_1 = map.det*map.g12;
-  const real G5_2 = map.det*map.g22;
-  const real G6_0 = map.det*map.g00;
-  const real G6_1 = map.det*map.g10;
-  const real G6_2 = map.det*map.g20;
-  const real G7_0 = map.det*map.g01;
-  const real G7_1 = map.det*map.g11;
-  const real G7_2 = map.det*map.g21;
-  const real G8_0 = map.det*map.g02;
-  const real G8_1 = map.det*map.g12;
-  const real G8_2 = map.det*map.g22;
+  const real G0_0_0 = det*map.g00*map.g00 + det*map.g01*map.g01 + det*map.g02*map.g02;
+  const real G0_0_1 = det*map.g00*map.g10 + det*map.g01*map.g11 + det*map.g02*map.g12;
+  const real G0_0_2 = det*map.g00*map.g20 + det*map.g01*map.g21 + det*map.g02*map.g22;
+  const real G0_1_0 = det*map.g10*map.g00 + det*map.g11*map.g01 + det*map.g12*map.g02;
+  const real G0_1_1 = det*map.g10*map.g10 + det*map.g11*map.g11 + det*map.g12*map.g12;
+  const real G0_1_2 = det*map.g10*map.g20 + det*map.g11*map.g21 + det*map.g12*map.g22;
+  const real G0_2_0 = det*map.g20*map.g00 + det*map.g21*map.g01 + det*map.g22*map.g02;
+  const real G0_2_1 = det*map.g20*map.g10 + det*map.g21*map.g11 + det*map.g22*map.g12;
+  const real G0_2_2 = det*map.g20*map.g20 + det*map.g21*map.g21 + det*map.g22*map.g22;
+  const real G1_0_0 = det*map.g00*map.g00 + det*map.g01*map.g01 + det*map.g02*map.g02;
+  const real G1_0_1 = det*map.g00*map.g10 + det*map.g01*map.g11 + det*map.g02*map.g12;
+  const real G1_0_2 = det*map.g00*map.g20 + det*map.g01*map.g21 + det*map.g02*map.g22;
+  const real G1_1_0 = det*map.g10*map.g00 + det*map.g11*map.g01 + det*map.g12*map.g02;
+  const real G1_1_1 = det*map.g10*map.g10 + det*map.g11*map.g11 + det*map.g12*map.g12;
+  const real G1_1_2 = det*map.g10*map.g20 + det*map.g11*map.g21 + det*map.g12*map.g22;
+  const real G1_2_0 = det*map.g20*map.g00 + det*map.g21*map.g01 + det*map.g22*map.g02;
+  const real G1_2_1 = det*map.g20*map.g10 + det*map.g21*map.g11 + det*map.g22*map.g12;
+  const real G1_2_2 = det*map.g20*map.g20 + det*map.g21*map.g21 + det*map.g22*map.g22;
+  const real G2_0_0 = det*map.g00*map.g00 + det*map.g01*map.g01 + det*map.g02*map.g02;
+  const real G2_0_1 = det*map.g00*map.g10 + det*map.g01*map.g11 + det*map.g02*map.g12;
+  const real G2_0_2 = det*map.g00*map.g20 + det*map.g01*map.g21 + det*map.g02*map.g22;
+  const real G2_1_0 = det*map.g10*map.g00 + det*map.g11*map.g01 + det*map.g12*map.g02;
+  const real G2_1_1 = det*map.g10*map.g10 + det*map.g11*map.g11 + det*map.g12*map.g12;
+  const real G2_1_2 = det*map.g10*map.g20 + det*map.g11*map.g21 + det*map.g12*map.g22;
+  const real G2_2_0 = det*map.g20*map.g00 + det*map.g21*map.g01 + det*map.g22*map.g02;
+  const real G2_2_1 = det*map.g20*map.g10 + det*map.g21*map.g11 + det*map.g22*map.g12;
+  const real G2_2_2 = det*map.g20*map.g20 + det*map.g21*map.g21 + det*map.g22*map.g22;
+  const real G3_0 = det*map.g00;
+  const real G3_1 = det*map.g10;
+  const real G3_2 = det*map.g20;
+  const real G4_0 = det*map.g01;
+  const real G4_1 = det*map.g11;
+  const real G4_2 = det*map.g21;
+  const real G5_0 = det*map.g02;
+  const real G5_1 = det*map.g12;
+  const real G5_2 = det*map.g22;
+  const real G6_0 = det*map.g00;
+  const real G6_1 = det*map.g10;
+  const real G6_2 = det*map.g20;
+  const real G7_0 = det*map.g01;
+  const real G7_1 = det*map.g11;
+  const real G7_2 = det*map.g21;
+  const real G8_0 = det*map.g02;
+  const real G8_1 = det*map.g12;
+  const real G8_2 = det*map.g22;
 
   // Compute element tensor
   block[0] = 9.999999999999977e-02*G0_0_0 + 9.999999999999976e-02*G0_0_1 + 9.999999999999976e-02*G0_0_2 + 9.999999999999976e-02*G0_1_0 + 9.999999999999976e-02*G0_1_1 + 9.999999999999976e-02*G0_1_2 + 9.999999999999976e-02*G0_2_0 + 9.999999999999976e-02*G0_2_1 + 9.999999999999976e-02*G0_2_2;
@@ -2237,12 +2237,12 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool BilinearForm::boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void BilinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool BilinearForm::interior_boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -2260,15 +2260,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 };
 
@@ -2953,7 +2953,7 @@ LinearForm::LinearForm(Function& w0) : dolfin::LinearForm(1)
 // Contribution from the interior
 bool LinearForm::interior_contribution() const { return true; }
 
-void LinearForm::eval(real block[], const AffineMap& map) const
+void LinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute coefficients
   const real c0_0 = c[0][0];
@@ -2988,36 +2988,36 @@ void LinearForm::eval(real block[], const AffineMap& map) const
   const real c0_29 = c[0][29];
 
   // Compute geometry tensors
-  const real G0_0 = map.det*c0_0;
-  const real G0_1 = map.det*c0_1;
-  const real G0_2 = map.det*c0_2;
-  const real G0_3 = map.det*c0_3;
-  const real G0_4 = map.det*c0_4;
-  const real G0_5 = map.det*c0_5;
-  const real G0_6 = map.det*c0_6;
-  const real G0_7 = map.det*c0_7;
-  const real G0_8 = map.det*c0_8;
-  const real G0_9 = map.det*c0_9;
-  const real G1_10 = map.det*c0_10;
-  const real G1_11 = map.det*c0_11;
-  const real G1_12 = map.det*c0_12;
-  const real G1_13 = map.det*c0_13;
-  const real G1_14 = map.det*c0_14;
-  const real G1_15 = map.det*c0_15;
-  const real G1_16 = map.det*c0_16;
-  const real G1_17 = map.det*c0_17;
-  const real G1_18 = map.det*c0_18;
-  const real G1_19 = map.det*c0_19;
-  const real G2_20 = map.det*c0_20;
-  const real G2_21 = map.det*c0_21;
-  const real G2_22 = map.det*c0_22;
-  const real G2_23 = map.det*c0_23;
-  const real G2_24 = map.det*c0_24;
-  const real G2_25 = map.det*c0_25;
-  const real G2_26 = map.det*c0_26;
-  const real G2_27 = map.det*c0_27;
-  const real G2_28 = map.det*c0_28;
-  const real G2_29 = map.det*c0_29;
+  const real G0_0 = det*c0_0;
+  const real G0_1 = det*c0_1;
+  const real G0_2 = det*c0_2;
+  const real G0_3 = det*c0_3;
+  const real G0_4 = det*c0_4;
+  const real G0_5 = det*c0_5;
+  const real G0_6 = det*c0_6;
+  const real G0_7 = det*c0_7;
+  const real G0_8 = det*c0_8;
+  const real G0_9 = det*c0_9;
+  const real G1_10 = det*c0_10;
+  const real G1_11 = det*c0_11;
+  const real G1_12 = det*c0_12;
+  const real G1_13 = det*c0_13;
+  const real G1_14 = det*c0_14;
+  const real G1_15 = det*c0_15;
+  const real G1_16 = det*c0_16;
+  const real G1_17 = det*c0_17;
+  const real G1_18 = det*c0_18;
+  const real G1_19 = det*c0_19;
+  const real G2_20 = det*c0_20;
+  const real G2_21 = det*c0_21;
+  const real G2_22 = det*c0_22;
+  const real G2_23 = det*c0_23;
+  const real G2_24 = det*c0_24;
+  const real G2_25 = det*c0_25;
+  const real G2_26 = det*c0_26;
+  const real G2_27 = det*c0_27;
+  const real G2_28 = det*c0_28;
+  const real G2_29 = det*c0_29;
 
   // Compute element tensor
   block[0] = 2.380952380952376e-03*G0_0 + 3.968253968253970e-04*G0_1 + 3.968253968253967e-04*G0_2 + 3.968253968253977e-04*G0_3 - 2.380952380952377e-03*G0_4 - 1.587301587301585e-03*G0_5 - 1.587301587301587e-03*G0_6 - 1.587301587301587e-03*G0_7 - 2.380952380952379e-03*G0_8 - 2.380952380952379e-03*G0_9;
@@ -3059,12 +3059,12 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool LinearForm::boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void LinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool LinearForm::interior_boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 } }
 
