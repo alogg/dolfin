@@ -34,15 +34,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 };
 
@@ -254,10 +254,10 @@ BilinearForm::BilinearForm() : dolfin::BilinearForm(0)
 // Contribution from the interior
 bool BilinearForm::interior_contribution() const { return true; }
 
-void BilinearForm::eval(real block[], const AffineMap& map) const
+void BilinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute geometry tensors
-  const real G0_ = map.det;
+  const real G0_ = det;
 
   // Compute element tensor
   block[0] = 1.666666666666662e-02*G0_;
@@ -281,12 +281,12 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool BilinearForm::boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void BilinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool BilinearForm::interior_boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -304,15 +304,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 };
 
@@ -515,13 +515,13 @@ LinearForm::LinearForm(Function& w0) : dolfin::LinearForm(1)
 // Contribution from the interior
 bool LinearForm::interior_contribution() const { return true; }
 
-void LinearForm::eval(real block[], const AffineMap& map) const
+void LinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute coefficients
   const real c0_0 = c[0][0];
 
   // Compute geometry tensors
-  const real G0_0 = map.det*c0_0;
+  const real G0_0 = det*c0_0;
 
   // Compute element tensor
   block[0] = 4.166666666666662e-02*G0_0;
@@ -533,12 +533,12 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool LinearForm::boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void LinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool LinearForm::interior_boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 } }
 

@@ -34,15 +34,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 };
 
@@ -366,13 +366,13 @@ BilinearForm::BilinearForm() : dolfin::BilinearForm(0)
 // Contribution from the interior
 bool BilinearForm::interior_contribution() const { return true; }
 
-void BilinearForm::eval(real block[], const AffineMap& map) const
+void BilinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute geometry tensors
-  const real G0_0_0 = map.det*(map.g00*map.g00 + map.g01*map.g01);
-  const real G0_0_1 = map.det*(map.g00*map.g10 + map.g01*map.g11);
-  const real G0_1_0 = map.det*(map.g10*map.g00 + map.g11*map.g01);
-  const real G0_1_1 = map.det*(map.g10*map.g10 + map.g11*map.g11);
+  const real G0_0_0 = det*(map.g00*map.g00 + map.g01*map.g01);
+  const real G0_0_1 = det*(map.g00*map.g10 + map.g01*map.g11);
+  const real G0_1_0 = det*(map.g10*map.g00 + map.g11*map.g01);
+  const real G0_1_1 = det*(map.g10*map.g10 + map.g11*map.g11);
 
   // Compute element tensor
   block[0] = 3.424065806878294e-01*G0_0_0 + 3.424065806878294e-01*G0_0_1 + 3.424065806878294e-01*G0_1_0 + 3.424065806878294e-01*G0_1_1;
@@ -821,12 +821,12 @@ void BilinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool BilinearForm::boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void BilinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool BilinearForm::interior_boundary_contribution() const { return false; }
 
-void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
@@ -844,15 +844,15 @@ public:
 
   bool interior_contribution() const;
 
-  void eval(real block[], const AffineMap& map) const;
+  void eval(real block[], const AffineMap& map, real det) const;
 
   bool boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map, unsigned int facet) const;
+  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
 
   bool interior_boundary_contribution() const;
 
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
+  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
 
 };
 
@@ -1176,7 +1176,7 @@ LinearForm::LinearForm(Function& w0) : dolfin::LinearForm(1)
 // Contribution from the interior
 bool LinearForm::interior_contribution() const { return true; }
 
-void LinearForm::eval(real block[], const AffineMap& map) const
+void LinearForm::eval(real block[], const AffineMap& map, real det) const
 {
   // Compute coefficients
   const real c0_0 = c[0][0];
@@ -1202,27 +1202,27 @@ void LinearForm::eval(real block[], const AffineMap& map) const
   const real c0_20 = c[0][20];
 
   // Compute geometry tensors
-  const real G0_0 = map.det*c0_0;
-  const real G0_1 = map.det*c0_1;
-  const real G0_2 = map.det*c0_2;
-  const real G0_3 = map.det*c0_3;
-  const real G0_4 = map.det*c0_4;
-  const real G0_5 = map.det*c0_5;
-  const real G0_6 = map.det*c0_6;
-  const real G0_7 = map.det*c0_7;
-  const real G0_8 = map.det*c0_8;
-  const real G0_9 = map.det*c0_9;
-  const real G0_10 = map.det*c0_10;
-  const real G0_11 = map.det*c0_11;
-  const real G0_12 = map.det*c0_12;
-  const real G0_13 = map.det*c0_13;
-  const real G0_14 = map.det*c0_14;
-  const real G0_15 = map.det*c0_15;
-  const real G0_16 = map.det*c0_16;
-  const real G0_17 = map.det*c0_17;
-  const real G0_18 = map.det*c0_18;
-  const real G0_19 = map.det*c0_19;
-  const real G0_20 = map.det*c0_20;
+  const real G0_0 = det*c0_0;
+  const real G0_1 = det*c0_1;
+  const real G0_2 = det*c0_2;
+  const real G0_3 = det*c0_3;
+  const real G0_4 = det*c0_4;
+  const real G0_5 = det*c0_5;
+  const real G0_6 = det*c0_6;
+  const real G0_7 = det*c0_7;
+  const real G0_8 = det*c0_8;
+  const real G0_9 = det*c0_9;
+  const real G0_10 = det*c0_10;
+  const real G0_11 = det*c0_11;
+  const real G0_12 = det*c0_12;
+  const real G0_13 = det*c0_13;
+  const real G0_14 = det*c0_14;
+  const real G0_15 = det*c0_15;
+  const real G0_16 = det*c0_16;
+  const real G0_17 = det*c0_17;
+  const real G0_18 = det*c0_18;
+  const real G0_19 = det*c0_19;
+  const real G0_20 = det*c0_20;
 
   // Compute element tensor
   block[0] = 1.389452561327610e-03*G0_0 + 1.238774567767666e-04*G0_1 + 1.238774567767667e-04*G0_2 + 3.636470107824420e-04*G0_3 + 2.072018131045970e-04*G0_4 + 2.072018131045992e-04*G0_5 + 3.636470107824400e-04*G0_6 - 2.296443268665478e-05*G0_7 + 4.626811267436415e-04*G0_8 - 9.582431457431771e-04*G0_9 + 1.181363486051024e-03*G0_10 + 1.181363486051025e-03*G0_11 - 9.582431457431756e-04*G0_12 + 4.626811267436406e-04*G0_13 - 2.296443268665224e-05*G0_14 + 8.924813612313922e-04*G0_15 - 9.746835918711264e-04*G0_16 + 8.794333881139765e-04*G0_17 - 9.746835918711270e-04*G0_18 + 6.497890612474163e-04*G0_19 + 8.794333881139744e-04*G0_20;
@@ -1251,12 +1251,12 @@ void LinearForm::eval(real block[], const AffineMap& map) const
 // No contribution from the boundary
 bool LinearForm::boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map, unsigned int facet) const {}
+void LinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
 
 // No contribution from interior boundaries
 bool LinearForm::interior_boundary_contribution() const { return false; }
 
-void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
+void LinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
 
 } }
 
