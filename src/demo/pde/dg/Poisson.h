@@ -260,7 +260,7 @@ bool BilinearForm::interior_boundary_contribution() const { return true; }
 void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, unsigned int facet0, unsigned int facet1, unsigned int alignment) const
 {
   // Compute geometry tensors
-  const real G0_ = map.det;
+  const real G0_ = map0.det;
 
   // Compute interior facet tensor
   switch ( facet0 )
