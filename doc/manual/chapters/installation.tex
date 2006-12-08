@@ -23,7 +23,9 @@ other \fenics{} components.
 \index{dependencies}
 
 \dolfin{} depends on a number of libraries that need to be installed on your
-system. These libraries include Boost, Libxml2 and (optionally) PETSc. In addition to these 
+system. These libraries include Boost, Libxml2 and optionally PETSc and UMFPACK. 
+If you wish to use the Python interface \pydolfin{}, the libraries SWIG 
+and NumPy are required. In addition to these 
 libraries, you need to install \fiat{} and \ffc{} if you want to define your 
 own variational forms.
 
@@ -47,6 +49,47 @@ http://xmlsoft.org/
 \end{code}
 Packages are available for most Linux distributions. For Ubuntu/Debian users, the 
 package to install is \texttt{libxml2-dev}.
+
+
+\subsubsection{Installing NumPy}
+\index{NumPy}
+
+NumPy is required for generating the Python interface \pydolfin{}. 
+It can be obtained from
+\begin{code}
+http://numpy.scipy.org/
+\end{code}
+Packages are available for most Linux distributions. For Ubuntu/Debian users,
+the packages \texttt{python-numpy} \texttt{python-numpy-ext} should be installed.
+
+
+\subsubsection{Installing SWIG}
+\index{SWIG}
+
+SWIG is also required for generating the Python interface \pydolfin{}. 
+It can be obtained from
+\begin{code}
+http://www.swig.org/
+\end{code}
+Packages are available for most Linux distributions. For Ubuntu/Debian users,
+the package \texttt{swig} should be installed.
+
+
+\subsubsection{Installing UMFPACK}
+\index{UMFPACK}
+
+UMFAPCK is part of the SuiteSparse collection and is a library for the direct 
+solution of linear systems. It is highly recommended if PESTSc is not installed. 
+If PETSc is not installed, UMFPACK is the default direct linear solver.
+The SuiteSparse collection can be downloaded from
+\begin{code}
+http://www.cise.ufl.edu/research/sparse/SuiteSparse/
+\end{code}
+UMFPACK is available as a package for many Linux distributions. For 
+Ubuntu/Debian users, the packages \texttt{libumfpack4} and 
+\texttt{libumfpack4-dev} should be installed. For other distributions, the package
+may be called \texttt{libufsparse}.
+
 
 \subsubsection{Installing PETSc}
 \index{PETSc}
@@ -100,8 +143,8 @@ in the \ffc{} source directory:
 \end{code}
 
 Note that \ffc{} depends on \fiat{} \index{FIAT}, which in turn depends on
-the Python packages Numeric (Debian package \texttt{python-numeric}) and
-LinearAlgebra (Debian package \texttt{python-numeric-ext}). Refer to
+the Python packages NumPy~\cite{www:numpy} (Debian package \texttt{python-numpy}) and
+LinearAlgebra (Debian package \texttt{python-numpy-ext}). Refer to
 the \ffc{} manual for further details.
 
 % Input section shared with FFC manual
@@ -228,9 +271,13 @@ environment. The installation process is the same as under GNU/Linux.
 To use \dolfin{} under Cygwin, the Cygwin development tools must be installed. 
 Instructions for installing PETSc under Cygwin can be found on the  PETSc web 
 page. Installation of \ffc{} and \fiat{} is the same as under GNU/Linux. The 
-Python package Numeric is not available as a Cygwin package and must be 
+Python package NumPy is not available as a Cygwin package and must be 
 installed manually. To compile \dolfin{}, the Cygwin package  
-\texttt{libxml2-devel} must be installed. The compilation procedure is then the
+\texttt{libxml2-devel} must be installed. For \pydolfin{} the 
+package \texttt{swig} must be installed. \texttt{NumPy} is not available as 
+a package for Cygwin, therefore it must be installed manually if you wish to 
+use \pydolfin{}.
+The compilation procedure is then the
 same as under GNU/Linux. If MPI has not been installed:
 \begin{code}
 # ./configure --disable-mpi
