@@ -9,7 +9,7 @@ through Cygwin~\cite{www:Cygwin}. Questions, bug reports and patches
 concerning the installation should be directed to the \dolfin{} mailing 
 list at the address
 \begin{code}
-  dolfin-dev@fenics.org
+dolfin-dev@fenics.org
 \end{code}
 
 \dolfin{} must currently be compiled directly from source, but an effort
@@ -23,9 +23,21 @@ other \fenics{} components.
 \index{dependencies}
 
 \dolfin{} depends on a number of libraries that need to be installed on your
-system. These libraries include Libxml2 and PETSc. In addition to these 
+system. These libraries include Boost, Libxml2 and optionally PETSc and UMFPACK. 
+If you wish to use the Python interface \pydolfin{}, the libraries SWIG 
+and NumPy are required. In addition to these 
 libraries, you need to install \fiat{} and \ffc{} if you want to define your 
 own variational forms.
+
+\subsubsection{Installing Boost}
+\index{Boost}
+
+Boost is a collection of C++ source libraries. Boost can be obtained from
+\begin{code}
+http://www.boost.org/
+\end{code}
+Packages are available for most Linux distributions. For Ubuntu/Debian users, the 
+package to install is \texttt{boost-dev}.
 
 \subsubsection{Installing Libxml2}
 \index{Libxml2}
@@ -33,38 +45,85 @@ own variational forms.
 Libxml2 is a library used by \dolfin{} to parse XML data files. Libxml2 can be
 obtained from
 \begin{code}
-  http://xmlsoft.org/
+http://xmlsoft.org/
 \end{code}
-Packages are available for most Linux distributions. For Debian users, the 
+Packages are available for most Linux distributions. For Ubuntu/Debian users, the 
 package to install is \texttt{libxml2-dev}.
+
+
+\subsubsection{Installing NumPy}
+\index{NumPy}
+
+NumPy is required for generating the Python interface \pydolfin{}. 
+It can be obtained from
+\begin{code}
+http://numpy.scipy.org/
+\end{code}
+Packages are available for most Linux distributions. For Ubuntu/Debian users,
+the packages \texttt{python-numpy} \texttt{python-numpy-ext} should be installed.
+
+
+\subsubsection{Installing SWIG}
+\index{SWIG}
+
+SWIG is also required for generating the Python interface \pydolfin{}. 
+It can be obtained from
+\begin{code}
+http://www.swig.org/
+\end{code}
+Packages are available for most Linux distributions. For Ubuntu/Debian users,
+the package \texttt{swig} should be installed.
+
+
+\subsubsection{Installing UMFPACK}
+\index{UMFPACK}
+
+UMFAPCK is part of the SuiteSparse collection and is a library for the direct 
+solution of linear systems. It is highly recommended if PESTSc is not installed. 
+If PETSc is not installed, UMFPACK is the default direct linear solver.
+The SuiteSparse collection can be downloaded from
+\begin{code}
+http://www.cise.ufl.edu/research/sparse/SuiteSparse/
+\end{code}
+UMFPACK is available as a package for many Linux distributions. For 
+Ubuntu/Debian users, the packages \texttt{libumfpack4} and 
+\texttt{libumfpack4-dev} should be installed. For other distributions, the package
+may be called \texttt{libufsparse}.
+
 
 \subsubsection{Installing PETSc}
 \index{PETSc}
 
-PETSc is a library for the solution of linear and nonlinear systems, functioning as the backend
-for the \dolfin{} linear algebra classes. \dolfin{} depends on PETSc version 2.3.0, which can be
-obtained from
+Optionally, \dolfin{} may be compiled with support for PETSc. To
+compile \dolfin{} with PETSc, add the flag \texttt{--enable-petsc}
+during the initial configuration of \dolfin{}.
+
+PETSc is a library for the solution of linear and nonlinear systems, functioning
+as the backend for the \dolfin{} linear algebra classes. \dolfin{} depends on 
+PETSc version 2.3.1, which can be obtained from
 \begin{code}
-  http://www-unix.mcs.anl.gov/petsc/petsc-2/
+http://www-unix.mcs.anl.gov/petsc/petsc-2/
 \end{code}
 
 Follow the installation instructions on the PETSc web page. Normally,
 you should only have to perform the following simple steps in the PETSc
 source directory:
 \begin{code}
-  # export PETSC_DIR=`pwd`
-  # ./config/configure.py --with-clanguage=cxx --with-shared=1
-  # make all
+# export PETSC_DIR=`pwd`
+# ./config/configure.py --with-clanguage=cxx --with-shared=1
+# make all
 \end{code}
 
 Add \texttt{--download-hypre=yes} to configure.py if you want to
 install Hypre which provides a collection of preconditioners,
-including algebraic multigrid (AMG).
+including algebraic multigrid (AMG), and 
+\texttt{--download-umfpack=yes} to configure.py if you want to
+install UMFPACK which provided as fast direct linear solver.
+Both packages are highly recommended.
 
-DOLFIN assumes that \texttt{PETSC\_DIR} is
-\texttt{/usr/local/lib/petsc/} but this can be controlled using the
-flag \texttt{--with-petsc-dir=<path>} when configuring DOLFIN (see
-below).
+DOLFIN assumes that \texttt{PETSC\_DIR} is \texttt{/usr/local/lib/petsc/} but
+this can be controlled using the flag \texttt{--with-petsc-dir=<path>} when 
+configuring DOLFIN (see below).
 
 \subsubsection{Installing FFC}
 \index{FFC}
@@ -72,7 +131,7 @@ below).
 \dolfin{} uses the FEniCS Form Compiler \ffc{} to process variational
 forms. \ffc{} can be obtained from
 \begin{code}
-  http://www.fenics.org/
+http://www.fenics.org/
 \end{code}
 
 Follow the installation instructions given in the \ffc{}
@@ -80,12 +139,12 @@ manual. \ffc{} follows the standard for Python packages, which means
 that normally you should only have to perform the following simple step
 in the \ffc{} source directory:
 \begin{code}
-  # python setup.py install
+# python setup.py install
 \end{code}
 
 Note that \ffc{} depends on \fiat{} \index{FIAT}, which in turn depends on
-the Python packages Numeric (Debian package \texttt{python-numeric}) and
-LinearAlgebra (Debian package \texttt{python-numeric-ext}). Refer to
+the Python packages NumPy~\cite{www:numpy} (Debian package \texttt{python-numpy}) and
+LinearAlgebra (Debian package \texttt{python-numpy-ext}). Refer to
 the \ffc{} manual for further details.
 
 % Input section shared with FFC manual
@@ -97,12 +156,12 @@ the \ffc{} manual for further details.
 \dolfin{} is built using the standard GNU Autotools (Automake,
 Autoconf) and libtool, which means that the installation procedure is simple:
 \begin{code}
-  # ./configure
-  # make
+# ./configure
+# make
 \end{code}
 followed by an optional
 \begin{code}
-  # make install
+# make install
 \end{code}
 to install \dolfin{} on your system.
 
@@ -112,7 +171,7 @@ configure script accepts a collection of optional arguments that can be
 used to control the compilation process. A few of these are listed
 below. Use the command
 \begin{code}
-  # ./configure --help
+# ./configure --help
 \end{code}
 for a complete list of arguments.
 
@@ -126,10 +185,10 @@ for a complete list of arguments.
   if you don't have root access but want to install \dolfin{} locally
   on a user account as follows:
   \begin{code}
-    # mkdir ~/local
-    # ./configure --prefix=~/local
-    # make
-    # make install
+# mkdir ~/local
+# ./configure --prefix=~/local
+# make
+# make install
   \end{code}
 \item
   Use the option \texttt{--enable-debug} to compile \dolfin{} with
@@ -141,6 +200,12 @@ for a complete list of arguments.
 \item
   Use the option \texttt{--disable-curses} to compile \dolfin{}
   without the curses interface (a text-mode graphical user interface).
+\item
+  Use the option \texttt{--enable-petsc} to compile \dolfin{} with
+  support for PETSc.
+\item
+  Use the option \texttt{--disable-pydolfin} to compile without
+  support for PyDOLFIN.
 \item
   Use the option \texttt{--disable-mpi} to compile \dolfin{} without
   support for MPI (Message Passing Interface), assuming PETSc has been
@@ -161,7 +226,7 @@ Just enter the directory containing the demo program you want to
 compile and type \texttt{make}. You may also compile all demo programs
 at once using the command
 \begin{code}
-  # make demo
+# make demo
 \end{code}
 
 \subsection{Compiling a program against \dolfin{}}
@@ -177,11 +242,11 @@ specified with \texttt{--prefix}. Assuming this directory is in your
 executable path (environment variable \texttt{PATH}), the include
 path for building \dolfin{} can be obtained from the command
 \begin{code}
-  dolfin-config --cflags
+dolfin-config --cflags
 \end{code}
 and the path to \dolfin{} libraries can be obtained from the command
 \begin{code}
-  dolfin-config --libs
+dolfin-config --libs
 \end{code}
 If \texttt{dolfin-config} is not in your executable path, you need to
 provide the full path to \texttt{dolfin-config}.
@@ -206,16 +271,20 @@ environment. The installation process is the same as under GNU/Linux.
 To use \dolfin{} under Cygwin, the Cygwin development tools must be installed. 
 Instructions for installing PETSc under Cygwin can be found on the  PETSc web 
 page. Installation of \ffc{} and \fiat{} is the same as under GNU/Linux. The 
-Python package Numeric is not available as a Cygwin package and must be 
+Python package NumPy is not available as a Cygwin package and must be 
 installed manually. To compile \dolfin{}, the Cygwin package  
-\texttt{libxml2-devel} must be installed. The compilation procedure is then the
+\texttt{libxml2-devel} must be installed. For \pydolfin{} the 
+package \texttt{swig} must be installed. \texttt{NumPy} is not available as 
+a package for Cygwin, therefore it must be installed manually if you wish to 
+use \pydolfin{}.
+The compilation procedure is then the
 same as under GNU/Linux. If MPI has not been installed:
 \begin{code}
-  # ./configure --disable-mpi
-  # make
+# ./configure --disable-mpi
+# make
 \end{code}
 followed by an optional
 \begin{code}
-  # make install
+# make install
 \end{code}
 will compile \dolfin{} on your system.

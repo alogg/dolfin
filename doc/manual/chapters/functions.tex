@@ -41,12 +41,12 @@ All \texttt{Function}s can be evaluated at the \texttt{Vertices} of a
 scalar \texttt{Function} at each \texttt{Vertex} of a given
 \texttt{Mesh}:
 \begin{code}
-  Function u;
-  Mesh mesh;
+Function u;
+Mesh mesh;
 
-  for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-    cout << ``Value at vertex `` << *vertex << ``: ``
-         << u(*vertex) << endl;
+for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
+  cout << ``Value at vertex `` << *vertex << ``: ``
+       << u(*vertex) << endl;
 \end{code}
 
 If the \texttt{Function} is vector-valued, an additional argument is
@@ -54,20 +54,20 @@ needed to specify the component.  The following example illustrates
 how to evaluate all components of a vector-valued \texttt{Function}
 at all each \texttt{Vertex} of a given \texttt{Mesh}:
 \begin{code}
-  Function u;
-  Mesh mesh;
+Function u;
+Mesh mesh;
 
-  for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-    for (unsigned int i = 0; i < u.vectordim(); i++)
-      cout << ``Value of component `` << i << `` at vertex ``
-           << *vertex << ``: `` << u(*vertex, i) << endl;
+for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
+  for (unsigned int i = 0; i < u.vectordim(); i++)
+    cout << ``Value of component `` << i << `` at vertex ``
+         << *vertex << ``: `` << u(*vertex, i) << endl;
 \end{code}
 
 If allowed by the underlying representation, a \texttt{Function}
 \texttt{u} may also be evaluated directly at any given \texttt{Point}:
 \begin{code}
-  Point p(0.5, 0.5, 0.5);
-  cout << ``Value at p = `` << p << ``: `` << u(p) << endl;
+Point p(0.5, 0.5, 0.5);
+cout << ``Value at p = `` << p << ``: `` << u(p) << endl;
 \end{code}
 As in the case of evaluation at a \texttt{Vertex}, the component index
 may be given as an additional argument for a vector-valued \texttt{Function}.
@@ -76,8 +76,8 @@ may be given as an additional argument for a vector-valued \texttt{Function}.
 
 One \texttt{Function} may be assigned to another \texttt{Function}:
 \begin{code}
-  Function v;
-  Function u = v;
+Function v;
+Function u = v;
 \end{code}
 Assignment creates a new \texttt{Function} sharing the same data.  In
 particular, this means that modifying the data of one of the two
@@ -89,10 +89,10 @@ If a \texttt{Function} is vector-valued, a new \texttt{Function} may be
 created to represent any given component of the original \texttt{Function},
 as illustrated by the following example:
 \begin{code}
-  Function u;         // Function with three components
-  Function u0 = u[0]; // first component
-  Function u1 = u[1]; // second component
-  Function u2 = u[2]; // third component
+Function u;         // Function with three components
+Function u0 = u[0]; // first component
+Function u1 = u[1]; // second component
+Function u2 = u[2]; // third component
 \end{code}
 
 If a \texttt{Function} represents a \emph{mixed} function (one defined in terms
@@ -102,12 +102,12 @@ solution $w = (u, p)$ of a Stokes or Navier-Stokes system (with $u$ the vector-v
 velocity and $p$ the scalar pressure), the following example illustrates how to
 pick sub functions and components of \texttt{w}:
 \begin{code}
-  Function w; // mixed Function (u, p)
-  u = w[0];   // first sub function (velocity)
-  p = w[1];   // second sub function (pressure)
-  u0 = u[0];  // first component of the velocity
-  u1 = u[1];  // second component of the velocity
-  u2 = u[2];  // third component of the velocity
+Function w; // mixed Function (u, p)
+u = w[0];   // first sub function (velocity)
+p = w[1];   // second sub function (pressure)
+u0 = u[0];  // first component of the velocity
+u1 = u[1];  // second component of the velocity
+u2 = u[2];  // third component of the velocity
 \end{code}
 
 Note that picking a component or sub function creates a new
@@ -122,8 +122,8 @@ To write a \texttt{Function}~\texttt{u} to file in VTK~format,
 suitable for viewing in ParaView or MayaVi, create a file with
 extension \texttt{.pvd}:
 \begin{code}
-  File file(``solution.pvd'');
-  file << u;
+File file(``solution.pvd'');
+file << u;
 \end{code}
 
 For further details on available file formats, see
@@ -154,9 +154,9 @@ A discrete \texttt{Function} can be initialized in several ways.
 In the simplest case, only a \texttt{Vector} \texttt{x} of nodal
 values needs to be specified:
 \begin{code}
-  Vector x;
+Vector x;
 
-  Function u(x);
+Function u(x);
 \end{code}
 If possible, \dolfin{} will then automatically try to determine the
 \texttt{Mesh} and the \texttt{FiniteElement}.
@@ -164,10 +164,10 @@ If possible, \dolfin{} will then automatically try to determine the
 In some cases, it is necessary to also supply a \texttt{Mesh}
 when initializing a discrete \texttt{Function}:
 \begin{code}
-  Vector x;
-  Mesh mesh;
+Vector x;
+Mesh mesh;
 
-  Function u(x, mesh);
+Function u(x, mesh);
 \end{code}
 If possible, \dolfin{} will then automatically try to determine the
 \texttt{FiniteElement}.
@@ -176,11 +176,11 @@ In general however, a discrete \texttt{Function} must be initialized
 from a given \texttt{Vector}, a \texttt{Mesh}
 and a \texttt{FiniteElement}:
 \begin{code}
-  Vector x;
-  Mesh mesh;
-  FiniteElement element;
+Vector x;
+Mesh mesh;
+FiniteElement element;
 
-  Function u(x, mesh, element);
+Function u(x, mesh, element);
 \end{code}
 
 \subsection{Accessing discrete function data}
@@ -189,9 +189,9 @@ It is possible to access the data of a discrete \texttt{Function},
 including the associated \texttt{Vector}, \texttt{Mesh}
 and \texttt{FiniteElement}:
 \begin{code}
-  Vector& x              = u.vector();
-  Mesh& mesh             = u.mesh();
-  FiniteElement& element = u.element();
+Vector& x              = u.vector();
+Mesh& mesh             = u.mesh();
+FiniteElement& element = u.element();
 \end{code}
 
 \subsection{Attaching discrete function data}
@@ -199,13 +199,13 @@ and \texttt{FiniteElement}:
 After a discrete \texttt{Function} has been initialized, it is
 possible to associate or reassociate data with the \texttt{Function}:
 \begin{code}
-  Vector x;
-  Mesh mesh;
-  FiniteElement element;
+Vector x;
+Mesh mesh;
+FiniteElement element;
 
-  Function u(x);
-  u.attach(mesh);
-  u.attach(element);
+Function u(x);
+u.attach(mesh);
+u.attach(element);
 \end{code}
 
 Usually, the \texttt{FiniteElement} is given by the
@@ -213,14 +213,14 @@ Usually, the \texttt{FiniteElement} is given by the
 example in Chapter~\ref{chap:quickstart}, a \texttt{Function}
 \texttt{u} representing the solution can be initialized as follows:
 \begin{code}
-  Vector x;
-  Mesh mesh;
-  Function u(x, mesh);
+Vector x;
+Mesh mesh;
+Function u(x, mesh);
 
-  Poisson::BilinearForm a;
+Poisson::BilinearForm a;
 
-  FiniteElement& element = a.trial();
-  u.attach(element); 
+FiniteElement& element = a.trial();
+u.attach(element); 
 \end{code}
 In this example, the \texttt{Function}~\texttt{u} represents a
 function in the trial space for the \texttt{BilinearForm}~\texttt{a}.
@@ -249,38 +249,38 @@ function.  The following example illustrates how to create a
 \texttt{Function} representing the function in
 (\ref{eq:functionexample}):
 \begin{code}
-  class Source : public Function
-  \{
-    real eval(const Point& p, unsigned int i)
-    \{
-      return x*y*sin(z / DOLFIN_PI);
-    \}
-  \};
+class Source : public Function
+{
+  real eval(const Point& p, unsigned int i)
+  {
+    return x*y*sin(z / DOLFIN_PI);
+  }
+};
 
-  Source f;
+Source f;
 \end{code}
 
 To create a vector-valued \texttt{Function}, the vector dimension must
 be supplied to the constructor of \texttt{Function}:
 \begin{code}
-  class Source : public Function
-  \{
-  public:
+class Source : public Function
+{
+public:
 
-    Source() : Function(3) \{\}
+  Source() : Function(3) {}
 
-    real eval(const Point& p, unsigned int i)
-    \{
-      if ( i == 0 )
-        return 0.0;
-      else if ( i == 1 )
-        return x*y*sin(z / DOLFIN_PI);
-      else
-        return x + y;
-    \}
-  \};
+  real eval(const Point& p, unsigned int i)
+  {
+    if ( i == 0 )
+      return 0.0;
+    else if ( i == 1 )
+      return x*y*sin(z / DOLFIN_PI);
+    else
+      return x + y;
+  }
+};
 
-  Source f;
+Source f;
 \end{code}
 
 \subsection{Specifying a function-pointer}
@@ -290,28 +290,28 @@ specifying a function pointer. The following example illustrates
 an alternative way of creating a \texttt{Function} representing the
 function in (\ref{eq:functionexample}):
 \begin{code}
-  real source(const Point& p, unsigned int i)
-  \{
-    return x*y*sin(z / DOLFIN_PI);
-  \}
+real source(const Point& p, unsigned int i)
+{
+  return x*y*sin(z / DOLFIN_PI);
+}
 
-  Function f(source);
+Function f(source);
 \end{code}
 
 As before, for vector-valued \texttt{Function}s, the vector dimension
 must be supplied to the constructor of \texttt{Function}:
 \begin{code}
-  real source(const Point& p, unsigned int i)
-  \{
-    if ( i == 0 )
-      return 0.0;
-    else if ( i == 1 )
-      return x*y*sin(z / DOLFIN_PI);
-    else
-      return x + y;
-  \}
-  
-  Function f(source, 3);
+real source(const Point& p, unsigned int i)
+{
+  if ( i == 0 )
+    return 0.0;
+  else if ( i == 1 )
+    return x*y*sin(z / DOLFIN_PI);
+  else
+    return x + y;
+}
+
+Function f(source, 3);
 \end{code}
 
 \subsection{Cell-dependent functions}
@@ -324,15 +324,15 @@ mesh size at that point.
 The following example illustrates how to create such as
 \texttt{Function} by overloading the \texttt{eval()} function:
 \begin{code}
-  class MeshSize : public Function
-  \{
-    real eval(const Point& p, unsigned int i)
-    \{
-      return cell().diameter();
-    \}
-  \}
+class MeshSize : public Function
+{
+  real eval(const Point& p, unsigned int i)
+  {
+    return cell().diameter();
+  }
+}
 
-  MeshSize h;
+MeshSize h;
 \end{code}
 
 Note that the current \texttt{Cell} is only available during assembly
