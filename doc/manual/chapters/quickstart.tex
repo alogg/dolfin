@@ -17,16 +17,16 @@ partial differential equations with \dolfin{}.
 
 The latest version of \dolfin{} can be found on the \fenics{} web page:
 \begin{code}
-  http://www.fenics.org/
+http://www.fenics.org/
 \end{code}
 The following commands illustrate the installation process, assuming
 that you have downloaded release 0.1.0 of \dolfin{}:
 \begin{code}
-  # tar zxfv dolfin-0.1.0.tar.gz
-  # cd dolfin-0.1.0
-  # ./configure
-  # make
-  # make install
+# tar zxfv dolfin-0.1.0.tar.gz
+# cd dolfin-0.1.0
+# ./configure
+# make
+# make install
 \end{code}
 
 Note that you may need to be root on your system to perform the last
@@ -88,15 +88,15 @@ form compiler \ffc{}. This is done by entering the definition of
 the forms in a text file with extension \texttt{.form},
 e.g. \texttt{Poisson.form}, as follows:
 \begin{code}
-  element = FiniteElement(``Lagrange'', ``triangle'', 1)
+element = FiniteElement(``Lagrange'', ``triangle'', 1)
 
-  v = TestFunction(element)
-  U = TrialFunction(element)
-  f = Function(element)
-  g = Function(element)
+v = TestFunction(element)
+U = TrialFunction(element)
+f = Function(element)
+g = Function(element)
   
-  a = dot(grad(v), grad(U))*dx
-  L = v*f*dx + v*g*ds
+a = dot(grad(v), grad(U))*dx
+L = v*f*dx + v*g*ds
 \end{code}
 
 The example is given here for piecewise linear finite elements in two
@@ -106,7 +106,7 @@ Lagrange elements in two and three dimensions.
 To compile the pair of forms $(a, L)$, now call the form compiler on
 the command-line as follows:
 \begin{code}
-  # ffc Poisson.form
+# ffc Poisson.form
 \end{code}
 This generates the file \texttt{Poisson.h} which implements the forms
 in C++ for inclusion in your \dolfin{} program.
@@ -129,10 +129,10 @@ in the \dolfin{} class library are defined within the namespace
 \texttt{dolfin}, we also specify that we want to work within this
 namespace:
 \begin{code}
-  #include <dolfin.h>
-  #include ``Poisson.h''
+#include <dolfin.h>
+#include ``Poisson.h''
   
-  using namespace dolfin;
+using namespace dolfin;
 \end{code}
 
 Since we are writing a C++ program, we need to create a \texttt{main}
@@ -141,11 +141,11 @@ in this simple example we just write our program inside the
 \texttt{main} function:
 
 \begin{code}
-  int main()
-  \{
-    // Write your program here
-    return 0;
-  \}
+int main()
+{
+  // Write your program here
+  return 0;
+}
 \end{code}
 
 We now proceed to specify the right-hand side $f$ of (\ref{eq:poisson,quickstart}).
@@ -154,51 +154,51 @@ and overloading the \texttt{eval()}
 function to return the value $f(x, y) = 500 \exp(-((x-0.5)^2 +
 (y-0.5)^2)/0.02)$:
 \begin{code}
-  class Source : public Function
-  \{
-    real eval(const Point& p, unsigned int i)
-    \{
-      real dx = p.x - 0.5;
-      real dy = p.y - 0.5;
-      return 500.0*exp(-(dx*dx + dy*dy)/0.02);
-    \}
-  \};
+class Source : public Function
+{
+  real eval(const Point& p, unsigned int i)
+  {
+    real dx = p.x - 0.5;
+    real dy = p.y - 0.5;
+    return 500.0*exp(-(dx*dx + dy*dy)/0.02);
+  }
+};
 \end{code}
 
 The Dirichlet boundary condition is specified similarly, by overloading the
 \texttt{eval()} function for a subclass of \texttt{BoundaryCondition}:
 \small
 \begin{code}
-  class DirichletBC : public BoundaryCondition
-  \{
-    void eval(BoundaryValue& value, const Point& p, unsigned int i)
-    \{
-      if ( std::abs(p.x - 0.0) < DOLFIN_EPS )
-	value = 0.0;
-    \}
-  \};
+class DirichletBC : public BoundaryCondition
+{
+  void eval(BoundaryValue& value, const Point& p, unsigned int i)
+  {
+    if ( std::abs(p.x - 0.0) < DOLFIN_EPS )
+      value = 0.0;
+  }
+};
 \end{code}
 \normalsize
 The Neumann boundary conditions is specified as a \texttt{Function}
 that gets integrated over the boundary $\partial \Omega$ of $\Omega$:
 \begin{code}
-  class NeumannBC : public Function
-  \{
-    real eval(const Point& p, unsigned int i)
-    \{
-      if ( std::abs(p.x - 1.0) < DOLFIN_EPS )
-        return 1.0;
-      else
-        return 0.0;
-    \}
-  \};
+class NeumannBC : public Function
+{
+  real eval(const Point& p, unsigned int i)
+  {
+    if ( std::abs(p.x - 1.0) < DOLFIN_EPS )
+      return 1.0;
+    else
+      return 0.0;
+  }
+};
 \end{code}
 We may now create the right-hand side, the Dirichlet and the Neumann
 boundary conditions as follows:
 \begin{code}
-  Source f;
-  DirichletBC bc;
-  NeumannBC g;
+Source f;
+DirichletBC bc;
+NeumannBC g;
 \end{code}
 
 Next, we need to create a mesh. \dolfin{} relies on
@@ -208,14 +208,14 @@ cube, \dolfin{} provides a built-in mesh generator. To generate a
 uniform mesh of the unit square with mesh size $1/16$ (with a total of
 $2\cdot 16^2 = 512$ triangles), we can just type
 \begin{code}
-  UnitSquare mesh(16, 16);
+UnitSquare mesh(16, 16);
 \end{code}
 
 Next, we initialize the pair of bilinear and linear forms that we have
 previously compiled with \ffc{}:
 \begin{code}
-  Poisson::BilinearForm a;
-  Poisson::LinearForm L(f, g);
+Poisson::BilinearForm a;
+Poisson::LinearForm L(f, g);
 \end{code}
 Note that the right-hand side~\texttt{f} and the Neumann boundary
 condition~\texttt{g} need to be given as arguments to the constructor
@@ -224,12 +224,12 @@ of the linear form, since the linear form depends on these two functions.
 We may now define a \texttt{PDE} from the pair of forms, the mesh and
 the Dirichlet boundary condition:
 \begin{code}
-  PDE pde(a, L, mesh, bc);
+PDE pde(a, L, mesh, bc);
 \end{code}
 To solve the PDE, we now just need to call the \texttt{solve} function
 as follows:
 \begin{code}
-  Function U = pde.solve();
+Function U = pde.solve();
 \end{code}
 
 Finally, we export the solution \texttt{U} to a file for
@@ -237,71 +237,71 @@ visualization. Here, we choose to save the solution in VTK format for
 visualization in ParaView or MayaVi, which we do by specifying a file
 name with extension \texttt{.pvd}:
 \begin{code}
-  File file(``poisson.pvd'');
-  file << u;
+File file(``poisson.pvd'');
+file << u;
 \end{code}
 
 The complete program for Poisson's equation now looks as follows:
 \small
 \begin{code}
-  #include <dolfin.h>
-  #include "Poisson.h"
+#include <dolfin.h>
+#include "Poisson.h"
 
-  using namespace dolfin;
+using namespace dolfin;
 
-  int main()
-  \{
-    // Right-hand side                                                                                          
-    class Source : public Function
-    \{
-      real eval(const Point& p, unsigned int i)
-      \{
-        real dx = p.x - 0.5;
-        real dy = p.y - 0.5;
-        return 500.0*exp(-(dx*dx + dy*dy)/0.02);
-      \}
-    \};
+int main()
+{
+  // Right-hand side                                                                                          
+  class Source : public Function
+  {
+    real eval(const Point& p, unsigned int i)
+    {
+      real dx = p.x - 0.5;
+      real dy = p.y - 0.5;
+      return 500.0*exp(-(dx*dx + dy*dy)/0.02);
+    }
+  };
 
-    // Dirichlet boundary condition                                                                             
-    class DirichletBC : public BoundaryCondition
-    \{
-      void eval(BoundaryValue& value, const Point& p, unsigned int i)
-      \{
-        if ( std::abs(p.x - 0.0) < DOLFIN_EPS )
-          value = 0.0;
-      \}
-    \};
+  // Dirichlet boundary condition                                                                             
+  class DirichletBC : public BoundaryCondition
+  {
+    void eval(BoundaryValue& value, const Point& p, unsigned int i)
+    {
+      if ( std::abs(p.x - 0.0) < DOLFIN_EPS )
+        value = 0.0;
+    }
+  };
 
-    // Neumann boundary condition                                                                               
-    class NeumannBC : public Function
-    \{
-      real eval(const Point& p, unsigned int i)
-      \{
-        if ( std::abs(p.x - 1.0) < DOLFIN_EPS )
-          return 1.0;
-        else
-          return 0.0;
-      \}
-    \};
+  // Neumann boundary condition                                                                               
+  class NeumannBC : public Function
+  {
+    real eval(const Point& p, unsigned int i)
+    {
+      if ( std::abs(p.x - 1.0) < DOLFIN_EPS )
+        return 1.0;
+      else
+        return 0.0;
+    }
+  };
 
-    // Set up problem                                                                                           
-    Source f;
-    DirichletBC bc;
-    NeumannBC g;
-    UnitSquare mesh(16, 16);
-    Poisson::BilinearForm a;
-    Poisson::LinearForm L(f, g);
-    PDE pde(a, L, mesh, bc);
+  // Set up problem                                                                                           
+  Source f;
+  DirichletBC bc;
+  NeumannBC g;
+  UnitSquare mesh(16, 16);
+  Poisson::BilinearForm a;
+  Poisson::LinearForm L(f, g);
+  PDE pde(a, L, mesh, bc);
 
-    // Compute solution                                                                                         
-    Function U = pde.solve();
+  // Compute solution                                                                                         
+  Function U = pde.solve();
 
-    // Save solution to file                                                                                    
-    File file("poisson.pvd");
-    file << U;
+  // Save solution to file                                                                                    
+  File file("poisson.pvd");
+  file << U;
 
-    return 0;
-  \}
+  return 0;
+}
 \end{code}
 \normalsize
 
@@ -313,23 +313,23 @@ how to build the program. The following example shows how to write a
 \texttt{Makefile} for the above example:
 \footnotesize
 \begin{code}
-  CFLAGS  = `dolfin-config --cflags_dolfin`
-  LIBS    = `dolfin-config --libs_dolfin`
-  CXX     = `dolfin-config --compiler`
+CFLAGS  = `dolfin-config --cflags_dolfin`
+LIBS    = `dolfin-config --libs_dolfin`
+CXX     = `dolfin-config --compiler`
 
-  DEST    = dolfin-poisson
-  OBJECTS = main.o
+DEST    = dolfin-poisson
+OBJECTS = main.o
 
-  all: $(DEST)
+all: $(DEST)
   
-  clean:
-          -rm -f *.o core *.core $(OBJECTS) $(DEST)
+clean:
+        -rm -f *.o core *.core $(OBJECTS) $(DEST)
 
-  $(DEST): $(OBJECTS)
-           $(CXX) -o $@ $(OBJECTS) $(CFLAGS) $(LIBS)
+$(DEST): $(OBJECTS)
+         $(CXX) -o $@ $(OBJECTS) $(CFLAGS) $(LIBS)
 
-  .cpp.o:
-          $(CXX) $(CFLAGS) -c $<
+.cpp.o:
+        $(CXX) $(CFLAGS) -c $<
 \end{code}
 \normalsize
 
@@ -348,13 +348,13 @@ means you need to make sure this subdirectory is in your
 
 To run the program, simply type the name of the executable:
 \begin{code}
-  # ./dolfin-poisson
-  Computing mesh connectivity:
-  Found 289 vertices
-  Found 512 cells
-  [...]
-  Solving linear system of size 289 x 289 (UMFPACK LU solver).
-  Saved function u (no description) to file poisson.pvd [...]
+# ./dolfin-poisson
+Computing mesh connectivity:
+Found 289 vertices
+Found 512 cells
+[...]
+Solving linear system of size 289 x 289 (UMFPACK LU solver).
+Saved function u (no description) to file poisson.pvd [...]
 \end{code}
 
 \subsection{Visualizing the solution}
@@ -366,7 +366,7 @@ visualize the computed solution is to run the Python script
 \texttt{plot.py} which is present in the directory of the Poisson demo
 (and most other demos):
 \begin{code}
-  python plot.py
+python plot.py
 \end{code}
 This script calls MayaVi to visualize the solution.
 
