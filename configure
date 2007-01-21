@@ -464,7 +464,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE LN_S CXXCPP EGREP libtool_found build build_cpu build_vendor build_os host host_cpu host_vendor host_os ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CPP F77 FFLAGS ac_ct_F77 LIBTOOL XML2_CONFIG XML_CPPFLAGS XML_LIBS BOOST_CPPFLAGS BOOST_LDFLAGS PKG_CONFIG ac_pt_PKG_CONFIG GLIB_CFLAGS GLIB_LIBS GTS_CFLAGS GTS_LIBS UFC_CFLAGS UFC_LIBS PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS swig_found SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS COMPILE_PYDOLFIN_TRUE COMPILE_PYDOLFIN_FALSE mpi_found EXTERNAL_CFLAGS KERNEL_CFLAGS MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_DEFINITIONS DOLFIN_EXT_LIBS DOLFIN_LIBS DOLFIN_LTLIBOBJS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE LN_S CXXCPP EGREP libtool_found build build_cpu build_vendor build_os host host_cpu host_vendor host_os ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CPP F77 FFLAGS ac_ct_F77 LIBTOOL XML2_CONFIG XML_CPPFLAGS XML_LIBS BOOST_CPPFLAGS BOOST_LDFLAGS PKG_CONFIG ac_pt_PKG_CONFIG GLIB_CFLAGS GLIB_LIBS GTS_CFLAGS GTS_LIBS UFC_CFLAGS UFC_LIBS PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS swig_found SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS COMPILE_PYDOLFIN_TRUE COMPILE_PYDOLFIN_FALSE mpi_found EXTERNAL_CFLAGS KERNEL_INCLUDE KERNEL_CFLAGS MODULE_INCLUDE MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_DEFINITIONS DOLFIN_EXT_LIBS DOLFIN_LIBS DOLFIN_LTLIBOBJS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -20157,6 +20157,9 @@ echo "$as_me:$LINENO: checking for GLIB" >&5
 echo $ECHO_N "checking for GLIB... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
+    if test -n "$GLIB_CFLAGS"; then
+        pkg_cv_GLIB_CFLAGS="$GLIB_CFLAGS"
+    else
         if test -n "$PKG_CONFIG" && \
     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0\"") >&5
   ($PKG_CONFIG --exists --print-errors "glib-2.0") 2>&5
@@ -20167,10 +20170,14 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
+    fi
 else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
+    if test -n "$GLIB_LIBS"; then
+        pkg_cv_GLIB_LIBS="$GLIB_LIBS"
+    else
         if test -n "$PKG_CONFIG" && \
     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0\"") >&5
   ($PKG_CONFIG --exists --print-errors "glib-2.0") 2>&5
@@ -20181,14 +20188,27 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
+    fi
 else
 	pkg_failed=untried
 fi
 
+
+
 if test $pkg_failed = yes; then
-	GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0"`
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        GLIB_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0"`
+        else
+	        GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0"`
+        fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$GLIB_PKG_ERRORS" 1>&5
+	echo "$GLIB_PKG_ERRORS" >&5
 
 	have_glib=no
 elif test $pkg_failed = untried; then
@@ -20208,6 +20228,9 @@ echo "$as_me:$LINENO: checking for GTS" >&5
 echo $ECHO_N "checking for GTS... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
+    if test -n "$GTS_CFLAGS"; then
+        pkg_cv_GTS_CFLAGS="$GTS_CFLAGS"
+    else
         if test -n "$PKG_CONFIG" && \
     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gts\"") >&5
   ($PKG_CONFIG --exists --print-errors "gts") 2>&5
@@ -20218,10 +20241,14 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
+    fi
 else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
+    if test -n "$GTS_LIBS"; then
+        pkg_cv_GTS_LIBS="$GTS_LIBS"
+    else
         if test -n "$PKG_CONFIG" && \
     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gts\"") >&5
   ($PKG_CONFIG --exists --print-errors "gts") 2>&5
@@ -20232,14 +20259,27 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
+    fi
 else
 	pkg_failed=untried
 fi
 
+
+
 if test $pkg_failed = yes; then
-	GTS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gts"`
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        GTS_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gts"`
+        else
+	        GTS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gts"`
+        fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$GTS_PKG_ERRORS" 1>&5
+	echo "$GTS_PKG_ERRORS" >&5
 
 	have_gts=no
 elif test $pkg_failed = untried; then
@@ -20263,6 +20303,9 @@ echo "$as_me:$LINENO: checking for UFC" >&5
 echo $ECHO_N "checking for UFC... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
+    if test -n "$UFC_CFLAGS"; then
+        pkg_cv_UFC_CFLAGS="$UFC_CFLAGS"
+    else
         if test -n "$PKG_CONFIG" && \
     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ufc-1\"") >&5
   ($PKG_CONFIG --exists --print-errors "ufc-1") 2>&5
@@ -20273,10 +20316,14 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
+    fi
 else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
+    if test -n "$UFC_LIBS"; then
+        pkg_cv_UFC_LIBS="$UFC_LIBS"
+    else
         if test -n "$PKG_CONFIG" && \
     { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ufc-1\"") >&5
   ($PKG_CONFIG --exists --print-errors "ufc-1") 2>&5
@@ -20287,38 +20334,59 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
+    fi
 else
 	pkg_failed=untried
 fi
 
+
+
 if test $pkg_failed = yes; then
-	UFC_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ufc-1"`
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        UFC_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "ufc-1"`
+        else
+	        UFC_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ufc-1"`
+        fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$UFC_PKG_ERRORS" 1>&5
+	echo "$UFC_PKG_ERRORS" >&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (ufc-1) were not met.
+	{ { echo "$as_me:$LINENO: error: Package requirements (ufc-1) were not met:
+
+$UFC_PKG_ERRORS
+
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively you may set the UFC_CFLAGS and UFC_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details." >&5
-echo "$as_me: error: Package requirements (ufc-1) were not met.
+Alternatively, you may set the environment variables UFC_CFLAGS
+and UFC_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" >&5
+echo "$as_me: error: Package requirements (ufc-1) were not met:
+
+$UFC_PKG_ERRORS
+
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively you may set the UFC_CFLAGS and UFC_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details." >&2;}
+Alternatively, you may set the environment variables UFC_CFLAGS
+and UFC_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" >&2;}
    { (exit 1); exit 1; }; }
 elif test $pkg_failed = untried; then
 	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively you may set the UFC_CFLAGS and UFC_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details.
+Alternatively, you may set the environment variables UFC_CFLAGS
+and UFC_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
 
 To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
 See \`config.log' for more details." >&5
@@ -20326,9 +20394,9 @@ echo "$as_me: error: The pkg-config script could not be found or is too old.  Ma
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively you may set the UFC_CFLAGS and UFC_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details.
+Alternatively, you may set the environment variables UFC_CFLAGS
+and UFC_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
 
 To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
 See \`config.log' for more details." >&2;}
@@ -22002,35 +22070,36 @@ DOLFIN_KERNEL="common fem form function io la main math mesh mf nls ode pde quad
 EXTERNAL_CFLAGS="$CURSES_CFLAGS $PETSC_CFLAGS $SLEPC_CFLAGS $BOOST_CPPFLAGS $MPI_CFLAGS $XML_CPPFLAGS $UMFPACK_CFLAGS $GLIB_CFLAGS $GTS_CFLAGS $UFC_CFLAGS"
 
 
-# Generate include path for kernel
 KERNEL_CFLAGS=""
 for f in $DOLFIN_KERNEL; do
-    KERNEL_CFLAGS="$KERNEL_CFLAGS -I\$(top_builddir)/src/kernel/$f"
+    KERNEL_INCLUDE="$KERNEL_INCLUDE -I\$(top_builddir)/src/kernel/$f"
 done
-KERNEL_CFLAGS="$KERNEL_CFLAGS $EXTERNAL_CFLAGS"
+
+
+# Generate flags for kernel
+KERNEL_CFLAGS="$KERNEL_INCLUDE $EXTERNAL_CFLAGS"
 
 
 # Generate include path for modules
-MODULE_CFLAGS="$KERNEL_CFLAGS -I\$(top_builddir)/src/modules/"
+MAIN_CFLAGS=""
+for f in $DOLFIN_MODULES; do
+    MODULE_INCLUDE="$MODULE_INCLUDE -I\$(top_builddir)/src/modules/$f "
+done
+MODULE_INCLUDE="$MODULE_INCLUDE -I\$(top_builddir)/src/modules/ "
+
+
+# Generate flags for modules
+MODULE_CFLAGS="$MODULE_INCLUDE $KERNEL_CFLAGS"
 
 
 # Generate include path for main (including also module code)
-MAIN_CFLAGS=""
-for f in $DOLFIN_MODULES; do
-    MAIN_CFLAGS="$MAIN_CFLAGS -I\$(top_builddir)/src/modules/$f "
-done
-DOLFIN_CFLAGS="$KERNEL_CFLAGS $MAIN_CFLAGS $MODULE_CFLAGS"
+DOLFIN_CFLAGS="$KERNEL_INCLUDE $MODULE_INCLUDE $EXTERNAL_CFLAGS"
 
 
 # Extract compiler definitions
 DOLFIN_DEFINITIONS=""
 for i in $CXXFLAGS; do
     if test $(echo $i | sed 's/^\(..\).*/\1/') == "-D"; then
-       DOLFIN_DEFINITIONS="$DOLFIN_DEFINITIONS $i"
-    fi
-done
-for i in $DOLFIN_CFLAGS; do
-    if test $(echo $i | sed 's/^\(..\).*/\1/') == "-I"; then
        DOLFIN_DEFINITIONS="$DOLFIN_DEFINITIONS $i"
     fi
 done
@@ -22934,7 +23003,9 @@ s,@COMPILE_PYDOLFIN_TRUE@,$COMPILE_PYDOLFIN_TRUE,;t t
 s,@COMPILE_PYDOLFIN_FALSE@,$COMPILE_PYDOLFIN_FALSE,;t t
 s,@mpi_found@,$mpi_found,;t t
 s,@EXTERNAL_CFLAGS@,$EXTERNAL_CFLAGS,;t t
+s,@KERNEL_INCLUDE@,$KERNEL_INCLUDE,;t t
 s,@KERNEL_CFLAGS@,$KERNEL_CFLAGS,;t t
+s,@MODULE_INCLUDE@,$MODULE_INCLUDE,;t t
 s,@MODULE_CFLAGS@,$MODULE_CFLAGS,;t t
 s,@DOLFIN_CFLAGS@,$DOLFIN_CFLAGS,;t t
 s,@DOLFIN_DEFINITIONS@,$DOLFIN_DEFINITIONS,;t t
