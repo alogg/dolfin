@@ -464,7 +464,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE LN_S CXXCPP EGREP libtool_found build build_cpu build_vendor build_os host host_cpu host_vendor host_os ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CPP F77 FFLAGS ac_ct_F77 LIBTOOL XML2_CONFIG XML_CPPFLAGS XML_LIBS BOOST_CPPFLAGS BOOST_LDFLAGS PKG_CONFIG ac_pt_PKG_CONFIG GLIB_CFLAGS GLIB_LIBS GTS_CFLAGS GTS_LIBS UFC_CFLAGS UFC_LIBS PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS swig_found SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS COMPILE_PYDOLFIN_TRUE COMPILE_PYDOLFIN_FALSE mpi_found EXTERNAL_CFLAGS KERNEL_INCLUDE KERNEL_CFLAGS MODULE_INCLUDE MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_DEFINITIONS DOLFIN_EXT_LIBS DOLFIN_LIBS DOLFIN_LTLIBOBJS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE LN_S CXXCPP EGREP libtool_found build build_cpu build_vendor build_os host host_cpu host_vendor host_os ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB CPP F77 FFLAGS ac_ct_F77 LIBTOOL XML2_CONFIG XML_CPPFLAGS XML_LIBS BOOST_CPPFLAGS BOOST_LDFLAGS PKG_CONFIG GLIB_CFLAGS GLIB_LIBS GTS_CFLAGS GTS_LIBS UFC_CFLAGS UFC_LIBS PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CPPFLAGS PYTHON_LDFLAGS PYTHON_SITE_PKG PYTHON_EXTRA_LIBS swig_found SWIG SWIG_LIB SWIG_PYTHON_OPT SWIG_PYTHON_CPPFLAGS COMPILE_PYDOLFIN_TRUE COMPILE_PYDOLFIN_FALSE mpi_found EXTERNAL_CFLAGS KERNEL_INCLUDE KERNEL_CFLAGS MODULE_INCLUDE MODULE_CFLAGS DOLFIN_CFLAGS DOLFIN_DEFINITIONS DOLFIN_EXT_LIBS DOLFIN_LIBS MODULES_LIBOBJS KERNEL_LIBOBJS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -945,34 +945,6 @@ ac_env_FFLAGS_set=${FFLAGS+set}
 ac_env_FFLAGS_value=$FFLAGS
 ac_cv_env_FFLAGS_set=${FFLAGS+set}
 ac_cv_env_FFLAGS_value=$FFLAGS
-ac_env_PKG_CONFIG_set=${PKG_CONFIG+set}
-ac_env_PKG_CONFIG_value=$PKG_CONFIG
-ac_cv_env_PKG_CONFIG_set=${PKG_CONFIG+set}
-ac_cv_env_PKG_CONFIG_value=$PKG_CONFIG
-ac_env_GLIB_CFLAGS_set=${GLIB_CFLAGS+set}
-ac_env_GLIB_CFLAGS_value=$GLIB_CFLAGS
-ac_cv_env_GLIB_CFLAGS_set=${GLIB_CFLAGS+set}
-ac_cv_env_GLIB_CFLAGS_value=$GLIB_CFLAGS
-ac_env_GLIB_LIBS_set=${GLIB_LIBS+set}
-ac_env_GLIB_LIBS_value=$GLIB_LIBS
-ac_cv_env_GLIB_LIBS_set=${GLIB_LIBS+set}
-ac_cv_env_GLIB_LIBS_value=$GLIB_LIBS
-ac_env_GTS_CFLAGS_set=${GTS_CFLAGS+set}
-ac_env_GTS_CFLAGS_value=$GTS_CFLAGS
-ac_cv_env_GTS_CFLAGS_set=${GTS_CFLAGS+set}
-ac_cv_env_GTS_CFLAGS_value=$GTS_CFLAGS
-ac_env_GTS_LIBS_set=${GTS_LIBS+set}
-ac_env_GTS_LIBS_value=$GTS_LIBS
-ac_cv_env_GTS_LIBS_set=${GTS_LIBS+set}
-ac_cv_env_GTS_LIBS_value=$GTS_LIBS
-ac_env_UFC_CFLAGS_set=${UFC_CFLAGS+set}
-ac_env_UFC_CFLAGS_value=$UFC_CFLAGS
-ac_cv_env_UFC_CFLAGS_set=${UFC_CFLAGS+set}
-ac_cv_env_UFC_CFLAGS_value=$UFC_CFLAGS
-ac_env_UFC_LIBS_set=${UFC_LIBS+set}
-ac_env_UFC_LIBS_value=$UFC_LIBS
-ac_cv_env_UFC_LIBS_set=${UFC_LIBS+set}
-ac_cv_env_UFC_LIBS_value=$UFC_LIBS
 
 #
 # Report the --help message.
@@ -1109,13 +1081,6 @@ Some influential environment variables:
   CPP         C preprocessor
   F77         Fortran 77 compiler command
   FFLAGS      Fortran 77 compiler flags
-  PKG_CONFIG  path to pkg-config utility
-  GLIB_CFLAGS C compiler flags for GLIB, overriding pkg-config
-  GLIB_LIBS   linker flags for GLIB, overriding pkg-config
-  GTS_CFLAGS  C compiler flags for GTS, overriding pkg-config
-  GTS_LIBS    linker flags for GTS, overriding pkg-config
-  UFC_CFLAGS  C compiler flags for UFC, overriding pkg-config
-  UFC_LIBS    linker flags for UFC, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -1209,7 +1174,7 @@ esac
     else
       echo "$as_me: WARNING: no configuration information is in $ac_dir" >&2
     fi
-    cd "$ac_popdir"
+    cd $ac_popdir
   done
 fi
 
@@ -2474,7 +2439,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2532,7 +2498,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2603,7 +2570,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2647,7 +2615,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3221,7 +3190,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3279,7 +3249,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3395,7 +3366,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3449,7 +3421,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3494,7 +3467,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3538,7 +3512,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3725,7 +3700,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3955,7 +3931,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -4015,7 +3992,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -4335,7 +4313,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -4505,7 +4484,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -4570,7 +4550,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -5242,7 +5223,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 5245 "configure"' > conftest.$ac_ext
+  echo '#line 5226 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -5362,7 +5343,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -5692,7 +5674,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -6136,7 +6119,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:6139:" \
+echo "$as_me:6122:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -6182,7 +6165,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_f77_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_f77_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -6231,7 +6215,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_f77_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_f77_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -7201,11 +7186,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7204: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7189: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7208: \$? = $ac_status" >&5
+   echo "$as_me:7193: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7469,11 +7454,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7472: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7457: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7476: \$? = $ac_status" >&5
+   echo "$as_me:7461: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7573,11 +7558,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7576: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7561: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7580: \$? = $ac_status" >&5
+   echo "$as_me:7565: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -8050,7 +8035,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -8110,7 +8096,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9398,7 +9385,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9501,7 +9489,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9566,7 +9555,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9659,7 +9649,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9724,7 +9715,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9790,7 +9782,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9856,7 +9849,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -9931,7 +9925,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 9934 "configure"
+#line 9928 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10031,7 +10025,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10034 "configure"
+#line 10028 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -11114,7 +11108,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -11175,7 +11170,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -12373,11 +12369,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12376: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12372: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:12380: \$? = $ac_status" >&5
+   echo "$as_me:12376: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -12477,11 +12473,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12480: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12476: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:12484: \$? = $ac_status" >&5
+   echo "$as_me:12480: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -14065,11 +14061,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14068: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14064: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:14072: \$? = $ac_status" >&5
+   echo "$as_me:14068: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -14169,11 +14165,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14172: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14168: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14176: \$? = $ac_status" >&5
+   echo "$as_me:14172: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -14636,7 +14632,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_f77_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_f77_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -14686,7 +14683,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_f77_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_f77_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -16396,11 +16394,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16399: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16397: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16403: \$? = $ac_status" >&5
+   echo "$as_me:16401: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16664,11 +16662,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16667: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16665: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16671: \$? = $ac_status" >&5
+   echo "$as_me:16669: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16768,11 +16766,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16771: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16769: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:16775: \$? = $ac_status" >&5
+   echo "$as_me:16773: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -17245,7 +17243,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -17305,7 +17304,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -19715,7 +19715,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -19859,7 +19860,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -19986,7 +19988,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -20047,11 +20050,11 @@ fi
 
 # Check for Glib
 
+  succeeded=no
 
-if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
-	if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
-set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+  if test -z "$PKG_CONFIG"; then
+    # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
 if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
@@ -20076,6 +20079,7 @@ do
 done
 done
 
+  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
   ;;
 esac
 fi
@@ -20089,19 +20093,74 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-fi
-if test -z "$ac_cv_path_PKG_CONFIG"; then
-  ac_pt_PKG_CONFIG=$PKG_CONFIG
-  # Extract the first word of "pkg-config", so it can be a program name with args.
+  fi
+
+  if test "$PKG_CONFIG" = "no" ; then
+     echo "*** The pkg-config script could not be found. Make sure it is"
+     echo "*** in your path, or set the PKG_CONFIG environment variable"
+     echo "*** to the full path to pkg-config."
+     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
+  else
+     PKG_CONFIG_MIN_VERSION=0.9.0
+     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+        echo "$as_me:$LINENO: checking for glib-2.0" >&5
+echo $ECHO_N "checking for glib-2.0... $ECHO_C" >&6
+
+        if $PKG_CONFIG --exists "glib-2.0" ; then
+            echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+            succeeded=yes
+
+            echo "$as_me:$LINENO: checking GLIB_CFLAGS" >&5
+echo $ECHO_N "checking GLIB_CFLAGS... $ECHO_C" >&6
+            GLIB_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0"`
+            echo "$as_me:$LINENO: result: $GLIB_CFLAGS" >&5
+echo "${ECHO_T}$GLIB_CFLAGS" >&6
+
+            echo "$as_me:$LINENO: checking GLIB_LIBS" >&5
+echo $ECHO_N "checking GLIB_LIBS... $ECHO_C" >&6
+            GLIB_LIBS=`$PKG_CONFIG --libs "glib-2.0"`
+            echo "$as_me:$LINENO: result: $GLIB_LIBS" >&5
+echo "${ECHO_T}$GLIB_LIBS" >&6
+        else
+            GLIB_CFLAGS=""
+            GLIB_LIBS=""
+            ## If we have a custom action on failure, don't print errors, but
+            ## do set a variable so people can do so.
+            GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0"`
+
+        fi
+
+
+
+     else
+        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
+        echo "*** See http://www.freedesktop.org/software/pkgconfig"
+     fi
+  fi
+
+  if test $succeeded = yes; then
+     have_glib=yes
+  else
+     have_glib=no
+  fi
+
+
+# Check for GTS
+
+  succeeded=no
+
+  if test -z "$PKG_CONFIG"; then
+    # Extract the first word of "pkg-config", so it can be a program name with args.
 set dummy pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  case $ac_pt_PKG_CONFIG in
+  case $PKG_CONFIG in
   [\\/]* | ?:[\\/]*)
-  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
@@ -20111,186 +20170,79 @@ do
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
+  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
   ;;
 esac
 fi
-ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
 
-if test -n "$ac_pt_PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
-echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6
+if test -n "$PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
 
-  PKG_CONFIG=$ac_pt_PKG_CONFIG
-else
-  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
-fi
+  fi
 
-fi
-if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.9.0
-	echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
-echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6
-	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
-		echo "$as_me:$LINENO: result: yes" >&5
+  if test "$PKG_CONFIG" = "no" ; then
+     echo "*** The pkg-config script could not be found. Make sure it is"
+     echo "*** in your path, or set the PKG_CONFIG environment variable"
+     echo "*** to the full path to pkg-config."
+     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
+  else
+     PKG_CONFIG_MIN_VERSION=0.9.0
+     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+        echo "$as_me:$LINENO: checking for gts" >&5
+echo $ECHO_N "checking for gts... $ECHO_C" >&6
+
+        if $PKG_CONFIG --exists "gts" ; then
+            echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6
-	else
-		echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-		PKG_CONFIG=""
-	fi
+            succeeded=yes
 
-fi
+            echo "$as_me:$LINENO: checking GTS_CFLAGS" >&5
+echo $ECHO_N "checking GTS_CFLAGS... $ECHO_C" >&6
+            GTS_CFLAGS=`$PKG_CONFIG --cflags "gts"`
+            echo "$as_me:$LINENO: result: $GTS_CFLAGS" >&5
+echo "${ECHO_T}$GTS_CFLAGS" >&6
 
-pkg_failed=no
-echo "$as_me:$LINENO: checking for GLIB" >&5
-echo $ECHO_N "checking for GLIB... $ECHO_C" >&6
-
-if test -n "$PKG_CONFIG"; then
-    if test -n "$GLIB_CFLAGS"; then
-        pkg_cv_GLIB_CFLAGS="$GLIB_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "glib-2.0") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GLIB_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$GLIB_LIBS"; then
-        pkg_cv_GLIB_LIBS="$GLIB_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "glib-2.0") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GLIB_LIBS=`$PKG_CONFIG --libs "glib-2.0" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        GLIB_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0"`
+            echo "$as_me:$LINENO: checking GTS_LIBS" >&5
+echo $ECHO_N "checking GTS_LIBS... $ECHO_C" >&6
+            GTS_LIBS=`$PKG_CONFIG --libs "gts"`
+            echo "$as_me:$LINENO: result: $GTS_LIBS" >&5
+echo "${ECHO_T}$GTS_LIBS" >&6
         else
-	        GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0"`
+            GTS_CFLAGS=""
+            GTS_LIBS=""
+            ## If we have a custom action on failure, don't print errors, but
+            ## do set a variable so people can do so.
+            GTS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gts"`
+
         fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$GLIB_PKG_ERRORS" >&5
-
-	have_glib=no
-elif test $pkg_failed = untried; then
-	have_glib=no
-else
-	GLIB_CFLAGS=$pkg_cv_GLIB_CFLAGS
-	GLIB_LIBS=$pkg_cv_GLIB_LIBS
-        echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-	have_glib=yes
-fi
-
-# Check for GTS
-
-pkg_failed=no
-echo "$as_me:$LINENO: checking for GTS" >&5
-echo $ECHO_N "checking for GTS... $ECHO_C" >&6
-
-if test -n "$PKG_CONFIG"; then
-    if test -n "$GTS_CFLAGS"; then
-        pkg_cv_GTS_CFLAGS="$GTS_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gts\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gts") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GTS_CFLAGS=`$PKG_CONFIG --cflags "gts" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$GTS_LIBS"; then
-        pkg_cv_GTS_LIBS="$GTS_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gts\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gts") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GTS_LIBS=`$PKG_CONFIG --libs "gts" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
 
 
 
-if test $pkg_failed = yes; then
+     else
+        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
+        echo "*** See http://www.freedesktop.org/software/pkgconfig"
+     fi
+  fi
 
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        GTS_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gts"`
-        else
-	        GTS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gts"`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$GTS_PKG_ERRORS" >&5
+  if test $succeeded = yes; then
+     have_gts=yes
+  else
+     have_gts=no
+  fi
 
-	have_gts=no
-elif test $pkg_failed = untried; then
-	have_gts=no
-else
-	GTS_CFLAGS=$pkg_cv_GTS_CFLAGS
-	GTS_LIBS=$pkg_cv_GTS_LIBS
-        echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-	have_gts=yes
-fi
 if test $have_gts = yes && test $have_glib = yes; then
     GTS_CFLAGS="-DHAVE_GTS_H=1"
 else
@@ -20298,116 +20250,103 @@ else
 fi
 
 
-pkg_failed=no
-echo "$as_me:$LINENO: checking for UFC" >&5
-echo $ECHO_N "checking for UFC... $ECHO_C" >&6
+  succeeded=no
+
+  if test -z "$PKG_CONFIG"; then
+    # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
 
 if test -n "$PKG_CONFIG"; then
-    if test -n "$UFC_CFLAGS"; then
-        pkg_cv_UFC_CFLAGS="$UFC_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ufc-1\"") >&5
-  ($PKG_CONFIG --exists --print-errors "ufc-1") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_UFC_CFLAGS=`$PKG_CONFIG --cflags "ufc-1" 2>/dev/null`
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
 else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$UFC_LIBS"; then
-        pkg_cv_UFC_LIBS="$UFC_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ufc-1\"") >&5
-  ($PKG_CONFIG --exists --print-errors "ufc-1") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_UFC_LIBS=`$PKG_CONFIG --libs "ufc-1" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
 fi
 
+  fi
 
+  if test "$PKG_CONFIG" = "no" ; then
+     echo "*** The pkg-config script could not be found. Make sure it is"
+     echo "*** in your path, or set the PKG_CONFIG environment variable"
+     echo "*** to the full path to pkg-config."
+     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
+  else
+     PKG_CONFIG_MIN_VERSION=0.9.0
+     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+        echo "$as_me:$LINENO: checking for ufc-1" >&5
+echo $ECHO_N "checking for ufc-1... $ECHO_C" >&6
 
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        UFC_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "ufc-1"`
-        else
-	        UFC_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ufc-1"`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$UFC_PKG_ERRORS" >&5
-
-	{ { echo "$as_me:$LINENO: error: Package requirements (ufc-1) were not met:
-
-$UFC_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables UFC_CFLAGS
-and UFC_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-" >&5
-echo "$as_me: error: Package requirements (ufc-1) were not met:
-
-$UFC_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables UFC_CFLAGS
-and UFC_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-" >&2;}
-   { (exit 1); exit 1; }; }
-elif test $pkg_failed = untried; then
-	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables UFC_CFLAGS
-and UFC_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
-See \`config.log' for more details." >&5
-echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables UFC_CFLAGS
-and UFC_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
-See \`config.log' for more details." >&2;}
-   { (exit 1); exit 1; }; }
-else
-	UFC_CFLAGS=$pkg_cv_UFC_CFLAGS
-	UFC_LIBS=$pkg_cv_UFC_LIBS
-        echo "$as_me:$LINENO: result: yes" >&5
+        if $PKG_CONFIG --exists "ufc-1" ; then
+            echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6
-	:
-fi
+            succeeded=yes
+
+            echo "$as_me:$LINENO: checking UFC_CFLAGS" >&5
+echo $ECHO_N "checking UFC_CFLAGS... $ECHO_C" >&6
+            UFC_CFLAGS=`$PKG_CONFIG --cflags "ufc-1"`
+            echo "$as_me:$LINENO: result: $UFC_CFLAGS" >&5
+echo "${ECHO_T}$UFC_CFLAGS" >&6
+
+            echo "$as_me:$LINENO: checking UFC_LIBS" >&5
+echo $ECHO_N "checking UFC_LIBS... $ECHO_C" >&6
+            UFC_LIBS=`$PKG_CONFIG --libs "ufc-1"`
+            echo "$as_me:$LINENO: result: $UFC_LIBS" >&5
+echo "${ECHO_T}$UFC_LIBS" >&6
+        else
+            UFC_CFLAGS=""
+            UFC_LIBS=""
+            ## If we have a custom action on failure, don't print errors, but
+            ## do set a variable so people can do so.
+            UFC_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ufc-1"`
+            echo $UFC_PKG_ERRORS
+        fi
+
+
+
+     else
+        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
+        echo "*** See http://www.freedesktop.org/software/pkgconfig"
+     fi
+  fi
+
+  if test $succeeded = yes; then
+     :
+  else
+     { { echo "$as_me:$LINENO: error: Library requirements (ufc-1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
+echo "$as_me: error: Library requirements (ufc-1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+   { (exit 1); exit 1; }; }
+  fi
+
 
 # Check for umfpack
 have_umfpack_header=yes
@@ -20456,7 +20395,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -20533,7 +20473,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -20608,7 +20549,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -20757,7 +20699,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -20906,7 +20849,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -21072,7 +21016,7 @@ if test "${am_cv_pathless_PYTHON+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
 
-	for am_cv_pathless_PYTHON in python python2 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 none; do
+	for am_cv_pathless_PYTHON in python python2 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 none; do
 	  test "$am_cv_pathless_PYTHON" = none && break
 	  prog="import sys, string
 # split strings by '.' and convert to numeric.  Append some zeros
@@ -21312,7 +21256,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -21702,7 +21647,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -21756,7 +21702,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -21930,7 +21877,8 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"
+			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -22093,7 +22041,7 @@ MODULE_CFLAGS="$MODULE_INCLUDE $KERNEL_CFLAGS"
 
 
 # Generate include path for main (including also module code)
-DOLFIN_CFLAGS="$KERNEL_INCLUDE $MODULE_INCLUDE $EXTERNAL_CFLAGS"
+DOLFIN_CFLAGS="$KERNEL_INCLUDE $EXTERNAL_CFLAGS"
 
 
 # Extract compiler definitions
@@ -22115,12 +22063,14 @@ DOLFIN_LIBS="$DOLFIN_LIBS $DOLFIN_EXT_LIBS"
 
 
 # Generate libtool library list (including also module code)
-DOLFIN_LTLIBOBJS=""
+MODULES_LIBOBJS=""
 for f in $DOLFIN_MODULES; do
-    DOLFIN_LTLIBOBJS="$DOLFIN_LTLIBOBJS \$(top_builddir)/src/modules/$f/*.lo "
+    MODULES_LIBOBJS="$MODULES_LIBOBJS \$(top_builddir)/src/modules/$f/*.lo "
 done
+
+KERNEL_LIBOBJS=""
 for f in $DOLFIN_KERNEL; do
-    DOLFIN_LTLIBOBJS="$DOLFIN_LTLIBOBJS \$(top_builddir)/src/kernel/$f/*.lo "
+    KERNEL_LIBOBJS="$KERNEL_LIBOBJS \$(top_builddir)/src/kernel/$f/*.lo "
 done
 
 
@@ -22141,7 +22091,7 @@ echo 'export PYTHONPATH="'$prefix'/lib/python'$PYTHON_VERSION'/site-packages:$PY
 
 
 # List output to be generated: Makefiles and pkgconfig configuration
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile src/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/mf/Makefile src/kernel/mf/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/pde/Makefile src/kernel/pde/dolfin/Makefile src/kernel/parameter/Makefile src/kernel/parameter/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/plasticity/Makefile src/modules/plasticity/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/heat/Makefile src/modules/heat/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/lib/Makefile src/pydolfin/Makefile src/demo/Makefile src/demo/fem/Makefile src/demo/nls/Makefile src/demo/ode/Makefile src/demo/ode/homotopy/Makefile src/demo/pde/Makefile src/demo/pde/nonlinear/Makefile src/demo/pde/stokes/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/scripting/Makefile src/bench/Makefile src/bench/fem/Makefile src/bench/la/Makefile src/bench/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/utils/convert/Makefile src/utils/swig/Makefile src/greeting/Makefile dolfin.pc"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ac_config_files="$ac_config_files Makefile src/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/form/Makefile src/kernel/form/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/mf/Makefile src/kernel/mf/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/pde/Makefile src/kernel/pde/dolfin/Makefile src/kernel/parameter/Makefile src/kernel/parameter/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/modules/Makefile src/modules/dolfin/Makefile src/modules/convdiff/Makefile src/modules/convdiff/dolfin/Makefile src/modules/elasticity/Makefile src/modules/elasticity/dolfin/Makefile src/modules/elasticity-updated/Makefile src/modules/elasticity-updated/dolfin/Makefile src/modules/navierstokes/Makefile src/modules/navierstokes/dolfin/Makefile src/modules/plasticity/Makefile src/modules/plasticity/dolfin/Makefile src/modules/poisson/Makefile src/modules/poisson/dolfin/Makefile src/modules/heat/Makefile src/modules/heat/dolfin/Makefile src/modules/stokes/Makefile src/modules/stokes/dolfin/Makefile src/modules/lib/Makefile src/lib/Makefile src/pydolfin/Makefile src/demo/Makefile src/demo/fem/Makefile src/demo/nls/Makefile src/demo/ode/Makefile src/demo/ode/homotopy/Makefile src/demo/pde/Makefile src/demo/pde/nonlinear/Makefile src/demo/pde/stokes/Makefile src/demo/solvers/Makefile src/demo/solvers/navierstokes/Makefile src/demo/scripting/Makefile src/bench/Makefile src/bench/fem/Makefile src/bench/la/Makefile src/bench/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/utils/convert/Makefile src/utils/swig/Makefile src/greeting/Makefile dolfin.pc"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -22791,6 +22741,7 @@ do
   "src/modules/heat/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/heat/dolfin/Makefile" ;;
   "src/modules/stokes/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/stokes/Makefile" ;;
   "src/modules/stokes/dolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/stokes/dolfin/Makefile" ;;
+  "src/modules/lib/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/modules/lib/Makefile" ;;
   "src/lib/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/lib/Makefile" ;;
   "src/pydolfin/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/pydolfin/Makefile" ;;
   "src/demo/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/demo/Makefile" ;;
@@ -22974,7 +22925,6 @@ s,@XML_LIBS@,$XML_LIBS,;t t
 s,@BOOST_CPPFLAGS@,$BOOST_CPPFLAGS,;t t
 s,@BOOST_LDFLAGS@,$BOOST_LDFLAGS,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
-s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
 s,@GLIB_CFLAGS@,$GLIB_CFLAGS,;t t
 s,@GLIB_LIBS@,$GLIB_LIBS,;t t
 s,@GTS_CFLAGS@,$GTS_CFLAGS,;t t
@@ -23011,7 +22961,8 @@ s,@DOLFIN_CFLAGS@,$DOLFIN_CFLAGS,;t t
 s,@DOLFIN_DEFINITIONS@,$DOLFIN_DEFINITIONS,;t t
 s,@DOLFIN_EXT_LIBS@,$DOLFIN_EXT_LIBS,;t t
 s,@DOLFIN_LIBS@,$DOLFIN_LIBS,;t t
-s,@DOLFIN_LTLIBOBJS@,$DOLFIN_LTLIBOBJS,;t t
+s,@MODULES_LIBOBJS@,$MODULES_LIBOBJS,;t t
+s,@KERNEL_LIBOBJS@,$KERNEL_LIBOBJS,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF
@@ -23180,6 +23131,11 @@ esac
   *) ac_INSTALL=$ac_top_builddir$INSTALL ;;
   esac
 
+  if test x"$ac_file" != x-; then
+    { echo "$as_me:$LINENO: creating $ac_file" >&5
+echo "$as_me: creating $ac_file" >&6;}
+    rm -f "$ac_file"
+  fi
   # Let's still pretend it is `configure' which instantiates (i.e., don't
   # use $as_me), people would be surprised to read:
   #    /* config.h.  Generated by config.status.  */
@@ -23218,12 +23174,6 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
 	 fi;;
       esac
     done` || { (exit 1); exit 1; }
-
-  if test x"$ac_file" != x-; then
-    { echo "$as_me:$LINENO: creating $ac_file" >&5
-echo "$as_me: creating $ac_file" >&6;}
-    rm -f "$ac_file"
-  fi
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF
   sed "$ac_vpsub
