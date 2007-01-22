@@ -252,7 +252,10 @@ function.  The following example illustrates how to create a
 class Source : public Function
 {
   real eval(const Point& p, unsigned int i)
-  {
+  { 
+    real x=p.x();
+    real y=p.y();
+    real z=p.z();
     return x*y*sin(z / DOLFIN_PI);
   }
 };
@@ -271,6 +274,9 @@ public:
 
   real eval(const Point& p, unsigned int i)
   {
+    real x=p.x();
+    real y=p.y();
+    real z=p.z();
     if ( i == 0 )
       return 0.0;
     else if ( i == 1 )
@@ -303,6 +309,9 @@ must be supplied to the constructor of \texttt{Function}:
 \begin{code}
 real source(const Point& p, unsigned int i)
 {
+  real x=p.x();
+  real y=p.y();
+  real z=p.z();
   if ( i == 0 )
     return 0.0;
   else if ( i == 1 )
