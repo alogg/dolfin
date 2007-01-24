@@ -548,22 +548,22 @@ public:
     return 0;
   }
 
-  /// Create a new cell integral (return 0 if contribution is zero)
-  virtual ufc::cell_integral* create_cell_integral() const
+  /// Create a new cell integral on sub domain i
+  virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
     // Not implemented
     return 0;
   }
 
-  /// Create a new exterior facet integral (return 0 if contribution is zero)
-  virtual ufc::exterior_facet_integral* create_exterior_facet_integral() const
+  /// Create a new exterior facet integral on sub domain i
+  virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
   {
     // Not implemented
     return 0;
   }
 
-  /// Create a new interior facet integral (return 0 if contribution is zero)
-  virtual ufc::interior_facet_integral* create_interior_facet_integral() const
+  /// Create a new interior facet integral on sub domain i
+  virtual ufc::interior_facet_integral* create_interior_facet_integral(unsigned int i) const
   {
     // Not implemented
     return 0;
