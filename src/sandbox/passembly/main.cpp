@@ -7,7 +7,8 @@
 // This file is used for testing parallel assembly
 
 #include <dolfin.h>
-#include <dolfin/Poisson2D.h>
+#include "Poisson2D.h"
+
 #include <parmetis.h>
 extern "C"
 {
