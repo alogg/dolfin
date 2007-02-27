@@ -7,12 +7,22 @@
 // Testing experimental code for ordering of mesh entities.
 
 #include <dolfin.h>
+#include "test.h"
 
 using namespace dolfin;
 
 int main()
 {
-  UnitSquare mesh(5, 5);
+  UnitSquare mesh(2, 2);
+//  UnitCube mesh(1, 1, 1);
+
+//  Mesh mesh;
+
+  Function f;
+
+  test::LinearForm L(f);
+//  FEM::disp(mesh, L.test());
 
   MeshOrdering::order(mesh);
+  FEM::disp(mesh, L.test());
 }
