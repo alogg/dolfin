@@ -13,6 +13,8 @@ using namespace dolfin;
 int main()
 {
   UnitSquare mesh(1, 1);
+  mesh.init();
+
   mesh.disp();
   
   MeshOrdering::order(mesh);
