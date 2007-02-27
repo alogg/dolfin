@@ -17,7 +17,7 @@ int main()
 
   mesh.disp();
   
-  MeshOrdering::order(mesh);
+  mesh.order();
 
   mesh.disp();
 }
