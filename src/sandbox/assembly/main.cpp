@@ -20,5 +20,4 @@ int main()
   UnitSquare mesh(5, 5);
 
   assemble(A, form, mesh);
-
 }
