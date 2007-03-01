@@ -1,6 +1,8 @@
 // Copyright (C) 2007 Anders Logg.
 // Licensed under the GNU GPL Version 2.
 //
+// Modified by Ola Skavhaug, 2007.
+//
 // First added:  2007-01-17
 // Last changed: 2007-03-01
 
@@ -36,6 +38,8 @@ namespace dolfin
       delete [] dims;
     }
 
+    ///--- Functions overloaded from GenericTensor ---
+
     /// Initialize zero tensor of given rank and dimensions
     void init(uint rank, uint* dims)
     {
@@ -57,6 +61,14 @@ namespace dolfin
       return dims[dim];
     }
 
+    /// Add entries to tensor
+    void add(real* block, uint* size, uint** entries)
+    {
+      add(block, size[0], entries[0], size[1], entries[1]);
+    }
+
+    ///--- Specialized matrix functions ---
+
     /// Initialize M x N matrix
     void init(uint M, uint N)
     {
@@ -67,6 +79,43 @@ namespace dolfin
       for (uint i = 0; i < M; i++)
         for (std::map<uint, real>::iterator it = A[i].begin(); it != A[i].end(); it++)
           it->second = 0.0;
+    }
+
+    /// Add entries to matrix
+    void add(real* block, uint m, uint* rows, uint n, uint* cols)
+    {
+      uint pos = 0;
+      for (uint i = 0; i < m; i++)
+      {
+        std::map<uint, real>& row = A[rows[i]];
+        for (uint j = 0; j < n; j++)
+        {
+          const uint col = cols[j];
+          const std::map<uint, real>::iterator it = row.find(col);
+          if ( it == row.end() )
+            row.insert(it, std::map<uint, real>::value_type(col, block[pos++]));
+          else
+            it->second += block[pos++];
+        }
+      }
+    }
+
+    /// Display matrix
+    void disp(uint precision = 2)
+    {
+      for (uint i = 0; i < dims[0]; i++)
+      {
+        std::stringstream line;
+        line << std::setiosflags(std::ios::scientific);
+        line << std::setprecision(precision);
+    
+        line << "|";
+        for (std::map<uint, real>::iterator it = A[i].begin(); it != A[i].end(); it++)
+          line << " (" << i << ", " << it->first << ", " << it->second << ")";
+        line << " |";
+        
+        dolfin::cout << line.str().c_str() << dolfin::endl;
+      }
     }
 
   private:
