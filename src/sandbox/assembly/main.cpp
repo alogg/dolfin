@@ -19,11 +19,11 @@ int main()
   UnitSquare mesh(2, 2);
 
   // Old assembly
-  cout << "---------- Old assembly ----------" << endl;
-  Matrix A;
-  Poisson::BilinearForm a;
-  FEM::assemble(a, A, mesh);
-  A.disp();
+  //cout << "---------- Old assembly ----------" << endl;
+  //Matrix A;
+  //Poisson::BilinearForm a;
+  //FEM::assemble(a, A, mesh);
+  //A.disp();
 
   // New assembly
   cout << "---------- New assembly ----------" << endl;
