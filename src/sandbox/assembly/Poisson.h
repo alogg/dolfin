@@ -6,8 +6,6 @@
 
 #include <ufc.h>
 
-#include <iostream>
-
 /// This class defines the interface for a finite element.
 
 class Poisson_finite_element_0: public ufc::finite_element
@@ -423,29 +421,35 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
+    // Extract coordinates
+    const double * const * x = c.coordinates;
+    
     // Compute Jacobian of affine map from reference cell
-    const double J00 = c.coordinates[1][0] - c.coordinates[0][0];
-    const double J01 = c.coordinates[2][0] - c.coordinates[0][0];
-    const double J10 = c.coordinates[1][1] - c.coordinates[0][1];
-    const double J11 = c.coordinates[2][1] - c.coordinates[0][1];
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
       
-    // Compute determinant
-    double det = J00*J11 - J01*J10;
+    // Compute determinant of Jacobian
+    double detJ = J_00*J_11 - J_01*J_10;
       
     // Compute inverse of Jacobian
-    const double Jinv00 =  J11 / det;
-    const double Jinv01 = -J01 / det;
-    const double Jinv10 = -J10 / det;
-    const double Jinv11 =  J00 / det;
+    const double Jinv_00 =  J_11 / detJ;
+    const double Jinv_01 = -J_01 / detJ;
+    const double Jinv_10 = -J_10 / detJ;
+    const double Jinv_11 =  J_00 / detJ;
     
     // Take absolute value of determinant
-    det = std::abs(det);
+    detJ = std::abs(detJ);
+    
+    // Set scale factor
+    const double det = detJ;
     
     // Compute geometry tensors
-    const double G0_0_0 = det*Jinv00*Jinv00 + det*Jinv01*Jinv01;
-    const double G0_0_1 = det*Jinv00*Jinv10 + det*Jinv01*Jinv11;
-    const double G0_1_0 = det*Jinv10*Jinv00 + det*Jinv11*Jinv01;
-    const double G0_1_1 = det*Jinv10*Jinv10 + det*Jinv11*Jinv11;
+    const double G0_0_0 = det*Jinv_00*Jinv_00 + det*Jinv_01*Jinv_01;
+    const double G0_0_1 = det*Jinv_00*Jinv_10 + det*Jinv_01*Jinv_11;
+    const double G0_1_0 = det*Jinv_10*Jinv_00 + det*Jinv_11*Jinv_01;
+    const double G0_1_1 = det*Jinv_10*Jinv_10 + det*Jinv_11*Jinv_11;
     
     // Compute element tensor
     A[0] = 4.999999999999998e-01*G0_0_0 + 4.999999999999997e-01*G0_0_1 + 4.999999999999997e-01*G0_1_0 + 4.999999999999996e-01*G0_1_1;
@@ -457,6 +461,111 @@ public:
     A[6] = -4.999999999999997e-01*G0_1_0 - 4.999999999999996e-01*G0_1_1;
     A[7] = 4.999999999999997e-01*G0_1_0;
     A[8] = 4.999999999999996e-01*G0_1_1;
+  }
+
+};
+
+/// This class defines the interface for the tabulation of the
+/// exterior facet tensor corresponding to the local contribution to
+/// a form from the integral over an exterior facet.
+
+class Poisson_exterior_facet_integral_0: public ufc::exterior_facet_integral
+{
+public:
+
+  /// Constructor
+  Poisson_exterior_facet_integral_0() : ufc::exterior_facet_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~Poisson_exterior_facet_integral_0()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local exterior facet
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int facet) const
+  {
+    // Extract coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*J_11 - J_01*J_10;
+      
+    // Compute inverse of Jacobian
+    // const double Jinv_00 =  J_11 / detJ;
+    // const double Jinv_01 = -J_01 / detJ;
+    // const double Jinv_10 = -J_10 / detJ;
+    // const double Jinv_11 =  J_00 / detJ;
+    
+    // Take absolute value of determinant
+    detJ = std::abs(detJ);
+    
+    // Vertices on each edge
+    static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
+    
+    // Get vertices
+    const unsigned int v0 = edge_vertices[facet][0];
+    const unsigned int v1 = edge_vertices[facet][1];
+    
+    // Compute scale factor (length of edge scaled by length of reference interval)
+    const double dx0 = x[v1][0] - x[v0][0];
+    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx2 = x[v1][2] - x[v0][2];
+    const double det = std::sqrt(dx0*dx0 + dx1*dx1 + dx2*dx2);
+    
+    // Compute geometry tensors
+    const double G0_ = det;
+    
+    // Compute element tensor for all facets
+    switch ( facet )
+    {
+    case 0:
+      A[0] = 0.000000000000000e+00;
+      A[1] = 0.000000000000000e+00;
+      A[2] = 0.000000000000000e+00;
+      A[3] = 0.000000000000000e+00;
+      A[4] = 3.333333333333331e-01*G0_;
+      A[5] = 1.666666666666666e-01*G0_;
+      A[6] = 0.000000000000000e+00;
+      A[7] = 1.666666666666665e-01*G0_;
+      A[8] = 3.333333333333330e-01*G0_;
+      break;
+    case 1:
+      A[0] = 3.333333333333330e-01*G0_;
+      A[1] = 0.000000000000000e+00;
+      A[2] = 1.666666666666665e-01*G0_;
+      A[3] = 0.000000000000000e+00;
+      A[4] = 0.000000000000000e+00;
+      A[5] = 0.000000000000000e+00;
+      A[6] = 1.666666666666665e-01*G0_;
+      A[7] = 0.000000000000000e+00;
+      A[8] = 3.333333333333330e-01*G0_;
+      break;
+    case 2:
+      A[0] = 3.333333333333330e-01*G0_;
+      A[1] = 1.666666666666665e-01*G0_;
+      A[2] = 0.000000000000000e+00;
+      A[3] = 1.666666666666665e-01*G0_;
+      A[4] = 3.333333333333331e-01*G0_;
+      A[5] = 0.000000000000000e+00;
+      A[6] = 0.000000000000000e+00;
+      A[7] = 0.000000000000000e+00;
+      A[8] = 0.000000000000000e+00;
+      break;
+    }
+    
   }
 
 };
@@ -495,7 +604,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "|det(F)|^(1)(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0) + |det(F)|^(1)(dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0)";
+    return "|det(F)|^(1)(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0) + |det(F)|^(1)(dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0) + |det(F)|^(1) | vi0*vi1*ds(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -519,7 +628,7 @@ public:
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
-    return 0;
+    return 1;
   }
   
   /// Return the number of interior facet integrals
@@ -546,11 +655,6 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    return new Poisson_dof_map_0();
-
-    /*
-    std::cout << "Creating dof map for i = " << i << std::endl;
-
     switch ( i )
     {
     case 0:
@@ -561,7 +665,6 @@ public:
       break;
     }
     return 0;
-    */
   }
 
   /// Create a new cell integral on sub domain i
@@ -573,7 +676,7 @@ public:
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
   {
-    return 0;
+    return new Poisson_exterior_facet_integral_0();
   }
 
   /// Create a new interior facet integral on sub domain i

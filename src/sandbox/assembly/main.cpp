@@ -10,7 +10,6 @@
 
 #include "PoissonOld.h"
 #include "Poisson.h"
-#include "AssemblyMatrix.h"
 
 using namespace dolfin;
 
