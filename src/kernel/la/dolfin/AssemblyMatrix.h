@@ -11,9 +11,12 @@
 
 #include <vector>
 #include <map>
+#include <sstream>
+#include <iomanip>
 
 #include <dolfin/constants.h>
 #include <dolfin/dolfin_log.h>
+#include <dolfin/GenericTensor.h>
 
 namespace dolfin
 {
