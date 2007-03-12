@@ -90,6 +90,7 @@ int main()
   AssemblyMatrix A;
   UnitSquare mesh(1, 1);
   assemble(A, form, mesh);
+  A.disp();
 
   return 0;
 }
