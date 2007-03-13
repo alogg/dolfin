@@ -26,9 +26,11 @@ g = Function(DG1)
 
 alpha = 1.0
 
-a =  dot(grad(v), grad(u))*dx \
-   - dot(avg(grad(v)), jump(u, n))*dS \
-   - dot(jump(v, n), avg(grad(u)))*dS \
-   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS
+#a =  dot(grad(v), grad(u))*dx \
+#   - dot(avg(grad(v)), jump(u, n))*dS \
+#   - dot(jump(v, n), avg(grad(u)))*dS \
+#   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS
+#
+#L = v*f*dx + v*g*ds
 
-L = v*f*dx + v*g*ds
+a = v('+')*u('-')*dS
