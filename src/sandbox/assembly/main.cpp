@@ -45,4 +45,9 @@ int main()
   SparsityPattern test; 
   dmaps.sparsityPattern(test, mesh);
   test.disp();
+
+  dolfin::uint* nzrow = new dolfin::uint[test.numRows()];
+  test.numNonZeroPerRow(nzrow);
+  delete [] nzrow;  
+
 }
