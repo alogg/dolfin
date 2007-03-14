@@ -39,4 +39,10 @@ int main()
 
   cout << "Old assembly: " << t0 << endl;
   cout << "New assembly: " << t1 << endl;
+
+  DofMaps dmaps;
+  dmaps.update(b, mesh);
+  SparsityPattern test; 
+  dmaps.sparsityPattern(test, mesh);
+  test.disp();
 }
