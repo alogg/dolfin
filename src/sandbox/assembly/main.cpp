@@ -42,12 +42,12 @@ int main()
 
   DofMaps dmaps;
   dmaps.update(b, mesh);
-  SparsityPattern test; 
-  dmaps.sparsityPattern(test, mesh);
-  test.disp();
+  SparsityPattern sparsity_pattern; 
+  dmaps.sparsityPattern(sparsity_pattern, mesh);
+  sparsity_pattern.disp();
 
-  dolfin::uint* nzrow = new dolfin::uint[test.numRows()];
-  test.numNonZeroPerRow(nzrow);
+  dolfin::uint* nzrow = new dolfin::uint[sparsity_pattern.size(0)];
+  sparsity_pattern.numNonZeroPerRow(nzrow);
   delete [] nzrow;  
 
 }
