@@ -15,7 +15,7 @@ using namespace dolfin;
 
 int main()
 {
-  UnitSquare mesh(32, 32);
+  UnitSquare mesh(256, 256);
 
   // Old assembly
   cout << "---------- Old assembly ----------" << endl;
@@ -40,11 +40,16 @@ int main()
   cout << "Old assembly: " << t0 << endl;
   cout << "New assembly: " << t1 << endl;
 
-  DofMaps dmaps;
-  dmaps.update(b, mesh);
+  cout << "---------- Sparsity pattern ----------" << endl;
+  DofMaps dof_maps;
+  dof_maps.update(b, mesh);
   SparsityPattern sparsity_pattern; 
-  dmaps.sparsityPattern(sparsity_pattern, mesh);
-  sparsity_pattern.disp();
+ 
+  tic();
+  dof_maps.sparsityPattern(sparsity_pattern);
+  real t2  = toc();
+
+  cout << "Sparsity pattern: " << t2 << endl;
 
   dolfin::uint* nzrow = new dolfin::uint[sparsity_pattern.size(0)];
   sparsity_pattern.numNonZeroPerRow(nzrow);
