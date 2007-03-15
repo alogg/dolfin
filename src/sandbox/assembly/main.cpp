@@ -48,8 +48,14 @@ int main()
   tic();
   dof_maps.sparsityPattern(sparsity_pattern);
   real t2  = toc();
-
   cout << "Sparsity pattern: " << t2 << endl;
+
+  uBlasSparseMatrix ublas_matrix;
+  cout << "------ Init uBlas matrix with sparsity pattern ------" << endl;
+  tic();
+  ublas_matrix.init(sparsity_pattern);
+  real t3  = toc();
+  cout << "Matrix init with sparsity pattern: " << t3 << endl;
 
   dolfin::uint* nzrow = new dolfin::uint[sparsity_pattern.size(0)];
   sparsity_pattern.numNonZeroPerRow(nzrow);
