@@ -61,11 +61,11 @@ int main()
   cout << "Sparsity pattern: " << t3 << endl;
 
   uBlasSparseMatrix ublas_matrix;
-  cout << "------ Init uBlas matrix with sparsity pattern ------" << endl;
+  cout << "------ Initialise uBlas matrix with sparsity pattern ------" << endl;
   tic();
   ublas_matrix.init(sparsity_pattern);
   real t4  = toc();
-  cout << "Matrix init with sparsity pattern: " << t4 << endl;
+  cout << "Matrix initialisation with sparsity pattern: " << t4 << endl;
 
   dolfin::uint* nzrow = new dolfin::uint[sparsity_pattern.size(0)];
   sparsity_pattern.numNonZeroPerRow(nzrow);
