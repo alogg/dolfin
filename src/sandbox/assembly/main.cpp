@@ -10,12 +10,20 @@
 
 #include "PoissonOld.h"
 #include "Poisson.h"
+#include <dolfin/UFC.h>
 
 using namespace dolfin;
 
+class DirichletBC : public BoundaryCondition
+{
+  void eval(BoundaryValue& value, const Point& p, unsigned int i)
+  {
+  }
+};
+
 int main()
 {
-  UnitSquare mesh(256, 256);
+  UnitSquare mesh(2, 2);
 
   // Old assembly
   cout << "---------- Old assembly, DOLFIN Matrix ----------" << endl;
@@ -65,10 +73,5 @@ int main()
   tic();
   ublas_matrix.init(sparsity_pattern);
   real t4  = toc();
-  cout << "Matrix initialisation with sparsity pattern: " << t4 << endl;
-
-  dolfin::uint* nzrow = new dolfin::uint[sparsity_pattern.size(0)];
-  sparsity_pattern.numNonZeroPerRow(nzrow);
-  delete [] nzrow;  
-
+  cout << "Time to initialise matrix with sparsity pattern: " << t4 << endl;
 }
