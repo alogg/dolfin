@@ -73,17 +73,5 @@ int main()
   tic();
   ublas_matrix.init(sparsity_pattern);
   real t4  = toc();
-  cout << "Matrix initialisation with sparsity pattern: " << t4 << endl;
-
-  DofMaps dof_maps2;
-  dof_maps2.update(c, mesh);
-  UFC ufc(c, mesh, dof_maps2);
-
-  DirichletBC bc;
-  bc.applyBC(B, mesh, **(ufc.finite_elements), **(ufc.dof_maps));
-  
-  File file("mesh.pvd");
-  file << mesh;
-
-
+  cout << "Time to initialise matrix with sparsity pattern: " << t4 << endl;
 }
