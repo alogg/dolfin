@@ -21,301 +21,6 @@ namespace dolfin { namespace FSIDotSigma2D {
 /// This class contains the form to be evaluated, including
 /// contributions from the interior and boundary of the domain.
 
-class BilinearForm : public dolfin::BilinearForm
-{
-public:
-
-  class TestElement;
-
-  class TrialElement;
-
-  BilinearForm(const real& c0);
-  
-
-  bool interior_contribution() const;
-
-  void eval(real block[], const AffineMap& map, real det) const;
-
-  bool boundary_contribution() const;
-
-  void eval(real block[], const AffineMap& map, real det, unsigned int facet) const;
-
-  bool interior_boundary_contribution() const;
-
-  void eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const;
-
-private:
-
-  const real& c0;
-
-};
-
-class BilinearForm::TestElement : public dolfin::FiniteElement
-{
-public:
-
-  TestElement() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-  {
-    tensordims = new unsigned int [1];
-    tensordims[0] = 4;
-
-    // Element is simple, don't need to initialize subelements
-  }
-
-  ~TestElement()
-  {
-    if ( tensordims ) delete [] tensordims;
-    if ( subelements )
-    {
-      for (unsigned int i = 0; i < elementdim(); i++)
-        delete subelements[i];
-      delete [] subelements;
-    }
-  }
-
-  inline unsigned int spacedim() const
-  {
-    return 4;
-  }
-
-  inline unsigned int shapedim() const
-  {
-    return 2;
-  }
-
-  inline unsigned int tensordim(unsigned int i) const
-  {
-    dolfin_assert(i < 1);
-    return tensordims[i];
-  }
-
-  inline unsigned int elementdim() const
-  {
-    return 1;
-  }
-
-  inline unsigned int rank() const
-  {
-    return 1;
-  }
-
-  void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-  {
-    nodes[0] = cell.index();
-    int offset = mesh.topology().size(2);
-    nodes[1] = offset + cell.index();
-    offset = offset + mesh.topology().size(2);
-    nodes[2] = offset + cell.index();
-    offset = offset + mesh.topology().size(2);
-    nodes[3] = offset + cell.index();
-  }
-
-  void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-  {
-    points[0] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    points[1] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    points[2] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    points[3] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    components[0] = 0;
-    components[1] = 1;
-    components[2] = 2;
-    components[3] = 3;
-  }
-
-  void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-  {
-    // FIXME: Temporary fix for Lagrange elements
-    vertex_nodes[0] = vertex;
-    int offset = mesh.numCells();
-    vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numCells();
-    vertex_nodes[2] = offset + vertex;
-    offset = offset + mesh.numCells();
-    vertex_nodes[3] = offset + vertex;
-  }
-
-  const FiniteElement& operator[] (unsigned int i) const
-  {
-    return *this;
-  }
-
-  FiniteElement& operator[] (unsigned int i)
-  {
-    return *this;
-  }
-
-  FiniteElementSpec spec() const
-  {
-    FiniteElementSpec s("Discontinuous vector Lagrange", "triangle", 0, 4);
-    return s;
-  }
-  
-private:
-
-  unsigned int* tensordims;
-  FiniteElement** subelements;
-
-};
-
-class BilinearForm::TrialElement : public dolfin::FiniteElement
-{
-public:
-
-  TrialElement() : dolfin::FiniteElement(), tensordims(0), subelements(0)
-  {
-    tensordims = new unsigned int [1];
-    tensordims[0] = 4;
-
-    // Element is simple, don't need to initialize subelements
-  }
-
-  ~TrialElement()
-  {
-    if ( tensordims ) delete [] tensordims;
-    if ( subelements )
-    {
-      for (unsigned int i = 0; i < elementdim(); i++)
-        delete subelements[i];
-      delete [] subelements;
-    }
-  }
-
-  inline unsigned int spacedim() const
-  {
-    return 4;
-  }
-
-  inline unsigned int shapedim() const
-  {
-    return 2;
-  }
-
-  inline unsigned int tensordim(unsigned int i) const
-  {
-    dolfin_assert(i < 1);
-    return tensordims[i];
-  }
-
-  inline unsigned int elementdim() const
-  {
-    return 1;
-  }
-
-  inline unsigned int rank() const
-  {
-    return 1;
-  }
-
-  void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
-  {
-    nodes[0] = cell.index();
-    int offset = mesh.topology().size(2);
-    nodes[1] = offset + cell.index();
-    offset = offset + mesh.topology().size(2);
-    nodes[2] = offset + cell.index();
-    offset = offset + mesh.topology().size(2);
-    nodes[3] = offset + cell.index();
-  }
-
-  void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
-  {
-    points[0] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    points[1] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    points[2] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    points[3] = map(3.333333333333334e-01, 3.333333333333334e-01);
-    components[0] = 0;
-    components[1] = 1;
-    components[2] = 2;
-    components[3] = 3;
-  }
-
-  void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
-  {
-    // FIXME: Temporary fix for Lagrange elements
-    vertex_nodes[0] = vertex;
-    int offset = mesh.numCells();
-    vertex_nodes[1] = offset + vertex;
-    offset = offset + mesh.numCells();
-    vertex_nodes[2] = offset + vertex;
-    offset = offset + mesh.numCells();
-    vertex_nodes[3] = offset + vertex;
-  }
-
-  const FiniteElement& operator[] (unsigned int i) const
-  {
-    return *this;
-  }
-
-  FiniteElement& operator[] (unsigned int i)
-  {
-    return *this;
-  }
-
-  FiniteElementSpec spec() const
-  {
-    FiniteElementSpec s("Discontinuous vector Lagrange", "triangle", 0, 4);
-    return s;
-  }
-  
-private:
-
-  unsigned int* tensordims;
-  FiniteElement** subelements;
-
-};
-
-BilinearForm::BilinearForm(const real& c0) : dolfin::BilinearForm(0), c0(c0)
-{
-  // Create finite element for test space
-  _test = new TestElement();
-
-  // Create finite element for trial space
-  _trial = new TrialElement();
-}
-
-// Contribution from the interior
-bool BilinearForm::interior_contribution() const { return true; }
-
-void BilinearForm::eval(real block[], const AffineMap& map, real det) const
-{
-  // Compute geometry tensors
-  const real G0_ = det*c0;
-  const real G1_ = det*c0;
-  const real G2_ = det*c0;
-  const real G3_ = det*c0;
-
-  // Compute element tensor
-  block[0] = 4.999999999999996e-01*G0_;
-  block[1] = 0.000000000000000e+00;
-  block[2] = 0.000000000000000e+00;
-  block[3] = 0.000000000000000e+00;
-  block[4] = 0.000000000000000e+00;
-  block[5] = 4.999999999999996e-01*G2_;
-  block[6] = 0.000000000000000e+00;
-  block[7] = 0.000000000000000e+00;
-  block[8] = 0.000000000000000e+00;
-  block[9] = 0.000000000000000e+00;
-  block[10] = 4.999999999999996e-01*G1_;
-  block[11] = 0.000000000000000e+00;
-  block[12] = 0.000000000000000e+00;
-  block[13] = 0.000000000000000e+00;
-  block[14] = 0.000000000000000e+00;
-  block[15] = 4.999999999999996e-01*G3_;
-}
-
-// No contribution from the boundary
-bool BilinearForm::boundary_contribution() const { return false; }
-
-void BilinearForm::eval(real block[], const AffineMap& map, real det, unsigned int facet) const {}
-
-// No contribution from interior boundaries
-bool BilinearForm::interior_boundary_contribution() const { return false; }
-
-void BilinearForm::eval(real block[], const AffineMap& map0, const AffineMap& map1, real det, unsigned int facet0, unsigned int facet1, unsigned int alignment) const {}
-
-/// This class contains the form to be evaluated, including
-/// contributions from the interior and boundary of the domain.
-
 class LinearForm : public dolfin::LinearForm
 {
 public:
@@ -324,7 +29,9 @@ public:
 
   class FunctionElement_0;
 
-  LinearForm(Function& w0, const real& c0);
+  class FunctionElement_1;
+
+  LinearForm(Function& w0, Function& w1, const real& c0);
   
 
   bool interior_contribution() const;
@@ -559,13 +266,102 @@ private:
 
 };
 
-LinearForm::LinearForm(Function& w0, const real& c0) : dolfin::LinearForm(1), c0(c0)
+class LinearForm::FunctionElement_1 : public dolfin::FiniteElement
+{
+public:
+
+  FunctionElement_1() : dolfin::FiniteElement(), tensordims(0), subelements(0)
+  {
+    // Element is scalar, don't need to initialize tensordims
+
+    // Element is simple, don't need to initialize subelements
+  }
+
+  ~FunctionElement_1()
+  {
+    if ( tensordims ) delete [] tensordims;
+    if ( subelements )
+    {
+      for (unsigned int i = 0; i < elementdim(); i++)
+        delete subelements[i];
+      delete [] subelements;
+    }
+  }
+
+  inline unsigned int spacedim() const
+  {
+    return 1;
+  }
+
+  inline unsigned int shapedim() const
+  {
+    return 2;
+  }
+
+  inline unsigned int tensordim(unsigned int i) const
+  {
+    dolfin_error("Element is scalar.");
+    return 0;
+  }
+
+  inline unsigned int elementdim() const
+  {
+    return 1;
+  }
+
+  inline unsigned int rank() const
+  {
+    return 0;
+  }
+
+  void nodemap(int nodes[], const Cell& cell, const Mesh& mesh) const
+  {
+    nodes[0] = cell.index();
+  }
+
+  void pointmap(Point points[], unsigned int components[], const AffineMap& map) const
+  {
+    points[0] = map(3.333333333333334e-01, 3.333333333333334e-01);
+    components[0] = 0;
+  }
+
+  void vertexeval(uint vertex_nodes[], unsigned int vertex, const Mesh& mesh) const
+  {
+    // FIXME: Temporary fix for Lagrange elements
+    vertex_nodes[0] = vertex;
+  }
+
+  const FiniteElement& operator[] (unsigned int i) const
+  {
+    return *this;
+  }
+
+  FiniteElement& operator[] (unsigned int i)
+  {
+    return *this;
+  }
+
+  FiniteElementSpec spec() const
+  {
+    FiniteElementSpec s("Discontinuous Lagrange", "triangle", 0);
+    return s;
+  }
+  
+private:
+
+  unsigned int* tensordims;
+  FiniteElement** subelements;
+
+};
+
+LinearForm::LinearForm(Function& w0, Function& w1, const real& c0) : dolfin::LinearForm(2), c0(c0)
 {
   // Create finite element for test space
   _test = new TestElement();
 
   // Add functions
   initFunction(0, w0, new FunctionElement_0());
+  initFunction(1, w1, new FunctionElement_1());
 }
 
 // Contribution from the interior
@@ -580,38 +376,39 @@ void LinearForm::eval(real block[], const AffineMap& map, real det) const
   const real c0_3 = c[0][3];
   const real c0_4 = c[0][4];
   const real c0_5 = c[0][5];
+  const real c1_0 = c[1][0];
 
   // Compute geometry tensors
-  const real G0_0_0 = det*c0*c0_0*map.g00 + det*c0*c0_0*map.g00;
-  const real G0_0_1 = det*c0*c0_0*map.g10 + det*c0*c0_0*map.g10;
-  const real G0_1_0 = det*c0*c0_1*map.g00 + det*c0*c0_1*map.g00;
-  const real G0_2_1 = det*c0*c0_2*map.g10 + det*c0*c0_2*map.g10;
-  const real G1_0_0 = det*c0*c0_0*map.g01;
-  const real G1_0_1 = det*c0*c0_0*map.g11;
-  const real G1_1_0 = det*c0*c0_1*map.g01;
-  const real G1_2_1 = det*c0*c0_2*map.g11;
-  const real G2_3_0 = det*c0*c0_3*map.g00;
-  const real G2_3_1 = det*c0*c0_3*map.g10;
-  const real G2_4_0 = det*c0*c0_4*map.g00;
-  const real G2_5_1 = det*c0*c0_5*map.g10;
-  const real G3_3_0 = det*c0*c0_3*map.g00;
-  const real G3_3_1 = det*c0*c0_3*map.g10;
-  const real G3_4_0 = det*c0*c0_4*map.g00;
-  const real G3_5_1 = det*c0*c0_5*map.g10;
-  const real G4_0_0 = det*c0*c0_0*map.g01;
-  const real G4_0_1 = det*c0*c0_0*map.g11;
-  const real G4_1_0 = det*c0*c0_1*map.g01;
-  const real G4_2_1 = det*c0*c0_2*map.g11;
-  const real G5_3_0 = det*c0*c0_3*map.g01 + det*c0*c0_3*map.g01;
-  const real G5_3_1 = det*c0*c0_3*map.g11 + det*c0*c0_3*map.g11;
-  const real G5_4_0 = det*c0*c0_4*map.g01 + det*c0*c0_4*map.g01;
-  const real G5_5_1 = det*c0*c0_5*map.g11 + det*c0*c0_5*map.g11;
+  const real G0_0_0_0 = det*c0*c1_0*c0_0*map.g00 + det*c0*c1_0*c0_0*map.g00;
+  const real G0_0_0_1 = det*c0*c1_0*c0_0*map.g10 + det*c0*c1_0*c0_0*map.g10;
+  const real G0_0_1_0 = det*c0*c1_0*c0_1*map.g00 + det*c0*c1_0*c0_1*map.g00;
+  const real G0_0_2_1 = det*c0*c1_0*c0_2*map.g10 + det*c0*c1_0*c0_2*map.g10;
+  const real G1_0_0_0 = det*c0*c1_0*c0_0*map.g01;
+  const real G1_0_0_1 = det*c0*c1_0*c0_0*map.g11;
+  const real G1_0_1_0 = det*c0*c1_0*c0_1*map.g01;
+  const real G1_0_2_1 = det*c0*c1_0*c0_2*map.g11;
+  const real G2_0_3_0 = det*c0*c1_0*c0_3*map.g00;
+  const real G2_0_3_1 = det*c0*c1_0*c0_3*map.g10;
+  const real G2_0_4_0 = det*c0*c1_0*c0_4*map.g00;
+  const real G2_0_5_1 = det*c0*c1_0*c0_5*map.g10;
+  const real G3_0_3_0 = det*c0*c1_0*c0_3*map.g00;
+  const real G3_0_3_1 = det*c0*c1_0*c0_3*map.g10;
+  const real G3_0_4_0 = det*c0*c1_0*c0_4*map.g00;
+  const real G3_0_5_1 = det*c0*c1_0*c0_5*map.g10;
+  const real G4_0_0_0 = det*c0*c1_0*c0_0*map.g01;
+  const real G4_0_0_1 = det*c0*c1_0*c0_0*map.g11;
+  const real G4_0_1_0 = det*c0*c1_0*c0_1*map.g01;
+  const real G4_0_2_1 = det*c0*c1_0*c0_2*map.g11;
+  const real G5_0_3_0 = det*c0*c1_0*c0_3*map.g01 + det*c0*c1_0*c0_3*map.g01;
+  const real G5_0_3_1 = det*c0*c1_0*c0_3*map.g11 + det*c0*c1_0*c0_3*map.g11;
+  const real G5_0_4_0 = det*c0*c1_0*c0_4*map.g01 + det*c0*c1_0*c0_4*map.g01;
+  const real G5_0_5_1 = det*c0*c1_0*c0_5*map.g11 + det*c0*c1_0*c0_5*map.g11;
 
   // Compute element tensor
-  block[0] = -4.999999999999997e-01*G0_0_0 - 4.999999999999996e-01*G0_0_1 + 4.999999999999997e-01*G0_1_0 + 4.999999999999996e-01*G0_2_1;
-  block[1] = -4.999999999999997e-01*G3_3_0 - 4.999999999999996e-01*G3_3_1 + 4.999999999999997e-01*G3_4_0 + 4.999999999999996e-01*G3_5_1 - 4.999999999999997e-01*G4_0_0 - 4.999999999999996e-01*G4_0_1 + 4.999999999999997e-01*G4_1_0 + 4.999999999999996e-01*G4_2_1;
-  block[2] = -4.999999999999997e-01*G1_0_0 - 4.999999999999996e-01*G1_0_1 + 4.999999999999997e-01*G1_1_0 + 4.999999999999996e-01*G1_2_1 - 4.999999999999997e-01*G2_3_0 - 4.999999999999996e-01*G2_3_1 + 4.999999999999997e-01*G2_4_0 + 4.999999999999996e-01*G2_5_1;
-  block[3] = -4.999999999999997e-01*G5_3_0 - 4.999999999999996e-01*G5_3_1 + 4.999999999999997e-01*G5_4_0 + 4.999999999999996e-01*G5_5_1;
+  block[0] = -4.999999999999997e-01*G0_0_0_0 - 4.999999999999996e-01*G0_0_0_1 + 4.999999999999997e-01*G0_0_1_0 + 4.999999999999996e-01*G0_0_2_1;
+  block[1] = -4.999999999999997e-01*G3_0_3_0 - 4.999999999999996e-01*G3_0_3_1 + 4.999999999999997e-01*G3_0_4_0 + 4.999999999999996e-01*G3_0_5_1 - 4.999999999999997e-01*G4_0_0_0 - 4.999999999999996e-01*G4_0_0_1 + 4.999999999999997e-01*G4_0_1_0 + 4.999999999999996e-01*G4_0_2_1;
+  block[2] = -4.999999999999997e-01*G1_0_0_0 - 4.999999999999996e-01*G1_0_0_1 + 4.999999999999997e-01*G1_0_1_0 + 4.999999999999996e-01*G1_0_2_1 - 4.999999999999997e-01*G2_0_3_0 - 4.999999999999996e-01*G2_0_3_1 + 4.999999999999997e-01*G2_0_4_0 + 4.999999999999996e-01*G2_0_5_1;
+  block[3] = -4.999999999999997e-01*G5_0_3_0 - 4.999999999999996e-01*G5_0_3_1 + 4.999999999999997e-01*G5_0_4_0 + 4.999999999999996e-01*G5_0_5_1;
 }
 
 // No contribution from the boundary
