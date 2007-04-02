@@ -39,7 +39,7 @@ int main()
   // New assembly, DOLFIN matrix
   cout << "---------- New assembly, DOLFIN Matrix ----------" << endl;
   Matrix B;
-  Poisson b;
+  PoissonBilinearForm b;
   tic();
   assemble(B, b, mesh);
   real t1 = toc();
@@ -48,7 +48,7 @@ int main()
   // New assembly
   cout << "---------- New assembly, AssemblyMatrix ----------" << endl;
   AssemblyMatrix C;
-  Poisson c;
+  PoissonBilinearForm c;
   tic();
   assemble(C, c, mesh);
   real t2 = toc();
@@ -57,6 +57,7 @@ int main()
   cout << "Old assembly, DOLFIN Matrix:  " << t0 << endl;
   cout << "New assembly, DOLFIN Matrix:  " << t1 << endl;
   cout << "New assembly, AssemblyMatrix: " << t2 << endl;
+  cout << endl;
 
   cout << "---------- Sparsity pattern ----------" << endl;
   DofMaps dof_maps;
@@ -66,12 +67,19 @@ int main()
   tic();
   dof_maps.sparsityPattern(sparsity_pattern);
   real t3  = toc();
-  cout << "Sparsity pattern: " << t3 << endl;
+  cout << "Sparsity pattern: " << t3 << endl << endl;
 
   uBlasSparseMatrix ublas_matrix;
   cout << "------ Initialise uBlas matrix with sparsity pattern ------" << endl;
   tic();
   ublas_matrix.init(sparsity_pattern);
   real t4  = toc();
-  cout << "Time to initialise matrix with sparsity pattern: " << t4 << endl;
+  cout << "Time to initialise matrix with sparsity pattern: " << t4 << endl << endl;
+
+  // Assemble form that depends on a function
+  cout << "------ Assemble form that depends on a Function ------" << endl;
+  Function f = 1.0;
+  PoissonLinearForm L(f);
+  Vector d;
+  assemble(d, L, mesh);
 }
