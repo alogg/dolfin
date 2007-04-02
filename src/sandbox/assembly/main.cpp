@@ -61,7 +61,7 @@ int main()
 
   cout << "---------- Sparsity pattern ----------" << endl;
   DofMaps dof_maps;
-  dof_maps.update(b, mesh);
+  dof_maps.update(b.form(), mesh);
   SparsityPattern sparsity_pattern; 
  
   tic();

@@ -1802,28 +1802,67 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/Function.h>
 #include <dolfin/NewForm.h>
 
-class PoissonBilinearForm : public UFC_PoissonBilinearForm, public dolfin::NewForm
+class PoissonBilinearForm : public dolfin::NewForm
 {
 public:
 
-  PoissonBilinearForm() : UFC_PoissonBilinearForm(), dolfin::NewForm()
+  PoissonBilinearForm() : dolfin::NewForm()
   {
     // Do nothing
   }
 
+  /// Return UFC form
+  virtual const ufc::form& form() const
+  {
+    return __form;
+  }
+  
+  /// Return array of coefficients
+  virtual const dolfin::Array<dolfin::Function*>& coefficients() const
+  {
+    return __coefficients;
+  }
+
+private:
+
+  // UFC form
+  UFC_PoissonBilinearForm __form;
+
+  /// Array of coefficients
+  dolfin::Array<dolfin::Function*> __coefficients;
+
 };
 
-class PoissonLinearForm : public UFC_PoissonLinearForm, public dolfin::NewForm
+class PoissonLinearForm : public dolfin::NewForm
 {
 public:
 
-  PoissonLinearForm(dolfin::Function& w0) : UFC_PoissonLinearForm(), dolfin::NewForm()
+  PoissonLinearForm(dolfin::Function& w0) : dolfin::NewForm()
   {
-    coefficients.push_back(&w0);
+    __coefficients.push_back(&w0);
   }
+
+  /// Return UFC form
+  virtual const ufc::form& form() const
+  {
+    return __form;
+  }
+  
+  /// Return array of coefficients
+  virtual const dolfin::Array<dolfin::Function*>& coefficients() const
+  {
+    return __coefficients;
+  }
+
+private:
+
+  // UFC form
+  UFC_PoissonLinearForm __form;
+
+  /// Array of coefficients
+  dolfin::Array<dolfin::Function*> __coefficients;
 
 };
 
