@@ -77,9 +77,19 @@ int main()
   cout << "Time to initialise matrix with sparsity pattern: " << t4 << endl << endl;
 
   // Assemble form that depends on a function
-  cout << "------ Assemble form that depends on a Function ------" << endl;
   Function f = 1.0;
-  PoissonLinearForm L(f);
-  Vector d;
-  assemble(d, L, mesh);
+
+  cout << "------ Assemble form that depends on a Function (old) ------" << endl;
+  PoissonOld::LinearForm L0(f);
+  Vector d0;
+  FEM::assemble(L0, d0, mesh);
+
+  cout << "------ Assemble form that depends on a Function (new) ------" << endl;
+  PoissonLinearForm L1(f);
+  Vector d1;
+  assemble(d1, L1, mesh);
+
+  cout << "------ Comparing output ------" << endl;
+  d0.disp();
+  d1.disp();
 }
