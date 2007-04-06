@@ -338,28 +338,6 @@ public:
     // Not implemented
   }
 
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
-                                    const ufc::cell& c) const
-  {
-    // Not implemented
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    // Not implemented
-    return 0;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    // Not implemented
-    return 0;
-  }
-
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -465,28 +443,6 @@ public:
                                    unsigned int facet) const
   {
     // Not implemented
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
-                                    const ufc::cell& c) const
-  {
-    // Not implemented
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    // Not implemented
-    return 0;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    // Not implemented
-    return 0;
   }
 
 };
@@ -1118,28 +1074,6 @@ public:
     // Not implemented
   }
 
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
-                                    const ufc::cell& c) const
-  {
-    // Not implemented
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    // Not implemented
-    return 0;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    // Not implemented
-    return 0;
-  }
-
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -1247,28 +1181,6 @@ public:
     // Not implemented
   }
 
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
-                                    const ufc::cell& c) const
-  {
-    // Not implemented
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    // Not implemented
-    return 0;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    // Not implemented
-    return 0;
-  }
-
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -1374,28 +1286,6 @@ public:
                                    unsigned int facet) const
   {
     // Not implemented
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
-                                    const ufc::cell& c) const
-  {
-    // Not implemented
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    // Not implemented
-    return 0;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    // Not implemented
-    return 0;
   }
 
 };
