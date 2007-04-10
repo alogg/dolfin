@@ -268,13 +268,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -312,11 +312,10 @@ public:
     return 3;
   }
 
-  /// Return the number of dofs on a facets of a cell
+  /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -335,7 +334,43 @@ public:
                                    const ufc::cell& c,
                                    unsigned int facet) const
   {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
     // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
   }
 
 };
@@ -375,13 +410,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -419,11 +454,10 @@ public:
     return 3;
   }
 
-  /// Return the number of dofs on a facets of a cell
+  /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -442,7 +476,43 @@ public:
                                    const ufc::cell& c,
                                    unsigned int facet) const
   {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
     // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
   }
 
 };
@@ -1004,13 +1074,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1048,11 +1118,10 @@ public:
     return 3;
   }
 
-  /// Return the number of dofs on a facets of a cell
+  /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -1071,7 +1140,43 @@ public:
                                    const ufc::cell& c,
                                    unsigned int facet) const
   {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
     // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
   }
 
 };
@@ -1111,13 +1216,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1155,11 +1260,10 @@ public:
     return 3;
   }
 
-  /// Return the number of dofs on a facets of a cell
+  /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -1178,7 +1282,43 @@ public:
                                    const ufc::cell& c,
                                    unsigned int facet) const
   {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
     // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
   }
 
 };
@@ -1218,13 +1358,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1262,11 +1402,10 @@ public:
     return 3;
   }
 
-  /// Return the number of dofs on a facets of a cell
+  /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -1285,7 +1424,43 @@ public:
                                    const ufc::cell& c,
                                    unsigned int facet) const
   {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
     // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
   }
 
 };
@@ -1345,9 +1520,9 @@ public:
     const double G0_2 = det*w[0][2];
     
     // Compute element tensor
-    A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
-    A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
+    A[0] = 0.08333333333333*G0_0 + 0.04166666666667*G0_1 + 0.04166666666667*G0_2;
+    A[1] = 0.04166666666667*G0_0 + 0.08333333333333*G0_1 + 0.04166666666667*G0_2;
+    A[2] = 0.04166666666667*G0_0 + 0.04166666666667*G0_1 + 0.08333333333333*G0_2;
   }
 
 };
@@ -1421,21 +1596,20 @@ public:
     {
     case 0:
       A[0] = 0;
-      A[1] = 0.333333333333333*G0_1 + 0.166666666666667*G0_2;
-      A[2] = 0.166666666666667*G0_1 + 0.333333333333333*G0_2;
+      A[1] = 0.3333333333333*G0_1 + 0.1666666666667*G0_2;
+      A[2] = 0.1666666666667*G0_1 + 0.3333333333333*G0_2;
       break;
     case 1:
-      A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_2;
+      A[0] = 0.3333333333333*G0_0 + 0.1666666666667*G0_2;
       A[1] = 0;
-      A[2] = 0.166666666666667*G0_0 + 0.333333333333333*G0_2;
+      A[2] = 0.1666666666667*G0_0 + 0.3333333333333*G0_2;
       break;
     case 2:
-      A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
-      A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
+      A[0] = 0.3333333333333*G0_0 + 0.1666666666667*G0_1;
+      A[1] = 0.1666666666667*G0_0 + 0.3333333333333*G0_1;
       A[2] = 0;
       break;
     }
-    
   }
 
 };
