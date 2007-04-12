@@ -104,7 +104,9 @@ public:
                                          const double* dof_values,
                                          const ufc::cell & c) const
   {
-    // Not implemented
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -216,7 +218,9 @@ public:
                                          const double* dof_values,
                                          const ufc::cell & c) const
   {
-    // Not implemented
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -328,7 +332,7 @@ public:
     dofs[2] = c.entity_indices[0][2];
   }
 
-  /// Tabulate the local-to-global mapping of dofs on a facet of a cell
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    const ufc::mesh& m,
                                    const ufc::cell& c,
@@ -470,7 +474,7 @@ public:
     dofs[2] = c.entity_indices[0][2];
   }
 
-  /// Tabulate the local-to-global mapping of dofs on a facet of a cell
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    const ufc::mesh& m,
                                    const ufc::cell& c,
@@ -798,7 +802,9 @@ public:
                                          const double* dof_values,
                                          const ufc::cell & c) const
   {
-    // Not implemented
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -910,7 +916,9 @@ public:
                                          const double* dof_values,
                                          const ufc::cell & c) const
   {
-    // Not implemented
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1022,7 +1030,9 @@ public:
                                          const double* dof_values,
                                          const ufc::cell & c) const
   {
-    // Not implemented
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1134,7 +1144,7 @@ public:
     dofs[2] = c.entity_indices[0][2];
   }
 
-  /// Tabulate the local-to-global mapping of dofs on a facet of a cell
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    const ufc::mesh& m,
                                    const ufc::cell& c,
@@ -1276,7 +1286,7 @@ public:
     dofs[2] = c.entity_indices[0][2];
   }
 
-  /// Tabulate the local-to-global mapping of dofs on a facet of a cell
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    const ufc::mesh& m,
                                    const ufc::cell& c,
@@ -1418,7 +1428,7 @@ public:
     dofs[2] = c.entity_indices[0][2];
   }
 
-  /// Tabulate the local-to-global mapping of dofs on a facet of a cell
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    const ufc::mesh& m,
                                    const ufc::cell& c,
