@@ -1,8 +1,10 @@
 #PARMETIS = /usr/local/garth/software/ParMetis-3.1
-PARMETIS = /usr/src/ParMetis-3.1
+PARMETIS=/home/magnus/doc/uio/master/ParMetis-3.1/
+PETSC=/home/magnus/shared/apps/linux/petsc-2.3.2-p8/include
+PETSC_LIB=/home/magnus/shared/apps/linux/petsc-2.3.2-p8/lib
 
-CFLAGS  = `pkg-config dolfin --cflags` -I$(PARMETIS) -I$(PARMETIS)/METISLib -DMPICH_IGNORE_CXX_SEEK
-LIBS    = `pkg-config dolfin --libs` -L$(PARMETIS) -lparmetis -lmetis 
+CFLAGS  = `pkg-config dolfin --cflags` -I$(PARMETIS) -I$(PARMETIS)/METISLib -I$(PETSC) -DMPICH_IGNORE_CXX_SEEK
+LIBS    = `pkg-config dolfin --libs` -L$(PARMETIS) -L$(PETSC_LIB) -lparmetis -lmetis -lpetc
 CXX     = g++
 LINK    = libtool --silent --mode=link --tag CXX g++
 

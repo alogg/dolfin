@@ -1,13 +1,5 @@
-#include <dolfin/Graph.h>
-#include <dolfin/GraphEditor.h>
-#include <dolfin/File.h>
+#include <dolfin.h>
 #include <iostream>
-
-#include <parmetis.h>
-extern "C"
-{
-  #include <metis.h>
-}
 
 using namespace dolfin;
 
@@ -35,7 +27,66 @@ void testGraphEditor()
 
   graph.disp();
 }
+void testMeshToGraph()
+{
+  std::cout << "Testing Mesh to graph convertion" << std::endl;
+  UnitSquare mesh(2, 2);
 
+  Graph graph(mesh, "nodal");
+
+}
+void testGraphPartition()
+{
+  std::cout << "Testing graph partitioning" << std::endl;
+  // Test graph
+  /*
+  
+  Graph graph;
+  GraphEditor ge;
+  ge.open(graph, Graph::undirected);
+  ge.initVertices(6);
+  ge.addVertex(0, 3);
+  ge.addVertex(1, 2);
+  ge.addVertex(2, 3);
+  ge.addVertex(3, 3);
+  ge.addVertex(4, 2);
+  ge.addVertex(5, 3);
+
+  ge.initEdges(8);
+  ge.addEdge(0, 1);
+  ge.addEdge(0, 2);
+  ge.addEdge(0, 5);
+  ge.addEdge(1, 2);
+  ge.addEdge(2, 3);
+  ge.addEdge(3, 4);
+  ge.addEdge(3, 5);
+  ge.addEdge(4, 5);
+
+  
+  // -----
+ 
+  */
+  UndirectedClique graph(20);
+  dolfin::uint* parts = new dolfin::uint[graph.numVertices()];
+  dolfin::uint num_part = 6;
+  GraphPartition::partition(graph, num_part, parts);
+
+  GraphPartition::check(graph, num_part, parts);
+  GraphPartition::eval(graph, num_part, parts);
+  GraphPartition::disp(graph, num_part, parts);
+}
+void testMeshNodalGraphPartition(Mesh& mesh, dolfin::uint num_part)
+{
+  std::cout << "Testing Mesh partitioning" << std::endl;
+
+  Graph graph(mesh, "nodal");
+  dolfin::uint* parts = new dolfin::uint[graph.numVertices()];
+  GraphPartition::partition(graph, num_part, parts);
+
+  GraphPartition::check(graph, num_part, parts);
+  GraphPartition::eval(graph, num_part, parts);
+  GraphPartition::disp(graph, num_part, parts);
+}
 void testInputOutput()
 {
   std::cout << "Testing InputOutput" << std::endl;
@@ -140,36 +191,17 @@ void testInitEdgesError2()
   editor.initEdges(5);
 }
 
-void testGraphPartition()
-{
-  cout << "Converting mesh to graph" << endl;    
-
-  Mesh mesh("../../data/meshes/gear.xml.gz");
-  mesh.init();
-
-  Graph graph(mesh);
-
-  int num_partitions = 10;
-  int options[10];
-  int nn = graph.numVertices();
-  int wgtflag = 0;
-  int pnumflag = 0;
-  int* edgecut = 0;
-  int* parts = new int[nn + 1];
-  idxtype* adjncy = (idxtype*) graph.connectivity();
-  idxtype* xadj = (idxtype*) graph.offsets();
-  options[0] = 0;
-  std::cout << "METIS_PartGraphKway" << std::endl;
-  METIS_PartGraphKway(&nn, xadj, adjncy, NULL, NULL, &wgtflag, &pnumflag, &num_partitions, options, edgecut, parts);
-}
-
 int main(int argc, char* argv[])
 {
-  testGraphEditor();
-  testInputOutput(); 
+  //testMeshToGraph();
+  //testGraphPartition();
+
+  UnitSquare mesh(10, 10);
+  testMeshNodalGraphPartition(mesh, 9);
+  //testGraphEditor();
+  //testInputOutput(); 
   //testCloseError();
   //testTooManyVerticesError();
   //testInitEdgesError1();
   //testInitEdgesError2();
-  //testGraphPartition(graph, 16);
 }

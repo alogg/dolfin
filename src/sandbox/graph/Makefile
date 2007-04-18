@@ -1,7 +1,7 @@
 PARMETIS=/home/magnus/doc/uio/master/ParMetis-3.1/
 
 CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS) -I$(PARMETIS)/METISLib
-LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -lparmetis -lmetis
+LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -lparmetis -lmetis -lmpi -llapack -lX11
 CXX     = `pkg-config --variable=compiler dolfin`
 
 DEST    = dolfin-graph
