@@ -1,13 +1,5 @@
-#include <dolfin/Graph.h>
-#include <dolfin/GraphEditor.h>
-#include <dolfin/File.h>
+#include <dolfin.h>
 #include <iostream>
-
-#include <parmetis.h>
-extern "C"
-{
-  #include <metis.h>
-}
 
 using namespace dolfin;
 
@@ -35,7 +27,14 @@ void testGraphEditor()
 
   graph.disp();
 }
+void testMeshToGraph()
+{
+  std::cout << "Testing Mesh to graph convertion" << std::endl;
+  UnitSquare mesh(2, 2);
 
+  Graph graph(mesh, "nodal");
+
+}
 void testInputOutput()
 {
   std::cout << "Testing InputOutput" << std::endl;
@@ -140,36 +139,13 @@ void testInitEdgesError2()
   editor.initEdges(5);
 }
 
-void testGraphPartition()
-{
-  cout << "Converting mesh to graph" << endl;    
-
-  Mesh mesh("../../data/meshes/gear.xml.gz");
-  mesh.init();
-
-  Graph graph(mesh);
-
-  int num_partitions = 10;
-  int options[10];
-  int nn = graph.numVertices();
-  int wgtflag = 0;
-  int pnumflag = 0;
-  int* edgecut = 0;
-  int* parts = new int[nn + 1];
-  idxtype* adjncy = (idxtype*) graph.connectivity();
-  idxtype* xadj = (idxtype*) graph.offsets();
-  options[0] = 0;
-  std::cout << "METIS_PartGraphKway" << std::endl;
-  METIS_PartGraphKway(&nn, xadj, adjncy, NULL, NULL, &wgtflag, &pnumflag, &num_partitions, options, edgecut, parts);
-}
-
 int main(int argc, char* argv[])
 {
+  testMeshToGraph();
   testGraphEditor();
   testInputOutput(); 
   //testCloseError();
   //testTooManyVerticesError();
   //testInitEdgesError1();
   //testInitEdgesError2();
-  //testGraphPartition(graph, 16);
 }
