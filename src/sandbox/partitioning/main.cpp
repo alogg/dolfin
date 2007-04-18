@@ -2,14 +2,17 @@
 #include <dolfin/GraphPartition.h>
 #include <iostream>
 
+/*
 #include <parmetis.h>
 #include <scotch.h>
 extern "C"
 {
   #include <metis.h>
 }
+*/
 using namespace dolfin;
 
+/*
 void testMetisGraph(Graph& graph, int num_partitions)
 {
   int options[5];
@@ -82,6 +85,7 @@ void testScotch(Graph& graph, int num_partitions)
   //if (SCOTCH_graphLoad (&grafdat, fileptr, -1, 0) != 0) {
  // }
 }
+*/
 
 void testDolfinGraph(Graph& graph, int num_part)
 {

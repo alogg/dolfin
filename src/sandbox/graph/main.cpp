@@ -141,9 +141,9 @@ void testInitEdgesError2()
 
 int main(int argc, char* argv[])
 {
-  //testMeshToGraph();
-  //testGraphEditor();
-  //testInputOutput(); 
+  testMeshToGraph();
+  testGraphEditor();
+  testInputOutput(); 
   //testCloseError();
   //testTooManyVerticesError();
   //testInitEdgesError1();
