@@ -8,18 +8,18 @@
 
 /// This class defines the interface for a finite element.
 
-class ElasticityBilinearForm_finite_element_0_2: public ufc::finite_element
+class ElasticityBilinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityBilinearForm_finite_element_0_2() : ufc::finite_element()
+  ElasticityBilinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityBilinearForm_finite_element_0_2()
+  virtual ~ElasticityBilinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -118,7 +118,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityBilinearForm_finite_element_0_2();
+    return new ElasticityBilinearForm_finite_element_0_0();
   }
 
 };
@@ -242,18 +242,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityBilinearForm_finite_element_0_0: public ufc::finite_element
+class ElasticityBilinearForm_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityBilinearForm_finite_element_0_0() : ufc::finite_element()
+  ElasticityBilinearForm_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityBilinearForm_finite_element_0_0()
+  virtual ~ElasticityBilinearForm_finite_element_0_2()
   {
     // Do nothing
   }
@@ -352,7 +352,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityBilinearForm_finite_element_0_0();
+    return new ElasticityBilinearForm_finite_element_0_2();
   }
 
 };
@@ -496,18 +496,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityBilinearForm_finite_element_1_2: public ufc::finite_element
+class ElasticityBilinearForm_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityBilinearForm_finite_element_1_2() : ufc::finite_element()
+  ElasticityBilinearForm_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityBilinearForm_finite_element_1_2()
+  virtual ~ElasticityBilinearForm_finite_element_1_0()
   {
     // Do nothing
   }
@@ -606,7 +606,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityBilinearForm_finite_element_1_2();
+    return new ElasticityBilinearForm_finite_element_1_0();
   }
 
 };
@@ -730,18 +730,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityBilinearForm_finite_element_1_0: public ufc::finite_element
+class ElasticityBilinearForm_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityBilinearForm_finite_element_1_0() : ufc::finite_element()
+  ElasticityBilinearForm_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityBilinearForm_finite_element_1_0()
+  virtual ~ElasticityBilinearForm_finite_element_1_2()
   {
     // Do nothing
   }
@@ -840,7 +840,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityBilinearForm_finite_element_1_0();
+    return new ElasticityBilinearForm_finite_element_1_2();
   }
 
 };
@@ -977,6 +977,468 @@ public:
       return new ElasticityBilinearForm_finite_element_1_2();
       break;
     }
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityBilinearForm_dof_map_0_0: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityBilinearForm_dof_map_0_0() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityBilinearForm_dof_map_0_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityBilinearForm_dof_map_0_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityBilinearForm_dof_map_0_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityBilinearForm_dof_map_0_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityBilinearForm_dof_map_0_2: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityBilinearForm_dof_map_0_2() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityBilinearForm_dof_map_0_2()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
     return 0;
   }
 
@@ -1142,6 +1604,468 @@ public:
       dofs[6] = 8;
       dofs[7] = 9;
       dofs[8] = 10;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityBilinearForm_dof_map_1_0: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityBilinearForm_dof_map_1_0() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityBilinearForm_dof_map_1_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityBilinearForm_dof_map_1_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityBilinearForm_dof_map_1_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityBilinearForm_dof_map_1_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityBilinearForm_dof_map_1_2: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityBilinearForm_dof_map_1_2() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityBilinearForm_dof_map_1_2()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -1943,18 +2867,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityLinearForm_finite_element_0_2: public ufc::finite_element
+class ElasticityLinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityLinearForm_finite_element_0_2() : ufc::finite_element()
+  ElasticityLinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityLinearForm_finite_element_0_2()
+  virtual ~ElasticityLinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -2053,7 +2977,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityLinearForm_finite_element_0_2();
+    return new ElasticityLinearForm_finite_element_0_0();
   }
 
 };
@@ -2177,18 +3101,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityLinearForm_finite_element_0_0: public ufc::finite_element
+class ElasticityLinearForm_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityLinearForm_finite_element_0_0() : ufc::finite_element()
+  ElasticityLinearForm_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityLinearForm_finite_element_0_0()
+  virtual ~ElasticityLinearForm_finite_element_0_2()
   {
     // Do nothing
   }
@@ -2287,7 +3211,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityLinearForm_finite_element_0_0();
+    return new ElasticityLinearForm_finite_element_0_2();
   }
 
 };
@@ -2431,18 +3355,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityLinearForm_finite_element_1_2: public ufc::finite_element
+class ElasticityLinearForm_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityLinearForm_finite_element_1_2() : ufc::finite_element()
+  ElasticityLinearForm_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityLinearForm_finite_element_1_2()
+  virtual ~ElasticityLinearForm_finite_element_1_0()
   {
     // Do nothing
   }
@@ -2541,7 +3465,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityLinearForm_finite_element_1_2();
+    return new ElasticityLinearForm_finite_element_1_0();
   }
 
 };
@@ -2665,18 +3589,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class ElasticityLinearForm_finite_element_1_0: public ufc::finite_element
+class ElasticityLinearForm_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  ElasticityLinearForm_finite_element_1_0() : ufc::finite_element()
+  ElasticityLinearForm_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~ElasticityLinearForm_finite_element_1_0()
+  virtual ~ElasticityLinearForm_finite_element_1_2()
   {
     // Do nothing
   }
@@ -2775,7 +3699,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new ElasticityLinearForm_finite_element_1_0();
+    return new ElasticityLinearForm_finite_element_1_2();
   }
 
 };
@@ -2912,6 +3836,468 @@ public:
       return new ElasticityLinearForm_finite_element_1_2();
       break;
     }
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityLinearForm_dof_map_0_0: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityLinearForm_dof_map_0_0() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityLinearForm_dof_map_0_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityLinearForm_dof_map_0_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityLinearForm_dof_map_0_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityLinearForm_dof_map_0_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityLinearForm_dof_map_0_2: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityLinearForm_dof_map_0_2() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityLinearForm_dof_map_0_2()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
     return 0;
   }
 
@@ -3077,6 +4463,468 @@ public:
       dofs[6] = 8;
       dofs[7] = 9;
       dofs[8] = 10;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityLinearForm_dof_map_1_0: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityLinearForm_dof_map_1_0() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityLinearForm_dof_map_1_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityLinearForm_dof_map_1_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityLinearForm_dof_map_1_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityLinearForm_dof_map_1_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      break;
+    }
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double **coordinates,
+                                    const ufc::mesh& m,
+                                    const ufc::cell& c) const
+  {
+    // Not implemented
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    // Not implemented
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    // Not implemented
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class ElasticityLinearForm_dof_map_1_2: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  ElasticityLinearForm_dof_map_1_2() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~ElasticityLinearForm_dof_map_1_2()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    case 3:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 3;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   const ufc::mesh& m,
+                                   const ufc::cell& c,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      break;
+    case 3:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
