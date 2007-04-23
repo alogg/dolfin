@@ -5304,7 +5304,7 @@ public:
     // const double G0_10 = det*w[0][10];
     // const double G0_11 = det*w[0][11];
     // const double G1_0 = det*w[0][0];
-    const double G1_1 = det*w[0][1];
+    // const double G1_1 = det*w[0][1];
     // const double G1_2 = det*w[0][2];
     // const double G1_3 = det*w[0][3];
     // const double G1_4 = det*w[0][4];
