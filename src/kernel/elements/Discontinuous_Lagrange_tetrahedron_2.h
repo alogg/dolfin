@@ -4,6 +4,7 @@
 #ifndef __DISCONTINUOUS_LAGRANGE_TETRAHEDRON_2_H
 #define __DISCONTINUOUS_LAGRANGE_TETRAHEDRON_2_H
 
+#include <cmath>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -60,7 +61,128 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
+    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
+    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
+    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
+      
+    // Compute sub determinants
+    const double d00 = J_11*J_22 - J_12*J_21;
+    const double d01 = J_12*J_20 - J_10*J_22;
+    const double d02 = J_10*J_21 - J_11*J_20;
+    
+    const double d10 = J_02*J_21 - J_01*J_22;
+    const double d11 = J_00*J_22 - J_02*J_20;
+    const double d12 = J_01*J_20 - J_00*J_21;
+    
+    const double d20 = J_01*J_12 - J_02*J_11;
+    const double d21 = J_02*J_10 - J_00*J_12;
+    const double d22 = J_00*J_11 - J_01*J_10;
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    
+    // Compute constants
+    const double C0 = element_coordinates[3][0] + element_coordinates[2][0] \
+                    + element_coordinates[1][0] - element_coordinates[0][0];
+    const double C1 = element_coordinates[3][1] + element_coordinates[2][1] \
+                    + element_coordinates[1][1] - element_coordinates[0][1];
+    const double C2 = element_coordinates[3][2] + element_coordinates[2][2] \
+                    + element_coordinates[1][2] - element_coordinates[0][2];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = coordinates[0];
+    double y = coordinates[1];
+    double z = coordinates[2];
+    
+    x = (2.0*d00*x + 2.0*d10*y + 2.0*d20*z - d00*C0 - d10*C1 - d20*C2) / detJ;
+    y = (2.0*d01*x + 2.0*d11*y + 2.0*d21*z - d01*C0 - d11*C1 - d21*C2) / detJ;
+    z = (2.0*d02*x + 2.0*d12*y + 2.0*d22*z - d02*C0 - d12*C1 - d22*C2) / detJ;
+    
+    // Map coordinates to the reference cube
+    if (std::abs(y + z) < 1e-14)
+      x = 1.0;
+    else
+      x = -2.0 * (1.0 + x)/(y + z) - 1.0;
+    if (std::abs(z - 1.0) < 1e-14)
+      y = -1.0;
+    else
+      y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
+    
+    const static unsigned int dof = i;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[10][10] = \
+    {{-0.05773502691896, -0.06085806194502, -0.03513641844632, -0.02484519975, 0.06506000486324, 0.0503952630679, 0.02909571869813, 0.04114755998989, 0.02375655483666, 0.01679842102263},
+    {0.2309401076759, -6.76925903372e-18, -0.1405456737853, -0.09938079899999, -0.1301200097265, -4.053132751443e-18, 0.02909571869813, -7.570145233094e-19, 0.02375655483666, 0.01679842102263},
+    {-0.05773502691896, 0.06085806194502, -0.03513641844632, -0.02484519975, 0.06506000486324, -0.0503952630679, 0.02909571869813, -0.04114755998989, 0.02375655483666, 0.01679842102263},
+    {0.2309401076759, -0.12171612389, 0.07027283689263, -0.09938079899999, 4.815627247305e-18, -0.1007905261358, -0.0872871560944, 0.02057377999495, -0.01187827741833, 0.01679842102263},
+    {0.2309401076759, 0.12171612389, 0.07027283689263, -0.09938079899999, -4.815627247305e-18, 0.1007905261358, -0.0872871560944, -0.02057377999495, -0.01187827741833, 0.01679842102263},
+    {-0.05773502691896, -9.348811926967e-18, 0.07027283689263, -0.02484519975, 3.698743449098e-34, -6.3238029396e-18, 0.0872871560944, -1.561429587673e-19, -0.04751310967332, 0.01679842102263},
+    {0.2309401076759, -0.12171612389, -0.07027283689263, 0.09938079899999, 4.815205625305e-18, -5.594763358611e-18, 2.617391878498e-18, -0.1028688999747, -0.05939138709165, -0.06719368409053},
+    {0.2309401076759, 0.12171612389, -0.07027283689263, 0.09938079899999, -4.815205625305e-18, 5.594763358611e-18, -4.919597094177e-18, 0.1028688999747, -0.05939138709165, -0.06719368409053},
+    {0.2309401076759, -9.514668276857e-18, 0.1405456737853, 0.09938079899999, 3.764093264342e-34, -4.331201924074e-34, 2.302205215679e-18, -8.041362376517e-18, 0.1187827741833, -0.06719368409053},
+    {-0.05773502691896, 1.11972205727e-17, -6.462813562761e-18, 0.07453559924999, -4.429726955332e-34, 5.146877617874e-34, -4.525449414898e-34, 9.463378608147e-18, -5.462074380084e-18, 0.1007905261358}};
+    
+    // Generate scalings
+    const double scalings_y_0 = 1.0;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
+    const double scalings_z_0 = 1.0;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1.0;
+    const double psitilde_a_1 = 1*x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1.0;
+    const double psitilde_bs_0_1 = 0.5 + 1.5*y;
+    const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1.0;
+    const double psitilde_bs_1_1 = 1.5 + 2.5*y;
+    const double psitilde_bs_2_0 = 1.0;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1.0;
+    const double psitilde_cs_00_1 = 1 + 2*z;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_01_0 = 1.0;
+    const double psitilde_cs_01_1 = 2 + 3*z;
+    const double psitilde_cs_02_0 = 1.0;
+    const double psitilde_cs_10_0 = 1.0;
+    const double psitilde_cs_10_1 = 2 + 3*z;
+    const double psitilde_cs_11_0 = 1.0;
+    const double psitilde_cs_20_0 = 1.0;
+    
+    // Compute basisvalues
+    const double basisvalues[10] = \
+    {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
+     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
+     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
+     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
+     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
+     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
+     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
+     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
+     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
+     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532};
+    
+    // Compute value(s)
+    *values = 0.0;
+    for (unsigned int j = 0; j < 10; j++)
+      *values += coefficients0[dof][j]*basisvalues[j];
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -68,8 +190,8 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Not implemented
-    return 0.0;
+    // Not implemented (only for Lagrange elements
+    return 0;
   }
 
   /// Interpolate vertex values from dof values

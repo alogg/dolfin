@@ -4,6 +4,7 @@
 #ifndef __LAGRANGE_TRIANGLE_3_H
 #define __LAGRANGE_TRIANGLE_3_H
 
+#include <cmath>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -60,7 +61,88 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    const static unsigned int dof = i;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[10][10] = \
+    {{0.0471404520791, -0.02886751345948, -0.01666666666667, 0.0782460796436, 0.06060915267313, 0.03499271061119, -0.0601337794303, -0.05082231953842, -0.03936679943759, -0.02272843225242},
+    {0.0471404520791, 0.02886751345948, -0.01666666666667, 0.0782460796436, -0.06060915267313, 0.03499271061119, 0.0601337794303, -0.05082231953842, 0.03936679943759, -0.02272843225242},
+    {0.0471404520791, -2.251158065353e-17, 0.03333333333333, 1.211843117768e-17, 6.434082499758e-18, 0.1049781318336, -1.840940600869e-33, 1.049486925388e-17, 2.149017023018e-17, 0.0909137290097},
+    {0.106066017178, 0.2598076211353, -0.15, 0.1173691194654, 0.06060915267313, -0.07873359887517, -8.19662140348e-19, 0.1016446390768, -0.131222664792, 0.0909137290097},
+    {0.106066017178, -1.197156945869e-17, 0.3, 1.044614927946e-17, 0.1515228816828, 0.02624453295839, -1.752974215868e-18, 8.51375538866e-18, 0.131222664792, -0.1363705935145},
+    {0.106066017178, 1.197156945869e-17, 0.3, -1.078280545087e-17, -0.1515228816828, 0.02624453295839, 1.752974215868e-18, -8.805308185446e-18, -0.131222664792, -0.1363705935145},
+    {0.106066017178, -0.2598076211353, -0.15, 0.1173691194654, -0.06060915267313, -0.07873359887517, -1.634147010078e-17, 0.1016446390768, 0.131222664792, 0.0909137290097},
+    {0.106066017178, -0.2598076211353, -0.15, -0.0782460796436, 0.0909137290097, 0.09622995418077, 0.1804013382909, 0.05082231953842, -0.0131222664792, -0.02272843225242},
+    {0.106066017178, 0.2598076211353, -0.15, -0.0782460796436, -0.0909137290097, 0.09622995418077, -0.1804013382909, 0.05082231953842, 0.0131222664792, -0.02272843225242},
+    {0.6363961030679, -1.170236410171e-17, -8.624828282122e-17, -0.2347382389308, 2.449292486894e-17, -0.2624453295839, 1.716113224113e-17, -0.2032892781537, 3.272253659676e-18, 0.0909137290097}};
+    
+    // Generate scalings
+    const double scalings_y_0 = 1.0;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1.0;
+    const double psitilde_a_1 = 1*x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1.0;
+    const double psitilde_bs_0_1 = 0.5 + 1.5*y;
+    const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1.0;
+    const double psitilde_bs_1_1 = 1.5 + 2.5*y;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1.0;
+    const double psitilde_bs_2_1 = 2.5 + 3.5*y;
+    const double psitilde_bs_3_0 = 1.0;
+    
+    // Compute basisvalues
+    const double basisvalues[10] = \
+    {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*0.7071067811865,
+    psitilde_a_1*scalings_y_1*psitilde_bs_1_0*1.732050807569,
+    psitilde_a_0*scalings_y_0*psitilde_bs_0_1*1,
+    psitilde_a_2*scalings_y_2*psitilde_bs_2_0*2.738612787526,
+    psitilde_a_1*scalings_y_1*psitilde_bs_1_1*2.12132034356,
+    psitilde_a_0*scalings_y_0*psitilde_bs_0_2*1.224744871392,
+    psitilde_a_3*scalings_y_3*psitilde_bs_3_0*3.741657386774,
+    psitilde_a_2*scalings_y_2*psitilde_bs_2_1*3.162277660168,
+    psitilde_a_1*scalings_y_1*psitilde_bs_1_2*2.449489742783,
+    psitilde_a_0*scalings_y_0*psitilde_bs_0_3*1.414213562373};
+    
+    // Compute value(s)
+    *values = 0.0;
+    for (unsigned int j = 0; j < 10; j++)
+      *values += coefficients0[dof][j]*basisvalues[j];
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -68,11 +150,11 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    static double values[1];
-    static double coordinates[3];
+    double values[1];
+    double coordinates[2];
     
     // Nodal coordinates on reference cell
-    static double X[10][3] = {{0, 0}, {1, 0}, {0, 1}, {0.666666666666667, 0.333333333333333}, {0.333333333333333, 0.666666666666667}, {0, 0.666666666666667}, {0, 0.333333333333333}, {0.333333333333333, 0}, {0.666666666666667, 0}, {0.333333333333333, 0.333333333333333}};
+    static double X[10][2] = {{0, 0}, {1, 0}, {0, 1}, {0.6666666666667, 0.3333333333333}, {0.3333333333333, 0.6666666666667}, {0, 0.6666666666667}, {0, 0.3333333333333}, {0.3333333333333, 0}, {0.6666666666667, 0}, {0.3333333333333, 0.3333333333333}};
     
     // Components for each dof
     static unsigned int components[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -81,15 +163,13 @@ public:
     const double * const * x = c.coordinates;
     
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1] - X[i][2];
+    const double w0 = 1.0 - X[i][0] - X[i][1];
     const double w1 = X[i][0];
     const double w2 = X[i][1];
-    const double w3 = X[i][2];
     
     // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    coordinates[0] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    coordinates[0] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
     // Evaluate function at coordinates
     f.evaluate(values, coordinates, c);
