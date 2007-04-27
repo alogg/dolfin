@@ -2304,14 +2304,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -2448,14 +2451,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -2600,20 +2606,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -2911,26 +2923,32 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
-      dofs[4] = 13;
-      dofs[5] = 14;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
+      dofs[6] = 13;
+      dofs[7] = 14;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
-      dofs[4] = 12;
-      dofs[5] = 14;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
+      dofs[6] = 12;
+      dofs[7] = 14;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
-      dofs[4] = 12;
-      dofs[5] = 13;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
+      dofs[6] = 12;
+      dofs[7] = 13;
       break;
     }
   }
@@ -3076,14 +3094,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -3220,14 +3241,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -3372,20 +3396,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -3683,26 +3713,32 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
-      dofs[4] = 13;
-      dofs[5] = 14;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
+      dofs[6] = 13;
+      dofs[7] = 14;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
-      dofs[4] = 12;
-      dofs[5] = 14;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
+      dofs[6] = 12;
+      dofs[7] = 14;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
-      dofs[4] = 12;
-      dofs[5] = 13;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
+      dofs[6] = 12;
+      dofs[7] = 13;
       break;
     }
   }
@@ -5993,14 +6029,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -6137,14 +6176,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -6289,20 +6331,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -6600,26 +6648,32 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
-      dofs[4] = 13;
-      dofs[5] = 14;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
+      dofs[6] = 13;
+      dofs[7] = 14;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
-      dofs[4] = 12;
-      dofs[5] = 14;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
+      dofs[6] = 12;
+      dofs[7] = 14;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
-      dofs[4] = 12;
-      dofs[5] = 13;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
+      dofs[6] = 12;
+      dofs[7] = 13;
       break;
     }
   }
@@ -6765,14 +6819,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -6909,14 +6966,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -7061,20 +7121,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 7;
-      dofs[3] = 8;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 6;
-      dofs[3] = 8;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 6;
-      dofs[3] = 7;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
