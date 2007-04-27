@@ -64,7 +64,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -178,7 +254,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -292,7 +444,140 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -418,7 +703,69 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791, -0.288675134595, -0.166666666667},
+    {0.471404520791, 0.288675134595, -0.166666666667},
+    {0.471404520791, 0, 0.333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -532,7 +879,179 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    values[2] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (12 <= i and i <= 14)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 12;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791, -0.288675134595, -0.166666666667},
+      {0.471404520791, 0.288675134595, -0.166666666667},
+      {0.471404520791, 0, 0.333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[2] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -637,7 +1156,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -751,7 +1346,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -865,7 +1536,140 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -991,7 +1795,69 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791, -0.288675134595, -0.166666666667},
+    {0.471404520791, 0.288675134595, -0.166666666667},
+    {0.471404520791, 0, 0.333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -1105,7 +1971,179 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    values[2] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (12 <= i and i <= 14)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 12;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791, -0.288675134595, -0.166666666667},
+      {0.471404520791, 0.288675134595, -0.166666666667},
+      {0.471404520791, 0, 0.333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[2] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -1289,15 +2327,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesBilinearForm_dof_map_0_0_0();
   }
 
 };
@@ -1435,15 +2471,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesBilinearForm_dof_map_0_0_1();
   }
 
 };
@@ -1595,14 +2629,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesBilinearForm_dof_map_0_0_0();
+      break;
+    case 1:
+      return new UFC_StokesBilinearForm_dof_map_0_0_1();
+      break;
+    }
     return 0;
   }
 
@@ -1737,15 +2778,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesBilinearForm_dof_map_0_1();
   }
 
 };
@@ -1907,14 +2946,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesBilinearForm_dof_map_0_0();
+      break;
+    case 1:
+      return new UFC_StokesBilinearForm_dof_map_0_1();
+      break;
+    }
     return 0;
   }
 
@@ -2053,15 +3099,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesBilinearForm_dof_map_1_0_0();
   }
 
 };
@@ -2199,15 +3243,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesBilinearForm_dof_map_1_0_1();
   }
 
 };
@@ -2359,14 +3401,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesBilinearForm_dof_map_1_0_0();
+      break;
+    case 1:
+      return new UFC_StokesBilinearForm_dof_map_1_0_1();
+      break;
+    }
     return 0;
   }
 
@@ -2501,15 +3550,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesBilinearForm_dof_map_1_1();
   }
 
 };
@@ -2671,14 +3718,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesBilinearForm_dof_map_1_0();
+      break;
+    case 1:
+      return new UFC_StokesBilinearForm_dof_map_1_1();
+      break;
+    }
     return 0;
   }
 
@@ -2753,26 +3807,26 @@ public:
     
     // Compute element tensor
     A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1;
-    A[1] = 0.1666666666667*G0_0_0 + 0.1666666666667*G0_1_0;
-    A[2] = 0.1666666666667*G0_0_1 + 0.1666666666667*G0_1_1;
+    A[1] = 0.166666666667*G0_0_0 + 0.166666666667*G0_1_0;
+    A[2] = 0.166666666667*G0_0_1 + 0.166666666667*G0_1_1;
     A[3] = 0;
-    A[4] = -0.6666666666667*G0_0_1 - 0.6666666666667*G0_1_1;
-    A[5] = -0.6666666666667*G0_0_0 - 0.6666666666667*G0_1_0;
+    A[4] = -0.666666666667*G0_0_1 - 0.666666666667*G0_1_1;
+    A[5] = -0.666666666667*G0_0_0 - 0.666666666667*G0_1_0;
     A[6] = 0;
     A[7] = 0;
     A[8] = 0;
     A[9] = 0;
     A[10] = 0;
     A[11] = 0;
-    A[12] = 0.1666666666667*G2_0 + 0.1666666666667*G2_1;
+    A[12] = 0.166666666667*G2_0 + 0.166666666667*G2_1;
     A[13] = 0;
     A[14] = 0;
-    A[15] = 0.1666666666667*G0_0_0 + 0.1666666666667*G0_0_1;
+    A[15] = 0.166666666667*G0_0_0 + 0.166666666667*G0_0_1;
     A[16] = 0.5*G0_0_0;
-    A[17] = -0.1666666666667*G0_0_1;
-    A[18] = 0.6666666666667*G0_0_1;
+    A[17] = -0.166666666667*G0_0_1;
+    A[18] = 0.666666666667*G0_0_1;
     A[19] = 0;
-    A[20] = -0.6666666666667*G0_0_0 - 0.6666666666667*G0_0_1;
+    A[20] = -0.666666666667*G0_0_0 - 0.666666666667*G0_0_1;
     A[21] = 0;
     A[22] = 0;
     A[23] = 0;
@@ -2780,13 +3834,13 @@ public:
     A[25] = 0;
     A[26] = 0;
     A[27] = 0;
-    A[28] = -0.1666666666667*G2_0;
+    A[28] = -0.166666666667*G2_0;
     A[29] = 0;
-    A[30] = 0.1666666666667*G0_1_0 + 0.1666666666667*G0_1_1;
-    A[31] = -0.1666666666667*G0_1_0;
+    A[30] = 0.166666666667*G0_1_0 + 0.166666666667*G0_1_1;
+    A[31] = -0.166666666667*G0_1_0;
     A[32] = 0.5*G0_1_1;
-    A[33] = 0.6666666666667*G0_1_0;
-    A[34] = -0.6666666666667*G0_1_0 - 0.6666666666667*G0_1_1;
+    A[33] = 0.666666666667*G0_1_0;
+    A[34] = -0.666666666667*G0_1_0 - 0.666666666667*G0_1_1;
     A[35] = 0;
     A[36] = 0;
     A[37] = 0;
@@ -2796,52 +3850,52 @@ public:
     A[41] = 0;
     A[42] = 0;
     A[43] = 0;
-    A[44] = -0.1666666666667*G2_1;
+    A[44] = -0.166666666667*G2_1;
     A[45] = 0;
-    A[46] = 0.6666666666667*G0_1_0;
-    A[47] = 0.6666666666667*G0_0_1;
-    A[48] = 1.333333333333*G0_0_0 + 0.6666666666667*G0_0_1 + 0.6666666666667*G0_1_0 + 1.333333333333*G0_1_1;
-    A[49] = -1.333333333333*G0_0_0 - 0.6666666666667*G0_0_1 - 0.6666666666667*G0_1_0;
-    A[50] = -0.6666666666667*G0_0_1 - 0.6666666666667*G0_1_0 - 1.333333333333*G0_1_1;
+    A[46] = 0.666666666667*G0_1_0;
+    A[47] = 0.666666666667*G0_0_1;
+    A[48] = 1.33333333333*G0_0_0 + 0.666666666667*G0_0_1 + 0.666666666667*G0_1_0 + 1.33333333333*G0_1_1;
+    A[49] = -1.33333333333*G0_0_0 - 0.666666666667*G0_0_1 - 0.666666666667*G0_1_0;
+    A[50] = -0.666666666667*G0_0_1 - 0.666666666667*G0_1_0 - 1.33333333333*G0_1_1;
     A[51] = 0;
     A[52] = 0;
     A[53] = 0;
     A[54] = 0;
     A[55] = 0;
     A[56] = 0;
-    A[57] = -0.1666666666667*G2_0 - 0.1666666666667*G2_1;
-    A[58] = -0.1666666666667*G2_0 - 0.3333333333333*G2_1;
-    A[59] = -0.3333333333333*G2_0 - 0.1666666666667*G2_1;
-    A[60] = -0.6666666666667*G0_1_0 - 0.6666666666667*G0_1_1;
+    A[57] = -0.166666666667*G2_0 - 0.166666666667*G2_1;
+    A[58] = -0.166666666667*G2_0 - 0.333333333333*G2_1;
+    A[59] = -0.333333333333*G2_0 - 0.166666666667*G2_1;
+    A[60] = -0.666666666667*G0_1_0 - 0.666666666667*G0_1_1;
     A[61] = 0;
-    A[62] = -0.6666666666667*G0_0_1 - 0.6666666666667*G0_1_1;
-    A[63] = -1.333333333333*G0_0_0 - 0.6666666666667*G0_0_1 - 0.6666666666667*G0_1_0;
-    A[64] = 1.333333333333*G0_0_0 + 0.6666666666667*G0_0_1 + 0.6666666666667*G0_1_0 + 1.333333333333*G0_1_1;
-    A[65] = 0.6666666666667*G0_0_1 + 0.6666666666667*G0_1_0;
+    A[62] = -0.666666666667*G0_0_1 - 0.666666666667*G0_1_1;
+    A[63] = -1.33333333333*G0_0_0 - 0.666666666667*G0_0_1 - 0.666666666667*G0_1_0;
+    A[64] = 1.33333333333*G0_0_0 + 0.666666666667*G0_0_1 + 0.666666666667*G0_1_0 + 1.33333333333*G0_1_1;
+    A[65] = 0.666666666667*G0_0_1 + 0.666666666667*G0_1_0;
     A[66] = 0;
     A[67] = 0;
     A[68] = 0;
     A[69] = 0;
     A[70] = 0;
     A[71] = 0;
-    A[72] = 0.1666666666667*G2_0 - 0.1666666666667*G2_1;
-    A[73] = 0.1666666666667*G2_0;
-    A[74] = 0.3333333333333*G2_0 + 0.1666666666667*G2_1;
-    A[75] = -0.6666666666667*G0_0_0 - 0.6666666666667*G0_0_1;
-    A[76] = -0.6666666666667*G0_0_0 - 0.6666666666667*G0_1_0;
+    A[72] = 0.166666666667*G2_0 - 0.166666666667*G2_1;
+    A[73] = 0.166666666667*G2_0;
+    A[74] = 0.333333333333*G2_0 + 0.166666666667*G2_1;
+    A[75] = -0.666666666667*G0_0_0 - 0.666666666667*G0_0_1;
+    A[76] = -0.666666666667*G0_0_0 - 0.666666666667*G0_1_0;
     A[77] = 0;
-    A[78] = -0.6666666666667*G0_0_1 - 0.6666666666667*G0_1_0 - 1.333333333333*G0_1_1;
-    A[79] = 0.6666666666667*G0_0_1 + 0.6666666666667*G0_1_0;
-    A[80] = 1.333333333333*G0_0_0 + 0.6666666666667*G0_0_1 + 0.6666666666667*G0_1_0 + 1.333333333333*G0_1_1;
+    A[78] = -0.666666666667*G0_0_1 - 0.666666666667*G0_1_0 - 1.33333333333*G0_1_1;
+    A[79] = 0.666666666667*G0_0_1 + 0.666666666667*G0_1_0;
+    A[80] = 1.33333333333*G0_0_0 + 0.666666666667*G0_0_1 + 0.666666666667*G0_1_0 + 1.33333333333*G0_1_1;
     A[81] = 0;
     A[82] = 0;
     A[83] = 0;
     A[84] = 0;
     A[85] = 0;
     A[86] = 0;
-    A[87] = -0.1666666666667*G2_0 + 0.1666666666667*G2_1;
-    A[88] = 0.1666666666667*G2_0 + 0.3333333333333*G2_1;
-    A[89] = 0.1666666666667*G2_1;
+    A[87] = -0.166666666667*G2_0 + 0.166666666667*G2_1;
+    A[88] = 0.166666666667*G2_0 + 0.333333333333*G2_1;
+    A[89] = 0.166666666667*G2_1;
     A[90] = 0;
     A[91] = 0;
     A[92] = 0;
@@ -2849,12 +3903,12 @@ public:
     A[94] = 0;
     A[95] = 0;
     A[96] = 0.5*G1_0_0 + 0.5*G1_0_1 + 0.5*G1_1_0 + 0.5*G1_1_1;
-    A[97] = 0.1666666666667*G1_0_0 + 0.1666666666667*G1_1_0;
-    A[98] = 0.1666666666667*G1_0_1 + 0.1666666666667*G1_1_1;
+    A[97] = 0.166666666667*G1_0_0 + 0.166666666667*G1_1_0;
+    A[98] = 0.166666666667*G1_0_1 + 0.166666666667*G1_1_1;
     A[99] = 0;
-    A[100] = -0.6666666666667*G1_0_1 - 0.6666666666667*G1_1_1;
-    A[101] = -0.6666666666667*G1_0_0 - 0.6666666666667*G1_1_0;
-    A[102] = 0.1666666666667*G3_0 + 0.1666666666667*G3_1;
+    A[100] = -0.666666666667*G1_0_1 - 0.666666666667*G1_1_1;
+    A[101] = -0.666666666667*G1_0_0 - 0.666666666667*G1_1_0;
+    A[102] = 0.166666666667*G3_0 + 0.166666666667*G3_1;
     A[103] = 0;
     A[104] = 0;
     A[105] = 0;
@@ -2863,14 +3917,14 @@ public:
     A[108] = 0;
     A[109] = 0;
     A[110] = 0;
-    A[111] = 0.1666666666667*G1_0_0 + 0.1666666666667*G1_0_1;
+    A[111] = 0.166666666667*G1_0_0 + 0.166666666667*G1_0_1;
     A[112] = 0.5*G1_0_0;
-    A[113] = -0.1666666666667*G1_0_1;
-    A[114] = 0.6666666666667*G1_0_1;
+    A[113] = -0.166666666667*G1_0_1;
+    A[114] = 0.666666666667*G1_0_1;
     A[115] = 0;
-    A[116] = -0.6666666666667*G1_0_0 - 0.6666666666667*G1_0_1;
+    A[116] = -0.666666666667*G1_0_0 - 0.666666666667*G1_0_1;
     A[117] = 0;
-    A[118] = -0.1666666666667*G3_0;
+    A[118] = -0.166666666667*G3_0;
     A[119] = 0;
     A[120] = 0;
     A[121] = 0;
@@ -2878,15 +3932,15 @@ public:
     A[123] = 0;
     A[124] = 0;
     A[125] = 0;
-    A[126] = 0.1666666666667*G1_1_0 + 0.1666666666667*G1_1_1;
-    A[127] = -0.1666666666667*G1_1_0;
+    A[126] = 0.166666666667*G1_1_0 + 0.166666666667*G1_1_1;
+    A[127] = -0.166666666667*G1_1_0;
     A[128] = 0.5*G1_1_1;
-    A[129] = 0.6666666666667*G1_1_0;
-    A[130] = -0.6666666666667*G1_1_0 - 0.6666666666667*G1_1_1;
+    A[129] = 0.666666666667*G1_1_0;
+    A[130] = -0.666666666667*G1_1_0 - 0.666666666667*G1_1_1;
     A[131] = 0;
     A[132] = 0;
     A[133] = 0;
-    A[134] = -0.1666666666667*G3_1;
+    A[134] = -0.166666666667*G3_1;
     A[135] = 0;
     A[136] = 0;
     A[137] = 0;
@@ -2894,86 +3948,86 @@ public:
     A[139] = 0;
     A[140] = 0;
     A[141] = 0;
-    A[142] = 0.6666666666667*G1_1_0;
-    A[143] = 0.6666666666667*G1_0_1;
-    A[144] = 1.333333333333*G1_0_0 + 0.6666666666667*G1_0_1 + 0.6666666666667*G1_1_0 + 1.333333333333*G1_1_1;
-    A[145] = -1.333333333333*G1_0_0 - 0.6666666666667*G1_0_1 - 0.6666666666667*G1_1_0;
-    A[146] = -0.6666666666667*G1_0_1 - 0.6666666666667*G1_1_0 - 1.333333333333*G1_1_1;
-    A[147] = -0.1666666666667*G3_0 - 0.1666666666667*G3_1;
-    A[148] = -0.1666666666667*G3_0 - 0.3333333333333*G3_1;
-    A[149] = -0.3333333333333*G3_0 - 0.1666666666667*G3_1;
+    A[142] = 0.666666666667*G1_1_0;
+    A[143] = 0.666666666667*G1_0_1;
+    A[144] = 1.33333333333*G1_0_0 + 0.666666666667*G1_0_1 + 0.666666666667*G1_1_0 + 1.33333333333*G1_1_1;
+    A[145] = -1.33333333333*G1_0_0 - 0.666666666667*G1_0_1 - 0.666666666667*G1_1_0;
+    A[146] = -0.666666666667*G1_0_1 - 0.666666666667*G1_1_0 - 1.33333333333*G1_1_1;
+    A[147] = -0.166666666667*G3_0 - 0.166666666667*G3_1;
+    A[148] = -0.166666666667*G3_0 - 0.333333333333*G3_1;
+    A[149] = -0.333333333333*G3_0 - 0.166666666667*G3_1;
     A[150] = 0;
     A[151] = 0;
     A[152] = 0;
     A[153] = 0;
     A[154] = 0;
     A[155] = 0;
-    A[156] = -0.6666666666667*G1_1_0 - 0.6666666666667*G1_1_1;
+    A[156] = -0.666666666667*G1_1_0 - 0.666666666667*G1_1_1;
     A[157] = 0;
-    A[158] = -0.6666666666667*G1_0_1 - 0.6666666666667*G1_1_1;
-    A[159] = -1.333333333333*G1_0_0 - 0.6666666666667*G1_0_1 - 0.6666666666667*G1_1_0;
-    A[160] = 1.333333333333*G1_0_0 + 0.6666666666667*G1_0_1 + 0.6666666666667*G1_1_0 + 1.333333333333*G1_1_1;
-    A[161] = 0.6666666666667*G1_0_1 + 0.6666666666667*G1_1_0;
-    A[162] = 0.1666666666667*G3_0 - 0.1666666666667*G3_1;
-    A[163] = 0.1666666666667*G3_0;
-    A[164] = 0.3333333333333*G3_0 + 0.1666666666667*G3_1;
+    A[158] = -0.666666666667*G1_0_1 - 0.666666666667*G1_1_1;
+    A[159] = -1.33333333333*G1_0_0 - 0.666666666667*G1_0_1 - 0.666666666667*G1_1_0;
+    A[160] = 1.33333333333*G1_0_0 + 0.666666666667*G1_0_1 + 0.666666666667*G1_1_0 + 1.33333333333*G1_1_1;
+    A[161] = 0.666666666667*G1_0_1 + 0.666666666667*G1_1_0;
+    A[162] = 0.166666666667*G3_0 - 0.166666666667*G3_1;
+    A[163] = 0.166666666667*G3_0;
+    A[164] = 0.333333333333*G3_0 + 0.166666666667*G3_1;
     A[165] = 0;
     A[166] = 0;
     A[167] = 0;
     A[168] = 0;
     A[169] = 0;
     A[170] = 0;
-    A[171] = -0.6666666666667*G1_0_0 - 0.6666666666667*G1_0_1;
-    A[172] = -0.6666666666667*G1_0_0 - 0.6666666666667*G1_1_0;
+    A[171] = -0.666666666667*G1_0_0 - 0.666666666667*G1_0_1;
+    A[172] = -0.666666666667*G1_0_0 - 0.666666666667*G1_1_0;
     A[173] = 0;
-    A[174] = -0.6666666666667*G1_0_1 - 0.6666666666667*G1_1_0 - 1.333333333333*G1_1_1;
-    A[175] = 0.6666666666667*G1_0_1 + 0.6666666666667*G1_1_0;
-    A[176] = 1.333333333333*G1_0_0 + 0.6666666666667*G1_0_1 + 0.6666666666667*G1_1_0 + 1.333333333333*G1_1_1;
-    A[177] = -0.1666666666667*G3_0 + 0.1666666666667*G3_1;
-    A[178] = 0.1666666666667*G3_0 + 0.3333333333333*G3_1;
-    A[179] = 0.1666666666667*G3_1;
-    A[180] = -0.1666666666667*G4_0 - 0.1666666666667*G4_1;
+    A[174] = -0.666666666667*G1_0_1 - 0.666666666667*G1_1_0 - 1.33333333333*G1_1_1;
+    A[175] = 0.666666666667*G1_0_1 + 0.666666666667*G1_1_0;
+    A[176] = 1.33333333333*G1_0_0 + 0.666666666667*G1_0_1 + 0.666666666667*G1_1_0 + 1.33333333333*G1_1_1;
+    A[177] = -0.166666666667*G3_0 + 0.166666666667*G3_1;
+    A[178] = 0.166666666667*G3_0 + 0.333333333333*G3_1;
+    A[179] = 0.166666666667*G3_1;
+    A[180] = -0.166666666667*G4_0 - 0.166666666667*G4_1;
     A[181] = 0;
     A[182] = 0;
-    A[183] = 0.1666666666667*G4_0 + 0.1666666666667*G4_1;
-    A[184] = -0.1666666666667*G4_0 + 0.1666666666667*G4_1;
-    A[185] = 0.1666666666667*G4_0 - 0.1666666666667*G4_1;
-    A[186] = -0.1666666666667*G5_0 - 0.1666666666667*G5_1;
+    A[183] = 0.166666666667*G4_0 + 0.166666666667*G4_1;
+    A[184] = -0.166666666667*G4_0 + 0.166666666667*G4_1;
+    A[185] = 0.166666666667*G4_0 - 0.166666666667*G4_1;
+    A[186] = -0.166666666667*G5_0 - 0.166666666667*G5_1;
     A[187] = 0;
     A[188] = 0;
-    A[189] = 0.1666666666667*G5_0 + 0.1666666666667*G5_1;
-    A[190] = -0.1666666666667*G5_0 + 0.1666666666667*G5_1;
-    A[191] = 0.1666666666667*G5_0 - 0.1666666666667*G5_1;
+    A[189] = 0.166666666667*G5_0 + 0.166666666667*G5_1;
+    A[190] = -0.166666666667*G5_0 + 0.166666666667*G5_1;
+    A[191] = 0.166666666667*G5_0 - 0.166666666667*G5_1;
     A[192] = 0;
     A[193] = 0;
     A[194] = 0;
     A[195] = 0;
-    A[196] = 0.1666666666667*G4_0;
+    A[196] = 0.166666666667*G4_0;
     A[197] = 0;
-    A[198] = 0.1666666666667*G4_0 + 0.3333333333333*G4_1;
-    A[199] = -0.1666666666667*G4_0;
-    A[200] = -0.1666666666667*G4_0 - 0.3333333333333*G4_1;
+    A[198] = 0.166666666667*G4_0 + 0.333333333333*G4_1;
+    A[199] = -0.166666666667*G4_0;
+    A[200] = -0.166666666667*G4_0 - 0.333333333333*G4_1;
     A[201] = 0;
-    A[202] = 0.1666666666667*G5_0;
+    A[202] = 0.166666666667*G5_0;
     A[203] = 0;
-    A[204] = 0.1666666666667*G5_0 + 0.3333333333333*G5_1;
-    A[205] = -0.1666666666667*G5_0;
-    A[206] = -0.1666666666667*G5_0 - 0.3333333333333*G5_1;
+    A[204] = 0.166666666667*G5_0 + 0.333333333333*G5_1;
+    A[205] = -0.166666666667*G5_0;
+    A[206] = -0.166666666667*G5_0 - 0.333333333333*G5_1;
     A[207] = 0;
     A[208] = 0;
     A[209] = 0;
     A[210] = 0;
     A[211] = 0;
-    A[212] = 0.1666666666667*G4_1;
-    A[213] = 0.3333333333333*G4_0 + 0.1666666666667*G4_1;
-    A[214] = -0.3333333333333*G4_0 - 0.1666666666667*G4_1;
-    A[215] = -0.1666666666667*G4_1;
+    A[212] = 0.166666666667*G4_1;
+    A[213] = 0.333333333333*G4_0 + 0.166666666667*G4_1;
+    A[214] = -0.333333333333*G4_0 - 0.166666666667*G4_1;
+    A[215] = -0.166666666667*G4_1;
     A[216] = 0;
     A[217] = 0;
-    A[218] = 0.1666666666667*G5_1;
-    A[219] = 0.3333333333333*G5_0 + 0.1666666666667*G5_1;
-    A[220] = -0.3333333333333*G5_0 - 0.1666666666667*G5_1;
-    A[221] = -0.1666666666667*G5_1;
+    A[218] = 0.166666666667*G5_1;
+    A[219] = 0.333333333333*G5_0 + 0.166666666667*G5_1;
+    A[220] = -0.333333333333*G5_0 - 0.166666666667*G5_1;
+    A[221] = -0.166666666667*G5_1;
     A[222] = 0;
     A[223] = 0;
     A[224] = 0;
@@ -3015,7 +4069,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "|det F'|(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0[0])*((d/dXa1)vi1[0])*dX(0) + |det F'|(dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0[0])*((d/dXa1)vi1[0])*dX(0) + |det F'|(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0[1])*((d/dXa1)vi1[1])*dX(0) + |det F'|(dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0[1])*((d/dXa1)vi1[1])*dX(0) + -|det F'|(dXa0/dx0) | ((d/dXa0)vi0[0])*vi1[2]*dX(0) + -|det F'|(dXa0/dx1) | ((d/dXa0)vi0[1])*vi1[2]*dX(0) + |det F'|(dXa0/dx0) | vi0[2]*((d/dXa0)vi1[0])*dX(0) + |det F'|(dXa0/dx1) | vi0[2]*((d/dXa0)vi1[1])*dX(0)";
+    return "(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0[0])*((d/dXa1)vi1[0])*dX(0) + (dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0[0])*((d/dXa1)vi1[0])*dX(0) + (dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0[1])*((d/dXa1)vi1[1])*dX(0) + (dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0[1])*((d/dXa1)vi1[1])*dX(0) + -(dXa0/dx0) | ((d/dXa0)vi0[0])*vi1[2]*dX(0) + -(dXa0/dx1) | ((d/dXa0)vi0[1])*vi1[2]*dX(0) + (dXa0/dx0) | vi0[2]*((d/dXa0)vi1[0])*dX(0) + (dXa0/dx1) | vi0[2]*((d/dXa0)vi1[1])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3152,7 +4206,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3266,7 +4396,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3380,7 +4586,140 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3506,7 +4845,69 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791, -0.288675134595, -0.166666666667},
+    {0.471404520791, 0.288675134595, -0.166666666667},
+    {0.471404520791, 0, 0.333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3620,7 +5021,179 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    values[2] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (12 <= i and i <= 14)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 12;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791, -0.288675134595, -0.166666666667},
+      {0.471404520791, 0.288675134595, -0.166666666667},
+      {0.471404520791, 0, 0.333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[2] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3725,7 +5298,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3839,7 +5488,83 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[6][6] = \
+    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+    {0, 0, 0.2, 0, 0, 0.163299316186},
+    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3953,7 +5678,140 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Not implemented
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute constants
+    const double C0 = element_coordinates[1][0] + element_coordinates[2][0];
+    const double C1 = element_coordinates[1][1] + element_coordinates[2][1];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = (J_01*C1 - J_11*C0 + 2.0*J_11*coordinates[0] - 2.0*J_01*coordinates[1]) / detJ;
+    double y = (J_10*C0 - J_00*C1 - 2.0*J_10*coordinates[0] + 2.0*J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 * (1.0 + x)/(1.0 - y) - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    
+    if (0 <= i and i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
+    if (6 <= i and i <= 11)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 6;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[6][6] =   \
+      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
+      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
+      {0, 0, 0.2, 0, 0, 0.163299316186},
+      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
+      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
+      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -4158,15 +6016,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesLinearForm_dof_map_0_0_0();
   }
 
 };
@@ -4304,15 +6160,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesLinearForm_dof_map_0_0_1();
   }
 
 };
@@ -4464,14 +6318,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesLinearForm_dof_map_0_0_0();
+      break;
+    case 1:
+      return new UFC_StokesLinearForm_dof_map_0_0_1();
+      break;
+    }
     return 0;
   }
 
@@ -4606,15 +6467,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesLinearForm_dof_map_0_1();
   }
 
 };
@@ -4776,14 +6635,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesLinearForm_dof_map_0_0();
+      break;
+    case 1:
+      return new UFC_StokesLinearForm_dof_map_0_1();
+      break;
+    }
     return 0;
   }
 
@@ -4922,15 +6788,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesLinearForm_dof_map_1_0();
   }
 
 };
@@ -5068,15 +6932,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new UFC_StokesLinearForm_dof_map_1_1();
   }
 
 };
@@ -5228,14 +7090,21 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 2;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new UFC_StokesLinearForm_dof_map_1_0();
+      break;
+    case 1:
+      return new UFC_StokesLinearForm_dof_map_1_1();
+      break;
+    }
     return 0;
   }
 
@@ -5317,18 +7186,18 @@ public:
     const double G1_11 = det*w[0][11];
     
     // Compute element tensor
-    A[0] = 0.01666666666667*G0_0 - 0.002777777777778*G0_1 - 0.002777777777778*G0_2 - 0.01111111111111*G0_3;
-    A[1] = -0.002777777777778*G0_0 + 0.01666666666667*G0_1 - 0.002777777777778*G0_2 - 0.01111111111111*G0_4;
-    A[2] = -0.002777777777778*G0_0 - 0.002777777777778*G0_1 + 0.01666666666667*G0_2 - 0.01111111111111*G0_5;
-    A[3] = -0.01111111111111*G0_0 + 0.08888888888889*G0_3 + 0.04444444444444*G0_4 + 0.04444444444444*G0_5;
-    A[4] = -0.01111111111111*G0_1 + 0.04444444444444*G0_3 + 0.08888888888889*G0_4 + 0.04444444444444*G0_5;
-    A[5] = -0.01111111111111*G0_2 + 0.04444444444444*G0_3 + 0.04444444444444*G0_4 + 0.08888888888889*G0_5;
-    A[6] = 0.01666666666667*G1_6 - 0.002777777777778*G1_7 - 0.002777777777778*G1_8 - 0.01111111111111*G1_9;
-    A[7] = -0.002777777777778*G1_6 + 0.01666666666667*G1_7 - 0.002777777777778*G1_8 - 0.01111111111111*G1_10;
-    A[8] = -0.002777777777778*G1_6 - 0.002777777777778*G1_7 + 0.01666666666667*G1_8 - 0.01111111111111*G1_11;
-    A[9] = -0.01111111111111*G1_6 + 0.08888888888889*G1_9 + 0.04444444444444*G1_10 + 0.04444444444444*G1_11;
-    A[10] = -0.01111111111111*G1_7 + 0.04444444444444*G1_9 + 0.08888888888889*G1_10 + 0.04444444444444*G1_11;
-    A[11] = -0.01111111111111*G1_8 + 0.04444444444444*G1_9 + 0.04444444444444*G1_10 + 0.08888888888889*G1_11;
+    A[0] = 0.0166666666667*G0_0 - 0.00277777777778*G0_1 - 0.00277777777778*G0_2 - 0.0111111111111*G0_3;
+    A[1] = -0.00277777777778*G0_0 + 0.0166666666667*G0_1 - 0.00277777777778*G0_2 - 0.0111111111111*G0_4;
+    A[2] = -0.00277777777778*G0_0 - 0.00277777777778*G0_1 + 0.0166666666667*G0_2 - 0.0111111111111*G0_5;
+    A[3] = -0.0111111111111*G0_0 + 0.0888888888889*G0_3 + 0.0444444444444*G0_4 + 0.0444444444444*G0_5;
+    A[4] = -0.0111111111111*G0_1 + 0.0444444444444*G0_3 + 0.0888888888889*G0_4 + 0.0444444444444*G0_5;
+    A[5] = -0.0111111111111*G0_2 + 0.0444444444444*G0_3 + 0.0444444444444*G0_4 + 0.0888888888889*G0_5;
+    A[6] = 0.0166666666667*G1_6 - 0.00277777777778*G1_7 - 0.00277777777778*G1_8 - 0.0111111111111*G1_9;
+    A[7] = -0.00277777777778*G1_6 + 0.0166666666667*G1_7 - 0.00277777777778*G1_8 - 0.0111111111111*G1_10;
+    A[8] = -0.00277777777778*G1_6 - 0.00277777777778*G1_7 + 0.0166666666667*G1_8 - 0.0111111111111*G1_11;
+    A[9] = -0.0111111111111*G1_6 + 0.0888888888889*G1_9 + 0.0444444444444*G1_10 + 0.0444444444444*G1_11;
+    A[10] = -0.0111111111111*G1_7 + 0.0444444444444*G1_9 + 0.0888888888889*G1_10 + 0.0444444444444*G1_11;
+    A[11] = -0.0111111111111*G1_8 + 0.0444444444444*G1_9 + 0.0444444444444*G1_10 + 0.0888888888889*G1_11;
     A[12] = 0;
     A[13] = 0;
     A[14] = 0;
@@ -5370,7 +7239,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "|det F'|w0_a0 | vi0[0]*va0[0]*dX(0) + |det F'|w0_a0 | vi0[1]*va0[1]*dX(0)";
+    return "w0_a0 | vi0[0]*va0[0]*dX(0) + w0_a0 | vi0[1]*va0[1]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
