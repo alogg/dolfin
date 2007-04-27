@@ -118,108 +118,613 @@ public:
     else
       y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
     
-    const static unsigned int dof = i;
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+    const double scalings_z_0 = 1;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1;
+    const double psitilde_bs_2_1 = 3.5*y + 2.5;
+    const double psitilde_bs_3_0 = 1;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1;
+    const double psitilde_cs_00_1 = 2*z + 1;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+    const double psitilde_cs_01_0 = 1;
+    const double psitilde_cs_01_1 = 3*z + 2;
+    const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+    const double psitilde_cs_02_0 = 1;
+    const double psitilde_cs_02_1 = 4*z + 3;
+    const double psitilde_cs_03_0 = 1;
+    const double psitilde_cs_10_0 = 1;
+    const double psitilde_cs_10_1 = 3*z + 2;
+    const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+    const double psitilde_cs_11_0 = 1;
+    const double psitilde_cs_11_1 = 4*z + 3;
+    const double psitilde_cs_12_0 = 1;
+    const double psitilde_cs_20_0 = 1;
+    const double psitilde_cs_20_1 = 4*z + 3;
+    const double psitilde_cs_21_0 = 1;
+    const double psitilde_cs_30_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+    const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+    const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+    const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+    const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+    const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+    const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+    const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+    const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+    const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+    const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+    const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+    const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
     
     // Table(s) of coefficients
     const static double coefficients0[20][20] = \
-    {{0.02886751345948, 0.01304101327393, 0.00752923252421, 0.005323971375, 0.01829812636778, 0.01417366773785, 0.00818317088385, 0.01157275124716, 0.006681531047811, 0.004724555912615, -0.02834733547569, -0.0239578711875, -0.01855768722395, -0.01071428571429, -0.02074812506897, -0.01607142857143, -0.009278843611976, -0.0131222664792, -0.007576144084142, -0.005357142857143},
-    {-4.518876242894e-17, -0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636778, 0.04252100321354, 0.04091585441925, 0.03471825374147, 0.03340765523905, 0.02362277956308, 0.08504200642708, 0.0239578711875, -0.006185895741317, -0.01071428571429, 0.02074812506897, -0.005357142857143, -0.009278843611976, -0.004374088826399, -0.007576144084142, -0.005357142857143},
-    {7.715402656692e-17, 0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636779, -0.04252100321354, 0.04091585441925, -0.03471825374147, 0.03340765523905, 0.02362277956308, -0.08504200642708, 0.0239578711875, 0.006185895741317, -0.01071428571429, 0.02074812506897, 0.005357142857143, -0.009278843611976, 0.004374088826399, -0.007576144084142, -0.005357142857143},
-    {0.02886751345948, -0.01304101327393, 0.00752923252421, 0.005323971374999, 0.01829812636779, -0.01417366773785, 0.00818317088385, -0.01157275124716, 0.006681531047811, 0.004724555912615, 0.02834733547569, -0.0239578711875, 0.01855768722395, -0.01071428571429, -0.02074812506897, 0.01607142857143, -0.009278843611976, 0.0131222664792, -0.007576144084142, -0.005357142857143},
-    {-2.824273200074e-17, -0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, -0.01417366773785, -0.02454951265155, 0.04629100498863, 0.01336306209562, 0.02362277956308, 2.275128986352e-18, 0.047915742375, 0.06185895741317, 0.04285714285714, -0.006916041689656, 0.01607142857143, 0.01546473935329, -0.008748177652797, -3.95777085019e-18, -0.005357142857143},
-    {0.2598076211353, -1.225641293394e-16, -4.097310381188e-17, -0.143747227125, -0.1097887582067, -5.746996043767e-17, -0.1227475632577, 2.889228530624e-17, -3.079887348353e-18, 0.04252100321354, 7.835786177535e-19, -0.09583148474999, 3.639115087891e-17, 0.04285714285714, 0.01383208337931, 5.457503060128e-18, 0.01546473935329, -5.081774365502e-18, 1.084950549826e-17, -0.005357142857143},
-    {1.046612503787e-16, 0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, 0.01417366773785, -0.02454951265155, -0.04629100498863, 0.01336306209562, 0.02362277956308, -3.058707604105e-18, 0.047915742375, -0.06185895741317, 0.04285714285714, -0.006916041689656, -0.01607142857143, 0.01546473935329, 0.008748177652797, 7.257132501642e-18, -0.005357142857143},
-    {-4.006172263299e-17, 0.0195615199109, 0.1242323366495, -0.03194382825, -1.393674423138e-17, -0.05669467095138, 0.02454951265155, 0.01157275124716, -0.04677071733467, 0.02362277956308, -1.021863087349e-18, -1.289553795503e-17, -0.06185895741317, -0.06428571428571, 3.549741741614e-18, 0.02142857142857, 0.009278843611976, -0.004374088826399, 0.007576144084142, -0.005357142857143},
-    {1.111478066409e-17, -0.0195615199109, 0.1242323366495, -0.03194382825, -1.537912347895e-17, 0.05669467095138, 0.02454951265155, -0.01157275124716, -0.04677071733467, 0.02362277956308, 1.021863087349e-18, -1.166751809041e-17, 0.06185895741317, -0.06428571428571, -1.0409328449e-18, -0.02142857142857, 0.009278843611976, 0.004374088826399, 0.007576144084142, -0.005357142857143},
-    {0.02886751345948, -1.212723283565e-17, -0.01505846504842, 0.005323971374999, 7.279855702048e-18, 1.877173722467e-18, 0.02454951265155, -1.934229615065e-18, -0.01336306209562, 0.004724555912615, 6.126782385402e-34, 6.681233075121e-18, 8.519514711086e-18, 0.04285714285714, -1.294594172861e-18, -3.922692475971e-18, -0.02783653083593, 2.116739086103e-18, 0.01515228816828, -0.005357142857143},
-    {-4.715859420098e-17, -0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, 0.04252100321354, 0.02454951265155, -0.02314550249431, -0.01336306209562, -0.02362277956308, 4.552619888295e-18, -5.431942796401e-18, -5.359645772994e-18, -2.630797930699e-18, 0.04841229182759, 0.0375, 0.02165063509461, 0.05248906591678, 0.03030457633657, 0.02678571428571},
-    {0.2598076211353, -7.65165565854e-17, -0.1355261854358, 0.047915742375, -0.1097887582067, 1.959477613608e-17, 0.02454951265155, -6.175419165908e-17, -0.08017837257373, -0.09921567416492, -5.485050324274e-18, -2.326208721105e-18, -2.438302269938e-18, -2.132261431754e-18, -0.09682458365519, 2.124344027565e-17, 0.02165063509461, 1.301432189212e-17, 0.03030457633657, 0.02678571428571},
-    {-1.288704241729e-17, 0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, -0.04252100321354, 0.02454951265155, 0.02314550249431, -0.01336306209562, -0.02362277956308, 9.324304359796e-19, 1.022449004855e-17, 4.670759106162e-18, 3.211349511113e-19, 0.04841229182759, -0.0375, 0.02165063509461, -0.05248906591678, 0.03030457633657, 0.02678571428571},
-    {0.2598076211353, -0.1173691194654, 0.06776309271789, 0.047915742375, 7.254994153092e-18, -0.08504200642708, -0.07364853795465, -0.06943650748294, 0.04008918628686, -0.09921567416492, 6.441573754824e-18, 3.550795744686e-18, 1.160478921158e-17, 1.290704808819e-17, -5.632235591773e-18, -0.075, -0.06495190528383, 0.02624453295839, -0.01515228816828, 0.02678571428571},
-    {0.2598076211353, 0.1173691194654, 0.06776309271789, 0.047915742375, -1.493621847052e-17, 0.08504200642708, -0.07364853795465, 0.06943650748294, 0.04008918628686, -0.09921567416492, -6.441573754824e-18, -8.483472806773e-18, -5.350411338036e-18, -1.45032211828e-18, 4.553797348212e-18, 0.075, -0.06495190528383, -0.02624453295839, -0.01515228816828, 0.02678571428571},
-    {5.408332555454e-17, 2.764913340935e-17, 0.1129384878632, -0.06388765649999, -9.634202667367e-21, 1.362417039541e-17, 0.07364853795465, 5.646240919711e-18, 0.02672612419124, -0.02362277956308, -1.790925960944e-34, 2.466338531044e-18, -3.12718893677e-18, -7.014801558573e-18, -2.856378997734e-18, 1.074860168886e-17, 0.06495190528383, -9.654926694772e-18, -0.06060915267313, 0.02678571428571},
-    {-9.389466242107e-19, 0.0195615199109, 0.01129384878632, 0.127775313, 4.743500644299e-18, -4.216461247218e-18, 3.057081386927e-19, -0.05786375623578, -0.03340765523905, 0.04724555912615, -1.038020779274e-18, 5.386949989641e-20, 5.108014325937e-19, 5.831592728598e-19, 6.4848485022e-18, 3.276246242507e-19, -1.271770108631e-18, -0.06561133239598, -0.03788072042071, -0.05357142857143},
-    {2.84970300448e-17, -0.0195615199109, 0.01129384878632, 0.127775313, -2.268127050835e-18, 1.368993962938e-18, -9.31093810031e-18, 0.05786375623578, -0.03340765523905, 0.04724555912615, 1.038020779274e-18, -5.386949989641e-20, -5.108014325937e-19, 1.79456202893e-19, -4.301774192106e-18, -2.838854724449e-18, -6.353713339367e-18, 0.06561133239598, -0.03788072042071, -0.05357142857143},
-    {2.569583928257e-17, -3.958143675112e-18, -0.02258769757263, 0.127775313, 3.853845587344e-18, -3.334725636217e-18, -8.512900497753e-18, 3.660129801822e-18, 0.06681531047811, 0.04724555912615, 5.462281362157e-34, -2.046613735166e-34, 9.925519533834e-34, -7.626154757529e-19, 3.398772338452e-18, -2.940951574688e-18, -7.824055428762e-18, 6.178157181366e-18, 0.07576144084142, -0.05357142857143},
-    {0.02886751345948, -3.28230490621e-18, -6.454343248199e-18, -0.015971914125, -4.738280089043e-19, 5.151827433748e-19, -5.454394097546e-18, -5.726231351963e-18, -1.707242370808e-18, 0.02834733547569, 2.651952136169e-35, -5.119626828456e-34, 2.192404630121e-34, 5.101340901778e-34, -4.178770252592e-19, 4.543484729072e-19, -4.810323444882e-18, -2.603575737916e-18, 3.305137170739e-18, 0.05357142857143}};
+    {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+    {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+    {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+    {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+    {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+    {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+    {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+    {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
     
-    // Generate scalings
-    const double scalings_y_0 = 1.0;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
-    const double scalings_z_0 = 1.0;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5 * z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1.0;
-    const double psitilde_a_1 = 1*x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1.0;
-    const double psitilde_bs_0_1 = 0.5 + 1.5*y;
-    const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1.0;
-    const double psitilde_bs_1_1 = 1.5 + 2.5*y;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1.0;
-    const double psitilde_bs_2_1 = 2.5 + 3.5*y;
-    const double psitilde_bs_3_0 = 1.0;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1.0;
-    const double psitilde_cs_00_1 = 1 + 2*z;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.1555555555556*psitilde_cs_00_2 + 1.866666666667*z*psitilde_cs_00_2-0.7111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1.0;
-    const double psitilde_cs_01_1 = 2 + 3*z;
-    const double psitilde_cs_01_2 = 0.7777777777778*psitilde_cs_01_1 + 2.333333333333*z*psitilde_cs_01_1-0.5555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1.0;
-    const double psitilde_cs_02_1 = 3 + 4*z;
-    const double psitilde_cs_03_0 = 1.0;
-    const double psitilde_cs_10_0 = 1.0;
-    const double psitilde_cs_10_1 = 2 + 3*z;
-    const double psitilde_cs_10_2 = 0.7777777777778*psitilde_cs_10_1 + 2.333333333333*z*psitilde_cs_10_1-0.5555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1.0;
-    const double psitilde_cs_11_1 = 3 + 4*z;
-    const double psitilde_cs_12_0 = 1.0;
-    const double psitilde_cs_20_0 = 1.0;
-    const double psitilde_cs_20_1 = 3 + 4*z;
-    const double psitilde_cs_21_0 = 1.0;
-    const double psitilde_cs_30_0 = 1.0;
-    
-    // Compute basisvalues
-    const double basisvalues[20] = \
-    {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532,\
-     psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0*7.937253933194,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0*6.708203932499,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0*5.196152422707,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0*3,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1*5.809475019311,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1*4.5,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1*2.598076211353,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2*3.674234614175,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2*2.12132034356,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3*1.5};
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    const double coeff0_6 = coefficients0[dof][6];
+    const double coeff0_7 = coefficients0[dof][7];
+    const double coeff0_8 = coefficients0[dof][8];
+    const double coeff0_9 = coefficients0[dof][9];
+    const double coeff0_10 = coefficients0[dof][10];
+    const double coeff0_11 = coefficients0[dof][11];
+    const double coeff0_12 = coefficients0[dof][12];
+    const double coeff0_13 = coefficients0[dof][13];
+    const double coeff0_14 = coefficients0[dof][14];
+    const double coeff0_15 = coefficients0[dof][15];
+    const double coeff0_16 = coefficients0[dof][16];
+    const double coeff0_17 = coefficients0[dof][17];
+    const double coeff0_18 = coefficients0[dof][18];
+    const double coeff0_19 = coefficients0[dof][19];
     
     // Compute value(s)
-    *values = 0.0;
-    for (unsigned int j = 0; j < 20; j++)
-      *values += coefficients0[dof][j]*basisvalues[j];
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
+    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
+    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
+    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
+      
+    // Compute sub determinants
+    const double d00 = J_11*J_22 - J_12*J_21;
+    const double d01 = J_12*J_20 - J_10*J_22;
+    const double d02 = J_10*J_21 - J_11*J_20;
+    
+    const double d10 = J_02*J_21 - J_01*J_22;
+    const double d11 = J_00*J_22 - J_02*J_20;
+    const double d12 = J_01*J_20 - J_00*J_21;
+    
+    const double d20 = J_01*J_12 - J_02*J_11;
+    const double d21 = J_02*J_10 - J_00*J_12;
+    const double d22 = J_00*J_11 - J_01*J_10;
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    
+    // Compute constants
+    const double C0 = element_coordinates[3][0] + element_coordinates[2][0] \
+                    + element_coordinates[1][0] - element_coordinates[0][0];
+    const double C1 = element_coordinates[3][1] + element_coordinates[2][1] \
+                    + element_coordinates[1][1] - element_coordinates[0][1];
+    const double C2 = element_coordinates[3][2] + element_coordinates[2][2] \
+                    + element_coordinates[1][2] - element_coordinates[0][2];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = coordinates[0];
+    double y = coordinates[1];
+    double z = coordinates[2];
+    
+    x = (2.0*d00*x + 2.0*d10*y + 2.0*d20*z - d00*C0 - d10*C1 - d20*C2) / detJ;
+    y = (2.0*d01*x + 2.0*d11*y + 2.0*d21*z - d01*C0 - d11*C1 - d21*C2) / detJ;
+    z = (2.0*d02*x + 2.0*d12*y + 2.0*d22*z - d02*C0 - d12*C1 - d22*C2) / detJ;
+    
+    // Map coordinates to the reference cube
+    if (std::abs(y + z) < 1e-14)
+      x = 1.0;
+    else
+      x = -2.0 * (1.0 + x)/(y + z) - 1.0;
+    if (std::abs(z - 1.0) < 1e-14)
+      y = -1.0;
+    else
+      y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 3;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 2)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian, components are scaled because of difference in FFC/FIAT reference elements
+    const double Jinv[3][3] ={{2*d00 / detJ, 2*d10 / detJ, 2*d20 / detJ}, {2*d01 / detJ, 2*d11 / detJ, 2*d21 / detJ}, {2*d02 / detJ, 2*d12 / detJ, 2*d22 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+    const double scalings_z_0 = 1;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1;
+    const double psitilde_bs_2_1 = 3.5*y + 2.5;
+    const double psitilde_bs_3_0 = 1;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1;
+    const double psitilde_cs_00_1 = 2*z + 1;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+    const double psitilde_cs_01_0 = 1;
+    const double psitilde_cs_01_1 = 3*z + 2;
+    const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+    const double psitilde_cs_02_0 = 1;
+    const double psitilde_cs_02_1 = 4*z + 3;
+    const double psitilde_cs_03_0 = 1;
+    const double psitilde_cs_10_0 = 1;
+    const double psitilde_cs_10_1 = 3*z + 2;
+    const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+    const double psitilde_cs_11_0 = 1;
+    const double psitilde_cs_11_1 = 4*z + 3;
+    const double psitilde_cs_12_0 = 1;
+    const double psitilde_cs_20_0 = 1;
+    const double psitilde_cs_20_1 = 4*z + 3;
+    const double psitilde_cs_21_0 = 1;
+    const double psitilde_cs_30_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+    const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+    const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+    const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+    const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+    const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+    const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+    const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+    const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+    const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+    const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+    const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+    const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[20][20] = \
+    {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+    {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+    {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+    {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+    {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+    {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+    {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+    {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {3.16227766017, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 5.61248608016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.29128784748, 0, 4.18330013267, -0.59160797831, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.87082869339, 0, 0, 4.34741302386, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.74954541697, 0, -1.67332005307, -1.18321595662, 7.74596669241, 0, 0.346410161514, 0, 0.282842712475, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 2.44948974278, 0, 0, 0, 7.09929573972, 0, -0.414039335605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.8, 0, 4.38178046004, -0.774596669241, 0, 0, 4.76235235992, 0, -0.740656079818, 0.130930734142, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 2.12132034356, 0, 0, 0, 0, 0, 7.17137165601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.55884572681, 0, 1.58113883008, 2.45967477525, 0, 0, 0, 0, 5.34522483825, -1.20948631363, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.27279220614, 0, 0, 3.83405790254, 0, 0, 0, 0, 0, 5.18459255873, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    const static double dmats1[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.73861278753, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.14564392374, 3.62284418655, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-1.32287565553, 0, 4.8304589154, 0.341565025532, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.935414346693, 0, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.6201851746, 0, 0, 3.7649701194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 4.58257569496, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.9, -2.84604989415, 2.19089023002, -0.387298334621, 0, 5.49909083395, 2.38117617996, 0.481070235442, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.59807621135, 0, -1.58113883008, -1.11803398875, 0, 0, 6.87386354243, 0, 0.267261241912, 0.188982236505, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 0, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.779422863406, 1.36930639376, 0.790569415042, 1.22983738762, 0, 0, 0, 4.62910049886, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-0.9, 0, 1.82574185835, -1.42009389361, 0, 0, 0, 0, 6.17213399848, 0.698297248755, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.636396103068, 0, 0, 1.91702895127, 0, 0, 0, 0, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.10227038425, 0, 0, 3.32039154318, 0, 0, 0, 0, 0, 4.48998886413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    const static double dmats2[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.912870929175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.58198889747, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.14564392374, 0.724568837309, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.661437827766, 0, 1.93218356616, -0.170782512766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.935414346693, 3.54964786986, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.540061724867, 0, 3.54964786986, 1.2549900398, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-1.90940653956, 0, 0, 4.43705983732, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 0.654653670708, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.9, 0.316227766017, 2.19089023002, -0.387298334621, 0, 1.5711688097, 2.38117617996, -0.0534522483825, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.519615242271, 0, 1.58113883008, -0.22360679775, 0, 0, 2.94594151819, 0, -0.267261241912, 0.0377964473009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 4.53557367611, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.779422863406, 0.273861278753, 0.790569415042, 1.22983738762, 0, 4.53557367611, 0, 0.925820099773, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.45, 0, 0.73029674334, 0.710046946805, 0, 0, 4.53557367611, 0, 2.46885359939, -0.349148624378, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.636396103068, -3.1304951685, 0, 1.91702895127, 0, 0, 0, 5.29150262213, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.367423461417, 0, -3.1304951685, 1.10679718106, 0, 0, 0, 0, 5.29150262213, 1.49666295471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.85788383249, 0, 0, -2.34787137637, 0, 0, 0, 0, 0, 6.34980314656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
+    double coeff0_6 = 0;
+    double coeff0_7 = 0;
+    double coeff0_8 = 0;
+    double coeff0_9 = 0;
+    double coeff0_10 = 0;
+    double coeff0_11 = 0;
+    double coeff0_12 = 0;
+    double coeff0_13 = 0;
+    double coeff0_14 = 0;
+    double coeff0_15 = 0;
+    double coeff0_16 = 0;
+    double coeff0_17 = 0;
+    double coeff0_18 = 0;
+    double coeff0_19 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
+    double new_coeff0_6 = 0;
+    double new_coeff0_7 = 0;
+    double new_coeff0_8 = 0;
+    double new_coeff0_9 = 0;
+    double new_coeff0_10 = 0;
+    double new_coeff0_11 = 0;
+    double new_coeff0_12 = 0;
+    double new_coeff0_13 = 0;
+    double new_coeff0_14 = 0;
+    double new_coeff0_15 = 0;
+    double new_coeff0_16 = 0;
+    double new_coeff0_17 = 0;
+    double new_coeff0_18 = 0;
+    double new_coeff0_19 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
+      new_coeff0_6 = coefficients0[dof][6];
+      new_coeff0_7 = coefficients0[dof][7];
+      new_coeff0_8 = coefficients0[dof][8];
+      new_coeff0_9 = coefficients0[dof][9];
+      new_coeff0_10 = coefficients0[dof][10];
+      new_coeff0_11 = coefficients0[dof][11];
+      new_coeff0_12 = coefficients0[dof][12];
+      new_coeff0_13 = coefficients0[dof][13];
+      new_coeff0_14 = coefficients0[dof][14];
+      new_coeff0_15 = coefficients0[dof][15];
+      new_coeff0_16 = coefficients0[dof][16];
+      new_coeff0_17 = coefficients0[dof][17];
+      new_coeff0_18 = coefficients0[dof][18];
+      new_coeff0_19 = coefficients0[dof][19];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
+        coeff0_6 = new_coeff0_6;
+        coeff0_7 = new_coeff0_7;
+        coeff0_8 = new_coeff0_8;
+        coeff0_9 = new_coeff0_9;
+        coeff0_10 = new_coeff0_10;
+        coeff0_11 = new_coeff0_11;
+        coeff0_12 = new_coeff0_12;
+        coeff0_13 = new_coeff0_13;
+        coeff0_14 = new_coeff0_14;
+        coeff0_15 = new_coeff0_15;
+        coeff0_16 = new_coeff0_16;
+        coeff0_17 = new_coeff0_17;
+        coeff0_18 = new_coeff0_18;
+        coeff0_19 = new_coeff0_19;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
+          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
+          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
+          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
+          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
+          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
+          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
+          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
+          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
+          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
+          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
+          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
+          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
+          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
+          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
+          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
+          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
+          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
+          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
+          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
+          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
+          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
+          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
+          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
+          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
+          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
+          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
+          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
+          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
+        }
+        if(combinations[deriv_num][j] == 2)
+        {
+          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
+          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
+          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
+          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
+          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
+          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
+          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
+          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
+          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
+          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
+          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
+          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
+          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
+          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
+          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
+          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
+          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
+          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
+          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
+          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives
+    delete [] combinations;
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -367,108 +872,613 @@ public:
     else
       y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
     
-    const static unsigned int dof = i;
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+    const double scalings_z_0 = 1;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1;
+    const double psitilde_bs_2_1 = 3.5*y + 2.5;
+    const double psitilde_bs_3_0 = 1;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1;
+    const double psitilde_cs_00_1 = 2*z + 1;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+    const double psitilde_cs_01_0 = 1;
+    const double psitilde_cs_01_1 = 3*z + 2;
+    const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+    const double psitilde_cs_02_0 = 1;
+    const double psitilde_cs_02_1 = 4*z + 3;
+    const double psitilde_cs_03_0 = 1;
+    const double psitilde_cs_10_0 = 1;
+    const double psitilde_cs_10_1 = 3*z + 2;
+    const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+    const double psitilde_cs_11_0 = 1;
+    const double psitilde_cs_11_1 = 4*z + 3;
+    const double psitilde_cs_12_0 = 1;
+    const double psitilde_cs_20_0 = 1;
+    const double psitilde_cs_20_1 = 4*z + 3;
+    const double psitilde_cs_21_0 = 1;
+    const double psitilde_cs_30_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+    const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+    const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+    const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+    const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+    const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+    const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+    const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+    const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+    const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+    const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+    const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+    const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
     
     // Table(s) of coefficients
     const static double coefficients0[20][20] = \
-    {{0.02886751345948, 0.01304101327393, 0.00752923252421, 0.005323971375, 0.01829812636778, 0.01417366773785, 0.00818317088385, 0.01157275124716, 0.006681531047811, 0.004724555912615, -0.02834733547569, -0.0239578711875, -0.01855768722395, -0.01071428571429, -0.02074812506897, -0.01607142857143, -0.009278843611976, -0.0131222664792, -0.007576144084142, -0.005357142857143},
-    {-4.518876242894e-17, -0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636778, 0.04252100321354, 0.04091585441925, 0.03471825374147, 0.03340765523905, 0.02362277956308, 0.08504200642708, 0.0239578711875, -0.006185895741317, -0.01071428571429, 0.02074812506897, -0.005357142857143, -0.009278843611976, -0.004374088826399, -0.007576144084142, -0.005357142857143},
-    {7.715402656692e-17, 0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636779, -0.04252100321354, 0.04091585441925, -0.03471825374147, 0.03340765523905, 0.02362277956308, -0.08504200642708, 0.0239578711875, 0.006185895741317, -0.01071428571429, 0.02074812506897, 0.005357142857143, -0.009278843611976, 0.004374088826399, -0.007576144084142, -0.005357142857143},
-    {0.02886751345948, -0.01304101327393, 0.00752923252421, 0.005323971374999, 0.01829812636779, -0.01417366773785, 0.00818317088385, -0.01157275124716, 0.006681531047811, 0.004724555912615, 0.02834733547569, -0.0239578711875, 0.01855768722395, -0.01071428571429, -0.02074812506897, 0.01607142857143, -0.009278843611976, 0.0131222664792, -0.007576144084142, -0.005357142857143},
-    {-2.824273200074e-17, -0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, -0.01417366773785, -0.02454951265155, 0.04629100498863, 0.01336306209562, 0.02362277956308, 2.275128986352e-18, 0.047915742375, 0.06185895741317, 0.04285714285714, -0.006916041689656, 0.01607142857143, 0.01546473935329, -0.008748177652797, -3.95777085019e-18, -0.005357142857143},
-    {0.2598076211353, -1.225641293394e-16, -4.097310381188e-17, -0.143747227125, -0.1097887582067, -5.746996043767e-17, -0.1227475632577, 2.889228530624e-17, -3.079887348353e-18, 0.04252100321354, 7.835786177535e-19, -0.09583148474999, 3.639115087891e-17, 0.04285714285714, 0.01383208337931, 5.457503060128e-18, 0.01546473935329, -5.081774365502e-18, 1.084950549826e-17, -0.005357142857143},
-    {1.046612503787e-16, 0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, 0.01417366773785, -0.02454951265155, -0.04629100498863, 0.01336306209562, 0.02362277956308, -3.058707604105e-18, 0.047915742375, -0.06185895741317, 0.04285714285714, -0.006916041689656, -0.01607142857143, 0.01546473935329, 0.008748177652797, 7.257132501642e-18, -0.005357142857143},
-    {-4.006172263299e-17, 0.0195615199109, 0.1242323366495, -0.03194382825, -1.393674423138e-17, -0.05669467095138, 0.02454951265155, 0.01157275124716, -0.04677071733467, 0.02362277956308, -1.021863087349e-18, -1.289553795503e-17, -0.06185895741317, -0.06428571428571, 3.549741741614e-18, 0.02142857142857, 0.009278843611976, -0.004374088826399, 0.007576144084142, -0.005357142857143},
-    {1.111478066409e-17, -0.0195615199109, 0.1242323366495, -0.03194382825, -1.537912347895e-17, 0.05669467095138, 0.02454951265155, -0.01157275124716, -0.04677071733467, 0.02362277956308, 1.021863087349e-18, -1.166751809041e-17, 0.06185895741317, -0.06428571428571, -1.0409328449e-18, -0.02142857142857, 0.009278843611976, 0.004374088826399, 0.007576144084142, -0.005357142857143},
-    {0.02886751345948, -1.212723283565e-17, -0.01505846504842, 0.005323971374999, 7.279855702048e-18, 1.877173722467e-18, 0.02454951265155, -1.934229615065e-18, -0.01336306209562, 0.004724555912615, 6.126782385402e-34, 6.681233075121e-18, 8.519514711086e-18, 0.04285714285714, -1.294594172861e-18, -3.922692475971e-18, -0.02783653083593, 2.116739086103e-18, 0.01515228816828, -0.005357142857143},
-    {-4.715859420098e-17, -0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, 0.04252100321354, 0.02454951265155, -0.02314550249431, -0.01336306209562, -0.02362277956308, 4.552619888295e-18, -5.431942796401e-18, -5.359645772994e-18, -2.630797930699e-18, 0.04841229182759, 0.0375, 0.02165063509461, 0.05248906591678, 0.03030457633657, 0.02678571428571},
-    {0.2598076211353, -7.65165565854e-17, -0.1355261854358, 0.047915742375, -0.1097887582067, 1.959477613608e-17, 0.02454951265155, -6.175419165908e-17, -0.08017837257373, -0.09921567416492, -5.485050324274e-18, -2.326208721105e-18, -2.438302269938e-18, -2.132261431754e-18, -0.09682458365519, 2.124344027565e-17, 0.02165063509461, 1.301432189212e-17, 0.03030457633657, 0.02678571428571},
-    {-1.288704241729e-17, 0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, -0.04252100321354, 0.02454951265155, 0.02314550249431, -0.01336306209562, -0.02362277956308, 9.324304359796e-19, 1.022449004855e-17, 4.670759106162e-18, 3.211349511113e-19, 0.04841229182759, -0.0375, 0.02165063509461, -0.05248906591678, 0.03030457633657, 0.02678571428571},
-    {0.2598076211353, -0.1173691194654, 0.06776309271789, 0.047915742375, 7.254994153092e-18, -0.08504200642708, -0.07364853795465, -0.06943650748294, 0.04008918628686, -0.09921567416492, 6.441573754824e-18, 3.550795744686e-18, 1.160478921158e-17, 1.290704808819e-17, -5.632235591773e-18, -0.075, -0.06495190528383, 0.02624453295839, -0.01515228816828, 0.02678571428571},
-    {0.2598076211353, 0.1173691194654, 0.06776309271789, 0.047915742375, -1.493621847052e-17, 0.08504200642708, -0.07364853795465, 0.06943650748294, 0.04008918628686, -0.09921567416492, -6.441573754824e-18, -8.483472806773e-18, -5.350411338036e-18, -1.45032211828e-18, 4.553797348212e-18, 0.075, -0.06495190528383, -0.02624453295839, -0.01515228816828, 0.02678571428571},
-    {5.408332555454e-17, 2.764913340935e-17, 0.1129384878632, -0.06388765649999, -9.634202667367e-21, 1.362417039541e-17, 0.07364853795465, 5.646240919711e-18, 0.02672612419124, -0.02362277956308, -1.790925960944e-34, 2.466338531044e-18, -3.12718893677e-18, -7.014801558573e-18, -2.856378997734e-18, 1.074860168886e-17, 0.06495190528383, -9.654926694772e-18, -0.06060915267313, 0.02678571428571},
-    {-9.389466242107e-19, 0.0195615199109, 0.01129384878632, 0.127775313, 4.743500644299e-18, -4.216461247218e-18, 3.057081386927e-19, -0.05786375623578, -0.03340765523905, 0.04724555912615, -1.038020779274e-18, 5.386949989641e-20, 5.108014325937e-19, 5.831592728598e-19, 6.4848485022e-18, 3.276246242507e-19, -1.271770108631e-18, -0.06561133239598, -0.03788072042071, -0.05357142857143},
-    {2.84970300448e-17, -0.0195615199109, 0.01129384878632, 0.127775313, -2.268127050835e-18, 1.368993962938e-18, -9.31093810031e-18, 0.05786375623578, -0.03340765523905, 0.04724555912615, 1.038020779274e-18, -5.386949989641e-20, -5.108014325937e-19, 1.79456202893e-19, -4.301774192106e-18, -2.838854724449e-18, -6.353713339367e-18, 0.06561133239598, -0.03788072042071, -0.05357142857143},
-    {2.569583928257e-17, -3.958143675112e-18, -0.02258769757263, 0.127775313, 3.853845587344e-18, -3.334725636217e-18, -8.512900497753e-18, 3.660129801822e-18, 0.06681531047811, 0.04724555912615, 5.462281362157e-34, -2.046613735166e-34, 9.925519533834e-34, -7.626154757529e-19, 3.398772338452e-18, -2.940951574688e-18, -7.824055428762e-18, 6.178157181366e-18, 0.07576144084142, -0.05357142857143},
-    {0.02886751345948, -3.28230490621e-18, -6.454343248199e-18, -0.015971914125, -4.738280089043e-19, 5.151827433748e-19, -5.454394097546e-18, -5.726231351963e-18, -1.707242370808e-18, 0.02834733547569, 2.651952136169e-35, -5.119626828456e-34, 2.192404630121e-34, 5.101340901778e-34, -4.178770252592e-19, 4.543484729072e-19, -4.810323444882e-18, -2.603575737916e-18, 3.305137170739e-18, 0.05357142857143}};
+    {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+    {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+    {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+    {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+    {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+    {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+    {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+    {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
     
-    // Generate scalings
-    const double scalings_y_0 = 1.0;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
-    const double scalings_z_0 = 1.0;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5 * z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1.0;
-    const double psitilde_a_1 = 1*x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1.0;
-    const double psitilde_bs_0_1 = 0.5 + 1.5*y;
-    const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1.0;
-    const double psitilde_bs_1_1 = 1.5 + 2.5*y;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1.0;
-    const double psitilde_bs_2_1 = 2.5 + 3.5*y;
-    const double psitilde_bs_3_0 = 1.0;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1.0;
-    const double psitilde_cs_00_1 = 1 + 2*z;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.1555555555556*psitilde_cs_00_2 + 1.866666666667*z*psitilde_cs_00_2-0.7111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1.0;
-    const double psitilde_cs_01_1 = 2 + 3*z;
-    const double psitilde_cs_01_2 = 0.7777777777778*psitilde_cs_01_1 + 2.333333333333*z*psitilde_cs_01_1-0.5555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1.0;
-    const double psitilde_cs_02_1 = 3 + 4*z;
-    const double psitilde_cs_03_0 = 1.0;
-    const double psitilde_cs_10_0 = 1.0;
-    const double psitilde_cs_10_1 = 2 + 3*z;
-    const double psitilde_cs_10_2 = 0.7777777777778*psitilde_cs_10_1 + 2.333333333333*z*psitilde_cs_10_1-0.5555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1.0;
-    const double psitilde_cs_11_1 = 3 + 4*z;
-    const double psitilde_cs_12_0 = 1.0;
-    const double psitilde_cs_20_0 = 1.0;
-    const double psitilde_cs_20_1 = 3 + 4*z;
-    const double psitilde_cs_21_0 = 1.0;
-    const double psitilde_cs_30_0 = 1.0;
-    
-    // Compute basisvalues
-    const double basisvalues[20] = \
-    {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532,\
-     psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0*7.937253933194,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0*6.708203932499,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0*5.196152422707,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0*3,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1*5.809475019311,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1*4.5,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1*2.598076211353,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2*3.674234614175,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2*2.12132034356,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3*1.5};
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    const double coeff0_6 = coefficients0[dof][6];
+    const double coeff0_7 = coefficients0[dof][7];
+    const double coeff0_8 = coefficients0[dof][8];
+    const double coeff0_9 = coefficients0[dof][9];
+    const double coeff0_10 = coefficients0[dof][10];
+    const double coeff0_11 = coefficients0[dof][11];
+    const double coeff0_12 = coefficients0[dof][12];
+    const double coeff0_13 = coefficients0[dof][13];
+    const double coeff0_14 = coefficients0[dof][14];
+    const double coeff0_15 = coefficients0[dof][15];
+    const double coeff0_16 = coefficients0[dof][16];
+    const double coeff0_17 = coefficients0[dof][17];
+    const double coeff0_18 = coefficients0[dof][18];
+    const double coeff0_19 = coefficients0[dof][19];
     
     // Compute value(s)
-    *values = 0.0;
-    for (unsigned int j = 0; j < 20; j++)
-      *values += coefficients0[dof][j]*basisvalues[j];
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
+    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
+    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
+    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
+      
+    // Compute sub determinants
+    const double d00 = J_11*J_22 - J_12*J_21;
+    const double d01 = J_12*J_20 - J_10*J_22;
+    const double d02 = J_10*J_21 - J_11*J_20;
+    
+    const double d10 = J_02*J_21 - J_01*J_22;
+    const double d11 = J_00*J_22 - J_02*J_20;
+    const double d12 = J_01*J_20 - J_00*J_21;
+    
+    const double d20 = J_01*J_12 - J_02*J_11;
+    const double d21 = J_02*J_10 - J_00*J_12;
+    const double d22 = J_00*J_11 - J_01*J_10;
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    
+    // Compute constants
+    const double C0 = element_coordinates[3][0] + element_coordinates[2][0] \
+                    + element_coordinates[1][0] - element_coordinates[0][0];
+    const double C1 = element_coordinates[3][1] + element_coordinates[2][1] \
+                    + element_coordinates[1][1] - element_coordinates[0][1];
+    const double C2 = element_coordinates[3][2] + element_coordinates[2][2] \
+                    + element_coordinates[1][2] - element_coordinates[0][2];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = coordinates[0];
+    double y = coordinates[1];
+    double z = coordinates[2];
+    
+    x = (2.0*d00*x + 2.0*d10*y + 2.0*d20*z - d00*C0 - d10*C1 - d20*C2) / detJ;
+    y = (2.0*d01*x + 2.0*d11*y + 2.0*d21*z - d01*C0 - d11*C1 - d21*C2) / detJ;
+    z = (2.0*d02*x + 2.0*d12*y + 2.0*d22*z - d02*C0 - d12*C1 - d22*C2) / detJ;
+    
+    // Map coordinates to the reference cube
+    if (std::abs(y + z) < 1e-14)
+      x = 1.0;
+    else
+      x = -2.0 * (1.0 + x)/(y + z) - 1.0;
+    if (std::abs(z - 1.0) < 1e-14)
+      y = -1.0;
+    else
+      y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 3;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 2)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian, components are scaled because of difference in FFC/FIAT reference elements
+    const double Jinv[3][3] ={{2*d00 / detJ, 2*d10 / detJ, 2*d20 / detJ}, {2*d01 / detJ, 2*d11 / detJ, 2*d21 / detJ}, {2*d02 / detJ, 2*d12 / detJ, 2*d22 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+    const double scalings_z_0 = 1;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1;
+    const double psitilde_bs_2_1 = 3.5*y + 2.5;
+    const double psitilde_bs_3_0 = 1;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1;
+    const double psitilde_cs_00_1 = 2*z + 1;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+    const double psitilde_cs_01_0 = 1;
+    const double psitilde_cs_01_1 = 3*z + 2;
+    const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+    const double psitilde_cs_02_0 = 1;
+    const double psitilde_cs_02_1 = 4*z + 3;
+    const double psitilde_cs_03_0 = 1;
+    const double psitilde_cs_10_0 = 1;
+    const double psitilde_cs_10_1 = 3*z + 2;
+    const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+    const double psitilde_cs_11_0 = 1;
+    const double psitilde_cs_11_1 = 4*z + 3;
+    const double psitilde_cs_12_0 = 1;
+    const double psitilde_cs_20_0 = 1;
+    const double psitilde_cs_20_1 = 4*z + 3;
+    const double psitilde_cs_21_0 = 1;
+    const double psitilde_cs_30_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+    const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+    const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+    const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+    const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+    const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+    const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+    const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+    const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+    const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+    const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+    const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+    const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[20][20] = \
+    {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+    {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+    {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+    {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+    {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+    {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+    {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+    {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {3.16227766017, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 5.61248608016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.29128784748, 0, 4.18330013267, -0.59160797831, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.87082869339, 0, 0, 4.34741302386, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.74954541697, 0, -1.67332005307, -1.18321595662, 7.74596669241, 0, 0.346410161514, 0, 0.282842712475, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 2.44948974278, 0, 0, 0, 7.09929573972, 0, -0.414039335605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.8, 0, 4.38178046004, -0.774596669241, 0, 0, 4.76235235992, 0, -0.740656079818, 0.130930734142, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 2.12132034356, 0, 0, 0, 0, 0, 7.17137165601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.55884572681, 0, 1.58113883008, 2.45967477525, 0, 0, 0, 0, 5.34522483825, -1.20948631363, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.27279220614, 0, 0, 3.83405790254, 0, 0, 0, 0, 0, 5.18459255873, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    const static double dmats1[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.73861278753, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.14564392374, 3.62284418655, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-1.32287565553, 0, 4.8304589154, 0.341565025532, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.935414346693, 0, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.6201851746, 0, 0, 3.7649701194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 4.58257569496, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.9, -2.84604989415, 2.19089023002, -0.387298334621, 0, 5.49909083395, 2.38117617996, 0.481070235442, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.59807621135, 0, -1.58113883008, -1.11803398875, 0, 0, 6.87386354243, 0, 0.267261241912, 0.188982236505, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 0, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.779422863406, 1.36930639376, 0.790569415042, 1.22983738762, 0, 0, 0, 4.62910049886, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-0.9, 0, 1.82574185835, -1.42009389361, 0, 0, 0, 0, 6.17213399848, 0.698297248755, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.636396103068, 0, 0, 1.91702895127, 0, 0, 0, 0, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.10227038425, 0, 0, 3.32039154318, 0, 0, 0, 0, 0, 4.48998886413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    const static double dmats2[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.912870929175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.58198889747, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.14564392374, 0.724568837309, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.661437827766, 0, 1.93218356616, -0.170782512766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.935414346693, 3.54964786986, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.540061724867, 0, 3.54964786986, 1.2549900398, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-1.90940653956, 0, 0, 4.43705983732, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 0.654653670708, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.9, 0.316227766017, 2.19089023002, -0.387298334621, 0, 1.5711688097, 2.38117617996, -0.0534522483825, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.519615242271, 0, 1.58113883008, -0.22360679775, 0, 0, 2.94594151819, 0, -0.267261241912, 0.0377964473009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 4.53557367611, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.779422863406, 0.273861278753, 0.790569415042, 1.22983738762, 0, 4.53557367611, 0, 0.925820099773, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.45, 0, 0.73029674334, 0.710046946805, 0, 0, 4.53557367611, 0, 2.46885359939, -0.349148624378, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.636396103068, -3.1304951685, 0, 1.91702895127, 0, 0, 0, 5.29150262213, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.367423461417, 0, -3.1304951685, 1.10679718106, 0, 0, 0, 0, 5.29150262213, 1.49666295471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.85788383249, 0, 0, -2.34787137637, 0, 0, 0, 0, 0, 6.34980314656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
+    double coeff0_6 = 0;
+    double coeff0_7 = 0;
+    double coeff0_8 = 0;
+    double coeff0_9 = 0;
+    double coeff0_10 = 0;
+    double coeff0_11 = 0;
+    double coeff0_12 = 0;
+    double coeff0_13 = 0;
+    double coeff0_14 = 0;
+    double coeff0_15 = 0;
+    double coeff0_16 = 0;
+    double coeff0_17 = 0;
+    double coeff0_18 = 0;
+    double coeff0_19 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
+    double new_coeff0_6 = 0;
+    double new_coeff0_7 = 0;
+    double new_coeff0_8 = 0;
+    double new_coeff0_9 = 0;
+    double new_coeff0_10 = 0;
+    double new_coeff0_11 = 0;
+    double new_coeff0_12 = 0;
+    double new_coeff0_13 = 0;
+    double new_coeff0_14 = 0;
+    double new_coeff0_15 = 0;
+    double new_coeff0_16 = 0;
+    double new_coeff0_17 = 0;
+    double new_coeff0_18 = 0;
+    double new_coeff0_19 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
+      new_coeff0_6 = coefficients0[dof][6];
+      new_coeff0_7 = coefficients0[dof][7];
+      new_coeff0_8 = coefficients0[dof][8];
+      new_coeff0_9 = coefficients0[dof][9];
+      new_coeff0_10 = coefficients0[dof][10];
+      new_coeff0_11 = coefficients0[dof][11];
+      new_coeff0_12 = coefficients0[dof][12];
+      new_coeff0_13 = coefficients0[dof][13];
+      new_coeff0_14 = coefficients0[dof][14];
+      new_coeff0_15 = coefficients0[dof][15];
+      new_coeff0_16 = coefficients0[dof][16];
+      new_coeff0_17 = coefficients0[dof][17];
+      new_coeff0_18 = coefficients0[dof][18];
+      new_coeff0_19 = coefficients0[dof][19];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
+        coeff0_6 = new_coeff0_6;
+        coeff0_7 = new_coeff0_7;
+        coeff0_8 = new_coeff0_8;
+        coeff0_9 = new_coeff0_9;
+        coeff0_10 = new_coeff0_10;
+        coeff0_11 = new_coeff0_11;
+        coeff0_12 = new_coeff0_12;
+        coeff0_13 = new_coeff0_13;
+        coeff0_14 = new_coeff0_14;
+        coeff0_15 = new_coeff0_15;
+        coeff0_16 = new_coeff0_16;
+        coeff0_17 = new_coeff0_17;
+        coeff0_18 = new_coeff0_18;
+        coeff0_19 = new_coeff0_19;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
+          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
+          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
+          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
+          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
+          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
+          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
+          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
+          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
+          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
+          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
+          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
+          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
+          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
+          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
+          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
+          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
+          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
+          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
+          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
+          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
+          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
+          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
+          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
+          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
+          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
+          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
+          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
+          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
+        }
+        if(combinations[deriv_num][j] == 2)
+        {
+          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
+          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
+          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
+          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
+          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
+          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
+          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
+          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
+          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
+          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
+          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
+          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
+          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
+          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
+          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
+          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
+          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
+          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
+          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
+          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives
+    delete [] combinations;
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -616,108 +1626,613 @@ public:
     else
       y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
     
-    const static unsigned int dof = i;
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+    const double scalings_z_0 = 1;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1;
+    const double psitilde_bs_2_1 = 3.5*y + 2.5;
+    const double psitilde_bs_3_0 = 1;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1;
+    const double psitilde_cs_00_1 = 2*z + 1;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+    const double psitilde_cs_01_0 = 1;
+    const double psitilde_cs_01_1 = 3*z + 2;
+    const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+    const double psitilde_cs_02_0 = 1;
+    const double psitilde_cs_02_1 = 4*z + 3;
+    const double psitilde_cs_03_0 = 1;
+    const double psitilde_cs_10_0 = 1;
+    const double psitilde_cs_10_1 = 3*z + 2;
+    const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+    const double psitilde_cs_11_0 = 1;
+    const double psitilde_cs_11_1 = 4*z + 3;
+    const double psitilde_cs_12_0 = 1;
+    const double psitilde_cs_20_0 = 1;
+    const double psitilde_cs_20_1 = 4*z + 3;
+    const double psitilde_cs_21_0 = 1;
+    const double psitilde_cs_30_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+    const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+    const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+    const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+    const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+    const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+    const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+    const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+    const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+    const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+    const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+    const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+    const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
     
     // Table(s) of coefficients
     const static double coefficients0[20][20] = \
-    {{0.02886751345948, 0.01304101327393, 0.00752923252421, 0.005323971375, 0.01829812636778, 0.01417366773785, 0.00818317088385, 0.01157275124716, 0.006681531047811, 0.004724555912615, -0.02834733547569, -0.0239578711875, -0.01855768722395, -0.01071428571429, -0.02074812506897, -0.01607142857143, -0.009278843611976, -0.0131222664792, -0.007576144084142, -0.005357142857143},
-    {-4.518876242894e-17, -0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636778, 0.04252100321354, 0.04091585441925, 0.03471825374147, 0.03340765523905, 0.02362277956308, 0.08504200642708, 0.0239578711875, -0.006185895741317, -0.01071428571429, 0.02074812506897, -0.005357142857143, -0.009278843611976, -0.004374088826399, -0.007576144084142, -0.005357142857143},
-    {7.715402656692e-17, 0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636779, -0.04252100321354, 0.04091585441925, -0.03471825374147, 0.03340765523905, 0.02362277956308, -0.08504200642708, 0.0239578711875, 0.006185895741317, -0.01071428571429, 0.02074812506897, 0.005357142857143, -0.009278843611976, 0.004374088826399, -0.007576144084142, -0.005357142857143},
-    {0.02886751345948, -0.01304101327393, 0.00752923252421, 0.005323971374999, 0.01829812636779, -0.01417366773785, 0.00818317088385, -0.01157275124716, 0.006681531047811, 0.004724555912615, 0.02834733547569, -0.0239578711875, 0.01855768722395, -0.01071428571429, -0.02074812506897, 0.01607142857143, -0.009278843611976, 0.0131222664792, -0.007576144084142, -0.005357142857143},
-    {-2.824273200074e-17, -0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, -0.01417366773785, -0.02454951265155, 0.04629100498863, 0.01336306209562, 0.02362277956308, 2.275128986352e-18, 0.047915742375, 0.06185895741317, 0.04285714285714, -0.006916041689656, 0.01607142857143, 0.01546473935329, -0.008748177652797, -3.95777085019e-18, -0.005357142857143},
-    {0.2598076211353, -1.225641293394e-16, -4.097310381188e-17, -0.143747227125, -0.1097887582067, -5.746996043767e-17, -0.1227475632577, 2.889228530624e-17, -3.079887348353e-18, 0.04252100321354, 7.835786177535e-19, -0.09583148474999, 3.639115087891e-17, 0.04285714285714, 0.01383208337931, 5.457503060128e-18, 0.01546473935329, -5.081774365502e-18, 1.084950549826e-17, -0.005357142857143},
-    {1.046612503787e-16, 0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, 0.01417366773785, -0.02454951265155, -0.04629100498863, 0.01336306209562, 0.02362277956308, -3.058707604105e-18, 0.047915742375, -0.06185895741317, 0.04285714285714, -0.006916041689656, -0.01607142857143, 0.01546473935329, 0.008748177652797, 7.257132501642e-18, -0.005357142857143},
-    {-4.006172263299e-17, 0.0195615199109, 0.1242323366495, -0.03194382825, -1.393674423138e-17, -0.05669467095138, 0.02454951265155, 0.01157275124716, -0.04677071733467, 0.02362277956308, -1.021863087349e-18, -1.289553795503e-17, -0.06185895741317, -0.06428571428571, 3.549741741614e-18, 0.02142857142857, 0.009278843611976, -0.004374088826399, 0.007576144084142, -0.005357142857143},
-    {1.111478066409e-17, -0.0195615199109, 0.1242323366495, -0.03194382825, -1.537912347895e-17, 0.05669467095138, 0.02454951265155, -0.01157275124716, -0.04677071733467, 0.02362277956308, 1.021863087349e-18, -1.166751809041e-17, 0.06185895741317, -0.06428571428571, -1.0409328449e-18, -0.02142857142857, 0.009278843611976, 0.004374088826399, 0.007576144084142, -0.005357142857143},
-    {0.02886751345948, -1.212723283565e-17, -0.01505846504842, 0.005323971374999, 7.279855702048e-18, 1.877173722467e-18, 0.02454951265155, -1.934229615065e-18, -0.01336306209562, 0.004724555912615, 6.126782385402e-34, 6.681233075121e-18, 8.519514711086e-18, 0.04285714285714, -1.294594172861e-18, -3.922692475971e-18, -0.02783653083593, 2.116739086103e-18, 0.01515228816828, -0.005357142857143},
-    {-4.715859420098e-17, -0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, 0.04252100321354, 0.02454951265155, -0.02314550249431, -0.01336306209562, -0.02362277956308, 4.552619888295e-18, -5.431942796401e-18, -5.359645772994e-18, -2.630797930699e-18, 0.04841229182759, 0.0375, 0.02165063509461, 0.05248906591678, 0.03030457633657, 0.02678571428571},
-    {0.2598076211353, -7.65165565854e-17, -0.1355261854358, 0.047915742375, -0.1097887582067, 1.959477613608e-17, 0.02454951265155, -6.175419165908e-17, -0.08017837257373, -0.09921567416492, -5.485050324274e-18, -2.326208721105e-18, -2.438302269938e-18, -2.132261431754e-18, -0.09682458365519, 2.124344027565e-17, 0.02165063509461, 1.301432189212e-17, 0.03030457633657, 0.02678571428571},
-    {-1.288704241729e-17, 0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, -0.04252100321354, 0.02454951265155, 0.02314550249431, -0.01336306209562, -0.02362277956308, 9.324304359796e-19, 1.022449004855e-17, 4.670759106162e-18, 3.211349511113e-19, 0.04841229182759, -0.0375, 0.02165063509461, -0.05248906591678, 0.03030457633657, 0.02678571428571},
-    {0.2598076211353, -0.1173691194654, 0.06776309271789, 0.047915742375, 7.254994153092e-18, -0.08504200642708, -0.07364853795465, -0.06943650748294, 0.04008918628686, -0.09921567416492, 6.441573754824e-18, 3.550795744686e-18, 1.160478921158e-17, 1.290704808819e-17, -5.632235591773e-18, -0.075, -0.06495190528383, 0.02624453295839, -0.01515228816828, 0.02678571428571},
-    {0.2598076211353, 0.1173691194654, 0.06776309271789, 0.047915742375, -1.493621847052e-17, 0.08504200642708, -0.07364853795465, 0.06943650748294, 0.04008918628686, -0.09921567416492, -6.441573754824e-18, -8.483472806773e-18, -5.350411338036e-18, -1.45032211828e-18, 4.553797348212e-18, 0.075, -0.06495190528383, -0.02624453295839, -0.01515228816828, 0.02678571428571},
-    {5.408332555454e-17, 2.764913340935e-17, 0.1129384878632, -0.06388765649999, -9.634202667367e-21, 1.362417039541e-17, 0.07364853795465, 5.646240919711e-18, 0.02672612419124, -0.02362277956308, -1.790925960944e-34, 2.466338531044e-18, -3.12718893677e-18, -7.014801558573e-18, -2.856378997734e-18, 1.074860168886e-17, 0.06495190528383, -9.654926694772e-18, -0.06060915267313, 0.02678571428571},
-    {-9.389466242107e-19, 0.0195615199109, 0.01129384878632, 0.127775313, 4.743500644299e-18, -4.216461247218e-18, 3.057081386927e-19, -0.05786375623578, -0.03340765523905, 0.04724555912615, -1.038020779274e-18, 5.386949989641e-20, 5.108014325937e-19, 5.831592728598e-19, 6.4848485022e-18, 3.276246242507e-19, -1.271770108631e-18, -0.06561133239598, -0.03788072042071, -0.05357142857143},
-    {2.84970300448e-17, -0.0195615199109, 0.01129384878632, 0.127775313, -2.268127050835e-18, 1.368993962938e-18, -9.31093810031e-18, 0.05786375623578, -0.03340765523905, 0.04724555912615, 1.038020779274e-18, -5.386949989641e-20, -5.108014325937e-19, 1.79456202893e-19, -4.301774192106e-18, -2.838854724449e-18, -6.353713339367e-18, 0.06561133239598, -0.03788072042071, -0.05357142857143},
-    {2.569583928257e-17, -3.958143675112e-18, -0.02258769757263, 0.127775313, 3.853845587344e-18, -3.334725636217e-18, -8.512900497753e-18, 3.660129801822e-18, 0.06681531047811, 0.04724555912615, 5.462281362157e-34, -2.046613735166e-34, 9.925519533834e-34, -7.626154757529e-19, 3.398772338452e-18, -2.940951574688e-18, -7.824055428762e-18, 6.178157181366e-18, 0.07576144084142, -0.05357142857143},
-    {0.02886751345948, -3.28230490621e-18, -6.454343248199e-18, -0.015971914125, -4.738280089043e-19, 5.151827433748e-19, -5.454394097546e-18, -5.726231351963e-18, -1.707242370808e-18, 0.02834733547569, 2.651952136169e-35, -5.119626828456e-34, 2.192404630121e-34, 5.101340901778e-34, -4.178770252592e-19, 4.543484729072e-19, -4.810323444882e-18, -2.603575737916e-18, 3.305137170739e-18, 0.05357142857143}};
+    {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+    {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+    {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+    {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+    {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+    {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+    {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+    {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
     
-    // Generate scalings
-    const double scalings_y_0 = 1.0;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
-    const double scalings_z_0 = 1.0;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5 * z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1.0;
-    const double psitilde_a_1 = 1*x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1.0;
-    const double psitilde_bs_0_1 = 0.5 + 1.5*y;
-    const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1.0;
-    const double psitilde_bs_1_1 = 1.5 + 2.5*y;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1.0;
-    const double psitilde_bs_2_1 = 2.5 + 3.5*y;
-    const double psitilde_bs_3_0 = 1.0;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1.0;
-    const double psitilde_cs_00_1 = 1 + 2*z;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.1555555555556*psitilde_cs_00_2 + 1.866666666667*z*psitilde_cs_00_2-0.7111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1.0;
-    const double psitilde_cs_01_1 = 2 + 3*z;
-    const double psitilde_cs_01_2 = 0.7777777777778*psitilde_cs_01_1 + 2.333333333333*z*psitilde_cs_01_1-0.5555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1.0;
-    const double psitilde_cs_02_1 = 3 + 4*z;
-    const double psitilde_cs_03_0 = 1.0;
-    const double psitilde_cs_10_0 = 1.0;
-    const double psitilde_cs_10_1 = 2 + 3*z;
-    const double psitilde_cs_10_2 = 0.7777777777778*psitilde_cs_10_1 + 2.333333333333*z*psitilde_cs_10_1-0.5555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1.0;
-    const double psitilde_cs_11_1 = 3 + 4*z;
-    const double psitilde_cs_12_0 = 1.0;
-    const double psitilde_cs_20_0 = 1.0;
-    const double psitilde_cs_20_1 = 3 + 4*z;
-    const double psitilde_cs_21_0 = 1.0;
-    const double psitilde_cs_30_0 = 1.0;
-    
-    // Compute basisvalues
-    const double basisvalues[20] = \
-    {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532,\
-     psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0*7.937253933194,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0*6.708203932499,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0*5.196152422707,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0*3,\
-     psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1*5.809475019311,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1*4.5,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1*2.598076211353,\
-     psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2*3.674234614175,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2*2.12132034356,\
-     psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3*1.5};
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
+    const double coeff0_6 = coefficients0[dof][6];
+    const double coeff0_7 = coefficients0[dof][7];
+    const double coeff0_8 = coefficients0[dof][8];
+    const double coeff0_9 = coefficients0[dof][9];
+    const double coeff0_10 = coefficients0[dof][10];
+    const double coeff0_11 = coefficients0[dof][11];
+    const double coeff0_12 = coefficients0[dof][12];
+    const double coeff0_13 = coefficients0[dof][13];
+    const double coeff0_14 = coefficients0[dof][14];
+    const double coeff0_15 = coefficients0[dof][15];
+    const double coeff0_16 = coefficients0[dof][16];
+    const double coeff0_17 = coefficients0[dof][17];
+    const double coeff0_18 = coefficients0[dof][18];
+    const double coeff0_19 = coefficients0[dof][19];
     
     // Compute value(s)
-    *values = 0.0;
-    for (unsigned int j = 0; j < 20; j++)
-      *values += coefficients0[dof][j]*basisvalues[j];
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
+    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
+    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
+    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
+      
+    // Compute sub determinants
+    const double d00 = J_11*J_22 - J_12*J_21;
+    const double d01 = J_12*J_20 - J_10*J_22;
+    const double d02 = J_10*J_21 - J_11*J_20;
+    
+    const double d10 = J_02*J_21 - J_01*J_22;
+    const double d11 = J_00*J_22 - J_02*J_20;
+    const double d12 = J_01*J_20 - J_00*J_21;
+    
+    const double d20 = J_01*J_12 - J_02*J_11;
+    const double d21 = J_02*J_10 - J_00*J_12;
+    const double d22 = J_00*J_11 - J_01*J_10;
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    
+    // Compute constants
+    const double C0 = element_coordinates[3][0] + element_coordinates[2][0] \
+                    + element_coordinates[1][0] - element_coordinates[0][0];
+    const double C1 = element_coordinates[3][1] + element_coordinates[2][1] \
+                    + element_coordinates[1][1] - element_coordinates[0][1];
+    const double C2 = element_coordinates[3][2] + element_coordinates[2][2] \
+                    + element_coordinates[1][2] - element_coordinates[0][2];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = coordinates[0];
+    double y = coordinates[1];
+    double z = coordinates[2];
+    
+    x = (2.0*d00*x + 2.0*d10*y + 2.0*d20*z - d00*C0 - d10*C1 - d20*C2) / detJ;
+    y = (2.0*d01*x + 2.0*d11*y + 2.0*d21*z - d01*C0 - d11*C1 - d21*C2) / detJ;
+    z = (2.0*d02*x + 2.0*d12*y + 2.0*d22*z - d02*C0 - d12*C1 - d22*C2) / detJ;
+    
+    // Map coordinates to the reference cube
+    if (std::abs(y + z) < 1e-14)
+      x = 1.0;
+    else
+      x = -2.0 * (1.0 + x)/(y + z) - 1.0;
+    if (std::abs(z - 1.0) < 1e-14)
+      y = -1.0;
+    else
+      y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 3;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 2)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian, components are scaled because of difference in FFC/FIAT reference elements
+    const double Jinv[3][3] ={{2*d00 / detJ, 2*d10 / detJ, 2*d20 / detJ}, {2*d01 / detJ, 2*d11 / detJ, 2*d21 / detJ}, {2*d02 / detJ, 2*d12 / detJ, 2*d22 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+    const double scalings_z_0 = 1;
+    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+    const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+    const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+    const double psitilde_bs_2_0 = 1;
+    const double psitilde_bs_2_1 = 3.5*y + 2.5;
+    const double psitilde_bs_3_0 = 1;
+    
+    // Compute psitilde_cs
+    const double psitilde_cs_00_0 = 1;
+    const double psitilde_cs_00_1 = 2*z + 1;
+    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+    const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+    const double psitilde_cs_01_0 = 1;
+    const double psitilde_cs_01_1 = 3*z + 2;
+    const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+    const double psitilde_cs_02_0 = 1;
+    const double psitilde_cs_02_1 = 4*z + 3;
+    const double psitilde_cs_03_0 = 1;
+    const double psitilde_cs_10_0 = 1;
+    const double psitilde_cs_10_1 = 3*z + 2;
+    const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+    const double psitilde_cs_11_0 = 1;
+    const double psitilde_cs_11_1 = 4*z + 3;
+    const double psitilde_cs_12_0 = 1;
+    const double psitilde_cs_20_0 = 1;
+    const double psitilde_cs_20_1 = 4*z + 3;
+    const double psitilde_cs_21_0 = 1;
+    const double psitilde_cs_30_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+    const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+    const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+    const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+    const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+    const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+    const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+    const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+    const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+    const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+    const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+    const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+    const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[20][20] = \
+    {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+    {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+    {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+    {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+    {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+    {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+    {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+    {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+    {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+    {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+    {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+    {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+    {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+    {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {3.16227766017, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 5.61248608016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.29128784748, 0, 4.18330013267, -0.59160797831, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.87082869339, 0, 0, 4.34741302386, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.74954541697, 0, -1.67332005307, -1.18321595662, 7.74596669241, 0, 0.346410161514, 0, 0.282842712475, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 2.44948974278, 0, 0, 0, 7.09929573972, 0, -0.414039335605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.8, 0, 4.38178046004, -0.774596669241, 0, 0, 4.76235235992, 0, -0.740656079818, 0.130930734142, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 2.12132034356, 0, 0, 0, 0, 0, 7.17137165601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.55884572681, 0, 1.58113883008, 2.45967477525, 0, 0, 0, 0, 5.34522483825, -1.20948631363, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.27279220614, 0, 0, 3.83405790254, 0, 0, 0, 0, 0, 5.18459255873, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    const static double dmats1[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.73861278753, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.14564392374, 3.62284418655, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-1.32287565553, 0, 4.8304589154, 0.341565025532, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.935414346693, 0, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.6201851746, 0, 0, 3.7649701194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 4.58257569496, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.9, -2.84604989415, 2.19089023002, -0.387298334621, 0, 5.49909083395, 2.38117617996, 0.481070235442, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.59807621135, 0, -1.58113883008, -1.11803398875, 0, 0, 6.87386354243, 0, 0.267261241912, 0.188982236505, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 0, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.779422863406, 1.36930639376, 0.790569415042, 1.22983738762, 0, 0, 0, 4.62910049886, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-0.9, 0, 1.82574185835, -1.42009389361, 0, 0, 0, 0, 6.17213399848, 0.698297248755, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.636396103068, 0, 0, 1.91702895127, 0, 0, 0, 0, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.10227038425, 0, 0, 3.32039154318, 0, 0, 0, 0, 0, 4.48998886413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    const static double dmats2[20][20] = \
+    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.912870929175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.58198889747, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.14564392374, 0.724568837309, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.661437827766, 0, 1.93218356616, -0.170782512766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.935414346693, 3.54964786986, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.540061724867, 0, 3.54964786986, 1.2549900398, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {-1.90940653956, 0, 0, 4.43705983732, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 0.654653670708, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.9, 0.316227766017, 2.19089023002, -0.387298334621, 0, 1.5711688097, 2.38117617996, -0.0534522483825, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.519615242271, 0, 1.58113883008, -0.22360679775, 0, 0, 2.94594151819, 0, -0.267261241912, 0.0377964473009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 4.53557367611, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.779422863406, 0.273861278753, 0.790569415042, 1.22983738762, 0, 4.53557367611, 0, 0.925820099773, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.45, 0, 0.73029674334, 0.710046946805, 0, 0, 4.53557367611, 0, 2.46885359939, -0.349148624378, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.636396103068, -3.1304951685, 0, 1.91702895127, 0, 0, 0, 5.29150262213, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0.367423461417, 0, -3.1304951685, 1.10679718106, 0, 0, 0, 0, 5.29150262213, 1.49666295471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.85788383249, 0, 0, -2.34787137637, 0, 0, 0, 0, 0, 6.34980314656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
+    double coeff0_6 = 0;
+    double coeff0_7 = 0;
+    double coeff0_8 = 0;
+    double coeff0_9 = 0;
+    double coeff0_10 = 0;
+    double coeff0_11 = 0;
+    double coeff0_12 = 0;
+    double coeff0_13 = 0;
+    double coeff0_14 = 0;
+    double coeff0_15 = 0;
+    double coeff0_16 = 0;
+    double coeff0_17 = 0;
+    double coeff0_18 = 0;
+    double coeff0_19 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
+    double new_coeff0_6 = 0;
+    double new_coeff0_7 = 0;
+    double new_coeff0_8 = 0;
+    double new_coeff0_9 = 0;
+    double new_coeff0_10 = 0;
+    double new_coeff0_11 = 0;
+    double new_coeff0_12 = 0;
+    double new_coeff0_13 = 0;
+    double new_coeff0_14 = 0;
+    double new_coeff0_15 = 0;
+    double new_coeff0_16 = 0;
+    double new_coeff0_17 = 0;
+    double new_coeff0_18 = 0;
+    double new_coeff0_19 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
+      new_coeff0_6 = coefficients0[dof][6];
+      new_coeff0_7 = coefficients0[dof][7];
+      new_coeff0_8 = coefficients0[dof][8];
+      new_coeff0_9 = coefficients0[dof][9];
+      new_coeff0_10 = coefficients0[dof][10];
+      new_coeff0_11 = coefficients0[dof][11];
+      new_coeff0_12 = coefficients0[dof][12];
+      new_coeff0_13 = coefficients0[dof][13];
+      new_coeff0_14 = coefficients0[dof][14];
+      new_coeff0_15 = coefficients0[dof][15];
+      new_coeff0_16 = coefficients0[dof][16];
+      new_coeff0_17 = coefficients0[dof][17];
+      new_coeff0_18 = coefficients0[dof][18];
+      new_coeff0_19 = coefficients0[dof][19];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
+        coeff0_6 = new_coeff0_6;
+        coeff0_7 = new_coeff0_7;
+        coeff0_8 = new_coeff0_8;
+        coeff0_9 = new_coeff0_9;
+        coeff0_10 = new_coeff0_10;
+        coeff0_11 = new_coeff0_11;
+        coeff0_12 = new_coeff0_12;
+        coeff0_13 = new_coeff0_13;
+        coeff0_14 = new_coeff0_14;
+        coeff0_15 = new_coeff0_15;
+        coeff0_16 = new_coeff0_16;
+        coeff0_17 = new_coeff0_17;
+        coeff0_18 = new_coeff0_18;
+        coeff0_19 = new_coeff0_19;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
+          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
+          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
+          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
+          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
+          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
+          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
+          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
+          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
+          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
+          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
+          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
+          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
+          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
+          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
+          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
+          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
+          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
+          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
+          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
+          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
+          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
+          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
+          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
+          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
+          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
+          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
+          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
+          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
+        }
+        if(combinations[deriv_num][j] == 2)
+        {
+          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
+          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
+          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
+          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
+          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
+          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
+          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
+          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
+          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
+          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
+          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
+          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
+          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
+          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
+          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
+          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
+          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
+          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
+          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
+          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives
+    delete [] combinations;
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -865,361 +2380,1589 @@ public:
     else
       y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
     
-    for (unsigned int element = 0; element < 3; element++)
-    // Switch for each of the basis elements
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    values[2] = 0;
+    
+    if (0 <= i and i <= 19)
     {
-      switch ( element )
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+      const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+      const double scalings_z_0 = 1;
+      const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+      const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+      const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+      const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+      const double psitilde_bs_2_0 = 1;
+      const double psitilde_bs_2_1 = 3.5*y + 2.5;
+      const double psitilde_bs_3_0 = 1;
+    
+      // Compute psitilde_cs
+      const double psitilde_cs_00_0 = 1;
+      const double psitilde_cs_00_1 = 2*z + 1;
+      const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+      const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+      const double psitilde_cs_01_0 = 1;
+      const double psitilde_cs_01_1 = 3*z + 2;
+      const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+      const double psitilde_cs_02_0 = 1;
+      const double psitilde_cs_02_1 = 4*z + 3;
+      const double psitilde_cs_03_0 = 1;
+      const double psitilde_cs_10_0 = 1;
+      const double psitilde_cs_10_1 = 3*z + 2;
+      const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+      const double psitilde_cs_11_0 = 1;
+      const double psitilde_cs_11_1 = 4*z + 3;
+      const double psitilde_cs_12_0 = 1;
+      const double psitilde_cs_20_0 = 1;
+      const double psitilde_cs_20_1 = 4*z + 3;
+      const double psitilde_cs_21_0 = 1;
+      const double psitilde_cs_30_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+      const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+      const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+      const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+      const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+      const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+      const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+      const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+      const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+      const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+      const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+      const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+      const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+      const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+      const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+      const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[20][20] =   \
+      {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+      {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+      {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+      {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+      {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+      {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+      {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+      {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+      const double coeff0_6 =   coefficients0[dof][6];
+      const double coeff0_7 =   coefficients0[dof][7];
+      const double coeff0_8 =   coefficients0[dof][8];
+      const double coeff0_9 =   coefficients0[dof][9];
+      const double coeff0_10 =   coefficients0[dof][10];
+      const double coeff0_11 =   coefficients0[dof][11];
+      const double coeff0_12 =   coefficients0[dof][12];
+      const double coeff0_13 =   coefficients0[dof][13];
+      const double coeff0_14 =   coefficients0[dof][14];
+      const double coeff0_15 =   coefficients0[dof][15];
+      const double coeff0_16 =   coefficients0[dof][16];
+      const double coeff0_17 =   coefficients0[dof][17];
+      const double coeff0_18 =   coefficients0[dof][18];
+      const double coeff0_19 =   coefficients0[dof][19];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    }
+    
+    if (20 <= i and i <= 39)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 20;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+      const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+      const double scalings_z_0 = 1;
+      const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+      const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+      const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+      const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+      const double psitilde_bs_2_0 = 1;
+      const double psitilde_bs_2_1 = 3.5*y + 2.5;
+      const double psitilde_bs_3_0 = 1;
+    
+      // Compute psitilde_cs
+      const double psitilde_cs_00_0 = 1;
+      const double psitilde_cs_00_1 = 2*z + 1;
+      const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+      const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+      const double psitilde_cs_01_0 = 1;
+      const double psitilde_cs_01_1 = 3*z + 2;
+      const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+      const double psitilde_cs_02_0 = 1;
+      const double psitilde_cs_02_1 = 4*z + 3;
+      const double psitilde_cs_03_0 = 1;
+      const double psitilde_cs_10_0 = 1;
+      const double psitilde_cs_10_1 = 3*z + 2;
+      const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+      const double psitilde_cs_11_0 = 1;
+      const double psitilde_cs_11_1 = 4*z + 3;
+      const double psitilde_cs_12_0 = 1;
+      const double psitilde_cs_20_0 = 1;
+      const double psitilde_cs_20_1 = 4*z + 3;
+      const double psitilde_cs_21_0 = 1;
+      const double psitilde_cs_30_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+      const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+      const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+      const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+      const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+      const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+      const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+      const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+      const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+      const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+      const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+      const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+      const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+      const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+      const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+      const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[20][20] =   \
+      {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+      {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+      {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+      {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+      {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+      {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+      {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+      {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+      const double coeff0_6 =   coefficients0[dof][6];
+      const double coeff0_7 =   coefficients0[dof][7];
+      const double coeff0_8 =   coefficients0[dof][8];
+      const double coeff0_9 =   coefficients0[dof][9];
+      const double coeff0_10 =   coefficients0[dof][10];
+      const double coeff0_11 =   coefficients0[dof][11];
+      const double coeff0_12 =   coefficients0[dof][12];
+      const double coeff0_13 =   coefficients0[dof][13];
+      const double coeff0_14 =   coefficients0[dof][14];
+      const double coeff0_15 =   coefficients0[dof][15];
+      const double coeff0_16 =   coefficients0[dof][16];
+      const double coeff0_17 =   coefficients0[dof][17];
+      const double coeff0_18 =   coefficients0[dof][18];
+      const double coeff0_19 =   coefficients0[dof][19];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    }
+    
+    if (40 <= i and i <= 59)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 40;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+      const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+      const double scalings_z_0 = 1;
+      const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+      const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+      const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+      const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+      const double psitilde_bs_2_0 = 1;
+      const double psitilde_bs_2_1 = 3.5*y + 2.5;
+      const double psitilde_bs_3_0 = 1;
+    
+      // Compute psitilde_cs
+      const double psitilde_cs_00_0 = 1;
+      const double psitilde_cs_00_1 = 2*z + 1;
+      const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+      const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+      const double psitilde_cs_01_0 = 1;
+      const double psitilde_cs_01_1 = 3*z + 2;
+      const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+      const double psitilde_cs_02_0 = 1;
+      const double psitilde_cs_02_1 = 4*z + 3;
+      const double psitilde_cs_03_0 = 1;
+      const double psitilde_cs_10_0 = 1;
+      const double psitilde_cs_10_1 = 3*z + 2;
+      const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+      const double psitilde_cs_11_0 = 1;
+      const double psitilde_cs_11_1 = 4*z + 3;
+      const double psitilde_cs_12_0 = 1;
+      const double psitilde_cs_20_0 = 1;
+      const double psitilde_cs_20_1 = 4*z + 3;
+      const double psitilde_cs_21_0 = 1;
+      const double psitilde_cs_30_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+      const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+      const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+      const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+      const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+      const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+      const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+      const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+      const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+      const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+      const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+      const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+      const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+      const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+      const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+      const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[20][20] =   \
+      {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+      {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+      {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+      {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+      {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+      {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+      {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+      {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
+      const double coeff0_6 =   coefficients0[dof][6];
+      const double coeff0_7 =   coefficients0[dof][7];
+      const double coeff0_8 =   coefficients0[dof][8];
+      const double coeff0_9 =   coefficients0[dof][9];
+      const double coeff0_10 =   coefficients0[dof][10];
+      const double coeff0_11 =   coefficients0[dof][11];
+      const double coeff0_12 =   coefficients0[dof][12];
+      const double coeff0_13 =   coefficients0[dof][13];
+      const double coeff0_14 =   coefficients0[dof][14];
+      const double coeff0_15 =   coefficients0[dof][15];
+      const double coeff0_16 =   coefficients0[dof][16];
+      const double coeff0_17 =   coefficients0[dof][17];
+      const double coeff0_18 =   coefficients0[dof][18];
+      const double coeff0_19 =   coefficients0[dof][19];
+    
+      // Compute value(s)
+      values[2] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    }
+    
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
+    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
+    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
+    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
+      
+    // Compute sub determinants
+    const double d00 = J_11*J_22 - J_12*J_21;
+    const double d01 = J_12*J_20 - J_10*J_22;
+    const double d02 = J_10*J_21 - J_11*J_20;
+    
+    const double d10 = J_02*J_21 - J_01*J_22;
+    const double d11 = J_00*J_22 - J_02*J_20;
+    const double d12 = J_01*J_20 - J_00*J_21;
+    
+    const double d20 = J_01*J_12 - J_02*J_11;
+    const double d21 = J_02*J_10 - J_00*J_12;
+    const double d22 = J_00*J_11 - J_01*J_10;
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    
+    // Compute constants
+    const double C0 = element_coordinates[3][0] + element_coordinates[2][0] \
+                    + element_coordinates[1][0] - element_coordinates[0][0];
+    const double C1 = element_coordinates[3][1] + element_coordinates[2][1] \
+                    + element_coordinates[1][1] - element_coordinates[0][1];
+    const double C2 = element_coordinates[3][2] + element_coordinates[2][2] \
+                    + element_coordinates[1][2] - element_coordinates[0][2];
+    
+    // Get coordinates and map to the reference (FIAT) element
+    double x = coordinates[0];
+    double y = coordinates[1];
+    double z = coordinates[2];
+    
+    x = (2.0*d00*x + 2.0*d10*y + 2.0*d20*z - d00*C0 - d10*C1 - d20*C2) / detJ;
+    y = (2.0*d01*x + 2.0*d11*y + 2.0*d21*z - d01*C0 - d11*C1 - d21*C2) / detJ;
+    z = (2.0*d02*x + 2.0*d12*y + 2.0*d22*z - d02*C0 - d12*C1 - d22*C2) / detJ;
+    
+    // Map coordinates to the reference cube
+    if (std::abs(y + z) < 1e-14)
+      x = 1.0;
+    else
+      x = -2.0 * (1.0 + x)/(y + z) - 1.0;
+    if (std::abs(z - 1.0) < 1e-14)
+      y = -1.0;
+    else
+      y = 2.0 * (1.0 + y)/(1.0 - z) - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 3;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
       {
-        case 0:
+        for (unsigned int col = n-1; col+1 > 0; col--)
         {
-          if (0 <= i and i <= 19)
-          {
-            // Compute local degree of freedom
-            const static unsigned int dof = i;
-    
-            // Table(s) of coefficients
-            const static double coefficients0[20][20] =         \
-            {{0.02886751345948, 0.01304101327393, 0.00752923252421, 0.005323971375, 0.01829812636778, 0.01417366773785, 0.00818317088385, 0.01157275124716, 0.006681531047811, 0.004724555912615, -0.02834733547569, -0.0239578711875, -0.01855768722395, -0.01071428571429, -0.02074812506897, -0.01607142857143, -0.009278843611976, -0.0131222664792, -0.007576144084142, -0.005357142857143},
-            {-4.518876242894e-17, -0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636778, 0.04252100321354, 0.04091585441925, 0.03471825374147, 0.03340765523905, 0.02362277956308, 0.08504200642708, 0.0239578711875, -0.006185895741317, -0.01071428571429, 0.02074812506897, -0.005357142857143, -0.009278843611976, -0.004374088826399, -0.007576144084142, -0.005357142857143},
-            {7.715402656692e-17, 0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636779, -0.04252100321354, 0.04091585441925, -0.03471825374147, 0.03340765523905, 0.02362277956308, -0.08504200642708, 0.0239578711875, 0.006185895741317, -0.01071428571429, 0.02074812506897, 0.005357142857143, -0.009278843611976, 0.004374088826399, -0.007576144084142, -0.005357142857143},
-            {0.02886751345948, -0.01304101327393, 0.00752923252421, 0.005323971374999, 0.01829812636779, -0.01417366773785, 0.00818317088385, -0.01157275124716, 0.006681531047811, 0.004724555912615, 0.02834733547569, -0.0239578711875, 0.01855768722395, -0.01071428571429, -0.02074812506897, 0.01607142857143, -0.009278843611976, 0.0131222664792, -0.007576144084142, -0.005357142857143},
-            {-2.824273200074e-17, -0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, -0.01417366773785, -0.02454951265155, 0.04629100498863, 0.01336306209562, 0.02362277956308, 2.275128986352e-18, 0.047915742375, 0.06185895741317, 0.04285714285714, -0.006916041689656, 0.01607142857143, 0.01546473935329, -0.008748177652797, -3.95777085019e-18, -0.005357142857143},
-            {0.2598076211353, -1.225641293394e-16, -4.097310381188e-17, -0.143747227125, -0.1097887582067, -5.746996043767e-17, -0.1227475632577, 2.889228530624e-17, -3.079887348353e-18, 0.04252100321354, 7.835786177535e-19, -0.09583148474999, 3.639115087891e-17, 0.04285714285714, 0.01383208337931, 5.457503060128e-18, 0.01546473935329, -5.081774365502e-18, 1.084950549826e-17, -0.005357142857143},
-            {1.046612503787e-16, 0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, 0.01417366773785, -0.02454951265155, -0.04629100498863, 0.01336306209562, 0.02362277956308, -3.058707604105e-18, 0.047915742375, -0.06185895741317, 0.04285714285714, -0.006916041689656, -0.01607142857143, 0.01546473935329, 0.008748177652797, 7.257132501642e-18, -0.005357142857143},
-            {-4.006172263299e-17, 0.0195615199109, 0.1242323366495, -0.03194382825, -1.393674423138e-17, -0.05669467095138, 0.02454951265155, 0.01157275124716, -0.04677071733467, 0.02362277956308, -1.021863087349e-18, -1.289553795503e-17, -0.06185895741317, -0.06428571428571, 3.549741741614e-18, 0.02142857142857, 0.009278843611976, -0.004374088826399, 0.007576144084142, -0.005357142857143},
-            {1.111478066409e-17, -0.0195615199109, 0.1242323366495, -0.03194382825, -1.537912347895e-17, 0.05669467095138, 0.02454951265155, -0.01157275124716, -0.04677071733467, 0.02362277956308, 1.021863087349e-18, -1.166751809041e-17, 0.06185895741317, -0.06428571428571, -1.0409328449e-18, -0.02142857142857, 0.009278843611976, 0.004374088826399, 0.007576144084142, -0.005357142857143},
-            {0.02886751345948, -1.212723283565e-17, -0.01505846504842, 0.005323971374999, 7.279855702048e-18, 1.877173722467e-18, 0.02454951265155, -1.934229615065e-18, -0.01336306209562, 0.004724555912615, 6.126782385402e-34, 6.681233075121e-18, 8.519514711086e-18, 0.04285714285714, -1.294594172861e-18, -3.922692475971e-18, -0.02783653083593, 2.116739086103e-18, 0.01515228816828, -0.005357142857143},
-            {-4.715859420098e-17, -0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, 0.04252100321354, 0.02454951265155, -0.02314550249431, -0.01336306209562, -0.02362277956308, 4.552619888295e-18, -5.431942796401e-18, -5.359645772994e-18, -2.630797930699e-18, 0.04841229182759, 0.0375, 0.02165063509461, 0.05248906591678, 0.03030457633657, 0.02678571428571},
-            {0.2598076211353, -7.65165565854e-17, -0.1355261854358, 0.047915742375, -0.1097887582067, 1.959477613608e-17, 0.02454951265155, -6.175419165908e-17, -0.08017837257373, -0.09921567416492, -5.485050324274e-18, -2.326208721105e-18, -2.438302269938e-18, -2.132261431754e-18, -0.09682458365519, 2.124344027565e-17, 0.02165063509461, 1.301432189212e-17, 0.03030457633657, 0.02678571428571},
-            {-1.288704241729e-17, 0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, -0.04252100321354, 0.02454951265155, 0.02314550249431, -0.01336306209562, -0.02362277956308, 9.324304359796e-19, 1.022449004855e-17, 4.670759106162e-18, 3.211349511113e-19, 0.04841229182759, -0.0375, 0.02165063509461, -0.05248906591678, 0.03030457633657, 0.02678571428571},
-            {0.2598076211353, -0.1173691194654, 0.06776309271789, 0.047915742375, 7.254994153092e-18, -0.08504200642708, -0.07364853795465, -0.06943650748294, 0.04008918628686, -0.09921567416492, 6.441573754824e-18, 3.550795744686e-18, 1.160478921158e-17, 1.290704808819e-17, -5.632235591773e-18, -0.075, -0.06495190528383, 0.02624453295839, -0.01515228816828, 0.02678571428571},
-            {0.2598076211353, 0.1173691194654, 0.06776309271789, 0.047915742375, -1.493621847052e-17, 0.08504200642708, -0.07364853795465, 0.06943650748294, 0.04008918628686, -0.09921567416492, -6.441573754824e-18, -8.483472806773e-18, -5.350411338036e-18, -1.45032211828e-18, 4.553797348212e-18, 0.075, -0.06495190528383, -0.02624453295839, -0.01515228816828, 0.02678571428571},
-            {5.408332555454e-17, 2.764913340935e-17, 0.1129384878632, -0.06388765649999, -9.634202667367e-21, 1.362417039541e-17, 0.07364853795465, 5.646240919711e-18, 0.02672612419124, -0.02362277956308, -1.790925960944e-34, 2.466338531044e-18, -3.12718893677e-18, -7.014801558573e-18, -2.856378997734e-18, 1.074860168886e-17, 0.06495190528383, -9.654926694772e-18, -0.06060915267313, 0.02678571428571},
-            {-9.389466242107e-19, 0.0195615199109, 0.01129384878632, 0.127775313, 4.743500644299e-18, -4.216461247218e-18, 3.057081386927e-19, -0.05786375623578, -0.03340765523905, 0.04724555912615, -1.038020779274e-18, 5.386949989641e-20, 5.108014325937e-19, 5.831592728598e-19, 6.4848485022e-18, 3.276246242507e-19, -1.271770108631e-18, -0.06561133239598, -0.03788072042071, -0.05357142857143},
-            {2.84970300448e-17, -0.0195615199109, 0.01129384878632, 0.127775313, -2.268127050835e-18, 1.368993962938e-18, -9.31093810031e-18, 0.05786375623578, -0.03340765523905, 0.04724555912615, 1.038020779274e-18, -5.386949989641e-20, -5.108014325937e-19, 1.79456202893e-19, -4.301774192106e-18, -2.838854724449e-18, -6.353713339367e-18, 0.06561133239598, -0.03788072042071, -0.05357142857143},
-            {2.569583928257e-17, -3.958143675112e-18, -0.02258769757263, 0.127775313, 3.853845587344e-18, -3.334725636217e-18, -8.512900497753e-18, 3.660129801822e-18, 0.06681531047811, 0.04724555912615, 5.462281362157e-34, -2.046613735166e-34, 9.925519533834e-34, -7.626154757529e-19, 3.398772338452e-18, -2.940951574688e-18, -7.824055428762e-18, 6.178157181366e-18, 0.07576144084142, -0.05357142857143},
-            {0.02886751345948, -3.28230490621e-18, -6.454343248199e-18, -0.015971914125, -4.738280089043e-19, 5.151827433748e-19, -5.454394097546e-18, -5.726231351963e-18, -1.707242370808e-18, 0.02834733547569, 2.651952136169e-35, -5.119626828456e-34, 2.192404630121e-34, 5.101340901778e-34, -4.178770252592e-19, 4.543484729072e-19, -4.810323444882e-18, -2.603575737916e-18, 3.305137170739e-18, 0.05357142857143}};
-    
-            // Generate scalings
-            const double scalings_y_0 = 1.0;
-            const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
-            const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
-            const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
-            const double scalings_z_0 = 1.0;
-            const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
-            const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
-            const double scalings_z_3 = scalings_z_2*(0.5 - 0.5 * z);
-    
-            // Compute psitilde_a
-            const double psitilde_a_0 = 1.0;
-            const double psitilde_a_1 = 1*x;
-            const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
-            const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
-    
-            // Compute psitilde_bs
-            const double psitilde_bs_0_0 = 1.0;
-            const double psitilde_bs_0_1 = 0.5 + 1.5*y;
-            const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
-            const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
-            const double psitilde_bs_1_0 = 1.0;
-            const double psitilde_bs_1_1 = 1.5 + 2.5*y;
-            const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
-            const double psitilde_bs_2_0 = 1.0;
-            const double psitilde_bs_2_1 = 2.5 + 3.5*y;
-            const double psitilde_bs_3_0 = 1.0;
-    
-            // Compute psitilde_cs
-            const double psitilde_cs_00_0 = 1.0;
-            const double psitilde_cs_00_1 = 1 + 2*z;
-            const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
-            const double psitilde_cs_00_3 = 0.1555555555556*psitilde_cs_00_2 + 1.866666666667*z*psitilde_cs_00_2-0.7111111111111*psitilde_cs_00_1;
-            const double psitilde_cs_01_0 = 1.0;
-            const double psitilde_cs_01_1 = 2 + 3*z;
-            const double psitilde_cs_01_2 = 0.7777777777778*psitilde_cs_01_1 + 2.333333333333*z*psitilde_cs_01_1-0.5555555555556*psitilde_cs_01_0;
-            const double psitilde_cs_02_0 = 1.0;
-            const double psitilde_cs_02_1 = 3 + 4*z;
-            const double psitilde_cs_03_0 = 1.0;
-            const double psitilde_cs_10_0 = 1.0;
-            const double psitilde_cs_10_1 = 2 + 3*z;
-            const double psitilde_cs_10_2 = 0.7777777777778*psitilde_cs_10_1 + 2.333333333333*z*psitilde_cs_10_1-0.5555555555556*psitilde_cs_10_0;
-            const double psitilde_cs_11_0 = 1.0;
-            const double psitilde_cs_11_1 = 3 + 4*z;
-            const double psitilde_cs_12_0 = 1.0;
-            const double psitilde_cs_20_0 = 1.0;
-            const double psitilde_cs_20_1 = 3 + 4*z;
-            const double psitilde_cs_21_0 = 1.0;
-            const double psitilde_cs_30_0 = 1.0;
-    
-            // Compute basisvalues
-            const double basisvalues[20] =         \
-            {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532,\
-             psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0*7.937253933194,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0*6.708203932499,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0*5.196152422707,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0*3,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1*5.809475019311,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1*4.5,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1*2.598076211353,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2*3.674234614175,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2*2.12132034356,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3*1.5};
-    
-            // Compute value(s)
-            values[0] = 0.0;
-            for (unsigned int j = 0; j < 20; j++)
-            {
-              values[0] += coefficients0[dof][j]*basisvalues[j];
-            }
-          }
+          if (combinations[row][col] + 1 > 2)
+            combinations[row][col] = 0;
           else
           {
-            values[0] = 0.0;
+            combinations[row][col] += 1;
+            break;
           }
-          break;
-        }
-        case 1:
-        {
-          if (20 <= i and i <= 39)
-          {
-            // Compute local degree of freedom
-            const static unsigned int dof = i - 20;
-    
-            // Table(s) of coefficients
-            const static double coefficients0[20][20] =         \
-            {{0.02886751345948, 0.01304101327393, 0.00752923252421, 0.005323971375, 0.01829812636778, 0.01417366773785, 0.00818317088385, 0.01157275124716, 0.006681531047811, 0.004724555912615, -0.02834733547569, -0.0239578711875, -0.01855768722395, -0.01071428571429, -0.02074812506897, -0.01607142857143, -0.009278843611976, -0.0131222664792, -0.007576144084142, -0.005357142857143},
-            {-4.518876242894e-17, -0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636778, 0.04252100321354, 0.04091585441925, 0.03471825374147, 0.03340765523905, 0.02362277956308, 0.08504200642708, 0.0239578711875, -0.006185895741317, -0.01071428571429, 0.02074812506897, -0.005357142857143, -0.009278843611976, -0.004374088826399, -0.007576144084142, -0.005357142857143},
-            {7.715402656692e-17, 0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636779, -0.04252100321354, 0.04091585441925, -0.03471825374147, 0.03340765523905, 0.02362277956308, -0.08504200642708, 0.0239578711875, 0.006185895741317, -0.01071428571429, 0.02074812506897, 0.005357142857143, -0.009278843611976, 0.004374088826399, -0.007576144084142, -0.005357142857143},
-            {0.02886751345948, -0.01304101327393, 0.00752923252421, 0.005323971374999, 0.01829812636779, -0.01417366773785, 0.00818317088385, -0.01157275124716, 0.006681531047811, 0.004724555912615, 0.02834733547569, -0.0239578711875, 0.01855768722395, -0.01071428571429, -0.02074812506897, 0.01607142857143, -0.009278843611976, 0.0131222664792, -0.007576144084142, -0.005357142857143},
-            {-2.824273200074e-17, -0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, -0.01417366773785, -0.02454951265155, 0.04629100498863, 0.01336306209562, 0.02362277956308, 2.275128986352e-18, 0.047915742375, 0.06185895741317, 0.04285714285714, -0.006916041689656, 0.01607142857143, 0.01546473935329, -0.008748177652797, -3.95777085019e-18, -0.005357142857143},
-            {0.2598076211353, -1.225641293394e-16, -4.097310381188e-17, -0.143747227125, -0.1097887582067, -5.746996043767e-17, -0.1227475632577, 2.889228530624e-17, -3.079887348353e-18, 0.04252100321354, 7.835786177535e-19, -0.09583148474999, 3.639115087891e-17, 0.04285714285714, 0.01383208337931, 5.457503060128e-18, 0.01546473935329, -5.081774365502e-18, 1.084950549826e-17, -0.005357142857143},
-            {1.046612503787e-16, 0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, 0.01417366773785, -0.02454951265155, -0.04629100498863, 0.01336306209562, 0.02362277956308, -3.058707604105e-18, 0.047915742375, -0.06185895741317, 0.04285714285714, -0.006916041689656, -0.01607142857143, 0.01546473935329, 0.008748177652797, 7.257132501642e-18, -0.005357142857143},
-            {-4.006172263299e-17, 0.0195615199109, 0.1242323366495, -0.03194382825, -1.393674423138e-17, -0.05669467095138, 0.02454951265155, 0.01157275124716, -0.04677071733467, 0.02362277956308, -1.021863087349e-18, -1.289553795503e-17, -0.06185895741317, -0.06428571428571, 3.549741741614e-18, 0.02142857142857, 0.009278843611976, -0.004374088826399, 0.007576144084142, -0.005357142857143},
-            {1.111478066409e-17, -0.0195615199109, 0.1242323366495, -0.03194382825, -1.537912347895e-17, 0.05669467095138, 0.02454951265155, -0.01157275124716, -0.04677071733467, 0.02362277956308, 1.021863087349e-18, -1.166751809041e-17, 0.06185895741317, -0.06428571428571, -1.0409328449e-18, -0.02142857142857, 0.009278843611976, 0.004374088826399, 0.007576144084142, -0.005357142857143},
-            {0.02886751345948, -1.212723283565e-17, -0.01505846504842, 0.005323971374999, 7.279855702048e-18, 1.877173722467e-18, 0.02454951265155, -1.934229615065e-18, -0.01336306209562, 0.004724555912615, 6.126782385402e-34, 6.681233075121e-18, 8.519514711086e-18, 0.04285714285714, -1.294594172861e-18, -3.922692475971e-18, -0.02783653083593, 2.116739086103e-18, 0.01515228816828, -0.005357142857143},
-            {-4.715859420098e-17, -0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, 0.04252100321354, 0.02454951265155, -0.02314550249431, -0.01336306209562, -0.02362277956308, 4.552619888295e-18, -5.431942796401e-18, -5.359645772994e-18, -2.630797930699e-18, 0.04841229182759, 0.0375, 0.02165063509461, 0.05248906591678, 0.03030457633657, 0.02678571428571},
-            {0.2598076211353, -7.65165565854e-17, -0.1355261854358, 0.047915742375, -0.1097887582067, 1.959477613608e-17, 0.02454951265155, -6.175419165908e-17, -0.08017837257373, -0.09921567416492, -5.485050324274e-18, -2.326208721105e-18, -2.438302269938e-18, -2.132261431754e-18, -0.09682458365519, 2.124344027565e-17, 0.02165063509461, 1.301432189212e-17, 0.03030457633657, 0.02678571428571},
-            {-1.288704241729e-17, 0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, -0.04252100321354, 0.02454951265155, 0.02314550249431, -0.01336306209562, -0.02362277956308, 9.324304359796e-19, 1.022449004855e-17, 4.670759106162e-18, 3.211349511113e-19, 0.04841229182759, -0.0375, 0.02165063509461, -0.05248906591678, 0.03030457633657, 0.02678571428571},
-            {0.2598076211353, -0.1173691194654, 0.06776309271789, 0.047915742375, 7.254994153092e-18, -0.08504200642708, -0.07364853795465, -0.06943650748294, 0.04008918628686, -0.09921567416492, 6.441573754824e-18, 3.550795744686e-18, 1.160478921158e-17, 1.290704808819e-17, -5.632235591773e-18, -0.075, -0.06495190528383, 0.02624453295839, -0.01515228816828, 0.02678571428571},
-            {0.2598076211353, 0.1173691194654, 0.06776309271789, 0.047915742375, -1.493621847052e-17, 0.08504200642708, -0.07364853795465, 0.06943650748294, 0.04008918628686, -0.09921567416492, -6.441573754824e-18, -8.483472806773e-18, -5.350411338036e-18, -1.45032211828e-18, 4.553797348212e-18, 0.075, -0.06495190528383, -0.02624453295839, -0.01515228816828, 0.02678571428571},
-            {5.408332555454e-17, 2.764913340935e-17, 0.1129384878632, -0.06388765649999, -9.634202667367e-21, 1.362417039541e-17, 0.07364853795465, 5.646240919711e-18, 0.02672612419124, -0.02362277956308, -1.790925960944e-34, 2.466338531044e-18, -3.12718893677e-18, -7.014801558573e-18, -2.856378997734e-18, 1.074860168886e-17, 0.06495190528383, -9.654926694772e-18, -0.06060915267313, 0.02678571428571},
-            {-9.389466242107e-19, 0.0195615199109, 0.01129384878632, 0.127775313, 4.743500644299e-18, -4.216461247218e-18, 3.057081386927e-19, -0.05786375623578, -0.03340765523905, 0.04724555912615, -1.038020779274e-18, 5.386949989641e-20, 5.108014325937e-19, 5.831592728598e-19, 6.4848485022e-18, 3.276246242507e-19, -1.271770108631e-18, -0.06561133239598, -0.03788072042071, -0.05357142857143},
-            {2.84970300448e-17, -0.0195615199109, 0.01129384878632, 0.127775313, -2.268127050835e-18, 1.368993962938e-18, -9.31093810031e-18, 0.05786375623578, -0.03340765523905, 0.04724555912615, 1.038020779274e-18, -5.386949989641e-20, -5.108014325937e-19, 1.79456202893e-19, -4.301774192106e-18, -2.838854724449e-18, -6.353713339367e-18, 0.06561133239598, -0.03788072042071, -0.05357142857143},
-            {2.569583928257e-17, -3.958143675112e-18, -0.02258769757263, 0.127775313, 3.853845587344e-18, -3.334725636217e-18, -8.512900497753e-18, 3.660129801822e-18, 0.06681531047811, 0.04724555912615, 5.462281362157e-34, -2.046613735166e-34, 9.925519533834e-34, -7.626154757529e-19, 3.398772338452e-18, -2.940951574688e-18, -7.824055428762e-18, 6.178157181366e-18, 0.07576144084142, -0.05357142857143},
-            {0.02886751345948, -3.28230490621e-18, -6.454343248199e-18, -0.015971914125, -4.738280089043e-19, 5.151827433748e-19, -5.454394097546e-18, -5.726231351963e-18, -1.707242370808e-18, 0.02834733547569, 2.651952136169e-35, -5.119626828456e-34, 2.192404630121e-34, 5.101340901778e-34, -4.178770252592e-19, 4.543484729072e-19, -4.810323444882e-18, -2.603575737916e-18, 3.305137170739e-18, 0.05357142857143}};
-    
-            // Generate scalings
-            const double scalings_y_0 = 1.0;
-            const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
-            const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
-            const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
-            const double scalings_z_0 = 1.0;
-            const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
-            const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
-            const double scalings_z_3 = scalings_z_2*(0.5 - 0.5 * z);
-    
-            // Compute psitilde_a
-            const double psitilde_a_0 = 1.0;
-            const double psitilde_a_1 = 1*x;
-            const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
-            const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
-    
-            // Compute psitilde_bs
-            const double psitilde_bs_0_0 = 1.0;
-            const double psitilde_bs_0_1 = 0.5 + 1.5*y;
-            const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
-            const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
-            const double psitilde_bs_1_0 = 1.0;
-            const double psitilde_bs_1_1 = 1.5 + 2.5*y;
-            const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
-            const double psitilde_bs_2_0 = 1.0;
-            const double psitilde_bs_2_1 = 2.5 + 3.5*y;
-            const double psitilde_bs_3_0 = 1.0;
-    
-            // Compute psitilde_cs
-            const double psitilde_cs_00_0 = 1.0;
-            const double psitilde_cs_00_1 = 1 + 2*z;
-            const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
-            const double psitilde_cs_00_3 = 0.1555555555556*psitilde_cs_00_2 + 1.866666666667*z*psitilde_cs_00_2-0.7111111111111*psitilde_cs_00_1;
-            const double psitilde_cs_01_0 = 1.0;
-            const double psitilde_cs_01_1 = 2 + 3*z;
-            const double psitilde_cs_01_2 = 0.7777777777778*psitilde_cs_01_1 + 2.333333333333*z*psitilde_cs_01_1-0.5555555555556*psitilde_cs_01_0;
-            const double psitilde_cs_02_0 = 1.0;
-            const double psitilde_cs_02_1 = 3 + 4*z;
-            const double psitilde_cs_03_0 = 1.0;
-            const double psitilde_cs_10_0 = 1.0;
-            const double psitilde_cs_10_1 = 2 + 3*z;
-            const double psitilde_cs_10_2 = 0.7777777777778*psitilde_cs_10_1 + 2.333333333333*z*psitilde_cs_10_1-0.5555555555556*psitilde_cs_10_0;
-            const double psitilde_cs_11_0 = 1.0;
-            const double psitilde_cs_11_1 = 3 + 4*z;
-            const double psitilde_cs_12_0 = 1.0;
-            const double psitilde_cs_20_0 = 1.0;
-            const double psitilde_cs_20_1 = 3 + 4*z;
-            const double psitilde_cs_21_0 = 1.0;
-            const double psitilde_cs_30_0 = 1.0;
-    
-            // Compute basisvalues
-            const double basisvalues[20] =         \
-            {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532,\
-             psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0*7.937253933194,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0*6.708203932499,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0*5.196152422707,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0*3,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1*5.809475019311,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1*4.5,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1*2.598076211353,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2*3.674234614175,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2*2.12132034356,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3*1.5};
-    
-            // Compute value(s)
-            values[1] = 0.0;
-            for (unsigned int j = 0; j < 20; j++)
-            {
-              values[1] += coefficients0[dof][j]*basisvalues[j];
-            }
-          }
-          else
-          {
-            values[1] = 0.0;
-          }
-          break;
-        }
-        case 2:
-        {
-          if (40 <= i and i <= 59)
-          {
-            // Compute local degree of freedom
-            const static unsigned int dof = i - 40;
-    
-            // Table(s) of coefficients
-            const static double coefficients0[20][20] =         \
-            {{0.02886751345948, 0.01304101327393, 0.00752923252421, 0.005323971375, 0.01829812636778, 0.01417366773785, 0.00818317088385, 0.01157275124716, 0.006681531047811, 0.004724555912615, -0.02834733547569, -0.0239578711875, -0.01855768722395, -0.01071428571429, -0.02074812506897, -0.01607142857143, -0.009278843611976, -0.0131222664792, -0.007576144084142, -0.005357142857143},
-            {-4.518876242894e-17, -0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636778, 0.04252100321354, 0.04091585441925, 0.03471825374147, 0.03340765523905, 0.02362277956308, 0.08504200642708, 0.0239578711875, -0.006185895741317, -0.01071428571429, 0.02074812506897, -0.005357142857143, -0.009278843611976, -0.004374088826399, -0.007576144084142, -0.005357142857143},
-            {7.715402656692e-17, 0.1173691194654, -0.04517539514526, -0.03194382825, -0.01829812636779, -0.04252100321354, 0.04091585441925, -0.03471825374147, 0.03340765523905, 0.02362277956308, -0.08504200642708, 0.0239578711875, 0.006185895741317, -0.01071428571429, 0.02074812506897, 0.005357142857143, -0.009278843611976, 0.004374088826399, -0.007576144084142, -0.005357142857143},
-            {0.02886751345948, -0.01304101327393, 0.00752923252421, 0.005323971374999, 0.01829812636779, -0.01417366773785, 0.00818317088385, -0.01157275124716, 0.006681531047811, 0.004724555912615, 0.02834733547569, -0.0239578711875, 0.01855768722395, -0.01071428571429, -0.02074812506897, 0.01607142857143, -0.009278843611976, 0.0131222664792, -0.007576144084142, -0.005357142857143},
-            {-2.824273200074e-17, -0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, -0.01417366773785, -0.02454951265155, 0.04629100498863, 0.01336306209562, 0.02362277956308, 2.275128986352e-18, 0.047915742375, 0.06185895741317, 0.04285714285714, -0.006916041689656, 0.01607142857143, 0.01546473935329, -0.008748177652797, -3.95777085019e-18, -0.005357142857143},
-            {0.2598076211353, -1.225641293394e-16, -4.097310381188e-17, -0.143747227125, -0.1097887582067, -5.746996043767e-17, -0.1227475632577, 2.889228530624e-17, -3.079887348353e-18, 0.04252100321354, 7.835786177535e-19, -0.09583148474999, 3.639115087891e-17, 0.04285714285714, 0.01383208337931, 5.457503060128e-18, 0.01546473935329, -5.081774365502e-18, 1.084950549826e-17, -0.005357142857143},
-            {1.046612503787e-16, 0.09780759955449, -0.07905694150421, -0.03194382825, 0.05489437910336, 0.01417366773785, -0.02454951265155, -0.04629100498863, 0.01336306209562, 0.02362277956308, -3.058707604105e-18, 0.047915742375, -0.06185895741317, 0.04285714285714, -0.006916041689656, -0.01607142857143, 0.01546473935329, 0.008748177652797, 7.257132501642e-18, -0.005357142857143},
-            {-4.006172263299e-17, 0.0195615199109, 0.1242323366495, -0.03194382825, -1.393674423138e-17, -0.05669467095138, 0.02454951265155, 0.01157275124716, -0.04677071733467, 0.02362277956308, -1.021863087349e-18, -1.289553795503e-17, -0.06185895741317, -0.06428571428571, 3.549741741614e-18, 0.02142857142857, 0.009278843611976, -0.004374088826399, 0.007576144084142, -0.005357142857143},
-            {1.111478066409e-17, -0.0195615199109, 0.1242323366495, -0.03194382825, -1.537912347895e-17, 0.05669467095138, 0.02454951265155, -0.01157275124716, -0.04677071733467, 0.02362277956308, 1.021863087349e-18, -1.166751809041e-17, 0.06185895741317, -0.06428571428571, -1.0409328449e-18, -0.02142857142857, 0.009278843611976, 0.004374088826399, 0.007576144084142, -0.005357142857143},
-            {0.02886751345948, -1.212723283565e-17, -0.01505846504842, 0.005323971374999, 7.279855702048e-18, 1.877173722467e-18, 0.02454951265155, -1.934229615065e-18, -0.01336306209562, 0.004724555912615, 6.126782385402e-34, 6.681233075121e-18, 8.519514711086e-18, 0.04285714285714, -1.294594172861e-18, -3.922692475971e-18, -0.02783653083593, 2.116739086103e-18, 0.01515228816828, -0.005357142857143},
-            {-4.715859420098e-17, -0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, 0.04252100321354, 0.02454951265155, -0.02314550249431, -0.01336306209562, -0.02362277956308, 4.552619888295e-18, -5.431942796401e-18, -5.359645772994e-18, -2.630797930699e-18, 0.04841229182759, 0.0375, 0.02165063509461, 0.05248906591678, 0.03030457633657, 0.02678571428571},
-            {0.2598076211353, -7.65165565854e-17, -0.1355261854358, 0.047915742375, -0.1097887582067, 1.959477613608e-17, 0.02454951265155, -6.175419165908e-17, -0.08017837257373, -0.09921567416492, -5.485050324274e-18, -2.326208721105e-18, -2.438302269938e-18, -2.132261431754e-18, -0.09682458365519, 2.124344027565e-17, 0.02165063509461, 1.301432189212e-17, 0.03030457633657, 0.02678571428571},
-            {-1.288704241729e-17, 0.09780759955449, -0.05646924393158, -0.06388765649999, 0.05489437910336, -0.04252100321354, 0.02454951265155, 0.02314550249431, -0.01336306209562, -0.02362277956308, 9.324304359796e-19, 1.022449004855e-17, 4.670759106162e-18, 3.211349511113e-19, 0.04841229182759, -0.0375, 0.02165063509461, -0.05248906591678, 0.03030457633657, 0.02678571428571},
-            {0.2598076211353, -0.1173691194654, 0.06776309271789, 0.047915742375, 7.254994153092e-18, -0.08504200642708, -0.07364853795465, -0.06943650748294, 0.04008918628686, -0.09921567416492, 6.441573754824e-18, 3.550795744686e-18, 1.160478921158e-17, 1.290704808819e-17, -5.632235591773e-18, -0.075, -0.06495190528383, 0.02624453295839, -0.01515228816828, 0.02678571428571},
-            {0.2598076211353, 0.1173691194654, 0.06776309271789, 0.047915742375, -1.493621847052e-17, 0.08504200642708, -0.07364853795465, 0.06943650748294, 0.04008918628686, -0.09921567416492, -6.441573754824e-18, -8.483472806773e-18, -5.350411338036e-18, -1.45032211828e-18, 4.553797348212e-18, 0.075, -0.06495190528383, -0.02624453295839, -0.01515228816828, 0.02678571428571},
-            {5.408332555454e-17, 2.764913340935e-17, 0.1129384878632, -0.06388765649999, -9.634202667367e-21, 1.362417039541e-17, 0.07364853795465, 5.646240919711e-18, 0.02672612419124, -0.02362277956308, -1.790925960944e-34, 2.466338531044e-18, -3.12718893677e-18, -7.014801558573e-18, -2.856378997734e-18, 1.074860168886e-17, 0.06495190528383, -9.654926694772e-18, -0.06060915267313, 0.02678571428571},
-            {-9.389466242107e-19, 0.0195615199109, 0.01129384878632, 0.127775313, 4.743500644299e-18, -4.216461247218e-18, 3.057081386927e-19, -0.05786375623578, -0.03340765523905, 0.04724555912615, -1.038020779274e-18, 5.386949989641e-20, 5.108014325937e-19, 5.831592728598e-19, 6.4848485022e-18, 3.276246242507e-19, -1.271770108631e-18, -0.06561133239598, -0.03788072042071, -0.05357142857143},
-            {2.84970300448e-17, -0.0195615199109, 0.01129384878632, 0.127775313, -2.268127050835e-18, 1.368993962938e-18, -9.31093810031e-18, 0.05786375623578, -0.03340765523905, 0.04724555912615, 1.038020779274e-18, -5.386949989641e-20, -5.108014325937e-19, 1.79456202893e-19, -4.301774192106e-18, -2.838854724449e-18, -6.353713339367e-18, 0.06561133239598, -0.03788072042071, -0.05357142857143},
-            {2.569583928257e-17, -3.958143675112e-18, -0.02258769757263, 0.127775313, 3.853845587344e-18, -3.334725636217e-18, -8.512900497753e-18, 3.660129801822e-18, 0.06681531047811, 0.04724555912615, 5.462281362157e-34, -2.046613735166e-34, 9.925519533834e-34, -7.626154757529e-19, 3.398772338452e-18, -2.940951574688e-18, -7.824055428762e-18, 6.178157181366e-18, 0.07576144084142, -0.05357142857143},
-            {0.02886751345948, -3.28230490621e-18, -6.454343248199e-18, -0.015971914125, -4.738280089043e-19, 5.151827433748e-19, -5.454394097546e-18, -5.726231351963e-18, -1.707242370808e-18, 0.02834733547569, 2.651952136169e-35, -5.119626828456e-34, 2.192404630121e-34, 5.101340901778e-34, -4.178770252592e-19, 4.543484729072e-19, -4.810323444882e-18, -2.603575737916e-18, 3.305137170739e-18, 0.05357142857143}};
-    
-            // Generate scalings
-            const double scalings_y_0 = 1.0;
-            const double scalings_y_1 = scalings_y_0*(0.5 - 0.5 * y);
-            const double scalings_y_2 = scalings_y_1*(0.5 - 0.5 * y);
-            const double scalings_y_3 = scalings_y_2*(0.5 - 0.5 * y);
-            const double scalings_z_0 = 1.0;
-            const double scalings_z_1 = scalings_z_0*(0.5 - 0.5 * z);
-            const double scalings_z_2 = scalings_z_1*(0.5 - 0.5 * z);
-            const double scalings_z_3 = scalings_z_2*(0.5 - 0.5 * z);
-    
-            // Compute psitilde_a
-            const double psitilde_a_0 = 1.0;
-            const double psitilde_a_1 = 1*x;
-            const double psitilde_a_2 = 1.5*x*psitilde_a_1-0.5*psitilde_a_0;
-            const double psitilde_a_3 = 1.666666666667*x*psitilde_a_2-0.6666666666667*psitilde_a_1;
-    
-            // Compute psitilde_bs
-            const double psitilde_bs_0_0 = 1.0;
-            const double psitilde_bs_0_1 = 0.5 + 1.5*y;
-            const double psitilde_bs_0_2 = 0.1111111111111*psitilde_bs_0_1 + 1.666666666667*y*psitilde_bs_0_1-0.5555555555556*psitilde_bs_0_0;
-            const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2-0.7*psitilde_bs_0_1;
-            const double psitilde_bs_1_0 = 1.0;
-            const double psitilde_bs_1_1 = 1.5 + 2.5*y;
-            const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1-0.56*psitilde_bs_1_0;
-            const double psitilde_bs_2_0 = 1.0;
-            const double psitilde_bs_2_1 = 2.5 + 3.5*y;
-            const double psitilde_bs_3_0 = 1.0;
-    
-            // Compute psitilde_cs
-            const double psitilde_cs_00_0 = 1.0;
-            const double psitilde_cs_00_1 = 1 + 2*z;
-            const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1-0.5625*psitilde_cs_00_0;
-            const double psitilde_cs_00_3 = 0.1555555555556*psitilde_cs_00_2 + 1.866666666667*z*psitilde_cs_00_2-0.7111111111111*psitilde_cs_00_1;
-            const double psitilde_cs_01_0 = 1.0;
-            const double psitilde_cs_01_1 = 2 + 3*z;
-            const double psitilde_cs_01_2 = 0.7777777777778*psitilde_cs_01_1 + 2.333333333333*z*psitilde_cs_01_1-0.5555555555556*psitilde_cs_01_0;
-            const double psitilde_cs_02_0 = 1.0;
-            const double psitilde_cs_02_1 = 3 + 4*z;
-            const double psitilde_cs_03_0 = 1.0;
-            const double psitilde_cs_10_0 = 1.0;
-            const double psitilde_cs_10_1 = 2 + 3*z;
-            const double psitilde_cs_10_2 = 0.7777777777778*psitilde_cs_10_1 + 2.333333333333*z*psitilde_cs_10_1-0.5555555555556*psitilde_cs_10_0;
-            const double psitilde_cs_11_0 = 1.0;
-            const double psitilde_cs_11_1 = 3 + 4*z;
-            const double psitilde_cs_12_0 = 1.0;
-            const double psitilde_cs_20_0 = 1.0;
-            const double psitilde_cs_20_1 = 3 + 4*z;
-            const double psitilde_cs_21_0 = 1.0;
-            const double psitilde_cs_30_0 = 1.0;
-    
-            // Compute basisvalues
-            const double basisvalues[20] =         \
-            {psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0*0.8660254037844,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0*2.738612787526,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0*1.581138830084,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1*1.11803398875,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0*5.12347538298,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0*3.968626966597,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0*2.291287847478,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1*3.240370349204,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1*1.870828693387,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2*1.322875655532,\
-             psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0*7.937253933194,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0*6.708203932499,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0*5.196152422707,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0*3,\
-             psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1*5.809475019311,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1*4.5,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1*2.598076211353,\
-             psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2*3.674234614175,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2*2.12132034356,\
-             psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3*1.5};
-    
-            // Compute value(s)
-            values[2] = 0.0;
-            for (unsigned int j = 0; j < 20; j++)
-            {
-              values[2] += coefficients0[dof][j]*basisvalues[j];
-            }
-          }
-          else
-          {
-            values[2] = 0.0;
-          }
-          break;
         }
       }
     }
+    
+    // Compute inverse of Jacobian, components are scaled because of difference in FFC/FIAT reference elements
+    const double Jinv[3][3] ={{2*d00 / detJ, 2*d10 / detJ, 2*d20 / detJ}, {2*d01 / detJ, 2*d11 / detJ, 2*d21 / detJ}, {2*d02 / detJ, 2*d12 / detJ, 2*d22 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 3*num_derivatives; j++)
+      values[j] = 0;
+    
+    if (0 <= i and i <= 19)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+      const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+      const double scalings_z_0 = 1;
+      const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+      const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+      const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+      const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+      const double psitilde_bs_2_0 = 1;
+      const double psitilde_bs_2_1 = 3.5*y + 2.5;
+      const double psitilde_bs_3_0 = 1;
+    
+      // Compute psitilde_cs
+      const double psitilde_cs_00_0 = 1;
+      const double psitilde_cs_00_1 = 2*z + 1;
+      const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+      const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+      const double psitilde_cs_01_0 = 1;
+      const double psitilde_cs_01_1 = 3*z + 2;
+      const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+      const double psitilde_cs_02_0 = 1;
+      const double psitilde_cs_02_1 = 4*z + 3;
+      const double psitilde_cs_03_0 = 1;
+      const double psitilde_cs_10_0 = 1;
+      const double psitilde_cs_10_1 = 3*z + 2;
+      const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+      const double psitilde_cs_11_0 = 1;
+      const double psitilde_cs_11_1 = 4*z + 3;
+      const double psitilde_cs_12_0 = 1;
+      const double psitilde_cs_20_0 = 1;
+      const double psitilde_cs_20_1 = 4*z + 3;
+      const double psitilde_cs_21_0 = 1;
+      const double psitilde_cs_30_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+      const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+      const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+      const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+      const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+      const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+      const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+      const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+      const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+      const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+      const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+      const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+      const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+      const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+      const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+      const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[20][20] =   \
+      {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+      {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+      {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+      {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+      {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+      {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+      {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+      {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {3.16227766017, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 5.61248608016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.29128784748, 0, 4.18330013267, -0.59160797831, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.87082869339, 0, 0, 4.34741302386, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.74954541697, 0, -1.67332005307, -1.18321595662, 7.74596669241, 0, 0.346410161514, 0, 0.282842712475, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 2.44948974278, 0, 0, 0, 7.09929573972, 0, -0.414039335605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.8, 0, 4.38178046004, -0.774596669241, 0, 0, 4.76235235992, 0, -0.740656079818, 0.130930734142, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 2.12132034356, 0, 0, 0, 0, 0, 7.17137165601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.55884572681, 0, 1.58113883008, 2.45967477525, 0, 0, 0, 0, 5.34522483825, -1.20948631363, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.27279220614, 0, 0, 3.83405790254, 0, 0, 0, 0, 0, 5.18459255873, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      const static double dmats1[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.73861278753, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.14564392374, 3.62284418655, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-1.32287565553, 0, 4.8304589154, 0.341565025532, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.935414346693, 0, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.6201851746, 0, 0, 3.7649701194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 4.58257569496, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.9, -2.84604989415, 2.19089023002, -0.387298334621, 0, 5.49909083395, 2.38117617996, 0.481070235442, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.59807621135, 0, -1.58113883008, -1.11803398875, 0, 0, 6.87386354243, 0, 0.267261241912, 0.188982236505, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 0, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.779422863406, 1.36930639376, 0.790569415042, 1.22983738762, 0, 0, 0, 4.62910049886, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-0.9, 0, 1.82574185835, -1.42009389361, 0, 0, 0, 0, 6.17213399848, 0.698297248755, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.636396103068, 0, 0, 1.91702895127, 0, 0, 0, 0, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.10227038425, 0, 0, 3.32039154318, 0, 0, 0, 0, 0, 4.48998886413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      const static double dmats2[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.912870929175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.58198889747, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.14564392374, 0.724568837309, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.661437827766, 0, 1.93218356616, -0.170782512766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.935414346693, 3.54964786986, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.540061724867, 0, 3.54964786986, 1.2549900398, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-1.90940653956, 0, 0, 4.43705983732, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 0.654653670708, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.9, 0.316227766017, 2.19089023002, -0.387298334621, 0, 1.5711688097, 2.38117617996, -0.0534522483825, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.519615242271, 0, 1.58113883008, -0.22360679775, 0, 0, 2.94594151819, 0, -0.267261241912, 0.0377964473009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 4.53557367611, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.779422863406, 0.273861278753, 0.790569415042, 1.22983738762, 0, 4.53557367611, 0, 0.925820099773, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.45, 0, 0.73029674334, 0.710046946805, 0, 0, 4.53557367611, 0, 2.46885359939, -0.349148624378, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.636396103068, -3.1304951685, 0, 1.91702895127, 0, 0, 0, 5.29150262213, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.367423461417, 0, -3.1304951685, 1.10679718106, 0, 0, 0, 0, 5.29150262213, 1.49666295471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.85788383249, 0, 0, -2.34787137637, 0, 0, 0, 0, 0, 6.34980314656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
+      double coeff0_6 = 0;
+      double coeff0_7 = 0;
+      double coeff0_8 = 0;
+      double coeff0_9 = 0;
+      double coeff0_10 = 0;
+      double coeff0_11 = 0;
+      double coeff0_12 = 0;
+      double coeff0_13 = 0;
+      double coeff0_14 = 0;
+      double coeff0_15 = 0;
+      double coeff0_16 = 0;
+      double coeff0_17 = 0;
+      double coeff0_18 = 0;
+      double coeff0_19 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
+      double new_coeff0_6 = 0;
+      double new_coeff0_7 = 0;
+      double new_coeff0_8 = 0;
+      double new_coeff0_9 = 0;
+      double new_coeff0_10 = 0;
+      double new_coeff0_11 = 0;
+      double new_coeff0_12 = 0;
+      double new_coeff0_13 = 0;
+      double new_coeff0_14 = 0;
+      double new_coeff0_15 = 0;
+      double new_coeff0_16 = 0;
+      double new_coeff0_17 = 0;
+      double new_coeff0_18 = 0;
+      double new_coeff0_19 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
+        new_coeff0_6 = coefficients0[dof][6];
+        new_coeff0_7 = coefficients0[dof][7];
+        new_coeff0_8 = coefficients0[dof][8];
+        new_coeff0_9 = coefficients0[dof][9];
+        new_coeff0_10 = coefficients0[dof][10];
+        new_coeff0_11 = coefficients0[dof][11];
+        new_coeff0_12 = coefficients0[dof][12];
+        new_coeff0_13 = coefficients0[dof][13];
+        new_coeff0_14 = coefficients0[dof][14];
+        new_coeff0_15 = coefficients0[dof][15];
+        new_coeff0_16 = coefficients0[dof][16];
+        new_coeff0_17 = coefficients0[dof][17];
+        new_coeff0_18 = coefficients0[dof][18];
+        new_coeff0_19 = coefficients0[dof][19];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
+          coeff0_6 = new_coeff0_6;
+          coeff0_7 = new_coeff0_7;
+          coeff0_8 = new_coeff0_8;
+          coeff0_9 = new_coeff0_9;
+          coeff0_10 = new_coeff0_10;
+          coeff0_11 = new_coeff0_11;
+          coeff0_12 = new_coeff0_12;
+          coeff0_13 = new_coeff0_13;
+          coeff0_14 = new_coeff0_14;
+          coeff0_15 = new_coeff0_15;
+          coeff0_16 = new_coeff0_16;
+          coeff0_17 = new_coeff0_17;
+          coeff0_18 = new_coeff0_18;
+          coeff0_19 = new_coeff0_19;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
+            new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
+            new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
+            new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
+            new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
+            new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
+            new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
+            new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
+            new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
+            new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
+            new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
+            new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
+            new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
+            new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
+            new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
+            new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
+            new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
+            new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
+            new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
+            new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
+            new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
+            new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
+            new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
+            new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
+            new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
+            new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
+            new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
+            new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
+            new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
+          }
+          if(combinations[deriv_num][j] == 2)
+          {
+            new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
+            new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
+            new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
+            new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
+            new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
+            new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
+            new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
+            new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
+            new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
+            new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
+            new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
+            new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
+            new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
+            new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
+            new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
+            new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
+            new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
+            new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
+            new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
+            new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives
+      delete [] combinations;
+    
+    }
+    
+    if (20 <= i and i <= 39)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 20;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+      const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+      const double scalings_z_0 = 1;
+      const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+      const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+      const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+      const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+      const double psitilde_bs_2_0 = 1;
+      const double psitilde_bs_2_1 = 3.5*y + 2.5;
+      const double psitilde_bs_3_0 = 1;
+    
+      // Compute psitilde_cs
+      const double psitilde_cs_00_0 = 1;
+      const double psitilde_cs_00_1 = 2*z + 1;
+      const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+      const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+      const double psitilde_cs_01_0 = 1;
+      const double psitilde_cs_01_1 = 3*z + 2;
+      const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+      const double psitilde_cs_02_0 = 1;
+      const double psitilde_cs_02_1 = 4*z + 3;
+      const double psitilde_cs_03_0 = 1;
+      const double psitilde_cs_10_0 = 1;
+      const double psitilde_cs_10_1 = 3*z + 2;
+      const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+      const double psitilde_cs_11_0 = 1;
+      const double psitilde_cs_11_1 = 4*z + 3;
+      const double psitilde_cs_12_0 = 1;
+      const double psitilde_cs_20_0 = 1;
+      const double psitilde_cs_20_1 = 4*z + 3;
+      const double psitilde_cs_21_0 = 1;
+      const double psitilde_cs_30_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+      const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+      const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+      const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+      const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+      const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+      const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+      const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+      const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+      const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+      const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+      const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+      const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+      const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+      const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+      const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[20][20] =   \
+      {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+      {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+      {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+      {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+      {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+      {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+      {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+      {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {3.16227766017, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 5.61248608016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.29128784748, 0, 4.18330013267, -0.59160797831, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.87082869339, 0, 0, 4.34741302386, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.74954541697, 0, -1.67332005307, -1.18321595662, 7.74596669241, 0, 0.346410161514, 0, 0.282842712475, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 2.44948974278, 0, 0, 0, 7.09929573972, 0, -0.414039335605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.8, 0, 4.38178046004, -0.774596669241, 0, 0, 4.76235235992, 0, -0.740656079818, 0.130930734142, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 2.12132034356, 0, 0, 0, 0, 0, 7.17137165601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.55884572681, 0, 1.58113883008, 2.45967477525, 0, 0, 0, 0, 5.34522483825, -1.20948631363, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.27279220614, 0, 0, 3.83405790254, 0, 0, 0, 0, 0, 5.18459255873, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      const static double dmats1[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.73861278753, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.14564392374, 3.62284418655, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-1.32287565553, 0, 4.8304589154, 0.341565025532, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.935414346693, 0, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.6201851746, 0, 0, 3.7649701194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 4.58257569496, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.9, -2.84604989415, 2.19089023002, -0.387298334621, 0, 5.49909083395, 2.38117617996, 0.481070235442, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.59807621135, 0, -1.58113883008, -1.11803398875, 0, 0, 6.87386354243, 0, 0.267261241912, 0.188982236505, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 0, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.779422863406, 1.36930639376, 0.790569415042, 1.22983738762, 0, 0, 0, 4.62910049886, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-0.9, 0, 1.82574185835, -1.42009389361, 0, 0, 0, 0, 6.17213399848, 0.698297248755, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.636396103068, 0, 0, 1.91702895127, 0, 0, 0, 0, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.10227038425, 0, 0, 3.32039154318, 0, 0, 0, 0, 0, 4.48998886413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      const static double dmats2[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.912870929175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.58198889747, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.14564392374, 0.724568837309, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.661437827766, 0, 1.93218356616, -0.170782512766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.935414346693, 3.54964786986, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.540061724867, 0, 3.54964786986, 1.2549900398, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-1.90940653956, 0, 0, 4.43705983732, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 0.654653670708, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.9, 0.316227766017, 2.19089023002, -0.387298334621, 0, 1.5711688097, 2.38117617996, -0.0534522483825, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.519615242271, 0, 1.58113883008, -0.22360679775, 0, 0, 2.94594151819, 0, -0.267261241912, 0.0377964473009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 4.53557367611, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.779422863406, 0.273861278753, 0.790569415042, 1.22983738762, 0, 4.53557367611, 0, 0.925820099773, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.45, 0, 0.73029674334, 0.710046946805, 0, 0, 4.53557367611, 0, 2.46885359939, -0.349148624378, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.636396103068, -3.1304951685, 0, 1.91702895127, 0, 0, 0, 5.29150262213, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.367423461417, 0, -3.1304951685, 1.10679718106, 0, 0, 0, 0, 5.29150262213, 1.49666295471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.85788383249, 0, 0, -2.34787137637, 0, 0, 0, 0, 0, 6.34980314656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
+      double coeff0_6 = 0;
+      double coeff0_7 = 0;
+      double coeff0_8 = 0;
+      double coeff0_9 = 0;
+      double coeff0_10 = 0;
+      double coeff0_11 = 0;
+      double coeff0_12 = 0;
+      double coeff0_13 = 0;
+      double coeff0_14 = 0;
+      double coeff0_15 = 0;
+      double coeff0_16 = 0;
+      double coeff0_17 = 0;
+      double coeff0_18 = 0;
+      double coeff0_19 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
+      double new_coeff0_6 = 0;
+      double new_coeff0_7 = 0;
+      double new_coeff0_8 = 0;
+      double new_coeff0_9 = 0;
+      double new_coeff0_10 = 0;
+      double new_coeff0_11 = 0;
+      double new_coeff0_12 = 0;
+      double new_coeff0_13 = 0;
+      double new_coeff0_14 = 0;
+      double new_coeff0_15 = 0;
+      double new_coeff0_16 = 0;
+      double new_coeff0_17 = 0;
+      double new_coeff0_18 = 0;
+      double new_coeff0_19 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
+        new_coeff0_6 = coefficients0[dof][6];
+        new_coeff0_7 = coefficients0[dof][7];
+        new_coeff0_8 = coefficients0[dof][8];
+        new_coeff0_9 = coefficients0[dof][9];
+        new_coeff0_10 = coefficients0[dof][10];
+        new_coeff0_11 = coefficients0[dof][11];
+        new_coeff0_12 = coefficients0[dof][12];
+        new_coeff0_13 = coefficients0[dof][13];
+        new_coeff0_14 = coefficients0[dof][14];
+        new_coeff0_15 = coefficients0[dof][15];
+        new_coeff0_16 = coefficients0[dof][16];
+        new_coeff0_17 = coefficients0[dof][17];
+        new_coeff0_18 = coefficients0[dof][18];
+        new_coeff0_19 = coefficients0[dof][19];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
+          coeff0_6 = new_coeff0_6;
+          coeff0_7 = new_coeff0_7;
+          coeff0_8 = new_coeff0_8;
+          coeff0_9 = new_coeff0_9;
+          coeff0_10 = new_coeff0_10;
+          coeff0_11 = new_coeff0_11;
+          coeff0_12 = new_coeff0_12;
+          coeff0_13 = new_coeff0_13;
+          coeff0_14 = new_coeff0_14;
+          coeff0_15 = new_coeff0_15;
+          coeff0_16 = new_coeff0_16;
+          coeff0_17 = new_coeff0_17;
+          coeff0_18 = new_coeff0_18;
+          coeff0_19 = new_coeff0_19;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
+            new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
+            new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
+            new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
+            new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
+            new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
+            new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
+            new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
+            new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
+            new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
+            new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
+            new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
+            new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
+            new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
+            new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
+            new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
+            new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
+            new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
+            new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
+            new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
+            new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
+            new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
+            new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
+            new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
+            new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
+            new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
+            new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
+            new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
+            new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
+          }
+          if(combinations[deriv_num][j] == 2)
+          {
+            new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
+            new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
+            new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
+            new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
+            new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
+            new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
+            new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
+            new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
+            new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
+            new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
+            new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
+            new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
+            new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
+            new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
+            new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
+            new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
+            new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
+            new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
+            new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
+            new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[num_derivatives + row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives
+      delete [] combinations;
+    
+    }
+    
+    if (40 <= i and i <= 59)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 40;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
+      const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
+      const double scalings_z_0 = 1;
+      const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
+      const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
+      const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
+      const double psitilde_a_3 = 1.66666666667*x*psitilde_a_2 - 0.666666666667*psitilde_a_1;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
+      const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
+      const double psitilde_bs_2_0 = 1;
+      const double psitilde_bs_2_1 = 3.5*y + 2.5;
+      const double psitilde_bs_3_0 = 1;
+    
+      // Compute psitilde_cs
+      const double psitilde_cs_00_0 = 1;
+      const double psitilde_cs_00_1 = 2*z + 1;
+      const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
+      const double psitilde_cs_00_3 = 0.155555555556*psitilde_cs_00_2 + 1.86666666667*z*psitilde_cs_00_2 - 0.711111111111*psitilde_cs_00_1;
+      const double psitilde_cs_01_0 = 1;
+      const double psitilde_cs_01_1 = 3*z + 2;
+      const double psitilde_cs_01_2 = 0.777777777778*psitilde_cs_01_1 + 2.33333333333*z*psitilde_cs_01_1 - 0.555555555556*psitilde_cs_01_0;
+      const double psitilde_cs_02_0 = 1;
+      const double psitilde_cs_02_1 = 4*z + 3;
+      const double psitilde_cs_03_0 = 1;
+      const double psitilde_cs_10_0 = 1;
+      const double psitilde_cs_10_1 = 3*z + 2;
+      const double psitilde_cs_10_2 = 0.777777777778*psitilde_cs_10_1 + 2.33333333333*z*psitilde_cs_10_1 - 0.555555555556*psitilde_cs_10_0;
+      const double psitilde_cs_11_0 = 1;
+      const double psitilde_cs_11_1 = 4*z + 3;
+      const double psitilde_cs_12_0 = 1;
+      const double psitilde_cs_20_0 = 1;
+      const double psitilde_cs_20_1 = 4*z + 3;
+      const double psitilde_cs_21_0 = 1;
+      const double psitilde_cs_30_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue4 = 5.12347538298*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
+      const double basisvalue5 = 3.9686269666*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
+      const double basisvalue6 = 2.29128784748*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
+      const double basisvalue7 = 3.2403703492*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
+      const double basisvalue8 = 1.87082869339*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
+      const double basisvalue9 = 1.32287565553*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
+      const double basisvalue10 = 7.93725393319*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
+      const double basisvalue11 = 6.7082039325*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
+      const double basisvalue12 = 5.19615242271*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
+      const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
+      const double basisvalue14 = 5.80947501931*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
+      const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
+      const double basisvalue16 = 2.59807621135*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
+      const double basisvalue17 = 3.67423461417*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
+      const double basisvalue18 = 2.12132034356*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
+      const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[20][20] =   \
+      {{0.0288675134595, 0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, 0.0141736677378, 0.00818317088385, 0.0115727512472, 0.00668153104781, 0.00472455591262, -0.0283473354757, -0.0239578711875, -0.018557687224, -0.0107142857143, -0.020748125069, -0.0160714285714, -0.00927884361198, -0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, 0.0425210032135, 0.0409158544192, 0.0347182537415, 0.0334076552391, 0.0236227795631, 0.0850420064271, 0.0239578711875, -0.00618589574132, -0.0107142857143, 0.020748125069, -0.00535714285714, -0.00927884361198, -0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0, 0.117369119465, -0.0451753951453, -0.03194382825, -0.0182981263678, -0.0425210032135, 0.0409158544192, -0.0347182537415, 0.0334076552391, 0.0236227795631, -0.0850420064271, 0.0239578711875, 0.00618589574132, -0.0107142857143, 0.020748125069, 0.00535714285714, -0.00927884361198, 0.0043740888264, -0.00757614408414, -0.00535714285714},
+      {0.0288675134595, -0.0130410132739, 0.00752923252421, 0.005323971375, 0.0182981263678, -0.0141736677378, 0.00818317088385, -0.0115727512472, 0.00668153104781, 0.00472455591262, 0.0283473354757, -0.0239578711875, 0.018557687224, -0.0107142857143, -0.020748125069, 0.0160714285714, -0.00927884361198, 0.0131222664792, -0.00757614408414, -0.00535714285714},
+      {0, -0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, -0.0141736677378, -0.0245495126515, 0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, 0.0618589574132, 0.0428571428571, -0.00691604168966, 0.0160714285714, 0.0154647393533, -0.0087481776528, 0, -0.00535714285714},
+      {0.259807621135, 0, 0, -0.143747227125, -0.109788758207, 0, -0.122747563258, 0, 0, 0.0425210032135, 0, -0.09583148475, 0, 0.0428571428571, 0.0138320833793, 0, 0.0154647393533, 0, 0, -0.00535714285714},
+      {0, 0.0978075995545, -0.0790569415042, -0.03194382825, 0.0548943791034, 0.0141736677378, -0.0245495126515, -0.0462910049886, 0.0133630620956, 0.0236227795631, 0, 0.047915742375, -0.0618589574132, 0.0428571428571, -0.00691604168966, -0.0160714285714, 0.0154647393533, 0.0087481776528, 0, -0.00535714285714},
+      {0, 0.0195615199109, 0.124232336649, -0.03194382825, 0, -0.0566946709514, 0.0245495126515, 0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, -0.0618589574132, -0.0642857142857, 0, 0.0214285714286, 0.00927884361198, -0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0, -0.0195615199109, 0.124232336649, -0.03194382825, 0, 0.0566946709514, 0.0245495126515, -0.0115727512472, -0.0467707173347, 0.0236227795631, 0, 0, 0.0618589574132, -0.0642857142857, 0, -0.0214285714286, 0.00927884361198, 0.0043740888264, 0.00757614408414, -0.00535714285714},
+      {0.0288675134595, 0, -0.0150584650484, 0.005323971375, 0, 0, 0.0245495126515, 0, -0.0133630620956, 0.00472455591262, 0, 0, 0, 0.0428571428571, 0, 0, -0.0278365308359, 0, 0.0151522881683, -0.00535714285714},
+      {0, -0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, 0.0425210032135, 0.0245495126515, -0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, 0.0375, 0.0216506350946, 0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, 0, -0.135526185436, 0.047915742375, -0.109788758207, 0, 0.0245495126515, 0, -0.0801783725737, -0.0992156741649, 0, 0, 0, 0, -0.0968245836552, 0, 0.0216506350946, 0, 0.0303045763366, 0.0267857142857},
+      {0, 0.0978075995545, -0.0564692439316, -0.0638876565, 0.0548943791034, -0.0425210032135, 0.0245495126515, 0.0231455024943, -0.0133630620956, -0.0236227795631, 0, 0, 0, 0, 0.0484122918276, -0.0375, 0.0216506350946, -0.0524890659168, 0.0303045763366, 0.0267857142857},
+      {0.259807621135, -0.117369119465, 0.0677630927179, 0.047915742375, 0, -0.0850420064271, -0.0736485379546, -0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, -0.075, -0.0649519052838, 0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0.259807621135, 0.117369119465, 0.0677630927179, 0.047915742375, 0, 0.0850420064271, -0.0736485379546, 0.0694365074829, 0.0400891862869, -0.0992156741649, 0, 0, 0, 0, 0, 0.075, -0.0649519052838, -0.0262445329584, -0.0151522881683, 0.0267857142857},
+      {0, 0, 0.112938487863, -0.0638876565, 0, 0, 0.0736485379546, 0, 0.0267261241912, -0.0236227795631, 0, 0, 0, 0, 0, 0, 0.0649519052838, 0, -0.0606091526731, 0.0267857142857},
+      {0, 0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, -0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, -0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, -0.0195615199109, 0.0112938487863, 0.127775313, 0, 0, 0, 0.0578637562358, -0.0334076552391, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0.065611332396, -0.0378807204207, -0.0535714285714},
+      {0, 0, -0.0225876975726, 0.127775313, 0, 0, 0, 0, 0.0668153104781, 0.0472455591262, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414, -0.0535714285714},
+      {0.0288675134595, 0, 0, -0.015971914125, 0, 0, 0, 0, 0, 0.0283473354757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {3.16227766017, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 5.61248608016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.29128784748, 0, 4.18330013267, -0.59160797831, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.87082869339, 0, 0, 4.34741302386, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.74954541697, 0, -1.67332005307, -1.18321595662, 7.74596669241, 0, 0.346410161514, 0, 0.282842712475, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 2.44948974278, 0, 0, 0, 7.09929573972, 0, -0.414039335605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.8, 0, 4.38178046004, -0.774596669241, 0, 0, 4.76235235992, 0, -0.740656079818, 0.130930734142, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 2.12132034356, 0, 0, 0, 0, 0, 7.17137165601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.55884572681, 0, 1.58113883008, 2.45967477525, 0, 0, 0, 0, 5.34522483825, -1.20948631363, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.27279220614, 0, 0, 3.83405790254, 0, 0, 0, 0, 0, 5.18459255873, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      const static double dmats1[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.73861278753, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.14564392374, 3.62284418655, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-1.32287565553, 0, 4.8304589154, 0.341565025532, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.935414346693, 0, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.6201851746, 0, 0, 3.7649701194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 4.58257569496, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.9, -2.84604989415, 2.19089023002, -0.387298334621, 0, 5.49909083395, 2.38117617996, 0.481070235442, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.59807621135, 0, -1.58113883008, -1.11803398875, 0, 0, 6.87386354243, 0, 0.267261241912, 0.188982236505, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 0, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.779422863406, 1.36930639376, 0.790569415042, 1.22983738762, 0, 0, 0, 4.62910049886, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-0.9, 0, 1.82574185835, -1.42009389361, 0, 0, 0, 0, 6.17213399848, 0.698297248755, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.636396103068, 0, 0, 1.91702895127, 0, 0, 0, 0, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.10227038425, 0, 0, 3.32039154318, 0, 0, 0, 0, 0, 4.48998886413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      const static double dmats2[20][20] =   \
+      {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.58113883008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.912870929175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.58198889747, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.47901994577, 2.80624304008, -0.540061724867, -0.381881307913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.14564392374, 0.724568837309, 2.09165006634, -0.295803989155, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.661437827766, 0, 1.93218356616, -0.170782512766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.935414346693, 3.54964786986, 0, 2.17370651193, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.540061724867, 0, 3.54964786986, 1.2549900398, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {-1.90940653956, 0, 0, 4.43705983732, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.37477270849, 2.89827534924, -0.836660026534, -0.59160797831, 3.87298334621, -0.6, 0.173205080757, -0.489897948557, 0.141421356237, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.16189500386, 1.22474487139, 1.41421356237, -0.5, 0.654653670708, 3.54964786986, -1.0246950766, -0.207019667803, -0.239045721867, 0.0845154254729, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.9, 0.316227766017, 2.19089023002, -0.387298334621, 0, 1.5711688097, 2.38117617996, -0.0534522483825, -0.370328039909, 0.0654653670708, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.519615242271, 0, 1.58113883008, -0.22360679775, 0, 0, 2.94594151819, 0, -0.267261241912, 0.0377964473009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {1.00623058987, 1.06066017178, -0.204124145232, 1.58771324027, 4.53557367611, 0, 0, 3.585685828, -0.690065559342, -0.780720058359, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.779422863406, 0.273861278753, 0.790569415042, 1.22983738762, 0, 4.53557367611, 0, 0.925820099773, 2.67261241912, -0.604743156815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.45, 0, 0.73029674334, 0.710046946805, 0, 0, 4.53557367611, 0, 2.46885359939, -0.349148624378, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.636396103068, -3.1304951685, 0, 1.91702895127, 0, 0, 0, 5.29150262213, 0, 2.59229627936, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0.367423461417, 0, -3.1304951685, 1.10679718106, 0, 0, 0, 0, 5.29150262213, 1.49666295471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      {2.85788383249, 0, 0, -2.34787137637, 0, 0, 0, 0, 0, 6.34980314656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
+      double coeff0_6 = 0;
+      double coeff0_7 = 0;
+      double coeff0_8 = 0;
+      double coeff0_9 = 0;
+      double coeff0_10 = 0;
+      double coeff0_11 = 0;
+      double coeff0_12 = 0;
+      double coeff0_13 = 0;
+      double coeff0_14 = 0;
+      double coeff0_15 = 0;
+      double coeff0_16 = 0;
+      double coeff0_17 = 0;
+      double coeff0_18 = 0;
+      double coeff0_19 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
+      double new_coeff0_6 = 0;
+      double new_coeff0_7 = 0;
+      double new_coeff0_8 = 0;
+      double new_coeff0_9 = 0;
+      double new_coeff0_10 = 0;
+      double new_coeff0_11 = 0;
+      double new_coeff0_12 = 0;
+      double new_coeff0_13 = 0;
+      double new_coeff0_14 = 0;
+      double new_coeff0_15 = 0;
+      double new_coeff0_16 = 0;
+      double new_coeff0_17 = 0;
+      double new_coeff0_18 = 0;
+      double new_coeff0_19 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
+        new_coeff0_6 = coefficients0[dof][6];
+        new_coeff0_7 = coefficients0[dof][7];
+        new_coeff0_8 = coefficients0[dof][8];
+        new_coeff0_9 = coefficients0[dof][9];
+        new_coeff0_10 = coefficients0[dof][10];
+        new_coeff0_11 = coefficients0[dof][11];
+        new_coeff0_12 = coefficients0[dof][12];
+        new_coeff0_13 = coefficients0[dof][13];
+        new_coeff0_14 = coefficients0[dof][14];
+        new_coeff0_15 = coefficients0[dof][15];
+        new_coeff0_16 = coefficients0[dof][16];
+        new_coeff0_17 = coefficients0[dof][17];
+        new_coeff0_18 = coefficients0[dof][18];
+        new_coeff0_19 = coefficients0[dof][19];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
+          coeff0_6 = new_coeff0_6;
+          coeff0_7 = new_coeff0_7;
+          coeff0_8 = new_coeff0_8;
+          coeff0_9 = new_coeff0_9;
+          coeff0_10 = new_coeff0_10;
+          coeff0_11 = new_coeff0_11;
+          coeff0_12 = new_coeff0_12;
+          coeff0_13 = new_coeff0_13;
+          coeff0_14 = new_coeff0_14;
+          coeff0_15 = new_coeff0_15;
+          coeff0_16 = new_coeff0_16;
+          coeff0_17 = new_coeff0_17;
+          coeff0_18 = new_coeff0_18;
+          coeff0_19 = new_coeff0_19;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
+            new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
+            new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
+            new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
+            new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
+            new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
+            new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
+            new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
+            new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
+            new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
+            new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
+            new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
+            new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
+            new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
+            new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
+            new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
+            new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
+            new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
+            new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
+            new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
+            new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
+            new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
+            new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
+            new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
+            new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
+            new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
+            new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
+            new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
+            new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
+          }
+          if(combinations[deriv_num][j] == 2)
+          {
+            new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
+            new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
+            new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
+            new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
+            new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
+            new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
+            new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
+            new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
+            new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
+            new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
+            new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
+            new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
+            new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
+            new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
+            new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
+            new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
+            new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
+            new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
+            new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
+            new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[2*num_derivatives + row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives
+      delete [] combinations;
+    
+    }
+    
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -1231,7 +3974,7 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[60][3] = {{0, 0, 0}, {0.3333333333333, 0, 0}, {0.6666666666667, 0, 0}, {1, 0, 0}, {0, 0.3333333333333, 0}, {0.3333333333333, 0.3333333333333, 0}, {0.6666666666667, 0.3333333333333, 0}, {0, 0.6666666666667, 0}, {0.3333333333333, 0.6666666666667, 0}, {0, 1, 0}, {0, 0, 0.3333333333333}, {0.3333333333333, 0, 0.3333333333333}, {0.6666666666667, 0, 0.3333333333333}, {0, 0.3333333333333, 0.3333333333333}, {0.3333333333333, 0.3333333333333, 0.3333333333333}, {0, 0.6666666666667, 0.3333333333333}, {0, 0, 0.6666666666667}, {0.3333333333333, 0, 0.6666666666667}, {0, 0.3333333333333, 0.6666666666667}, {0, 0, 1}, {0, 0, 0}, {0.3333333333333, 0, 0}, {0.6666666666667, 0, 0}, {1, 0, 0}, {0, 0.3333333333333, 0}, {0.3333333333333, 0.3333333333333, 0}, {0.6666666666667, 0.3333333333333, 0}, {0, 0.6666666666667, 0}, {0.3333333333333, 0.6666666666667, 0}, {0, 1, 0}, {0, 0, 0.3333333333333}, {0.3333333333333, 0, 0.3333333333333}, {0.6666666666667, 0, 0.3333333333333}, {0, 0.3333333333333, 0.3333333333333}, {0.3333333333333, 0.3333333333333, 0.3333333333333}, {0, 0.6666666666667, 0.3333333333333}, {0, 0, 0.6666666666667}, {0.3333333333333, 0, 0.6666666666667}, {0, 0.3333333333333, 0.6666666666667}, {0, 0, 1}, {0, 0, 0}, {0.3333333333333, 0, 0}, {0.6666666666667, 0, 0}, {1, 0, 0}, {0, 0.3333333333333, 0}, {0.3333333333333, 0.3333333333333, 0}, {0.6666666666667, 0.3333333333333, 0}, {0, 0.6666666666667, 0}, {0.3333333333333, 0.6666666666667, 0}, {0, 1, 0}, {0, 0, 0.3333333333333}, {0.3333333333333, 0, 0.3333333333333}, {0.6666666666667, 0, 0.3333333333333}, {0, 0.3333333333333, 0.3333333333333}, {0.3333333333333, 0.3333333333333, 0.3333333333333}, {0, 0.6666666666667, 0.3333333333333}, {0, 0, 0.6666666666667}, {0.3333333333333, 0, 0.6666666666667}, {0, 0.3333333333333, 0.6666666666667}, {0, 0, 1}};
+    static double X[60][3] = {{0, 0, 0}, {0.333333333333, 0, 0}, {0.666666666667, 0, 0}, {1, 0, 0}, {0, 0.333333333333, 0}, {0.333333333333, 0.333333333333, 0}, {0.666666666667, 0.333333333333, 0}, {0, 0.666666666667, 0}, {0.333333333333, 0.666666666667, 0}, {0, 1, 0}, {0, 0, 0.333333333333}, {0.333333333333, 0, 0.333333333333}, {0.666666666667, 0, 0.333333333333}, {0, 0.333333333333, 0.333333333333}, {0.333333333333, 0.333333333333, 0.333333333333}, {0, 0.666666666667, 0.333333333333}, {0, 0, 0.666666666667}, {0.333333333333, 0, 0.666666666667}, {0, 0.333333333333, 0.666666666667}, {0, 0, 1}, {0, 0, 0}, {0.333333333333, 0, 0}, {0.666666666667, 0, 0}, {1, 0, 0}, {0, 0.333333333333, 0}, {0.333333333333, 0.333333333333, 0}, {0.666666666667, 0.333333333333, 0}, {0, 0.666666666667, 0}, {0.333333333333, 0.666666666667, 0}, {0, 1, 0}, {0, 0, 0.333333333333}, {0.333333333333, 0, 0.333333333333}, {0.666666666667, 0, 0.333333333333}, {0, 0.333333333333, 0.333333333333}, {0.333333333333, 0.333333333333, 0.333333333333}, {0, 0.666666666667, 0.333333333333}, {0, 0, 0.666666666667}, {0.333333333333, 0, 0.666666666667}, {0, 0.333333333333, 0.666666666667}, {0, 0, 1}, {0, 0, 0}, {0.333333333333, 0, 0}, {0.666666666667, 0, 0}, {1, 0, 0}, {0, 0.333333333333, 0}, {0.333333333333, 0.333333333333, 0}, {0.666666666667, 0.333333333333, 0}, {0, 0.666666666667, 0}, {0.333333333333, 0.666666666667, 0}, {0, 1, 0}, {0, 0, 0.333333333333}, {0.333333333333, 0, 0.333333333333}, {0.666666666667, 0, 0.333333333333}, {0, 0.333333333333, 0.333333333333}, {0.333333333333, 0.333333333333, 0.333333333333}, {0, 0.666666666667, 0.333333333333}, {0, 0, 0.666666666667}, {0.333333333333, 0, 0.666666666667}, {0, 0.333333333333, 0.666666666667}, {0, 0, 1}};
     
     // Components for each dof
     static unsigned int components[60] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
@@ -1247,8 +3990,8 @@ public:
     
     // Compute affine mapping x = F(X)
     coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    coordinates[0] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    coordinates[0] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
+    coordinates[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
     
     // Evaluate function at coordinates
     f.evaluate(values, coordinates, c);
@@ -1451,15 +4194,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new ffc_25_dof_map_0_0();
   }
 
 };
@@ -1613,15 +4354,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new ffc_25_dof_map_0_1();
   }
 
 };
@@ -1775,15 +4514,13 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
-    return 0;
+    return new ffc_25_dof_map_0_2();
   }
 
 };
@@ -1979,14 +4716,24 @@ public:
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    // Not implemented
-    return 0;
+    return 3;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    // Not implemented
+    switch ( i )
+    {
+    case 0:
+      return new ffc_25_dof_map_0_0();
+      break;
+    case 1:
+      return new ffc_25_dof_map_0_1();
+      break;
+    case 2:
+      return new ffc_25_dof_map_0_2();
+      break;
+    }
     return 0;
   }
 
