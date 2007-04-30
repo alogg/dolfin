@@ -1,5 +1,5 @@
 #include <dolfin.h>
-#include <dolfin/GraphPartition.h>
+//#include <dolfin/GraphPartition.h>
 #include <iostream>
 
 /*
@@ -98,8 +98,16 @@ void testDolfinGraph(Graph& graph, int num_part)
   GraphPartition::disp(graph, num_part, parts);
 }
 
-void testDolfinMesh(Mesh& mesh, int num_partitions)
+void testDolfinMesh(Mesh& mesh, int num_part)
 {
+  MeshFunction<dolfin::uint> partitions;
+  partitions.init(mesh, mesh.topology().dim());
+  mesh.partition(num_part, partitions);
+
+  Graph graph(mesh);
+  GraphPartition::check(graph, num_part, partitions.values());
+  GraphPartition::eval(graph, num_part, partitions.values());
+  GraphPartition::disp(graph, num_part, partitions.values());
   //Array<Mesh> meshes 
   //MeshPartitioning::partition(mesh, meshes, num_partitions);
 
@@ -110,7 +118,9 @@ int main(int argc, char* argv[])
   //testMetis(graph, 16);
   //testMeshPartition(mesh, 16);
 
-  UnitSquare mesh(2, 2);
-  Graph graph(mesh, "nodal");
-  testDolfinGraph(graph, 3);
+  UnitSquare mesh(20, 20);
+  
+  //Graph graph(mesh, "nodal");
+  //testDolfinGraph(graph, 9);
+  testDolfinMesh(mesh, 9);
 }
