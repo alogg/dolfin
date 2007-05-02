@@ -12644,10 +12644,6 @@ public:
     double detJ = J_00*J_11 - J_01*J_10;
       
     // Compute inverse of Jacobian
-    // const double Jinv_00 =  J_11 / detJ;
-    // const double Jinv_01 = -J_01 / detJ;
-    // const double Jinv_10 = -J_10 / detJ;
-    // const double Jinv_11 =  J_00 / detJ;
     
     // Take absolute value of determinant
     detJ = std::abs(detJ);
@@ -12662,18 +12658,6 @@ public:
     const double G0_3 = det*w[0][3];
     const double G0_4 = det*w[0][4];
     const double G0_5 = det*w[0][5];
-    // const double G0_6 = det*w[0][6];
-    // const double G0_7 = det*w[0][7];
-    // const double G0_8 = det*w[0][8];
-    // const double G0_9 = det*w[0][9];
-    // const double G0_10 = det*w[0][10];
-    // const double G0_11 = det*w[0][11];
-    // const double G1_0 = det*w[0][0];
-    // const double G1_1 = det*w[0][1];
-    // const double G1_2 = det*w[0][2];
-    // const double G1_3 = det*w[0][3];
-    // const double G1_4 = det*w[0][4];
-    // const double G1_5 = det*w[0][5];
     const double G1_6 = det*w[0][6];
     const double G1_7 = det*w[0][7];
     const double G1_8 = det*w[0][8];
