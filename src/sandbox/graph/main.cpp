@@ -123,6 +123,7 @@ void testInitEdgesError1()
   editor.addVertex(2, 2);
   editor.addVertex(3, 2);
   editor.initEdges(3);
+  editor.close();
 }
 
 void testInitEdgesError2()
@@ -137,6 +138,7 @@ void testInitEdgesError2()
   editor.addVertex(2, 2);
   editor.addVertex(3, 2);
   editor.initEdges(5);
+  editor.close();
 }
 
 void testIteration()
