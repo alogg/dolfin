@@ -141,6 +141,44 @@ void testInitEdgesError2()
   editor.close();
 }
 
+void testIteration()
+{
+  /* 2---3
+   * |\1 |\
+   * | \ | \
+   * |0 \|2 \
+   * 0---1---4
+   *
+   *
+   *
+   */
+  
+  Mesh mesh;
+  MeshEditor editor;
+  editor.open(mesh, "triangle", 2, 2);
+  editor.initVertices(5);
+  editor.addVertex(0, 0.4, 0.4);
+  editor.addVertex(1, 0.7, 0.4);
+  editor.addVertex(2, 0.4, 0.7);
+  editor.addVertex(3, 0.7, 0.7);
+  editor.addVertex(4, 1.0, 0.4);
+  editor.initCells(3);
+  editor.addCell(0, 0, 1, 2);
+  editor.addCell(1, 2, 1, 3);
+  editor.addCell(2, 3, 1, 4);
+  editor.close();
+
+  mesh.init(2, 2);
+  mesh.disp();
+
+  for (CellIterator c0(mesh); !c0.end(); ++c0)
+  {
+    cout << *c0 << endl;
+    for (CellIterator c1(*c0); !c1.end(); ++c1)
+      cout << "  " << *c1 << endl;
+  }
+}
+
 int main(int argc, char* argv[])
 {
   //testMeshToGraph();
@@ -150,4 +188,6 @@ int main(int argc, char* argv[])
   //testTooManyVerticesError();
   //testInitEdgesError1();
   //testInitEdgesError2();
+
+  testIteration();
 }
