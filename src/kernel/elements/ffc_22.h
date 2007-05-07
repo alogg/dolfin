@@ -5,6 +5,7 @@
 #define __FFC_22_H
 
 #include <cmath>
+#include <stdexcept>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -138,11 +139,11 @@ public:
     const double psitilde_cs_00_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.15470053838}};
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -295,11 +296,11 @@ public:
     const double psitilde_cs_00_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.15470053838}};
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
@@ -373,8 +374,7 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Not implemented (only for Lagrange elements
-    return 0;
+    throw std::runtime_error("evaluate_dof not implemented for this type of element");
   }
 
   /// Interpolate vertex values from dof values
@@ -533,11 +533,11 @@ public:
     const double psitilde_cs_00_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.15470053838}};
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -690,11 +690,11 @@ public:
     const double psitilde_cs_00_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.15470053838}};
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
@@ -768,8 +768,7 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Not implemented (only for Lagrange elements
-    return 0;
+    throw std::runtime_error("evaluate_dof not implemented for this type of element");
   }
 
   /// Interpolate vertex values from dof values
@@ -928,11 +927,11 @@ public:
     const double psitilde_cs_00_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.15470053838}};
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1085,11 +1084,11 @@ public:
     const double psitilde_cs_00_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.15470053838}};
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
@@ -1163,8 +1162,7 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Not implemented (only for Lagrange elements
-    return 0;
+    throw std::runtime_error("evaluate_dof not implemented for this type of element");
   }
 
   /// Interpolate vertex values from dof values
@@ -1327,11 +1325,11 @@ public:
       const double psitilde_cs_00_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.15470053838}};
+      {{1.15470053837925}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1359,11 +1357,11 @@ public:
       const double psitilde_cs_00_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.15470053838}};
+      {{1.15470053837925}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1391,11 +1389,11 @@ public:
       const double psitilde_cs_00_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.15470053838}};
+      {{1.15470053837925}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1552,11 +1550,11 @@ public:
       const double psitilde_cs_00_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.15470053838}};
+      {{1.15470053837925}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
@@ -1644,11 +1642,11 @@ public:
       const double psitilde_cs_00_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.15470053838}};
+      {{1.15470053837925}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
@@ -1736,11 +1734,11 @@ public:
       const double psitilde_cs_00_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.15470053838}};
+      {{1.15470053837925}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
@@ -2012,10 +2010,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2153,10 +2150,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2294,10 +2290,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2439,10 +2434,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)

@@ -8,6 +8,7 @@
 #define __POISSON_H
 
 #include <cmath>
+#include <stdexcept>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -110,15 +111,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -242,27 +243,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -485,15 +486,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -617,27 +618,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -880,10 +881,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1020,10 +1020,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1326,15 +1325,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1458,27 +1457,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1701,15 +1700,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1833,27 +1832,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2076,15 +2075,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -2208,27 +2207,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2471,10 +2470,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2611,10 +2609,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2751,10 +2748,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2822,9 +2818,9 @@ public:
     const double G0_2 = det*w[0][2];
     
     // Compute element tensor
-    A[0] = 0.0833333333333*G0_0 + 0.0416666666667*G0_1 + 0.0416666666667*G0_2;
-    A[1] = 0.0416666666667*G0_0 + 0.0833333333333*G0_1 + 0.0416666666667*G0_2;
-    A[2] = 0.0416666666667*G0_0 + 0.0416666666667*G0_1 + 0.0833333333333*G0_2;
+    A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
+    A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
   }
 
 };
@@ -2894,17 +2890,17 @@ public:
     {
     case 0:
       A[0] = 0;
-      A[1] = 0.333333333333*G0_1 + 0.166666666667*G0_2;
-      A[2] = 0.166666666667*G0_1 + 0.333333333333*G0_2;
+      A[1] = 0.333333333333333*G0_1 + 0.166666666666667*G0_2;
+      A[2] = 0.166666666666667*G0_1 + 0.333333333333333*G0_2;
       break;
     case 1:
-      A[0] = 0.333333333333*G0_0 + 0.166666666667*G0_2;
+      A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_2;
       A[1] = 0;
-      A[2] = 0.166666666667*G0_0 + 0.333333333333*G0_2;
+      A[2] = 0.166666666666667*G0_0 + 0.333333333333333*G0_2;
       break;
     case 2:
-      A[0] = 0.333333333333*G0_0 + 0.166666666667*G0_1;
-      A[1] = 0.166666666667*G0_0 + 0.333333333333*G0_1;
+      A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
+      A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
       A[2] = 0;
       break;
     }

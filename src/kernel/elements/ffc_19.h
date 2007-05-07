@@ -5,6 +5,7 @@
 #define __FFC_19_H
 
 #include <cmath>
+#include <stdexcept>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -103,11 +104,11 @@ public:
     const double psitilde_bs_0_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.41421356237}};
+    {{1.41421356237309}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -225,11 +226,11 @@ public:
     const double psitilde_bs_0_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.41421356237}};
+    {{1.41421356237309}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
@@ -296,8 +297,7 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Not implemented (only for Lagrange elements
-    return 0;
+    throw std::runtime_error("evaluate_dof not implemented for this type of element");
   }
 
   /// Interpolate vertex values from dof values
@@ -420,11 +420,11 @@ public:
     const double psitilde_bs_0_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.41421356237}};
+    {{1.41421356237309}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -542,11 +542,11 @@ public:
     const double psitilde_bs_0_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
-    {{1.41421356237}};
+    {{1.41421356237309}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
@@ -613,8 +613,7 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Not implemented (only for Lagrange elements
-    return 0;
+    throw std::runtime_error("evaluate_dof not implemented for this type of element");
   }
 
   /// Interpolate vertex values from dof values
@@ -740,11 +739,11 @@ public:
       const double psitilde_bs_0_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.41421356237}};
+      {{1.41421356237309}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -768,11 +767,11 @@ public:
       const double psitilde_bs_0_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.41421356237}};
+      {{1.41421356237309}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -894,11 +893,11 @@ public:
       const double psitilde_bs_0_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.41421356237}};
+      {{1.41421356237309}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
@@ -975,11 +974,11 @@ public:
       const double psitilde_bs_0_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
       const static double coefficients0[1][1] =   \
-      {{1.41421356237}};
+      {{1.41421356237309}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
@@ -1052,7 +1051,7 @@ public:
     double coordinates[2];
     
     // Nodal coordinates on reference cell
-    static double X[2][2] = {{0.333333333333, 0.333333333333}, {0.333333333333, 0.333333333333}};
+    static double X[2][2] = {{0.333333333333333, 0.333333333333333}, {0.333333333333333, 0.333333333333333}};
     
     // Components for each dof
     static unsigned int components[2] = {0, 1};
@@ -1227,10 +1226,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1362,10 +1360,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1499,10 +1496,9 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
   }
 
   /// Return the number of sub dof maps (for a mixed element)
