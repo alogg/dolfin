@@ -114,6 +114,9 @@ void testDolfinMesh(Mesh& mesh, int num_part)
 
   File file("mesh_partition.xml");
   file << partitions;
+
+  File file2("mesh_partition.pvd");
+  file2 << partitions;
 }
 
 void createSimpleMesh(Mesh& mesh)
