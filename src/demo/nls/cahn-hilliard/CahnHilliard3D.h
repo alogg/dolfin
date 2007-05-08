@@ -8,6 +8,7 @@
 #define __CAHNHILLIARD3D_H
 
 #include <cmath>
+#include <stdexcept>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -149,17 +150,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -323,37 +324,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -631,17 +632,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -805,37 +806,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1116,17 +1117,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1165,17 +1166,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1343,37 +1344,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -1479,37 +1480,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -1802,17 +1803,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1976,37 +1977,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2284,17 +2285,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -2458,37 +2459,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2769,17 +2770,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -2818,17 +2819,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -2996,37 +2997,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -3132,37 +3133,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -3455,17 +3456,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -3629,37 +3630,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -3937,17 +3938,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -4111,37 +4112,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4422,17 +4423,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -4471,17 +4472,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -4649,37 +4650,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -4785,37 +4786,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -5108,17 +5109,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -5282,37 +5283,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5590,17 +5591,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -5764,37 +5765,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -6072,17 +6073,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -6246,37 +6247,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -6554,17 +6555,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -6728,37 +6729,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -7029,10 +7030,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7181,10 +7195,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7350,10 +7377,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7511,10 +7563,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7663,10 +7728,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7832,10 +7910,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7993,10 +8096,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8145,10 +8261,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8314,10 +8443,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8475,10 +8629,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8627,10 +8794,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8779,10 +8959,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8931,10 +9124,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -9444,70 +9650,70 @@ public:
     const double G9_3_2_2 = det*w[1][3]*Jinv_20*Jinv_20 + det*w[1][3]*Jinv_21*Jinv_21 + det*w[1][3]*Jinv_22*Jinv_22;
     
     // Compute element tensor
-    A[0] = 0.0166666666667*G3_;
-    A[1] = 0.00833333333333*G3_;
-    A[2] = 0.00833333333333*G3_;
-    A[3] = 0.00833333333333*G3_;
-    A[4] = -0.00595238095238*G4_0_4_4 - 0.00119047619048*G4_0_4_5 - 0.00119047619048*G4_0_4_6 - 0.00119047619048*G4_0_4_7 - 0.00119047619048*G4_0_5_4 - 0.000595238095238*G4_0_5_5 - 0.000297619047619*G4_0_5_6 - 0.000297619047619*G4_0_5_7 - 0.00119047619048*G4_0_6_4 - 0.000297619047619*G4_0_6_5 - 0.000595238095238*G4_0_6_6 - 0.000297619047619*G4_0_6_7 - 0.00119047619048*G4_0_7_4 - 0.000297619047619*G4_0_7_5 - 0.000297619047619*G4_0_7_6 - 0.000595238095238*G4_0_7_7 - 0.00119047619048*G4_1_4_4 - 0.000595238095238*G4_1_4_5 - 0.000297619047619*G4_1_4_6 - 0.000297619047619*G4_1_4_7 - 0.000595238095238*G4_1_5_4 - 0.000595238095238*G4_1_5_5 - 0.000198412698413*G4_1_5_6 - 0.000198412698413*G4_1_5_7 - 0.000297619047619*G4_1_6_4 - 0.000198412698413*G4_1_6_5 - 0.000198412698413*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 0.000297619047619*G4_1_7_4 - 0.000198412698413*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 0.000198412698413*G4_1_7_7 - 0.00119047619048*G4_2_4_4 - 0.000297619047619*G4_2_4_5 - 0.000595238095238*G4_2_4_6 - 0.000297619047619*G4_2_4_7 - 0.000297619047619*G4_2_5_4 - 0.000198412698413*G4_2_5_5 - 0.000198412698413*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000595238095238*G4_2_6_4 - 0.000198412698413*G4_2_6_5 - 0.000595238095238*G4_2_6_6 - 0.000198412698413*G4_2_6_7 - 0.000297619047619*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 0.000198412698413*G4_2_7_6 - 0.000198412698413*G4_2_7_7 - 0.00119047619048*G4_3_4_4 - 0.000297619047619*G4_3_4_5 - 0.000297619047619*G4_3_4_6 - 0.000595238095238*G4_3_4_7 - 0.000297619047619*G4_3_5_4 - 0.000198412698413*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 0.000198412698413*G4_3_5_7 - 0.000297619047619*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 0.000198412698413*G4_3_6_6 - 0.000198412698413*G4_3_6_7 - 0.000595238095238*G4_3_7_4 - 0.000198412698413*G4_3_7_5 - 0.000198412698413*G4_3_7_6 - 0.000595238095238*G4_3_7_7 + 0.00952380952381*G5_0_4 + 0.00238095238095*G5_0_5 + 0.00238095238095*G5_0_6 + 0.00238095238095*G5_0_7 + 0.00238095238095*G5_1_4 + 0.0015873015873*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000793650793651*G5_1_7 + 0.00238095238095*G5_2_4 + 0.000793650793651*G5_2_5 + 0.0015873015873*G5_2_6 + 0.000793650793651*G5_2_7 + 0.00238095238095*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000793650793651*G5_3_6 + 0.0015873015873*G5_3_7 - 0.0166666666667*G6_0 - 0.00555555555556*G6_1 - 0.00555555555556*G6_2 - 0.00555555555556*G6_3 - 0.0238095238095*G7_0_4_4 - 0.0047619047619*G7_0_4_5 - 0.0047619047619*G7_0_4_6 - 0.0047619047619*G7_0_4_7 - 0.0047619047619*G7_0_5_4 - 0.00238095238095*G7_0_5_5 - 0.00119047619048*G7_0_5_6 - 0.00119047619048*G7_0_5_7 - 0.0047619047619*G7_0_6_4 - 0.00119047619048*G7_0_6_5 - 0.00238095238095*G7_0_6_6 - 0.00119047619048*G7_0_6_7 - 0.0047619047619*G7_0_7_4 - 0.00119047619048*G7_0_7_5 - 0.00119047619048*G7_0_7_6 - 0.00238095238095*G7_0_7_7 - 0.0047619047619*G7_1_4_4 - 0.00238095238095*G7_1_4_5 - 0.00119047619048*G7_1_4_6 - 0.00119047619048*G7_1_4_7 - 0.00238095238095*G7_1_5_4 - 0.00238095238095*G7_1_5_5 - 0.000793650793651*G7_1_5_6 - 0.000793650793651*G7_1_5_7 - 0.00119047619048*G7_1_6_4 - 0.000793650793651*G7_1_6_5 - 0.000793650793651*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.00119047619048*G7_1_7_4 - 0.000793650793651*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.000793650793651*G7_1_7_7 - 0.0047619047619*G7_2_4_4 - 0.00119047619048*G7_2_4_5 - 0.00238095238095*G7_2_4_6 - 0.00119047619048*G7_2_4_7 - 0.00119047619048*G7_2_5_4 - 0.000793650793651*G7_2_5_5 - 0.000793650793651*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.00238095238095*G7_2_6_4 - 0.000793650793651*G7_2_6_5 - 0.00238095238095*G7_2_6_6 - 0.000793650793651*G7_2_6_7 - 0.00119047619048*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.000793650793651*G7_2_7_6 - 0.000793650793651*G7_2_7_7 - 0.0047619047619*G7_3_4_4 - 0.00119047619048*G7_3_4_5 - 0.00119047619048*G7_3_4_6 - 0.00238095238095*G7_3_4_7 - 0.00119047619048*G7_3_5_4 - 0.000793650793651*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.000793650793651*G7_3_5_7 - 0.00119047619048*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.000793650793651*G7_3_6_6 - 0.000793650793651*G7_3_6_7 - 0.00238095238095*G7_3_7_4 - 0.000793650793651*G7_3_7_5 - 0.000793650793651*G7_3_7_6 - 0.00238095238095*G7_3_7_7 + 0.0380952380952*G8_0_4 + 0.00952380952381*G8_0_5 + 0.00952380952381*G8_0_6 + 0.00952380952381*G8_0_7 + 0.00952380952381*G8_1_4 + 0.00634920634921*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0031746031746*G8_1_7 + 0.00952380952381*G8_2_4 + 0.0031746031746*G8_2_5 + 0.00634920634921*G8_2_6 + 0.0031746031746*G8_2_7 + 0.00952380952381*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0031746031746*G8_3_6 + 0.00634920634921*G8_3_7 - 0.0416666666667*G9_0_0_0 - 0.0416666666667*G9_0_0_1 - 0.0416666666667*G9_0_0_2 - 0.0416666666667*G9_0_1_0 - 0.0416666666667*G9_0_1_1 - 0.0416666666667*G9_0_1_2 - 0.0416666666667*G9_0_2_0 - 0.0416666666667*G9_0_2_1 - 0.0416666666667*G9_0_2_2 - 0.0416666666667*G9_1_0_0 - 0.0416666666667*G9_1_0_1 - 0.0416666666667*G9_1_0_2 - 0.0416666666667*G9_1_1_0 - 0.0416666666667*G9_1_1_1 - 0.0416666666667*G9_1_1_2 - 0.0416666666667*G9_1_2_0 - 0.0416666666667*G9_1_2_1 - 0.0416666666667*G9_1_2_2 - 0.0416666666667*G9_2_0_0 - 0.0416666666667*G9_2_0_1 - 0.0416666666667*G9_2_0_2 - 0.0416666666667*G9_2_1_0 - 0.0416666666667*G9_2_1_1 - 0.0416666666667*G9_2_1_2 - 0.0416666666667*G9_2_2_0 - 0.0416666666667*G9_2_2_1 - 0.0416666666667*G9_2_2_2 - 0.0416666666667*G9_3_0_0 - 0.0416666666667*G9_3_0_1 - 0.0416666666667*G9_3_0_2 - 0.0416666666667*G9_3_1_0 - 0.0416666666667*G9_3_1_1 - 0.0416666666667*G9_3_1_2 - 0.0416666666667*G9_3_2_0 - 0.0416666666667*G9_3_2_1 - 0.0416666666667*G9_3_2_2;
-    A[5] = -0.00119047619048*G4_0_4_4 - 0.000595238095238*G4_0_4_5 - 0.000297619047619*G4_0_4_6 - 0.000297619047619*G4_0_4_7 - 0.000595238095238*G4_0_5_4 - 0.000595238095238*G4_0_5_5 - 0.000198412698413*G4_0_5_6 - 0.000198412698413*G4_0_5_7 - 0.000297619047619*G4_0_6_4 - 0.000198412698413*G4_0_6_5 - 0.000198412698413*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 0.000297619047619*G4_0_7_4 - 0.000198412698413*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 0.000198412698413*G4_0_7_7 - 0.000595238095238*G4_1_4_4 - 0.000595238095238*G4_1_4_5 - 0.000198412698413*G4_1_4_6 - 0.000198412698413*G4_1_4_7 - 0.000595238095238*G4_1_5_4 - 0.00119047619048*G4_1_5_5 - 0.000297619047619*G4_1_5_6 - 0.000297619047619*G4_1_5_7 - 0.000198412698413*G4_1_6_4 - 0.000297619047619*G4_1_6_5 - 0.000198412698413*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 0.000198412698413*G4_1_7_4 - 0.000297619047619*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 0.000198412698413*G4_1_7_7 - 0.000297619047619*G4_2_4_4 - 0.000198412698413*G4_2_4_5 - 0.000198412698413*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 0.000198412698413*G4_2_5_4 - 0.000297619047619*G4_2_5_5 - 0.000198412698413*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000198412698413*G4_2_6_4 - 0.000198412698413*G4_2_6_5 - 0.000297619047619*G4_2_6_6 - 9.92063492063e-05*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 9.92063492063e-05*G4_2_7_6 - 9.92063492063e-05*G4_2_7_7 - 0.000297619047619*G4_3_4_4 - 0.000198412698413*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 0.000198412698413*G4_3_4_7 - 0.000198412698413*G4_3_5_4 - 0.000297619047619*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 0.000198412698413*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 9.92063492063e-05*G4_3_6_6 - 9.92063492063e-05*G4_3_6_7 - 0.000198412698413*G4_3_7_4 - 0.000198412698413*G4_3_7_5 - 9.92063492063e-05*G4_3_7_6 - 0.000297619047619*G4_3_7_7 + 0.00238095238095*G5_0_4 + 0.0015873015873*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000793650793651*G5_0_7 + 0.0015873015873*G5_1_4 + 0.00238095238095*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000793650793651*G5_2_5 + 0.000793650793651*G5_2_6 + 0.000396825396825*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000396825396825*G5_3_6 + 0.000793650793651*G5_3_7 - 0.00555555555556*G6_0 - 0.00555555555556*G6_1 - 0.00277777777778*G6_2 - 0.00277777777778*G6_3 - 0.0047619047619*G7_0_4_4 - 0.00238095238095*G7_0_4_5 - 0.00119047619048*G7_0_4_6 - 0.00119047619048*G7_0_4_7 - 0.00238095238095*G7_0_5_4 - 0.00238095238095*G7_0_5_5 - 0.000793650793651*G7_0_5_6 - 0.000793650793651*G7_0_5_7 - 0.00119047619048*G7_0_6_4 - 0.000793650793651*G7_0_6_5 - 0.000793650793651*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.00119047619048*G7_0_7_4 - 0.000793650793651*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.000793650793651*G7_0_7_7 - 0.00238095238095*G7_1_4_4 - 0.00238095238095*G7_1_4_5 - 0.000793650793651*G7_1_4_6 - 0.000793650793651*G7_1_4_7 - 0.00238095238095*G7_1_5_4 - 0.0047619047619*G7_1_5_5 - 0.00119047619048*G7_1_5_6 - 0.00119047619048*G7_1_5_7 - 0.000793650793651*G7_1_6_4 - 0.00119047619048*G7_1_6_5 - 0.000793650793651*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.000793650793651*G7_1_7_4 - 0.00119047619048*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.000793650793651*G7_1_7_7 - 0.00119047619048*G7_2_4_4 - 0.000793650793651*G7_2_4_5 - 0.000793650793651*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.000793650793651*G7_2_5_4 - 0.00119047619048*G7_2_5_5 - 0.000793650793651*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.000793650793651*G7_2_6_4 - 0.000793650793651*G7_2_6_5 - 0.00119047619048*G7_2_6_6 - 0.000396825396825*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.000396825396825*G7_2_7_6 - 0.000396825396825*G7_2_7_7 - 0.00119047619048*G7_3_4_4 - 0.000793650793651*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.000793650793651*G7_3_4_7 - 0.000793650793651*G7_3_5_4 - 0.00119047619048*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.000793650793651*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.000396825396825*G7_3_6_6 - 0.000396825396825*G7_3_6_7 - 0.000793650793651*G7_3_7_4 - 0.000793650793651*G7_3_7_5 - 0.000396825396825*G7_3_7_6 - 0.00119047619048*G7_3_7_7 + 0.00952380952381*G8_0_4 + 0.00634920634921*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0031746031746*G8_0_7 + 0.00634920634921*G8_1_4 + 0.00952380952381*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0031746031746*G8_2_5 + 0.0031746031746*G8_2_6 + 0.0015873015873*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0015873015873*G8_3_6 + 0.0031746031746*G8_3_7 + 0.0416666666667*G9_0_0_0 + 0.0416666666667*G9_0_1_0 + 0.0416666666667*G9_0_2_0 + 0.0416666666667*G9_1_0_0 + 0.0416666666667*G9_1_1_0 + 0.0416666666667*G9_1_2_0 + 0.0416666666667*G9_2_0_0 + 0.0416666666667*G9_2_1_0 + 0.0416666666667*G9_2_2_0 + 0.0416666666667*G9_3_0_0 + 0.0416666666667*G9_3_1_0 + 0.0416666666667*G9_3_2_0;
-    A[6] = -0.00119047619048*G4_0_4_4 - 0.000297619047619*G4_0_4_5 - 0.000595238095238*G4_0_4_6 - 0.000297619047619*G4_0_4_7 - 0.000297619047619*G4_0_5_4 - 0.000198412698413*G4_0_5_5 - 0.000198412698413*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000595238095238*G4_0_6_4 - 0.000198412698413*G4_0_6_5 - 0.000595238095238*G4_0_6_6 - 0.000198412698413*G4_0_6_7 - 0.000297619047619*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 0.000198412698413*G4_0_7_6 - 0.000198412698413*G4_0_7_7 - 0.000297619047619*G4_1_4_4 - 0.000198412698413*G4_1_4_5 - 0.000198412698413*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 0.000198412698413*G4_1_5_4 - 0.000297619047619*G4_1_5_5 - 0.000198412698413*G4_1_5_6 - 9.92063492063e-05*G4_1_5_7 - 0.000198412698413*G4_1_6_4 - 0.000198412698413*G4_1_6_5 - 0.000297619047619*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 9.92063492063e-05*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 9.92063492063e-05*G4_1_7_7 - 0.000595238095238*G4_2_4_4 - 0.000198412698413*G4_2_4_5 - 0.000595238095238*G4_2_4_6 - 0.000198412698413*G4_2_4_7 - 0.000198412698413*G4_2_5_4 - 0.000198412698413*G4_2_5_5 - 0.000297619047619*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000595238095238*G4_2_6_4 - 0.000297619047619*G4_2_6_5 - 0.00119047619048*G4_2_6_6 - 0.000297619047619*G4_2_6_7 - 0.000198412698413*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 0.000297619047619*G4_2_7_6 - 0.000198412698413*G4_2_7_7 - 0.000297619047619*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 0.000198412698413*G4_3_4_6 - 0.000198412698413*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 9.92063492063e-05*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 9.92063492063e-05*G4_3_5_7 - 0.000198412698413*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 0.000297619047619*G4_3_6_6 - 0.000198412698413*G4_3_6_7 - 0.000198412698413*G4_3_7_4 - 9.92063492063e-05*G4_3_7_5 - 0.000198412698413*G4_3_7_6 - 0.000297619047619*G4_3_7_7 + 0.00238095238095*G5_0_4 + 0.000793650793651*G5_0_5 + 0.0015873015873*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000793650793651*G5_1_4 + 0.000793650793651*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000396825396825*G5_1_7 + 0.0015873015873*G5_2_4 + 0.000793650793651*G5_2_5 + 0.00238095238095*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000396825396825*G5_3_5 + 0.000793650793651*G5_3_6 + 0.000793650793651*G5_3_7 - 0.00555555555556*G6_0 - 0.00277777777778*G6_1 - 0.00555555555556*G6_2 - 0.00277777777778*G6_3 - 0.0047619047619*G7_0_4_4 - 0.00119047619048*G7_0_4_5 - 0.00238095238095*G7_0_4_6 - 0.00119047619048*G7_0_4_7 - 0.00119047619048*G7_0_5_4 - 0.000793650793651*G7_0_5_5 - 0.000793650793651*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.00238095238095*G7_0_6_4 - 0.000793650793651*G7_0_6_5 - 0.00238095238095*G7_0_6_6 - 0.000793650793651*G7_0_6_7 - 0.00119047619048*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.000793650793651*G7_0_7_6 - 0.000793650793651*G7_0_7_7 - 0.00119047619048*G7_1_4_4 - 0.000793650793651*G7_1_4_5 - 0.000793650793651*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.000793650793651*G7_1_5_4 - 0.00119047619048*G7_1_5_5 - 0.000793650793651*G7_1_5_6 - 0.000396825396825*G7_1_5_7 - 0.000793650793651*G7_1_6_4 - 0.000793650793651*G7_1_6_5 - 0.00119047619048*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.000396825396825*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.000396825396825*G7_1_7_7 - 0.00238095238095*G7_2_4_4 - 0.000793650793651*G7_2_4_5 - 0.00238095238095*G7_2_4_6 - 0.000793650793651*G7_2_4_7 - 0.000793650793651*G7_2_5_4 - 0.000793650793651*G7_2_5_5 - 0.00119047619048*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.00238095238095*G7_2_6_4 - 0.00119047619048*G7_2_6_5 - 0.0047619047619*G7_2_6_6 - 0.00119047619048*G7_2_6_7 - 0.000793650793651*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.00119047619048*G7_2_7_6 - 0.000793650793651*G7_2_7_7 - 0.00119047619048*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.000793650793651*G7_3_4_6 - 0.000793650793651*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.000396825396825*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.000396825396825*G7_3_5_7 - 0.000793650793651*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.00119047619048*G7_3_6_6 - 0.000793650793651*G7_3_6_7 - 0.000793650793651*G7_3_7_4 - 0.000396825396825*G7_3_7_5 - 0.000793650793651*G7_3_7_6 - 0.00119047619048*G7_3_7_7 + 0.00952380952381*G8_0_4 + 0.0031746031746*G8_0_5 + 0.00634920634921*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0031746031746*G8_1_4 + 0.0031746031746*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0015873015873*G8_1_7 + 0.00634920634921*G8_2_4 + 0.0031746031746*G8_2_5 + 0.00952380952381*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0015873015873*G8_3_5 + 0.0031746031746*G8_3_6 + 0.0031746031746*G8_3_7 + 0.0416666666667*G9_0_0_1 + 0.0416666666667*G9_0_1_1 + 0.0416666666667*G9_0_2_1 + 0.0416666666667*G9_1_0_1 + 0.0416666666667*G9_1_1_1 + 0.0416666666667*G9_1_2_1 + 0.0416666666667*G9_2_0_1 + 0.0416666666667*G9_2_1_1 + 0.0416666666667*G9_2_2_1 + 0.0416666666667*G9_3_0_1 + 0.0416666666667*G9_3_1_1 + 0.0416666666667*G9_3_2_1;
-    A[7] = -0.00119047619048*G4_0_4_4 - 0.000297619047619*G4_0_4_5 - 0.000297619047619*G4_0_4_6 - 0.000595238095238*G4_0_4_7 - 0.000297619047619*G4_0_5_4 - 0.000198412698413*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 0.000198412698413*G4_0_5_7 - 0.000297619047619*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 0.000198412698413*G4_0_6_6 - 0.000198412698413*G4_0_6_7 - 0.000595238095238*G4_0_7_4 - 0.000198412698413*G4_0_7_5 - 0.000198412698413*G4_0_7_6 - 0.000595238095238*G4_0_7_7 - 0.000297619047619*G4_1_4_4 - 0.000198412698413*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 0.000198412698413*G4_1_4_7 - 0.000198412698413*G4_1_5_4 - 0.000297619047619*G4_1_5_5 - 9.92063492063e-05*G4_1_5_6 - 0.000198412698413*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 9.92063492063e-05*G4_1_6_5 - 9.92063492063e-05*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 0.000198412698413*G4_1_7_4 - 0.000198412698413*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 0.000297619047619*G4_1_7_7 - 0.000297619047619*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 0.000198412698413*G4_2_4_6 - 0.000198412698413*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 9.92063492063e-05*G4_2_5_5 - 9.92063492063e-05*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000198412698413*G4_2_6_4 - 9.92063492063e-05*G4_2_6_5 - 0.000297619047619*G4_2_6_6 - 0.000198412698413*G4_2_6_7 - 0.000198412698413*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 0.000198412698413*G4_2_7_6 - 0.000297619047619*G4_2_7_7 - 0.000595238095238*G4_3_4_4 - 0.000198412698413*G4_3_4_5 - 0.000198412698413*G4_3_4_6 - 0.000595238095238*G4_3_4_7 - 0.000198412698413*G4_3_5_4 - 0.000198412698413*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 0.000297619047619*G4_3_5_7 - 0.000198412698413*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 0.000198412698413*G4_3_6_6 - 0.000297619047619*G4_3_6_7 - 0.000595238095238*G4_3_7_4 - 0.000297619047619*G4_3_7_5 - 0.000297619047619*G4_3_7_6 - 0.00119047619048*G4_3_7_7 + 0.00238095238095*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000793650793651*G5_0_6 + 0.0015873015873*G5_0_7 + 0.000793650793651*G5_1_4 + 0.000793650793651*G5_1_5 + 0.000396825396825*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000396825396825*G5_2_5 + 0.000793650793651*G5_2_6 + 0.000793650793651*G5_2_7 + 0.0015873015873*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000793650793651*G5_3_6 + 0.00238095238095*G5_3_7 - 0.00555555555556*G6_0 - 0.00277777777778*G6_1 - 0.00277777777778*G6_2 - 0.00555555555556*G6_3 - 0.0047619047619*G7_0_4_4 - 0.00119047619048*G7_0_4_5 - 0.00119047619048*G7_0_4_6 - 0.00238095238095*G7_0_4_7 - 0.00119047619048*G7_0_5_4 - 0.000793650793651*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.000793650793651*G7_0_5_7 - 0.00119047619048*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.000793650793651*G7_0_6_6 - 0.000793650793651*G7_0_6_7 - 0.00238095238095*G7_0_7_4 - 0.000793650793651*G7_0_7_5 - 0.000793650793651*G7_0_7_6 - 0.00238095238095*G7_0_7_7 - 0.00119047619048*G7_1_4_4 - 0.000793650793651*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.000793650793651*G7_1_4_7 - 0.000793650793651*G7_1_5_4 - 0.00119047619048*G7_1_5_5 - 0.000396825396825*G7_1_5_6 - 0.000793650793651*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.000396825396825*G7_1_6_5 - 0.000396825396825*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.000793650793651*G7_1_7_4 - 0.000793650793651*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.00119047619048*G7_1_7_7 - 0.00119047619048*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.000793650793651*G7_2_4_6 - 0.000793650793651*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.000396825396825*G7_2_5_5 - 0.000396825396825*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.000793650793651*G7_2_6_4 - 0.000396825396825*G7_2_6_5 - 0.00119047619048*G7_2_6_6 - 0.000793650793651*G7_2_6_7 - 0.000793650793651*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.000793650793651*G7_2_7_6 - 0.00119047619048*G7_2_7_7 - 0.00238095238095*G7_3_4_4 - 0.000793650793651*G7_3_4_5 - 0.000793650793651*G7_3_4_6 - 0.00238095238095*G7_3_4_7 - 0.000793650793651*G7_3_5_4 - 0.000793650793651*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.00119047619048*G7_3_5_7 - 0.000793650793651*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.000793650793651*G7_3_6_6 - 0.00119047619048*G7_3_6_7 - 0.00238095238095*G7_3_7_4 - 0.00119047619048*G7_3_7_5 - 0.00119047619048*G7_3_7_6 - 0.0047619047619*G7_3_7_7 + 0.00952380952381*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0031746031746*G8_0_6 + 0.00634920634921*G8_0_7 + 0.0031746031746*G8_1_4 + 0.0031746031746*G8_1_5 + 0.0015873015873*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0015873015873*G8_2_5 + 0.0031746031746*G8_2_6 + 0.0031746031746*G8_2_7 + 0.00634920634921*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0031746031746*G8_3_6 + 0.00952380952381*G8_3_7 + 0.0416666666667*G9_0_0_2 + 0.0416666666667*G9_0_1_2 + 0.0416666666667*G9_0_2_2 + 0.0416666666667*G9_1_0_2 + 0.0416666666667*G9_1_1_2 + 0.0416666666667*G9_1_2_2 + 0.0416666666667*G9_2_0_2 + 0.0416666666667*G9_2_1_2 + 0.0416666666667*G9_2_2_2 + 0.0416666666667*G9_3_0_2 + 0.0416666666667*G9_3_1_2 + 0.0416666666667*G9_3_2_2;
-    A[8] = 0.00833333333333*G3_;
-    A[9] = 0.0166666666667*G3_;
-    A[10] = 0.00833333333333*G3_;
-    A[11] = 0.00833333333333*G3_;
-    A[12] = -0.00119047619048*G4_0_4_4 - 0.000595238095238*G4_0_4_5 - 0.000297619047619*G4_0_4_6 - 0.000297619047619*G4_0_4_7 - 0.000595238095238*G4_0_5_4 - 0.000595238095238*G4_0_5_5 - 0.000198412698413*G4_0_5_6 - 0.000198412698413*G4_0_5_7 - 0.000297619047619*G4_0_6_4 - 0.000198412698413*G4_0_6_5 - 0.000198412698413*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 0.000297619047619*G4_0_7_4 - 0.000198412698413*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 0.000198412698413*G4_0_7_7 - 0.000595238095238*G4_1_4_4 - 0.000595238095238*G4_1_4_5 - 0.000198412698413*G4_1_4_6 - 0.000198412698413*G4_1_4_7 - 0.000595238095238*G4_1_5_4 - 0.00119047619048*G4_1_5_5 - 0.000297619047619*G4_1_5_6 - 0.000297619047619*G4_1_5_7 - 0.000198412698413*G4_1_6_4 - 0.000297619047619*G4_1_6_5 - 0.000198412698413*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 0.000198412698413*G4_1_7_4 - 0.000297619047619*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 0.000198412698413*G4_1_7_7 - 0.000297619047619*G4_2_4_4 - 0.000198412698413*G4_2_4_5 - 0.000198412698413*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 0.000198412698413*G4_2_5_4 - 0.000297619047619*G4_2_5_5 - 0.000198412698413*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000198412698413*G4_2_6_4 - 0.000198412698413*G4_2_6_5 - 0.000297619047619*G4_2_6_6 - 9.92063492063e-05*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 9.92063492063e-05*G4_2_7_6 - 9.92063492063e-05*G4_2_7_7 - 0.000297619047619*G4_3_4_4 - 0.000198412698413*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 0.000198412698413*G4_3_4_7 - 0.000198412698413*G4_3_5_4 - 0.000297619047619*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 0.000198412698413*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 9.92063492063e-05*G4_3_6_6 - 9.92063492063e-05*G4_3_6_7 - 0.000198412698413*G4_3_7_4 - 0.000198412698413*G4_3_7_5 - 9.92063492063e-05*G4_3_7_6 - 0.000297619047619*G4_3_7_7 + 0.00238095238095*G5_0_4 + 0.0015873015873*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000793650793651*G5_0_7 + 0.0015873015873*G5_1_4 + 0.00238095238095*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000793650793651*G5_2_5 + 0.000793650793651*G5_2_6 + 0.000396825396825*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000396825396825*G5_3_6 + 0.000793650793651*G5_3_7 - 0.00555555555556*G6_0 - 0.00555555555556*G6_1 - 0.00277777777778*G6_2 - 0.00277777777778*G6_3 - 0.0047619047619*G7_0_4_4 - 0.00238095238095*G7_0_4_5 - 0.00119047619048*G7_0_4_6 - 0.00119047619048*G7_0_4_7 - 0.00238095238095*G7_0_5_4 - 0.00238095238095*G7_0_5_5 - 0.000793650793651*G7_0_5_6 - 0.000793650793651*G7_0_5_7 - 0.00119047619048*G7_0_6_4 - 0.000793650793651*G7_0_6_5 - 0.000793650793651*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.00119047619048*G7_0_7_4 - 0.000793650793651*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.000793650793651*G7_0_7_7 - 0.00238095238095*G7_1_4_4 - 0.00238095238095*G7_1_4_5 - 0.000793650793651*G7_1_4_6 - 0.000793650793651*G7_1_4_7 - 0.00238095238095*G7_1_5_4 - 0.0047619047619*G7_1_5_5 - 0.00119047619048*G7_1_5_6 - 0.00119047619048*G7_1_5_7 - 0.000793650793651*G7_1_6_4 - 0.00119047619048*G7_1_6_5 - 0.000793650793651*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.000793650793651*G7_1_7_4 - 0.00119047619048*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.000793650793651*G7_1_7_7 - 0.00119047619048*G7_2_4_4 - 0.000793650793651*G7_2_4_5 - 0.000793650793651*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.000793650793651*G7_2_5_4 - 0.00119047619048*G7_2_5_5 - 0.000793650793651*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.000793650793651*G7_2_6_4 - 0.000793650793651*G7_2_6_5 - 0.00119047619048*G7_2_6_6 - 0.000396825396825*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.000396825396825*G7_2_7_6 - 0.000396825396825*G7_2_7_7 - 0.00119047619048*G7_3_4_4 - 0.000793650793651*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.000793650793651*G7_3_4_7 - 0.000793650793651*G7_3_5_4 - 0.00119047619048*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.000793650793651*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.000396825396825*G7_3_6_6 - 0.000396825396825*G7_3_6_7 - 0.000793650793651*G7_3_7_4 - 0.000793650793651*G7_3_7_5 - 0.000396825396825*G7_3_7_6 - 0.00119047619048*G7_3_7_7 + 0.00952380952381*G8_0_4 + 0.00634920634921*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0031746031746*G8_0_7 + 0.00634920634921*G8_1_4 + 0.00952380952381*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0031746031746*G8_2_5 + 0.0031746031746*G8_2_6 + 0.0015873015873*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0015873015873*G8_3_6 + 0.0031746031746*G8_3_7 + 0.0416666666667*G9_0_0_0 + 0.0416666666667*G9_0_0_1 + 0.0416666666667*G9_0_0_2 + 0.0416666666667*G9_1_0_0 + 0.0416666666667*G9_1_0_1 + 0.0416666666667*G9_1_0_2 + 0.0416666666667*G9_2_0_0 + 0.0416666666667*G9_2_0_1 + 0.0416666666667*G9_2_0_2 + 0.0416666666667*G9_3_0_0 + 0.0416666666667*G9_3_0_1 + 0.0416666666667*G9_3_0_2;
-    A[13] = -0.000595238095238*G4_0_4_4 - 0.000595238095238*G4_0_4_5 - 0.000198412698413*G4_0_4_6 - 0.000198412698413*G4_0_4_7 - 0.000595238095238*G4_0_5_4 - 0.00119047619048*G4_0_5_5 - 0.000297619047619*G4_0_5_6 - 0.000297619047619*G4_0_5_7 - 0.000198412698413*G4_0_6_4 - 0.000297619047619*G4_0_6_5 - 0.000198412698413*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 0.000198412698413*G4_0_7_4 - 0.000297619047619*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 0.000198412698413*G4_0_7_7 - 0.000595238095238*G4_1_4_4 - 0.00119047619048*G4_1_4_5 - 0.000297619047619*G4_1_4_6 - 0.000297619047619*G4_1_4_7 - 0.00119047619048*G4_1_5_4 - 0.00595238095238*G4_1_5_5 - 0.00119047619048*G4_1_5_6 - 0.00119047619048*G4_1_5_7 - 0.000297619047619*G4_1_6_4 - 0.00119047619048*G4_1_6_5 - 0.000595238095238*G4_1_6_6 - 0.000297619047619*G4_1_6_7 - 0.000297619047619*G4_1_7_4 - 0.00119047619048*G4_1_7_5 - 0.000297619047619*G4_1_7_6 - 0.000595238095238*G4_1_7_7 - 0.000198412698413*G4_2_4_4 - 0.000297619047619*G4_2_4_5 - 0.000198412698413*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 0.000297619047619*G4_2_5_4 - 0.00119047619048*G4_2_5_5 - 0.000595238095238*G4_2_5_6 - 0.000297619047619*G4_2_5_7 - 0.000198412698413*G4_2_6_4 - 0.000595238095238*G4_2_6_5 - 0.000595238095238*G4_2_6_6 - 0.000198412698413*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 0.000297619047619*G4_2_7_5 - 0.000198412698413*G4_2_7_6 - 0.000198412698413*G4_2_7_7 - 0.000198412698413*G4_3_4_4 - 0.000297619047619*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 0.000198412698413*G4_3_4_7 - 0.000297619047619*G4_3_5_4 - 0.00119047619048*G4_3_5_5 - 0.000297619047619*G4_3_5_6 - 0.000595238095238*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 0.000297619047619*G4_3_6_5 - 0.000198412698413*G4_3_6_6 - 0.000198412698413*G4_3_6_7 - 0.000198412698413*G4_3_7_4 - 0.000595238095238*G4_3_7_5 - 0.000198412698413*G4_3_7_6 - 0.000595238095238*G4_3_7_7 + 0.0015873015873*G5_0_4 + 0.00238095238095*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000793650793651*G5_0_7 + 0.00238095238095*G5_1_4 + 0.00952380952381*G5_1_5 + 0.00238095238095*G5_1_6 + 0.00238095238095*G5_1_7 + 0.000793650793651*G5_2_4 + 0.00238095238095*G5_2_5 + 0.0015873015873*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000793650793651*G5_3_4 + 0.00238095238095*G5_3_5 + 0.000793650793651*G5_3_6 + 0.0015873015873*G5_3_7 - 0.00555555555556*G6_0 - 0.0166666666667*G6_1 - 0.00555555555556*G6_2 - 0.00555555555556*G6_3 - 0.00238095238095*G7_0_4_4 - 0.00238095238095*G7_0_4_5 - 0.000793650793651*G7_0_4_6 - 0.000793650793651*G7_0_4_7 - 0.00238095238095*G7_0_5_4 - 0.0047619047619*G7_0_5_5 - 0.00119047619048*G7_0_5_6 - 0.00119047619048*G7_0_5_7 - 0.000793650793651*G7_0_6_4 - 0.00119047619048*G7_0_6_5 - 0.000793650793651*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.000793650793651*G7_0_7_4 - 0.00119047619048*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.000793650793651*G7_0_7_7 - 0.00238095238095*G7_1_4_4 - 0.0047619047619*G7_1_4_5 - 0.00119047619048*G7_1_4_6 - 0.00119047619048*G7_1_4_7 - 0.0047619047619*G7_1_5_4 - 0.0238095238095*G7_1_5_5 - 0.0047619047619*G7_1_5_6 - 0.0047619047619*G7_1_5_7 - 0.00119047619048*G7_1_6_4 - 0.0047619047619*G7_1_6_5 - 0.00238095238095*G7_1_6_6 - 0.00119047619048*G7_1_6_7 - 0.00119047619048*G7_1_7_4 - 0.0047619047619*G7_1_7_5 - 0.00119047619048*G7_1_7_6 - 0.00238095238095*G7_1_7_7 - 0.000793650793651*G7_2_4_4 - 0.00119047619048*G7_2_4_5 - 0.000793650793651*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.00119047619048*G7_2_5_4 - 0.0047619047619*G7_2_5_5 - 0.00238095238095*G7_2_5_6 - 0.00119047619048*G7_2_5_7 - 0.000793650793651*G7_2_6_4 - 0.00238095238095*G7_2_6_5 - 0.00238095238095*G7_2_6_6 - 0.000793650793651*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.00119047619048*G7_2_7_5 - 0.000793650793651*G7_2_7_6 - 0.000793650793651*G7_2_7_7 - 0.000793650793651*G7_3_4_4 - 0.00119047619048*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.000793650793651*G7_3_4_7 - 0.00119047619048*G7_3_5_4 - 0.0047619047619*G7_3_5_5 - 0.00119047619048*G7_3_5_6 - 0.00238095238095*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.00119047619048*G7_3_6_5 - 0.000793650793651*G7_3_6_6 - 0.000793650793651*G7_3_6_7 - 0.000793650793651*G7_3_7_4 - 0.00238095238095*G7_3_7_5 - 0.000793650793651*G7_3_7_6 - 0.00238095238095*G7_3_7_7 + 0.00634920634921*G8_0_4 + 0.00952380952381*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0031746031746*G8_0_7 + 0.00952380952381*G8_1_4 + 0.0380952380952*G8_1_5 + 0.00952380952381*G8_1_6 + 0.00952380952381*G8_1_7 + 0.0031746031746*G8_2_4 + 0.00952380952381*G8_2_5 + 0.00634920634921*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0031746031746*G8_3_4 + 0.00952380952381*G8_3_5 + 0.0031746031746*G8_3_6 + 0.00634920634921*G8_3_7 - 0.0416666666667*G9_0_0_0 - 0.0416666666667*G9_1_0_0 - 0.0416666666667*G9_2_0_0 - 0.0416666666667*G9_3_0_0;
-    A[14] = -0.000297619047619*G4_0_4_4 - 0.000198412698413*G4_0_4_5 - 0.000198412698413*G4_0_4_6 - 9.92063492063e-05*G4_0_4_7 - 0.000198412698413*G4_0_5_4 - 0.000297619047619*G4_0_5_5 - 0.000198412698413*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000198412698413*G4_0_6_4 - 0.000198412698413*G4_0_6_5 - 0.000297619047619*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 9.92063492063e-05*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 9.92063492063e-05*G4_0_7_7 - 0.000198412698413*G4_1_4_4 - 0.000297619047619*G4_1_4_5 - 0.000198412698413*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 0.000297619047619*G4_1_5_4 - 0.00119047619048*G4_1_5_5 - 0.000595238095238*G4_1_5_6 - 0.000297619047619*G4_1_5_7 - 0.000198412698413*G4_1_6_4 - 0.000595238095238*G4_1_6_5 - 0.000595238095238*G4_1_6_6 - 0.000198412698413*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 0.000297619047619*G4_1_7_5 - 0.000198412698413*G4_1_7_6 - 0.000198412698413*G4_1_7_7 - 0.000198412698413*G4_2_4_4 - 0.000198412698413*G4_2_4_5 - 0.000297619047619*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 0.000198412698413*G4_2_5_4 - 0.000595238095238*G4_2_5_5 - 0.000595238095238*G4_2_5_6 - 0.000198412698413*G4_2_5_7 - 0.000297619047619*G4_2_6_4 - 0.000595238095238*G4_2_6_5 - 0.00119047619048*G4_2_6_6 - 0.000297619047619*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 0.000198412698413*G4_2_7_5 - 0.000297619047619*G4_2_7_6 - 0.000198412698413*G4_2_7_7 - 9.92063492063e-05*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 9.92063492063e-05*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 0.000297619047619*G4_3_5_5 - 0.000198412698413*G4_3_5_6 - 0.000198412698413*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 0.000198412698413*G4_3_6_5 - 0.000297619047619*G4_3_6_6 - 0.000198412698413*G4_3_6_7 - 9.92063492063e-05*G4_3_7_4 - 0.000198412698413*G4_3_7_5 - 0.000198412698413*G4_3_7_6 - 0.000297619047619*G4_3_7_7 + 0.000793650793651*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000396825396825*G5_0_7 + 0.000793650793651*G5_1_4 + 0.00238095238095*G5_1_5 + 0.0015873015873*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.0015873015873*G5_2_5 + 0.00238095238095*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000396825396825*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000793650793651*G5_3_6 + 0.000793650793651*G5_3_7 - 0.00277777777778*G6_0 - 0.00555555555556*G6_1 - 0.00555555555556*G6_2 - 0.00277777777778*G6_3 - 0.00119047619048*G7_0_4_4 - 0.000793650793651*G7_0_4_5 - 0.000793650793651*G7_0_4_6 - 0.000396825396825*G7_0_4_7 - 0.000793650793651*G7_0_5_4 - 0.00119047619048*G7_0_5_5 - 0.000793650793651*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.000793650793651*G7_0_6_4 - 0.000793650793651*G7_0_6_5 - 0.00119047619048*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.000396825396825*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.000396825396825*G7_0_7_7 - 0.000793650793651*G7_1_4_4 - 0.00119047619048*G7_1_4_5 - 0.000793650793651*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.00119047619048*G7_1_5_4 - 0.0047619047619*G7_1_5_5 - 0.00238095238095*G7_1_5_6 - 0.00119047619048*G7_1_5_7 - 0.000793650793651*G7_1_6_4 - 0.00238095238095*G7_1_6_5 - 0.00238095238095*G7_1_6_6 - 0.000793650793651*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.00119047619048*G7_1_7_5 - 0.000793650793651*G7_1_7_6 - 0.000793650793651*G7_1_7_7 - 0.000793650793651*G7_2_4_4 - 0.000793650793651*G7_2_4_5 - 0.00119047619048*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.000793650793651*G7_2_5_4 - 0.00238095238095*G7_2_5_5 - 0.00238095238095*G7_2_5_6 - 0.000793650793651*G7_2_5_7 - 0.00119047619048*G7_2_6_4 - 0.00238095238095*G7_2_6_5 - 0.0047619047619*G7_2_6_6 - 0.00119047619048*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.000793650793651*G7_2_7_5 - 0.00119047619048*G7_2_7_6 - 0.000793650793651*G7_2_7_7 - 0.000396825396825*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.000396825396825*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.00119047619048*G7_3_5_5 - 0.000793650793651*G7_3_5_6 - 0.000793650793651*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.000793650793651*G7_3_6_5 - 0.00119047619048*G7_3_6_6 - 0.000793650793651*G7_3_6_7 - 0.000396825396825*G7_3_7_4 - 0.000793650793651*G7_3_7_5 - 0.000793650793651*G7_3_7_6 - 0.00119047619048*G7_3_7_7 + 0.0031746031746*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0015873015873*G8_0_7 + 0.0031746031746*G8_1_4 + 0.00952380952381*G8_1_5 + 0.00634920634921*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.00634920634921*G8_2_5 + 0.00952380952381*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0015873015873*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0031746031746*G8_3_6 + 0.0031746031746*G8_3_7 - 0.0416666666667*G9_0_0_1 - 0.0416666666667*G9_1_0_1 - 0.0416666666667*G9_2_0_1 - 0.0416666666667*G9_3_0_1;
-    A[15] = -0.000297619047619*G4_0_4_4 - 0.000198412698413*G4_0_4_5 - 9.92063492063e-05*G4_0_4_6 - 0.000198412698413*G4_0_4_7 - 0.000198412698413*G4_0_5_4 - 0.000297619047619*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 0.000198412698413*G4_0_5_7 - 9.92063492063e-05*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 9.92063492063e-05*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 0.000198412698413*G4_0_7_4 - 0.000198412698413*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 0.000297619047619*G4_0_7_7 - 0.000198412698413*G4_1_4_4 - 0.000297619047619*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 0.000198412698413*G4_1_4_7 - 0.000297619047619*G4_1_5_4 - 0.00119047619048*G4_1_5_5 - 0.000297619047619*G4_1_5_6 - 0.000595238095238*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 0.000297619047619*G4_1_6_5 - 0.000198412698413*G4_1_6_6 - 0.000198412698413*G4_1_6_7 - 0.000198412698413*G4_1_7_4 - 0.000595238095238*G4_1_7_5 - 0.000198412698413*G4_1_7_6 - 0.000595238095238*G4_1_7_7 - 9.92063492063e-05*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 9.92063492063e-05*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 0.000297619047619*G4_2_5_5 - 0.000198412698413*G4_2_5_6 - 0.000198412698413*G4_2_5_7 - 9.92063492063e-05*G4_2_6_4 - 0.000198412698413*G4_2_6_5 - 0.000297619047619*G4_2_6_6 - 0.000198412698413*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 0.000198412698413*G4_2_7_5 - 0.000198412698413*G4_2_7_6 - 0.000297619047619*G4_2_7_7 - 0.000198412698413*G4_3_4_4 - 0.000198412698413*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 0.000297619047619*G4_3_4_7 - 0.000198412698413*G4_3_5_4 - 0.000595238095238*G4_3_5_5 - 0.000198412698413*G4_3_5_6 - 0.000595238095238*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 0.000198412698413*G4_3_6_5 - 0.000198412698413*G4_3_6_6 - 0.000297619047619*G4_3_6_7 - 0.000297619047619*G4_3_7_4 - 0.000595238095238*G4_3_7_5 - 0.000297619047619*G4_3_7_6 - 0.00119047619048*G4_3_7_7 + 0.000793650793651*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000396825396825*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000793650793651*G5_1_4 + 0.00238095238095*G5_1_5 + 0.000793650793651*G5_1_6 + 0.0015873015873*G5_1_7 + 0.000396825396825*G5_2_4 + 0.000793650793651*G5_2_5 + 0.000793650793651*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000793650793651*G5_3_4 + 0.0015873015873*G5_3_5 + 0.000793650793651*G5_3_6 + 0.00238095238095*G5_3_7 - 0.00277777777778*G6_0 - 0.00555555555556*G6_1 - 0.00277777777778*G6_2 - 0.00555555555556*G6_3 - 0.00119047619048*G7_0_4_4 - 0.000793650793651*G7_0_4_5 - 0.000396825396825*G7_0_4_6 - 0.000793650793651*G7_0_4_7 - 0.000793650793651*G7_0_5_4 - 0.00119047619048*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.000793650793651*G7_0_5_7 - 0.000396825396825*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.000396825396825*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.000793650793651*G7_0_7_4 - 0.000793650793651*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.00119047619048*G7_0_7_7 - 0.000793650793651*G7_1_4_4 - 0.00119047619048*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.000793650793651*G7_1_4_7 - 0.00119047619048*G7_1_5_4 - 0.0047619047619*G7_1_5_5 - 0.00119047619048*G7_1_5_6 - 0.00238095238095*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.00119047619048*G7_1_6_5 - 0.000793650793651*G7_1_6_6 - 0.000793650793651*G7_1_6_7 - 0.000793650793651*G7_1_7_4 - 0.00238095238095*G7_1_7_5 - 0.000793650793651*G7_1_7_6 - 0.00238095238095*G7_1_7_7 - 0.000396825396825*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.000396825396825*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.00119047619048*G7_2_5_5 - 0.000793650793651*G7_2_5_6 - 0.000793650793651*G7_2_5_7 - 0.000396825396825*G7_2_6_4 - 0.000793650793651*G7_2_6_5 - 0.00119047619048*G7_2_6_6 - 0.000793650793651*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.000793650793651*G7_2_7_5 - 0.000793650793651*G7_2_7_6 - 0.00119047619048*G7_2_7_7 - 0.000793650793651*G7_3_4_4 - 0.000793650793651*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.00119047619048*G7_3_4_7 - 0.000793650793651*G7_3_5_4 - 0.00238095238095*G7_3_5_5 - 0.000793650793651*G7_3_5_6 - 0.00238095238095*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.000793650793651*G7_3_6_5 - 0.000793650793651*G7_3_6_6 - 0.00119047619048*G7_3_6_7 - 0.00119047619048*G7_3_7_4 - 0.00238095238095*G7_3_7_5 - 0.00119047619048*G7_3_7_6 - 0.0047619047619*G7_3_7_7 + 0.0031746031746*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0015873015873*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0031746031746*G8_1_4 + 0.00952380952381*G8_1_5 + 0.0031746031746*G8_1_6 + 0.00634920634921*G8_1_7 + 0.0015873015873*G8_2_4 + 0.0031746031746*G8_2_5 + 0.0031746031746*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0031746031746*G8_3_4 + 0.00634920634921*G8_3_5 + 0.0031746031746*G8_3_6 + 0.00952380952381*G8_3_7 - 0.0416666666667*G9_0_0_2 - 0.0416666666667*G9_1_0_2 - 0.0416666666667*G9_2_0_2 - 0.0416666666667*G9_3_0_2;
-    A[16] = 0.00833333333333*G3_;
-    A[17] = 0.00833333333333*G3_;
-    A[18] = 0.0166666666667*G3_;
-    A[19] = 0.00833333333333*G3_;
-    A[20] = -0.00119047619048*G4_0_4_4 - 0.000297619047619*G4_0_4_5 - 0.000595238095238*G4_0_4_6 - 0.000297619047619*G4_0_4_7 - 0.000297619047619*G4_0_5_4 - 0.000198412698413*G4_0_5_5 - 0.000198412698413*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000595238095238*G4_0_6_4 - 0.000198412698413*G4_0_6_5 - 0.000595238095238*G4_0_6_6 - 0.000198412698413*G4_0_6_7 - 0.000297619047619*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 0.000198412698413*G4_0_7_6 - 0.000198412698413*G4_0_7_7 - 0.000297619047619*G4_1_4_4 - 0.000198412698413*G4_1_4_5 - 0.000198412698413*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 0.000198412698413*G4_1_5_4 - 0.000297619047619*G4_1_5_5 - 0.000198412698413*G4_1_5_6 - 9.92063492063e-05*G4_1_5_7 - 0.000198412698413*G4_1_6_4 - 0.000198412698413*G4_1_6_5 - 0.000297619047619*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 9.92063492063e-05*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 9.92063492063e-05*G4_1_7_7 - 0.000595238095238*G4_2_4_4 - 0.000198412698413*G4_2_4_5 - 0.000595238095238*G4_2_4_6 - 0.000198412698413*G4_2_4_7 - 0.000198412698413*G4_2_5_4 - 0.000198412698413*G4_2_5_5 - 0.000297619047619*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000595238095238*G4_2_6_4 - 0.000297619047619*G4_2_6_5 - 0.00119047619048*G4_2_6_6 - 0.000297619047619*G4_2_6_7 - 0.000198412698413*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 0.000297619047619*G4_2_7_6 - 0.000198412698413*G4_2_7_7 - 0.000297619047619*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 0.000198412698413*G4_3_4_6 - 0.000198412698413*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 9.92063492063e-05*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 9.92063492063e-05*G4_3_5_7 - 0.000198412698413*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 0.000297619047619*G4_3_6_6 - 0.000198412698413*G4_3_6_7 - 0.000198412698413*G4_3_7_4 - 9.92063492063e-05*G4_3_7_5 - 0.000198412698413*G4_3_7_6 - 0.000297619047619*G4_3_7_7 + 0.00238095238095*G5_0_4 + 0.000793650793651*G5_0_5 + 0.0015873015873*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000793650793651*G5_1_4 + 0.000793650793651*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000396825396825*G5_1_7 + 0.0015873015873*G5_2_4 + 0.000793650793651*G5_2_5 + 0.00238095238095*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000396825396825*G5_3_5 + 0.000793650793651*G5_3_6 + 0.000793650793651*G5_3_7 - 0.00555555555556*G6_0 - 0.00277777777778*G6_1 - 0.00555555555556*G6_2 - 0.00277777777778*G6_3 - 0.0047619047619*G7_0_4_4 - 0.00119047619048*G7_0_4_5 - 0.00238095238095*G7_0_4_6 - 0.00119047619048*G7_0_4_7 - 0.00119047619048*G7_0_5_4 - 0.000793650793651*G7_0_5_5 - 0.000793650793651*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.00238095238095*G7_0_6_4 - 0.000793650793651*G7_0_6_5 - 0.00238095238095*G7_0_6_6 - 0.000793650793651*G7_0_6_7 - 0.00119047619048*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.000793650793651*G7_0_7_6 - 0.000793650793651*G7_0_7_7 - 0.00119047619048*G7_1_4_4 - 0.000793650793651*G7_1_4_5 - 0.000793650793651*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.000793650793651*G7_1_5_4 - 0.00119047619048*G7_1_5_5 - 0.000793650793651*G7_1_5_6 - 0.000396825396825*G7_1_5_7 - 0.000793650793651*G7_1_6_4 - 0.000793650793651*G7_1_6_5 - 0.00119047619048*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.000396825396825*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.000396825396825*G7_1_7_7 - 0.00238095238095*G7_2_4_4 - 0.000793650793651*G7_2_4_5 - 0.00238095238095*G7_2_4_6 - 0.000793650793651*G7_2_4_7 - 0.000793650793651*G7_2_5_4 - 0.000793650793651*G7_2_5_5 - 0.00119047619048*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.00238095238095*G7_2_6_4 - 0.00119047619048*G7_2_6_5 - 0.0047619047619*G7_2_6_6 - 0.00119047619048*G7_2_6_7 - 0.000793650793651*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.00119047619048*G7_2_7_6 - 0.000793650793651*G7_2_7_7 - 0.00119047619048*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.000793650793651*G7_3_4_6 - 0.000793650793651*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.000396825396825*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.000396825396825*G7_3_5_7 - 0.000793650793651*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.00119047619048*G7_3_6_6 - 0.000793650793651*G7_3_6_7 - 0.000793650793651*G7_3_7_4 - 0.000396825396825*G7_3_7_5 - 0.000793650793651*G7_3_7_6 - 0.00119047619048*G7_3_7_7 + 0.00952380952381*G8_0_4 + 0.0031746031746*G8_0_5 + 0.00634920634921*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0031746031746*G8_1_4 + 0.0031746031746*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0015873015873*G8_1_7 + 0.00634920634921*G8_2_4 + 0.0031746031746*G8_2_5 + 0.00952380952381*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0015873015873*G8_3_5 + 0.0031746031746*G8_3_6 + 0.0031746031746*G8_3_7 + 0.0416666666667*G9_0_1_0 + 0.0416666666667*G9_0_1_1 + 0.0416666666667*G9_0_1_2 + 0.0416666666667*G9_1_1_0 + 0.0416666666667*G9_1_1_1 + 0.0416666666667*G9_1_1_2 + 0.0416666666667*G9_2_1_0 + 0.0416666666667*G9_2_1_1 + 0.0416666666667*G9_2_1_2 + 0.0416666666667*G9_3_1_0 + 0.0416666666667*G9_3_1_1 + 0.0416666666667*G9_3_1_2;
-    A[21] = -0.000297619047619*G4_0_4_4 - 0.000198412698413*G4_0_4_5 - 0.000198412698413*G4_0_4_6 - 9.92063492063e-05*G4_0_4_7 - 0.000198412698413*G4_0_5_4 - 0.000297619047619*G4_0_5_5 - 0.000198412698413*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000198412698413*G4_0_6_4 - 0.000198412698413*G4_0_6_5 - 0.000297619047619*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 9.92063492063e-05*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 9.92063492063e-05*G4_0_7_7 - 0.000198412698413*G4_1_4_4 - 0.000297619047619*G4_1_4_5 - 0.000198412698413*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 0.000297619047619*G4_1_5_4 - 0.00119047619048*G4_1_5_5 - 0.000595238095238*G4_1_5_6 - 0.000297619047619*G4_1_5_7 - 0.000198412698413*G4_1_6_4 - 0.000595238095238*G4_1_6_5 - 0.000595238095238*G4_1_6_6 - 0.000198412698413*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 0.000297619047619*G4_1_7_5 - 0.000198412698413*G4_1_7_6 - 0.000198412698413*G4_1_7_7 - 0.000198412698413*G4_2_4_4 - 0.000198412698413*G4_2_4_5 - 0.000297619047619*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 0.000198412698413*G4_2_5_4 - 0.000595238095238*G4_2_5_5 - 0.000595238095238*G4_2_5_6 - 0.000198412698413*G4_2_5_7 - 0.000297619047619*G4_2_6_4 - 0.000595238095238*G4_2_6_5 - 0.00119047619048*G4_2_6_6 - 0.000297619047619*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 0.000198412698413*G4_2_7_5 - 0.000297619047619*G4_2_7_6 - 0.000198412698413*G4_2_7_7 - 9.92063492063e-05*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 9.92063492063e-05*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 0.000297619047619*G4_3_5_5 - 0.000198412698413*G4_3_5_6 - 0.000198412698413*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 0.000198412698413*G4_3_6_5 - 0.000297619047619*G4_3_6_6 - 0.000198412698413*G4_3_6_7 - 9.92063492063e-05*G4_3_7_4 - 0.000198412698413*G4_3_7_5 - 0.000198412698413*G4_3_7_6 - 0.000297619047619*G4_3_7_7 + 0.000793650793651*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000396825396825*G5_0_7 + 0.000793650793651*G5_1_4 + 0.00238095238095*G5_1_5 + 0.0015873015873*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.0015873015873*G5_2_5 + 0.00238095238095*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000396825396825*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000793650793651*G5_3_6 + 0.000793650793651*G5_3_7 - 0.00277777777778*G6_0 - 0.00555555555556*G6_1 - 0.00555555555556*G6_2 - 0.00277777777778*G6_3 - 0.00119047619048*G7_0_4_4 - 0.000793650793651*G7_0_4_5 - 0.000793650793651*G7_0_4_6 - 0.000396825396825*G7_0_4_7 - 0.000793650793651*G7_0_5_4 - 0.00119047619048*G7_0_5_5 - 0.000793650793651*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.000793650793651*G7_0_6_4 - 0.000793650793651*G7_0_6_5 - 0.00119047619048*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.000396825396825*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.000396825396825*G7_0_7_7 - 0.000793650793651*G7_1_4_4 - 0.00119047619048*G7_1_4_5 - 0.000793650793651*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.00119047619048*G7_1_5_4 - 0.0047619047619*G7_1_5_5 - 0.00238095238095*G7_1_5_6 - 0.00119047619048*G7_1_5_7 - 0.000793650793651*G7_1_6_4 - 0.00238095238095*G7_1_6_5 - 0.00238095238095*G7_1_6_6 - 0.000793650793651*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.00119047619048*G7_1_7_5 - 0.000793650793651*G7_1_7_6 - 0.000793650793651*G7_1_7_7 - 0.000793650793651*G7_2_4_4 - 0.000793650793651*G7_2_4_5 - 0.00119047619048*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.000793650793651*G7_2_5_4 - 0.00238095238095*G7_2_5_5 - 0.00238095238095*G7_2_5_6 - 0.000793650793651*G7_2_5_7 - 0.00119047619048*G7_2_6_4 - 0.00238095238095*G7_2_6_5 - 0.0047619047619*G7_2_6_6 - 0.00119047619048*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.000793650793651*G7_2_7_5 - 0.00119047619048*G7_2_7_6 - 0.000793650793651*G7_2_7_7 - 0.000396825396825*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.000396825396825*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.00119047619048*G7_3_5_5 - 0.000793650793651*G7_3_5_6 - 0.000793650793651*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.000793650793651*G7_3_6_5 - 0.00119047619048*G7_3_6_6 - 0.000793650793651*G7_3_6_7 - 0.000396825396825*G7_3_7_4 - 0.000793650793651*G7_3_7_5 - 0.000793650793651*G7_3_7_6 - 0.00119047619048*G7_3_7_7 + 0.0031746031746*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0015873015873*G8_0_7 + 0.0031746031746*G8_1_4 + 0.00952380952381*G8_1_5 + 0.00634920634921*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.00634920634921*G8_2_5 + 0.00952380952381*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0015873015873*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0031746031746*G8_3_6 + 0.0031746031746*G8_3_7 - 0.0416666666667*G9_0_1_0 - 0.0416666666667*G9_1_1_0 - 0.0416666666667*G9_2_1_0 - 0.0416666666667*G9_3_1_0;
-    A[22] = -0.000595238095238*G4_0_4_4 - 0.000198412698413*G4_0_4_5 - 0.000595238095238*G4_0_4_6 - 0.000198412698413*G4_0_4_7 - 0.000198412698413*G4_0_5_4 - 0.000198412698413*G4_0_5_5 - 0.000297619047619*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000595238095238*G4_0_6_4 - 0.000297619047619*G4_0_6_5 - 0.00119047619048*G4_0_6_6 - 0.000297619047619*G4_0_6_7 - 0.000198412698413*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 0.000297619047619*G4_0_7_6 - 0.000198412698413*G4_0_7_7 - 0.000198412698413*G4_1_4_4 - 0.000198412698413*G4_1_4_5 - 0.000297619047619*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 0.000198412698413*G4_1_5_4 - 0.000595238095238*G4_1_5_5 - 0.000595238095238*G4_1_5_6 - 0.000198412698413*G4_1_5_7 - 0.000297619047619*G4_1_6_4 - 0.000595238095238*G4_1_6_5 - 0.00119047619048*G4_1_6_6 - 0.000297619047619*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 0.000198412698413*G4_1_7_5 - 0.000297619047619*G4_1_7_6 - 0.000198412698413*G4_1_7_7 - 0.000595238095238*G4_2_4_4 - 0.000297619047619*G4_2_4_5 - 0.00119047619048*G4_2_4_6 - 0.000297619047619*G4_2_4_7 - 0.000297619047619*G4_2_5_4 - 0.000595238095238*G4_2_5_5 - 0.00119047619048*G4_2_5_6 - 0.000297619047619*G4_2_5_7 - 0.00119047619048*G4_2_6_4 - 0.00119047619048*G4_2_6_5 - 0.00595238095238*G4_2_6_6 - 0.00119047619048*G4_2_6_7 - 0.000297619047619*G4_2_7_4 - 0.000297619047619*G4_2_7_5 - 0.00119047619048*G4_2_7_6 - 0.000595238095238*G4_2_7_7 - 0.000198412698413*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 0.000297619047619*G4_3_4_6 - 0.000198412698413*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 0.000198412698413*G4_3_5_5 - 0.000297619047619*G4_3_5_6 - 0.000198412698413*G4_3_5_7 - 0.000297619047619*G4_3_6_4 - 0.000297619047619*G4_3_6_5 - 0.00119047619048*G4_3_6_6 - 0.000595238095238*G4_3_6_7 - 0.000198412698413*G4_3_7_4 - 0.000198412698413*G4_3_7_5 - 0.000595238095238*G4_3_7_6 - 0.000595238095238*G4_3_7_7 + 0.0015873015873*G5_0_4 + 0.000793650793651*G5_0_5 + 0.00238095238095*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000793650793651*G5_1_4 + 0.0015873015873*G5_1_5 + 0.00238095238095*G5_1_6 + 0.000793650793651*G5_1_7 + 0.00238095238095*G5_2_4 + 0.00238095238095*G5_2_5 + 0.00952380952381*G5_2_6 + 0.00238095238095*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000793650793651*G5_3_5 + 0.00238095238095*G5_3_6 + 0.0015873015873*G5_3_7 - 0.00555555555556*G6_0 - 0.00555555555556*G6_1 - 0.0166666666667*G6_2 - 0.00555555555556*G6_3 - 0.00238095238095*G7_0_4_4 - 0.000793650793651*G7_0_4_5 - 0.00238095238095*G7_0_4_6 - 0.000793650793651*G7_0_4_7 - 0.000793650793651*G7_0_5_4 - 0.000793650793651*G7_0_5_5 - 0.00119047619048*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.00238095238095*G7_0_6_4 - 0.00119047619048*G7_0_6_5 - 0.0047619047619*G7_0_6_6 - 0.00119047619048*G7_0_6_7 - 0.000793650793651*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.00119047619048*G7_0_7_6 - 0.000793650793651*G7_0_7_7 - 0.000793650793651*G7_1_4_4 - 0.000793650793651*G7_1_4_5 - 0.00119047619048*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.000793650793651*G7_1_5_4 - 0.00238095238095*G7_1_5_5 - 0.00238095238095*G7_1_5_6 - 0.000793650793651*G7_1_5_7 - 0.00119047619048*G7_1_6_4 - 0.00238095238095*G7_1_6_5 - 0.0047619047619*G7_1_6_6 - 0.00119047619048*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.000793650793651*G7_1_7_5 - 0.00119047619048*G7_1_7_6 - 0.000793650793651*G7_1_7_7 - 0.00238095238095*G7_2_4_4 - 0.00119047619048*G7_2_4_5 - 0.0047619047619*G7_2_4_6 - 0.00119047619048*G7_2_4_7 - 0.00119047619048*G7_2_5_4 - 0.00238095238095*G7_2_5_5 - 0.0047619047619*G7_2_5_6 - 0.00119047619048*G7_2_5_7 - 0.0047619047619*G7_2_6_4 - 0.0047619047619*G7_2_6_5 - 0.0238095238095*G7_2_6_6 - 0.0047619047619*G7_2_6_7 - 0.00119047619048*G7_2_7_4 - 0.00119047619048*G7_2_7_5 - 0.0047619047619*G7_2_7_6 - 0.00238095238095*G7_2_7_7 - 0.000793650793651*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.00119047619048*G7_3_4_6 - 0.000793650793651*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.000793650793651*G7_3_5_5 - 0.00119047619048*G7_3_5_6 - 0.000793650793651*G7_3_5_7 - 0.00119047619048*G7_3_6_4 - 0.00119047619048*G7_3_6_5 - 0.0047619047619*G7_3_6_6 - 0.00238095238095*G7_3_6_7 - 0.000793650793651*G7_3_7_4 - 0.000793650793651*G7_3_7_5 - 0.00238095238095*G7_3_7_6 - 0.00238095238095*G7_3_7_7 + 0.00634920634921*G8_0_4 + 0.0031746031746*G8_0_5 + 0.00952380952381*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0031746031746*G8_1_4 + 0.00634920634921*G8_1_5 + 0.00952380952381*G8_1_6 + 0.0031746031746*G8_1_7 + 0.00952380952381*G8_2_4 + 0.00952380952381*G8_2_5 + 0.0380952380952*G8_2_6 + 0.00952380952381*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0031746031746*G8_3_5 + 0.00952380952381*G8_3_6 + 0.00634920634921*G8_3_7 - 0.0416666666667*G9_0_1_1 - 0.0416666666667*G9_1_1_1 - 0.0416666666667*G9_2_1_1 - 0.0416666666667*G9_3_1_1;
-    A[23] = -0.000297619047619*G4_0_4_4 - 9.92063492063e-05*G4_0_4_5 - 0.000198412698413*G4_0_4_6 - 0.000198412698413*G4_0_4_7 - 9.92063492063e-05*G4_0_5_4 - 9.92063492063e-05*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000198412698413*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 0.000297619047619*G4_0_6_6 - 0.000198412698413*G4_0_6_7 - 0.000198412698413*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 0.000198412698413*G4_0_7_6 - 0.000297619047619*G4_0_7_7 - 9.92063492063e-05*G4_1_4_4 - 9.92063492063e-05*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 9.92063492063e-05*G4_1_5_4 - 0.000297619047619*G4_1_5_5 - 0.000198412698413*G4_1_5_6 - 0.000198412698413*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 0.000198412698413*G4_1_6_5 - 0.000297619047619*G4_1_6_6 - 0.000198412698413*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 0.000198412698413*G4_1_7_5 - 0.000198412698413*G4_1_7_6 - 0.000297619047619*G4_1_7_7 - 0.000198412698413*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 0.000297619047619*G4_2_4_6 - 0.000198412698413*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 0.000198412698413*G4_2_5_5 - 0.000297619047619*G4_2_5_6 - 0.000198412698413*G4_2_5_7 - 0.000297619047619*G4_2_6_4 - 0.000297619047619*G4_2_6_5 - 0.00119047619048*G4_2_6_6 - 0.000595238095238*G4_2_6_7 - 0.000198412698413*G4_2_7_4 - 0.000198412698413*G4_2_7_5 - 0.000595238095238*G4_2_7_6 - 0.000595238095238*G4_2_7_7 - 0.000198412698413*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 0.000198412698413*G4_3_4_6 - 0.000297619047619*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 0.000198412698413*G4_3_5_5 - 0.000198412698413*G4_3_5_6 - 0.000297619047619*G4_3_5_7 - 0.000198412698413*G4_3_6_4 - 0.000198412698413*G4_3_6_5 - 0.000595238095238*G4_3_6_6 - 0.000595238095238*G4_3_6_7 - 0.000297619047619*G4_3_7_4 - 0.000297619047619*G4_3_7_5 - 0.000595238095238*G4_3_7_6 - 0.00119047619048*G4_3_7_7 + 0.000793650793651*G5_0_4 + 0.000396825396825*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000396825396825*G5_1_4 + 0.000793650793651*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000793650793651*G5_2_5 + 0.00238095238095*G5_2_6 + 0.0015873015873*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000793650793651*G5_3_5 + 0.0015873015873*G5_3_6 + 0.00238095238095*G5_3_7 - 0.00277777777778*G6_0 - 0.00277777777778*G6_1 - 0.00555555555556*G6_2 - 0.00555555555556*G6_3 - 0.00119047619048*G7_0_4_4 - 0.000396825396825*G7_0_4_5 - 0.000793650793651*G7_0_4_6 - 0.000793650793651*G7_0_4_7 - 0.000396825396825*G7_0_5_4 - 0.000396825396825*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.000793650793651*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.00119047619048*G7_0_6_6 - 0.000793650793651*G7_0_6_7 - 0.000793650793651*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.000793650793651*G7_0_7_6 - 0.00119047619048*G7_0_7_7 - 0.000396825396825*G7_1_4_4 - 0.000396825396825*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.000396825396825*G7_1_5_4 - 0.00119047619048*G7_1_5_5 - 0.000793650793651*G7_1_5_6 - 0.000793650793651*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.000793650793651*G7_1_6_5 - 0.00119047619048*G7_1_6_6 - 0.000793650793651*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.000793650793651*G7_1_7_5 - 0.000793650793651*G7_1_7_6 - 0.00119047619048*G7_1_7_7 - 0.000793650793651*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.00119047619048*G7_2_4_6 - 0.000793650793651*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.000793650793651*G7_2_5_5 - 0.00119047619048*G7_2_5_6 - 0.000793650793651*G7_2_5_7 - 0.00119047619048*G7_2_6_4 - 0.00119047619048*G7_2_6_5 - 0.0047619047619*G7_2_6_6 - 0.00238095238095*G7_2_6_7 - 0.000793650793651*G7_2_7_4 - 0.000793650793651*G7_2_7_5 - 0.00238095238095*G7_2_7_6 - 0.00238095238095*G7_2_7_7 - 0.000793650793651*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.000793650793651*G7_3_4_6 - 0.00119047619048*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.000793650793651*G7_3_5_5 - 0.000793650793651*G7_3_5_6 - 0.00119047619048*G7_3_5_7 - 0.000793650793651*G7_3_6_4 - 0.000793650793651*G7_3_6_5 - 0.00238095238095*G7_3_6_6 - 0.00238095238095*G7_3_6_7 - 0.00119047619048*G7_3_7_4 - 0.00119047619048*G7_3_7_5 - 0.00238095238095*G7_3_7_6 - 0.0047619047619*G7_3_7_7 + 0.0031746031746*G8_0_4 + 0.0015873015873*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0015873015873*G8_1_4 + 0.0031746031746*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0031746031746*G8_2_5 + 0.00952380952381*G8_2_6 + 0.00634920634921*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0031746031746*G8_3_5 + 0.00634920634921*G8_3_6 + 0.00952380952381*G8_3_7 - 0.0416666666667*G9_0_1_2 - 0.0416666666667*G9_1_1_2 - 0.0416666666667*G9_2_1_2 - 0.0416666666667*G9_3_1_2;
-    A[24] = 0.00833333333333*G3_;
-    A[25] = 0.00833333333333*G3_;
-    A[26] = 0.00833333333333*G3_;
-    A[27] = 0.0166666666667*G3_;
-    A[28] = -0.00119047619048*G4_0_4_4 - 0.000297619047619*G4_0_4_5 - 0.000297619047619*G4_0_4_6 - 0.000595238095238*G4_0_4_7 - 0.000297619047619*G4_0_5_4 - 0.000198412698413*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 0.000198412698413*G4_0_5_7 - 0.000297619047619*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 0.000198412698413*G4_0_6_6 - 0.000198412698413*G4_0_6_7 - 0.000595238095238*G4_0_7_4 - 0.000198412698413*G4_0_7_5 - 0.000198412698413*G4_0_7_6 - 0.000595238095238*G4_0_7_7 - 0.000297619047619*G4_1_4_4 - 0.000198412698413*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 0.000198412698413*G4_1_4_7 - 0.000198412698413*G4_1_5_4 - 0.000297619047619*G4_1_5_5 - 9.92063492063e-05*G4_1_5_6 - 0.000198412698413*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 9.92063492063e-05*G4_1_6_5 - 9.92063492063e-05*G4_1_6_6 - 9.92063492063e-05*G4_1_6_7 - 0.000198412698413*G4_1_7_4 - 0.000198412698413*G4_1_7_5 - 9.92063492063e-05*G4_1_7_6 - 0.000297619047619*G4_1_7_7 - 0.000297619047619*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 0.000198412698413*G4_2_4_6 - 0.000198412698413*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 9.92063492063e-05*G4_2_5_5 - 9.92063492063e-05*G4_2_5_6 - 9.92063492063e-05*G4_2_5_7 - 0.000198412698413*G4_2_6_4 - 9.92063492063e-05*G4_2_6_5 - 0.000297619047619*G4_2_6_6 - 0.000198412698413*G4_2_6_7 - 0.000198412698413*G4_2_7_4 - 9.92063492063e-05*G4_2_7_5 - 0.000198412698413*G4_2_7_6 - 0.000297619047619*G4_2_7_7 - 0.000595238095238*G4_3_4_4 - 0.000198412698413*G4_3_4_5 - 0.000198412698413*G4_3_4_6 - 0.000595238095238*G4_3_4_7 - 0.000198412698413*G4_3_5_4 - 0.000198412698413*G4_3_5_5 - 9.92063492063e-05*G4_3_5_6 - 0.000297619047619*G4_3_5_7 - 0.000198412698413*G4_3_6_4 - 9.92063492063e-05*G4_3_6_5 - 0.000198412698413*G4_3_6_6 - 0.000297619047619*G4_3_6_7 - 0.000595238095238*G4_3_7_4 - 0.000297619047619*G4_3_7_5 - 0.000297619047619*G4_3_7_6 - 0.00119047619048*G4_3_7_7 + 0.00238095238095*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000793650793651*G5_0_6 + 0.0015873015873*G5_0_7 + 0.000793650793651*G5_1_4 + 0.000793650793651*G5_1_5 + 0.000396825396825*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000396825396825*G5_2_5 + 0.000793650793651*G5_2_6 + 0.000793650793651*G5_2_7 + 0.0015873015873*G5_3_4 + 0.000793650793651*G5_3_5 + 0.000793650793651*G5_3_6 + 0.00238095238095*G5_3_7 - 0.00555555555556*G6_0 - 0.00277777777778*G6_1 - 0.00277777777778*G6_2 - 0.00555555555556*G6_3 - 0.0047619047619*G7_0_4_4 - 0.00119047619048*G7_0_4_5 - 0.00119047619048*G7_0_4_6 - 0.00238095238095*G7_0_4_7 - 0.00119047619048*G7_0_5_4 - 0.000793650793651*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.000793650793651*G7_0_5_7 - 0.00119047619048*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.000793650793651*G7_0_6_6 - 0.000793650793651*G7_0_6_7 - 0.00238095238095*G7_0_7_4 - 0.000793650793651*G7_0_7_5 - 0.000793650793651*G7_0_7_6 - 0.00238095238095*G7_0_7_7 - 0.00119047619048*G7_1_4_4 - 0.000793650793651*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.000793650793651*G7_1_4_7 - 0.000793650793651*G7_1_5_4 - 0.00119047619048*G7_1_5_5 - 0.000396825396825*G7_1_5_6 - 0.000793650793651*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.000396825396825*G7_1_6_5 - 0.000396825396825*G7_1_6_6 - 0.000396825396825*G7_1_6_7 - 0.000793650793651*G7_1_7_4 - 0.000793650793651*G7_1_7_5 - 0.000396825396825*G7_1_7_6 - 0.00119047619048*G7_1_7_7 - 0.00119047619048*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.000793650793651*G7_2_4_6 - 0.000793650793651*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.000396825396825*G7_2_5_5 - 0.000396825396825*G7_2_5_6 - 0.000396825396825*G7_2_5_7 - 0.000793650793651*G7_2_6_4 - 0.000396825396825*G7_2_6_5 - 0.00119047619048*G7_2_6_6 - 0.000793650793651*G7_2_6_7 - 0.000793650793651*G7_2_7_4 - 0.000396825396825*G7_2_7_5 - 0.000793650793651*G7_2_7_6 - 0.00119047619048*G7_2_7_7 - 0.00238095238095*G7_3_4_4 - 0.000793650793651*G7_3_4_5 - 0.000793650793651*G7_3_4_6 - 0.00238095238095*G7_3_4_7 - 0.000793650793651*G7_3_5_4 - 0.000793650793651*G7_3_5_5 - 0.000396825396825*G7_3_5_6 - 0.00119047619048*G7_3_5_7 - 0.000793650793651*G7_3_6_4 - 0.000396825396825*G7_3_6_5 - 0.000793650793651*G7_3_6_6 - 0.00119047619048*G7_3_6_7 - 0.00238095238095*G7_3_7_4 - 0.00119047619048*G7_3_7_5 - 0.00119047619048*G7_3_7_6 - 0.0047619047619*G7_3_7_7 + 0.00952380952381*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0031746031746*G8_0_6 + 0.00634920634921*G8_0_7 + 0.0031746031746*G8_1_4 + 0.0031746031746*G8_1_5 + 0.0015873015873*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0015873015873*G8_2_5 + 0.0031746031746*G8_2_6 + 0.0031746031746*G8_2_7 + 0.00634920634921*G8_3_4 + 0.0031746031746*G8_3_5 + 0.0031746031746*G8_3_6 + 0.00952380952381*G8_3_7 + 0.0416666666667*G9_0_2_0 + 0.0416666666667*G9_0_2_1 + 0.0416666666667*G9_0_2_2 + 0.0416666666667*G9_1_2_0 + 0.0416666666667*G9_1_2_1 + 0.0416666666667*G9_1_2_2 + 0.0416666666667*G9_2_2_0 + 0.0416666666667*G9_2_2_1 + 0.0416666666667*G9_2_2_2 + 0.0416666666667*G9_3_2_0 + 0.0416666666667*G9_3_2_1 + 0.0416666666667*G9_3_2_2;
-    A[29] = -0.000297619047619*G4_0_4_4 - 0.000198412698413*G4_0_4_5 - 9.92063492063e-05*G4_0_4_6 - 0.000198412698413*G4_0_4_7 - 0.000198412698413*G4_0_5_4 - 0.000297619047619*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 0.000198412698413*G4_0_5_7 - 9.92063492063e-05*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 9.92063492063e-05*G4_0_6_6 - 9.92063492063e-05*G4_0_6_7 - 0.000198412698413*G4_0_7_4 - 0.000198412698413*G4_0_7_5 - 9.92063492063e-05*G4_0_7_6 - 0.000297619047619*G4_0_7_7 - 0.000198412698413*G4_1_4_4 - 0.000297619047619*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 0.000198412698413*G4_1_4_7 - 0.000297619047619*G4_1_5_4 - 0.00119047619048*G4_1_5_5 - 0.000297619047619*G4_1_5_6 - 0.000595238095238*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 0.000297619047619*G4_1_6_5 - 0.000198412698413*G4_1_6_6 - 0.000198412698413*G4_1_6_7 - 0.000198412698413*G4_1_7_4 - 0.000595238095238*G4_1_7_5 - 0.000198412698413*G4_1_7_6 - 0.000595238095238*G4_1_7_7 - 9.92063492063e-05*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 9.92063492063e-05*G4_2_4_6 - 9.92063492063e-05*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 0.000297619047619*G4_2_5_5 - 0.000198412698413*G4_2_5_6 - 0.000198412698413*G4_2_5_7 - 9.92063492063e-05*G4_2_6_4 - 0.000198412698413*G4_2_6_5 - 0.000297619047619*G4_2_6_6 - 0.000198412698413*G4_2_6_7 - 9.92063492063e-05*G4_2_7_4 - 0.000198412698413*G4_2_7_5 - 0.000198412698413*G4_2_7_6 - 0.000297619047619*G4_2_7_7 - 0.000198412698413*G4_3_4_4 - 0.000198412698413*G4_3_4_5 - 9.92063492063e-05*G4_3_4_6 - 0.000297619047619*G4_3_4_7 - 0.000198412698413*G4_3_5_4 - 0.000595238095238*G4_3_5_5 - 0.000198412698413*G4_3_5_6 - 0.000595238095238*G4_3_5_7 - 9.92063492063e-05*G4_3_6_4 - 0.000198412698413*G4_3_6_5 - 0.000198412698413*G4_3_6_6 - 0.000297619047619*G4_3_6_7 - 0.000297619047619*G4_3_7_4 - 0.000595238095238*G4_3_7_5 - 0.000297619047619*G4_3_7_6 - 0.00119047619048*G4_3_7_7 + 0.000793650793651*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000396825396825*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000793650793651*G5_1_4 + 0.00238095238095*G5_1_5 + 0.000793650793651*G5_1_6 + 0.0015873015873*G5_1_7 + 0.000396825396825*G5_2_4 + 0.000793650793651*G5_2_5 + 0.000793650793651*G5_2_6 + 0.000793650793651*G5_2_7 + 0.000793650793651*G5_3_4 + 0.0015873015873*G5_3_5 + 0.000793650793651*G5_3_6 + 0.00238095238095*G5_3_7 - 0.00277777777778*G6_0 - 0.00555555555556*G6_1 - 0.00277777777778*G6_2 - 0.00555555555556*G6_3 - 0.00119047619048*G7_0_4_4 - 0.000793650793651*G7_0_4_5 - 0.000396825396825*G7_0_4_6 - 0.000793650793651*G7_0_4_7 - 0.000793650793651*G7_0_5_4 - 0.00119047619048*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.000793650793651*G7_0_5_7 - 0.000396825396825*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.000396825396825*G7_0_6_6 - 0.000396825396825*G7_0_6_7 - 0.000793650793651*G7_0_7_4 - 0.000793650793651*G7_0_7_5 - 0.000396825396825*G7_0_7_6 - 0.00119047619048*G7_0_7_7 - 0.000793650793651*G7_1_4_4 - 0.00119047619048*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.000793650793651*G7_1_4_7 - 0.00119047619048*G7_1_5_4 - 0.0047619047619*G7_1_5_5 - 0.00119047619048*G7_1_5_6 - 0.00238095238095*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.00119047619048*G7_1_6_5 - 0.000793650793651*G7_1_6_6 - 0.000793650793651*G7_1_6_7 - 0.000793650793651*G7_1_7_4 - 0.00238095238095*G7_1_7_5 - 0.000793650793651*G7_1_7_6 - 0.00238095238095*G7_1_7_7 - 0.000396825396825*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.000396825396825*G7_2_4_6 - 0.000396825396825*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.00119047619048*G7_2_5_5 - 0.000793650793651*G7_2_5_6 - 0.000793650793651*G7_2_5_7 - 0.000396825396825*G7_2_6_4 - 0.000793650793651*G7_2_6_5 - 0.00119047619048*G7_2_6_6 - 0.000793650793651*G7_2_6_7 - 0.000396825396825*G7_2_7_4 - 0.000793650793651*G7_2_7_5 - 0.000793650793651*G7_2_7_6 - 0.00119047619048*G7_2_7_7 - 0.000793650793651*G7_3_4_4 - 0.000793650793651*G7_3_4_5 - 0.000396825396825*G7_3_4_6 - 0.00119047619048*G7_3_4_7 - 0.000793650793651*G7_3_5_4 - 0.00238095238095*G7_3_5_5 - 0.000793650793651*G7_3_5_6 - 0.00238095238095*G7_3_5_7 - 0.000396825396825*G7_3_6_4 - 0.000793650793651*G7_3_6_5 - 0.000793650793651*G7_3_6_6 - 0.00119047619048*G7_3_6_7 - 0.00119047619048*G7_3_7_4 - 0.00238095238095*G7_3_7_5 - 0.00119047619048*G7_3_7_6 - 0.0047619047619*G7_3_7_7 + 0.0031746031746*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0015873015873*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0031746031746*G8_1_4 + 0.00952380952381*G8_1_5 + 0.0031746031746*G8_1_6 + 0.00634920634921*G8_1_7 + 0.0015873015873*G8_2_4 + 0.0031746031746*G8_2_5 + 0.0031746031746*G8_2_6 + 0.0031746031746*G8_2_7 + 0.0031746031746*G8_3_4 + 0.00634920634921*G8_3_5 + 0.0031746031746*G8_3_6 + 0.00952380952381*G8_3_7 - 0.0416666666667*G9_0_2_0 - 0.0416666666667*G9_1_2_0 - 0.0416666666667*G9_2_2_0 - 0.0416666666667*G9_3_2_0;
-    A[30] = -0.000297619047619*G4_0_4_4 - 9.92063492063e-05*G4_0_4_5 - 0.000198412698413*G4_0_4_6 - 0.000198412698413*G4_0_4_7 - 9.92063492063e-05*G4_0_5_4 - 9.92063492063e-05*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 9.92063492063e-05*G4_0_5_7 - 0.000198412698413*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 0.000297619047619*G4_0_6_6 - 0.000198412698413*G4_0_6_7 - 0.000198412698413*G4_0_7_4 - 9.92063492063e-05*G4_0_7_5 - 0.000198412698413*G4_0_7_6 - 0.000297619047619*G4_0_7_7 - 9.92063492063e-05*G4_1_4_4 - 9.92063492063e-05*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 9.92063492063e-05*G4_1_4_7 - 9.92063492063e-05*G4_1_5_4 - 0.000297619047619*G4_1_5_5 - 0.000198412698413*G4_1_5_6 - 0.000198412698413*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 0.000198412698413*G4_1_6_5 - 0.000297619047619*G4_1_6_6 - 0.000198412698413*G4_1_6_7 - 9.92063492063e-05*G4_1_7_4 - 0.000198412698413*G4_1_7_5 - 0.000198412698413*G4_1_7_6 - 0.000297619047619*G4_1_7_7 - 0.000198412698413*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 0.000297619047619*G4_2_4_6 - 0.000198412698413*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 0.000198412698413*G4_2_5_5 - 0.000297619047619*G4_2_5_6 - 0.000198412698413*G4_2_5_7 - 0.000297619047619*G4_2_6_4 - 0.000297619047619*G4_2_6_5 - 0.00119047619048*G4_2_6_6 - 0.000595238095238*G4_2_6_7 - 0.000198412698413*G4_2_7_4 - 0.000198412698413*G4_2_7_5 - 0.000595238095238*G4_2_7_6 - 0.000595238095238*G4_2_7_7 - 0.000198412698413*G4_3_4_4 - 9.92063492063e-05*G4_3_4_5 - 0.000198412698413*G4_3_4_6 - 0.000297619047619*G4_3_4_7 - 9.92063492063e-05*G4_3_5_4 - 0.000198412698413*G4_3_5_5 - 0.000198412698413*G4_3_5_6 - 0.000297619047619*G4_3_5_7 - 0.000198412698413*G4_3_6_4 - 0.000198412698413*G4_3_6_5 - 0.000595238095238*G4_3_6_6 - 0.000595238095238*G4_3_6_7 - 0.000297619047619*G4_3_7_4 - 0.000297619047619*G4_3_7_5 - 0.000595238095238*G4_3_7_6 - 0.00119047619048*G4_3_7_7 + 0.000793650793651*G5_0_4 + 0.000396825396825*G5_0_5 + 0.000793650793651*G5_0_6 + 0.000793650793651*G5_0_7 + 0.000396825396825*G5_1_4 + 0.000793650793651*G5_1_5 + 0.000793650793651*G5_1_6 + 0.000793650793651*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000793650793651*G5_2_5 + 0.00238095238095*G5_2_6 + 0.0015873015873*G5_2_7 + 0.000793650793651*G5_3_4 + 0.000793650793651*G5_3_5 + 0.0015873015873*G5_3_6 + 0.00238095238095*G5_3_7 - 0.00277777777778*G6_0 - 0.00277777777778*G6_1 - 0.00555555555556*G6_2 - 0.00555555555556*G6_3 - 0.00119047619048*G7_0_4_4 - 0.000396825396825*G7_0_4_5 - 0.000793650793651*G7_0_4_6 - 0.000793650793651*G7_0_4_7 - 0.000396825396825*G7_0_5_4 - 0.000396825396825*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.000396825396825*G7_0_5_7 - 0.000793650793651*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.00119047619048*G7_0_6_6 - 0.000793650793651*G7_0_6_7 - 0.000793650793651*G7_0_7_4 - 0.000396825396825*G7_0_7_5 - 0.000793650793651*G7_0_7_6 - 0.00119047619048*G7_0_7_7 - 0.000396825396825*G7_1_4_4 - 0.000396825396825*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.000396825396825*G7_1_4_7 - 0.000396825396825*G7_1_5_4 - 0.00119047619048*G7_1_5_5 - 0.000793650793651*G7_1_5_6 - 0.000793650793651*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.000793650793651*G7_1_6_5 - 0.00119047619048*G7_1_6_6 - 0.000793650793651*G7_1_6_7 - 0.000396825396825*G7_1_7_4 - 0.000793650793651*G7_1_7_5 - 0.000793650793651*G7_1_7_6 - 0.00119047619048*G7_1_7_7 - 0.000793650793651*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.00119047619048*G7_2_4_6 - 0.000793650793651*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.000793650793651*G7_2_5_5 - 0.00119047619048*G7_2_5_6 - 0.000793650793651*G7_2_5_7 - 0.00119047619048*G7_2_6_4 - 0.00119047619048*G7_2_6_5 - 0.0047619047619*G7_2_6_6 - 0.00238095238095*G7_2_6_7 - 0.000793650793651*G7_2_7_4 - 0.000793650793651*G7_2_7_5 - 0.00238095238095*G7_2_7_6 - 0.00238095238095*G7_2_7_7 - 0.000793650793651*G7_3_4_4 - 0.000396825396825*G7_3_4_5 - 0.000793650793651*G7_3_4_6 - 0.00119047619048*G7_3_4_7 - 0.000396825396825*G7_3_5_4 - 0.000793650793651*G7_3_5_5 - 0.000793650793651*G7_3_5_6 - 0.00119047619048*G7_3_5_7 - 0.000793650793651*G7_3_6_4 - 0.000793650793651*G7_3_6_5 - 0.00238095238095*G7_3_6_6 - 0.00238095238095*G7_3_6_7 - 0.00119047619048*G7_3_7_4 - 0.00119047619048*G7_3_7_5 - 0.00238095238095*G7_3_7_6 - 0.0047619047619*G7_3_7_7 + 0.0031746031746*G8_0_4 + 0.0015873015873*G8_0_5 + 0.0031746031746*G8_0_6 + 0.0031746031746*G8_0_7 + 0.0015873015873*G8_1_4 + 0.0031746031746*G8_1_5 + 0.0031746031746*G8_1_6 + 0.0031746031746*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0031746031746*G8_2_5 + 0.00952380952381*G8_2_6 + 0.00634920634921*G8_2_7 + 0.0031746031746*G8_3_4 + 0.0031746031746*G8_3_5 + 0.00634920634921*G8_3_6 + 0.00952380952381*G8_3_7 - 0.0416666666667*G9_0_2_1 - 0.0416666666667*G9_1_2_1 - 0.0416666666667*G9_2_2_1 - 0.0416666666667*G9_3_2_1;
-    A[31] = -0.000595238095238*G4_0_4_4 - 0.000198412698413*G4_0_4_5 - 0.000198412698413*G4_0_4_6 - 0.000595238095238*G4_0_4_7 - 0.000198412698413*G4_0_5_4 - 0.000198412698413*G4_0_5_5 - 9.92063492063e-05*G4_0_5_6 - 0.000297619047619*G4_0_5_7 - 0.000198412698413*G4_0_6_4 - 9.92063492063e-05*G4_0_6_5 - 0.000198412698413*G4_0_6_6 - 0.000297619047619*G4_0_6_7 - 0.000595238095238*G4_0_7_4 - 0.000297619047619*G4_0_7_5 - 0.000297619047619*G4_0_7_6 - 0.00119047619048*G4_0_7_7 - 0.000198412698413*G4_1_4_4 - 0.000198412698413*G4_1_4_5 - 9.92063492063e-05*G4_1_4_6 - 0.000297619047619*G4_1_4_7 - 0.000198412698413*G4_1_5_4 - 0.000595238095238*G4_1_5_5 - 0.000198412698413*G4_1_5_6 - 0.000595238095238*G4_1_5_7 - 9.92063492063e-05*G4_1_6_4 - 0.000198412698413*G4_1_6_5 - 0.000198412698413*G4_1_6_6 - 0.000297619047619*G4_1_6_7 - 0.000297619047619*G4_1_7_4 - 0.000595238095238*G4_1_7_5 - 0.000297619047619*G4_1_7_6 - 0.00119047619048*G4_1_7_7 - 0.000198412698413*G4_2_4_4 - 9.92063492063e-05*G4_2_4_5 - 0.000198412698413*G4_2_4_6 - 0.000297619047619*G4_2_4_7 - 9.92063492063e-05*G4_2_5_4 - 0.000198412698413*G4_2_5_5 - 0.000198412698413*G4_2_5_6 - 0.000297619047619*G4_2_5_7 - 0.000198412698413*G4_2_6_4 - 0.000198412698413*G4_2_6_5 - 0.000595238095238*G4_2_6_6 - 0.000595238095238*G4_2_6_7 - 0.000297619047619*G4_2_7_4 - 0.000297619047619*G4_2_7_5 - 0.000595238095238*G4_2_7_6 - 0.00119047619048*G4_2_7_7 - 0.000595238095238*G4_3_4_4 - 0.000297619047619*G4_3_4_5 - 0.000297619047619*G4_3_4_6 - 0.00119047619048*G4_3_4_7 - 0.000297619047619*G4_3_5_4 - 0.000595238095238*G4_3_5_5 - 0.000297619047619*G4_3_5_6 - 0.00119047619048*G4_3_5_7 - 0.000297619047619*G4_3_6_4 - 0.000297619047619*G4_3_6_5 - 0.000595238095238*G4_3_6_6 - 0.00119047619048*G4_3_6_7 - 0.00119047619048*G4_3_7_4 - 0.00119047619048*G4_3_7_5 - 0.00119047619048*G4_3_7_6 - 0.00595238095238*G4_3_7_7 + 0.0015873015873*G5_0_4 + 0.000793650793651*G5_0_5 + 0.000793650793651*G5_0_6 + 0.00238095238095*G5_0_7 + 0.000793650793651*G5_1_4 + 0.0015873015873*G5_1_5 + 0.000793650793651*G5_1_6 + 0.00238095238095*G5_1_7 + 0.000793650793651*G5_2_4 + 0.000793650793651*G5_2_5 + 0.0015873015873*G5_2_6 + 0.00238095238095*G5_2_7 + 0.00238095238095*G5_3_4 + 0.00238095238095*G5_3_5 + 0.00238095238095*G5_3_6 + 0.00952380952381*G5_3_7 - 0.00555555555556*G6_0 - 0.00555555555556*G6_1 - 0.00555555555556*G6_2 - 0.0166666666667*G6_3 - 0.00238095238095*G7_0_4_4 - 0.000793650793651*G7_0_4_5 - 0.000793650793651*G7_0_4_6 - 0.00238095238095*G7_0_4_7 - 0.000793650793651*G7_0_5_4 - 0.000793650793651*G7_0_5_5 - 0.000396825396825*G7_0_5_6 - 0.00119047619048*G7_0_5_7 - 0.000793650793651*G7_0_6_4 - 0.000396825396825*G7_0_6_5 - 0.000793650793651*G7_0_6_6 - 0.00119047619048*G7_0_6_7 - 0.00238095238095*G7_0_7_4 - 0.00119047619048*G7_0_7_5 - 0.00119047619048*G7_0_7_6 - 0.0047619047619*G7_0_7_7 - 0.000793650793651*G7_1_4_4 - 0.000793650793651*G7_1_4_5 - 0.000396825396825*G7_1_4_6 - 0.00119047619048*G7_1_4_7 - 0.000793650793651*G7_1_5_4 - 0.00238095238095*G7_1_5_5 - 0.000793650793651*G7_1_5_6 - 0.00238095238095*G7_1_5_7 - 0.000396825396825*G7_1_6_4 - 0.000793650793651*G7_1_6_5 - 0.000793650793651*G7_1_6_6 - 0.00119047619048*G7_1_6_7 - 0.00119047619048*G7_1_7_4 - 0.00238095238095*G7_1_7_5 - 0.00119047619048*G7_1_7_6 - 0.0047619047619*G7_1_7_7 - 0.000793650793651*G7_2_4_4 - 0.000396825396825*G7_2_4_5 - 0.000793650793651*G7_2_4_6 - 0.00119047619048*G7_2_4_7 - 0.000396825396825*G7_2_5_4 - 0.000793650793651*G7_2_5_5 - 0.000793650793651*G7_2_5_6 - 0.00119047619048*G7_2_5_7 - 0.000793650793651*G7_2_6_4 - 0.000793650793651*G7_2_6_5 - 0.00238095238095*G7_2_6_6 - 0.00238095238095*G7_2_6_7 - 0.00119047619048*G7_2_7_4 - 0.00119047619048*G7_2_7_5 - 0.00238095238095*G7_2_7_6 - 0.0047619047619*G7_2_7_7 - 0.00238095238095*G7_3_4_4 - 0.00119047619048*G7_3_4_5 - 0.00119047619048*G7_3_4_6 - 0.0047619047619*G7_3_4_7 - 0.00119047619048*G7_3_5_4 - 0.00238095238095*G7_3_5_5 - 0.00119047619048*G7_3_5_6 - 0.0047619047619*G7_3_5_7 - 0.00119047619048*G7_3_6_4 - 0.00119047619048*G7_3_6_5 - 0.00238095238095*G7_3_6_6 - 0.0047619047619*G7_3_6_7 - 0.0047619047619*G7_3_7_4 - 0.0047619047619*G7_3_7_5 - 0.0047619047619*G7_3_7_6 - 0.0238095238095*G7_3_7_7 + 0.00634920634921*G8_0_4 + 0.0031746031746*G8_0_5 + 0.0031746031746*G8_0_6 + 0.00952380952381*G8_0_7 + 0.0031746031746*G8_1_4 + 0.00634920634921*G8_1_5 + 0.0031746031746*G8_1_6 + 0.00952380952381*G8_1_7 + 0.0031746031746*G8_2_4 + 0.0031746031746*G8_2_5 + 0.00634920634921*G8_2_6 + 0.00952380952381*G8_2_7 + 0.00952380952381*G8_3_4 + 0.00952380952381*G8_3_5 + 0.00952380952381*G8_3_6 + 0.0380952380952*G8_3_7 - 0.0416666666667*G9_0_2_2 - 0.0416666666667*G9_1_2_2 - 0.0416666666667*G9_2_2_2 - 0.0416666666667*G9_3_2_2;
-    A[32] = 0.0166666666667*G1_0_0_0_0 + 0.0166666666667*G1_0_0_0_1 + 0.0166666666667*G1_0_0_0_2 + 0.0166666666667*G1_0_0_1_0 + 0.0166666666667*G1_0_0_1_1 + 0.0166666666667*G1_0_0_1_2 + 0.0166666666667*G1_0_0_2_0 + 0.0166666666667*G1_0_0_2_1 + 0.0166666666667*G1_0_0_2_2 - 0.0166666666667*G1_0_1_0_0 - 0.0166666666667*G1_0_1_1_0 - 0.0166666666667*G1_0_1_2_0 - 0.0166666666667*G1_0_2_0_1 - 0.0166666666667*G1_0_2_1_1 - 0.0166666666667*G1_0_2_2_1 - 0.0166666666667*G1_0_3_0_2 - 0.0166666666667*G1_0_3_1_2 - 0.0166666666667*G1_0_3_2_2 + 0.00833333333333*G1_1_0_0_0 + 0.00833333333333*G1_1_0_0_1 + 0.00833333333333*G1_1_0_0_2 + 0.00833333333333*G1_1_0_1_0 + 0.00833333333333*G1_1_0_1_1 + 0.00833333333333*G1_1_0_1_2 + 0.00833333333333*G1_1_0_2_0 + 0.00833333333333*G1_1_0_2_1 + 0.00833333333333*G1_1_0_2_2 - 0.00833333333333*G1_1_1_0_0 - 0.00833333333333*G1_1_1_1_0 - 0.00833333333333*G1_1_1_2_0 - 0.00833333333333*G1_1_2_0_1 - 0.00833333333333*G1_1_2_1_1 - 0.00833333333333*G1_1_2_2_1 - 0.00833333333333*G1_1_3_0_2 - 0.00833333333333*G1_1_3_1_2 - 0.00833333333333*G1_1_3_2_2 + 0.00833333333333*G1_2_0_0_0 + 0.00833333333333*G1_2_0_0_1 + 0.00833333333333*G1_2_0_0_2 + 0.00833333333333*G1_2_0_1_0 + 0.00833333333333*G1_2_0_1_1 + 0.00833333333333*G1_2_0_1_2 + 0.00833333333333*G1_2_0_2_0 + 0.00833333333333*G1_2_0_2_1 + 0.00833333333333*G1_2_0_2_2 - 0.00833333333333*G1_2_1_0_0 - 0.00833333333333*G1_2_1_1_0 - 0.00833333333333*G1_2_1_2_0 - 0.00833333333333*G1_2_2_0_1 - 0.00833333333333*G1_2_2_1_1 - 0.00833333333333*G1_2_2_2_1 - 0.00833333333333*G1_2_3_0_2 - 0.00833333333333*G1_2_3_1_2 - 0.00833333333333*G1_2_3_2_2 + 0.00833333333333*G1_3_0_0_0 + 0.00833333333333*G1_3_0_0_1 + 0.00833333333333*G1_3_0_0_2 + 0.00833333333333*G1_3_0_1_0 + 0.00833333333333*G1_3_0_1_1 + 0.00833333333333*G1_3_0_1_2 + 0.00833333333333*G1_3_0_2_0 + 0.00833333333333*G1_3_0_2_1 + 0.00833333333333*G1_3_0_2_2 - 0.00833333333333*G1_3_1_0_0 - 0.00833333333333*G1_3_1_1_0 - 0.00833333333333*G1_3_1_2_0 - 0.00833333333333*G1_3_2_0_1 - 0.00833333333333*G1_3_2_1_1 - 0.00833333333333*G1_3_2_2_1 - 0.00833333333333*G1_3_3_0_2 - 0.00833333333333*G1_3_3_1_2 - 0.00833333333333*G1_3_3_2_2 + 0.0166666666667*G2_0_0_0_0 + 0.0166666666667*G2_0_0_0_1 + 0.0166666666667*G2_0_0_0_2 + 0.0166666666667*G2_0_0_1_0 + 0.0166666666667*G2_0_0_1_1 + 0.0166666666667*G2_0_0_1_2 + 0.0166666666667*G2_0_0_2_0 + 0.0166666666667*G2_0_0_2_1 + 0.0166666666667*G2_0_0_2_2 + 0.00833333333333*G2_0_1_0_0 + 0.00833333333333*G2_0_1_0_1 + 0.00833333333333*G2_0_1_0_2 + 0.00833333333333*G2_0_1_1_0 + 0.00833333333333*G2_0_1_1_1 + 0.00833333333333*G2_0_1_1_2 + 0.00833333333333*G2_0_1_2_0 + 0.00833333333333*G2_0_1_2_1 + 0.00833333333333*G2_0_1_2_2 + 0.00833333333333*G2_0_2_0_0 + 0.00833333333333*G2_0_2_0_1 + 0.00833333333333*G2_0_2_0_2 + 0.00833333333333*G2_0_2_1_0 + 0.00833333333333*G2_0_2_1_1 + 0.00833333333333*G2_0_2_1_2 + 0.00833333333333*G2_0_2_2_0 + 0.00833333333333*G2_0_2_2_1 + 0.00833333333333*G2_0_2_2_2 + 0.00833333333333*G2_0_3_0_0 + 0.00833333333333*G2_0_3_0_1 + 0.00833333333333*G2_0_3_0_2 + 0.00833333333333*G2_0_3_1_0 + 0.00833333333333*G2_0_3_1_1 + 0.00833333333333*G2_0_3_1_2 + 0.00833333333333*G2_0_3_2_0 + 0.00833333333333*G2_0_3_2_1 + 0.00833333333333*G2_0_3_2_2 + 0.00833333333333*G2_1_0_0_0 + 0.00833333333333*G2_1_0_0_1 + 0.00833333333333*G2_1_0_0_2 + 0.00833333333333*G2_1_0_1_0 + 0.00833333333333*G2_1_0_1_1 + 0.00833333333333*G2_1_0_1_2 + 0.00833333333333*G2_1_0_2_0 + 0.00833333333333*G2_1_0_2_1 + 0.00833333333333*G2_1_0_2_2 + 0.0166666666667*G2_1_1_0_0 + 0.0166666666667*G2_1_1_0_1 + 0.0166666666667*G2_1_1_0_2 + 0.0166666666667*G2_1_1_1_0 + 0.0166666666667*G2_1_1_1_1 + 0.0166666666667*G2_1_1_1_2 + 0.0166666666667*G2_1_1_2_0 + 0.0166666666667*G2_1_1_2_1 + 0.0166666666667*G2_1_1_2_2 + 0.00833333333333*G2_1_2_0_0 + 0.00833333333333*G2_1_2_0_1 + 0.00833333333333*G2_1_2_0_2 + 0.00833333333333*G2_1_2_1_0 + 0.00833333333333*G2_1_2_1_1 + 0.00833333333333*G2_1_2_1_2 + 0.00833333333333*G2_1_2_2_0 + 0.00833333333333*G2_1_2_2_1 + 0.00833333333333*G2_1_2_2_2 + 0.00833333333333*G2_1_3_0_0 + 0.00833333333333*G2_1_3_0_1 + 0.00833333333333*G2_1_3_0_2 + 0.00833333333333*G2_1_3_1_0 + 0.00833333333333*G2_1_3_1_1 + 0.00833333333333*G2_1_3_1_2 + 0.00833333333333*G2_1_3_2_0 + 0.00833333333333*G2_1_3_2_1 + 0.00833333333333*G2_1_3_2_2 + 0.00833333333333*G2_2_0_0_0 + 0.00833333333333*G2_2_0_0_1 + 0.00833333333333*G2_2_0_0_2 + 0.00833333333333*G2_2_0_1_0 + 0.00833333333333*G2_2_0_1_1 + 0.00833333333333*G2_2_0_1_2 + 0.00833333333333*G2_2_0_2_0 + 0.00833333333333*G2_2_0_2_1 + 0.00833333333333*G2_2_0_2_2 + 0.00833333333333*G2_2_1_0_0 + 0.00833333333333*G2_2_1_0_1 + 0.00833333333333*G2_2_1_0_2 + 0.00833333333333*G2_2_1_1_0 + 0.00833333333333*G2_2_1_1_1 + 0.00833333333333*G2_2_1_1_2 + 0.00833333333333*G2_2_1_2_0 + 0.00833333333333*G2_2_1_2_1 + 0.00833333333333*G2_2_1_2_2 + 0.0166666666667*G2_2_2_0_0 + 0.0166666666667*G2_2_2_0_1 + 0.0166666666667*G2_2_2_0_2 + 0.0166666666667*G2_2_2_1_0 + 0.0166666666667*G2_2_2_1_1 + 0.0166666666667*G2_2_2_1_2 + 0.0166666666667*G2_2_2_2_0 + 0.0166666666667*G2_2_2_2_1 + 0.0166666666667*G2_2_2_2_2 + 0.00833333333333*G2_2_3_0_0 + 0.00833333333333*G2_2_3_0_1 + 0.00833333333333*G2_2_3_0_2 + 0.00833333333333*G2_2_3_1_0 + 0.00833333333333*G2_2_3_1_1 + 0.00833333333333*G2_2_3_1_2 + 0.00833333333333*G2_2_3_2_0 + 0.00833333333333*G2_2_3_2_1 + 0.00833333333333*G2_2_3_2_2 + 0.00833333333333*G2_3_0_0_0 + 0.00833333333333*G2_3_0_0_1 + 0.00833333333333*G2_3_0_0_2 + 0.00833333333333*G2_3_0_1_0 + 0.00833333333333*G2_3_0_1_1 + 0.00833333333333*G2_3_0_1_2 + 0.00833333333333*G2_3_0_2_0 + 0.00833333333333*G2_3_0_2_1 + 0.00833333333333*G2_3_0_2_2 + 0.00833333333333*G2_3_1_0_0 + 0.00833333333333*G2_3_1_0_1 + 0.00833333333333*G2_3_1_0_2 + 0.00833333333333*G2_3_1_1_0 + 0.00833333333333*G2_3_1_1_1 + 0.00833333333333*G2_3_1_1_2 + 0.00833333333333*G2_3_1_2_0 + 0.00833333333333*G2_3_1_2_1 + 0.00833333333333*G2_3_1_2_2 + 0.00833333333333*G2_3_2_0_0 + 0.00833333333333*G2_3_2_0_1 + 0.00833333333333*G2_3_2_0_2 + 0.00833333333333*G2_3_2_1_0 + 0.00833333333333*G2_3_2_1_1 + 0.00833333333333*G2_3_2_1_2 + 0.00833333333333*G2_3_2_2_0 + 0.00833333333333*G2_3_2_2_1 + 0.00833333333333*G2_3_2_2_2 + 0.0166666666667*G2_3_3_0_0 + 0.0166666666667*G2_3_3_0_1 + 0.0166666666667*G2_3_3_0_2 + 0.0166666666667*G2_3_3_1_0 + 0.0166666666667*G2_3_3_1_1 + 0.0166666666667*G2_3_3_1_2 + 0.0166666666667*G2_3_3_2_0 + 0.0166666666667*G2_3_3_2_1 + 0.0166666666667*G2_3_3_2_2;
-    A[33] = 0.00833333333333*G1_0_0_0_0 + 0.00833333333333*G1_0_0_0_1 + 0.00833333333333*G1_0_0_0_2 + 0.00833333333333*G1_0_0_1_0 + 0.00833333333333*G1_0_0_1_1 + 0.00833333333333*G1_0_0_1_2 + 0.00833333333333*G1_0_0_2_0 + 0.00833333333333*G1_0_0_2_1 + 0.00833333333333*G1_0_0_2_2 - 0.00833333333333*G1_0_1_0_0 - 0.00833333333333*G1_0_1_1_0 - 0.00833333333333*G1_0_1_2_0 - 0.00833333333333*G1_0_2_0_1 - 0.00833333333333*G1_0_2_1_1 - 0.00833333333333*G1_0_2_2_1 - 0.00833333333333*G1_0_3_0_2 - 0.00833333333333*G1_0_3_1_2 - 0.00833333333333*G1_0_3_2_2 + 0.0166666666667*G1_1_0_0_0 + 0.0166666666667*G1_1_0_0_1 + 0.0166666666667*G1_1_0_0_2 + 0.0166666666667*G1_1_0_1_0 + 0.0166666666667*G1_1_0_1_1 + 0.0166666666667*G1_1_0_1_2 + 0.0166666666667*G1_1_0_2_0 + 0.0166666666667*G1_1_0_2_1 + 0.0166666666667*G1_1_0_2_2 - 0.0166666666667*G1_1_1_0_0 - 0.0166666666667*G1_1_1_1_0 - 0.0166666666667*G1_1_1_2_0 - 0.0166666666667*G1_1_2_0_1 - 0.0166666666667*G1_1_2_1_1 - 0.0166666666667*G1_1_2_2_1 - 0.0166666666667*G1_1_3_0_2 - 0.0166666666667*G1_1_3_1_2 - 0.0166666666667*G1_1_3_2_2 + 0.00833333333333*G1_2_0_0_0 + 0.00833333333333*G1_2_0_0_1 + 0.00833333333333*G1_2_0_0_2 + 0.00833333333333*G1_2_0_1_0 + 0.00833333333333*G1_2_0_1_1 + 0.00833333333333*G1_2_0_1_2 + 0.00833333333333*G1_2_0_2_0 + 0.00833333333333*G1_2_0_2_1 + 0.00833333333333*G1_2_0_2_2 - 0.00833333333333*G1_2_1_0_0 - 0.00833333333333*G1_2_1_1_0 - 0.00833333333333*G1_2_1_2_0 - 0.00833333333333*G1_2_2_0_1 - 0.00833333333333*G1_2_2_1_1 - 0.00833333333333*G1_2_2_2_1 - 0.00833333333333*G1_2_3_0_2 - 0.00833333333333*G1_2_3_1_2 - 0.00833333333333*G1_2_3_2_2 + 0.00833333333333*G1_3_0_0_0 + 0.00833333333333*G1_3_0_0_1 + 0.00833333333333*G1_3_0_0_2 + 0.00833333333333*G1_3_0_1_0 + 0.00833333333333*G1_3_0_1_1 + 0.00833333333333*G1_3_0_1_2 + 0.00833333333333*G1_3_0_2_0 + 0.00833333333333*G1_3_0_2_1 + 0.00833333333333*G1_3_0_2_2 - 0.00833333333333*G1_3_1_0_0 - 0.00833333333333*G1_3_1_1_0 - 0.00833333333333*G1_3_1_2_0 - 0.00833333333333*G1_3_2_0_1 - 0.00833333333333*G1_3_2_1_1 - 0.00833333333333*G1_3_2_2_1 - 0.00833333333333*G1_3_3_0_2 - 0.00833333333333*G1_3_3_1_2 - 0.00833333333333*G1_3_3_2_2 - 0.0166666666667*G2_0_0_0_0 - 0.0166666666667*G2_0_0_1_0 - 0.0166666666667*G2_0_0_2_0 - 0.00833333333333*G2_0_1_0_0 - 0.00833333333333*G2_0_1_1_0 - 0.00833333333333*G2_0_1_2_0 - 0.00833333333333*G2_0_2_0_0 - 0.00833333333333*G2_0_2_1_0 - 0.00833333333333*G2_0_2_2_0 - 0.00833333333333*G2_0_3_0_0 - 0.00833333333333*G2_0_3_1_0 - 0.00833333333333*G2_0_3_2_0 - 0.00833333333333*G2_1_0_0_0 - 0.00833333333333*G2_1_0_1_0 - 0.00833333333333*G2_1_0_2_0 - 0.0166666666667*G2_1_1_0_0 - 0.0166666666667*G2_1_1_1_0 - 0.0166666666667*G2_1_1_2_0 - 0.00833333333333*G2_1_2_0_0 - 0.00833333333333*G2_1_2_1_0 - 0.00833333333333*G2_1_2_2_0 - 0.00833333333333*G2_1_3_0_0 - 0.00833333333333*G2_1_3_1_0 - 0.00833333333333*G2_1_3_2_0 - 0.00833333333333*G2_2_0_0_0 - 0.00833333333333*G2_2_0_1_0 - 0.00833333333333*G2_2_0_2_0 - 0.00833333333333*G2_2_1_0_0 - 0.00833333333333*G2_2_1_1_0 - 0.00833333333333*G2_2_1_2_0 - 0.0166666666667*G2_2_2_0_0 - 0.0166666666667*G2_2_2_1_0 - 0.0166666666667*G2_2_2_2_0 - 0.00833333333333*G2_2_3_0_0 - 0.00833333333333*G2_2_3_1_0 - 0.00833333333333*G2_2_3_2_0 - 0.00833333333333*G2_3_0_0_0 - 0.00833333333333*G2_3_0_1_0 - 0.00833333333333*G2_3_0_2_0 - 0.00833333333333*G2_3_1_0_0 - 0.00833333333333*G2_3_1_1_0 - 0.00833333333333*G2_3_1_2_0 - 0.00833333333333*G2_3_2_0_0 - 0.00833333333333*G2_3_2_1_0 - 0.00833333333333*G2_3_2_2_0 - 0.0166666666667*G2_3_3_0_0 - 0.0166666666667*G2_3_3_1_0 - 0.0166666666667*G2_3_3_2_0;
-    A[34] = 0.00833333333333*G1_0_0_0_0 + 0.00833333333333*G1_0_0_0_1 + 0.00833333333333*G1_0_0_0_2 + 0.00833333333333*G1_0_0_1_0 + 0.00833333333333*G1_0_0_1_1 + 0.00833333333333*G1_0_0_1_2 + 0.00833333333333*G1_0_0_2_0 + 0.00833333333333*G1_0_0_2_1 + 0.00833333333333*G1_0_0_2_2 - 0.00833333333333*G1_0_1_0_0 - 0.00833333333333*G1_0_1_1_0 - 0.00833333333333*G1_0_1_2_0 - 0.00833333333333*G1_0_2_0_1 - 0.00833333333333*G1_0_2_1_1 - 0.00833333333333*G1_0_2_2_1 - 0.00833333333333*G1_0_3_0_2 - 0.00833333333333*G1_0_3_1_2 - 0.00833333333333*G1_0_3_2_2 + 0.00833333333333*G1_1_0_0_0 + 0.00833333333333*G1_1_0_0_1 + 0.00833333333333*G1_1_0_0_2 + 0.00833333333333*G1_1_0_1_0 + 0.00833333333333*G1_1_0_1_1 + 0.00833333333333*G1_1_0_1_2 + 0.00833333333333*G1_1_0_2_0 + 0.00833333333333*G1_1_0_2_1 + 0.00833333333333*G1_1_0_2_2 - 0.00833333333333*G1_1_1_0_0 - 0.00833333333333*G1_1_1_1_0 - 0.00833333333333*G1_1_1_2_0 - 0.00833333333333*G1_1_2_0_1 - 0.00833333333333*G1_1_2_1_1 - 0.00833333333333*G1_1_2_2_1 - 0.00833333333333*G1_1_3_0_2 - 0.00833333333333*G1_1_3_1_2 - 0.00833333333333*G1_1_3_2_2 + 0.0166666666667*G1_2_0_0_0 + 0.0166666666667*G1_2_0_0_1 + 0.0166666666667*G1_2_0_0_2 + 0.0166666666667*G1_2_0_1_0 + 0.0166666666667*G1_2_0_1_1 + 0.0166666666667*G1_2_0_1_2 + 0.0166666666667*G1_2_0_2_0 + 0.0166666666667*G1_2_0_2_1 + 0.0166666666667*G1_2_0_2_2 - 0.0166666666667*G1_2_1_0_0 - 0.0166666666667*G1_2_1_1_0 - 0.0166666666667*G1_2_1_2_0 - 0.0166666666667*G1_2_2_0_1 - 0.0166666666667*G1_2_2_1_1 - 0.0166666666667*G1_2_2_2_1 - 0.0166666666667*G1_2_3_0_2 - 0.0166666666667*G1_2_3_1_2 - 0.0166666666667*G1_2_3_2_2 + 0.00833333333333*G1_3_0_0_0 + 0.00833333333333*G1_3_0_0_1 + 0.00833333333333*G1_3_0_0_2 + 0.00833333333333*G1_3_0_1_0 + 0.00833333333333*G1_3_0_1_1 + 0.00833333333333*G1_3_0_1_2 + 0.00833333333333*G1_3_0_2_0 + 0.00833333333333*G1_3_0_2_1 + 0.00833333333333*G1_3_0_2_2 - 0.00833333333333*G1_3_1_0_0 - 0.00833333333333*G1_3_1_1_0 - 0.00833333333333*G1_3_1_2_0 - 0.00833333333333*G1_3_2_0_1 - 0.00833333333333*G1_3_2_1_1 - 0.00833333333333*G1_3_2_2_1 - 0.00833333333333*G1_3_3_0_2 - 0.00833333333333*G1_3_3_1_2 - 0.00833333333333*G1_3_3_2_2 - 0.0166666666667*G2_0_0_0_1 - 0.0166666666667*G2_0_0_1_1 - 0.0166666666667*G2_0_0_2_1 - 0.00833333333333*G2_0_1_0_1 - 0.00833333333333*G2_0_1_1_1 - 0.00833333333333*G2_0_1_2_1 - 0.00833333333333*G2_0_2_0_1 - 0.00833333333333*G2_0_2_1_1 - 0.00833333333333*G2_0_2_2_1 - 0.00833333333333*G2_0_3_0_1 - 0.00833333333333*G2_0_3_1_1 - 0.00833333333333*G2_0_3_2_1 - 0.00833333333333*G2_1_0_0_1 - 0.00833333333333*G2_1_0_1_1 - 0.00833333333333*G2_1_0_2_1 - 0.0166666666667*G2_1_1_0_1 - 0.0166666666667*G2_1_1_1_1 - 0.0166666666667*G2_1_1_2_1 - 0.00833333333333*G2_1_2_0_1 - 0.00833333333333*G2_1_2_1_1 - 0.00833333333333*G2_1_2_2_1 - 0.00833333333333*G2_1_3_0_1 - 0.00833333333333*G2_1_3_1_1 - 0.00833333333333*G2_1_3_2_1 - 0.00833333333333*G2_2_0_0_1 - 0.00833333333333*G2_2_0_1_1 - 0.00833333333333*G2_2_0_2_1 - 0.00833333333333*G2_2_1_0_1 - 0.00833333333333*G2_2_1_1_1 - 0.00833333333333*G2_2_1_2_1 - 0.0166666666667*G2_2_2_0_1 - 0.0166666666667*G2_2_2_1_1 - 0.0166666666667*G2_2_2_2_1 - 0.00833333333333*G2_2_3_0_1 - 0.00833333333333*G2_2_3_1_1 - 0.00833333333333*G2_2_3_2_1 - 0.00833333333333*G2_3_0_0_1 - 0.00833333333333*G2_3_0_1_1 - 0.00833333333333*G2_3_0_2_1 - 0.00833333333333*G2_3_1_0_1 - 0.00833333333333*G2_3_1_1_1 - 0.00833333333333*G2_3_1_2_1 - 0.00833333333333*G2_3_2_0_1 - 0.00833333333333*G2_3_2_1_1 - 0.00833333333333*G2_3_2_2_1 - 0.0166666666667*G2_3_3_0_1 - 0.0166666666667*G2_3_3_1_1 - 0.0166666666667*G2_3_3_2_1;
-    A[35] = 0.00833333333333*G1_0_0_0_0 + 0.00833333333333*G1_0_0_0_1 + 0.00833333333333*G1_0_0_0_2 + 0.00833333333333*G1_0_0_1_0 + 0.00833333333333*G1_0_0_1_1 + 0.00833333333333*G1_0_0_1_2 + 0.00833333333333*G1_0_0_2_0 + 0.00833333333333*G1_0_0_2_1 + 0.00833333333333*G1_0_0_2_2 - 0.00833333333333*G1_0_1_0_0 - 0.00833333333333*G1_0_1_1_0 - 0.00833333333333*G1_0_1_2_0 - 0.00833333333333*G1_0_2_0_1 - 0.00833333333333*G1_0_2_1_1 - 0.00833333333333*G1_0_2_2_1 - 0.00833333333333*G1_0_3_0_2 - 0.00833333333333*G1_0_3_1_2 - 0.00833333333333*G1_0_3_2_2 + 0.00833333333333*G1_1_0_0_0 + 0.00833333333333*G1_1_0_0_1 + 0.00833333333333*G1_1_0_0_2 + 0.00833333333333*G1_1_0_1_0 + 0.00833333333333*G1_1_0_1_1 + 0.00833333333333*G1_1_0_1_2 + 0.00833333333333*G1_1_0_2_0 + 0.00833333333333*G1_1_0_2_1 + 0.00833333333333*G1_1_0_2_2 - 0.00833333333333*G1_1_1_0_0 - 0.00833333333333*G1_1_1_1_0 - 0.00833333333333*G1_1_1_2_0 - 0.00833333333333*G1_1_2_0_1 - 0.00833333333333*G1_1_2_1_1 - 0.00833333333333*G1_1_2_2_1 - 0.00833333333333*G1_1_3_0_2 - 0.00833333333333*G1_1_3_1_2 - 0.00833333333333*G1_1_3_2_2 + 0.00833333333333*G1_2_0_0_0 + 0.00833333333333*G1_2_0_0_1 + 0.00833333333333*G1_2_0_0_2 + 0.00833333333333*G1_2_0_1_0 + 0.00833333333333*G1_2_0_1_1 + 0.00833333333333*G1_2_0_1_2 + 0.00833333333333*G1_2_0_2_0 + 0.00833333333333*G1_2_0_2_1 + 0.00833333333333*G1_2_0_2_2 - 0.00833333333333*G1_2_1_0_0 - 0.00833333333333*G1_2_1_1_0 - 0.00833333333333*G1_2_1_2_0 - 0.00833333333333*G1_2_2_0_1 - 0.00833333333333*G1_2_2_1_1 - 0.00833333333333*G1_2_2_2_1 - 0.00833333333333*G1_2_3_0_2 - 0.00833333333333*G1_2_3_1_2 - 0.00833333333333*G1_2_3_2_2 + 0.0166666666667*G1_3_0_0_0 + 0.0166666666667*G1_3_0_0_1 + 0.0166666666667*G1_3_0_0_2 + 0.0166666666667*G1_3_0_1_0 + 0.0166666666667*G1_3_0_1_1 + 0.0166666666667*G1_3_0_1_2 + 0.0166666666667*G1_3_0_2_0 + 0.0166666666667*G1_3_0_2_1 + 0.0166666666667*G1_3_0_2_2 - 0.0166666666667*G1_3_1_0_0 - 0.0166666666667*G1_3_1_1_0 - 0.0166666666667*G1_3_1_2_0 - 0.0166666666667*G1_3_2_0_1 - 0.0166666666667*G1_3_2_1_1 - 0.0166666666667*G1_3_2_2_1 - 0.0166666666667*G1_3_3_0_2 - 0.0166666666667*G1_3_3_1_2 - 0.0166666666667*G1_3_3_2_2 - 0.0166666666667*G2_0_0_0_2 - 0.0166666666667*G2_0_0_1_2 - 0.0166666666667*G2_0_0_2_2 - 0.00833333333333*G2_0_1_0_2 - 0.00833333333333*G2_0_1_1_2 - 0.00833333333333*G2_0_1_2_2 - 0.00833333333333*G2_0_2_0_2 - 0.00833333333333*G2_0_2_1_2 - 0.00833333333333*G2_0_2_2_2 - 0.00833333333333*G2_0_3_0_2 - 0.00833333333333*G2_0_3_1_2 - 0.00833333333333*G2_0_3_2_2 - 0.00833333333333*G2_1_0_0_2 - 0.00833333333333*G2_1_0_1_2 - 0.00833333333333*G2_1_0_2_2 - 0.0166666666667*G2_1_1_0_2 - 0.0166666666667*G2_1_1_1_2 - 0.0166666666667*G2_1_1_2_2 - 0.00833333333333*G2_1_2_0_2 - 0.00833333333333*G2_1_2_1_2 - 0.00833333333333*G2_1_2_2_2 - 0.00833333333333*G2_1_3_0_2 - 0.00833333333333*G2_1_3_1_2 - 0.00833333333333*G2_1_3_2_2 - 0.00833333333333*G2_2_0_0_2 - 0.00833333333333*G2_2_0_1_2 - 0.00833333333333*G2_2_0_2_2 - 0.00833333333333*G2_2_1_0_2 - 0.00833333333333*G2_2_1_1_2 - 0.00833333333333*G2_2_1_2_2 - 0.0166666666667*G2_2_2_0_2 - 0.0166666666667*G2_2_2_1_2 - 0.0166666666667*G2_2_2_2_2 - 0.00833333333333*G2_2_3_0_2 - 0.00833333333333*G2_2_3_1_2 - 0.00833333333333*G2_2_3_2_2 - 0.00833333333333*G2_3_0_0_2 - 0.00833333333333*G2_3_0_1_2 - 0.00833333333333*G2_3_0_2_2 - 0.00833333333333*G2_3_1_0_2 - 0.00833333333333*G2_3_1_1_2 - 0.00833333333333*G2_3_1_2_2 - 0.00833333333333*G2_3_2_0_2 - 0.00833333333333*G2_3_2_1_2 - 0.00833333333333*G2_3_2_2_2 - 0.0166666666667*G2_3_3_0_2 - 0.0166666666667*G2_3_3_1_2 - 0.0166666666667*G2_3_3_2_2;
-    A[36] = 0.0166666666667*G0_;
-    A[37] = 0.00833333333333*G0_;
-    A[38] = 0.00833333333333*G0_;
-    A[39] = 0.00833333333333*G0_;
-    A[40] = -0.0166666666667*G1_0_0_0_0 - 0.0166666666667*G1_0_0_0_1 - 0.0166666666667*G1_0_0_0_2 + 0.0166666666667*G1_0_1_0_0 + 0.0166666666667*G1_0_2_0_1 + 0.0166666666667*G1_0_3_0_2 - 0.00833333333333*G1_1_0_0_0 - 0.00833333333333*G1_1_0_0_1 - 0.00833333333333*G1_1_0_0_2 + 0.00833333333333*G1_1_1_0_0 + 0.00833333333333*G1_1_2_0_1 + 0.00833333333333*G1_1_3_0_2 - 0.00833333333333*G1_2_0_0_0 - 0.00833333333333*G1_2_0_0_1 - 0.00833333333333*G1_2_0_0_2 + 0.00833333333333*G1_2_1_0_0 + 0.00833333333333*G1_2_2_0_1 + 0.00833333333333*G1_2_3_0_2 - 0.00833333333333*G1_3_0_0_0 - 0.00833333333333*G1_3_0_0_1 - 0.00833333333333*G1_3_0_0_2 + 0.00833333333333*G1_3_1_0_0 + 0.00833333333333*G1_3_2_0_1 + 0.00833333333333*G1_3_3_0_2 - 0.0166666666667*G2_0_0_0_0 - 0.0166666666667*G2_0_0_0_1 - 0.0166666666667*G2_0_0_0_2 - 0.00833333333333*G2_0_1_0_0 - 0.00833333333333*G2_0_1_0_1 - 0.00833333333333*G2_0_1_0_2 - 0.00833333333333*G2_0_2_0_0 - 0.00833333333333*G2_0_2_0_1 - 0.00833333333333*G2_0_2_0_2 - 0.00833333333333*G2_0_3_0_0 - 0.00833333333333*G2_0_3_0_1 - 0.00833333333333*G2_0_3_0_2 - 0.00833333333333*G2_1_0_0_0 - 0.00833333333333*G2_1_0_0_1 - 0.00833333333333*G2_1_0_0_2 - 0.0166666666667*G2_1_1_0_0 - 0.0166666666667*G2_1_1_0_1 - 0.0166666666667*G2_1_1_0_2 - 0.00833333333333*G2_1_2_0_0 - 0.00833333333333*G2_1_2_0_1 - 0.00833333333333*G2_1_2_0_2 - 0.00833333333333*G2_1_3_0_0 - 0.00833333333333*G2_1_3_0_1 - 0.00833333333333*G2_1_3_0_2 - 0.00833333333333*G2_2_0_0_0 - 0.00833333333333*G2_2_0_0_1 - 0.00833333333333*G2_2_0_0_2 - 0.00833333333333*G2_2_1_0_0 - 0.00833333333333*G2_2_1_0_1 - 0.00833333333333*G2_2_1_0_2 - 0.0166666666667*G2_2_2_0_0 - 0.0166666666667*G2_2_2_0_1 - 0.0166666666667*G2_2_2_0_2 - 0.00833333333333*G2_2_3_0_0 - 0.00833333333333*G2_2_3_0_1 - 0.00833333333333*G2_2_3_0_2 - 0.00833333333333*G2_3_0_0_0 - 0.00833333333333*G2_3_0_0_1 - 0.00833333333333*G2_3_0_0_2 - 0.00833333333333*G2_3_1_0_0 - 0.00833333333333*G2_3_1_0_1 - 0.00833333333333*G2_3_1_0_2 - 0.00833333333333*G2_3_2_0_0 - 0.00833333333333*G2_3_2_0_1 - 0.00833333333333*G2_3_2_0_2 - 0.0166666666667*G2_3_3_0_0 - 0.0166666666667*G2_3_3_0_1 - 0.0166666666667*G2_3_3_0_2;
-    A[41] = -0.00833333333333*G1_0_0_0_0 - 0.00833333333333*G1_0_0_0_1 - 0.00833333333333*G1_0_0_0_2 + 0.00833333333333*G1_0_1_0_0 + 0.00833333333333*G1_0_2_0_1 + 0.00833333333333*G1_0_3_0_2 - 0.0166666666667*G1_1_0_0_0 - 0.0166666666667*G1_1_0_0_1 - 0.0166666666667*G1_1_0_0_2 + 0.0166666666667*G1_1_1_0_0 + 0.0166666666667*G1_1_2_0_1 + 0.0166666666667*G1_1_3_0_2 - 0.00833333333333*G1_2_0_0_0 - 0.00833333333333*G1_2_0_0_1 - 0.00833333333333*G1_2_0_0_2 + 0.00833333333333*G1_2_1_0_0 + 0.00833333333333*G1_2_2_0_1 + 0.00833333333333*G1_2_3_0_2 - 0.00833333333333*G1_3_0_0_0 - 0.00833333333333*G1_3_0_0_1 - 0.00833333333333*G1_3_0_0_2 + 0.00833333333333*G1_3_1_0_0 + 0.00833333333333*G1_3_2_0_1 + 0.00833333333333*G1_3_3_0_2 + 0.0166666666667*G2_0_0_0_0 + 0.00833333333333*G2_0_1_0_0 + 0.00833333333333*G2_0_2_0_0 + 0.00833333333333*G2_0_3_0_0 + 0.00833333333333*G2_1_0_0_0 + 0.0166666666667*G2_1_1_0_0 + 0.00833333333333*G2_1_2_0_0 + 0.00833333333333*G2_1_3_0_0 + 0.00833333333333*G2_2_0_0_0 + 0.00833333333333*G2_2_1_0_0 + 0.0166666666667*G2_2_2_0_0 + 0.00833333333333*G2_2_3_0_0 + 0.00833333333333*G2_3_0_0_0 + 0.00833333333333*G2_3_1_0_0 + 0.00833333333333*G2_3_2_0_0 + 0.0166666666667*G2_3_3_0_0;
-    A[42] = -0.00833333333333*G1_0_0_0_0 - 0.00833333333333*G1_0_0_0_1 - 0.00833333333333*G1_0_0_0_2 + 0.00833333333333*G1_0_1_0_0 + 0.00833333333333*G1_0_2_0_1 + 0.00833333333333*G1_0_3_0_2 - 0.00833333333333*G1_1_0_0_0 - 0.00833333333333*G1_1_0_0_1 - 0.00833333333333*G1_1_0_0_2 + 0.00833333333333*G1_1_1_0_0 + 0.00833333333333*G1_1_2_0_1 + 0.00833333333333*G1_1_3_0_2 - 0.0166666666667*G1_2_0_0_0 - 0.0166666666667*G1_2_0_0_1 - 0.0166666666667*G1_2_0_0_2 + 0.0166666666667*G1_2_1_0_0 + 0.0166666666667*G1_2_2_0_1 + 0.0166666666667*G1_2_3_0_2 - 0.00833333333333*G1_3_0_0_0 - 0.00833333333333*G1_3_0_0_1 - 0.00833333333333*G1_3_0_0_2 + 0.00833333333333*G1_3_1_0_0 + 0.00833333333333*G1_3_2_0_1 + 0.00833333333333*G1_3_3_0_2 + 0.0166666666667*G2_0_0_0_1 + 0.00833333333333*G2_0_1_0_1 + 0.00833333333333*G2_0_2_0_1 + 0.00833333333333*G2_0_3_0_1 + 0.00833333333333*G2_1_0_0_1 + 0.0166666666667*G2_1_1_0_1 + 0.00833333333333*G2_1_2_0_1 + 0.00833333333333*G2_1_3_0_1 + 0.00833333333333*G2_2_0_0_1 + 0.00833333333333*G2_2_1_0_1 + 0.0166666666667*G2_2_2_0_1 + 0.00833333333333*G2_2_3_0_1 + 0.00833333333333*G2_3_0_0_1 + 0.00833333333333*G2_3_1_0_1 + 0.00833333333333*G2_3_2_0_1 + 0.0166666666667*G2_3_3_0_1;
-    A[43] = -0.00833333333333*G1_0_0_0_0 - 0.00833333333333*G1_0_0_0_1 - 0.00833333333333*G1_0_0_0_2 + 0.00833333333333*G1_0_1_0_0 + 0.00833333333333*G1_0_2_0_1 + 0.00833333333333*G1_0_3_0_2 - 0.00833333333333*G1_1_0_0_0 - 0.00833333333333*G1_1_0_0_1 - 0.00833333333333*G1_1_0_0_2 + 0.00833333333333*G1_1_1_0_0 + 0.00833333333333*G1_1_2_0_1 + 0.00833333333333*G1_1_3_0_2 - 0.00833333333333*G1_2_0_0_0 - 0.00833333333333*G1_2_0_0_1 - 0.00833333333333*G1_2_0_0_2 + 0.00833333333333*G1_2_1_0_0 + 0.00833333333333*G1_2_2_0_1 + 0.00833333333333*G1_2_3_0_2 - 0.0166666666667*G1_3_0_0_0 - 0.0166666666667*G1_3_0_0_1 - 0.0166666666667*G1_3_0_0_2 + 0.0166666666667*G1_3_1_0_0 + 0.0166666666667*G1_3_2_0_1 + 0.0166666666667*G1_3_3_0_2 + 0.0166666666667*G2_0_0_0_2 + 0.00833333333333*G2_0_1_0_2 + 0.00833333333333*G2_0_2_0_2 + 0.00833333333333*G2_0_3_0_2 + 0.00833333333333*G2_1_0_0_2 + 0.0166666666667*G2_1_1_0_2 + 0.00833333333333*G2_1_2_0_2 + 0.00833333333333*G2_1_3_0_2 + 0.00833333333333*G2_2_0_0_2 + 0.00833333333333*G2_2_1_0_2 + 0.0166666666667*G2_2_2_0_2 + 0.00833333333333*G2_2_3_0_2 + 0.00833333333333*G2_3_0_0_2 + 0.00833333333333*G2_3_1_0_2 + 0.00833333333333*G2_3_2_0_2 + 0.0166666666667*G2_3_3_0_2;
-    A[44] = 0.00833333333333*G0_;
-    A[45] = 0.0166666666667*G0_;
-    A[46] = 0.00833333333333*G0_;
-    A[47] = 0.00833333333333*G0_;
-    A[48] = -0.0166666666667*G1_0_0_1_0 - 0.0166666666667*G1_0_0_1_1 - 0.0166666666667*G1_0_0_1_2 + 0.0166666666667*G1_0_1_1_0 + 0.0166666666667*G1_0_2_1_1 + 0.0166666666667*G1_0_3_1_2 - 0.00833333333333*G1_1_0_1_0 - 0.00833333333333*G1_1_0_1_1 - 0.00833333333333*G1_1_0_1_2 + 0.00833333333333*G1_1_1_1_0 + 0.00833333333333*G1_1_2_1_1 + 0.00833333333333*G1_1_3_1_2 - 0.00833333333333*G1_2_0_1_0 - 0.00833333333333*G1_2_0_1_1 - 0.00833333333333*G1_2_0_1_2 + 0.00833333333333*G1_2_1_1_0 + 0.00833333333333*G1_2_2_1_1 + 0.00833333333333*G1_2_3_1_2 - 0.00833333333333*G1_3_0_1_0 - 0.00833333333333*G1_3_0_1_1 - 0.00833333333333*G1_3_0_1_2 + 0.00833333333333*G1_3_1_1_0 + 0.00833333333333*G1_3_2_1_1 + 0.00833333333333*G1_3_3_1_2 - 0.0166666666667*G2_0_0_1_0 - 0.0166666666667*G2_0_0_1_1 - 0.0166666666667*G2_0_0_1_2 - 0.00833333333333*G2_0_1_1_0 - 0.00833333333333*G2_0_1_1_1 - 0.00833333333333*G2_0_1_1_2 - 0.00833333333333*G2_0_2_1_0 - 0.00833333333333*G2_0_2_1_1 - 0.00833333333333*G2_0_2_1_2 - 0.00833333333333*G2_0_3_1_0 - 0.00833333333333*G2_0_3_1_1 - 0.00833333333333*G2_0_3_1_2 - 0.00833333333333*G2_1_0_1_0 - 0.00833333333333*G2_1_0_1_1 - 0.00833333333333*G2_1_0_1_2 - 0.0166666666667*G2_1_1_1_0 - 0.0166666666667*G2_1_1_1_1 - 0.0166666666667*G2_1_1_1_2 - 0.00833333333333*G2_1_2_1_0 - 0.00833333333333*G2_1_2_1_1 - 0.00833333333333*G2_1_2_1_2 - 0.00833333333333*G2_1_3_1_0 - 0.00833333333333*G2_1_3_1_1 - 0.00833333333333*G2_1_3_1_2 - 0.00833333333333*G2_2_0_1_0 - 0.00833333333333*G2_2_0_1_1 - 0.00833333333333*G2_2_0_1_2 - 0.00833333333333*G2_2_1_1_0 - 0.00833333333333*G2_2_1_1_1 - 0.00833333333333*G2_2_1_1_2 - 0.0166666666667*G2_2_2_1_0 - 0.0166666666667*G2_2_2_1_1 - 0.0166666666667*G2_2_2_1_2 - 0.00833333333333*G2_2_3_1_0 - 0.00833333333333*G2_2_3_1_1 - 0.00833333333333*G2_2_3_1_2 - 0.00833333333333*G2_3_0_1_0 - 0.00833333333333*G2_3_0_1_1 - 0.00833333333333*G2_3_0_1_2 - 0.00833333333333*G2_3_1_1_0 - 0.00833333333333*G2_3_1_1_1 - 0.00833333333333*G2_3_1_1_2 - 0.00833333333333*G2_3_2_1_0 - 0.00833333333333*G2_3_2_1_1 - 0.00833333333333*G2_3_2_1_2 - 0.0166666666667*G2_3_3_1_0 - 0.0166666666667*G2_3_3_1_1 - 0.0166666666667*G2_3_3_1_2;
-    A[49] = -0.00833333333333*G1_0_0_1_0 - 0.00833333333333*G1_0_0_1_1 - 0.00833333333333*G1_0_0_1_2 + 0.00833333333333*G1_0_1_1_0 + 0.00833333333333*G1_0_2_1_1 + 0.00833333333333*G1_0_3_1_2 - 0.0166666666667*G1_1_0_1_0 - 0.0166666666667*G1_1_0_1_1 - 0.0166666666667*G1_1_0_1_2 + 0.0166666666667*G1_1_1_1_0 + 0.0166666666667*G1_1_2_1_1 + 0.0166666666667*G1_1_3_1_2 - 0.00833333333333*G1_2_0_1_0 - 0.00833333333333*G1_2_0_1_1 - 0.00833333333333*G1_2_0_1_2 + 0.00833333333333*G1_2_1_1_0 + 0.00833333333333*G1_2_2_1_1 + 0.00833333333333*G1_2_3_1_2 - 0.00833333333333*G1_3_0_1_0 - 0.00833333333333*G1_3_0_1_1 - 0.00833333333333*G1_3_0_1_2 + 0.00833333333333*G1_3_1_1_0 + 0.00833333333333*G1_3_2_1_1 + 0.00833333333333*G1_3_3_1_2 + 0.0166666666667*G2_0_0_1_0 + 0.00833333333333*G2_0_1_1_0 + 0.00833333333333*G2_0_2_1_0 + 0.00833333333333*G2_0_3_1_0 + 0.00833333333333*G2_1_0_1_0 + 0.0166666666667*G2_1_1_1_0 + 0.00833333333333*G2_1_2_1_0 + 0.00833333333333*G2_1_3_1_0 + 0.00833333333333*G2_2_0_1_0 + 0.00833333333333*G2_2_1_1_0 + 0.0166666666667*G2_2_2_1_0 + 0.00833333333333*G2_2_3_1_0 + 0.00833333333333*G2_3_0_1_0 + 0.00833333333333*G2_3_1_1_0 + 0.00833333333333*G2_3_2_1_0 + 0.0166666666667*G2_3_3_1_0;
-    A[50] = -0.00833333333333*G1_0_0_1_0 - 0.00833333333333*G1_0_0_1_1 - 0.00833333333333*G1_0_0_1_2 + 0.00833333333333*G1_0_1_1_0 + 0.00833333333333*G1_0_2_1_1 + 0.00833333333333*G1_0_3_1_2 - 0.00833333333333*G1_1_0_1_0 - 0.00833333333333*G1_1_0_1_1 - 0.00833333333333*G1_1_0_1_2 + 0.00833333333333*G1_1_1_1_0 + 0.00833333333333*G1_1_2_1_1 + 0.00833333333333*G1_1_3_1_2 - 0.0166666666667*G1_2_0_1_0 - 0.0166666666667*G1_2_0_1_1 - 0.0166666666667*G1_2_0_1_2 + 0.0166666666667*G1_2_1_1_0 + 0.0166666666667*G1_2_2_1_1 + 0.0166666666667*G1_2_3_1_2 - 0.00833333333333*G1_3_0_1_0 - 0.00833333333333*G1_3_0_1_1 - 0.00833333333333*G1_3_0_1_2 + 0.00833333333333*G1_3_1_1_0 + 0.00833333333333*G1_3_2_1_1 + 0.00833333333333*G1_3_3_1_2 + 0.0166666666667*G2_0_0_1_1 + 0.00833333333333*G2_0_1_1_1 + 0.00833333333333*G2_0_2_1_1 + 0.00833333333333*G2_0_3_1_1 + 0.00833333333333*G2_1_0_1_1 + 0.0166666666667*G2_1_1_1_1 + 0.00833333333333*G2_1_2_1_1 + 0.00833333333333*G2_1_3_1_1 + 0.00833333333333*G2_2_0_1_1 + 0.00833333333333*G2_2_1_1_1 + 0.0166666666667*G2_2_2_1_1 + 0.00833333333333*G2_2_3_1_1 + 0.00833333333333*G2_3_0_1_1 + 0.00833333333333*G2_3_1_1_1 + 0.00833333333333*G2_3_2_1_1 + 0.0166666666667*G2_3_3_1_1;
-    A[51] = -0.00833333333333*G1_0_0_1_0 - 0.00833333333333*G1_0_0_1_1 - 0.00833333333333*G1_0_0_1_2 + 0.00833333333333*G1_0_1_1_0 + 0.00833333333333*G1_0_2_1_1 + 0.00833333333333*G1_0_3_1_2 - 0.00833333333333*G1_1_0_1_0 - 0.00833333333333*G1_1_0_1_1 - 0.00833333333333*G1_1_0_1_2 + 0.00833333333333*G1_1_1_1_0 + 0.00833333333333*G1_1_2_1_1 + 0.00833333333333*G1_1_3_1_2 - 0.00833333333333*G1_2_0_1_0 - 0.00833333333333*G1_2_0_1_1 - 0.00833333333333*G1_2_0_1_2 + 0.00833333333333*G1_2_1_1_0 + 0.00833333333333*G1_2_2_1_1 + 0.00833333333333*G1_2_3_1_2 - 0.0166666666667*G1_3_0_1_0 - 0.0166666666667*G1_3_0_1_1 - 0.0166666666667*G1_3_0_1_2 + 0.0166666666667*G1_3_1_1_0 + 0.0166666666667*G1_3_2_1_1 + 0.0166666666667*G1_3_3_1_2 + 0.0166666666667*G2_0_0_1_2 + 0.00833333333333*G2_0_1_1_2 + 0.00833333333333*G2_0_2_1_2 + 0.00833333333333*G2_0_3_1_2 + 0.00833333333333*G2_1_0_1_2 + 0.0166666666667*G2_1_1_1_2 + 0.00833333333333*G2_1_2_1_2 + 0.00833333333333*G2_1_3_1_2 + 0.00833333333333*G2_2_0_1_2 + 0.00833333333333*G2_2_1_1_2 + 0.0166666666667*G2_2_2_1_2 + 0.00833333333333*G2_2_3_1_2 + 0.00833333333333*G2_3_0_1_2 + 0.00833333333333*G2_3_1_1_2 + 0.00833333333333*G2_3_2_1_2 + 0.0166666666667*G2_3_3_1_2;
-    A[52] = 0.00833333333333*G0_;
-    A[53] = 0.00833333333333*G0_;
-    A[54] = 0.0166666666667*G0_;
-    A[55] = 0.00833333333333*G0_;
-    A[56] = -0.0166666666667*G1_0_0_2_0 - 0.0166666666667*G1_0_0_2_1 - 0.0166666666667*G1_0_0_2_2 + 0.0166666666667*G1_0_1_2_0 + 0.0166666666667*G1_0_2_2_1 + 0.0166666666667*G1_0_3_2_2 - 0.00833333333333*G1_1_0_2_0 - 0.00833333333333*G1_1_0_2_1 - 0.00833333333333*G1_1_0_2_2 + 0.00833333333333*G1_1_1_2_0 + 0.00833333333333*G1_1_2_2_1 + 0.00833333333333*G1_1_3_2_2 - 0.00833333333333*G1_2_0_2_0 - 0.00833333333333*G1_2_0_2_1 - 0.00833333333333*G1_2_0_2_2 + 0.00833333333333*G1_2_1_2_0 + 0.00833333333333*G1_2_2_2_1 + 0.00833333333333*G1_2_3_2_2 - 0.00833333333333*G1_3_0_2_0 - 0.00833333333333*G1_3_0_2_1 - 0.00833333333333*G1_3_0_2_2 + 0.00833333333333*G1_3_1_2_0 + 0.00833333333333*G1_3_2_2_1 + 0.00833333333333*G1_3_3_2_2 - 0.0166666666667*G2_0_0_2_0 - 0.0166666666667*G2_0_0_2_1 - 0.0166666666667*G2_0_0_2_2 - 0.00833333333333*G2_0_1_2_0 - 0.00833333333333*G2_0_1_2_1 - 0.00833333333333*G2_0_1_2_2 - 0.00833333333333*G2_0_2_2_0 - 0.00833333333333*G2_0_2_2_1 - 0.00833333333333*G2_0_2_2_2 - 0.00833333333333*G2_0_3_2_0 - 0.00833333333333*G2_0_3_2_1 - 0.00833333333333*G2_0_3_2_2 - 0.00833333333333*G2_1_0_2_0 - 0.00833333333333*G2_1_0_2_1 - 0.00833333333333*G2_1_0_2_2 - 0.0166666666667*G2_1_1_2_0 - 0.0166666666667*G2_1_1_2_1 - 0.0166666666667*G2_1_1_2_2 - 0.00833333333333*G2_1_2_2_0 - 0.00833333333333*G2_1_2_2_1 - 0.00833333333333*G2_1_2_2_2 - 0.00833333333333*G2_1_3_2_0 - 0.00833333333333*G2_1_3_2_1 - 0.00833333333333*G2_1_3_2_2 - 0.00833333333333*G2_2_0_2_0 - 0.00833333333333*G2_2_0_2_1 - 0.00833333333333*G2_2_0_2_2 - 0.00833333333333*G2_2_1_2_0 - 0.00833333333333*G2_2_1_2_1 - 0.00833333333333*G2_2_1_2_2 - 0.0166666666667*G2_2_2_2_0 - 0.0166666666667*G2_2_2_2_1 - 0.0166666666667*G2_2_2_2_2 - 0.00833333333333*G2_2_3_2_0 - 0.00833333333333*G2_2_3_2_1 - 0.00833333333333*G2_2_3_2_2 - 0.00833333333333*G2_3_0_2_0 - 0.00833333333333*G2_3_0_2_1 - 0.00833333333333*G2_3_0_2_2 - 0.00833333333333*G2_3_1_2_0 - 0.00833333333333*G2_3_1_2_1 - 0.00833333333333*G2_3_1_2_2 - 0.00833333333333*G2_3_2_2_0 - 0.00833333333333*G2_3_2_2_1 - 0.00833333333333*G2_3_2_2_2 - 0.0166666666667*G2_3_3_2_0 - 0.0166666666667*G2_3_3_2_1 - 0.0166666666667*G2_3_3_2_2;
-    A[57] = -0.00833333333333*G1_0_0_2_0 - 0.00833333333333*G1_0_0_2_1 - 0.00833333333333*G1_0_0_2_2 + 0.00833333333333*G1_0_1_2_0 + 0.00833333333333*G1_0_2_2_1 + 0.00833333333333*G1_0_3_2_2 - 0.0166666666667*G1_1_0_2_0 - 0.0166666666667*G1_1_0_2_1 - 0.0166666666667*G1_1_0_2_2 + 0.0166666666667*G1_1_1_2_0 + 0.0166666666667*G1_1_2_2_1 + 0.0166666666667*G1_1_3_2_2 - 0.00833333333333*G1_2_0_2_0 - 0.00833333333333*G1_2_0_2_1 - 0.00833333333333*G1_2_0_2_2 + 0.00833333333333*G1_2_1_2_0 + 0.00833333333333*G1_2_2_2_1 + 0.00833333333333*G1_2_3_2_2 - 0.00833333333333*G1_3_0_2_0 - 0.00833333333333*G1_3_0_2_1 - 0.00833333333333*G1_3_0_2_2 + 0.00833333333333*G1_3_1_2_0 + 0.00833333333333*G1_3_2_2_1 + 0.00833333333333*G1_3_3_2_2 + 0.0166666666667*G2_0_0_2_0 + 0.00833333333333*G2_0_1_2_0 + 0.00833333333333*G2_0_2_2_0 + 0.00833333333333*G2_0_3_2_0 + 0.00833333333333*G2_1_0_2_0 + 0.0166666666667*G2_1_1_2_0 + 0.00833333333333*G2_1_2_2_0 + 0.00833333333333*G2_1_3_2_0 + 0.00833333333333*G2_2_0_2_0 + 0.00833333333333*G2_2_1_2_0 + 0.0166666666667*G2_2_2_2_0 + 0.00833333333333*G2_2_3_2_0 + 0.00833333333333*G2_3_0_2_0 + 0.00833333333333*G2_3_1_2_0 + 0.00833333333333*G2_3_2_2_0 + 0.0166666666667*G2_3_3_2_0;
-    A[58] = -0.00833333333333*G1_0_0_2_0 - 0.00833333333333*G1_0_0_2_1 - 0.00833333333333*G1_0_0_2_2 + 0.00833333333333*G1_0_1_2_0 + 0.00833333333333*G1_0_2_2_1 + 0.00833333333333*G1_0_3_2_2 - 0.00833333333333*G1_1_0_2_0 - 0.00833333333333*G1_1_0_2_1 - 0.00833333333333*G1_1_0_2_2 + 0.00833333333333*G1_1_1_2_0 + 0.00833333333333*G1_1_2_2_1 + 0.00833333333333*G1_1_3_2_2 - 0.0166666666667*G1_2_0_2_0 - 0.0166666666667*G1_2_0_2_1 - 0.0166666666667*G1_2_0_2_2 + 0.0166666666667*G1_2_1_2_0 + 0.0166666666667*G1_2_2_2_1 + 0.0166666666667*G1_2_3_2_2 - 0.00833333333333*G1_3_0_2_0 - 0.00833333333333*G1_3_0_2_1 - 0.00833333333333*G1_3_0_2_2 + 0.00833333333333*G1_3_1_2_0 + 0.00833333333333*G1_3_2_2_1 + 0.00833333333333*G1_3_3_2_2 + 0.0166666666667*G2_0_0_2_1 + 0.00833333333333*G2_0_1_2_1 + 0.00833333333333*G2_0_2_2_1 + 0.00833333333333*G2_0_3_2_1 + 0.00833333333333*G2_1_0_2_1 + 0.0166666666667*G2_1_1_2_1 + 0.00833333333333*G2_1_2_2_1 + 0.00833333333333*G2_1_3_2_1 + 0.00833333333333*G2_2_0_2_1 + 0.00833333333333*G2_2_1_2_1 + 0.0166666666667*G2_2_2_2_1 + 0.00833333333333*G2_2_3_2_1 + 0.00833333333333*G2_3_0_2_1 + 0.00833333333333*G2_3_1_2_1 + 0.00833333333333*G2_3_2_2_1 + 0.0166666666667*G2_3_3_2_1;
-    A[59] = -0.00833333333333*G1_0_0_2_0 - 0.00833333333333*G1_0_0_2_1 - 0.00833333333333*G1_0_0_2_2 + 0.00833333333333*G1_0_1_2_0 + 0.00833333333333*G1_0_2_2_1 + 0.00833333333333*G1_0_3_2_2 - 0.00833333333333*G1_1_0_2_0 - 0.00833333333333*G1_1_0_2_1 - 0.00833333333333*G1_1_0_2_2 + 0.00833333333333*G1_1_1_2_0 + 0.00833333333333*G1_1_2_2_1 + 0.00833333333333*G1_1_3_2_2 - 0.00833333333333*G1_2_0_2_0 - 0.00833333333333*G1_2_0_2_1 - 0.00833333333333*G1_2_0_2_2 + 0.00833333333333*G1_2_1_2_0 + 0.00833333333333*G1_2_2_2_1 + 0.00833333333333*G1_2_3_2_2 - 0.0166666666667*G1_3_0_2_0 - 0.0166666666667*G1_3_0_2_1 - 0.0166666666667*G1_3_0_2_2 + 0.0166666666667*G1_3_1_2_0 + 0.0166666666667*G1_3_2_2_1 + 0.0166666666667*G1_3_3_2_2 + 0.0166666666667*G2_0_0_2_2 + 0.00833333333333*G2_0_1_2_2 + 0.00833333333333*G2_0_2_2_2 + 0.00833333333333*G2_0_3_2_2 + 0.00833333333333*G2_1_0_2_2 + 0.0166666666667*G2_1_1_2_2 + 0.00833333333333*G2_1_2_2_2 + 0.00833333333333*G2_1_3_2_2 + 0.00833333333333*G2_2_0_2_2 + 0.00833333333333*G2_2_1_2_2 + 0.0166666666667*G2_2_2_2_2 + 0.00833333333333*G2_2_3_2_2 + 0.00833333333333*G2_3_0_2_2 + 0.00833333333333*G2_3_1_2_2 + 0.00833333333333*G2_3_2_2_2 + 0.0166666666667*G2_3_3_2_2;
-    A[60] = 0.00833333333333*G0_;
-    A[61] = 0.00833333333333*G0_;
-    A[62] = 0.00833333333333*G0_;
-    A[63] = 0.0166666666667*G0_;
+    A[0] = 0.0166666666666666*G3_;
+    A[1] = 0.00833333333333331*G3_;
+    A[2] = 0.00833333333333331*G3_;
+    A[3] = 0.00833333333333331*G3_;
+    A[4] = -0.00595238095238094*G4_0_4_4 - 0.00119047619047619*G4_0_4_5 - 0.00119047619047619*G4_0_4_6 - 0.00119047619047619*G4_0_4_7 - 0.00119047619047619*G4_0_5_4 - 0.000595238095238095*G4_0_5_5 - 0.000297619047619047*G4_0_5_6 - 0.000297619047619047*G4_0_5_7 - 0.00119047619047619*G4_0_6_4 - 0.000297619047619047*G4_0_6_5 - 0.000595238095238095*G4_0_6_6 - 0.000297619047619048*G4_0_6_7 - 0.00119047619047619*G4_0_7_4 - 0.000297619047619047*G4_0_7_5 - 0.000297619047619048*G4_0_7_6 - 0.000595238095238094*G4_0_7_7 - 0.00119047619047619*G4_1_4_4 - 0.000595238095238095*G4_1_4_5 - 0.000297619047619047*G4_1_4_6 - 0.000297619047619047*G4_1_4_7 - 0.000595238095238095*G4_1_5_4 - 0.000595238095238094*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 0.000297619047619047*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000297619047619047*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.00119047619047619*G4_2_4_4 - 0.000297619047619047*G4_2_4_5 - 0.000595238095238095*G4_2_4_6 - 0.000297619047619048*G4_2_4_7 - 0.000297619047619047*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000595238095238095*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000595238095238095*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 0.000297619047619048*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.00119047619047619*G4_3_4_4 - 0.000297619047619047*G4_3_4_5 - 0.000297619047619048*G4_3_4_6 - 0.000595238095238095*G4_3_4_7 - 0.000297619047619047*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 0.000297619047619048*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000595238095238095*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000595238095238094*G4_3_7_7 + 0.00952380952380951*G5_0_4 + 0.00238095238095238*G5_0_5 + 0.00238095238095238*G5_0_6 + 0.00238095238095238*G5_0_7 + 0.00238095238095238*G5_1_4 + 0.00158730158730159*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.00238095238095238*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.00158730158730159*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.00238095238095238*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00158730158730159*G5_3_7 - 0.0166666666666666*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.0238095238095238*G7_0_4_4 - 0.00476190476190475*G7_0_4_5 - 0.00476190476190476*G7_0_4_6 - 0.00476190476190475*G7_0_4_7 - 0.00476190476190475*G7_0_5_4 - 0.00238095238095238*G7_0_5_5 - 0.00119047619047619*G7_0_5_6 - 0.00119047619047619*G7_0_5_7 - 0.00476190476190476*G7_0_6_4 - 0.00119047619047619*G7_0_6_5 - 0.00238095238095238*G7_0_6_6 - 0.00119047619047619*G7_0_6_7 - 0.00476190476190475*G7_0_7_4 - 0.00119047619047619*G7_0_7_5 - 0.00119047619047619*G7_0_7_6 - 0.00238095238095238*G7_0_7_7 - 0.00476190476190475*G7_1_4_4 - 0.00238095238095238*G7_1_4_5 - 0.00119047619047619*G7_1_4_6 - 0.00119047619047619*G7_1_4_7 - 0.00238095238095238*G7_1_5_4 - 0.00238095238095238*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.000793650793650793*G7_1_5_7 - 0.00119047619047619*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.000793650793650793*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.00119047619047619*G7_1_7_4 - 0.000793650793650793*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000793650793650793*G7_1_7_7 - 0.00476190476190476*G7_2_4_4 - 0.00119047619047619*G7_2_4_5 - 0.00238095238095238*G7_2_4_6 - 0.00119047619047619*G7_2_4_7 - 0.00119047619047619*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.000793650793650793*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.00238095238095238*G7_2_6_4 - 0.000793650793650793*G7_2_6_5 - 0.00238095238095238*G7_2_6_6 - 0.000793650793650793*G7_2_6_7 - 0.00119047619047619*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000793650793650793*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.00476190476190475*G7_3_4_4 - 0.00119047619047619*G7_3_4_5 - 0.00119047619047619*G7_3_4_6 - 0.00238095238095238*G7_3_4_7 - 0.00119047619047619*G7_3_5_4 - 0.000793650793650793*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000793650793650793*G7_3_5_7 - 0.00119047619047619*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000793650793650793*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.00238095238095238*G7_3_7_4 - 0.000793650793650793*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00238095238095238*G7_3_7_7 + 0.038095238095238*G8_0_4 + 0.00952380952380951*G8_0_5 + 0.00952380952380952*G8_0_6 + 0.00952380952380951*G8_0_7 + 0.00952380952380951*G8_1_4 + 0.00634920634920634*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00952380952380952*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00634920634920634*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00952380952380951*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00634920634920634*G8_3_7 - 0.0416666666666666*G9_0_0_0 - 0.0416666666666666*G9_0_0_1 - 0.0416666666666666*G9_0_0_2 - 0.0416666666666666*G9_0_1_0 - 0.0416666666666666*G9_0_1_1 - 0.0416666666666666*G9_0_1_2 - 0.0416666666666666*G9_0_2_0 - 0.0416666666666666*G9_0_2_1 - 0.0416666666666666*G9_0_2_2 - 0.0416666666666666*G9_1_0_0 - 0.0416666666666666*G9_1_0_1 - 0.0416666666666666*G9_1_0_2 - 0.0416666666666666*G9_1_1_0 - 0.0416666666666666*G9_1_1_1 - 0.0416666666666666*G9_1_1_2 - 0.0416666666666666*G9_1_2_0 - 0.0416666666666666*G9_1_2_1 - 0.0416666666666666*G9_1_2_2 - 0.0416666666666666*G9_2_0_0 - 0.0416666666666666*G9_2_0_1 - 0.0416666666666666*G9_2_0_2 - 0.0416666666666666*G9_2_1_0 - 0.0416666666666666*G9_2_1_1 - 0.0416666666666666*G9_2_1_2 - 0.0416666666666666*G9_2_2_0 - 0.0416666666666666*G9_2_2_1 - 0.0416666666666666*G9_2_2_2 - 0.0416666666666666*G9_3_0_0 - 0.0416666666666666*G9_3_0_1 - 0.0416666666666666*G9_3_0_2 - 0.0416666666666666*G9_3_1_0 - 0.0416666666666666*G9_3_1_1 - 0.0416666666666666*G9_3_1_2 - 0.0416666666666666*G9_3_2_0 - 0.0416666666666666*G9_3_2_1 - 0.0416666666666666*G9_3_2_2;
+    A[5] = -0.00119047619047619*G4_0_4_4 - 0.000595238095238095*G4_0_4_5 - 0.000297619047619047*G4_0_4_6 - 0.000297619047619047*G4_0_4_7 - 0.000595238095238095*G4_0_5_4 - 0.000595238095238094*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619047*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000297619047619047*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000595238095238095*G4_1_4_4 - 0.000595238095238094*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000595238095238094*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000297619047619047*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000297619047619047*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000297619047619047*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000297619047619047*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 9.92063492063492e-05*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 9.92063492063492e-05*G4_2_7_6 - 9.92063492063492e-05*G4_2_7_7 - 0.000297619047619047*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000297619047619047*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 9.92063492063492e-05*G4_3_6_6 - 9.92063492063492e-05*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 9.92063492063492e-05*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.00158730158730159*G5_0_5 + 0.000793650793650794*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.00158730158730159*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000396825396825397*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000396825396825397*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190476*G7_0_4_4 - 0.00238095238095238*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00238095238095238*G7_0_5_4 - 0.00238095238095238*G7_0_5_5 - 0.000793650793650794*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000793650793650794*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.00238095238095238*G7_1_4_4 - 0.00238095238095238*G7_1_4_5 - 0.000793650793650794*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00238095238095238*G7_1_5_4 - 0.00476190476190475*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650793*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000793650793650793*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000793650793650794*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650794*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650793*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000793650793650793*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000396825396825397*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000396825396825397*G7_2_7_6 - 0.000396825396825397*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000793650793650793*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000396825396825397*G7_3_6_6 - 0.000396825396825397*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.000793650793650793*G7_3_7_5 - 0.000396825396825397*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00634920634920634*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00634920634920634*G8_1_4 + 0.00952380952380951*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00158730158730159*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00158730158730159*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_0_0 + 0.0416666666666666*G9_0_1_0 + 0.0416666666666666*G9_0_2_0 + 0.0416666666666666*G9_1_0_0 + 0.0416666666666666*G9_1_1_0 + 0.0416666666666666*G9_1_2_0 + 0.0416666666666666*G9_2_0_0 + 0.0416666666666666*G9_2_1_0 + 0.0416666666666666*G9_2_2_0 + 0.0416666666666666*G9_3_0_0 + 0.0416666666666666*G9_3_1_0 + 0.0416666666666666*G9_3_2_0;
+    A[6] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000595238095238095*G4_0_4_6 - 0.000297619047619048*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000595238095238095*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000595238095238095*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000297619047619048*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 9.92063492063492e-05*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619047*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 9.92063492063492e-05*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 9.92063492063492e-05*G4_1_7_7 - 0.000595238095238095*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000595238095238095*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619047*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000595238095238095*G4_2_6_4 - 0.000297619047619047*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619047*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000297619047619047*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.000297619047619048*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 9.92063492063492e-05*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 9.92063492063492e-05*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000297619047619047*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 9.92063492063492e-05*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.00158730158730159*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000396825396825397*G5_1_7 + 0.00158730158730159*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000396825396825397*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190476*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00238095238095238*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650794*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.00238095238095238*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00238095238095238*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.000793650793650794*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650794*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000793650793650794*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650793*G7_1_5_6 - 0.000396825396825397*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.000793650793650793*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000396825396825397*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000396825396825397*G7_1_7_7 - 0.00238095238095238*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00238095238095238*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.000793650793650793*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.00238095238095238*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650793*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.000793650793650794*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000396825396825397*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000396825396825397*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650793*G7_3_6_7 - 0.000793650793650794*G7_3_7_4 - 0.000396825396825397*G7_3_7_5 - 0.000793650793650793*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380952*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00634920634920634*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00158730158730159*G8_1_7 + 0.00634920634920634*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380951*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00158730158730159*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_0_1 + 0.0416666666666666*G9_0_1_1 + 0.0416666666666666*G9_0_2_1 + 0.0416666666666666*G9_1_0_1 + 0.0416666666666666*G9_1_1_1 + 0.0416666666666666*G9_1_2_1 + 0.0416666666666666*G9_2_0_1 + 0.0416666666666666*G9_2_1_1 + 0.0416666666666666*G9_2_2_1 + 0.0416666666666666*G9_3_0_1 + 0.0416666666666666*G9_3_1_1 + 0.0416666666666666*G9_3_2_1;
+    A[7] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000297619047619048*G4_0_4_6 - 0.000595238095238094*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619048*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000595238095238094*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000595238095238094*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619047*G4_1_5_5 - 9.92063492063492e-05*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 9.92063492063492e-05*G4_1_6_5 - 9.92063492063492e-05*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000297619047619048*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 9.92063492063492e-05*G4_2_5_5 - 9.92063492063492e-05*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 9.92063492063492e-05*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000595238095238094*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000595238095238094*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000595238095238094*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.00158730158730159*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000396825396825397*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000396825396825397*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.00158730158730159*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00476190476190475*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00238095238095238*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000793650793650794*G7_0_6_7 - 0.00238095238095238*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000793650793650794*G7_0_7_6 - 0.00238095238095238*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000396825396825397*G7_1_5_6 - 0.000793650793650793*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000396825396825397*G7_1_6_5 - 0.000396825396825397*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.000793650793650793*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000793650793650794*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000396825396825397*G7_2_5_5 - 0.000396825396825397*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000396825396825397*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650793*G7_2_6_7 - 0.000793650793650794*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000793650793650793*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.00238095238095238*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000793650793650794*G7_3_4_6 - 0.00238095238095238*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.000793650793650793*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650794*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000793650793650793*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00238095238095238*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00634920634920634*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00158730158730159*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00158730158730159*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00634920634920634*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380951*G8_3_7 + 0.0416666666666666*G9_0_0_2 + 0.0416666666666666*G9_0_1_2 + 0.0416666666666666*G9_0_2_2 + 0.0416666666666666*G9_1_0_2 + 0.0416666666666666*G9_1_1_2 + 0.0416666666666666*G9_1_2_2 + 0.0416666666666666*G9_2_0_2 + 0.0416666666666666*G9_2_1_2 + 0.0416666666666666*G9_2_2_2 + 0.0416666666666666*G9_3_0_2 + 0.0416666666666666*G9_3_1_2 + 0.0416666666666666*G9_3_2_2;
+    A[8] = 0.00833333333333331*G3_;
+    A[9] = 0.0166666666666666*G3_;
+    A[10] = 0.00833333333333331*G3_;
+    A[11] = 0.00833333333333331*G3_;
+    A[12] = -0.00119047619047619*G4_0_4_4 - 0.000595238095238095*G4_0_4_5 - 0.000297619047619047*G4_0_4_6 - 0.000297619047619047*G4_0_4_7 - 0.000595238095238095*G4_0_5_4 - 0.000595238095238094*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619047*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000297619047619047*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000595238095238095*G4_1_4_4 - 0.000595238095238094*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000595238095238094*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000297619047619047*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000297619047619048*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000297619047619047*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000297619047619047*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 9.92063492063492e-05*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 9.92063492063492e-05*G4_2_7_6 - 9.92063492063492e-05*G4_2_7_7 - 0.000297619047619047*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000297619047619047*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 9.92063492063492e-05*G4_3_6_6 - 9.92063492063492e-05*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 9.92063492063492e-05*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.00158730158730159*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.00158730158730159*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000396825396825397*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000396825396825397*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190475*G7_0_4_4 - 0.00238095238095238*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00238095238095238*G7_0_5_4 - 0.00238095238095238*G7_0_5_5 - 0.000793650793650794*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000793650793650794*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.00238095238095238*G7_1_4_4 - 0.00238095238095238*G7_1_4_5 - 0.000793650793650794*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00238095238095238*G7_1_5_4 - 0.00476190476190475*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650794*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650793*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000793650793650793*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000793650793650794*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650794*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650793*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000793650793650793*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000396825396825397*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000396825396825397*G7_2_7_6 - 0.000396825396825397*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000793650793650793*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000396825396825397*G7_3_6_6 - 0.000396825396825397*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.000793650793650793*G7_3_7_5 - 0.000396825396825397*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00634920634920634*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00634920634920634*G8_1_4 + 0.00952380952380951*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00158730158730159*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00158730158730159*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_0_0 + 0.0416666666666666*G9_0_0_1 + 0.0416666666666666*G9_0_0_2 + 0.0416666666666666*G9_1_0_0 + 0.0416666666666666*G9_1_0_1 + 0.0416666666666666*G9_1_0_2 + 0.0416666666666666*G9_2_0_0 + 0.0416666666666666*G9_2_0_1 + 0.0416666666666666*G9_2_0_2 + 0.0416666666666666*G9_3_0_0 + 0.0416666666666666*G9_3_0_1 + 0.0416666666666666*G9_3_0_2;
+    A[13] = -0.000595238095238095*G4_0_4_4 - 0.000595238095238094*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000595238095238094*G4_0_5_4 - 0.00119047619047619*G4_0_5_5 - 0.000297619047619048*G4_0_5_6 - 0.000297619047619047*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 0.000297619047619047*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 0.000297619047619047*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000595238095238094*G4_1_4_4 - 0.00119047619047619*G4_1_4_5 - 0.000297619047619048*G4_1_4_6 - 0.000297619047619047*G4_1_4_7 - 0.00119047619047619*G4_1_5_4 - 0.00595238095238095*G4_1_5_5 - 0.00119047619047619*G4_1_5_6 - 0.00119047619047619*G4_1_5_7 - 0.000297619047619047*G4_1_6_4 - 0.00119047619047619*G4_1_6_5 - 0.000595238095238095*G4_1_6_6 - 0.000297619047619048*G4_1_6_7 - 0.000297619047619047*G4_1_7_4 - 0.00119047619047619*G4_1_7_5 - 0.000297619047619048*G4_1_7_6 - 0.000595238095238095*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 0.000297619047619047*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000297619047619047*G4_2_5_4 - 0.00119047619047619*G4_2_5_5 - 0.000595238095238095*G4_2_5_6 - 0.000297619047619048*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000595238095238095*G4_2_6_5 - 0.000595238095238095*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000297619047619048*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 0.000297619047619047*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 0.000297619047619047*G4_3_5_4 - 0.00119047619047619*G4_3_5_5 - 0.000297619047619048*G4_3_5_6 - 0.000595238095238095*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000297619047619048*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000595238095238095*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000595238095238095*G4_3_7_7 + 0.00158730158730159*G5_0_4 + 0.00238095238095238*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.00238095238095238*G5_1_4 + 0.00952380952380952*G5_1_5 + 0.00238095238095238*G5_1_6 + 0.00238095238095238*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.00238095238095238*G5_2_5 + 0.00158730158730159*G5_2_6 + 0.000793650793650794*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.00238095238095238*G5_3_5 + 0.000793650793650794*G5_3_6 + 0.00158730158730159*G5_3_7 - 0.00555555555555554*G6_0 - 0.0166666666666666*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.00238095238095238*G7_0_4_4 - 0.00238095238095238*G7_0_4_5 - 0.000793650793650794*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.00238095238095238*G7_0_5_4 - 0.00476190476190475*G7_0_5_5 - 0.00119047619047619*G7_0_5_6 - 0.00119047619047619*G7_0_5_7 - 0.000793650793650794*G7_0_6_4 - 0.00119047619047619*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.00119047619047619*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.00238095238095238*G7_1_4_4 - 0.00476190476190475*G7_1_4_5 - 0.00119047619047619*G7_1_4_6 - 0.00119047619047619*G7_1_4_7 - 0.00476190476190475*G7_1_5_4 - 0.0238095238095238*G7_1_5_5 - 0.00476190476190476*G7_1_5_6 - 0.00476190476190476*G7_1_5_7 - 0.00119047619047619*G7_1_6_4 - 0.00476190476190476*G7_1_6_5 - 0.00238095238095238*G7_1_6_6 - 0.00119047619047619*G7_1_6_7 - 0.00119047619047619*G7_1_7_4 - 0.00476190476190476*G7_1_7_5 - 0.00119047619047619*G7_1_7_6 - 0.00238095238095238*G7_1_7_7 - 0.000793650793650794*G7_2_4_4 - 0.00119047619047619*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.00119047619047619*G7_2_5_4 - 0.00476190476190476*G7_2_5_5 - 0.00238095238095238*G7_2_5_6 - 0.00119047619047619*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.00238095238095238*G7_2_6_5 - 0.00238095238095238*G7_2_6_6 - 0.000793650793650794*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.00119047619047619*G7_2_7_5 - 0.000793650793650794*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.00119047619047619*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.00119047619047619*G7_3_5_4 - 0.00476190476190476*G7_3_5_5 - 0.00119047619047619*G7_3_5_6 - 0.00238095238095238*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.00119047619047619*G7_3_6_5 - 0.000793650793650794*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.00238095238095238*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00238095238095238*G7_3_7_7 + 0.00634920634920634*G8_0_4 + 0.00952380952380951*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00952380952380951*G8_1_4 + 0.0380952380952381*G8_1_5 + 0.00952380952380952*G8_1_6 + 0.00952380952380952*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00952380952380952*G8_2_5 + 0.00634920634920635*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00952380952380952*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00634920634920635*G8_3_7 - 0.0416666666666666*G9_0_0_0 - 0.0416666666666666*G9_1_0_0 - 0.0416666666666666*G9_2_0_0 - 0.0416666666666666*G9_3_0_0;
+    A[14] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 9.92063492063492e-05*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619048*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 9.92063492063492e-05*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 9.92063492063492e-05*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619048*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000297619047619048*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000595238095238095*G4_1_5_6 - 0.000297619047619048*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000595238095238095*G4_1_6_5 - 0.000595238095238095*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000297619047619048*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000595238095238095*G4_2_5_5 - 0.000595238095238095*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000595238095238095*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619048*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000297619047619048*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 9.92063492063492e-05*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 9.92063492063492e-05*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000297619047619048*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000297619047619048*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 9.92063492063492e-05*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000396825396825397*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.00158730158730159*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.00158730158730159*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650794*G5_2_7 + 0.000396825396825397*G5_3_4 + 0.000793650793650794*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650794*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000396825396825397*G7_0_4_7 - 0.000793650793650794*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000396825396825397*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000396825396825397*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00238095238095238*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.00238095238095238*G7_1_6_5 - 0.00238095238095238*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.000793650793650794*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.00238095238095238*G7_2_5_5 - 0.00238095238095238*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00238095238095238*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.000396825396825397*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000396825396825397*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.000793650793650794*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.000396825396825397*G7_3_7_4 - 0.000793650793650794*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00158730158730159*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00634920634920635*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00634920634920635*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00158730158730159*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 - 0.0416666666666666*G9_0_0_1 - 0.0416666666666666*G9_1_0_1 - 0.0416666666666666*G9_2_0_1 - 0.0416666666666666*G9_3_0_1;
+    A[15] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 9.92063492063492e-05*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619047*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 9.92063492063492e-05*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 9.92063492063492e-05*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619047*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000297619047619047*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000595238095238095*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000297619047619048*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000595238095238095*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000595238095238095*G4_1_7_7 - 9.92063492063492e-05*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 9.92063492063492e-05*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 9.92063492063492e-05*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619048*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000595238095238095*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000595238095238095*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000595238095238095*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000396825396825397*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650794*G5_1_6 + 0.00158730158730159*G5_1_7 + 0.000396825396825397*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.000793650793650794*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.00158730158730159*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.000396825396825397*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.000396825396825397*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000396825396825397*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00238095238095238*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650794*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00238095238095238*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00238095238095238*G7_1_7_7 - 0.000396825396825397*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000396825396825397*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650794*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.000396825396825397*G7_2_6_4 - 0.000793650793650794*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650794*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.000793650793650794*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00238095238095238*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00238095238095238*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.000793650793650794*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00238095238095238*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00158730158730159*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00634920634920635*G8_1_7 + 0.00158730158730159*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00634920634920635*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380952*G8_3_7 - 0.0416666666666666*G9_0_0_2 - 0.0416666666666666*G9_1_0_2 - 0.0416666666666666*G9_2_0_2 - 0.0416666666666666*G9_3_0_2;
+    A[16] = 0.00833333333333331*G3_;
+    A[17] = 0.00833333333333331*G3_;
+    A[18] = 0.0166666666666666*G3_;
+    A[19] = 0.00833333333333331*G3_;
+    A[20] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000595238095238095*G4_0_4_6 - 0.000297619047619048*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000595238095238095*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000595238095238095*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000297619047619048*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 9.92063492063492e-05*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619047*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 9.92063492063492e-05*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 9.92063492063492e-05*G4_1_7_7 - 0.000595238095238095*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000595238095238095*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619047*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000595238095238095*G4_2_6_4 - 0.000297619047619047*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619047*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000297619047619047*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.000297619047619048*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 9.92063492063492e-05*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 9.92063492063492e-05*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000297619047619047*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 9.92063492063492e-05*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.00158730158730159*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000396825396825397*G5_1_7 + 0.00158730158730159*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000396825396825397*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190476*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00238095238095238*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650794*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.00238095238095238*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00238095238095238*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.000793650793650794*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650794*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000793650793650794*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650793*G7_1_5_6 - 0.000396825396825397*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.000793650793650793*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000396825396825397*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000396825396825397*G7_1_7_7 - 0.00238095238095238*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00238095238095238*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.000793650793650793*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.00238095238095238*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650793*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.000793650793650794*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000396825396825397*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000396825396825397*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650793*G7_3_6_7 - 0.000793650793650794*G7_3_7_4 - 0.000396825396825397*G7_3_7_5 - 0.000793650793650793*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380952*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00634920634920634*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00158730158730159*G8_1_7 + 0.00634920634920634*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380951*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00158730158730159*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_1_0 + 0.0416666666666666*G9_0_1_1 + 0.0416666666666666*G9_0_1_2 + 0.0416666666666666*G9_1_1_0 + 0.0416666666666666*G9_1_1_1 + 0.0416666666666666*G9_1_1_2 + 0.0416666666666666*G9_2_1_0 + 0.0416666666666666*G9_2_1_1 + 0.0416666666666666*G9_2_1_2 + 0.0416666666666666*G9_3_1_0 + 0.0416666666666666*G9_3_1_1 + 0.0416666666666666*G9_3_1_2;
+    A[21] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 9.92063492063492e-05*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619047*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 9.92063492063492e-05*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 9.92063492063492e-05*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619047*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000297619047619047*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000595238095238095*G4_1_5_6 - 0.000297619047619048*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000595238095238095*G4_1_6_5 - 0.000595238095238095*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000297619047619048*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000595238095238095*G4_2_5_5 - 0.000595238095238095*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000595238095238095*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619048*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000297619047619048*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 9.92063492063492e-05*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 9.92063492063492e-05*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000297619047619048*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000297619047619048*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 9.92063492063492e-05*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000396825396825397*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.00158730158730159*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.00158730158730159*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000396825396825397*G5_3_4 + 0.000793650793650794*G5_3_5 + 0.000793650793650794*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650794*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000396825396825397*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000396825396825397*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000396825396825397*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00238095238095238*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.00238095238095238*G7_1_6_5 - 0.00238095238095238*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.000793650793650794*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.00238095238095238*G7_2_5_5 - 0.00238095238095238*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00238095238095238*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.000396825396825397*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000396825396825397*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.000793650793650794*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.000396825396825397*G7_3_7_4 - 0.000793650793650794*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00158730158730159*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00634920634920635*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00634920634920635*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00158730158730159*G8_3_4 + 0.00317460317460318*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 - 0.0416666666666666*G9_0_1_0 - 0.0416666666666666*G9_1_1_0 - 0.0416666666666666*G9_2_1_0 - 0.0416666666666666*G9_3_1_0;
+    A[22] = -0.000595238095238095*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000595238095238095*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 0.000297619047619047*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000595238095238095*G4_0_6_4 - 0.000297619047619047*G4_0_6_5 - 0.00119047619047619*G4_0_6_6 - 0.000297619047619047*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000297619047619047*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 0.000297619047619047*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000595238095238095*G4_1_5_5 - 0.000595238095238095*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 0.000297619047619047*G4_1_6_4 - 0.000595238095238095*G4_1_6_5 - 0.00119047619047619*G4_1_6_6 - 0.000297619047619048*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 0.000297619047619048*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000595238095238095*G4_2_4_4 - 0.000297619047619047*G4_2_4_5 - 0.00119047619047619*G4_2_4_6 - 0.000297619047619047*G4_2_4_7 - 0.000297619047619047*G4_2_5_4 - 0.000595238095238095*G4_2_5_5 - 0.00119047619047619*G4_2_5_6 - 0.000297619047619048*G4_2_5_7 - 0.00119047619047619*G4_2_6_4 - 0.00119047619047619*G4_2_6_5 - 0.00595238095238095*G4_2_6_6 - 0.00119047619047619*G4_2_6_7 - 0.000297619047619047*G4_2_7_4 - 0.000297619047619048*G4_2_7_5 - 0.00119047619047619*G4_2_7_6 - 0.000595238095238095*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000297619047619047*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 0.000297619047619048*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 0.000297619047619047*G4_3_6_4 - 0.000297619047619048*G4_3_6_5 - 0.00119047619047619*G4_3_6_6 - 0.000595238095238095*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000595238095238095*G4_3_7_6 - 0.000595238095238095*G4_3_7_7 + 0.00158730158730159*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.00238095238095238*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00158730158730159*G5_1_5 + 0.00238095238095238*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.00238095238095238*G5_2_4 + 0.00238095238095238*G5_2_5 + 0.00952380952380951*G5_2_6 + 0.00238095238095238*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.00238095238095238*G5_3_6 + 0.00158730158730159*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.0166666666666666*G6_2 - 0.00555555555555554*G6_3 - 0.00238095238095238*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.00238095238095238*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.00119047619047619*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.00238095238095238*G7_0_6_4 - 0.00119047619047619*G7_0_6_5 - 0.00476190476190476*G7_0_6_6 - 0.00119047619047619*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.00119047619047619*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.00119047619047619*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00238095238095238*G7_1_5_5 - 0.00238095238095238*G7_1_5_6 - 0.000793650793650794*G7_1_5_7 - 0.00119047619047619*G7_1_6_4 - 0.00238095238095238*G7_1_6_5 - 0.00476190476190476*G7_1_6_6 - 0.00119047619047619*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000793650793650794*G7_1_7_5 - 0.00119047619047619*G7_1_7_6 - 0.000793650793650794*G7_1_7_7 - 0.00238095238095238*G7_2_4_4 - 0.00119047619047619*G7_2_4_5 - 0.00476190476190476*G7_2_4_6 - 0.00119047619047619*G7_2_4_7 - 0.00119047619047619*G7_2_5_4 - 0.00238095238095238*G7_2_5_5 - 0.00476190476190476*G7_2_5_6 - 0.00119047619047619*G7_2_5_7 - 0.00476190476190476*G7_2_6_4 - 0.00476190476190476*G7_2_6_5 - 0.0238095238095238*G7_2_6_6 - 0.00476190476190476*G7_2_6_7 - 0.00119047619047619*G7_2_7_4 - 0.00119047619047619*G7_2_7_5 - 0.00476190476190476*G7_2_7_6 - 0.00238095238095238*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.00119047619047619*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000793650793650794*G7_3_5_5 - 0.00119047619047619*G7_3_5_6 - 0.000793650793650794*G7_3_5_7 - 0.00119047619047619*G7_3_6_4 - 0.00119047619047619*G7_3_6_5 - 0.00476190476190476*G7_3_6_6 - 0.00238095238095238*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.000793650793650794*G7_3_7_5 - 0.00238095238095238*G7_3_7_6 - 0.00238095238095238*G7_3_7_7 + 0.00634920634920634*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00952380952380951*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00634920634920635*G8_1_5 + 0.00952380952380952*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00952380952380951*G8_2_4 + 0.00952380952380952*G8_2_5 + 0.0380952380952381*G8_2_6 + 0.00952380952380952*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00952380952380952*G8_3_6 + 0.00634920634920634*G8_3_7 - 0.0416666666666666*G9_0_1_1 - 0.0416666666666666*G9_1_1_1 - 0.0416666666666666*G9_2_1_1 - 0.0416666666666666*G9_3_1_1;
+    A[23] = -0.000297619047619048*G4_0_4_4 - 9.92063492063492e-05*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 9.92063492063492e-05*G4_0_5_4 - 9.92063492063492e-05*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 9.92063492063492e-05*G4_1_4_4 - 9.92063492063492e-05*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 9.92063492063492e-05*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619048*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619048*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000297619047619048*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000595238095238095*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000595238095238095*G4_2_7_6 - 0.000595238095238095*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000595238095238095*G4_3_6_6 - 0.000595238095238095*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000595238095238095*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000396825396825397*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000396825396825397*G5_1_4 + 0.000793650793650794*G5_1_5 + 0.000793650793650794*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.00158730158730159*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.00158730158730159*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000396825396825397*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000793650793650794*G7_0_4_7 - 0.000396825396825397*G7_0_5_4 - 0.000396825396825397*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.000793650793650794*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000396825396825397*G7_1_4_4 - 0.000396825396825397*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000396825396825397*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.000793650793650794*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000793650793650794*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00238095238095238*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00238095238095238*G7_2_7_6 - 0.00238095238095238*G7_2_7_7 - 0.000793650793650794*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000793650793650794*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00238095238095238*G7_3_6_6 - 0.00238095238095238*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00238095238095238*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00158730158730159*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00158730158730159*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00634920634920634*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00634920634920634*G8_3_6 + 0.00952380952380951*G8_3_7 - 0.0416666666666666*G9_0_1_2 - 0.0416666666666666*G9_1_1_2 - 0.0416666666666666*G9_2_1_2 - 0.0416666666666666*G9_3_1_2;
+    A[24] = 0.00833333333333331*G3_;
+    A[25] = 0.00833333333333331*G3_;
+    A[26] = 0.00833333333333331*G3_;
+    A[27] = 0.0166666666666666*G3_;
+    A[28] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000297619047619048*G4_0_4_6 - 0.000595238095238095*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619048*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000595238095238095*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000595238095238094*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619047*G4_1_5_5 - 9.92063492063492e-05*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 9.92063492063492e-05*G4_1_6_5 - 9.92063492063492e-05*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000297619047619048*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 9.92063492063492e-05*G4_2_5_5 - 9.92063492063492e-05*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 9.92063492063492e-05*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000595238095238094*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000595238095238094*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000595238095238094*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.00158730158730159*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000396825396825397*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000396825396825397*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.00158730158730159*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00476190476190475*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00238095238095238*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000793650793650794*G7_0_6_7 - 0.00238095238095238*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000793650793650794*G7_0_7_6 - 0.00238095238095238*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000396825396825397*G7_1_5_6 - 0.000793650793650793*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000396825396825397*G7_1_6_5 - 0.000396825396825397*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.000793650793650793*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000793650793650794*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000396825396825397*G7_2_5_5 - 0.000396825396825397*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000396825396825397*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650793*G7_2_6_7 - 0.000793650793650794*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000793650793650793*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.00238095238095238*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.00238095238095238*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.000793650793650793*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650794*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000793650793650793*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00238095238095238*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00634920634920634*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00158730158730159*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00158730158730159*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00634920634920634*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380951*G8_3_7 + 0.0416666666666666*G9_0_2_0 + 0.0416666666666666*G9_0_2_1 + 0.0416666666666666*G9_0_2_2 + 0.0416666666666666*G9_1_2_0 + 0.0416666666666666*G9_1_2_1 + 0.0416666666666666*G9_1_2_2 + 0.0416666666666666*G9_2_2_0 + 0.0416666666666666*G9_2_2_1 + 0.0416666666666666*G9_2_2_2 + 0.0416666666666666*G9_3_2_0 + 0.0416666666666666*G9_3_2_1 + 0.0416666666666666*G9_3_2_2;
+    A[29] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 9.92063492063492e-05*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619047*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 9.92063492063492e-05*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 9.92063492063492e-05*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619047*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000297619047619047*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000595238095238095*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000297619047619048*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000595238095238095*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000595238095238095*G4_1_7_7 - 9.92063492063492e-05*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 9.92063492063492e-05*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 9.92063492063492e-05*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619048*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000595238095238095*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000595238095238095*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000595238095238095*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000396825396825397*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650794*G5_1_6 + 0.00158730158730159*G5_1_7 + 0.000396825396825397*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.000793650793650794*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.00158730158730159*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.000396825396825397*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.000396825396825397*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000396825396825397*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00238095238095238*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650794*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00238095238095238*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00238095238095238*G7_1_7_7 - 0.000396825396825397*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000396825396825397*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650794*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.000396825396825397*G7_2_6_4 - 0.000793650793650794*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650794*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.000793650793650794*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00238095238095238*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00238095238095238*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.000793650793650794*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00238095238095238*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00158730158730159*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00634920634920635*G8_1_7 + 0.00158730158730159*G8_2_4 + 0.00317460317460318*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00634920634920635*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380952*G8_3_7 - 0.0416666666666666*G9_0_2_0 - 0.0416666666666666*G9_1_2_0 - 0.0416666666666666*G9_2_2_0 - 0.0416666666666666*G9_3_2_0;
+    A[30] = -0.000297619047619048*G4_0_4_4 - 9.92063492063492e-05*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 9.92063492063492e-05*G4_0_5_4 - 9.92063492063492e-05*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 9.92063492063492e-05*G4_1_4_4 - 9.92063492063492e-05*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 9.92063492063492e-05*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619048*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619048*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000297619047619048*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000595238095238095*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000595238095238095*G4_2_7_6 - 0.000595238095238095*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000595238095238095*G4_3_6_6 - 0.000595238095238095*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000595238095238095*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000396825396825397*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000396825396825397*G5_1_4 + 0.000793650793650794*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.00158730158730159*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.00158730158730159*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000396825396825397*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000793650793650794*G7_0_4_7 - 0.000396825396825397*G7_0_5_4 - 0.000396825396825397*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000396825396825397*G7_1_4_4 - 0.000396825396825397*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000396825396825397*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.000793650793650794*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000793650793650794*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00238095238095238*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00238095238095238*G7_2_7_6 - 0.00238095238095238*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000793650793650794*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00238095238095238*G7_3_6_6 - 0.00238095238095238*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00238095238095238*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00158730158730159*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00158730158730159*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00634920634920634*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00634920634920634*G8_3_6 + 0.00952380952380951*G8_3_7 - 0.0416666666666666*G9_0_2_1 - 0.0416666666666666*G9_1_2_1 - 0.0416666666666666*G9_2_2_1 - 0.0416666666666666*G9_3_2_1;
+    A[31] = -0.000595238095238094*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000595238095238094*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000297619047619047*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 0.000297619047619047*G4_0_6_7 - 0.000595238095238094*G4_0_7_4 - 0.000297619047619047*G4_0_7_5 - 0.000297619047619047*G4_0_7_6 - 0.00119047619047619*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000297619047619047*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000595238095238095*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000595238095238095*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 0.000297619047619047*G4_1_6_7 - 0.000297619047619047*G4_1_7_4 - 0.000595238095238095*G4_1_7_5 - 0.000297619047619047*G4_1_7_6 - 0.00119047619047619*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 0.000297619047619047*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 0.000297619047619047*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000595238095238095*G4_2_6_6 - 0.000595238095238095*G4_2_6_7 - 0.000297619047619047*G4_2_7_4 - 0.000297619047619047*G4_2_7_5 - 0.000595238095238095*G4_2_7_6 - 0.00119047619047619*G4_2_7_7 - 0.000595238095238094*G4_3_4_4 - 0.000297619047619047*G4_3_4_5 - 0.000297619047619047*G4_3_4_6 - 0.00119047619047619*G4_3_4_7 - 0.000297619047619047*G4_3_5_4 - 0.000595238095238095*G4_3_5_5 - 0.000297619047619047*G4_3_5_6 - 0.00119047619047619*G4_3_5_7 - 0.000297619047619047*G4_3_6_4 - 0.000297619047619047*G4_3_6_5 - 0.000595238095238095*G4_3_6_6 - 0.00119047619047619*G4_3_6_7 - 0.00119047619047619*G4_3_7_4 - 0.00119047619047619*G4_3_7_5 - 0.00119047619047619*G4_3_7_6 - 0.00595238095238094*G4_3_7_7 + 0.00158730158730159*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.00238095238095238*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00158730158730159*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.00238095238095238*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00158730158730159*G5_2_6 + 0.00238095238095238*G5_2_7 + 0.00238095238095238*G5_3_4 + 0.00238095238095238*G5_3_5 + 0.00238095238095238*G5_3_6 + 0.00952380952380951*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.0166666666666666*G6_3 - 0.00238095238095238*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.000793650793650794*G7_0_4_6 - 0.00238095238095238*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.00119047619047619*G7_0_5_7 - 0.000793650793650794*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.00119047619047619*G7_0_6_7 - 0.00238095238095238*G7_0_7_4 - 0.00119047619047619*G7_0_7_5 - 0.00119047619047619*G7_0_7_6 - 0.00476190476190476*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.00119047619047619*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00238095238095238*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.00238095238095238*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.000793650793650794*G7_1_6_6 - 0.00119047619047619*G7_1_6_7 - 0.00119047619047619*G7_1_7_4 - 0.00238095238095238*G7_1_7_5 - 0.00119047619047619*G7_1_7_6 - 0.00476190476190476*G7_1_7_7 - 0.000793650793650794*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.00119047619047619*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.000793650793650794*G7_2_5_6 - 0.00119047619047619*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000793650793650794*G7_2_6_5 - 0.00238095238095238*G7_2_6_6 - 0.00238095238095238*G7_2_6_7 - 0.00119047619047619*G7_2_7_4 - 0.00119047619047619*G7_2_7_5 - 0.00238095238095238*G7_2_7_6 - 0.00476190476190476*G7_2_7_7 - 0.00238095238095238*G7_3_4_4 - 0.00119047619047619*G7_3_4_5 - 0.00119047619047619*G7_3_4_6 - 0.00476190476190476*G7_3_4_7 - 0.00119047619047619*G7_3_5_4 - 0.00238095238095238*G7_3_5_5 - 0.00119047619047619*G7_3_5_6 - 0.00476190476190476*G7_3_5_7 - 0.00119047619047619*G7_3_6_4 - 0.00119047619047619*G7_3_6_5 - 0.00238095238095238*G7_3_6_6 - 0.00476190476190476*G7_3_6_7 - 0.00476190476190476*G7_3_7_4 - 0.00476190476190476*G7_3_7_5 - 0.00476190476190476*G7_3_7_6 - 0.0238095238095238*G7_3_7_7 + 0.00634920634920634*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00952380952380951*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00634920634920635*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00952380952380952*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00634920634920634*G8_2_6 + 0.00952380952380951*G8_2_7 + 0.00952380952380951*G8_3_4 + 0.00952380952380952*G8_3_5 + 0.00952380952380951*G8_3_6 + 0.038095238095238*G8_3_7 - 0.0416666666666666*G9_0_2_2 - 0.0416666666666666*G9_1_2_2 - 0.0416666666666666*G9_2_2_2 - 0.0416666666666666*G9_3_2_2;
+    A[32] = 0.0166666666666666*G1_0_0_0_0 + 0.0166666666666666*G1_0_0_0_1 + 0.0166666666666666*G1_0_0_0_2 + 0.0166666666666666*G1_0_0_1_0 + 0.0166666666666666*G1_0_0_1_1 + 0.0166666666666666*G1_0_0_1_2 + 0.0166666666666666*G1_0_0_2_0 + 0.0166666666666666*G1_0_0_2_1 + 0.0166666666666666*G1_0_0_2_2 - 0.0166666666666666*G1_0_1_0_0 - 0.0166666666666666*G1_0_1_1_0 - 0.0166666666666666*G1_0_1_2_0 - 0.0166666666666666*G1_0_2_0_1 - 0.0166666666666666*G1_0_2_1_1 - 0.0166666666666666*G1_0_2_2_1 - 0.0166666666666666*G1_0_3_0_2 - 0.0166666666666666*G1_0_3_1_2 - 0.0166666666666666*G1_0_3_2_2 + 0.00833333333333331*G1_1_0_0_0 + 0.00833333333333331*G1_1_0_0_1 + 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_0_1_0 + 0.00833333333333331*G1_1_0_1_1 + 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_0_2_0 + 0.00833333333333331*G1_1_0_2_1 + 0.00833333333333331*G1_1_0_2_2 - 0.00833333333333331*G1_1_1_0_0 - 0.00833333333333331*G1_1_1_1_0 - 0.00833333333333331*G1_1_1_2_0 - 0.00833333333333331*G1_1_2_0_1 - 0.00833333333333331*G1_1_2_1_1 - 0.00833333333333331*G1_1_2_2_1 - 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_1_3_2_2 + 0.0083333333333333*G1_2_0_0_0 + 0.00833333333333331*G1_2_0_0_1 + 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_0_1_0 + 0.00833333333333331*G1_2_0_1_1 + 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_0_2_0 + 0.00833333333333331*G1_2_0_2_1 + 0.00833333333333331*G1_2_0_2_2 - 0.0083333333333333*G1_2_1_0_0 - 0.00833333333333331*G1_2_1_1_0 - 0.00833333333333331*G1_2_1_2_0 - 0.00833333333333331*G1_2_2_0_1 - 0.00833333333333331*G1_2_2_1_1 - 0.00833333333333331*G1_2_2_2_1 - 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_2_3_2_2 + 0.00833333333333331*G1_3_0_0_0 + 0.00833333333333331*G1_3_0_0_1 + 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_0_1_0 + 0.00833333333333331*G1_3_0_1_1 + 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_0_2_0 + 0.00833333333333331*G1_3_0_2_1 + 0.00833333333333331*G1_3_0_2_2 - 0.00833333333333331*G1_3_1_0_0 - 0.00833333333333331*G1_3_1_1_0 - 0.00833333333333331*G1_3_1_2_0 - 0.00833333333333331*G1_3_2_0_1 - 0.00833333333333331*G1_3_2_1_1 - 0.00833333333333331*G1_3_2_2_1 - 0.00833333333333331*G1_3_3_0_2 - 0.00833333333333331*G1_3_3_1_2 - 0.00833333333333331*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_0_0 + 0.0166666666666666*G2_0_0_0_1 + 0.0166666666666666*G2_0_0_0_2 + 0.0166666666666666*G2_0_0_1_0 + 0.0166666666666666*G2_0_0_1_1 + 0.0166666666666666*G2_0_0_1_2 + 0.0166666666666666*G2_0_0_2_0 + 0.0166666666666666*G2_0_0_2_1 + 0.0166666666666666*G2_0_0_2_2 + 0.00833333333333331*G2_0_1_0_0 + 0.00833333333333331*G2_0_1_0_1 + 0.00833333333333331*G2_0_1_0_2 + 0.00833333333333331*G2_0_1_1_0 + 0.00833333333333331*G2_0_1_1_1 + 0.00833333333333331*G2_0_1_1_2 + 0.00833333333333331*G2_0_1_2_0 + 0.00833333333333331*G2_0_1_2_1 + 0.00833333333333331*G2_0_1_2_2 + 0.00833333333333331*G2_0_2_0_0 + 0.00833333333333331*G2_0_2_0_1 + 0.00833333333333331*G2_0_2_0_2 + 0.00833333333333331*G2_0_2_1_0 + 0.00833333333333331*G2_0_2_1_1 + 0.00833333333333331*G2_0_2_1_2 + 0.00833333333333331*G2_0_2_2_0 + 0.00833333333333331*G2_0_2_2_1 + 0.00833333333333331*G2_0_2_2_2 + 0.00833333333333331*G2_0_3_0_0 + 0.00833333333333331*G2_0_3_0_1 + 0.00833333333333331*G2_0_3_0_2 + 0.00833333333333331*G2_0_3_1_0 + 0.00833333333333331*G2_0_3_1_1 + 0.00833333333333331*G2_0_3_1_2 + 0.00833333333333331*G2_0_3_2_0 + 0.00833333333333331*G2_0_3_2_1 + 0.00833333333333331*G2_0_3_2_2 + 0.00833333333333331*G2_1_0_0_0 + 0.00833333333333331*G2_1_0_0_1 + 0.00833333333333331*G2_1_0_0_2 + 0.00833333333333331*G2_1_0_1_0 + 0.00833333333333331*G2_1_0_1_1 + 0.00833333333333331*G2_1_0_1_2 + 0.00833333333333331*G2_1_0_2_0 + 0.00833333333333331*G2_1_0_2_1 + 0.00833333333333331*G2_1_0_2_2 + 0.0166666666666666*G2_1_1_0_0 + 0.0166666666666666*G2_1_1_0_1 + 0.0166666666666666*G2_1_1_0_2 + 0.0166666666666666*G2_1_1_1_0 + 0.0166666666666666*G2_1_1_1_1 + 0.0166666666666666*G2_1_1_1_2 + 0.0166666666666666*G2_1_1_2_0 + 0.0166666666666666*G2_1_1_2_1 + 0.0166666666666666*G2_1_1_2_2 + 0.00833333333333331*G2_1_2_0_0 + 0.00833333333333331*G2_1_2_0_1 + 0.00833333333333331*G2_1_2_0_2 + 0.00833333333333331*G2_1_2_1_0 + 0.00833333333333331*G2_1_2_1_1 + 0.00833333333333331*G2_1_2_1_2 + 0.00833333333333331*G2_1_2_2_0 + 0.00833333333333331*G2_1_2_2_1 + 0.00833333333333331*G2_1_2_2_2 + 0.00833333333333331*G2_1_3_0_0 + 0.00833333333333331*G2_1_3_0_1 + 0.00833333333333331*G2_1_3_0_2 + 0.00833333333333331*G2_1_3_1_0 + 0.00833333333333331*G2_1_3_1_1 + 0.00833333333333331*G2_1_3_1_2 + 0.00833333333333331*G2_1_3_2_0 + 0.00833333333333331*G2_1_3_2_1 + 0.00833333333333331*G2_1_3_2_2 + 0.0083333333333333*G2_2_0_0_0 + 0.00833333333333331*G2_2_0_0_1 + 0.00833333333333331*G2_2_0_0_2 + 0.00833333333333331*G2_2_0_1_0 + 0.00833333333333331*G2_2_0_1_1 + 0.00833333333333331*G2_2_0_1_2 + 0.00833333333333331*G2_2_0_2_0 + 0.00833333333333331*G2_2_0_2_1 + 0.00833333333333331*G2_2_0_2_2 + 0.00833333333333331*G2_2_1_0_0 + 0.00833333333333331*G2_2_1_0_1 + 0.00833333333333331*G2_2_1_0_2 + 0.00833333333333331*G2_2_1_1_0 + 0.00833333333333331*G2_2_1_1_1 + 0.00833333333333331*G2_2_1_1_2 + 0.00833333333333331*G2_2_1_2_0 + 0.00833333333333331*G2_2_1_2_1 + 0.00833333333333331*G2_2_1_2_2 + 0.0166666666666666*G2_2_2_0_0 + 0.0166666666666666*G2_2_2_0_1 + 0.0166666666666666*G2_2_2_0_2 + 0.0166666666666666*G2_2_2_1_0 + 0.0166666666666666*G2_2_2_1_1 + 0.0166666666666666*G2_2_2_1_2 + 0.0166666666666666*G2_2_2_2_0 + 0.0166666666666666*G2_2_2_2_1 + 0.0166666666666666*G2_2_2_2_2 + 0.00833333333333331*G2_2_3_0_0 + 0.00833333333333331*G2_2_3_0_1 + 0.00833333333333331*G2_2_3_0_2 + 0.00833333333333331*G2_2_3_1_0 + 0.00833333333333331*G2_2_3_1_1 + 0.00833333333333331*G2_2_3_1_2 + 0.00833333333333331*G2_2_3_2_0 + 0.00833333333333331*G2_2_3_2_1 + 0.00833333333333331*G2_2_3_2_2 + 0.00833333333333331*G2_3_0_0_0 + 0.00833333333333331*G2_3_0_0_1 + 0.00833333333333331*G2_3_0_0_2 + 0.00833333333333331*G2_3_0_1_0 + 0.00833333333333331*G2_3_0_1_1 + 0.00833333333333331*G2_3_0_1_2 + 0.00833333333333331*G2_3_0_2_0 + 0.00833333333333331*G2_3_0_2_1 + 0.00833333333333331*G2_3_0_2_2 + 0.00833333333333331*G2_3_1_0_0 + 0.00833333333333331*G2_3_1_0_1 + 0.00833333333333331*G2_3_1_0_2 + 0.00833333333333331*G2_3_1_1_0 + 0.00833333333333331*G2_3_1_1_1 + 0.00833333333333331*G2_3_1_1_2 + 0.00833333333333331*G2_3_1_2_0 + 0.00833333333333331*G2_3_1_2_1 + 0.00833333333333331*G2_3_1_2_2 + 0.00833333333333331*G2_3_2_0_0 + 0.00833333333333331*G2_3_2_0_1 + 0.00833333333333331*G2_3_2_0_2 + 0.00833333333333331*G2_3_2_1_0 + 0.00833333333333331*G2_3_2_1_1 + 0.00833333333333331*G2_3_2_1_2 + 0.00833333333333331*G2_3_2_2_0 + 0.00833333333333331*G2_3_2_2_1 + 0.00833333333333331*G2_3_2_2_2 + 0.0166666666666666*G2_3_3_0_0 + 0.0166666666666666*G2_3_3_0_1 + 0.0166666666666666*G2_3_3_0_2 + 0.0166666666666666*G2_3_3_1_0 + 0.0166666666666666*G2_3_3_1_1 + 0.0166666666666666*G2_3_3_1_2 + 0.0166666666666666*G2_3_3_2_0 + 0.0166666666666666*G2_3_3_2_1 + 0.0166666666666666*G2_3_3_2_2;
+    A[33] = 0.00833333333333331*G1_0_0_0_0 + 0.00833333333333331*G1_0_0_0_1 + 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_0_1_0 + 0.00833333333333331*G1_0_0_1_1 + 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_0_2_0 + 0.00833333333333331*G1_0_0_2_1 + 0.00833333333333331*G1_0_0_2_2 - 0.00833333333333331*G1_0_1_0_0 - 0.00833333333333331*G1_0_1_1_0 - 0.00833333333333331*G1_0_1_2_0 - 0.00833333333333331*G1_0_2_0_1 - 0.00833333333333331*G1_0_2_1_1 - 0.00833333333333331*G1_0_2_2_1 - 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_0_3_2_2 + 0.0166666666666666*G1_1_0_0_0 + 0.0166666666666666*G1_1_0_0_1 + 0.0166666666666666*G1_1_0_0_2 + 0.0166666666666666*G1_1_0_1_0 + 0.0166666666666666*G1_1_0_1_1 + 0.0166666666666666*G1_1_0_1_2 + 0.0166666666666666*G1_1_0_2_0 + 0.0166666666666666*G1_1_0_2_1 + 0.0166666666666666*G1_1_0_2_2 - 0.0166666666666666*G1_1_1_0_0 - 0.0166666666666666*G1_1_1_1_0 - 0.0166666666666666*G1_1_1_2_0 - 0.0166666666666666*G1_1_2_0_1 - 0.0166666666666666*G1_1_2_1_1 - 0.0166666666666666*G1_1_2_2_1 - 0.0166666666666666*G1_1_3_0_2 - 0.0166666666666666*G1_1_3_1_2 - 0.0166666666666666*G1_1_3_2_2 + 0.00833333333333331*G1_2_0_0_0 + 0.00833333333333331*G1_2_0_0_1 + 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_0_1_0 + 0.00833333333333331*G1_2_0_1_1 + 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_0_2_0 + 0.00833333333333331*G1_2_0_2_1 + 0.00833333333333331*G1_2_0_2_2 - 0.00833333333333331*G1_2_1_0_0 - 0.00833333333333331*G1_2_1_1_0 - 0.00833333333333331*G1_2_1_2_0 - 0.00833333333333331*G1_2_2_0_1 - 0.00833333333333331*G1_2_2_1_1 - 0.00833333333333331*G1_2_2_2_1 - 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_2_3_2_2 + 0.00833333333333331*G1_3_0_0_0 + 0.00833333333333331*G1_3_0_0_1 + 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_0_1_0 + 0.00833333333333331*G1_3_0_1_1 + 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_0_2_0 + 0.00833333333333331*G1_3_0_2_1 + 0.00833333333333331*G1_3_0_2_2 - 0.00833333333333331*G1_3_1_0_0 - 0.00833333333333331*G1_3_1_1_0 - 0.00833333333333331*G1_3_1_2_0 - 0.00833333333333331*G1_3_2_0_1 - 0.00833333333333331*G1_3_2_1_1 - 0.00833333333333331*G1_3_2_2_1 - 0.00833333333333331*G1_3_3_0_2 - 0.00833333333333331*G1_3_3_1_2 - 0.00833333333333331*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_0_0 - 0.0166666666666666*G2_0_0_1_0 - 0.0166666666666666*G2_0_0_2_0 - 0.00833333333333331*G2_0_1_0_0 - 0.00833333333333331*G2_0_1_1_0 - 0.00833333333333331*G2_0_1_2_0 - 0.00833333333333331*G2_0_2_0_0 - 0.00833333333333331*G2_0_2_1_0 - 0.00833333333333331*G2_0_2_2_0 - 0.00833333333333331*G2_0_3_0_0 - 0.00833333333333331*G2_0_3_1_0 - 0.00833333333333331*G2_0_3_2_0 - 0.00833333333333331*G2_1_0_0_0 - 0.00833333333333331*G2_1_0_1_0 - 0.00833333333333331*G2_1_0_2_0 - 0.0166666666666666*G2_1_1_0_0 - 0.0166666666666666*G2_1_1_1_0 - 0.0166666666666666*G2_1_1_2_0 - 0.00833333333333331*G2_1_2_0_0 - 0.00833333333333331*G2_1_2_1_0 - 0.00833333333333331*G2_1_2_2_0 - 0.00833333333333331*G2_1_3_0_0 - 0.00833333333333331*G2_1_3_1_0 - 0.00833333333333331*G2_1_3_2_0 - 0.0083333333333333*G2_2_0_0_0 - 0.00833333333333331*G2_2_0_1_0 - 0.00833333333333331*G2_2_0_2_0 - 0.00833333333333331*G2_2_1_0_0 - 0.00833333333333331*G2_2_1_1_0 - 0.00833333333333331*G2_2_1_2_0 - 0.0166666666666666*G2_2_2_0_0 - 0.0166666666666666*G2_2_2_1_0 - 0.0166666666666666*G2_2_2_2_0 - 0.00833333333333331*G2_2_3_0_0 - 0.00833333333333331*G2_2_3_1_0 - 0.00833333333333331*G2_2_3_2_0 - 0.00833333333333331*G2_3_0_0_0 - 0.00833333333333331*G2_3_0_1_0 - 0.00833333333333331*G2_3_0_2_0 - 0.00833333333333331*G2_3_1_0_0 - 0.00833333333333331*G2_3_1_1_0 - 0.00833333333333331*G2_3_1_2_0 - 0.00833333333333331*G2_3_2_0_0 - 0.00833333333333331*G2_3_2_1_0 - 0.00833333333333331*G2_3_2_2_0 - 0.0166666666666666*G2_3_3_0_0 - 0.0166666666666666*G2_3_3_1_0 - 0.0166666666666666*G2_3_3_2_0;
+    A[34] = 0.00833333333333331*G1_0_0_0_0 + 0.00833333333333331*G1_0_0_0_1 + 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_0_1_0 + 0.00833333333333331*G1_0_0_1_1 + 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_0_2_0 + 0.00833333333333331*G1_0_0_2_1 + 0.00833333333333331*G1_0_0_2_2 - 0.00833333333333331*G1_0_1_0_0 - 0.00833333333333331*G1_0_1_1_0 - 0.00833333333333331*G1_0_1_2_0 - 0.00833333333333331*G1_0_2_0_1 - 0.00833333333333331*G1_0_2_1_1 - 0.00833333333333331*G1_0_2_2_1 - 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_0_3_2_2 + 0.00833333333333331*G1_1_0_0_0 + 0.00833333333333331*G1_1_0_0_1 + 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_0_1_0 + 0.00833333333333331*G1_1_0_1_1 + 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_0_2_0 + 0.00833333333333331*G1_1_0_2_1 + 0.00833333333333331*G1_1_0_2_2 - 0.00833333333333331*G1_1_1_0_0 - 0.00833333333333331*G1_1_1_1_0 - 0.00833333333333331*G1_1_1_2_0 - 0.00833333333333331*G1_1_2_0_1 - 0.00833333333333331*G1_1_2_1_1 - 0.00833333333333331*G1_1_2_2_1 - 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_1_3_2_2 + 0.0166666666666666*G1_2_0_0_0 + 0.0166666666666666*G1_2_0_0_1 + 0.0166666666666666*G1_2_0_0_2 + 0.0166666666666666*G1_2_0_1_0 + 0.0166666666666666*G1_2_0_1_1 + 0.0166666666666666*G1_2_0_1_2 + 0.0166666666666666*G1_2_0_2_0 + 0.0166666666666666*G1_2_0_2_1 + 0.0166666666666666*G1_2_0_2_2 - 0.0166666666666666*G1_2_1_0_0 - 0.0166666666666666*G1_2_1_1_0 - 0.0166666666666666*G1_2_1_2_0 - 0.0166666666666666*G1_2_2_0_1 - 0.0166666666666666*G1_2_2_1_1 - 0.0166666666666666*G1_2_2_2_1 - 0.0166666666666666*G1_2_3_0_2 - 0.0166666666666666*G1_2_3_1_2 - 0.0166666666666666*G1_2_3_2_2 + 0.00833333333333331*G1_3_0_0_0 + 0.00833333333333331*G1_3_0_0_1 + 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_0_1_0 + 0.00833333333333331*G1_3_0_1_1 + 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_0_2_0 + 0.00833333333333331*G1_3_0_2_1 + 0.00833333333333331*G1_3_0_2_2 - 0.00833333333333331*G1_3_1_0_0 - 0.00833333333333331*G1_3_1_1_0 - 0.00833333333333331*G1_3_1_2_0 - 0.00833333333333331*G1_3_2_0_1 - 0.00833333333333331*G1_3_2_1_1 - 0.00833333333333331*G1_3_2_2_1 - 0.00833333333333331*G1_3_3_0_2 - 0.00833333333333331*G1_3_3_1_2 - 0.00833333333333331*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_0_1 - 0.0166666666666666*G2_0_0_1_1 - 0.0166666666666666*G2_0_0_2_1 - 0.00833333333333331*G2_0_1_0_1 - 0.00833333333333331*G2_0_1_1_1 - 0.00833333333333331*G2_0_1_2_1 - 0.00833333333333331*G2_0_2_0_1 - 0.00833333333333331*G2_0_2_1_1 - 0.00833333333333331*G2_0_2_2_1 - 0.00833333333333331*G2_0_3_0_1 - 0.00833333333333331*G2_0_3_1_1 - 0.00833333333333331*G2_0_3_2_1 - 0.00833333333333331*G2_1_0_0_1 - 0.00833333333333331*G2_1_0_1_1 - 0.00833333333333331*G2_1_0_2_1 - 0.0166666666666666*G2_1_1_0_1 - 0.0166666666666666*G2_1_1_1_1 - 0.0166666666666666*G2_1_1_2_1 - 0.00833333333333331*G2_1_2_0_1 - 0.00833333333333331*G2_1_2_1_1 - 0.00833333333333331*G2_1_2_2_1 - 0.00833333333333331*G2_1_3_0_1 - 0.00833333333333331*G2_1_3_1_1 - 0.00833333333333331*G2_1_3_2_1 - 0.00833333333333331*G2_2_0_0_1 - 0.00833333333333331*G2_2_0_1_1 - 0.00833333333333331*G2_2_0_2_1 - 0.00833333333333331*G2_2_1_0_1 - 0.00833333333333331*G2_2_1_1_1 - 0.00833333333333331*G2_2_1_2_1 - 0.0166666666666666*G2_2_2_0_1 - 0.0166666666666666*G2_2_2_1_1 - 0.0166666666666666*G2_2_2_2_1 - 0.00833333333333331*G2_2_3_0_1 - 0.00833333333333331*G2_2_3_1_1 - 0.00833333333333331*G2_2_3_2_1 - 0.00833333333333331*G2_3_0_0_1 - 0.00833333333333331*G2_3_0_1_1 - 0.00833333333333331*G2_3_0_2_1 - 0.00833333333333331*G2_3_1_0_1 - 0.00833333333333331*G2_3_1_1_1 - 0.00833333333333331*G2_3_1_2_1 - 0.00833333333333331*G2_3_2_0_1 - 0.00833333333333331*G2_3_2_1_1 - 0.00833333333333331*G2_3_2_2_1 - 0.0166666666666666*G2_3_3_0_1 - 0.0166666666666666*G2_3_3_1_1 - 0.0166666666666666*G2_3_3_2_1;
+    A[35] = 0.00833333333333331*G1_0_0_0_0 + 0.00833333333333331*G1_0_0_0_1 + 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_0_1_0 + 0.00833333333333331*G1_0_0_1_1 + 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_0_2_0 + 0.00833333333333331*G1_0_0_2_1 + 0.00833333333333331*G1_0_0_2_2 - 0.00833333333333331*G1_0_1_0_0 - 0.00833333333333331*G1_0_1_1_0 - 0.00833333333333331*G1_0_1_2_0 - 0.00833333333333331*G1_0_2_0_1 - 0.00833333333333331*G1_0_2_1_1 - 0.00833333333333331*G1_0_2_2_1 - 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_0_3_2_2 + 0.00833333333333331*G1_1_0_0_0 + 0.00833333333333331*G1_1_0_0_1 + 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_0_1_0 + 0.00833333333333331*G1_1_0_1_1 + 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_0_2_0 + 0.00833333333333331*G1_1_0_2_1 + 0.00833333333333331*G1_1_0_2_2 - 0.00833333333333331*G1_1_1_0_0 - 0.00833333333333331*G1_1_1_1_0 - 0.00833333333333331*G1_1_1_2_0 - 0.00833333333333331*G1_1_2_0_1 - 0.00833333333333331*G1_1_2_1_1 - 0.00833333333333331*G1_1_2_2_1 - 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_1_3_2_2 + 0.00833333333333331*G1_2_0_0_0 + 0.00833333333333331*G1_2_0_0_1 + 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_0_1_0 + 0.00833333333333331*G1_2_0_1_1 + 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_0_2_0 + 0.00833333333333331*G1_2_0_2_1 + 0.00833333333333331*G1_2_0_2_2 - 0.00833333333333331*G1_2_1_0_0 - 0.00833333333333331*G1_2_1_1_0 - 0.00833333333333331*G1_2_1_2_0 - 0.00833333333333331*G1_2_2_0_1 - 0.00833333333333331*G1_2_2_1_1 - 0.00833333333333331*G1_2_2_2_1 - 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_2_3_2_2 + 0.0166666666666666*G1_3_0_0_0 + 0.0166666666666666*G1_3_0_0_1 + 0.0166666666666666*G1_3_0_0_2 + 0.0166666666666666*G1_3_0_1_0 + 0.0166666666666666*G1_3_0_1_1 + 0.0166666666666666*G1_3_0_1_2 + 0.0166666666666666*G1_3_0_2_0 + 0.0166666666666666*G1_3_0_2_1 + 0.0166666666666666*G1_3_0_2_2 - 0.0166666666666666*G1_3_1_0_0 - 0.0166666666666666*G1_3_1_1_0 - 0.0166666666666666*G1_3_1_2_0 - 0.0166666666666666*G1_3_2_0_1 - 0.0166666666666666*G1_3_2_1_1 - 0.0166666666666666*G1_3_2_2_1 - 0.0166666666666666*G1_3_3_0_2 - 0.0166666666666666*G1_3_3_1_2 - 0.0166666666666666*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_0_2 - 0.0166666666666666*G2_0_0_1_2 - 0.0166666666666666*G2_0_0_2_2 - 0.00833333333333331*G2_0_1_0_2 - 0.00833333333333331*G2_0_1_1_2 - 0.00833333333333331*G2_0_1_2_2 - 0.00833333333333331*G2_0_2_0_2 - 0.00833333333333331*G2_0_2_1_2 - 0.00833333333333331*G2_0_2_2_2 - 0.00833333333333331*G2_0_3_0_2 - 0.00833333333333331*G2_0_3_1_2 - 0.00833333333333331*G2_0_3_2_2 - 0.00833333333333331*G2_1_0_0_2 - 0.00833333333333331*G2_1_0_1_2 - 0.00833333333333331*G2_1_0_2_2 - 0.0166666666666666*G2_1_1_0_2 - 0.0166666666666666*G2_1_1_1_2 - 0.0166666666666666*G2_1_1_2_2 - 0.00833333333333331*G2_1_2_0_2 - 0.00833333333333331*G2_1_2_1_2 - 0.00833333333333331*G2_1_2_2_2 - 0.00833333333333331*G2_1_3_0_2 - 0.00833333333333331*G2_1_3_1_2 - 0.00833333333333331*G2_1_3_2_2 - 0.00833333333333331*G2_2_0_0_2 - 0.00833333333333331*G2_2_0_1_2 - 0.00833333333333331*G2_2_0_2_2 - 0.00833333333333331*G2_2_1_0_2 - 0.00833333333333331*G2_2_1_1_2 - 0.00833333333333331*G2_2_1_2_2 - 0.0166666666666666*G2_2_2_0_2 - 0.0166666666666666*G2_2_2_1_2 - 0.0166666666666666*G2_2_2_2_2 - 0.00833333333333331*G2_2_3_0_2 - 0.00833333333333331*G2_2_3_1_2 - 0.00833333333333331*G2_2_3_2_2 - 0.00833333333333331*G2_3_0_0_2 - 0.00833333333333331*G2_3_0_1_2 - 0.00833333333333331*G2_3_0_2_2 - 0.00833333333333331*G2_3_1_0_2 - 0.00833333333333331*G2_3_1_1_2 - 0.00833333333333331*G2_3_1_2_2 - 0.00833333333333331*G2_3_2_0_2 - 0.00833333333333331*G2_3_2_1_2 - 0.00833333333333331*G2_3_2_2_2 - 0.0166666666666666*G2_3_3_0_2 - 0.0166666666666666*G2_3_3_1_2 - 0.0166666666666666*G2_3_3_2_2;
+    A[36] = 0.0166666666666666*G0_;
+    A[37] = 0.00833333333333331*G0_;
+    A[38] = 0.00833333333333331*G0_;
+    A[39] = 0.00833333333333331*G0_;
+    A[40] = -0.0166666666666666*G1_0_0_0_0 - 0.0166666666666666*G1_0_0_0_1 - 0.0166666666666666*G1_0_0_0_2 + 0.0166666666666666*G1_0_1_0_0 + 0.0166666666666666*G1_0_2_0_1 + 0.0166666666666666*G1_0_3_0_2 - 0.00833333333333331*G1_1_0_0_0 - 0.00833333333333331*G1_1_0_0_1 - 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_1_0_0 + 0.00833333333333331*G1_1_2_0_1 + 0.00833333333333331*G1_1_3_0_2 - 0.0083333333333333*G1_2_0_0_0 - 0.00833333333333331*G1_2_0_0_1 - 0.00833333333333331*G1_2_0_0_2 + 0.0083333333333333*G1_2_1_0_0 + 0.00833333333333331*G1_2_2_0_1 + 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_3_0_0_0 - 0.00833333333333331*G1_3_0_0_1 - 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_1_0_0 + 0.00833333333333331*G1_3_2_0_1 + 0.00833333333333331*G1_3_3_0_2 - 0.0166666666666666*G2_0_0_0_0 - 0.0166666666666666*G2_0_0_0_1 - 0.0166666666666666*G2_0_0_0_2 - 0.00833333333333331*G2_0_1_0_0 - 0.00833333333333331*G2_0_1_0_1 - 0.00833333333333331*G2_0_1_0_2 - 0.00833333333333331*G2_0_2_0_0 - 0.00833333333333331*G2_0_2_0_1 - 0.00833333333333331*G2_0_2_0_2 - 0.00833333333333331*G2_0_3_0_0 - 0.00833333333333331*G2_0_3_0_1 - 0.00833333333333331*G2_0_3_0_2 - 0.00833333333333331*G2_1_0_0_0 - 0.00833333333333331*G2_1_0_0_1 - 0.00833333333333331*G2_1_0_0_2 - 0.0166666666666666*G2_1_1_0_0 - 0.0166666666666666*G2_1_1_0_1 - 0.0166666666666666*G2_1_1_0_2 - 0.00833333333333331*G2_1_2_0_0 - 0.00833333333333331*G2_1_2_0_1 - 0.00833333333333331*G2_1_2_0_2 - 0.00833333333333331*G2_1_3_0_0 - 0.00833333333333331*G2_1_3_0_1 - 0.00833333333333331*G2_1_3_0_2 - 0.0083333333333333*G2_2_0_0_0 - 0.00833333333333331*G2_2_0_0_1 - 0.00833333333333331*G2_2_0_0_2 - 0.00833333333333331*G2_2_1_0_0 - 0.00833333333333331*G2_2_1_0_1 - 0.00833333333333331*G2_2_1_0_2 - 0.0166666666666666*G2_2_2_0_0 - 0.0166666666666666*G2_2_2_0_1 - 0.0166666666666666*G2_2_2_0_2 - 0.00833333333333331*G2_2_3_0_0 - 0.00833333333333331*G2_2_3_0_1 - 0.00833333333333331*G2_2_3_0_2 - 0.00833333333333331*G2_3_0_0_0 - 0.00833333333333331*G2_3_0_0_1 - 0.00833333333333331*G2_3_0_0_2 - 0.00833333333333331*G2_3_1_0_0 - 0.00833333333333331*G2_3_1_0_1 - 0.00833333333333331*G2_3_1_0_2 - 0.00833333333333331*G2_3_2_0_0 - 0.00833333333333331*G2_3_2_0_1 - 0.00833333333333331*G2_3_2_0_2 - 0.0166666666666666*G2_3_3_0_0 - 0.0166666666666666*G2_3_3_0_1 - 0.0166666666666666*G2_3_3_0_2;
+    A[41] = -0.00833333333333331*G1_0_0_0_0 - 0.00833333333333331*G1_0_0_0_1 - 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_1_0_0 + 0.00833333333333331*G1_0_2_0_1 + 0.00833333333333331*G1_0_3_0_2 - 0.0166666666666666*G1_1_0_0_0 - 0.0166666666666666*G1_1_0_0_1 - 0.0166666666666666*G1_1_0_0_2 + 0.0166666666666666*G1_1_1_0_0 + 0.0166666666666666*G1_1_2_0_1 + 0.0166666666666666*G1_1_3_0_2 - 0.00833333333333331*G1_2_0_0_0 - 0.00833333333333331*G1_2_0_0_1 - 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_1_0_0 + 0.00833333333333331*G1_2_2_0_1 + 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_3_0_0_0 - 0.00833333333333331*G1_3_0_0_1 - 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_1_0_0 + 0.00833333333333331*G1_3_2_0_1 + 0.00833333333333331*G1_3_3_0_2 + 0.0166666666666666*G2_0_0_0_0 + 0.00833333333333331*G2_0_1_0_0 + 0.00833333333333331*G2_0_2_0_0 + 0.00833333333333331*G2_0_3_0_0 + 0.00833333333333331*G2_1_0_0_0 + 0.0166666666666666*G2_1_1_0_0 + 0.00833333333333331*G2_1_2_0_0 + 0.00833333333333331*G2_1_3_0_0 + 0.0083333333333333*G2_2_0_0_0 + 0.00833333333333331*G2_2_1_0_0 + 0.0166666666666666*G2_2_2_0_0 + 0.00833333333333331*G2_2_3_0_0 + 0.00833333333333331*G2_3_0_0_0 + 0.00833333333333331*G2_3_1_0_0 + 0.00833333333333331*G2_3_2_0_0 + 0.0166666666666666*G2_3_3_0_0;
+    A[42] = -0.00833333333333331*G1_0_0_0_0 - 0.00833333333333331*G1_0_0_0_1 - 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_1_0_0 + 0.00833333333333331*G1_0_2_0_1 + 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_1_0_0_0 - 0.00833333333333331*G1_1_0_0_1 - 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_1_0_0 + 0.00833333333333331*G1_1_2_0_1 + 0.00833333333333331*G1_1_3_0_2 - 0.0166666666666666*G1_2_0_0_0 - 0.0166666666666666*G1_2_0_0_1 - 0.0166666666666666*G1_2_0_0_2 + 0.0166666666666666*G1_2_1_0_0 + 0.0166666666666666*G1_2_2_0_1 + 0.0166666666666666*G1_2_3_0_2 - 0.00833333333333331*G1_3_0_0_0 - 0.00833333333333331*G1_3_0_0_1 - 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_1_0_0 + 0.00833333333333331*G1_3_2_0_1 + 0.00833333333333331*G1_3_3_0_2 + 0.0166666666666666*G2_0_0_0_1 + 0.00833333333333331*G2_0_1_0_1 + 0.00833333333333331*G2_0_2_0_1 + 0.00833333333333331*G2_0_3_0_1 + 0.00833333333333331*G2_1_0_0_1 + 0.0166666666666666*G2_1_1_0_1 + 0.00833333333333331*G2_1_2_0_1 + 0.00833333333333331*G2_1_3_0_1 + 0.00833333333333331*G2_2_0_0_1 + 0.00833333333333331*G2_2_1_0_1 + 0.0166666666666666*G2_2_2_0_1 + 0.00833333333333331*G2_2_3_0_1 + 0.00833333333333331*G2_3_0_0_1 + 0.00833333333333331*G2_3_1_0_1 + 0.00833333333333331*G2_3_2_0_1 + 0.0166666666666666*G2_3_3_0_1;
+    A[43] = -0.00833333333333331*G1_0_0_0_0 - 0.00833333333333331*G1_0_0_0_1 - 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_1_0_0 + 0.00833333333333331*G1_0_2_0_1 + 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_1_0_0_0 - 0.00833333333333331*G1_1_0_0_1 - 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_1_0_0 + 0.00833333333333331*G1_1_2_0_1 + 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_2_0_0_0 - 0.00833333333333331*G1_2_0_0_1 - 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_1_0_0 + 0.00833333333333331*G1_2_2_0_1 + 0.00833333333333331*G1_2_3_0_2 - 0.0166666666666666*G1_3_0_0_0 - 0.0166666666666666*G1_3_0_0_1 - 0.0166666666666666*G1_3_0_0_2 + 0.0166666666666666*G1_3_1_0_0 + 0.0166666666666666*G1_3_2_0_1 + 0.0166666666666666*G1_3_3_0_2 + 0.0166666666666666*G2_0_0_0_2 + 0.00833333333333331*G2_0_1_0_2 + 0.00833333333333331*G2_0_2_0_2 + 0.00833333333333331*G2_0_3_0_2 + 0.00833333333333331*G2_1_0_0_2 + 0.0166666666666666*G2_1_1_0_2 + 0.00833333333333331*G2_1_2_0_2 + 0.00833333333333331*G2_1_3_0_2 + 0.00833333333333331*G2_2_0_0_2 + 0.00833333333333331*G2_2_1_0_2 + 0.0166666666666666*G2_2_2_0_2 + 0.00833333333333331*G2_2_3_0_2 + 0.00833333333333331*G2_3_0_0_2 + 0.00833333333333331*G2_3_1_0_2 + 0.00833333333333331*G2_3_2_0_2 + 0.0166666666666666*G2_3_3_0_2;
+    A[44] = 0.00833333333333331*G0_;
+    A[45] = 0.0166666666666666*G0_;
+    A[46] = 0.00833333333333331*G0_;
+    A[47] = 0.00833333333333331*G0_;
+    A[48] = -0.0166666666666666*G1_0_0_1_0 - 0.0166666666666666*G1_0_0_1_1 - 0.0166666666666666*G1_0_0_1_2 + 0.0166666666666666*G1_0_1_1_0 + 0.0166666666666666*G1_0_2_1_1 + 0.0166666666666666*G1_0_3_1_2 - 0.00833333333333331*G1_1_0_1_0 - 0.00833333333333331*G1_1_0_1_1 - 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_1_1_0 + 0.00833333333333331*G1_1_2_1_1 + 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_2_0_1_0 - 0.00833333333333331*G1_2_0_1_1 - 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_1_1_0 + 0.00833333333333331*G1_2_2_1_1 + 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_3_0_1_0 - 0.00833333333333331*G1_3_0_1_1 - 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_1_1_0 + 0.00833333333333331*G1_3_2_1_1 + 0.00833333333333331*G1_3_3_1_2 - 0.0166666666666666*G2_0_0_1_0 - 0.0166666666666666*G2_0_0_1_1 - 0.0166666666666666*G2_0_0_1_2 - 0.00833333333333331*G2_0_1_1_0 - 0.00833333333333331*G2_0_1_1_1 - 0.00833333333333331*G2_0_1_1_2 - 0.00833333333333331*G2_0_2_1_0 - 0.00833333333333331*G2_0_2_1_1 - 0.00833333333333331*G2_0_2_1_2 - 0.00833333333333331*G2_0_3_1_0 - 0.00833333333333331*G2_0_3_1_1 - 0.00833333333333331*G2_0_3_1_2 - 0.00833333333333331*G2_1_0_1_0 - 0.00833333333333331*G2_1_0_1_1 - 0.00833333333333331*G2_1_0_1_2 - 0.0166666666666666*G2_1_1_1_0 - 0.0166666666666666*G2_1_1_1_1 - 0.0166666666666666*G2_1_1_1_2 - 0.00833333333333331*G2_1_2_1_0 - 0.00833333333333331*G2_1_2_1_1 - 0.00833333333333331*G2_1_2_1_2 - 0.00833333333333331*G2_1_3_1_0 - 0.00833333333333331*G2_1_3_1_1 - 0.00833333333333331*G2_1_3_1_2 - 0.00833333333333331*G2_2_0_1_0 - 0.00833333333333331*G2_2_0_1_1 - 0.00833333333333331*G2_2_0_1_2 - 0.00833333333333331*G2_2_1_1_0 - 0.00833333333333331*G2_2_1_1_1 - 0.00833333333333331*G2_2_1_1_2 - 0.0166666666666666*G2_2_2_1_0 - 0.0166666666666666*G2_2_2_1_1 - 0.0166666666666666*G2_2_2_1_2 - 0.00833333333333331*G2_2_3_1_0 - 0.00833333333333331*G2_2_3_1_1 - 0.00833333333333331*G2_2_3_1_2 - 0.00833333333333331*G2_3_0_1_0 - 0.00833333333333331*G2_3_0_1_1 - 0.00833333333333331*G2_3_0_1_2 - 0.00833333333333331*G2_3_1_1_0 - 0.00833333333333331*G2_3_1_1_1 - 0.00833333333333331*G2_3_1_1_2 - 0.00833333333333331*G2_3_2_1_0 - 0.00833333333333331*G2_3_2_1_1 - 0.00833333333333331*G2_3_2_1_2 - 0.0166666666666666*G2_3_3_1_0 - 0.0166666666666666*G2_3_3_1_1 - 0.0166666666666666*G2_3_3_1_2;
+    A[49] = -0.00833333333333331*G1_0_0_1_0 - 0.00833333333333331*G1_0_0_1_1 - 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_1_1_0 + 0.00833333333333331*G1_0_2_1_1 + 0.00833333333333331*G1_0_3_1_2 - 0.0166666666666666*G1_1_0_1_0 - 0.0166666666666666*G1_1_0_1_1 - 0.0166666666666666*G1_1_0_1_2 + 0.0166666666666666*G1_1_1_1_0 + 0.0166666666666666*G1_1_2_1_1 + 0.0166666666666666*G1_1_3_1_2 - 0.00833333333333331*G1_2_0_1_0 - 0.00833333333333331*G1_2_0_1_1 - 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_1_1_0 + 0.00833333333333331*G1_2_2_1_1 + 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_3_0_1_0 - 0.00833333333333331*G1_3_0_1_1 - 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_1_1_0 + 0.00833333333333331*G1_3_2_1_1 + 0.00833333333333331*G1_3_3_1_2 + 0.0166666666666666*G2_0_0_1_0 + 0.00833333333333331*G2_0_1_1_0 + 0.00833333333333331*G2_0_2_1_0 + 0.00833333333333331*G2_0_3_1_0 + 0.00833333333333331*G2_1_0_1_0 + 0.0166666666666666*G2_1_1_1_0 + 0.00833333333333331*G2_1_2_1_0 + 0.00833333333333331*G2_1_3_1_0 + 0.00833333333333331*G2_2_0_1_0 + 0.00833333333333331*G2_2_1_1_0 + 0.0166666666666666*G2_2_2_1_0 + 0.00833333333333331*G2_2_3_1_0 + 0.00833333333333331*G2_3_0_1_0 + 0.00833333333333331*G2_3_1_1_0 + 0.00833333333333331*G2_3_2_1_0 + 0.0166666666666666*G2_3_3_1_0;
+    A[50] = -0.00833333333333331*G1_0_0_1_0 - 0.00833333333333331*G1_0_0_1_1 - 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_1_1_0 + 0.00833333333333331*G1_0_2_1_1 + 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_1_0_1_0 - 0.00833333333333331*G1_1_0_1_1 - 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_1_1_0 + 0.00833333333333331*G1_1_2_1_1 + 0.00833333333333331*G1_1_3_1_2 - 0.0166666666666666*G1_2_0_1_0 - 0.0166666666666666*G1_2_0_1_1 - 0.0166666666666666*G1_2_0_1_2 + 0.0166666666666666*G1_2_1_1_0 + 0.0166666666666666*G1_2_2_1_1 + 0.0166666666666666*G1_2_3_1_2 - 0.00833333333333331*G1_3_0_1_0 - 0.00833333333333331*G1_3_0_1_1 - 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_1_1_0 + 0.00833333333333331*G1_3_2_1_1 + 0.00833333333333331*G1_3_3_1_2 + 0.0166666666666666*G2_0_0_1_1 + 0.00833333333333331*G2_0_1_1_1 + 0.00833333333333331*G2_0_2_1_1 + 0.00833333333333331*G2_0_3_1_1 + 0.00833333333333331*G2_1_0_1_1 + 0.0166666666666666*G2_1_1_1_1 + 0.00833333333333331*G2_1_2_1_1 + 0.00833333333333331*G2_1_3_1_1 + 0.00833333333333331*G2_2_0_1_1 + 0.00833333333333331*G2_2_1_1_1 + 0.0166666666666666*G2_2_2_1_1 + 0.00833333333333331*G2_2_3_1_1 + 0.00833333333333331*G2_3_0_1_1 + 0.00833333333333331*G2_3_1_1_1 + 0.00833333333333331*G2_3_2_1_1 + 0.0166666666666666*G2_3_3_1_1;
+    A[51] = -0.00833333333333331*G1_0_0_1_0 - 0.00833333333333331*G1_0_0_1_1 - 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_1_1_0 + 0.00833333333333331*G1_0_2_1_1 + 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_1_0_1_0 - 0.00833333333333331*G1_1_0_1_1 - 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_1_1_0 + 0.00833333333333331*G1_1_2_1_1 + 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_2_0_1_0 - 0.00833333333333331*G1_2_0_1_1 - 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_1_1_0 + 0.00833333333333331*G1_2_2_1_1 + 0.00833333333333331*G1_2_3_1_2 - 0.0166666666666666*G1_3_0_1_0 - 0.0166666666666666*G1_3_0_1_1 - 0.0166666666666666*G1_3_0_1_2 + 0.0166666666666666*G1_3_1_1_0 + 0.0166666666666666*G1_3_2_1_1 + 0.0166666666666666*G1_3_3_1_2 + 0.0166666666666666*G2_0_0_1_2 + 0.00833333333333331*G2_0_1_1_2 + 0.00833333333333331*G2_0_2_1_2 + 0.00833333333333331*G2_0_3_1_2 + 0.00833333333333331*G2_1_0_1_2 + 0.0166666666666666*G2_1_1_1_2 + 0.00833333333333331*G2_1_2_1_2 + 0.00833333333333331*G2_1_3_1_2 + 0.00833333333333331*G2_2_0_1_2 + 0.00833333333333331*G2_2_1_1_2 + 0.0166666666666666*G2_2_2_1_2 + 0.00833333333333331*G2_2_3_1_2 + 0.00833333333333331*G2_3_0_1_2 + 0.00833333333333331*G2_3_1_1_2 + 0.00833333333333331*G2_3_2_1_2 + 0.0166666666666666*G2_3_3_1_2;
+    A[52] = 0.00833333333333331*G0_;
+    A[53] = 0.00833333333333331*G0_;
+    A[54] = 0.0166666666666666*G0_;
+    A[55] = 0.00833333333333331*G0_;
+    A[56] = -0.0166666666666666*G1_0_0_2_0 - 0.0166666666666666*G1_0_0_2_1 - 0.0166666666666666*G1_0_0_2_2 + 0.0166666666666666*G1_0_1_2_0 + 0.0166666666666666*G1_0_2_2_1 + 0.0166666666666666*G1_0_3_2_2 - 0.00833333333333331*G1_1_0_2_0 - 0.00833333333333331*G1_1_0_2_1 - 0.00833333333333331*G1_1_0_2_2 + 0.00833333333333331*G1_1_1_2_0 + 0.00833333333333331*G1_1_2_2_1 + 0.00833333333333331*G1_1_3_2_2 - 0.00833333333333331*G1_2_0_2_0 - 0.00833333333333331*G1_2_0_2_1 - 0.00833333333333331*G1_2_0_2_2 + 0.00833333333333331*G1_2_1_2_0 + 0.00833333333333331*G1_2_2_2_1 + 0.00833333333333331*G1_2_3_2_2 - 0.00833333333333331*G1_3_0_2_0 - 0.00833333333333331*G1_3_0_2_1 - 0.00833333333333331*G1_3_0_2_2 + 0.00833333333333331*G1_3_1_2_0 + 0.00833333333333331*G1_3_2_2_1 + 0.00833333333333331*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_2_0 - 0.0166666666666666*G2_0_0_2_1 - 0.0166666666666666*G2_0_0_2_2 - 0.00833333333333331*G2_0_1_2_0 - 0.00833333333333331*G2_0_1_2_1 - 0.00833333333333331*G2_0_1_2_2 - 0.00833333333333331*G2_0_2_2_0 - 0.00833333333333331*G2_0_2_2_1 - 0.00833333333333331*G2_0_2_2_2 - 0.00833333333333331*G2_0_3_2_0 - 0.00833333333333331*G2_0_3_2_1 - 0.00833333333333331*G2_0_3_2_2 - 0.00833333333333331*G2_1_0_2_0 - 0.00833333333333331*G2_1_0_2_1 - 0.00833333333333331*G2_1_0_2_2 - 0.0166666666666666*G2_1_1_2_0 - 0.0166666666666666*G2_1_1_2_1 - 0.0166666666666666*G2_1_1_2_2 - 0.00833333333333331*G2_1_2_2_0 - 0.00833333333333331*G2_1_2_2_1 - 0.00833333333333331*G2_1_2_2_2 - 0.00833333333333331*G2_1_3_2_0 - 0.00833333333333331*G2_1_3_2_1 - 0.00833333333333331*G2_1_3_2_2 - 0.00833333333333331*G2_2_0_2_0 - 0.00833333333333331*G2_2_0_2_1 - 0.00833333333333331*G2_2_0_2_2 - 0.00833333333333331*G2_2_1_2_0 - 0.00833333333333331*G2_2_1_2_1 - 0.00833333333333331*G2_2_1_2_2 - 0.0166666666666666*G2_2_2_2_0 - 0.0166666666666666*G2_2_2_2_1 - 0.0166666666666666*G2_2_2_2_2 - 0.00833333333333331*G2_2_3_2_0 - 0.00833333333333331*G2_2_3_2_1 - 0.00833333333333331*G2_2_3_2_2 - 0.00833333333333331*G2_3_0_2_0 - 0.00833333333333331*G2_3_0_2_1 - 0.00833333333333331*G2_3_0_2_2 - 0.00833333333333331*G2_3_1_2_0 - 0.00833333333333331*G2_3_1_2_1 - 0.00833333333333331*G2_3_1_2_2 - 0.00833333333333331*G2_3_2_2_0 - 0.00833333333333331*G2_3_2_2_1 - 0.00833333333333331*G2_3_2_2_2 - 0.0166666666666666*G2_3_3_2_0 - 0.0166666666666666*G2_3_3_2_1 - 0.0166666666666666*G2_3_3_2_2;
+    A[57] = -0.00833333333333331*G1_0_0_2_0 - 0.00833333333333331*G1_0_0_2_1 - 0.00833333333333331*G1_0_0_2_2 + 0.00833333333333331*G1_0_1_2_0 + 0.00833333333333331*G1_0_2_2_1 + 0.00833333333333331*G1_0_3_2_2 - 0.0166666666666666*G1_1_0_2_0 - 0.0166666666666666*G1_1_0_2_1 - 0.0166666666666666*G1_1_0_2_2 + 0.0166666666666666*G1_1_1_2_0 + 0.0166666666666666*G1_1_2_2_1 + 0.0166666666666666*G1_1_3_2_2 - 0.00833333333333331*G1_2_0_2_0 - 0.00833333333333331*G1_2_0_2_1 - 0.00833333333333331*G1_2_0_2_2 + 0.00833333333333331*G1_2_1_2_0 + 0.00833333333333331*G1_2_2_2_1 + 0.00833333333333331*G1_2_3_2_2 - 0.00833333333333331*G1_3_0_2_0 - 0.00833333333333331*G1_3_0_2_1 - 0.00833333333333331*G1_3_0_2_2 + 0.00833333333333331*G1_3_1_2_0 + 0.00833333333333331*G1_3_2_2_1 + 0.00833333333333331*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_2_0 + 0.00833333333333331*G2_0_1_2_0 + 0.00833333333333331*G2_0_2_2_0 + 0.00833333333333331*G2_0_3_2_0 + 0.00833333333333331*G2_1_0_2_0 + 0.0166666666666666*G2_1_1_2_0 + 0.00833333333333331*G2_1_2_2_0 + 0.00833333333333331*G2_1_3_2_0 + 0.00833333333333331*G2_2_0_2_0 + 0.00833333333333331*G2_2_1_2_0 + 0.0166666666666666*G2_2_2_2_0 + 0.00833333333333331*G2_2_3_2_0 + 0.00833333333333331*G2_3_0_2_0 + 0.00833333333333331*G2_3_1_2_0 + 0.00833333333333331*G2_3_2_2_0 + 0.0166666666666666*G2_3_3_2_0;
+    A[58] = -0.00833333333333331*G1_0_0_2_0 - 0.00833333333333331*G1_0_0_2_1 - 0.00833333333333331*G1_0_0_2_2 + 0.00833333333333331*G1_0_1_2_0 + 0.00833333333333331*G1_0_2_2_1 + 0.00833333333333331*G1_0_3_2_2 - 0.00833333333333331*G1_1_0_2_0 - 0.00833333333333331*G1_1_0_2_1 - 0.00833333333333331*G1_1_0_2_2 + 0.00833333333333331*G1_1_1_2_0 + 0.00833333333333331*G1_1_2_2_1 + 0.00833333333333331*G1_1_3_2_2 - 0.0166666666666666*G1_2_0_2_0 - 0.0166666666666666*G1_2_0_2_1 - 0.0166666666666666*G1_2_0_2_2 + 0.0166666666666666*G1_2_1_2_0 + 0.0166666666666666*G1_2_2_2_1 + 0.0166666666666666*G1_2_3_2_2 - 0.00833333333333331*G1_3_0_2_0 - 0.00833333333333331*G1_3_0_2_1 - 0.00833333333333331*G1_3_0_2_2 + 0.00833333333333331*G1_3_1_2_0 + 0.00833333333333331*G1_3_2_2_1 + 0.00833333333333331*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_2_1 + 0.00833333333333331*G2_0_1_2_1 + 0.00833333333333331*G2_0_2_2_1 + 0.00833333333333331*G2_0_3_2_1 + 0.00833333333333331*G2_1_0_2_1 + 0.0166666666666666*G2_1_1_2_1 + 0.00833333333333331*G2_1_2_2_1 + 0.00833333333333331*G2_1_3_2_1 + 0.00833333333333331*G2_2_0_2_1 + 0.00833333333333331*G2_2_1_2_1 + 0.0166666666666666*G2_2_2_2_1 + 0.00833333333333331*G2_2_3_2_1 + 0.00833333333333331*G2_3_0_2_1 + 0.00833333333333331*G2_3_1_2_1 + 0.00833333333333331*G2_3_2_2_1 + 0.0166666666666666*G2_3_3_2_1;
+    A[59] = -0.00833333333333331*G1_0_0_2_0 - 0.00833333333333331*G1_0_0_2_1 - 0.00833333333333331*G1_0_0_2_2 + 0.00833333333333331*G1_0_1_2_0 + 0.00833333333333331*G1_0_2_2_1 + 0.00833333333333331*G1_0_3_2_2 - 0.00833333333333331*G1_1_0_2_0 - 0.00833333333333331*G1_1_0_2_1 - 0.00833333333333331*G1_1_0_2_2 + 0.00833333333333331*G1_1_1_2_0 + 0.00833333333333331*G1_1_2_2_1 + 0.00833333333333331*G1_1_3_2_2 - 0.00833333333333331*G1_2_0_2_0 - 0.00833333333333331*G1_2_0_2_1 - 0.00833333333333331*G1_2_0_2_2 + 0.00833333333333331*G1_2_1_2_0 + 0.00833333333333331*G1_2_2_2_1 + 0.00833333333333331*G1_2_3_2_2 - 0.0166666666666666*G1_3_0_2_0 - 0.0166666666666666*G1_3_0_2_1 - 0.0166666666666666*G1_3_0_2_2 + 0.0166666666666666*G1_3_1_2_0 + 0.0166666666666666*G1_3_2_2_1 + 0.0166666666666666*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_2_2 + 0.00833333333333331*G2_0_1_2_2 + 0.00833333333333331*G2_0_2_2_2 + 0.00833333333333331*G2_0_3_2_2 + 0.00833333333333331*G2_1_0_2_2 + 0.0166666666666666*G2_1_1_2_2 + 0.00833333333333331*G2_1_2_2_2 + 0.00833333333333331*G2_1_3_2_2 + 0.00833333333333331*G2_2_0_2_2 + 0.00833333333333331*G2_2_1_2_2 + 0.0166666666666666*G2_2_2_2_2 + 0.00833333333333331*G2_2_3_2_2 + 0.00833333333333331*G2_3_0_2_2 + 0.00833333333333331*G2_3_1_2_2 + 0.00833333333333331*G2_3_2_2_2 + 0.0166666666666666*G2_3_3_2_2;
+    A[60] = 0.00833333333333331*G0_;
+    A[61] = 0.00833333333333331*G0_;
+    A[62] = 0.00833333333333331*G0_;
+    A[63] = 0.0166666666666666*G0_;
   }
 
 };
@@ -9798,17 +10004,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -9972,37 +10178,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -10280,17 +10486,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -10454,37 +10660,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -10765,17 +10971,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -10814,17 +11020,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -10992,37 +11198,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -11128,37 +11334,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -11451,17 +11657,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -11625,37 +11831,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -11933,17 +12139,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -12107,37 +12313,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -12418,17 +12624,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -12467,17 +12673,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -12645,37 +12851,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -12781,37 +12987,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -13104,17 +13310,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -13278,37 +13484,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -13586,17 +13792,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -13760,37 +13966,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -14071,17 +14277,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -14120,17 +14326,17 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -14298,37 +14504,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -14434,37 +14640,37 @@ public:
       const double psitilde_cs_10_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-      const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-      const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-      const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+      const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+      const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+      const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+      const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
-      {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-      {0.288675134595, 0, 0.210818510678, -0.07453559925},
-      {0.288675134595, 0, 0, 0.22360679775}};
+      {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+      {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+      {0.288675134594813, 0, 0, 0.223606797749979}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
       {{0, 0, 0, 0},
-      {3.16227766017, 0, 0, 0},
+      {3.16227766016838, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {2.73861278753, 0, 0, 0},
+      {1.58113883008419, 0, 0, 0},
+      {2.73861278752583, 0, 0, 0},
       {0, 0, 0, 0}};
     
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
-      {1.58113883008, 0, 0, 0},
-      {0.912870929175, 0, 0, 0},
-      {2.58198889747, 0, 0, 0}};
+      {1.58113883008419, 0, 0, 0},
+      {0.912870929175277, 0, 0, 0},
+      {2.58198889747161, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -14757,17 +14963,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -14931,37 +15137,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -15239,17 +15445,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -15413,37 +15619,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -15721,17 +15927,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -15895,37 +16101,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -16203,17 +16409,17 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -16377,37 +16583,37 @@ public:
     const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.866025403784*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278753*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398875*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
+    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
+    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
+    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
+    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
-    {{0.288675134595, -0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0.182574185835, -0.105409255339, -0.07453559925},
-    {0.288675134595, 0, 0.210818510678, -0.07453559925},
-    {0.288675134595, 0, 0, 0.22360679775}};
+    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
+    {0.288675134594813, 0, 0, 0.223606797749979}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
     {{0, 0, 0, 0},
-    {3.16227766017, 0, 0, 0},
+    {3.16227766016838, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {2.73861278753, 0, 0, 0},
+    {1.58113883008419, 0, 0, 0},
+    {2.73861278752583, 0, 0, 0},
     {0, 0, 0, 0}};
     
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
-    {1.58113883008, 0, 0, 0},
-    {0.912870929175, 0, 0, 0},
-    {2.58198889747, 0, 0, 0}};
+    {1.58113883008419, 0, 0, 0},
+    {0.912870929175277, 0, 0, 0},
+    {2.58198889747161, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -16678,10 +16884,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -16830,10 +17049,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -16999,10 +17231,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -17160,10 +17417,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -17312,10 +17582,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -17481,10 +17764,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -17642,10 +17950,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -17794,10 +18115,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -17963,10 +18297,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18124,10 +18483,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18276,10 +18648,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18428,10 +18813,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18580,10 +18978,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -20319,14 +20730,14 @@ public:
     const double G11_3_7_2_2 = det*w[2][3]*w[0][7]*Jinv_20*Jinv_20 + det*w[2][3]*w[0][7]*Jinv_21*Jinv_21 + det*w[2][3]*w[0][7]*Jinv_22*Jinv_22;
     
     // Compute element tensor
-    A[0] = -0.0166666666667*G7_0 - 0.00833333333333*G7_1 - 0.00833333333333*G7_2 - 0.00833333333333*G7_3 + 0.00595238095238*G8_0_4_4_4 + 0.00119047619048*G8_0_4_4_5 + 0.00119047619048*G8_0_4_4_6 + 0.00119047619048*G8_0_4_4_7 + 0.00119047619048*G8_0_4_5_4 + 0.000595238095238*G8_0_4_5_5 + 0.000297619047619*G8_0_4_5_6 + 0.000297619047619*G8_0_4_5_7 + 0.00119047619048*G8_0_4_6_4 + 0.000297619047619*G8_0_4_6_5 + 0.000595238095238*G8_0_4_6_6 + 0.000297619047619*G8_0_4_6_7 + 0.00119047619048*G8_0_4_7_4 + 0.000297619047619*G8_0_4_7_5 + 0.000297619047619*G8_0_4_7_6 + 0.000595238095238*G8_0_4_7_7 + 0.00119047619048*G8_0_5_4_4 + 0.000595238095238*G8_0_5_4_5 + 0.000297619047619*G8_0_5_4_6 + 0.000297619047619*G8_0_5_4_7 + 0.000595238095238*G8_0_5_5_4 + 0.000595238095238*G8_0_5_5_5 + 0.000198412698413*G8_0_5_5_6 + 0.000198412698413*G8_0_5_5_7 + 0.000297619047619*G8_0_5_6_4 + 0.000198412698413*G8_0_5_6_5 + 0.000198412698413*G8_0_5_6_6 + 9.92063492063e-05*G8_0_5_6_7 + 0.000297619047619*G8_0_5_7_4 + 0.000198412698413*G8_0_5_7_5 + 9.92063492063e-05*G8_0_5_7_6 + 0.000198412698413*G8_0_5_7_7 + 0.00119047619048*G8_0_6_4_4 + 0.000297619047619*G8_0_6_4_5 + 0.000595238095238*G8_0_6_4_6 + 0.000297619047619*G8_0_6_4_7 + 0.000297619047619*G8_0_6_5_4 + 0.000198412698413*G8_0_6_5_5 + 0.000198412698413*G8_0_6_5_6 + 9.92063492063e-05*G8_0_6_5_7 + 0.000595238095238*G8_0_6_6_4 + 0.000198412698413*G8_0_6_6_5 + 0.000595238095238*G8_0_6_6_6 + 0.000198412698413*G8_0_6_6_7 + 0.000297619047619*G8_0_6_7_4 + 9.92063492063e-05*G8_0_6_7_5 + 0.000198412698413*G8_0_6_7_6 + 0.000198412698413*G8_0_6_7_7 + 0.00119047619048*G8_0_7_4_4 + 0.000297619047619*G8_0_7_4_5 + 0.000297619047619*G8_0_7_4_6 + 0.000595238095238*G8_0_7_4_7 + 0.000297619047619*G8_0_7_5_4 + 0.000198412698413*G8_0_7_5_5 + 9.92063492063e-05*G8_0_7_5_6 + 0.000198412698413*G8_0_7_5_7 + 0.000297619047619*G8_0_7_6_4 + 9.92063492063e-05*G8_0_7_6_5 + 0.000198412698413*G8_0_7_6_6 + 0.000198412698413*G8_0_7_6_7 + 0.000595238095238*G8_0_7_7_4 + 0.000198412698413*G8_0_7_7_5 + 0.000198412698413*G8_0_7_7_6 + 0.000595238095238*G8_0_7_7_7 + 0.00119047619048*G8_1_4_4_4 + 0.000595238095238*G8_1_4_4_5 + 0.000297619047619*G8_1_4_4_6 + 0.000297619047619*G8_1_4_4_7 + 0.000595238095238*G8_1_4_5_4 + 0.000595238095238*G8_1_4_5_5 + 0.000198412698413*G8_1_4_5_6 + 0.000198412698413*G8_1_4_5_7 + 0.000297619047619*G8_1_4_6_4 + 0.000198412698413*G8_1_4_6_5 + 0.000198412698413*G8_1_4_6_6 + 9.92063492063e-05*G8_1_4_6_7 + 0.000297619047619*G8_1_4_7_4 + 0.000198412698413*G8_1_4_7_5 + 9.92063492063e-05*G8_1_4_7_6 + 0.000198412698413*G8_1_4_7_7 + 0.000595238095238*G8_1_5_4_4 + 0.000595238095238*G8_1_5_4_5 + 0.000198412698413*G8_1_5_4_6 + 0.000198412698413*G8_1_5_4_7 + 0.000595238095238*G8_1_5_5_4 + 0.00119047619048*G8_1_5_5_5 + 0.000297619047619*G8_1_5_5_6 + 0.000297619047619*G8_1_5_5_7 + 0.000198412698413*G8_1_5_6_4 + 0.000297619047619*G8_1_5_6_5 + 0.000198412698413*G8_1_5_6_6 + 9.92063492063e-05*G8_1_5_6_7 + 0.000198412698413*G8_1_5_7_4 + 0.000297619047619*G8_1_5_7_5 + 9.92063492063e-05*G8_1_5_7_6 + 0.000198412698413*G8_1_5_7_7 + 0.000297619047619*G8_1_6_4_4 + 0.000198412698413*G8_1_6_4_5 + 0.000198412698413*G8_1_6_4_6 + 9.92063492063e-05*G8_1_6_4_7 + 0.000198412698413*G8_1_6_5_4 + 0.000297619047619*G8_1_6_5_5 + 0.000198412698413*G8_1_6_5_6 + 9.92063492063e-05*G8_1_6_5_7 + 0.000198412698413*G8_1_6_6_4 + 0.000198412698413*G8_1_6_6_5 + 0.000297619047619*G8_1_6_6_6 + 9.92063492063e-05*G8_1_6_6_7 + 9.92063492063e-05*G8_1_6_7_4 + 9.92063492063e-05*G8_1_6_7_5 + 9.92063492063e-05*G8_1_6_7_6 + 9.92063492063e-05*G8_1_6_7_7 + 0.000297619047619*G8_1_7_4_4 + 0.000198412698413*G8_1_7_4_5 + 9.92063492063e-05*G8_1_7_4_6 + 0.000198412698413*G8_1_7_4_7 + 0.000198412698413*G8_1_7_5_4 + 0.000297619047619*G8_1_7_5_5 + 9.92063492063e-05*G8_1_7_5_6 + 0.000198412698413*G8_1_7_5_7 + 9.92063492063e-05*G8_1_7_6_4 + 9.92063492063e-05*G8_1_7_6_5 + 9.92063492063e-05*G8_1_7_6_6 + 9.92063492063e-05*G8_1_7_6_7 + 0.000198412698413*G8_1_7_7_4 + 0.000198412698413*G8_1_7_7_5 + 9.92063492063e-05*G8_1_7_7_6 + 0.000297619047619*G8_1_7_7_7 + 0.00119047619048*G8_2_4_4_4 + 0.000297619047619*G8_2_4_4_5 + 0.000595238095238*G8_2_4_4_6 + 0.000297619047619*G8_2_4_4_7 + 0.000297619047619*G8_2_4_5_4 + 0.000198412698413*G8_2_4_5_5 + 0.000198412698413*G8_2_4_5_6 + 9.92063492063e-05*G8_2_4_5_7 + 0.000595238095238*G8_2_4_6_4 + 0.000198412698413*G8_2_4_6_5 + 0.000595238095238*G8_2_4_6_6 + 0.000198412698413*G8_2_4_6_7 + 0.000297619047619*G8_2_4_7_4 + 9.92063492063e-05*G8_2_4_7_5 + 0.000198412698413*G8_2_4_7_6 + 0.000198412698413*G8_2_4_7_7 + 0.000297619047619*G8_2_5_4_4 + 0.000198412698413*G8_2_5_4_5 + 0.000198412698413*G8_2_5_4_6 + 9.92063492063e-05*G8_2_5_4_7 + 0.000198412698413*G8_2_5_5_4 + 0.000297619047619*G8_2_5_5_5 + 0.000198412698413*G8_2_5_5_6 + 9.92063492063e-05*G8_2_5_5_7 + 0.000198412698413*G8_2_5_6_4 + 0.000198412698413*G8_2_5_6_5 + 0.000297619047619*G8_2_5_6_6 + 9.92063492063e-05*G8_2_5_6_7 + 9.92063492063e-05*G8_2_5_7_4 + 9.92063492063e-05*G8_2_5_7_5 + 9.92063492063e-05*G8_2_5_7_6 + 9.92063492063e-05*G8_2_5_7_7 + 0.000595238095238*G8_2_6_4_4 + 0.000198412698413*G8_2_6_4_5 + 0.000595238095238*G8_2_6_4_6 + 0.000198412698413*G8_2_6_4_7 + 0.000198412698413*G8_2_6_5_4 + 0.000198412698413*G8_2_6_5_5 + 0.000297619047619*G8_2_6_5_6 + 9.92063492063e-05*G8_2_6_5_7 + 0.000595238095238*G8_2_6_6_4 + 0.000297619047619*G8_2_6_6_5 + 0.00119047619048*G8_2_6_6_6 + 0.000297619047619*G8_2_6_6_7 + 0.000198412698413*G8_2_6_7_4 + 9.92063492063e-05*G8_2_6_7_5 + 0.000297619047619*G8_2_6_7_6 + 0.000198412698413*G8_2_6_7_7 + 0.000297619047619*G8_2_7_4_4 + 9.92063492063e-05*G8_2_7_4_5 + 0.000198412698413*G8_2_7_4_6 + 0.000198412698413*G8_2_7_4_7 + 9.92063492063e-05*G8_2_7_5_4 + 9.92063492063e-05*G8_2_7_5_5 + 9.92063492063e-05*G8_2_7_5_6 + 9.92063492063e-05*G8_2_7_5_7 + 0.000198412698413*G8_2_7_6_4 + 9.92063492063e-05*G8_2_7_6_5 + 0.000297619047619*G8_2_7_6_6 + 0.000198412698413*G8_2_7_6_7 + 0.000198412698413*G8_2_7_7_4 + 9.92063492063e-05*G8_2_7_7_5 + 0.000198412698413*G8_2_7_7_6 + 0.000297619047619*G8_2_7_7_7 + 0.00119047619048*G8_3_4_4_4 + 0.000297619047619*G8_3_4_4_5 + 0.000297619047619*G8_3_4_4_6 + 0.000595238095238*G8_3_4_4_7 + 0.000297619047619*G8_3_4_5_4 + 0.000198412698413*G8_3_4_5_5 + 9.92063492063e-05*G8_3_4_5_6 + 0.000198412698413*G8_3_4_5_7 + 0.000297619047619*G8_3_4_6_4 + 9.92063492063e-05*G8_3_4_6_5 + 0.000198412698413*G8_3_4_6_6 + 0.000198412698413*G8_3_4_6_7 + 0.000595238095238*G8_3_4_7_4 + 0.000198412698413*G8_3_4_7_5 + 0.000198412698413*G8_3_4_7_6 + 0.000595238095238*G8_3_4_7_7 + 0.000297619047619*G8_3_5_4_4 + 0.000198412698413*G8_3_5_4_5 + 9.92063492063e-05*G8_3_5_4_6 + 0.000198412698413*G8_3_5_4_7 + 0.000198412698413*G8_3_5_5_4 + 0.000297619047619*G8_3_5_5_5 + 9.92063492063e-05*G8_3_5_5_6 + 0.000198412698413*G8_3_5_5_7 + 9.92063492063e-05*G8_3_5_6_4 + 9.92063492063e-05*G8_3_5_6_5 + 9.92063492063e-05*G8_3_5_6_6 + 9.92063492063e-05*G8_3_5_6_7 + 0.000198412698413*G8_3_5_7_4 + 0.000198412698413*G8_3_5_7_5 + 9.92063492063e-05*G8_3_5_7_6 + 0.000297619047619*G8_3_5_7_7 + 0.000297619047619*G8_3_6_4_4 + 9.92063492063e-05*G8_3_6_4_5 + 0.000198412698413*G8_3_6_4_6 + 0.000198412698413*G8_3_6_4_7 + 9.92063492063e-05*G8_3_6_5_4 + 9.92063492063e-05*G8_3_6_5_5 + 9.92063492063e-05*G8_3_6_5_6 + 9.92063492063e-05*G8_3_6_5_7 + 0.000198412698413*G8_3_6_6_4 + 9.92063492063e-05*G8_3_6_6_5 + 0.000297619047619*G8_3_6_6_6 + 0.000198412698413*G8_3_6_6_7 + 0.000198412698413*G8_3_6_7_4 + 9.92063492063e-05*G8_3_6_7_5 + 0.000198412698413*G8_3_6_7_6 + 0.000297619047619*G8_3_6_7_7 + 0.000595238095238*G8_3_7_4_4 + 0.000198412698413*G8_3_7_4_5 + 0.000198412698413*G8_3_7_4_6 + 0.000595238095238*G8_3_7_4_7 + 0.000198412698413*G8_3_7_5_4 + 0.000198412698413*G8_3_7_5_5 + 9.92063492063e-05*G8_3_7_5_6 + 0.000297619047619*G8_3_7_5_7 + 0.000198412698413*G8_3_7_6_4 + 9.92063492063e-05*G8_3_7_6_5 + 0.000198412698413*G8_3_7_6_6 + 0.000297619047619*G8_3_7_6_7 + 0.000595238095238*G8_3_7_7_4 + 0.000297619047619*G8_3_7_7_5 + 0.000297619047619*G8_3_7_7_6 + 0.00119047619048*G8_3_7_7_7 - 0.00952380952381*G9_0_4_4 - 0.00238095238095*G9_0_4_5 - 0.00238095238095*G9_0_4_6 - 0.00238095238095*G9_0_4_7 - 0.00238095238095*G9_0_5_4 - 0.0015873015873*G9_0_5_5 - 0.000793650793651*G9_0_5_6 - 0.000793650793651*G9_0_5_7 - 0.00238095238095*G9_0_6_4 - 0.000793650793651*G9_0_6_5 - 0.0015873015873*G9_0_6_6 - 0.000793650793651*G9_0_6_7 - 0.00238095238095*G9_0_7_4 - 0.000793650793651*G9_0_7_5 - 0.000793650793651*G9_0_7_6 - 0.0015873015873*G9_0_7_7 - 0.00238095238095*G9_1_4_4 - 0.0015873015873*G9_1_4_5 - 0.000793650793651*G9_1_4_6 - 0.000793650793651*G9_1_4_7 - 0.0015873015873*G9_1_5_4 - 0.00238095238095*G9_1_5_5 - 0.000793650793651*G9_1_5_6 - 0.000793650793651*G9_1_5_7 - 0.000793650793651*G9_1_6_4 - 0.000793650793651*G9_1_6_5 - 0.000793650793651*G9_1_6_6 - 0.000396825396825*G9_1_6_7 - 0.000793650793651*G9_1_7_4 - 0.000793650793651*G9_1_7_5 - 0.000396825396825*G9_1_7_6 - 0.000793650793651*G9_1_7_7 - 0.00238095238095*G9_2_4_4 - 0.000793650793651*G9_2_4_5 - 0.0015873015873*G9_2_4_6 - 0.000793650793651*G9_2_4_7 - 0.000793650793651*G9_2_5_4 - 0.000793650793651*G9_2_5_5 - 0.000793650793651*G9_2_5_6 - 0.000396825396825*G9_2_5_7 - 0.0015873015873*G9_2_6_4 - 0.000793650793651*G9_2_6_5 - 0.00238095238095*G9_2_6_6 - 0.000793650793651*G9_2_6_7 - 0.000793650793651*G9_2_7_4 - 0.000396825396825*G9_2_7_5 - 0.000793650793651*G9_2_7_6 - 0.000793650793651*G9_2_7_7 - 0.00238095238095*G9_3_4_4 - 0.000793650793651*G9_3_4_5 - 0.000793650793651*G9_3_4_6 - 0.0015873015873*G9_3_4_7 - 0.000793650793651*G9_3_5_4 - 0.000793650793651*G9_3_5_5 - 0.000396825396825*G9_3_5_6 - 0.000793650793651*G9_3_5_7 - 0.000793650793651*G9_3_6_4 - 0.000396825396825*G9_3_6_5 - 0.000793650793651*G9_3_6_6 - 0.000793650793651*G9_3_6_7 - 0.0015873015873*G9_3_7_4 - 0.000793650793651*G9_3_7_5 - 0.000793650793651*G9_3_7_6 - 0.00238095238095*G9_3_7_7 + 0.0166666666667*G10_0_4 + 0.00555555555556*G10_0_5 + 0.00555555555556*G10_0_6 + 0.00555555555556*G10_0_7 + 0.00555555555556*G10_1_4 + 0.00555555555556*G10_1_5 + 0.00277777777778*G10_1_6 + 0.00277777777778*G10_1_7 + 0.00555555555556*G10_2_4 + 0.00277777777778*G10_2_5 + 0.00555555555556*G10_2_6 + 0.00277777777778*G10_2_7 + 0.00555555555556*G10_3_4 + 0.00277777777778*G10_3_5 + 0.00277777777778*G10_3_6 + 0.00555555555556*G10_3_7 + 0.0416666666667*G11_0_4_0_0 + 0.0416666666667*G11_0_4_0_1 + 0.0416666666667*G11_0_4_0_2 + 0.0416666666667*G11_0_4_1_0 + 0.0416666666667*G11_0_4_1_1 + 0.0416666666667*G11_0_4_1_2 + 0.0416666666667*G11_0_4_2_0 + 0.0416666666667*G11_0_4_2_1 + 0.0416666666667*G11_0_4_2_2 - 0.0416666666667*G11_0_5_0_0 - 0.0416666666667*G11_0_5_1_0 - 0.0416666666667*G11_0_5_2_0 - 0.0416666666667*G11_0_6_0_1 - 0.0416666666667*G11_0_6_1_1 - 0.0416666666667*G11_0_6_2_1 - 0.0416666666667*G11_0_7_0_2 - 0.0416666666667*G11_0_7_1_2 - 0.0416666666667*G11_0_7_2_2 + 0.0416666666667*G11_1_4_0_0 + 0.0416666666667*G11_1_4_0_1 + 0.0416666666667*G11_1_4_0_2 + 0.0416666666667*G11_1_4_1_0 + 0.0416666666667*G11_1_4_1_1 + 0.0416666666667*G11_1_4_1_2 + 0.0416666666667*G11_1_4_2_0 + 0.0416666666667*G11_1_4_2_1 + 0.0416666666667*G11_1_4_2_2 - 0.0416666666667*G11_1_5_0_0 - 0.0416666666667*G11_1_5_1_0 - 0.0416666666667*G11_1_5_2_0 - 0.0416666666667*G11_1_6_0_1 - 0.0416666666667*G11_1_6_1_1 - 0.0416666666667*G11_1_6_2_1 - 0.0416666666667*G11_1_7_0_2 - 0.0416666666667*G11_1_7_1_2 - 0.0416666666667*G11_1_7_2_2 + 0.0416666666667*G11_2_4_0_0 + 0.0416666666667*G11_2_4_0_1 + 0.0416666666667*G11_2_4_0_2 + 0.0416666666667*G11_2_4_1_0 + 0.0416666666667*G11_2_4_1_1 + 0.0416666666667*G11_2_4_1_2 + 0.0416666666667*G11_2_4_2_0 + 0.0416666666667*G11_2_4_2_1 + 0.0416666666667*G11_2_4_2_2 - 0.0416666666667*G11_2_5_0_0 - 0.0416666666667*G11_2_5_1_0 - 0.0416666666667*G11_2_5_2_0 - 0.0416666666667*G11_2_6_0_1 - 0.0416666666667*G11_2_6_1_1 - 0.0416666666667*G11_2_6_2_1 - 0.0416666666667*G11_2_7_0_2 - 0.0416666666667*G11_2_7_1_2 - 0.0416666666667*G11_2_7_2_2 + 0.0416666666667*G11_3_4_0_0 + 0.0416666666667*G11_3_4_0_1 + 0.0416666666667*G11_3_4_0_2 + 0.0416666666667*G11_3_4_1_0 + 0.0416666666667*G11_3_4_1_1 + 0.0416666666667*G11_3_4_1_2 + 0.0416666666667*G11_3_4_2_0 + 0.0416666666667*G11_3_4_2_1 + 0.0416666666667*G11_3_4_2_2 - 0.0416666666667*G11_3_5_0_0 - 0.0416666666667*G11_3_5_1_0 - 0.0416666666667*G11_3_5_2_0 - 0.0416666666667*G11_3_6_0_1 - 0.0416666666667*G11_3_6_1_1 - 0.0416666666667*G11_3_6_2_1 - 0.0416666666667*G11_3_7_0_2 - 0.0416666666667*G11_3_7_1_2 - 0.0416666666667*G11_3_7_2_2;
-    A[1] = -0.00833333333333*G7_0 - 0.0166666666667*G7_1 - 0.00833333333333*G7_2 - 0.00833333333333*G7_3 + 0.00119047619048*G8_0_4_4_4 + 0.000595238095238*G8_0_4_4_5 + 0.000297619047619*G8_0_4_4_6 + 0.000297619047619*G8_0_4_4_7 + 0.000595238095238*G8_0_4_5_4 + 0.000595238095238*G8_0_4_5_5 + 0.000198412698413*G8_0_4_5_6 + 0.000198412698413*G8_0_4_5_7 + 0.000297619047619*G8_0_4_6_4 + 0.000198412698413*G8_0_4_6_5 + 0.000198412698413*G8_0_4_6_6 + 9.92063492063e-05*G8_0_4_6_7 + 0.000297619047619*G8_0_4_7_4 + 0.000198412698413*G8_0_4_7_5 + 9.92063492063e-05*G8_0_4_7_6 + 0.000198412698413*G8_0_4_7_7 + 0.000595238095238*G8_0_5_4_4 + 0.000595238095238*G8_0_5_4_5 + 0.000198412698413*G8_0_5_4_6 + 0.000198412698413*G8_0_5_4_7 + 0.000595238095238*G8_0_5_5_4 + 0.00119047619048*G8_0_5_5_5 + 0.000297619047619*G8_0_5_5_6 + 0.000297619047619*G8_0_5_5_7 + 0.000198412698413*G8_0_5_6_4 + 0.000297619047619*G8_0_5_6_5 + 0.000198412698413*G8_0_5_6_6 + 9.92063492063e-05*G8_0_5_6_7 + 0.000198412698413*G8_0_5_7_4 + 0.000297619047619*G8_0_5_7_5 + 9.92063492063e-05*G8_0_5_7_6 + 0.000198412698413*G8_0_5_7_7 + 0.000297619047619*G8_0_6_4_4 + 0.000198412698413*G8_0_6_4_5 + 0.000198412698413*G8_0_6_4_6 + 9.92063492063e-05*G8_0_6_4_7 + 0.000198412698413*G8_0_6_5_4 + 0.000297619047619*G8_0_6_5_5 + 0.000198412698413*G8_0_6_5_6 + 9.92063492063e-05*G8_0_6_5_7 + 0.000198412698413*G8_0_6_6_4 + 0.000198412698413*G8_0_6_6_5 + 0.000297619047619*G8_0_6_6_6 + 9.92063492063e-05*G8_0_6_6_7 + 9.92063492063e-05*G8_0_6_7_4 + 9.92063492063e-05*G8_0_6_7_5 + 9.92063492063e-05*G8_0_6_7_6 + 9.92063492063e-05*G8_0_6_7_7 + 0.000297619047619*G8_0_7_4_4 + 0.000198412698413*G8_0_7_4_5 + 9.92063492063e-05*G8_0_7_4_6 + 0.000198412698413*G8_0_7_4_7 + 0.000198412698413*G8_0_7_5_4 + 0.000297619047619*G8_0_7_5_5 + 9.92063492063e-05*G8_0_7_5_6 + 0.000198412698413*G8_0_7_5_7 + 9.92063492063e-05*G8_0_7_6_4 + 9.92063492063e-05*G8_0_7_6_5 + 9.92063492063e-05*G8_0_7_6_6 + 9.92063492063e-05*G8_0_7_6_7 + 0.000198412698413*G8_0_7_7_4 + 0.000198412698413*G8_0_7_7_5 + 9.92063492063e-05*G8_0_7_7_6 + 0.000297619047619*G8_0_7_7_7 + 0.000595238095238*G8_1_4_4_4 + 0.000595238095238*G8_1_4_4_5 + 0.000198412698413*G8_1_4_4_6 + 0.000198412698413*G8_1_4_4_7 + 0.000595238095238*G8_1_4_5_4 + 0.00119047619048*G8_1_4_5_5 + 0.000297619047619*G8_1_4_5_6 + 0.000297619047619*G8_1_4_5_7 + 0.000198412698413*G8_1_4_6_4 + 0.000297619047619*G8_1_4_6_5 + 0.000198412698413*G8_1_4_6_6 + 9.92063492063e-05*G8_1_4_6_7 + 0.000198412698413*G8_1_4_7_4 + 0.000297619047619*G8_1_4_7_5 + 9.92063492063e-05*G8_1_4_7_6 + 0.000198412698413*G8_1_4_7_7 + 0.000595238095238*G8_1_5_4_4 + 0.00119047619048*G8_1_5_4_5 + 0.000297619047619*G8_1_5_4_6 + 0.000297619047619*G8_1_5_4_7 + 0.00119047619048*G8_1_5_5_4 + 0.00595238095238*G8_1_5_5_5 + 0.00119047619048*G8_1_5_5_6 + 0.00119047619048*G8_1_5_5_7 + 0.000297619047619*G8_1_5_6_4 + 0.00119047619048*G8_1_5_6_5 + 0.000595238095238*G8_1_5_6_6 + 0.000297619047619*G8_1_5_6_7 + 0.000297619047619*G8_1_5_7_4 + 0.00119047619048*G8_1_5_7_5 + 0.000297619047619*G8_1_5_7_6 + 0.000595238095238*G8_1_5_7_7 + 0.000198412698413*G8_1_6_4_4 + 0.000297619047619*G8_1_6_4_5 + 0.000198412698413*G8_1_6_4_6 + 9.92063492063e-05*G8_1_6_4_7 + 0.000297619047619*G8_1_6_5_4 + 0.00119047619048*G8_1_6_5_5 + 0.000595238095238*G8_1_6_5_6 + 0.000297619047619*G8_1_6_5_7 + 0.000198412698413*G8_1_6_6_4 + 0.000595238095238*G8_1_6_6_5 + 0.000595238095238*G8_1_6_6_6 + 0.000198412698413*G8_1_6_6_7 + 9.92063492063e-05*G8_1_6_7_4 + 0.000297619047619*G8_1_6_7_5 + 0.000198412698413*G8_1_6_7_6 + 0.000198412698413*G8_1_6_7_7 + 0.000198412698413*G8_1_7_4_4 + 0.000297619047619*G8_1_7_4_5 + 9.92063492063e-05*G8_1_7_4_6 + 0.000198412698413*G8_1_7_4_7 + 0.000297619047619*G8_1_7_5_4 + 0.00119047619048*G8_1_7_5_5 + 0.000297619047619*G8_1_7_5_6 + 0.000595238095238*G8_1_7_5_7 + 9.92063492063e-05*G8_1_7_6_4 + 0.000297619047619*G8_1_7_6_5 + 0.000198412698413*G8_1_7_6_6 + 0.000198412698413*G8_1_7_6_7 + 0.000198412698413*G8_1_7_7_4 + 0.000595238095238*G8_1_7_7_5 + 0.000198412698413*G8_1_7_7_6 + 0.000595238095238*G8_1_7_7_7 + 0.000297619047619*G8_2_4_4_4 + 0.000198412698413*G8_2_4_4_5 + 0.000198412698413*G8_2_4_4_6 + 9.92063492063e-05*G8_2_4_4_7 + 0.000198412698413*G8_2_4_5_4 + 0.000297619047619*G8_2_4_5_5 + 0.000198412698413*G8_2_4_5_6 + 9.92063492063e-05*G8_2_4_5_7 + 0.000198412698413*G8_2_4_6_4 + 0.000198412698413*G8_2_4_6_5 + 0.000297619047619*G8_2_4_6_6 + 9.92063492063e-05*G8_2_4_6_7 + 9.92063492063e-05*G8_2_4_7_4 + 9.92063492063e-05*G8_2_4_7_5 + 9.92063492063e-05*G8_2_4_7_6 + 9.92063492063e-05*G8_2_4_7_7 + 0.000198412698413*G8_2_5_4_4 + 0.000297619047619*G8_2_5_4_5 + 0.000198412698413*G8_2_5_4_6 + 9.92063492063e-05*G8_2_5_4_7 + 0.000297619047619*G8_2_5_5_4 + 0.00119047619048*G8_2_5_5_5 + 0.000595238095238*G8_2_5_5_6 + 0.000297619047619*G8_2_5_5_7 + 0.000198412698413*G8_2_5_6_4 + 0.000595238095238*G8_2_5_6_5 + 0.000595238095238*G8_2_5_6_6 + 0.000198412698413*G8_2_5_6_7 + 9.92063492063e-05*G8_2_5_7_4 + 0.000297619047619*G8_2_5_7_5 + 0.000198412698413*G8_2_5_7_6 + 0.000198412698413*G8_2_5_7_7 + 0.000198412698413*G8_2_6_4_4 + 0.000198412698413*G8_2_6_4_5 + 0.000297619047619*G8_2_6_4_6 + 9.92063492063e-05*G8_2_6_4_7 + 0.000198412698413*G8_2_6_5_4 + 0.000595238095238*G8_2_6_5_5 + 0.000595238095238*G8_2_6_5_6 + 0.000198412698413*G8_2_6_5_7 + 0.000297619047619*G8_2_6_6_4 + 0.000595238095238*G8_2_6_6_5 + 0.00119047619048*G8_2_6_6_6 + 0.000297619047619*G8_2_6_6_7 + 9.92063492063e-05*G8_2_6_7_4 + 0.000198412698413*G8_2_6_7_5 + 0.000297619047619*G8_2_6_7_6 + 0.000198412698413*G8_2_6_7_7 + 9.92063492063e-05*G8_2_7_4_4 + 9.92063492063e-05*G8_2_7_4_5 + 9.92063492063e-05*G8_2_7_4_6 + 9.92063492063e-05*G8_2_7_4_7 + 9.92063492063e-05*G8_2_7_5_4 + 0.000297619047619*G8_2_7_5_5 + 0.000198412698413*G8_2_7_5_6 + 0.000198412698413*G8_2_7_5_7 + 9.92063492063e-05*G8_2_7_6_4 + 0.000198412698413*G8_2_7_6_5 + 0.000297619047619*G8_2_7_6_6 + 0.000198412698413*G8_2_7_6_7 + 9.92063492063e-05*G8_2_7_7_4 + 0.000198412698413*G8_2_7_7_5 + 0.000198412698413*G8_2_7_7_6 + 0.000297619047619*G8_2_7_7_7 + 0.000297619047619*G8_3_4_4_4 + 0.000198412698413*G8_3_4_4_5 + 9.92063492063e-05*G8_3_4_4_6 + 0.000198412698413*G8_3_4_4_7 + 0.000198412698413*G8_3_4_5_4 + 0.000297619047619*G8_3_4_5_5 + 9.92063492063e-05*G8_3_4_5_6 + 0.000198412698413*G8_3_4_5_7 + 9.92063492063e-05*G8_3_4_6_4 + 9.92063492063e-05*G8_3_4_6_5 + 9.92063492063e-05*G8_3_4_6_6 + 9.92063492063e-05*G8_3_4_6_7 + 0.000198412698413*G8_3_4_7_4 + 0.000198412698413*G8_3_4_7_5 + 9.92063492063e-05*G8_3_4_7_6 + 0.000297619047619*G8_3_4_7_7 + 0.000198412698413*G8_3_5_4_4 + 0.000297619047619*G8_3_5_4_5 + 9.92063492063e-05*G8_3_5_4_6 + 0.000198412698413*G8_3_5_4_7 + 0.000297619047619*G8_3_5_5_4 + 0.00119047619048*G8_3_5_5_5 + 0.000297619047619*G8_3_5_5_6 + 0.000595238095238*G8_3_5_5_7 + 9.92063492063e-05*G8_3_5_6_4 + 0.000297619047619*G8_3_5_6_5 + 0.000198412698413*G8_3_5_6_6 + 0.000198412698413*G8_3_5_6_7 + 0.000198412698413*G8_3_5_7_4 + 0.000595238095238*G8_3_5_7_5 + 0.000198412698413*G8_3_5_7_6 + 0.000595238095238*G8_3_5_7_7 + 9.92063492063e-05*G8_3_6_4_4 + 9.92063492063e-05*G8_3_6_4_5 + 9.92063492063e-05*G8_3_6_4_6 + 9.92063492063e-05*G8_3_6_4_7 + 9.92063492063e-05*G8_3_6_5_4 + 0.000297619047619*G8_3_6_5_5 + 0.000198412698413*G8_3_6_5_6 + 0.000198412698413*G8_3_6_5_7 + 9.92063492063e-05*G8_3_6_6_4 + 0.000198412698413*G8_3_6_6_5 + 0.000297619047619*G8_3_6_6_6 + 0.000198412698413*G8_3_6_6_7 + 9.92063492063e-05*G8_3_6_7_4 + 0.000198412698413*G8_3_6_7_5 + 0.000198412698413*G8_3_6_7_6 + 0.000297619047619*G8_3_6_7_7 + 0.000198412698413*G8_3_7_4_4 + 0.000198412698413*G8_3_7_4_5 + 9.92063492063e-05*G8_3_7_4_6 + 0.000297619047619*G8_3_7_4_7 + 0.000198412698413*G8_3_7_5_4 + 0.000595238095238*G8_3_7_5_5 + 0.000198412698413*G8_3_7_5_6 + 0.000595238095238*G8_3_7_5_7 + 9.92063492063e-05*G8_3_7_6_4 + 0.000198412698413*G8_3_7_6_5 + 0.000198412698413*G8_3_7_6_6 + 0.000297619047619*G8_3_7_6_7 + 0.000297619047619*G8_3_7_7_4 + 0.000595238095238*G8_3_7_7_5 + 0.000297619047619*G8_3_7_7_6 + 0.00119047619048*G8_3_7_7_7 - 0.00238095238095*G9_0_4_4 - 0.0015873015873*G9_0_4_5 - 0.000793650793651*G9_0_4_6 - 0.000793650793651*G9_0_4_7 - 0.0015873015873*G9_0_5_4 - 0.00238095238095*G9_0_5_5 - 0.000793650793651*G9_0_5_6 - 0.000793650793651*G9_0_5_7 - 0.000793650793651*G9_0_6_4 - 0.000793650793651*G9_0_6_5 - 0.000793650793651*G9_0_6_6 - 0.000396825396825*G9_0_6_7 - 0.000793650793651*G9_0_7_4 - 0.000793650793651*G9_0_7_5 - 0.000396825396825*G9_0_7_6 - 0.000793650793651*G9_0_7_7 - 0.0015873015873*G9_1_4_4 - 0.00238095238095*G9_1_4_5 - 0.000793650793651*G9_1_4_6 - 0.000793650793651*G9_1_4_7 - 0.00238095238095*G9_1_5_4 - 0.00952380952381*G9_1_5_5 - 0.00238095238095*G9_1_5_6 - 0.00238095238095*G9_1_5_7 - 0.000793650793651*G9_1_6_4 - 0.00238095238095*G9_1_6_5 - 0.0015873015873*G9_1_6_6 - 0.000793650793651*G9_1_6_7 - 0.000793650793651*G9_1_7_4 - 0.00238095238095*G9_1_7_5 - 0.000793650793651*G9_1_7_6 - 0.0015873015873*G9_1_7_7 - 0.000793650793651*G9_2_4_4 - 0.000793650793651*G9_2_4_5 - 0.000793650793651*G9_2_4_6 - 0.000396825396825*G9_2_4_7 - 0.000793650793651*G9_2_5_4 - 0.00238095238095*G9_2_5_5 - 0.0015873015873*G9_2_5_6 - 0.000793650793651*G9_2_5_7 - 0.000793650793651*G9_2_6_4 - 0.0015873015873*G9_2_6_5 - 0.00238095238095*G9_2_6_6 - 0.000793650793651*G9_2_6_7 - 0.000396825396825*G9_2_7_4 - 0.000793650793651*G9_2_7_5 - 0.000793650793651*G9_2_7_6 - 0.000793650793651*G9_2_7_7 - 0.000793650793651*G9_3_4_4 - 0.000793650793651*G9_3_4_5 - 0.000396825396825*G9_3_4_6 - 0.000793650793651*G9_3_4_7 - 0.000793650793651*G9_3_5_4 - 0.00238095238095*G9_3_5_5 - 0.000793650793651*G9_3_5_6 - 0.0015873015873*G9_3_5_7 - 0.000396825396825*G9_3_6_4 - 0.000793650793651*G9_3_6_5 - 0.000793650793651*G9_3_6_6 - 0.000793650793651*G9_3_6_7 - 0.000793650793651*G9_3_7_4 - 0.0015873015873*G9_3_7_5 - 0.000793650793651*G9_3_7_6 - 0.00238095238095*G9_3_7_7 + 0.00555555555556*G10_0_4 + 0.00555555555556*G10_0_5 + 0.00277777777778*G10_0_6 + 0.00277777777778*G10_0_7 + 0.00555555555556*G10_1_4 + 0.0166666666667*G10_1_5 + 0.00555555555556*G10_1_6 + 0.00555555555556*G10_1_7 + 0.00277777777778*G10_2_4 + 0.00555555555556*G10_2_5 + 0.00555555555556*G10_2_6 + 0.00277777777778*G10_2_7 + 0.00277777777778*G10_3_4 + 0.00555555555556*G10_3_5 + 0.00277777777778*G10_3_6 + 0.00555555555556*G10_3_7 - 0.0416666666667*G11_0_4_0_0 - 0.0416666666667*G11_0_4_0_1 - 0.0416666666667*G11_0_4_0_2 + 0.0416666666667*G11_0_5_0_0 + 0.0416666666667*G11_0_6_0_1 + 0.0416666666667*G11_0_7_0_2 - 0.0416666666667*G11_1_4_0_0 - 0.0416666666667*G11_1_4_0_1 - 0.0416666666667*G11_1_4_0_2 + 0.0416666666667*G11_1_5_0_0 + 0.0416666666667*G11_1_6_0_1 + 0.0416666666667*G11_1_7_0_2 - 0.0416666666667*G11_2_4_0_0 - 0.0416666666667*G11_2_4_0_1 - 0.0416666666667*G11_2_4_0_2 + 0.0416666666667*G11_2_5_0_0 + 0.0416666666667*G11_2_6_0_1 + 0.0416666666667*G11_2_7_0_2 - 0.0416666666667*G11_3_4_0_0 - 0.0416666666667*G11_3_4_0_1 - 0.0416666666667*G11_3_4_0_2 + 0.0416666666667*G11_3_5_0_0 + 0.0416666666667*G11_3_6_0_1 + 0.0416666666667*G11_3_7_0_2;
-    A[2] = -0.00833333333333*G7_0 - 0.00833333333333*G7_1 - 0.0166666666667*G7_2 - 0.00833333333333*G7_3 + 0.00119047619048*G8_0_4_4_4 + 0.000297619047619*G8_0_4_4_5 + 0.000595238095238*G8_0_4_4_6 + 0.000297619047619*G8_0_4_4_7 + 0.000297619047619*G8_0_4_5_4 + 0.000198412698413*G8_0_4_5_5 + 0.000198412698413*G8_0_4_5_6 + 9.92063492063e-05*G8_0_4_5_7 + 0.000595238095238*G8_0_4_6_4 + 0.000198412698413*G8_0_4_6_5 + 0.000595238095238*G8_0_4_6_6 + 0.000198412698413*G8_0_4_6_7 + 0.000297619047619*G8_0_4_7_4 + 9.92063492063e-05*G8_0_4_7_5 + 0.000198412698413*G8_0_4_7_6 + 0.000198412698413*G8_0_4_7_7 + 0.000297619047619*G8_0_5_4_4 + 0.000198412698413*G8_0_5_4_5 + 0.000198412698413*G8_0_5_4_6 + 9.92063492063e-05*G8_0_5_4_7 + 0.000198412698413*G8_0_5_5_4 + 0.000297619047619*G8_0_5_5_5 + 0.000198412698413*G8_0_5_5_6 + 9.92063492063e-05*G8_0_5_5_7 + 0.000198412698413*G8_0_5_6_4 + 0.000198412698413*G8_0_5_6_5 + 0.000297619047619*G8_0_5_6_6 + 9.92063492063e-05*G8_0_5_6_7 + 9.92063492063e-05*G8_0_5_7_4 + 9.92063492063e-05*G8_0_5_7_5 + 9.92063492063e-05*G8_0_5_7_6 + 9.92063492063e-05*G8_0_5_7_7 + 0.000595238095238*G8_0_6_4_4 + 0.000198412698413*G8_0_6_4_5 + 0.000595238095238*G8_0_6_4_6 + 0.000198412698413*G8_0_6_4_7 + 0.000198412698413*G8_0_6_5_4 + 0.000198412698413*G8_0_6_5_5 + 0.000297619047619*G8_0_6_5_6 + 9.92063492063e-05*G8_0_6_5_7 + 0.000595238095238*G8_0_6_6_4 + 0.000297619047619*G8_0_6_6_5 + 0.00119047619048*G8_0_6_6_6 + 0.000297619047619*G8_0_6_6_7 + 0.000198412698413*G8_0_6_7_4 + 9.92063492063e-05*G8_0_6_7_5 + 0.000297619047619*G8_0_6_7_6 + 0.000198412698413*G8_0_6_7_7 + 0.000297619047619*G8_0_7_4_4 + 9.92063492063e-05*G8_0_7_4_5 + 0.000198412698413*G8_0_7_4_6 + 0.000198412698413*G8_0_7_4_7 + 9.92063492063e-05*G8_0_7_5_4 + 9.92063492063e-05*G8_0_7_5_5 + 9.92063492063e-05*G8_0_7_5_6 + 9.92063492063e-05*G8_0_7_5_7 + 0.000198412698413*G8_0_7_6_4 + 9.92063492063e-05*G8_0_7_6_5 + 0.000297619047619*G8_0_7_6_6 + 0.000198412698413*G8_0_7_6_7 + 0.000198412698413*G8_0_7_7_4 + 9.92063492063e-05*G8_0_7_7_5 + 0.000198412698413*G8_0_7_7_6 + 0.000297619047619*G8_0_7_7_7 + 0.000297619047619*G8_1_4_4_4 + 0.000198412698413*G8_1_4_4_5 + 0.000198412698413*G8_1_4_4_6 + 9.92063492063e-05*G8_1_4_4_7 + 0.000198412698413*G8_1_4_5_4 + 0.000297619047619*G8_1_4_5_5 + 0.000198412698413*G8_1_4_5_6 + 9.92063492063e-05*G8_1_4_5_7 + 0.000198412698413*G8_1_4_6_4 + 0.000198412698413*G8_1_4_6_5 + 0.000297619047619*G8_1_4_6_6 + 9.92063492063e-05*G8_1_4_6_7 + 9.92063492063e-05*G8_1_4_7_4 + 9.92063492063e-05*G8_1_4_7_5 + 9.92063492063e-05*G8_1_4_7_6 + 9.92063492063e-05*G8_1_4_7_7 + 0.000198412698413*G8_1_5_4_4 + 0.000297619047619*G8_1_5_4_5 + 0.000198412698413*G8_1_5_4_6 + 9.92063492063e-05*G8_1_5_4_7 + 0.000297619047619*G8_1_5_5_4 + 0.00119047619048*G8_1_5_5_5 + 0.000595238095238*G8_1_5_5_6 + 0.000297619047619*G8_1_5_5_7 + 0.000198412698413*G8_1_5_6_4 + 0.000595238095238*G8_1_5_6_5 + 0.000595238095238*G8_1_5_6_6 + 0.000198412698413*G8_1_5_6_7 + 9.92063492063e-05*G8_1_5_7_4 + 0.000297619047619*G8_1_5_7_5 + 0.000198412698413*G8_1_5_7_6 + 0.000198412698413*G8_1_5_7_7 + 0.000198412698413*G8_1_6_4_4 + 0.000198412698413*G8_1_6_4_5 + 0.000297619047619*G8_1_6_4_6 + 9.92063492063e-05*G8_1_6_4_7 + 0.000198412698413*G8_1_6_5_4 + 0.000595238095238*G8_1_6_5_5 + 0.000595238095238*G8_1_6_5_6 + 0.000198412698413*G8_1_6_5_7 + 0.000297619047619*G8_1_6_6_4 + 0.000595238095238*G8_1_6_6_5 + 0.00119047619048*G8_1_6_6_6 + 0.000297619047619*G8_1_6_6_7 + 9.92063492063e-05*G8_1_6_7_4 + 0.000198412698413*G8_1_6_7_5 + 0.000297619047619*G8_1_6_7_6 + 0.000198412698413*G8_1_6_7_7 + 9.92063492063e-05*G8_1_7_4_4 + 9.92063492063e-05*G8_1_7_4_5 + 9.92063492063e-05*G8_1_7_4_6 + 9.92063492063e-05*G8_1_7_4_7 + 9.92063492063e-05*G8_1_7_5_4 + 0.000297619047619*G8_1_7_5_5 + 0.000198412698413*G8_1_7_5_6 + 0.000198412698413*G8_1_7_5_7 + 9.92063492063e-05*G8_1_7_6_4 + 0.000198412698413*G8_1_7_6_5 + 0.000297619047619*G8_1_7_6_6 + 0.000198412698413*G8_1_7_6_7 + 9.92063492063e-05*G8_1_7_7_4 + 0.000198412698413*G8_1_7_7_5 + 0.000198412698413*G8_1_7_7_6 + 0.000297619047619*G8_1_7_7_7 + 0.000595238095238*G8_2_4_4_4 + 0.000198412698413*G8_2_4_4_5 + 0.000595238095238*G8_2_4_4_6 + 0.000198412698413*G8_2_4_4_7 + 0.000198412698413*G8_2_4_5_4 + 0.000198412698413*G8_2_4_5_5 + 0.000297619047619*G8_2_4_5_6 + 9.92063492063e-05*G8_2_4_5_7 + 0.000595238095238*G8_2_4_6_4 + 0.000297619047619*G8_2_4_6_5 + 0.00119047619048*G8_2_4_6_6 + 0.000297619047619*G8_2_4_6_7 + 0.000198412698413*G8_2_4_7_4 + 9.92063492063e-05*G8_2_4_7_5 + 0.000297619047619*G8_2_4_7_6 + 0.000198412698413*G8_2_4_7_7 + 0.000198412698413*G8_2_5_4_4 + 0.000198412698413*G8_2_5_4_5 + 0.000297619047619*G8_2_5_4_6 + 9.92063492063e-05*G8_2_5_4_7 + 0.000198412698413*G8_2_5_5_4 + 0.000595238095238*G8_2_5_5_5 + 0.000595238095238*G8_2_5_5_6 + 0.000198412698413*G8_2_5_5_7 + 0.000297619047619*G8_2_5_6_4 + 0.000595238095238*G8_2_5_6_5 + 0.00119047619048*G8_2_5_6_6 + 0.000297619047619*G8_2_5_6_7 + 9.92063492063e-05*G8_2_5_7_4 + 0.000198412698413*G8_2_5_7_5 + 0.000297619047619*G8_2_5_7_6 + 0.000198412698413*G8_2_5_7_7 + 0.000595238095238*G8_2_6_4_4 + 0.000297619047619*G8_2_6_4_5 + 0.00119047619048*G8_2_6_4_6 + 0.000297619047619*G8_2_6_4_7 + 0.000297619047619*G8_2_6_5_4 + 0.000595238095238*G8_2_6_5_5 + 0.00119047619048*G8_2_6_5_6 + 0.000297619047619*G8_2_6_5_7 + 0.00119047619048*G8_2_6_6_4 + 0.00119047619048*G8_2_6_6_5 + 0.00595238095238*G8_2_6_6_6 + 0.00119047619048*G8_2_6_6_7 + 0.000297619047619*G8_2_6_7_4 + 0.000297619047619*G8_2_6_7_5 + 0.00119047619048*G8_2_6_7_6 + 0.000595238095238*G8_2_6_7_7 + 0.000198412698413*G8_2_7_4_4 + 9.92063492063e-05*G8_2_7_4_5 + 0.000297619047619*G8_2_7_4_6 + 0.000198412698413*G8_2_7_4_7 + 9.92063492063e-05*G8_2_7_5_4 + 0.000198412698413*G8_2_7_5_5 + 0.000297619047619*G8_2_7_5_6 + 0.000198412698413*G8_2_7_5_7 + 0.000297619047619*G8_2_7_6_4 + 0.000297619047619*G8_2_7_6_5 + 0.00119047619048*G8_2_7_6_6 + 0.000595238095238*G8_2_7_6_7 + 0.000198412698413*G8_2_7_7_4 + 0.000198412698413*G8_2_7_7_5 + 0.000595238095238*G8_2_7_7_6 + 0.000595238095238*G8_2_7_7_7 + 0.000297619047619*G8_3_4_4_4 + 9.92063492063e-05*G8_3_4_4_5 + 0.000198412698413*G8_3_4_4_6 + 0.000198412698413*G8_3_4_4_7 + 9.92063492063e-05*G8_3_4_5_4 + 9.92063492063e-05*G8_3_4_5_5 + 9.92063492063e-05*G8_3_4_5_6 + 9.92063492063e-05*G8_3_4_5_7 + 0.000198412698413*G8_3_4_6_4 + 9.92063492063e-05*G8_3_4_6_5 + 0.000297619047619*G8_3_4_6_6 + 0.000198412698413*G8_3_4_6_7 + 0.000198412698413*G8_3_4_7_4 + 9.92063492063e-05*G8_3_4_7_5 + 0.000198412698413*G8_3_4_7_6 + 0.000297619047619*G8_3_4_7_7 + 9.92063492063e-05*G8_3_5_4_4 + 9.92063492063e-05*G8_3_5_4_5 + 9.92063492063e-05*G8_3_5_4_6 + 9.92063492063e-05*G8_3_5_4_7 + 9.92063492063e-05*G8_3_5_5_4 + 0.000297619047619*G8_3_5_5_5 + 0.000198412698413*G8_3_5_5_6 + 0.000198412698413*G8_3_5_5_7 + 9.92063492063e-05*G8_3_5_6_4 + 0.000198412698413*G8_3_5_6_5 + 0.000297619047619*G8_3_5_6_6 + 0.000198412698413*G8_3_5_6_7 + 9.92063492063e-05*G8_3_5_7_4 + 0.000198412698413*G8_3_5_7_5 + 0.000198412698413*G8_3_5_7_6 + 0.000297619047619*G8_3_5_7_7 + 0.000198412698413*G8_3_6_4_4 + 9.92063492063e-05*G8_3_6_4_5 + 0.000297619047619*G8_3_6_4_6 + 0.000198412698413*G8_3_6_4_7 + 9.92063492063e-05*G8_3_6_5_4 + 0.000198412698413*G8_3_6_5_5 + 0.000297619047619*G8_3_6_5_6 + 0.000198412698413*G8_3_6_5_7 + 0.000297619047619*G8_3_6_6_4 + 0.000297619047619*G8_3_6_6_5 + 0.00119047619048*G8_3_6_6_6 + 0.000595238095238*G8_3_6_6_7 + 0.000198412698413*G8_3_6_7_4 + 0.000198412698413*G8_3_6_7_5 + 0.000595238095238*G8_3_6_7_6 + 0.000595238095238*G8_3_6_7_7 + 0.000198412698413*G8_3_7_4_4 + 9.92063492063e-05*G8_3_7_4_5 + 0.000198412698413*G8_3_7_4_6 + 0.000297619047619*G8_3_7_4_7 + 9.92063492063e-05*G8_3_7_5_4 + 0.000198412698413*G8_3_7_5_5 + 0.000198412698413*G8_3_7_5_6 + 0.000297619047619*G8_3_7_5_7 + 0.000198412698413*G8_3_7_6_4 + 0.000198412698413*G8_3_7_6_5 + 0.000595238095238*G8_3_7_6_6 + 0.000595238095238*G8_3_7_6_7 + 0.000297619047619*G8_3_7_7_4 + 0.000297619047619*G8_3_7_7_5 + 0.000595238095238*G8_3_7_7_6 + 0.00119047619048*G8_3_7_7_7 - 0.00238095238095*G9_0_4_4 - 0.000793650793651*G9_0_4_5 - 0.0015873015873*G9_0_4_6 - 0.000793650793651*G9_0_4_7 - 0.000793650793651*G9_0_5_4 - 0.000793650793651*G9_0_5_5 - 0.000793650793651*G9_0_5_6 - 0.000396825396825*G9_0_5_7 - 0.0015873015873*G9_0_6_4 - 0.000793650793651*G9_0_6_5 - 0.00238095238095*G9_0_6_6 - 0.000793650793651*G9_0_6_7 - 0.000793650793651*G9_0_7_4 - 0.000396825396825*G9_0_7_5 - 0.000793650793651*G9_0_7_6 - 0.000793650793651*G9_0_7_7 - 0.000793650793651*G9_1_4_4 - 0.000793650793651*G9_1_4_5 - 0.000793650793651*G9_1_4_6 - 0.000396825396825*G9_1_4_7 - 0.000793650793651*G9_1_5_4 - 0.00238095238095*G9_1_5_5 - 0.0015873015873*G9_1_5_6 - 0.000793650793651*G9_1_5_7 - 0.000793650793651*G9_1_6_4 - 0.0015873015873*G9_1_6_5 - 0.00238095238095*G9_1_6_6 - 0.000793650793651*G9_1_6_7 - 0.000396825396825*G9_1_7_4 - 0.000793650793651*G9_1_7_5 - 0.000793650793651*G9_1_7_6 - 0.000793650793651*G9_1_7_7 - 0.0015873015873*G9_2_4_4 - 0.000793650793651*G9_2_4_5 - 0.00238095238095*G9_2_4_6 - 0.000793650793651*G9_2_4_7 - 0.000793650793651*G9_2_5_4 - 0.0015873015873*G9_2_5_5 - 0.00238095238095*G9_2_5_6 - 0.000793650793651*G9_2_5_7 - 0.00238095238095*G9_2_6_4 - 0.00238095238095*G9_2_6_5 - 0.00952380952381*G9_2_6_6 - 0.00238095238095*G9_2_6_7 - 0.000793650793651*G9_2_7_4 - 0.000793650793651*G9_2_7_5 - 0.00238095238095*G9_2_7_6 - 0.0015873015873*G9_2_7_7 - 0.000793650793651*G9_3_4_4 - 0.000396825396825*G9_3_4_5 - 0.000793650793651*G9_3_4_6 - 0.000793650793651*G9_3_4_7 - 0.000396825396825*G9_3_5_4 - 0.000793650793651*G9_3_5_5 - 0.000793650793651*G9_3_5_6 - 0.000793650793651*G9_3_5_7 - 0.000793650793651*G9_3_6_4 - 0.000793650793651*G9_3_6_5 - 0.00238095238095*G9_3_6_6 - 0.0015873015873*G9_3_6_7 - 0.000793650793651*G9_3_7_4 - 0.000793650793651*G9_3_7_5 - 0.0015873015873*G9_3_7_6 - 0.00238095238095*G9_3_7_7 + 0.00555555555556*G10_0_4 + 0.00277777777778*G10_0_5 + 0.00555555555556*G10_0_6 + 0.00277777777778*G10_0_7 + 0.00277777777778*G10_1_4 + 0.00555555555556*G10_1_5 + 0.00555555555556*G10_1_6 + 0.00277777777778*G10_1_7 + 0.00555555555556*G10_2_4 + 0.00555555555556*G10_2_5 + 0.0166666666667*G10_2_6 + 0.00555555555556*G10_2_7 + 0.00277777777778*G10_3_4 + 0.00277777777778*G10_3_5 + 0.00555555555556*G10_3_6 + 0.00555555555556*G10_3_7 - 0.0416666666667*G11_0_4_1_0 - 0.0416666666667*G11_0_4_1_1 - 0.0416666666667*G11_0_4_1_2 + 0.0416666666667*G11_0_5_1_0 + 0.0416666666667*G11_0_6_1_1 + 0.0416666666667*G11_0_7_1_2 - 0.0416666666667*G11_1_4_1_0 - 0.0416666666667*G11_1_4_1_1 - 0.0416666666667*G11_1_4_1_2 + 0.0416666666667*G11_1_5_1_0 + 0.0416666666667*G11_1_6_1_1 + 0.0416666666667*G11_1_7_1_2 - 0.0416666666667*G11_2_4_1_0 - 0.0416666666667*G11_2_4_1_1 - 0.0416666666667*G11_2_4_1_2 + 0.0416666666667*G11_2_5_1_0 + 0.0416666666667*G11_2_6_1_1 + 0.0416666666667*G11_2_7_1_2 - 0.0416666666667*G11_3_4_1_0 - 0.0416666666667*G11_3_4_1_1 - 0.0416666666667*G11_3_4_1_2 + 0.0416666666667*G11_3_5_1_0 + 0.0416666666667*G11_3_6_1_1 + 0.0416666666667*G11_3_7_1_2;
-    A[3] = -0.00833333333333*G7_0 - 0.00833333333333*G7_1 - 0.00833333333333*G7_2 - 0.0166666666667*G7_3 + 0.00119047619048*G8_0_4_4_4 + 0.000297619047619*G8_0_4_4_5 + 0.000297619047619*G8_0_4_4_6 + 0.000595238095238*G8_0_4_4_7 + 0.000297619047619*G8_0_4_5_4 + 0.000198412698413*G8_0_4_5_5 + 9.92063492063e-05*G8_0_4_5_6 + 0.000198412698413*G8_0_4_5_7 + 0.000297619047619*G8_0_4_6_4 + 9.92063492063e-05*G8_0_4_6_5 + 0.000198412698413*G8_0_4_6_6 + 0.000198412698413*G8_0_4_6_7 + 0.000595238095238*G8_0_4_7_4 + 0.000198412698413*G8_0_4_7_5 + 0.000198412698413*G8_0_4_7_6 + 0.000595238095238*G8_0_4_7_7 + 0.000297619047619*G8_0_5_4_4 + 0.000198412698413*G8_0_5_4_5 + 9.92063492063e-05*G8_0_5_4_6 + 0.000198412698413*G8_0_5_4_7 + 0.000198412698413*G8_0_5_5_4 + 0.000297619047619*G8_0_5_5_5 + 9.92063492063e-05*G8_0_5_5_6 + 0.000198412698413*G8_0_5_5_7 + 9.92063492063e-05*G8_0_5_6_4 + 9.92063492063e-05*G8_0_5_6_5 + 9.92063492063e-05*G8_0_5_6_6 + 9.92063492063e-05*G8_0_5_6_7 + 0.000198412698413*G8_0_5_7_4 + 0.000198412698413*G8_0_5_7_5 + 9.92063492063e-05*G8_0_5_7_6 + 0.000297619047619*G8_0_5_7_7 + 0.000297619047619*G8_0_6_4_4 + 9.92063492063e-05*G8_0_6_4_5 + 0.000198412698413*G8_0_6_4_6 + 0.000198412698413*G8_0_6_4_7 + 9.92063492063e-05*G8_0_6_5_4 + 9.92063492063e-05*G8_0_6_5_5 + 9.92063492063e-05*G8_0_6_5_6 + 9.92063492063e-05*G8_0_6_5_7 + 0.000198412698413*G8_0_6_6_4 + 9.92063492063e-05*G8_0_6_6_5 + 0.000297619047619*G8_0_6_6_6 + 0.000198412698413*G8_0_6_6_7 + 0.000198412698413*G8_0_6_7_4 + 9.92063492063e-05*G8_0_6_7_5 + 0.000198412698413*G8_0_6_7_6 + 0.000297619047619*G8_0_6_7_7 + 0.000595238095238*G8_0_7_4_4 + 0.000198412698413*G8_0_7_4_5 + 0.000198412698413*G8_0_7_4_6 + 0.000595238095238*G8_0_7_4_7 + 0.000198412698413*G8_0_7_5_4 + 0.000198412698413*G8_0_7_5_5 + 9.92063492063e-05*G8_0_7_5_6 + 0.000297619047619*G8_0_7_5_7 + 0.000198412698413*G8_0_7_6_4 + 9.92063492063e-05*G8_0_7_6_5 + 0.000198412698413*G8_0_7_6_6 + 0.000297619047619*G8_0_7_6_7 + 0.000595238095238*G8_0_7_7_4 + 0.000297619047619*G8_0_7_7_5 + 0.000297619047619*G8_0_7_7_6 + 0.00119047619048*G8_0_7_7_7 + 0.000297619047619*G8_1_4_4_4 + 0.000198412698413*G8_1_4_4_5 + 9.92063492063e-05*G8_1_4_4_6 + 0.000198412698413*G8_1_4_4_7 + 0.000198412698413*G8_1_4_5_4 + 0.000297619047619*G8_1_4_5_5 + 9.92063492063e-05*G8_1_4_5_6 + 0.000198412698413*G8_1_4_5_7 + 9.92063492063e-05*G8_1_4_6_4 + 9.92063492063e-05*G8_1_4_6_5 + 9.92063492063e-05*G8_1_4_6_6 + 9.92063492063e-05*G8_1_4_6_7 + 0.000198412698413*G8_1_4_7_4 + 0.000198412698413*G8_1_4_7_5 + 9.92063492063e-05*G8_1_4_7_6 + 0.000297619047619*G8_1_4_7_7 + 0.000198412698413*G8_1_5_4_4 + 0.000297619047619*G8_1_5_4_5 + 9.92063492063e-05*G8_1_5_4_6 + 0.000198412698413*G8_1_5_4_7 + 0.000297619047619*G8_1_5_5_4 + 0.00119047619048*G8_1_5_5_5 + 0.000297619047619*G8_1_5_5_6 + 0.000595238095238*G8_1_5_5_7 + 9.92063492063e-05*G8_1_5_6_4 + 0.000297619047619*G8_1_5_6_5 + 0.000198412698413*G8_1_5_6_6 + 0.000198412698413*G8_1_5_6_7 + 0.000198412698413*G8_1_5_7_4 + 0.000595238095238*G8_1_5_7_5 + 0.000198412698413*G8_1_5_7_6 + 0.000595238095238*G8_1_5_7_7 + 9.92063492063e-05*G8_1_6_4_4 + 9.92063492063e-05*G8_1_6_4_5 + 9.92063492063e-05*G8_1_6_4_6 + 9.92063492063e-05*G8_1_6_4_7 + 9.92063492063e-05*G8_1_6_5_4 + 0.000297619047619*G8_1_6_5_5 + 0.000198412698413*G8_1_6_5_6 + 0.000198412698413*G8_1_6_5_7 + 9.92063492063e-05*G8_1_6_6_4 + 0.000198412698413*G8_1_6_6_5 + 0.000297619047619*G8_1_6_6_6 + 0.000198412698413*G8_1_6_6_7 + 9.92063492063e-05*G8_1_6_7_4 + 0.000198412698413*G8_1_6_7_5 + 0.000198412698413*G8_1_6_7_6 + 0.000297619047619*G8_1_6_7_7 + 0.000198412698413*G8_1_7_4_4 + 0.000198412698413*G8_1_7_4_5 + 9.92063492063e-05*G8_1_7_4_6 + 0.000297619047619*G8_1_7_4_7 + 0.000198412698413*G8_1_7_5_4 + 0.000595238095238*G8_1_7_5_5 + 0.000198412698413*G8_1_7_5_6 + 0.000595238095238*G8_1_7_5_7 + 9.92063492063e-05*G8_1_7_6_4 + 0.000198412698413*G8_1_7_6_5 + 0.000198412698413*G8_1_7_6_6 + 0.000297619047619*G8_1_7_6_7 + 0.000297619047619*G8_1_7_7_4 + 0.000595238095238*G8_1_7_7_5 + 0.000297619047619*G8_1_7_7_6 + 0.00119047619048*G8_1_7_7_7 + 0.000297619047619*G8_2_4_4_4 + 9.92063492063e-05*G8_2_4_4_5 + 0.000198412698413*G8_2_4_4_6 + 0.000198412698413*G8_2_4_4_7 + 9.92063492063e-05*G8_2_4_5_4 + 9.92063492063e-05*G8_2_4_5_5 + 9.92063492063e-05*G8_2_4_5_6 + 9.92063492063e-05*G8_2_4_5_7 + 0.000198412698413*G8_2_4_6_4 + 9.92063492063e-05*G8_2_4_6_5 + 0.000297619047619*G8_2_4_6_6 + 0.000198412698413*G8_2_4_6_7 + 0.000198412698413*G8_2_4_7_4 + 9.92063492063e-05*G8_2_4_7_5 + 0.000198412698413*G8_2_4_7_6 + 0.000297619047619*G8_2_4_7_7 + 9.92063492063e-05*G8_2_5_4_4 + 9.92063492063e-05*G8_2_5_4_5 + 9.92063492063e-05*G8_2_5_4_6 + 9.92063492063e-05*G8_2_5_4_7 + 9.92063492063e-05*G8_2_5_5_4 + 0.000297619047619*G8_2_5_5_5 + 0.000198412698413*G8_2_5_5_6 + 0.000198412698413*G8_2_5_5_7 + 9.92063492063e-05*G8_2_5_6_4 + 0.000198412698413*G8_2_5_6_5 + 0.000297619047619*G8_2_5_6_6 + 0.000198412698413*G8_2_5_6_7 + 9.92063492063e-05*G8_2_5_7_4 + 0.000198412698413*G8_2_5_7_5 + 0.000198412698413*G8_2_5_7_6 + 0.000297619047619*G8_2_5_7_7 + 0.000198412698413*G8_2_6_4_4 + 9.92063492063e-05*G8_2_6_4_5 + 0.000297619047619*G8_2_6_4_6 + 0.000198412698413*G8_2_6_4_7 + 9.92063492063e-05*G8_2_6_5_4 + 0.000198412698413*G8_2_6_5_5 + 0.000297619047619*G8_2_6_5_6 + 0.000198412698413*G8_2_6_5_7 + 0.000297619047619*G8_2_6_6_4 + 0.000297619047619*G8_2_6_6_5 + 0.00119047619048*G8_2_6_6_6 + 0.000595238095238*G8_2_6_6_7 + 0.000198412698413*G8_2_6_7_4 + 0.000198412698413*G8_2_6_7_5 + 0.000595238095238*G8_2_6_7_6 + 0.000595238095238*G8_2_6_7_7 + 0.000198412698413*G8_2_7_4_4 + 9.92063492063e-05*G8_2_7_4_5 + 0.000198412698413*G8_2_7_4_6 + 0.000297619047619*G8_2_7_4_7 + 9.92063492063e-05*G8_2_7_5_4 + 0.000198412698413*G8_2_7_5_5 + 0.000198412698413*G8_2_7_5_6 + 0.000297619047619*G8_2_7_5_7 + 0.000198412698413*G8_2_7_6_4 + 0.000198412698413*G8_2_7_6_5 + 0.000595238095238*G8_2_7_6_6 + 0.000595238095238*G8_2_7_6_7 + 0.000297619047619*G8_2_7_7_4 + 0.000297619047619*G8_2_7_7_5 + 0.000595238095238*G8_2_7_7_6 + 0.00119047619048*G8_2_7_7_7 + 0.000595238095238*G8_3_4_4_4 + 0.000198412698413*G8_3_4_4_5 + 0.000198412698413*G8_3_4_4_6 + 0.000595238095238*G8_3_4_4_7 + 0.000198412698413*G8_3_4_5_4 + 0.000198412698413*G8_3_4_5_5 + 9.92063492063e-05*G8_3_4_5_6 + 0.000297619047619*G8_3_4_5_7 + 0.000198412698413*G8_3_4_6_4 + 9.92063492063e-05*G8_3_4_6_5 + 0.000198412698413*G8_3_4_6_6 + 0.000297619047619*G8_3_4_6_7 + 0.000595238095238*G8_3_4_7_4 + 0.000297619047619*G8_3_4_7_5 + 0.000297619047619*G8_3_4_7_6 + 0.00119047619048*G8_3_4_7_7 + 0.000198412698413*G8_3_5_4_4 + 0.000198412698413*G8_3_5_4_5 + 9.92063492063e-05*G8_3_5_4_6 + 0.000297619047619*G8_3_5_4_7 + 0.000198412698413*G8_3_5_5_4 + 0.000595238095238*G8_3_5_5_5 + 0.000198412698413*G8_3_5_5_6 + 0.000595238095238*G8_3_5_5_7 + 9.92063492063e-05*G8_3_5_6_4 + 0.000198412698413*G8_3_5_6_5 + 0.000198412698413*G8_3_5_6_6 + 0.000297619047619*G8_3_5_6_7 + 0.000297619047619*G8_3_5_7_4 + 0.000595238095238*G8_3_5_7_5 + 0.000297619047619*G8_3_5_7_6 + 0.00119047619048*G8_3_5_7_7 + 0.000198412698413*G8_3_6_4_4 + 9.92063492063e-05*G8_3_6_4_5 + 0.000198412698413*G8_3_6_4_6 + 0.000297619047619*G8_3_6_4_7 + 9.92063492063e-05*G8_3_6_5_4 + 0.000198412698413*G8_3_6_5_5 + 0.000198412698413*G8_3_6_5_6 + 0.000297619047619*G8_3_6_5_7 + 0.000198412698413*G8_3_6_6_4 + 0.000198412698413*G8_3_6_6_5 + 0.000595238095238*G8_3_6_6_6 + 0.000595238095238*G8_3_6_6_7 + 0.000297619047619*G8_3_6_7_4 + 0.000297619047619*G8_3_6_7_5 + 0.000595238095238*G8_3_6_7_6 + 0.00119047619048*G8_3_6_7_7 + 0.000595238095238*G8_3_7_4_4 + 0.000297619047619*G8_3_7_4_5 + 0.000297619047619*G8_3_7_4_6 + 0.00119047619048*G8_3_7_4_7 + 0.000297619047619*G8_3_7_5_4 + 0.000595238095238*G8_3_7_5_5 + 0.000297619047619*G8_3_7_5_6 + 0.00119047619048*G8_3_7_5_7 + 0.000297619047619*G8_3_7_6_4 + 0.000297619047619*G8_3_7_6_5 + 0.000595238095238*G8_3_7_6_6 + 0.00119047619048*G8_3_7_6_7 + 0.00119047619048*G8_3_7_7_4 + 0.00119047619048*G8_3_7_7_5 + 0.00119047619048*G8_3_7_7_6 + 0.00595238095238*G8_3_7_7_7 - 0.00238095238095*G9_0_4_4 - 0.000793650793651*G9_0_4_5 - 0.000793650793651*G9_0_4_6 - 0.0015873015873*G9_0_4_7 - 0.000793650793651*G9_0_5_4 - 0.000793650793651*G9_0_5_5 - 0.000396825396825*G9_0_5_6 - 0.000793650793651*G9_0_5_7 - 0.000793650793651*G9_0_6_4 - 0.000396825396825*G9_0_6_5 - 0.000793650793651*G9_0_6_6 - 0.000793650793651*G9_0_6_7 - 0.0015873015873*G9_0_7_4 - 0.000793650793651*G9_0_7_5 - 0.000793650793651*G9_0_7_6 - 0.00238095238095*G9_0_7_7 - 0.000793650793651*G9_1_4_4 - 0.000793650793651*G9_1_4_5 - 0.000396825396825*G9_1_4_6 - 0.000793650793651*G9_1_4_7 - 0.000793650793651*G9_1_5_4 - 0.00238095238095*G9_1_5_5 - 0.000793650793651*G9_1_5_6 - 0.0015873015873*G9_1_5_7 - 0.000396825396825*G9_1_6_4 - 0.000793650793651*G9_1_6_5 - 0.000793650793651*G9_1_6_6 - 0.000793650793651*G9_1_6_7 - 0.000793650793651*G9_1_7_4 - 0.0015873015873*G9_1_7_5 - 0.000793650793651*G9_1_7_6 - 0.00238095238095*G9_1_7_7 - 0.000793650793651*G9_2_4_4 - 0.000396825396825*G9_2_4_5 - 0.000793650793651*G9_2_4_6 - 0.000793650793651*G9_2_4_7 - 0.000396825396825*G9_2_5_4 - 0.000793650793651*G9_2_5_5 - 0.000793650793651*G9_2_5_6 - 0.000793650793651*G9_2_5_7 - 0.000793650793651*G9_2_6_4 - 0.000793650793651*G9_2_6_5 - 0.00238095238095*G9_2_6_6 - 0.0015873015873*G9_2_6_7 - 0.000793650793651*G9_2_7_4 - 0.000793650793651*G9_2_7_5 - 0.0015873015873*G9_2_7_6 - 0.00238095238095*G9_2_7_7 - 0.0015873015873*G9_3_4_4 - 0.000793650793651*G9_3_4_5 - 0.000793650793651*G9_3_4_6 - 0.00238095238095*G9_3_4_7 - 0.000793650793651*G9_3_5_4 - 0.0015873015873*G9_3_5_5 - 0.000793650793651*G9_3_5_6 - 0.00238095238095*G9_3_5_7 - 0.000793650793651*G9_3_6_4 - 0.000793650793651*G9_3_6_5 - 0.0015873015873*G9_3_6_6 - 0.00238095238095*G9_3_6_7 - 0.00238095238095*G9_3_7_4 - 0.00238095238095*G9_3_7_5 - 0.00238095238095*G9_3_7_6 - 0.00952380952381*G9_3_7_7 + 0.00555555555556*G10_0_4 + 0.00277777777778*G10_0_5 + 0.00277777777778*G10_0_6 + 0.00555555555556*G10_0_7 + 0.00277777777778*G10_1_4 + 0.00555555555556*G10_1_5 + 0.00277777777778*G10_1_6 + 0.00555555555556*G10_1_7 + 0.00277777777778*G10_2_4 + 0.00277777777778*G10_2_5 + 0.00555555555556*G10_2_6 + 0.00555555555556*G10_2_7 + 0.00555555555556*G10_3_4 + 0.00555555555556*G10_3_5 + 0.00555555555556*G10_3_6 + 0.0166666666667*G10_3_7 - 0.0416666666667*G11_0_4_2_0 - 0.0416666666667*G11_0_4_2_1 - 0.0416666666667*G11_0_4_2_2 + 0.0416666666667*G11_0_5_2_0 + 0.0416666666667*G11_0_6_2_1 + 0.0416666666667*G11_0_7_2_2 - 0.0416666666667*G11_1_4_2_0 - 0.0416666666667*G11_1_4_2_1 - 0.0416666666667*G11_1_4_2_2 + 0.0416666666667*G11_1_5_2_0 + 0.0416666666667*G11_1_6_2_1 + 0.0416666666667*G11_1_7_2_2 - 0.0416666666667*G11_2_4_2_0 - 0.0416666666667*G11_2_4_2_1 - 0.0416666666667*G11_2_4_2_2 + 0.0416666666667*G11_2_5_2_0 + 0.0416666666667*G11_2_6_2_1 + 0.0416666666667*G11_2_7_2_2 - 0.0416666666667*G11_3_4_2_0 - 0.0416666666667*G11_3_4_2_1 - 0.0416666666667*G11_3_4_2_2 + 0.0416666666667*G11_3_5_2_0 + 0.0416666666667*G11_3_6_2_1 + 0.0416666666667*G11_3_7_2_2;
-    A[4] = -0.0166666666667*G0_4 - 0.00833333333333*G0_5 - 0.00833333333333*G0_6 - 0.00833333333333*G0_7 + 0.0166666666667*G1_4 + 0.00833333333333*G1_5 + 0.00833333333333*G1_6 + 0.00833333333333*G1_7 + 0.0166666666667*G2_0_0_0_0_0 + 0.0166666666667*G2_0_0_0_0_1 + 0.0166666666667*G2_0_0_0_0_2 + 0.0166666666667*G2_0_0_0_1_0 + 0.0166666666667*G2_0_0_0_1_1 + 0.0166666666667*G2_0_0_0_1_2 + 0.0166666666667*G2_0_0_0_2_0 + 0.0166666666667*G2_0_0_0_2_1 + 0.0166666666667*G2_0_0_0_2_2 + 0.00833333333333*G2_0_0_1_0_0 + 0.00833333333333*G2_0_0_1_0_1 + 0.00833333333333*G2_0_0_1_0_2 + 0.00833333333333*G2_0_0_1_1_0 + 0.00833333333333*G2_0_0_1_1_1 + 0.00833333333333*G2_0_0_1_1_2 + 0.00833333333333*G2_0_0_1_2_0 + 0.00833333333333*G2_0_0_1_2_1 + 0.00833333333333*G2_0_0_1_2_2 + 0.00833333333333*G2_0_0_2_0_0 + 0.00833333333333*G2_0_0_2_0_1 + 0.00833333333333*G2_0_0_2_0_2 + 0.00833333333333*G2_0_0_2_1_0 + 0.00833333333333*G2_0_0_2_1_1 + 0.00833333333333*G2_0_0_2_1_2 + 0.00833333333333*G2_0_0_2_2_0 + 0.00833333333333*G2_0_0_2_2_1 + 0.00833333333333*G2_0_0_2_2_2 + 0.00833333333333*G2_0_0_3_0_0 + 0.00833333333333*G2_0_0_3_0_1 + 0.00833333333333*G2_0_0_3_0_2 + 0.00833333333333*G2_0_0_3_1_0 + 0.00833333333333*G2_0_0_3_1_1 + 0.00833333333333*G2_0_0_3_1_2 + 0.00833333333333*G2_0_0_3_2_0 + 0.00833333333333*G2_0_0_3_2_1 + 0.00833333333333*G2_0_0_3_2_2 - 0.0166666666667*G2_0_1_0_0_0 - 0.0166666666667*G2_0_1_0_1_0 - 0.0166666666667*G2_0_1_0_2_0 - 0.00833333333333*G2_0_1_1_0_0 - 0.00833333333333*G2_0_1_1_1_0 - 0.00833333333333*G2_0_1_1_2_0 - 0.00833333333333*G2_0_1_2_0_0 - 0.00833333333333*G2_0_1_2_1_0 - 0.00833333333333*G2_0_1_2_2_0 - 0.00833333333333*G2_0_1_3_0_0 - 0.00833333333333*G2_0_1_3_1_0 - 0.00833333333333*G2_0_1_3_2_0 - 0.0166666666667*G2_0_2_0_0_1 - 0.0166666666667*G2_0_2_0_1_1 - 0.0166666666667*G2_0_2_0_2_1 - 0.00833333333333*G2_0_2_1_0_1 - 0.00833333333333*G2_0_2_1_1_1 - 0.00833333333333*G2_0_2_1_2_1 - 0.00833333333333*G2_0_2_2_0_1 - 0.00833333333333*G2_0_2_2_1_1 - 0.00833333333333*G2_0_2_2_2_1 - 0.00833333333333*G2_0_2_3_0_1 - 0.00833333333333*G2_0_2_3_1_1 - 0.00833333333333*G2_0_2_3_2_1 - 0.0166666666667*G2_0_3_0_0_2 - 0.0166666666667*G2_0_3_0_1_2 - 0.0166666666667*G2_0_3_0_2_2 - 0.00833333333333*G2_0_3_1_0_2 - 0.00833333333333*G2_0_3_1_1_2 - 0.00833333333333*G2_0_3_1_2_2 - 0.00833333333333*G2_0_3_2_0_2 - 0.00833333333333*G2_0_3_2_1_2 - 0.00833333333333*G2_0_3_2_2_2 - 0.00833333333333*G2_0_3_3_0_2 - 0.00833333333333*G2_0_3_3_1_2 - 0.00833333333333*G2_0_3_3_2_2 + 0.00833333333333*G2_1_0_0_0_0 + 0.00833333333333*G2_1_0_0_0_1 + 0.00833333333333*G2_1_0_0_0_2 + 0.00833333333333*G2_1_0_0_1_0 + 0.00833333333333*G2_1_0_0_1_1 + 0.00833333333333*G2_1_0_0_1_2 + 0.00833333333333*G2_1_0_0_2_0 + 0.00833333333333*G2_1_0_0_2_1 + 0.00833333333333*G2_1_0_0_2_2 + 0.0166666666667*G2_1_0_1_0_0 + 0.0166666666667*G2_1_0_1_0_1 + 0.0166666666667*G2_1_0_1_0_2 + 0.0166666666667*G2_1_0_1_1_0 + 0.0166666666667*G2_1_0_1_1_1 + 0.0166666666667*G2_1_0_1_1_2 + 0.0166666666667*G2_1_0_1_2_0 + 0.0166666666667*G2_1_0_1_2_1 + 0.0166666666667*G2_1_0_1_2_2 + 0.00833333333333*G2_1_0_2_0_0 + 0.00833333333333*G2_1_0_2_0_1 + 0.00833333333333*G2_1_0_2_0_2 + 0.00833333333333*G2_1_0_2_1_0 + 0.00833333333333*G2_1_0_2_1_1 + 0.00833333333333*G2_1_0_2_1_2 + 0.00833333333333*G2_1_0_2_2_0 + 0.00833333333333*G2_1_0_2_2_1 + 0.00833333333333*G2_1_0_2_2_2 + 0.00833333333333*G2_1_0_3_0_0 + 0.00833333333333*G2_1_0_3_0_1 + 0.00833333333333*G2_1_0_3_0_2 + 0.00833333333333*G2_1_0_3_1_0 + 0.00833333333333*G2_1_0_3_1_1 + 0.00833333333333*G2_1_0_3_1_2 + 0.00833333333333*G2_1_0_3_2_0 + 0.00833333333333*G2_1_0_3_2_1 + 0.00833333333333*G2_1_0_3_2_2 - 0.00833333333333*G2_1_1_0_0_0 - 0.00833333333333*G2_1_1_0_1_0 - 0.00833333333333*G2_1_1_0_2_0 - 0.0166666666667*G2_1_1_1_0_0 - 0.0166666666667*G2_1_1_1_1_0 - 0.0166666666667*G2_1_1_1_2_0 - 0.00833333333333*G2_1_1_2_0_0 - 0.00833333333333*G2_1_1_2_1_0 - 0.00833333333333*G2_1_1_2_2_0 - 0.00833333333333*G2_1_1_3_0_0 - 0.00833333333333*G2_1_1_3_1_0 - 0.00833333333333*G2_1_1_3_2_0 - 0.00833333333333*G2_1_2_0_0_1 - 0.00833333333333*G2_1_2_0_1_1 - 0.00833333333333*G2_1_2_0_2_1 - 0.0166666666667*G2_1_2_1_0_1 - 0.0166666666667*G2_1_2_1_1_1 - 0.0166666666667*G2_1_2_1_2_1 - 0.00833333333333*G2_1_2_2_0_1 - 0.00833333333333*G2_1_2_2_1_1 - 0.00833333333333*G2_1_2_2_2_1 - 0.00833333333333*G2_1_2_3_0_1 - 0.00833333333333*G2_1_2_3_1_1 - 0.00833333333333*G2_1_2_3_2_1 - 0.00833333333333*G2_1_3_0_0_2 - 0.00833333333333*G2_1_3_0_1_2 - 0.00833333333333*G2_1_3_0_2_2 - 0.0166666666667*G2_1_3_1_0_2 - 0.0166666666667*G2_1_3_1_1_2 - 0.0166666666667*G2_1_3_1_2_2 - 0.00833333333333*G2_1_3_2_0_2 - 0.00833333333333*G2_1_3_2_1_2 - 0.00833333333333*G2_1_3_2_2_2 - 0.00833333333333*G2_1_3_3_0_2 - 0.00833333333333*G2_1_3_3_1_2 - 0.00833333333333*G2_1_3_3_2_2 + 0.00833333333333*G2_2_0_0_0_0 + 0.00833333333333*G2_2_0_0_0_1 + 0.00833333333333*G2_2_0_0_0_2 + 0.00833333333333*G2_2_0_0_1_0 + 0.00833333333333*G2_2_0_0_1_1 + 0.00833333333333*G2_2_0_0_1_2 + 0.00833333333333*G2_2_0_0_2_0 + 0.00833333333333*G2_2_0_0_2_1 + 0.00833333333333*G2_2_0_0_2_2 + 0.00833333333333*G2_2_0_1_0_0 + 0.00833333333333*G2_2_0_1_0_1 + 0.00833333333333*G2_2_0_1_0_2 + 0.00833333333333*G2_2_0_1_1_0 + 0.00833333333333*G2_2_0_1_1_1 + 0.00833333333333*G2_2_0_1_1_2 + 0.00833333333333*G2_2_0_1_2_0 + 0.00833333333333*G2_2_0_1_2_1 + 0.00833333333333*G2_2_0_1_2_2 + 0.0166666666667*G2_2_0_2_0_0 + 0.0166666666667*G2_2_0_2_0_1 + 0.0166666666667*G2_2_0_2_0_2 + 0.0166666666667*G2_2_0_2_1_0 + 0.0166666666667*G2_2_0_2_1_1 + 0.0166666666667*G2_2_0_2_1_2 + 0.0166666666667*G2_2_0_2_2_0 + 0.0166666666667*G2_2_0_2_2_1 + 0.0166666666667*G2_2_0_2_2_2 + 0.00833333333333*G2_2_0_3_0_0 + 0.00833333333333*G2_2_0_3_0_1 + 0.00833333333333*G2_2_0_3_0_2 + 0.00833333333333*G2_2_0_3_1_0 + 0.00833333333333*G2_2_0_3_1_1 + 0.00833333333333*G2_2_0_3_1_2 + 0.00833333333333*G2_2_0_3_2_0 + 0.00833333333333*G2_2_0_3_2_1 + 0.00833333333333*G2_2_0_3_2_2 - 0.00833333333333*G2_2_1_0_0_0 - 0.00833333333333*G2_2_1_0_1_0 - 0.00833333333333*G2_2_1_0_2_0 - 0.00833333333333*G2_2_1_1_0_0 - 0.00833333333333*G2_2_1_1_1_0 - 0.00833333333333*G2_2_1_1_2_0 - 0.0166666666667*G2_2_1_2_0_0 - 0.0166666666667*G2_2_1_2_1_0 - 0.0166666666667*G2_2_1_2_2_0 - 0.00833333333333*G2_2_1_3_0_0 - 0.00833333333333*G2_2_1_3_1_0 - 0.00833333333333*G2_2_1_3_2_0 - 0.00833333333333*G2_2_2_0_0_1 - 0.00833333333333*G2_2_2_0_1_1 - 0.00833333333333*G2_2_2_0_2_1 - 0.00833333333333*G2_2_2_1_0_1 - 0.00833333333333*G2_2_2_1_1_1 - 0.00833333333333*G2_2_2_1_2_1 - 0.0166666666667*G2_2_2_2_0_1 - 0.0166666666667*G2_2_2_2_1_1 - 0.0166666666667*G2_2_2_2_2_1 - 0.00833333333333*G2_2_2_3_0_1 - 0.00833333333333*G2_2_2_3_1_1 - 0.00833333333333*G2_2_2_3_2_1 - 0.00833333333333*G2_2_3_0_0_2 - 0.00833333333333*G2_2_3_0_1_2 - 0.00833333333333*G2_2_3_0_2_2 - 0.00833333333333*G2_2_3_1_0_2 - 0.00833333333333*G2_2_3_1_1_2 - 0.00833333333333*G2_2_3_1_2_2 - 0.0166666666667*G2_2_3_2_0_2 - 0.0166666666667*G2_2_3_2_1_2 - 0.0166666666667*G2_2_3_2_2_2 - 0.00833333333333*G2_2_3_3_0_2 - 0.00833333333333*G2_2_3_3_1_2 - 0.00833333333333*G2_2_3_3_2_2 + 0.00833333333333*G2_3_0_0_0_0 + 0.00833333333333*G2_3_0_0_0_1 + 0.00833333333333*G2_3_0_0_0_2 + 0.00833333333333*G2_3_0_0_1_0 + 0.00833333333333*G2_3_0_0_1_1 + 0.00833333333333*G2_3_0_0_1_2 + 0.00833333333333*G2_3_0_0_2_0 + 0.00833333333333*G2_3_0_0_2_1 + 0.00833333333333*G2_3_0_0_2_2 + 0.00833333333333*G2_3_0_1_0_0 + 0.00833333333333*G2_3_0_1_0_1 + 0.00833333333333*G2_3_0_1_0_2 + 0.00833333333333*G2_3_0_1_1_0 + 0.00833333333333*G2_3_0_1_1_1 + 0.00833333333333*G2_3_0_1_1_2 + 0.00833333333333*G2_3_0_1_2_0 + 0.00833333333333*G2_3_0_1_2_1 + 0.00833333333333*G2_3_0_1_2_2 + 0.00833333333333*G2_3_0_2_0_0 + 0.00833333333333*G2_3_0_2_0_1 + 0.00833333333333*G2_3_0_2_0_2 + 0.00833333333333*G2_3_0_2_1_0 + 0.00833333333333*G2_3_0_2_1_1 + 0.00833333333333*G2_3_0_2_1_2 + 0.00833333333333*G2_3_0_2_2_0 + 0.00833333333333*G2_3_0_2_2_1 + 0.00833333333333*G2_3_0_2_2_2 + 0.0166666666667*G2_3_0_3_0_0 + 0.0166666666667*G2_3_0_3_0_1 + 0.0166666666667*G2_3_0_3_0_2 + 0.0166666666667*G2_3_0_3_1_0 + 0.0166666666667*G2_3_0_3_1_1 + 0.0166666666667*G2_3_0_3_1_2 + 0.0166666666667*G2_3_0_3_2_0 + 0.0166666666667*G2_3_0_3_2_1 + 0.0166666666667*G2_3_0_3_2_2 - 0.00833333333333*G2_3_1_0_0_0 - 0.00833333333333*G2_3_1_0_1_0 - 0.00833333333333*G2_3_1_0_2_0 - 0.00833333333333*G2_3_1_1_0_0 - 0.00833333333333*G2_3_1_1_1_0 - 0.00833333333333*G2_3_1_1_2_0 - 0.00833333333333*G2_3_1_2_0_0 - 0.00833333333333*G2_3_1_2_1_0 - 0.00833333333333*G2_3_1_2_2_0 - 0.0166666666667*G2_3_1_3_0_0 - 0.0166666666667*G2_3_1_3_1_0 - 0.0166666666667*G2_3_1_3_2_0 - 0.00833333333333*G2_3_2_0_0_1 - 0.00833333333333*G2_3_2_0_1_1 - 0.00833333333333*G2_3_2_0_2_1 - 0.00833333333333*G2_3_2_1_0_1 - 0.00833333333333*G2_3_2_1_1_1 - 0.00833333333333*G2_3_2_1_2_1 - 0.00833333333333*G2_3_2_2_0_1 - 0.00833333333333*G2_3_2_2_1_1 - 0.00833333333333*G2_3_2_2_2_1 - 0.0166666666667*G2_3_2_3_0_1 - 0.0166666666667*G2_3_2_3_1_1 - 0.0166666666667*G2_3_2_3_2_1 - 0.00833333333333*G2_3_3_0_0_2 - 0.00833333333333*G2_3_3_0_1_2 - 0.00833333333333*G2_3_3_0_2_2 - 0.00833333333333*G2_3_3_1_0_2 - 0.00833333333333*G2_3_3_1_1_2 - 0.00833333333333*G2_3_3_1_2_2 - 0.00833333333333*G2_3_3_2_0_2 - 0.00833333333333*G2_3_3_2_1_2 - 0.00833333333333*G2_3_3_2_2_2 - 0.0166666666667*G2_3_3_3_0_2 - 0.0166666666667*G2_3_3_3_1_2 - 0.0166666666667*G2_3_3_3_2_2 + 0.0166666666667*G3_0_0_0_0_0 + 0.0166666666667*G3_0_0_0_0_1 + 0.0166666666667*G3_0_0_0_0_2 + 0.0166666666667*G3_0_0_0_1_0 + 0.0166666666667*G3_0_0_0_1_1 + 0.0166666666667*G3_0_0_0_1_2 + 0.0166666666667*G3_0_0_0_2_0 + 0.0166666666667*G3_0_0_0_2_1 + 0.0166666666667*G3_0_0_0_2_2 - 0.0166666666667*G3_0_0_1_0_0 - 0.0166666666667*G3_0_0_1_1_0 - 0.0166666666667*G3_0_0_1_2_0 - 0.0166666666667*G3_0_0_2_0_1 - 0.0166666666667*G3_0_0_2_1_1 - 0.0166666666667*G3_0_0_2_2_1 - 0.0166666666667*G3_0_0_3_0_2 - 0.0166666666667*G3_0_0_3_1_2 - 0.0166666666667*G3_0_0_3_2_2 + 0.00833333333333*G3_0_1_0_0_0 + 0.00833333333333*G3_0_1_0_0_1 + 0.00833333333333*G3_0_1_0_0_2 + 0.00833333333333*G3_0_1_0_1_0 + 0.00833333333333*G3_0_1_0_1_1 + 0.00833333333333*G3_0_1_0_1_2 + 0.00833333333333*G3_0_1_0_2_0 + 0.00833333333333*G3_0_1_0_2_1 + 0.00833333333333*G3_0_1_0_2_2 - 0.00833333333333*G3_0_1_1_0_0 - 0.00833333333333*G3_0_1_1_1_0 - 0.00833333333333*G3_0_1_1_2_0 - 0.00833333333333*G3_0_1_2_0_1 - 0.00833333333333*G3_0_1_2_1_1 - 0.00833333333333*G3_0_1_2_2_1 - 0.00833333333333*G3_0_1_3_0_2 - 0.00833333333333*G3_0_1_3_1_2 - 0.00833333333333*G3_0_1_3_2_2 + 0.00833333333333*G3_0_2_0_0_0 + 0.00833333333333*G3_0_2_0_0_1 + 0.00833333333333*G3_0_2_0_0_2 + 0.00833333333333*G3_0_2_0_1_0 + 0.00833333333333*G3_0_2_0_1_1 + 0.00833333333333*G3_0_2_0_1_2 + 0.00833333333333*G3_0_2_0_2_0 + 0.00833333333333*G3_0_2_0_2_1 + 0.00833333333333*G3_0_2_0_2_2 - 0.00833333333333*G3_0_2_1_0_0 - 0.00833333333333*G3_0_2_1_1_0 - 0.00833333333333*G3_0_2_1_2_0 - 0.00833333333333*G3_0_2_2_0_1 - 0.00833333333333*G3_0_2_2_1_1 - 0.00833333333333*G3_0_2_2_2_1 - 0.00833333333333*G3_0_2_3_0_2 - 0.00833333333333*G3_0_2_3_1_2 - 0.00833333333333*G3_0_2_3_2_2 + 0.00833333333333*G3_0_3_0_0_0 + 0.00833333333333*G3_0_3_0_0_1 + 0.00833333333333*G3_0_3_0_0_2 + 0.00833333333333*G3_0_3_0_1_0 + 0.00833333333333*G3_0_3_0_1_1 + 0.00833333333333*G3_0_3_0_1_2 + 0.00833333333333*G3_0_3_0_2_0 + 0.00833333333333*G3_0_3_0_2_1 + 0.00833333333333*G3_0_3_0_2_2 - 0.00833333333333*G3_0_3_1_0_0 - 0.00833333333333*G3_0_3_1_1_0 - 0.00833333333333*G3_0_3_1_2_0 - 0.00833333333333*G3_0_3_2_0_1 - 0.00833333333333*G3_0_3_2_1_1 - 0.00833333333333*G3_0_3_2_2_1 - 0.00833333333333*G3_0_3_3_0_2 - 0.00833333333333*G3_0_3_3_1_2 - 0.00833333333333*G3_0_3_3_2_2 + 0.00833333333333*G3_1_0_0_0_0 + 0.00833333333333*G3_1_0_0_0_1 + 0.00833333333333*G3_1_0_0_0_2 + 0.00833333333333*G3_1_0_0_1_0 + 0.00833333333333*G3_1_0_0_1_1 + 0.00833333333333*G3_1_0_0_1_2 + 0.00833333333333*G3_1_0_0_2_0 + 0.00833333333333*G3_1_0_0_2_1 + 0.00833333333333*G3_1_0_0_2_2 - 0.00833333333333*G3_1_0_1_0_0 - 0.00833333333333*G3_1_0_1_1_0 - 0.00833333333333*G3_1_0_1_2_0 - 0.00833333333333*G3_1_0_2_0_1 - 0.00833333333333*G3_1_0_2_1_1 - 0.00833333333333*G3_1_0_2_2_1 - 0.00833333333333*G3_1_0_3_0_2 - 0.00833333333333*G3_1_0_3_1_2 - 0.00833333333333*G3_1_0_3_2_2 + 0.0166666666667*G3_1_1_0_0_0 + 0.0166666666667*G3_1_1_0_0_1 + 0.0166666666667*G3_1_1_0_0_2 + 0.0166666666667*G3_1_1_0_1_0 + 0.0166666666667*G3_1_1_0_1_1 + 0.0166666666667*G3_1_1_0_1_2 + 0.0166666666667*G3_1_1_0_2_0 + 0.0166666666667*G3_1_1_0_2_1 + 0.0166666666667*G3_1_1_0_2_2 - 0.0166666666667*G3_1_1_1_0_0 - 0.0166666666667*G3_1_1_1_1_0 - 0.0166666666667*G3_1_1_1_2_0 - 0.0166666666667*G3_1_1_2_0_1 - 0.0166666666667*G3_1_1_2_1_1 - 0.0166666666667*G3_1_1_2_2_1 - 0.0166666666667*G3_1_1_3_0_2 - 0.0166666666667*G3_1_1_3_1_2 - 0.0166666666667*G3_1_1_3_2_2 + 0.00833333333333*G3_1_2_0_0_0 + 0.00833333333333*G3_1_2_0_0_1 + 0.00833333333333*G3_1_2_0_0_2 + 0.00833333333333*G3_1_2_0_1_0 + 0.00833333333333*G3_1_2_0_1_1 + 0.00833333333333*G3_1_2_0_1_2 + 0.00833333333333*G3_1_2_0_2_0 + 0.00833333333333*G3_1_2_0_2_1 + 0.00833333333333*G3_1_2_0_2_2 - 0.00833333333333*G3_1_2_1_0_0 - 0.00833333333333*G3_1_2_1_1_0 - 0.00833333333333*G3_1_2_1_2_0 - 0.00833333333333*G3_1_2_2_0_1 - 0.00833333333333*G3_1_2_2_1_1 - 0.00833333333333*G3_1_2_2_2_1 - 0.00833333333333*G3_1_2_3_0_2 - 0.00833333333333*G3_1_2_3_1_2 - 0.00833333333333*G3_1_2_3_2_2 + 0.00833333333333*G3_1_3_0_0_0 + 0.00833333333333*G3_1_3_0_0_1 + 0.00833333333333*G3_1_3_0_0_2 + 0.00833333333333*G3_1_3_0_1_0 + 0.00833333333333*G3_1_3_0_1_1 + 0.00833333333333*G3_1_3_0_1_2 + 0.00833333333333*G3_1_3_0_2_0 + 0.00833333333333*G3_1_3_0_2_1 + 0.00833333333333*G3_1_3_0_2_2 - 0.00833333333333*G3_1_3_1_0_0 - 0.00833333333333*G3_1_3_1_1_0 - 0.00833333333333*G3_1_3_1_2_0 - 0.00833333333333*G3_1_3_2_0_1 - 0.00833333333333*G3_1_3_2_1_1 - 0.00833333333333*G3_1_3_2_2_1 - 0.00833333333333*G3_1_3_3_0_2 - 0.00833333333333*G3_1_3_3_1_2 - 0.00833333333333*G3_1_3_3_2_2 + 0.00833333333333*G3_2_0_0_0_0 + 0.00833333333333*G3_2_0_0_0_1 + 0.00833333333333*G3_2_0_0_0_2 + 0.00833333333333*G3_2_0_0_1_0 + 0.00833333333333*G3_2_0_0_1_1 + 0.00833333333333*G3_2_0_0_1_2 + 0.00833333333333*G3_2_0_0_2_0 + 0.00833333333333*G3_2_0_0_2_1 + 0.00833333333333*G3_2_0_0_2_2 - 0.00833333333333*G3_2_0_1_0_0 - 0.00833333333333*G3_2_0_1_1_0 - 0.00833333333333*G3_2_0_1_2_0 - 0.00833333333333*G3_2_0_2_0_1 - 0.00833333333333*G3_2_0_2_1_1 - 0.00833333333333*G3_2_0_2_2_1 - 0.00833333333333*G3_2_0_3_0_2 - 0.00833333333333*G3_2_0_3_1_2 - 0.00833333333333*G3_2_0_3_2_2 + 0.00833333333333*G3_2_1_0_0_0 + 0.00833333333333*G3_2_1_0_0_1 + 0.00833333333333*G3_2_1_0_0_2 + 0.00833333333333*G3_2_1_0_1_0 + 0.00833333333333*G3_2_1_0_1_1 + 0.00833333333333*G3_2_1_0_1_2 + 0.00833333333333*G3_2_1_0_2_0 + 0.00833333333333*G3_2_1_0_2_1 + 0.00833333333333*G3_2_1_0_2_2 - 0.00833333333333*G3_2_1_1_0_0 - 0.00833333333333*G3_2_1_1_1_0 - 0.00833333333333*G3_2_1_1_2_0 - 0.00833333333333*G3_2_1_2_0_1 - 0.00833333333333*G3_2_1_2_1_1 - 0.00833333333333*G3_2_1_2_2_1 - 0.00833333333333*G3_2_1_3_0_2 - 0.00833333333333*G3_2_1_3_1_2 - 0.00833333333333*G3_2_1_3_2_2 + 0.0166666666667*G3_2_2_0_0_0 + 0.0166666666667*G3_2_2_0_0_1 + 0.0166666666667*G3_2_2_0_0_2 + 0.0166666666667*G3_2_2_0_1_0 + 0.0166666666667*G3_2_2_0_1_1 + 0.0166666666667*G3_2_2_0_1_2 + 0.0166666666667*G3_2_2_0_2_0 + 0.0166666666667*G3_2_2_0_2_1 + 0.0166666666667*G3_2_2_0_2_2 - 0.0166666666667*G3_2_2_1_0_0 - 0.0166666666667*G3_2_2_1_1_0 - 0.0166666666667*G3_2_2_1_2_0 - 0.0166666666667*G3_2_2_2_0_1 - 0.0166666666667*G3_2_2_2_1_1 - 0.0166666666667*G3_2_2_2_2_1 - 0.0166666666667*G3_2_2_3_0_2 - 0.0166666666667*G3_2_2_3_1_2 - 0.0166666666667*G3_2_2_3_2_2 + 0.00833333333333*G3_2_3_0_0_0 + 0.00833333333333*G3_2_3_0_0_1 + 0.00833333333333*G3_2_3_0_0_2 + 0.00833333333333*G3_2_3_0_1_0 + 0.00833333333333*G3_2_3_0_1_1 + 0.00833333333333*G3_2_3_0_1_2 + 0.00833333333333*G3_2_3_0_2_0 + 0.00833333333333*G3_2_3_0_2_1 + 0.00833333333333*G3_2_3_0_2_2 - 0.00833333333333*G3_2_3_1_0_0 - 0.00833333333333*G3_2_3_1_1_0 - 0.00833333333333*G3_2_3_1_2_0 - 0.00833333333333*G3_2_3_2_0_1 - 0.00833333333333*G3_2_3_2_1_1 - 0.00833333333333*G3_2_3_2_2_1 - 0.00833333333333*G3_2_3_3_0_2 - 0.00833333333333*G3_2_3_3_1_2 - 0.00833333333333*G3_2_3_3_2_2 + 0.00833333333333*G3_3_0_0_0_0 + 0.00833333333333*G3_3_0_0_0_1 + 0.00833333333333*G3_3_0_0_0_2 + 0.00833333333333*G3_3_0_0_1_0 + 0.00833333333333*G3_3_0_0_1_1 + 0.00833333333333*G3_3_0_0_1_2 + 0.00833333333333*G3_3_0_0_2_0 + 0.00833333333333*G3_3_0_0_2_1 + 0.00833333333333*G3_3_0_0_2_2 - 0.00833333333333*G3_3_0_1_0_0 - 0.00833333333333*G3_3_0_1_1_0 - 0.00833333333333*G3_3_0_1_2_0 - 0.00833333333333*G3_3_0_2_0_1 - 0.00833333333333*G3_3_0_2_1_1 - 0.00833333333333*G3_3_0_2_2_1 - 0.00833333333333*G3_3_0_3_0_2 - 0.00833333333333*G3_3_0_3_1_2 - 0.00833333333333*G3_3_0_3_2_2 + 0.00833333333333*G3_3_1_0_0_0 + 0.00833333333333*G3_3_1_0_0_1 + 0.00833333333333*G3_3_1_0_0_2 + 0.00833333333333*G3_3_1_0_1_0 + 0.00833333333333*G3_3_1_0_1_1 + 0.00833333333333*G3_3_1_0_1_2 + 0.00833333333333*G3_3_1_0_2_0 + 0.00833333333333*G3_3_1_0_2_1 + 0.00833333333333*G3_3_1_0_2_2 - 0.00833333333333*G3_3_1_1_0_0 - 0.00833333333333*G3_3_1_1_1_0 - 0.00833333333333*G3_3_1_1_2_0 - 0.00833333333333*G3_3_1_2_0_1 - 0.00833333333333*G3_3_1_2_1_1 - 0.00833333333333*G3_3_1_2_2_1 - 0.00833333333333*G3_3_1_3_0_2 - 0.00833333333333*G3_3_1_3_1_2 - 0.00833333333333*G3_3_1_3_2_2 + 0.00833333333333*G3_3_2_0_0_0 + 0.00833333333333*G3_3_2_0_0_1 + 0.00833333333333*G3_3_2_0_0_2 + 0.00833333333333*G3_3_2_0_1_0 + 0.00833333333333*G3_3_2_0_1_1 + 0.00833333333333*G3_3_2_0_1_2 + 0.00833333333333*G3_3_2_0_2_0 + 0.00833333333333*G3_3_2_0_2_1 + 0.00833333333333*G3_3_2_0_2_2 - 0.00833333333333*G3_3_2_1_0_0 - 0.00833333333333*G3_3_2_1_1_0 - 0.00833333333333*G3_3_2_1_2_0 - 0.00833333333333*G3_3_2_2_0_1 - 0.00833333333333*G3_3_2_2_1_1 - 0.00833333333333*G3_3_2_2_2_1 - 0.00833333333333*G3_3_2_3_0_2 - 0.00833333333333*G3_3_2_3_1_2 - 0.00833333333333*G3_3_2_3_2_2 + 0.0166666666667*G3_3_3_0_0_0 + 0.0166666666667*G3_3_3_0_0_1 + 0.0166666666667*G3_3_3_0_0_2 + 0.0166666666667*G3_3_3_0_1_0 + 0.0166666666667*G3_3_3_0_1_1 + 0.0166666666667*G3_3_3_0_1_2 + 0.0166666666667*G3_3_3_0_2_0 + 0.0166666666667*G3_3_3_0_2_1 + 0.0166666666667*G3_3_3_0_2_2 - 0.0166666666667*G3_3_3_1_0_0 - 0.0166666666667*G3_3_3_1_1_0 - 0.0166666666667*G3_3_3_1_2_0 - 0.0166666666667*G3_3_3_2_0_1 - 0.0166666666667*G3_3_3_2_1_1 - 0.0166666666667*G3_3_3_2_2_1 - 0.0166666666667*G3_3_3_3_0_2 - 0.0166666666667*G3_3_3_3_1_2 - 0.0166666666667*G3_3_3_3_2_2 - 0.0416666666667*G4_0_0_0_0 - 0.0416666666667*G4_0_0_0_1 - 0.0416666666667*G4_0_0_0_2 - 0.0416666666667*G4_0_0_1_0 - 0.0416666666667*G4_0_0_1_1 - 0.0416666666667*G4_0_0_1_2 - 0.0416666666667*G4_0_0_2_0 - 0.0416666666667*G4_0_0_2_1 - 0.0416666666667*G4_0_0_2_2 + 0.0416666666667*G4_0_1_0_0 + 0.0416666666667*G4_0_1_1_0 + 0.0416666666667*G4_0_1_2_0 + 0.0416666666667*G4_0_2_0_1 + 0.0416666666667*G4_0_2_1_1 + 0.0416666666667*G4_0_2_2_1 + 0.0416666666667*G4_0_3_0_2 + 0.0416666666667*G4_0_3_1_2 + 0.0416666666667*G4_0_3_2_2 - 0.0416666666667*G4_1_0_0_0 - 0.0416666666667*G4_1_0_0_1 - 0.0416666666667*G4_1_0_0_2 - 0.0416666666667*G4_1_0_1_0 - 0.0416666666667*G4_1_0_1_1 - 0.0416666666667*G4_1_0_1_2 - 0.0416666666667*G4_1_0_2_0 - 0.0416666666667*G4_1_0_2_1 - 0.0416666666667*G4_1_0_2_2 + 0.0416666666667*G4_1_1_0_0 + 0.0416666666667*G4_1_1_1_0 + 0.0416666666667*G4_1_1_2_0 + 0.0416666666667*G4_1_2_0_1 + 0.0416666666667*G4_1_2_1_1 + 0.0416666666667*G4_1_2_2_1 + 0.0416666666667*G4_1_3_0_2 + 0.0416666666667*G4_1_3_1_2 + 0.0416666666667*G4_1_3_2_2 - 0.0416666666667*G4_2_0_0_0 - 0.0416666666667*G4_2_0_0_1 - 0.0416666666667*G4_2_0_0_2 - 0.0416666666667*G4_2_0_1_0 - 0.0416666666667*G4_2_0_1_1 - 0.0416666666667*G4_2_0_1_2 - 0.0416666666667*G4_2_0_2_0 - 0.0416666666667*G4_2_0_2_1 - 0.0416666666667*G4_2_0_2_2 + 0.0416666666667*G4_2_1_0_0 + 0.0416666666667*G4_2_1_1_0 + 0.0416666666667*G4_2_1_2_0 + 0.0416666666667*G4_2_2_0_1 + 0.0416666666667*G4_2_2_1_1 + 0.0416666666667*G4_2_2_2_1 + 0.0416666666667*G4_2_3_0_2 + 0.0416666666667*G4_2_3_1_2 + 0.0416666666667*G4_2_3_2_2 - 0.0416666666667*G4_3_0_0_0 - 0.0416666666667*G4_3_0_0_1 - 0.0416666666667*G4_3_0_0_2 - 0.0416666666667*G4_3_0_1_0 - 0.0416666666667*G4_3_0_1_1 - 0.0416666666667*G4_3_0_1_2 - 0.0416666666667*G4_3_0_2_0 - 0.0416666666667*G4_3_0_2_1 - 0.0416666666667*G4_3_0_2_2 + 0.0416666666667*G4_3_1_0_0 + 0.0416666666667*G4_3_1_1_0 + 0.0416666666667*G4_3_1_2_0 + 0.0416666666667*G4_3_2_0_1 + 0.0416666666667*G4_3_2_1_1 + 0.0416666666667*G4_3_2_2_1 + 0.0416666666667*G4_3_3_0_2 + 0.0416666666667*G4_3_3_1_2 + 0.0416666666667*G4_3_3_2_2 - 0.0166666666667*G5_0_0_0_0_0 - 0.0166666666667*G5_0_0_0_0_1 - 0.0166666666667*G5_0_0_0_0_2 - 0.0166666666667*G5_0_0_0_1_0 - 0.0166666666667*G5_0_0_0_1_1 - 0.0166666666667*G5_0_0_0_1_2 - 0.0166666666667*G5_0_0_0_2_0 - 0.0166666666667*G5_0_0_0_2_1 - 0.0166666666667*G5_0_0_0_2_2 - 0.00833333333333*G5_0_0_1_0_0 - 0.00833333333333*G5_0_0_1_0_1 - 0.00833333333333*G5_0_0_1_0_2 - 0.00833333333333*G5_0_0_1_1_0 - 0.00833333333333*G5_0_0_1_1_1 - 0.00833333333333*G5_0_0_1_1_2 - 0.00833333333333*G5_0_0_1_2_0 - 0.00833333333333*G5_0_0_1_2_1 - 0.00833333333333*G5_0_0_1_2_2 - 0.00833333333333*G5_0_0_2_0_0 - 0.00833333333333*G5_0_0_2_0_1 - 0.00833333333333*G5_0_0_2_0_2 - 0.00833333333333*G5_0_0_2_1_0 - 0.00833333333333*G5_0_0_2_1_1 - 0.00833333333333*G5_0_0_2_1_2 - 0.00833333333333*G5_0_0_2_2_0 - 0.00833333333333*G5_0_0_2_2_1 - 0.00833333333333*G5_0_0_2_2_2 - 0.00833333333333*G5_0_0_3_0_0 - 0.00833333333333*G5_0_0_3_0_1 - 0.00833333333333*G5_0_0_3_0_2 - 0.00833333333333*G5_0_0_3_1_0 - 0.00833333333333*G5_0_0_3_1_1 - 0.00833333333333*G5_0_0_3_1_2 - 0.00833333333333*G5_0_0_3_2_0 - 0.00833333333333*G5_0_0_3_2_1 - 0.00833333333333*G5_0_0_3_2_2 + 0.0166666666667*G5_0_1_0_0_0 + 0.0166666666667*G5_0_1_0_1_0 + 0.0166666666667*G5_0_1_0_2_0 + 0.00833333333333*G5_0_1_1_0_0 + 0.00833333333333*G5_0_1_1_1_0 + 0.00833333333333*G5_0_1_1_2_0 + 0.00833333333333*G5_0_1_2_0_0 + 0.00833333333333*G5_0_1_2_1_0 + 0.00833333333333*G5_0_1_2_2_0 + 0.00833333333333*G5_0_1_3_0_0 + 0.00833333333333*G5_0_1_3_1_0 + 0.00833333333333*G5_0_1_3_2_0 + 0.0166666666667*G5_0_2_0_0_1 + 0.0166666666667*G5_0_2_0_1_1 + 0.0166666666667*G5_0_2_0_2_1 + 0.00833333333333*G5_0_2_1_0_1 + 0.00833333333333*G5_0_2_1_1_1 + 0.00833333333333*G5_0_2_1_2_1 + 0.00833333333333*G5_0_2_2_0_1 + 0.00833333333333*G5_0_2_2_1_1 + 0.00833333333333*G5_0_2_2_2_1 + 0.00833333333333*G5_0_2_3_0_1 + 0.00833333333333*G5_0_2_3_1_1 + 0.00833333333333*G5_0_2_3_2_1 + 0.0166666666667*G5_0_3_0_0_2 + 0.0166666666667*G5_0_3_0_1_2 + 0.0166666666667*G5_0_3_0_2_2 + 0.00833333333333*G5_0_3_1_0_2 + 0.00833333333333*G5_0_3_1_1_2 + 0.00833333333333*G5_0_3_1_2_2 + 0.00833333333333*G5_0_3_2_0_2 + 0.00833333333333*G5_0_3_2_1_2 + 0.00833333333333*G5_0_3_2_2_2 + 0.00833333333333*G5_0_3_3_0_2 + 0.00833333333333*G5_0_3_3_1_2 + 0.00833333333333*G5_0_3_3_2_2 - 0.00833333333333*G5_1_0_0_0_0 - 0.00833333333333*G5_1_0_0_0_1 - 0.00833333333333*G5_1_0_0_0_2 - 0.00833333333333*G5_1_0_0_1_0 - 0.00833333333333*G5_1_0_0_1_1 - 0.00833333333333*G5_1_0_0_1_2 - 0.00833333333333*G5_1_0_0_2_0 - 0.00833333333333*G5_1_0_0_2_1 - 0.00833333333333*G5_1_0_0_2_2 - 0.0166666666667*G5_1_0_1_0_0 - 0.0166666666667*G5_1_0_1_0_1 - 0.0166666666667*G5_1_0_1_0_2 - 0.0166666666667*G5_1_0_1_1_0 - 0.0166666666667*G5_1_0_1_1_1 - 0.0166666666667*G5_1_0_1_1_2 - 0.0166666666667*G5_1_0_1_2_0 - 0.0166666666667*G5_1_0_1_2_1 - 0.0166666666667*G5_1_0_1_2_2 - 0.00833333333333*G5_1_0_2_0_0 - 0.00833333333333*G5_1_0_2_0_1 - 0.00833333333333*G5_1_0_2_0_2 - 0.00833333333333*G5_1_0_2_1_0 - 0.00833333333333*G5_1_0_2_1_1 - 0.00833333333333*G5_1_0_2_1_2 - 0.00833333333333*G5_1_0_2_2_0 - 0.00833333333333*G5_1_0_2_2_1 - 0.00833333333333*G5_1_0_2_2_2 - 0.00833333333333*G5_1_0_3_0_0 - 0.00833333333333*G5_1_0_3_0_1 - 0.00833333333333*G5_1_0_3_0_2 - 0.00833333333333*G5_1_0_3_1_0 - 0.00833333333333*G5_1_0_3_1_1 - 0.00833333333333*G5_1_0_3_1_2 - 0.00833333333333*G5_1_0_3_2_0 - 0.00833333333333*G5_1_0_3_2_1 - 0.00833333333333*G5_1_0_3_2_2 + 0.00833333333333*G5_1_1_0_0_0 + 0.00833333333333*G5_1_1_0_1_0 + 0.00833333333333*G5_1_1_0_2_0 + 0.0166666666667*G5_1_1_1_0_0 + 0.0166666666667*G5_1_1_1_1_0 + 0.0166666666667*G5_1_1_1_2_0 + 0.00833333333333*G5_1_1_2_0_0 + 0.00833333333333*G5_1_1_2_1_0 + 0.00833333333333*G5_1_1_2_2_0 + 0.00833333333333*G5_1_1_3_0_0 + 0.00833333333333*G5_1_1_3_1_0 + 0.00833333333333*G5_1_1_3_2_0 + 0.00833333333333*G5_1_2_0_0_1 + 0.00833333333333*G5_1_2_0_1_1 + 0.00833333333333*G5_1_2_0_2_1 + 0.0166666666667*G5_1_2_1_0_1 + 0.0166666666667*G5_1_2_1_1_1 + 0.0166666666667*G5_1_2_1_2_1 + 0.00833333333333*G5_1_2_2_0_1 + 0.00833333333333*G5_1_2_2_1_1 + 0.00833333333333*G5_1_2_2_2_1 + 0.00833333333333*G5_1_2_3_0_1 + 0.00833333333333*G5_1_2_3_1_1 + 0.00833333333333*G5_1_2_3_2_1 + 0.00833333333333*G5_1_3_0_0_2 + 0.00833333333333*G5_1_3_0_1_2 + 0.00833333333333*G5_1_3_0_2_2 + 0.0166666666667*G5_1_3_1_0_2 + 0.0166666666667*G5_1_3_1_1_2 + 0.0166666666667*G5_1_3_1_2_2 + 0.00833333333333*G5_1_3_2_0_2 + 0.00833333333333*G5_1_3_2_1_2 + 0.00833333333333*G5_1_3_2_2_2 + 0.00833333333333*G5_1_3_3_0_2 + 0.00833333333333*G5_1_3_3_1_2 + 0.00833333333333*G5_1_3_3_2_2 - 0.00833333333333*G5_2_0_0_0_0 - 0.00833333333333*G5_2_0_0_0_1 - 0.00833333333333*G5_2_0_0_0_2 - 0.00833333333333*G5_2_0_0_1_0 - 0.00833333333333*G5_2_0_0_1_1 - 0.00833333333333*G5_2_0_0_1_2 - 0.00833333333333*G5_2_0_0_2_0 - 0.00833333333333*G5_2_0_0_2_1 - 0.00833333333333*G5_2_0_0_2_2 - 0.00833333333333*G5_2_0_1_0_0 - 0.00833333333333*G5_2_0_1_0_1 - 0.00833333333333*G5_2_0_1_0_2 - 0.00833333333333*G5_2_0_1_1_0 - 0.00833333333333*G5_2_0_1_1_1 - 0.00833333333333*G5_2_0_1_1_2 - 0.00833333333333*G5_2_0_1_2_0 - 0.00833333333333*G5_2_0_1_2_1 - 0.00833333333333*G5_2_0_1_2_2 - 0.0166666666667*G5_2_0_2_0_0 - 0.0166666666667*G5_2_0_2_0_1 - 0.0166666666667*G5_2_0_2_0_2 - 0.0166666666667*G5_2_0_2_1_0 - 0.0166666666667*G5_2_0_2_1_1 - 0.0166666666667*G5_2_0_2_1_2 - 0.0166666666667*G5_2_0_2_2_0 - 0.0166666666667*G5_2_0_2_2_1 - 0.0166666666667*G5_2_0_2_2_2 - 0.00833333333333*G5_2_0_3_0_0 - 0.00833333333333*G5_2_0_3_0_1 - 0.00833333333333*G5_2_0_3_0_2 - 0.00833333333333*G5_2_0_3_1_0 - 0.00833333333333*G5_2_0_3_1_1 - 0.00833333333333*G5_2_0_3_1_2 - 0.00833333333333*G5_2_0_3_2_0 - 0.00833333333333*G5_2_0_3_2_1 - 0.00833333333333*G5_2_0_3_2_2 + 0.00833333333333*G5_2_1_0_0_0 + 0.00833333333333*G5_2_1_0_1_0 + 0.00833333333333*G5_2_1_0_2_0 + 0.00833333333333*G5_2_1_1_0_0 + 0.00833333333333*G5_2_1_1_1_0 + 0.00833333333333*G5_2_1_1_2_0 + 0.0166666666667*G5_2_1_2_0_0 + 0.0166666666667*G5_2_1_2_1_0 + 0.0166666666667*G5_2_1_2_2_0 + 0.00833333333333*G5_2_1_3_0_0 + 0.00833333333333*G5_2_1_3_1_0 + 0.00833333333333*G5_2_1_3_2_0 + 0.00833333333333*G5_2_2_0_0_1 + 0.00833333333333*G5_2_2_0_1_1 + 0.00833333333333*G5_2_2_0_2_1 + 0.00833333333333*G5_2_2_1_0_1 + 0.00833333333333*G5_2_2_1_1_1 + 0.00833333333333*G5_2_2_1_2_1 + 0.0166666666667*G5_2_2_2_0_1 + 0.0166666666667*G5_2_2_2_1_1 + 0.0166666666667*G5_2_2_2_2_1 + 0.00833333333333*G5_2_2_3_0_1 + 0.00833333333333*G5_2_2_3_1_1 + 0.00833333333333*G5_2_2_3_2_1 + 0.00833333333333*G5_2_3_0_0_2 + 0.00833333333333*G5_2_3_0_1_2 + 0.00833333333333*G5_2_3_0_2_2 + 0.00833333333333*G5_2_3_1_0_2 + 0.00833333333333*G5_2_3_1_1_2 + 0.00833333333333*G5_2_3_1_2_2 + 0.0166666666667*G5_2_3_2_0_2 + 0.0166666666667*G5_2_3_2_1_2 + 0.0166666666667*G5_2_3_2_2_2 + 0.00833333333333*G5_2_3_3_0_2 + 0.00833333333333*G5_2_3_3_1_2 + 0.00833333333333*G5_2_3_3_2_2 - 0.00833333333333*G5_3_0_0_0_0 - 0.00833333333333*G5_3_0_0_0_1 - 0.00833333333333*G5_3_0_0_0_2 - 0.00833333333333*G5_3_0_0_1_0 - 0.00833333333333*G5_3_0_0_1_1 - 0.00833333333333*G5_3_0_0_1_2 - 0.00833333333333*G5_3_0_0_2_0 - 0.00833333333333*G5_3_0_0_2_1 - 0.00833333333333*G5_3_0_0_2_2 - 0.00833333333333*G5_3_0_1_0_0 - 0.00833333333333*G5_3_0_1_0_1 - 0.00833333333333*G5_3_0_1_0_2 - 0.00833333333333*G5_3_0_1_1_0 - 0.00833333333333*G5_3_0_1_1_1 - 0.00833333333333*G5_3_0_1_1_2 - 0.00833333333333*G5_3_0_1_2_0 - 0.00833333333333*G5_3_0_1_2_1 - 0.00833333333333*G5_3_0_1_2_2 - 0.00833333333333*G5_3_0_2_0_0 - 0.00833333333333*G5_3_0_2_0_1 - 0.00833333333333*G5_3_0_2_0_2 - 0.00833333333333*G5_3_0_2_1_0 - 0.00833333333333*G5_3_0_2_1_1 - 0.00833333333333*G5_3_0_2_1_2 - 0.00833333333333*G5_3_0_2_2_0 - 0.00833333333333*G5_3_0_2_2_1 - 0.00833333333333*G5_3_0_2_2_2 - 0.0166666666667*G5_3_0_3_0_0 - 0.0166666666667*G5_3_0_3_0_1 - 0.0166666666667*G5_3_0_3_0_2 - 0.0166666666667*G5_3_0_3_1_0 - 0.0166666666667*G5_3_0_3_1_1 - 0.0166666666667*G5_3_0_3_1_2 - 0.0166666666667*G5_3_0_3_2_0 - 0.0166666666667*G5_3_0_3_2_1 - 0.0166666666667*G5_3_0_3_2_2 + 0.00833333333333*G5_3_1_0_0_0 + 0.00833333333333*G5_3_1_0_1_0 + 0.00833333333333*G5_3_1_0_2_0 + 0.00833333333333*G5_3_1_1_0_0 + 0.00833333333333*G5_3_1_1_1_0 + 0.00833333333333*G5_3_1_1_2_0 + 0.00833333333333*G5_3_1_2_0_0 + 0.00833333333333*G5_3_1_2_1_0 + 0.00833333333333*G5_3_1_2_2_0 + 0.0166666666667*G5_3_1_3_0_0 + 0.0166666666667*G5_3_1_3_1_0 + 0.0166666666667*G5_3_1_3_2_0 + 0.00833333333333*G5_3_2_0_0_1 + 0.00833333333333*G5_3_2_0_1_1 + 0.00833333333333*G5_3_2_0_2_1 + 0.00833333333333*G5_3_2_1_0_1 + 0.00833333333333*G5_3_2_1_1_1 + 0.00833333333333*G5_3_2_1_2_1 + 0.00833333333333*G5_3_2_2_0_1 + 0.00833333333333*G5_3_2_2_1_1 + 0.00833333333333*G5_3_2_2_2_1 + 0.0166666666667*G5_3_2_3_0_1 + 0.0166666666667*G5_3_2_3_1_1 + 0.0166666666667*G5_3_2_3_2_1 + 0.00833333333333*G5_3_3_0_0_2 + 0.00833333333333*G5_3_3_0_1_2 + 0.00833333333333*G5_3_3_0_2_2 + 0.00833333333333*G5_3_3_1_0_2 + 0.00833333333333*G5_3_3_1_1_2 + 0.00833333333333*G5_3_3_1_2_2 + 0.00833333333333*G5_3_3_2_0_2 + 0.00833333333333*G5_3_3_2_1_2 + 0.00833333333333*G5_3_3_2_2_2 + 0.0166666666667*G5_3_3_3_0_2 + 0.0166666666667*G5_3_3_3_1_2 + 0.0166666666667*G5_3_3_3_2_2 - 0.0166666666667*G6_0_0_0_0_0 - 0.0166666666667*G6_0_0_0_0_1 - 0.0166666666667*G6_0_0_0_0_2 - 0.0166666666667*G6_0_0_0_1_0 - 0.0166666666667*G6_0_0_0_1_1 - 0.0166666666667*G6_0_0_0_1_2 - 0.0166666666667*G6_0_0_0_2_0 - 0.0166666666667*G6_0_0_0_2_1 - 0.0166666666667*G6_0_0_0_2_2 + 0.0166666666667*G6_0_0_1_0_0 + 0.0166666666667*G6_0_0_1_1_0 + 0.0166666666667*G6_0_0_1_2_0 + 0.0166666666667*G6_0_0_2_0_1 + 0.0166666666667*G6_0_0_2_1_1 + 0.0166666666667*G6_0_0_2_2_1 + 0.0166666666667*G6_0_0_3_0_2 + 0.0166666666667*G6_0_0_3_1_2 + 0.0166666666667*G6_0_0_3_2_2 - 0.00833333333333*G6_0_1_0_0_0 - 0.00833333333333*G6_0_1_0_0_1 - 0.00833333333333*G6_0_1_0_0_2 - 0.00833333333333*G6_0_1_0_1_0 - 0.00833333333333*G6_0_1_0_1_1 - 0.00833333333333*G6_0_1_0_1_2 - 0.00833333333333*G6_0_1_0_2_0 - 0.00833333333333*G6_0_1_0_2_1 - 0.00833333333333*G6_0_1_0_2_2 + 0.00833333333333*G6_0_1_1_0_0 + 0.00833333333333*G6_0_1_1_1_0 + 0.00833333333333*G6_0_1_1_2_0 + 0.00833333333333*G6_0_1_2_0_1 + 0.00833333333333*G6_0_1_2_1_1 + 0.00833333333333*G6_0_1_2_2_1 + 0.00833333333333*G6_0_1_3_0_2 + 0.00833333333333*G6_0_1_3_1_2 + 0.00833333333333*G6_0_1_3_2_2 - 0.00833333333333*G6_0_2_0_0_0 - 0.00833333333333*G6_0_2_0_0_1 - 0.00833333333333*G6_0_2_0_0_2 - 0.00833333333333*G6_0_2_0_1_0 - 0.00833333333333*G6_0_2_0_1_1 - 0.00833333333333*G6_0_2_0_1_2 - 0.00833333333333*G6_0_2_0_2_0 - 0.00833333333333*G6_0_2_0_2_1 - 0.00833333333333*G6_0_2_0_2_2 + 0.00833333333333*G6_0_2_1_0_0 + 0.00833333333333*G6_0_2_1_1_0 + 0.00833333333333*G6_0_2_1_2_0 + 0.00833333333333*G6_0_2_2_0_1 + 0.00833333333333*G6_0_2_2_1_1 + 0.00833333333333*G6_0_2_2_2_1 + 0.00833333333333*G6_0_2_3_0_2 + 0.00833333333333*G6_0_2_3_1_2 + 0.00833333333333*G6_0_2_3_2_2 - 0.00833333333333*G6_0_3_0_0_0 - 0.00833333333333*G6_0_3_0_0_1 - 0.00833333333333*G6_0_3_0_0_2 - 0.00833333333333*G6_0_3_0_1_0 - 0.00833333333333*G6_0_3_0_1_1 - 0.00833333333333*G6_0_3_0_1_2 - 0.00833333333333*G6_0_3_0_2_0 - 0.00833333333333*G6_0_3_0_2_1 - 0.00833333333333*G6_0_3_0_2_2 + 0.00833333333333*G6_0_3_1_0_0 + 0.00833333333333*G6_0_3_1_1_0 + 0.00833333333333*G6_0_3_1_2_0 + 0.00833333333333*G6_0_3_2_0_1 + 0.00833333333333*G6_0_3_2_1_1 + 0.00833333333333*G6_0_3_2_2_1 + 0.00833333333333*G6_0_3_3_0_2 + 0.00833333333333*G6_0_3_3_1_2 + 0.00833333333333*G6_0_3_3_2_2 - 0.00833333333333*G6_1_0_0_0_0 - 0.00833333333333*G6_1_0_0_0_1 - 0.00833333333333*G6_1_0_0_0_2 - 0.00833333333333*G6_1_0_0_1_0 - 0.00833333333333*G6_1_0_0_1_1 - 0.00833333333333*G6_1_0_0_1_2 - 0.00833333333333*G6_1_0_0_2_0 - 0.00833333333333*G6_1_0_0_2_1 - 0.00833333333333*G6_1_0_0_2_2 + 0.00833333333333*G6_1_0_1_0_0 + 0.00833333333333*G6_1_0_1_1_0 + 0.00833333333333*G6_1_0_1_2_0 + 0.00833333333333*G6_1_0_2_0_1 + 0.00833333333333*G6_1_0_2_1_1 + 0.00833333333333*G6_1_0_2_2_1 + 0.00833333333333*G6_1_0_3_0_2 + 0.00833333333333*G6_1_0_3_1_2 + 0.00833333333333*G6_1_0_3_2_2 - 0.0166666666667*G6_1_1_0_0_0 - 0.0166666666667*G6_1_1_0_0_1 - 0.0166666666667*G6_1_1_0_0_2 - 0.0166666666667*G6_1_1_0_1_0 - 0.0166666666667*G6_1_1_0_1_1 - 0.0166666666667*G6_1_1_0_1_2 - 0.0166666666667*G6_1_1_0_2_0 - 0.0166666666667*G6_1_1_0_2_1 - 0.0166666666667*G6_1_1_0_2_2 + 0.0166666666667*G6_1_1_1_0_0 + 0.0166666666667*G6_1_1_1_1_0 + 0.0166666666667*G6_1_1_1_2_0 + 0.0166666666667*G6_1_1_2_0_1 + 0.0166666666667*G6_1_1_2_1_1 + 0.0166666666667*G6_1_1_2_2_1 + 0.0166666666667*G6_1_1_3_0_2 + 0.0166666666667*G6_1_1_3_1_2 + 0.0166666666667*G6_1_1_3_2_2 - 0.00833333333333*G6_1_2_0_0_0 - 0.00833333333333*G6_1_2_0_0_1 - 0.00833333333333*G6_1_2_0_0_2 - 0.00833333333333*G6_1_2_0_1_0 - 0.00833333333333*G6_1_2_0_1_1 - 0.00833333333333*G6_1_2_0_1_2 - 0.00833333333333*G6_1_2_0_2_0 - 0.00833333333333*G6_1_2_0_2_1 - 0.00833333333333*G6_1_2_0_2_2 + 0.00833333333333*G6_1_2_1_0_0 + 0.00833333333333*G6_1_2_1_1_0 + 0.00833333333333*G6_1_2_1_2_0 + 0.00833333333333*G6_1_2_2_0_1 + 0.00833333333333*G6_1_2_2_1_1 + 0.00833333333333*G6_1_2_2_2_1 + 0.00833333333333*G6_1_2_3_0_2 + 0.00833333333333*G6_1_2_3_1_2 + 0.00833333333333*G6_1_2_3_2_2 - 0.00833333333333*G6_1_3_0_0_0 - 0.00833333333333*G6_1_3_0_0_1 - 0.00833333333333*G6_1_3_0_0_2 - 0.00833333333333*G6_1_3_0_1_0 - 0.00833333333333*G6_1_3_0_1_1 - 0.00833333333333*G6_1_3_0_1_2 - 0.00833333333333*G6_1_3_0_2_0 - 0.00833333333333*G6_1_3_0_2_1 - 0.00833333333333*G6_1_3_0_2_2 + 0.00833333333333*G6_1_3_1_0_0 + 0.00833333333333*G6_1_3_1_1_0 + 0.00833333333333*G6_1_3_1_2_0 + 0.00833333333333*G6_1_3_2_0_1 + 0.00833333333333*G6_1_3_2_1_1 + 0.00833333333333*G6_1_3_2_2_1 + 0.00833333333333*G6_1_3_3_0_2 + 0.00833333333333*G6_1_3_3_1_2 + 0.00833333333333*G6_1_3_3_2_2 - 0.00833333333333*G6_2_0_0_0_0 - 0.00833333333333*G6_2_0_0_0_1 - 0.00833333333333*G6_2_0_0_0_2 - 0.00833333333333*G6_2_0_0_1_0 - 0.00833333333333*G6_2_0_0_1_1 - 0.00833333333333*G6_2_0_0_1_2 - 0.00833333333333*G6_2_0_0_2_0 - 0.00833333333333*G6_2_0_0_2_1 - 0.00833333333333*G6_2_0_0_2_2 + 0.00833333333333*G6_2_0_1_0_0 + 0.00833333333333*G6_2_0_1_1_0 + 0.00833333333333*G6_2_0_1_2_0 + 0.00833333333333*G6_2_0_2_0_1 + 0.00833333333333*G6_2_0_2_1_1 + 0.00833333333333*G6_2_0_2_2_1 + 0.00833333333333*G6_2_0_3_0_2 + 0.00833333333333*G6_2_0_3_1_2 + 0.00833333333333*G6_2_0_3_2_2 - 0.00833333333333*G6_2_1_0_0_0 - 0.00833333333333*G6_2_1_0_0_1 - 0.00833333333333*G6_2_1_0_0_2 - 0.00833333333333*G6_2_1_0_1_0 - 0.00833333333333*G6_2_1_0_1_1 - 0.00833333333333*G6_2_1_0_1_2 - 0.00833333333333*G6_2_1_0_2_0 - 0.00833333333333*G6_2_1_0_2_1 - 0.00833333333333*G6_2_1_0_2_2 + 0.00833333333333*G6_2_1_1_0_0 + 0.00833333333333*G6_2_1_1_1_0 + 0.00833333333333*G6_2_1_1_2_0 + 0.00833333333333*G6_2_1_2_0_1 + 0.00833333333333*G6_2_1_2_1_1 + 0.00833333333333*G6_2_1_2_2_1 + 0.00833333333333*G6_2_1_3_0_2 + 0.00833333333333*G6_2_1_3_1_2 + 0.00833333333333*G6_2_1_3_2_2 - 0.0166666666667*G6_2_2_0_0_0 - 0.0166666666667*G6_2_2_0_0_1 - 0.0166666666667*G6_2_2_0_0_2 - 0.0166666666667*G6_2_2_0_1_0 - 0.0166666666667*G6_2_2_0_1_1 - 0.0166666666667*G6_2_2_0_1_2 - 0.0166666666667*G6_2_2_0_2_0 - 0.0166666666667*G6_2_2_0_2_1 - 0.0166666666667*G6_2_2_0_2_2 + 0.0166666666667*G6_2_2_1_0_0 + 0.0166666666667*G6_2_2_1_1_0 + 0.0166666666667*G6_2_2_1_2_0 + 0.0166666666667*G6_2_2_2_0_1 + 0.0166666666667*G6_2_2_2_1_1 + 0.0166666666667*G6_2_2_2_2_1 + 0.0166666666667*G6_2_2_3_0_2 + 0.0166666666667*G6_2_2_3_1_2 + 0.0166666666667*G6_2_2_3_2_2 - 0.00833333333333*G6_2_3_0_0_0 - 0.00833333333333*G6_2_3_0_0_1 - 0.00833333333333*G6_2_3_0_0_2 - 0.00833333333333*G6_2_3_0_1_0 - 0.00833333333333*G6_2_3_0_1_1 - 0.00833333333333*G6_2_3_0_1_2 - 0.00833333333333*G6_2_3_0_2_0 - 0.00833333333333*G6_2_3_0_2_1 - 0.00833333333333*G6_2_3_0_2_2 + 0.00833333333333*G6_2_3_1_0_0 + 0.00833333333333*G6_2_3_1_1_0 + 0.00833333333333*G6_2_3_1_2_0 + 0.00833333333333*G6_2_3_2_0_1 + 0.00833333333333*G6_2_3_2_1_1 + 0.00833333333333*G6_2_3_2_2_1 + 0.00833333333333*G6_2_3_3_0_2 + 0.00833333333333*G6_2_3_3_1_2 + 0.00833333333333*G6_2_3_3_2_2 - 0.00833333333333*G6_3_0_0_0_0 - 0.00833333333333*G6_3_0_0_0_1 - 0.00833333333333*G6_3_0_0_0_2 - 0.00833333333333*G6_3_0_0_1_0 - 0.00833333333333*G6_3_0_0_1_1 - 0.00833333333333*G6_3_0_0_1_2 - 0.00833333333333*G6_3_0_0_2_0 - 0.00833333333333*G6_3_0_0_2_1 - 0.00833333333333*G6_3_0_0_2_2 + 0.00833333333333*G6_3_0_1_0_0 + 0.00833333333333*G6_3_0_1_1_0 + 0.00833333333333*G6_3_0_1_2_0 + 0.00833333333333*G6_3_0_2_0_1 + 0.00833333333333*G6_3_0_2_1_1 + 0.00833333333333*G6_3_0_2_2_1 + 0.00833333333333*G6_3_0_3_0_2 + 0.00833333333333*G6_3_0_3_1_2 + 0.00833333333333*G6_3_0_3_2_2 - 0.00833333333333*G6_3_1_0_0_0 - 0.00833333333333*G6_3_1_0_0_1 - 0.00833333333333*G6_3_1_0_0_2 - 0.00833333333333*G6_3_1_0_1_0 - 0.00833333333333*G6_3_1_0_1_1 - 0.00833333333333*G6_3_1_0_1_2 - 0.00833333333333*G6_3_1_0_2_0 - 0.00833333333333*G6_3_1_0_2_1 - 0.00833333333333*G6_3_1_0_2_2 + 0.00833333333333*G6_3_1_1_0_0 + 0.00833333333333*G6_3_1_1_1_0 + 0.00833333333333*G6_3_1_1_2_0 + 0.00833333333333*G6_3_1_2_0_1 + 0.00833333333333*G6_3_1_2_1_1 + 0.00833333333333*G6_3_1_2_2_1 + 0.00833333333333*G6_3_1_3_0_2 + 0.00833333333333*G6_3_1_3_1_2 + 0.00833333333333*G6_3_1_3_2_2 - 0.00833333333333*G6_3_2_0_0_0 - 0.00833333333333*G6_3_2_0_0_1 - 0.00833333333333*G6_3_2_0_0_2 - 0.00833333333333*G6_3_2_0_1_0 - 0.00833333333333*G6_3_2_0_1_1 - 0.00833333333333*G6_3_2_0_1_2 - 0.00833333333333*G6_3_2_0_2_0 - 0.00833333333333*G6_3_2_0_2_1 - 0.00833333333333*G6_3_2_0_2_2 + 0.00833333333333*G6_3_2_1_0_0 + 0.00833333333333*G6_3_2_1_1_0 + 0.00833333333333*G6_3_2_1_2_0 + 0.00833333333333*G6_3_2_2_0_1 + 0.00833333333333*G6_3_2_2_1_1 + 0.00833333333333*G6_3_2_2_2_1 + 0.00833333333333*G6_3_2_3_0_2 + 0.00833333333333*G6_3_2_3_1_2 + 0.00833333333333*G6_3_2_3_2_2 - 0.0166666666667*G6_3_3_0_0_0 - 0.0166666666667*G6_3_3_0_0_1 - 0.0166666666667*G6_3_3_0_0_2 - 0.0166666666667*G6_3_3_0_1_0 - 0.0166666666667*G6_3_3_0_1_1 - 0.0166666666667*G6_3_3_0_1_2 - 0.0166666666667*G6_3_3_0_2_0 - 0.0166666666667*G6_3_3_0_2_1 - 0.0166666666667*G6_3_3_0_2_2 + 0.0166666666667*G6_3_3_1_0_0 + 0.0166666666667*G6_3_3_1_1_0 + 0.0166666666667*G6_3_3_1_2_0 + 0.0166666666667*G6_3_3_2_0_1 + 0.0166666666667*G6_3_3_2_1_1 + 0.0166666666667*G6_3_3_2_2_1 + 0.0166666666667*G6_3_3_3_0_2 + 0.0166666666667*G6_3_3_3_1_2 + 0.0166666666667*G6_3_3_3_2_2;
-    A[5] = -0.00833333333333*G0_4 - 0.0166666666667*G0_5 - 0.00833333333333*G0_6 - 0.00833333333333*G0_7 + 0.00833333333333*G1_4 + 0.0166666666667*G1_5 + 0.00833333333333*G1_6 + 0.00833333333333*G1_7 - 0.0166666666667*G2_0_0_0_0_0 - 0.0166666666667*G2_0_0_0_0_1 - 0.0166666666667*G2_0_0_0_0_2 - 0.00833333333333*G2_0_0_1_0_0 - 0.00833333333333*G2_0_0_1_0_1 - 0.00833333333333*G2_0_0_1_0_2 - 0.00833333333333*G2_0_0_2_0_0 - 0.00833333333333*G2_0_0_2_0_1 - 0.00833333333333*G2_0_0_2_0_2 - 0.00833333333333*G2_0_0_3_0_0 - 0.00833333333333*G2_0_0_3_0_1 - 0.00833333333333*G2_0_0_3_0_2 + 0.0166666666667*G2_0_1_0_0_0 + 0.00833333333333*G2_0_1_1_0_0 + 0.00833333333333*G2_0_1_2_0_0 + 0.00833333333333*G2_0_1_3_0_0 + 0.0166666666667*G2_0_2_0_0_1 + 0.00833333333333*G2_0_2_1_0_1 + 0.00833333333333*G2_0_2_2_0_1 + 0.00833333333333*G2_0_2_3_0_1 + 0.0166666666667*G2_0_3_0_0_2 + 0.00833333333333*G2_0_3_1_0_2 + 0.00833333333333*G2_0_3_2_0_2 + 0.00833333333333*G2_0_3_3_0_2 - 0.00833333333333*G2_1_0_0_0_0 - 0.00833333333333*G2_1_0_0_0_1 - 0.00833333333333*G2_1_0_0_0_2 - 0.0166666666667*G2_1_0_1_0_0 - 0.0166666666667*G2_1_0_1_0_1 - 0.0166666666667*G2_1_0_1_0_2 - 0.00833333333333*G2_1_0_2_0_0 - 0.00833333333333*G2_1_0_2_0_1 - 0.00833333333333*G2_1_0_2_0_2 - 0.00833333333333*G2_1_0_3_0_0 - 0.00833333333333*G2_1_0_3_0_1 - 0.00833333333333*G2_1_0_3_0_2 + 0.00833333333333*G2_1_1_0_0_0 + 0.0166666666667*G2_1_1_1_0_0 + 0.00833333333333*G2_1_1_2_0_0 + 0.00833333333333*G2_1_1_3_0_0 + 0.00833333333333*G2_1_2_0_0_1 + 0.0166666666667*G2_1_2_1_0_1 + 0.00833333333333*G2_1_2_2_0_1 + 0.00833333333333*G2_1_2_3_0_1 + 0.00833333333333*G2_1_3_0_0_2 + 0.0166666666667*G2_1_3_1_0_2 + 0.00833333333333*G2_1_3_2_0_2 + 0.00833333333333*G2_1_3_3_0_2 - 0.00833333333333*G2_2_0_0_0_0 - 0.00833333333333*G2_2_0_0_0_1 - 0.00833333333333*G2_2_0_0_0_2 - 0.00833333333333*G2_2_0_1_0_0 - 0.00833333333333*G2_2_0_1_0_1 - 0.00833333333333*G2_2_0_1_0_2 - 0.0166666666667*G2_2_0_2_0_0 - 0.0166666666667*G2_2_0_2_0_1 - 0.0166666666667*G2_2_0_2_0_2 - 0.00833333333333*G2_2_0_3_0_0 - 0.00833333333333*G2_2_0_3_0_1 - 0.00833333333333*G2_2_0_3_0_2 + 0.00833333333333*G2_2_1_0_0_0 + 0.00833333333333*G2_2_1_1_0_0 + 0.0166666666667*G2_2_1_2_0_0 + 0.00833333333333*G2_2_1_3_0_0 + 0.00833333333333*G2_2_2_0_0_1 + 0.00833333333333*G2_2_2_1_0_1 + 0.0166666666667*G2_2_2_2_0_1 + 0.00833333333333*G2_2_2_3_0_1 + 0.00833333333333*G2_2_3_0_0_2 + 0.00833333333333*G2_2_3_1_0_2 + 0.0166666666667*G2_2_3_2_0_2 + 0.00833333333333*G2_2_3_3_0_2 - 0.00833333333333*G2_3_0_0_0_0 - 0.00833333333333*G2_3_0_0_0_1 - 0.00833333333333*G2_3_0_0_0_2 - 0.00833333333333*G2_3_0_1_0_0 - 0.00833333333333*G2_3_0_1_0_1 - 0.00833333333333*G2_3_0_1_0_2 - 0.00833333333333*G2_3_0_2_0_0 - 0.00833333333333*G2_3_0_2_0_1 - 0.00833333333333*G2_3_0_2_0_2 - 0.0166666666667*G2_3_0_3_0_0 - 0.0166666666667*G2_3_0_3_0_1 - 0.0166666666667*G2_3_0_3_0_2 + 0.00833333333333*G2_3_1_0_0_0 + 0.00833333333333*G2_3_1_1_0_0 + 0.00833333333333*G2_3_1_2_0_0 + 0.0166666666667*G2_3_1_3_0_0 + 0.00833333333333*G2_3_2_0_0_1 + 0.00833333333333*G2_3_2_1_0_1 + 0.00833333333333*G2_3_2_2_0_1 + 0.0166666666667*G2_3_2_3_0_1 + 0.00833333333333*G2_3_3_0_0_2 + 0.00833333333333*G2_3_3_1_0_2 + 0.00833333333333*G2_3_3_2_0_2 + 0.0166666666667*G2_3_3_3_0_2 - 0.0166666666667*G3_0_0_0_0_0 - 0.0166666666667*G3_0_0_0_0_1 - 0.0166666666667*G3_0_0_0_0_2 + 0.0166666666667*G3_0_0_1_0_0 + 0.0166666666667*G3_0_0_2_0_1 + 0.0166666666667*G3_0_0_3_0_2 - 0.00833333333333*G3_0_1_0_0_0 - 0.00833333333333*G3_0_1_0_0_1 - 0.00833333333333*G3_0_1_0_0_2 + 0.00833333333333*G3_0_1_1_0_0 + 0.00833333333333*G3_0_1_2_0_1 + 0.00833333333333*G3_0_1_3_0_2 - 0.00833333333333*G3_0_2_0_0_0 - 0.00833333333333*G3_0_2_0_0_1 - 0.00833333333333*G3_0_2_0_0_2 + 0.00833333333333*G3_0_2_1_0_0 + 0.00833333333333*G3_0_2_2_0_1 + 0.00833333333333*G3_0_2_3_0_2 - 0.00833333333333*G3_0_3_0_0_0 - 0.00833333333333*G3_0_3_0_0_1 - 0.00833333333333*G3_0_3_0_0_2 + 0.00833333333333*G3_0_3_1_0_0 + 0.00833333333333*G3_0_3_2_0_1 + 0.00833333333333*G3_0_3_3_0_2 - 0.00833333333333*G3_1_0_0_0_0 - 0.00833333333333*G3_1_0_0_0_1 - 0.00833333333333*G3_1_0_0_0_2 + 0.00833333333333*G3_1_0_1_0_0 + 0.00833333333333*G3_1_0_2_0_1 + 0.00833333333333*G3_1_0_3_0_2 - 0.0166666666667*G3_1_1_0_0_0 - 0.0166666666667*G3_1_1_0_0_1 - 0.0166666666667*G3_1_1_0_0_2 + 0.0166666666667*G3_1_1_1_0_0 + 0.0166666666667*G3_1_1_2_0_1 + 0.0166666666667*G3_1_1_3_0_2 - 0.00833333333333*G3_1_2_0_0_0 - 0.00833333333333*G3_1_2_0_0_1 - 0.00833333333333*G3_1_2_0_0_2 + 0.00833333333333*G3_1_2_1_0_0 + 0.00833333333333*G3_1_2_2_0_1 + 0.00833333333333*G3_1_2_3_0_2 - 0.00833333333333*G3_1_3_0_0_0 - 0.00833333333333*G3_1_3_0_0_1 - 0.00833333333333*G3_1_3_0_0_2 + 0.00833333333333*G3_1_3_1_0_0 + 0.00833333333333*G3_1_3_2_0_1 + 0.00833333333333*G3_1_3_3_0_2 - 0.00833333333333*G3_2_0_0_0_0 - 0.00833333333333*G3_2_0_0_0_1 - 0.00833333333333*G3_2_0_0_0_2 + 0.00833333333333*G3_2_0_1_0_0 + 0.00833333333333*G3_2_0_2_0_1 + 0.00833333333333*G3_2_0_3_0_2 - 0.00833333333333*G3_2_1_0_0_0 - 0.00833333333333*G3_2_1_0_0_1 - 0.00833333333333*G3_2_1_0_0_2 + 0.00833333333333*G3_2_1_1_0_0 + 0.00833333333333*G3_2_1_2_0_1 + 0.00833333333333*G3_2_1_3_0_2 - 0.0166666666667*G3_2_2_0_0_0 - 0.0166666666667*G3_2_2_0_0_1 - 0.0166666666667*G3_2_2_0_0_2 + 0.0166666666667*G3_2_2_1_0_0 + 0.0166666666667*G3_2_2_2_0_1 + 0.0166666666667*G3_2_2_3_0_2 - 0.00833333333333*G3_2_3_0_0_0 - 0.00833333333333*G3_2_3_0_0_1 - 0.00833333333333*G3_2_3_0_0_2 + 0.00833333333333*G3_2_3_1_0_0 + 0.00833333333333*G3_2_3_2_0_1 + 0.00833333333333*G3_2_3_3_0_2 - 0.00833333333333*G3_3_0_0_0_0 - 0.00833333333333*G3_3_0_0_0_1 - 0.00833333333333*G3_3_0_0_0_2 + 0.00833333333333*G3_3_0_1_0_0 + 0.00833333333333*G3_3_0_2_0_1 + 0.00833333333333*G3_3_0_3_0_2 - 0.00833333333333*G3_3_1_0_0_0 - 0.00833333333333*G3_3_1_0_0_1 - 0.00833333333333*G3_3_1_0_0_2 + 0.00833333333333*G3_3_1_1_0_0 + 0.00833333333333*G3_3_1_2_0_1 + 0.00833333333333*G3_3_1_3_0_2 - 0.00833333333333*G3_3_2_0_0_0 - 0.00833333333333*G3_3_2_0_0_1 - 0.00833333333333*G3_3_2_0_0_2 + 0.00833333333333*G3_3_2_1_0_0 + 0.00833333333333*G3_3_2_2_0_1 + 0.00833333333333*G3_3_2_3_0_2 - 0.0166666666667*G3_3_3_0_0_0 - 0.0166666666667*G3_3_3_0_0_1 - 0.0166666666667*G3_3_3_0_0_2 + 0.0166666666667*G3_3_3_1_0_0 + 0.0166666666667*G3_3_3_2_0_1 + 0.0166666666667*G3_3_3_3_0_2 + 0.0416666666667*G4_0_0_0_0 + 0.0416666666667*G4_0_0_0_1 + 0.0416666666667*G4_0_0_0_2 - 0.0416666666667*G4_0_1_0_0 - 0.0416666666667*G4_0_2_0_1 - 0.0416666666667*G4_0_3_0_2 + 0.0416666666667*G4_1_0_0_0 + 0.0416666666667*G4_1_0_0_1 + 0.0416666666667*G4_1_0_0_2 - 0.0416666666667*G4_1_1_0_0 - 0.0416666666667*G4_1_2_0_1 - 0.0416666666667*G4_1_3_0_2 + 0.0416666666667*G4_2_0_0_0 + 0.0416666666667*G4_2_0_0_1 + 0.0416666666667*G4_2_0_0_2 - 0.0416666666667*G4_2_1_0_0 - 0.0416666666667*G4_2_2_0_1 - 0.0416666666667*G4_2_3_0_2 + 0.0416666666667*G4_3_0_0_0 + 0.0416666666667*G4_3_0_0_1 + 0.0416666666667*G4_3_0_0_2 - 0.0416666666667*G4_3_1_0_0 - 0.0416666666667*G4_3_2_0_1 - 0.0416666666667*G4_3_3_0_2 + 0.0166666666667*G5_0_0_0_0_0 + 0.0166666666667*G5_0_0_0_0_1 + 0.0166666666667*G5_0_0_0_0_2 + 0.00833333333333*G5_0_0_1_0_0 + 0.00833333333333*G5_0_0_1_0_1 + 0.00833333333333*G5_0_0_1_0_2 + 0.00833333333333*G5_0_0_2_0_0 + 0.00833333333333*G5_0_0_2_0_1 + 0.00833333333333*G5_0_0_2_0_2 + 0.00833333333333*G5_0_0_3_0_0 + 0.00833333333333*G5_0_0_3_0_1 + 0.00833333333333*G5_0_0_3_0_2 - 0.0166666666667*G5_0_1_0_0_0 - 0.00833333333333*G5_0_1_1_0_0 - 0.00833333333333*G5_0_1_2_0_0 - 0.00833333333333*G5_0_1_3_0_0 - 0.0166666666667*G5_0_2_0_0_1 - 0.00833333333333*G5_0_2_1_0_1 - 0.00833333333333*G5_0_2_2_0_1 - 0.00833333333333*G5_0_2_3_0_1 - 0.0166666666667*G5_0_3_0_0_2 - 0.00833333333333*G5_0_3_1_0_2 - 0.00833333333333*G5_0_3_2_0_2 - 0.00833333333333*G5_0_3_3_0_2 + 0.00833333333333*G5_1_0_0_0_0 + 0.00833333333333*G5_1_0_0_0_1 + 0.00833333333333*G5_1_0_0_0_2 + 0.0166666666667*G5_1_0_1_0_0 + 0.0166666666667*G5_1_0_1_0_1 + 0.0166666666667*G5_1_0_1_0_2 + 0.00833333333333*G5_1_0_2_0_0 + 0.00833333333333*G5_1_0_2_0_1 + 0.00833333333333*G5_1_0_2_0_2 + 0.00833333333333*G5_1_0_3_0_0 + 0.00833333333333*G5_1_0_3_0_1 + 0.00833333333333*G5_1_0_3_0_2 - 0.00833333333333*G5_1_1_0_0_0 - 0.0166666666667*G5_1_1_1_0_0 - 0.00833333333333*G5_1_1_2_0_0 - 0.00833333333333*G5_1_1_3_0_0 - 0.00833333333333*G5_1_2_0_0_1 - 0.0166666666667*G5_1_2_1_0_1 - 0.00833333333333*G5_1_2_2_0_1 - 0.00833333333333*G5_1_2_3_0_1 - 0.00833333333333*G5_1_3_0_0_2 - 0.0166666666667*G5_1_3_1_0_2 - 0.00833333333333*G5_1_3_2_0_2 - 0.00833333333333*G5_1_3_3_0_2 + 0.00833333333333*G5_2_0_0_0_0 + 0.00833333333333*G5_2_0_0_0_1 + 0.00833333333333*G5_2_0_0_0_2 + 0.00833333333333*G5_2_0_1_0_0 + 0.00833333333333*G5_2_0_1_0_1 + 0.00833333333333*G5_2_0_1_0_2 + 0.0166666666667*G5_2_0_2_0_0 + 0.0166666666667*G5_2_0_2_0_1 + 0.0166666666667*G5_2_0_2_0_2 + 0.00833333333333*G5_2_0_3_0_0 + 0.00833333333333*G5_2_0_3_0_1 + 0.00833333333333*G5_2_0_3_0_2 - 0.00833333333333*G5_2_1_0_0_0 - 0.00833333333333*G5_2_1_1_0_0 - 0.0166666666667*G5_2_1_2_0_0 - 0.00833333333333*G5_2_1_3_0_0 - 0.00833333333333*G5_2_2_0_0_1 - 0.00833333333333*G5_2_2_1_0_1 - 0.0166666666667*G5_2_2_2_0_1 - 0.00833333333333*G5_2_2_3_0_1 - 0.00833333333333*G5_2_3_0_0_2 - 0.00833333333333*G5_2_3_1_0_2 - 0.0166666666667*G5_2_3_2_0_2 - 0.00833333333333*G5_2_3_3_0_2 + 0.00833333333333*G5_3_0_0_0_0 + 0.00833333333333*G5_3_0_0_0_1 + 0.00833333333333*G5_3_0_0_0_2 + 0.00833333333333*G5_3_0_1_0_0 + 0.00833333333333*G5_3_0_1_0_1 + 0.00833333333333*G5_3_0_1_0_2 + 0.00833333333333*G5_3_0_2_0_0 + 0.00833333333333*G5_3_0_2_0_1 + 0.00833333333333*G5_3_0_2_0_2 + 0.0166666666667*G5_3_0_3_0_0 + 0.0166666666667*G5_3_0_3_0_1 + 0.0166666666667*G5_3_0_3_0_2 - 0.00833333333333*G5_3_1_0_0_0 - 0.00833333333333*G5_3_1_1_0_0 - 0.00833333333333*G5_3_1_2_0_0 - 0.0166666666667*G5_3_1_3_0_0 - 0.00833333333333*G5_3_2_0_0_1 - 0.00833333333333*G5_3_2_1_0_1 - 0.00833333333333*G5_3_2_2_0_1 - 0.0166666666667*G5_3_2_3_0_1 - 0.00833333333333*G5_3_3_0_0_2 - 0.00833333333333*G5_3_3_1_0_2 - 0.00833333333333*G5_3_3_2_0_2 - 0.0166666666667*G5_3_3_3_0_2 + 0.0166666666667*G6_0_0_0_0_0 + 0.0166666666667*G6_0_0_0_0_1 + 0.0166666666667*G6_0_0_0_0_2 - 0.0166666666667*G6_0_0_1_0_0 - 0.0166666666667*G6_0_0_2_0_1 - 0.0166666666667*G6_0_0_3_0_2 + 0.00833333333333*G6_0_1_0_0_0 + 0.00833333333333*G6_0_1_0_0_1 + 0.00833333333333*G6_0_1_0_0_2 - 0.00833333333333*G6_0_1_1_0_0 - 0.00833333333333*G6_0_1_2_0_1 - 0.00833333333333*G6_0_1_3_0_2 + 0.00833333333333*G6_0_2_0_0_0 + 0.00833333333333*G6_0_2_0_0_1 + 0.00833333333333*G6_0_2_0_0_2 - 0.00833333333333*G6_0_2_1_0_0 - 0.00833333333333*G6_0_2_2_0_1 - 0.00833333333333*G6_0_2_3_0_2 + 0.00833333333333*G6_0_3_0_0_0 + 0.00833333333333*G6_0_3_0_0_1 + 0.00833333333333*G6_0_3_0_0_2 - 0.00833333333333*G6_0_3_1_0_0 - 0.00833333333333*G6_0_3_2_0_1 - 0.00833333333333*G6_0_3_3_0_2 + 0.00833333333333*G6_1_0_0_0_0 + 0.00833333333333*G6_1_0_0_0_1 + 0.00833333333333*G6_1_0_0_0_2 - 0.00833333333333*G6_1_0_1_0_0 - 0.00833333333333*G6_1_0_2_0_1 - 0.00833333333333*G6_1_0_3_0_2 + 0.0166666666667*G6_1_1_0_0_0 + 0.0166666666667*G6_1_1_0_0_1 + 0.0166666666667*G6_1_1_0_0_2 - 0.0166666666667*G6_1_1_1_0_0 - 0.0166666666667*G6_1_1_2_0_1 - 0.0166666666667*G6_1_1_3_0_2 + 0.00833333333333*G6_1_2_0_0_0 + 0.00833333333333*G6_1_2_0_0_1 + 0.00833333333333*G6_1_2_0_0_2 - 0.00833333333333*G6_1_2_1_0_0 - 0.00833333333333*G6_1_2_2_0_1 - 0.00833333333333*G6_1_2_3_0_2 + 0.00833333333333*G6_1_3_0_0_0 + 0.00833333333333*G6_1_3_0_0_1 + 0.00833333333333*G6_1_3_0_0_2 - 0.00833333333333*G6_1_3_1_0_0 - 0.00833333333333*G6_1_3_2_0_1 - 0.00833333333333*G6_1_3_3_0_2 + 0.00833333333333*G6_2_0_0_0_0 + 0.00833333333333*G6_2_0_0_0_1 + 0.00833333333333*G6_2_0_0_0_2 - 0.00833333333333*G6_2_0_1_0_0 - 0.00833333333333*G6_2_0_2_0_1 - 0.00833333333333*G6_2_0_3_0_2 + 0.00833333333333*G6_2_1_0_0_0 + 0.00833333333333*G6_2_1_0_0_1 + 0.00833333333333*G6_2_1_0_0_2 - 0.00833333333333*G6_2_1_1_0_0 - 0.00833333333333*G6_2_1_2_0_1 - 0.00833333333333*G6_2_1_3_0_2 + 0.0166666666667*G6_2_2_0_0_0 + 0.0166666666667*G6_2_2_0_0_1 + 0.0166666666667*G6_2_2_0_0_2 - 0.0166666666667*G6_2_2_1_0_0 - 0.0166666666667*G6_2_2_2_0_1 - 0.0166666666667*G6_2_2_3_0_2 + 0.00833333333333*G6_2_3_0_0_0 + 0.00833333333333*G6_2_3_0_0_1 + 0.00833333333333*G6_2_3_0_0_2 - 0.00833333333333*G6_2_3_1_0_0 - 0.00833333333333*G6_2_3_2_0_1 - 0.00833333333333*G6_2_3_3_0_2 + 0.00833333333333*G6_3_0_0_0_0 + 0.00833333333333*G6_3_0_0_0_1 + 0.00833333333333*G6_3_0_0_0_2 - 0.00833333333333*G6_3_0_1_0_0 - 0.00833333333333*G6_3_0_2_0_1 - 0.00833333333333*G6_3_0_3_0_2 + 0.00833333333333*G6_3_1_0_0_0 + 0.00833333333333*G6_3_1_0_0_1 + 0.00833333333333*G6_3_1_0_0_2 - 0.00833333333333*G6_3_1_1_0_0 - 0.00833333333333*G6_3_1_2_0_1 - 0.00833333333333*G6_3_1_3_0_2 + 0.00833333333333*G6_3_2_0_0_0 + 0.00833333333333*G6_3_2_0_0_1 + 0.00833333333333*G6_3_2_0_0_2 - 0.00833333333333*G6_3_2_1_0_0 - 0.00833333333333*G6_3_2_2_0_1 - 0.00833333333333*G6_3_2_3_0_2 + 0.0166666666667*G6_3_3_0_0_0 + 0.0166666666667*G6_3_3_0_0_1 + 0.0166666666667*G6_3_3_0_0_2 - 0.0166666666667*G6_3_3_1_0_0 - 0.0166666666667*G6_3_3_2_0_1 - 0.0166666666667*G6_3_3_3_0_2;
-    A[6] = -0.00833333333333*G0_4 - 0.00833333333333*G0_5 - 0.0166666666667*G0_6 - 0.00833333333333*G0_7 + 0.00833333333333*G1_4 + 0.00833333333333*G1_5 + 0.0166666666667*G1_6 + 0.00833333333333*G1_7 - 0.0166666666667*G2_0_0_0_1_0 - 0.0166666666667*G2_0_0_0_1_1 - 0.0166666666667*G2_0_0_0_1_2 - 0.00833333333333*G2_0_0_1_1_0 - 0.00833333333333*G2_0_0_1_1_1 - 0.00833333333333*G2_0_0_1_1_2 - 0.00833333333333*G2_0_0_2_1_0 - 0.00833333333333*G2_0_0_2_1_1 - 0.00833333333333*G2_0_0_2_1_2 - 0.00833333333333*G2_0_0_3_1_0 - 0.00833333333333*G2_0_0_3_1_1 - 0.00833333333333*G2_0_0_3_1_2 + 0.0166666666667*G2_0_1_0_1_0 + 0.00833333333333*G2_0_1_1_1_0 + 0.00833333333333*G2_0_1_2_1_0 + 0.00833333333333*G2_0_1_3_1_0 + 0.0166666666667*G2_0_2_0_1_1 + 0.00833333333333*G2_0_2_1_1_1 + 0.00833333333333*G2_0_2_2_1_1 + 0.00833333333333*G2_0_2_3_1_1 + 0.0166666666667*G2_0_3_0_1_2 + 0.00833333333333*G2_0_3_1_1_2 + 0.00833333333333*G2_0_3_2_1_2 + 0.00833333333333*G2_0_3_3_1_2 - 0.00833333333333*G2_1_0_0_1_0 - 0.00833333333333*G2_1_0_0_1_1 - 0.00833333333333*G2_1_0_0_1_2 - 0.0166666666667*G2_1_0_1_1_0 - 0.0166666666667*G2_1_0_1_1_1 - 0.0166666666667*G2_1_0_1_1_2 - 0.00833333333333*G2_1_0_2_1_0 - 0.00833333333333*G2_1_0_2_1_1 - 0.00833333333333*G2_1_0_2_1_2 - 0.00833333333333*G2_1_0_3_1_0 - 0.00833333333333*G2_1_0_3_1_1 - 0.00833333333333*G2_1_0_3_1_2 + 0.00833333333333*G2_1_1_0_1_0 + 0.0166666666667*G2_1_1_1_1_0 + 0.00833333333333*G2_1_1_2_1_0 + 0.00833333333333*G2_1_1_3_1_0 + 0.00833333333333*G2_1_2_0_1_1 + 0.0166666666667*G2_1_2_1_1_1 + 0.00833333333333*G2_1_2_2_1_1 + 0.00833333333333*G2_1_2_3_1_1 + 0.00833333333333*G2_1_3_0_1_2 + 0.0166666666667*G2_1_3_1_1_2 + 0.00833333333333*G2_1_3_2_1_2 + 0.00833333333333*G2_1_3_3_1_2 - 0.00833333333333*G2_2_0_0_1_0 - 0.00833333333333*G2_2_0_0_1_1 - 0.00833333333333*G2_2_0_0_1_2 - 0.00833333333333*G2_2_0_1_1_0 - 0.00833333333333*G2_2_0_1_1_1 - 0.00833333333333*G2_2_0_1_1_2 - 0.0166666666667*G2_2_0_2_1_0 - 0.0166666666667*G2_2_0_2_1_1 - 0.0166666666667*G2_2_0_2_1_2 - 0.00833333333333*G2_2_0_3_1_0 - 0.00833333333333*G2_2_0_3_1_1 - 0.00833333333333*G2_2_0_3_1_2 + 0.00833333333333*G2_2_1_0_1_0 + 0.00833333333333*G2_2_1_1_1_0 + 0.0166666666667*G2_2_1_2_1_0 + 0.00833333333333*G2_2_1_3_1_0 + 0.00833333333333*G2_2_2_0_1_1 + 0.00833333333333*G2_2_2_1_1_1 + 0.0166666666667*G2_2_2_2_1_1 + 0.00833333333333*G2_2_2_3_1_1 + 0.00833333333333*G2_2_3_0_1_2 + 0.00833333333333*G2_2_3_1_1_2 + 0.0166666666667*G2_2_3_2_1_2 + 0.00833333333333*G2_2_3_3_1_2 - 0.00833333333333*G2_3_0_0_1_0 - 0.00833333333333*G2_3_0_0_1_1 - 0.00833333333333*G2_3_0_0_1_2 - 0.00833333333333*G2_3_0_1_1_0 - 0.00833333333333*G2_3_0_1_1_1 - 0.00833333333333*G2_3_0_1_1_2 - 0.00833333333333*G2_3_0_2_1_0 - 0.00833333333333*G2_3_0_2_1_1 - 0.00833333333333*G2_3_0_2_1_2 - 0.0166666666667*G2_3_0_3_1_0 - 0.0166666666667*G2_3_0_3_1_1 - 0.0166666666667*G2_3_0_3_1_2 + 0.00833333333333*G2_3_1_0_1_0 + 0.00833333333333*G2_3_1_1_1_0 + 0.00833333333333*G2_3_1_2_1_0 + 0.0166666666667*G2_3_1_3_1_0 + 0.00833333333333*G2_3_2_0_1_1 + 0.00833333333333*G2_3_2_1_1_1 + 0.00833333333333*G2_3_2_2_1_1 + 0.0166666666667*G2_3_2_3_1_1 + 0.00833333333333*G2_3_3_0_1_2 + 0.00833333333333*G2_3_3_1_1_2 + 0.00833333333333*G2_3_3_2_1_2 + 0.0166666666667*G2_3_3_3_1_2 - 0.0166666666667*G3_0_0_0_1_0 - 0.0166666666667*G3_0_0_0_1_1 - 0.0166666666667*G3_0_0_0_1_2 + 0.0166666666667*G3_0_0_1_1_0 + 0.0166666666667*G3_0_0_2_1_1 + 0.0166666666667*G3_0_0_3_1_2 - 0.00833333333333*G3_0_1_0_1_0 - 0.00833333333333*G3_0_1_0_1_1 - 0.00833333333333*G3_0_1_0_1_2 + 0.00833333333333*G3_0_1_1_1_0 + 0.00833333333333*G3_0_1_2_1_1 + 0.00833333333333*G3_0_1_3_1_2 - 0.00833333333333*G3_0_2_0_1_0 - 0.00833333333333*G3_0_2_0_1_1 - 0.00833333333333*G3_0_2_0_1_2 + 0.00833333333333*G3_0_2_1_1_0 + 0.00833333333333*G3_0_2_2_1_1 + 0.00833333333333*G3_0_2_3_1_2 - 0.00833333333333*G3_0_3_0_1_0 - 0.00833333333333*G3_0_3_0_1_1 - 0.00833333333333*G3_0_3_0_1_2 + 0.00833333333333*G3_0_3_1_1_0 + 0.00833333333333*G3_0_3_2_1_1 + 0.00833333333333*G3_0_3_3_1_2 - 0.00833333333333*G3_1_0_0_1_0 - 0.00833333333333*G3_1_0_0_1_1 - 0.00833333333333*G3_1_0_0_1_2 + 0.00833333333333*G3_1_0_1_1_0 + 0.00833333333333*G3_1_0_2_1_1 + 0.00833333333333*G3_1_0_3_1_2 - 0.0166666666667*G3_1_1_0_1_0 - 0.0166666666667*G3_1_1_0_1_1 - 0.0166666666667*G3_1_1_0_1_2 + 0.0166666666667*G3_1_1_1_1_0 + 0.0166666666667*G3_1_1_2_1_1 + 0.0166666666667*G3_1_1_3_1_2 - 0.00833333333333*G3_1_2_0_1_0 - 0.00833333333333*G3_1_2_0_1_1 - 0.00833333333333*G3_1_2_0_1_2 + 0.00833333333333*G3_1_2_1_1_0 + 0.00833333333333*G3_1_2_2_1_1 + 0.00833333333333*G3_1_2_3_1_2 - 0.00833333333333*G3_1_3_0_1_0 - 0.00833333333333*G3_1_3_0_1_1 - 0.00833333333333*G3_1_3_0_1_2 + 0.00833333333333*G3_1_3_1_1_0 + 0.00833333333333*G3_1_3_2_1_1 + 0.00833333333333*G3_1_3_3_1_2 - 0.00833333333333*G3_2_0_0_1_0 - 0.00833333333333*G3_2_0_0_1_1 - 0.00833333333333*G3_2_0_0_1_2 + 0.00833333333333*G3_2_0_1_1_0 + 0.00833333333333*G3_2_0_2_1_1 + 0.00833333333333*G3_2_0_3_1_2 - 0.00833333333333*G3_2_1_0_1_0 - 0.00833333333333*G3_2_1_0_1_1 - 0.00833333333333*G3_2_1_0_1_2 + 0.00833333333333*G3_2_1_1_1_0 + 0.00833333333333*G3_2_1_2_1_1 + 0.00833333333333*G3_2_1_3_1_2 - 0.0166666666667*G3_2_2_0_1_0 - 0.0166666666667*G3_2_2_0_1_1 - 0.0166666666667*G3_2_2_0_1_2 + 0.0166666666667*G3_2_2_1_1_0 + 0.0166666666667*G3_2_2_2_1_1 + 0.0166666666667*G3_2_2_3_1_2 - 0.00833333333333*G3_2_3_0_1_0 - 0.00833333333333*G3_2_3_0_1_1 - 0.00833333333333*G3_2_3_0_1_2 + 0.00833333333333*G3_2_3_1_1_0 + 0.00833333333333*G3_2_3_2_1_1 + 0.00833333333333*G3_2_3_3_1_2 - 0.00833333333333*G3_3_0_0_1_0 - 0.00833333333333*G3_3_0_0_1_1 - 0.00833333333333*G3_3_0_0_1_2 + 0.00833333333333*G3_3_0_1_1_0 + 0.00833333333333*G3_3_0_2_1_1 + 0.00833333333333*G3_3_0_3_1_2 - 0.00833333333333*G3_3_1_0_1_0 - 0.00833333333333*G3_3_1_0_1_1 - 0.00833333333333*G3_3_1_0_1_2 + 0.00833333333333*G3_3_1_1_1_0 + 0.00833333333333*G3_3_1_2_1_1 + 0.00833333333333*G3_3_1_3_1_2 - 0.00833333333333*G3_3_2_0_1_0 - 0.00833333333333*G3_3_2_0_1_1 - 0.00833333333333*G3_3_2_0_1_2 + 0.00833333333333*G3_3_2_1_1_0 + 0.00833333333333*G3_3_2_2_1_1 + 0.00833333333333*G3_3_2_3_1_2 - 0.0166666666667*G3_3_3_0_1_0 - 0.0166666666667*G3_3_3_0_1_1 - 0.0166666666667*G3_3_3_0_1_2 + 0.0166666666667*G3_3_3_1_1_0 + 0.0166666666667*G3_3_3_2_1_1 + 0.0166666666667*G3_3_3_3_1_2 + 0.0416666666667*G4_0_0_1_0 + 0.0416666666667*G4_0_0_1_1 + 0.0416666666667*G4_0_0_1_2 - 0.0416666666667*G4_0_1_1_0 - 0.0416666666667*G4_0_2_1_1 - 0.0416666666667*G4_0_3_1_2 + 0.0416666666667*G4_1_0_1_0 + 0.0416666666667*G4_1_0_1_1 + 0.0416666666667*G4_1_0_1_2 - 0.0416666666667*G4_1_1_1_0 - 0.0416666666667*G4_1_2_1_1 - 0.0416666666667*G4_1_3_1_2 + 0.0416666666667*G4_2_0_1_0 + 0.0416666666667*G4_2_0_1_1 + 0.0416666666667*G4_2_0_1_2 - 0.0416666666667*G4_2_1_1_0 - 0.0416666666667*G4_2_2_1_1 - 0.0416666666667*G4_2_3_1_2 + 0.0416666666667*G4_3_0_1_0 + 0.0416666666667*G4_3_0_1_1 + 0.0416666666667*G4_3_0_1_2 - 0.0416666666667*G4_3_1_1_0 - 0.0416666666667*G4_3_2_1_1 - 0.0416666666667*G4_3_3_1_2 + 0.0166666666667*G5_0_0_0_1_0 + 0.0166666666667*G5_0_0_0_1_1 + 0.0166666666667*G5_0_0_0_1_2 + 0.00833333333333*G5_0_0_1_1_0 + 0.00833333333333*G5_0_0_1_1_1 + 0.00833333333333*G5_0_0_1_1_2 + 0.00833333333333*G5_0_0_2_1_0 + 0.00833333333333*G5_0_0_2_1_1 + 0.00833333333333*G5_0_0_2_1_2 + 0.00833333333333*G5_0_0_3_1_0 + 0.00833333333333*G5_0_0_3_1_1 + 0.00833333333333*G5_0_0_3_1_2 - 0.0166666666667*G5_0_1_0_1_0 - 0.00833333333333*G5_0_1_1_1_0 - 0.00833333333333*G5_0_1_2_1_0 - 0.00833333333333*G5_0_1_3_1_0 - 0.0166666666667*G5_0_2_0_1_1 - 0.00833333333333*G5_0_2_1_1_1 - 0.00833333333333*G5_0_2_2_1_1 - 0.00833333333333*G5_0_2_3_1_1 - 0.0166666666667*G5_0_3_0_1_2 - 0.00833333333333*G5_0_3_1_1_2 - 0.00833333333333*G5_0_3_2_1_2 - 0.00833333333333*G5_0_3_3_1_2 + 0.00833333333333*G5_1_0_0_1_0 + 0.00833333333333*G5_1_0_0_1_1 + 0.00833333333333*G5_1_0_0_1_2 + 0.0166666666667*G5_1_0_1_1_0 + 0.0166666666667*G5_1_0_1_1_1 + 0.0166666666667*G5_1_0_1_1_2 + 0.00833333333333*G5_1_0_2_1_0 + 0.00833333333333*G5_1_0_2_1_1 + 0.00833333333333*G5_1_0_2_1_2 + 0.00833333333333*G5_1_0_3_1_0 + 0.00833333333333*G5_1_0_3_1_1 + 0.00833333333333*G5_1_0_3_1_2 - 0.00833333333333*G5_1_1_0_1_0 - 0.0166666666667*G5_1_1_1_1_0 - 0.00833333333333*G5_1_1_2_1_0 - 0.00833333333333*G5_1_1_3_1_0 - 0.00833333333333*G5_1_2_0_1_1 - 0.0166666666667*G5_1_2_1_1_1 - 0.00833333333333*G5_1_2_2_1_1 - 0.00833333333333*G5_1_2_3_1_1 - 0.00833333333333*G5_1_3_0_1_2 - 0.0166666666667*G5_1_3_1_1_2 - 0.00833333333333*G5_1_3_2_1_2 - 0.00833333333333*G5_1_3_3_1_2 + 0.00833333333333*G5_2_0_0_1_0 + 0.00833333333333*G5_2_0_0_1_1 + 0.00833333333333*G5_2_0_0_1_2 + 0.00833333333333*G5_2_0_1_1_0 + 0.00833333333333*G5_2_0_1_1_1 + 0.00833333333333*G5_2_0_1_1_2 + 0.0166666666667*G5_2_0_2_1_0 + 0.0166666666667*G5_2_0_2_1_1 + 0.0166666666667*G5_2_0_2_1_2 + 0.00833333333333*G5_2_0_3_1_0 + 0.00833333333333*G5_2_0_3_1_1 + 0.00833333333333*G5_2_0_3_1_2 - 0.00833333333333*G5_2_1_0_1_0 - 0.00833333333333*G5_2_1_1_1_0 - 0.0166666666667*G5_2_1_2_1_0 - 0.00833333333333*G5_2_1_3_1_0 - 0.00833333333333*G5_2_2_0_1_1 - 0.00833333333333*G5_2_2_1_1_1 - 0.0166666666667*G5_2_2_2_1_1 - 0.00833333333333*G5_2_2_3_1_1 - 0.00833333333333*G5_2_3_0_1_2 - 0.00833333333333*G5_2_3_1_1_2 - 0.0166666666667*G5_2_3_2_1_2 - 0.00833333333333*G5_2_3_3_1_2 + 0.00833333333333*G5_3_0_0_1_0 + 0.00833333333333*G5_3_0_0_1_1 + 0.00833333333333*G5_3_0_0_1_2 + 0.00833333333333*G5_3_0_1_1_0 + 0.00833333333333*G5_3_0_1_1_1 + 0.00833333333333*G5_3_0_1_1_2 + 0.00833333333333*G5_3_0_2_1_0 + 0.00833333333333*G5_3_0_2_1_1 + 0.00833333333333*G5_3_0_2_1_2 + 0.0166666666667*G5_3_0_3_1_0 + 0.0166666666667*G5_3_0_3_1_1 + 0.0166666666667*G5_3_0_3_1_2 - 0.00833333333333*G5_3_1_0_1_0 - 0.00833333333333*G5_3_1_1_1_0 - 0.00833333333333*G5_3_1_2_1_0 - 0.0166666666667*G5_3_1_3_1_0 - 0.00833333333333*G5_3_2_0_1_1 - 0.00833333333333*G5_3_2_1_1_1 - 0.00833333333333*G5_3_2_2_1_1 - 0.0166666666667*G5_3_2_3_1_1 - 0.00833333333333*G5_3_3_0_1_2 - 0.00833333333333*G5_3_3_1_1_2 - 0.00833333333333*G5_3_3_2_1_2 - 0.0166666666667*G5_3_3_3_1_2 + 0.0166666666667*G6_0_0_0_1_0 + 0.0166666666667*G6_0_0_0_1_1 + 0.0166666666667*G6_0_0_0_1_2 - 0.0166666666667*G6_0_0_1_1_0 - 0.0166666666667*G6_0_0_2_1_1 - 0.0166666666667*G6_0_0_3_1_2 + 0.00833333333333*G6_0_1_0_1_0 + 0.00833333333333*G6_0_1_0_1_1 + 0.00833333333333*G6_0_1_0_1_2 - 0.00833333333333*G6_0_1_1_1_0 - 0.00833333333333*G6_0_1_2_1_1 - 0.00833333333333*G6_0_1_3_1_2 + 0.00833333333333*G6_0_2_0_1_0 + 0.00833333333333*G6_0_2_0_1_1 + 0.00833333333333*G6_0_2_0_1_2 - 0.00833333333333*G6_0_2_1_1_0 - 0.00833333333333*G6_0_2_2_1_1 - 0.00833333333333*G6_0_2_3_1_2 + 0.00833333333333*G6_0_3_0_1_0 + 0.00833333333333*G6_0_3_0_1_1 + 0.00833333333333*G6_0_3_0_1_2 - 0.00833333333333*G6_0_3_1_1_0 - 0.00833333333333*G6_0_3_2_1_1 - 0.00833333333333*G6_0_3_3_1_2 + 0.00833333333333*G6_1_0_0_1_0 + 0.00833333333333*G6_1_0_0_1_1 + 0.00833333333333*G6_1_0_0_1_2 - 0.00833333333333*G6_1_0_1_1_0 - 0.00833333333333*G6_1_0_2_1_1 - 0.00833333333333*G6_1_0_3_1_2 + 0.0166666666667*G6_1_1_0_1_0 + 0.0166666666667*G6_1_1_0_1_1 + 0.0166666666667*G6_1_1_0_1_2 - 0.0166666666667*G6_1_1_1_1_0 - 0.0166666666667*G6_1_1_2_1_1 - 0.0166666666667*G6_1_1_3_1_2 + 0.00833333333333*G6_1_2_0_1_0 + 0.00833333333333*G6_1_2_0_1_1 + 0.00833333333333*G6_1_2_0_1_2 - 0.00833333333333*G6_1_2_1_1_0 - 0.00833333333333*G6_1_2_2_1_1 - 0.00833333333333*G6_1_2_3_1_2 + 0.00833333333333*G6_1_3_0_1_0 + 0.00833333333333*G6_1_3_0_1_1 + 0.00833333333333*G6_1_3_0_1_2 - 0.00833333333333*G6_1_3_1_1_0 - 0.00833333333333*G6_1_3_2_1_1 - 0.00833333333333*G6_1_3_3_1_2 + 0.00833333333333*G6_2_0_0_1_0 + 0.00833333333333*G6_2_0_0_1_1 + 0.00833333333333*G6_2_0_0_1_2 - 0.00833333333333*G6_2_0_1_1_0 - 0.00833333333333*G6_2_0_2_1_1 - 0.00833333333333*G6_2_0_3_1_2 + 0.00833333333333*G6_2_1_0_1_0 + 0.00833333333333*G6_2_1_0_1_1 + 0.00833333333333*G6_2_1_0_1_2 - 0.00833333333333*G6_2_1_1_1_0 - 0.00833333333333*G6_2_1_2_1_1 - 0.00833333333333*G6_2_1_3_1_2 + 0.0166666666667*G6_2_2_0_1_0 + 0.0166666666667*G6_2_2_0_1_1 + 0.0166666666667*G6_2_2_0_1_2 - 0.0166666666667*G6_2_2_1_1_0 - 0.0166666666667*G6_2_2_2_1_1 - 0.0166666666667*G6_2_2_3_1_2 + 0.00833333333333*G6_2_3_0_1_0 + 0.00833333333333*G6_2_3_0_1_1 + 0.00833333333333*G6_2_3_0_1_2 - 0.00833333333333*G6_2_3_1_1_0 - 0.00833333333333*G6_2_3_2_1_1 - 0.00833333333333*G6_2_3_3_1_2 + 0.00833333333333*G6_3_0_0_1_0 + 0.00833333333333*G6_3_0_0_1_1 + 0.00833333333333*G6_3_0_0_1_2 - 0.00833333333333*G6_3_0_1_1_0 - 0.00833333333333*G6_3_0_2_1_1 - 0.00833333333333*G6_3_0_3_1_2 + 0.00833333333333*G6_3_1_0_1_0 + 0.00833333333333*G6_3_1_0_1_1 + 0.00833333333333*G6_3_1_0_1_2 - 0.00833333333333*G6_3_1_1_1_0 - 0.00833333333333*G6_3_1_2_1_1 - 0.00833333333333*G6_3_1_3_1_2 + 0.00833333333333*G6_3_2_0_1_0 + 0.00833333333333*G6_3_2_0_1_1 + 0.00833333333333*G6_3_2_0_1_2 - 0.00833333333333*G6_3_2_1_1_0 - 0.00833333333333*G6_3_2_2_1_1 - 0.00833333333333*G6_3_2_3_1_2 + 0.0166666666667*G6_3_3_0_1_0 + 0.0166666666667*G6_3_3_0_1_1 + 0.0166666666667*G6_3_3_0_1_2 - 0.0166666666667*G6_3_3_1_1_0 - 0.0166666666667*G6_3_3_2_1_1 - 0.0166666666667*G6_3_3_3_1_2;
-    A[7] = -0.00833333333333*G0_4 - 0.00833333333333*G0_5 - 0.00833333333333*G0_6 - 0.0166666666667*G0_7 + 0.00833333333333*G1_4 + 0.00833333333333*G1_5 + 0.00833333333333*G1_6 + 0.0166666666667*G1_7 - 0.0166666666667*G2_0_0_0_2_0 - 0.0166666666667*G2_0_0_0_2_1 - 0.0166666666667*G2_0_0_0_2_2 - 0.00833333333333*G2_0_0_1_2_0 - 0.00833333333333*G2_0_0_1_2_1 - 0.00833333333333*G2_0_0_1_2_2 - 0.00833333333333*G2_0_0_2_2_0 - 0.00833333333333*G2_0_0_2_2_1 - 0.00833333333333*G2_0_0_2_2_2 - 0.00833333333333*G2_0_0_3_2_0 - 0.00833333333333*G2_0_0_3_2_1 - 0.00833333333333*G2_0_0_3_2_2 + 0.0166666666667*G2_0_1_0_2_0 + 0.00833333333333*G2_0_1_1_2_0 + 0.00833333333333*G2_0_1_2_2_0 + 0.00833333333333*G2_0_1_3_2_0 + 0.0166666666667*G2_0_2_0_2_1 + 0.00833333333333*G2_0_2_1_2_1 + 0.00833333333333*G2_0_2_2_2_1 + 0.00833333333333*G2_0_2_3_2_1 + 0.0166666666667*G2_0_3_0_2_2 + 0.00833333333333*G2_0_3_1_2_2 + 0.00833333333333*G2_0_3_2_2_2 + 0.00833333333333*G2_0_3_3_2_2 - 0.00833333333333*G2_1_0_0_2_0 - 0.00833333333333*G2_1_0_0_2_1 - 0.00833333333333*G2_1_0_0_2_2 - 0.0166666666667*G2_1_0_1_2_0 - 0.0166666666667*G2_1_0_1_2_1 - 0.0166666666667*G2_1_0_1_2_2 - 0.00833333333333*G2_1_0_2_2_0 - 0.00833333333333*G2_1_0_2_2_1 - 0.00833333333333*G2_1_0_2_2_2 - 0.00833333333333*G2_1_0_3_2_0 - 0.00833333333333*G2_1_0_3_2_1 - 0.00833333333333*G2_1_0_3_2_2 + 0.00833333333333*G2_1_1_0_2_0 + 0.0166666666667*G2_1_1_1_2_0 + 0.00833333333333*G2_1_1_2_2_0 + 0.00833333333333*G2_1_1_3_2_0 + 0.00833333333333*G2_1_2_0_2_1 + 0.0166666666667*G2_1_2_1_2_1 + 0.00833333333333*G2_1_2_2_2_1 + 0.00833333333333*G2_1_2_3_2_1 + 0.00833333333333*G2_1_3_0_2_2 + 0.0166666666667*G2_1_3_1_2_2 + 0.00833333333333*G2_1_3_2_2_2 + 0.00833333333333*G2_1_3_3_2_2 - 0.00833333333333*G2_2_0_0_2_0 - 0.00833333333333*G2_2_0_0_2_1 - 0.00833333333333*G2_2_0_0_2_2 - 0.00833333333333*G2_2_0_1_2_0 - 0.00833333333333*G2_2_0_1_2_1 - 0.00833333333333*G2_2_0_1_2_2 - 0.0166666666667*G2_2_0_2_2_0 - 0.0166666666667*G2_2_0_2_2_1 - 0.0166666666667*G2_2_0_2_2_2 - 0.00833333333333*G2_2_0_3_2_0 - 0.00833333333333*G2_2_0_3_2_1 - 0.00833333333333*G2_2_0_3_2_2 + 0.00833333333333*G2_2_1_0_2_0 + 0.00833333333333*G2_2_1_1_2_0 + 0.0166666666667*G2_2_1_2_2_0 + 0.00833333333333*G2_2_1_3_2_0 + 0.00833333333333*G2_2_2_0_2_1 + 0.00833333333333*G2_2_2_1_2_1 + 0.0166666666667*G2_2_2_2_2_1 + 0.00833333333333*G2_2_2_3_2_1 + 0.00833333333333*G2_2_3_0_2_2 + 0.00833333333333*G2_2_3_1_2_2 + 0.0166666666667*G2_2_3_2_2_2 + 0.00833333333333*G2_2_3_3_2_2 - 0.00833333333333*G2_3_0_0_2_0 - 0.00833333333333*G2_3_0_0_2_1 - 0.00833333333333*G2_3_0_0_2_2 - 0.00833333333333*G2_3_0_1_2_0 - 0.00833333333333*G2_3_0_1_2_1 - 0.00833333333333*G2_3_0_1_2_2 - 0.00833333333333*G2_3_0_2_2_0 - 0.00833333333333*G2_3_0_2_2_1 - 0.00833333333333*G2_3_0_2_2_2 - 0.0166666666667*G2_3_0_3_2_0 - 0.0166666666667*G2_3_0_3_2_1 - 0.0166666666667*G2_3_0_3_2_2 + 0.00833333333333*G2_3_1_0_2_0 + 0.00833333333333*G2_3_1_1_2_0 + 0.00833333333333*G2_3_1_2_2_0 + 0.0166666666667*G2_3_1_3_2_0 + 0.00833333333333*G2_3_2_0_2_1 + 0.00833333333333*G2_3_2_1_2_1 + 0.00833333333333*G2_3_2_2_2_1 + 0.0166666666667*G2_3_2_3_2_1 + 0.00833333333333*G2_3_3_0_2_2 + 0.00833333333333*G2_3_3_1_2_2 + 0.00833333333333*G2_3_3_2_2_2 + 0.0166666666667*G2_3_3_3_2_2 - 0.0166666666667*G3_0_0_0_2_0 - 0.0166666666667*G3_0_0_0_2_1 - 0.0166666666667*G3_0_0_0_2_2 + 0.0166666666667*G3_0_0_1_2_0 + 0.0166666666667*G3_0_0_2_2_1 + 0.0166666666667*G3_0_0_3_2_2 - 0.00833333333333*G3_0_1_0_2_0 - 0.00833333333333*G3_0_1_0_2_1 - 0.00833333333333*G3_0_1_0_2_2 + 0.00833333333333*G3_0_1_1_2_0 + 0.00833333333333*G3_0_1_2_2_1 + 0.00833333333333*G3_0_1_3_2_2 - 0.00833333333333*G3_0_2_0_2_0 - 0.00833333333333*G3_0_2_0_2_1 - 0.00833333333333*G3_0_2_0_2_2 + 0.00833333333333*G3_0_2_1_2_0 + 0.00833333333333*G3_0_2_2_2_1 + 0.00833333333333*G3_0_2_3_2_2 - 0.00833333333333*G3_0_3_0_2_0 - 0.00833333333333*G3_0_3_0_2_1 - 0.00833333333333*G3_0_3_0_2_2 + 0.00833333333333*G3_0_3_1_2_0 + 0.00833333333333*G3_0_3_2_2_1 + 0.00833333333333*G3_0_3_3_2_2 - 0.00833333333333*G3_1_0_0_2_0 - 0.00833333333333*G3_1_0_0_2_1 - 0.00833333333333*G3_1_0_0_2_2 + 0.00833333333333*G3_1_0_1_2_0 + 0.00833333333333*G3_1_0_2_2_1 + 0.00833333333333*G3_1_0_3_2_2 - 0.0166666666667*G3_1_1_0_2_0 - 0.0166666666667*G3_1_1_0_2_1 - 0.0166666666667*G3_1_1_0_2_2 + 0.0166666666667*G3_1_1_1_2_0 + 0.0166666666667*G3_1_1_2_2_1 + 0.0166666666667*G3_1_1_3_2_2 - 0.00833333333333*G3_1_2_0_2_0 - 0.00833333333333*G3_1_2_0_2_1 - 0.00833333333333*G3_1_2_0_2_2 + 0.00833333333333*G3_1_2_1_2_0 + 0.00833333333333*G3_1_2_2_2_1 + 0.00833333333333*G3_1_2_3_2_2 - 0.00833333333333*G3_1_3_0_2_0 - 0.00833333333333*G3_1_3_0_2_1 - 0.00833333333333*G3_1_3_0_2_2 + 0.00833333333333*G3_1_3_1_2_0 + 0.00833333333333*G3_1_3_2_2_1 + 0.00833333333333*G3_1_3_3_2_2 - 0.00833333333333*G3_2_0_0_2_0 - 0.00833333333333*G3_2_0_0_2_1 - 0.00833333333333*G3_2_0_0_2_2 + 0.00833333333333*G3_2_0_1_2_0 + 0.00833333333333*G3_2_0_2_2_1 + 0.00833333333333*G3_2_0_3_2_2 - 0.00833333333333*G3_2_1_0_2_0 - 0.00833333333333*G3_2_1_0_2_1 - 0.00833333333333*G3_2_1_0_2_2 + 0.00833333333333*G3_2_1_1_2_0 + 0.00833333333333*G3_2_1_2_2_1 + 0.00833333333333*G3_2_1_3_2_2 - 0.0166666666667*G3_2_2_0_2_0 - 0.0166666666667*G3_2_2_0_2_1 - 0.0166666666667*G3_2_2_0_2_2 + 0.0166666666667*G3_2_2_1_2_0 + 0.0166666666667*G3_2_2_2_2_1 + 0.0166666666667*G3_2_2_3_2_2 - 0.00833333333333*G3_2_3_0_2_0 - 0.00833333333333*G3_2_3_0_2_1 - 0.00833333333333*G3_2_3_0_2_2 + 0.00833333333333*G3_2_3_1_2_0 + 0.00833333333333*G3_2_3_2_2_1 + 0.00833333333333*G3_2_3_3_2_2 - 0.00833333333333*G3_3_0_0_2_0 - 0.00833333333333*G3_3_0_0_2_1 - 0.00833333333333*G3_3_0_0_2_2 + 0.00833333333333*G3_3_0_1_2_0 + 0.00833333333333*G3_3_0_2_2_1 + 0.00833333333333*G3_3_0_3_2_2 - 0.00833333333333*G3_3_1_0_2_0 - 0.00833333333333*G3_3_1_0_2_1 - 0.00833333333333*G3_3_1_0_2_2 + 0.00833333333333*G3_3_1_1_2_0 + 0.00833333333333*G3_3_1_2_2_1 + 0.00833333333333*G3_3_1_3_2_2 - 0.00833333333333*G3_3_2_0_2_0 - 0.00833333333333*G3_3_2_0_2_1 - 0.00833333333333*G3_3_2_0_2_2 + 0.00833333333333*G3_3_2_1_2_0 + 0.00833333333333*G3_3_2_2_2_1 + 0.00833333333333*G3_3_2_3_2_2 - 0.0166666666667*G3_3_3_0_2_0 - 0.0166666666667*G3_3_3_0_2_1 - 0.0166666666667*G3_3_3_0_2_2 + 0.0166666666667*G3_3_3_1_2_0 + 0.0166666666667*G3_3_3_2_2_1 + 0.0166666666667*G3_3_3_3_2_2 + 0.0416666666667*G4_0_0_2_0 + 0.0416666666667*G4_0_0_2_1 + 0.0416666666667*G4_0_0_2_2 - 0.0416666666667*G4_0_1_2_0 - 0.0416666666667*G4_0_2_2_1 - 0.0416666666667*G4_0_3_2_2 + 0.0416666666667*G4_1_0_2_0 + 0.0416666666667*G4_1_0_2_1 + 0.0416666666667*G4_1_0_2_2 - 0.0416666666667*G4_1_1_2_0 - 0.0416666666667*G4_1_2_2_1 - 0.0416666666667*G4_1_3_2_2 + 0.0416666666667*G4_2_0_2_0 + 0.0416666666667*G4_2_0_2_1 + 0.0416666666667*G4_2_0_2_2 - 0.0416666666667*G4_2_1_2_0 - 0.0416666666667*G4_2_2_2_1 - 0.0416666666667*G4_2_3_2_2 + 0.0416666666667*G4_3_0_2_0 + 0.0416666666667*G4_3_0_2_1 + 0.0416666666667*G4_3_0_2_2 - 0.0416666666667*G4_3_1_2_0 - 0.0416666666667*G4_3_2_2_1 - 0.0416666666667*G4_3_3_2_2 + 0.0166666666667*G5_0_0_0_2_0 + 0.0166666666667*G5_0_0_0_2_1 + 0.0166666666667*G5_0_0_0_2_2 + 0.00833333333333*G5_0_0_1_2_0 + 0.00833333333333*G5_0_0_1_2_1 + 0.00833333333333*G5_0_0_1_2_2 + 0.00833333333333*G5_0_0_2_2_0 + 0.00833333333333*G5_0_0_2_2_1 + 0.00833333333333*G5_0_0_2_2_2 + 0.00833333333333*G5_0_0_3_2_0 + 0.00833333333333*G5_0_0_3_2_1 + 0.00833333333333*G5_0_0_3_2_2 - 0.0166666666667*G5_0_1_0_2_0 - 0.00833333333333*G5_0_1_1_2_0 - 0.00833333333333*G5_0_1_2_2_0 - 0.00833333333333*G5_0_1_3_2_0 - 0.0166666666667*G5_0_2_0_2_1 - 0.00833333333333*G5_0_2_1_2_1 - 0.00833333333333*G5_0_2_2_2_1 - 0.00833333333333*G5_0_2_3_2_1 - 0.0166666666667*G5_0_3_0_2_2 - 0.00833333333333*G5_0_3_1_2_2 - 0.00833333333333*G5_0_3_2_2_2 - 0.00833333333333*G5_0_3_3_2_2 + 0.00833333333333*G5_1_0_0_2_0 + 0.00833333333333*G5_1_0_0_2_1 + 0.00833333333333*G5_1_0_0_2_2 + 0.0166666666667*G5_1_0_1_2_0 + 0.0166666666667*G5_1_0_1_2_1 + 0.0166666666667*G5_1_0_1_2_2 + 0.00833333333333*G5_1_0_2_2_0 + 0.00833333333333*G5_1_0_2_2_1 + 0.00833333333333*G5_1_0_2_2_2 + 0.00833333333333*G5_1_0_3_2_0 + 0.00833333333333*G5_1_0_3_2_1 + 0.00833333333333*G5_1_0_3_2_2 - 0.00833333333333*G5_1_1_0_2_0 - 0.0166666666667*G5_1_1_1_2_0 - 0.00833333333333*G5_1_1_2_2_0 - 0.00833333333333*G5_1_1_3_2_0 - 0.00833333333333*G5_1_2_0_2_1 - 0.0166666666667*G5_1_2_1_2_1 - 0.00833333333333*G5_1_2_2_2_1 - 0.00833333333333*G5_1_2_3_2_1 - 0.00833333333333*G5_1_3_0_2_2 - 0.0166666666667*G5_1_3_1_2_2 - 0.00833333333333*G5_1_3_2_2_2 - 0.00833333333333*G5_1_3_3_2_2 + 0.00833333333333*G5_2_0_0_2_0 + 0.00833333333333*G5_2_0_0_2_1 + 0.00833333333333*G5_2_0_0_2_2 + 0.00833333333333*G5_2_0_1_2_0 + 0.00833333333333*G5_2_0_1_2_1 + 0.00833333333333*G5_2_0_1_2_2 + 0.0166666666667*G5_2_0_2_2_0 + 0.0166666666667*G5_2_0_2_2_1 + 0.0166666666667*G5_2_0_2_2_2 + 0.00833333333333*G5_2_0_3_2_0 + 0.00833333333333*G5_2_0_3_2_1 + 0.00833333333333*G5_2_0_3_2_2 - 0.00833333333333*G5_2_1_0_2_0 - 0.00833333333333*G5_2_1_1_2_0 - 0.0166666666667*G5_2_1_2_2_0 - 0.00833333333333*G5_2_1_3_2_0 - 0.00833333333333*G5_2_2_0_2_1 - 0.00833333333333*G5_2_2_1_2_1 - 0.0166666666667*G5_2_2_2_2_1 - 0.00833333333333*G5_2_2_3_2_1 - 0.00833333333333*G5_2_3_0_2_2 - 0.00833333333333*G5_2_3_1_2_2 - 0.0166666666667*G5_2_3_2_2_2 - 0.00833333333333*G5_2_3_3_2_2 + 0.00833333333333*G5_3_0_0_2_0 + 0.00833333333333*G5_3_0_0_2_1 + 0.00833333333333*G5_3_0_0_2_2 + 0.00833333333333*G5_3_0_1_2_0 + 0.00833333333333*G5_3_0_1_2_1 + 0.00833333333333*G5_3_0_1_2_2 + 0.00833333333333*G5_3_0_2_2_0 + 0.00833333333333*G5_3_0_2_2_1 + 0.00833333333333*G5_3_0_2_2_2 + 0.0166666666667*G5_3_0_3_2_0 + 0.0166666666667*G5_3_0_3_2_1 + 0.0166666666667*G5_3_0_3_2_2 - 0.00833333333333*G5_3_1_0_2_0 - 0.00833333333333*G5_3_1_1_2_0 - 0.00833333333333*G5_3_1_2_2_0 - 0.0166666666667*G5_3_1_3_2_0 - 0.00833333333333*G5_3_2_0_2_1 - 0.00833333333333*G5_3_2_1_2_1 - 0.00833333333333*G5_3_2_2_2_1 - 0.0166666666667*G5_3_2_3_2_1 - 0.00833333333333*G5_3_3_0_2_2 - 0.00833333333333*G5_3_3_1_2_2 - 0.00833333333333*G5_3_3_2_2_2 - 0.0166666666667*G5_3_3_3_2_2 + 0.0166666666667*G6_0_0_0_2_0 + 0.0166666666667*G6_0_0_0_2_1 + 0.0166666666667*G6_0_0_0_2_2 - 0.0166666666667*G6_0_0_1_2_0 - 0.0166666666667*G6_0_0_2_2_1 - 0.0166666666667*G6_0_0_3_2_2 + 0.00833333333333*G6_0_1_0_2_0 + 0.00833333333333*G6_0_1_0_2_1 + 0.00833333333333*G6_0_1_0_2_2 - 0.00833333333333*G6_0_1_1_2_0 - 0.00833333333333*G6_0_1_2_2_1 - 0.00833333333333*G6_0_1_3_2_2 + 0.00833333333333*G6_0_2_0_2_0 + 0.00833333333333*G6_0_2_0_2_1 + 0.00833333333333*G6_0_2_0_2_2 - 0.00833333333333*G6_0_2_1_2_0 - 0.00833333333333*G6_0_2_2_2_1 - 0.00833333333333*G6_0_2_3_2_2 + 0.00833333333333*G6_0_3_0_2_0 + 0.00833333333333*G6_0_3_0_2_1 + 0.00833333333333*G6_0_3_0_2_2 - 0.00833333333333*G6_0_3_1_2_0 - 0.00833333333333*G6_0_3_2_2_1 - 0.00833333333333*G6_0_3_3_2_2 + 0.00833333333333*G6_1_0_0_2_0 + 0.00833333333333*G6_1_0_0_2_1 + 0.00833333333333*G6_1_0_0_2_2 - 0.00833333333333*G6_1_0_1_2_0 - 0.00833333333333*G6_1_0_2_2_1 - 0.00833333333333*G6_1_0_3_2_2 + 0.0166666666667*G6_1_1_0_2_0 + 0.0166666666667*G6_1_1_0_2_1 + 0.0166666666667*G6_1_1_0_2_2 - 0.0166666666667*G6_1_1_1_2_0 - 0.0166666666667*G6_1_1_2_2_1 - 0.0166666666667*G6_1_1_3_2_2 + 0.00833333333333*G6_1_2_0_2_0 + 0.00833333333333*G6_1_2_0_2_1 + 0.00833333333333*G6_1_2_0_2_2 - 0.00833333333333*G6_1_2_1_2_0 - 0.00833333333333*G6_1_2_2_2_1 - 0.00833333333333*G6_1_2_3_2_2 + 0.00833333333333*G6_1_3_0_2_0 + 0.00833333333333*G6_1_3_0_2_1 + 0.00833333333333*G6_1_3_0_2_2 - 0.00833333333333*G6_1_3_1_2_0 - 0.00833333333333*G6_1_3_2_2_1 - 0.00833333333333*G6_1_3_3_2_2 + 0.00833333333333*G6_2_0_0_2_0 + 0.00833333333333*G6_2_0_0_2_1 + 0.00833333333333*G6_2_0_0_2_2 - 0.00833333333333*G6_2_0_1_2_0 - 0.00833333333333*G6_2_0_2_2_1 - 0.00833333333333*G6_2_0_3_2_2 + 0.00833333333333*G6_2_1_0_2_0 + 0.00833333333333*G6_2_1_0_2_1 + 0.00833333333333*G6_2_1_0_2_2 - 0.00833333333333*G6_2_1_1_2_0 - 0.00833333333333*G6_2_1_2_2_1 - 0.00833333333333*G6_2_1_3_2_2 + 0.0166666666667*G6_2_2_0_2_0 + 0.0166666666667*G6_2_2_0_2_1 + 0.0166666666667*G6_2_2_0_2_2 - 0.0166666666667*G6_2_2_1_2_0 - 0.0166666666667*G6_2_2_2_2_1 - 0.0166666666667*G6_2_2_3_2_2 + 0.00833333333333*G6_2_3_0_2_0 + 0.00833333333333*G6_2_3_0_2_1 + 0.00833333333333*G6_2_3_0_2_2 - 0.00833333333333*G6_2_3_1_2_0 - 0.00833333333333*G6_2_3_2_2_1 - 0.00833333333333*G6_2_3_3_2_2 + 0.00833333333333*G6_3_0_0_2_0 + 0.00833333333333*G6_3_0_0_2_1 + 0.00833333333333*G6_3_0_0_2_2 - 0.00833333333333*G6_3_0_1_2_0 - 0.00833333333333*G6_3_0_2_2_1 - 0.00833333333333*G6_3_0_3_2_2 + 0.00833333333333*G6_3_1_0_2_0 + 0.00833333333333*G6_3_1_0_2_1 + 0.00833333333333*G6_3_1_0_2_2 - 0.00833333333333*G6_3_1_1_2_0 - 0.00833333333333*G6_3_1_2_2_1 - 0.00833333333333*G6_3_1_3_2_2 + 0.00833333333333*G6_3_2_0_2_0 + 0.00833333333333*G6_3_2_0_2_1 + 0.00833333333333*G6_3_2_0_2_2 - 0.00833333333333*G6_3_2_1_2_0 - 0.00833333333333*G6_3_2_2_2_1 - 0.00833333333333*G6_3_2_3_2_2 + 0.0166666666667*G6_3_3_0_2_0 + 0.0166666666667*G6_3_3_0_2_1 + 0.0166666666667*G6_3_3_0_2_2 - 0.0166666666667*G6_3_3_1_2_0 - 0.0166666666667*G6_3_3_2_2_1 - 0.0166666666667*G6_3_3_3_2_2;
+    A[0] = -0.0166666666666666*G7_0 - 0.00833333333333331*G7_1 - 0.00833333333333331*G7_2 - 0.00833333333333331*G7_3 + 0.00595238095238094*G8_0_4_4_4 + 0.00119047619047619*G8_0_4_4_5 + 0.00119047619047619*G8_0_4_4_6 + 0.00119047619047619*G8_0_4_4_7 + 0.00119047619047619*G8_0_4_5_4 + 0.000595238095238095*G8_0_4_5_5 + 0.000297619047619047*G8_0_4_5_6 + 0.000297619047619047*G8_0_4_5_7 + 0.00119047619047619*G8_0_4_6_4 + 0.000297619047619047*G8_0_4_6_5 + 0.000595238095238095*G8_0_4_6_6 + 0.000297619047619048*G8_0_4_6_7 + 0.00119047619047619*G8_0_4_7_4 + 0.000297619047619047*G8_0_4_7_5 + 0.000297619047619048*G8_0_4_7_6 + 0.000595238095238094*G8_0_4_7_7 + 0.00119047619047619*G8_0_5_4_4 + 0.000595238095238095*G8_0_5_4_5 + 0.000297619047619047*G8_0_5_4_6 + 0.000297619047619047*G8_0_5_4_7 + 0.000595238095238095*G8_0_5_5_4 + 0.000595238095238094*G8_0_5_5_5 + 0.000198412698412698*G8_0_5_5_6 + 0.000198412698412698*G8_0_5_5_7 + 0.000297619047619047*G8_0_5_6_4 + 0.000198412698412698*G8_0_5_6_5 + 0.000198412698412698*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 0.000297619047619047*G8_0_5_7_4 + 0.000198412698412698*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 0.000198412698412698*G8_0_5_7_7 + 0.00119047619047619*G8_0_6_4_4 + 0.000297619047619047*G8_0_6_4_5 + 0.000595238095238095*G8_0_6_4_6 + 0.000297619047619048*G8_0_6_4_7 + 0.000297619047619047*G8_0_6_5_4 + 0.000198412698412698*G8_0_6_5_5 + 0.000198412698412698*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000595238095238095*G8_0_6_6_4 + 0.000198412698412698*G8_0_6_6_5 + 0.000595238095238095*G8_0_6_6_6 + 0.000198412698412698*G8_0_6_6_7 + 0.000297619047619048*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 0.000198412698412698*G8_0_6_7_6 + 0.000198412698412698*G8_0_6_7_7 + 0.00119047619047619*G8_0_7_4_4 + 0.000297619047619047*G8_0_7_4_5 + 0.000297619047619048*G8_0_7_4_6 + 0.000595238095238094*G8_0_7_4_7 + 0.000297619047619047*G8_0_7_5_4 + 0.000198412698412698*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 0.000198412698412698*G8_0_7_5_7 + 0.000297619047619048*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 0.000198412698412698*G8_0_7_6_6 + 0.000198412698412698*G8_0_7_6_7 + 0.000595238095238094*G8_0_7_7_4 + 0.000198412698412698*G8_0_7_7_5 + 0.000198412698412698*G8_0_7_7_6 + 0.000595238095238094*G8_0_7_7_7 + 0.00119047619047619*G8_1_4_4_4 + 0.000595238095238095*G8_1_4_4_5 + 0.000297619047619047*G8_1_4_4_6 + 0.000297619047619047*G8_1_4_4_7 + 0.000595238095238095*G8_1_4_5_4 + 0.000595238095238094*G8_1_4_5_5 + 0.000198412698412698*G8_1_4_5_6 + 0.000198412698412698*G8_1_4_5_7 + 0.000297619047619047*G8_1_4_6_4 + 0.000198412698412698*G8_1_4_6_5 + 0.000198412698412698*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 0.000297619047619047*G8_1_4_7_4 + 0.000198412698412698*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 0.000198412698412698*G8_1_4_7_7 + 0.000595238095238095*G8_1_5_4_4 + 0.000595238095238094*G8_1_5_4_5 + 0.000198412698412698*G8_1_5_4_6 + 0.000198412698412698*G8_1_5_4_7 + 0.000595238095238094*G8_1_5_5_4 + 0.00119047619047619*G8_1_5_5_5 + 0.000297619047619048*G8_1_5_5_6 + 0.000297619047619047*G8_1_5_5_7 + 0.000198412698412698*G8_1_5_6_4 + 0.000297619047619048*G8_1_5_6_5 + 0.000198412698412698*G8_1_5_6_6 + 9.92063492063492e-05*G8_1_5_6_7 + 0.000198412698412698*G8_1_5_7_4 + 0.000297619047619047*G8_1_5_7_5 + 9.92063492063492e-05*G8_1_5_7_6 + 0.000198412698412698*G8_1_5_7_7 + 0.000297619047619047*G8_1_6_4_4 + 0.000198412698412698*G8_1_6_4_5 + 0.000198412698412698*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 0.000198412698412698*G8_1_6_5_4 + 0.000297619047619047*G8_1_6_5_5 + 0.000198412698412698*G8_1_6_5_6 + 9.92063492063492e-05*G8_1_6_5_7 + 0.000198412698412698*G8_1_6_6_4 + 0.000198412698412698*G8_1_6_6_5 + 0.000297619047619047*G8_1_6_6_6 + 9.92063492063492e-05*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 9.92063492063492e-05*G8_1_6_7_5 + 9.92063492063492e-05*G8_1_6_7_6 + 9.92063492063492e-05*G8_1_6_7_7 + 0.000297619047619047*G8_1_7_4_4 + 0.000198412698412698*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 0.000198412698412698*G8_1_7_4_7 + 0.000198412698412698*G8_1_7_5_4 + 0.000297619047619047*G8_1_7_5_5 + 9.92063492063492e-05*G8_1_7_5_6 + 0.000198412698412698*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 9.92063492063492e-05*G8_1_7_6_5 + 9.92063492063492e-05*G8_1_7_6_6 + 9.92063492063492e-05*G8_1_7_6_7 + 0.000198412698412698*G8_1_7_7_4 + 0.000198412698412698*G8_1_7_7_5 + 9.92063492063492e-05*G8_1_7_7_6 + 0.000297619047619047*G8_1_7_7_7 + 0.00119047619047619*G8_2_4_4_4 + 0.000297619047619047*G8_2_4_4_5 + 0.000595238095238095*G8_2_4_4_6 + 0.000297619047619048*G8_2_4_4_7 + 0.000297619047619047*G8_2_4_5_4 + 0.000198412698412698*G8_2_4_5_5 + 0.000198412698412698*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000595238095238095*G8_2_4_6_4 + 0.000198412698412698*G8_2_4_6_5 + 0.000595238095238095*G8_2_4_6_6 + 0.000198412698412698*G8_2_4_6_7 + 0.000297619047619048*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 0.000198412698412698*G8_2_4_7_6 + 0.000198412698412698*G8_2_4_7_7 + 0.000297619047619047*G8_2_5_4_4 + 0.000198412698412698*G8_2_5_4_5 + 0.000198412698412698*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 0.000198412698412698*G8_2_5_5_4 + 0.000297619047619048*G8_2_5_5_5 + 0.000198412698412698*G8_2_5_5_6 + 9.92063492063492e-05*G8_2_5_5_7 + 0.000198412698412698*G8_2_5_6_4 + 0.000198412698412698*G8_2_5_6_5 + 0.000297619047619047*G8_2_5_6_6 + 9.92063492063492e-05*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 9.92063492063492e-05*G8_2_5_7_5 + 9.92063492063492e-05*G8_2_5_7_6 + 9.92063492063492e-05*G8_2_5_7_7 + 0.000595238095238095*G8_2_6_4_4 + 0.000198412698412698*G8_2_6_4_5 + 0.000595238095238095*G8_2_6_4_6 + 0.000198412698412698*G8_2_6_4_7 + 0.000198412698412698*G8_2_6_5_4 + 0.000198412698412698*G8_2_6_5_5 + 0.000297619047619047*G8_2_6_5_6 + 9.92063492063492e-05*G8_2_6_5_7 + 0.000595238095238095*G8_2_6_6_4 + 0.000297619047619047*G8_2_6_6_5 + 0.00119047619047619*G8_2_6_6_6 + 0.000297619047619047*G8_2_6_6_7 + 0.000198412698412698*G8_2_6_7_4 + 9.92063492063492e-05*G8_2_6_7_5 + 0.000297619047619047*G8_2_6_7_6 + 0.000198412698412698*G8_2_6_7_7 + 0.000297619047619048*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 0.000198412698412698*G8_2_7_4_6 + 0.000198412698412698*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 9.92063492063492e-05*G8_2_7_5_5 + 9.92063492063492e-05*G8_2_7_5_6 + 9.92063492063492e-05*G8_2_7_5_7 + 0.000198412698412698*G8_2_7_6_4 + 9.92063492063492e-05*G8_2_7_6_5 + 0.000297619047619047*G8_2_7_6_6 + 0.000198412698412698*G8_2_7_6_7 + 0.000198412698412698*G8_2_7_7_4 + 9.92063492063492e-05*G8_2_7_7_5 + 0.000198412698412698*G8_2_7_7_6 + 0.000297619047619047*G8_2_7_7_7 + 0.00119047619047619*G8_3_4_4_4 + 0.000297619047619047*G8_3_4_4_5 + 0.000297619047619048*G8_3_4_4_6 + 0.000595238095238094*G8_3_4_4_7 + 0.000297619047619047*G8_3_4_5_4 + 0.000198412698412698*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 0.000198412698412698*G8_3_4_5_7 + 0.000297619047619048*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 0.000198412698412698*G8_3_4_6_6 + 0.000198412698412698*G8_3_4_6_7 + 0.000595238095238095*G8_3_4_7_4 + 0.000198412698412698*G8_3_4_7_5 + 0.000198412698412698*G8_3_4_7_6 + 0.000595238095238094*G8_3_4_7_7 + 0.000297619047619047*G8_3_5_4_4 + 0.000198412698412698*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 0.000198412698412698*G8_3_5_4_7 + 0.000198412698412698*G8_3_5_5_4 + 0.000297619047619047*G8_3_5_5_5 + 9.92063492063492e-05*G8_3_5_5_6 + 0.000198412698412698*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 9.92063492063492e-05*G8_3_5_6_5 + 9.92063492063492e-05*G8_3_5_6_6 + 9.92063492063492e-05*G8_3_5_6_7 + 0.000198412698412698*G8_3_5_7_4 + 0.000198412698412698*G8_3_5_7_5 + 9.92063492063492e-05*G8_3_5_7_6 + 0.000297619047619047*G8_3_5_7_7 + 0.000297619047619048*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 0.000198412698412698*G8_3_6_4_6 + 0.000198412698412698*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 9.92063492063492e-05*G8_3_6_5_5 + 9.92063492063492e-05*G8_3_6_5_6 + 9.92063492063492e-05*G8_3_6_5_7 + 0.000198412698412698*G8_3_6_6_4 + 9.92063492063492e-05*G8_3_6_6_5 + 0.000297619047619047*G8_3_6_6_6 + 0.000198412698412698*G8_3_6_6_7 + 0.000198412698412698*G8_3_6_7_4 + 9.92063492063492e-05*G8_3_6_7_5 + 0.000198412698412698*G8_3_6_7_6 + 0.000297619047619047*G8_3_6_7_7 + 0.000595238095238095*G8_3_7_4_4 + 0.000198412698412698*G8_3_7_4_5 + 0.000198412698412698*G8_3_7_4_6 + 0.000595238095238094*G8_3_7_4_7 + 0.000198412698412698*G8_3_7_5_4 + 0.000198412698412698*G8_3_7_5_5 + 9.92063492063492e-05*G8_3_7_5_6 + 0.000297619047619047*G8_3_7_5_7 + 0.000198412698412698*G8_3_7_6_4 + 9.92063492063492e-05*G8_3_7_6_5 + 0.000198412698412698*G8_3_7_6_6 + 0.000297619047619047*G8_3_7_6_7 + 0.000595238095238094*G8_3_7_7_4 + 0.000297619047619047*G8_3_7_7_5 + 0.000297619047619047*G8_3_7_7_6 + 0.00119047619047619*G8_3_7_7_7 - 0.00952380952380951*G9_0_4_4 - 0.00238095238095238*G9_0_4_5 - 0.00238095238095238*G9_0_4_6 - 0.00238095238095238*G9_0_4_7 - 0.00238095238095238*G9_0_5_4 - 0.00158730158730159*G9_0_5_5 - 0.000793650793650793*G9_0_5_6 - 0.000793650793650793*G9_0_5_7 - 0.00238095238095238*G9_0_6_4 - 0.000793650793650794*G9_0_6_5 - 0.00158730158730159*G9_0_6_6 - 0.000793650793650793*G9_0_6_7 - 0.00238095238095238*G9_0_7_4 - 0.000793650793650793*G9_0_7_5 - 0.000793650793650793*G9_0_7_6 - 0.00158730158730159*G9_0_7_7 - 0.00238095238095238*G9_1_4_4 - 0.00158730158730159*G9_1_4_5 - 0.000793650793650793*G9_1_4_6 - 0.000793650793650793*G9_1_4_7 - 0.00158730158730159*G9_1_5_4 - 0.00238095238095238*G9_1_5_5 - 0.000793650793650793*G9_1_5_6 - 0.000793650793650793*G9_1_5_7 - 0.000793650793650793*G9_1_6_4 - 0.000793650793650793*G9_1_6_5 - 0.000793650793650793*G9_1_6_6 - 0.000396825396825397*G9_1_6_7 - 0.000793650793650793*G9_1_7_4 - 0.000793650793650793*G9_1_7_5 - 0.000396825396825397*G9_1_7_6 - 0.000793650793650793*G9_1_7_7 - 0.00238095238095238*G9_2_4_4 - 0.000793650793650793*G9_2_4_5 - 0.00158730158730159*G9_2_4_6 - 0.000793650793650793*G9_2_4_7 - 0.000793650793650794*G9_2_5_4 - 0.000793650793650793*G9_2_5_5 - 0.000793650793650793*G9_2_5_6 - 0.000396825396825397*G9_2_5_7 - 0.00158730158730159*G9_2_6_4 - 0.000793650793650793*G9_2_6_5 - 0.00238095238095238*G9_2_6_6 - 0.000793650793650793*G9_2_6_7 - 0.000793650793650793*G9_2_7_4 - 0.000396825396825397*G9_2_7_5 - 0.000793650793650793*G9_2_7_6 - 0.000793650793650793*G9_2_7_7 - 0.00238095238095238*G9_3_4_4 - 0.000793650793650793*G9_3_4_5 - 0.000793650793650793*G9_3_4_6 - 0.00158730158730159*G9_3_4_7 - 0.000793650793650793*G9_3_5_4 - 0.000793650793650793*G9_3_5_5 - 0.000396825396825397*G9_3_5_6 - 0.000793650793650793*G9_3_5_7 - 0.000793650793650793*G9_3_6_4 - 0.000396825396825397*G9_3_6_5 - 0.000793650793650793*G9_3_6_6 - 0.000793650793650793*G9_3_6_7 - 0.00158730158730159*G9_3_7_4 - 0.000793650793650793*G9_3_7_5 - 0.000793650793650793*G9_3_7_6 - 0.00238095238095238*G9_3_7_7 + 0.0166666666666666*G10_0_4 + 0.00555555555555554*G10_0_5 + 0.00555555555555554*G10_0_6 + 0.00555555555555554*G10_0_7 + 0.00555555555555554*G10_1_4 + 0.00555555555555554*G10_1_5 + 0.00277777777777777*G10_1_6 + 0.00277777777777777*G10_1_7 + 0.00555555555555554*G10_2_4 + 0.00277777777777777*G10_2_5 + 0.00555555555555554*G10_2_6 + 0.00277777777777777*G10_2_7 + 0.00555555555555554*G10_3_4 + 0.00277777777777777*G10_3_5 + 0.00277777777777777*G10_3_6 + 0.00555555555555554*G10_3_7 + 0.0416666666666666*G11_0_4_0_0 + 0.0416666666666666*G11_0_4_0_1 + 0.0416666666666666*G11_0_4_0_2 + 0.0416666666666666*G11_0_4_1_0 + 0.0416666666666666*G11_0_4_1_1 + 0.0416666666666666*G11_0_4_1_2 + 0.0416666666666666*G11_0_4_2_0 + 0.0416666666666666*G11_0_4_2_1 + 0.0416666666666666*G11_0_4_2_2 - 0.0416666666666666*G11_0_5_0_0 - 0.0416666666666666*G11_0_5_1_0 - 0.0416666666666666*G11_0_5_2_0 - 0.0416666666666666*G11_0_6_0_1 - 0.0416666666666666*G11_0_6_1_1 - 0.0416666666666666*G11_0_6_2_1 - 0.0416666666666666*G11_0_7_0_2 - 0.0416666666666666*G11_0_7_1_2 - 0.0416666666666666*G11_0_7_2_2 + 0.0416666666666666*G11_1_4_0_0 + 0.0416666666666666*G11_1_4_0_1 + 0.0416666666666666*G11_1_4_0_2 + 0.0416666666666666*G11_1_4_1_0 + 0.0416666666666666*G11_1_4_1_1 + 0.0416666666666666*G11_1_4_1_2 + 0.0416666666666666*G11_1_4_2_0 + 0.0416666666666666*G11_1_4_2_1 + 0.0416666666666666*G11_1_4_2_2 - 0.0416666666666666*G11_1_5_0_0 - 0.0416666666666666*G11_1_5_1_0 - 0.0416666666666666*G11_1_5_2_0 - 0.0416666666666666*G11_1_6_0_1 - 0.0416666666666666*G11_1_6_1_1 - 0.0416666666666666*G11_1_6_2_1 - 0.0416666666666666*G11_1_7_0_2 - 0.0416666666666666*G11_1_7_1_2 - 0.0416666666666666*G11_1_7_2_2 + 0.0416666666666666*G11_2_4_0_0 + 0.0416666666666666*G11_2_4_0_1 + 0.0416666666666666*G11_2_4_0_2 + 0.0416666666666666*G11_2_4_1_0 + 0.0416666666666666*G11_2_4_1_1 + 0.0416666666666666*G11_2_4_1_2 + 0.0416666666666666*G11_2_4_2_0 + 0.0416666666666666*G11_2_4_2_1 + 0.0416666666666666*G11_2_4_2_2 - 0.0416666666666666*G11_2_5_0_0 - 0.0416666666666666*G11_2_5_1_0 - 0.0416666666666666*G11_2_5_2_0 - 0.0416666666666666*G11_2_6_0_1 - 0.0416666666666666*G11_2_6_1_1 - 0.0416666666666666*G11_2_6_2_1 - 0.0416666666666666*G11_2_7_0_2 - 0.0416666666666666*G11_2_7_1_2 - 0.0416666666666666*G11_2_7_2_2 + 0.0416666666666666*G11_3_4_0_0 + 0.0416666666666666*G11_3_4_0_1 + 0.0416666666666666*G11_3_4_0_2 + 0.0416666666666666*G11_3_4_1_0 + 0.0416666666666666*G11_3_4_1_1 + 0.0416666666666666*G11_3_4_1_2 + 0.0416666666666666*G11_3_4_2_0 + 0.0416666666666666*G11_3_4_2_1 + 0.0416666666666666*G11_3_4_2_2 - 0.0416666666666666*G11_3_5_0_0 - 0.0416666666666666*G11_3_5_1_0 - 0.0416666666666666*G11_3_5_2_0 - 0.0416666666666666*G11_3_6_0_1 - 0.0416666666666666*G11_3_6_1_1 - 0.0416666666666666*G11_3_6_2_1 - 0.0416666666666666*G11_3_7_0_2 - 0.0416666666666666*G11_3_7_1_2 - 0.0416666666666666*G11_3_7_2_2;
+    A[1] = -0.00833333333333331*G7_0 - 0.0166666666666666*G7_1 - 0.00833333333333331*G7_2 - 0.00833333333333331*G7_3 + 0.00119047619047619*G8_0_4_4_4 + 0.000595238095238095*G8_0_4_4_5 + 0.000297619047619047*G8_0_4_4_6 + 0.000297619047619047*G8_0_4_4_7 + 0.000595238095238095*G8_0_4_5_4 + 0.000595238095238094*G8_0_4_5_5 + 0.000198412698412698*G8_0_4_5_6 + 0.000198412698412698*G8_0_4_5_7 + 0.000297619047619047*G8_0_4_6_4 + 0.000198412698412698*G8_0_4_6_5 + 0.000198412698412698*G8_0_4_6_6 + 9.92063492063492e-05*G8_0_4_6_7 + 0.000297619047619047*G8_0_4_7_4 + 0.000198412698412698*G8_0_4_7_5 + 9.92063492063492e-05*G8_0_4_7_6 + 0.000198412698412698*G8_0_4_7_7 + 0.000595238095238095*G8_0_5_4_4 + 0.000595238095238094*G8_0_5_4_5 + 0.000198412698412698*G8_0_5_4_6 + 0.000198412698412698*G8_0_5_4_7 + 0.000595238095238094*G8_0_5_5_4 + 0.00119047619047619*G8_0_5_5_5 + 0.000297619047619048*G8_0_5_5_6 + 0.000297619047619047*G8_0_5_5_7 + 0.000198412698412698*G8_0_5_6_4 + 0.000297619047619048*G8_0_5_6_5 + 0.000198412698412698*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 0.000198412698412698*G8_0_5_7_4 + 0.000297619047619047*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 0.000198412698412698*G8_0_5_7_7 + 0.000297619047619047*G8_0_6_4_4 + 0.000198412698412698*G8_0_6_4_5 + 0.000198412698412698*G8_0_6_4_6 + 9.92063492063492e-05*G8_0_6_4_7 + 0.000198412698412698*G8_0_6_5_4 + 0.000297619047619047*G8_0_6_5_5 + 0.000198412698412698*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000198412698412698*G8_0_6_6_4 + 0.000198412698412698*G8_0_6_6_5 + 0.000297619047619047*G8_0_6_6_6 + 9.92063492063492e-05*G8_0_6_6_7 + 9.92063492063492e-05*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 9.92063492063492e-05*G8_0_6_7_6 + 9.92063492063492e-05*G8_0_6_7_7 + 0.000297619047619047*G8_0_7_4_4 + 0.000198412698412698*G8_0_7_4_5 + 9.92063492063492e-05*G8_0_7_4_6 + 0.000198412698412698*G8_0_7_4_7 + 0.000198412698412698*G8_0_7_5_4 + 0.000297619047619047*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 0.000198412698412698*G8_0_7_5_7 + 9.92063492063492e-05*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 9.92063492063492e-05*G8_0_7_6_6 + 9.92063492063492e-05*G8_0_7_6_7 + 0.000198412698412698*G8_0_7_7_4 + 0.000198412698412698*G8_0_7_7_5 + 9.92063492063492e-05*G8_0_7_7_6 + 0.000297619047619047*G8_0_7_7_7 + 0.000595238095238095*G8_1_4_4_4 + 0.000595238095238094*G8_1_4_4_5 + 0.000198412698412698*G8_1_4_4_6 + 0.000198412698412698*G8_1_4_4_7 + 0.000595238095238094*G8_1_4_5_4 + 0.00119047619047619*G8_1_4_5_5 + 0.000297619047619048*G8_1_4_5_6 + 0.000297619047619047*G8_1_4_5_7 + 0.000198412698412698*G8_1_4_6_4 + 0.000297619047619048*G8_1_4_6_5 + 0.000198412698412698*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 0.000198412698412698*G8_1_4_7_4 + 0.000297619047619047*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 0.000198412698412698*G8_1_4_7_7 + 0.000595238095238094*G8_1_5_4_4 + 0.00119047619047619*G8_1_5_4_5 + 0.000297619047619048*G8_1_5_4_6 + 0.000297619047619047*G8_1_5_4_7 + 0.00119047619047619*G8_1_5_5_4 + 0.00595238095238095*G8_1_5_5_5 + 0.00119047619047619*G8_1_5_5_6 + 0.00119047619047619*G8_1_5_5_7 + 0.000297619047619048*G8_1_5_6_4 + 0.00119047619047619*G8_1_5_6_5 + 0.000595238095238095*G8_1_5_6_6 + 0.000297619047619048*G8_1_5_6_7 + 0.000297619047619047*G8_1_5_7_4 + 0.00119047619047619*G8_1_5_7_5 + 0.000297619047619048*G8_1_5_7_6 + 0.000595238095238095*G8_1_5_7_7 + 0.000198412698412698*G8_1_6_4_4 + 0.000297619047619047*G8_1_6_4_5 + 0.000198412698412698*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 0.000297619047619048*G8_1_6_5_4 + 0.00119047619047619*G8_1_6_5_5 + 0.000595238095238095*G8_1_6_5_6 + 0.000297619047619048*G8_1_6_5_7 + 0.000198412698412698*G8_1_6_6_4 + 0.000595238095238095*G8_1_6_6_5 + 0.000595238095238095*G8_1_6_6_6 + 0.000198412698412698*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 0.000297619047619048*G8_1_6_7_5 + 0.000198412698412698*G8_1_6_7_6 + 0.000198412698412698*G8_1_6_7_7 + 0.000198412698412698*G8_1_7_4_4 + 0.000297619047619047*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 0.000198412698412698*G8_1_7_4_7 + 0.000297619047619047*G8_1_7_5_4 + 0.00119047619047619*G8_1_7_5_5 + 0.000297619047619048*G8_1_7_5_6 + 0.000595238095238095*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 0.000297619047619048*G8_1_7_6_5 + 0.000198412698412698*G8_1_7_6_6 + 0.000198412698412698*G8_1_7_6_7 + 0.000198412698412698*G8_1_7_7_4 + 0.000595238095238095*G8_1_7_7_5 + 0.000198412698412698*G8_1_7_7_6 + 0.000595238095238095*G8_1_7_7_7 + 0.000297619047619047*G8_2_4_4_4 + 0.000198412698412698*G8_2_4_4_5 + 0.000198412698412698*G8_2_4_4_6 + 9.92063492063492e-05*G8_2_4_4_7 + 0.000198412698412698*G8_2_4_5_4 + 0.000297619047619047*G8_2_4_5_5 + 0.000198412698412698*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000198412698412698*G8_2_4_6_4 + 0.000198412698412698*G8_2_4_6_5 + 0.000297619047619047*G8_2_4_6_6 + 9.92063492063492e-05*G8_2_4_6_7 + 9.92063492063492e-05*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 9.92063492063492e-05*G8_2_4_7_6 + 9.92063492063492e-05*G8_2_4_7_7 + 0.000198412698412698*G8_2_5_4_4 + 0.000297619047619047*G8_2_5_4_5 + 0.000198412698412698*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 0.000297619047619048*G8_2_5_5_4 + 0.00119047619047619*G8_2_5_5_5 + 0.000595238095238095*G8_2_5_5_6 + 0.000297619047619048*G8_2_5_5_7 + 0.000198412698412698*G8_2_5_6_4 + 0.000595238095238095*G8_2_5_6_5 + 0.000595238095238095*G8_2_5_6_6 + 0.000198412698412698*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 0.000297619047619048*G8_2_5_7_5 + 0.000198412698412698*G8_2_5_7_6 + 0.000198412698412698*G8_2_5_7_7 + 0.000198412698412698*G8_2_6_4_4 + 0.000198412698412698*G8_2_6_4_5 + 0.000297619047619047*G8_2_6_4_6 + 9.92063492063492e-05*G8_2_6_4_7 + 0.000198412698412698*G8_2_6_5_4 + 0.000595238095238095*G8_2_6_5_5 + 0.000595238095238095*G8_2_6_5_6 + 0.000198412698412698*G8_2_6_5_7 + 0.000297619047619047*G8_2_6_6_4 + 0.000595238095238095*G8_2_6_6_5 + 0.00119047619047619*G8_2_6_6_6 + 0.000297619047619048*G8_2_6_6_7 + 9.92063492063492e-05*G8_2_6_7_4 + 0.000198412698412698*G8_2_6_7_5 + 0.000297619047619048*G8_2_6_7_6 + 0.000198412698412698*G8_2_6_7_7 + 9.92063492063492e-05*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 9.92063492063492e-05*G8_2_7_4_6 + 9.92063492063492e-05*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 0.000297619047619048*G8_2_7_5_5 + 0.000198412698412698*G8_2_7_5_6 + 0.000198412698412698*G8_2_7_5_7 + 9.92063492063492e-05*G8_2_7_6_4 + 0.000198412698412698*G8_2_7_6_5 + 0.000297619047619048*G8_2_7_6_6 + 0.000198412698412698*G8_2_7_6_7 + 9.92063492063492e-05*G8_2_7_7_4 + 0.000198412698412698*G8_2_7_7_5 + 0.000198412698412698*G8_2_7_7_6 + 0.000297619047619047*G8_2_7_7_7 + 0.000297619047619047*G8_3_4_4_4 + 0.000198412698412698*G8_3_4_4_5 + 9.92063492063492e-05*G8_3_4_4_6 + 0.000198412698412698*G8_3_4_4_7 + 0.000198412698412698*G8_3_4_5_4 + 0.000297619047619047*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 0.000198412698412698*G8_3_4_5_7 + 9.92063492063492e-05*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 9.92063492063492e-05*G8_3_4_6_6 + 9.92063492063492e-05*G8_3_4_6_7 + 0.000198412698412698*G8_3_4_7_4 + 0.000198412698412698*G8_3_4_7_5 + 9.92063492063492e-05*G8_3_4_7_6 + 0.000297619047619047*G8_3_4_7_7 + 0.000198412698412698*G8_3_5_4_4 + 0.000297619047619047*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 0.000198412698412698*G8_3_5_4_7 + 0.000297619047619047*G8_3_5_5_4 + 0.00119047619047619*G8_3_5_5_5 + 0.000297619047619048*G8_3_5_5_6 + 0.000595238095238095*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 0.000297619047619048*G8_3_5_6_5 + 0.000198412698412698*G8_3_5_6_6 + 0.000198412698412698*G8_3_5_6_7 + 0.000198412698412698*G8_3_5_7_4 + 0.000595238095238095*G8_3_5_7_5 + 0.000198412698412698*G8_3_5_7_6 + 0.000595238095238095*G8_3_5_7_7 + 9.92063492063492e-05*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 9.92063492063492e-05*G8_3_6_4_6 + 9.92063492063492e-05*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 0.000297619047619048*G8_3_6_5_5 + 0.000198412698412698*G8_3_6_5_6 + 0.000198412698412698*G8_3_6_5_7 + 9.92063492063492e-05*G8_3_6_6_4 + 0.000198412698412698*G8_3_6_6_5 + 0.000297619047619048*G8_3_6_6_6 + 0.000198412698412698*G8_3_6_6_7 + 9.92063492063492e-05*G8_3_6_7_4 + 0.000198412698412698*G8_3_6_7_5 + 0.000198412698412698*G8_3_6_7_6 + 0.000297619047619047*G8_3_6_7_7 + 0.000198412698412698*G8_3_7_4_4 + 0.000198412698412698*G8_3_7_4_5 + 9.92063492063492e-05*G8_3_7_4_6 + 0.000297619047619047*G8_3_7_4_7 + 0.000198412698412698*G8_3_7_5_4 + 0.000595238095238095*G8_3_7_5_5 + 0.000198412698412698*G8_3_7_5_6 + 0.000595238095238095*G8_3_7_5_7 + 9.92063492063492e-05*G8_3_7_6_4 + 0.000198412698412698*G8_3_7_6_5 + 0.000198412698412698*G8_3_7_6_6 + 0.000297619047619047*G8_3_7_6_7 + 0.000297619047619047*G8_3_7_7_4 + 0.000595238095238095*G8_3_7_7_5 + 0.000297619047619047*G8_3_7_7_6 + 0.00119047619047619*G8_3_7_7_7 - 0.00238095238095238*G9_0_4_4 - 0.00158730158730159*G9_0_4_5 - 0.000793650793650793*G9_0_4_6 - 0.000793650793650793*G9_0_4_7 - 0.00158730158730159*G9_0_5_4 - 0.00238095238095238*G9_0_5_5 - 0.000793650793650793*G9_0_5_6 - 0.000793650793650793*G9_0_5_7 - 0.000793650793650793*G9_0_6_4 - 0.000793650793650793*G9_0_6_5 - 0.000793650793650793*G9_0_6_6 - 0.000396825396825397*G9_0_6_7 - 0.000793650793650793*G9_0_7_4 - 0.000793650793650793*G9_0_7_5 - 0.000396825396825397*G9_0_7_6 - 0.000793650793650793*G9_0_7_7 - 0.00158730158730159*G9_1_4_4 - 0.00238095238095238*G9_1_4_5 - 0.000793650793650793*G9_1_4_6 - 0.000793650793650793*G9_1_4_7 - 0.00238095238095238*G9_1_5_4 - 0.00952380952380952*G9_1_5_5 - 0.00238095238095238*G9_1_5_6 - 0.00238095238095238*G9_1_5_7 - 0.000793650793650793*G9_1_6_4 - 0.00238095238095238*G9_1_6_5 - 0.00158730158730159*G9_1_6_6 - 0.000793650793650794*G9_1_6_7 - 0.000793650793650793*G9_1_7_4 - 0.00238095238095238*G9_1_7_5 - 0.000793650793650794*G9_1_7_6 - 0.00158730158730159*G9_1_7_7 - 0.000793650793650793*G9_2_4_4 - 0.000793650793650793*G9_2_4_5 - 0.000793650793650793*G9_2_4_6 - 0.000396825396825397*G9_2_4_7 - 0.000793650793650793*G9_2_5_4 - 0.00238095238095238*G9_2_5_5 - 0.00158730158730159*G9_2_5_6 - 0.000793650793650794*G9_2_5_7 - 0.000793650793650793*G9_2_6_4 - 0.00158730158730159*G9_2_6_5 - 0.00238095238095238*G9_2_6_6 - 0.000793650793650794*G9_2_6_7 - 0.000396825396825397*G9_2_7_4 - 0.000793650793650794*G9_2_7_5 - 0.000793650793650794*G9_2_7_6 - 0.000793650793650793*G9_2_7_7 - 0.000793650793650793*G9_3_4_4 - 0.000793650793650793*G9_3_4_5 - 0.000396825396825397*G9_3_4_6 - 0.000793650793650793*G9_3_4_7 - 0.000793650793650793*G9_3_5_4 - 0.00238095238095238*G9_3_5_5 - 0.000793650793650794*G9_3_5_6 - 0.00158730158730159*G9_3_5_7 - 0.000396825396825397*G9_3_6_4 - 0.000793650793650794*G9_3_6_5 - 0.000793650793650793*G9_3_6_6 - 0.000793650793650793*G9_3_6_7 - 0.000793650793650793*G9_3_7_4 - 0.00158730158730159*G9_3_7_5 - 0.000793650793650793*G9_3_7_6 - 0.00238095238095238*G9_3_7_7 + 0.00555555555555554*G10_0_4 + 0.00555555555555554*G10_0_5 + 0.00277777777777777*G10_0_6 + 0.00277777777777777*G10_0_7 + 0.00555555555555554*G10_1_4 + 0.0166666666666666*G10_1_5 + 0.00555555555555554*G10_1_6 + 0.00555555555555554*G10_1_7 + 0.00277777777777777*G10_2_4 + 0.00555555555555554*G10_2_5 + 0.00555555555555554*G10_2_6 + 0.00277777777777777*G10_2_7 + 0.00277777777777777*G10_3_4 + 0.00555555555555554*G10_3_5 + 0.00277777777777777*G10_3_6 + 0.00555555555555554*G10_3_7 - 0.0416666666666666*G11_0_4_0_0 - 0.0416666666666666*G11_0_4_0_1 - 0.0416666666666666*G11_0_4_0_2 + 0.0416666666666666*G11_0_5_0_0 + 0.0416666666666666*G11_0_6_0_1 + 0.0416666666666666*G11_0_7_0_2 - 0.0416666666666666*G11_1_4_0_0 - 0.0416666666666666*G11_1_4_0_1 - 0.0416666666666666*G11_1_4_0_2 + 0.0416666666666666*G11_1_5_0_0 + 0.0416666666666666*G11_1_6_0_1 + 0.0416666666666666*G11_1_7_0_2 - 0.0416666666666666*G11_2_4_0_0 - 0.0416666666666666*G11_2_4_0_1 - 0.0416666666666666*G11_2_4_0_2 + 0.0416666666666666*G11_2_5_0_0 + 0.0416666666666666*G11_2_6_0_1 + 0.0416666666666666*G11_2_7_0_2 - 0.0416666666666666*G11_3_4_0_0 - 0.0416666666666666*G11_3_4_0_1 - 0.0416666666666666*G11_3_4_0_2 + 0.0416666666666666*G11_3_5_0_0 + 0.0416666666666666*G11_3_6_0_1 + 0.0416666666666666*G11_3_7_0_2;
+    A[2] = -0.00833333333333331*G7_0 - 0.00833333333333331*G7_1 - 0.0166666666666666*G7_2 - 0.00833333333333331*G7_3 + 0.00119047619047619*G8_0_4_4_4 + 0.000297619047619047*G8_0_4_4_5 + 0.000595238095238095*G8_0_4_4_6 + 0.000297619047619048*G8_0_4_4_7 + 0.000297619047619047*G8_0_4_5_4 + 0.000198412698412698*G8_0_4_5_5 + 0.000198412698412698*G8_0_4_5_6 + 9.92063492063492e-05*G8_0_4_5_7 + 0.000595238095238095*G8_0_4_6_4 + 0.000198412698412698*G8_0_4_6_5 + 0.000595238095238095*G8_0_4_6_6 + 0.000198412698412698*G8_0_4_6_7 + 0.000297619047619048*G8_0_4_7_4 + 9.92063492063492e-05*G8_0_4_7_5 + 0.000198412698412698*G8_0_4_7_6 + 0.000198412698412698*G8_0_4_7_7 + 0.000297619047619047*G8_0_5_4_4 + 0.000198412698412698*G8_0_5_4_5 + 0.000198412698412698*G8_0_5_4_6 + 9.92063492063492e-05*G8_0_5_4_7 + 0.000198412698412698*G8_0_5_5_4 + 0.000297619047619047*G8_0_5_5_5 + 0.000198412698412698*G8_0_5_5_6 + 9.92063492063492e-05*G8_0_5_5_7 + 0.000198412698412698*G8_0_5_6_4 + 0.000198412698412698*G8_0_5_6_5 + 0.000297619047619047*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 9.92063492063492e-05*G8_0_5_7_4 + 9.92063492063492e-05*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 9.92063492063492e-05*G8_0_5_7_7 + 0.000595238095238095*G8_0_6_4_4 + 0.000198412698412698*G8_0_6_4_5 + 0.000595238095238095*G8_0_6_4_6 + 0.000198412698412698*G8_0_6_4_7 + 0.000198412698412698*G8_0_6_5_4 + 0.000198412698412698*G8_0_6_5_5 + 0.000297619047619047*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000595238095238095*G8_0_6_6_4 + 0.000297619047619047*G8_0_6_6_5 + 0.00119047619047619*G8_0_6_6_6 + 0.000297619047619047*G8_0_6_6_7 + 0.000198412698412698*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 0.000297619047619047*G8_0_6_7_6 + 0.000198412698412698*G8_0_6_7_7 + 0.000297619047619048*G8_0_7_4_4 + 9.92063492063492e-05*G8_0_7_4_5 + 0.000198412698412698*G8_0_7_4_6 + 0.000198412698412698*G8_0_7_4_7 + 9.92063492063492e-05*G8_0_7_5_4 + 9.92063492063492e-05*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 9.92063492063492e-05*G8_0_7_5_7 + 0.000198412698412698*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 0.000297619047619047*G8_0_7_6_6 + 0.000198412698412698*G8_0_7_6_7 + 0.000198412698412698*G8_0_7_7_4 + 9.92063492063492e-05*G8_0_7_7_5 + 0.000198412698412698*G8_0_7_7_6 + 0.000297619047619047*G8_0_7_7_7 + 0.000297619047619047*G8_1_4_4_4 + 0.000198412698412698*G8_1_4_4_5 + 0.000198412698412698*G8_1_4_4_6 + 9.92063492063492e-05*G8_1_4_4_7 + 0.000198412698412698*G8_1_4_5_4 + 0.000297619047619047*G8_1_4_5_5 + 0.000198412698412698*G8_1_4_5_6 + 9.92063492063492e-05*G8_1_4_5_7 + 0.000198412698412698*G8_1_4_6_4 + 0.000198412698412698*G8_1_4_6_5 + 0.000297619047619047*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 9.92063492063492e-05*G8_1_4_7_4 + 9.92063492063492e-05*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 9.92063492063492e-05*G8_1_4_7_7 + 0.000198412698412698*G8_1_5_4_4 + 0.000297619047619047*G8_1_5_4_5 + 0.000198412698412698*G8_1_5_4_6 + 9.92063492063492e-05*G8_1_5_4_7 + 0.000297619047619048*G8_1_5_5_4 + 0.00119047619047619*G8_1_5_5_5 + 0.000595238095238095*G8_1_5_5_6 + 0.000297619047619048*G8_1_5_5_7 + 0.000198412698412698*G8_1_5_6_4 + 0.000595238095238095*G8_1_5_6_5 + 0.000595238095238095*G8_1_5_6_6 + 0.000198412698412698*G8_1_5_6_7 + 9.92063492063492e-05*G8_1_5_7_4 + 0.000297619047619048*G8_1_5_7_5 + 0.000198412698412698*G8_1_5_7_6 + 0.000198412698412698*G8_1_5_7_7 + 0.000198412698412698*G8_1_6_4_4 + 0.000198412698412698*G8_1_6_4_5 + 0.000297619047619047*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 0.000198412698412698*G8_1_6_5_4 + 0.000595238095238095*G8_1_6_5_5 + 0.000595238095238095*G8_1_6_5_6 + 0.000198412698412698*G8_1_6_5_7 + 0.000297619047619047*G8_1_6_6_4 + 0.000595238095238095*G8_1_6_6_5 + 0.00119047619047619*G8_1_6_6_6 + 0.000297619047619048*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 0.000198412698412698*G8_1_6_7_5 + 0.000297619047619048*G8_1_6_7_6 + 0.000198412698412698*G8_1_6_7_7 + 9.92063492063492e-05*G8_1_7_4_4 + 9.92063492063492e-05*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 9.92063492063492e-05*G8_1_7_4_7 + 9.92063492063492e-05*G8_1_7_5_4 + 0.000297619047619048*G8_1_7_5_5 + 0.000198412698412698*G8_1_7_5_6 + 0.000198412698412698*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 0.000198412698412698*G8_1_7_6_5 + 0.000297619047619048*G8_1_7_6_6 + 0.000198412698412698*G8_1_7_6_7 + 9.92063492063492e-05*G8_1_7_7_4 + 0.000198412698412698*G8_1_7_7_5 + 0.000198412698412698*G8_1_7_7_6 + 0.000297619047619047*G8_1_7_7_7 + 0.000595238095238095*G8_2_4_4_4 + 0.000198412698412698*G8_2_4_4_5 + 0.000595238095238095*G8_2_4_4_6 + 0.000198412698412698*G8_2_4_4_7 + 0.000198412698412698*G8_2_4_5_4 + 0.000198412698412698*G8_2_4_5_5 + 0.000297619047619047*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000595238095238095*G8_2_4_6_4 + 0.000297619047619047*G8_2_4_6_5 + 0.00119047619047619*G8_2_4_6_6 + 0.000297619047619047*G8_2_4_6_7 + 0.000198412698412698*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 0.000297619047619047*G8_2_4_7_6 + 0.000198412698412698*G8_2_4_7_7 + 0.000198412698412698*G8_2_5_4_4 + 0.000198412698412698*G8_2_5_4_5 + 0.000297619047619047*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 0.000198412698412698*G8_2_5_5_4 + 0.000595238095238095*G8_2_5_5_5 + 0.000595238095238095*G8_2_5_5_6 + 0.000198412698412698*G8_2_5_5_7 + 0.000297619047619047*G8_2_5_6_4 + 0.000595238095238095*G8_2_5_6_5 + 0.00119047619047619*G8_2_5_6_6 + 0.000297619047619048*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 0.000198412698412698*G8_2_5_7_5 + 0.000297619047619048*G8_2_5_7_6 + 0.000198412698412698*G8_2_5_7_7 + 0.000595238095238095*G8_2_6_4_4 + 0.000297619047619047*G8_2_6_4_5 + 0.00119047619047619*G8_2_6_4_6 + 0.000297619047619047*G8_2_6_4_7 + 0.000297619047619047*G8_2_6_5_4 + 0.000595238095238095*G8_2_6_5_5 + 0.00119047619047619*G8_2_6_5_6 + 0.000297619047619048*G8_2_6_5_7 + 0.00119047619047619*G8_2_6_6_4 + 0.00119047619047619*G8_2_6_6_5 + 0.00595238095238095*G8_2_6_6_6 + 0.00119047619047619*G8_2_6_6_7 + 0.000297619047619047*G8_2_6_7_4 + 0.000297619047619048*G8_2_6_7_5 + 0.00119047619047619*G8_2_6_7_6 + 0.000595238095238095*G8_2_6_7_7 + 0.000198412698412698*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 0.000297619047619047*G8_2_7_4_6 + 0.000198412698412698*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 0.000198412698412698*G8_2_7_5_5 + 0.000297619047619048*G8_2_7_5_6 + 0.000198412698412698*G8_2_7_5_7 + 0.000297619047619047*G8_2_7_6_4 + 0.000297619047619048*G8_2_7_6_5 + 0.00119047619047619*G8_2_7_6_6 + 0.000595238095238095*G8_2_7_6_7 + 0.000198412698412698*G8_2_7_7_4 + 0.000198412698412698*G8_2_7_7_5 + 0.000595238095238095*G8_2_7_7_6 + 0.000595238095238095*G8_2_7_7_7 + 0.000297619047619048*G8_3_4_4_4 + 9.92063492063492e-05*G8_3_4_4_5 + 0.000198412698412698*G8_3_4_4_6 + 0.000198412698412698*G8_3_4_4_7 + 9.92063492063492e-05*G8_3_4_5_4 + 9.92063492063492e-05*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 9.92063492063492e-05*G8_3_4_5_7 + 0.000198412698412698*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 0.000297619047619047*G8_3_4_6_6 + 0.000198412698412698*G8_3_4_6_7 + 0.000198412698412698*G8_3_4_7_4 + 9.92063492063492e-05*G8_3_4_7_5 + 0.000198412698412698*G8_3_4_7_6 + 0.000297619047619047*G8_3_4_7_7 + 9.92063492063492e-05*G8_3_5_4_4 + 9.92063492063492e-05*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 9.92063492063492e-05*G8_3_5_4_7 + 9.92063492063492e-05*G8_3_5_5_4 + 0.000297619047619048*G8_3_5_5_5 + 0.000198412698412698*G8_3_5_5_6 + 0.000198412698412698*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 0.000198412698412698*G8_3_5_6_5 + 0.000297619047619048*G8_3_5_6_6 + 0.000198412698412698*G8_3_5_6_7 + 9.92063492063492e-05*G8_3_5_7_4 + 0.000198412698412698*G8_3_5_7_5 + 0.000198412698412698*G8_3_5_7_6 + 0.000297619047619047*G8_3_5_7_7 + 0.000198412698412698*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 0.000297619047619047*G8_3_6_4_6 + 0.000198412698412698*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 0.000198412698412698*G8_3_6_5_5 + 0.000297619047619048*G8_3_6_5_6 + 0.000198412698412698*G8_3_6_5_7 + 0.000297619047619047*G8_3_6_6_4 + 0.000297619047619048*G8_3_6_6_5 + 0.00119047619047619*G8_3_6_6_6 + 0.000595238095238095*G8_3_6_6_7 + 0.000198412698412698*G8_3_6_7_4 + 0.000198412698412698*G8_3_6_7_5 + 0.000595238095238095*G8_3_6_7_6 + 0.000595238095238095*G8_3_6_7_7 + 0.000198412698412698*G8_3_7_4_4 + 9.92063492063492e-05*G8_3_7_4_5 + 0.000198412698412698*G8_3_7_4_6 + 0.000297619047619047*G8_3_7_4_7 + 9.92063492063492e-05*G8_3_7_5_4 + 0.000198412698412698*G8_3_7_5_5 + 0.000198412698412698*G8_3_7_5_6 + 0.000297619047619047*G8_3_7_5_7 + 0.000198412698412698*G8_3_7_6_4 + 0.000198412698412698*G8_3_7_6_5 + 0.000595238095238095*G8_3_7_6_6 + 0.000595238095238095*G8_3_7_6_7 + 0.000297619047619047*G8_3_7_7_4 + 0.000297619047619047*G8_3_7_7_5 + 0.000595238095238095*G8_3_7_7_6 + 0.00119047619047619*G8_3_7_7_7 - 0.00238095238095238*G9_0_4_4 - 0.000793650793650793*G9_0_4_5 - 0.00158730158730159*G9_0_4_6 - 0.000793650793650793*G9_0_4_7 - 0.000793650793650793*G9_0_5_4 - 0.000793650793650793*G9_0_5_5 - 0.000793650793650793*G9_0_5_6 - 0.000396825396825397*G9_0_5_7 - 0.00158730158730159*G9_0_6_4 - 0.000793650793650793*G9_0_6_5 - 0.00238095238095238*G9_0_6_6 - 0.000793650793650793*G9_0_6_7 - 0.000793650793650793*G9_0_7_4 - 0.000396825396825397*G9_0_7_5 - 0.000793650793650793*G9_0_7_6 - 0.000793650793650793*G9_0_7_7 - 0.000793650793650793*G9_1_4_4 - 0.000793650793650793*G9_1_4_5 - 0.000793650793650793*G9_1_4_6 - 0.000396825396825397*G9_1_4_7 - 0.000793650793650793*G9_1_5_4 - 0.00238095238095238*G9_1_5_5 - 0.00158730158730159*G9_1_5_6 - 0.000793650793650794*G9_1_5_7 - 0.000793650793650793*G9_1_6_4 - 0.00158730158730159*G9_1_6_5 - 0.00238095238095238*G9_1_6_6 - 0.000793650793650794*G9_1_6_7 - 0.000396825396825397*G9_1_7_4 - 0.000793650793650794*G9_1_7_5 - 0.000793650793650794*G9_1_7_6 - 0.000793650793650794*G9_1_7_7 - 0.00158730158730159*G9_2_4_4 - 0.000793650793650793*G9_2_4_5 - 0.00238095238095238*G9_2_4_6 - 0.000793650793650793*G9_2_4_7 - 0.000793650793650793*G9_2_5_4 - 0.00158730158730159*G9_2_5_5 - 0.00238095238095238*G9_2_5_6 - 0.000793650793650794*G9_2_5_7 - 0.00238095238095238*G9_2_6_4 - 0.00238095238095238*G9_2_6_5 - 0.00952380952380951*G9_2_6_6 - 0.00238095238095238*G9_2_6_7 - 0.000793650793650793*G9_2_7_4 - 0.000793650793650793*G9_2_7_5 - 0.00238095238095238*G9_2_7_6 - 0.00158730158730159*G9_2_7_7 - 0.000793650793650793*G9_3_4_4 - 0.000396825396825397*G9_3_4_5 - 0.000793650793650793*G9_3_4_6 - 0.000793650793650793*G9_3_4_7 - 0.000396825396825397*G9_3_5_4 - 0.000793650793650794*G9_3_5_5 - 0.000793650793650793*G9_3_5_6 - 0.000793650793650793*G9_3_5_7 - 0.000793650793650793*G9_3_6_4 - 0.000793650793650794*G9_3_6_5 - 0.00238095238095238*G9_3_6_6 - 0.00158730158730159*G9_3_6_7 - 0.000793650793650793*G9_3_7_4 - 0.000793650793650793*G9_3_7_5 - 0.00158730158730159*G9_3_7_6 - 0.00238095238095238*G9_3_7_7 + 0.00555555555555554*G10_0_4 + 0.00277777777777777*G10_0_5 + 0.00555555555555554*G10_0_6 + 0.00277777777777777*G10_0_7 + 0.00277777777777777*G10_1_4 + 0.00555555555555554*G10_1_5 + 0.00555555555555554*G10_1_6 + 0.00277777777777777*G10_1_7 + 0.00555555555555554*G10_2_4 + 0.00555555555555554*G10_2_5 + 0.0166666666666666*G10_2_6 + 0.00555555555555554*G10_2_7 + 0.00277777777777777*G10_3_4 + 0.00277777777777777*G10_3_5 + 0.00555555555555554*G10_3_6 + 0.00555555555555554*G10_3_7 - 0.0416666666666666*G11_0_4_1_0 - 0.0416666666666666*G11_0_4_1_1 - 0.0416666666666666*G11_0_4_1_2 + 0.0416666666666666*G11_0_5_1_0 + 0.0416666666666666*G11_0_6_1_1 + 0.0416666666666666*G11_0_7_1_2 - 0.0416666666666666*G11_1_4_1_0 - 0.0416666666666666*G11_1_4_1_1 - 0.0416666666666666*G11_1_4_1_2 + 0.0416666666666666*G11_1_5_1_0 + 0.0416666666666666*G11_1_6_1_1 + 0.0416666666666666*G11_1_7_1_2 - 0.0416666666666666*G11_2_4_1_0 - 0.0416666666666666*G11_2_4_1_1 - 0.0416666666666666*G11_2_4_1_2 + 0.0416666666666666*G11_2_5_1_0 + 0.0416666666666666*G11_2_6_1_1 + 0.0416666666666666*G11_2_7_1_2 - 0.0416666666666666*G11_3_4_1_0 - 0.0416666666666666*G11_3_4_1_1 - 0.0416666666666666*G11_3_4_1_2 + 0.0416666666666666*G11_3_5_1_0 + 0.0416666666666666*G11_3_6_1_1 + 0.0416666666666666*G11_3_7_1_2;
+    A[3] = -0.00833333333333331*G7_0 - 0.00833333333333331*G7_1 - 0.00833333333333331*G7_2 - 0.0166666666666666*G7_3 + 0.00119047619047619*G8_0_4_4_4 + 0.000297619047619047*G8_0_4_4_5 + 0.000297619047619048*G8_0_4_4_6 + 0.000595238095238094*G8_0_4_4_7 + 0.000297619047619047*G8_0_4_5_4 + 0.000198412698412698*G8_0_4_5_5 + 9.92063492063492e-05*G8_0_4_5_6 + 0.000198412698412698*G8_0_4_5_7 + 0.000297619047619048*G8_0_4_6_4 + 9.92063492063492e-05*G8_0_4_6_5 + 0.000198412698412698*G8_0_4_6_6 + 0.000198412698412698*G8_0_4_6_7 + 0.000595238095238095*G8_0_4_7_4 + 0.000198412698412698*G8_0_4_7_5 + 0.000198412698412698*G8_0_4_7_6 + 0.000595238095238094*G8_0_4_7_7 + 0.000297619047619047*G8_0_5_4_4 + 0.000198412698412698*G8_0_5_4_5 + 9.92063492063492e-05*G8_0_5_4_6 + 0.000198412698412698*G8_0_5_4_7 + 0.000198412698412698*G8_0_5_5_4 + 0.000297619047619047*G8_0_5_5_5 + 9.92063492063492e-05*G8_0_5_5_6 + 0.000198412698412698*G8_0_5_5_7 + 9.92063492063492e-05*G8_0_5_6_4 + 9.92063492063492e-05*G8_0_5_6_5 + 9.92063492063492e-05*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 0.000198412698412698*G8_0_5_7_4 + 0.000198412698412698*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 0.000297619047619047*G8_0_5_7_7 + 0.000297619047619048*G8_0_6_4_4 + 9.92063492063492e-05*G8_0_6_4_5 + 0.000198412698412698*G8_0_6_4_6 + 0.000198412698412698*G8_0_6_4_7 + 9.92063492063492e-05*G8_0_6_5_4 + 9.92063492063492e-05*G8_0_6_5_5 + 9.92063492063492e-05*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000198412698412698*G8_0_6_6_4 + 9.92063492063492e-05*G8_0_6_6_5 + 0.000297619047619047*G8_0_6_6_6 + 0.000198412698412698*G8_0_6_6_7 + 0.000198412698412698*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 0.000198412698412698*G8_0_6_7_6 + 0.000297619047619047*G8_0_6_7_7 + 0.000595238095238095*G8_0_7_4_4 + 0.000198412698412698*G8_0_7_4_5 + 0.000198412698412698*G8_0_7_4_6 + 0.000595238095238094*G8_0_7_4_7 + 0.000198412698412698*G8_0_7_5_4 + 0.000198412698412698*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 0.000297619047619047*G8_0_7_5_7 + 0.000198412698412698*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 0.000198412698412698*G8_0_7_6_6 + 0.000297619047619047*G8_0_7_6_7 + 0.000595238095238094*G8_0_7_7_4 + 0.000297619047619047*G8_0_7_7_5 + 0.000297619047619047*G8_0_7_7_6 + 0.00119047619047619*G8_0_7_7_7 + 0.000297619047619047*G8_1_4_4_4 + 0.000198412698412698*G8_1_4_4_5 + 9.92063492063492e-05*G8_1_4_4_6 + 0.000198412698412698*G8_1_4_4_7 + 0.000198412698412698*G8_1_4_5_4 + 0.000297619047619047*G8_1_4_5_5 + 9.92063492063492e-05*G8_1_4_5_6 + 0.000198412698412698*G8_1_4_5_7 + 9.92063492063492e-05*G8_1_4_6_4 + 9.92063492063492e-05*G8_1_4_6_5 + 9.92063492063492e-05*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 0.000198412698412698*G8_1_4_7_4 + 0.000198412698412698*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 0.000297619047619047*G8_1_4_7_7 + 0.000198412698412698*G8_1_5_4_4 + 0.000297619047619047*G8_1_5_4_5 + 9.92063492063492e-05*G8_1_5_4_6 + 0.000198412698412698*G8_1_5_4_7 + 0.000297619047619047*G8_1_5_5_4 + 0.00119047619047619*G8_1_5_5_5 + 0.000297619047619048*G8_1_5_5_6 + 0.000595238095238095*G8_1_5_5_7 + 9.92063492063492e-05*G8_1_5_6_4 + 0.000297619047619048*G8_1_5_6_5 + 0.000198412698412698*G8_1_5_6_6 + 0.000198412698412698*G8_1_5_6_7 + 0.000198412698412698*G8_1_5_7_4 + 0.000595238095238095*G8_1_5_7_5 + 0.000198412698412698*G8_1_5_7_6 + 0.000595238095238095*G8_1_5_7_7 + 9.92063492063492e-05*G8_1_6_4_4 + 9.92063492063492e-05*G8_1_6_4_5 + 9.92063492063492e-05*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 9.92063492063492e-05*G8_1_6_5_4 + 0.000297619047619048*G8_1_6_5_5 + 0.000198412698412698*G8_1_6_5_6 + 0.000198412698412698*G8_1_6_5_7 + 9.92063492063492e-05*G8_1_6_6_4 + 0.000198412698412698*G8_1_6_6_5 + 0.000297619047619048*G8_1_6_6_6 + 0.000198412698412698*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 0.000198412698412698*G8_1_6_7_5 + 0.000198412698412698*G8_1_6_7_6 + 0.000297619047619047*G8_1_6_7_7 + 0.000198412698412698*G8_1_7_4_4 + 0.000198412698412698*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 0.000297619047619047*G8_1_7_4_7 + 0.000198412698412698*G8_1_7_5_4 + 0.000595238095238095*G8_1_7_5_5 + 0.000198412698412698*G8_1_7_5_6 + 0.000595238095238095*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 0.000198412698412698*G8_1_7_6_5 + 0.000198412698412698*G8_1_7_6_6 + 0.000297619047619047*G8_1_7_6_7 + 0.000297619047619047*G8_1_7_7_4 + 0.000595238095238095*G8_1_7_7_5 + 0.000297619047619047*G8_1_7_7_6 + 0.00119047619047619*G8_1_7_7_7 + 0.000297619047619048*G8_2_4_4_4 + 9.92063492063492e-05*G8_2_4_4_5 + 0.000198412698412698*G8_2_4_4_6 + 0.000198412698412698*G8_2_4_4_7 + 9.92063492063492e-05*G8_2_4_5_4 + 9.92063492063492e-05*G8_2_4_5_5 + 9.92063492063492e-05*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000198412698412698*G8_2_4_6_4 + 9.92063492063492e-05*G8_2_4_6_5 + 0.000297619047619047*G8_2_4_6_6 + 0.000198412698412698*G8_2_4_6_7 + 0.000198412698412698*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 0.000198412698412698*G8_2_4_7_6 + 0.000297619047619047*G8_2_4_7_7 + 9.92063492063492e-05*G8_2_5_4_4 + 9.92063492063492e-05*G8_2_5_4_5 + 9.92063492063492e-05*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 9.92063492063492e-05*G8_2_5_5_4 + 0.000297619047619048*G8_2_5_5_5 + 0.000198412698412698*G8_2_5_5_6 + 0.000198412698412698*G8_2_5_5_7 + 9.92063492063492e-05*G8_2_5_6_4 + 0.000198412698412698*G8_2_5_6_5 + 0.000297619047619048*G8_2_5_6_6 + 0.000198412698412698*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 0.000198412698412698*G8_2_5_7_5 + 0.000198412698412698*G8_2_5_7_6 + 0.000297619047619047*G8_2_5_7_7 + 0.000198412698412698*G8_2_6_4_4 + 9.92063492063492e-05*G8_2_6_4_5 + 0.000297619047619047*G8_2_6_4_6 + 0.000198412698412698*G8_2_6_4_7 + 9.92063492063492e-05*G8_2_6_5_4 + 0.000198412698412698*G8_2_6_5_5 + 0.000297619047619048*G8_2_6_5_6 + 0.000198412698412698*G8_2_6_5_7 + 0.000297619047619047*G8_2_6_6_4 + 0.000297619047619048*G8_2_6_6_5 + 0.00119047619047619*G8_2_6_6_6 + 0.000595238095238095*G8_2_6_6_7 + 0.000198412698412698*G8_2_6_7_4 + 0.000198412698412698*G8_2_6_7_5 + 0.000595238095238095*G8_2_6_7_6 + 0.000595238095238095*G8_2_6_7_7 + 0.000198412698412698*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 0.000198412698412698*G8_2_7_4_6 + 0.000297619047619047*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 0.000198412698412698*G8_2_7_5_5 + 0.000198412698412698*G8_2_7_5_6 + 0.000297619047619047*G8_2_7_5_7 + 0.000198412698412698*G8_2_7_6_4 + 0.000198412698412698*G8_2_7_6_5 + 0.000595238095238095*G8_2_7_6_6 + 0.000595238095238095*G8_2_7_6_7 + 0.000297619047619047*G8_2_7_7_4 + 0.000297619047619047*G8_2_7_7_5 + 0.000595238095238095*G8_2_7_7_6 + 0.00119047619047619*G8_2_7_7_7 + 0.000595238095238094*G8_3_4_4_4 + 0.000198412698412698*G8_3_4_4_5 + 0.000198412698412698*G8_3_4_4_6 + 0.000595238095238094*G8_3_4_4_7 + 0.000198412698412698*G8_3_4_5_4 + 0.000198412698412698*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 0.000297619047619047*G8_3_4_5_7 + 0.000198412698412698*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 0.000198412698412698*G8_3_4_6_6 + 0.000297619047619047*G8_3_4_6_7 + 0.000595238095238094*G8_3_4_7_4 + 0.000297619047619047*G8_3_4_7_5 + 0.000297619047619047*G8_3_4_7_6 + 0.00119047619047619*G8_3_4_7_7 + 0.000198412698412698*G8_3_5_4_4 + 0.000198412698412698*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 0.000297619047619047*G8_3_5_4_7 + 0.000198412698412698*G8_3_5_5_4 + 0.000595238095238095*G8_3_5_5_5 + 0.000198412698412698*G8_3_5_5_6 + 0.000595238095238095*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 0.000198412698412698*G8_3_5_6_5 + 0.000198412698412698*G8_3_5_6_6 + 0.000297619047619047*G8_3_5_6_7 + 0.000297619047619047*G8_3_5_7_4 + 0.000595238095238095*G8_3_5_7_5 + 0.000297619047619047*G8_3_5_7_6 + 0.00119047619047619*G8_3_5_7_7 + 0.000198412698412698*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 0.000198412698412698*G8_3_6_4_6 + 0.000297619047619047*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 0.000198412698412698*G8_3_6_5_5 + 0.000198412698412698*G8_3_6_5_6 + 0.000297619047619047*G8_3_6_5_7 + 0.000198412698412698*G8_3_6_6_4 + 0.000198412698412698*G8_3_6_6_5 + 0.000595238095238095*G8_3_6_6_6 + 0.000595238095238095*G8_3_6_6_7 + 0.000297619047619047*G8_3_6_7_4 + 0.000297619047619047*G8_3_6_7_5 + 0.000595238095238095*G8_3_6_7_6 + 0.00119047619047619*G8_3_6_7_7 + 0.000595238095238094*G8_3_7_4_4 + 0.000297619047619047*G8_3_7_4_5 + 0.000297619047619047*G8_3_7_4_6 + 0.00119047619047619*G8_3_7_4_7 + 0.000297619047619047*G8_3_7_5_4 + 0.000595238095238095*G8_3_7_5_5 + 0.000297619047619047*G8_3_7_5_6 + 0.00119047619047619*G8_3_7_5_7 + 0.000297619047619047*G8_3_7_6_4 + 0.000297619047619047*G8_3_7_6_5 + 0.000595238095238095*G8_3_7_6_6 + 0.00119047619047619*G8_3_7_6_7 + 0.00119047619047619*G8_3_7_7_4 + 0.00119047619047619*G8_3_7_7_5 + 0.00119047619047619*G8_3_7_7_6 + 0.00595238095238094*G8_3_7_7_7 - 0.00238095238095238*G9_0_4_4 - 0.000793650793650793*G9_0_4_5 - 0.000793650793650793*G9_0_4_6 - 0.00158730158730159*G9_0_4_7 - 0.000793650793650793*G9_0_5_4 - 0.000793650793650793*G9_0_5_5 - 0.000396825396825397*G9_0_5_6 - 0.000793650793650793*G9_0_5_7 - 0.000793650793650793*G9_0_6_4 - 0.000396825396825397*G9_0_6_5 - 0.000793650793650793*G9_0_6_6 - 0.000793650793650793*G9_0_6_7 - 0.00158730158730159*G9_0_7_4 - 0.000793650793650793*G9_0_7_5 - 0.000793650793650793*G9_0_7_6 - 0.00238095238095238*G9_0_7_7 - 0.000793650793650793*G9_1_4_4 - 0.000793650793650793*G9_1_4_5 - 0.000396825396825397*G9_1_4_6 - 0.000793650793650793*G9_1_4_7 - 0.000793650793650793*G9_1_5_4 - 0.00238095238095238*G9_1_5_5 - 0.000793650793650794*G9_1_5_6 - 0.00158730158730159*G9_1_5_7 - 0.000396825396825397*G9_1_6_4 - 0.000793650793650794*G9_1_6_5 - 0.000793650793650793*G9_1_6_6 - 0.000793650793650793*G9_1_6_7 - 0.000793650793650793*G9_1_7_4 - 0.00158730158730159*G9_1_7_5 - 0.000793650793650793*G9_1_7_6 - 0.00238095238095238*G9_1_7_7 - 0.000793650793650793*G9_2_4_4 - 0.000396825396825397*G9_2_4_5 - 0.000793650793650793*G9_2_4_6 - 0.000793650793650793*G9_2_4_7 - 0.000396825396825397*G9_2_5_4 - 0.000793650793650794*G9_2_5_5 - 0.000793650793650793*G9_2_5_6 - 0.000793650793650793*G9_2_5_7 - 0.000793650793650793*G9_2_6_4 - 0.000793650793650794*G9_2_6_5 - 0.00238095238095238*G9_2_6_6 - 0.00158730158730159*G9_2_6_7 - 0.000793650793650793*G9_2_7_4 - 0.000793650793650793*G9_2_7_5 - 0.00158730158730159*G9_2_7_6 - 0.00238095238095238*G9_2_7_7 - 0.00158730158730159*G9_3_4_4 - 0.000793650793650793*G9_3_4_5 - 0.000793650793650793*G9_3_4_6 - 0.00238095238095238*G9_3_4_7 - 0.000793650793650793*G9_3_5_4 - 0.00158730158730159*G9_3_5_5 - 0.000793650793650793*G9_3_5_6 - 0.00238095238095238*G9_3_5_7 - 0.000793650793650793*G9_3_6_4 - 0.000793650793650793*G9_3_6_5 - 0.00158730158730159*G9_3_6_6 - 0.00238095238095238*G9_3_6_7 - 0.00238095238095238*G9_3_7_4 - 0.00238095238095238*G9_3_7_5 - 0.00238095238095238*G9_3_7_6 - 0.00952380952380951*G9_3_7_7 + 0.00555555555555554*G10_0_4 + 0.00277777777777777*G10_0_5 + 0.00277777777777777*G10_0_6 + 0.00555555555555554*G10_0_7 + 0.00277777777777777*G10_1_4 + 0.00555555555555554*G10_1_5 + 0.00277777777777777*G10_1_6 + 0.00555555555555554*G10_1_7 + 0.00277777777777777*G10_2_4 + 0.00277777777777777*G10_2_5 + 0.00555555555555554*G10_2_6 + 0.00555555555555554*G10_2_7 + 0.00555555555555554*G10_3_4 + 0.00555555555555554*G10_3_5 + 0.00555555555555554*G10_3_6 + 0.0166666666666666*G10_3_7 - 0.0416666666666666*G11_0_4_2_0 - 0.0416666666666666*G11_0_4_2_1 - 0.0416666666666666*G11_0_4_2_2 + 0.0416666666666666*G11_0_5_2_0 + 0.0416666666666666*G11_0_6_2_1 + 0.0416666666666666*G11_0_7_2_2 - 0.0416666666666666*G11_1_4_2_0 - 0.0416666666666666*G11_1_4_2_1 - 0.0416666666666666*G11_1_4_2_2 + 0.0416666666666666*G11_1_5_2_0 + 0.0416666666666666*G11_1_6_2_1 + 0.0416666666666666*G11_1_7_2_2 - 0.0416666666666666*G11_2_4_2_0 - 0.0416666666666666*G11_2_4_2_1 - 0.0416666666666666*G11_2_4_2_2 + 0.0416666666666666*G11_2_5_2_0 + 0.0416666666666666*G11_2_6_2_1 + 0.0416666666666666*G11_2_7_2_2 - 0.0416666666666666*G11_3_4_2_0 - 0.0416666666666666*G11_3_4_2_1 - 0.0416666666666666*G11_3_4_2_2 + 0.0416666666666666*G11_3_5_2_0 + 0.0416666666666666*G11_3_6_2_1 + 0.0416666666666666*G11_3_7_2_2;
+    A[4] = -0.0166666666666666*G0_4 - 0.00833333333333331*G0_5 - 0.00833333333333331*G0_6 - 0.00833333333333331*G0_7 + 0.0166666666666666*G1_4 + 0.00833333333333331*G1_5 + 0.00833333333333331*G1_6 + 0.00833333333333331*G1_7 + 0.0166666666666666*G2_0_0_0_0_0 + 0.0166666666666666*G2_0_0_0_0_1 + 0.0166666666666666*G2_0_0_0_0_2 + 0.0166666666666666*G2_0_0_0_1_0 + 0.0166666666666666*G2_0_0_0_1_1 + 0.0166666666666666*G2_0_0_0_1_2 + 0.0166666666666666*G2_0_0_0_2_0 + 0.0166666666666666*G2_0_0_0_2_1 + 0.0166666666666666*G2_0_0_0_2_2 + 0.00833333333333331*G2_0_0_1_0_0 + 0.00833333333333331*G2_0_0_1_0_1 + 0.00833333333333331*G2_0_0_1_0_2 + 0.00833333333333331*G2_0_0_1_1_0 + 0.00833333333333331*G2_0_0_1_1_1 + 0.00833333333333331*G2_0_0_1_1_2 + 0.00833333333333331*G2_0_0_1_2_0 + 0.00833333333333331*G2_0_0_1_2_1 + 0.00833333333333331*G2_0_0_1_2_2 + 0.00833333333333331*G2_0_0_2_0_0 + 0.00833333333333331*G2_0_0_2_0_1 + 0.00833333333333331*G2_0_0_2_0_2 + 0.00833333333333331*G2_0_0_2_1_0 + 0.00833333333333331*G2_0_0_2_1_1 + 0.00833333333333331*G2_0_0_2_1_2 + 0.00833333333333331*G2_0_0_2_2_0 + 0.00833333333333331*G2_0_0_2_2_1 + 0.00833333333333331*G2_0_0_2_2_2 + 0.00833333333333331*G2_0_0_3_0_0 + 0.00833333333333331*G2_0_0_3_0_1 + 0.00833333333333331*G2_0_0_3_0_2 + 0.00833333333333331*G2_0_0_3_1_0 + 0.00833333333333331*G2_0_0_3_1_1 + 0.00833333333333331*G2_0_0_3_1_2 + 0.00833333333333331*G2_0_0_3_2_0 + 0.00833333333333331*G2_0_0_3_2_1 + 0.00833333333333331*G2_0_0_3_2_2 - 0.0166666666666666*G2_0_1_0_0_0 - 0.0166666666666666*G2_0_1_0_1_0 - 0.0166666666666666*G2_0_1_0_2_0 - 0.00833333333333331*G2_0_1_1_0_0 - 0.00833333333333331*G2_0_1_1_1_0 - 0.00833333333333331*G2_0_1_1_2_0 - 0.00833333333333331*G2_0_1_2_0_0 - 0.00833333333333331*G2_0_1_2_1_0 - 0.00833333333333331*G2_0_1_2_2_0 - 0.00833333333333331*G2_0_1_3_0_0 - 0.00833333333333331*G2_0_1_3_1_0 - 0.00833333333333331*G2_0_1_3_2_0 - 0.0166666666666666*G2_0_2_0_0_1 - 0.0166666666666666*G2_0_2_0_1_1 - 0.0166666666666666*G2_0_2_0_2_1 - 0.00833333333333331*G2_0_2_1_0_1 - 0.00833333333333331*G2_0_2_1_1_1 - 0.00833333333333331*G2_0_2_1_2_1 - 0.00833333333333331*G2_0_2_2_0_1 - 0.00833333333333331*G2_0_2_2_1_1 - 0.00833333333333331*G2_0_2_2_2_1 - 0.00833333333333331*G2_0_2_3_0_1 - 0.00833333333333331*G2_0_2_3_1_1 - 0.00833333333333331*G2_0_2_3_2_1 - 0.0166666666666666*G2_0_3_0_0_2 - 0.0166666666666666*G2_0_3_0_1_2 - 0.0166666666666666*G2_0_3_0_2_2 - 0.00833333333333331*G2_0_3_1_0_2 - 0.00833333333333331*G2_0_3_1_1_2 - 0.00833333333333331*G2_0_3_1_2_2 - 0.00833333333333331*G2_0_3_2_0_2 - 0.00833333333333331*G2_0_3_2_1_2 - 0.00833333333333331*G2_0_3_2_2_2 - 0.00833333333333331*G2_0_3_3_0_2 - 0.00833333333333331*G2_0_3_3_1_2 - 0.00833333333333331*G2_0_3_3_2_2 + 0.00833333333333331*G2_1_0_0_0_0 + 0.00833333333333331*G2_1_0_0_0_1 + 0.00833333333333331*G2_1_0_0_0_2 + 0.00833333333333331*G2_1_0_0_1_0 + 0.00833333333333331*G2_1_0_0_1_1 + 0.00833333333333331*G2_1_0_0_1_2 + 0.00833333333333331*G2_1_0_0_2_0 + 0.00833333333333331*G2_1_0_0_2_1 + 0.00833333333333331*G2_1_0_0_2_2 + 0.0166666666666666*G2_1_0_1_0_0 + 0.0166666666666666*G2_1_0_1_0_1 + 0.0166666666666666*G2_1_0_1_0_2 + 0.0166666666666666*G2_1_0_1_1_0 + 0.0166666666666666*G2_1_0_1_1_1 + 0.0166666666666666*G2_1_0_1_1_2 + 0.0166666666666666*G2_1_0_1_2_0 + 0.0166666666666666*G2_1_0_1_2_1 + 0.0166666666666666*G2_1_0_1_2_2 + 0.00833333333333331*G2_1_0_2_0_0 + 0.00833333333333331*G2_1_0_2_0_1 + 0.00833333333333331*G2_1_0_2_0_2 + 0.00833333333333331*G2_1_0_2_1_0 + 0.00833333333333331*G2_1_0_2_1_1 + 0.00833333333333331*G2_1_0_2_1_2 + 0.00833333333333331*G2_1_0_2_2_0 + 0.00833333333333331*G2_1_0_2_2_1 + 0.00833333333333331*G2_1_0_2_2_2 + 0.00833333333333331*G2_1_0_3_0_0 + 0.00833333333333331*G2_1_0_3_0_1 + 0.00833333333333331*G2_1_0_3_0_2 + 0.00833333333333331*G2_1_0_3_1_0 + 0.00833333333333331*G2_1_0_3_1_1 + 0.00833333333333331*G2_1_0_3_1_2 + 0.00833333333333331*G2_1_0_3_2_0 + 0.00833333333333331*G2_1_0_3_2_1 + 0.00833333333333331*G2_1_0_3_2_2 - 0.00833333333333331*G2_1_1_0_0_0 - 0.00833333333333331*G2_1_1_0_1_0 - 0.00833333333333331*G2_1_1_0_2_0 - 0.0166666666666666*G2_1_1_1_0_0 - 0.0166666666666666*G2_1_1_1_1_0 - 0.0166666666666666*G2_1_1_1_2_0 - 0.00833333333333331*G2_1_1_2_0_0 - 0.00833333333333331*G2_1_1_2_1_0 - 0.00833333333333331*G2_1_1_2_2_0 - 0.00833333333333331*G2_1_1_3_0_0 - 0.00833333333333331*G2_1_1_3_1_0 - 0.00833333333333331*G2_1_1_3_2_0 - 0.00833333333333331*G2_1_2_0_0_1 - 0.00833333333333331*G2_1_2_0_1_1 - 0.00833333333333331*G2_1_2_0_2_1 - 0.0166666666666666*G2_1_2_1_0_1 - 0.0166666666666666*G2_1_2_1_1_1 - 0.0166666666666666*G2_1_2_1_2_1 - 0.00833333333333331*G2_1_2_2_0_1 - 0.00833333333333331*G2_1_2_2_1_1 - 0.00833333333333331*G2_1_2_2_2_1 - 0.00833333333333331*G2_1_2_3_0_1 - 0.00833333333333331*G2_1_2_3_1_1 - 0.00833333333333331*G2_1_2_3_2_1 - 0.00833333333333331*G2_1_3_0_0_2 - 0.00833333333333331*G2_1_3_0_1_2 - 0.00833333333333331*G2_1_3_0_2_2 - 0.0166666666666666*G2_1_3_1_0_2 - 0.0166666666666666*G2_1_3_1_1_2 - 0.0166666666666666*G2_1_3_1_2_2 - 0.00833333333333331*G2_1_3_2_0_2 - 0.00833333333333331*G2_1_3_2_1_2 - 0.00833333333333331*G2_1_3_2_2_2 - 0.00833333333333331*G2_1_3_3_0_2 - 0.00833333333333331*G2_1_3_3_1_2 - 0.00833333333333331*G2_1_3_3_2_2 + 0.0083333333333333*G2_2_0_0_0_0 + 0.00833333333333331*G2_2_0_0_0_1 + 0.00833333333333331*G2_2_0_0_0_2 + 0.00833333333333331*G2_2_0_0_1_0 + 0.00833333333333331*G2_2_0_0_1_1 + 0.00833333333333331*G2_2_0_0_1_2 + 0.00833333333333331*G2_2_0_0_2_0 + 0.00833333333333331*G2_2_0_0_2_1 + 0.00833333333333331*G2_2_0_0_2_2 + 0.00833333333333331*G2_2_0_1_0_0 + 0.00833333333333331*G2_2_0_1_0_1 + 0.00833333333333331*G2_2_0_1_0_2 + 0.00833333333333331*G2_2_0_1_1_0 + 0.00833333333333331*G2_2_0_1_1_1 + 0.00833333333333331*G2_2_0_1_1_2 + 0.00833333333333331*G2_2_0_1_2_0 + 0.00833333333333331*G2_2_0_1_2_1 + 0.00833333333333331*G2_2_0_1_2_2 + 0.0166666666666666*G2_2_0_2_0_0 + 0.0166666666666666*G2_2_0_2_0_1 + 0.0166666666666666*G2_2_0_2_0_2 + 0.0166666666666666*G2_2_0_2_1_0 + 0.0166666666666666*G2_2_0_2_1_1 + 0.0166666666666666*G2_2_0_2_1_2 + 0.0166666666666666*G2_2_0_2_2_0 + 0.0166666666666666*G2_2_0_2_2_1 + 0.0166666666666666*G2_2_0_2_2_2 + 0.00833333333333331*G2_2_0_3_0_0 + 0.00833333333333331*G2_2_0_3_0_1 + 0.00833333333333331*G2_2_0_3_0_2 + 0.00833333333333331*G2_2_0_3_1_0 + 0.00833333333333331*G2_2_0_3_1_1 + 0.00833333333333331*G2_2_0_3_1_2 + 0.00833333333333331*G2_2_0_3_2_0 + 0.00833333333333331*G2_2_0_3_2_1 + 0.00833333333333331*G2_2_0_3_2_2 - 0.0083333333333333*G2_2_1_0_0_0 - 0.00833333333333331*G2_2_1_0_1_0 - 0.00833333333333331*G2_2_1_0_2_0 - 0.00833333333333331*G2_2_1_1_0_0 - 0.00833333333333331*G2_2_1_1_1_0 - 0.00833333333333331*G2_2_1_1_2_0 - 0.0166666666666666*G2_2_1_2_0_0 - 0.0166666666666666*G2_2_1_2_1_0 - 0.0166666666666666*G2_2_1_2_2_0 - 0.00833333333333331*G2_2_1_3_0_0 - 0.00833333333333331*G2_2_1_3_1_0 - 0.00833333333333331*G2_2_1_3_2_0 - 0.00833333333333331*G2_2_2_0_0_1 - 0.00833333333333331*G2_2_2_0_1_1 - 0.00833333333333331*G2_2_2_0_2_1 - 0.00833333333333331*G2_2_2_1_0_1 - 0.00833333333333331*G2_2_2_1_1_1 - 0.00833333333333331*G2_2_2_1_2_1 - 0.0166666666666666*G2_2_2_2_0_1 - 0.0166666666666666*G2_2_2_2_1_1 - 0.0166666666666666*G2_2_2_2_2_1 - 0.00833333333333331*G2_2_2_3_0_1 - 0.00833333333333331*G2_2_2_3_1_1 - 0.00833333333333331*G2_2_2_3_2_1 - 0.00833333333333331*G2_2_3_0_0_2 - 0.00833333333333331*G2_2_3_0_1_2 - 0.00833333333333331*G2_2_3_0_2_2 - 0.00833333333333331*G2_2_3_1_0_2 - 0.00833333333333331*G2_2_3_1_1_2 - 0.00833333333333331*G2_2_3_1_2_2 - 0.0166666666666666*G2_2_3_2_0_2 - 0.0166666666666666*G2_2_3_2_1_2 - 0.0166666666666666*G2_2_3_2_2_2 - 0.00833333333333331*G2_2_3_3_0_2 - 0.00833333333333331*G2_2_3_3_1_2 - 0.00833333333333331*G2_2_3_3_2_2 + 0.00833333333333331*G2_3_0_0_0_0 + 0.00833333333333331*G2_3_0_0_0_1 + 0.00833333333333331*G2_3_0_0_0_2 + 0.00833333333333331*G2_3_0_0_1_0 + 0.00833333333333331*G2_3_0_0_1_1 + 0.00833333333333331*G2_3_0_0_1_2 + 0.00833333333333331*G2_3_0_0_2_0 + 0.00833333333333331*G2_3_0_0_2_1 + 0.00833333333333331*G2_3_0_0_2_2 + 0.00833333333333331*G2_3_0_1_0_0 + 0.00833333333333331*G2_3_0_1_0_1 + 0.00833333333333331*G2_3_0_1_0_2 + 0.00833333333333331*G2_3_0_1_1_0 + 0.00833333333333331*G2_3_0_1_1_1 + 0.00833333333333331*G2_3_0_1_1_2 + 0.00833333333333331*G2_3_0_1_2_0 + 0.00833333333333331*G2_3_0_1_2_1 + 0.00833333333333331*G2_3_0_1_2_2 + 0.00833333333333331*G2_3_0_2_0_0 + 0.00833333333333331*G2_3_0_2_0_1 + 0.00833333333333331*G2_3_0_2_0_2 + 0.00833333333333331*G2_3_0_2_1_0 + 0.00833333333333331*G2_3_0_2_1_1 + 0.00833333333333331*G2_3_0_2_1_2 + 0.00833333333333331*G2_3_0_2_2_0 + 0.00833333333333331*G2_3_0_2_2_1 + 0.00833333333333331*G2_3_0_2_2_2 + 0.0166666666666666*G2_3_0_3_0_0 + 0.0166666666666666*G2_3_0_3_0_1 + 0.0166666666666666*G2_3_0_3_0_2 + 0.0166666666666666*G2_3_0_3_1_0 + 0.0166666666666666*G2_3_0_3_1_1 + 0.0166666666666666*G2_3_0_3_1_2 + 0.0166666666666666*G2_3_0_3_2_0 + 0.0166666666666666*G2_3_0_3_2_1 + 0.0166666666666666*G2_3_0_3_2_2 - 0.00833333333333331*G2_3_1_0_0_0 - 0.00833333333333331*G2_3_1_0_1_0 - 0.00833333333333331*G2_3_1_0_2_0 - 0.00833333333333331*G2_3_1_1_0_0 - 0.00833333333333331*G2_3_1_1_1_0 - 0.00833333333333331*G2_3_1_1_2_0 - 0.00833333333333331*G2_3_1_2_0_0 - 0.00833333333333331*G2_3_1_2_1_0 - 0.00833333333333331*G2_3_1_2_2_0 - 0.0166666666666666*G2_3_1_3_0_0 - 0.0166666666666666*G2_3_1_3_1_0 - 0.0166666666666666*G2_3_1_3_2_0 - 0.00833333333333331*G2_3_2_0_0_1 - 0.00833333333333331*G2_3_2_0_1_1 - 0.00833333333333331*G2_3_2_0_2_1 - 0.00833333333333331*G2_3_2_1_0_1 - 0.00833333333333331*G2_3_2_1_1_1 - 0.00833333333333331*G2_3_2_1_2_1 - 0.00833333333333331*G2_3_2_2_0_1 - 0.00833333333333331*G2_3_2_2_1_1 - 0.00833333333333331*G2_3_2_2_2_1 - 0.0166666666666666*G2_3_2_3_0_1 - 0.0166666666666666*G2_3_2_3_1_1 - 0.0166666666666666*G2_3_2_3_2_1 - 0.00833333333333331*G2_3_3_0_0_2 - 0.00833333333333331*G2_3_3_0_1_2 - 0.00833333333333331*G2_3_3_0_2_2 - 0.00833333333333331*G2_3_3_1_0_2 - 0.00833333333333331*G2_3_3_1_1_2 - 0.00833333333333331*G2_3_3_1_2_2 - 0.00833333333333331*G2_3_3_2_0_2 - 0.00833333333333331*G2_3_3_2_1_2 - 0.00833333333333331*G2_3_3_2_2_2 - 0.0166666666666666*G2_3_3_3_0_2 - 0.0166666666666666*G2_3_3_3_1_2 - 0.0166666666666666*G2_3_3_3_2_2 + 0.0166666666666666*G3_0_0_0_0_0 + 0.0166666666666666*G3_0_0_0_0_1 + 0.0166666666666666*G3_0_0_0_0_2 + 0.0166666666666666*G3_0_0_0_1_0 + 0.0166666666666666*G3_0_0_0_1_1 + 0.0166666666666666*G3_0_0_0_1_2 + 0.0166666666666666*G3_0_0_0_2_0 + 0.0166666666666666*G3_0_0_0_2_1 + 0.0166666666666666*G3_0_0_0_2_2 - 0.0166666666666666*G3_0_0_1_0_0 - 0.0166666666666666*G3_0_0_1_1_0 - 0.0166666666666666*G3_0_0_1_2_0 - 0.0166666666666666*G3_0_0_2_0_1 - 0.0166666666666666*G3_0_0_2_1_1 - 0.0166666666666666*G3_0_0_2_2_1 - 0.0166666666666666*G3_0_0_3_0_2 - 0.0166666666666666*G3_0_0_3_1_2 - 0.0166666666666666*G3_0_0_3_2_2 + 0.00833333333333331*G3_0_1_0_0_0 + 0.00833333333333331*G3_0_1_0_0_1 + 0.00833333333333331*G3_0_1_0_0_2 + 0.00833333333333331*G3_0_1_0_1_0 + 0.00833333333333331*G3_0_1_0_1_1 + 0.00833333333333331*G3_0_1_0_1_2 + 0.00833333333333331*G3_0_1_0_2_0 + 0.00833333333333331*G3_0_1_0_2_1 + 0.00833333333333331*G3_0_1_0_2_2 - 0.00833333333333331*G3_0_1_1_0_0 - 0.00833333333333331*G3_0_1_1_1_0 - 0.00833333333333331*G3_0_1_1_2_0 - 0.00833333333333331*G3_0_1_2_0_1 - 0.00833333333333331*G3_0_1_2_1_1 - 0.00833333333333331*G3_0_1_2_2_1 - 0.00833333333333331*G3_0_1_3_0_2 - 0.00833333333333331*G3_0_1_3_1_2 - 0.00833333333333331*G3_0_1_3_2_2 + 0.00833333333333331*G3_0_2_0_0_0 + 0.00833333333333331*G3_0_2_0_0_1 + 0.00833333333333331*G3_0_2_0_0_2 + 0.00833333333333331*G3_0_2_0_1_0 + 0.00833333333333331*G3_0_2_0_1_1 + 0.00833333333333331*G3_0_2_0_1_2 + 0.00833333333333331*G3_0_2_0_2_0 + 0.00833333333333331*G3_0_2_0_2_1 + 0.00833333333333331*G3_0_2_0_2_2 - 0.00833333333333331*G3_0_2_1_0_0 - 0.00833333333333331*G3_0_2_1_1_0 - 0.00833333333333331*G3_0_2_1_2_0 - 0.00833333333333331*G3_0_2_2_0_1 - 0.00833333333333331*G3_0_2_2_1_1 - 0.00833333333333331*G3_0_2_2_2_1 - 0.00833333333333331*G3_0_2_3_0_2 - 0.00833333333333331*G3_0_2_3_1_2 - 0.00833333333333331*G3_0_2_3_2_2 + 0.00833333333333331*G3_0_3_0_0_0 + 0.00833333333333331*G3_0_3_0_0_1 + 0.00833333333333331*G3_0_3_0_0_2 + 0.00833333333333331*G3_0_3_0_1_0 + 0.00833333333333331*G3_0_3_0_1_1 + 0.00833333333333331*G3_0_3_0_1_2 + 0.00833333333333331*G3_0_3_0_2_0 + 0.00833333333333331*G3_0_3_0_2_1 + 0.00833333333333331*G3_0_3_0_2_2 - 0.00833333333333331*G3_0_3_1_0_0 - 0.00833333333333331*G3_0_3_1_1_0 - 0.00833333333333331*G3_0_3_1_2_0 - 0.00833333333333331*G3_0_3_2_0_1 - 0.00833333333333331*G3_0_3_2_1_1 - 0.00833333333333331*G3_0_3_2_2_1 - 0.00833333333333331*G3_0_3_3_0_2 - 0.00833333333333331*G3_0_3_3_1_2 - 0.00833333333333331*G3_0_3_3_2_2 + 0.00833333333333331*G3_1_0_0_0_0 + 0.00833333333333331*G3_1_0_0_0_1 + 0.00833333333333331*G3_1_0_0_0_2 + 0.00833333333333331*G3_1_0_0_1_0 + 0.00833333333333331*G3_1_0_0_1_1 + 0.00833333333333331*G3_1_0_0_1_2 + 0.00833333333333331*G3_1_0_0_2_0 + 0.00833333333333331*G3_1_0_0_2_1 + 0.00833333333333331*G3_1_0_0_2_2 - 0.00833333333333331*G3_1_0_1_0_0 - 0.00833333333333331*G3_1_0_1_1_0 - 0.00833333333333331*G3_1_0_1_2_0 - 0.00833333333333331*G3_1_0_2_0_1 - 0.00833333333333331*G3_1_0_2_1_1 - 0.00833333333333331*G3_1_0_2_2_1 - 0.00833333333333331*G3_1_0_3_0_2 - 0.00833333333333331*G3_1_0_3_1_2 - 0.00833333333333331*G3_1_0_3_2_2 + 0.0166666666666666*G3_1_1_0_0_0 + 0.0166666666666666*G3_1_1_0_0_1 + 0.0166666666666666*G3_1_1_0_0_2 + 0.0166666666666666*G3_1_1_0_1_0 + 0.0166666666666666*G3_1_1_0_1_1 + 0.0166666666666666*G3_1_1_0_1_2 + 0.0166666666666666*G3_1_1_0_2_0 + 0.0166666666666666*G3_1_1_0_2_1 + 0.0166666666666666*G3_1_1_0_2_2 - 0.0166666666666666*G3_1_1_1_0_0 - 0.0166666666666666*G3_1_1_1_1_0 - 0.0166666666666666*G3_1_1_1_2_0 - 0.0166666666666666*G3_1_1_2_0_1 - 0.0166666666666666*G3_1_1_2_1_1 - 0.0166666666666666*G3_1_1_2_2_1 - 0.0166666666666666*G3_1_1_3_0_2 - 0.0166666666666666*G3_1_1_3_1_2 - 0.0166666666666666*G3_1_1_3_2_2 + 0.00833333333333331*G3_1_2_0_0_0 + 0.00833333333333331*G3_1_2_0_0_1 + 0.00833333333333331*G3_1_2_0_0_2 + 0.00833333333333331*G3_1_2_0_1_0 + 0.00833333333333331*G3_1_2_0_1_1 + 0.00833333333333331*G3_1_2_0_1_2 + 0.00833333333333331*G3_1_2_0_2_0 + 0.00833333333333331*G3_1_2_0_2_1 + 0.00833333333333331*G3_1_2_0_2_2 - 0.00833333333333331*G3_1_2_1_0_0 - 0.00833333333333331*G3_1_2_1_1_0 - 0.00833333333333331*G3_1_2_1_2_0 - 0.00833333333333331*G3_1_2_2_0_1 - 0.00833333333333331*G3_1_2_2_1_1 - 0.00833333333333331*G3_1_2_2_2_1 - 0.00833333333333331*G3_1_2_3_0_2 - 0.00833333333333331*G3_1_2_3_1_2 - 0.00833333333333331*G3_1_2_3_2_2 + 0.00833333333333331*G3_1_3_0_0_0 + 0.00833333333333331*G3_1_3_0_0_1 + 0.00833333333333331*G3_1_3_0_0_2 + 0.00833333333333331*G3_1_3_0_1_0 + 0.00833333333333331*G3_1_3_0_1_1 + 0.00833333333333331*G3_1_3_0_1_2 + 0.00833333333333331*G3_1_3_0_2_0 + 0.00833333333333331*G3_1_3_0_2_1 + 0.00833333333333331*G3_1_3_0_2_2 - 0.00833333333333331*G3_1_3_1_0_0 - 0.00833333333333331*G3_1_3_1_1_0 - 0.00833333333333331*G3_1_3_1_2_0 - 0.00833333333333331*G3_1_3_2_0_1 - 0.00833333333333331*G3_1_3_2_1_1 - 0.00833333333333331*G3_1_3_2_2_1 - 0.00833333333333331*G3_1_3_3_0_2 - 0.00833333333333331*G3_1_3_3_1_2 - 0.00833333333333331*G3_1_3_3_2_2 + 0.0083333333333333*G3_2_0_0_0_0 + 0.00833333333333331*G3_2_0_0_0_1 + 0.00833333333333331*G3_2_0_0_0_2 + 0.00833333333333331*G3_2_0_0_1_0 + 0.00833333333333331*G3_2_0_0_1_1 + 0.00833333333333331*G3_2_0_0_1_2 + 0.00833333333333331*G3_2_0_0_2_0 + 0.00833333333333331*G3_2_0_0_2_1 + 0.00833333333333331*G3_2_0_0_2_2 - 0.0083333333333333*G3_2_0_1_0_0 - 0.00833333333333331*G3_2_0_1_1_0 - 0.00833333333333331*G3_2_0_1_2_0 - 0.00833333333333331*G3_2_0_2_0_1 - 0.00833333333333331*G3_2_0_2_1_1 - 0.00833333333333331*G3_2_0_2_2_1 - 0.00833333333333331*G3_2_0_3_0_2 - 0.00833333333333331*G3_2_0_3_1_2 - 0.00833333333333331*G3_2_0_3_2_2 + 0.00833333333333331*G3_2_1_0_0_0 + 0.00833333333333331*G3_2_1_0_0_1 + 0.00833333333333331*G3_2_1_0_0_2 + 0.00833333333333331*G3_2_1_0_1_0 + 0.00833333333333331*G3_2_1_0_1_1 + 0.00833333333333331*G3_2_1_0_1_2 + 0.00833333333333331*G3_2_1_0_2_0 + 0.00833333333333331*G3_2_1_0_2_1 + 0.00833333333333331*G3_2_1_0_2_2 - 0.00833333333333331*G3_2_1_1_0_0 - 0.00833333333333331*G3_2_1_1_1_0 - 0.00833333333333331*G3_2_1_1_2_0 - 0.00833333333333331*G3_2_1_2_0_1 - 0.00833333333333331*G3_2_1_2_1_1 - 0.00833333333333331*G3_2_1_2_2_1 - 0.00833333333333331*G3_2_1_3_0_2 - 0.00833333333333331*G3_2_1_3_1_2 - 0.00833333333333331*G3_2_1_3_2_2 + 0.0166666666666666*G3_2_2_0_0_0 + 0.0166666666666666*G3_2_2_0_0_1 + 0.0166666666666666*G3_2_2_0_0_2 + 0.0166666666666666*G3_2_2_0_1_0 + 0.0166666666666666*G3_2_2_0_1_1 + 0.0166666666666666*G3_2_2_0_1_2 + 0.0166666666666666*G3_2_2_0_2_0 + 0.0166666666666666*G3_2_2_0_2_1 + 0.0166666666666666*G3_2_2_0_2_2 - 0.0166666666666666*G3_2_2_1_0_0 - 0.0166666666666666*G3_2_2_1_1_0 - 0.0166666666666666*G3_2_2_1_2_0 - 0.0166666666666666*G3_2_2_2_0_1 - 0.0166666666666666*G3_2_2_2_1_1 - 0.0166666666666666*G3_2_2_2_2_1 - 0.0166666666666666*G3_2_2_3_0_2 - 0.0166666666666666*G3_2_2_3_1_2 - 0.0166666666666666*G3_2_2_3_2_2 + 0.00833333333333331*G3_2_3_0_0_0 + 0.00833333333333331*G3_2_3_0_0_1 + 0.00833333333333331*G3_2_3_0_0_2 + 0.00833333333333331*G3_2_3_0_1_0 + 0.00833333333333331*G3_2_3_0_1_1 + 0.00833333333333331*G3_2_3_0_1_2 + 0.00833333333333331*G3_2_3_0_2_0 + 0.00833333333333331*G3_2_3_0_2_1 + 0.00833333333333331*G3_2_3_0_2_2 - 0.00833333333333331*G3_2_3_1_0_0 - 0.00833333333333331*G3_2_3_1_1_0 - 0.00833333333333331*G3_2_3_1_2_0 - 0.00833333333333331*G3_2_3_2_0_1 - 0.00833333333333331*G3_2_3_2_1_1 - 0.00833333333333331*G3_2_3_2_2_1 - 0.00833333333333331*G3_2_3_3_0_2 - 0.00833333333333331*G3_2_3_3_1_2 - 0.00833333333333331*G3_2_3_3_2_2 + 0.00833333333333331*G3_3_0_0_0_0 + 0.00833333333333331*G3_3_0_0_0_1 + 0.00833333333333331*G3_3_0_0_0_2 + 0.00833333333333331*G3_3_0_0_1_0 + 0.00833333333333331*G3_3_0_0_1_1 + 0.00833333333333331*G3_3_0_0_1_2 + 0.00833333333333331*G3_3_0_0_2_0 + 0.00833333333333331*G3_3_0_0_2_1 + 0.00833333333333331*G3_3_0_0_2_2 - 0.00833333333333331*G3_3_0_1_0_0 - 0.00833333333333331*G3_3_0_1_1_0 - 0.00833333333333331*G3_3_0_1_2_0 - 0.00833333333333331*G3_3_0_2_0_1 - 0.00833333333333331*G3_3_0_2_1_1 - 0.00833333333333331*G3_3_0_2_2_1 - 0.00833333333333331*G3_3_0_3_0_2 - 0.00833333333333331*G3_3_0_3_1_2 - 0.00833333333333331*G3_3_0_3_2_2 + 0.00833333333333331*G3_3_1_0_0_0 + 0.00833333333333331*G3_3_1_0_0_1 + 0.00833333333333331*G3_3_1_0_0_2 + 0.00833333333333331*G3_3_1_0_1_0 + 0.00833333333333331*G3_3_1_0_1_1 + 0.00833333333333331*G3_3_1_0_1_2 + 0.00833333333333331*G3_3_1_0_2_0 + 0.00833333333333331*G3_3_1_0_2_1 + 0.00833333333333331*G3_3_1_0_2_2 - 0.00833333333333331*G3_3_1_1_0_0 - 0.00833333333333331*G3_3_1_1_1_0 - 0.00833333333333331*G3_3_1_1_2_0 - 0.00833333333333331*G3_3_1_2_0_1 - 0.00833333333333331*G3_3_1_2_1_1 - 0.00833333333333331*G3_3_1_2_2_1 - 0.00833333333333331*G3_3_1_3_0_2 - 0.00833333333333331*G3_3_1_3_1_2 - 0.00833333333333331*G3_3_1_3_2_2 + 0.00833333333333331*G3_3_2_0_0_0 + 0.00833333333333331*G3_3_2_0_0_1 + 0.00833333333333331*G3_3_2_0_0_2 + 0.00833333333333331*G3_3_2_0_1_0 + 0.00833333333333331*G3_3_2_0_1_1 + 0.00833333333333331*G3_3_2_0_1_2 + 0.00833333333333331*G3_3_2_0_2_0 + 0.00833333333333331*G3_3_2_0_2_1 + 0.00833333333333331*G3_3_2_0_2_2 - 0.00833333333333331*G3_3_2_1_0_0 - 0.00833333333333331*G3_3_2_1_1_0 - 0.00833333333333331*G3_3_2_1_2_0 - 0.00833333333333331*G3_3_2_2_0_1 - 0.00833333333333331*G3_3_2_2_1_1 - 0.00833333333333331*G3_3_2_2_2_1 - 0.00833333333333331*G3_3_2_3_0_2 - 0.00833333333333331*G3_3_2_3_1_2 - 0.00833333333333331*G3_3_2_3_2_2 + 0.0166666666666666*G3_3_3_0_0_0 + 0.0166666666666666*G3_3_3_0_0_1 + 0.0166666666666666*G3_3_3_0_0_2 + 0.0166666666666666*G3_3_3_0_1_0 + 0.0166666666666666*G3_3_3_0_1_1 + 0.0166666666666666*G3_3_3_0_1_2 + 0.0166666666666666*G3_3_3_0_2_0 + 0.0166666666666666*G3_3_3_0_2_1 + 0.0166666666666666*G3_3_3_0_2_2 - 0.0166666666666666*G3_3_3_1_0_0 - 0.0166666666666666*G3_3_3_1_1_0 - 0.0166666666666666*G3_3_3_1_2_0 - 0.0166666666666666*G3_3_3_2_0_1 - 0.0166666666666666*G3_3_3_2_1_1 - 0.0166666666666666*G3_3_3_2_2_1 - 0.0166666666666666*G3_3_3_3_0_2 - 0.0166666666666666*G3_3_3_3_1_2 - 0.0166666666666666*G3_3_3_3_2_2 - 0.0416666666666666*G4_0_0_0_0 - 0.0416666666666666*G4_0_0_0_1 - 0.0416666666666666*G4_0_0_0_2 - 0.0416666666666666*G4_0_0_1_0 - 0.0416666666666666*G4_0_0_1_1 - 0.0416666666666666*G4_0_0_1_2 - 0.0416666666666666*G4_0_0_2_0 - 0.0416666666666666*G4_0_0_2_1 - 0.0416666666666666*G4_0_0_2_2 + 0.0416666666666666*G4_0_1_0_0 + 0.0416666666666666*G4_0_1_1_0 + 0.0416666666666666*G4_0_1_2_0 + 0.0416666666666666*G4_0_2_0_1 + 0.0416666666666666*G4_0_2_1_1 + 0.0416666666666666*G4_0_2_2_1 + 0.0416666666666666*G4_0_3_0_2 + 0.0416666666666666*G4_0_3_1_2 + 0.0416666666666666*G4_0_3_2_2 - 0.0416666666666666*G4_1_0_0_0 - 0.0416666666666666*G4_1_0_0_1 - 0.0416666666666666*G4_1_0_0_2 - 0.0416666666666666*G4_1_0_1_0 - 0.0416666666666666*G4_1_0_1_1 - 0.0416666666666666*G4_1_0_1_2 - 0.0416666666666666*G4_1_0_2_0 - 0.0416666666666666*G4_1_0_2_1 - 0.0416666666666666*G4_1_0_2_2 + 0.0416666666666666*G4_1_1_0_0 + 0.0416666666666666*G4_1_1_1_0 + 0.0416666666666666*G4_1_1_2_0 + 0.0416666666666666*G4_1_2_0_1 + 0.0416666666666666*G4_1_2_1_1 + 0.0416666666666666*G4_1_2_2_1 + 0.0416666666666666*G4_1_3_0_2 + 0.0416666666666666*G4_1_3_1_2 + 0.0416666666666666*G4_1_3_2_2 - 0.0416666666666666*G4_2_0_0_0 - 0.0416666666666666*G4_2_0_0_1 - 0.0416666666666666*G4_2_0_0_2 - 0.0416666666666666*G4_2_0_1_0 - 0.0416666666666666*G4_2_0_1_1 - 0.0416666666666666*G4_2_0_1_2 - 0.0416666666666666*G4_2_0_2_0 - 0.0416666666666666*G4_2_0_2_1 - 0.0416666666666666*G4_2_0_2_2 + 0.0416666666666666*G4_2_1_0_0 + 0.0416666666666666*G4_2_1_1_0 + 0.0416666666666666*G4_2_1_2_0 + 0.0416666666666666*G4_2_2_0_1 + 0.0416666666666666*G4_2_2_1_1 + 0.0416666666666666*G4_2_2_2_1 + 0.0416666666666666*G4_2_3_0_2 + 0.0416666666666666*G4_2_3_1_2 + 0.0416666666666666*G4_2_3_2_2 - 0.0416666666666666*G4_3_0_0_0 - 0.0416666666666666*G4_3_0_0_1 - 0.0416666666666666*G4_3_0_0_2 - 0.0416666666666666*G4_3_0_1_0 - 0.0416666666666666*G4_3_0_1_1 - 0.0416666666666666*G4_3_0_1_2 - 0.0416666666666666*G4_3_0_2_0 - 0.0416666666666666*G4_3_0_2_1 - 0.0416666666666666*G4_3_0_2_2 + 0.0416666666666666*G4_3_1_0_0 + 0.0416666666666666*G4_3_1_1_0 + 0.0416666666666666*G4_3_1_2_0 + 0.0416666666666666*G4_3_2_0_1 + 0.0416666666666666*G4_3_2_1_1 + 0.0416666666666666*G4_3_2_2_1 + 0.0416666666666666*G4_3_3_0_2 + 0.0416666666666666*G4_3_3_1_2 + 0.0416666666666666*G4_3_3_2_2 - 0.0166666666666666*G5_0_0_0_0_0 - 0.0166666666666666*G5_0_0_0_0_1 - 0.0166666666666666*G5_0_0_0_0_2 - 0.0166666666666666*G5_0_0_0_1_0 - 0.0166666666666666*G5_0_0_0_1_1 - 0.0166666666666666*G5_0_0_0_1_2 - 0.0166666666666666*G5_0_0_0_2_0 - 0.0166666666666666*G5_0_0_0_2_1 - 0.0166666666666666*G5_0_0_0_2_2 - 0.00833333333333331*G5_0_0_1_0_0 - 0.00833333333333331*G5_0_0_1_0_1 - 0.00833333333333331*G5_0_0_1_0_2 - 0.00833333333333331*G5_0_0_1_1_0 - 0.00833333333333331*G5_0_0_1_1_1 - 0.00833333333333331*G5_0_0_1_1_2 - 0.00833333333333331*G5_0_0_1_2_0 - 0.00833333333333331*G5_0_0_1_2_1 - 0.00833333333333331*G5_0_0_1_2_2 - 0.00833333333333331*G5_0_0_2_0_0 - 0.00833333333333331*G5_0_0_2_0_1 - 0.00833333333333331*G5_0_0_2_0_2 - 0.00833333333333331*G5_0_0_2_1_0 - 0.00833333333333331*G5_0_0_2_1_1 - 0.00833333333333331*G5_0_0_2_1_2 - 0.00833333333333331*G5_0_0_2_2_0 - 0.00833333333333331*G5_0_0_2_2_1 - 0.00833333333333331*G5_0_0_2_2_2 - 0.00833333333333331*G5_0_0_3_0_0 - 0.00833333333333331*G5_0_0_3_0_1 - 0.00833333333333331*G5_0_0_3_0_2 - 0.00833333333333331*G5_0_0_3_1_0 - 0.00833333333333331*G5_0_0_3_1_1 - 0.00833333333333331*G5_0_0_3_1_2 - 0.00833333333333331*G5_0_0_3_2_0 - 0.00833333333333331*G5_0_0_3_2_1 - 0.00833333333333331*G5_0_0_3_2_2 + 0.0166666666666666*G5_0_1_0_0_0 + 0.0166666666666666*G5_0_1_0_1_0 + 0.0166666666666666*G5_0_1_0_2_0 + 0.00833333333333331*G5_0_1_1_0_0 + 0.00833333333333331*G5_0_1_1_1_0 + 0.00833333333333331*G5_0_1_1_2_0 + 0.00833333333333331*G5_0_1_2_0_0 + 0.00833333333333331*G5_0_1_2_1_0 + 0.00833333333333331*G5_0_1_2_2_0 + 0.00833333333333331*G5_0_1_3_0_0 + 0.00833333333333331*G5_0_1_3_1_0 + 0.00833333333333331*G5_0_1_3_2_0 + 0.0166666666666666*G5_0_2_0_0_1 + 0.0166666666666666*G5_0_2_0_1_1 + 0.0166666666666666*G5_0_2_0_2_1 + 0.00833333333333331*G5_0_2_1_0_1 + 0.00833333333333331*G5_0_2_1_1_1 + 0.00833333333333331*G5_0_2_1_2_1 + 0.00833333333333331*G5_0_2_2_0_1 + 0.00833333333333331*G5_0_2_2_1_1 + 0.00833333333333331*G5_0_2_2_2_1 + 0.00833333333333331*G5_0_2_3_0_1 + 0.00833333333333331*G5_0_2_3_1_1 + 0.00833333333333331*G5_0_2_3_2_1 + 0.0166666666666666*G5_0_3_0_0_2 + 0.0166666666666666*G5_0_3_0_1_2 + 0.0166666666666666*G5_0_3_0_2_2 + 0.00833333333333331*G5_0_3_1_0_2 + 0.00833333333333331*G5_0_3_1_1_2 + 0.00833333333333331*G5_0_3_1_2_2 + 0.00833333333333331*G5_0_3_2_0_2 + 0.00833333333333331*G5_0_3_2_1_2 + 0.00833333333333331*G5_0_3_2_2_2 + 0.00833333333333331*G5_0_3_3_0_2 + 0.00833333333333331*G5_0_3_3_1_2 + 0.00833333333333331*G5_0_3_3_2_2 - 0.00833333333333331*G5_1_0_0_0_0 - 0.00833333333333331*G5_1_0_0_0_1 - 0.00833333333333331*G5_1_0_0_0_2 - 0.00833333333333331*G5_1_0_0_1_0 - 0.00833333333333331*G5_1_0_0_1_1 - 0.00833333333333331*G5_1_0_0_1_2 - 0.00833333333333331*G5_1_0_0_2_0 - 0.00833333333333331*G5_1_0_0_2_1 - 0.00833333333333331*G5_1_0_0_2_2 - 0.0166666666666666*G5_1_0_1_0_0 - 0.0166666666666666*G5_1_0_1_0_1 - 0.0166666666666666*G5_1_0_1_0_2 - 0.0166666666666666*G5_1_0_1_1_0 - 0.0166666666666666*G5_1_0_1_1_1 - 0.0166666666666666*G5_1_0_1_1_2 - 0.0166666666666666*G5_1_0_1_2_0 - 0.0166666666666666*G5_1_0_1_2_1 - 0.0166666666666666*G5_1_0_1_2_2 - 0.00833333333333331*G5_1_0_2_0_0 - 0.00833333333333331*G5_1_0_2_0_1 - 0.00833333333333331*G5_1_0_2_0_2 - 0.00833333333333331*G5_1_0_2_1_0 - 0.00833333333333331*G5_1_0_2_1_1 - 0.00833333333333331*G5_1_0_2_1_2 - 0.00833333333333331*G5_1_0_2_2_0 - 0.00833333333333331*G5_1_0_2_2_1 - 0.00833333333333331*G5_1_0_2_2_2 - 0.00833333333333331*G5_1_0_3_0_0 - 0.00833333333333331*G5_1_0_3_0_1 - 0.00833333333333331*G5_1_0_3_0_2 - 0.00833333333333331*G5_1_0_3_1_0 - 0.00833333333333331*G5_1_0_3_1_1 - 0.00833333333333331*G5_1_0_3_1_2 - 0.00833333333333331*G5_1_0_3_2_0 - 0.00833333333333331*G5_1_0_3_2_1 - 0.00833333333333331*G5_1_0_3_2_2 + 0.00833333333333331*G5_1_1_0_0_0 + 0.00833333333333331*G5_1_1_0_1_0 + 0.00833333333333331*G5_1_1_0_2_0 + 0.0166666666666666*G5_1_1_1_0_0 + 0.0166666666666666*G5_1_1_1_1_0 + 0.0166666666666666*G5_1_1_1_2_0 + 0.00833333333333331*G5_1_1_2_0_0 + 0.00833333333333331*G5_1_1_2_1_0 + 0.00833333333333331*G5_1_1_2_2_0 + 0.00833333333333331*G5_1_1_3_0_0 + 0.00833333333333331*G5_1_1_3_1_0 + 0.00833333333333331*G5_1_1_3_2_0 + 0.00833333333333331*G5_1_2_0_0_1 + 0.00833333333333331*G5_1_2_0_1_1 + 0.00833333333333331*G5_1_2_0_2_1 + 0.0166666666666666*G5_1_2_1_0_1 + 0.0166666666666666*G5_1_2_1_1_1 + 0.0166666666666666*G5_1_2_1_2_1 + 0.00833333333333331*G5_1_2_2_0_1 + 0.00833333333333331*G5_1_2_2_1_1 + 0.00833333333333331*G5_1_2_2_2_1 + 0.00833333333333331*G5_1_2_3_0_1 + 0.00833333333333331*G5_1_2_3_1_1 + 0.00833333333333331*G5_1_2_3_2_1 + 0.00833333333333331*G5_1_3_0_0_2 + 0.00833333333333331*G5_1_3_0_1_2 + 0.00833333333333331*G5_1_3_0_2_2 + 0.0166666666666666*G5_1_3_1_0_2 + 0.0166666666666666*G5_1_3_1_1_2 + 0.0166666666666666*G5_1_3_1_2_2 + 0.00833333333333331*G5_1_3_2_0_2 + 0.00833333333333331*G5_1_3_2_1_2 + 0.00833333333333331*G5_1_3_2_2_2 + 0.00833333333333331*G5_1_3_3_0_2 + 0.00833333333333331*G5_1_3_3_1_2 + 0.00833333333333331*G5_1_3_3_2_2 - 0.0083333333333333*G5_2_0_0_0_0 - 0.00833333333333331*G5_2_0_0_0_1 - 0.00833333333333331*G5_2_0_0_0_2 - 0.00833333333333331*G5_2_0_0_1_0 - 0.00833333333333331*G5_2_0_0_1_1 - 0.00833333333333331*G5_2_0_0_1_2 - 0.00833333333333331*G5_2_0_0_2_0 - 0.00833333333333331*G5_2_0_0_2_1 - 0.00833333333333331*G5_2_0_0_2_2 - 0.00833333333333331*G5_2_0_1_0_0 - 0.00833333333333331*G5_2_0_1_0_1 - 0.00833333333333331*G5_2_0_1_0_2 - 0.00833333333333331*G5_2_0_1_1_0 - 0.00833333333333331*G5_2_0_1_1_1 - 0.00833333333333331*G5_2_0_1_1_2 - 0.00833333333333331*G5_2_0_1_2_0 - 0.00833333333333331*G5_2_0_1_2_1 - 0.00833333333333331*G5_2_0_1_2_2 - 0.0166666666666666*G5_2_0_2_0_0 - 0.0166666666666666*G5_2_0_2_0_1 - 0.0166666666666666*G5_2_0_2_0_2 - 0.0166666666666666*G5_2_0_2_1_0 - 0.0166666666666666*G5_2_0_2_1_1 - 0.0166666666666666*G5_2_0_2_1_2 - 0.0166666666666666*G5_2_0_2_2_0 - 0.0166666666666666*G5_2_0_2_2_1 - 0.0166666666666666*G5_2_0_2_2_2 - 0.00833333333333331*G5_2_0_3_0_0 - 0.00833333333333331*G5_2_0_3_0_1 - 0.00833333333333331*G5_2_0_3_0_2 - 0.00833333333333331*G5_2_0_3_1_0 - 0.00833333333333331*G5_2_0_3_1_1 - 0.00833333333333331*G5_2_0_3_1_2 - 0.00833333333333331*G5_2_0_3_2_0 - 0.00833333333333331*G5_2_0_3_2_1 - 0.00833333333333331*G5_2_0_3_2_2 + 0.0083333333333333*G5_2_1_0_0_0 + 0.00833333333333331*G5_2_1_0_1_0 + 0.00833333333333331*G5_2_1_0_2_0 + 0.00833333333333331*G5_2_1_1_0_0 + 0.00833333333333331*G5_2_1_1_1_0 + 0.00833333333333331*G5_2_1_1_2_0 + 0.0166666666666666*G5_2_1_2_0_0 + 0.0166666666666666*G5_2_1_2_1_0 + 0.0166666666666666*G5_2_1_2_2_0 + 0.00833333333333331*G5_2_1_3_0_0 + 0.00833333333333331*G5_2_1_3_1_0 + 0.00833333333333331*G5_2_1_3_2_0 + 0.00833333333333331*G5_2_2_0_0_1 + 0.00833333333333331*G5_2_2_0_1_1 + 0.00833333333333331*G5_2_2_0_2_1 + 0.00833333333333331*G5_2_2_1_0_1 + 0.00833333333333331*G5_2_2_1_1_1 + 0.00833333333333331*G5_2_2_1_2_1 + 0.0166666666666666*G5_2_2_2_0_1 + 0.0166666666666666*G5_2_2_2_1_1 + 0.0166666666666666*G5_2_2_2_2_1 + 0.00833333333333331*G5_2_2_3_0_1 + 0.00833333333333331*G5_2_2_3_1_1 + 0.00833333333333331*G5_2_2_3_2_1 + 0.00833333333333331*G5_2_3_0_0_2 + 0.00833333333333331*G5_2_3_0_1_2 + 0.00833333333333331*G5_2_3_0_2_2 + 0.00833333333333331*G5_2_3_1_0_2 + 0.00833333333333331*G5_2_3_1_1_2 + 0.00833333333333331*G5_2_3_1_2_2 + 0.0166666666666666*G5_2_3_2_0_2 + 0.0166666666666666*G5_2_3_2_1_2 + 0.0166666666666666*G5_2_3_2_2_2 + 0.00833333333333331*G5_2_3_3_0_2 + 0.00833333333333331*G5_2_3_3_1_2 + 0.00833333333333331*G5_2_3_3_2_2 - 0.00833333333333331*G5_3_0_0_0_0 - 0.00833333333333331*G5_3_0_0_0_1 - 0.00833333333333331*G5_3_0_0_0_2 - 0.00833333333333331*G5_3_0_0_1_0 - 0.00833333333333331*G5_3_0_0_1_1 - 0.00833333333333331*G5_3_0_0_1_2 - 0.00833333333333331*G5_3_0_0_2_0 - 0.00833333333333331*G5_3_0_0_2_1 - 0.00833333333333331*G5_3_0_0_2_2 - 0.00833333333333331*G5_3_0_1_0_0 - 0.00833333333333331*G5_3_0_1_0_1 - 0.00833333333333331*G5_3_0_1_0_2 - 0.00833333333333331*G5_3_0_1_1_0 - 0.00833333333333331*G5_3_0_1_1_1 - 0.00833333333333331*G5_3_0_1_1_2 - 0.00833333333333331*G5_3_0_1_2_0 - 0.00833333333333331*G5_3_0_1_2_1 - 0.00833333333333331*G5_3_0_1_2_2 - 0.00833333333333331*G5_3_0_2_0_0 - 0.00833333333333331*G5_3_0_2_0_1 - 0.00833333333333331*G5_3_0_2_0_2 - 0.00833333333333331*G5_3_0_2_1_0 - 0.00833333333333331*G5_3_0_2_1_1 - 0.00833333333333331*G5_3_0_2_1_2 - 0.00833333333333331*G5_3_0_2_2_0 - 0.00833333333333331*G5_3_0_2_2_1 - 0.00833333333333331*G5_3_0_2_2_2 - 0.0166666666666666*G5_3_0_3_0_0 - 0.0166666666666666*G5_3_0_3_0_1 - 0.0166666666666666*G5_3_0_3_0_2 - 0.0166666666666666*G5_3_0_3_1_0 - 0.0166666666666666*G5_3_0_3_1_1 - 0.0166666666666666*G5_3_0_3_1_2 - 0.0166666666666666*G5_3_0_3_2_0 - 0.0166666666666666*G5_3_0_3_2_1 - 0.0166666666666666*G5_3_0_3_2_2 + 0.00833333333333331*G5_3_1_0_0_0 + 0.00833333333333331*G5_3_1_0_1_0 + 0.00833333333333331*G5_3_1_0_2_0 + 0.00833333333333331*G5_3_1_1_0_0 + 0.00833333333333331*G5_3_1_1_1_0 + 0.00833333333333331*G5_3_1_1_2_0 + 0.00833333333333331*G5_3_1_2_0_0 + 0.00833333333333331*G5_3_1_2_1_0 + 0.00833333333333331*G5_3_1_2_2_0 + 0.0166666666666666*G5_3_1_3_0_0 + 0.0166666666666666*G5_3_1_3_1_0 + 0.0166666666666666*G5_3_1_3_2_0 + 0.00833333333333331*G5_3_2_0_0_1 + 0.00833333333333331*G5_3_2_0_1_1 + 0.00833333333333331*G5_3_2_0_2_1 + 0.00833333333333331*G5_3_2_1_0_1 + 0.00833333333333331*G5_3_2_1_1_1 + 0.00833333333333331*G5_3_2_1_2_1 + 0.00833333333333331*G5_3_2_2_0_1 + 0.00833333333333331*G5_3_2_2_1_1 + 0.00833333333333331*G5_3_2_2_2_1 + 0.0166666666666666*G5_3_2_3_0_1 + 0.0166666666666666*G5_3_2_3_1_1 + 0.0166666666666666*G5_3_2_3_2_1 + 0.00833333333333331*G5_3_3_0_0_2 + 0.00833333333333331*G5_3_3_0_1_2 + 0.00833333333333331*G5_3_3_0_2_2 + 0.00833333333333331*G5_3_3_1_0_2 + 0.00833333333333331*G5_3_3_1_1_2 + 0.00833333333333331*G5_3_3_1_2_2 + 0.00833333333333331*G5_3_3_2_0_2 + 0.00833333333333331*G5_3_3_2_1_2 + 0.00833333333333331*G5_3_3_2_2_2 + 0.0166666666666666*G5_3_3_3_0_2 + 0.0166666666666666*G5_3_3_3_1_2 + 0.0166666666666666*G5_3_3_3_2_2 - 0.0166666666666666*G6_0_0_0_0_0 - 0.0166666666666666*G6_0_0_0_0_1 - 0.0166666666666666*G6_0_0_0_0_2 - 0.0166666666666666*G6_0_0_0_1_0 - 0.0166666666666666*G6_0_0_0_1_1 - 0.0166666666666666*G6_0_0_0_1_2 - 0.0166666666666666*G6_0_0_0_2_0 - 0.0166666666666666*G6_0_0_0_2_1 - 0.0166666666666666*G6_0_0_0_2_2 + 0.0166666666666666*G6_0_0_1_0_0 + 0.0166666666666666*G6_0_0_1_1_0 + 0.0166666666666666*G6_0_0_1_2_0 + 0.0166666666666666*G6_0_0_2_0_1 + 0.0166666666666666*G6_0_0_2_1_1 + 0.0166666666666666*G6_0_0_2_2_1 + 0.0166666666666666*G6_0_0_3_0_2 + 0.0166666666666666*G6_0_0_3_1_2 + 0.0166666666666666*G6_0_0_3_2_2 - 0.00833333333333331*G6_0_1_0_0_0 - 0.00833333333333331*G6_0_1_0_0_1 - 0.00833333333333331*G6_0_1_0_0_2 - 0.00833333333333331*G6_0_1_0_1_0 - 0.00833333333333331*G6_0_1_0_1_1 - 0.00833333333333331*G6_0_1_0_1_2 - 0.00833333333333331*G6_0_1_0_2_0 - 0.00833333333333331*G6_0_1_0_2_1 - 0.00833333333333331*G6_0_1_0_2_2 + 0.00833333333333331*G6_0_1_1_0_0 + 0.00833333333333331*G6_0_1_1_1_0 + 0.00833333333333331*G6_0_1_1_2_0 + 0.00833333333333331*G6_0_1_2_0_1 + 0.00833333333333331*G6_0_1_2_1_1 + 0.00833333333333331*G6_0_1_2_2_1 + 0.00833333333333331*G6_0_1_3_0_2 + 0.00833333333333331*G6_0_1_3_1_2 + 0.00833333333333331*G6_0_1_3_2_2 - 0.00833333333333331*G6_0_2_0_0_0 - 0.00833333333333331*G6_0_2_0_0_1 - 0.00833333333333331*G6_0_2_0_0_2 - 0.00833333333333331*G6_0_2_0_1_0 - 0.00833333333333331*G6_0_2_0_1_1 - 0.00833333333333331*G6_0_2_0_1_2 - 0.00833333333333331*G6_0_2_0_2_0 - 0.00833333333333331*G6_0_2_0_2_1 - 0.00833333333333331*G6_0_2_0_2_2 + 0.00833333333333331*G6_0_2_1_0_0 + 0.00833333333333331*G6_0_2_1_1_0 + 0.00833333333333331*G6_0_2_1_2_0 + 0.00833333333333331*G6_0_2_2_0_1 + 0.00833333333333331*G6_0_2_2_1_1 + 0.00833333333333331*G6_0_2_2_2_1 + 0.00833333333333331*G6_0_2_3_0_2 + 0.00833333333333331*G6_0_2_3_1_2 + 0.00833333333333331*G6_0_2_3_2_2 - 0.00833333333333331*G6_0_3_0_0_0 - 0.00833333333333331*G6_0_3_0_0_1 - 0.00833333333333331*G6_0_3_0_0_2 - 0.00833333333333331*G6_0_3_0_1_0 - 0.00833333333333331*G6_0_3_0_1_1 - 0.00833333333333331*G6_0_3_0_1_2 - 0.00833333333333331*G6_0_3_0_2_0 - 0.00833333333333331*G6_0_3_0_2_1 - 0.00833333333333331*G6_0_3_0_2_2 + 0.00833333333333331*G6_0_3_1_0_0 + 0.00833333333333331*G6_0_3_1_1_0 + 0.00833333333333331*G6_0_3_1_2_0 + 0.00833333333333331*G6_0_3_2_0_1 + 0.00833333333333331*G6_0_3_2_1_1 + 0.00833333333333331*G6_0_3_2_2_1 + 0.00833333333333331*G6_0_3_3_0_2 + 0.00833333333333331*G6_0_3_3_1_2 + 0.00833333333333331*G6_0_3_3_2_2 - 0.00833333333333331*G6_1_0_0_0_0 - 0.00833333333333331*G6_1_0_0_0_1 - 0.00833333333333331*G6_1_0_0_0_2 - 0.00833333333333331*G6_1_0_0_1_0 - 0.00833333333333331*G6_1_0_0_1_1 - 0.00833333333333331*G6_1_0_0_1_2 - 0.00833333333333331*G6_1_0_0_2_0 - 0.00833333333333331*G6_1_0_0_2_1 - 0.00833333333333331*G6_1_0_0_2_2 + 0.00833333333333331*G6_1_0_1_0_0 + 0.00833333333333331*G6_1_0_1_1_0 + 0.00833333333333331*G6_1_0_1_2_0 + 0.00833333333333331*G6_1_0_2_0_1 + 0.00833333333333331*G6_1_0_2_1_1 + 0.00833333333333331*G6_1_0_2_2_1 + 0.00833333333333331*G6_1_0_3_0_2 + 0.00833333333333331*G6_1_0_3_1_2 + 0.00833333333333331*G6_1_0_3_2_2 - 0.0166666666666666*G6_1_1_0_0_0 - 0.0166666666666666*G6_1_1_0_0_1 - 0.0166666666666666*G6_1_1_0_0_2 - 0.0166666666666666*G6_1_1_0_1_0 - 0.0166666666666666*G6_1_1_0_1_1 - 0.0166666666666666*G6_1_1_0_1_2 - 0.0166666666666666*G6_1_1_0_2_0 - 0.0166666666666666*G6_1_1_0_2_1 - 0.0166666666666666*G6_1_1_0_2_2 + 0.0166666666666666*G6_1_1_1_0_0 + 0.0166666666666666*G6_1_1_1_1_0 + 0.0166666666666666*G6_1_1_1_2_0 + 0.0166666666666666*G6_1_1_2_0_1 + 0.0166666666666666*G6_1_1_2_1_1 + 0.0166666666666666*G6_1_1_2_2_1 + 0.0166666666666666*G6_1_1_3_0_2 + 0.0166666666666666*G6_1_1_3_1_2 + 0.0166666666666666*G6_1_1_3_2_2 - 0.00833333333333331*G6_1_2_0_0_0 - 0.00833333333333331*G6_1_2_0_0_1 - 0.00833333333333331*G6_1_2_0_0_2 - 0.00833333333333331*G6_1_2_0_1_0 - 0.00833333333333331*G6_1_2_0_1_1 - 0.00833333333333331*G6_1_2_0_1_2 - 0.00833333333333331*G6_1_2_0_2_0 - 0.00833333333333331*G6_1_2_0_2_1 - 0.00833333333333331*G6_1_2_0_2_2 + 0.00833333333333331*G6_1_2_1_0_0 + 0.00833333333333331*G6_1_2_1_1_0 + 0.00833333333333331*G6_1_2_1_2_0 + 0.00833333333333331*G6_1_2_2_0_1 + 0.00833333333333331*G6_1_2_2_1_1 + 0.00833333333333331*G6_1_2_2_2_1 + 0.00833333333333331*G6_1_2_3_0_2 + 0.00833333333333331*G6_1_2_3_1_2 + 0.00833333333333331*G6_1_2_3_2_2 - 0.00833333333333331*G6_1_3_0_0_0 - 0.00833333333333331*G6_1_3_0_0_1 - 0.00833333333333331*G6_1_3_0_0_2 - 0.00833333333333331*G6_1_3_0_1_0 - 0.00833333333333331*G6_1_3_0_1_1 - 0.00833333333333331*G6_1_3_0_1_2 - 0.00833333333333331*G6_1_3_0_2_0 - 0.00833333333333331*G6_1_3_0_2_1 - 0.00833333333333331*G6_1_3_0_2_2 + 0.00833333333333331*G6_1_3_1_0_0 + 0.00833333333333331*G6_1_3_1_1_0 + 0.00833333333333331*G6_1_3_1_2_0 + 0.00833333333333331*G6_1_3_2_0_1 + 0.00833333333333331*G6_1_3_2_1_1 + 0.00833333333333331*G6_1_3_2_2_1 + 0.00833333333333331*G6_1_3_3_0_2 + 0.00833333333333331*G6_1_3_3_1_2 + 0.00833333333333331*G6_1_3_3_2_2 - 0.0083333333333333*G6_2_0_0_0_0 - 0.00833333333333331*G6_2_0_0_0_1 - 0.00833333333333331*G6_2_0_0_0_2 - 0.00833333333333331*G6_2_0_0_1_0 - 0.00833333333333331*G6_2_0_0_1_1 - 0.00833333333333331*G6_2_0_0_1_2 - 0.00833333333333331*G6_2_0_0_2_0 - 0.00833333333333331*G6_2_0_0_2_1 - 0.00833333333333331*G6_2_0_0_2_2 + 0.0083333333333333*G6_2_0_1_0_0 + 0.00833333333333331*G6_2_0_1_1_0 + 0.00833333333333331*G6_2_0_1_2_0 + 0.00833333333333331*G6_2_0_2_0_1 + 0.00833333333333331*G6_2_0_2_1_1 + 0.00833333333333331*G6_2_0_2_2_1 + 0.00833333333333331*G6_2_0_3_0_2 + 0.00833333333333331*G6_2_0_3_1_2 + 0.00833333333333331*G6_2_0_3_2_2 - 0.00833333333333331*G6_2_1_0_0_0 - 0.00833333333333331*G6_2_1_0_0_1 - 0.00833333333333331*G6_2_1_0_0_2 - 0.00833333333333331*G6_2_1_0_1_0 - 0.00833333333333331*G6_2_1_0_1_1 - 0.00833333333333331*G6_2_1_0_1_2 - 0.00833333333333331*G6_2_1_0_2_0 - 0.00833333333333331*G6_2_1_0_2_1 - 0.00833333333333331*G6_2_1_0_2_2 + 0.00833333333333331*G6_2_1_1_0_0 + 0.00833333333333331*G6_2_1_1_1_0 + 0.00833333333333331*G6_2_1_1_2_0 + 0.00833333333333331*G6_2_1_2_0_1 + 0.00833333333333331*G6_2_1_2_1_1 + 0.00833333333333331*G6_2_1_2_2_1 + 0.00833333333333331*G6_2_1_3_0_2 + 0.00833333333333331*G6_2_1_3_1_2 + 0.00833333333333331*G6_2_1_3_2_2 - 0.0166666666666666*G6_2_2_0_0_0 - 0.0166666666666666*G6_2_2_0_0_1 - 0.0166666666666666*G6_2_2_0_0_2 - 0.0166666666666666*G6_2_2_0_1_0 - 0.0166666666666666*G6_2_2_0_1_1 - 0.0166666666666666*G6_2_2_0_1_2 - 0.0166666666666666*G6_2_2_0_2_0 - 0.0166666666666666*G6_2_2_0_2_1 - 0.0166666666666666*G6_2_2_0_2_2 + 0.0166666666666666*G6_2_2_1_0_0 + 0.0166666666666666*G6_2_2_1_1_0 + 0.0166666666666666*G6_2_2_1_2_0 + 0.0166666666666666*G6_2_2_2_0_1 + 0.0166666666666666*G6_2_2_2_1_1 + 0.0166666666666666*G6_2_2_2_2_1 + 0.0166666666666666*G6_2_2_3_0_2 + 0.0166666666666666*G6_2_2_3_1_2 + 0.0166666666666666*G6_2_2_3_2_2 - 0.00833333333333331*G6_2_3_0_0_0 - 0.00833333333333331*G6_2_3_0_0_1 - 0.00833333333333331*G6_2_3_0_0_2 - 0.00833333333333331*G6_2_3_0_1_0 - 0.00833333333333331*G6_2_3_0_1_1 - 0.00833333333333331*G6_2_3_0_1_2 - 0.00833333333333331*G6_2_3_0_2_0 - 0.00833333333333331*G6_2_3_0_2_1 - 0.00833333333333331*G6_2_3_0_2_2 + 0.00833333333333331*G6_2_3_1_0_0 + 0.00833333333333331*G6_2_3_1_1_0 + 0.00833333333333331*G6_2_3_1_2_0 + 0.00833333333333331*G6_2_3_2_0_1 + 0.00833333333333331*G6_2_3_2_1_1 + 0.00833333333333331*G6_2_3_2_2_1 + 0.00833333333333331*G6_2_3_3_0_2 + 0.00833333333333331*G6_2_3_3_1_2 + 0.00833333333333331*G6_2_3_3_2_2 - 0.00833333333333331*G6_3_0_0_0_0 - 0.00833333333333331*G6_3_0_0_0_1 - 0.00833333333333331*G6_3_0_0_0_2 - 0.00833333333333331*G6_3_0_0_1_0 - 0.00833333333333331*G6_3_0_0_1_1 - 0.00833333333333331*G6_3_0_0_1_2 - 0.00833333333333331*G6_3_0_0_2_0 - 0.00833333333333331*G6_3_0_0_2_1 - 0.00833333333333331*G6_3_0_0_2_2 + 0.00833333333333331*G6_3_0_1_0_0 + 0.00833333333333331*G6_3_0_1_1_0 + 0.00833333333333331*G6_3_0_1_2_0 + 0.00833333333333331*G6_3_0_2_0_1 + 0.00833333333333331*G6_3_0_2_1_1 + 0.00833333333333331*G6_3_0_2_2_1 + 0.00833333333333331*G6_3_0_3_0_2 + 0.00833333333333331*G6_3_0_3_1_2 + 0.00833333333333331*G6_3_0_3_2_2 - 0.00833333333333331*G6_3_1_0_0_0 - 0.00833333333333331*G6_3_1_0_0_1 - 0.00833333333333331*G6_3_1_0_0_2 - 0.00833333333333331*G6_3_1_0_1_0 - 0.00833333333333331*G6_3_1_0_1_1 - 0.00833333333333331*G6_3_1_0_1_2 - 0.00833333333333331*G6_3_1_0_2_0 - 0.00833333333333331*G6_3_1_0_2_1 - 0.00833333333333331*G6_3_1_0_2_2 + 0.00833333333333331*G6_3_1_1_0_0 + 0.00833333333333331*G6_3_1_1_1_0 + 0.00833333333333331*G6_3_1_1_2_0 + 0.00833333333333331*G6_3_1_2_0_1 + 0.00833333333333331*G6_3_1_2_1_1 + 0.00833333333333331*G6_3_1_2_2_1 + 0.00833333333333331*G6_3_1_3_0_2 + 0.00833333333333331*G6_3_1_3_1_2 + 0.00833333333333331*G6_3_1_3_2_2 - 0.00833333333333331*G6_3_2_0_0_0 - 0.00833333333333331*G6_3_2_0_0_1 - 0.00833333333333331*G6_3_2_0_0_2 - 0.00833333333333331*G6_3_2_0_1_0 - 0.00833333333333331*G6_3_2_0_1_1 - 0.00833333333333331*G6_3_2_0_1_2 - 0.00833333333333331*G6_3_2_0_2_0 - 0.00833333333333331*G6_3_2_0_2_1 - 0.00833333333333331*G6_3_2_0_2_2 + 0.00833333333333331*G6_3_2_1_0_0 + 0.00833333333333331*G6_3_2_1_1_0 + 0.00833333333333331*G6_3_2_1_2_0 + 0.00833333333333331*G6_3_2_2_0_1 + 0.00833333333333331*G6_3_2_2_1_1 + 0.00833333333333331*G6_3_2_2_2_1 + 0.00833333333333331*G6_3_2_3_0_2 + 0.00833333333333331*G6_3_2_3_1_2 + 0.00833333333333331*G6_3_2_3_2_2 - 0.0166666666666666*G6_3_3_0_0_0 - 0.0166666666666666*G6_3_3_0_0_1 - 0.0166666666666666*G6_3_3_0_0_2 - 0.0166666666666666*G6_3_3_0_1_0 - 0.0166666666666666*G6_3_3_0_1_1 - 0.0166666666666666*G6_3_3_0_1_2 - 0.0166666666666666*G6_3_3_0_2_0 - 0.0166666666666666*G6_3_3_0_2_1 - 0.0166666666666666*G6_3_3_0_2_2 + 0.0166666666666666*G6_3_3_1_0_0 + 0.0166666666666666*G6_3_3_1_1_0 + 0.0166666666666666*G6_3_3_1_2_0 + 0.0166666666666666*G6_3_3_2_0_1 + 0.0166666666666666*G6_3_3_2_1_1 + 0.0166666666666666*G6_3_3_2_2_1 + 0.0166666666666666*G6_3_3_3_0_2 + 0.0166666666666666*G6_3_3_3_1_2 + 0.0166666666666666*G6_3_3_3_2_2;
+    A[5] = -0.00833333333333331*G0_4 - 0.0166666666666666*G0_5 - 0.00833333333333331*G0_6 - 0.00833333333333331*G0_7 + 0.00833333333333331*G1_4 + 0.0166666666666666*G1_5 + 0.00833333333333331*G1_6 + 0.00833333333333331*G1_7 - 0.0166666666666666*G2_0_0_0_0_0 - 0.0166666666666666*G2_0_0_0_0_1 - 0.0166666666666666*G2_0_0_0_0_2 - 0.00833333333333331*G2_0_0_1_0_0 - 0.00833333333333331*G2_0_0_1_0_1 - 0.00833333333333331*G2_0_0_1_0_2 - 0.00833333333333331*G2_0_0_2_0_0 - 0.00833333333333331*G2_0_0_2_0_1 - 0.00833333333333331*G2_0_0_2_0_2 - 0.00833333333333331*G2_0_0_3_0_0 - 0.00833333333333331*G2_0_0_3_0_1 - 0.00833333333333331*G2_0_0_3_0_2 + 0.0166666666666666*G2_0_1_0_0_0 + 0.00833333333333331*G2_0_1_1_0_0 + 0.00833333333333331*G2_0_1_2_0_0 + 0.00833333333333331*G2_0_1_3_0_0 + 0.0166666666666666*G2_0_2_0_0_1 + 0.00833333333333331*G2_0_2_1_0_1 + 0.00833333333333331*G2_0_2_2_0_1 + 0.00833333333333331*G2_0_2_3_0_1 + 0.0166666666666666*G2_0_3_0_0_2 + 0.00833333333333331*G2_0_3_1_0_2 + 0.00833333333333331*G2_0_3_2_0_2 + 0.00833333333333331*G2_0_3_3_0_2 - 0.00833333333333331*G2_1_0_0_0_0 - 0.00833333333333331*G2_1_0_0_0_1 - 0.00833333333333331*G2_1_0_0_0_2 - 0.0166666666666666*G2_1_0_1_0_0 - 0.0166666666666666*G2_1_0_1_0_1 - 0.0166666666666666*G2_1_0_1_0_2 - 0.00833333333333331*G2_1_0_2_0_0 - 0.00833333333333331*G2_1_0_2_0_1 - 0.00833333333333331*G2_1_0_2_0_2 - 0.00833333333333331*G2_1_0_3_0_0 - 0.00833333333333331*G2_1_0_3_0_1 - 0.00833333333333331*G2_1_0_3_0_2 + 0.00833333333333331*G2_1_1_0_0_0 + 0.0166666666666666*G2_1_1_1_0_0 + 0.00833333333333331*G2_1_1_2_0_0 + 0.00833333333333331*G2_1_1_3_0_0 + 0.00833333333333331*G2_1_2_0_0_1 + 0.0166666666666666*G2_1_2_1_0_1 + 0.00833333333333331*G2_1_2_2_0_1 + 0.00833333333333331*G2_1_2_3_0_1 + 0.00833333333333331*G2_1_3_0_0_2 + 0.0166666666666666*G2_1_3_1_0_2 + 0.00833333333333331*G2_1_3_2_0_2 + 0.00833333333333331*G2_1_3_3_0_2 - 0.0083333333333333*G2_2_0_0_0_0 - 0.00833333333333331*G2_2_0_0_0_1 - 0.00833333333333331*G2_2_0_0_0_2 - 0.00833333333333331*G2_2_0_1_0_0 - 0.00833333333333331*G2_2_0_1_0_1 - 0.00833333333333331*G2_2_0_1_0_2 - 0.0166666666666666*G2_2_0_2_0_0 - 0.0166666666666666*G2_2_0_2_0_1 - 0.0166666666666666*G2_2_0_2_0_2 - 0.00833333333333331*G2_2_0_3_0_0 - 0.00833333333333331*G2_2_0_3_0_1 - 0.00833333333333331*G2_2_0_3_0_2 + 0.0083333333333333*G2_2_1_0_0_0 + 0.00833333333333331*G2_2_1_1_0_0 + 0.0166666666666666*G2_2_1_2_0_0 + 0.00833333333333331*G2_2_1_3_0_0 + 0.00833333333333331*G2_2_2_0_0_1 + 0.00833333333333331*G2_2_2_1_0_1 + 0.0166666666666666*G2_2_2_2_0_1 + 0.00833333333333331*G2_2_2_3_0_1 + 0.00833333333333331*G2_2_3_0_0_2 + 0.00833333333333331*G2_2_3_1_0_2 + 0.0166666666666666*G2_2_3_2_0_2 + 0.00833333333333331*G2_2_3_3_0_2 - 0.00833333333333331*G2_3_0_0_0_0 - 0.00833333333333331*G2_3_0_0_0_1 - 0.00833333333333331*G2_3_0_0_0_2 - 0.00833333333333331*G2_3_0_1_0_0 - 0.00833333333333331*G2_3_0_1_0_1 - 0.00833333333333331*G2_3_0_1_0_2 - 0.00833333333333331*G2_3_0_2_0_0 - 0.00833333333333331*G2_3_0_2_0_1 - 0.00833333333333331*G2_3_0_2_0_2 - 0.0166666666666666*G2_3_0_3_0_0 - 0.0166666666666666*G2_3_0_3_0_1 - 0.0166666666666666*G2_3_0_3_0_2 + 0.00833333333333331*G2_3_1_0_0_0 + 0.00833333333333331*G2_3_1_1_0_0 + 0.00833333333333331*G2_3_1_2_0_0 + 0.0166666666666666*G2_3_1_3_0_0 + 0.00833333333333331*G2_3_2_0_0_1 + 0.00833333333333331*G2_3_2_1_0_1 + 0.00833333333333331*G2_3_2_2_0_1 + 0.0166666666666666*G2_3_2_3_0_1 + 0.00833333333333331*G2_3_3_0_0_2 + 0.00833333333333331*G2_3_3_1_0_2 + 0.00833333333333331*G2_3_3_2_0_2 + 0.0166666666666666*G2_3_3_3_0_2 - 0.0166666666666666*G3_0_0_0_0_0 - 0.0166666666666666*G3_0_0_0_0_1 - 0.0166666666666666*G3_0_0_0_0_2 + 0.0166666666666666*G3_0_0_1_0_0 + 0.0166666666666666*G3_0_0_2_0_1 + 0.0166666666666666*G3_0_0_3_0_2 - 0.00833333333333331*G3_0_1_0_0_0 - 0.00833333333333331*G3_0_1_0_0_1 - 0.00833333333333331*G3_0_1_0_0_2 + 0.00833333333333331*G3_0_1_1_0_0 + 0.00833333333333331*G3_0_1_2_0_1 + 0.00833333333333331*G3_0_1_3_0_2 - 0.00833333333333331*G3_0_2_0_0_0 - 0.00833333333333331*G3_0_2_0_0_1 - 0.00833333333333331*G3_0_2_0_0_2 + 0.00833333333333331*G3_0_2_1_0_0 + 0.00833333333333331*G3_0_2_2_0_1 + 0.00833333333333331*G3_0_2_3_0_2 - 0.00833333333333331*G3_0_3_0_0_0 - 0.00833333333333331*G3_0_3_0_0_1 - 0.00833333333333331*G3_0_3_0_0_2 + 0.00833333333333331*G3_0_3_1_0_0 + 0.00833333333333331*G3_0_3_2_0_1 + 0.00833333333333331*G3_0_3_3_0_2 - 0.00833333333333331*G3_1_0_0_0_0 - 0.00833333333333331*G3_1_0_0_0_1 - 0.00833333333333331*G3_1_0_0_0_2 + 0.00833333333333331*G3_1_0_1_0_0 + 0.00833333333333331*G3_1_0_2_0_1 + 0.00833333333333331*G3_1_0_3_0_2 - 0.0166666666666666*G3_1_1_0_0_0 - 0.0166666666666666*G3_1_1_0_0_1 - 0.0166666666666666*G3_1_1_0_0_2 + 0.0166666666666666*G3_1_1_1_0_0 + 0.0166666666666666*G3_1_1_2_0_1 + 0.0166666666666666*G3_1_1_3_0_2 - 0.00833333333333331*G3_1_2_0_0_0 - 0.00833333333333331*G3_1_2_0_0_1 - 0.00833333333333331*G3_1_2_0_0_2 + 0.00833333333333331*G3_1_2_1_0_0 + 0.00833333333333331*G3_1_2_2_0_1 + 0.00833333333333331*G3_1_2_3_0_2 - 0.00833333333333331*G3_1_3_0_0_0 - 0.00833333333333331*G3_1_3_0_0_1 - 0.00833333333333331*G3_1_3_0_0_2 + 0.00833333333333331*G3_1_3_1_0_0 + 0.00833333333333331*G3_1_3_2_0_1 + 0.00833333333333331*G3_1_3_3_0_2 - 0.0083333333333333*G3_2_0_0_0_0 - 0.00833333333333331*G3_2_0_0_0_1 - 0.00833333333333331*G3_2_0_0_0_2 + 0.0083333333333333*G3_2_0_1_0_0 + 0.00833333333333331*G3_2_0_2_0_1 + 0.00833333333333331*G3_2_0_3_0_2 - 0.00833333333333331*G3_2_1_0_0_0 - 0.00833333333333331*G3_2_1_0_0_1 - 0.00833333333333331*G3_2_1_0_0_2 + 0.00833333333333331*G3_2_1_1_0_0 + 0.00833333333333331*G3_2_1_2_0_1 + 0.00833333333333331*G3_2_1_3_0_2 - 0.0166666666666666*G3_2_2_0_0_0 - 0.0166666666666666*G3_2_2_0_0_1 - 0.0166666666666666*G3_2_2_0_0_2 + 0.0166666666666666*G3_2_2_1_0_0 + 0.0166666666666666*G3_2_2_2_0_1 + 0.0166666666666666*G3_2_2_3_0_2 - 0.00833333333333331*G3_2_3_0_0_0 - 0.00833333333333331*G3_2_3_0_0_1 - 0.00833333333333331*G3_2_3_0_0_2 + 0.00833333333333331*G3_2_3_1_0_0 + 0.00833333333333331*G3_2_3_2_0_1 + 0.00833333333333331*G3_2_3_3_0_2 - 0.00833333333333331*G3_3_0_0_0_0 - 0.00833333333333331*G3_3_0_0_0_1 - 0.00833333333333331*G3_3_0_0_0_2 + 0.00833333333333331*G3_3_0_1_0_0 + 0.00833333333333331*G3_3_0_2_0_1 + 0.00833333333333331*G3_3_0_3_0_2 - 0.00833333333333331*G3_3_1_0_0_0 - 0.00833333333333331*G3_3_1_0_0_1 - 0.00833333333333331*G3_3_1_0_0_2 + 0.00833333333333331*G3_3_1_1_0_0 + 0.00833333333333331*G3_3_1_2_0_1 + 0.00833333333333331*G3_3_1_3_0_2 - 0.00833333333333331*G3_3_2_0_0_0 - 0.00833333333333331*G3_3_2_0_0_1 - 0.00833333333333331*G3_3_2_0_0_2 + 0.00833333333333331*G3_3_2_1_0_0 + 0.00833333333333331*G3_3_2_2_0_1 + 0.00833333333333331*G3_3_2_3_0_2 - 0.0166666666666666*G3_3_3_0_0_0 - 0.0166666666666666*G3_3_3_0_0_1 - 0.0166666666666666*G3_3_3_0_0_2 + 0.0166666666666666*G3_3_3_1_0_0 + 0.0166666666666666*G3_3_3_2_0_1 + 0.0166666666666666*G3_3_3_3_0_2 + 0.0416666666666666*G4_0_0_0_0 + 0.0416666666666666*G4_0_0_0_1 + 0.0416666666666666*G4_0_0_0_2 - 0.0416666666666666*G4_0_1_0_0 - 0.0416666666666666*G4_0_2_0_1 - 0.0416666666666666*G4_0_3_0_2 + 0.0416666666666666*G4_1_0_0_0 + 0.0416666666666666*G4_1_0_0_1 + 0.0416666666666666*G4_1_0_0_2 - 0.0416666666666666*G4_1_1_0_0 - 0.0416666666666666*G4_1_2_0_1 - 0.0416666666666666*G4_1_3_0_2 + 0.0416666666666666*G4_2_0_0_0 + 0.0416666666666666*G4_2_0_0_1 + 0.0416666666666666*G4_2_0_0_2 - 0.0416666666666666*G4_2_1_0_0 - 0.0416666666666666*G4_2_2_0_1 - 0.0416666666666666*G4_2_3_0_2 + 0.0416666666666666*G4_3_0_0_0 + 0.0416666666666666*G4_3_0_0_1 + 0.0416666666666666*G4_3_0_0_2 - 0.0416666666666666*G4_3_1_0_0 - 0.0416666666666666*G4_3_2_0_1 - 0.0416666666666666*G4_3_3_0_2 + 0.0166666666666666*G5_0_0_0_0_0 + 0.0166666666666666*G5_0_0_0_0_1 + 0.0166666666666666*G5_0_0_0_0_2 + 0.00833333333333331*G5_0_0_1_0_0 + 0.00833333333333331*G5_0_0_1_0_1 + 0.00833333333333331*G5_0_0_1_0_2 + 0.00833333333333331*G5_0_0_2_0_0 + 0.00833333333333331*G5_0_0_2_0_1 + 0.00833333333333331*G5_0_0_2_0_2 + 0.00833333333333331*G5_0_0_3_0_0 + 0.00833333333333331*G5_0_0_3_0_1 + 0.00833333333333331*G5_0_0_3_0_2 - 0.0166666666666666*G5_0_1_0_0_0 - 0.00833333333333331*G5_0_1_1_0_0 - 0.00833333333333331*G5_0_1_2_0_0 - 0.00833333333333331*G5_0_1_3_0_0 - 0.0166666666666666*G5_0_2_0_0_1 - 0.00833333333333331*G5_0_2_1_0_1 - 0.00833333333333331*G5_0_2_2_0_1 - 0.00833333333333331*G5_0_2_3_0_1 - 0.0166666666666666*G5_0_3_0_0_2 - 0.00833333333333331*G5_0_3_1_0_2 - 0.00833333333333331*G5_0_3_2_0_2 - 0.00833333333333331*G5_0_3_3_0_2 + 0.00833333333333331*G5_1_0_0_0_0 + 0.00833333333333331*G5_1_0_0_0_1 + 0.00833333333333331*G5_1_0_0_0_2 + 0.0166666666666666*G5_1_0_1_0_0 + 0.0166666666666666*G5_1_0_1_0_1 + 0.0166666666666666*G5_1_0_1_0_2 + 0.00833333333333331*G5_1_0_2_0_0 + 0.00833333333333331*G5_1_0_2_0_1 + 0.00833333333333331*G5_1_0_2_0_2 + 0.00833333333333331*G5_1_0_3_0_0 + 0.00833333333333331*G5_1_0_3_0_1 + 0.00833333333333331*G5_1_0_3_0_2 - 0.00833333333333331*G5_1_1_0_0_0 - 0.0166666666666666*G5_1_1_1_0_0 - 0.00833333333333331*G5_1_1_2_0_0 - 0.00833333333333331*G5_1_1_3_0_0 - 0.00833333333333331*G5_1_2_0_0_1 - 0.0166666666666666*G5_1_2_1_0_1 - 0.00833333333333331*G5_1_2_2_0_1 - 0.00833333333333331*G5_1_2_3_0_1 - 0.00833333333333331*G5_1_3_0_0_2 - 0.0166666666666666*G5_1_3_1_0_2 - 0.00833333333333331*G5_1_3_2_0_2 - 0.00833333333333331*G5_1_3_3_0_2 + 0.0083333333333333*G5_2_0_0_0_0 + 0.00833333333333331*G5_2_0_0_0_1 + 0.00833333333333331*G5_2_0_0_0_2 + 0.00833333333333331*G5_2_0_1_0_0 + 0.00833333333333331*G5_2_0_1_0_1 + 0.00833333333333331*G5_2_0_1_0_2 + 0.0166666666666666*G5_2_0_2_0_0 + 0.0166666666666666*G5_2_0_2_0_1 + 0.0166666666666666*G5_2_0_2_0_2 + 0.00833333333333331*G5_2_0_3_0_0 + 0.00833333333333331*G5_2_0_3_0_1 + 0.00833333333333331*G5_2_0_3_0_2 - 0.0083333333333333*G5_2_1_0_0_0 - 0.00833333333333331*G5_2_1_1_0_0 - 0.0166666666666666*G5_2_1_2_0_0 - 0.00833333333333331*G5_2_1_3_0_0 - 0.00833333333333331*G5_2_2_0_0_1 - 0.00833333333333331*G5_2_2_1_0_1 - 0.0166666666666666*G5_2_2_2_0_1 - 0.00833333333333331*G5_2_2_3_0_1 - 0.00833333333333331*G5_2_3_0_0_2 - 0.00833333333333331*G5_2_3_1_0_2 - 0.0166666666666666*G5_2_3_2_0_2 - 0.00833333333333331*G5_2_3_3_0_2 + 0.00833333333333331*G5_3_0_0_0_0 + 0.00833333333333331*G5_3_0_0_0_1 + 0.00833333333333331*G5_3_0_0_0_2 + 0.00833333333333331*G5_3_0_1_0_0 + 0.00833333333333331*G5_3_0_1_0_1 + 0.00833333333333331*G5_3_0_1_0_2 + 0.00833333333333331*G5_3_0_2_0_0 + 0.00833333333333331*G5_3_0_2_0_1 + 0.00833333333333331*G5_3_0_2_0_2 + 0.0166666666666666*G5_3_0_3_0_0 + 0.0166666666666666*G5_3_0_3_0_1 + 0.0166666666666666*G5_3_0_3_0_2 - 0.00833333333333331*G5_3_1_0_0_0 - 0.00833333333333331*G5_3_1_1_0_0 - 0.00833333333333331*G5_3_1_2_0_0 - 0.0166666666666666*G5_3_1_3_0_0 - 0.00833333333333331*G5_3_2_0_0_1 - 0.00833333333333331*G5_3_2_1_0_1 - 0.00833333333333331*G5_3_2_2_0_1 - 0.0166666666666666*G5_3_2_3_0_1 - 0.00833333333333331*G5_3_3_0_0_2 - 0.00833333333333331*G5_3_3_1_0_2 - 0.00833333333333331*G5_3_3_2_0_2 - 0.0166666666666666*G5_3_3_3_0_2 + 0.0166666666666666*G6_0_0_0_0_0 + 0.0166666666666666*G6_0_0_0_0_1 + 0.0166666666666666*G6_0_0_0_0_2 - 0.0166666666666666*G6_0_0_1_0_0 - 0.0166666666666666*G6_0_0_2_0_1 - 0.0166666666666666*G6_0_0_3_0_2 + 0.00833333333333331*G6_0_1_0_0_0 + 0.00833333333333331*G6_0_1_0_0_1 + 0.00833333333333331*G6_0_1_0_0_2 - 0.00833333333333331*G6_0_1_1_0_0 - 0.00833333333333331*G6_0_1_2_0_1 - 0.00833333333333331*G6_0_1_3_0_2 + 0.00833333333333331*G6_0_2_0_0_0 + 0.00833333333333331*G6_0_2_0_0_1 + 0.00833333333333331*G6_0_2_0_0_2 - 0.00833333333333331*G6_0_2_1_0_0 - 0.00833333333333331*G6_0_2_2_0_1 - 0.00833333333333331*G6_0_2_3_0_2 + 0.00833333333333331*G6_0_3_0_0_0 + 0.00833333333333331*G6_0_3_0_0_1 + 0.00833333333333331*G6_0_3_0_0_2 - 0.00833333333333331*G6_0_3_1_0_0 - 0.00833333333333331*G6_0_3_2_0_1 - 0.00833333333333331*G6_0_3_3_0_2 + 0.00833333333333331*G6_1_0_0_0_0 + 0.00833333333333331*G6_1_0_0_0_1 + 0.00833333333333331*G6_1_0_0_0_2 - 0.00833333333333331*G6_1_0_1_0_0 - 0.00833333333333331*G6_1_0_2_0_1 - 0.00833333333333331*G6_1_0_3_0_2 + 0.0166666666666666*G6_1_1_0_0_0 + 0.0166666666666666*G6_1_1_0_0_1 + 0.0166666666666666*G6_1_1_0_0_2 - 0.0166666666666666*G6_1_1_1_0_0 - 0.0166666666666666*G6_1_1_2_0_1 - 0.0166666666666666*G6_1_1_3_0_2 + 0.00833333333333331*G6_1_2_0_0_0 + 0.00833333333333331*G6_1_2_0_0_1 + 0.00833333333333331*G6_1_2_0_0_2 - 0.00833333333333331*G6_1_2_1_0_0 - 0.00833333333333331*G6_1_2_2_0_1 - 0.00833333333333331*G6_1_2_3_0_2 + 0.00833333333333331*G6_1_3_0_0_0 + 0.00833333333333331*G6_1_3_0_0_1 + 0.00833333333333331*G6_1_3_0_0_2 - 0.00833333333333331*G6_1_3_1_0_0 - 0.00833333333333331*G6_1_3_2_0_1 - 0.00833333333333331*G6_1_3_3_0_2 + 0.0083333333333333*G6_2_0_0_0_0 + 0.00833333333333331*G6_2_0_0_0_1 + 0.00833333333333331*G6_2_0_0_0_2 - 0.0083333333333333*G6_2_0_1_0_0 - 0.00833333333333331*G6_2_0_2_0_1 - 0.00833333333333331*G6_2_0_3_0_2 + 0.00833333333333331*G6_2_1_0_0_0 + 0.00833333333333331*G6_2_1_0_0_1 + 0.00833333333333331*G6_2_1_0_0_2 - 0.00833333333333331*G6_2_1_1_0_0 - 0.00833333333333331*G6_2_1_2_0_1 - 0.00833333333333331*G6_2_1_3_0_2 + 0.0166666666666666*G6_2_2_0_0_0 + 0.0166666666666666*G6_2_2_0_0_1 + 0.0166666666666666*G6_2_2_0_0_2 - 0.0166666666666666*G6_2_2_1_0_0 - 0.0166666666666666*G6_2_2_2_0_1 - 0.0166666666666666*G6_2_2_3_0_2 + 0.00833333333333331*G6_2_3_0_0_0 + 0.00833333333333331*G6_2_3_0_0_1 + 0.00833333333333331*G6_2_3_0_0_2 - 0.00833333333333331*G6_2_3_1_0_0 - 0.00833333333333331*G6_2_3_2_0_1 - 0.00833333333333331*G6_2_3_3_0_2 + 0.00833333333333331*G6_3_0_0_0_0 + 0.00833333333333331*G6_3_0_0_0_1 + 0.00833333333333331*G6_3_0_0_0_2 - 0.00833333333333331*G6_3_0_1_0_0 - 0.00833333333333331*G6_3_0_2_0_1 - 0.00833333333333331*G6_3_0_3_0_2 + 0.00833333333333331*G6_3_1_0_0_0 + 0.00833333333333331*G6_3_1_0_0_1 + 0.00833333333333331*G6_3_1_0_0_2 - 0.00833333333333331*G6_3_1_1_0_0 - 0.00833333333333331*G6_3_1_2_0_1 - 0.00833333333333331*G6_3_1_3_0_2 + 0.00833333333333331*G6_3_2_0_0_0 + 0.00833333333333331*G6_3_2_0_0_1 + 0.00833333333333331*G6_3_2_0_0_2 - 0.00833333333333331*G6_3_2_1_0_0 - 0.00833333333333331*G6_3_2_2_0_1 - 0.00833333333333331*G6_3_2_3_0_2 + 0.0166666666666666*G6_3_3_0_0_0 + 0.0166666666666666*G6_3_3_0_0_1 + 0.0166666666666666*G6_3_3_0_0_2 - 0.0166666666666666*G6_3_3_1_0_0 - 0.0166666666666666*G6_3_3_2_0_1 - 0.0166666666666666*G6_3_3_3_0_2;
+    A[6] = -0.00833333333333331*G0_4 - 0.00833333333333331*G0_5 - 0.0166666666666666*G0_6 - 0.00833333333333331*G0_7 + 0.00833333333333331*G1_4 + 0.00833333333333331*G1_5 + 0.0166666666666666*G1_6 + 0.00833333333333331*G1_7 - 0.0166666666666666*G2_0_0_0_1_0 - 0.0166666666666666*G2_0_0_0_1_1 - 0.0166666666666666*G2_0_0_0_1_2 - 0.00833333333333331*G2_0_0_1_1_0 - 0.00833333333333331*G2_0_0_1_1_1 - 0.00833333333333331*G2_0_0_1_1_2 - 0.00833333333333331*G2_0_0_2_1_0 - 0.00833333333333331*G2_0_0_2_1_1 - 0.00833333333333331*G2_0_0_2_1_2 - 0.00833333333333331*G2_0_0_3_1_0 - 0.00833333333333331*G2_0_0_3_1_1 - 0.00833333333333331*G2_0_0_3_1_2 + 0.0166666666666666*G2_0_1_0_1_0 + 0.00833333333333331*G2_0_1_1_1_0 + 0.00833333333333331*G2_0_1_2_1_0 + 0.00833333333333331*G2_0_1_3_1_0 + 0.0166666666666666*G2_0_2_0_1_1 + 0.00833333333333331*G2_0_2_1_1_1 + 0.00833333333333331*G2_0_2_2_1_1 + 0.00833333333333331*G2_0_2_3_1_1 + 0.0166666666666666*G2_0_3_0_1_2 + 0.00833333333333331*G2_0_3_1_1_2 + 0.00833333333333331*G2_0_3_2_1_2 + 0.00833333333333331*G2_0_3_3_1_2 - 0.00833333333333331*G2_1_0_0_1_0 - 0.00833333333333331*G2_1_0_0_1_1 - 0.00833333333333331*G2_1_0_0_1_2 - 0.0166666666666666*G2_1_0_1_1_0 - 0.0166666666666666*G2_1_0_1_1_1 - 0.0166666666666666*G2_1_0_1_1_2 - 0.00833333333333331*G2_1_0_2_1_0 - 0.00833333333333331*G2_1_0_2_1_1 - 0.00833333333333331*G2_1_0_2_1_2 - 0.00833333333333331*G2_1_0_3_1_0 - 0.00833333333333331*G2_1_0_3_1_1 - 0.00833333333333331*G2_1_0_3_1_2 + 0.00833333333333331*G2_1_1_0_1_0 + 0.0166666666666666*G2_1_1_1_1_0 + 0.00833333333333331*G2_1_1_2_1_0 + 0.00833333333333331*G2_1_1_3_1_0 + 0.00833333333333331*G2_1_2_0_1_1 + 0.0166666666666666*G2_1_2_1_1_1 + 0.00833333333333331*G2_1_2_2_1_1 + 0.00833333333333331*G2_1_2_3_1_1 + 0.00833333333333331*G2_1_3_0_1_2 + 0.0166666666666666*G2_1_3_1_1_2 + 0.00833333333333331*G2_1_3_2_1_2 + 0.00833333333333331*G2_1_3_3_1_2 - 0.00833333333333331*G2_2_0_0_1_0 - 0.00833333333333331*G2_2_0_0_1_1 - 0.00833333333333331*G2_2_0_0_1_2 - 0.00833333333333331*G2_2_0_1_1_0 - 0.00833333333333331*G2_2_0_1_1_1 - 0.00833333333333331*G2_2_0_1_1_2 - 0.0166666666666666*G2_2_0_2_1_0 - 0.0166666666666666*G2_2_0_2_1_1 - 0.0166666666666666*G2_2_0_2_1_2 - 0.00833333333333331*G2_2_0_3_1_0 - 0.00833333333333331*G2_2_0_3_1_1 - 0.00833333333333331*G2_2_0_3_1_2 + 0.00833333333333331*G2_2_1_0_1_0 + 0.00833333333333331*G2_2_1_1_1_0 + 0.0166666666666666*G2_2_1_2_1_0 + 0.00833333333333331*G2_2_1_3_1_0 + 0.00833333333333331*G2_2_2_0_1_1 + 0.00833333333333331*G2_2_2_1_1_1 + 0.0166666666666666*G2_2_2_2_1_1 + 0.00833333333333331*G2_2_2_3_1_1 + 0.00833333333333331*G2_2_3_0_1_2 + 0.00833333333333331*G2_2_3_1_1_2 + 0.0166666666666666*G2_2_3_2_1_2 + 0.00833333333333331*G2_2_3_3_1_2 - 0.00833333333333331*G2_3_0_0_1_0 - 0.00833333333333331*G2_3_0_0_1_1 - 0.00833333333333331*G2_3_0_0_1_2 - 0.00833333333333331*G2_3_0_1_1_0 - 0.00833333333333331*G2_3_0_1_1_1 - 0.00833333333333331*G2_3_0_1_1_2 - 0.00833333333333331*G2_3_0_2_1_0 - 0.00833333333333331*G2_3_0_2_1_1 - 0.00833333333333331*G2_3_0_2_1_2 - 0.0166666666666666*G2_3_0_3_1_0 - 0.0166666666666666*G2_3_0_3_1_1 - 0.0166666666666666*G2_3_0_3_1_2 + 0.00833333333333331*G2_3_1_0_1_0 + 0.00833333333333331*G2_3_1_1_1_0 + 0.00833333333333331*G2_3_1_2_1_0 + 0.0166666666666666*G2_3_1_3_1_0 + 0.00833333333333331*G2_3_2_0_1_1 + 0.00833333333333331*G2_3_2_1_1_1 + 0.00833333333333331*G2_3_2_2_1_1 + 0.0166666666666666*G2_3_2_3_1_1 + 0.00833333333333331*G2_3_3_0_1_2 + 0.00833333333333331*G2_3_3_1_1_2 + 0.00833333333333331*G2_3_3_2_1_2 + 0.0166666666666666*G2_3_3_3_1_2 - 0.0166666666666666*G3_0_0_0_1_0 - 0.0166666666666666*G3_0_0_0_1_1 - 0.0166666666666666*G3_0_0_0_1_2 + 0.0166666666666666*G3_0_0_1_1_0 + 0.0166666666666666*G3_0_0_2_1_1 + 0.0166666666666666*G3_0_0_3_1_2 - 0.00833333333333331*G3_0_1_0_1_0 - 0.00833333333333331*G3_0_1_0_1_1 - 0.00833333333333331*G3_0_1_0_1_2 + 0.00833333333333331*G3_0_1_1_1_0 + 0.00833333333333331*G3_0_1_2_1_1 + 0.00833333333333331*G3_0_1_3_1_2 - 0.00833333333333331*G3_0_2_0_1_0 - 0.00833333333333331*G3_0_2_0_1_1 - 0.00833333333333331*G3_0_2_0_1_2 + 0.00833333333333331*G3_0_2_1_1_0 + 0.00833333333333331*G3_0_2_2_1_1 + 0.00833333333333331*G3_0_2_3_1_2 - 0.00833333333333331*G3_0_3_0_1_0 - 0.00833333333333331*G3_0_3_0_1_1 - 0.00833333333333331*G3_0_3_0_1_2 + 0.00833333333333331*G3_0_3_1_1_0 + 0.00833333333333331*G3_0_3_2_1_1 + 0.00833333333333331*G3_0_3_3_1_2 - 0.00833333333333331*G3_1_0_0_1_0 - 0.00833333333333331*G3_1_0_0_1_1 - 0.00833333333333331*G3_1_0_0_1_2 + 0.00833333333333331*G3_1_0_1_1_0 + 0.00833333333333331*G3_1_0_2_1_1 + 0.00833333333333331*G3_1_0_3_1_2 - 0.0166666666666666*G3_1_1_0_1_0 - 0.0166666666666666*G3_1_1_0_1_1 - 0.0166666666666666*G3_1_1_0_1_2 + 0.0166666666666666*G3_1_1_1_1_0 + 0.0166666666666666*G3_1_1_2_1_1 + 0.0166666666666666*G3_1_1_3_1_2 - 0.00833333333333331*G3_1_2_0_1_0 - 0.00833333333333331*G3_1_2_0_1_1 - 0.00833333333333331*G3_1_2_0_1_2 + 0.00833333333333331*G3_1_2_1_1_0 + 0.00833333333333331*G3_1_2_2_1_1 + 0.00833333333333331*G3_1_2_3_1_2 - 0.00833333333333331*G3_1_3_0_1_0 - 0.00833333333333331*G3_1_3_0_1_1 - 0.00833333333333331*G3_1_3_0_1_2 + 0.00833333333333331*G3_1_3_1_1_0 + 0.00833333333333331*G3_1_3_2_1_1 + 0.00833333333333331*G3_1_3_3_1_2 - 0.00833333333333331*G3_2_0_0_1_0 - 0.00833333333333331*G3_2_0_0_1_1 - 0.00833333333333331*G3_2_0_0_1_2 + 0.00833333333333331*G3_2_0_1_1_0 + 0.00833333333333331*G3_2_0_2_1_1 + 0.00833333333333331*G3_2_0_3_1_2 - 0.00833333333333331*G3_2_1_0_1_0 - 0.00833333333333331*G3_2_1_0_1_1 - 0.00833333333333331*G3_2_1_0_1_2 + 0.00833333333333331*G3_2_1_1_1_0 + 0.00833333333333331*G3_2_1_2_1_1 + 0.00833333333333331*G3_2_1_3_1_2 - 0.0166666666666666*G3_2_2_0_1_0 - 0.0166666666666666*G3_2_2_0_1_1 - 0.0166666666666666*G3_2_2_0_1_2 + 0.0166666666666666*G3_2_2_1_1_0 + 0.0166666666666666*G3_2_2_2_1_1 + 0.0166666666666666*G3_2_2_3_1_2 - 0.00833333333333331*G3_2_3_0_1_0 - 0.00833333333333331*G3_2_3_0_1_1 - 0.00833333333333331*G3_2_3_0_1_2 + 0.00833333333333331*G3_2_3_1_1_0 + 0.00833333333333331*G3_2_3_2_1_1 + 0.00833333333333331*G3_2_3_3_1_2 - 0.00833333333333331*G3_3_0_0_1_0 - 0.00833333333333331*G3_3_0_0_1_1 - 0.00833333333333331*G3_3_0_0_1_2 + 0.00833333333333331*G3_3_0_1_1_0 + 0.00833333333333331*G3_3_0_2_1_1 + 0.00833333333333331*G3_3_0_3_1_2 - 0.00833333333333331*G3_3_1_0_1_0 - 0.00833333333333331*G3_3_1_0_1_1 - 0.00833333333333331*G3_3_1_0_1_2 + 0.00833333333333331*G3_3_1_1_1_0 + 0.00833333333333331*G3_3_1_2_1_1 + 0.00833333333333331*G3_3_1_3_1_2 - 0.00833333333333331*G3_3_2_0_1_0 - 0.00833333333333331*G3_3_2_0_1_1 - 0.00833333333333331*G3_3_2_0_1_2 + 0.00833333333333331*G3_3_2_1_1_0 + 0.00833333333333331*G3_3_2_2_1_1 + 0.00833333333333331*G3_3_2_3_1_2 - 0.0166666666666666*G3_3_3_0_1_0 - 0.0166666666666666*G3_3_3_0_1_1 - 0.0166666666666666*G3_3_3_0_1_2 + 0.0166666666666666*G3_3_3_1_1_0 + 0.0166666666666666*G3_3_3_2_1_1 + 0.0166666666666666*G3_3_3_3_1_2 + 0.0416666666666666*G4_0_0_1_0 + 0.0416666666666666*G4_0_0_1_1 + 0.0416666666666666*G4_0_0_1_2 - 0.0416666666666666*G4_0_1_1_0 - 0.0416666666666666*G4_0_2_1_1 - 0.0416666666666666*G4_0_3_1_2 + 0.0416666666666666*G4_1_0_1_0 + 0.0416666666666666*G4_1_0_1_1 + 0.0416666666666666*G4_1_0_1_2 - 0.0416666666666666*G4_1_1_1_0 - 0.0416666666666666*G4_1_2_1_1 - 0.0416666666666666*G4_1_3_1_2 + 0.0416666666666666*G4_2_0_1_0 + 0.0416666666666666*G4_2_0_1_1 + 0.0416666666666666*G4_2_0_1_2 - 0.0416666666666666*G4_2_1_1_0 - 0.0416666666666666*G4_2_2_1_1 - 0.0416666666666666*G4_2_3_1_2 + 0.0416666666666666*G4_3_0_1_0 + 0.0416666666666666*G4_3_0_1_1 + 0.0416666666666666*G4_3_0_1_2 - 0.0416666666666666*G4_3_1_1_0 - 0.0416666666666666*G4_3_2_1_1 - 0.0416666666666666*G4_3_3_1_2 + 0.0166666666666666*G5_0_0_0_1_0 + 0.0166666666666666*G5_0_0_0_1_1 + 0.0166666666666666*G5_0_0_0_1_2 + 0.00833333333333331*G5_0_0_1_1_0 + 0.00833333333333331*G5_0_0_1_1_1 + 0.00833333333333331*G5_0_0_1_1_2 + 0.00833333333333331*G5_0_0_2_1_0 + 0.00833333333333331*G5_0_0_2_1_1 + 0.00833333333333331*G5_0_0_2_1_2 + 0.00833333333333331*G5_0_0_3_1_0 + 0.00833333333333331*G5_0_0_3_1_1 + 0.00833333333333331*G5_0_0_3_1_2 - 0.0166666666666666*G5_0_1_0_1_0 - 0.00833333333333331*G5_0_1_1_1_0 - 0.00833333333333331*G5_0_1_2_1_0 - 0.00833333333333331*G5_0_1_3_1_0 - 0.0166666666666666*G5_0_2_0_1_1 - 0.00833333333333331*G5_0_2_1_1_1 - 0.00833333333333331*G5_0_2_2_1_1 - 0.00833333333333331*G5_0_2_3_1_1 - 0.0166666666666666*G5_0_3_0_1_2 - 0.00833333333333331*G5_0_3_1_1_2 - 0.00833333333333331*G5_0_3_2_1_2 - 0.00833333333333331*G5_0_3_3_1_2 + 0.00833333333333331*G5_1_0_0_1_0 + 0.00833333333333331*G5_1_0_0_1_1 + 0.00833333333333331*G5_1_0_0_1_2 + 0.0166666666666666*G5_1_0_1_1_0 + 0.0166666666666666*G5_1_0_1_1_1 + 0.0166666666666666*G5_1_0_1_1_2 + 0.00833333333333331*G5_1_0_2_1_0 + 0.00833333333333331*G5_1_0_2_1_1 + 0.00833333333333331*G5_1_0_2_1_2 + 0.00833333333333331*G5_1_0_3_1_0 + 0.00833333333333331*G5_1_0_3_1_1 + 0.00833333333333331*G5_1_0_3_1_2 - 0.00833333333333331*G5_1_1_0_1_0 - 0.0166666666666666*G5_1_1_1_1_0 - 0.00833333333333331*G5_1_1_2_1_0 - 0.00833333333333331*G5_1_1_3_1_0 - 0.00833333333333331*G5_1_2_0_1_1 - 0.0166666666666666*G5_1_2_1_1_1 - 0.00833333333333331*G5_1_2_2_1_1 - 0.00833333333333331*G5_1_2_3_1_1 - 0.00833333333333331*G5_1_3_0_1_2 - 0.0166666666666666*G5_1_3_1_1_2 - 0.00833333333333331*G5_1_3_2_1_2 - 0.00833333333333331*G5_1_3_3_1_2 + 0.00833333333333331*G5_2_0_0_1_0 + 0.00833333333333331*G5_2_0_0_1_1 + 0.00833333333333331*G5_2_0_0_1_2 + 0.00833333333333331*G5_2_0_1_1_0 + 0.00833333333333331*G5_2_0_1_1_1 + 0.00833333333333331*G5_2_0_1_1_2 + 0.0166666666666666*G5_2_0_2_1_0 + 0.0166666666666666*G5_2_0_2_1_1 + 0.0166666666666666*G5_2_0_2_1_2 + 0.00833333333333331*G5_2_0_3_1_0 + 0.00833333333333331*G5_2_0_3_1_1 + 0.00833333333333331*G5_2_0_3_1_2 - 0.00833333333333331*G5_2_1_0_1_0 - 0.00833333333333331*G5_2_1_1_1_0 - 0.0166666666666666*G5_2_1_2_1_0 - 0.00833333333333331*G5_2_1_3_1_0 - 0.00833333333333331*G5_2_2_0_1_1 - 0.00833333333333331*G5_2_2_1_1_1 - 0.0166666666666666*G5_2_2_2_1_1 - 0.00833333333333331*G5_2_2_3_1_1 - 0.00833333333333331*G5_2_3_0_1_2 - 0.00833333333333331*G5_2_3_1_1_2 - 0.0166666666666666*G5_2_3_2_1_2 - 0.00833333333333331*G5_2_3_3_1_2 + 0.00833333333333331*G5_3_0_0_1_0 + 0.00833333333333331*G5_3_0_0_1_1 + 0.00833333333333331*G5_3_0_0_1_2 + 0.00833333333333331*G5_3_0_1_1_0 + 0.00833333333333331*G5_3_0_1_1_1 + 0.00833333333333331*G5_3_0_1_1_2 + 0.00833333333333331*G5_3_0_2_1_0 + 0.00833333333333331*G5_3_0_2_1_1 + 0.00833333333333331*G5_3_0_2_1_2 + 0.0166666666666666*G5_3_0_3_1_0 + 0.0166666666666666*G5_3_0_3_1_1 + 0.0166666666666666*G5_3_0_3_1_2 - 0.00833333333333331*G5_3_1_0_1_0 - 0.00833333333333331*G5_3_1_1_1_0 - 0.00833333333333331*G5_3_1_2_1_0 - 0.0166666666666666*G5_3_1_3_1_0 - 0.00833333333333331*G5_3_2_0_1_1 - 0.00833333333333331*G5_3_2_1_1_1 - 0.00833333333333331*G5_3_2_2_1_1 - 0.0166666666666666*G5_3_2_3_1_1 - 0.00833333333333331*G5_3_3_0_1_2 - 0.00833333333333331*G5_3_3_1_1_2 - 0.00833333333333331*G5_3_3_2_1_2 - 0.0166666666666666*G5_3_3_3_1_2 + 0.0166666666666666*G6_0_0_0_1_0 + 0.0166666666666666*G6_0_0_0_1_1 + 0.0166666666666666*G6_0_0_0_1_2 - 0.0166666666666666*G6_0_0_1_1_0 - 0.0166666666666666*G6_0_0_2_1_1 - 0.0166666666666666*G6_0_0_3_1_2 + 0.00833333333333331*G6_0_1_0_1_0 + 0.00833333333333331*G6_0_1_0_1_1 + 0.00833333333333331*G6_0_1_0_1_2 - 0.00833333333333331*G6_0_1_1_1_0 - 0.00833333333333331*G6_0_1_2_1_1 - 0.00833333333333331*G6_0_1_3_1_2 + 0.00833333333333331*G6_0_2_0_1_0 + 0.00833333333333331*G6_0_2_0_1_1 + 0.00833333333333331*G6_0_2_0_1_2 - 0.00833333333333331*G6_0_2_1_1_0 - 0.00833333333333331*G6_0_2_2_1_1 - 0.00833333333333331*G6_0_2_3_1_2 + 0.00833333333333331*G6_0_3_0_1_0 + 0.00833333333333331*G6_0_3_0_1_1 + 0.00833333333333331*G6_0_3_0_1_2 - 0.00833333333333331*G6_0_3_1_1_0 - 0.00833333333333331*G6_0_3_2_1_1 - 0.00833333333333331*G6_0_3_3_1_2 + 0.00833333333333331*G6_1_0_0_1_0 + 0.00833333333333331*G6_1_0_0_1_1 + 0.00833333333333331*G6_1_0_0_1_2 - 0.00833333333333331*G6_1_0_1_1_0 - 0.00833333333333331*G6_1_0_2_1_1 - 0.00833333333333331*G6_1_0_3_1_2 + 0.0166666666666666*G6_1_1_0_1_0 + 0.0166666666666666*G6_1_1_0_1_1 + 0.0166666666666666*G6_1_1_0_1_2 - 0.0166666666666666*G6_1_1_1_1_0 - 0.0166666666666666*G6_1_1_2_1_1 - 0.0166666666666666*G6_1_1_3_1_2 + 0.00833333333333331*G6_1_2_0_1_0 + 0.00833333333333331*G6_1_2_0_1_1 + 0.00833333333333331*G6_1_2_0_1_2 - 0.00833333333333331*G6_1_2_1_1_0 - 0.00833333333333331*G6_1_2_2_1_1 - 0.00833333333333331*G6_1_2_3_1_2 + 0.00833333333333331*G6_1_3_0_1_0 + 0.00833333333333331*G6_1_3_0_1_1 + 0.00833333333333331*G6_1_3_0_1_2 - 0.00833333333333331*G6_1_3_1_1_0 - 0.00833333333333331*G6_1_3_2_1_1 - 0.00833333333333331*G6_1_3_3_1_2 + 0.00833333333333331*G6_2_0_0_1_0 + 0.00833333333333331*G6_2_0_0_1_1 + 0.00833333333333331*G6_2_0_0_1_2 - 0.00833333333333331*G6_2_0_1_1_0 - 0.00833333333333331*G6_2_0_2_1_1 - 0.00833333333333331*G6_2_0_3_1_2 + 0.00833333333333331*G6_2_1_0_1_0 + 0.00833333333333331*G6_2_1_0_1_1 + 0.00833333333333331*G6_2_1_0_1_2 - 0.00833333333333331*G6_2_1_1_1_0 - 0.00833333333333331*G6_2_1_2_1_1 - 0.00833333333333331*G6_2_1_3_1_2 + 0.0166666666666666*G6_2_2_0_1_0 + 0.0166666666666666*G6_2_2_0_1_1 + 0.0166666666666666*G6_2_2_0_1_2 - 0.0166666666666666*G6_2_2_1_1_0 - 0.0166666666666666*G6_2_2_2_1_1 - 0.0166666666666666*G6_2_2_3_1_2 + 0.00833333333333331*G6_2_3_0_1_0 + 0.00833333333333331*G6_2_3_0_1_1 + 0.00833333333333331*G6_2_3_0_1_2 - 0.00833333333333331*G6_2_3_1_1_0 - 0.00833333333333331*G6_2_3_2_1_1 - 0.00833333333333331*G6_2_3_3_1_2 + 0.00833333333333331*G6_3_0_0_1_0 + 0.00833333333333331*G6_3_0_0_1_1 + 0.00833333333333331*G6_3_0_0_1_2 - 0.00833333333333331*G6_3_0_1_1_0 - 0.00833333333333331*G6_3_0_2_1_1 - 0.00833333333333331*G6_3_0_3_1_2 + 0.00833333333333331*G6_3_1_0_1_0 + 0.00833333333333331*G6_3_1_0_1_1 + 0.00833333333333331*G6_3_1_0_1_2 - 0.00833333333333331*G6_3_1_1_1_0 - 0.00833333333333331*G6_3_1_2_1_1 - 0.00833333333333331*G6_3_1_3_1_2 + 0.00833333333333331*G6_3_2_0_1_0 + 0.00833333333333331*G6_3_2_0_1_1 + 0.00833333333333331*G6_3_2_0_1_2 - 0.00833333333333331*G6_3_2_1_1_0 - 0.00833333333333331*G6_3_2_2_1_1 - 0.00833333333333331*G6_3_2_3_1_2 + 0.0166666666666666*G6_3_3_0_1_0 + 0.0166666666666666*G6_3_3_0_1_1 + 0.0166666666666666*G6_3_3_0_1_2 - 0.0166666666666666*G6_3_3_1_1_0 - 0.0166666666666666*G6_3_3_2_1_1 - 0.0166666666666666*G6_3_3_3_1_2;
+    A[7] = -0.00833333333333331*G0_4 - 0.00833333333333331*G0_5 - 0.00833333333333331*G0_6 - 0.0166666666666666*G0_7 + 0.00833333333333331*G1_4 + 0.00833333333333331*G1_5 + 0.00833333333333331*G1_6 + 0.0166666666666666*G1_7 - 0.0166666666666666*G2_0_0_0_2_0 - 0.0166666666666666*G2_0_0_0_2_1 - 0.0166666666666666*G2_0_0_0_2_2 - 0.00833333333333331*G2_0_0_1_2_0 - 0.00833333333333331*G2_0_0_1_2_1 - 0.00833333333333331*G2_0_0_1_2_2 - 0.00833333333333331*G2_0_0_2_2_0 - 0.00833333333333331*G2_0_0_2_2_1 - 0.00833333333333331*G2_0_0_2_2_2 - 0.00833333333333331*G2_0_0_3_2_0 - 0.00833333333333331*G2_0_0_3_2_1 - 0.00833333333333331*G2_0_0_3_2_2 + 0.0166666666666666*G2_0_1_0_2_0 + 0.00833333333333331*G2_0_1_1_2_0 + 0.00833333333333331*G2_0_1_2_2_0 + 0.00833333333333331*G2_0_1_3_2_0 + 0.0166666666666666*G2_0_2_0_2_1 + 0.00833333333333331*G2_0_2_1_2_1 + 0.00833333333333331*G2_0_2_2_2_1 + 0.00833333333333331*G2_0_2_3_2_1 + 0.0166666666666666*G2_0_3_0_2_2 + 0.00833333333333331*G2_0_3_1_2_2 + 0.00833333333333331*G2_0_3_2_2_2 + 0.00833333333333331*G2_0_3_3_2_2 - 0.00833333333333331*G2_1_0_0_2_0 - 0.00833333333333331*G2_1_0_0_2_1 - 0.00833333333333331*G2_1_0_0_2_2 - 0.0166666666666666*G2_1_0_1_2_0 - 0.0166666666666666*G2_1_0_1_2_1 - 0.0166666666666666*G2_1_0_1_2_2 - 0.00833333333333331*G2_1_0_2_2_0 - 0.00833333333333331*G2_1_0_2_2_1 - 0.00833333333333331*G2_1_0_2_2_2 - 0.00833333333333331*G2_1_0_3_2_0 - 0.00833333333333331*G2_1_0_3_2_1 - 0.00833333333333331*G2_1_0_3_2_2 + 0.00833333333333331*G2_1_1_0_2_0 + 0.0166666666666666*G2_1_1_1_2_0 + 0.00833333333333331*G2_1_1_2_2_0 + 0.00833333333333331*G2_1_1_3_2_0 + 0.00833333333333331*G2_1_2_0_2_1 + 0.0166666666666666*G2_1_2_1_2_1 + 0.00833333333333331*G2_1_2_2_2_1 + 0.00833333333333331*G2_1_2_3_2_1 + 0.00833333333333331*G2_1_3_0_2_2 + 0.0166666666666666*G2_1_3_1_2_2 + 0.00833333333333331*G2_1_3_2_2_2 + 0.00833333333333331*G2_1_3_3_2_2 - 0.00833333333333331*G2_2_0_0_2_0 - 0.00833333333333331*G2_2_0_0_2_1 - 0.00833333333333331*G2_2_0_0_2_2 - 0.00833333333333331*G2_2_0_1_2_0 - 0.00833333333333331*G2_2_0_1_2_1 - 0.00833333333333331*G2_2_0_1_2_2 - 0.0166666666666666*G2_2_0_2_2_0 - 0.0166666666666666*G2_2_0_2_2_1 - 0.0166666666666666*G2_2_0_2_2_2 - 0.00833333333333331*G2_2_0_3_2_0 - 0.00833333333333331*G2_2_0_3_2_1 - 0.00833333333333331*G2_2_0_3_2_2 + 0.00833333333333331*G2_2_1_0_2_0 + 0.00833333333333331*G2_2_1_1_2_0 + 0.0166666666666666*G2_2_1_2_2_0 + 0.00833333333333331*G2_2_1_3_2_0 + 0.00833333333333331*G2_2_2_0_2_1 + 0.00833333333333331*G2_2_2_1_2_1 + 0.0166666666666666*G2_2_2_2_2_1 + 0.00833333333333331*G2_2_2_3_2_1 + 0.00833333333333331*G2_2_3_0_2_2 + 0.00833333333333331*G2_2_3_1_2_2 + 0.0166666666666666*G2_2_3_2_2_2 + 0.00833333333333331*G2_2_3_3_2_2 - 0.00833333333333331*G2_3_0_0_2_0 - 0.00833333333333331*G2_3_0_0_2_1 - 0.00833333333333331*G2_3_0_0_2_2 - 0.00833333333333331*G2_3_0_1_2_0 - 0.00833333333333331*G2_3_0_1_2_1 - 0.00833333333333331*G2_3_0_1_2_2 - 0.00833333333333331*G2_3_0_2_2_0 - 0.00833333333333331*G2_3_0_2_2_1 - 0.00833333333333331*G2_3_0_2_2_2 - 0.0166666666666666*G2_3_0_3_2_0 - 0.0166666666666666*G2_3_0_3_2_1 - 0.0166666666666666*G2_3_0_3_2_2 + 0.00833333333333331*G2_3_1_0_2_0 + 0.00833333333333331*G2_3_1_1_2_0 + 0.00833333333333331*G2_3_1_2_2_0 + 0.0166666666666666*G2_3_1_3_2_0 + 0.00833333333333331*G2_3_2_0_2_1 + 0.00833333333333331*G2_3_2_1_2_1 + 0.00833333333333331*G2_3_2_2_2_1 + 0.0166666666666666*G2_3_2_3_2_1 + 0.00833333333333331*G2_3_3_0_2_2 + 0.00833333333333331*G2_3_3_1_2_2 + 0.00833333333333331*G2_3_3_2_2_2 + 0.0166666666666666*G2_3_3_3_2_2 - 0.0166666666666666*G3_0_0_0_2_0 - 0.0166666666666666*G3_0_0_0_2_1 - 0.0166666666666666*G3_0_0_0_2_2 + 0.0166666666666666*G3_0_0_1_2_0 + 0.0166666666666666*G3_0_0_2_2_1 + 0.0166666666666666*G3_0_0_3_2_2 - 0.00833333333333331*G3_0_1_0_2_0 - 0.00833333333333331*G3_0_1_0_2_1 - 0.00833333333333331*G3_0_1_0_2_2 + 0.00833333333333331*G3_0_1_1_2_0 + 0.00833333333333331*G3_0_1_2_2_1 + 0.00833333333333331*G3_0_1_3_2_2 - 0.00833333333333331*G3_0_2_0_2_0 - 0.00833333333333331*G3_0_2_0_2_1 - 0.00833333333333331*G3_0_2_0_2_2 + 0.00833333333333331*G3_0_2_1_2_0 + 0.00833333333333331*G3_0_2_2_2_1 + 0.00833333333333331*G3_0_2_3_2_2 - 0.00833333333333331*G3_0_3_0_2_0 - 0.00833333333333331*G3_0_3_0_2_1 - 0.00833333333333331*G3_0_3_0_2_2 + 0.00833333333333331*G3_0_3_1_2_0 + 0.00833333333333331*G3_0_3_2_2_1 + 0.00833333333333331*G3_0_3_3_2_2 - 0.00833333333333331*G3_1_0_0_2_0 - 0.00833333333333331*G3_1_0_0_2_1 - 0.00833333333333331*G3_1_0_0_2_2 + 0.00833333333333331*G3_1_0_1_2_0 + 0.00833333333333331*G3_1_0_2_2_1 + 0.00833333333333331*G3_1_0_3_2_2 - 0.0166666666666666*G3_1_1_0_2_0 - 0.0166666666666666*G3_1_1_0_2_1 - 0.0166666666666666*G3_1_1_0_2_2 + 0.0166666666666666*G3_1_1_1_2_0 + 0.0166666666666666*G3_1_1_2_2_1 + 0.0166666666666666*G3_1_1_3_2_2 - 0.00833333333333331*G3_1_2_0_2_0 - 0.00833333333333331*G3_1_2_0_2_1 - 0.00833333333333331*G3_1_2_0_2_2 + 0.00833333333333331*G3_1_2_1_2_0 + 0.00833333333333331*G3_1_2_2_2_1 + 0.00833333333333331*G3_1_2_3_2_2 - 0.00833333333333331*G3_1_3_0_2_0 - 0.00833333333333331*G3_1_3_0_2_1 - 0.00833333333333331*G3_1_3_0_2_2 + 0.00833333333333331*G3_1_3_1_2_0 + 0.00833333333333331*G3_1_3_2_2_1 + 0.00833333333333331*G3_1_3_3_2_2 - 0.00833333333333331*G3_2_0_0_2_0 - 0.00833333333333331*G3_2_0_0_2_1 - 0.00833333333333331*G3_2_0_0_2_2 + 0.00833333333333331*G3_2_0_1_2_0 + 0.00833333333333331*G3_2_0_2_2_1 + 0.00833333333333331*G3_2_0_3_2_2 - 0.00833333333333331*G3_2_1_0_2_0 - 0.00833333333333331*G3_2_1_0_2_1 - 0.00833333333333331*G3_2_1_0_2_2 + 0.00833333333333331*G3_2_1_1_2_0 + 0.00833333333333331*G3_2_1_2_2_1 + 0.00833333333333331*G3_2_1_3_2_2 - 0.0166666666666666*G3_2_2_0_2_0 - 0.0166666666666666*G3_2_2_0_2_1 - 0.0166666666666666*G3_2_2_0_2_2 + 0.0166666666666666*G3_2_2_1_2_0 + 0.0166666666666666*G3_2_2_2_2_1 + 0.0166666666666666*G3_2_2_3_2_2 - 0.00833333333333331*G3_2_3_0_2_0 - 0.00833333333333331*G3_2_3_0_2_1 - 0.00833333333333331*G3_2_3_0_2_2 + 0.00833333333333331*G3_2_3_1_2_0 + 0.00833333333333331*G3_2_3_2_2_1 + 0.00833333333333331*G3_2_3_3_2_2 - 0.00833333333333331*G3_3_0_0_2_0 - 0.00833333333333331*G3_3_0_0_2_1 - 0.00833333333333331*G3_3_0_0_2_2 + 0.00833333333333331*G3_3_0_1_2_0 + 0.00833333333333331*G3_3_0_2_2_1 + 0.00833333333333331*G3_3_0_3_2_2 - 0.00833333333333331*G3_3_1_0_2_0 - 0.00833333333333331*G3_3_1_0_2_1 - 0.00833333333333331*G3_3_1_0_2_2 + 0.00833333333333331*G3_3_1_1_2_0 + 0.00833333333333331*G3_3_1_2_2_1 + 0.00833333333333331*G3_3_1_3_2_2 - 0.00833333333333331*G3_3_2_0_2_0 - 0.00833333333333331*G3_3_2_0_2_1 - 0.00833333333333331*G3_3_2_0_2_2 + 0.00833333333333331*G3_3_2_1_2_0 + 0.00833333333333331*G3_3_2_2_2_1 + 0.00833333333333331*G3_3_2_3_2_2 - 0.0166666666666666*G3_3_3_0_2_0 - 0.0166666666666666*G3_3_3_0_2_1 - 0.0166666666666666*G3_3_3_0_2_2 + 0.0166666666666666*G3_3_3_1_2_0 + 0.0166666666666666*G3_3_3_2_2_1 + 0.0166666666666666*G3_3_3_3_2_2 + 0.0416666666666666*G4_0_0_2_0 + 0.0416666666666666*G4_0_0_2_1 + 0.0416666666666666*G4_0_0_2_2 - 0.0416666666666666*G4_0_1_2_0 - 0.0416666666666666*G4_0_2_2_1 - 0.0416666666666666*G4_0_3_2_2 + 0.0416666666666666*G4_1_0_2_0 + 0.0416666666666666*G4_1_0_2_1 + 0.0416666666666666*G4_1_0_2_2 - 0.0416666666666666*G4_1_1_2_0 - 0.0416666666666666*G4_1_2_2_1 - 0.0416666666666666*G4_1_3_2_2 + 0.0416666666666666*G4_2_0_2_0 + 0.0416666666666666*G4_2_0_2_1 + 0.0416666666666666*G4_2_0_2_2 - 0.0416666666666666*G4_2_1_2_0 - 0.0416666666666666*G4_2_2_2_1 - 0.0416666666666666*G4_2_3_2_2 + 0.0416666666666666*G4_3_0_2_0 + 0.0416666666666666*G4_3_0_2_1 + 0.0416666666666666*G4_3_0_2_2 - 0.0416666666666666*G4_3_1_2_0 - 0.0416666666666666*G4_3_2_2_1 - 0.0416666666666666*G4_3_3_2_2 + 0.0166666666666666*G5_0_0_0_2_0 + 0.0166666666666666*G5_0_0_0_2_1 + 0.0166666666666666*G5_0_0_0_2_2 + 0.00833333333333331*G5_0_0_1_2_0 + 0.00833333333333331*G5_0_0_1_2_1 + 0.00833333333333331*G5_0_0_1_2_2 + 0.00833333333333331*G5_0_0_2_2_0 + 0.00833333333333331*G5_0_0_2_2_1 + 0.00833333333333331*G5_0_0_2_2_2 + 0.00833333333333331*G5_0_0_3_2_0 + 0.00833333333333331*G5_0_0_3_2_1 + 0.00833333333333331*G5_0_0_3_2_2 - 0.0166666666666666*G5_0_1_0_2_0 - 0.00833333333333331*G5_0_1_1_2_0 - 0.00833333333333331*G5_0_1_2_2_0 - 0.00833333333333331*G5_0_1_3_2_0 - 0.0166666666666666*G5_0_2_0_2_1 - 0.00833333333333331*G5_0_2_1_2_1 - 0.00833333333333331*G5_0_2_2_2_1 - 0.00833333333333331*G5_0_2_3_2_1 - 0.0166666666666666*G5_0_3_0_2_2 - 0.00833333333333331*G5_0_3_1_2_2 - 0.00833333333333331*G5_0_3_2_2_2 - 0.00833333333333331*G5_0_3_3_2_2 + 0.00833333333333331*G5_1_0_0_2_0 + 0.00833333333333331*G5_1_0_0_2_1 + 0.00833333333333331*G5_1_0_0_2_2 + 0.0166666666666666*G5_1_0_1_2_0 + 0.0166666666666666*G5_1_0_1_2_1 + 0.0166666666666666*G5_1_0_1_2_2 + 0.00833333333333331*G5_1_0_2_2_0 + 0.00833333333333331*G5_1_0_2_2_1 + 0.00833333333333331*G5_1_0_2_2_2 + 0.00833333333333331*G5_1_0_3_2_0 + 0.00833333333333331*G5_1_0_3_2_1 + 0.00833333333333331*G5_1_0_3_2_2 - 0.00833333333333331*G5_1_1_0_2_0 - 0.0166666666666666*G5_1_1_1_2_0 - 0.00833333333333331*G5_1_1_2_2_0 - 0.00833333333333331*G5_1_1_3_2_0 - 0.00833333333333331*G5_1_2_0_2_1 - 0.0166666666666666*G5_1_2_1_2_1 - 0.00833333333333331*G5_1_2_2_2_1 - 0.00833333333333331*G5_1_2_3_2_1 - 0.00833333333333331*G5_1_3_0_2_2 - 0.0166666666666666*G5_1_3_1_2_2 - 0.00833333333333331*G5_1_3_2_2_2 - 0.00833333333333331*G5_1_3_3_2_2 + 0.00833333333333331*G5_2_0_0_2_0 + 0.00833333333333331*G5_2_0_0_2_1 + 0.00833333333333331*G5_2_0_0_2_2 + 0.00833333333333331*G5_2_0_1_2_0 + 0.00833333333333331*G5_2_0_1_2_1 + 0.00833333333333331*G5_2_0_1_2_2 + 0.0166666666666666*G5_2_0_2_2_0 + 0.0166666666666666*G5_2_0_2_2_1 + 0.0166666666666666*G5_2_0_2_2_2 + 0.00833333333333331*G5_2_0_3_2_0 + 0.00833333333333331*G5_2_0_3_2_1 + 0.00833333333333331*G5_2_0_3_2_2 - 0.00833333333333331*G5_2_1_0_2_0 - 0.00833333333333331*G5_2_1_1_2_0 - 0.0166666666666666*G5_2_1_2_2_0 - 0.00833333333333331*G5_2_1_3_2_0 - 0.00833333333333331*G5_2_2_0_2_1 - 0.00833333333333331*G5_2_2_1_2_1 - 0.0166666666666666*G5_2_2_2_2_1 - 0.00833333333333331*G5_2_2_3_2_1 - 0.00833333333333331*G5_2_3_0_2_2 - 0.00833333333333331*G5_2_3_1_2_2 - 0.0166666666666666*G5_2_3_2_2_2 - 0.00833333333333331*G5_2_3_3_2_2 + 0.00833333333333331*G5_3_0_0_2_0 + 0.00833333333333331*G5_3_0_0_2_1 + 0.00833333333333331*G5_3_0_0_2_2 + 0.00833333333333331*G5_3_0_1_2_0 + 0.00833333333333331*G5_3_0_1_2_1 + 0.00833333333333331*G5_3_0_1_2_2 + 0.00833333333333331*G5_3_0_2_2_0 + 0.00833333333333331*G5_3_0_2_2_1 + 0.00833333333333331*G5_3_0_2_2_2 + 0.0166666666666666*G5_3_0_3_2_0 + 0.0166666666666666*G5_3_0_3_2_1 + 0.0166666666666666*G5_3_0_3_2_2 - 0.00833333333333331*G5_3_1_0_2_0 - 0.00833333333333331*G5_3_1_1_2_0 - 0.00833333333333331*G5_3_1_2_2_0 - 0.0166666666666666*G5_3_1_3_2_0 - 0.00833333333333331*G5_3_2_0_2_1 - 0.00833333333333331*G5_3_2_1_2_1 - 0.00833333333333331*G5_3_2_2_2_1 - 0.0166666666666666*G5_3_2_3_2_1 - 0.00833333333333331*G5_3_3_0_2_2 - 0.00833333333333331*G5_3_3_1_2_2 - 0.00833333333333331*G5_3_3_2_2_2 - 0.0166666666666666*G5_3_3_3_2_2 + 0.0166666666666666*G6_0_0_0_2_0 + 0.0166666666666666*G6_0_0_0_2_1 + 0.0166666666666666*G6_0_0_0_2_2 - 0.0166666666666666*G6_0_0_1_2_0 - 0.0166666666666666*G6_0_0_2_2_1 - 0.0166666666666666*G6_0_0_3_2_2 + 0.00833333333333331*G6_0_1_0_2_0 + 0.00833333333333331*G6_0_1_0_2_1 + 0.00833333333333331*G6_0_1_0_2_2 - 0.00833333333333331*G6_0_1_1_2_0 - 0.00833333333333331*G6_0_1_2_2_1 - 0.00833333333333331*G6_0_1_3_2_2 + 0.00833333333333331*G6_0_2_0_2_0 + 0.00833333333333331*G6_0_2_0_2_1 + 0.00833333333333331*G6_0_2_0_2_2 - 0.00833333333333331*G6_0_2_1_2_0 - 0.00833333333333331*G6_0_2_2_2_1 - 0.00833333333333331*G6_0_2_3_2_2 + 0.00833333333333331*G6_0_3_0_2_0 + 0.00833333333333331*G6_0_3_0_2_1 + 0.00833333333333331*G6_0_3_0_2_2 - 0.00833333333333331*G6_0_3_1_2_0 - 0.00833333333333331*G6_0_3_2_2_1 - 0.00833333333333331*G6_0_3_3_2_2 + 0.00833333333333331*G6_1_0_0_2_0 + 0.00833333333333331*G6_1_0_0_2_1 + 0.00833333333333331*G6_1_0_0_2_2 - 0.00833333333333331*G6_1_0_1_2_0 - 0.00833333333333331*G6_1_0_2_2_1 - 0.00833333333333331*G6_1_0_3_2_2 + 0.0166666666666666*G6_1_1_0_2_0 + 0.0166666666666666*G6_1_1_0_2_1 + 0.0166666666666666*G6_1_1_0_2_2 - 0.0166666666666666*G6_1_1_1_2_0 - 0.0166666666666666*G6_1_1_2_2_1 - 0.0166666666666666*G6_1_1_3_2_2 + 0.00833333333333331*G6_1_2_0_2_0 + 0.00833333333333331*G6_1_2_0_2_1 + 0.00833333333333331*G6_1_2_0_2_2 - 0.00833333333333331*G6_1_2_1_2_0 - 0.00833333333333331*G6_1_2_2_2_1 - 0.00833333333333331*G6_1_2_3_2_2 + 0.00833333333333331*G6_1_3_0_2_0 + 0.00833333333333331*G6_1_3_0_2_1 + 0.00833333333333331*G6_1_3_0_2_2 - 0.00833333333333331*G6_1_3_1_2_0 - 0.00833333333333331*G6_1_3_2_2_1 - 0.00833333333333331*G6_1_3_3_2_2 + 0.00833333333333331*G6_2_0_0_2_0 + 0.00833333333333331*G6_2_0_0_2_1 + 0.00833333333333331*G6_2_0_0_2_2 - 0.00833333333333331*G6_2_0_1_2_0 - 0.00833333333333331*G6_2_0_2_2_1 - 0.00833333333333331*G6_2_0_3_2_2 + 0.00833333333333331*G6_2_1_0_2_0 + 0.00833333333333331*G6_2_1_0_2_1 + 0.00833333333333331*G6_2_1_0_2_2 - 0.00833333333333331*G6_2_1_1_2_0 - 0.00833333333333331*G6_2_1_2_2_1 - 0.00833333333333331*G6_2_1_3_2_2 + 0.0166666666666666*G6_2_2_0_2_0 + 0.0166666666666666*G6_2_2_0_2_1 + 0.0166666666666666*G6_2_2_0_2_2 - 0.0166666666666666*G6_2_2_1_2_0 - 0.0166666666666666*G6_2_2_2_2_1 - 0.0166666666666666*G6_2_2_3_2_2 + 0.00833333333333331*G6_2_3_0_2_0 + 0.00833333333333331*G6_2_3_0_2_1 + 0.00833333333333331*G6_2_3_0_2_2 - 0.00833333333333331*G6_2_3_1_2_0 - 0.00833333333333331*G6_2_3_2_2_1 - 0.00833333333333331*G6_2_3_3_2_2 + 0.00833333333333331*G6_3_0_0_2_0 + 0.00833333333333331*G6_3_0_0_2_1 + 0.00833333333333331*G6_3_0_0_2_2 - 0.00833333333333331*G6_3_0_1_2_0 - 0.00833333333333331*G6_3_0_2_2_1 - 0.00833333333333331*G6_3_0_3_2_2 + 0.00833333333333331*G6_3_1_0_2_0 + 0.00833333333333331*G6_3_1_0_2_1 + 0.00833333333333331*G6_3_1_0_2_2 - 0.00833333333333331*G6_3_1_1_2_0 - 0.00833333333333331*G6_3_1_2_2_1 - 0.00833333333333331*G6_3_1_3_2_2 + 0.00833333333333331*G6_3_2_0_2_0 + 0.00833333333333331*G6_3_2_0_2_1 + 0.00833333333333331*G6_3_2_0_2_2 - 0.00833333333333331*G6_3_2_1_2_0 - 0.00833333333333331*G6_3_2_2_2_1 - 0.00833333333333331*G6_3_2_3_2_2 + 0.0166666666666666*G6_3_3_0_2_0 + 0.0166666666666666*G6_3_3_0_2_1 + 0.0166666666666666*G6_3_3_0_2_2 - 0.0166666666666666*G6_3_3_1_2_0 - 0.0166666666666666*G6_3_3_2_2_1 - 0.0166666666666666*G6_3_3_3_2_2;
   }
 
 };

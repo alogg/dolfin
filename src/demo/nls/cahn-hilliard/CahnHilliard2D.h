@@ -8,6 +8,7 @@
 #define __CAHNHILLIARD2D_H
 
 #include <cmath>
+#include <stdexcept>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -110,15 +111,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -242,27 +243,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -485,15 +486,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -617,27 +618,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -863,15 +864,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -901,15 +902,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1037,27 +1038,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -1142,27 +1143,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -1399,15 +1400,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1531,27 +1532,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1774,15 +1775,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1906,27 +1907,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2152,15 +2153,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -2190,15 +2191,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -2326,27 +2327,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2431,27 +2432,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2688,15 +2689,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -2820,27 +2821,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -3063,15 +3064,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -3195,27 +3196,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -3441,15 +3442,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -3479,15 +3480,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -3615,27 +3616,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -3720,27 +3721,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -3977,15 +3978,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -4109,27 +4110,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4352,15 +4353,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -4484,27 +4485,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4727,15 +4728,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -4859,27 +4860,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5102,15 +5103,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -5234,27 +5235,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5497,10 +5498,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5637,10 +5645,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5787,10 +5802,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5936,10 +5964,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6076,10 +6111,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6226,10 +6268,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6375,10 +6430,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6515,10 +6577,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6665,10 +6734,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6814,10 +6896,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6954,10 +7043,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7094,10 +7190,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7234,10 +7337,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7455,42 +7565,42 @@ public:
     const double G9_2_1_1 = det*w[1][2]*Jinv_10*Jinv_10 + det*w[1][2]*Jinv_11*Jinv_11;
     
     // Compute element tensor
-    A[0] = 0.0833333333333*G3_;
-    A[1] = 0.0416666666667*G3_;
-    A[2] = 0.0416666666667*G3_;
-    A[3] = -0.047619047619*G4_0_3_3 - 0.00952380952381*G4_0_3_4 - 0.00952380952381*G4_0_3_5 - 0.00952380952381*G4_0_4_3 - 0.0047619047619*G4_0_4_4 - 0.00238095238095*G4_0_4_5 - 0.00952380952381*G4_0_5_3 - 0.00238095238095*G4_0_5_4 - 0.0047619047619*G4_0_5_5 - 0.00952380952381*G4_1_3_3 - 0.0047619047619*G4_1_3_4 - 0.00238095238095*G4_1_3_5 - 0.0047619047619*G4_1_4_3 - 0.0047619047619*G4_1_4_4 - 0.0015873015873*G4_1_4_5 - 0.00238095238095*G4_1_5_3 - 0.0015873015873*G4_1_5_4 - 0.0015873015873*G4_1_5_5 - 0.00952380952381*G4_2_3_3 - 0.00238095238095*G4_2_3_4 - 0.0047619047619*G4_2_3_5 - 0.00238095238095*G4_2_4_3 - 0.0015873015873*G4_2_4_4 - 0.0015873015873*G4_2_4_5 - 0.0047619047619*G4_2_5_3 - 0.0015873015873*G4_2_5_4 - 0.0047619047619*G4_2_5_5 + 0.0666666666667*G5_0_3 + 0.0166666666667*G5_0_4 + 0.0166666666667*G5_0_5 + 0.0166666666667*G5_1_3 + 0.0111111111111*G5_1_4 + 0.00555555555556*G5_1_5 + 0.0166666666667*G5_2_3 + 0.00555555555556*G5_2_4 + 0.0111111111111*G5_2_5 - 0.1*G6_0 - 0.0333333333333*G6_1 - 0.0333333333333*G6_2 - 0.190476190476*G7_0_3_3 - 0.0380952380952*G7_0_3_4 - 0.0380952380952*G7_0_3_5 - 0.0380952380952*G7_0_4_3 - 0.0190476190476*G7_0_4_4 - 0.00952380952381*G7_0_4_5 - 0.0380952380952*G7_0_5_3 - 0.00952380952381*G7_0_5_4 - 0.0190476190476*G7_0_5_5 - 0.0380952380952*G7_1_3_3 - 0.0190476190476*G7_1_3_4 - 0.00952380952381*G7_1_3_5 - 0.0190476190476*G7_1_4_3 - 0.0190476190476*G7_1_4_4 - 0.00634920634921*G7_1_4_5 - 0.00952380952381*G7_1_5_3 - 0.00634920634921*G7_1_5_4 - 0.00634920634921*G7_1_5_5 - 0.0380952380952*G7_2_3_3 - 0.00952380952381*G7_2_3_4 - 0.0190476190476*G7_2_3_5 - 0.00952380952381*G7_2_4_3 - 0.00634920634921*G7_2_4_4 - 0.00634920634921*G7_2_4_5 - 0.0190476190476*G7_2_5_3 - 0.00634920634921*G7_2_5_4 - 0.0190476190476*G7_2_5_5 + 0.266666666667*G8_0_3 + 0.0666666666667*G8_0_4 + 0.0666666666667*G8_0_5 + 0.0666666666667*G8_1_3 + 0.0444444444444*G8_1_4 + 0.0222222222222*G8_1_5 + 0.0666666666667*G8_2_3 + 0.0222222222222*G8_2_4 + 0.0444444444444*G8_2_5 - 0.166666666667*G9_0_0_0 - 0.166666666667*G9_0_0_1 - 0.166666666667*G9_0_1_0 - 0.166666666667*G9_0_1_1 - 0.166666666667*G9_1_0_0 - 0.166666666667*G9_1_0_1 - 0.166666666667*G9_1_1_0 - 0.166666666667*G9_1_1_1 - 0.166666666667*G9_2_0_0 - 0.166666666667*G9_2_0_1 - 0.166666666667*G9_2_1_0 - 0.166666666667*G9_2_1_1;
-    A[4] = -0.00952380952381*G4_0_3_3 - 0.0047619047619*G4_0_3_4 - 0.00238095238095*G4_0_3_5 - 0.0047619047619*G4_0_4_3 - 0.0047619047619*G4_0_4_4 - 0.0015873015873*G4_0_4_5 - 0.00238095238095*G4_0_5_3 - 0.0015873015873*G4_0_5_4 - 0.0015873015873*G4_0_5_5 - 0.0047619047619*G4_1_3_3 - 0.0047619047619*G4_1_3_4 - 0.0015873015873*G4_1_3_5 - 0.0047619047619*G4_1_4_3 - 0.00952380952381*G4_1_4_4 - 0.00238095238095*G4_1_4_5 - 0.0015873015873*G4_1_5_3 - 0.00238095238095*G4_1_5_4 - 0.0015873015873*G4_1_5_5 - 0.00238095238095*G4_2_3_3 - 0.0015873015873*G4_2_3_4 - 0.0015873015873*G4_2_3_5 - 0.0015873015873*G4_2_4_3 - 0.00238095238095*G4_2_4_4 - 0.0015873015873*G4_2_4_5 - 0.0015873015873*G4_2_5_3 - 0.0015873015873*G4_2_5_4 - 0.00238095238095*G4_2_5_5 + 0.0166666666667*G5_0_3 + 0.0111111111111*G5_0_4 + 0.00555555555556*G5_0_5 + 0.0111111111111*G5_1_3 + 0.0166666666667*G5_1_4 + 0.00555555555556*G5_1_5 + 0.00555555555556*G5_2_3 + 0.00555555555556*G5_2_4 + 0.00555555555556*G5_2_5 - 0.0333333333333*G6_0 - 0.0333333333333*G6_1 - 0.0166666666667*G6_2 - 0.0380952380952*G7_0_3_3 - 0.0190476190476*G7_0_3_4 - 0.00952380952381*G7_0_3_5 - 0.0190476190476*G7_0_4_3 - 0.0190476190476*G7_0_4_4 - 0.00634920634921*G7_0_4_5 - 0.00952380952381*G7_0_5_3 - 0.00634920634921*G7_0_5_4 - 0.00634920634921*G7_0_5_5 - 0.0190476190476*G7_1_3_3 - 0.0190476190476*G7_1_3_4 - 0.00634920634921*G7_1_3_5 - 0.0190476190476*G7_1_4_3 - 0.0380952380952*G7_1_4_4 - 0.00952380952381*G7_1_4_5 - 0.00634920634921*G7_1_5_3 - 0.00952380952381*G7_1_5_4 - 0.00634920634921*G7_1_5_5 - 0.00952380952381*G7_2_3_3 - 0.00634920634921*G7_2_3_4 - 0.00634920634921*G7_2_3_5 - 0.00634920634921*G7_2_4_3 - 0.00952380952381*G7_2_4_4 - 0.00634920634921*G7_2_4_5 - 0.00634920634921*G7_2_5_3 - 0.00634920634921*G7_2_5_4 - 0.00952380952381*G7_2_5_5 + 0.0666666666667*G8_0_3 + 0.0444444444444*G8_0_4 + 0.0222222222222*G8_0_5 + 0.0444444444444*G8_1_3 + 0.0666666666667*G8_1_4 + 0.0222222222222*G8_1_5 + 0.0222222222222*G8_2_3 + 0.0222222222222*G8_2_4 + 0.0222222222222*G8_2_5 + 0.166666666667*G9_0_0_0 + 0.166666666667*G9_0_1_0 + 0.166666666667*G9_1_0_0 + 0.166666666667*G9_1_1_0 + 0.166666666667*G9_2_0_0 + 0.166666666667*G9_2_1_0;
-    A[5] = -0.00952380952381*G4_0_3_3 - 0.00238095238095*G4_0_3_4 - 0.0047619047619*G4_0_3_5 - 0.00238095238095*G4_0_4_3 - 0.0015873015873*G4_0_4_4 - 0.0015873015873*G4_0_4_5 - 0.0047619047619*G4_0_5_3 - 0.0015873015873*G4_0_5_4 - 0.0047619047619*G4_0_5_5 - 0.00238095238095*G4_1_3_3 - 0.0015873015873*G4_1_3_4 - 0.0015873015873*G4_1_3_5 - 0.0015873015873*G4_1_4_3 - 0.00238095238095*G4_1_4_4 - 0.0015873015873*G4_1_4_5 - 0.0015873015873*G4_1_5_3 - 0.0015873015873*G4_1_5_4 - 0.00238095238095*G4_1_5_5 - 0.0047619047619*G4_2_3_3 - 0.0015873015873*G4_2_3_4 - 0.0047619047619*G4_2_3_5 - 0.0015873015873*G4_2_4_3 - 0.0015873015873*G4_2_4_4 - 0.00238095238095*G4_2_4_5 - 0.0047619047619*G4_2_5_3 - 0.00238095238095*G4_2_5_4 - 0.00952380952381*G4_2_5_5 + 0.0166666666667*G5_0_3 + 0.00555555555556*G5_0_4 + 0.0111111111111*G5_0_5 + 0.00555555555556*G5_1_3 + 0.00555555555556*G5_1_4 + 0.00555555555556*G5_1_5 + 0.0111111111111*G5_2_3 + 0.00555555555556*G5_2_4 + 0.0166666666667*G5_2_5 - 0.0333333333333*G6_0 - 0.0166666666667*G6_1 - 0.0333333333333*G6_2 - 0.0380952380952*G7_0_3_3 - 0.00952380952381*G7_0_3_4 - 0.0190476190476*G7_0_3_5 - 0.00952380952381*G7_0_4_3 - 0.00634920634921*G7_0_4_4 - 0.00634920634921*G7_0_4_5 - 0.0190476190476*G7_0_5_3 - 0.00634920634921*G7_0_5_4 - 0.0190476190476*G7_0_5_5 - 0.00952380952381*G7_1_3_3 - 0.00634920634921*G7_1_3_4 - 0.00634920634921*G7_1_3_5 - 0.00634920634921*G7_1_4_3 - 0.00952380952381*G7_1_4_4 - 0.00634920634921*G7_1_4_5 - 0.00634920634921*G7_1_5_3 - 0.00634920634921*G7_1_5_4 - 0.00952380952381*G7_1_5_5 - 0.0190476190476*G7_2_3_3 - 0.00634920634921*G7_2_3_4 - 0.0190476190476*G7_2_3_5 - 0.00634920634921*G7_2_4_3 - 0.00634920634921*G7_2_4_4 - 0.00952380952381*G7_2_4_5 - 0.0190476190476*G7_2_5_3 - 0.00952380952381*G7_2_5_4 - 0.0380952380952*G7_2_5_5 + 0.0666666666667*G8_0_3 + 0.0222222222222*G8_0_4 + 0.0444444444444*G8_0_5 + 0.0222222222222*G8_1_3 + 0.0222222222222*G8_1_4 + 0.0222222222222*G8_1_5 + 0.0444444444444*G8_2_3 + 0.0222222222222*G8_2_4 + 0.0666666666667*G8_2_5 + 0.166666666667*G9_0_0_1 + 0.166666666667*G9_0_1_1 + 0.166666666667*G9_1_0_1 + 0.166666666667*G9_1_1_1 + 0.166666666667*G9_2_0_1 + 0.166666666667*G9_2_1_1;
-    A[6] = 0.0416666666667*G3_;
-    A[7] = 0.0833333333333*G3_;
-    A[8] = 0.0416666666667*G3_;
-    A[9] = -0.00952380952381*G4_0_3_3 - 0.0047619047619*G4_0_3_4 - 0.00238095238095*G4_0_3_5 - 0.0047619047619*G4_0_4_3 - 0.0047619047619*G4_0_4_4 - 0.0015873015873*G4_0_4_5 - 0.00238095238095*G4_0_5_3 - 0.0015873015873*G4_0_5_4 - 0.0015873015873*G4_0_5_5 - 0.0047619047619*G4_1_3_3 - 0.0047619047619*G4_1_3_4 - 0.0015873015873*G4_1_3_5 - 0.0047619047619*G4_1_4_3 - 0.00952380952381*G4_1_4_4 - 0.00238095238095*G4_1_4_5 - 0.0015873015873*G4_1_5_3 - 0.00238095238095*G4_1_5_4 - 0.0015873015873*G4_1_5_5 - 0.00238095238095*G4_2_3_3 - 0.0015873015873*G4_2_3_4 - 0.0015873015873*G4_2_3_5 - 0.0015873015873*G4_2_4_3 - 0.00238095238095*G4_2_4_4 - 0.0015873015873*G4_2_4_5 - 0.0015873015873*G4_2_5_3 - 0.0015873015873*G4_2_5_4 - 0.00238095238095*G4_2_5_5 + 0.0166666666667*G5_0_3 + 0.0111111111111*G5_0_4 + 0.00555555555556*G5_0_5 + 0.0111111111111*G5_1_3 + 0.0166666666667*G5_1_4 + 0.00555555555556*G5_1_5 + 0.00555555555556*G5_2_3 + 0.00555555555556*G5_2_4 + 0.00555555555556*G5_2_5 - 0.0333333333333*G6_0 - 0.0333333333333*G6_1 - 0.0166666666667*G6_2 - 0.0380952380952*G7_0_3_3 - 0.0190476190476*G7_0_3_4 - 0.00952380952381*G7_0_3_5 - 0.0190476190476*G7_0_4_3 - 0.0190476190476*G7_0_4_4 - 0.00634920634921*G7_0_4_5 - 0.00952380952381*G7_0_5_3 - 0.00634920634921*G7_0_5_4 - 0.00634920634921*G7_0_5_5 - 0.0190476190476*G7_1_3_3 - 0.0190476190476*G7_1_3_4 - 0.00634920634921*G7_1_3_5 - 0.0190476190476*G7_1_4_3 - 0.0380952380952*G7_1_4_4 - 0.00952380952381*G7_1_4_5 - 0.00634920634921*G7_1_5_3 - 0.00952380952381*G7_1_5_4 - 0.00634920634921*G7_1_5_5 - 0.00952380952381*G7_2_3_3 - 0.00634920634921*G7_2_3_4 - 0.00634920634921*G7_2_3_5 - 0.00634920634921*G7_2_4_3 - 0.00952380952381*G7_2_4_4 - 0.00634920634921*G7_2_4_5 - 0.00634920634921*G7_2_5_3 - 0.00634920634921*G7_2_5_4 - 0.00952380952381*G7_2_5_5 + 0.0666666666667*G8_0_3 + 0.0444444444444*G8_0_4 + 0.0222222222222*G8_0_5 + 0.0444444444444*G8_1_3 + 0.0666666666667*G8_1_4 + 0.0222222222222*G8_1_5 + 0.0222222222222*G8_2_3 + 0.0222222222222*G8_2_4 + 0.0222222222222*G8_2_5 + 0.166666666667*G9_0_0_0 + 0.166666666667*G9_0_0_1 + 0.166666666667*G9_1_0_0 + 0.166666666667*G9_1_0_1 + 0.166666666667*G9_2_0_0 + 0.166666666667*G9_2_0_1;
-    A[10] = -0.0047619047619*G4_0_3_3 - 0.0047619047619*G4_0_3_4 - 0.0015873015873*G4_0_3_5 - 0.0047619047619*G4_0_4_3 - 0.00952380952381*G4_0_4_4 - 0.00238095238095*G4_0_4_5 - 0.0015873015873*G4_0_5_3 - 0.00238095238095*G4_0_5_4 - 0.0015873015873*G4_0_5_5 - 0.0047619047619*G4_1_3_3 - 0.00952380952381*G4_1_3_4 - 0.00238095238095*G4_1_3_5 - 0.00952380952381*G4_1_4_3 - 0.047619047619*G4_1_4_4 - 0.00952380952381*G4_1_4_5 - 0.00238095238095*G4_1_5_3 - 0.00952380952381*G4_1_5_4 - 0.0047619047619*G4_1_5_5 - 0.0015873015873*G4_2_3_3 - 0.00238095238095*G4_2_3_4 - 0.0015873015873*G4_2_3_5 - 0.00238095238095*G4_2_4_3 - 0.00952380952381*G4_2_4_4 - 0.0047619047619*G4_2_4_5 - 0.0015873015873*G4_2_5_3 - 0.0047619047619*G4_2_5_4 - 0.0047619047619*G4_2_5_5 + 0.0111111111111*G5_0_3 + 0.0166666666667*G5_0_4 + 0.00555555555556*G5_0_5 + 0.0166666666667*G5_1_3 + 0.0666666666667*G5_1_4 + 0.0166666666667*G5_1_5 + 0.00555555555556*G5_2_3 + 0.0166666666667*G5_2_4 + 0.0111111111111*G5_2_5 - 0.0333333333333*G6_0 - 0.1*G6_1 - 0.0333333333333*G6_2 - 0.0190476190476*G7_0_3_3 - 0.0190476190476*G7_0_3_4 - 0.00634920634921*G7_0_3_5 - 0.0190476190476*G7_0_4_3 - 0.0380952380952*G7_0_4_4 - 0.00952380952381*G7_0_4_5 - 0.00634920634921*G7_0_5_3 - 0.00952380952381*G7_0_5_4 - 0.00634920634921*G7_0_5_5 - 0.0190476190476*G7_1_3_3 - 0.0380952380952*G7_1_3_4 - 0.00952380952381*G7_1_3_5 - 0.0380952380952*G7_1_4_3 - 0.190476190476*G7_1_4_4 - 0.0380952380952*G7_1_4_5 - 0.00952380952381*G7_1_5_3 - 0.0380952380952*G7_1_5_4 - 0.0190476190476*G7_1_5_5 - 0.00634920634921*G7_2_3_3 - 0.00952380952381*G7_2_3_4 - 0.00634920634921*G7_2_3_5 - 0.00952380952381*G7_2_4_3 - 0.0380952380952*G7_2_4_4 - 0.0190476190476*G7_2_4_5 - 0.00634920634921*G7_2_5_3 - 0.0190476190476*G7_2_5_4 - 0.0190476190476*G7_2_5_5 + 0.0444444444444*G8_0_3 + 0.0666666666667*G8_0_4 + 0.0222222222222*G8_0_5 + 0.0666666666667*G8_1_3 + 0.266666666667*G8_1_4 + 0.0666666666667*G8_1_5 + 0.0222222222222*G8_2_3 + 0.0666666666667*G8_2_4 + 0.0444444444444*G8_2_5 - 0.166666666667*G9_0_0_0 - 0.166666666667*G9_1_0_0 - 0.166666666667*G9_2_0_0;
-    A[11] = -0.00238095238095*G4_0_3_3 - 0.0015873015873*G4_0_3_4 - 0.0015873015873*G4_0_3_5 - 0.0015873015873*G4_0_4_3 - 0.00238095238095*G4_0_4_4 - 0.0015873015873*G4_0_4_5 - 0.0015873015873*G4_0_5_3 - 0.0015873015873*G4_0_5_4 - 0.00238095238095*G4_0_5_5 - 0.0015873015873*G4_1_3_3 - 0.00238095238095*G4_1_3_4 - 0.0015873015873*G4_1_3_5 - 0.00238095238095*G4_1_4_3 - 0.00952380952381*G4_1_4_4 - 0.0047619047619*G4_1_4_5 - 0.0015873015873*G4_1_5_3 - 0.0047619047619*G4_1_5_4 - 0.0047619047619*G4_1_5_5 - 0.0015873015873*G4_2_3_3 - 0.0015873015873*G4_2_3_4 - 0.00238095238095*G4_2_3_5 - 0.0015873015873*G4_2_4_3 - 0.0047619047619*G4_2_4_4 - 0.0047619047619*G4_2_4_5 - 0.00238095238095*G4_2_5_3 - 0.0047619047619*G4_2_5_4 - 0.00952380952381*G4_2_5_5 + 0.00555555555556*G5_0_3 + 0.00555555555556*G5_0_4 + 0.00555555555556*G5_0_5 + 0.00555555555556*G5_1_3 + 0.0166666666667*G5_1_4 + 0.0111111111111*G5_1_5 + 0.00555555555556*G5_2_3 + 0.0111111111111*G5_2_4 + 0.0166666666667*G5_2_5 - 0.0166666666667*G6_0 - 0.0333333333333*G6_1 - 0.0333333333333*G6_2 - 0.00952380952381*G7_0_3_3 - 0.00634920634921*G7_0_3_4 - 0.00634920634921*G7_0_3_5 - 0.00634920634921*G7_0_4_3 - 0.00952380952381*G7_0_4_4 - 0.00634920634921*G7_0_4_5 - 0.00634920634921*G7_0_5_3 - 0.00634920634921*G7_0_5_4 - 0.00952380952381*G7_0_5_5 - 0.00634920634921*G7_1_3_3 - 0.00952380952381*G7_1_3_4 - 0.00634920634921*G7_1_3_5 - 0.00952380952381*G7_1_4_3 - 0.0380952380952*G7_1_4_4 - 0.0190476190476*G7_1_4_5 - 0.00634920634921*G7_1_5_3 - 0.0190476190476*G7_1_5_4 - 0.0190476190476*G7_1_5_5 - 0.00634920634921*G7_2_3_3 - 0.00634920634921*G7_2_3_4 - 0.00952380952381*G7_2_3_5 - 0.00634920634921*G7_2_4_3 - 0.0190476190476*G7_2_4_4 - 0.0190476190476*G7_2_4_5 - 0.00952380952381*G7_2_5_3 - 0.0190476190476*G7_2_5_4 - 0.0380952380952*G7_2_5_5 + 0.0222222222222*G8_0_3 + 0.0222222222222*G8_0_4 + 0.0222222222222*G8_0_5 + 0.0222222222222*G8_1_3 + 0.0666666666667*G8_1_4 + 0.0444444444444*G8_1_5 + 0.0222222222222*G8_2_3 + 0.0444444444444*G8_2_4 + 0.0666666666667*G8_2_5 - 0.166666666667*G9_0_0_1 - 0.166666666667*G9_1_0_1 - 0.166666666667*G9_2_0_1;
-    A[12] = 0.0416666666667*G3_;
-    A[13] = 0.0416666666667*G3_;
-    A[14] = 0.0833333333333*G3_;
-    A[15] = -0.00952380952381*G4_0_3_3 - 0.00238095238095*G4_0_3_4 - 0.0047619047619*G4_0_3_5 - 0.00238095238095*G4_0_4_3 - 0.0015873015873*G4_0_4_4 - 0.0015873015873*G4_0_4_5 - 0.0047619047619*G4_0_5_3 - 0.0015873015873*G4_0_5_4 - 0.0047619047619*G4_0_5_5 - 0.00238095238095*G4_1_3_3 - 0.0015873015873*G4_1_3_4 - 0.0015873015873*G4_1_3_5 - 0.0015873015873*G4_1_4_3 - 0.00238095238095*G4_1_4_4 - 0.0015873015873*G4_1_4_5 - 0.0015873015873*G4_1_5_3 - 0.0015873015873*G4_1_5_4 - 0.00238095238095*G4_1_5_5 - 0.0047619047619*G4_2_3_3 - 0.0015873015873*G4_2_3_4 - 0.0047619047619*G4_2_3_5 - 0.0015873015873*G4_2_4_3 - 0.0015873015873*G4_2_4_4 - 0.00238095238095*G4_2_4_5 - 0.0047619047619*G4_2_5_3 - 0.00238095238095*G4_2_5_4 - 0.00952380952381*G4_2_5_5 + 0.0166666666667*G5_0_3 + 0.00555555555556*G5_0_4 + 0.0111111111111*G5_0_5 + 0.00555555555556*G5_1_3 + 0.00555555555556*G5_1_4 + 0.00555555555556*G5_1_5 + 0.0111111111111*G5_2_3 + 0.00555555555556*G5_2_4 + 0.0166666666667*G5_2_5 - 0.0333333333333*G6_0 - 0.0166666666667*G6_1 - 0.0333333333333*G6_2 - 0.0380952380952*G7_0_3_3 - 0.00952380952381*G7_0_3_4 - 0.0190476190476*G7_0_3_5 - 0.00952380952381*G7_0_4_3 - 0.00634920634921*G7_0_4_4 - 0.00634920634921*G7_0_4_5 - 0.0190476190476*G7_0_5_3 - 0.00634920634921*G7_0_5_4 - 0.0190476190476*G7_0_5_5 - 0.00952380952381*G7_1_3_3 - 0.00634920634921*G7_1_3_4 - 0.00634920634921*G7_1_3_5 - 0.00634920634921*G7_1_4_3 - 0.00952380952381*G7_1_4_4 - 0.00634920634921*G7_1_4_5 - 0.00634920634921*G7_1_5_3 - 0.00634920634921*G7_1_5_4 - 0.00952380952381*G7_1_5_5 - 0.0190476190476*G7_2_3_3 - 0.00634920634921*G7_2_3_4 - 0.0190476190476*G7_2_3_5 - 0.00634920634921*G7_2_4_3 - 0.00634920634921*G7_2_4_4 - 0.00952380952381*G7_2_4_5 - 0.0190476190476*G7_2_5_3 - 0.00952380952381*G7_2_5_4 - 0.0380952380952*G7_2_5_5 + 0.0666666666667*G8_0_3 + 0.0222222222222*G8_0_4 + 0.0444444444444*G8_0_5 + 0.0222222222222*G8_1_3 + 0.0222222222222*G8_1_4 + 0.0222222222222*G8_1_5 + 0.0444444444444*G8_2_3 + 0.0222222222222*G8_2_4 + 0.0666666666667*G8_2_5 + 0.166666666667*G9_0_1_0 + 0.166666666667*G9_0_1_1 + 0.166666666667*G9_1_1_0 + 0.166666666667*G9_1_1_1 + 0.166666666667*G9_2_1_0 + 0.166666666667*G9_2_1_1;
-    A[16] = -0.00238095238095*G4_0_3_3 - 0.0015873015873*G4_0_3_4 - 0.0015873015873*G4_0_3_5 - 0.0015873015873*G4_0_4_3 - 0.00238095238095*G4_0_4_4 - 0.0015873015873*G4_0_4_5 - 0.0015873015873*G4_0_5_3 - 0.0015873015873*G4_0_5_4 - 0.00238095238095*G4_0_5_5 - 0.0015873015873*G4_1_3_3 - 0.00238095238095*G4_1_3_4 - 0.0015873015873*G4_1_3_5 - 0.00238095238095*G4_1_4_3 - 0.00952380952381*G4_1_4_4 - 0.0047619047619*G4_1_4_5 - 0.0015873015873*G4_1_5_3 - 0.0047619047619*G4_1_5_4 - 0.0047619047619*G4_1_5_5 - 0.0015873015873*G4_2_3_3 - 0.0015873015873*G4_2_3_4 - 0.00238095238095*G4_2_3_5 - 0.0015873015873*G4_2_4_3 - 0.0047619047619*G4_2_4_4 - 0.0047619047619*G4_2_4_5 - 0.00238095238095*G4_2_5_3 - 0.0047619047619*G4_2_5_4 - 0.00952380952381*G4_2_5_5 + 0.00555555555556*G5_0_3 + 0.00555555555556*G5_0_4 + 0.00555555555556*G5_0_5 + 0.00555555555556*G5_1_3 + 0.0166666666667*G5_1_4 + 0.0111111111111*G5_1_5 + 0.00555555555556*G5_2_3 + 0.0111111111111*G5_2_4 + 0.0166666666667*G5_2_5 - 0.0166666666667*G6_0 - 0.0333333333333*G6_1 - 0.0333333333333*G6_2 - 0.00952380952381*G7_0_3_3 - 0.00634920634921*G7_0_3_4 - 0.00634920634921*G7_0_3_5 - 0.00634920634921*G7_0_4_3 - 0.00952380952381*G7_0_4_4 - 0.00634920634921*G7_0_4_5 - 0.00634920634921*G7_0_5_3 - 0.00634920634921*G7_0_5_4 - 0.00952380952381*G7_0_5_5 - 0.00634920634921*G7_1_3_3 - 0.00952380952381*G7_1_3_4 - 0.00634920634921*G7_1_3_5 - 0.00952380952381*G7_1_4_3 - 0.0380952380952*G7_1_4_4 - 0.0190476190476*G7_1_4_5 - 0.00634920634921*G7_1_5_3 - 0.0190476190476*G7_1_5_4 - 0.0190476190476*G7_1_5_5 - 0.00634920634921*G7_2_3_3 - 0.00634920634921*G7_2_3_4 - 0.00952380952381*G7_2_3_5 - 0.00634920634921*G7_2_4_3 - 0.0190476190476*G7_2_4_4 - 0.0190476190476*G7_2_4_5 - 0.00952380952381*G7_2_5_3 - 0.0190476190476*G7_2_5_4 - 0.0380952380952*G7_2_5_5 + 0.0222222222222*G8_0_3 + 0.0222222222222*G8_0_4 + 0.0222222222222*G8_0_5 + 0.0222222222222*G8_1_3 + 0.0666666666667*G8_1_4 + 0.0444444444444*G8_1_5 + 0.0222222222222*G8_2_3 + 0.0444444444444*G8_2_4 + 0.0666666666667*G8_2_5 - 0.166666666667*G9_0_1_0 - 0.166666666667*G9_1_1_0 - 0.166666666667*G9_2_1_0;
-    A[17] = -0.0047619047619*G4_0_3_3 - 0.0015873015873*G4_0_3_4 - 0.0047619047619*G4_0_3_5 - 0.0015873015873*G4_0_4_3 - 0.0015873015873*G4_0_4_4 - 0.00238095238095*G4_0_4_5 - 0.0047619047619*G4_0_5_3 - 0.00238095238095*G4_0_5_4 - 0.00952380952381*G4_0_5_5 - 0.0015873015873*G4_1_3_3 - 0.0015873015873*G4_1_3_4 - 0.00238095238095*G4_1_3_5 - 0.0015873015873*G4_1_4_3 - 0.0047619047619*G4_1_4_4 - 0.0047619047619*G4_1_4_5 - 0.00238095238095*G4_1_5_3 - 0.0047619047619*G4_1_5_4 - 0.00952380952381*G4_1_5_5 - 0.0047619047619*G4_2_3_3 - 0.00238095238095*G4_2_3_4 - 0.00952380952381*G4_2_3_5 - 0.00238095238095*G4_2_4_3 - 0.0047619047619*G4_2_4_4 - 0.00952380952381*G4_2_4_5 - 0.00952380952381*G4_2_5_3 - 0.00952380952381*G4_2_5_4 - 0.047619047619*G4_2_5_5 + 0.0111111111111*G5_0_3 + 0.00555555555556*G5_0_4 + 0.0166666666667*G5_0_5 + 0.00555555555556*G5_1_3 + 0.0111111111111*G5_1_4 + 0.0166666666667*G5_1_5 + 0.0166666666667*G5_2_3 + 0.0166666666667*G5_2_4 + 0.0666666666667*G5_2_5 - 0.0333333333333*G6_0 - 0.0333333333333*G6_1 - 0.1*G6_2 - 0.0190476190476*G7_0_3_3 - 0.00634920634921*G7_0_3_4 - 0.0190476190476*G7_0_3_5 - 0.00634920634921*G7_0_4_3 - 0.00634920634921*G7_0_4_4 - 0.00952380952381*G7_0_4_5 - 0.0190476190476*G7_0_5_3 - 0.00952380952381*G7_0_5_4 - 0.0380952380952*G7_0_5_5 - 0.00634920634921*G7_1_3_3 - 0.00634920634921*G7_1_3_4 - 0.00952380952381*G7_1_3_5 - 0.00634920634921*G7_1_4_3 - 0.0190476190476*G7_1_4_4 - 0.0190476190476*G7_1_4_5 - 0.00952380952381*G7_1_5_3 - 0.0190476190476*G7_1_5_4 - 0.0380952380952*G7_1_5_5 - 0.0190476190476*G7_2_3_3 - 0.00952380952381*G7_2_3_4 - 0.0380952380952*G7_2_3_5 - 0.00952380952381*G7_2_4_3 - 0.0190476190476*G7_2_4_4 - 0.0380952380952*G7_2_4_5 - 0.0380952380952*G7_2_5_3 - 0.0380952380952*G7_2_5_4 - 0.190476190476*G7_2_5_5 + 0.0444444444444*G8_0_3 + 0.0222222222222*G8_0_4 + 0.0666666666667*G8_0_5 + 0.0222222222222*G8_1_3 + 0.0444444444444*G8_1_4 + 0.0666666666667*G8_1_5 + 0.0666666666667*G8_2_3 + 0.0666666666667*G8_2_4 + 0.266666666667*G8_2_5 - 0.166666666667*G9_0_1_1 - 0.166666666667*G9_1_1_1 - 0.166666666667*G9_2_1_1;
-    A[18] = 0.0833333333333*G1_0_0_0_0 + 0.0833333333333*G1_0_0_0_1 + 0.0833333333333*G1_0_0_1_0 + 0.0833333333333*G1_0_0_1_1 - 0.0833333333333*G1_0_1_0_0 - 0.0833333333333*G1_0_1_1_0 - 0.0833333333333*G1_0_2_0_1 - 0.0833333333333*G1_0_2_1_1 + 0.0416666666667*G1_1_0_0_0 + 0.0416666666667*G1_1_0_0_1 + 0.0416666666667*G1_1_0_1_0 + 0.0416666666667*G1_1_0_1_1 - 0.0416666666667*G1_1_1_0_0 - 0.0416666666667*G1_1_1_1_0 - 0.0416666666667*G1_1_2_0_1 - 0.0416666666667*G1_1_2_1_1 + 0.0416666666667*G1_2_0_0_0 + 0.0416666666667*G1_2_0_0_1 + 0.0416666666667*G1_2_0_1_0 + 0.0416666666667*G1_2_0_1_1 - 0.0416666666667*G1_2_1_0_0 - 0.0416666666667*G1_2_1_1_0 - 0.0416666666667*G1_2_2_0_1 - 0.0416666666667*G1_2_2_1_1 + 0.0833333333333*G2_0_0_0_0 + 0.0833333333333*G2_0_0_0_1 + 0.0833333333333*G2_0_0_1_0 + 0.0833333333333*G2_0_0_1_1 + 0.0416666666667*G2_0_1_0_0 + 0.0416666666667*G2_0_1_0_1 + 0.0416666666667*G2_0_1_1_0 + 0.0416666666667*G2_0_1_1_1 + 0.0416666666667*G2_0_2_0_0 + 0.0416666666667*G2_0_2_0_1 + 0.0416666666667*G2_0_2_1_0 + 0.0416666666667*G2_0_2_1_1 + 0.0416666666667*G2_1_0_0_0 + 0.0416666666667*G2_1_0_0_1 + 0.0416666666667*G2_1_0_1_0 + 0.0416666666667*G2_1_0_1_1 + 0.0833333333333*G2_1_1_0_0 + 0.0833333333333*G2_1_1_0_1 + 0.0833333333333*G2_1_1_1_0 + 0.0833333333333*G2_1_1_1_1 + 0.0416666666667*G2_1_2_0_0 + 0.0416666666667*G2_1_2_0_1 + 0.0416666666667*G2_1_2_1_0 + 0.0416666666667*G2_1_2_1_1 + 0.0416666666667*G2_2_0_0_0 + 0.0416666666667*G2_2_0_0_1 + 0.0416666666667*G2_2_0_1_0 + 0.0416666666667*G2_2_0_1_1 + 0.0416666666667*G2_2_1_0_0 + 0.0416666666667*G2_2_1_0_1 + 0.0416666666667*G2_2_1_1_0 + 0.0416666666667*G2_2_1_1_1 + 0.0833333333333*G2_2_2_0_0 + 0.0833333333333*G2_2_2_0_1 + 0.0833333333333*G2_2_2_1_0 + 0.0833333333333*G2_2_2_1_1;
-    A[19] = 0.0416666666667*G1_0_0_0_0 + 0.0416666666667*G1_0_0_0_1 + 0.0416666666667*G1_0_0_1_0 + 0.0416666666667*G1_0_0_1_1 - 0.0416666666667*G1_0_1_0_0 - 0.0416666666667*G1_0_1_1_0 - 0.0416666666667*G1_0_2_0_1 - 0.0416666666667*G1_0_2_1_1 + 0.0833333333333*G1_1_0_0_0 + 0.0833333333333*G1_1_0_0_1 + 0.0833333333333*G1_1_0_1_0 + 0.0833333333333*G1_1_0_1_1 - 0.0833333333333*G1_1_1_0_0 - 0.0833333333333*G1_1_1_1_0 - 0.0833333333333*G1_1_2_0_1 - 0.0833333333333*G1_1_2_1_1 + 0.0416666666667*G1_2_0_0_0 + 0.0416666666667*G1_2_0_0_1 + 0.0416666666667*G1_2_0_1_0 + 0.0416666666667*G1_2_0_1_1 - 0.0416666666667*G1_2_1_0_0 - 0.0416666666667*G1_2_1_1_0 - 0.0416666666667*G1_2_2_0_1 - 0.0416666666667*G1_2_2_1_1 - 0.0833333333333*G2_0_0_0_0 - 0.0833333333333*G2_0_0_1_0 - 0.0416666666667*G2_0_1_0_0 - 0.0416666666667*G2_0_1_1_0 - 0.0416666666667*G2_0_2_0_0 - 0.0416666666667*G2_0_2_1_0 - 0.0416666666667*G2_1_0_0_0 - 0.0416666666667*G2_1_0_1_0 - 0.0833333333333*G2_1_1_0_0 - 0.0833333333333*G2_1_1_1_0 - 0.0416666666667*G2_1_2_0_0 - 0.0416666666667*G2_1_2_1_0 - 0.0416666666667*G2_2_0_0_0 - 0.0416666666667*G2_2_0_1_0 - 0.0416666666667*G2_2_1_0_0 - 0.0416666666667*G2_2_1_1_0 - 0.0833333333333*G2_2_2_0_0 - 0.0833333333333*G2_2_2_1_0;
-    A[20] = 0.0416666666667*G1_0_0_0_0 + 0.0416666666667*G1_0_0_0_1 + 0.0416666666667*G1_0_0_1_0 + 0.0416666666667*G1_0_0_1_1 - 0.0416666666667*G1_0_1_0_0 - 0.0416666666667*G1_0_1_1_0 - 0.0416666666667*G1_0_2_0_1 - 0.0416666666667*G1_0_2_1_1 + 0.0416666666667*G1_1_0_0_0 + 0.0416666666667*G1_1_0_0_1 + 0.0416666666667*G1_1_0_1_0 + 0.0416666666667*G1_1_0_1_1 - 0.0416666666667*G1_1_1_0_0 - 0.0416666666667*G1_1_1_1_0 - 0.0416666666667*G1_1_2_0_1 - 0.0416666666667*G1_1_2_1_1 + 0.0833333333333*G1_2_0_0_0 + 0.0833333333333*G1_2_0_0_1 + 0.0833333333333*G1_2_0_1_0 + 0.0833333333333*G1_2_0_1_1 - 0.0833333333333*G1_2_1_0_0 - 0.0833333333333*G1_2_1_1_0 - 0.0833333333333*G1_2_2_0_1 - 0.0833333333333*G1_2_2_1_1 - 0.0833333333333*G2_0_0_0_1 - 0.0833333333333*G2_0_0_1_1 - 0.0416666666667*G2_0_1_0_1 - 0.0416666666667*G2_0_1_1_1 - 0.0416666666667*G2_0_2_0_1 - 0.0416666666667*G2_0_2_1_1 - 0.0416666666667*G2_1_0_0_1 - 0.0416666666667*G2_1_0_1_1 - 0.0833333333333*G2_1_1_0_1 - 0.0833333333333*G2_1_1_1_1 - 0.0416666666667*G2_1_2_0_1 - 0.0416666666667*G2_1_2_1_1 - 0.0416666666667*G2_2_0_0_1 - 0.0416666666667*G2_2_0_1_1 - 0.0416666666667*G2_2_1_0_1 - 0.0416666666667*G2_2_1_1_1 - 0.0833333333333*G2_2_2_0_1 - 0.0833333333333*G2_2_2_1_1;
-    A[21] = 0.0833333333333*G0_;
-    A[22] = 0.0416666666667*G0_;
-    A[23] = 0.0416666666667*G0_;
-    A[24] = -0.0833333333333*G1_0_0_0_0 - 0.0833333333333*G1_0_0_0_1 + 0.0833333333333*G1_0_1_0_0 + 0.0833333333333*G1_0_2_0_1 - 0.0416666666667*G1_1_0_0_0 - 0.0416666666667*G1_1_0_0_1 + 0.0416666666667*G1_1_1_0_0 + 0.0416666666667*G1_1_2_0_1 - 0.0416666666667*G1_2_0_0_0 - 0.0416666666667*G1_2_0_0_1 + 0.0416666666667*G1_2_1_0_0 + 0.0416666666667*G1_2_2_0_1 - 0.0833333333333*G2_0_0_0_0 - 0.0833333333333*G2_0_0_0_1 - 0.0416666666667*G2_0_1_0_0 - 0.0416666666667*G2_0_1_0_1 - 0.0416666666667*G2_0_2_0_0 - 0.0416666666667*G2_0_2_0_1 - 0.0416666666667*G2_1_0_0_0 - 0.0416666666667*G2_1_0_0_1 - 0.0833333333333*G2_1_1_0_0 - 0.0833333333333*G2_1_1_0_1 - 0.0416666666667*G2_1_2_0_0 - 0.0416666666667*G2_1_2_0_1 - 0.0416666666667*G2_2_0_0_0 - 0.0416666666667*G2_2_0_0_1 - 0.0416666666667*G2_2_1_0_0 - 0.0416666666667*G2_2_1_0_1 - 0.0833333333333*G2_2_2_0_0 - 0.0833333333333*G2_2_2_0_1;
-    A[25] = -0.0416666666667*G1_0_0_0_0 - 0.0416666666667*G1_0_0_0_1 + 0.0416666666667*G1_0_1_0_0 + 0.0416666666667*G1_0_2_0_1 - 0.0833333333333*G1_1_0_0_0 - 0.0833333333333*G1_1_0_0_1 + 0.0833333333333*G1_1_1_0_0 + 0.0833333333333*G1_1_2_0_1 - 0.0416666666667*G1_2_0_0_0 - 0.0416666666667*G1_2_0_0_1 + 0.0416666666667*G1_2_1_0_0 + 0.0416666666667*G1_2_2_0_1 + 0.0833333333333*G2_0_0_0_0 + 0.0416666666667*G2_0_1_0_0 + 0.0416666666667*G2_0_2_0_0 + 0.0416666666667*G2_1_0_0_0 + 0.0833333333333*G2_1_1_0_0 + 0.0416666666667*G2_1_2_0_0 + 0.0416666666667*G2_2_0_0_0 + 0.0416666666667*G2_2_1_0_0 + 0.0833333333333*G2_2_2_0_0;
-    A[26] = -0.0416666666667*G1_0_0_0_0 - 0.0416666666667*G1_0_0_0_1 + 0.0416666666667*G1_0_1_0_0 + 0.0416666666667*G1_0_2_0_1 - 0.0416666666667*G1_1_0_0_0 - 0.0416666666667*G1_1_0_0_1 + 0.0416666666667*G1_1_1_0_0 + 0.0416666666667*G1_1_2_0_1 - 0.0833333333333*G1_2_0_0_0 - 0.0833333333333*G1_2_0_0_1 + 0.0833333333333*G1_2_1_0_0 + 0.0833333333333*G1_2_2_0_1 + 0.0833333333333*G2_0_0_0_1 + 0.0416666666667*G2_0_1_0_1 + 0.0416666666667*G2_0_2_0_1 + 0.0416666666667*G2_1_0_0_1 + 0.0833333333333*G2_1_1_0_1 + 0.0416666666667*G2_1_2_0_1 + 0.0416666666667*G2_2_0_0_1 + 0.0416666666667*G2_2_1_0_1 + 0.0833333333333*G2_2_2_0_1;
-    A[27] = 0.0416666666667*G0_;
-    A[28] = 0.0833333333333*G0_;
-    A[29] = 0.0416666666667*G0_;
-    A[30] = -0.0833333333333*G1_0_0_1_0 - 0.0833333333333*G1_0_0_1_1 + 0.0833333333333*G1_0_1_1_0 + 0.0833333333333*G1_0_2_1_1 - 0.0416666666667*G1_1_0_1_0 - 0.0416666666667*G1_1_0_1_1 + 0.0416666666667*G1_1_1_1_0 + 0.0416666666667*G1_1_2_1_1 - 0.0416666666667*G1_2_0_1_0 - 0.0416666666667*G1_2_0_1_1 + 0.0416666666667*G1_2_1_1_0 + 0.0416666666667*G1_2_2_1_1 - 0.0833333333333*G2_0_0_1_0 - 0.0833333333333*G2_0_0_1_1 - 0.0416666666667*G2_0_1_1_0 - 0.0416666666667*G2_0_1_1_1 - 0.0416666666667*G2_0_2_1_0 - 0.0416666666667*G2_0_2_1_1 - 0.0416666666667*G2_1_0_1_0 - 0.0416666666667*G2_1_0_1_1 - 0.0833333333333*G2_1_1_1_0 - 0.0833333333333*G2_1_1_1_1 - 0.0416666666667*G2_1_2_1_0 - 0.0416666666667*G2_1_2_1_1 - 0.0416666666667*G2_2_0_1_0 - 0.0416666666667*G2_2_0_1_1 - 0.0416666666667*G2_2_1_1_0 - 0.0416666666667*G2_2_1_1_1 - 0.0833333333333*G2_2_2_1_0 - 0.0833333333333*G2_2_2_1_1;
-    A[31] = -0.0416666666667*G1_0_0_1_0 - 0.0416666666667*G1_0_0_1_1 + 0.0416666666667*G1_0_1_1_0 + 0.0416666666667*G1_0_2_1_1 - 0.0833333333333*G1_1_0_1_0 - 0.0833333333333*G1_1_0_1_1 + 0.0833333333333*G1_1_1_1_0 + 0.0833333333333*G1_1_2_1_1 - 0.0416666666667*G1_2_0_1_0 - 0.0416666666667*G1_2_0_1_1 + 0.0416666666667*G1_2_1_1_0 + 0.0416666666667*G1_2_2_1_1 + 0.0833333333333*G2_0_0_1_0 + 0.0416666666667*G2_0_1_1_0 + 0.0416666666667*G2_0_2_1_0 + 0.0416666666667*G2_1_0_1_0 + 0.0833333333333*G2_1_1_1_0 + 0.0416666666667*G2_1_2_1_0 + 0.0416666666667*G2_2_0_1_0 + 0.0416666666667*G2_2_1_1_0 + 0.0833333333333*G2_2_2_1_0;
-    A[32] = -0.0416666666667*G1_0_0_1_0 - 0.0416666666667*G1_0_0_1_1 + 0.0416666666667*G1_0_1_1_0 + 0.0416666666667*G1_0_2_1_1 - 0.0416666666667*G1_1_0_1_0 - 0.0416666666667*G1_1_0_1_1 + 0.0416666666667*G1_1_1_1_0 + 0.0416666666667*G1_1_2_1_1 - 0.0833333333333*G1_2_0_1_0 - 0.0833333333333*G1_2_0_1_1 + 0.0833333333333*G1_2_1_1_0 + 0.0833333333333*G1_2_2_1_1 + 0.0833333333333*G2_0_0_1_1 + 0.0416666666667*G2_0_1_1_1 + 0.0416666666667*G2_0_2_1_1 + 0.0416666666667*G2_1_0_1_1 + 0.0833333333333*G2_1_1_1_1 + 0.0416666666667*G2_1_2_1_1 + 0.0416666666667*G2_2_0_1_1 + 0.0416666666667*G2_2_1_1_1 + 0.0833333333333*G2_2_2_1_1;
-    A[33] = 0.0416666666667*G0_;
-    A[34] = 0.0416666666667*G0_;
-    A[35] = 0.0833333333333*G0_;
+    A[0] = 0.0833333333333332*G3_;
+    A[1] = 0.0416666666666666*G3_;
+    A[2] = 0.0416666666666666*G3_;
+    A[3] = -0.0476190476190476*G4_0_3_3 - 0.00952380952380952*G4_0_3_4 - 0.00952380952380952*G4_0_3_5 - 0.00952380952380952*G4_0_4_3 - 0.00476190476190476*G4_0_4_4 - 0.00238095238095238*G4_0_4_5 - 0.00952380952380952*G4_0_5_3 - 0.00238095238095238*G4_0_5_4 - 0.00476190476190476*G4_0_5_5 - 0.00952380952380952*G4_1_3_3 - 0.00476190476190476*G4_1_3_4 - 0.00238095238095238*G4_1_3_5 - 0.00476190476190476*G4_1_4_3 - 0.00476190476190476*G4_1_4_4 - 0.00158730158730159*G4_1_4_5 - 0.00238095238095238*G4_1_5_3 - 0.00158730158730159*G4_1_5_4 - 0.00158730158730159*G4_1_5_5 - 0.00952380952380952*G4_2_3_3 - 0.00238095238095238*G4_2_3_4 - 0.00476190476190476*G4_2_3_5 - 0.00238095238095238*G4_2_4_3 - 0.00158730158730159*G4_2_4_4 - 0.00158730158730159*G4_2_4_5 - 0.00476190476190476*G4_2_5_3 - 0.00158730158730159*G4_2_5_4 - 0.00476190476190476*G4_2_5_5 + 0.0666666666666666*G5_0_3 + 0.0166666666666667*G5_0_4 + 0.0166666666666667*G5_0_5 + 0.0166666666666667*G5_1_3 + 0.0111111111111111*G5_1_4 + 0.00555555555555555*G5_1_5 + 0.0166666666666667*G5_2_3 + 0.00555555555555555*G5_2_4 + 0.0111111111111111*G5_2_5 - 0.0999999999999998*G6_0 - 0.0333333333333333*G6_1 - 0.0333333333333333*G6_2 - 0.19047619047619*G7_0_3_3 - 0.0380952380952381*G7_0_3_4 - 0.0380952380952381*G7_0_3_5 - 0.0380952380952381*G7_0_4_3 - 0.019047619047619*G7_0_4_4 - 0.00952380952380952*G7_0_4_5 - 0.0380952380952381*G7_0_5_3 - 0.00952380952380952*G7_0_5_4 - 0.019047619047619*G7_0_5_5 - 0.0380952380952381*G7_1_3_3 - 0.019047619047619*G7_1_3_4 - 0.00952380952380952*G7_1_3_5 - 0.019047619047619*G7_1_4_3 - 0.019047619047619*G7_1_4_4 - 0.00634920634920635*G7_1_4_5 - 0.00952380952380952*G7_1_5_3 - 0.00634920634920635*G7_1_5_4 - 0.00634920634920635*G7_1_5_5 - 0.0380952380952381*G7_2_3_3 - 0.00952380952380952*G7_2_3_4 - 0.019047619047619*G7_2_3_5 - 0.00952380952380952*G7_2_4_3 - 0.00634920634920635*G7_2_4_4 - 0.00634920634920635*G7_2_4_5 - 0.019047619047619*G7_2_5_3 - 0.00634920634920635*G7_2_5_4 - 0.019047619047619*G7_2_5_5 + 0.266666666666667*G8_0_3 + 0.0666666666666666*G8_0_4 + 0.0666666666666666*G8_0_5 + 0.0666666666666666*G8_1_3 + 0.0444444444444444*G8_1_4 + 0.0222222222222222*G8_1_5 + 0.0666666666666666*G8_2_3 + 0.0222222222222222*G8_2_4 + 0.0444444444444444*G8_2_5 - 0.166666666666667*G9_0_0_0 - 0.166666666666667*G9_0_0_1 - 0.166666666666667*G9_0_1_0 - 0.166666666666667*G9_0_1_1 - 0.166666666666667*G9_1_0_0 - 0.166666666666667*G9_1_0_1 - 0.166666666666667*G9_1_1_0 - 0.166666666666667*G9_1_1_1 - 0.166666666666667*G9_2_0_0 - 0.166666666666667*G9_2_0_1 - 0.166666666666667*G9_2_1_0 - 0.166666666666667*G9_2_1_1;
+    A[4] = -0.00952380952380952*G4_0_3_3 - 0.00476190476190476*G4_0_3_4 - 0.00238095238095238*G4_0_3_5 - 0.00476190476190476*G4_0_4_3 - 0.00476190476190476*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.00238095238095238*G4_0_5_3 - 0.00158730158730159*G4_0_5_4 - 0.00158730158730159*G4_0_5_5 - 0.00476190476190476*G4_1_3_3 - 0.00476190476190476*G4_1_3_4 - 0.00158730158730159*G4_1_3_5 - 0.00476190476190476*G4_1_4_3 - 0.00952380952380951*G4_1_4_4 - 0.00238095238095238*G4_1_4_5 - 0.00158730158730159*G4_1_5_3 - 0.00238095238095238*G4_1_5_4 - 0.00158730158730159*G4_1_5_5 - 0.00238095238095238*G4_2_3_3 - 0.00158730158730159*G4_2_3_4 - 0.00158730158730159*G4_2_3_5 - 0.00158730158730159*G4_2_4_3 - 0.00238095238095238*G4_2_4_4 - 0.00158730158730159*G4_2_4_5 - 0.00158730158730159*G4_2_5_3 - 0.00158730158730159*G4_2_5_4 - 0.00238095238095238*G4_2_5_5 + 0.0166666666666667*G5_0_3 + 0.0111111111111111*G5_0_4 + 0.00555555555555555*G5_0_5 + 0.0111111111111111*G5_1_3 + 0.0166666666666666*G5_1_4 + 0.00555555555555555*G5_1_5 + 0.00555555555555555*G5_2_3 + 0.00555555555555555*G5_2_4 + 0.00555555555555555*G5_2_5 - 0.0333333333333333*G6_0 - 0.0333333333333333*G6_1 - 0.0166666666666666*G6_2 - 0.0380952380952381*G7_0_3_3 - 0.019047619047619*G7_0_3_4 - 0.00952380952380952*G7_0_3_5 - 0.019047619047619*G7_0_4_3 - 0.019047619047619*G7_0_4_4 - 0.00634920634920635*G7_0_4_5 - 0.00952380952380952*G7_0_5_3 - 0.00634920634920635*G7_0_5_4 - 0.00634920634920635*G7_0_5_5 - 0.019047619047619*G7_1_3_3 - 0.019047619047619*G7_1_3_4 - 0.00634920634920635*G7_1_3_5 - 0.019047619047619*G7_1_4_3 - 0.038095238095238*G7_1_4_4 - 0.00952380952380952*G7_1_4_5 - 0.00634920634920635*G7_1_5_3 - 0.00952380952380952*G7_1_5_4 - 0.00634920634920635*G7_1_5_5 - 0.00952380952380952*G7_2_3_3 - 0.00634920634920635*G7_2_3_4 - 0.00634920634920635*G7_2_3_5 - 0.00634920634920635*G7_2_4_3 - 0.00952380952380952*G7_2_4_4 - 0.00634920634920635*G7_2_4_5 - 0.00634920634920635*G7_2_5_3 - 0.00634920634920635*G7_2_5_4 - 0.00952380952380952*G7_2_5_5 + 0.0666666666666666*G8_0_3 + 0.0444444444444444*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0444444444444444*G8_1_3 + 0.0666666666666666*G8_1_4 + 0.0222222222222222*G8_1_5 + 0.0222222222222222*G8_2_3 + 0.0222222222222222*G8_2_4 + 0.0222222222222222*G8_2_5 + 0.166666666666667*G9_0_0_0 + 0.166666666666667*G9_0_1_0 + 0.166666666666667*G9_1_0_0 + 0.166666666666667*G9_1_1_0 + 0.166666666666667*G9_2_0_0 + 0.166666666666667*G9_2_1_0;
+    A[5] = -0.00952380952380952*G4_0_3_3 - 0.00238095238095238*G4_0_3_4 - 0.00476190476190476*G4_0_3_5 - 0.00238095238095238*G4_0_4_3 - 0.00158730158730159*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.00476190476190476*G4_0_5_3 - 0.00158730158730159*G4_0_5_4 - 0.00476190476190476*G4_0_5_5 - 0.00238095238095238*G4_1_3_3 - 0.00158730158730159*G4_1_3_4 - 0.00158730158730159*G4_1_3_5 - 0.00158730158730159*G4_1_4_3 - 0.00238095238095238*G4_1_4_4 - 0.00158730158730159*G4_1_4_5 - 0.00158730158730159*G4_1_5_3 - 0.00158730158730159*G4_1_5_4 - 0.00238095238095238*G4_1_5_5 - 0.00476190476190476*G4_2_3_3 - 0.00158730158730159*G4_2_3_4 - 0.00476190476190476*G4_2_3_5 - 0.00158730158730159*G4_2_4_3 - 0.00158730158730159*G4_2_4_4 - 0.00238095238095238*G4_2_4_5 - 0.00476190476190476*G4_2_5_3 - 0.00238095238095238*G4_2_5_4 - 0.00952380952380951*G4_2_5_5 + 0.0166666666666667*G5_0_3 + 0.00555555555555555*G5_0_4 + 0.0111111111111111*G5_0_5 + 0.00555555555555555*G5_1_3 + 0.00555555555555555*G5_1_4 + 0.00555555555555555*G5_1_5 + 0.0111111111111111*G5_2_3 + 0.00555555555555555*G5_2_4 + 0.0166666666666666*G5_2_5 - 0.0333333333333333*G6_0 - 0.0166666666666666*G6_1 - 0.0333333333333333*G6_2 - 0.0380952380952381*G7_0_3_3 - 0.00952380952380952*G7_0_3_4 - 0.019047619047619*G7_0_3_5 - 0.00952380952380952*G7_0_4_3 - 0.00634920634920635*G7_0_4_4 - 0.00634920634920635*G7_0_4_5 - 0.019047619047619*G7_0_5_3 - 0.00634920634920635*G7_0_5_4 - 0.019047619047619*G7_0_5_5 - 0.00952380952380952*G7_1_3_3 - 0.00634920634920635*G7_1_3_4 - 0.00634920634920635*G7_1_3_5 - 0.00634920634920635*G7_1_4_3 - 0.00952380952380952*G7_1_4_4 - 0.00634920634920635*G7_1_4_5 - 0.00634920634920635*G7_1_5_3 - 0.00634920634920635*G7_1_5_4 - 0.00952380952380952*G7_1_5_5 - 0.019047619047619*G7_2_3_3 - 0.00634920634920635*G7_2_3_4 - 0.019047619047619*G7_2_3_5 - 0.00634920634920635*G7_2_4_3 - 0.00634920634920635*G7_2_4_4 - 0.00952380952380952*G7_2_4_5 - 0.019047619047619*G7_2_5_3 - 0.00952380952380952*G7_2_5_4 - 0.0380952380952381*G7_2_5_5 + 0.0666666666666666*G8_0_3 + 0.0222222222222222*G8_0_4 + 0.0444444444444444*G8_0_5 + 0.0222222222222222*G8_1_3 + 0.0222222222222222*G8_1_4 + 0.0222222222222222*G8_1_5 + 0.0444444444444444*G8_2_3 + 0.0222222222222222*G8_2_4 + 0.0666666666666666*G8_2_5 + 0.166666666666667*G9_0_0_1 + 0.166666666666667*G9_0_1_1 + 0.166666666666667*G9_1_0_1 + 0.166666666666667*G9_1_1_1 + 0.166666666666667*G9_2_0_1 + 0.166666666666667*G9_2_1_1;
+    A[6] = 0.0416666666666666*G3_;
+    A[7] = 0.0833333333333332*G3_;
+    A[8] = 0.0416666666666666*G3_;
+    A[9] = -0.00952380952380952*G4_0_3_3 - 0.00476190476190476*G4_0_3_4 - 0.00238095238095238*G4_0_3_5 - 0.00476190476190476*G4_0_4_3 - 0.00476190476190476*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.00238095238095238*G4_0_5_3 - 0.00158730158730159*G4_0_5_4 - 0.00158730158730159*G4_0_5_5 - 0.00476190476190476*G4_1_3_3 - 0.00476190476190476*G4_1_3_4 - 0.00158730158730159*G4_1_3_5 - 0.00476190476190476*G4_1_4_3 - 0.00952380952380951*G4_1_4_4 - 0.00238095238095238*G4_1_4_5 - 0.00158730158730159*G4_1_5_3 - 0.00238095238095238*G4_1_5_4 - 0.00158730158730159*G4_1_5_5 - 0.00238095238095238*G4_2_3_3 - 0.00158730158730159*G4_2_3_4 - 0.00158730158730159*G4_2_3_5 - 0.00158730158730159*G4_2_4_3 - 0.00238095238095238*G4_2_4_4 - 0.00158730158730159*G4_2_4_5 - 0.00158730158730159*G4_2_5_3 - 0.00158730158730159*G4_2_5_4 - 0.00238095238095238*G4_2_5_5 + 0.0166666666666667*G5_0_3 + 0.0111111111111111*G5_0_4 + 0.00555555555555555*G5_0_5 + 0.0111111111111111*G5_1_3 + 0.0166666666666666*G5_1_4 + 0.00555555555555555*G5_1_5 + 0.00555555555555555*G5_2_3 + 0.00555555555555555*G5_2_4 + 0.00555555555555555*G5_2_5 - 0.0333333333333333*G6_0 - 0.0333333333333333*G6_1 - 0.0166666666666666*G6_2 - 0.0380952380952381*G7_0_3_3 - 0.019047619047619*G7_0_3_4 - 0.00952380952380952*G7_0_3_5 - 0.019047619047619*G7_0_4_3 - 0.019047619047619*G7_0_4_4 - 0.00634920634920635*G7_0_4_5 - 0.00952380952380952*G7_0_5_3 - 0.00634920634920635*G7_0_5_4 - 0.00634920634920634*G7_0_5_5 - 0.019047619047619*G7_1_3_3 - 0.019047619047619*G7_1_3_4 - 0.00634920634920635*G7_1_3_5 - 0.019047619047619*G7_1_4_3 - 0.0380952380952381*G7_1_4_4 - 0.00952380952380952*G7_1_4_5 - 0.00634920634920635*G7_1_5_3 - 0.00952380952380952*G7_1_5_4 - 0.00634920634920635*G7_1_5_5 - 0.00952380952380952*G7_2_3_3 - 0.00634920634920635*G7_2_3_4 - 0.00634920634920635*G7_2_3_5 - 0.00634920634920635*G7_2_4_3 - 0.00952380952380952*G7_2_4_4 - 0.00634920634920635*G7_2_4_5 - 0.00634920634920635*G7_2_5_3 - 0.00634920634920635*G7_2_5_4 - 0.00952380952380952*G7_2_5_5 + 0.0666666666666666*G8_0_3 + 0.0444444444444444*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0444444444444444*G8_1_3 + 0.0666666666666666*G8_1_4 + 0.0222222222222222*G8_1_5 + 0.0222222222222222*G8_2_3 + 0.0222222222222222*G8_2_4 + 0.0222222222222222*G8_2_5 + 0.166666666666667*G9_0_0_0 + 0.166666666666667*G9_0_0_1 + 0.166666666666667*G9_1_0_0 + 0.166666666666667*G9_1_0_1 + 0.166666666666667*G9_2_0_0 + 0.166666666666667*G9_2_0_1;
+    A[10] = -0.00476190476190476*G4_0_3_3 - 0.00476190476190476*G4_0_3_4 - 0.00158730158730159*G4_0_3_5 - 0.00476190476190476*G4_0_4_3 - 0.00952380952380951*G4_0_4_4 - 0.00238095238095238*G4_0_4_5 - 0.00158730158730159*G4_0_5_3 - 0.00238095238095238*G4_0_5_4 - 0.00158730158730159*G4_0_5_5 - 0.00476190476190476*G4_1_3_3 - 0.00952380952380951*G4_1_3_4 - 0.00238095238095238*G4_1_3_5 - 0.00952380952380951*G4_1_4_3 - 0.0476190476190476*G4_1_4_4 - 0.00952380952380952*G4_1_4_5 - 0.00238095238095238*G4_1_5_3 - 0.00952380952380952*G4_1_5_4 - 0.00476190476190476*G4_1_5_5 - 0.00158730158730159*G4_2_3_3 - 0.00238095238095238*G4_2_3_4 - 0.00158730158730159*G4_2_3_5 - 0.00238095238095238*G4_2_4_3 - 0.00952380952380952*G4_2_4_4 - 0.00476190476190476*G4_2_4_5 - 0.00158730158730159*G4_2_5_3 - 0.00476190476190476*G4_2_5_4 - 0.00476190476190476*G4_2_5_5 + 0.0111111111111111*G5_0_3 + 0.0166666666666666*G5_0_4 + 0.00555555555555555*G5_0_5 + 0.0166666666666667*G5_1_3 + 0.0666666666666666*G5_1_4 + 0.0166666666666667*G5_1_5 + 0.00555555555555555*G5_2_3 + 0.0166666666666667*G5_2_4 + 0.0111111111111111*G5_2_5 - 0.0333333333333333*G6_0 - 0.0999999999999998*G6_1 - 0.0333333333333333*G6_2 - 0.019047619047619*G7_0_3_3 - 0.019047619047619*G7_0_3_4 - 0.00634920634920635*G7_0_3_5 - 0.019047619047619*G7_0_4_3 - 0.038095238095238*G7_0_4_4 - 0.00952380952380952*G7_0_4_5 - 0.00634920634920635*G7_0_5_3 - 0.00952380952380952*G7_0_5_4 - 0.00634920634920635*G7_0_5_5 - 0.019047619047619*G7_1_3_3 - 0.0380952380952381*G7_1_3_4 - 0.00952380952380952*G7_1_3_5 - 0.0380952380952381*G7_1_4_3 - 0.19047619047619*G7_1_4_4 - 0.0380952380952381*G7_1_4_5 - 0.00952380952380952*G7_1_5_3 - 0.0380952380952381*G7_1_5_4 - 0.019047619047619*G7_1_5_5 - 0.00634920634920635*G7_2_3_3 - 0.00952380952380952*G7_2_3_4 - 0.00634920634920635*G7_2_3_5 - 0.00952380952380952*G7_2_4_3 - 0.0380952380952381*G7_2_4_4 - 0.019047619047619*G7_2_4_5 - 0.00634920634920635*G7_2_5_3 - 0.019047619047619*G7_2_5_4 - 0.019047619047619*G7_2_5_5 + 0.0444444444444444*G8_0_3 + 0.0666666666666666*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0666666666666666*G8_1_3 + 0.266666666666667*G8_1_4 + 0.0666666666666666*G8_1_5 + 0.0222222222222222*G8_2_3 + 0.0666666666666666*G8_2_4 + 0.0444444444444444*G8_2_5 - 0.166666666666667*G9_0_0_0 - 0.166666666666667*G9_1_0_0 - 0.166666666666667*G9_2_0_0;
+    A[11] = -0.00238095238095238*G4_0_3_3 - 0.00158730158730159*G4_0_3_4 - 0.00158730158730159*G4_0_3_5 - 0.00158730158730159*G4_0_4_3 - 0.00238095238095238*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.00158730158730159*G4_0_5_3 - 0.00158730158730159*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.00158730158730159*G4_1_3_3 - 0.00238095238095238*G4_1_3_4 - 0.00158730158730159*G4_1_3_5 - 0.00238095238095238*G4_1_4_3 - 0.00952380952380952*G4_1_4_4 - 0.00476190476190476*G4_1_4_5 - 0.00158730158730159*G4_1_5_3 - 0.00476190476190476*G4_1_5_4 - 0.00476190476190476*G4_1_5_5 - 0.00158730158730159*G4_2_3_3 - 0.00158730158730159*G4_2_3_4 - 0.00238095238095238*G4_2_3_5 - 0.00158730158730159*G4_2_4_3 - 0.00476190476190476*G4_2_4_4 - 0.00476190476190476*G4_2_4_5 - 0.00238095238095238*G4_2_5_3 - 0.00476190476190476*G4_2_5_4 - 0.00952380952380952*G4_2_5_5 + 0.00555555555555555*G5_0_3 + 0.00555555555555555*G5_0_4 + 0.00555555555555555*G5_0_5 + 0.00555555555555555*G5_1_3 + 0.0166666666666667*G5_1_4 + 0.0111111111111111*G5_1_5 + 0.00555555555555555*G5_2_3 + 0.0111111111111111*G5_2_4 + 0.0166666666666667*G5_2_5 - 0.0166666666666666*G6_0 - 0.0333333333333333*G6_1 - 0.0333333333333333*G6_2 - 0.00952380952380952*G7_0_3_3 - 0.00634920634920635*G7_0_3_4 - 0.00634920634920634*G7_0_3_5 - 0.00634920634920635*G7_0_4_3 - 0.00952380952380952*G7_0_4_4 - 0.00634920634920635*G7_0_4_5 - 0.00634920634920634*G7_0_5_3 - 0.00634920634920635*G7_0_5_4 - 0.00952380952380952*G7_0_5_5 - 0.00634920634920635*G7_1_3_3 - 0.00952380952380952*G7_1_3_4 - 0.00634920634920635*G7_1_3_5 - 0.00952380952380952*G7_1_4_3 - 0.0380952380952381*G7_1_4_4 - 0.019047619047619*G7_1_4_5 - 0.00634920634920635*G7_1_5_3 - 0.019047619047619*G7_1_5_4 - 0.019047619047619*G7_1_5_5 - 0.00634920634920635*G7_2_3_3 - 0.00634920634920635*G7_2_3_4 - 0.00952380952380952*G7_2_3_5 - 0.00634920634920635*G7_2_4_3 - 0.019047619047619*G7_2_4_4 - 0.019047619047619*G7_2_4_5 - 0.00952380952380952*G7_2_5_3 - 0.019047619047619*G7_2_5_4 - 0.0380952380952381*G7_2_5_5 + 0.0222222222222222*G8_0_3 + 0.0222222222222222*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0222222222222222*G8_1_3 + 0.0666666666666666*G8_1_4 + 0.0444444444444444*G8_1_5 + 0.0222222222222222*G8_2_3 + 0.0444444444444444*G8_2_4 + 0.0666666666666666*G8_2_5 - 0.166666666666667*G9_0_0_1 - 0.166666666666667*G9_1_0_1 - 0.166666666666667*G9_2_0_1;
+    A[12] = 0.0416666666666666*G3_;
+    A[13] = 0.0416666666666666*G3_;
+    A[14] = 0.0833333333333332*G3_;
+    A[15] = -0.00952380952380952*G4_0_3_3 - 0.00238095238095238*G4_0_3_4 - 0.00476190476190476*G4_0_3_5 - 0.00238095238095238*G4_0_4_3 - 0.00158730158730159*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.00476190476190476*G4_0_5_3 - 0.00158730158730159*G4_0_5_4 - 0.00476190476190476*G4_0_5_5 - 0.00238095238095238*G4_1_3_3 - 0.00158730158730159*G4_1_3_4 - 0.00158730158730159*G4_1_3_5 - 0.00158730158730159*G4_1_4_3 - 0.00238095238095238*G4_1_4_4 - 0.00158730158730159*G4_1_4_5 - 0.00158730158730159*G4_1_5_3 - 0.00158730158730159*G4_1_5_4 - 0.00238095238095238*G4_1_5_5 - 0.00476190476190476*G4_2_3_3 - 0.00158730158730159*G4_2_3_4 - 0.00476190476190476*G4_2_3_5 - 0.00158730158730159*G4_2_4_3 - 0.00158730158730159*G4_2_4_4 - 0.00238095238095238*G4_2_4_5 - 0.00476190476190476*G4_2_5_3 - 0.00238095238095238*G4_2_5_4 - 0.00952380952380951*G4_2_5_5 + 0.0166666666666667*G5_0_3 + 0.00555555555555555*G5_0_4 + 0.0111111111111111*G5_0_5 + 0.00555555555555555*G5_1_3 + 0.00555555555555555*G5_1_4 + 0.00555555555555555*G5_1_5 + 0.0111111111111111*G5_2_3 + 0.00555555555555555*G5_2_4 + 0.0166666666666666*G5_2_5 - 0.0333333333333333*G6_0 - 0.0166666666666666*G6_1 - 0.0333333333333333*G6_2 - 0.0380952380952381*G7_0_3_3 - 0.00952380952380952*G7_0_3_4 - 0.019047619047619*G7_0_3_5 - 0.00952380952380952*G7_0_4_3 - 0.00634920634920635*G7_0_4_4 - 0.00634920634920635*G7_0_4_5 - 0.019047619047619*G7_0_5_3 - 0.00634920634920635*G7_0_5_4 - 0.019047619047619*G7_0_5_5 - 0.00952380952380952*G7_1_3_3 - 0.00634920634920635*G7_1_3_4 - 0.00634920634920635*G7_1_3_5 - 0.00634920634920635*G7_1_4_3 - 0.00952380952380952*G7_1_4_4 - 0.00634920634920635*G7_1_4_5 - 0.00634920634920635*G7_1_5_3 - 0.00634920634920635*G7_1_5_4 - 0.00952380952380952*G7_1_5_5 - 0.019047619047619*G7_2_3_3 - 0.00634920634920635*G7_2_3_4 - 0.019047619047619*G7_2_3_5 - 0.00634920634920635*G7_2_4_3 - 0.00634920634920635*G7_2_4_4 - 0.00952380952380952*G7_2_4_5 - 0.019047619047619*G7_2_5_3 - 0.00952380952380952*G7_2_5_4 - 0.0380952380952381*G7_2_5_5 + 0.0666666666666666*G8_0_3 + 0.0222222222222222*G8_0_4 + 0.0444444444444444*G8_0_5 + 0.0222222222222222*G8_1_3 + 0.0222222222222222*G8_1_4 + 0.0222222222222222*G8_1_5 + 0.0444444444444444*G8_2_3 + 0.0222222222222222*G8_2_4 + 0.0666666666666666*G8_2_5 + 0.166666666666667*G9_0_1_0 + 0.166666666666667*G9_0_1_1 + 0.166666666666667*G9_1_1_0 + 0.166666666666667*G9_1_1_1 + 0.166666666666667*G9_2_1_0 + 0.166666666666667*G9_2_1_1;
+    A[16] = -0.00238095238095238*G4_0_3_3 - 0.00158730158730159*G4_0_3_4 - 0.00158730158730159*G4_0_3_5 - 0.00158730158730159*G4_0_4_3 - 0.00238095238095238*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.00158730158730159*G4_0_5_3 - 0.00158730158730159*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.00158730158730159*G4_1_3_3 - 0.00238095238095238*G4_1_3_4 - 0.00158730158730159*G4_1_3_5 - 0.00238095238095238*G4_1_4_3 - 0.00952380952380952*G4_1_4_4 - 0.00476190476190476*G4_1_4_5 - 0.00158730158730159*G4_1_5_3 - 0.00476190476190476*G4_1_5_4 - 0.00476190476190476*G4_1_5_5 - 0.00158730158730159*G4_2_3_3 - 0.00158730158730159*G4_2_3_4 - 0.00238095238095238*G4_2_3_5 - 0.00158730158730159*G4_2_4_3 - 0.00476190476190476*G4_2_4_4 - 0.00476190476190476*G4_2_4_5 - 0.00238095238095238*G4_2_5_3 - 0.00476190476190476*G4_2_5_4 - 0.00952380952380952*G4_2_5_5 + 0.00555555555555555*G5_0_3 + 0.00555555555555555*G5_0_4 + 0.00555555555555555*G5_0_5 + 0.00555555555555555*G5_1_3 + 0.0166666666666667*G5_1_4 + 0.0111111111111111*G5_1_5 + 0.00555555555555555*G5_2_3 + 0.0111111111111111*G5_2_4 + 0.0166666666666667*G5_2_5 - 0.0166666666666666*G6_0 - 0.0333333333333333*G6_1 - 0.0333333333333333*G6_2 - 0.00952380952380952*G7_0_3_3 - 0.00634920634920635*G7_0_3_4 - 0.00634920634920635*G7_0_3_5 - 0.00634920634920635*G7_0_4_3 - 0.00952380952380952*G7_0_4_4 - 0.00634920634920635*G7_0_4_5 - 0.00634920634920635*G7_0_5_3 - 0.00634920634920635*G7_0_5_4 - 0.00952380952380952*G7_0_5_5 - 0.00634920634920635*G7_1_3_3 - 0.00952380952380952*G7_1_3_4 - 0.00634920634920635*G7_1_3_5 - 0.00952380952380952*G7_1_4_3 - 0.0380952380952381*G7_1_4_4 - 0.019047619047619*G7_1_4_5 - 0.00634920634920635*G7_1_5_3 - 0.019047619047619*G7_1_5_4 - 0.019047619047619*G7_1_5_5 - 0.00634920634920635*G7_2_3_3 - 0.00634920634920635*G7_2_3_4 - 0.00952380952380952*G7_2_3_5 - 0.00634920634920635*G7_2_4_3 - 0.019047619047619*G7_2_4_4 - 0.019047619047619*G7_2_4_5 - 0.00952380952380952*G7_2_5_3 - 0.019047619047619*G7_2_5_4 - 0.0380952380952381*G7_2_5_5 + 0.0222222222222222*G8_0_3 + 0.0222222222222222*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0222222222222222*G8_1_3 + 0.0666666666666666*G8_1_4 + 0.0444444444444444*G8_1_5 + 0.0222222222222222*G8_2_3 + 0.0444444444444444*G8_2_4 + 0.0666666666666666*G8_2_5 - 0.166666666666667*G9_0_1_0 - 0.166666666666667*G9_1_1_0 - 0.166666666666667*G9_2_1_0;
+    A[17] = -0.00476190476190476*G4_0_3_3 - 0.00158730158730159*G4_0_3_4 - 0.00476190476190476*G4_0_3_5 - 0.00158730158730159*G4_0_4_3 - 0.00158730158730159*G4_0_4_4 - 0.00238095238095238*G4_0_4_5 - 0.00476190476190476*G4_0_5_3 - 0.00238095238095238*G4_0_5_4 - 0.00952380952380951*G4_0_5_5 - 0.00158730158730159*G4_1_3_3 - 0.00158730158730159*G4_1_3_4 - 0.00238095238095238*G4_1_3_5 - 0.00158730158730159*G4_1_4_3 - 0.00476190476190476*G4_1_4_4 - 0.00476190476190476*G4_1_4_5 - 0.00238095238095238*G4_1_5_3 - 0.00476190476190476*G4_1_5_4 - 0.00952380952380952*G4_1_5_5 - 0.00476190476190476*G4_2_3_3 - 0.00238095238095238*G4_2_3_4 - 0.00952380952380951*G4_2_3_5 - 0.00238095238095238*G4_2_4_3 - 0.00476190476190476*G4_2_4_4 - 0.00952380952380952*G4_2_4_5 - 0.00952380952380951*G4_2_5_3 - 0.00952380952380952*G4_2_5_4 - 0.0476190476190476*G4_2_5_5 + 0.0111111111111111*G5_0_3 + 0.00555555555555555*G5_0_4 + 0.0166666666666666*G5_0_5 + 0.00555555555555555*G5_1_3 + 0.0111111111111111*G5_1_4 + 0.0166666666666667*G5_1_5 + 0.0166666666666666*G5_2_3 + 0.0166666666666667*G5_2_4 + 0.0666666666666666*G5_2_5 - 0.0333333333333333*G6_0 - 0.0333333333333333*G6_1 - 0.0999999999999998*G6_2 - 0.019047619047619*G7_0_3_3 - 0.00634920634920635*G7_0_3_4 - 0.019047619047619*G7_0_3_5 - 0.00634920634920635*G7_0_4_3 - 0.00634920634920635*G7_0_4_4 - 0.00952380952380952*G7_0_4_5 - 0.019047619047619*G7_0_5_3 - 0.00952380952380952*G7_0_5_4 - 0.038095238095238*G7_0_5_5 - 0.00634920634920635*G7_1_3_3 - 0.00634920634920635*G7_1_3_4 - 0.00952380952380952*G7_1_3_5 - 0.00634920634920635*G7_1_4_3 - 0.019047619047619*G7_1_4_4 - 0.019047619047619*G7_1_4_5 - 0.00952380952380952*G7_1_5_3 - 0.019047619047619*G7_1_5_4 - 0.0380952380952381*G7_1_5_5 - 0.019047619047619*G7_2_3_3 - 0.00952380952380952*G7_2_3_4 - 0.038095238095238*G7_2_3_5 - 0.00952380952380952*G7_2_4_3 - 0.019047619047619*G7_2_4_4 - 0.0380952380952381*G7_2_4_5 - 0.038095238095238*G7_2_5_3 - 0.0380952380952381*G7_2_5_4 - 0.19047619047619*G7_2_5_5 + 0.0444444444444444*G8_0_3 + 0.0222222222222222*G8_0_4 + 0.0666666666666666*G8_0_5 + 0.0222222222222222*G8_1_3 + 0.0444444444444444*G8_1_4 + 0.0666666666666666*G8_1_5 + 0.0666666666666666*G8_2_3 + 0.0666666666666666*G8_2_4 + 0.266666666666666*G8_2_5 - 0.166666666666667*G9_0_1_1 - 0.166666666666667*G9_1_1_1 - 0.166666666666667*G9_2_1_1;
+    A[18] = 0.0833333333333332*G1_0_0_0_0 + 0.0833333333333332*G1_0_0_0_1 + 0.0833333333333332*G1_0_0_1_0 + 0.0833333333333332*G1_0_0_1_1 - 0.0833333333333332*G1_0_1_0_0 - 0.0833333333333332*G1_0_1_1_0 - 0.0833333333333332*G1_0_2_0_1 - 0.0833333333333332*G1_0_2_1_1 + 0.0416666666666666*G1_1_0_0_0 + 0.0416666666666666*G1_1_0_0_1 + 0.0416666666666666*G1_1_0_1_0 + 0.0416666666666666*G1_1_0_1_1 - 0.0416666666666666*G1_1_1_0_0 - 0.0416666666666666*G1_1_1_1_0 - 0.0416666666666666*G1_1_2_0_1 - 0.0416666666666666*G1_1_2_1_1 + 0.0416666666666666*G1_2_0_0_0 + 0.0416666666666666*G1_2_0_0_1 + 0.0416666666666666*G1_2_0_1_0 + 0.0416666666666666*G1_2_0_1_1 - 0.0416666666666666*G1_2_1_0_0 - 0.0416666666666666*G1_2_1_1_0 - 0.0416666666666666*G1_2_2_0_1 - 0.0416666666666666*G1_2_2_1_1 + 0.0833333333333332*G2_0_0_0_0 + 0.0833333333333332*G2_0_0_0_1 + 0.0833333333333332*G2_0_0_1_0 + 0.0833333333333332*G2_0_0_1_1 + 0.0416666666666666*G2_0_1_0_0 + 0.0416666666666666*G2_0_1_0_1 + 0.0416666666666666*G2_0_1_1_0 + 0.0416666666666666*G2_0_1_1_1 + 0.0416666666666666*G2_0_2_0_0 + 0.0416666666666666*G2_0_2_0_1 + 0.0416666666666666*G2_0_2_1_0 + 0.0416666666666666*G2_0_2_1_1 + 0.0416666666666666*G2_1_0_0_0 + 0.0416666666666666*G2_1_0_0_1 + 0.0416666666666666*G2_1_0_1_0 + 0.0416666666666666*G2_1_0_1_1 + 0.0833333333333332*G2_1_1_0_0 + 0.0833333333333332*G2_1_1_0_1 + 0.0833333333333332*G2_1_1_1_0 + 0.0833333333333332*G2_1_1_1_1 + 0.0416666666666666*G2_1_2_0_0 + 0.0416666666666666*G2_1_2_0_1 + 0.0416666666666666*G2_1_2_1_0 + 0.0416666666666666*G2_1_2_1_1 + 0.0416666666666666*G2_2_0_0_0 + 0.0416666666666666*G2_2_0_0_1 + 0.0416666666666666*G2_2_0_1_0 + 0.0416666666666666*G2_2_0_1_1 + 0.0416666666666666*G2_2_1_0_0 + 0.0416666666666666*G2_2_1_0_1 + 0.0416666666666666*G2_2_1_1_0 + 0.0416666666666666*G2_2_1_1_1 + 0.0833333333333332*G2_2_2_0_0 + 0.0833333333333332*G2_2_2_0_1 + 0.0833333333333332*G2_2_2_1_0 + 0.0833333333333332*G2_2_2_1_1;
+    A[19] = 0.0416666666666666*G1_0_0_0_0 + 0.0416666666666666*G1_0_0_0_1 + 0.0416666666666666*G1_0_0_1_0 + 0.0416666666666666*G1_0_0_1_1 - 0.0416666666666666*G1_0_1_0_0 - 0.0416666666666666*G1_0_1_1_0 - 0.0416666666666666*G1_0_2_0_1 - 0.0416666666666666*G1_0_2_1_1 + 0.0833333333333332*G1_1_0_0_0 + 0.0833333333333332*G1_1_0_0_1 + 0.0833333333333332*G1_1_0_1_0 + 0.0833333333333332*G1_1_0_1_1 - 0.0833333333333332*G1_1_1_0_0 - 0.0833333333333332*G1_1_1_1_0 - 0.0833333333333332*G1_1_2_0_1 - 0.0833333333333332*G1_1_2_1_1 + 0.0416666666666666*G1_2_0_0_0 + 0.0416666666666666*G1_2_0_0_1 + 0.0416666666666666*G1_2_0_1_0 + 0.0416666666666666*G1_2_0_1_1 - 0.0416666666666666*G1_2_1_0_0 - 0.0416666666666666*G1_2_1_1_0 - 0.0416666666666666*G1_2_2_0_1 - 0.0416666666666666*G1_2_2_1_1 - 0.0833333333333332*G2_0_0_0_0 - 0.0833333333333332*G2_0_0_1_0 - 0.0416666666666666*G2_0_1_0_0 - 0.0416666666666666*G2_0_1_1_0 - 0.0416666666666666*G2_0_2_0_0 - 0.0416666666666666*G2_0_2_1_0 - 0.0416666666666666*G2_1_0_0_0 - 0.0416666666666666*G2_1_0_1_0 - 0.0833333333333332*G2_1_1_0_0 - 0.0833333333333332*G2_1_1_1_0 - 0.0416666666666666*G2_1_2_0_0 - 0.0416666666666666*G2_1_2_1_0 - 0.0416666666666666*G2_2_0_0_0 - 0.0416666666666666*G2_2_0_1_0 - 0.0416666666666666*G2_2_1_0_0 - 0.0416666666666666*G2_2_1_1_0 - 0.0833333333333332*G2_2_2_0_0 - 0.0833333333333332*G2_2_2_1_0;
+    A[20] = 0.0416666666666666*G1_0_0_0_0 + 0.0416666666666666*G1_0_0_0_1 + 0.0416666666666666*G1_0_0_1_0 + 0.0416666666666666*G1_0_0_1_1 - 0.0416666666666666*G1_0_1_0_0 - 0.0416666666666666*G1_0_1_1_0 - 0.0416666666666666*G1_0_2_0_1 - 0.0416666666666666*G1_0_2_1_1 + 0.0416666666666666*G1_1_0_0_0 + 0.0416666666666666*G1_1_0_0_1 + 0.0416666666666666*G1_1_0_1_0 + 0.0416666666666666*G1_1_0_1_1 - 0.0416666666666666*G1_1_1_0_0 - 0.0416666666666666*G1_1_1_1_0 - 0.0416666666666666*G1_1_2_0_1 - 0.0416666666666666*G1_1_2_1_1 + 0.0833333333333332*G1_2_0_0_0 + 0.0833333333333332*G1_2_0_0_1 + 0.0833333333333332*G1_2_0_1_0 + 0.0833333333333332*G1_2_0_1_1 - 0.0833333333333332*G1_2_1_0_0 - 0.0833333333333332*G1_2_1_1_0 - 0.0833333333333332*G1_2_2_0_1 - 0.0833333333333332*G1_2_2_1_1 - 0.0833333333333332*G2_0_0_0_1 - 0.0833333333333332*G2_0_0_1_1 - 0.0416666666666666*G2_0_1_0_1 - 0.0416666666666666*G2_0_1_1_1 - 0.0416666666666666*G2_0_2_0_1 - 0.0416666666666666*G2_0_2_1_1 - 0.0416666666666666*G2_1_0_0_1 - 0.0416666666666666*G2_1_0_1_1 - 0.0833333333333332*G2_1_1_0_1 - 0.0833333333333332*G2_1_1_1_1 - 0.0416666666666666*G2_1_2_0_1 - 0.0416666666666666*G2_1_2_1_1 - 0.0416666666666666*G2_2_0_0_1 - 0.0416666666666666*G2_2_0_1_1 - 0.0416666666666666*G2_2_1_0_1 - 0.0416666666666666*G2_2_1_1_1 - 0.0833333333333332*G2_2_2_0_1 - 0.0833333333333332*G2_2_2_1_1;
+    A[21] = 0.0833333333333332*G0_;
+    A[22] = 0.0416666666666666*G0_;
+    A[23] = 0.0416666666666666*G0_;
+    A[24] = -0.0833333333333332*G1_0_0_0_0 - 0.0833333333333332*G1_0_0_0_1 + 0.0833333333333332*G1_0_1_0_0 + 0.0833333333333332*G1_0_2_0_1 - 0.0416666666666666*G1_1_0_0_0 - 0.0416666666666666*G1_1_0_0_1 + 0.0416666666666666*G1_1_1_0_0 + 0.0416666666666666*G1_1_2_0_1 - 0.0416666666666666*G1_2_0_0_0 - 0.0416666666666666*G1_2_0_0_1 + 0.0416666666666666*G1_2_1_0_0 + 0.0416666666666666*G1_2_2_0_1 - 0.0833333333333332*G2_0_0_0_0 - 0.0833333333333332*G2_0_0_0_1 - 0.0416666666666666*G2_0_1_0_0 - 0.0416666666666666*G2_0_1_0_1 - 0.0416666666666666*G2_0_2_0_0 - 0.0416666666666666*G2_0_2_0_1 - 0.0416666666666666*G2_1_0_0_0 - 0.0416666666666666*G2_1_0_0_1 - 0.0833333333333332*G2_1_1_0_0 - 0.0833333333333332*G2_1_1_0_1 - 0.0416666666666666*G2_1_2_0_0 - 0.0416666666666666*G2_1_2_0_1 - 0.0416666666666666*G2_2_0_0_0 - 0.0416666666666666*G2_2_0_0_1 - 0.0416666666666666*G2_2_1_0_0 - 0.0416666666666666*G2_2_1_0_1 - 0.0833333333333332*G2_2_2_0_0 - 0.0833333333333332*G2_2_2_0_1;
+    A[25] = -0.0416666666666666*G1_0_0_0_0 - 0.0416666666666666*G1_0_0_0_1 + 0.0416666666666666*G1_0_1_0_0 + 0.0416666666666666*G1_0_2_0_1 - 0.0833333333333332*G1_1_0_0_0 - 0.0833333333333332*G1_1_0_0_1 + 0.0833333333333332*G1_1_1_0_0 + 0.0833333333333332*G1_1_2_0_1 - 0.0416666666666666*G1_2_0_0_0 - 0.0416666666666666*G1_2_0_0_1 + 0.0416666666666666*G1_2_1_0_0 + 0.0416666666666666*G1_2_2_0_1 + 0.0833333333333332*G2_0_0_0_0 + 0.0416666666666666*G2_0_1_0_0 + 0.0416666666666666*G2_0_2_0_0 + 0.0416666666666666*G2_1_0_0_0 + 0.0833333333333332*G2_1_1_0_0 + 0.0416666666666666*G2_1_2_0_0 + 0.0416666666666666*G2_2_0_0_0 + 0.0416666666666666*G2_2_1_0_0 + 0.0833333333333332*G2_2_2_0_0;
+    A[26] = -0.0416666666666666*G1_0_0_0_0 - 0.0416666666666666*G1_0_0_0_1 + 0.0416666666666666*G1_0_1_0_0 + 0.0416666666666666*G1_0_2_0_1 - 0.0416666666666666*G1_1_0_0_0 - 0.0416666666666666*G1_1_0_0_1 + 0.0416666666666666*G1_1_1_0_0 + 0.0416666666666666*G1_1_2_0_1 - 0.0833333333333332*G1_2_0_0_0 - 0.0833333333333332*G1_2_0_0_1 + 0.0833333333333332*G1_2_1_0_0 + 0.0833333333333332*G1_2_2_0_1 + 0.0833333333333332*G2_0_0_0_1 + 0.0416666666666666*G2_0_1_0_1 + 0.0416666666666666*G2_0_2_0_1 + 0.0416666666666666*G2_1_0_0_1 + 0.0833333333333332*G2_1_1_0_1 + 0.0416666666666666*G2_1_2_0_1 + 0.0416666666666666*G2_2_0_0_1 + 0.0416666666666666*G2_2_1_0_1 + 0.0833333333333332*G2_2_2_0_1;
+    A[27] = 0.0416666666666666*G0_;
+    A[28] = 0.0833333333333332*G0_;
+    A[29] = 0.0416666666666666*G0_;
+    A[30] = -0.0833333333333332*G1_0_0_1_0 - 0.0833333333333332*G1_0_0_1_1 + 0.0833333333333332*G1_0_1_1_0 + 0.0833333333333332*G1_0_2_1_1 - 0.0416666666666666*G1_1_0_1_0 - 0.0416666666666666*G1_1_0_1_1 + 0.0416666666666666*G1_1_1_1_0 + 0.0416666666666666*G1_1_2_1_1 - 0.0416666666666666*G1_2_0_1_0 - 0.0416666666666666*G1_2_0_1_1 + 0.0416666666666666*G1_2_1_1_0 + 0.0416666666666666*G1_2_2_1_1 - 0.0833333333333332*G2_0_0_1_0 - 0.0833333333333332*G2_0_0_1_1 - 0.0416666666666666*G2_0_1_1_0 - 0.0416666666666666*G2_0_1_1_1 - 0.0416666666666666*G2_0_2_1_0 - 0.0416666666666666*G2_0_2_1_1 - 0.0416666666666666*G2_1_0_1_0 - 0.0416666666666666*G2_1_0_1_1 - 0.0833333333333332*G2_1_1_1_0 - 0.0833333333333332*G2_1_1_1_1 - 0.0416666666666666*G2_1_2_1_0 - 0.0416666666666666*G2_1_2_1_1 - 0.0416666666666666*G2_2_0_1_0 - 0.0416666666666666*G2_2_0_1_1 - 0.0416666666666666*G2_2_1_1_0 - 0.0416666666666666*G2_2_1_1_1 - 0.0833333333333332*G2_2_2_1_0 - 0.0833333333333332*G2_2_2_1_1;
+    A[31] = -0.0416666666666666*G1_0_0_1_0 - 0.0416666666666666*G1_0_0_1_1 + 0.0416666666666666*G1_0_1_1_0 + 0.0416666666666666*G1_0_2_1_1 - 0.0833333333333332*G1_1_0_1_0 - 0.0833333333333332*G1_1_0_1_1 + 0.0833333333333332*G1_1_1_1_0 + 0.0833333333333332*G1_1_2_1_1 - 0.0416666666666666*G1_2_0_1_0 - 0.0416666666666666*G1_2_0_1_1 + 0.0416666666666666*G1_2_1_1_0 + 0.0416666666666666*G1_2_2_1_1 + 0.0833333333333332*G2_0_0_1_0 + 0.0416666666666666*G2_0_1_1_0 + 0.0416666666666666*G2_0_2_1_0 + 0.0416666666666666*G2_1_0_1_0 + 0.0833333333333332*G2_1_1_1_0 + 0.0416666666666666*G2_1_2_1_0 + 0.0416666666666666*G2_2_0_1_0 + 0.0416666666666666*G2_2_1_1_0 + 0.0833333333333332*G2_2_2_1_0;
+    A[32] = -0.0416666666666666*G1_0_0_1_0 - 0.0416666666666666*G1_0_0_1_1 + 0.0416666666666666*G1_0_1_1_0 + 0.0416666666666666*G1_0_2_1_1 - 0.0416666666666666*G1_1_0_1_0 - 0.0416666666666666*G1_1_0_1_1 + 0.0416666666666666*G1_1_1_1_0 + 0.0416666666666666*G1_1_2_1_1 - 0.0833333333333332*G1_2_0_1_0 - 0.0833333333333332*G1_2_0_1_1 + 0.0833333333333332*G1_2_1_1_0 + 0.0833333333333332*G1_2_2_1_1 + 0.0833333333333332*G2_0_0_1_1 + 0.0416666666666666*G2_0_1_1_1 + 0.0416666666666666*G2_0_2_1_1 + 0.0416666666666666*G2_1_0_1_1 + 0.0833333333333332*G2_1_1_1_1 + 0.0416666666666666*G2_1_2_1_1 + 0.0416666666666666*G2_2_0_1_1 + 0.0416666666666666*G2_2_1_1_1 + 0.0833333333333332*G2_2_2_1_1;
+    A[33] = 0.0416666666666666*G0_;
+    A[34] = 0.0416666666666666*G0_;
+    A[35] = 0.0833333333333332*G0_;
   }
 
 };
@@ -7742,15 +7852,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -7874,27 +7984,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -8117,15 +8227,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -8249,27 +8359,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -8495,15 +8605,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -8533,15 +8643,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -8669,27 +8779,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -8774,27 +8884,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -9031,15 +9141,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -9163,27 +9273,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -9406,15 +9516,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -9538,27 +9648,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -9784,15 +9894,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -9822,15 +9932,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -9958,27 +10068,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -10063,27 +10173,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -10320,15 +10430,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -10452,27 +10562,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -10695,15 +10805,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -10827,27 +10937,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -11073,15 +11183,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -11111,15 +11221,15 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -11247,27 +11357,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -11352,27 +11462,27 @@ public:
       const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
       const static double coefficients0[3][3] =   \
-      {{0.471404520791, -0.288675134595, -0.166666666667},
-      {0.471404520791, 0.288675134595, -0.166666666667},
-      {0.471404520791, 0, 0.333333333333}};
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[3][3] =   \
       {{0, 0, 0},
-      {2.44948974278, 0, 0},
+      {2.44948974278318, 0, 0},
       {0, 0, 0}};
     
       const static double dmats1[3][3] =   \
       {{0, 0, 0},
-      {1.22474487139, 0, 0},
-      {2.12132034356, 0, 0}};
+      {1.22474487139159, 0, 0},
+      {2.12132034355964, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -11609,15 +11719,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -11741,27 +11851,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -11984,15 +12094,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -12116,27 +12226,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -12359,15 +12469,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -12491,27 +12601,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -12734,15 +12844,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -12866,27 +12976,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -13129,10 +13239,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -13269,10 +13386,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -13419,10 +13543,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -13568,10 +13705,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -13708,10 +13852,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -13858,10 +14009,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14007,10 +14171,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14147,10 +14318,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14297,10 +14475,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14446,10 +14637,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14586,10 +14784,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14726,10 +14931,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -14866,10 +15078,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -15400,12 +15619,12 @@ public:
     const double G11_2_5_1_1 = det*w[2][2]*w[0][5]*Jinv_10*Jinv_10 + det*w[2][2]*w[0][5]*Jinv_11*Jinv_11;
     
     // Compute element tensor
-    A[0] = -0.0833333333333*G7_0 - 0.0416666666667*G7_1 - 0.0416666666667*G7_2 + 0.047619047619*G8_0_3_3_3 + 0.00952380952381*G8_0_3_3_4 + 0.00952380952381*G8_0_3_3_5 + 0.00952380952381*G8_0_3_4_3 + 0.0047619047619*G8_0_3_4_4 + 0.00238095238095*G8_0_3_4_5 + 0.00952380952381*G8_0_3_5_3 + 0.00238095238095*G8_0_3_5_4 + 0.0047619047619*G8_0_3_5_5 + 0.00952380952381*G8_0_4_3_3 + 0.0047619047619*G8_0_4_3_4 + 0.00238095238095*G8_0_4_3_5 + 0.0047619047619*G8_0_4_4_3 + 0.0047619047619*G8_0_4_4_4 + 0.0015873015873*G8_0_4_4_5 + 0.00238095238095*G8_0_4_5_3 + 0.0015873015873*G8_0_4_5_4 + 0.0015873015873*G8_0_4_5_5 + 0.00952380952381*G8_0_5_3_3 + 0.00238095238095*G8_0_5_3_4 + 0.0047619047619*G8_0_5_3_5 + 0.00238095238095*G8_0_5_4_3 + 0.0015873015873*G8_0_5_4_4 + 0.0015873015873*G8_0_5_4_5 + 0.0047619047619*G8_0_5_5_3 + 0.0015873015873*G8_0_5_5_4 + 0.0047619047619*G8_0_5_5_5 + 0.00952380952381*G8_1_3_3_3 + 0.0047619047619*G8_1_3_3_4 + 0.00238095238095*G8_1_3_3_5 + 0.0047619047619*G8_1_3_4_3 + 0.0047619047619*G8_1_3_4_4 + 0.0015873015873*G8_1_3_4_5 + 0.00238095238095*G8_1_3_5_3 + 0.0015873015873*G8_1_3_5_4 + 0.0015873015873*G8_1_3_5_5 + 0.0047619047619*G8_1_4_3_3 + 0.0047619047619*G8_1_4_3_4 + 0.0015873015873*G8_1_4_3_5 + 0.0047619047619*G8_1_4_4_3 + 0.00952380952381*G8_1_4_4_4 + 0.00238095238095*G8_1_4_4_5 + 0.0015873015873*G8_1_4_5_3 + 0.00238095238095*G8_1_4_5_4 + 0.0015873015873*G8_1_4_5_5 + 0.00238095238095*G8_1_5_3_3 + 0.0015873015873*G8_1_5_3_4 + 0.0015873015873*G8_1_5_3_5 + 0.0015873015873*G8_1_5_4_3 + 0.00238095238095*G8_1_5_4_4 + 0.0015873015873*G8_1_5_4_5 + 0.0015873015873*G8_1_5_5_3 + 0.0015873015873*G8_1_5_5_4 + 0.00238095238095*G8_1_5_5_5 + 0.00952380952381*G8_2_3_3_3 + 0.00238095238095*G8_2_3_3_4 + 0.0047619047619*G8_2_3_3_5 + 0.00238095238095*G8_2_3_4_3 + 0.0015873015873*G8_2_3_4_4 + 0.0015873015873*G8_2_3_4_5 + 0.0047619047619*G8_2_3_5_3 + 0.0015873015873*G8_2_3_5_4 + 0.0047619047619*G8_2_3_5_5 + 0.00238095238095*G8_2_4_3_3 + 0.0015873015873*G8_2_4_3_4 + 0.0015873015873*G8_2_4_3_5 + 0.0015873015873*G8_2_4_4_3 + 0.00238095238095*G8_2_4_4_4 + 0.0015873015873*G8_2_4_4_5 + 0.0015873015873*G8_2_4_5_3 + 0.0015873015873*G8_2_4_5_4 + 0.00238095238095*G8_2_4_5_5 + 0.0047619047619*G8_2_5_3_3 + 0.0015873015873*G8_2_5_3_4 + 0.0047619047619*G8_2_5_3_5 + 0.0015873015873*G8_2_5_4_3 + 0.0015873015873*G8_2_5_4_4 + 0.00238095238095*G8_2_5_4_5 + 0.0047619047619*G8_2_5_5_3 + 0.00238095238095*G8_2_5_5_4 + 0.00952380952381*G8_2_5_5_5 - 0.0666666666667*G9_0_3_3 - 0.0166666666667*G9_0_3_4 - 0.0166666666667*G9_0_3_5 - 0.0166666666667*G9_0_4_3 - 0.0111111111111*G9_0_4_4 - 0.00555555555556*G9_0_4_5 - 0.0166666666667*G9_0_5_3 - 0.00555555555556*G9_0_5_4 - 0.0111111111111*G9_0_5_5 - 0.0166666666667*G9_1_3_3 - 0.0111111111111*G9_1_3_4 - 0.00555555555556*G9_1_3_5 - 0.0111111111111*G9_1_4_3 - 0.0166666666667*G9_1_4_4 - 0.00555555555556*G9_1_4_5 - 0.00555555555556*G9_1_5_3 - 0.00555555555556*G9_1_5_4 - 0.00555555555556*G9_1_5_5 - 0.0166666666667*G9_2_3_3 - 0.00555555555556*G9_2_3_4 - 0.0111111111111*G9_2_3_5 - 0.00555555555556*G9_2_4_3 - 0.00555555555556*G9_2_4_4 - 0.00555555555556*G9_2_4_5 - 0.0111111111111*G9_2_5_3 - 0.00555555555556*G9_2_5_4 - 0.0166666666667*G9_2_5_5 + 0.1*G10_0_3 + 0.0333333333333*G10_0_4 + 0.0333333333333*G10_0_5 + 0.0333333333333*G10_1_3 + 0.0333333333333*G10_1_4 + 0.0166666666667*G10_1_5 + 0.0333333333333*G10_2_3 + 0.0166666666667*G10_2_4 + 0.0333333333333*G10_2_5 + 0.166666666667*G11_0_3_0_0 + 0.166666666667*G11_0_3_0_1 + 0.166666666667*G11_0_3_1_0 + 0.166666666667*G11_0_3_1_1 - 0.166666666667*G11_0_4_0_0 - 0.166666666667*G11_0_4_1_0 - 0.166666666667*G11_0_5_0_1 - 0.166666666667*G11_0_5_1_1 + 0.166666666667*G11_1_3_0_0 + 0.166666666667*G11_1_3_0_1 + 0.166666666667*G11_1_3_1_0 + 0.166666666667*G11_1_3_1_1 - 0.166666666667*G11_1_4_0_0 - 0.166666666667*G11_1_4_1_0 - 0.166666666667*G11_1_5_0_1 - 0.166666666667*G11_1_5_1_1 + 0.166666666667*G11_2_3_0_0 + 0.166666666667*G11_2_3_0_1 + 0.166666666667*G11_2_3_1_0 + 0.166666666667*G11_2_3_1_1 - 0.166666666667*G11_2_4_0_0 - 0.166666666667*G11_2_4_1_0 - 0.166666666667*G11_2_5_0_1 - 0.166666666667*G11_2_5_1_1;
-    A[1] = -0.0416666666667*G7_0 - 0.0833333333333*G7_1 - 0.0416666666667*G7_2 + 0.00952380952381*G8_0_3_3_3 + 0.0047619047619*G8_0_3_3_4 + 0.00238095238095*G8_0_3_3_5 + 0.0047619047619*G8_0_3_4_3 + 0.0047619047619*G8_0_3_4_4 + 0.0015873015873*G8_0_3_4_5 + 0.00238095238095*G8_0_3_5_3 + 0.0015873015873*G8_0_3_5_4 + 0.0015873015873*G8_0_3_5_5 + 0.0047619047619*G8_0_4_3_3 + 0.0047619047619*G8_0_4_3_4 + 0.0015873015873*G8_0_4_3_5 + 0.0047619047619*G8_0_4_4_3 + 0.00952380952381*G8_0_4_4_4 + 0.00238095238095*G8_0_4_4_5 + 0.0015873015873*G8_0_4_5_3 + 0.00238095238095*G8_0_4_5_4 + 0.0015873015873*G8_0_4_5_5 + 0.00238095238095*G8_0_5_3_3 + 0.0015873015873*G8_0_5_3_4 + 0.0015873015873*G8_0_5_3_5 + 0.0015873015873*G8_0_5_4_3 + 0.00238095238095*G8_0_5_4_4 + 0.0015873015873*G8_0_5_4_5 + 0.0015873015873*G8_0_5_5_3 + 0.0015873015873*G8_0_5_5_4 + 0.00238095238095*G8_0_5_5_5 + 0.0047619047619*G8_1_3_3_3 + 0.0047619047619*G8_1_3_3_4 + 0.0015873015873*G8_1_3_3_5 + 0.0047619047619*G8_1_3_4_3 + 0.00952380952381*G8_1_3_4_4 + 0.00238095238095*G8_1_3_4_5 + 0.0015873015873*G8_1_3_5_3 + 0.00238095238095*G8_1_3_5_4 + 0.0015873015873*G8_1_3_5_5 + 0.0047619047619*G8_1_4_3_3 + 0.00952380952381*G8_1_4_3_4 + 0.00238095238095*G8_1_4_3_5 + 0.00952380952381*G8_1_4_4_3 + 0.047619047619*G8_1_4_4_4 + 0.00952380952381*G8_1_4_4_5 + 0.00238095238095*G8_1_4_5_3 + 0.00952380952381*G8_1_4_5_4 + 0.0047619047619*G8_1_4_5_5 + 0.0015873015873*G8_1_5_3_3 + 0.00238095238095*G8_1_5_3_4 + 0.0015873015873*G8_1_5_3_5 + 0.00238095238095*G8_1_5_4_3 + 0.00952380952381*G8_1_5_4_4 + 0.0047619047619*G8_1_5_4_5 + 0.0015873015873*G8_1_5_5_3 + 0.0047619047619*G8_1_5_5_4 + 0.0047619047619*G8_1_5_5_5 + 0.00238095238095*G8_2_3_3_3 + 0.0015873015873*G8_2_3_3_4 + 0.0015873015873*G8_2_3_3_5 + 0.0015873015873*G8_2_3_4_3 + 0.00238095238095*G8_2_3_4_4 + 0.0015873015873*G8_2_3_4_5 + 0.0015873015873*G8_2_3_5_3 + 0.0015873015873*G8_2_3_5_4 + 0.00238095238095*G8_2_3_5_5 + 0.0015873015873*G8_2_4_3_3 + 0.00238095238095*G8_2_4_3_4 + 0.0015873015873*G8_2_4_3_5 + 0.00238095238095*G8_2_4_4_3 + 0.00952380952381*G8_2_4_4_4 + 0.0047619047619*G8_2_4_4_5 + 0.0015873015873*G8_2_4_5_3 + 0.0047619047619*G8_2_4_5_4 + 0.0047619047619*G8_2_4_5_5 + 0.0015873015873*G8_2_5_3_3 + 0.0015873015873*G8_2_5_3_4 + 0.00238095238095*G8_2_5_3_5 + 0.0015873015873*G8_2_5_4_3 + 0.0047619047619*G8_2_5_4_4 + 0.0047619047619*G8_2_5_4_5 + 0.00238095238095*G8_2_5_5_3 + 0.0047619047619*G8_2_5_5_4 + 0.00952380952381*G8_2_5_5_5 - 0.0166666666667*G9_0_3_3 - 0.0111111111111*G9_0_3_4 - 0.00555555555556*G9_0_3_5 - 0.0111111111111*G9_0_4_3 - 0.0166666666667*G9_0_4_4 - 0.00555555555556*G9_0_4_5 - 0.00555555555556*G9_0_5_3 - 0.00555555555556*G9_0_5_4 - 0.00555555555556*G9_0_5_5 - 0.0111111111111*G9_1_3_3 - 0.0166666666667*G9_1_3_4 - 0.00555555555556*G9_1_3_5 - 0.0166666666667*G9_1_4_3 - 0.0666666666667*G9_1_4_4 - 0.0166666666667*G9_1_4_5 - 0.00555555555556*G9_1_5_3 - 0.0166666666667*G9_1_5_4 - 0.0111111111111*G9_1_5_5 - 0.00555555555556*G9_2_3_3 - 0.00555555555556*G9_2_3_4 - 0.00555555555556*G9_2_3_5 - 0.00555555555556*G9_2_4_3 - 0.0166666666667*G9_2_4_4 - 0.0111111111111*G9_2_4_5 - 0.00555555555556*G9_2_5_3 - 0.0111111111111*G9_2_5_4 - 0.0166666666667*G9_2_5_5 + 0.0333333333333*G10_0_3 + 0.0333333333333*G10_0_4 + 0.0166666666667*G10_0_5 + 0.0333333333333*G10_1_3 + 0.1*G10_1_4 + 0.0333333333333*G10_1_5 + 0.0166666666667*G10_2_3 + 0.0333333333333*G10_2_4 + 0.0333333333333*G10_2_5 - 0.166666666667*G11_0_3_0_0 - 0.166666666667*G11_0_3_0_1 + 0.166666666667*G11_0_4_0_0 + 0.166666666667*G11_0_5_0_1 - 0.166666666667*G11_1_3_0_0 - 0.166666666667*G11_1_3_0_1 + 0.166666666667*G11_1_4_0_0 + 0.166666666667*G11_1_5_0_1 - 0.166666666667*G11_2_3_0_0 - 0.166666666667*G11_2_3_0_1 + 0.166666666667*G11_2_4_0_0 + 0.166666666667*G11_2_5_0_1;
-    A[2] = -0.0416666666667*G7_0 - 0.0416666666667*G7_1 - 0.0833333333333*G7_2 + 0.00952380952381*G8_0_3_3_3 + 0.00238095238095*G8_0_3_3_4 + 0.0047619047619*G8_0_3_3_5 + 0.00238095238095*G8_0_3_4_3 + 0.0015873015873*G8_0_3_4_4 + 0.0015873015873*G8_0_3_4_5 + 0.0047619047619*G8_0_3_5_3 + 0.0015873015873*G8_0_3_5_4 + 0.0047619047619*G8_0_3_5_5 + 0.00238095238095*G8_0_4_3_3 + 0.0015873015873*G8_0_4_3_4 + 0.0015873015873*G8_0_4_3_5 + 0.0015873015873*G8_0_4_4_3 + 0.00238095238095*G8_0_4_4_4 + 0.0015873015873*G8_0_4_4_5 + 0.0015873015873*G8_0_4_5_3 + 0.0015873015873*G8_0_4_5_4 + 0.00238095238095*G8_0_4_5_5 + 0.0047619047619*G8_0_5_3_3 + 0.0015873015873*G8_0_5_3_4 + 0.0047619047619*G8_0_5_3_5 + 0.0015873015873*G8_0_5_4_3 + 0.0015873015873*G8_0_5_4_4 + 0.00238095238095*G8_0_5_4_5 + 0.0047619047619*G8_0_5_5_3 + 0.00238095238095*G8_0_5_5_4 + 0.00952380952381*G8_0_5_5_5 + 0.00238095238095*G8_1_3_3_3 + 0.0015873015873*G8_1_3_3_4 + 0.0015873015873*G8_1_3_3_5 + 0.0015873015873*G8_1_3_4_3 + 0.00238095238095*G8_1_3_4_4 + 0.0015873015873*G8_1_3_4_5 + 0.0015873015873*G8_1_3_5_3 + 0.0015873015873*G8_1_3_5_4 + 0.00238095238095*G8_1_3_5_5 + 0.0015873015873*G8_1_4_3_3 + 0.00238095238095*G8_1_4_3_4 + 0.0015873015873*G8_1_4_3_5 + 0.00238095238095*G8_1_4_4_3 + 0.00952380952381*G8_1_4_4_4 + 0.0047619047619*G8_1_4_4_5 + 0.0015873015873*G8_1_4_5_3 + 0.0047619047619*G8_1_4_5_4 + 0.0047619047619*G8_1_4_5_5 + 0.0015873015873*G8_1_5_3_3 + 0.0015873015873*G8_1_5_3_4 + 0.00238095238095*G8_1_5_3_5 + 0.0015873015873*G8_1_5_4_3 + 0.0047619047619*G8_1_5_4_4 + 0.0047619047619*G8_1_5_4_5 + 0.00238095238095*G8_1_5_5_3 + 0.0047619047619*G8_1_5_5_4 + 0.00952380952381*G8_1_5_5_5 + 0.0047619047619*G8_2_3_3_3 + 0.0015873015873*G8_2_3_3_4 + 0.0047619047619*G8_2_3_3_5 + 0.0015873015873*G8_2_3_4_3 + 0.0015873015873*G8_2_3_4_4 + 0.00238095238095*G8_2_3_4_5 + 0.0047619047619*G8_2_3_5_3 + 0.00238095238095*G8_2_3_5_4 + 0.00952380952381*G8_2_3_5_5 + 0.0015873015873*G8_2_4_3_3 + 0.0015873015873*G8_2_4_3_4 + 0.00238095238095*G8_2_4_3_5 + 0.0015873015873*G8_2_4_4_3 + 0.0047619047619*G8_2_4_4_4 + 0.0047619047619*G8_2_4_4_5 + 0.00238095238095*G8_2_4_5_3 + 0.0047619047619*G8_2_4_5_4 + 0.00952380952381*G8_2_4_5_5 + 0.0047619047619*G8_2_5_3_3 + 0.00238095238095*G8_2_5_3_4 + 0.00952380952381*G8_2_5_3_5 + 0.00238095238095*G8_2_5_4_3 + 0.0047619047619*G8_2_5_4_4 + 0.00952380952381*G8_2_5_4_5 + 0.00952380952381*G8_2_5_5_3 + 0.00952380952381*G8_2_5_5_4 + 0.047619047619*G8_2_5_5_5 - 0.0166666666667*G9_0_3_3 - 0.00555555555556*G9_0_3_4 - 0.0111111111111*G9_0_3_5 - 0.00555555555556*G9_0_4_3 - 0.00555555555556*G9_0_4_4 - 0.00555555555556*G9_0_4_5 - 0.0111111111111*G9_0_5_3 - 0.00555555555556*G9_0_5_4 - 0.0166666666667*G9_0_5_5 - 0.00555555555556*G9_1_3_3 - 0.00555555555556*G9_1_3_4 - 0.00555555555556*G9_1_3_5 - 0.00555555555556*G9_1_4_3 - 0.0166666666667*G9_1_4_4 - 0.0111111111111*G9_1_4_5 - 0.00555555555556*G9_1_5_3 - 0.0111111111111*G9_1_5_4 - 0.0166666666667*G9_1_5_5 - 0.0111111111111*G9_2_3_3 - 0.00555555555556*G9_2_3_4 - 0.0166666666667*G9_2_3_5 - 0.00555555555556*G9_2_4_3 - 0.0111111111111*G9_2_4_4 - 0.0166666666667*G9_2_4_5 - 0.0166666666667*G9_2_5_3 - 0.0166666666667*G9_2_5_4 - 0.0666666666667*G9_2_5_5 + 0.0333333333333*G10_0_3 + 0.0166666666667*G10_0_4 + 0.0333333333333*G10_0_5 + 0.0166666666667*G10_1_3 + 0.0333333333333*G10_1_4 + 0.0333333333333*G10_1_5 + 0.0333333333333*G10_2_3 + 0.0333333333333*G10_2_4 + 0.1*G10_2_5 - 0.166666666667*G11_0_3_1_0 - 0.166666666667*G11_0_3_1_1 + 0.166666666667*G11_0_4_1_0 + 0.166666666667*G11_0_5_1_1 - 0.166666666667*G11_1_3_1_0 - 0.166666666667*G11_1_3_1_1 + 0.166666666667*G11_1_4_1_0 + 0.166666666667*G11_1_5_1_1 - 0.166666666667*G11_2_3_1_0 - 0.166666666667*G11_2_3_1_1 + 0.166666666667*G11_2_4_1_0 + 0.166666666667*G11_2_5_1_1;
-    A[3] = -0.0833333333333*G0_3 - 0.0416666666667*G0_4 - 0.0416666666667*G0_5 + 0.0833333333333*G1_3 + 0.0416666666667*G1_4 + 0.0416666666667*G1_5 + 0.0833333333333*G2_0_0_0_0_0 + 0.0833333333333*G2_0_0_0_0_1 + 0.0833333333333*G2_0_0_0_1_0 + 0.0833333333333*G2_0_0_0_1_1 + 0.0416666666667*G2_0_0_1_0_0 + 0.0416666666667*G2_0_0_1_0_1 + 0.0416666666667*G2_0_0_1_1_0 + 0.0416666666667*G2_0_0_1_1_1 + 0.0416666666667*G2_0_0_2_0_0 + 0.0416666666667*G2_0_0_2_0_1 + 0.0416666666667*G2_0_0_2_1_0 + 0.0416666666667*G2_0_0_2_1_1 - 0.0833333333333*G2_0_1_0_0_0 - 0.0833333333333*G2_0_1_0_1_0 - 0.0416666666667*G2_0_1_1_0_0 - 0.0416666666667*G2_0_1_1_1_0 - 0.0416666666667*G2_0_1_2_0_0 - 0.0416666666667*G2_0_1_2_1_0 - 0.0833333333333*G2_0_2_0_0_1 - 0.0833333333333*G2_0_2_0_1_1 - 0.0416666666667*G2_0_2_1_0_1 - 0.0416666666667*G2_0_2_1_1_1 - 0.0416666666667*G2_0_2_2_0_1 - 0.0416666666667*G2_0_2_2_1_1 + 0.0416666666667*G2_1_0_0_0_0 + 0.0416666666667*G2_1_0_0_0_1 + 0.0416666666667*G2_1_0_0_1_0 + 0.0416666666667*G2_1_0_0_1_1 + 0.0833333333333*G2_1_0_1_0_0 + 0.0833333333333*G2_1_0_1_0_1 + 0.0833333333333*G2_1_0_1_1_0 + 0.0833333333333*G2_1_0_1_1_1 + 0.0416666666667*G2_1_0_2_0_0 + 0.0416666666667*G2_1_0_2_0_1 + 0.0416666666667*G2_1_0_2_1_0 + 0.0416666666667*G2_1_0_2_1_1 - 0.0416666666667*G2_1_1_0_0_0 - 0.0416666666667*G2_1_1_0_1_0 - 0.0833333333333*G2_1_1_1_0_0 - 0.0833333333333*G2_1_1_1_1_0 - 0.0416666666667*G2_1_1_2_0_0 - 0.0416666666667*G2_1_1_2_1_0 - 0.0416666666667*G2_1_2_0_0_1 - 0.0416666666667*G2_1_2_0_1_1 - 0.0833333333333*G2_1_2_1_0_1 - 0.0833333333333*G2_1_2_1_1_1 - 0.0416666666667*G2_1_2_2_0_1 - 0.0416666666667*G2_1_2_2_1_1 + 0.0416666666667*G2_2_0_0_0_0 + 0.0416666666667*G2_2_0_0_0_1 + 0.0416666666667*G2_2_0_0_1_0 + 0.0416666666667*G2_2_0_0_1_1 + 0.0416666666667*G2_2_0_1_0_0 + 0.0416666666667*G2_2_0_1_0_1 + 0.0416666666667*G2_2_0_1_1_0 + 0.0416666666667*G2_2_0_1_1_1 + 0.0833333333333*G2_2_0_2_0_0 + 0.0833333333333*G2_2_0_2_0_1 + 0.0833333333333*G2_2_0_2_1_0 + 0.0833333333333*G2_2_0_2_1_1 - 0.0416666666667*G2_2_1_0_0_0 - 0.0416666666667*G2_2_1_0_1_0 - 0.0416666666667*G2_2_1_1_0_0 - 0.0416666666667*G2_2_1_1_1_0 - 0.0833333333333*G2_2_1_2_0_0 - 0.0833333333333*G2_2_1_2_1_0 - 0.0416666666667*G2_2_2_0_0_1 - 0.0416666666667*G2_2_2_0_1_1 - 0.0416666666667*G2_2_2_1_0_1 - 0.0416666666667*G2_2_2_1_1_1 - 0.0833333333333*G2_2_2_2_0_1 - 0.0833333333333*G2_2_2_2_1_1 + 0.0833333333333*G3_0_0_0_0_0 + 0.0833333333333*G3_0_0_0_0_1 + 0.0833333333333*G3_0_0_0_1_0 + 0.0833333333333*G3_0_0_0_1_1 - 0.0833333333333*G3_0_0_1_0_0 - 0.0833333333333*G3_0_0_1_1_0 - 0.0833333333333*G3_0_0_2_0_1 - 0.0833333333333*G3_0_0_2_1_1 + 0.0416666666667*G3_0_1_0_0_0 + 0.0416666666667*G3_0_1_0_0_1 + 0.0416666666667*G3_0_1_0_1_0 + 0.0416666666667*G3_0_1_0_1_1 - 0.0416666666667*G3_0_1_1_0_0 - 0.0416666666667*G3_0_1_1_1_0 - 0.0416666666667*G3_0_1_2_0_1 - 0.0416666666667*G3_0_1_2_1_1 + 0.0416666666667*G3_0_2_0_0_0 + 0.0416666666667*G3_0_2_0_0_1 + 0.0416666666667*G3_0_2_0_1_0 + 0.0416666666667*G3_0_2_0_1_1 - 0.0416666666667*G3_0_2_1_0_0 - 0.0416666666667*G3_0_2_1_1_0 - 0.0416666666667*G3_0_2_2_0_1 - 0.0416666666667*G3_0_2_2_1_1 + 0.0416666666667*G3_1_0_0_0_0 + 0.0416666666667*G3_1_0_0_0_1 + 0.0416666666667*G3_1_0_0_1_0 + 0.0416666666667*G3_1_0_0_1_1 - 0.0416666666667*G3_1_0_1_0_0 - 0.0416666666667*G3_1_0_1_1_0 - 0.0416666666667*G3_1_0_2_0_1 - 0.0416666666667*G3_1_0_2_1_1 + 0.0833333333333*G3_1_1_0_0_0 + 0.0833333333333*G3_1_1_0_0_1 + 0.0833333333333*G3_1_1_0_1_0 + 0.0833333333333*G3_1_1_0_1_1 - 0.0833333333333*G3_1_1_1_0_0 - 0.0833333333333*G3_1_1_1_1_0 - 0.0833333333333*G3_1_1_2_0_1 - 0.0833333333333*G3_1_1_2_1_1 + 0.0416666666667*G3_1_2_0_0_0 + 0.0416666666667*G3_1_2_0_0_1 + 0.0416666666667*G3_1_2_0_1_0 + 0.0416666666667*G3_1_2_0_1_1 - 0.0416666666667*G3_1_2_1_0_0 - 0.0416666666667*G3_1_2_1_1_0 - 0.0416666666667*G3_1_2_2_0_1 - 0.0416666666667*G3_1_2_2_1_1 + 0.0416666666667*G3_2_0_0_0_0 + 0.0416666666667*G3_2_0_0_0_1 + 0.0416666666667*G3_2_0_0_1_0 + 0.0416666666667*G3_2_0_0_1_1 - 0.0416666666667*G3_2_0_1_0_0 - 0.0416666666667*G3_2_0_1_1_0 - 0.0416666666667*G3_2_0_2_0_1 - 0.0416666666667*G3_2_0_2_1_1 + 0.0416666666667*G3_2_1_0_0_0 + 0.0416666666667*G3_2_1_0_0_1 + 0.0416666666667*G3_2_1_0_1_0 + 0.0416666666667*G3_2_1_0_1_1 - 0.0416666666667*G3_2_1_1_0_0 - 0.0416666666667*G3_2_1_1_1_0 - 0.0416666666667*G3_2_1_2_0_1 - 0.0416666666667*G3_2_1_2_1_1 + 0.0833333333333*G3_2_2_0_0_0 + 0.0833333333333*G3_2_2_0_0_1 + 0.0833333333333*G3_2_2_0_1_0 + 0.0833333333333*G3_2_2_0_1_1 - 0.0833333333333*G3_2_2_1_0_0 - 0.0833333333333*G3_2_2_1_1_0 - 0.0833333333333*G3_2_2_2_0_1 - 0.0833333333333*G3_2_2_2_1_1 - 0.166666666667*G4_0_0_0_0 - 0.166666666667*G4_0_0_0_1 - 0.166666666667*G4_0_0_1_0 - 0.166666666667*G4_0_0_1_1 + 0.166666666667*G4_0_1_0_0 + 0.166666666667*G4_0_1_1_0 + 0.166666666667*G4_0_2_0_1 + 0.166666666667*G4_0_2_1_1 - 0.166666666667*G4_1_0_0_0 - 0.166666666667*G4_1_0_0_1 - 0.166666666667*G4_1_0_1_0 - 0.166666666667*G4_1_0_1_1 + 0.166666666667*G4_1_1_0_0 + 0.166666666667*G4_1_1_1_0 + 0.166666666667*G4_1_2_0_1 + 0.166666666667*G4_1_2_1_1 - 0.166666666667*G4_2_0_0_0 - 0.166666666667*G4_2_0_0_1 - 0.166666666667*G4_2_0_1_0 - 0.166666666667*G4_2_0_1_1 + 0.166666666667*G4_2_1_0_0 + 0.166666666667*G4_2_1_1_0 + 0.166666666667*G4_2_2_0_1 + 0.166666666667*G4_2_2_1_1 - 0.0833333333333*G5_0_0_0_0_0 - 0.0833333333333*G5_0_0_0_0_1 - 0.0833333333333*G5_0_0_0_1_0 - 0.0833333333333*G5_0_0_0_1_1 - 0.0416666666667*G5_0_0_1_0_0 - 0.0416666666667*G5_0_0_1_0_1 - 0.0416666666667*G5_0_0_1_1_0 - 0.0416666666667*G5_0_0_1_1_1 - 0.0416666666667*G5_0_0_2_0_0 - 0.0416666666667*G5_0_0_2_0_1 - 0.0416666666667*G5_0_0_2_1_0 - 0.0416666666667*G5_0_0_2_1_1 + 0.0833333333333*G5_0_1_0_0_0 + 0.0833333333333*G5_0_1_0_1_0 + 0.0416666666667*G5_0_1_1_0_0 + 0.0416666666667*G5_0_1_1_1_0 + 0.0416666666667*G5_0_1_2_0_0 + 0.0416666666667*G5_0_1_2_1_0 + 0.0833333333333*G5_0_2_0_0_1 + 0.0833333333333*G5_0_2_0_1_1 + 0.0416666666667*G5_0_2_1_0_1 + 0.0416666666667*G5_0_2_1_1_1 + 0.0416666666667*G5_0_2_2_0_1 + 0.0416666666667*G5_0_2_2_1_1 - 0.0416666666667*G5_1_0_0_0_0 - 0.0416666666667*G5_1_0_0_0_1 - 0.0416666666667*G5_1_0_0_1_0 - 0.0416666666667*G5_1_0_0_1_1 - 0.0833333333333*G5_1_0_1_0_0 - 0.0833333333333*G5_1_0_1_0_1 - 0.0833333333333*G5_1_0_1_1_0 - 0.0833333333333*G5_1_0_1_1_1 - 0.0416666666667*G5_1_0_2_0_0 - 0.0416666666667*G5_1_0_2_0_1 - 0.0416666666667*G5_1_0_2_1_0 - 0.0416666666667*G5_1_0_2_1_1 + 0.0416666666667*G5_1_1_0_0_0 + 0.0416666666667*G5_1_1_0_1_0 + 0.0833333333333*G5_1_1_1_0_0 + 0.0833333333333*G5_1_1_1_1_0 + 0.0416666666667*G5_1_1_2_0_0 + 0.0416666666667*G5_1_1_2_1_0 + 0.0416666666667*G5_1_2_0_0_1 + 0.0416666666667*G5_1_2_0_1_1 + 0.0833333333333*G5_1_2_1_0_1 + 0.0833333333333*G5_1_2_1_1_1 + 0.0416666666667*G5_1_2_2_0_1 + 0.0416666666667*G5_1_2_2_1_1 - 0.0416666666667*G5_2_0_0_0_0 - 0.0416666666667*G5_2_0_0_0_1 - 0.0416666666667*G5_2_0_0_1_0 - 0.0416666666667*G5_2_0_0_1_1 - 0.0416666666667*G5_2_0_1_0_0 - 0.0416666666667*G5_2_0_1_0_1 - 0.0416666666667*G5_2_0_1_1_0 - 0.0416666666667*G5_2_0_1_1_1 - 0.0833333333333*G5_2_0_2_0_0 - 0.0833333333333*G5_2_0_2_0_1 - 0.0833333333333*G5_2_0_2_1_0 - 0.0833333333333*G5_2_0_2_1_1 + 0.0416666666667*G5_2_1_0_0_0 + 0.0416666666667*G5_2_1_0_1_0 + 0.0416666666667*G5_2_1_1_0_0 + 0.0416666666667*G5_2_1_1_1_0 + 0.0833333333333*G5_2_1_2_0_0 + 0.0833333333333*G5_2_1_2_1_0 + 0.0416666666667*G5_2_2_0_0_1 + 0.0416666666667*G5_2_2_0_1_1 + 0.0416666666667*G5_2_2_1_0_1 + 0.0416666666667*G5_2_2_1_1_1 + 0.0833333333333*G5_2_2_2_0_1 + 0.0833333333333*G5_2_2_2_1_1 - 0.0833333333333*G6_0_0_0_0_0 - 0.0833333333333*G6_0_0_0_0_1 - 0.0833333333333*G6_0_0_0_1_0 - 0.0833333333333*G6_0_0_0_1_1 + 0.0833333333333*G6_0_0_1_0_0 + 0.0833333333333*G6_0_0_1_1_0 + 0.0833333333333*G6_0_0_2_0_1 + 0.0833333333333*G6_0_0_2_1_1 - 0.0416666666667*G6_0_1_0_0_0 - 0.0416666666667*G6_0_1_0_0_1 - 0.0416666666667*G6_0_1_0_1_0 - 0.0416666666667*G6_0_1_0_1_1 + 0.0416666666667*G6_0_1_1_0_0 + 0.0416666666667*G6_0_1_1_1_0 + 0.0416666666667*G6_0_1_2_0_1 + 0.0416666666667*G6_0_1_2_1_1 - 0.0416666666667*G6_0_2_0_0_0 - 0.0416666666667*G6_0_2_0_0_1 - 0.0416666666667*G6_0_2_0_1_0 - 0.0416666666667*G6_0_2_0_1_1 + 0.0416666666667*G6_0_2_1_0_0 + 0.0416666666667*G6_0_2_1_1_0 + 0.0416666666667*G6_0_2_2_0_1 + 0.0416666666667*G6_0_2_2_1_1 - 0.0416666666667*G6_1_0_0_0_0 - 0.0416666666667*G6_1_0_0_0_1 - 0.0416666666667*G6_1_0_0_1_0 - 0.0416666666667*G6_1_0_0_1_1 + 0.0416666666667*G6_1_0_1_0_0 + 0.0416666666667*G6_1_0_1_1_0 + 0.0416666666667*G6_1_0_2_0_1 + 0.0416666666667*G6_1_0_2_1_1 - 0.0833333333333*G6_1_1_0_0_0 - 0.0833333333333*G6_1_1_0_0_1 - 0.0833333333333*G6_1_1_0_1_0 - 0.0833333333333*G6_1_1_0_1_1 + 0.0833333333333*G6_1_1_1_0_0 + 0.0833333333333*G6_1_1_1_1_0 + 0.0833333333333*G6_1_1_2_0_1 + 0.0833333333333*G6_1_1_2_1_1 - 0.0416666666667*G6_1_2_0_0_0 - 0.0416666666667*G6_1_2_0_0_1 - 0.0416666666667*G6_1_2_0_1_0 - 0.0416666666667*G6_1_2_0_1_1 + 0.0416666666667*G6_1_2_1_0_0 + 0.0416666666667*G6_1_2_1_1_0 + 0.0416666666667*G6_1_2_2_0_1 + 0.0416666666667*G6_1_2_2_1_1 - 0.0416666666667*G6_2_0_0_0_0 - 0.0416666666667*G6_2_0_0_0_1 - 0.0416666666667*G6_2_0_0_1_0 - 0.0416666666667*G6_2_0_0_1_1 + 0.0416666666667*G6_2_0_1_0_0 + 0.0416666666667*G6_2_0_1_1_0 + 0.0416666666667*G6_2_0_2_0_1 + 0.0416666666667*G6_2_0_2_1_1 - 0.0416666666667*G6_2_1_0_0_0 - 0.0416666666667*G6_2_1_0_0_1 - 0.0416666666667*G6_2_1_0_1_0 - 0.0416666666667*G6_2_1_0_1_1 + 0.0416666666667*G6_2_1_1_0_0 + 0.0416666666667*G6_2_1_1_1_0 + 0.0416666666667*G6_2_1_2_0_1 + 0.0416666666667*G6_2_1_2_1_1 - 0.0833333333333*G6_2_2_0_0_0 - 0.0833333333333*G6_2_2_0_0_1 - 0.0833333333333*G6_2_2_0_1_0 - 0.0833333333333*G6_2_2_0_1_1 + 0.0833333333333*G6_2_2_1_0_0 + 0.0833333333333*G6_2_2_1_1_0 + 0.0833333333333*G6_2_2_2_0_1 + 0.0833333333333*G6_2_2_2_1_1;
-    A[4] = -0.0416666666667*G0_3 - 0.0833333333333*G0_4 - 0.0416666666667*G0_5 + 0.0416666666667*G1_3 + 0.0833333333333*G1_4 + 0.0416666666667*G1_5 - 0.0833333333333*G2_0_0_0_0_0 - 0.0833333333333*G2_0_0_0_0_1 - 0.0416666666667*G2_0_0_1_0_0 - 0.0416666666667*G2_0_0_1_0_1 - 0.0416666666667*G2_0_0_2_0_0 - 0.0416666666667*G2_0_0_2_0_1 + 0.0833333333333*G2_0_1_0_0_0 + 0.0416666666667*G2_0_1_1_0_0 + 0.0416666666667*G2_0_1_2_0_0 + 0.0833333333333*G2_0_2_0_0_1 + 0.0416666666667*G2_0_2_1_0_1 + 0.0416666666667*G2_0_2_2_0_1 - 0.0416666666667*G2_1_0_0_0_0 - 0.0416666666667*G2_1_0_0_0_1 - 0.0833333333333*G2_1_0_1_0_0 - 0.0833333333333*G2_1_0_1_0_1 - 0.0416666666667*G2_1_0_2_0_0 - 0.0416666666667*G2_1_0_2_0_1 + 0.0416666666667*G2_1_1_0_0_0 + 0.0833333333333*G2_1_1_1_0_0 + 0.0416666666667*G2_1_1_2_0_0 + 0.0416666666667*G2_1_2_0_0_1 + 0.0833333333333*G2_1_2_1_0_1 + 0.0416666666667*G2_1_2_2_0_1 - 0.0416666666667*G2_2_0_0_0_0 - 0.0416666666667*G2_2_0_0_0_1 - 0.0416666666667*G2_2_0_1_0_0 - 0.0416666666667*G2_2_0_1_0_1 - 0.0833333333333*G2_2_0_2_0_0 - 0.0833333333333*G2_2_0_2_0_1 + 0.0416666666667*G2_2_1_0_0_0 + 0.0416666666667*G2_2_1_1_0_0 + 0.0833333333333*G2_2_1_2_0_0 + 0.0416666666667*G2_2_2_0_0_1 + 0.0416666666667*G2_2_2_1_0_1 + 0.0833333333333*G2_2_2_2_0_1 - 0.0833333333333*G3_0_0_0_0_0 - 0.0833333333333*G3_0_0_0_0_1 + 0.0833333333333*G3_0_0_1_0_0 + 0.0833333333333*G3_0_0_2_0_1 - 0.0416666666667*G3_0_1_0_0_0 - 0.0416666666667*G3_0_1_0_0_1 + 0.0416666666667*G3_0_1_1_0_0 + 0.0416666666667*G3_0_1_2_0_1 - 0.0416666666667*G3_0_2_0_0_0 - 0.0416666666667*G3_0_2_0_0_1 + 0.0416666666667*G3_0_2_1_0_0 + 0.0416666666667*G3_0_2_2_0_1 - 0.0416666666667*G3_1_0_0_0_0 - 0.0416666666667*G3_1_0_0_0_1 + 0.0416666666667*G3_1_0_1_0_0 + 0.0416666666667*G3_1_0_2_0_1 - 0.0833333333333*G3_1_1_0_0_0 - 0.0833333333333*G3_1_1_0_0_1 + 0.0833333333333*G3_1_1_1_0_0 + 0.0833333333333*G3_1_1_2_0_1 - 0.0416666666667*G3_1_2_0_0_0 - 0.0416666666667*G3_1_2_0_0_1 + 0.0416666666667*G3_1_2_1_0_0 + 0.0416666666667*G3_1_2_2_0_1 - 0.0416666666667*G3_2_0_0_0_0 - 0.0416666666667*G3_2_0_0_0_1 + 0.0416666666667*G3_2_0_1_0_0 + 0.0416666666667*G3_2_0_2_0_1 - 0.0416666666667*G3_2_1_0_0_0 - 0.0416666666667*G3_2_1_0_0_1 + 0.0416666666667*G3_2_1_1_0_0 + 0.0416666666667*G3_2_1_2_0_1 - 0.0833333333333*G3_2_2_0_0_0 - 0.0833333333333*G3_2_2_0_0_1 + 0.0833333333333*G3_2_2_1_0_0 + 0.0833333333333*G3_2_2_2_0_1 + 0.166666666667*G4_0_0_0_0 + 0.166666666667*G4_0_0_0_1 - 0.166666666667*G4_0_1_0_0 - 0.166666666667*G4_0_2_0_1 + 0.166666666667*G4_1_0_0_0 + 0.166666666667*G4_1_0_0_1 - 0.166666666667*G4_1_1_0_0 - 0.166666666667*G4_1_2_0_1 + 0.166666666667*G4_2_0_0_0 + 0.166666666667*G4_2_0_0_1 - 0.166666666667*G4_2_1_0_0 - 0.166666666667*G4_2_2_0_1 + 0.0833333333333*G5_0_0_0_0_0 + 0.0833333333333*G5_0_0_0_0_1 + 0.0416666666667*G5_0_0_1_0_0 + 0.0416666666667*G5_0_0_1_0_1 + 0.0416666666667*G5_0_0_2_0_0 + 0.0416666666667*G5_0_0_2_0_1 - 0.0833333333333*G5_0_1_0_0_0 - 0.0416666666667*G5_0_1_1_0_0 - 0.0416666666667*G5_0_1_2_0_0 - 0.0833333333333*G5_0_2_0_0_1 - 0.0416666666667*G5_0_2_1_0_1 - 0.0416666666667*G5_0_2_2_0_1 + 0.0416666666667*G5_1_0_0_0_0 + 0.0416666666667*G5_1_0_0_0_1 + 0.0833333333333*G5_1_0_1_0_0 + 0.0833333333333*G5_1_0_1_0_1 + 0.0416666666667*G5_1_0_2_0_0 + 0.0416666666667*G5_1_0_2_0_1 - 0.0416666666667*G5_1_1_0_0_0 - 0.0833333333333*G5_1_1_1_0_0 - 0.0416666666667*G5_1_1_2_0_0 - 0.0416666666667*G5_1_2_0_0_1 - 0.0833333333333*G5_1_2_1_0_1 - 0.0416666666667*G5_1_2_2_0_1 + 0.0416666666667*G5_2_0_0_0_0 + 0.0416666666667*G5_2_0_0_0_1 + 0.0416666666667*G5_2_0_1_0_0 + 0.0416666666667*G5_2_0_1_0_1 + 0.0833333333333*G5_2_0_2_0_0 + 0.0833333333333*G5_2_0_2_0_1 - 0.0416666666667*G5_2_1_0_0_0 - 0.0416666666667*G5_2_1_1_0_0 - 0.0833333333333*G5_2_1_2_0_0 - 0.0416666666667*G5_2_2_0_0_1 - 0.0416666666667*G5_2_2_1_0_1 - 0.0833333333333*G5_2_2_2_0_1 + 0.0833333333333*G6_0_0_0_0_0 + 0.0833333333333*G6_0_0_0_0_1 - 0.0833333333333*G6_0_0_1_0_0 - 0.0833333333333*G6_0_0_2_0_1 + 0.0416666666667*G6_0_1_0_0_0 + 0.0416666666667*G6_0_1_0_0_1 - 0.0416666666667*G6_0_1_1_0_0 - 0.0416666666667*G6_0_1_2_0_1 + 0.0416666666667*G6_0_2_0_0_0 + 0.0416666666667*G6_0_2_0_0_1 - 0.0416666666667*G6_0_2_1_0_0 - 0.0416666666667*G6_0_2_2_0_1 + 0.0416666666667*G6_1_0_0_0_0 + 0.0416666666667*G6_1_0_0_0_1 - 0.0416666666667*G6_1_0_1_0_0 - 0.0416666666667*G6_1_0_2_0_1 + 0.0833333333333*G6_1_1_0_0_0 + 0.0833333333333*G6_1_1_0_0_1 - 0.0833333333333*G6_1_1_1_0_0 - 0.0833333333333*G6_1_1_2_0_1 + 0.0416666666667*G6_1_2_0_0_0 + 0.0416666666667*G6_1_2_0_0_1 - 0.0416666666667*G6_1_2_1_0_0 - 0.0416666666667*G6_1_2_2_0_1 + 0.0416666666667*G6_2_0_0_0_0 + 0.0416666666667*G6_2_0_0_0_1 - 0.0416666666667*G6_2_0_1_0_0 - 0.0416666666667*G6_2_0_2_0_1 + 0.0416666666667*G6_2_1_0_0_0 + 0.0416666666667*G6_2_1_0_0_1 - 0.0416666666667*G6_2_1_1_0_0 - 0.0416666666667*G6_2_1_2_0_1 + 0.0833333333333*G6_2_2_0_0_0 + 0.0833333333333*G6_2_2_0_0_1 - 0.0833333333333*G6_2_2_1_0_0 - 0.0833333333333*G6_2_2_2_0_1;
-    A[5] = -0.0416666666667*G0_3 - 0.0416666666667*G0_4 - 0.0833333333333*G0_5 + 0.0416666666667*G1_3 + 0.0416666666667*G1_4 + 0.0833333333333*G1_5 - 0.0833333333333*G2_0_0_0_1_0 - 0.0833333333333*G2_0_0_0_1_1 - 0.0416666666667*G2_0_0_1_1_0 - 0.0416666666667*G2_0_0_1_1_1 - 0.0416666666667*G2_0_0_2_1_0 - 0.0416666666667*G2_0_0_2_1_1 + 0.0833333333333*G2_0_1_0_1_0 + 0.0416666666667*G2_0_1_1_1_0 + 0.0416666666667*G2_0_1_2_1_0 + 0.0833333333333*G2_0_2_0_1_1 + 0.0416666666667*G2_0_2_1_1_1 + 0.0416666666667*G2_0_2_2_1_1 - 0.0416666666667*G2_1_0_0_1_0 - 0.0416666666667*G2_1_0_0_1_1 - 0.0833333333333*G2_1_0_1_1_0 - 0.0833333333333*G2_1_0_1_1_1 - 0.0416666666667*G2_1_0_2_1_0 - 0.0416666666667*G2_1_0_2_1_1 + 0.0416666666667*G2_1_1_0_1_0 + 0.0833333333333*G2_1_1_1_1_0 + 0.0416666666667*G2_1_1_2_1_0 + 0.0416666666667*G2_1_2_0_1_1 + 0.0833333333333*G2_1_2_1_1_1 + 0.0416666666667*G2_1_2_2_1_1 - 0.0416666666667*G2_2_0_0_1_0 - 0.0416666666667*G2_2_0_0_1_1 - 0.0416666666667*G2_2_0_1_1_0 - 0.0416666666667*G2_2_0_1_1_1 - 0.0833333333333*G2_2_0_2_1_0 - 0.0833333333333*G2_2_0_2_1_1 + 0.0416666666667*G2_2_1_0_1_0 + 0.0416666666667*G2_2_1_1_1_0 + 0.0833333333333*G2_2_1_2_1_0 + 0.0416666666667*G2_2_2_0_1_1 + 0.0416666666667*G2_2_2_1_1_1 + 0.0833333333333*G2_2_2_2_1_1 - 0.0833333333333*G3_0_0_0_1_0 - 0.0833333333333*G3_0_0_0_1_1 + 0.0833333333333*G3_0_0_1_1_0 + 0.0833333333333*G3_0_0_2_1_1 - 0.0416666666667*G3_0_1_0_1_0 - 0.0416666666667*G3_0_1_0_1_1 + 0.0416666666667*G3_0_1_1_1_0 + 0.0416666666667*G3_0_1_2_1_1 - 0.0416666666667*G3_0_2_0_1_0 - 0.0416666666667*G3_0_2_0_1_1 + 0.0416666666667*G3_0_2_1_1_0 + 0.0416666666667*G3_0_2_2_1_1 - 0.0416666666667*G3_1_0_0_1_0 - 0.0416666666667*G3_1_0_0_1_1 + 0.0416666666667*G3_1_0_1_1_0 + 0.0416666666667*G3_1_0_2_1_1 - 0.0833333333333*G3_1_1_0_1_0 - 0.0833333333333*G3_1_1_0_1_1 + 0.0833333333333*G3_1_1_1_1_0 + 0.0833333333333*G3_1_1_2_1_1 - 0.0416666666667*G3_1_2_0_1_0 - 0.0416666666667*G3_1_2_0_1_1 + 0.0416666666667*G3_1_2_1_1_0 + 0.0416666666667*G3_1_2_2_1_1 - 0.0416666666667*G3_2_0_0_1_0 - 0.0416666666667*G3_2_0_0_1_1 + 0.0416666666667*G3_2_0_1_1_0 + 0.0416666666667*G3_2_0_2_1_1 - 0.0416666666667*G3_2_1_0_1_0 - 0.0416666666667*G3_2_1_0_1_1 + 0.0416666666667*G3_2_1_1_1_0 + 0.0416666666667*G3_2_1_2_1_1 - 0.0833333333333*G3_2_2_0_1_0 - 0.0833333333333*G3_2_2_0_1_1 + 0.0833333333333*G3_2_2_1_1_0 + 0.0833333333333*G3_2_2_2_1_1 + 0.166666666667*G4_0_0_1_0 + 0.166666666667*G4_0_0_1_1 - 0.166666666667*G4_0_1_1_0 - 0.166666666667*G4_0_2_1_1 + 0.166666666667*G4_1_0_1_0 + 0.166666666667*G4_1_0_1_1 - 0.166666666667*G4_1_1_1_0 - 0.166666666667*G4_1_2_1_1 + 0.166666666667*G4_2_0_1_0 + 0.166666666667*G4_2_0_1_1 - 0.166666666667*G4_2_1_1_0 - 0.166666666667*G4_2_2_1_1 + 0.0833333333333*G5_0_0_0_1_0 + 0.0833333333333*G5_0_0_0_1_1 + 0.0416666666667*G5_0_0_1_1_0 + 0.0416666666667*G5_0_0_1_1_1 + 0.0416666666667*G5_0_0_2_1_0 + 0.0416666666667*G5_0_0_2_1_1 - 0.0833333333333*G5_0_1_0_1_0 - 0.0416666666667*G5_0_1_1_1_0 - 0.0416666666667*G5_0_1_2_1_0 - 0.0833333333333*G5_0_2_0_1_1 - 0.0416666666667*G5_0_2_1_1_1 - 0.0416666666667*G5_0_2_2_1_1 + 0.0416666666667*G5_1_0_0_1_0 + 0.0416666666667*G5_1_0_0_1_1 + 0.0833333333333*G5_1_0_1_1_0 + 0.0833333333333*G5_1_0_1_1_1 + 0.0416666666667*G5_1_0_2_1_0 + 0.0416666666667*G5_1_0_2_1_1 - 0.0416666666667*G5_1_1_0_1_0 - 0.0833333333333*G5_1_1_1_1_0 - 0.0416666666667*G5_1_1_2_1_0 - 0.0416666666667*G5_1_2_0_1_1 - 0.0833333333333*G5_1_2_1_1_1 - 0.0416666666667*G5_1_2_2_1_1 + 0.0416666666667*G5_2_0_0_1_0 + 0.0416666666667*G5_2_0_0_1_1 + 0.0416666666667*G5_2_0_1_1_0 + 0.0416666666667*G5_2_0_1_1_1 + 0.0833333333333*G5_2_0_2_1_0 + 0.0833333333333*G5_2_0_2_1_1 - 0.0416666666667*G5_2_1_0_1_0 - 0.0416666666667*G5_2_1_1_1_0 - 0.0833333333333*G5_2_1_2_1_0 - 0.0416666666667*G5_2_2_0_1_1 - 0.0416666666667*G5_2_2_1_1_1 - 0.0833333333333*G5_2_2_2_1_1 + 0.0833333333333*G6_0_0_0_1_0 + 0.0833333333333*G6_0_0_0_1_1 - 0.0833333333333*G6_0_0_1_1_0 - 0.0833333333333*G6_0_0_2_1_1 + 0.0416666666667*G6_0_1_0_1_0 + 0.0416666666667*G6_0_1_0_1_1 - 0.0416666666667*G6_0_1_1_1_0 - 0.0416666666667*G6_0_1_2_1_1 + 0.0416666666667*G6_0_2_0_1_0 + 0.0416666666667*G6_0_2_0_1_1 - 0.0416666666667*G6_0_2_1_1_0 - 0.0416666666667*G6_0_2_2_1_1 + 0.0416666666667*G6_1_0_0_1_0 + 0.0416666666667*G6_1_0_0_1_1 - 0.0416666666667*G6_1_0_1_1_0 - 0.0416666666667*G6_1_0_2_1_1 + 0.0833333333333*G6_1_1_0_1_0 + 0.0833333333333*G6_1_1_0_1_1 - 0.0833333333333*G6_1_1_1_1_0 - 0.0833333333333*G6_1_1_2_1_1 + 0.0416666666667*G6_1_2_0_1_0 + 0.0416666666667*G6_1_2_0_1_1 - 0.0416666666667*G6_1_2_1_1_0 - 0.0416666666667*G6_1_2_2_1_1 + 0.0416666666667*G6_2_0_0_1_0 + 0.0416666666667*G6_2_0_0_1_1 - 0.0416666666667*G6_2_0_1_1_0 - 0.0416666666667*G6_2_0_2_1_1 + 0.0416666666667*G6_2_1_0_1_0 + 0.0416666666667*G6_2_1_0_1_1 - 0.0416666666667*G6_2_1_1_1_0 - 0.0416666666667*G6_2_1_2_1_1 + 0.0833333333333*G6_2_2_0_1_0 + 0.0833333333333*G6_2_2_0_1_1 - 0.0833333333333*G6_2_2_1_1_0 - 0.0833333333333*G6_2_2_2_1_1;
+    A[0] = -0.0833333333333332*G7_0 - 0.0416666666666666*G7_1 - 0.0416666666666666*G7_2 + 0.0476190476190476*G8_0_3_3_3 + 0.00952380952380952*G8_0_3_3_4 + 0.00952380952380952*G8_0_3_3_5 + 0.00952380952380952*G8_0_3_4_3 + 0.00476190476190476*G8_0_3_4_4 + 0.00238095238095238*G8_0_3_4_5 + 0.00952380952380952*G8_0_3_5_3 + 0.00238095238095238*G8_0_3_5_4 + 0.00476190476190476*G8_0_3_5_5 + 0.00952380952380952*G8_0_4_3_3 + 0.00476190476190476*G8_0_4_3_4 + 0.00238095238095238*G8_0_4_3_5 + 0.00476190476190476*G8_0_4_4_3 + 0.00476190476190476*G8_0_4_4_4 + 0.00158730158730159*G8_0_4_4_5 + 0.00238095238095238*G8_0_4_5_3 + 0.00158730158730159*G8_0_4_5_4 + 0.00158730158730159*G8_0_4_5_5 + 0.00952380952380952*G8_0_5_3_3 + 0.00238095238095238*G8_0_5_3_4 + 0.00476190476190476*G8_0_5_3_5 + 0.00238095238095238*G8_0_5_4_3 + 0.00158730158730159*G8_0_5_4_4 + 0.00158730158730159*G8_0_5_4_5 + 0.00476190476190476*G8_0_5_5_3 + 0.00158730158730159*G8_0_5_5_4 + 0.00476190476190476*G8_0_5_5_5 + 0.00952380952380952*G8_1_3_3_3 + 0.00476190476190476*G8_1_3_3_4 + 0.00238095238095238*G8_1_3_3_5 + 0.00476190476190476*G8_1_3_4_3 + 0.00476190476190476*G8_1_3_4_4 + 0.00158730158730159*G8_1_3_4_5 + 0.00238095238095238*G8_1_3_5_3 + 0.00158730158730159*G8_1_3_5_4 + 0.00158730158730159*G8_1_3_5_5 + 0.00476190476190476*G8_1_4_3_3 + 0.00476190476190476*G8_1_4_3_4 + 0.00158730158730159*G8_1_4_3_5 + 0.00476190476190476*G8_1_4_4_3 + 0.00952380952380951*G8_1_4_4_4 + 0.00238095238095238*G8_1_4_4_5 + 0.00158730158730159*G8_1_4_5_3 + 0.00238095238095238*G8_1_4_5_4 + 0.00158730158730159*G8_1_4_5_5 + 0.00238095238095238*G8_1_5_3_3 + 0.00158730158730159*G8_1_5_3_4 + 0.00158730158730159*G8_1_5_3_5 + 0.00158730158730159*G8_1_5_4_3 + 0.00238095238095238*G8_1_5_4_4 + 0.00158730158730159*G8_1_5_4_5 + 0.00158730158730159*G8_1_5_5_3 + 0.00158730158730159*G8_1_5_5_4 + 0.00238095238095238*G8_1_5_5_5 + 0.00952380952380952*G8_2_3_3_3 + 0.00238095238095238*G8_2_3_3_4 + 0.00476190476190476*G8_2_3_3_5 + 0.00238095238095238*G8_2_3_4_3 + 0.00158730158730159*G8_2_3_4_4 + 0.00158730158730159*G8_2_3_4_5 + 0.00476190476190476*G8_2_3_5_3 + 0.00158730158730159*G8_2_3_5_4 + 0.00476190476190476*G8_2_3_5_5 + 0.00238095238095238*G8_2_4_3_3 + 0.00158730158730159*G8_2_4_3_4 + 0.00158730158730159*G8_2_4_3_5 + 0.00158730158730159*G8_2_4_4_3 + 0.00238095238095238*G8_2_4_4_4 + 0.00158730158730159*G8_2_4_4_5 + 0.00158730158730159*G8_2_4_5_3 + 0.00158730158730159*G8_2_4_5_4 + 0.00238095238095238*G8_2_4_5_5 + 0.00476190476190476*G8_2_5_3_3 + 0.00158730158730159*G8_2_5_3_4 + 0.00476190476190476*G8_2_5_3_5 + 0.00158730158730159*G8_2_5_4_3 + 0.00158730158730159*G8_2_5_4_4 + 0.00238095238095238*G8_2_5_4_5 + 0.00476190476190476*G8_2_5_5_3 + 0.00238095238095238*G8_2_5_5_4 + 0.00952380952380951*G8_2_5_5_5 - 0.0666666666666666*G9_0_3_3 - 0.0166666666666667*G9_0_3_4 - 0.0166666666666667*G9_0_3_5 - 0.0166666666666667*G9_0_4_3 - 0.0111111111111111*G9_0_4_4 - 0.00555555555555555*G9_0_4_5 - 0.0166666666666667*G9_0_5_3 - 0.00555555555555555*G9_0_5_4 - 0.0111111111111111*G9_0_5_5 - 0.0166666666666667*G9_1_3_3 - 0.0111111111111111*G9_1_3_4 - 0.00555555555555555*G9_1_3_5 - 0.0111111111111111*G9_1_4_3 - 0.0166666666666666*G9_1_4_4 - 0.00555555555555555*G9_1_4_5 - 0.00555555555555555*G9_1_5_3 - 0.00555555555555555*G9_1_5_4 - 0.00555555555555555*G9_1_5_5 - 0.0166666666666667*G9_2_3_3 - 0.00555555555555555*G9_2_3_4 - 0.0111111111111111*G9_2_3_5 - 0.00555555555555555*G9_2_4_3 - 0.00555555555555555*G9_2_4_4 - 0.00555555555555555*G9_2_4_5 - 0.0111111111111111*G9_2_5_3 - 0.00555555555555555*G9_2_5_4 - 0.0166666666666666*G9_2_5_5 + 0.0999999999999998*G10_0_3 + 0.0333333333333333*G10_0_4 + 0.0333333333333333*G10_0_5 + 0.0333333333333333*G10_1_3 + 0.0333333333333333*G10_1_4 + 0.0166666666666666*G10_1_5 + 0.0333333333333333*G10_2_3 + 0.0166666666666666*G10_2_4 + 0.0333333333333333*G10_2_5 + 0.166666666666667*G11_0_3_0_0 + 0.166666666666667*G11_0_3_0_1 + 0.166666666666667*G11_0_3_1_0 + 0.166666666666667*G11_0_3_1_1 - 0.166666666666667*G11_0_4_0_0 - 0.166666666666667*G11_0_4_1_0 - 0.166666666666667*G11_0_5_0_1 - 0.166666666666667*G11_0_5_1_1 + 0.166666666666667*G11_1_3_0_0 + 0.166666666666667*G11_1_3_0_1 + 0.166666666666667*G11_1_3_1_0 + 0.166666666666667*G11_1_3_1_1 - 0.166666666666667*G11_1_4_0_0 - 0.166666666666667*G11_1_4_1_0 - 0.166666666666667*G11_1_5_0_1 - 0.166666666666667*G11_1_5_1_1 + 0.166666666666667*G11_2_3_0_0 + 0.166666666666667*G11_2_3_0_1 + 0.166666666666667*G11_2_3_1_0 + 0.166666666666667*G11_2_3_1_1 - 0.166666666666667*G11_2_4_0_0 - 0.166666666666667*G11_2_4_1_0 - 0.166666666666667*G11_2_5_0_1 - 0.166666666666667*G11_2_5_1_1;
+    A[1] = -0.0416666666666666*G7_0 - 0.0833333333333332*G7_1 - 0.0416666666666666*G7_2 + 0.00952380952380952*G8_0_3_3_3 + 0.00476190476190476*G8_0_3_3_4 + 0.00238095238095238*G8_0_3_3_5 + 0.00476190476190476*G8_0_3_4_3 + 0.00476190476190476*G8_0_3_4_4 + 0.00158730158730159*G8_0_3_4_5 + 0.00238095238095238*G8_0_3_5_3 + 0.00158730158730159*G8_0_3_5_4 + 0.00158730158730159*G8_0_3_5_5 + 0.00476190476190476*G8_0_4_3_3 + 0.00476190476190476*G8_0_4_3_4 + 0.00158730158730159*G8_0_4_3_5 + 0.00476190476190476*G8_0_4_4_3 + 0.00952380952380951*G8_0_4_4_4 + 0.00238095238095238*G8_0_4_4_5 + 0.00158730158730159*G8_0_4_5_3 + 0.00238095238095238*G8_0_4_5_4 + 0.00158730158730159*G8_0_4_5_5 + 0.00238095238095238*G8_0_5_3_3 + 0.00158730158730159*G8_0_5_3_4 + 0.00158730158730159*G8_0_5_3_5 + 0.00158730158730159*G8_0_5_4_3 + 0.00238095238095238*G8_0_5_4_4 + 0.00158730158730159*G8_0_5_4_5 + 0.00158730158730159*G8_0_5_5_3 + 0.00158730158730159*G8_0_5_5_4 + 0.00238095238095238*G8_0_5_5_5 + 0.00476190476190476*G8_1_3_3_3 + 0.00476190476190476*G8_1_3_3_4 + 0.00158730158730159*G8_1_3_3_5 + 0.00476190476190476*G8_1_3_4_3 + 0.00952380952380951*G8_1_3_4_4 + 0.00238095238095238*G8_1_3_4_5 + 0.00158730158730159*G8_1_3_5_3 + 0.00238095238095238*G8_1_3_5_4 + 0.00158730158730159*G8_1_3_5_5 + 0.00476190476190476*G8_1_4_3_3 + 0.00952380952380951*G8_1_4_3_4 + 0.00238095238095238*G8_1_4_3_5 + 0.00952380952380951*G8_1_4_4_3 + 0.0476190476190476*G8_1_4_4_4 + 0.00952380952380952*G8_1_4_4_5 + 0.00238095238095238*G8_1_4_5_3 + 0.00952380952380952*G8_1_4_5_4 + 0.00476190476190476*G8_1_4_5_5 + 0.00158730158730159*G8_1_5_3_3 + 0.00238095238095238*G8_1_5_3_4 + 0.00158730158730159*G8_1_5_3_5 + 0.00238095238095238*G8_1_5_4_3 + 0.00952380952380952*G8_1_5_4_4 + 0.00476190476190476*G8_1_5_4_5 + 0.00158730158730159*G8_1_5_5_3 + 0.00476190476190476*G8_1_5_5_4 + 0.00476190476190476*G8_1_5_5_5 + 0.00238095238095238*G8_2_3_3_3 + 0.00158730158730159*G8_2_3_3_4 + 0.00158730158730159*G8_2_3_3_5 + 0.00158730158730159*G8_2_3_4_3 + 0.00238095238095238*G8_2_3_4_4 + 0.00158730158730159*G8_2_3_4_5 + 0.00158730158730159*G8_2_3_5_3 + 0.00158730158730159*G8_2_3_5_4 + 0.00238095238095238*G8_2_3_5_5 + 0.00158730158730159*G8_2_4_3_3 + 0.00238095238095238*G8_2_4_3_4 + 0.00158730158730159*G8_2_4_3_5 + 0.00238095238095238*G8_2_4_4_3 + 0.00952380952380952*G8_2_4_4_4 + 0.00476190476190476*G8_2_4_4_5 + 0.00158730158730159*G8_2_4_5_3 + 0.00476190476190476*G8_2_4_5_4 + 0.00476190476190476*G8_2_4_5_5 + 0.00158730158730159*G8_2_5_3_3 + 0.00158730158730159*G8_2_5_3_4 + 0.00238095238095238*G8_2_5_3_5 + 0.00158730158730159*G8_2_5_4_3 + 0.00476190476190476*G8_2_5_4_4 + 0.00476190476190476*G8_2_5_4_5 + 0.00238095238095238*G8_2_5_5_3 + 0.00476190476190476*G8_2_5_5_4 + 0.00952380952380952*G8_2_5_5_5 - 0.0166666666666667*G9_0_3_3 - 0.0111111111111111*G9_0_3_4 - 0.00555555555555555*G9_0_3_5 - 0.0111111111111111*G9_0_4_3 - 0.0166666666666666*G9_0_4_4 - 0.00555555555555555*G9_0_4_5 - 0.00555555555555555*G9_0_5_3 - 0.00555555555555555*G9_0_5_4 - 0.00555555555555555*G9_0_5_5 - 0.0111111111111111*G9_1_3_3 - 0.0166666666666667*G9_1_3_4 - 0.00555555555555555*G9_1_3_5 - 0.0166666666666666*G9_1_4_3 - 0.0666666666666666*G9_1_4_4 - 0.0166666666666667*G9_1_4_5 - 0.00555555555555555*G9_1_5_3 - 0.0166666666666667*G9_1_5_4 - 0.0111111111111111*G9_1_5_5 - 0.00555555555555555*G9_2_3_3 - 0.00555555555555555*G9_2_3_4 - 0.00555555555555555*G9_2_3_5 - 0.00555555555555555*G9_2_4_3 - 0.0166666666666667*G9_2_4_4 - 0.0111111111111111*G9_2_4_5 - 0.00555555555555555*G9_2_5_3 - 0.0111111111111111*G9_2_5_4 - 0.0166666666666667*G9_2_5_5 + 0.0333333333333333*G10_0_3 + 0.0333333333333333*G10_0_4 + 0.0166666666666666*G10_0_5 + 0.0333333333333333*G10_1_3 + 0.0999999999999998*G10_1_4 + 0.0333333333333333*G10_1_5 + 0.0166666666666666*G10_2_3 + 0.0333333333333333*G10_2_4 + 0.0333333333333333*G10_2_5 - 0.166666666666667*G11_0_3_0_0 - 0.166666666666667*G11_0_3_0_1 + 0.166666666666667*G11_0_4_0_0 + 0.166666666666667*G11_0_5_0_1 - 0.166666666666667*G11_1_3_0_0 - 0.166666666666667*G11_1_3_0_1 + 0.166666666666667*G11_1_4_0_0 + 0.166666666666667*G11_1_5_0_1 - 0.166666666666667*G11_2_3_0_0 - 0.166666666666667*G11_2_3_0_1 + 0.166666666666667*G11_2_4_0_0 + 0.166666666666667*G11_2_5_0_1;
+    A[2] = -0.0416666666666666*G7_0 - 0.0416666666666666*G7_1 - 0.0833333333333332*G7_2 + 0.00952380952380952*G8_0_3_3_3 + 0.00238095238095238*G8_0_3_3_4 + 0.00476190476190476*G8_0_3_3_5 + 0.00238095238095238*G8_0_3_4_3 + 0.00158730158730159*G8_0_3_4_4 + 0.00158730158730159*G8_0_3_4_5 + 0.00476190476190476*G8_0_3_5_3 + 0.00158730158730159*G8_0_3_5_4 + 0.00476190476190476*G8_0_3_5_5 + 0.00238095238095238*G8_0_4_3_3 + 0.00158730158730159*G8_0_4_3_4 + 0.00158730158730159*G8_0_4_3_5 + 0.00158730158730159*G8_0_4_4_3 + 0.00238095238095238*G8_0_4_4_4 + 0.00158730158730159*G8_0_4_4_5 + 0.00158730158730159*G8_0_4_5_3 + 0.00158730158730159*G8_0_4_5_4 + 0.00238095238095238*G8_0_4_5_5 + 0.00476190476190476*G8_0_5_3_3 + 0.00158730158730159*G8_0_5_3_4 + 0.00476190476190476*G8_0_5_3_5 + 0.00158730158730159*G8_0_5_4_3 + 0.00158730158730159*G8_0_5_4_4 + 0.00238095238095238*G8_0_5_4_5 + 0.00476190476190476*G8_0_5_5_3 + 0.00238095238095238*G8_0_5_5_4 + 0.00952380952380951*G8_0_5_5_5 + 0.00238095238095238*G8_1_3_3_3 + 0.00158730158730159*G8_1_3_3_4 + 0.00158730158730159*G8_1_3_3_5 + 0.00158730158730159*G8_1_3_4_3 + 0.00238095238095238*G8_1_3_4_4 + 0.00158730158730159*G8_1_3_4_5 + 0.00158730158730159*G8_1_3_5_3 + 0.00158730158730159*G8_1_3_5_4 + 0.00238095238095238*G8_1_3_5_5 + 0.00158730158730159*G8_1_4_3_3 + 0.00238095238095238*G8_1_4_3_4 + 0.00158730158730159*G8_1_4_3_5 + 0.00238095238095238*G8_1_4_4_3 + 0.00952380952380952*G8_1_4_4_4 + 0.00476190476190476*G8_1_4_4_5 + 0.00158730158730159*G8_1_4_5_3 + 0.00476190476190476*G8_1_4_5_4 + 0.00476190476190476*G8_1_4_5_5 + 0.00158730158730159*G8_1_5_3_3 + 0.00158730158730159*G8_1_5_3_4 + 0.00238095238095238*G8_1_5_3_5 + 0.00158730158730159*G8_1_5_4_3 + 0.00476190476190476*G8_1_5_4_4 + 0.00476190476190476*G8_1_5_4_5 + 0.00238095238095238*G8_1_5_5_3 + 0.00476190476190476*G8_1_5_5_4 + 0.00952380952380952*G8_1_5_5_5 + 0.00476190476190476*G8_2_3_3_3 + 0.00158730158730159*G8_2_3_3_4 + 0.00476190476190476*G8_2_3_3_5 + 0.00158730158730159*G8_2_3_4_3 + 0.00158730158730159*G8_2_3_4_4 + 0.00238095238095238*G8_2_3_4_5 + 0.00476190476190476*G8_2_3_5_3 + 0.00238095238095238*G8_2_3_5_4 + 0.00952380952380951*G8_2_3_5_5 + 0.00158730158730159*G8_2_4_3_3 + 0.00158730158730159*G8_2_4_3_4 + 0.00238095238095238*G8_2_4_3_5 + 0.00158730158730159*G8_2_4_4_3 + 0.00476190476190476*G8_2_4_4_4 + 0.00476190476190476*G8_2_4_4_5 + 0.00238095238095238*G8_2_4_5_3 + 0.00476190476190476*G8_2_4_5_4 + 0.00952380952380952*G8_2_4_5_5 + 0.00476190476190476*G8_2_5_3_3 + 0.00238095238095238*G8_2_5_3_4 + 0.00952380952380951*G8_2_5_3_5 + 0.00238095238095238*G8_2_5_4_3 + 0.00476190476190476*G8_2_5_4_4 + 0.00952380952380952*G8_2_5_4_5 + 0.00952380952380951*G8_2_5_5_3 + 0.00952380952380952*G8_2_5_5_4 + 0.0476190476190476*G8_2_5_5_5 - 0.0166666666666667*G9_0_3_3 - 0.00555555555555555*G9_0_3_4 - 0.0111111111111111*G9_0_3_5 - 0.00555555555555555*G9_0_4_3 - 0.00555555555555555*G9_0_4_4 - 0.00555555555555555*G9_0_4_5 - 0.0111111111111111*G9_0_5_3 - 0.00555555555555555*G9_0_5_4 - 0.0166666666666666*G9_0_5_5 - 0.00555555555555555*G9_1_3_3 - 0.00555555555555555*G9_1_3_4 - 0.00555555555555555*G9_1_3_5 - 0.00555555555555555*G9_1_4_3 - 0.0166666666666667*G9_1_4_4 - 0.0111111111111111*G9_1_4_5 - 0.00555555555555555*G9_1_5_3 - 0.0111111111111111*G9_1_5_4 - 0.0166666666666667*G9_1_5_5 - 0.0111111111111111*G9_2_3_3 - 0.00555555555555555*G9_2_3_4 - 0.0166666666666666*G9_2_3_5 - 0.00555555555555555*G9_2_4_3 - 0.0111111111111111*G9_2_4_4 - 0.0166666666666667*G9_2_4_5 - 0.0166666666666666*G9_2_5_3 - 0.0166666666666667*G9_2_5_4 - 0.0666666666666666*G9_2_5_5 + 0.0333333333333333*G10_0_3 + 0.0166666666666666*G10_0_4 + 0.0333333333333333*G10_0_5 + 0.0166666666666666*G10_1_3 + 0.0333333333333333*G10_1_4 + 0.0333333333333333*G10_1_5 + 0.0333333333333333*G10_2_3 + 0.0333333333333333*G10_2_4 + 0.0999999999999998*G10_2_5 - 0.166666666666667*G11_0_3_1_0 - 0.166666666666667*G11_0_3_1_1 + 0.166666666666667*G11_0_4_1_0 + 0.166666666666667*G11_0_5_1_1 - 0.166666666666667*G11_1_3_1_0 - 0.166666666666667*G11_1_3_1_1 + 0.166666666666667*G11_1_4_1_0 + 0.166666666666667*G11_1_5_1_1 - 0.166666666666667*G11_2_3_1_0 - 0.166666666666667*G11_2_3_1_1 + 0.166666666666667*G11_2_4_1_0 + 0.166666666666667*G11_2_5_1_1;
+    A[3] = -0.0833333333333332*G0_3 - 0.0416666666666666*G0_4 - 0.0416666666666666*G0_5 + 0.0833333333333332*G1_3 + 0.0416666666666666*G1_4 + 0.0416666666666666*G1_5 + 0.0833333333333332*G2_0_0_0_0_0 + 0.0833333333333332*G2_0_0_0_0_1 + 0.0833333333333332*G2_0_0_0_1_0 + 0.0833333333333332*G2_0_0_0_1_1 + 0.0416666666666666*G2_0_0_1_0_0 + 0.0416666666666666*G2_0_0_1_0_1 + 0.0416666666666666*G2_0_0_1_1_0 + 0.0416666666666666*G2_0_0_1_1_1 + 0.0416666666666666*G2_0_0_2_0_0 + 0.0416666666666666*G2_0_0_2_0_1 + 0.0416666666666666*G2_0_0_2_1_0 + 0.0416666666666666*G2_0_0_2_1_1 - 0.0833333333333332*G2_0_1_0_0_0 - 0.0833333333333332*G2_0_1_0_1_0 - 0.0416666666666666*G2_0_1_1_0_0 - 0.0416666666666666*G2_0_1_1_1_0 - 0.0416666666666666*G2_0_1_2_0_0 - 0.0416666666666666*G2_0_1_2_1_0 - 0.0833333333333332*G2_0_2_0_0_1 - 0.0833333333333332*G2_0_2_0_1_1 - 0.0416666666666666*G2_0_2_1_0_1 - 0.0416666666666666*G2_0_2_1_1_1 - 0.0416666666666666*G2_0_2_2_0_1 - 0.0416666666666666*G2_0_2_2_1_1 + 0.0416666666666666*G2_1_0_0_0_0 + 0.0416666666666666*G2_1_0_0_0_1 + 0.0416666666666666*G2_1_0_0_1_0 + 0.0416666666666666*G2_1_0_0_1_1 + 0.0833333333333332*G2_1_0_1_0_0 + 0.0833333333333332*G2_1_0_1_0_1 + 0.0833333333333332*G2_1_0_1_1_0 + 0.0833333333333332*G2_1_0_1_1_1 + 0.0416666666666666*G2_1_0_2_0_0 + 0.0416666666666666*G2_1_0_2_0_1 + 0.0416666666666666*G2_1_0_2_1_0 + 0.0416666666666666*G2_1_0_2_1_1 - 0.0416666666666666*G2_1_1_0_0_0 - 0.0416666666666666*G2_1_1_0_1_0 - 0.0833333333333332*G2_1_1_1_0_0 - 0.0833333333333332*G2_1_1_1_1_0 - 0.0416666666666666*G2_1_1_2_0_0 - 0.0416666666666666*G2_1_1_2_1_0 - 0.0416666666666666*G2_1_2_0_0_1 - 0.0416666666666666*G2_1_2_0_1_1 - 0.0833333333333332*G2_1_2_1_0_1 - 0.0833333333333332*G2_1_2_1_1_1 - 0.0416666666666666*G2_1_2_2_0_1 - 0.0416666666666666*G2_1_2_2_1_1 + 0.0416666666666666*G2_2_0_0_0_0 + 0.0416666666666666*G2_2_0_0_0_1 + 0.0416666666666666*G2_2_0_0_1_0 + 0.0416666666666666*G2_2_0_0_1_1 + 0.0416666666666666*G2_2_0_1_0_0 + 0.0416666666666666*G2_2_0_1_0_1 + 0.0416666666666666*G2_2_0_1_1_0 + 0.0416666666666666*G2_2_0_1_1_1 + 0.0833333333333332*G2_2_0_2_0_0 + 0.0833333333333332*G2_2_0_2_0_1 + 0.0833333333333332*G2_2_0_2_1_0 + 0.0833333333333332*G2_2_0_2_1_1 - 0.0416666666666666*G2_2_1_0_0_0 - 0.0416666666666666*G2_2_1_0_1_0 - 0.0416666666666666*G2_2_1_1_0_0 - 0.0416666666666666*G2_2_1_1_1_0 - 0.0833333333333332*G2_2_1_2_0_0 - 0.0833333333333332*G2_2_1_2_1_0 - 0.0416666666666666*G2_2_2_0_0_1 - 0.0416666666666666*G2_2_2_0_1_1 - 0.0416666666666666*G2_2_2_1_0_1 - 0.0416666666666666*G2_2_2_1_1_1 - 0.0833333333333332*G2_2_2_2_0_1 - 0.0833333333333332*G2_2_2_2_1_1 + 0.0833333333333332*G3_0_0_0_0_0 + 0.0833333333333332*G3_0_0_0_0_1 + 0.0833333333333332*G3_0_0_0_1_0 + 0.0833333333333332*G3_0_0_0_1_1 - 0.0833333333333332*G3_0_0_1_0_0 - 0.0833333333333332*G3_0_0_1_1_0 - 0.0833333333333332*G3_0_0_2_0_1 - 0.0833333333333332*G3_0_0_2_1_1 + 0.0416666666666666*G3_0_1_0_0_0 + 0.0416666666666666*G3_0_1_0_0_1 + 0.0416666666666666*G3_0_1_0_1_0 + 0.0416666666666666*G3_0_1_0_1_1 - 0.0416666666666666*G3_0_1_1_0_0 - 0.0416666666666666*G3_0_1_1_1_0 - 0.0416666666666666*G3_0_1_2_0_1 - 0.0416666666666666*G3_0_1_2_1_1 + 0.0416666666666666*G3_0_2_0_0_0 + 0.0416666666666666*G3_0_2_0_0_1 + 0.0416666666666666*G3_0_2_0_1_0 + 0.0416666666666666*G3_0_2_0_1_1 - 0.0416666666666666*G3_0_2_1_0_0 - 0.0416666666666666*G3_0_2_1_1_0 - 0.0416666666666666*G3_0_2_2_0_1 - 0.0416666666666666*G3_0_2_2_1_1 + 0.0416666666666666*G3_1_0_0_0_0 + 0.0416666666666666*G3_1_0_0_0_1 + 0.0416666666666666*G3_1_0_0_1_0 + 0.0416666666666666*G3_1_0_0_1_1 - 0.0416666666666666*G3_1_0_1_0_0 - 0.0416666666666666*G3_1_0_1_1_0 - 0.0416666666666666*G3_1_0_2_0_1 - 0.0416666666666666*G3_1_0_2_1_1 + 0.0833333333333332*G3_1_1_0_0_0 + 0.0833333333333332*G3_1_1_0_0_1 + 0.0833333333333332*G3_1_1_0_1_0 + 0.0833333333333332*G3_1_1_0_1_1 - 0.0833333333333332*G3_1_1_1_0_0 - 0.0833333333333332*G3_1_1_1_1_0 - 0.0833333333333332*G3_1_1_2_0_1 - 0.0833333333333332*G3_1_1_2_1_1 + 0.0416666666666666*G3_1_2_0_0_0 + 0.0416666666666666*G3_1_2_0_0_1 + 0.0416666666666666*G3_1_2_0_1_0 + 0.0416666666666666*G3_1_2_0_1_1 - 0.0416666666666666*G3_1_2_1_0_0 - 0.0416666666666666*G3_1_2_1_1_0 - 0.0416666666666666*G3_1_2_2_0_1 - 0.0416666666666666*G3_1_2_2_1_1 + 0.0416666666666666*G3_2_0_0_0_0 + 0.0416666666666666*G3_2_0_0_0_1 + 0.0416666666666666*G3_2_0_0_1_0 + 0.0416666666666666*G3_2_0_0_1_1 - 0.0416666666666666*G3_2_0_1_0_0 - 0.0416666666666666*G3_2_0_1_1_0 - 0.0416666666666666*G3_2_0_2_0_1 - 0.0416666666666666*G3_2_0_2_1_1 + 0.0416666666666666*G3_2_1_0_0_0 + 0.0416666666666666*G3_2_1_0_0_1 + 0.0416666666666666*G3_2_1_0_1_0 + 0.0416666666666666*G3_2_1_0_1_1 - 0.0416666666666666*G3_2_1_1_0_0 - 0.0416666666666666*G3_2_1_1_1_0 - 0.0416666666666666*G3_2_1_2_0_1 - 0.0416666666666666*G3_2_1_2_1_1 + 0.0833333333333332*G3_2_2_0_0_0 + 0.0833333333333332*G3_2_2_0_0_1 + 0.0833333333333332*G3_2_2_0_1_0 + 0.0833333333333332*G3_2_2_0_1_1 - 0.0833333333333332*G3_2_2_1_0_0 - 0.0833333333333332*G3_2_2_1_1_0 - 0.0833333333333332*G3_2_2_2_0_1 - 0.0833333333333332*G3_2_2_2_1_1 - 0.166666666666667*G4_0_0_0_0 - 0.166666666666667*G4_0_0_0_1 - 0.166666666666667*G4_0_0_1_0 - 0.166666666666667*G4_0_0_1_1 + 0.166666666666667*G4_0_1_0_0 + 0.166666666666667*G4_0_1_1_0 + 0.166666666666667*G4_0_2_0_1 + 0.166666666666667*G4_0_2_1_1 - 0.166666666666667*G4_1_0_0_0 - 0.166666666666667*G4_1_0_0_1 - 0.166666666666667*G4_1_0_1_0 - 0.166666666666667*G4_1_0_1_1 + 0.166666666666667*G4_1_1_0_0 + 0.166666666666667*G4_1_1_1_0 + 0.166666666666667*G4_1_2_0_1 + 0.166666666666667*G4_1_2_1_1 - 0.166666666666667*G4_2_0_0_0 - 0.166666666666667*G4_2_0_0_1 - 0.166666666666667*G4_2_0_1_0 - 0.166666666666667*G4_2_0_1_1 + 0.166666666666667*G4_2_1_0_0 + 0.166666666666667*G4_2_1_1_0 + 0.166666666666667*G4_2_2_0_1 + 0.166666666666667*G4_2_2_1_1 - 0.0833333333333332*G5_0_0_0_0_0 - 0.0833333333333332*G5_0_0_0_0_1 - 0.0833333333333332*G5_0_0_0_1_0 - 0.0833333333333332*G5_0_0_0_1_1 - 0.0416666666666666*G5_0_0_1_0_0 - 0.0416666666666666*G5_0_0_1_0_1 - 0.0416666666666666*G5_0_0_1_1_0 - 0.0416666666666666*G5_0_0_1_1_1 - 0.0416666666666666*G5_0_0_2_0_0 - 0.0416666666666666*G5_0_0_2_0_1 - 0.0416666666666666*G5_0_0_2_1_0 - 0.0416666666666666*G5_0_0_2_1_1 + 0.0833333333333332*G5_0_1_0_0_0 + 0.0833333333333332*G5_0_1_0_1_0 + 0.0416666666666666*G5_0_1_1_0_0 + 0.0416666666666666*G5_0_1_1_1_0 + 0.0416666666666666*G5_0_1_2_0_0 + 0.0416666666666666*G5_0_1_2_1_0 + 0.0833333333333332*G5_0_2_0_0_1 + 0.0833333333333332*G5_0_2_0_1_1 + 0.0416666666666666*G5_0_2_1_0_1 + 0.0416666666666666*G5_0_2_1_1_1 + 0.0416666666666666*G5_0_2_2_0_1 + 0.0416666666666666*G5_0_2_2_1_1 - 0.0416666666666666*G5_1_0_0_0_0 - 0.0416666666666666*G5_1_0_0_0_1 - 0.0416666666666666*G5_1_0_0_1_0 - 0.0416666666666666*G5_1_0_0_1_1 - 0.0833333333333332*G5_1_0_1_0_0 - 0.0833333333333332*G5_1_0_1_0_1 - 0.0833333333333332*G5_1_0_1_1_0 - 0.0833333333333332*G5_1_0_1_1_1 - 0.0416666666666666*G5_1_0_2_0_0 - 0.0416666666666666*G5_1_0_2_0_1 - 0.0416666666666666*G5_1_0_2_1_0 - 0.0416666666666666*G5_1_0_2_1_1 + 0.0416666666666666*G5_1_1_0_0_0 + 0.0416666666666666*G5_1_1_0_1_0 + 0.0833333333333332*G5_1_1_1_0_0 + 0.0833333333333332*G5_1_1_1_1_0 + 0.0416666666666666*G5_1_1_2_0_0 + 0.0416666666666666*G5_1_1_2_1_0 + 0.0416666666666666*G5_1_2_0_0_1 + 0.0416666666666666*G5_1_2_0_1_1 + 0.0833333333333332*G5_1_2_1_0_1 + 0.0833333333333332*G5_1_2_1_1_1 + 0.0416666666666666*G5_1_2_2_0_1 + 0.0416666666666666*G5_1_2_2_1_1 - 0.0416666666666666*G5_2_0_0_0_0 - 0.0416666666666666*G5_2_0_0_0_1 - 0.0416666666666666*G5_2_0_0_1_0 - 0.0416666666666666*G5_2_0_0_1_1 - 0.0416666666666666*G5_2_0_1_0_0 - 0.0416666666666666*G5_2_0_1_0_1 - 0.0416666666666666*G5_2_0_1_1_0 - 0.0416666666666666*G5_2_0_1_1_1 - 0.0833333333333332*G5_2_0_2_0_0 - 0.0833333333333332*G5_2_0_2_0_1 - 0.0833333333333332*G5_2_0_2_1_0 - 0.0833333333333332*G5_2_0_2_1_1 + 0.0416666666666666*G5_2_1_0_0_0 + 0.0416666666666666*G5_2_1_0_1_0 + 0.0416666666666666*G5_2_1_1_0_0 + 0.0416666666666666*G5_2_1_1_1_0 + 0.0833333333333332*G5_2_1_2_0_0 + 0.0833333333333332*G5_2_1_2_1_0 + 0.0416666666666666*G5_2_2_0_0_1 + 0.0416666666666666*G5_2_2_0_1_1 + 0.0416666666666666*G5_2_2_1_0_1 + 0.0416666666666666*G5_2_2_1_1_1 + 0.0833333333333332*G5_2_2_2_0_1 + 0.0833333333333332*G5_2_2_2_1_1 - 0.0833333333333332*G6_0_0_0_0_0 - 0.0833333333333332*G6_0_0_0_0_1 - 0.0833333333333332*G6_0_0_0_1_0 - 0.0833333333333332*G6_0_0_0_1_1 + 0.0833333333333332*G6_0_0_1_0_0 + 0.0833333333333332*G6_0_0_1_1_0 + 0.0833333333333332*G6_0_0_2_0_1 + 0.0833333333333332*G6_0_0_2_1_1 - 0.0416666666666666*G6_0_1_0_0_0 - 0.0416666666666666*G6_0_1_0_0_1 - 0.0416666666666666*G6_0_1_0_1_0 - 0.0416666666666666*G6_0_1_0_1_1 + 0.0416666666666666*G6_0_1_1_0_0 + 0.0416666666666666*G6_0_1_1_1_0 + 0.0416666666666666*G6_0_1_2_0_1 + 0.0416666666666666*G6_0_1_2_1_1 - 0.0416666666666666*G6_0_2_0_0_0 - 0.0416666666666666*G6_0_2_0_0_1 - 0.0416666666666666*G6_0_2_0_1_0 - 0.0416666666666666*G6_0_2_0_1_1 + 0.0416666666666666*G6_0_2_1_0_0 + 0.0416666666666666*G6_0_2_1_1_0 + 0.0416666666666666*G6_0_2_2_0_1 + 0.0416666666666666*G6_0_2_2_1_1 - 0.0416666666666666*G6_1_0_0_0_0 - 0.0416666666666666*G6_1_0_0_0_1 - 0.0416666666666666*G6_1_0_0_1_0 - 0.0416666666666666*G6_1_0_0_1_1 + 0.0416666666666666*G6_1_0_1_0_0 + 0.0416666666666666*G6_1_0_1_1_0 + 0.0416666666666666*G6_1_0_2_0_1 + 0.0416666666666666*G6_1_0_2_1_1 - 0.0833333333333332*G6_1_1_0_0_0 - 0.0833333333333332*G6_1_1_0_0_1 - 0.0833333333333332*G6_1_1_0_1_0 - 0.0833333333333332*G6_1_1_0_1_1 + 0.0833333333333332*G6_1_1_1_0_0 + 0.0833333333333332*G6_1_1_1_1_0 + 0.0833333333333332*G6_1_1_2_0_1 + 0.0833333333333332*G6_1_1_2_1_1 - 0.0416666666666666*G6_1_2_0_0_0 - 0.0416666666666666*G6_1_2_0_0_1 - 0.0416666666666666*G6_1_2_0_1_0 - 0.0416666666666666*G6_1_2_0_1_1 + 0.0416666666666666*G6_1_2_1_0_0 + 0.0416666666666666*G6_1_2_1_1_0 + 0.0416666666666666*G6_1_2_2_0_1 + 0.0416666666666666*G6_1_2_2_1_1 - 0.0416666666666666*G6_2_0_0_0_0 - 0.0416666666666666*G6_2_0_0_0_1 - 0.0416666666666666*G6_2_0_0_1_0 - 0.0416666666666666*G6_2_0_0_1_1 + 0.0416666666666666*G6_2_0_1_0_0 + 0.0416666666666666*G6_2_0_1_1_0 + 0.0416666666666666*G6_2_0_2_0_1 + 0.0416666666666666*G6_2_0_2_1_1 - 0.0416666666666666*G6_2_1_0_0_0 - 0.0416666666666666*G6_2_1_0_0_1 - 0.0416666666666666*G6_2_1_0_1_0 - 0.0416666666666666*G6_2_1_0_1_1 + 0.0416666666666666*G6_2_1_1_0_0 + 0.0416666666666666*G6_2_1_1_1_0 + 0.0416666666666666*G6_2_1_2_0_1 + 0.0416666666666666*G6_2_1_2_1_1 - 0.0833333333333332*G6_2_2_0_0_0 - 0.0833333333333332*G6_2_2_0_0_1 - 0.0833333333333332*G6_2_2_0_1_0 - 0.0833333333333332*G6_2_2_0_1_1 + 0.0833333333333332*G6_2_2_1_0_0 + 0.0833333333333332*G6_2_2_1_1_0 + 0.0833333333333332*G6_2_2_2_0_1 + 0.0833333333333332*G6_2_2_2_1_1;
+    A[4] = -0.0416666666666666*G0_3 - 0.0833333333333332*G0_4 - 0.0416666666666666*G0_5 + 0.0416666666666666*G1_3 + 0.0833333333333332*G1_4 + 0.0416666666666666*G1_5 - 0.0833333333333332*G2_0_0_0_0_0 - 0.0833333333333332*G2_0_0_0_0_1 - 0.0416666666666666*G2_0_0_1_0_0 - 0.0416666666666666*G2_0_0_1_0_1 - 0.0416666666666666*G2_0_0_2_0_0 - 0.0416666666666666*G2_0_0_2_0_1 + 0.0833333333333332*G2_0_1_0_0_0 + 0.0416666666666666*G2_0_1_1_0_0 + 0.0416666666666666*G2_0_1_2_0_0 + 0.0833333333333332*G2_0_2_0_0_1 + 0.0416666666666666*G2_0_2_1_0_1 + 0.0416666666666666*G2_0_2_2_0_1 - 0.0416666666666666*G2_1_0_0_0_0 - 0.0416666666666666*G2_1_0_0_0_1 - 0.0833333333333332*G2_1_0_1_0_0 - 0.0833333333333332*G2_1_0_1_0_1 - 0.0416666666666666*G2_1_0_2_0_0 - 0.0416666666666666*G2_1_0_2_0_1 + 0.0416666666666666*G2_1_1_0_0_0 + 0.0833333333333332*G2_1_1_1_0_0 + 0.0416666666666666*G2_1_1_2_0_0 + 0.0416666666666666*G2_1_2_0_0_1 + 0.0833333333333332*G2_1_2_1_0_1 + 0.0416666666666666*G2_1_2_2_0_1 - 0.0416666666666666*G2_2_0_0_0_0 - 0.0416666666666666*G2_2_0_0_0_1 - 0.0416666666666666*G2_2_0_1_0_0 - 0.0416666666666666*G2_2_0_1_0_1 - 0.0833333333333332*G2_2_0_2_0_0 - 0.0833333333333332*G2_2_0_2_0_1 + 0.0416666666666666*G2_2_1_0_0_0 + 0.0416666666666666*G2_2_1_1_0_0 + 0.0833333333333332*G2_2_1_2_0_0 + 0.0416666666666666*G2_2_2_0_0_1 + 0.0416666666666666*G2_2_2_1_0_1 + 0.0833333333333332*G2_2_2_2_0_1 - 0.0833333333333332*G3_0_0_0_0_0 - 0.0833333333333332*G3_0_0_0_0_1 + 0.0833333333333332*G3_0_0_1_0_0 + 0.0833333333333332*G3_0_0_2_0_1 - 0.0416666666666666*G3_0_1_0_0_0 - 0.0416666666666666*G3_0_1_0_0_1 + 0.0416666666666666*G3_0_1_1_0_0 + 0.0416666666666666*G3_0_1_2_0_1 - 0.0416666666666666*G3_0_2_0_0_0 - 0.0416666666666666*G3_0_2_0_0_1 + 0.0416666666666666*G3_0_2_1_0_0 + 0.0416666666666666*G3_0_2_2_0_1 - 0.0416666666666666*G3_1_0_0_0_0 - 0.0416666666666666*G3_1_0_0_0_1 + 0.0416666666666666*G3_1_0_1_0_0 + 0.0416666666666666*G3_1_0_2_0_1 - 0.0833333333333332*G3_1_1_0_0_0 - 0.0833333333333332*G3_1_1_0_0_1 + 0.0833333333333332*G3_1_1_1_0_0 + 0.0833333333333332*G3_1_1_2_0_1 - 0.0416666666666666*G3_1_2_0_0_0 - 0.0416666666666666*G3_1_2_0_0_1 + 0.0416666666666666*G3_1_2_1_0_0 + 0.0416666666666666*G3_1_2_2_0_1 - 0.0416666666666666*G3_2_0_0_0_0 - 0.0416666666666666*G3_2_0_0_0_1 + 0.0416666666666666*G3_2_0_1_0_0 + 0.0416666666666666*G3_2_0_2_0_1 - 0.0416666666666666*G3_2_1_0_0_0 - 0.0416666666666666*G3_2_1_0_0_1 + 0.0416666666666666*G3_2_1_1_0_0 + 0.0416666666666666*G3_2_1_2_0_1 - 0.0833333333333332*G3_2_2_0_0_0 - 0.0833333333333332*G3_2_2_0_0_1 + 0.0833333333333332*G3_2_2_1_0_0 + 0.0833333333333332*G3_2_2_2_0_1 + 0.166666666666667*G4_0_0_0_0 + 0.166666666666667*G4_0_0_0_1 - 0.166666666666667*G4_0_1_0_0 - 0.166666666666667*G4_0_2_0_1 + 0.166666666666667*G4_1_0_0_0 + 0.166666666666667*G4_1_0_0_1 - 0.166666666666667*G4_1_1_0_0 - 0.166666666666667*G4_1_2_0_1 + 0.166666666666667*G4_2_0_0_0 + 0.166666666666667*G4_2_0_0_1 - 0.166666666666667*G4_2_1_0_0 - 0.166666666666667*G4_2_2_0_1 + 0.0833333333333332*G5_0_0_0_0_0 + 0.0833333333333332*G5_0_0_0_0_1 + 0.0416666666666666*G5_0_0_1_0_0 + 0.0416666666666666*G5_0_0_1_0_1 + 0.0416666666666666*G5_0_0_2_0_0 + 0.0416666666666666*G5_0_0_2_0_1 - 0.0833333333333332*G5_0_1_0_0_0 - 0.0416666666666666*G5_0_1_1_0_0 - 0.0416666666666666*G5_0_1_2_0_0 - 0.0833333333333332*G5_0_2_0_0_1 - 0.0416666666666666*G5_0_2_1_0_1 - 0.0416666666666666*G5_0_2_2_0_1 + 0.0416666666666666*G5_1_0_0_0_0 + 0.0416666666666666*G5_1_0_0_0_1 + 0.0833333333333332*G5_1_0_1_0_0 + 0.0833333333333332*G5_1_0_1_0_1 + 0.0416666666666666*G5_1_0_2_0_0 + 0.0416666666666666*G5_1_0_2_0_1 - 0.0416666666666666*G5_1_1_0_0_0 - 0.0833333333333332*G5_1_1_1_0_0 - 0.0416666666666666*G5_1_1_2_0_0 - 0.0416666666666666*G5_1_2_0_0_1 - 0.0833333333333332*G5_1_2_1_0_1 - 0.0416666666666666*G5_1_2_2_0_1 + 0.0416666666666666*G5_2_0_0_0_0 + 0.0416666666666666*G5_2_0_0_0_1 + 0.0416666666666666*G5_2_0_1_0_0 + 0.0416666666666666*G5_2_0_1_0_1 + 0.0833333333333332*G5_2_0_2_0_0 + 0.0833333333333332*G5_2_0_2_0_1 - 0.0416666666666666*G5_2_1_0_0_0 - 0.0416666666666666*G5_2_1_1_0_0 - 0.0833333333333332*G5_2_1_2_0_0 - 0.0416666666666666*G5_2_2_0_0_1 - 0.0416666666666666*G5_2_2_1_0_1 - 0.0833333333333332*G5_2_2_2_0_1 + 0.0833333333333332*G6_0_0_0_0_0 + 0.0833333333333332*G6_0_0_0_0_1 - 0.0833333333333332*G6_0_0_1_0_0 - 0.0833333333333332*G6_0_0_2_0_1 + 0.0416666666666666*G6_0_1_0_0_0 + 0.0416666666666666*G6_0_1_0_0_1 - 0.0416666666666666*G6_0_1_1_0_0 - 0.0416666666666666*G6_0_1_2_0_1 + 0.0416666666666666*G6_0_2_0_0_0 + 0.0416666666666666*G6_0_2_0_0_1 - 0.0416666666666666*G6_0_2_1_0_0 - 0.0416666666666666*G6_0_2_2_0_1 + 0.0416666666666666*G6_1_0_0_0_0 + 0.0416666666666666*G6_1_0_0_0_1 - 0.0416666666666666*G6_1_0_1_0_0 - 0.0416666666666666*G6_1_0_2_0_1 + 0.0833333333333332*G6_1_1_0_0_0 + 0.0833333333333332*G6_1_1_0_0_1 - 0.0833333333333332*G6_1_1_1_0_0 - 0.0833333333333332*G6_1_1_2_0_1 + 0.0416666666666666*G6_1_2_0_0_0 + 0.0416666666666666*G6_1_2_0_0_1 - 0.0416666666666666*G6_1_2_1_0_0 - 0.0416666666666666*G6_1_2_2_0_1 + 0.0416666666666666*G6_2_0_0_0_0 + 0.0416666666666666*G6_2_0_0_0_1 - 0.0416666666666666*G6_2_0_1_0_0 - 0.0416666666666666*G6_2_0_2_0_1 + 0.0416666666666666*G6_2_1_0_0_0 + 0.0416666666666666*G6_2_1_0_0_1 - 0.0416666666666666*G6_2_1_1_0_0 - 0.0416666666666666*G6_2_1_2_0_1 + 0.0833333333333332*G6_2_2_0_0_0 + 0.0833333333333332*G6_2_2_0_0_1 - 0.0833333333333332*G6_2_2_1_0_0 - 0.0833333333333332*G6_2_2_2_0_1;
+    A[5] = -0.0416666666666666*G0_3 - 0.0416666666666666*G0_4 - 0.0833333333333332*G0_5 + 0.0416666666666666*G1_3 + 0.0416666666666666*G1_4 + 0.0833333333333332*G1_5 - 0.0833333333333332*G2_0_0_0_1_0 - 0.0833333333333332*G2_0_0_0_1_1 - 0.0416666666666666*G2_0_0_1_1_0 - 0.0416666666666666*G2_0_0_1_1_1 - 0.0416666666666666*G2_0_0_2_1_0 - 0.0416666666666666*G2_0_0_2_1_1 + 0.0833333333333332*G2_0_1_0_1_0 + 0.0416666666666666*G2_0_1_1_1_0 + 0.0416666666666666*G2_0_1_2_1_0 + 0.0833333333333332*G2_0_2_0_1_1 + 0.0416666666666666*G2_0_2_1_1_1 + 0.0416666666666666*G2_0_2_2_1_1 - 0.0416666666666666*G2_1_0_0_1_0 - 0.0416666666666666*G2_1_0_0_1_1 - 0.0833333333333332*G2_1_0_1_1_0 - 0.0833333333333332*G2_1_0_1_1_1 - 0.0416666666666666*G2_1_0_2_1_0 - 0.0416666666666666*G2_1_0_2_1_1 + 0.0416666666666666*G2_1_1_0_1_0 + 0.0833333333333332*G2_1_1_1_1_0 + 0.0416666666666666*G2_1_1_2_1_0 + 0.0416666666666666*G2_1_2_0_1_1 + 0.0833333333333332*G2_1_2_1_1_1 + 0.0416666666666666*G2_1_2_2_1_1 - 0.0416666666666666*G2_2_0_0_1_0 - 0.0416666666666666*G2_2_0_0_1_1 - 0.0416666666666666*G2_2_0_1_1_0 - 0.0416666666666666*G2_2_0_1_1_1 - 0.0833333333333332*G2_2_0_2_1_0 - 0.0833333333333332*G2_2_0_2_1_1 + 0.0416666666666666*G2_2_1_0_1_0 + 0.0416666666666666*G2_2_1_1_1_0 + 0.0833333333333332*G2_2_1_2_1_0 + 0.0416666666666666*G2_2_2_0_1_1 + 0.0416666666666666*G2_2_2_1_1_1 + 0.0833333333333332*G2_2_2_2_1_1 - 0.0833333333333332*G3_0_0_0_1_0 - 0.0833333333333332*G3_0_0_0_1_1 + 0.0833333333333332*G3_0_0_1_1_0 + 0.0833333333333332*G3_0_0_2_1_1 - 0.0416666666666666*G3_0_1_0_1_0 - 0.0416666666666666*G3_0_1_0_1_1 + 0.0416666666666666*G3_0_1_1_1_0 + 0.0416666666666666*G3_0_1_2_1_1 - 0.0416666666666666*G3_0_2_0_1_0 - 0.0416666666666666*G3_0_2_0_1_1 + 0.0416666666666666*G3_0_2_1_1_0 + 0.0416666666666666*G3_0_2_2_1_1 - 0.0416666666666666*G3_1_0_0_1_0 - 0.0416666666666666*G3_1_0_0_1_1 + 0.0416666666666666*G3_1_0_1_1_0 + 0.0416666666666666*G3_1_0_2_1_1 - 0.0833333333333332*G3_1_1_0_1_0 - 0.0833333333333332*G3_1_1_0_1_1 + 0.0833333333333332*G3_1_1_1_1_0 + 0.0833333333333332*G3_1_1_2_1_1 - 0.0416666666666666*G3_1_2_0_1_0 - 0.0416666666666666*G3_1_2_0_1_1 + 0.0416666666666666*G3_1_2_1_1_0 + 0.0416666666666666*G3_1_2_2_1_1 - 0.0416666666666666*G3_2_0_0_1_0 - 0.0416666666666666*G3_2_0_0_1_1 + 0.0416666666666666*G3_2_0_1_1_0 + 0.0416666666666666*G3_2_0_2_1_1 - 0.0416666666666666*G3_2_1_0_1_0 - 0.0416666666666666*G3_2_1_0_1_1 + 0.0416666666666666*G3_2_1_1_1_0 + 0.0416666666666666*G3_2_1_2_1_1 - 0.0833333333333332*G3_2_2_0_1_0 - 0.0833333333333332*G3_2_2_0_1_1 + 0.0833333333333332*G3_2_2_1_1_0 + 0.0833333333333332*G3_2_2_2_1_1 + 0.166666666666667*G4_0_0_1_0 + 0.166666666666667*G4_0_0_1_1 - 0.166666666666667*G4_0_1_1_0 - 0.166666666666667*G4_0_2_1_1 + 0.166666666666667*G4_1_0_1_0 + 0.166666666666667*G4_1_0_1_1 - 0.166666666666667*G4_1_1_1_0 - 0.166666666666667*G4_1_2_1_1 + 0.166666666666667*G4_2_0_1_0 + 0.166666666666667*G4_2_0_1_1 - 0.166666666666667*G4_2_1_1_0 - 0.166666666666667*G4_2_2_1_1 + 0.0833333333333332*G5_0_0_0_1_0 + 0.0833333333333332*G5_0_0_0_1_1 + 0.0416666666666666*G5_0_0_1_1_0 + 0.0416666666666666*G5_0_0_1_1_1 + 0.0416666666666666*G5_0_0_2_1_0 + 0.0416666666666666*G5_0_0_2_1_1 - 0.0833333333333332*G5_0_1_0_1_0 - 0.0416666666666666*G5_0_1_1_1_0 - 0.0416666666666666*G5_0_1_2_1_0 - 0.0833333333333332*G5_0_2_0_1_1 - 0.0416666666666666*G5_0_2_1_1_1 - 0.0416666666666666*G5_0_2_2_1_1 + 0.0416666666666666*G5_1_0_0_1_0 + 0.0416666666666666*G5_1_0_0_1_1 + 0.0833333333333332*G5_1_0_1_1_0 + 0.0833333333333332*G5_1_0_1_1_1 + 0.0416666666666666*G5_1_0_2_1_0 + 0.0416666666666666*G5_1_0_2_1_1 - 0.0416666666666666*G5_1_1_0_1_0 - 0.0833333333333332*G5_1_1_1_1_0 - 0.0416666666666666*G5_1_1_2_1_0 - 0.0416666666666666*G5_1_2_0_1_1 - 0.0833333333333332*G5_1_2_1_1_1 - 0.0416666666666666*G5_1_2_2_1_1 + 0.0416666666666666*G5_2_0_0_1_0 + 0.0416666666666666*G5_2_0_0_1_1 + 0.0416666666666666*G5_2_0_1_1_0 + 0.0416666666666666*G5_2_0_1_1_1 + 0.0833333333333332*G5_2_0_2_1_0 + 0.0833333333333332*G5_2_0_2_1_1 - 0.0416666666666666*G5_2_1_0_1_0 - 0.0416666666666666*G5_2_1_1_1_0 - 0.0833333333333332*G5_2_1_2_1_0 - 0.0416666666666666*G5_2_2_0_1_1 - 0.0416666666666666*G5_2_2_1_1_1 - 0.0833333333333332*G5_2_2_2_1_1 + 0.0833333333333332*G6_0_0_0_1_0 + 0.0833333333333332*G6_0_0_0_1_1 - 0.0833333333333332*G6_0_0_1_1_0 - 0.0833333333333332*G6_0_0_2_1_1 + 0.0416666666666666*G6_0_1_0_1_0 + 0.0416666666666666*G6_0_1_0_1_1 - 0.0416666666666666*G6_0_1_1_1_0 - 0.0416666666666666*G6_0_1_2_1_1 + 0.0416666666666666*G6_0_2_0_1_0 + 0.0416666666666666*G6_0_2_0_1_1 - 0.0416666666666666*G6_0_2_1_1_0 - 0.0416666666666666*G6_0_2_2_1_1 + 0.0416666666666666*G6_1_0_0_1_0 + 0.0416666666666666*G6_1_0_0_1_1 - 0.0416666666666666*G6_1_0_1_1_0 - 0.0416666666666666*G6_1_0_2_1_1 + 0.0833333333333332*G6_1_1_0_1_0 + 0.0833333333333332*G6_1_1_0_1_1 - 0.0833333333333332*G6_1_1_1_1_0 - 0.0833333333333332*G6_1_1_2_1_1 + 0.0416666666666666*G6_1_2_0_1_0 + 0.0416666666666666*G6_1_2_0_1_1 - 0.0416666666666666*G6_1_2_1_1_0 - 0.0416666666666666*G6_1_2_2_1_1 + 0.0416666666666666*G6_2_0_0_1_0 + 0.0416666666666666*G6_2_0_0_1_1 - 0.0416666666666666*G6_2_0_1_1_0 - 0.0416666666666666*G6_2_0_2_1_1 + 0.0416666666666666*G6_2_1_0_1_0 + 0.0416666666666666*G6_2_1_0_1_1 - 0.0416666666666666*G6_2_1_1_1_0 - 0.0416666666666666*G6_2_1_2_1_1 + 0.0833333333333332*G6_2_2_0_1_0 + 0.0833333333333332*G6_2_2_0_1_1 - 0.0833333333333332*G6_2_2_1_1_0 - 0.0833333333333332*G6_2_2_2_1_1;
   }
 
 };

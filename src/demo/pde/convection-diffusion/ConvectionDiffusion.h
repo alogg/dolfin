@@ -8,6 +8,7 @@
 #define __CONVECTIONDIFFUSION_H
 
 #include <cmath>
+#include <stdexcept>
 #include <ufc.h>
 
 /// This class defines the interface for a finite element.
@@ -110,15 +111,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -242,27 +243,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -485,15 +486,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -617,27 +618,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -859,27 +860,27 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1005,45 +1006,45 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {2.44948974278, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
-    {0, 4.74341649025, 0, 0, 0, 0},
-    {2, 0, 3.53553390593, 0, 0, 0},
+    {0, 4.74341649025257, 0, 0, 0, 0},
+    {2, 0, 3.53553390593274, 0, 0, 0},
     {0, 0, 0, 0, 0, 0}};
     
     const static double dmats1[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {1.22474487139, 0, 0, 0, 0, 0},
-    {2.12132034356, 0, 0, 0, 0, 0},
-    {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-    {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-    {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+    {1.22474487139159, 0, 0, 0, 0, 0},
+    {2.12132034355964, 0, 0, 0, 0, 0},
+    {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+    {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+    {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1283,27 +1284,27 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -1429,45 +1430,45 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {2.44948974278, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
-    {0, 4.74341649025, 0, 0, 0, 0},
-    {2, 0, 3.53553390593, 0, 0, 0},
+    {0, 4.74341649025257, 0, 0, 0, 0},
+    {2, 0, 3.53553390593274, 0, 0, 0},
     {0, 0, 0, 0, 0, 0}};
     
     const static double dmats1[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {1.22474487139, 0, 0, 0, 0, 0},
-    {2.12132034356, 0, 0, 0, 0, 0},
-    {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-    {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-    {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+    {1.22474487139159, 0, 0, 0, 0, 0},
+    {2.12132034355964, 0, 0, 0, 0, 0},
+    {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+    {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+    {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1710,27 +1711,27 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1762,27 +1763,27 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -1912,45 +1913,45 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {2.44948974278, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
-      {0, 4.74341649025, 0, 0, 0, 0},
-      {2, 0, 3.53553390593, 0, 0, 0},
+      {0, 4.74341649025257, 0, 0, 0, 0},
+      {2, 0, 3.53553390593274, 0, 0, 0},
       {0, 0, 0, 0, 0, 0}};
     
       const static double dmats1[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {1.22474487139, 0, 0, 0, 0, 0},
-      {2.12132034356, 0, 0, 0, 0, 0},
-      {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-      {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-      {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+      {1.22474487139159, 0, 0, 0, 0, 0},
+      {2.12132034355964, 0, 0, 0, 0, 0},
+      {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+      {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+      {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2052,45 +2053,45 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {2.44948974278, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
-      {0, 4.74341649025, 0, 0, 0, 0},
-      {2, 0, 3.53553390593, 0, 0, 0},
+      {0, 4.74341649025257, 0, 0, 0, 0},
+      {2, 0, 3.53553390593274, 0, 0, 0},
       {0, 0, 0, 0, 0, 0}};
     
       const static double dmats1[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {1.22474487139, 0, 0, 0, 0, 0},
-      {2.12132034356, 0, 0, 0, 0, 0},
-      {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-      {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-      {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+      {1.22474487139159, 0, 0, 0, 0, 0},
+      {2.12132034355964, 0, 0, 0, 0, 0},
+      {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+      {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+      {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2365,10 +2366,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2505,10 +2513,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2652,10 +2667,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2799,10 +2827,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2963,10 +3004,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][0] = x[0][0];
+    coordinates[6][1] = x[0][1];
+    coordinates[7][0] = x[1][0];
+    coordinates[7][1] = x[1][1];
+    coordinates[8][0] = x[2][0];
+    coordinates[8][1] = x[2][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3073,15 +3139,15 @@ public:
     const double G3_1_1 = det*Jinv_10*Jinv_10 + det*Jinv_11*Jinv_11;
     
     // Compute element tensor
-    A[0] = 0.0833333333333*G0_ - 0.000416666666667*G1_0_0 - 0.000416666666667*G1_0_1 + 0.000208333333333*G1_1_0 + 0.000208333333333*G1_1_1 + 0.000208333333333*G1_2_0 + 0.000208333333333*G1_2_1 - 0.000833333333333*G1_3_0 - 0.000833333333333*G1_3_1 - 0.00166666666667*G1_4_0 - 0.00166666666667*G1_4_1 - 0.00166666666667*G1_5_0 - 0.00166666666667*G1_5_1 - 0.000416666666667*G2_6_0 - 0.000416666666667*G2_6_1 + 0.000208333333333*G2_7_0 + 0.000208333333333*G2_7_1 + 0.000208333333333*G2_8_0 + 0.000208333333333*G2_8_1 - 0.000833333333333*G2_9_0 - 0.000833333333333*G2_9_1 - 0.00166666666667*G2_10_0 - 0.00166666666667*G2_10_1 - 0.00166666666667*G2_11_0 - 0.00166666666667*G2_11_1 + 6.25e-05*G3_0_0 + 6.25e-05*G3_0_1 + 6.25e-05*G3_1_0 + 6.25e-05*G3_1_1;
-    A[1] = 0.0416666666667*G0_ + 0.000416666666667*G1_0_0 - 0.000208333333333*G1_1_0 - 0.000208333333333*G1_2_0 + 0.000833333333333*G1_3_0 + 0.00166666666667*G1_4_0 + 0.00166666666667*G1_5_0 + 0.000416666666667*G2_6_0 - 0.000208333333333*G2_7_0 - 0.000208333333333*G2_8_0 + 0.000833333333333*G2_9_0 + 0.00166666666667*G2_10_0 + 0.00166666666667*G2_11_0 - 6.25e-05*G3_0_0 - 6.25e-05*G3_1_0;
-    A[2] = 0.0416666666667*G0_ + 0.000416666666667*G1_0_1 - 0.000208333333333*G1_1_1 - 0.000208333333333*G1_2_1 + 0.000833333333333*G1_3_1 + 0.00166666666667*G1_4_1 + 0.00166666666667*G1_5_1 + 0.000416666666667*G2_6_1 - 0.000208333333333*G2_7_1 - 0.000208333333333*G2_8_1 + 0.000833333333333*G2_9_1 + 0.00166666666667*G2_10_1 + 0.00166666666667*G2_11_1 - 6.25e-05*G3_0_1 - 6.25e-05*G3_1_1;
-    A[3] = 0.0416666666667*G0_ + 0.000208333333333*G1_0_0 + 0.000208333333333*G1_0_1 - 0.000416666666667*G1_1_0 - 0.000416666666667*G1_1_1 + 0.000208333333333*G1_2_0 + 0.000208333333333*G1_2_1 - 0.00166666666667*G1_3_0 - 0.00166666666667*G1_3_1 - 0.000833333333333*G1_4_0 - 0.000833333333333*G1_4_1 - 0.00166666666667*G1_5_0 - 0.00166666666667*G1_5_1 + 0.000208333333333*G2_6_0 + 0.000208333333333*G2_6_1 - 0.000416666666667*G2_7_0 - 0.000416666666667*G2_7_1 + 0.000208333333333*G2_8_0 + 0.000208333333333*G2_8_1 - 0.00166666666667*G2_9_0 - 0.00166666666667*G2_9_1 - 0.000833333333333*G2_10_0 - 0.000833333333333*G2_10_1 - 0.00166666666667*G2_11_0 - 0.00166666666667*G2_11_1 - 6.25e-05*G3_0_0 - 6.25e-05*G3_0_1;
-    A[4] = 0.0833333333333*G0_ - 0.000208333333333*G1_0_0 + 0.000416666666667*G1_1_0 - 0.000208333333333*G1_2_0 + 0.00166666666667*G1_3_0 + 0.000833333333333*G1_4_0 + 0.00166666666667*G1_5_0 - 0.000208333333333*G2_6_0 + 0.000416666666667*G2_7_0 - 0.000208333333333*G2_8_0 + 0.00166666666667*G2_9_0 + 0.000833333333333*G2_10_0 + 0.00166666666667*G2_11_0 + 6.25e-05*G3_0_0;
-    A[5] = 0.0416666666667*G0_ - 0.000208333333333*G1_0_1 + 0.000416666666667*G1_1_1 - 0.000208333333333*G1_2_1 + 0.00166666666667*G1_3_1 + 0.000833333333333*G1_4_1 + 0.00166666666667*G1_5_1 - 0.000208333333333*G2_6_1 + 0.000416666666667*G2_7_1 - 0.000208333333333*G2_8_1 + 0.00166666666667*G2_9_1 + 0.000833333333333*G2_10_1 + 0.00166666666667*G2_11_1 + 6.25e-05*G3_0_1;
-    A[6] = 0.0416666666667*G0_ + 0.000208333333333*G1_0_0 + 0.000208333333333*G1_0_1 + 0.000208333333333*G1_1_0 + 0.000208333333333*G1_1_1 - 0.000416666666667*G1_2_0 - 0.000416666666667*G1_2_1 - 0.00166666666667*G1_3_0 - 0.00166666666667*G1_3_1 - 0.00166666666667*G1_4_0 - 0.00166666666667*G1_4_1 - 0.000833333333333*G1_5_0 - 0.000833333333333*G1_5_1 + 0.000208333333333*G2_6_0 + 0.000208333333333*G2_6_1 + 0.000208333333333*G2_7_0 + 0.000208333333333*G2_7_1 - 0.000416666666667*G2_8_0 - 0.000416666666667*G2_8_1 - 0.00166666666667*G2_9_0 - 0.00166666666667*G2_9_1 - 0.00166666666667*G2_10_0 - 0.00166666666667*G2_10_1 - 0.000833333333333*G2_11_0 - 0.000833333333333*G2_11_1 - 6.25e-05*G3_1_0 - 6.25e-05*G3_1_1;
-    A[7] = 0.0416666666667*G0_ - 0.000208333333333*G1_0_0 - 0.000208333333333*G1_1_0 + 0.000416666666667*G1_2_0 + 0.00166666666667*G1_3_0 + 0.00166666666667*G1_4_0 + 0.000833333333333*G1_5_0 - 0.000208333333333*G2_6_0 - 0.000208333333333*G2_7_0 + 0.000416666666667*G2_8_0 + 0.00166666666667*G2_9_0 + 0.00166666666667*G2_10_0 + 0.000833333333333*G2_11_0 + 6.25e-05*G3_1_0;
-    A[8] = 0.0833333333333*G0_ - 0.000208333333333*G1_0_1 - 0.000208333333333*G1_1_1 + 0.000416666666667*G1_2_1 + 0.00166666666667*G1_3_1 + 0.00166666666667*G1_4_1 + 0.000833333333333*G1_5_1 - 0.000208333333333*G2_6_1 - 0.000208333333333*G2_7_1 + 0.000416666666667*G2_8_1 + 0.00166666666667*G2_9_1 + 0.00166666666667*G2_10_1 + 0.000833333333333*G2_11_1 + 6.25e-05*G3_1_1;
+    A[0] = 0.0833333333333332*G0_ - 0.000416666666666666*G1_0_0 - 0.000416666666666666*G1_0_1 + 0.000208333333333333*G1_1_0 + 0.000208333333333333*G1_1_1 + 0.000208333333333333*G1_2_0 + 0.000208333333333333*G1_2_1 - 0.000833333333333332*G1_3_0 - 0.000833333333333332*G1_3_1 - 0.00166666666666666*G1_4_0 - 0.00166666666666666*G1_4_1 - 0.00166666666666666*G1_5_0 - 0.00166666666666666*G1_5_1 - 0.000416666666666666*G2_6_0 - 0.000416666666666666*G2_6_1 + 0.000208333333333333*G2_7_0 + 0.000208333333333333*G2_7_1 + 0.000208333333333333*G2_8_0 + 0.000208333333333333*G2_8_1 - 0.000833333333333332*G2_9_0 - 0.000833333333333332*G2_9_1 - 0.00166666666666666*G2_10_0 - 0.00166666666666666*G2_10_1 - 0.00166666666666666*G2_11_0 - 0.00166666666666666*G2_11_1 + 6.25e-05*G3_0_0 + 6.25e-05*G3_0_1 + 6.25e-05*G3_1_0 + 6.24999999999999e-05*G3_1_1;
+    A[1] = 0.0416666666666666*G0_ + 0.000416666666666666*G1_0_0 - 0.000208333333333333*G1_1_0 - 0.000208333333333333*G1_2_0 + 0.000833333333333332*G1_3_0 + 0.00166666666666666*G1_4_0 + 0.00166666666666666*G1_5_0 + 0.000416666666666666*G2_6_0 - 0.000208333333333333*G2_7_0 - 0.000208333333333333*G2_8_0 + 0.000833333333333332*G2_9_0 + 0.00166666666666666*G2_10_0 + 0.00166666666666666*G2_11_0 - 6.25e-05*G3_0_0 - 6.25e-05*G3_1_0;
+    A[2] = 0.0416666666666666*G0_ + 0.000416666666666666*G1_0_1 - 0.000208333333333333*G1_1_1 - 0.000208333333333333*G1_2_1 + 0.000833333333333332*G1_3_1 + 0.00166666666666666*G1_4_1 + 0.00166666666666666*G1_5_1 + 0.000416666666666666*G2_6_1 - 0.000208333333333333*G2_7_1 - 0.000208333333333333*G2_8_1 + 0.000833333333333332*G2_9_1 + 0.00166666666666666*G2_10_1 + 0.00166666666666666*G2_11_1 - 6.25e-05*G3_0_1 - 6.24999999999999e-05*G3_1_1;
+    A[3] = 0.0416666666666666*G0_ + 0.000208333333333333*G1_0_0 + 0.000208333333333333*G1_0_1 - 0.000416666666666666*G1_1_0 - 0.000416666666666666*G1_1_1 + 0.000208333333333333*G1_2_0 + 0.000208333333333333*G1_2_1 - 0.00166666666666666*G1_3_0 - 0.00166666666666666*G1_3_1 - 0.000833333333333332*G1_4_0 - 0.000833333333333332*G1_4_1 - 0.00166666666666666*G1_5_0 - 0.00166666666666666*G1_5_1 + 0.000208333333333333*G2_6_0 + 0.000208333333333333*G2_6_1 - 0.000416666666666666*G2_7_0 - 0.000416666666666666*G2_7_1 + 0.000208333333333333*G2_8_0 + 0.000208333333333333*G2_8_1 - 0.00166666666666666*G2_9_0 - 0.00166666666666666*G2_9_1 - 0.000833333333333332*G2_10_0 - 0.000833333333333332*G2_10_1 - 0.00166666666666666*G2_11_0 - 0.00166666666666666*G2_11_1 - 6.25e-05*G3_0_0 - 6.25e-05*G3_0_1;
+    A[4] = 0.0833333333333332*G0_ - 0.000208333333333333*G1_0_0 + 0.000416666666666666*G1_1_0 - 0.000208333333333333*G1_2_0 + 0.00166666666666666*G1_3_0 + 0.000833333333333332*G1_4_0 + 0.00166666666666666*G1_5_0 - 0.000208333333333333*G2_6_0 + 0.000416666666666666*G2_7_0 - 0.000208333333333333*G2_8_0 + 0.00166666666666666*G2_9_0 + 0.000833333333333332*G2_10_0 + 0.00166666666666666*G2_11_0 + 6.25e-05*G3_0_0;
+    A[5] = 0.0416666666666666*G0_ - 0.000208333333333333*G1_0_1 + 0.000416666666666666*G1_1_1 - 0.000208333333333333*G1_2_1 + 0.00166666666666666*G1_3_1 + 0.000833333333333332*G1_4_1 + 0.00166666666666666*G1_5_1 - 0.000208333333333333*G2_6_1 + 0.000416666666666666*G2_7_1 - 0.000208333333333333*G2_8_1 + 0.00166666666666666*G2_9_1 + 0.000833333333333332*G2_10_1 + 0.00166666666666666*G2_11_1 + 6.25e-05*G3_0_1;
+    A[6] = 0.0416666666666666*G0_ + 0.000208333333333333*G1_0_0 + 0.000208333333333333*G1_0_1 + 0.000208333333333333*G1_1_0 + 0.000208333333333333*G1_1_1 - 0.000416666666666666*G1_2_0 - 0.000416666666666666*G1_2_1 - 0.00166666666666666*G1_3_0 - 0.00166666666666666*G1_3_1 - 0.00166666666666666*G1_4_0 - 0.00166666666666666*G1_4_1 - 0.000833333333333332*G1_5_0 - 0.000833333333333332*G1_5_1 + 0.000208333333333333*G2_6_0 + 0.000208333333333333*G2_6_1 + 0.000208333333333333*G2_7_0 + 0.000208333333333333*G2_7_1 - 0.000416666666666666*G2_8_0 - 0.000416666666666666*G2_8_1 - 0.00166666666666666*G2_9_0 - 0.00166666666666666*G2_9_1 - 0.00166666666666666*G2_10_0 - 0.00166666666666666*G2_10_1 - 0.000833333333333332*G2_11_0 - 0.000833333333333332*G2_11_1 - 6.25e-05*G3_1_0 - 6.24999999999999e-05*G3_1_1;
+    A[7] = 0.0416666666666666*G0_ - 0.000208333333333333*G1_0_0 - 0.000208333333333333*G1_1_0 + 0.000416666666666666*G1_2_0 + 0.00166666666666666*G1_3_0 + 0.00166666666666666*G1_4_0 + 0.000833333333333332*G1_5_0 - 0.000208333333333333*G2_6_0 - 0.000208333333333333*G2_7_0 + 0.000416666666666666*G2_8_0 + 0.00166666666666666*G2_9_0 + 0.00166666666666666*G2_10_0 + 0.000833333333333332*G2_11_0 + 6.25e-05*G3_1_0;
+    A[8] = 0.0833333333333332*G0_ - 0.000208333333333333*G1_0_1 - 0.000208333333333333*G1_1_1 + 0.000416666666666666*G1_2_1 + 0.00166666666666666*G1_3_1 + 0.00166666666666666*G1_4_1 + 0.000833333333333332*G1_5_1 - 0.000208333333333333*G2_6_1 - 0.000208333333333333*G2_7_1 + 0.000416666666666666*G2_8_1 + 0.00166666666666666*G2_9_1 + 0.00166666666666666*G2_10_1 + 0.000833333333333332*G2_11_1 + 6.24999999999999e-05*G3_1_1;
   }
 
 };
@@ -3309,15 +3375,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -3441,27 +3507,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -3684,15 +3750,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -3816,27 +3882,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4058,27 +4124,27 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -4204,45 +4270,45 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {2.44948974278, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
-    {0, 4.74341649025, 0, 0, 0, 0},
-    {2, 0, 3.53553390593, 0, 0, 0},
+    {0, 4.74341649025257, 0, 0, 0, 0},
+    {2, 0, 3.53553390593274, 0, 0, 0},
     {0, 0, 0, 0, 0, 0}};
     
     const static double dmats1[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {1.22474487139, 0, 0, 0, 0, 0},
-    {2.12132034356, 0, 0, 0, 0, 0},
-    {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-    {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-    {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+    {1.22474487139159, 0, 0, 0, 0, 0},
+    {2.12132034355964, 0, 0, 0, 0, 0},
+    {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+    {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+    {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4482,27 +4548,27 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -4628,45 +4694,45 @@ public:
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
     const double psitilde_bs_1_1 = 2.5*y + 1.5;
     const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-    {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-    {0, 0, 0.2, 0, 0, 0.163299316186},
-    {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-    {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-    {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {2.44948974278, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
-    {0, 4.74341649025, 0, 0, 0, 0},
-    {2, 0, 3.53553390593, 0, 0, 0},
+    {0, 4.74341649025257, 0, 0, 0, 0},
+    {2, 0, 3.53553390593274, 0, 0, 0},
     {0, 0, 0, 0, 0, 0}};
     
     const static double dmats1[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {1.22474487139, 0, 0, 0, 0, 0},
-    {2.12132034356, 0, 0, 0, 0, 0},
-    {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-    {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-    {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+    {1.22474487139159, 0, 0, 0, 0, 0},
+    {2.12132034355964, 0, 0, 0, 0, 0},
+    {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+    {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+    {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4909,27 +4975,27 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -4961,27 +5027,27 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
@@ -5111,45 +5177,45 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {2.44948974278, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
-      {0, 4.74341649025, 0, 0, 0, 0},
-      {2, 0, 3.53553390593, 0, 0, 0},
+      {0, 4.74341649025257, 0, 0, 0, 0},
+      {2, 0, 3.53553390593274, 0, 0, 0},
       {0, 0, 0, 0, 0, 0}};
     
       const static double dmats1[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {1.22474487139, 0, 0, 0, 0, 0},
-      {2.12132034356, 0, 0, 0, 0, 0},
-      {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-      {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-      {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+      {1.22474487139159, 0, 0, 0, 0, 0},
+      {2.12132034355964, 0, 0, 0, 0, 0},
+      {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+      {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+      {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -5251,45 +5317,45 @@ public:
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_0_2 = 0.111111111111*psitilde_bs_0_1 + 1.66666666667*y*psitilde_bs_0_1 - 0.555555555556*psitilde_bs_0_0;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
       const double psitilde_bs_1_1 = 2.5*y + 1.5;
       const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
-      const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-      const double basisvalue3 = 2.73861278753*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-      const double basisvalue4 = 2.12132034356*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-      const double basisvalue5 = 1.22474487139*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080757, -0.1, 0.12171612389, 0.0942809041582, 0.0544331053952},
-      {0, 0.173205080757, -0.1, 0.12171612389, -0.0942809041582, 0.0544331053952},
-      {0, 0, 0.2, 0, 0, 0.163299316186},
-      {0.471404520791, 0.230940107676, 0.133333333333, 0, 0.188561808316, -0.163299316186},
-      {0.471404520791, -0.230940107676, 0.133333333333, 0, -0.188561808316, -0.163299316186},
-      {0.471404520791, 0, -0.266666666667, -0.24343224778, 0, 0.0544331053952}};
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {2.44948974278, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
-      {0, 4.74341649025, 0, 0, 0, 0},
-      {2, 0, 3.53553390593, 0, 0, 0},
+      {0, 4.74341649025257, 0, 0, 0, 0},
+      {2, 0, 3.53553390593274, 0, 0, 0},
       {0, 0, 0, 0, 0, 0}};
     
       const static double dmats1[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {1.22474487139, 0, 0, 0, 0, 0},
-      {2.12132034356, 0, 0, 0, 0, 0},
-      {1.29099444874, 2.37170824513, -0.456435464588, 0, 0, 0},
-      {1, 3.06186217848, 1.76776695297, 0, 0, 0},
-      {-1.15470053838, 0, 4.08248290464, 0, 0, 0}};
+      {1.22474487139159, 0, 0, 0, 0, 0},
+      {2.12132034355964, 0, 0, 0, 0, 0},
+      {1.29099444873581, 2.37170824512628, -0.456435464587639, 0, 0, 0},
+      {1, 3.06186217847897, 1.76776695296637, 0, 0, 0},
+      {-1.15470053837925, 0, 4.08248290463863, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -5544,15 +5610,15 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
@@ -5676,27 +5742,27 @@ public:
     const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
-    const double basisvalue0 = 0.707106781187*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080757*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
     const static double coefficients0[3][3] = \
-    {{0.471404520791, -0.288675134595, -0.166666666667},
-    {0.471404520791, 0.288675134595, -0.166666666667},
-    {0.471404520791, 0, 0.333333333333}};
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[3][3] = \
     {{0, 0, 0},
-    {2.44948974278, 0, 0},
+    {2.44948974278318, 0, 0},
     {0, 0, 0}};
     
     const static double dmats1[3][3] = \
     {{0, 0, 0},
-    {1.22474487139, 0, 0},
-    {2.12132034356, 0, 0}};
+    {1.22474487139159, 0, 0},
+    {2.12132034355964, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5939,10 +6005,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6079,10 +6152,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6226,10 +6306,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6373,10 +6466,23 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6537,10 +6643,35 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][0] = x[0][0];
+    coordinates[6][1] = x[0][1];
+    coordinates[7][0] = x[1][0];
+    coordinates[7][1] = x[1][1];
+    coordinates[8][0] = x[2][0];
+    coordinates[8][1] = x[2][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6686,10 +6817,17 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double **coordinates,
-                                    const ufc::mesh& m,
                                     const ufc::cell& c) const
   {
-    // Not implemented
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6820,9 +6958,9 @@ public:
     const double G4_2 = det*w[2][2];
     
     // Compute element tensor
-    A[0] = 0.0833333333333*G0_0 + 0.0416666666667*G0_1 + 0.0416666666667*G0_2 + 0.000416666666667*G1_0_0_0 + 0.000416666666667*G1_0_0_1 - 0.000416666666667*G1_0_1_0 - 0.000416666666667*G1_0_2_1 - 0.000208333333333*G1_1_0_0 - 0.000208333333333*G1_1_0_1 + 0.000208333333333*G1_1_1_0 + 0.000208333333333*G1_1_2_1 - 0.000208333333333*G1_2_0_0 - 0.000208333333333*G1_2_0_1 + 0.000208333333333*G1_2_1_0 + 0.000208333333333*G1_2_2_1 + 0.000833333333333*G1_3_0_0 + 0.000833333333333*G1_3_0_1 - 0.000833333333333*G1_3_1_0 - 0.000833333333333*G1_3_2_1 + 0.00166666666667*G1_4_0_0 + 0.00166666666667*G1_4_0_1 - 0.00166666666667*G1_4_1_0 - 0.00166666666667*G1_4_2_1 + 0.00166666666667*G1_5_0_0 + 0.00166666666667*G1_5_0_1 - 0.00166666666667*G1_5_1_0 - 0.00166666666667*G1_5_2_1 + 0.000416666666667*G2_6_0_0 + 0.000416666666667*G2_6_0_1 - 0.000416666666667*G2_6_1_0 - 0.000416666666667*G2_6_2_1 - 0.000208333333333*G2_7_0_0 - 0.000208333333333*G2_7_0_1 + 0.000208333333333*G2_7_1_0 + 0.000208333333333*G2_7_2_1 - 0.000208333333333*G2_8_0_0 - 0.000208333333333*G2_8_0_1 + 0.000208333333333*G2_8_1_0 + 0.000208333333333*G2_8_2_1 + 0.000833333333333*G2_9_0_0 + 0.000833333333333*G2_9_0_1 - 0.000833333333333*G2_9_1_0 - 0.000833333333333*G2_9_2_1 + 0.00166666666667*G2_10_0_0 + 0.00166666666667*G2_10_0_1 - 0.00166666666667*G2_10_1_0 - 0.00166666666667*G2_10_2_1 + 0.00166666666667*G2_11_0_0 + 0.00166666666667*G2_11_0_1 - 0.00166666666667*G2_11_1_0 - 0.00166666666667*G2_11_2_1 - 6.25e-05*G3_0_0_0 - 6.25e-05*G3_0_0_1 - 6.25e-05*G3_0_1_0 - 6.25e-05*G3_0_1_1 + 6.25e-05*G3_1_0_0 + 6.25e-05*G3_1_1_0 + 6.25e-05*G3_2_0_1 + 6.25e-05*G3_2_1_1 + 0.00416666666667*G4_0 + 0.00208333333333*G4_1 + 0.00208333333333*G4_2;
-    A[1] = 0.0416666666667*G0_0 + 0.0833333333333*G0_1 + 0.0416666666667*G0_2 - 0.000208333333333*G1_0_0_0 - 0.000208333333333*G1_0_0_1 + 0.000208333333333*G1_0_1_0 + 0.000208333333333*G1_0_2_1 + 0.000416666666667*G1_1_0_0 + 0.000416666666667*G1_1_0_1 - 0.000416666666667*G1_1_1_0 - 0.000416666666667*G1_1_2_1 - 0.000208333333333*G1_2_0_0 - 0.000208333333333*G1_2_0_1 + 0.000208333333333*G1_2_1_0 + 0.000208333333333*G1_2_2_1 + 0.00166666666667*G1_3_0_0 + 0.00166666666667*G1_3_0_1 - 0.00166666666667*G1_3_1_0 - 0.00166666666667*G1_3_2_1 + 0.000833333333333*G1_4_0_0 + 0.000833333333333*G1_4_0_1 - 0.000833333333333*G1_4_1_0 - 0.000833333333333*G1_4_2_1 + 0.00166666666667*G1_5_0_0 + 0.00166666666667*G1_5_0_1 - 0.00166666666667*G1_5_1_0 - 0.00166666666667*G1_5_2_1 - 0.000208333333333*G2_6_0_0 - 0.000208333333333*G2_6_0_1 + 0.000208333333333*G2_6_1_0 + 0.000208333333333*G2_6_2_1 + 0.000416666666667*G2_7_0_0 + 0.000416666666667*G2_7_0_1 - 0.000416666666667*G2_7_1_0 - 0.000416666666667*G2_7_2_1 - 0.000208333333333*G2_8_0_0 - 0.000208333333333*G2_8_0_1 + 0.000208333333333*G2_8_1_0 + 0.000208333333333*G2_8_2_1 + 0.00166666666667*G2_9_0_0 + 0.00166666666667*G2_9_0_1 - 0.00166666666667*G2_9_1_0 - 0.00166666666667*G2_9_2_1 + 0.000833333333333*G2_10_0_0 + 0.000833333333333*G2_10_0_1 - 0.000833333333333*G2_10_1_0 - 0.000833333333333*G2_10_2_1 + 0.00166666666667*G2_11_0_0 + 0.00166666666667*G2_11_0_1 - 0.00166666666667*G2_11_1_0 - 0.00166666666667*G2_11_2_1 + 6.25e-05*G3_0_0_0 + 6.25e-05*G3_0_0_1 - 6.25e-05*G3_1_0_0 - 6.25e-05*G3_2_0_1 + 0.00208333333333*G4_0 + 0.00416666666667*G4_1 + 0.00208333333333*G4_2;
-    A[2] = 0.0416666666667*G0_0 + 0.0416666666667*G0_1 + 0.0833333333333*G0_2 - 0.000208333333333*G1_0_0_0 - 0.000208333333333*G1_0_0_1 + 0.000208333333333*G1_0_1_0 + 0.000208333333333*G1_0_2_1 - 0.000208333333333*G1_1_0_0 - 0.000208333333333*G1_1_0_1 + 0.000208333333333*G1_1_1_0 + 0.000208333333333*G1_1_2_1 + 0.000416666666667*G1_2_0_0 + 0.000416666666667*G1_2_0_1 - 0.000416666666667*G1_2_1_0 - 0.000416666666667*G1_2_2_1 + 0.00166666666667*G1_3_0_0 + 0.00166666666667*G1_3_0_1 - 0.00166666666667*G1_3_1_0 - 0.00166666666667*G1_3_2_1 + 0.00166666666667*G1_4_0_0 + 0.00166666666667*G1_4_0_1 - 0.00166666666667*G1_4_1_0 - 0.00166666666667*G1_4_2_1 + 0.000833333333333*G1_5_0_0 + 0.000833333333333*G1_5_0_1 - 0.000833333333333*G1_5_1_0 - 0.000833333333333*G1_5_2_1 - 0.000208333333333*G2_6_0_0 - 0.000208333333333*G2_6_0_1 + 0.000208333333333*G2_6_1_0 + 0.000208333333333*G2_6_2_1 - 0.000208333333333*G2_7_0_0 - 0.000208333333333*G2_7_0_1 + 0.000208333333333*G2_7_1_0 + 0.000208333333333*G2_7_2_1 + 0.000416666666667*G2_8_0_0 + 0.000416666666667*G2_8_0_1 - 0.000416666666667*G2_8_1_0 - 0.000416666666667*G2_8_2_1 + 0.00166666666667*G2_9_0_0 + 0.00166666666667*G2_9_0_1 - 0.00166666666667*G2_9_1_0 - 0.00166666666667*G2_9_2_1 + 0.00166666666667*G2_10_0_0 + 0.00166666666667*G2_10_0_1 - 0.00166666666667*G2_10_1_0 - 0.00166666666667*G2_10_2_1 + 0.000833333333333*G2_11_0_0 + 0.000833333333333*G2_11_0_1 - 0.000833333333333*G2_11_1_0 - 0.000833333333333*G2_11_2_1 + 6.25e-05*G3_0_1_0 + 6.25e-05*G3_0_1_1 - 6.25e-05*G3_1_1_0 - 6.25e-05*G3_2_1_1 + 0.00208333333333*G4_0 + 0.00208333333333*G4_1 + 0.00416666666667*G4_2;
+    A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2 + 0.000416666666666666*G1_0_0_0 + 0.000416666666666666*G1_0_0_1 - 0.000416666666666666*G1_0_1_0 - 0.000416666666666666*G1_0_2_1 - 0.000208333333333333*G1_1_0_0 - 0.000208333333333333*G1_1_0_1 + 0.000208333333333333*G1_1_1_0 + 0.000208333333333333*G1_1_2_1 - 0.000208333333333333*G1_2_0_0 - 0.000208333333333333*G1_2_0_1 + 0.000208333333333333*G1_2_1_0 + 0.000208333333333333*G1_2_2_1 + 0.000833333333333332*G1_3_0_0 + 0.000833333333333332*G1_3_0_1 - 0.000833333333333332*G1_3_1_0 - 0.000833333333333332*G1_3_2_1 + 0.00166666666666666*G1_4_0_0 + 0.00166666666666666*G1_4_0_1 - 0.00166666666666666*G1_4_1_0 - 0.00166666666666666*G1_4_2_1 + 0.00166666666666666*G1_5_0_0 + 0.00166666666666666*G1_5_0_1 - 0.00166666666666666*G1_5_1_0 - 0.00166666666666666*G1_5_2_1 + 0.000416666666666666*G2_6_0_0 + 0.000416666666666666*G2_6_0_1 - 0.000416666666666666*G2_6_1_0 - 0.000416666666666666*G2_6_2_1 - 0.000208333333333333*G2_7_0_0 - 0.000208333333333333*G2_7_0_1 + 0.000208333333333333*G2_7_1_0 + 0.000208333333333333*G2_7_2_1 - 0.000208333333333333*G2_8_0_0 - 0.000208333333333333*G2_8_0_1 + 0.000208333333333333*G2_8_1_0 + 0.000208333333333333*G2_8_2_1 + 0.000833333333333332*G2_9_0_0 + 0.000833333333333332*G2_9_0_1 - 0.000833333333333332*G2_9_1_0 - 0.000833333333333332*G2_9_2_1 + 0.00166666666666666*G2_10_0_0 + 0.00166666666666666*G2_10_0_1 - 0.00166666666666666*G2_10_1_0 - 0.00166666666666666*G2_10_2_1 + 0.00166666666666666*G2_11_0_0 + 0.00166666666666666*G2_11_0_1 - 0.00166666666666666*G2_11_1_0 - 0.00166666666666666*G2_11_2_1 - 6.25e-05*G3_0_0_0 - 6.25e-05*G3_0_0_1 - 6.25e-05*G3_0_1_0 - 6.24999999999999e-05*G3_0_1_1 + 6.25e-05*G3_1_0_0 + 6.25e-05*G3_1_1_0 + 6.25e-05*G3_2_0_1 + 6.24999999999999e-05*G3_2_1_1 + 0.00416666666666666*G4_0 + 0.00208333333333333*G4_1 + 0.00208333333333333*G4_2;
+    A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2 - 0.000208333333333333*G1_0_0_0 - 0.000208333333333333*G1_0_0_1 + 0.000208333333333333*G1_0_1_0 + 0.000208333333333333*G1_0_2_1 + 0.000416666666666666*G1_1_0_0 + 0.000416666666666666*G1_1_0_1 - 0.000416666666666666*G1_1_1_0 - 0.000416666666666666*G1_1_2_1 - 0.000208333333333333*G1_2_0_0 - 0.000208333333333333*G1_2_0_1 + 0.000208333333333333*G1_2_1_0 + 0.000208333333333333*G1_2_2_1 + 0.00166666666666666*G1_3_0_0 + 0.00166666666666666*G1_3_0_1 - 0.00166666666666666*G1_3_1_0 - 0.00166666666666666*G1_3_2_1 + 0.000833333333333332*G1_4_0_0 + 0.000833333333333332*G1_4_0_1 - 0.000833333333333332*G1_4_1_0 - 0.000833333333333332*G1_4_2_1 + 0.00166666666666666*G1_5_0_0 + 0.00166666666666666*G1_5_0_1 - 0.00166666666666666*G1_5_1_0 - 0.00166666666666666*G1_5_2_1 - 0.000208333333333333*G2_6_0_0 - 0.000208333333333333*G2_6_0_1 + 0.000208333333333333*G2_6_1_0 + 0.000208333333333333*G2_6_2_1 + 0.000416666666666666*G2_7_0_0 + 0.000416666666666666*G2_7_0_1 - 0.000416666666666666*G2_7_1_0 - 0.000416666666666666*G2_7_2_1 - 0.000208333333333333*G2_8_0_0 - 0.000208333333333333*G2_8_0_1 + 0.000208333333333333*G2_8_1_0 + 0.000208333333333333*G2_8_2_1 + 0.00166666666666666*G2_9_0_0 + 0.00166666666666666*G2_9_0_1 - 0.00166666666666666*G2_9_1_0 - 0.00166666666666666*G2_9_2_1 + 0.000833333333333332*G2_10_0_0 + 0.000833333333333332*G2_10_0_1 - 0.000833333333333332*G2_10_1_0 - 0.000833333333333332*G2_10_2_1 + 0.00166666666666666*G2_11_0_0 + 0.00166666666666666*G2_11_0_1 - 0.00166666666666666*G2_11_1_0 - 0.00166666666666666*G2_11_2_1 + 6.25e-05*G3_0_0_0 + 6.25e-05*G3_0_0_1 - 6.25e-05*G3_1_0_0 - 6.25e-05*G3_2_0_1 + 0.00208333333333333*G4_0 + 0.00416666666666666*G4_1 + 0.00208333333333333*G4_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2 - 0.000208333333333333*G1_0_0_0 - 0.000208333333333333*G1_0_0_1 + 0.000208333333333333*G1_0_1_0 + 0.000208333333333333*G1_0_2_1 - 0.000208333333333333*G1_1_0_0 - 0.000208333333333333*G1_1_0_1 + 0.000208333333333333*G1_1_1_0 + 0.000208333333333333*G1_1_2_1 + 0.000416666666666666*G1_2_0_0 + 0.000416666666666666*G1_2_0_1 - 0.000416666666666666*G1_2_1_0 - 0.000416666666666666*G1_2_2_1 + 0.00166666666666666*G1_3_0_0 + 0.00166666666666666*G1_3_0_1 - 0.00166666666666666*G1_3_1_0 - 0.00166666666666666*G1_3_2_1 + 0.00166666666666666*G1_4_0_0 + 0.00166666666666666*G1_4_0_1 - 0.00166666666666666*G1_4_1_0 - 0.00166666666666666*G1_4_2_1 + 0.000833333333333332*G1_5_0_0 + 0.000833333333333332*G1_5_0_1 - 0.000833333333333332*G1_5_1_0 - 0.000833333333333332*G1_5_2_1 - 0.000208333333333333*G2_6_0_0 - 0.000208333333333333*G2_6_0_1 + 0.000208333333333333*G2_6_1_0 + 0.000208333333333333*G2_6_2_1 - 0.000208333333333333*G2_7_0_0 - 0.000208333333333333*G2_7_0_1 + 0.000208333333333333*G2_7_1_0 + 0.000208333333333333*G2_7_2_1 + 0.000416666666666666*G2_8_0_0 + 0.000416666666666666*G2_8_0_1 - 0.000416666666666666*G2_8_1_0 - 0.000416666666666666*G2_8_2_1 + 0.00166666666666666*G2_9_0_0 + 0.00166666666666666*G2_9_0_1 - 0.00166666666666666*G2_9_1_0 - 0.00166666666666666*G2_9_2_1 + 0.00166666666666666*G2_10_0_0 + 0.00166666666666666*G2_10_0_1 - 0.00166666666666666*G2_10_1_0 - 0.00166666666666666*G2_10_2_1 + 0.000833333333333332*G2_11_0_0 + 0.000833333333333332*G2_11_0_1 - 0.000833333333333332*G2_11_1_0 - 0.000833333333333332*G2_11_2_1 + 6.25e-05*G3_0_1_0 + 6.24999999999999e-05*G3_0_1_1 - 6.25e-05*G3_1_1_0 - 6.24999999999999e-05*G3_2_1_1 + 0.00208333333333333*G4_0 + 0.00208333333333333*G4_1 + 0.00416666666666666*G4_2;
   }
 
 };
