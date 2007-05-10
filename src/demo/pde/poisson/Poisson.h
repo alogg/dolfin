@@ -218,7 +218,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -593,7 +593,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1448,7 +1448,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1823,7 +1823,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2198,7 +2198,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2852,10 +2852,15 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[0][0];
-    const double G0_1 = det*w[0][1];
-    const double G0_2 = det*w[0][2];
+    const double G0_0 = det*c0_0_0_0;
+    const double G0_1 = det*c0_0_0_1;
+    const double G0_2 = det*c0_0_0_2;
     
     // Compute element tensor
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
@@ -2920,10 +2925,15 @@ public:
     const double dx1 = x[v1][1] - x[v0][1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
+    // Compute coefficients
+    const double c1_0_0_0 = w[1][0];
+    const double c1_0_0_1 = w[1][1];
+    const double c1_0_0_2 = w[1][2];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[1][0];
-    const double G0_1 = det*w[1][1];
-    const double G0_2 = det*w[1][2];
+    const double G0_0 = det*c1_0_0_0;
+    const double G0_1 = det*c1_0_0_1;
+    const double G0_2 = det*c1_0_0_2;
     
     // Compute element tensor for all facets
     switch ( facet )

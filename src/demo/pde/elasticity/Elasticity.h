@@ -291,7 +291,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -773,7 +773,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1255,7 +1255,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1841,7 +1841,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2619,7 +2619,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3101,7 +3101,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3583,7 +3583,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4169,7 +4169,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4801,7 +4801,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -4952,7 +4966,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5103,7 +5131,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5288,7 +5330,45 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5451,7 +5531,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5602,7 +5696,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5753,7 +5861,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5938,7 +6060,45 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6007,31 +6167,31 @@ public:
     const double J_22 = x[3][2] - x[0][2];
       
     // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_01 = J_12*J_20 - J_10*J_22;
+    const double d_02 = J_10*J_21 - J_11*J_20;
     
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_11 = J_00*J_22 - J_02*J_20;
+    const double d_12 = J_01*J_20 - J_00*J_21;
     
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    const double d_21 = J_02*J_10 - J_00*J_12;
+    const double d_22 = J_00*J_11 - J_01*J_10;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
       
     // Compute inverse of Jacobian
-    const double Jinv_00 = d00 / detJ;
-    const double Jinv_01 = d10 / detJ;
-    const double Jinv_02 = d20 / detJ;
-    const double Jinv_10 = d01 / detJ;
-    const double Jinv_11 = d11 / detJ;
-    const double Jinv_12 = d21 / detJ;
-    const double Jinv_20 = d02 / detJ;
-    const double Jinv_21 = d12 / detJ;
-    const double Jinv_22 = d22 / detJ;
+    const double Jinv_00 = d_00 / detJ;
+    const double Jinv_01 = d_10 / detJ;
+    const double Jinv_02 = d_20 / detJ;
+    const double Jinv_10 = d_01 / detJ;
+    const double Jinv_11 = d_11 / detJ;
+    const double Jinv_12 = d_21 / detJ;
+    const double Jinv_20 = d_02 / detJ;
+    const double Jinv_21 = d_12 / detJ;
+    const double Jinv_22 = d_22 / detJ;
     
     // Take absolute value of determinant
     detJ = std::abs(detJ);
@@ -6749,7 +6909,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -7231,7 +7391,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -7713,7 +7873,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -8299,7 +8459,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -9077,7 +9237,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -9559,7 +9719,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -10041,7 +10201,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -10627,7 +10787,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -11259,7 +11419,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -11410,7 +11584,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -11561,7 +11749,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -11746,7 +11948,45 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -11909,7 +12149,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -12060,7 +12314,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -12211,7 +12479,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -12396,7 +12678,45 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -12465,14 +12785,14 @@ public:
     const double J_22 = x[3][2] - x[0][2];
       
     // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
+    const double d_00 = J_11*J_22 - J_12*J_21;
     
-    const double d10 = J_02*J_21 - J_01*J_22;
+    const double d_10 = J_02*J_21 - J_01*J_22;
     
-    const double d20 = J_01*J_12 - J_02*J_11;
+    const double d_20 = J_01*J_12 - J_02*J_11;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
       
     // Compute inverse of Jacobian
     
@@ -12482,19 +12802,33 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    const double c0_0_0_3 = w[0][3];
+    const double c0_0_0_4 = w[0][4];
+    const double c0_0_0_5 = w[0][5];
+    const double c0_0_0_6 = w[0][6];
+    const double c0_0_0_7 = w[0][7];
+    const double c0_0_0_8 = w[0][8];
+    const double c0_0_0_9 = w[0][9];
+    const double c0_0_0_10 = w[0][10];
+    const double c0_0_0_11 = w[0][11];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[0][0];
-    const double G0_1 = det*w[0][1];
-    const double G0_2 = det*w[0][2];
-    const double G0_3 = det*w[0][3];
-    const double G0_4 = det*w[0][4];
-    const double G0_5 = det*w[0][5];
-    const double G0_6 = det*w[0][6];
-    const double G0_7 = det*w[0][7];
-    const double G0_8 = det*w[0][8];
-    const double G0_9 = det*w[0][9];
-    const double G0_10 = det*w[0][10];
-    const double G0_11 = det*w[0][11];
+    const double G0_0 = det*c0_0_0_0;
+    const double G0_1 = det*c0_0_0_1;
+    const double G0_2 = det*c0_0_0_2;
+    const double G0_3 = det*c0_0_0_3;
+    const double G0_4 = det*c0_0_0_4;
+    const double G0_5 = det*c0_0_0_5;
+    const double G0_6 = det*c0_0_0_6;
+    const double G0_7 = det*c0_0_0_7;
+    const double G0_8 = det*c0_0_0_8;
+    const double G0_9 = det*c0_0_0_9;
+    const double G0_10 = det*c0_0_0_10;
+    const double G0_11 = det*c0_0_0_11;
     
     // Compute element tensor
     A[0] = 0.0166666666666666*G0_0 + 0.00833333333333331*G0_1 + 0.00833333333333331*G0_2 + 0.00833333333333331*G0_3;
