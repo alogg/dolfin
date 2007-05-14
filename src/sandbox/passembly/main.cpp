@@ -294,7 +294,7 @@ int main(int argc, char* argv[])
 /*
   if(process == 0)
   {
-    dolfin_log(false);
+    set("output destination", "silent");
     PETScMatrix Aref;
     PETScVector bref, xref;
     FEM::assemble(a, L, Aref, bref, mesh); 
@@ -303,7 +303,7 @@ int main(int argc, char* argv[])
 
     KrylovSolver solver;
     solver.solve(Aref, xref, bref);
-    dolfin_log(true);
+    set("output destination", "terminal");
 
   // Print reference results
 //    cout << "Single process reference vector " << endl;

@@ -29,11 +29,11 @@ int main()
   cout << "---------- Old assembly, DOLFIN Matrix ----------" << endl;
   Matrix A;
   PoissonOld::BilinearForm a;
-  dolfin_log(false);
+  set("output destination", "silent");
   tic();
   FEM::assemble(a, A, mesh);
   real t0 = toc();
-  dolfin_log(true);
+  set("output destination", "terminal");
   //A.disp();
 
   // New assembly, DOLFIN matrix
