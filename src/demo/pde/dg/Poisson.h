@@ -218,7 +218,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -593,7 +593,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -958,7 +958,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1299,7 +1299,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1673,7 +1673,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2111,7 +2111,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3158,10 +3158,10 @@ public:
     const double det = detJ;
     
     // Compute geometry tensors
-    const double G0_0_0 = det*Jinv_00*Jinv_00 + det*Jinv_01*Jinv_01;
-    const double G0_0_1 = det*Jinv_00*Jinv_10 + det*Jinv_01*Jinv_11;
-    const double G0_1_0 = det*Jinv_10*Jinv_00 + det*Jinv_11*Jinv_01;
-    const double G0_1_1 = det*Jinv_10*Jinv_10 + det*Jinv_11*Jinv_11;
+    const double G0_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
     A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1;
@@ -3358,55 +3358,121 @@ public:
     const double dx1 = x0[v1][1] - x0[v0][1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_1_0_2 = w[0][2];
+    const double c0_2_0_0 = w[0][0];
+    const double c0_3_0_2 = w[0][2];
+    const double c0_4_0_1 = w[0][1];
+    const double c0_5_0_3 = w[0][3];
+    const double c0_6_0_1 = w[0][1];
+    const double c0_7_0_3 = w[0][3];
+    const double c0_8_0_0 = w[0][0];
+    const double c0_9_0_0 = w[0][0];
+    const double c0_10_0_2 = w[0][2];
+    const double c0_11_0_2 = w[0][2];
+    const double c0_12_0_1 = w[0][1];
+    const double c0_13_0_1 = w[0][1];
+    const double c0_14_0_3 = w[0][3];
+    const double c0_15_0_3 = w[0][3];
+    const double c1_16_0_0 = w[1][0];
+    const double c0_16_1_0 = w[0][0];
+    const double c0_16_2_0 = w[0][0];
+    const double c1_17_0_0 = w[1][0];
+    const double c0_17_1_0 = w[0][0];
+    const double c0_17_2_2 = w[0][2];
+    const double c1_18_0_0 = w[1][0];
+    const double c0_18_1_2 = w[0][2];
+    const double c0_18_2_0 = w[0][0];
+    const double c1_19_0_0 = w[1][0];
+    const double c0_19_1_2 = w[0][2];
+    const double c0_19_2_2 = w[0][2];
+    const double c1_20_0_0 = w[1][0];
+    const double c0_20_1_1 = w[0][1];
+    const double c0_20_2_1 = w[0][1];
+    const double c1_21_0_0 = w[1][0];
+    const double c0_21_1_1 = w[0][1];
+    const double c0_21_2_3 = w[0][3];
+    const double c1_22_0_0 = w[1][0];
+    const double c0_22_1_3 = w[0][3];
+    const double c0_22_2_1 = w[0][1];
+    const double c1_23_0_0 = w[1][0];
+    const double c0_23_1_3 = w[0][3];
+    const double c0_23_2_3 = w[0][3];
+    const double c1_24_0_1 = w[1][1];
+    const double c0_24_1_0 = w[0][0];
+    const double c0_24_2_0 = w[0][0];
+    const double c1_25_0_1 = w[1][1];
+    const double c0_25_1_0 = w[0][0];
+    const double c0_25_2_2 = w[0][2];
+    const double c1_26_0_1 = w[1][1];
+    const double c0_26_1_2 = w[0][2];
+    const double c0_26_2_0 = w[0][0];
+    const double c1_27_0_1 = w[1][1];
+    const double c0_27_1_2 = w[0][2];
+    const double c0_27_2_2 = w[0][2];
+    const double c1_28_0_1 = w[1][1];
+    const double c0_28_1_1 = w[0][1];
+    const double c0_28_2_1 = w[0][1];
+    const double c1_29_0_1 = w[1][1];
+    const double c0_29_1_1 = w[0][1];
+    const double c0_29_2_3 = w[0][3];
+    const double c1_30_0_1 = w[1][1];
+    const double c0_30_1_3 = w[0][3];
+    const double c0_30_2_1 = w[0][1];
+    const double c1_31_0_1 = w[1][1];
+    const double c0_31_1_3 = w[0][3];
+    const double c0_31_2_3 = w[0][3];
+    
     // Compute geometry tensors
-    const double G0_0_0 = det*w[0][0]*Jinv0_00;
-    const double G0_1_0 = det*w[0][0]*Jinv0_10;
-    const double G1_0_2 = det*w[0][2]*Jinv0_00;
-    const double G1_1_2 = det*w[0][2]*Jinv0_10;
-    const double G2_0_0 = det*w[0][0]*Jinv1_00;
-    const double G2_1_0 = det*w[0][0]*Jinv1_10;
-    const double G3_0_2 = det*w[0][2]*Jinv1_00;
-    const double G3_1_2 = det*w[0][2]*Jinv1_10;
-    const double G4_0_1 = det*w[0][1]*Jinv0_01;
-    const double G4_1_1 = det*w[0][1]*Jinv0_11;
-    const double G5_0_3 = det*w[0][3]*Jinv0_01;
-    const double G5_1_3 = det*w[0][3]*Jinv0_11;
-    const double G6_0_1 = det*w[0][1]*Jinv1_01;
-    const double G6_1_1 = det*w[0][1]*Jinv1_11;
-    const double G7_0_3 = det*w[0][3]*Jinv1_01;
-    const double G7_1_3 = det*w[0][3]*Jinv1_11;
-    const double G8_0_0 = det*w[0][0]*Jinv0_00;
-    const double G8_0_1 = det*w[0][0]*Jinv0_10;
-    const double G9_0_0 = det*w[0][0]*Jinv1_00;
-    const double G9_0_1 = det*w[0][0]*Jinv1_10;
-    const double G10_2_0 = det*w[0][2]*Jinv0_00;
-    const double G10_2_1 = det*w[0][2]*Jinv0_10;
-    const double G11_2_0 = det*w[0][2]*Jinv1_00;
-    const double G11_2_1 = det*w[0][2]*Jinv1_10;
-    const double G12_1_0 = det*w[0][1]*Jinv0_01;
-    const double G12_1_1 = det*w[0][1]*Jinv0_11;
-    const double G13_1_0 = det*w[0][1]*Jinv1_01;
-    const double G13_1_1 = det*w[0][1]*Jinv1_11;
-    const double G14_3_0 = det*w[0][3]*Jinv0_01;
-    const double G14_3_1 = det*w[0][3]*Jinv0_11;
-    const double G15_3_0 = det*w[0][3]*Jinv1_01;
-    const double G15_3_1 = det*w[0][3]*Jinv1_11;
-    const double G16_0_0_0 = det*w[1][0]*w[0][0]*w[0][0];
-    const double G17_0_0_2 = det*w[1][0]*w[0][0]*w[0][2];
-    const double G18_0_2_0 = det*w[1][0]*w[0][2]*w[0][0];
-    const double G19_0_2_2 = det*w[1][0]*w[0][2]*w[0][2];
-    const double G20_0_1_1 = det*w[1][0]*w[0][1]*w[0][1];
-    const double G21_0_1_3 = det*w[1][0]*w[0][1]*w[0][3];
-    const double G22_0_3_1 = det*w[1][0]*w[0][3]*w[0][1];
-    const double G23_0_3_3 = det*w[1][0]*w[0][3]*w[0][3];
-    const double G24_1_0_0 = det*w[1][1]*w[0][0]*w[0][0];
-    const double G25_1_0_2 = det*w[1][1]*w[0][0]*w[0][2];
-    const double G26_1_2_0 = det*w[1][1]*w[0][2]*w[0][0];
-    const double G27_1_2_2 = det*w[1][1]*w[0][2]*w[0][2];
-    const double G28_1_1_1 = det*w[1][1]*w[0][1]*w[0][1];
-    const double G29_1_1_3 = det*w[1][1]*w[0][1]*w[0][3];
-    const double G30_1_3_1 = det*w[1][1]*w[0][3]*w[0][1];
-    const double G31_1_3_3 = det*w[1][1]*w[0][3]*w[0][3];
+    const double G0_0_0 = det*c0_0_0_0*Jinv0_00;
+    const double G0_1_0 = det*c0_0_0_0*Jinv0_10;
+    const double G1_0_2 = det*c0_1_0_2*Jinv0_00;
+    const double G1_1_2 = det*c0_1_0_2*Jinv0_10;
+    const double G2_0_0 = det*c0_2_0_0*Jinv1_00;
+    const double G2_1_0 = det*c0_2_0_0*Jinv1_10;
+    const double G3_0_2 = det*c0_3_0_2*Jinv1_00;
+    const double G3_1_2 = det*c0_3_0_2*Jinv1_10;
+    const double G4_0_1 = det*c0_4_0_1*Jinv0_01;
+    const double G4_1_1 = det*c0_4_0_1*Jinv0_11;
+    const double G5_0_3 = det*c0_5_0_3*Jinv0_01;
+    const double G5_1_3 = det*c0_5_0_3*Jinv0_11;
+    const double G6_0_1 = det*c0_6_0_1*Jinv1_01;
+    const double G6_1_1 = det*c0_6_0_1*Jinv1_11;
+    const double G7_0_3 = det*c0_7_0_3*Jinv1_01;
+    const double G7_1_3 = det*c0_7_0_3*Jinv1_11;
+    const double G8_0_0 = det*c0_8_0_0*Jinv0_00;
+    const double G8_0_1 = det*c0_8_0_0*Jinv0_10;
+    const double G9_0_0 = det*c0_9_0_0*Jinv1_00;
+    const double G9_0_1 = det*c0_9_0_0*Jinv1_10;
+    const double G10_2_0 = det*c0_10_0_2*Jinv0_00;
+    const double G10_2_1 = det*c0_10_0_2*Jinv0_10;
+    const double G11_2_0 = det*c0_11_0_2*Jinv1_00;
+    const double G11_2_1 = det*c0_11_0_2*Jinv1_10;
+    const double G12_1_0 = det*c0_12_0_1*Jinv0_01;
+    const double G12_1_1 = det*c0_12_0_1*Jinv0_11;
+    const double G13_1_0 = det*c0_13_0_1*Jinv1_01;
+    const double G13_1_1 = det*c0_13_0_1*Jinv1_11;
+    const double G14_3_0 = det*c0_14_0_3*Jinv0_01;
+    const double G14_3_1 = det*c0_14_0_3*Jinv0_11;
+    const double G15_3_0 = det*c0_15_0_3*Jinv1_01;
+    const double G15_3_1 = det*c0_15_0_3*Jinv1_11;
+    const double G16_0_0_0 = det*c1_16_0_0*c0_16_1_0*c0_16_2_0;
+    const double G17_0_0_2 = det*c1_17_0_0*c0_17_1_0*c0_17_2_2;
+    const double G18_0_2_0 = det*c1_18_0_0*c0_18_1_2*c0_18_2_0;
+    const double G19_0_2_2 = det*c1_19_0_0*c0_19_1_2*c0_19_2_2;
+    const double G20_0_1_1 = det*c1_20_0_0*c0_20_1_1*c0_20_2_1;
+    const double G21_0_1_3 = det*c1_21_0_0*c0_21_1_1*c0_21_2_3;
+    const double G22_0_3_1 = det*c1_22_0_0*c0_22_1_3*c0_22_2_1;
+    const double G23_0_3_3 = det*c1_23_0_0*c0_23_1_3*c0_23_2_3;
+    const double G24_1_0_0 = det*c1_24_0_1*c0_24_1_0*c0_24_2_0;
+    const double G25_1_0_2 = det*c1_25_0_1*c0_25_1_0*c0_25_2_2;
+    const double G26_1_2_0 = det*c1_26_0_1*c0_26_1_2*c0_26_2_0;
+    const double G27_1_2_2 = det*c1_27_0_1*c0_27_1_2*c0_27_2_2;
+    const double G28_1_1_1 = det*c1_28_0_1*c0_28_1_1*c0_28_2_1;
+    const double G29_1_1_3 = det*c1_29_0_1*c0_29_1_1*c0_29_2_3;
+    const double G30_1_3_1 = det*c1_30_0_1*c0_30_1_3*c0_30_2_1;
+    const double G31_1_3_3 = det*c1_31_0_1*c0_31_1_3*c0_31_2_3;
     
     // Compute element tensor for all facet-facet combinations
     switch ( facet0 )
@@ -4109,7 +4175,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4484,7 +4550,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4859,7 +4925,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -5234,7 +5300,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -6023,10 +6089,15 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[0][0];
-    const double G0_1 = det*w[0][1];
-    const double G0_2 = det*w[0][2];
+    const double G0_0 = det*c0_0_0_0;
+    const double G0_1 = det*c0_0_0_1;
+    const double G0_2 = det*c0_0_0_2;
     
     // Compute element tensor
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
@@ -6091,13 +6162,21 @@ public:
     const double dx1 = x[v1][1] - x[v0][1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
+    // Compute coefficients
+    const double c1_0_0_0 = w[1][0];
+    const double c1_0_0_1 = w[1][1];
+    const double c1_0_0_2 = w[1][2];
+    const double c2_1_0_0 = w[2][0];
+    const double c2_1_0_1 = w[2][1];
+    const double c2_1_0_2 = w[2][2];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[1][0];
-    const double G0_1 = det*w[1][1];
-    const double G0_2 = det*w[1][2];
-    const double G1_0 = det*w[2][0];
-    const double G1_1 = det*w[2][1];
-    const double G1_2 = det*w[2][2];
+    const double G0_0 = det*c1_0_0_0;
+    const double G0_1 = det*c1_0_0_1;
+    const double G0_2 = det*c1_0_0_2;
+    const double G1_0 = det*c2_1_0_0;
+    const double G1_1 = det*c2_1_0_1;
+    const double G1_2 = det*c2_1_0_2;
     
     // Compute element tensor for all facets
     switch ( facet )
