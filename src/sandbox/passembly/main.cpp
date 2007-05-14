@@ -43,7 +43,7 @@ void testMeshPartition(Mesh& mesh, MeshFunction<dolfin::uint>& cell_partition_fu
     mesh_data = new int[4*num_cells];
   }
   else
-    dolfin_error("Do not know how to partition mesh of this type");
+    error("Do not know how to partition mesh of this type");
   
   cell_partition_function.init(mesh, mesh.topology().dim());
   vertex_partition_function.init(mesh, 0);
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
 
 /*  
   if ( num_processes < 2 )
-    dolfin_error("Cannot create single partition. You need to run with \"mpirun -np num_proc ./dolfin-parallel-test\"\
+    error("Cannot create single partition. You need to run with \"mpirun -np num_proc ./dolfin-parallel-test\"\
  (num_proc > 1)");
 */
   // Partition mesh (number of partitions = number of processes)
@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
   else if(mesh.type().cellType() == CellType::tetrahedron) 
     vertices_per_cell = 4;
   else
-    dolfin_error("Do not know how to work with meshes of this type");
+    error("Do not know how to work with meshes of this type");
 
   // Renumber degrees of freedom. Starting at process 0, go through all cells
   // on given process, then the vertices of the cell and number sequentially 

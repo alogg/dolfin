@@ -80,7 +80,7 @@ public:
 
   inline unsigned int tensordim(unsigned int i) const
   {
-    dolfin_error("Element is scalar.");
+    error("Element is scalar.");
     return 0;
   }
 
@@ -348,7 +348,7 @@ public:
 
   inline unsigned int tensordim(unsigned int i) const
   {
-    dolfin_error("Element is scalar.");
+    error("Element is scalar.");
     return 0;
   }
 
@@ -3818,7 +3818,7 @@ public:
 
   inline unsigned int tensordim(unsigned int i) const
   {
-    dolfin_error("Element is scalar.");
+    error("Element is scalar.");
     return 0;
   }
 
@@ -4086,7 +4086,7 @@ public:
 
   inline unsigned int tensordim(unsigned int i) const
   {
-    dolfin_error("Element is scalar.");
+    error("Element is scalar.");
     return 0;
   }
 

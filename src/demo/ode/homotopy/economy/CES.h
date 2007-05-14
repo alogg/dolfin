@@ -457,15 +457,15 @@ public:
   {
     bool ok = true;
 
-    dolfin_info("Verifying solution:");
+    message("Verifying solution:");
 
     // Check normalization
     if ( std::abs(sum(z) - 1.0) < tol )
-      dolfin_info("  - Normalization:  ok");
+      message("  - Normalization:  ok");
     else
     {
       ok = false;
-      dolfin_info("  - Normalization:  failed");
+      message("  - Normalization:  failed");
     }
 
     // Precompute scalar products
@@ -483,11 +483,11 @@ public:
       sum += a[i][0] * tmp0[i] / pow(z[0], bi) - w[i][0];
     }
     if ( std::abs(sum) < tol )
-      dolfin_info("  - First equation: ok");
+      message("  - First equation: ok");
     else
     {
       ok = false;
-      dolfin_info("  - First equation: failed");
+      message("  - First equation: failed");
     }
 
     // Check remaining equations
@@ -503,11 +503,11 @@ public:
       maxsum = std::max(maxsum, std::abs(sum));
     }
     if ( std::abs(sum) < tol )
-      dolfin_info("  - Rest of system: ok");
+      message("  - Rest of system: ok");
     else
     {
       ok = false;
-      dolfin_info("  - Rest of system: failed");
+      message("  - Rest of system: failed");
     }
 
     // Check if solution is real-valued
@@ -523,11 +523,11 @@ public:
 	}
       }
       if ( all_real )
-	dolfin_info("  - Real-valued:    ok");
+	message("  - Real-valued:    ok");
       else
       {
 	ok = false;
-	dolfin_info("  - Real-valued:    failed");
+	message("  - Real-valued:    failed");
       }
     }
 

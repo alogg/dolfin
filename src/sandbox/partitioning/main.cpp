@@ -53,7 +53,7 @@ void testMetisMesh(Mesh& mesh, int num_partitions)
     mesh_data = new int[4*num_cells];
   }
   else
-    dolfin_error("Do not know how to partition mesh of this type");
+    error("Do not know how to partition mesh of this type");
   
   if(num_partitions > 1)
   {
