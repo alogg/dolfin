@@ -22589,7 +22589,7 @@ else
 fi
 
 # List of DOLFIN kernel libraries
-DOLFIN_KERNEL="common elements fem function graph io la main math mesh nls ode pde quadrature parameter log plot"
+DOLFIN_KERNEL="common elements fem function graph io la main math mesh mf nls ode pde quadrature parameter log plot"
 
 # Generate include path for external libraries
 EXTERNAL_CFLAGS="$PETSC_CFLAGS $SLEPC_CFLAGS $BOOST_CPPFLAGS $MPI_CFLAGS $XML_CPPFLAGS $UMFPACK_CFLAGS $GLIB_CFLAGS $GTS_CFLAGS $UFC_CFLAGS"
@@ -22651,7 +22651,7 @@ echo 'export PYTHONPATH="'$prefix'/lib/python'$PYTHON_VERSION'/site-packages:$PY
 
 
 # List output to be generated: Makefiles and pkgconfig configuration
-ac_config_files="$ac_config_files Makefile src/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/graph/Makefile src/kernel/graph/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/pde/Makefile src/kernel/pde/dolfin/Makefile src/kernel/plot/Makefile src/kernel/plot/dolfin/Makefile src/kernel/parameter/Makefile src/kernel/parameter/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/lib/Makefile src/pydolfin/Makefile src/demo/Makefile src/demo/fem/Makefile src/demo/la/Makefile src/demo/nls/Makefile src/demo/mesh/Makefile src/demo/ode/Makefile src/demo/ode/homotopy/Makefile src/demo/pde/Makefile src/demo/pde/stokes/Makefile src/bench/Makefile src/bench/fem/Makefile src/bench/la/Makefile src/bench/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/utils/convert/Makefile src/utils/swig/Makefile src/greeting/Makefile dolfin.pc"
+ac_config_files="$ac_config_files Makefile src/Makefile src/kernel/Makefile src/kernel/common/Makefile src/kernel/common/dolfin/Makefile src/kernel/elements/Makefile src/kernel/elements/dolfin/Makefile src/kernel/fem/Makefile src/kernel/fem/dolfin/Makefile src/kernel/function/Makefile src/kernel/function/dolfin/Makefile src/kernel/graph/Makefile src/kernel/graph/dolfin/Makefile src/kernel/io/Makefile src/kernel/io/dolfin/Makefile src/kernel/la/Makefile src/kernel/la/dolfin/Makefile src/kernel/main/Makefile src/kernel/main/dolfin/Makefile src/kernel/math/Makefile src/kernel/math/dolfin/Makefile src/kernel/mesh/Makefile src/kernel/mesh/dolfin/Makefile src/kernel/mf/Makefile src/kernel/mf/dolfin/Makefile src/kernel/nls/Makefile src/kernel/nls/dolfin/Makefile src/kernel/ode/Makefile src/kernel/ode/dolfin/Makefile src/kernel/pde/Makefile src/kernel/pde/dolfin/Makefile src/kernel/plot/Makefile src/kernel/plot/dolfin/Makefile src/kernel/parameter/Makefile src/kernel/parameter/dolfin/Makefile src/kernel/quadrature/Makefile src/kernel/quadrature/dolfin/Makefile src/kernel/log/Makefile src/kernel/log/dolfin/Makefile src/lib/Makefile src/pydolfin/Makefile src/demo/Makefile src/demo/fem/Makefile src/demo/la/Makefile src/demo/nls/Makefile src/demo/mesh/Makefile src/demo/ode/Makefile src/demo/ode/homotopy/Makefile src/demo/pde/Makefile src/demo/pde/stokes/Makefile src/bench/Makefile src/bench/fem/Makefile src/bench/la/Makefile src/bench/ode/Makefile src/utils/Makefile src/utils/inp2dx/Makefile src/utils/convert/Makefile src/utils/swig/Makefile src/greeting/Makefile dolfin.pc"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -23289,6 +23289,8 @@ do
     "src/kernel/math/dolfin/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/math/dolfin/Makefile" ;;
     "src/kernel/mesh/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/mesh/Makefile" ;;
     "src/kernel/mesh/dolfin/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/mesh/dolfin/Makefile" ;;
+    "src/kernel/mf/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/mf/Makefile" ;;
+    "src/kernel/mf/dolfin/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/mf/dolfin/Makefile" ;;
     "src/kernel/nls/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/nls/Makefile" ;;
     "src/kernel/nls/dolfin/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/nls/dolfin/Makefile" ;;
     "src/kernel/ode/Makefile") CONFIG_FILES="$CONFIG_FILES src/kernel/ode/Makefile" ;;
