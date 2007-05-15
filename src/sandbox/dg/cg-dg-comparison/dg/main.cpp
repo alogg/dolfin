@@ -23,7 +23,7 @@ int main()
 
   // Create mesh
   UnitCube mesh(4, 4, 4);
-  
+
   // Create functions
   Source f(mesh);
   FacetNormal n(mesh);

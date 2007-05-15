@@ -1,27 +1,18 @@
-# Elements
-DG1 = FiniteElement("Discontinuous Lagrange", "tetrahedron", 1)
-DGn = VectorElement("Discontinuous Lagrange", "tetrahedron", 0)
-DGh = FiniteElement("Discontinuous Lagrange", "tetrahedron", 0)
+element = FiniteElement("Discontinuous Lagrange", "tetrahedron", 1)
 
-# Test and trial functions
-v = TestFunction(DG1)
-u = TrialFunction(DG1)
+v = TestFunction(element)
+u = TrialFunction(element)
+f = Function(element)
 
-# Normal component, mesh size and right-hand side
-n = Function(DGn)
-h = Function(DGh)
-f = Function(DG1)
-
-# Parameters
-alpha = 2.0
 gamma = 2.0
+alpha = 2.0
 
-# Bilinear form
-a =  dot(grad(v), grad(u))*dx \
+n = FacetNormal("tetrahedron")
+h = MeshSize("tetrahedron")
+
+a = dot(grad(v), grad(u))*dx + gamma*v*u*ds \
    - dot(avg(grad(v)), jump(u, n))*dS \
    - dot(jump(v, n), avg(grad(u)))*dS \
-   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS \
-   + gamma*v*u*ds
+   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS
 
-# Linear form
 L = v*f*dx

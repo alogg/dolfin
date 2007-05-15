@@ -1,22 +1,10 @@
 element = FiniteElement("Lagrange", "tetrahedron", 1)
-DG0 = VectorElement("Discontinuous Lagrange", "tetrahedron", 0)
-DG1 = FiniteElement("Discontinuous Lagrange", "tetrahedron", 0)
-
 
 v = TestFunction(element)
 u = TrialFunction(element)
 f = Function(element)
-n = Functions(DG0)
-h = Function(DG1)
 
-alpha = 2.0
+gamma = 2.0
 
-def Jump(v):
-  return [v*n[i] for i in range(element.cell_shape())]
-
-
-a = dot(grad(v), grad(u))*dx\
-   + alpha*v*u*ds
-
+a = dot(grad(v), grad(u))*dx + gamma*v*u*ds
 L = v*f*dx
-

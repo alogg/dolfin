@@ -23,8 +23,6 @@ int main()
 
   // Create mesh
   UnitCube mesh(4, 4, 4);
-//  mesh.init();
-//  mesh.order();
 
   // Create functions
   Source f(mesh);
