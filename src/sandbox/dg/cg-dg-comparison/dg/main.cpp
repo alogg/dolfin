@@ -37,7 +37,10 @@ int main()
   // Solve PDE
   Function u;
   pde.set("PDE linear solver", "direct");
+  dolfin_debug("hej");
   pde.solve(u);
+  dolfin_debug("hej");
+
 
   // Plot solution
   plot(u);
