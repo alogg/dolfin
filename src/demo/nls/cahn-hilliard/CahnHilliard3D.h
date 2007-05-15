@@ -291,7 +291,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -773,7 +773,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1309,7 +1309,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1944,7 +1944,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2426,7 +2426,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2962,7 +2962,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3597,7 +3597,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4079,7 +4079,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4615,7 +4615,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4991,7 +4991,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5003,7 +5003,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -5089,46 +5089,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -5250,7 +5233,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -5263,57 +5246,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5321,59 +5281,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -5401,10 +5340,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -5433,9 +5372,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5473,7 +5412,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5485,7 +5424,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -5571,46 +5510,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -5732,7 +5654,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -5745,57 +5667,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5803,59 +5702,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -5883,10 +5761,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -5915,9 +5793,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5955,7 +5833,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5967,7 +5845,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -6053,46 +5931,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -6214,7 +6075,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -6227,57 +6088,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -6285,59 +6123,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -6365,10 +6182,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -6397,9 +6214,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -6437,7 +6254,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -6449,7 +6266,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -6535,46 +6352,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -6696,7 +6496,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -6709,57 +6509,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -6767,59 +6544,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -6847,10 +6603,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -6879,9 +6635,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -8523,7 +8279,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8532,7 +8288,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -8541,7 +8297,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -8550,7 +8306,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -8576,13 +8332,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -8590,10 +8346,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -8605,24 +8358,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -8634,18 +8379,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8688,7 +8424,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8697,7 +8433,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -8706,7 +8442,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -8715,7 +8451,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -8741,13 +8477,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -8755,10 +8491,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -8770,24 +8503,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -8799,18 +8524,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8853,7 +8569,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8862,7 +8578,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -8871,7 +8587,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -8880,7 +8596,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -8906,13 +8622,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -8920,10 +8636,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -8935,24 +8648,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -8964,18 +8669,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -9018,7 +8714,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -9027,7 +8723,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -9036,7 +8732,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -9045,7 +8741,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -9071,13 +8767,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -9085,10 +8781,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -9100,24 +8793,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -9129,18 +8814,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -9197,31 +8873,31 @@ public:
     const double J_22 = x[3][2] - x[0][2];
       
     // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_01 = J_12*J_20 - J_10*J_22;
+    const double d_02 = J_10*J_21 - J_11*J_20;
     
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_11 = J_00*J_22 - J_02*J_20;
+    const double d_12 = J_01*J_20 - J_00*J_21;
     
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    const double d_21 = J_02*J_10 - J_00*J_12;
+    const double d_22 = J_00*J_11 - J_01*J_10;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
       
     // Compute inverse of Jacobian
-    const double Jinv_00 = d00 / detJ;
-    const double Jinv_01 = d10 / detJ;
-    const double Jinv_02 = d20 / detJ;
-    const double Jinv_10 = d01 / detJ;
-    const double Jinv_11 = d11 / detJ;
-    const double Jinv_12 = d21 / detJ;
-    const double Jinv_20 = d02 / detJ;
-    const double Jinv_21 = d12 / detJ;
-    const double Jinv_22 = d22 / detJ;
+    const double Jinv_00 = d_00 / detJ;
+    const double Jinv_01 = d_10 / detJ;
+    const double Jinv_02 = d_20 / detJ;
+    const double Jinv_10 = d_01 / detJ;
+    const double Jinv_11 = d_11 / detJ;
+    const double Jinv_12 = d_21 / detJ;
+    const double Jinv_20 = d_02 / detJ;
+    const double Jinv_21 = d_12 / detJ;
+    const double Jinv_22 = d_22 / detJ;
     
     // Take absolute value of determinant
     detJ = std::abs(detJ);
@@ -9229,487 +8905,184 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c3_4_0_0 = w[3][0];
+    const double c4_4_1_0 = w[4][0];
+    const double c3_5_0_0 = w[3][0];
+    const double c4_5_1_0 = w[4][0];
+    const double c3_6_0_0 = w[3][0];
+    const double c4_6_1_0 = w[4][0];
+    const double c2_8_0_0 = w[2][0];
+    const double c0_8_1_4 = w[0][4];
+    const double c0_8_1_5 = w[0][5];
+    const double c0_8_1_6 = w[0][6];
+    const double c0_8_1_7 = w[0][7];
+    const double c0_8_2_4 = w[0][4];
+    const double c0_8_2_5 = w[0][5];
+    const double c0_8_2_6 = w[0][6];
+    const double c0_8_2_7 = w[0][7];
+    const double c2_9_0_0 = w[2][0];
+    const double c0_9_1_4 = w[0][4];
+    const double c0_9_1_5 = w[0][5];
+    const double c0_9_1_6 = w[0][6];
+    const double c0_9_1_7 = w[0][7];
+    const double c0_9_2_4 = w[0][4];
+    const double c0_9_2_5 = w[0][5];
+    const double c0_9_2_6 = w[0][6];
+    const double c0_9_2_7 = w[0][7];
+    const double c2_10_0_0 = w[2][0];
+    const double c0_10_1_4 = w[0][4];
+    const double c0_10_1_5 = w[0][5];
+    const double c0_10_1_6 = w[0][6];
+    const double c0_10_1_7 = w[0][7];
+    const double c2_11_0_0 = w[2][0];
+    const double c0_11_1_4 = w[0][4];
+    const double c0_11_1_5 = w[0][5];
+    const double c0_11_1_6 = w[0][6];
+    const double c0_11_1_7 = w[0][7];
+    const double c2_12_0_0 = w[2][0];
+    const double c2_13_0_0 = w[2][0];
+    const double c0_13_1_4 = w[0][4];
+    const double c0_13_1_5 = w[0][5];
+    const double c0_13_1_6 = w[0][6];
+    const double c0_13_1_7 = w[0][7];
+    const double c0_13_2_4 = w[0][4];
+    const double c0_13_2_5 = w[0][5];
+    const double c0_13_2_6 = w[0][6];
+    const double c0_13_2_7 = w[0][7];
+    const double c2_14_0_0 = w[2][0];
+    const double c0_14_1_4 = w[0][4];
+    const double c0_14_1_5 = w[0][5];
+    const double c0_14_1_6 = w[0][6];
+    const double c0_14_1_7 = w[0][7];
+    const double c1_15_0_0 = w[1][0];
+    const double c1_16_0_0 = w[1][0];
+    const double c1_17_0_0 = w[1][0];
+    
     // Compute geometry tensors
     const double G0_ = det;
-    const double G1_0_0_0_0 = det*w[3][0]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][0]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][0]*w[4][0]*Jinv_02*Jinv_02;
-    const double G1_0_0_0_1 = det*w[3][0]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][0]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][0]*w[4][0]*Jinv_02*Jinv_12;
-    const double G1_0_0_0_2 = det*w[3][0]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][0]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][0]*w[4][0]*Jinv_02*Jinv_22;
-    const double G1_0_0_1_0 = det*w[3][0]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][0]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][0]*w[4][0]*Jinv_12*Jinv_02;
-    const double G1_0_0_1_1 = det*w[3][0]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][0]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][0]*w[4][0]*Jinv_12*Jinv_12;
-    const double G1_0_0_1_2 = det*w[3][0]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][0]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][0]*w[4][0]*Jinv_12*Jinv_22;
-    const double G1_0_0_2_0 = det*w[3][0]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][0]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][0]*w[4][0]*Jinv_22*Jinv_02;
-    const double G1_0_0_2_1 = det*w[3][0]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][0]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][0]*w[4][0]*Jinv_22*Jinv_12;
-    const double G1_0_0_2_2 = det*w[3][0]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][0]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][0]*w[4][0]*Jinv_22*Jinv_22;
-    const double G1_0_1_0_0 = det*w[3][0]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][0]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][0]*w[4][1]*Jinv_02*Jinv_02;
-    const double G1_0_1_1_0 = det*w[3][0]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][0]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][0]*w[4][1]*Jinv_12*Jinv_02;
-    const double G1_0_1_2_0 = det*w[3][0]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][0]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][0]*w[4][1]*Jinv_22*Jinv_02;
-    const double G1_0_2_0_1 = det*w[3][0]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][0]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][0]*w[4][2]*Jinv_02*Jinv_12;
-    const double G1_0_2_1_1 = det*w[3][0]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][0]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][0]*w[4][2]*Jinv_12*Jinv_12;
-    const double G1_0_2_2_1 = det*w[3][0]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][0]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][0]*w[4][2]*Jinv_22*Jinv_12;
-    const double G1_0_3_0_2 = det*w[3][0]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][0]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][0]*w[4][3]*Jinv_02*Jinv_22;
-    const double G1_0_3_1_2 = det*w[3][0]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][0]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][0]*w[4][3]*Jinv_12*Jinv_22;
-    const double G1_0_3_2_2 = det*w[3][0]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][0]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][0]*w[4][3]*Jinv_22*Jinv_22;
-    const double G1_1_0_0_0 = det*w[3][1]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][1]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][1]*w[4][0]*Jinv_02*Jinv_02;
-    const double G1_1_0_0_1 = det*w[3][1]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][1]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][1]*w[4][0]*Jinv_02*Jinv_12;
-    const double G1_1_0_0_2 = det*w[3][1]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][1]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][1]*w[4][0]*Jinv_02*Jinv_22;
-    const double G1_1_0_1_0 = det*w[3][1]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][1]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][1]*w[4][0]*Jinv_12*Jinv_02;
-    const double G1_1_0_1_1 = det*w[3][1]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][1]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][1]*w[4][0]*Jinv_12*Jinv_12;
-    const double G1_1_0_1_2 = det*w[3][1]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][1]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][1]*w[4][0]*Jinv_12*Jinv_22;
-    const double G1_1_0_2_0 = det*w[3][1]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][1]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][1]*w[4][0]*Jinv_22*Jinv_02;
-    const double G1_1_0_2_1 = det*w[3][1]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][1]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][1]*w[4][0]*Jinv_22*Jinv_12;
-    const double G1_1_0_2_2 = det*w[3][1]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][1]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][1]*w[4][0]*Jinv_22*Jinv_22;
-    const double G1_1_1_0_0 = det*w[3][1]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][1]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][1]*w[4][1]*Jinv_02*Jinv_02;
-    const double G1_1_1_1_0 = det*w[3][1]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][1]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][1]*w[4][1]*Jinv_12*Jinv_02;
-    const double G1_1_1_2_0 = det*w[3][1]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][1]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][1]*w[4][1]*Jinv_22*Jinv_02;
-    const double G1_1_2_0_1 = det*w[3][1]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][1]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][1]*w[4][2]*Jinv_02*Jinv_12;
-    const double G1_1_2_1_1 = det*w[3][1]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][1]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][1]*w[4][2]*Jinv_12*Jinv_12;
-    const double G1_1_2_2_1 = det*w[3][1]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][1]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][1]*w[4][2]*Jinv_22*Jinv_12;
-    const double G1_1_3_0_2 = det*w[3][1]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][1]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][1]*w[4][3]*Jinv_02*Jinv_22;
-    const double G1_1_3_1_2 = det*w[3][1]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][1]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][1]*w[4][3]*Jinv_12*Jinv_22;
-    const double G1_1_3_2_2 = det*w[3][1]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][1]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][1]*w[4][3]*Jinv_22*Jinv_22;
-    const double G1_2_0_0_0 = det*w[3][2]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][2]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][2]*w[4][0]*Jinv_02*Jinv_02;
-    const double G1_2_0_0_1 = det*w[3][2]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][2]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][2]*w[4][0]*Jinv_02*Jinv_12;
-    const double G1_2_0_0_2 = det*w[3][2]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][2]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][2]*w[4][0]*Jinv_02*Jinv_22;
-    const double G1_2_0_1_0 = det*w[3][2]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][2]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][2]*w[4][0]*Jinv_12*Jinv_02;
-    const double G1_2_0_1_1 = det*w[3][2]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][2]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][2]*w[4][0]*Jinv_12*Jinv_12;
-    const double G1_2_0_1_2 = det*w[3][2]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][2]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][2]*w[4][0]*Jinv_12*Jinv_22;
-    const double G1_2_0_2_0 = det*w[3][2]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][2]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][2]*w[4][0]*Jinv_22*Jinv_02;
-    const double G1_2_0_2_1 = det*w[3][2]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][2]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][2]*w[4][0]*Jinv_22*Jinv_12;
-    const double G1_2_0_2_2 = det*w[3][2]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][2]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][2]*w[4][0]*Jinv_22*Jinv_22;
-    const double G1_2_1_0_0 = det*w[3][2]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][2]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][2]*w[4][1]*Jinv_02*Jinv_02;
-    const double G1_2_1_1_0 = det*w[3][2]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][2]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][2]*w[4][1]*Jinv_12*Jinv_02;
-    const double G1_2_1_2_0 = det*w[3][2]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][2]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][2]*w[4][1]*Jinv_22*Jinv_02;
-    const double G1_2_2_0_1 = det*w[3][2]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][2]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][2]*w[4][2]*Jinv_02*Jinv_12;
-    const double G1_2_2_1_1 = det*w[3][2]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][2]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][2]*w[4][2]*Jinv_12*Jinv_12;
-    const double G1_2_2_2_1 = det*w[3][2]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][2]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][2]*w[4][2]*Jinv_22*Jinv_12;
-    const double G1_2_3_0_2 = det*w[3][2]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][2]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][2]*w[4][3]*Jinv_02*Jinv_22;
-    const double G1_2_3_1_2 = det*w[3][2]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][2]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][2]*w[4][3]*Jinv_12*Jinv_22;
-    const double G1_2_3_2_2 = det*w[3][2]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][2]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][2]*w[4][3]*Jinv_22*Jinv_22;
-    const double G1_3_0_0_0 = det*w[3][3]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][3]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][3]*w[4][0]*Jinv_02*Jinv_02;
-    const double G1_3_0_0_1 = det*w[3][3]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][3]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][3]*w[4][0]*Jinv_02*Jinv_12;
-    const double G1_3_0_0_2 = det*w[3][3]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][3]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][3]*w[4][0]*Jinv_02*Jinv_22;
-    const double G1_3_0_1_0 = det*w[3][3]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][3]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][3]*w[4][0]*Jinv_12*Jinv_02;
-    const double G1_3_0_1_1 = det*w[3][3]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][3]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][3]*w[4][0]*Jinv_12*Jinv_12;
-    const double G1_3_0_1_2 = det*w[3][3]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][3]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][3]*w[4][0]*Jinv_12*Jinv_22;
-    const double G1_3_0_2_0 = det*w[3][3]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][3]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][3]*w[4][0]*Jinv_22*Jinv_02;
-    const double G1_3_0_2_1 = det*w[3][3]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][3]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][3]*w[4][0]*Jinv_22*Jinv_12;
-    const double G1_3_0_2_2 = det*w[3][3]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][3]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][3]*w[4][0]*Jinv_22*Jinv_22;
-    const double G1_3_1_0_0 = det*w[3][3]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][3]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][3]*w[4][1]*Jinv_02*Jinv_02;
-    const double G1_3_1_1_0 = det*w[3][3]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][3]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][3]*w[4][1]*Jinv_12*Jinv_02;
-    const double G1_3_1_2_0 = det*w[3][3]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][3]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][3]*w[4][1]*Jinv_22*Jinv_02;
-    const double G1_3_2_0_1 = det*w[3][3]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][3]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][3]*w[4][2]*Jinv_02*Jinv_12;
-    const double G1_3_2_1_1 = det*w[3][3]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][3]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][3]*w[4][2]*Jinv_12*Jinv_12;
-    const double G1_3_2_2_1 = det*w[3][3]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][3]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][3]*w[4][2]*Jinv_22*Jinv_12;
-    const double G1_3_3_0_2 = det*w[3][3]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][3]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][3]*w[4][3]*Jinv_02*Jinv_22;
-    const double G1_3_3_1_2 = det*w[3][3]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][3]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][3]*w[4][3]*Jinv_12*Jinv_22;
-    const double G1_3_3_2_2 = det*w[3][3]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][3]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][3]*w[4][3]*Jinv_22*Jinv_22;
-    const double G2_0_0_0_0 = det*w[3][0]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][0]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][0]*w[4][0]*Jinv_02*Jinv_02;
-    const double G2_0_0_0_1 = det*w[3][0]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][0]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][0]*w[4][0]*Jinv_02*Jinv_12;
-    const double G2_0_0_0_2 = det*w[3][0]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][0]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][0]*w[4][0]*Jinv_02*Jinv_22;
-    const double G2_0_0_1_0 = det*w[3][0]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][0]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][0]*w[4][0]*Jinv_12*Jinv_02;
-    const double G2_0_0_1_1 = det*w[3][0]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][0]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][0]*w[4][0]*Jinv_12*Jinv_12;
-    const double G2_0_0_1_2 = det*w[3][0]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][0]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][0]*w[4][0]*Jinv_12*Jinv_22;
-    const double G2_0_0_2_0 = det*w[3][0]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][0]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][0]*w[4][0]*Jinv_22*Jinv_02;
-    const double G2_0_0_2_1 = det*w[3][0]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][0]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][0]*w[4][0]*Jinv_22*Jinv_12;
-    const double G2_0_0_2_2 = det*w[3][0]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][0]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][0]*w[4][0]*Jinv_22*Jinv_22;
-    const double G2_0_1_0_0 = det*w[3][0]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][0]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][0]*w[4][1]*Jinv_02*Jinv_02;
-    const double G2_0_1_0_1 = det*w[3][0]*w[4][1]*Jinv_00*Jinv_10 + det*w[3][0]*w[4][1]*Jinv_01*Jinv_11 + det*w[3][0]*w[4][1]*Jinv_02*Jinv_12;
-    const double G2_0_1_0_2 = det*w[3][0]*w[4][1]*Jinv_00*Jinv_20 + det*w[3][0]*w[4][1]*Jinv_01*Jinv_21 + det*w[3][0]*w[4][1]*Jinv_02*Jinv_22;
-    const double G2_0_1_1_0 = det*w[3][0]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][0]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][0]*w[4][1]*Jinv_12*Jinv_02;
-    const double G2_0_1_1_1 = det*w[3][0]*w[4][1]*Jinv_10*Jinv_10 + det*w[3][0]*w[4][1]*Jinv_11*Jinv_11 + det*w[3][0]*w[4][1]*Jinv_12*Jinv_12;
-    const double G2_0_1_1_2 = det*w[3][0]*w[4][1]*Jinv_10*Jinv_20 + det*w[3][0]*w[4][1]*Jinv_11*Jinv_21 + det*w[3][0]*w[4][1]*Jinv_12*Jinv_22;
-    const double G2_0_1_2_0 = det*w[3][0]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][0]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][0]*w[4][1]*Jinv_22*Jinv_02;
-    const double G2_0_1_2_1 = det*w[3][0]*w[4][1]*Jinv_20*Jinv_10 + det*w[3][0]*w[4][1]*Jinv_21*Jinv_11 + det*w[3][0]*w[4][1]*Jinv_22*Jinv_12;
-    const double G2_0_1_2_2 = det*w[3][0]*w[4][1]*Jinv_20*Jinv_20 + det*w[3][0]*w[4][1]*Jinv_21*Jinv_21 + det*w[3][0]*w[4][1]*Jinv_22*Jinv_22;
-    const double G2_0_2_0_0 = det*w[3][0]*w[4][2]*Jinv_00*Jinv_00 + det*w[3][0]*w[4][2]*Jinv_01*Jinv_01 + det*w[3][0]*w[4][2]*Jinv_02*Jinv_02;
-    const double G2_0_2_0_1 = det*w[3][0]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][0]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][0]*w[4][2]*Jinv_02*Jinv_12;
-    const double G2_0_2_0_2 = det*w[3][0]*w[4][2]*Jinv_00*Jinv_20 + det*w[3][0]*w[4][2]*Jinv_01*Jinv_21 + det*w[3][0]*w[4][2]*Jinv_02*Jinv_22;
-    const double G2_0_2_1_0 = det*w[3][0]*w[4][2]*Jinv_10*Jinv_00 + det*w[3][0]*w[4][2]*Jinv_11*Jinv_01 + det*w[3][0]*w[4][2]*Jinv_12*Jinv_02;
-    const double G2_0_2_1_1 = det*w[3][0]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][0]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][0]*w[4][2]*Jinv_12*Jinv_12;
-    const double G2_0_2_1_2 = det*w[3][0]*w[4][2]*Jinv_10*Jinv_20 + det*w[3][0]*w[4][2]*Jinv_11*Jinv_21 + det*w[3][0]*w[4][2]*Jinv_12*Jinv_22;
-    const double G2_0_2_2_0 = det*w[3][0]*w[4][2]*Jinv_20*Jinv_00 + det*w[3][0]*w[4][2]*Jinv_21*Jinv_01 + det*w[3][0]*w[4][2]*Jinv_22*Jinv_02;
-    const double G2_0_2_2_1 = det*w[3][0]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][0]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][0]*w[4][2]*Jinv_22*Jinv_12;
-    const double G2_0_2_2_2 = det*w[3][0]*w[4][2]*Jinv_20*Jinv_20 + det*w[3][0]*w[4][2]*Jinv_21*Jinv_21 + det*w[3][0]*w[4][2]*Jinv_22*Jinv_22;
-    const double G2_0_3_0_0 = det*w[3][0]*w[4][3]*Jinv_00*Jinv_00 + det*w[3][0]*w[4][3]*Jinv_01*Jinv_01 + det*w[3][0]*w[4][3]*Jinv_02*Jinv_02;
-    const double G2_0_3_0_1 = det*w[3][0]*w[4][3]*Jinv_00*Jinv_10 + det*w[3][0]*w[4][3]*Jinv_01*Jinv_11 + det*w[3][0]*w[4][3]*Jinv_02*Jinv_12;
-    const double G2_0_3_0_2 = det*w[3][0]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][0]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][0]*w[4][3]*Jinv_02*Jinv_22;
-    const double G2_0_3_1_0 = det*w[3][0]*w[4][3]*Jinv_10*Jinv_00 + det*w[3][0]*w[4][3]*Jinv_11*Jinv_01 + det*w[3][0]*w[4][3]*Jinv_12*Jinv_02;
-    const double G2_0_3_1_1 = det*w[3][0]*w[4][3]*Jinv_10*Jinv_10 + det*w[3][0]*w[4][3]*Jinv_11*Jinv_11 + det*w[3][0]*w[4][3]*Jinv_12*Jinv_12;
-    const double G2_0_3_1_2 = det*w[3][0]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][0]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][0]*w[4][3]*Jinv_12*Jinv_22;
-    const double G2_0_3_2_0 = det*w[3][0]*w[4][3]*Jinv_20*Jinv_00 + det*w[3][0]*w[4][3]*Jinv_21*Jinv_01 + det*w[3][0]*w[4][3]*Jinv_22*Jinv_02;
-    const double G2_0_3_2_1 = det*w[3][0]*w[4][3]*Jinv_20*Jinv_10 + det*w[3][0]*w[4][3]*Jinv_21*Jinv_11 + det*w[3][0]*w[4][3]*Jinv_22*Jinv_12;
-    const double G2_0_3_2_2 = det*w[3][0]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][0]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][0]*w[4][3]*Jinv_22*Jinv_22;
-    const double G2_1_0_0_0 = det*w[3][1]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][1]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][1]*w[4][0]*Jinv_02*Jinv_02;
-    const double G2_1_0_0_1 = det*w[3][1]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][1]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][1]*w[4][0]*Jinv_02*Jinv_12;
-    const double G2_1_0_0_2 = det*w[3][1]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][1]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][1]*w[4][0]*Jinv_02*Jinv_22;
-    const double G2_1_0_1_0 = det*w[3][1]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][1]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][1]*w[4][0]*Jinv_12*Jinv_02;
-    const double G2_1_0_1_1 = det*w[3][1]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][1]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][1]*w[4][0]*Jinv_12*Jinv_12;
-    const double G2_1_0_1_2 = det*w[3][1]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][1]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][1]*w[4][0]*Jinv_12*Jinv_22;
-    const double G2_1_0_2_0 = det*w[3][1]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][1]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][1]*w[4][0]*Jinv_22*Jinv_02;
-    const double G2_1_0_2_1 = det*w[3][1]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][1]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][1]*w[4][0]*Jinv_22*Jinv_12;
-    const double G2_1_0_2_2 = det*w[3][1]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][1]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][1]*w[4][0]*Jinv_22*Jinv_22;
-    const double G2_1_1_0_0 = det*w[3][1]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][1]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][1]*w[4][1]*Jinv_02*Jinv_02;
-    const double G2_1_1_0_1 = det*w[3][1]*w[4][1]*Jinv_00*Jinv_10 + det*w[3][1]*w[4][1]*Jinv_01*Jinv_11 + det*w[3][1]*w[4][1]*Jinv_02*Jinv_12;
-    const double G2_1_1_0_2 = det*w[3][1]*w[4][1]*Jinv_00*Jinv_20 + det*w[3][1]*w[4][1]*Jinv_01*Jinv_21 + det*w[3][1]*w[4][1]*Jinv_02*Jinv_22;
-    const double G2_1_1_1_0 = det*w[3][1]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][1]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][1]*w[4][1]*Jinv_12*Jinv_02;
-    const double G2_1_1_1_1 = det*w[3][1]*w[4][1]*Jinv_10*Jinv_10 + det*w[3][1]*w[4][1]*Jinv_11*Jinv_11 + det*w[3][1]*w[4][1]*Jinv_12*Jinv_12;
-    const double G2_1_1_1_2 = det*w[3][1]*w[4][1]*Jinv_10*Jinv_20 + det*w[3][1]*w[4][1]*Jinv_11*Jinv_21 + det*w[3][1]*w[4][1]*Jinv_12*Jinv_22;
-    const double G2_1_1_2_0 = det*w[3][1]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][1]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][1]*w[4][1]*Jinv_22*Jinv_02;
-    const double G2_1_1_2_1 = det*w[3][1]*w[4][1]*Jinv_20*Jinv_10 + det*w[3][1]*w[4][1]*Jinv_21*Jinv_11 + det*w[3][1]*w[4][1]*Jinv_22*Jinv_12;
-    const double G2_1_1_2_2 = det*w[3][1]*w[4][1]*Jinv_20*Jinv_20 + det*w[3][1]*w[4][1]*Jinv_21*Jinv_21 + det*w[3][1]*w[4][1]*Jinv_22*Jinv_22;
-    const double G2_1_2_0_0 = det*w[3][1]*w[4][2]*Jinv_00*Jinv_00 + det*w[3][1]*w[4][2]*Jinv_01*Jinv_01 + det*w[3][1]*w[4][2]*Jinv_02*Jinv_02;
-    const double G2_1_2_0_1 = det*w[3][1]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][1]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][1]*w[4][2]*Jinv_02*Jinv_12;
-    const double G2_1_2_0_2 = det*w[3][1]*w[4][2]*Jinv_00*Jinv_20 + det*w[3][1]*w[4][2]*Jinv_01*Jinv_21 + det*w[3][1]*w[4][2]*Jinv_02*Jinv_22;
-    const double G2_1_2_1_0 = det*w[3][1]*w[4][2]*Jinv_10*Jinv_00 + det*w[3][1]*w[4][2]*Jinv_11*Jinv_01 + det*w[3][1]*w[4][2]*Jinv_12*Jinv_02;
-    const double G2_1_2_1_1 = det*w[3][1]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][1]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][1]*w[4][2]*Jinv_12*Jinv_12;
-    const double G2_1_2_1_2 = det*w[3][1]*w[4][2]*Jinv_10*Jinv_20 + det*w[3][1]*w[4][2]*Jinv_11*Jinv_21 + det*w[3][1]*w[4][2]*Jinv_12*Jinv_22;
-    const double G2_1_2_2_0 = det*w[3][1]*w[4][2]*Jinv_20*Jinv_00 + det*w[3][1]*w[4][2]*Jinv_21*Jinv_01 + det*w[3][1]*w[4][2]*Jinv_22*Jinv_02;
-    const double G2_1_2_2_1 = det*w[3][1]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][1]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][1]*w[4][2]*Jinv_22*Jinv_12;
-    const double G2_1_2_2_2 = det*w[3][1]*w[4][2]*Jinv_20*Jinv_20 + det*w[3][1]*w[4][2]*Jinv_21*Jinv_21 + det*w[3][1]*w[4][2]*Jinv_22*Jinv_22;
-    const double G2_1_3_0_0 = det*w[3][1]*w[4][3]*Jinv_00*Jinv_00 + det*w[3][1]*w[4][3]*Jinv_01*Jinv_01 + det*w[3][1]*w[4][3]*Jinv_02*Jinv_02;
-    const double G2_1_3_0_1 = det*w[3][1]*w[4][3]*Jinv_00*Jinv_10 + det*w[3][1]*w[4][3]*Jinv_01*Jinv_11 + det*w[3][1]*w[4][3]*Jinv_02*Jinv_12;
-    const double G2_1_3_0_2 = det*w[3][1]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][1]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][1]*w[4][3]*Jinv_02*Jinv_22;
-    const double G2_1_3_1_0 = det*w[3][1]*w[4][3]*Jinv_10*Jinv_00 + det*w[3][1]*w[4][3]*Jinv_11*Jinv_01 + det*w[3][1]*w[4][3]*Jinv_12*Jinv_02;
-    const double G2_1_3_1_1 = det*w[3][1]*w[4][3]*Jinv_10*Jinv_10 + det*w[3][1]*w[4][3]*Jinv_11*Jinv_11 + det*w[3][1]*w[4][3]*Jinv_12*Jinv_12;
-    const double G2_1_3_1_2 = det*w[3][1]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][1]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][1]*w[4][3]*Jinv_12*Jinv_22;
-    const double G2_1_3_2_0 = det*w[3][1]*w[4][3]*Jinv_20*Jinv_00 + det*w[3][1]*w[4][3]*Jinv_21*Jinv_01 + det*w[3][1]*w[4][3]*Jinv_22*Jinv_02;
-    const double G2_1_3_2_1 = det*w[3][1]*w[4][3]*Jinv_20*Jinv_10 + det*w[3][1]*w[4][3]*Jinv_21*Jinv_11 + det*w[3][1]*w[4][3]*Jinv_22*Jinv_12;
-    const double G2_1_3_2_2 = det*w[3][1]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][1]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][1]*w[4][3]*Jinv_22*Jinv_22;
-    const double G2_2_0_0_0 = det*w[3][2]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][2]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][2]*w[4][0]*Jinv_02*Jinv_02;
-    const double G2_2_0_0_1 = det*w[3][2]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][2]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][2]*w[4][0]*Jinv_02*Jinv_12;
-    const double G2_2_0_0_2 = det*w[3][2]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][2]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][2]*w[4][0]*Jinv_02*Jinv_22;
-    const double G2_2_0_1_0 = det*w[3][2]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][2]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][2]*w[4][0]*Jinv_12*Jinv_02;
-    const double G2_2_0_1_1 = det*w[3][2]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][2]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][2]*w[4][0]*Jinv_12*Jinv_12;
-    const double G2_2_0_1_2 = det*w[3][2]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][2]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][2]*w[4][0]*Jinv_12*Jinv_22;
-    const double G2_2_0_2_0 = det*w[3][2]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][2]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][2]*w[4][0]*Jinv_22*Jinv_02;
-    const double G2_2_0_2_1 = det*w[3][2]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][2]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][2]*w[4][0]*Jinv_22*Jinv_12;
-    const double G2_2_0_2_2 = det*w[3][2]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][2]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][2]*w[4][0]*Jinv_22*Jinv_22;
-    const double G2_2_1_0_0 = det*w[3][2]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][2]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][2]*w[4][1]*Jinv_02*Jinv_02;
-    const double G2_2_1_0_1 = det*w[3][2]*w[4][1]*Jinv_00*Jinv_10 + det*w[3][2]*w[4][1]*Jinv_01*Jinv_11 + det*w[3][2]*w[4][1]*Jinv_02*Jinv_12;
-    const double G2_2_1_0_2 = det*w[3][2]*w[4][1]*Jinv_00*Jinv_20 + det*w[3][2]*w[4][1]*Jinv_01*Jinv_21 + det*w[3][2]*w[4][1]*Jinv_02*Jinv_22;
-    const double G2_2_1_1_0 = det*w[3][2]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][2]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][2]*w[4][1]*Jinv_12*Jinv_02;
-    const double G2_2_1_1_1 = det*w[3][2]*w[4][1]*Jinv_10*Jinv_10 + det*w[3][2]*w[4][1]*Jinv_11*Jinv_11 + det*w[3][2]*w[4][1]*Jinv_12*Jinv_12;
-    const double G2_2_1_1_2 = det*w[3][2]*w[4][1]*Jinv_10*Jinv_20 + det*w[3][2]*w[4][1]*Jinv_11*Jinv_21 + det*w[3][2]*w[4][1]*Jinv_12*Jinv_22;
-    const double G2_2_1_2_0 = det*w[3][2]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][2]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][2]*w[4][1]*Jinv_22*Jinv_02;
-    const double G2_2_1_2_1 = det*w[3][2]*w[4][1]*Jinv_20*Jinv_10 + det*w[3][2]*w[4][1]*Jinv_21*Jinv_11 + det*w[3][2]*w[4][1]*Jinv_22*Jinv_12;
-    const double G2_2_1_2_2 = det*w[3][2]*w[4][1]*Jinv_20*Jinv_20 + det*w[3][2]*w[4][1]*Jinv_21*Jinv_21 + det*w[3][2]*w[4][1]*Jinv_22*Jinv_22;
-    const double G2_2_2_0_0 = det*w[3][2]*w[4][2]*Jinv_00*Jinv_00 + det*w[3][2]*w[4][2]*Jinv_01*Jinv_01 + det*w[3][2]*w[4][2]*Jinv_02*Jinv_02;
-    const double G2_2_2_0_1 = det*w[3][2]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][2]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][2]*w[4][2]*Jinv_02*Jinv_12;
-    const double G2_2_2_0_2 = det*w[3][2]*w[4][2]*Jinv_00*Jinv_20 + det*w[3][2]*w[4][2]*Jinv_01*Jinv_21 + det*w[3][2]*w[4][2]*Jinv_02*Jinv_22;
-    const double G2_2_2_1_0 = det*w[3][2]*w[4][2]*Jinv_10*Jinv_00 + det*w[3][2]*w[4][2]*Jinv_11*Jinv_01 + det*w[3][2]*w[4][2]*Jinv_12*Jinv_02;
-    const double G2_2_2_1_1 = det*w[3][2]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][2]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][2]*w[4][2]*Jinv_12*Jinv_12;
-    const double G2_2_2_1_2 = det*w[3][2]*w[4][2]*Jinv_10*Jinv_20 + det*w[3][2]*w[4][2]*Jinv_11*Jinv_21 + det*w[3][2]*w[4][2]*Jinv_12*Jinv_22;
-    const double G2_2_2_2_0 = det*w[3][2]*w[4][2]*Jinv_20*Jinv_00 + det*w[3][2]*w[4][2]*Jinv_21*Jinv_01 + det*w[3][2]*w[4][2]*Jinv_22*Jinv_02;
-    const double G2_2_2_2_1 = det*w[3][2]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][2]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][2]*w[4][2]*Jinv_22*Jinv_12;
-    const double G2_2_2_2_2 = det*w[3][2]*w[4][2]*Jinv_20*Jinv_20 + det*w[3][2]*w[4][2]*Jinv_21*Jinv_21 + det*w[3][2]*w[4][2]*Jinv_22*Jinv_22;
-    const double G2_2_3_0_0 = det*w[3][2]*w[4][3]*Jinv_00*Jinv_00 + det*w[3][2]*w[4][3]*Jinv_01*Jinv_01 + det*w[3][2]*w[4][3]*Jinv_02*Jinv_02;
-    const double G2_2_3_0_1 = det*w[3][2]*w[4][3]*Jinv_00*Jinv_10 + det*w[3][2]*w[4][3]*Jinv_01*Jinv_11 + det*w[3][2]*w[4][3]*Jinv_02*Jinv_12;
-    const double G2_2_3_0_2 = det*w[3][2]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][2]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][2]*w[4][3]*Jinv_02*Jinv_22;
-    const double G2_2_3_1_0 = det*w[3][2]*w[4][3]*Jinv_10*Jinv_00 + det*w[3][2]*w[4][3]*Jinv_11*Jinv_01 + det*w[3][2]*w[4][3]*Jinv_12*Jinv_02;
-    const double G2_2_3_1_1 = det*w[3][2]*w[4][3]*Jinv_10*Jinv_10 + det*w[3][2]*w[4][3]*Jinv_11*Jinv_11 + det*w[3][2]*w[4][3]*Jinv_12*Jinv_12;
-    const double G2_2_3_1_2 = det*w[3][2]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][2]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][2]*w[4][3]*Jinv_12*Jinv_22;
-    const double G2_2_3_2_0 = det*w[3][2]*w[4][3]*Jinv_20*Jinv_00 + det*w[3][2]*w[4][3]*Jinv_21*Jinv_01 + det*w[3][2]*w[4][3]*Jinv_22*Jinv_02;
-    const double G2_2_3_2_1 = det*w[3][2]*w[4][3]*Jinv_20*Jinv_10 + det*w[3][2]*w[4][3]*Jinv_21*Jinv_11 + det*w[3][2]*w[4][3]*Jinv_22*Jinv_12;
-    const double G2_2_3_2_2 = det*w[3][2]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][2]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][2]*w[4][3]*Jinv_22*Jinv_22;
-    const double G2_3_0_0_0 = det*w[3][3]*w[4][0]*Jinv_00*Jinv_00 + det*w[3][3]*w[4][0]*Jinv_01*Jinv_01 + det*w[3][3]*w[4][0]*Jinv_02*Jinv_02;
-    const double G2_3_0_0_1 = det*w[3][3]*w[4][0]*Jinv_00*Jinv_10 + det*w[3][3]*w[4][0]*Jinv_01*Jinv_11 + det*w[3][3]*w[4][0]*Jinv_02*Jinv_12;
-    const double G2_3_0_0_2 = det*w[3][3]*w[4][0]*Jinv_00*Jinv_20 + det*w[3][3]*w[4][0]*Jinv_01*Jinv_21 + det*w[3][3]*w[4][0]*Jinv_02*Jinv_22;
-    const double G2_3_0_1_0 = det*w[3][3]*w[4][0]*Jinv_10*Jinv_00 + det*w[3][3]*w[4][0]*Jinv_11*Jinv_01 + det*w[3][3]*w[4][0]*Jinv_12*Jinv_02;
-    const double G2_3_0_1_1 = det*w[3][3]*w[4][0]*Jinv_10*Jinv_10 + det*w[3][3]*w[4][0]*Jinv_11*Jinv_11 + det*w[3][3]*w[4][0]*Jinv_12*Jinv_12;
-    const double G2_3_0_1_2 = det*w[3][3]*w[4][0]*Jinv_10*Jinv_20 + det*w[3][3]*w[4][0]*Jinv_11*Jinv_21 + det*w[3][3]*w[4][0]*Jinv_12*Jinv_22;
-    const double G2_3_0_2_0 = det*w[3][3]*w[4][0]*Jinv_20*Jinv_00 + det*w[3][3]*w[4][0]*Jinv_21*Jinv_01 + det*w[3][3]*w[4][0]*Jinv_22*Jinv_02;
-    const double G2_3_0_2_1 = det*w[3][3]*w[4][0]*Jinv_20*Jinv_10 + det*w[3][3]*w[4][0]*Jinv_21*Jinv_11 + det*w[3][3]*w[4][0]*Jinv_22*Jinv_12;
-    const double G2_3_0_2_2 = det*w[3][3]*w[4][0]*Jinv_20*Jinv_20 + det*w[3][3]*w[4][0]*Jinv_21*Jinv_21 + det*w[3][3]*w[4][0]*Jinv_22*Jinv_22;
-    const double G2_3_1_0_0 = det*w[3][3]*w[4][1]*Jinv_00*Jinv_00 + det*w[3][3]*w[4][1]*Jinv_01*Jinv_01 + det*w[3][3]*w[4][1]*Jinv_02*Jinv_02;
-    const double G2_3_1_0_1 = det*w[3][3]*w[4][1]*Jinv_00*Jinv_10 + det*w[3][3]*w[4][1]*Jinv_01*Jinv_11 + det*w[3][3]*w[4][1]*Jinv_02*Jinv_12;
-    const double G2_3_1_0_2 = det*w[3][3]*w[4][1]*Jinv_00*Jinv_20 + det*w[3][3]*w[4][1]*Jinv_01*Jinv_21 + det*w[3][3]*w[4][1]*Jinv_02*Jinv_22;
-    const double G2_3_1_1_0 = det*w[3][3]*w[4][1]*Jinv_10*Jinv_00 + det*w[3][3]*w[4][1]*Jinv_11*Jinv_01 + det*w[3][3]*w[4][1]*Jinv_12*Jinv_02;
-    const double G2_3_1_1_1 = det*w[3][3]*w[4][1]*Jinv_10*Jinv_10 + det*w[3][3]*w[4][1]*Jinv_11*Jinv_11 + det*w[3][3]*w[4][1]*Jinv_12*Jinv_12;
-    const double G2_3_1_1_2 = det*w[3][3]*w[4][1]*Jinv_10*Jinv_20 + det*w[3][3]*w[4][1]*Jinv_11*Jinv_21 + det*w[3][3]*w[4][1]*Jinv_12*Jinv_22;
-    const double G2_3_1_2_0 = det*w[3][3]*w[4][1]*Jinv_20*Jinv_00 + det*w[3][3]*w[4][1]*Jinv_21*Jinv_01 + det*w[3][3]*w[4][1]*Jinv_22*Jinv_02;
-    const double G2_3_1_2_1 = det*w[3][3]*w[4][1]*Jinv_20*Jinv_10 + det*w[3][3]*w[4][1]*Jinv_21*Jinv_11 + det*w[3][3]*w[4][1]*Jinv_22*Jinv_12;
-    const double G2_3_1_2_2 = det*w[3][3]*w[4][1]*Jinv_20*Jinv_20 + det*w[3][3]*w[4][1]*Jinv_21*Jinv_21 + det*w[3][3]*w[4][1]*Jinv_22*Jinv_22;
-    const double G2_3_2_0_0 = det*w[3][3]*w[4][2]*Jinv_00*Jinv_00 + det*w[3][3]*w[4][2]*Jinv_01*Jinv_01 + det*w[3][3]*w[4][2]*Jinv_02*Jinv_02;
-    const double G2_3_2_0_1 = det*w[3][3]*w[4][2]*Jinv_00*Jinv_10 + det*w[3][3]*w[4][2]*Jinv_01*Jinv_11 + det*w[3][3]*w[4][2]*Jinv_02*Jinv_12;
-    const double G2_3_2_0_2 = det*w[3][3]*w[4][2]*Jinv_00*Jinv_20 + det*w[3][3]*w[4][2]*Jinv_01*Jinv_21 + det*w[3][3]*w[4][2]*Jinv_02*Jinv_22;
-    const double G2_3_2_1_0 = det*w[3][3]*w[4][2]*Jinv_10*Jinv_00 + det*w[3][3]*w[4][2]*Jinv_11*Jinv_01 + det*w[3][3]*w[4][2]*Jinv_12*Jinv_02;
-    const double G2_3_2_1_1 = det*w[3][3]*w[4][2]*Jinv_10*Jinv_10 + det*w[3][3]*w[4][2]*Jinv_11*Jinv_11 + det*w[3][3]*w[4][2]*Jinv_12*Jinv_12;
-    const double G2_3_2_1_2 = det*w[3][3]*w[4][2]*Jinv_10*Jinv_20 + det*w[3][3]*w[4][2]*Jinv_11*Jinv_21 + det*w[3][3]*w[4][2]*Jinv_12*Jinv_22;
-    const double G2_3_2_2_0 = det*w[3][3]*w[4][2]*Jinv_20*Jinv_00 + det*w[3][3]*w[4][2]*Jinv_21*Jinv_01 + det*w[3][3]*w[4][2]*Jinv_22*Jinv_02;
-    const double G2_3_2_2_1 = det*w[3][3]*w[4][2]*Jinv_20*Jinv_10 + det*w[3][3]*w[4][2]*Jinv_21*Jinv_11 + det*w[3][3]*w[4][2]*Jinv_22*Jinv_12;
-    const double G2_3_2_2_2 = det*w[3][3]*w[4][2]*Jinv_20*Jinv_20 + det*w[3][3]*w[4][2]*Jinv_21*Jinv_21 + det*w[3][3]*w[4][2]*Jinv_22*Jinv_22;
-    const double G2_3_3_0_0 = det*w[3][3]*w[4][3]*Jinv_00*Jinv_00 + det*w[3][3]*w[4][3]*Jinv_01*Jinv_01 + det*w[3][3]*w[4][3]*Jinv_02*Jinv_02;
-    const double G2_3_3_0_1 = det*w[3][3]*w[4][3]*Jinv_00*Jinv_10 + det*w[3][3]*w[4][3]*Jinv_01*Jinv_11 + det*w[3][3]*w[4][3]*Jinv_02*Jinv_12;
-    const double G2_3_3_0_2 = det*w[3][3]*w[4][3]*Jinv_00*Jinv_20 + det*w[3][3]*w[4][3]*Jinv_01*Jinv_21 + det*w[3][3]*w[4][3]*Jinv_02*Jinv_22;
-    const double G2_3_3_1_0 = det*w[3][3]*w[4][3]*Jinv_10*Jinv_00 + det*w[3][3]*w[4][3]*Jinv_11*Jinv_01 + det*w[3][3]*w[4][3]*Jinv_12*Jinv_02;
-    const double G2_3_3_1_1 = det*w[3][3]*w[4][3]*Jinv_10*Jinv_10 + det*w[3][3]*w[4][3]*Jinv_11*Jinv_11 + det*w[3][3]*w[4][3]*Jinv_12*Jinv_12;
-    const double G2_3_3_1_2 = det*w[3][3]*w[4][3]*Jinv_10*Jinv_20 + det*w[3][3]*w[4][3]*Jinv_11*Jinv_21 + det*w[3][3]*w[4][3]*Jinv_12*Jinv_22;
-    const double G2_3_3_2_0 = det*w[3][3]*w[4][3]*Jinv_20*Jinv_00 + det*w[3][3]*w[4][3]*Jinv_21*Jinv_01 + det*w[3][3]*w[4][3]*Jinv_22*Jinv_02;
-    const double G2_3_3_2_1 = det*w[3][3]*w[4][3]*Jinv_20*Jinv_10 + det*w[3][3]*w[4][3]*Jinv_21*Jinv_11 + det*w[3][3]*w[4][3]*Jinv_22*Jinv_12;
-    const double G2_3_3_2_2 = det*w[3][3]*w[4][3]*Jinv_20*Jinv_20 + det*w[3][3]*w[4][3]*Jinv_21*Jinv_21 + det*w[3][3]*w[4][3]*Jinv_22*Jinv_22;
+    const double G2_0_0_0_0 = det*(c3_4_0_0*c4_4_1_0*Jinv_00*Jinv_00 + c3_5_0_0*c4_5_1_0*Jinv_01*Jinv_01 + c3_6_0_0*c4_6_1_0*Jinv_02*Jinv_02);
+    const double G2_0_0_0_1 = det*(c3_4_0_0*c4_4_1_0*Jinv_00*Jinv_10 + c3_5_0_0*c4_5_1_0*Jinv_01*Jinv_11 + c3_6_0_0*c4_6_1_0*Jinv_02*Jinv_12);
+    const double G2_0_0_0_2 = det*(c3_4_0_0*c4_4_1_0*Jinv_00*Jinv_20 + c3_5_0_0*c4_5_1_0*Jinv_01*Jinv_21 + c3_6_0_0*c4_6_1_0*Jinv_02*Jinv_22);
+    const double G2_0_0_1_0 = det*(c3_4_0_0*c4_4_1_0*Jinv_10*Jinv_00 + c3_5_0_0*c4_5_1_0*Jinv_11*Jinv_01 + c3_6_0_0*c4_6_1_0*Jinv_12*Jinv_02);
+    const double G2_0_0_1_1 = det*(c3_4_0_0*c4_4_1_0*Jinv_10*Jinv_10 + c3_5_0_0*c4_5_1_0*Jinv_11*Jinv_11 + c3_6_0_0*c4_6_1_0*Jinv_12*Jinv_12);
+    const double G2_0_0_1_2 = det*(c3_4_0_0*c4_4_1_0*Jinv_10*Jinv_20 + c3_5_0_0*c4_5_1_0*Jinv_11*Jinv_21 + c3_6_0_0*c4_6_1_0*Jinv_12*Jinv_22);
+    const double G2_0_0_2_0 = det*(c3_4_0_0*c4_4_1_0*Jinv_20*Jinv_00 + c3_5_0_0*c4_5_1_0*Jinv_21*Jinv_01 + c3_6_0_0*c4_6_1_0*Jinv_22*Jinv_02);
+    const double G2_0_0_2_1 = det*(c3_4_0_0*c4_4_1_0*Jinv_20*Jinv_10 + c3_5_0_0*c4_5_1_0*Jinv_21*Jinv_11 + c3_6_0_0*c4_6_1_0*Jinv_22*Jinv_12);
+    const double G2_0_0_2_2 = det*(c3_4_0_0*c4_4_1_0*Jinv_20*Jinv_20 + c3_5_0_0*c4_5_1_0*Jinv_21*Jinv_21 + c3_6_0_0*c4_6_1_0*Jinv_22*Jinv_22);
     const double G3_ = det;
-    const double G4_0_4_4 = det*w[2][0]*w[0][4]*w[0][4] + det*w[2][0]*w[0][4]*w[0][4];
-    const double G4_0_4_5 = det*w[2][0]*w[0][4]*w[0][5] + det*w[2][0]*w[0][4]*w[0][5];
-    const double G4_0_4_6 = det*w[2][0]*w[0][4]*w[0][6] + det*w[2][0]*w[0][4]*w[0][6];
-    const double G4_0_4_7 = det*w[2][0]*w[0][4]*w[0][7] + det*w[2][0]*w[0][4]*w[0][7];
-    const double G4_0_5_4 = det*w[2][0]*w[0][5]*w[0][4] + det*w[2][0]*w[0][5]*w[0][4];
-    const double G4_0_5_5 = det*w[2][0]*w[0][5]*w[0][5] + det*w[2][0]*w[0][5]*w[0][5];
-    const double G4_0_5_6 = det*w[2][0]*w[0][5]*w[0][6] + det*w[2][0]*w[0][5]*w[0][6];
-    const double G4_0_5_7 = det*w[2][0]*w[0][5]*w[0][7] + det*w[2][0]*w[0][5]*w[0][7];
-    const double G4_0_6_4 = det*w[2][0]*w[0][6]*w[0][4] + det*w[2][0]*w[0][6]*w[0][4];
-    const double G4_0_6_5 = det*w[2][0]*w[0][6]*w[0][5] + det*w[2][0]*w[0][6]*w[0][5];
-    const double G4_0_6_6 = det*w[2][0]*w[0][6]*w[0][6] + det*w[2][0]*w[0][6]*w[0][6];
-    const double G4_0_6_7 = det*w[2][0]*w[0][6]*w[0][7] + det*w[2][0]*w[0][6]*w[0][7];
-    const double G4_0_7_4 = det*w[2][0]*w[0][7]*w[0][4] + det*w[2][0]*w[0][7]*w[0][4];
-    const double G4_0_7_5 = det*w[2][0]*w[0][7]*w[0][5] + det*w[2][0]*w[0][7]*w[0][5];
-    const double G4_0_7_6 = det*w[2][0]*w[0][7]*w[0][6] + det*w[2][0]*w[0][7]*w[0][6];
-    const double G4_0_7_7 = det*w[2][0]*w[0][7]*w[0][7] + det*w[2][0]*w[0][7]*w[0][7];
-    const double G4_1_4_4 = det*w[2][1]*w[0][4]*w[0][4] + det*w[2][1]*w[0][4]*w[0][4];
-    const double G4_1_4_5 = det*w[2][1]*w[0][4]*w[0][5] + det*w[2][1]*w[0][4]*w[0][5];
-    const double G4_1_4_6 = det*w[2][1]*w[0][4]*w[0][6] + det*w[2][1]*w[0][4]*w[0][6];
-    const double G4_1_4_7 = det*w[2][1]*w[0][4]*w[0][7] + det*w[2][1]*w[0][4]*w[0][7];
-    const double G4_1_5_4 = det*w[2][1]*w[0][5]*w[0][4] + det*w[2][1]*w[0][5]*w[0][4];
-    const double G4_1_5_5 = det*w[2][1]*w[0][5]*w[0][5] + det*w[2][1]*w[0][5]*w[0][5];
-    const double G4_1_5_6 = det*w[2][1]*w[0][5]*w[0][6] + det*w[2][1]*w[0][5]*w[0][6];
-    const double G4_1_5_7 = det*w[2][1]*w[0][5]*w[0][7] + det*w[2][1]*w[0][5]*w[0][7];
-    const double G4_1_6_4 = det*w[2][1]*w[0][6]*w[0][4] + det*w[2][1]*w[0][6]*w[0][4];
-    const double G4_1_6_5 = det*w[2][1]*w[0][6]*w[0][5] + det*w[2][1]*w[0][6]*w[0][5];
-    const double G4_1_6_6 = det*w[2][1]*w[0][6]*w[0][6] + det*w[2][1]*w[0][6]*w[0][6];
-    const double G4_1_6_7 = det*w[2][1]*w[0][6]*w[0][7] + det*w[2][1]*w[0][6]*w[0][7];
-    const double G4_1_7_4 = det*w[2][1]*w[0][7]*w[0][4] + det*w[2][1]*w[0][7]*w[0][4];
-    const double G4_1_7_5 = det*w[2][1]*w[0][7]*w[0][5] + det*w[2][1]*w[0][7]*w[0][5];
-    const double G4_1_7_6 = det*w[2][1]*w[0][7]*w[0][6] + det*w[2][1]*w[0][7]*w[0][6];
-    const double G4_1_7_7 = det*w[2][1]*w[0][7]*w[0][7] + det*w[2][1]*w[0][7]*w[0][7];
-    const double G4_2_4_4 = det*w[2][2]*w[0][4]*w[0][4] + det*w[2][2]*w[0][4]*w[0][4];
-    const double G4_2_4_5 = det*w[2][2]*w[0][4]*w[0][5] + det*w[2][2]*w[0][4]*w[0][5];
-    const double G4_2_4_6 = det*w[2][2]*w[0][4]*w[0][6] + det*w[2][2]*w[0][4]*w[0][6];
-    const double G4_2_4_7 = det*w[2][2]*w[0][4]*w[0][7] + det*w[2][2]*w[0][4]*w[0][7];
-    const double G4_2_5_4 = det*w[2][2]*w[0][5]*w[0][4] + det*w[2][2]*w[0][5]*w[0][4];
-    const double G4_2_5_5 = det*w[2][2]*w[0][5]*w[0][5] + det*w[2][2]*w[0][5]*w[0][5];
-    const double G4_2_5_6 = det*w[2][2]*w[0][5]*w[0][6] + det*w[2][2]*w[0][5]*w[0][6];
-    const double G4_2_5_7 = det*w[2][2]*w[0][5]*w[0][7] + det*w[2][2]*w[0][5]*w[0][7];
-    const double G4_2_6_4 = det*w[2][2]*w[0][6]*w[0][4] + det*w[2][2]*w[0][6]*w[0][4];
-    const double G4_2_6_5 = det*w[2][2]*w[0][6]*w[0][5] + det*w[2][2]*w[0][6]*w[0][5];
-    const double G4_2_6_6 = det*w[2][2]*w[0][6]*w[0][6] + det*w[2][2]*w[0][6]*w[0][6];
-    const double G4_2_6_7 = det*w[2][2]*w[0][6]*w[0][7] + det*w[2][2]*w[0][6]*w[0][7];
-    const double G4_2_7_4 = det*w[2][2]*w[0][7]*w[0][4] + det*w[2][2]*w[0][7]*w[0][4];
-    const double G4_2_7_5 = det*w[2][2]*w[0][7]*w[0][5] + det*w[2][2]*w[0][7]*w[0][5];
-    const double G4_2_7_6 = det*w[2][2]*w[0][7]*w[0][6] + det*w[2][2]*w[0][7]*w[0][6];
-    const double G4_2_7_7 = det*w[2][2]*w[0][7]*w[0][7] + det*w[2][2]*w[0][7]*w[0][7];
-    const double G4_3_4_4 = det*w[2][3]*w[0][4]*w[0][4] + det*w[2][3]*w[0][4]*w[0][4];
-    const double G4_3_4_5 = det*w[2][3]*w[0][4]*w[0][5] + det*w[2][3]*w[0][4]*w[0][5];
-    const double G4_3_4_6 = det*w[2][3]*w[0][4]*w[0][6] + det*w[2][3]*w[0][4]*w[0][6];
-    const double G4_3_4_7 = det*w[2][3]*w[0][4]*w[0][7] + det*w[2][3]*w[0][4]*w[0][7];
-    const double G4_3_5_4 = det*w[2][3]*w[0][5]*w[0][4] + det*w[2][3]*w[0][5]*w[0][4];
-    const double G4_3_5_5 = det*w[2][3]*w[0][5]*w[0][5] + det*w[2][3]*w[0][5]*w[0][5];
-    const double G4_3_5_6 = det*w[2][3]*w[0][5]*w[0][6] + det*w[2][3]*w[0][5]*w[0][6];
-    const double G4_3_5_7 = det*w[2][3]*w[0][5]*w[0][7] + det*w[2][3]*w[0][5]*w[0][7];
-    const double G4_3_6_4 = det*w[2][3]*w[0][6]*w[0][4] + det*w[2][3]*w[0][6]*w[0][4];
-    const double G4_3_6_5 = det*w[2][3]*w[0][6]*w[0][5] + det*w[2][3]*w[0][6]*w[0][5];
-    const double G4_3_6_6 = det*w[2][3]*w[0][6]*w[0][6] + det*w[2][3]*w[0][6]*w[0][6];
-    const double G4_3_6_7 = det*w[2][3]*w[0][6]*w[0][7] + det*w[2][3]*w[0][6]*w[0][7];
-    const double G4_3_7_4 = det*w[2][3]*w[0][7]*w[0][4] + det*w[2][3]*w[0][7]*w[0][4];
-    const double G4_3_7_5 = det*w[2][3]*w[0][7]*w[0][5] + det*w[2][3]*w[0][7]*w[0][5];
-    const double G4_3_7_6 = det*w[2][3]*w[0][7]*w[0][6] + det*w[2][3]*w[0][7]*w[0][6];
-    const double G4_3_7_7 = det*w[2][3]*w[0][7]*w[0][7] + det*w[2][3]*w[0][7]*w[0][7];
-    const double G5_0_4 = det*w[2][0]*w[0][4] + det*w[2][0]*w[0][4];
-    const double G5_0_5 = det*w[2][0]*w[0][5] + det*w[2][0]*w[0][5];
-    const double G5_0_6 = det*w[2][0]*w[0][6] + det*w[2][0]*w[0][6];
-    const double G5_0_7 = det*w[2][0]*w[0][7] + det*w[2][0]*w[0][7];
-    const double G5_1_4 = det*w[2][1]*w[0][4] + det*w[2][1]*w[0][4];
-    const double G5_1_5 = det*w[2][1]*w[0][5] + det*w[2][1]*w[0][5];
-    const double G5_1_6 = det*w[2][1]*w[0][6] + det*w[2][1]*w[0][6];
-    const double G5_1_7 = det*w[2][1]*w[0][7] + det*w[2][1]*w[0][7];
-    const double G5_2_4 = det*w[2][2]*w[0][4] + det*w[2][2]*w[0][4];
-    const double G5_2_5 = det*w[2][2]*w[0][5] + det*w[2][2]*w[0][5];
-    const double G5_2_6 = det*w[2][2]*w[0][6] + det*w[2][2]*w[0][6];
-    const double G5_2_7 = det*w[2][2]*w[0][7] + det*w[2][2]*w[0][7];
-    const double G5_3_4 = det*w[2][3]*w[0][4] + det*w[2][3]*w[0][4];
-    const double G5_3_5 = det*w[2][3]*w[0][5] + det*w[2][3]*w[0][5];
-    const double G5_3_6 = det*w[2][3]*w[0][6] + det*w[2][3]*w[0][6];
-    const double G5_3_7 = det*w[2][3]*w[0][7] + det*w[2][3]*w[0][7];
-    const double G6_0 = det*w[2][0];
-    const double G6_1 = det*w[2][1];
-    const double G6_2 = det*w[2][2];
-    const double G6_3 = det*w[2][3];
-    const double G7_0_4_4 = det*w[2][0]*w[0][4]*w[0][4];
-    const double G7_0_4_5 = det*w[2][0]*w[0][4]*w[0][5];
-    const double G7_0_4_6 = det*w[2][0]*w[0][4]*w[0][6];
-    const double G7_0_4_7 = det*w[2][0]*w[0][4]*w[0][7];
-    const double G7_0_5_4 = det*w[2][0]*w[0][5]*w[0][4];
-    const double G7_0_5_5 = det*w[2][0]*w[0][5]*w[0][5];
-    const double G7_0_5_6 = det*w[2][0]*w[0][5]*w[0][6];
-    const double G7_0_5_7 = det*w[2][0]*w[0][5]*w[0][7];
-    const double G7_0_6_4 = det*w[2][0]*w[0][6]*w[0][4];
-    const double G7_0_6_5 = det*w[2][0]*w[0][6]*w[0][5];
-    const double G7_0_6_6 = det*w[2][0]*w[0][6]*w[0][6];
-    const double G7_0_6_7 = det*w[2][0]*w[0][6]*w[0][7];
-    const double G7_0_7_4 = det*w[2][0]*w[0][7]*w[0][4];
-    const double G7_0_7_5 = det*w[2][0]*w[0][7]*w[0][5];
-    const double G7_0_7_6 = det*w[2][0]*w[0][7]*w[0][6];
-    const double G7_0_7_7 = det*w[2][0]*w[0][7]*w[0][7];
-    const double G7_1_4_4 = det*w[2][1]*w[0][4]*w[0][4];
-    const double G7_1_4_5 = det*w[2][1]*w[0][4]*w[0][5];
-    const double G7_1_4_6 = det*w[2][1]*w[0][4]*w[0][6];
-    const double G7_1_4_7 = det*w[2][1]*w[0][4]*w[0][7];
-    const double G7_1_5_4 = det*w[2][1]*w[0][5]*w[0][4];
-    const double G7_1_5_5 = det*w[2][1]*w[0][5]*w[0][5];
-    const double G7_1_5_6 = det*w[2][1]*w[0][5]*w[0][6];
-    const double G7_1_5_7 = det*w[2][1]*w[0][5]*w[0][7];
-    const double G7_1_6_4 = det*w[2][1]*w[0][6]*w[0][4];
-    const double G7_1_6_5 = det*w[2][1]*w[0][6]*w[0][5];
-    const double G7_1_6_6 = det*w[2][1]*w[0][6]*w[0][6];
-    const double G7_1_6_7 = det*w[2][1]*w[0][6]*w[0][7];
-    const double G7_1_7_4 = det*w[2][1]*w[0][7]*w[0][4];
-    const double G7_1_7_5 = det*w[2][1]*w[0][7]*w[0][5];
-    const double G7_1_7_6 = det*w[2][1]*w[0][7]*w[0][6];
-    const double G7_1_7_7 = det*w[2][1]*w[0][7]*w[0][7];
-    const double G7_2_4_4 = det*w[2][2]*w[0][4]*w[0][4];
-    const double G7_2_4_5 = det*w[2][2]*w[0][4]*w[0][5];
-    const double G7_2_4_6 = det*w[2][2]*w[0][4]*w[0][6];
-    const double G7_2_4_7 = det*w[2][2]*w[0][4]*w[0][7];
-    const double G7_2_5_4 = det*w[2][2]*w[0][5]*w[0][4];
-    const double G7_2_5_5 = det*w[2][2]*w[0][5]*w[0][5];
-    const double G7_2_5_6 = det*w[2][2]*w[0][5]*w[0][6];
-    const double G7_2_5_7 = det*w[2][2]*w[0][5]*w[0][7];
-    const double G7_2_6_4 = det*w[2][2]*w[0][6]*w[0][4];
-    const double G7_2_6_5 = det*w[2][2]*w[0][6]*w[0][5];
-    const double G7_2_6_6 = det*w[2][2]*w[0][6]*w[0][6];
-    const double G7_2_6_7 = det*w[2][2]*w[0][6]*w[0][7];
-    const double G7_2_7_4 = det*w[2][2]*w[0][7]*w[0][4];
-    const double G7_2_7_5 = det*w[2][2]*w[0][7]*w[0][5];
-    const double G7_2_7_6 = det*w[2][2]*w[0][7]*w[0][6];
-    const double G7_2_7_7 = det*w[2][2]*w[0][7]*w[0][7];
-    const double G7_3_4_4 = det*w[2][3]*w[0][4]*w[0][4];
-    const double G7_3_4_5 = det*w[2][3]*w[0][4]*w[0][5];
-    const double G7_3_4_6 = det*w[2][3]*w[0][4]*w[0][6];
-    const double G7_3_4_7 = det*w[2][3]*w[0][4]*w[0][7];
-    const double G7_3_5_4 = det*w[2][3]*w[0][5]*w[0][4];
-    const double G7_3_5_5 = det*w[2][3]*w[0][5]*w[0][5];
-    const double G7_3_5_6 = det*w[2][3]*w[0][5]*w[0][6];
-    const double G7_3_5_7 = det*w[2][3]*w[0][5]*w[0][7];
-    const double G7_3_6_4 = det*w[2][3]*w[0][6]*w[0][4];
-    const double G7_3_6_5 = det*w[2][3]*w[0][6]*w[0][5];
-    const double G7_3_6_6 = det*w[2][3]*w[0][6]*w[0][6];
-    const double G7_3_6_7 = det*w[2][3]*w[0][6]*w[0][7];
-    const double G7_3_7_4 = det*w[2][3]*w[0][7]*w[0][4];
-    const double G7_3_7_5 = det*w[2][3]*w[0][7]*w[0][5];
-    const double G7_3_7_6 = det*w[2][3]*w[0][7]*w[0][6];
-    const double G7_3_7_7 = det*w[2][3]*w[0][7]*w[0][7];
-    const double G8_0_4 = det*w[2][0]*w[0][4];
-    const double G8_0_5 = det*w[2][0]*w[0][5];
-    const double G8_0_6 = det*w[2][0]*w[0][6];
-    const double G8_0_7 = det*w[2][0]*w[0][7];
-    const double G8_1_4 = det*w[2][1]*w[0][4];
-    const double G8_1_5 = det*w[2][1]*w[0][5];
-    const double G8_1_6 = det*w[2][1]*w[0][6];
-    const double G8_1_7 = det*w[2][1]*w[0][7];
-    const double G8_2_4 = det*w[2][2]*w[0][4];
-    const double G8_2_5 = det*w[2][2]*w[0][5];
-    const double G8_2_6 = det*w[2][2]*w[0][6];
-    const double G8_2_7 = det*w[2][2]*w[0][7];
-    const double G8_3_4 = det*w[2][3]*w[0][4];
-    const double G8_3_5 = det*w[2][3]*w[0][5];
-    const double G8_3_6 = det*w[2][3]*w[0][6];
-    const double G8_3_7 = det*w[2][3]*w[0][7];
-    const double G9_0_0_0 = det*w[1][0]*Jinv_00*Jinv_00 + det*w[1][0]*Jinv_01*Jinv_01 + det*w[1][0]*Jinv_02*Jinv_02;
-    const double G9_0_0_1 = det*w[1][0]*Jinv_00*Jinv_10 + det*w[1][0]*Jinv_01*Jinv_11 + det*w[1][0]*Jinv_02*Jinv_12;
-    const double G9_0_0_2 = det*w[1][0]*Jinv_00*Jinv_20 + det*w[1][0]*Jinv_01*Jinv_21 + det*w[1][0]*Jinv_02*Jinv_22;
-    const double G9_0_1_0 = det*w[1][0]*Jinv_10*Jinv_00 + det*w[1][0]*Jinv_11*Jinv_01 + det*w[1][0]*Jinv_12*Jinv_02;
-    const double G9_0_1_1 = det*w[1][0]*Jinv_10*Jinv_10 + det*w[1][0]*Jinv_11*Jinv_11 + det*w[1][0]*Jinv_12*Jinv_12;
-    const double G9_0_1_2 = det*w[1][0]*Jinv_10*Jinv_20 + det*w[1][0]*Jinv_11*Jinv_21 + det*w[1][0]*Jinv_12*Jinv_22;
-    const double G9_0_2_0 = det*w[1][0]*Jinv_20*Jinv_00 + det*w[1][0]*Jinv_21*Jinv_01 + det*w[1][0]*Jinv_22*Jinv_02;
-    const double G9_0_2_1 = det*w[1][0]*Jinv_20*Jinv_10 + det*w[1][0]*Jinv_21*Jinv_11 + det*w[1][0]*Jinv_22*Jinv_12;
-    const double G9_0_2_2 = det*w[1][0]*Jinv_20*Jinv_20 + det*w[1][0]*Jinv_21*Jinv_21 + det*w[1][0]*Jinv_22*Jinv_22;
-    const double G9_1_0_0 = det*w[1][1]*Jinv_00*Jinv_00 + det*w[1][1]*Jinv_01*Jinv_01 + det*w[1][1]*Jinv_02*Jinv_02;
-    const double G9_1_0_1 = det*w[1][1]*Jinv_00*Jinv_10 + det*w[1][1]*Jinv_01*Jinv_11 + det*w[1][1]*Jinv_02*Jinv_12;
-    const double G9_1_0_2 = det*w[1][1]*Jinv_00*Jinv_20 + det*w[1][1]*Jinv_01*Jinv_21 + det*w[1][1]*Jinv_02*Jinv_22;
-    const double G9_1_1_0 = det*w[1][1]*Jinv_10*Jinv_00 + det*w[1][1]*Jinv_11*Jinv_01 + det*w[1][1]*Jinv_12*Jinv_02;
-    const double G9_1_1_1 = det*w[1][1]*Jinv_10*Jinv_10 + det*w[1][1]*Jinv_11*Jinv_11 + det*w[1][1]*Jinv_12*Jinv_12;
-    const double G9_1_1_2 = det*w[1][1]*Jinv_10*Jinv_20 + det*w[1][1]*Jinv_11*Jinv_21 + det*w[1][1]*Jinv_12*Jinv_22;
-    const double G9_1_2_0 = det*w[1][1]*Jinv_20*Jinv_00 + det*w[1][1]*Jinv_21*Jinv_01 + det*w[1][1]*Jinv_22*Jinv_02;
-    const double G9_1_2_1 = det*w[1][1]*Jinv_20*Jinv_10 + det*w[1][1]*Jinv_21*Jinv_11 + det*w[1][1]*Jinv_22*Jinv_12;
-    const double G9_1_2_2 = det*w[1][1]*Jinv_20*Jinv_20 + det*w[1][1]*Jinv_21*Jinv_21 + det*w[1][1]*Jinv_22*Jinv_22;
-    const double G9_2_0_0 = det*w[1][2]*Jinv_00*Jinv_00 + det*w[1][2]*Jinv_01*Jinv_01 + det*w[1][2]*Jinv_02*Jinv_02;
-    const double G9_2_0_1 = det*w[1][2]*Jinv_00*Jinv_10 + det*w[1][2]*Jinv_01*Jinv_11 + det*w[1][2]*Jinv_02*Jinv_12;
-    const double G9_2_0_2 = det*w[1][2]*Jinv_00*Jinv_20 + det*w[1][2]*Jinv_01*Jinv_21 + det*w[1][2]*Jinv_02*Jinv_22;
-    const double G9_2_1_0 = det*w[1][2]*Jinv_10*Jinv_00 + det*w[1][2]*Jinv_11*Jinv_01 + det*w[1][2]*Jinv_12*Jinv_02;
-    const double G9_2_1_1 = det*w[1][2]*Jinv_10*Jinv_10 + det*w[1][2]*Jinv_11*Jinv_11 + det*w[1][2]*Jinv_12*Jinv_12;
-    const double G9_2_1_2 = det*w[1][2]*Jinv_10*Jinv_20 + det*w[1][2]*Jinv_11*Jinv_21 + det*w[1][2]*Jinv_12*Jinv_22;
-    const double G9_2_2_0 = det*w[1][2]*Jinv_20*Jinv_00 + det*w[1][2]*Jinv_21*Jinv_01 + det*w[1][2]*Jinv_22*Jinv_02;
-    const double G9_2_2_1 = det*w[1][2]*Jinv_20*Jinv_10 + det*w[1][2]*Jinv_21*Jinv_11 + det*w[1][2]*Jinv_22*Jinv_12;
-    const double G9_2_2_2 = det*w[1][2]*Jinv_20*Jinv_20 + det*w[1][2]*Jinv_21*Jinv_21 + det*w[1][2]*Jinv_22*Jinv_22;
-    const double G9_3_0_0 = det*w[1][3]*Jinv_00*Jinv_00 + det*w[1][3]*Jinv_01*Jinv_01 + det*w[1][3]*Jinv_02*Jinv_02;
-    const double G9_3_0_1 = det*w[1][3]*Jinv_00*Jinv_10 + det*w[1][3]*Jinv_01*Jinv_11 + det*w[1][3]*Jinv_02*Jinv_12;
-    const double G9_3_0_2 = det*w[1][3]*Jinv_00*Jinv_20 + det*w[1][3]*Jinv_01*Jinv_21 + det*w[1][3]*Jinv_02*Jinv_22;
-    const double G9_3_1_0 = det*w[1][3]*Jinv_10*Jinv_00 + det*w[1][3]*Jinv_11*Jinv_01 + det*w[1][3]*Jinv_12*Jinv_02;
-    const double G9_3_1_1 = det*w[1][3]*Jinv_10*Jinv_10 + det*w[1][3]*Jinv_11*Jinv_11 + det*w[1][3]*Jinv_12*Jinv_12;
-    const double G9_3_1_2 = det*w[1][3]*Jinv_10*Jinv_20 + det*w[1][3]*Jinv_11*Jinv_21 + det*w[1][3]*Jinv_12*Jinv_22;
-    const double G9_3_2_0 = det*w[1][3]*Jinv_20*Jinv_00 + det*w[1][3]*Jinv_21*Jinv_01 + det*w[1][3]*Jinv_22*Jinv_02;
-    const double G9_3_2_1 = det*w[1][3]*Jinv_20*Jinv_10 + det*w[1][3]*Jinv_21*Jinv_11 + det*w[1][3]*Jinv_22*Jinv_12;
-    const double G9_3_2_2 = det*w[1][3]*Jinv_20*Jinv_20 + det*w[1][3]*Jinv_21*Jinv_21 + det*w[1][3]*Jinv_22*Jinv_22;
+    const double G4_0_4_4 = det*(c2_8_0_0*c0_8_1_4*c0_8_2_4 + c2_9_0_0*c0_9_1_4*c0_9_2_4);
+    const double G4_0_4_5 = det*(c2_8_0_0*c0_8_1_4*c0_8_2_5 + c2_9_0_0*c0_9_1_4*c0_9_2_5);
+    const double G4_0_4_6 = det*(c2_8_0_0*c0_8_1_4*c0_8_2_6 + c2_9_0_0*c0_9_1_4*c0_9_2_6);
+    const double G4_0_4_7 = det*(c2_8_0_0*c0_8_1_4*c0_8_2_7 + c2_9_0_0*c0_9_1_4*c0_9_2_7);
+    const double G4_0_5_4 = det*(c2_8_0_0*c0_8_1_5*c0_8_2_4 + c2_9_0_0*c0_9_1_5*c0_9_2_4);
+    const double G4_0_5_5 = det*(c2_8_0_0*c0_8_1_5*c0_8_2_5 + c2_9_0_0*c0_9_1_5*c0_9_2_5);
+    const double G4_0_5_6 = det*(c2_8_0_0*c0_8_1_5*c0_8_2_6 + c2_9_0_0*c0_9_1_5*c0_9_2_6);
+    const double G4_0_5_7 = det*(c2_8_0_0*c0_8_1_5*c0_8_2_7 + c2_9_0_0*c0_9_1_5*c0_9_2_7);
+    const double G4_0_6_4 = det*(c2_8_0_0*c0_8_1_6*c0_8_2_4 + c2_9_0_0*c0_9_1_6*c0_9_2_4);
+    const double G4_0_6_5 = det*(c2_8_0_0*c0_8_1_6*c0_8_2_5 + c2_9_0_0*c0_9_1_6*c0_9_2_5);
+    const double G4_0_6_6 = det*(c2_8_0_0*c0_8_1_6*c0_8_2_6 + c2_9_0_0*c0_9_1_6*c0_9_2_6);
+    const double G4_0_6_7 = det*(c2_8_0_0*c0_8_1_6*c0_8_2_7 + c2_9_0_0*c0_9_1_6*c0_9_2_7);
+    const double G4_0_7_4 = det*(c2_8_0_0*c0_8_1_7*c0_8_2_4 + c2_9_0_0*c0_9_1_7*c0_9_2_4);
+    const double G4_0_7_5 = det*(c2_8_0_0*c0_8_1_7*c0_8_2_5 + c2_9_0_0*c0_9_1_7*c0_9_2_5);
+    const double G4_0_7_6 = det*(c2_8_0_0*c0_8_1_7*c0_8_2_6 + c2_9_0_0*c0_9_1_7*c0_9_2_6);
+    const double G4_0_7_7 = det*(c2_8_0_0*c0_8_1_7*c0_8_2_7 + c2_9_0_0*c0_9_1_7*c0_9_2_7);
+    const double G5_0_4 = det*(c2_10_0_0*c0_10_1_4 + c2_11_0_0*c0_11_1_4);
+    const double G5_0_5 = det*(c2_10_0_0*c0_10_1_5 + c2_11_0_0*c0_11_1_5);
+    const double G5_0_6 = det*(c2_10_0_0*c0_10_1_6 + c2_11_0_0*c0_11_1_6);
+    const double G5_0_7 = det*(c2_10_0_0*c0_10_1_7 + c2_11_0_0*c0_11_1_7);
+    const double G6_0 = det*c2_12_0_0;
+    const double G7_0_4_4 = det*c2_13_0_0*c0_13_1_4*c0_13_2_4;
+    const double G7_0_4_5 = det*c2_13_0_0*c0_13_1_4*c0_13_2_5;
+    const double G7_0_4_6 = det*c2_13_0_0*c0_13_1_4*c0_13_2_6;
+    const double G7_0_4_7 = det*c2_13_0_0*c0_13_1_4*c0_13_2_7;
+    const double G7_0_5_4 = det*c2_13_0_0*c0_13_1_5*c0_13_2_4;
+    const double G7_0_5_5 = det*c2_13_0_0*c0_13_1_5*c0_13_2_5;
+    const double G7_0_5_6 = det*c2_13_0_0*c0_13_1_5*c0_13_2_6;
+    const double G7_0_5_7 = det*c2_13_0_0*c0_13_1_5*c0_13_2_7;
+    const double G7_0_6_4 = det*c2_13_0_0*c0_13_1_6*c0_13_2_4;
+    const double G7_0_6_5 = det*c2_13_0_0*c0_13_1_6*c0_13_2_5;
+    const double G7_0_6_6 = det*c2_13_0_0*c0_13_1_6*c0_13_2_6;
+    const double G7_0_6_7 = det*c2_13_0_0*c0_13_1_6*c0_13_2_7;
+    const double G7_0_7_4 = det*c2_13_0_0*c0_13_1_7*c0_13_2_4;
+    const double G7_0_7_5 = det*c2_13_0_0*c0_13_1_7*c0_13_2_5;
+    const double G7_0_7_6 = det*c2_13_0_0*c0_13_1_7*c0_13_2_6;
+    const double G7_0_7_7 = det*c2_13_0_0*c0_13_1_7*c0_13_2_7;
+    const double G8_0_4 = det*c2_14_0_0*c0_14_1_4;
+    const double G8_0_5 = det*c2_14_0_0*c0_14_1_5;
+    const double G8_0_6 = det*c2_14_0_0*c0_14_1_6;
+    const double G8_0_7 = det*c2_14_0_0*c0_14_1_7;
+    const double G9_0_0_0 = det*(c1_15_0_0*Jinv_00*Jinv_00 + c1_16_0_0*Jinv_01*Jinv_01 + c1_17_0_0*Jinv_02*Jinv_02);
+    const double G9_0_0_1 = det*(c1_15_0_0*Jinv_00*Jinv_10 + c1_16_0_0*Jinv_01*Jinv_11 + c1_17_0_0*Jinv_02*Jinv_12);
+    const double G9_0_0_2 = det*(c1_15_0_0*Jinv_00*Jinv_20 + c1_16_0_0*Jinv_01*Jinv_21 + c1_17_0_0*Jinv_02*Jinv_22);
+    const double G9_0_1_0 = det*(c1_15_0_0*Jinv_10*Jinv_00 + c1_16_0_0*Jinv_11*Jinv_01 + c1_17_0_0*Jinv_12*Jinv_02);
+    const double G9_0_1_1 = det*(c1_15_0_0*Jinv_10*Jinv_10 + c1_16_0_0*Jinv_11*Jinv_11 + c1_17_0_0*Jinv_12*Jinv_12);
+    const double G9_0_1_2 = det*(c1_15_0_0*Jinv_10*Jinv_20 + c1_16_0_0*Jinv_11*Jinv_21 + c1_17_0_0*Jinv_12*Jinv_22);
+    const double G9_0_2_0 = det*(c1_15_0_0*Jinv_20*Jinv_00 + c1_16_0_0*Jinv_21*Jinv_01 + c1_17_0_0*Jinv_22*Jinv_02);
+    const double G9_0_2_1 = det*(c1_15_0_0*Jinv_20*Jinv_10 + c1_16_0_0*Jinv_21*Jinv_11 + c1_17_0_0*Jinv_22*Jinv_12);
+    const double G9_0_2_2 = det*(c1_15_0_0*Jinv_20*Jinv_20 + c1_16_0_0*Jinv_21*Jinv_21 + c1_17_0_0*Jinv_22*Jinv_22);
     
     // Compute element tensor
     A[0] = 0.0166666666666666*G3_;
     A[1] = 0.00833333333333331*G3_;
     A[2] = 0.00833333333333331*G3_;
     A[3] = 0.00833333333333331*G3_;
-    A[4] = -0.00595238095238094*G4_0_4_4 - 0.00119047619047619*G4_0_4_5 - 0.00119047619047619*G4_0_4_6 - 0.00119047619047619*G4_0_4_7 - 0.00119047619047619*G4_0_5_4 - 0.000595238095238095*G4_0_5_5 - 0.000297619047619047*G4_0_5_6 - 0.000297619047619047*G4_0_5_7 - 0.00119047619047619*G4_0_6_4 - 0.000297619047619047*G4_0_6_5 - 0.000595238095238095*G4_0_6_6 - 0.000297619047619048*G4_0_6_7 - 0.00119047619047619*G4_0_7_4 - 0.000297619047619047*G4_0_7_5 - 0.000297619047619048*G4_0_7_6 - 0.000595238095238094*G4_0_7_7 - 0.00119047619047619*G4_1_4_4 - 0.000595238095238095*G4_1_4_5 - 0.000297619047619047*G4_1_4_6 - 0.000297619047619047*G4_1_4_7 - 0.000595238095238095*G4_1_5_4 - 0.000595238095238094*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 0.000297619047619047*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000297619047619047*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.00119047619047619*G4_2_4_4 - 0.000297619047619047*G4_2_4_5 - 0.000595238095238095*G4_2_4_6 - 0.000297619047619048*G4_2_4_7 - 0.000297619047619047*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000595238095238095*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000595238095238095*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 0.000297619047619048*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.00119047619047619*G4_3_4_4 - 0.000297619047619047*G4_3_4_5 - 0.000297619047619048*G4_3_4_6 - 0.000595238095238095*G4_3_4_7 - 0.000297619047619047*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 0.000297619047619048*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000595238095238095*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000595238095238094*G4_3_7_7 + 0.00952380952380951*G5_0_4 + 0.00238095238095238*G5_0_5 + 0.00238095238095238*G5_0_6 + 0.00238095238095238*G5_0_7 + 0.00238095238095238*G5_1_4 + 0.00158730158730159*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.00238095238095238*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.00158730158730159*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.00238095238095238*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00158730158730159*G5_3_7 - 0.0166666666666666*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.0238095238095238*G7_0_4_4 - 0.00476190476190475*G7_0_4_5 - 0.00476190476190476*G7_0_4_6 - 0.00476190476190475*G7_0_4_7 - 0.00476190476190475*G7_0_5_4 - 0.00238095238095238*G7_0_5_5 - 0.00119047619047619*G7_0_5_6 - 0.00119047619047619*G7_0_5_7 - 0.00476190476190476*G7_0_6_4 - 0.00119047619047619*G7_0_6_5 - 0.00238095238095238*G7_0_6_6 - 0.00119047619047619*G7_0_6_7 - 0.00476190476190475*G7_0_7_4 - 0.00119047619047619*G7_0_7_5 - 0.00119047619047619*G7_0_7_6 - 0.00238095238095238*G7_0_7_7 - 0.00476190476190475*G7_1_4_4 - 0.00238095238095238*G7_1_4_5 - 0.00119047619047619*G7_1_4_6 - 0.00119047619047619*G7_1_4_7 - 0.00238095238095238*G7_1_5_4 - 0.00238095238095238*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.000793650793650793*G7_1_5_7 - 0.00119047619047619*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.000793650793650793*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.00119047619047619*G7_1_7_4 - 0.000793650793650793*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000793650793650793*G7_1_7_7 - 0.00476190476190476*G7_2_4_4 - 0.00119047619047619*G7_2_4_5 - 0.00238095238095238*G7_2_4_6 - 0.00119047619047619*G7_2_4_7 - 0.00119047619047619*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.000793650793650793*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.00238095238095238*G7_2_6_4 - 0.000793650793650793*G7_2_6_5 - 0.00238095238095238*G7_2_6_6 - 0.000793650793650793*G7_2_6_7 - 0.00119047619047619*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000793650793650793*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.00476190476190475*G7_3_4_4 - 0.00119047619047619*G7_3_4_5 - 0.00119047619047619*G7_3_4_6 - 0.00238095238095238*G7_3_4_7 - 0.00119047619047619*G7_3_5_4 - 0.000793650793650793*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000793650793650793*G7_3_5_7 - 0.00119047619047619*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000793650793650793*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.00238095238095238*G7_3_7_4 - 0.000793650793650793*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00238095238095238*G7_3_7_7 + 0.038095238095238*G8_0_4 + 0.00952380952380951*G8_0_5 + 0.00952380952380952*G8_0_6 + 0.00952380952380951*G8_0_7 + 0.00952380952380951*G8_1_4 + 0.00634920634920634*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00952380952380952*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00634920634920634*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00952380952380951*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00634920634920634*G8_3_7 - 0.0416666666666666*G9_0_0_0 - 0.0416666666666666*G9_0_0_1 - 0.0416666666666666*G9_0_0_2 - 0.0416666666666666*G9_0_1_0 - 0.0416666666666666*G9_0_1_1 - 0.0416666666666666*G9_0_1_2 - 0.0416666666666666*G9_0_2_0 - 0.0416666666666666*G9_0_2_1 - 0.0416666666666666*G9_0_2_2 - 0.0416666666666666*G9_1_0_0 - 0.0416666666666666*G9_1_0_1 - 0.0416666666666666*G9_1_0_2 - 0.0416666666666666*G9_1_1_0 - 0.0416666666666666*G9_1_1_1 - 0.0416666666666666*G9_1_1_2 - 0.0416666666666666*G9_1_2_0 - 0.0416666666666666*G9_1_2_1 - 0.0416666666666666*G9_1_2_2 - 0.0416666666666666*G9_2_0_0 - 0.0416666666666666*G9_2_0_1 - 0.0416666666666666*G9_2_0_2 - 0.0416666666666666*G9_2_1_0 - 0.0416666666666666*G9_2_1_1 - 0.0416666666666666*G9_2_1_2 - 0.0416666666666666*G9_2_2_0 - 0.0416666666666666*G9_2_2_1 - 0.0416666666666666*G9_2_2_2 - 0.0416666666666666*G9_3_0_0 - 0.0416666666666666*G9_3_0_1 - 0.0416666666666666*G9_3_0_2 - 0.0416666666666666*G9_3_1_0 - 0.0416666666666666*G9_3_1_1 - 0.0416666666666666*G9_3_1_2 - 0.0416666666666666*G9_3_2_0 - 0.0416666666666666*G9_3_2_1 - 0.0416666666666666*G9_3_2_2;
-    A[5] = -0.00119047619047619*G4_0_4_4 - 0.000595238095238095*G4_0_4_5 - 0.000297619047619047*G4_0_4_6 - 0.000297619047619047*G4_0_4_7 - 0.000595238095238095*G4_0_5_4 - 0.000595238095238094*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619047*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000297619047619047*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000595238095238095*G4_1_4_4 - 0.000595238095238094*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000595238095238094*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000297619047619047*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000297619047619047*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000297619047619047*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000297619047619047*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 9.92063492063492e-05*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 9.92063492063492e-05*G4_2_7_6 - 9.92063492063492e-05*G4_2_7_7 - 0.000297619047619047*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000297619047619047*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 9.92063492063492e-05*G4_3_6_6 - 9.92063492063492e-05*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 9.92063492063492e-05*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.00158730158730159*G5_0_5 + 0.000793650793650794*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.00158730158730159*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000396825396825397*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000396825396825397*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190476*G7_0_4_4 - 0.00238095238095238*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00238095238095238*G7_0_5_4 - 0.00238095238095238*G7_0_5_5 - 0.000793650793650794*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000793650793650794*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.00238095238095238*G7_1_4_4 - 0.00238095238095238*G7_1_4_5 - 0.000793650793650794*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00238095238095238*G7_1_5_4 - 0.00476190476190475*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650793*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000793650793650793*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000793650793650794*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650794*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650793*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000793650793650793*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000396825396825397*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000396825396825397*G7_2_7_6 - 0.000396825396825397*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000793650793650793*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000396825396825397*G7_3_6_6 - 0.000396825396825397*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.000793650793650793*G7_3_7_5 - 0.000396825396825397*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00634920634920634*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00634920634920634*G8_1_4 + 0.00952380952380951*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00158730158730159*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00158730158730159*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_0_0 + 0.0416666666666666*G9_0_1_0 + 0.0416666666666666*G9_0_2_0 + 0.0416666666666666*G9_1_0_0 + 0.0416666666666666*G9_1_1_0 + 0.0416666666666666*G9_1_2_0 + 0.0416666666666666*G9_2_0_0 + 0.0416666666666666*G9_2_1_0 + 0.0416666666666666*G9_2_2_0 + 0.0416666666666666*G9_3_0_0 + 0.0416666666666666*G9_3_1_0 + 0.0416666666666666*G9_3_2_0;
-    A[6] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000595238095238095*G4_0_4_6 - 0.000297619047619048*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000595238095238095*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000595238095238095*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000297619047619048*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 9.92063492063492e-05*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619047*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 9.92063492063492e-05*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 9.92063492063492e-05*G4_1_7_7 - 0.000595238095238095*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000595238095238095*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619047*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000595238095238095*G4_2_6_4 - 0.000297619047619047*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619047*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000297619047619047*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.000297619047619048*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 9.92063492063492e-05*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 9.92063492063492e-05*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000297619047619047*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 9.92063492063492e-05*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.00158730158730159*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000396825396825397*G5_1_7 + 0.00158730158730159*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000396825396825397*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190476*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00238095238095238*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650794*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.00238095238095238*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00238095238095238*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.000793650793650794*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650794*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000793650793650794*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650793*G7_1_5_6 - 0.000396825396825397*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.000793650793650793*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000396825396825397*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000396825396825397*G7_1_7_7 - 0.00238095238095238*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00238095238095238*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.000793650793650793*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.00238095238095238*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650793*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.000793650793650794*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000396825396825397*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000396825396825397*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650793*G7_3_6_7 - 0.000793650793650794*G7_3_7_4 - 0.000396825396825397*G7_3_7_5 - 0.000793650793650793*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380952*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00634920634920634*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00158730158730159*G8_1_7 + 0.00634920634920634*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380951*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00158730158730159*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_0_1 + 0.0416666666666666*G9_0_1_1 + 0.0416666666666666*G9_0_2_1 + 0.0416666666666666*G9_1_0_1 + 0.0416666666666666*G9_1_1_1 + 0.0416666666666666*G9_1_2_1 + 0.0416666666666666*G9_2_0_1 + 0.0416666666666666*G9_2_1_1 + 0.0416666666666666*G9_2_2_1 + 0.0416666666666666*G9_3_0_1 + 0.0416666666666666*G9_3_1_1 + 0.0416666666666666*G9_3_2_1;
-    A[7] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000297619047619048*G4_0_4_6 - 0.000595238095238094*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619048*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000595238095238094*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000595238095238094*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619047*G4_1_5_5 - 9.92063492063492e-05*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 9.92063492063492e-05*G4_1_6_5 - 9.92063492063492e-05*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000297619047619048*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 9.92063492063492e-05*G4_2_5_5 - 9.92063492063492e-05*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 9.92063492063492e-05*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000595238095238094*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000595238095238094*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000595238095238094*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.00158730158730159*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000396825396825397*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000396825396825397*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.00158730158730159*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00476190476190475*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00238095238095238*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000793650793650794*G7_0_6_7 - 0.00238095238095238*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000793650793650794*G7_0_7_6 - 0.00238095238095238*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000396825396825397*G7_1_5_6 - 0.000793650793650793*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000396825396825397*G7_1_6_5 - 0.000396825396825397*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.000793650793650793*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000793650793650794*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000396825396825397*G7_2_5_5 - 0.000396825396825397*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000396825396825397*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650793*G7_2_6_7 - 0.000793650793650794*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000793650793650793*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.00238095238095238*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000793650793650794*G7_3_4_6 - 0.00238095238095238*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.000793650793650793*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650794*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000793650793650793*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00238095238095238*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00634920634920634*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00158730158730159*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00158730158730159*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00634920634920634*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380951*G8_3_7 + 0.0416666666666666*G9_0_0_2 + 0.0416666666666666*G9_0_1_2 + 0.0416666666666666*G9_0_2_2 + 0.0416666666666666*G9_1_0_2 + 0.0416666666666666*G9_1_1_2 + 0.0416666666666666*G9_1_2_2 + 0.0416666666666666*G9_2_0_2 + 0.0416666666666666*G9_2_1_2 + 0.0416666666666666*G9_2_2_2 + 0.0416666666666666*G9_3_0_2 + 0.0416666666666666*G9_3_1_2 + 0.0416666666666666*G9_3_2_2;
+    A[4] = -0.00952380952380951*G4_0_4_4 - 0.00238095238095238*G4_0_4_5 - 0.00238095238095238*G4_0_4_6 - 0.00238095238095238*G4_0_4_7 - 0.00238095238095238*G4_0_5_4 - 0.00158730158730159*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.000793650793650793*G4_0_5_7 - 0.00238095238095238*G4_0_6_4 - 0.000793650793650794*G4_0_6_5 - 0.00158730158730159*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.00238095238095238*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.00158730158730159*G4_0_7_7 + 0.0166666666666666*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0333333333333332*G6_0 - 0.038095238095238*G7_0_4_4 - 0.00952380952380951*G7_0_4_5 - 0.00952380952380952*G7_0_4_6 - 0.00952380952380951*G7_0_4_7 - 0.00952380952380951*G7_0_5_4 - 0.00634920634920634*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00952380952380952*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00634920634920634*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00952380952380951*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00634920634920634*G7_0_7_7 + 0.0666666666666665*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_0_0 - 0.166666666666666*G9_0_0_1 - 0.166666666666666*G9_0_0_2 - 0.166666666666666*G9_0_1_0 - 0.166666666666666*G9_0_1_1 - 0.166666666666666*G9_0_1_2 - 0.166666666666666*G9_0_2_0 - 0.166666666666666*G9_0_2_1 - 0.166666666666666*G9_0_2_2;
+    A[5] = -0.00238095238095238*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.000793650793650794*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.00158730158730159*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.000793650793650793*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000793650793650793*G4_0_6_5 - 0.000793650793650793*G4_0_6_6 - 0.000396825396825397*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.000396825396825397*G4_0_7_6 - 0.000793650793650793*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00277777777777777*G5_0_6 + 0.00277777777777777*G5_0_7 - 0.0166666666666666*G6_0 - 0.00952380952380951*G7_0_4_4 - 0.00634920634920634*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00634920634920634*G7_0_5_4 - 0.00952380952380951*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00317460317460317*G7_0_6_6 - 0.00158730158730159*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00158730158730159*G7_0_7_6 - 0.00317460317460317*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0111111111111111*G8_0_6 + 0.0111111111111111*G8_0_7 + 0.166666666666666*G9_0_0_0 + 0.166666666666666*G9_0_1_0 + 0.166666666666666*G9_0_2_0;
+    A[6] = -0.00238095238095238*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.00158730158730159*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.000793650793650793*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.000396825396825397*G4_0_5_7 - 0.00158730158730159*G4_0_6_4 - 0.000793650793650793*G4_0_6_5 - 0.00238095238095238*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000396825396825397*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.000793650793650793*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00277777777777777*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00277777777777777*G5_0_7 - 0.0166666666666666*G6_0 - 0.00952380952380952*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00634920634920634*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00317460317460317*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00158730158730159*G7_0_5_7 - 0.00634920634920634*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00952380952380951*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00158730158730159*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00317460317460317*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0111111111111111*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0111111111111111*G8_0_7 + 0.166666666666666*G9_0_0_1 + 0.166666666666666*G9_0_1_1 + 0.166666666666666*G9_0_2_1;
+    A[7] = -0.00238095238095238*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.00158730158730159*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.000793650793650793*G4_0_5_5 - 0.000396825396825397*G4_0_5_6 - 0.000793650793650793*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000396825396825397*G4_0_6_5 - 0.000793650793650793*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.00158730158730159*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.00238095238095238*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00277777777777777*G5_0_5 + 0.00277777777777777*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0166666666666666*G6_0 - 0.00952380952380951*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00634920634920634*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00317460317460317*G7_0_5_5 - 0.00158730158730159*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00158730158730159*G7_0_6_5 - 0.00317460317460317*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00634920634920634*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00952380952380951*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0111111111111111*G8_0_5 + 0.0111111111111111*G8_0_6 + 0.0222222222222222*G8_0_7 + 0.166666666666666*G9_0_0_2 + 0.166666666666666*G9_0_1_2 + 0.166666666666666*G9_0_2_2;
     A[8] = 0.00833333333333331*G3_;
     A[9] = 0.0166666666666666*G3_;
     A[10] = 0.00833333333333331*G3_;
     A[11] = 0.00833333333333331*G3_;
-    A[12] = -0.00119047619047619*G4_0_4_4 - 0.000595238095238095*G4_0_4_5 - 0.000297619047619047*G4_0_4_6 - 0.000297619047619047*G4_0_4_7 - 0.000595238095238095*G4_0_5_4 - 0.000595238095238094*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619047*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000297619047619047*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000595238095238095*G4_1_4_4 - 0.000595238095238094*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000595238095238094*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000297619047619047*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000297619047619048*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000297619047619047*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000297619047619047*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 9.92063492063492e-05*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 9.92063492063492e-05*G4_2_7_6 - 9.92063492063492e-05*G4_2_7_7 - 0.000297619047619047*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000297619047619047*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 9.92063492063492e-05*G4_3_6_6 - 9.92063492063492e-05*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 9.92063492063492e-05*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.00158730158730159*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.00158730158730159*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000396825396825397*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000396825396825397*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190475*G7_0_4_4 - 0.00238095238095238*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00238095238095238*G7_0_5_4 - 0.00238095238095238*G7_0_5_5 - 0.000793650793650794*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000793650793650794*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.00238095238095238*G7_1_4_4 - 0.00238095238095238*G7_1_4_5 - 0.000793650793650794*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00238095238095238*G7_1_5_4 - 0.00476190476190475*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650794*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650793*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000793650793650793*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000793650793650794*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650794*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650793*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000793650793650793*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000396825396825397*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000396825396825397*G7_2_7_6 - 0.000396825396825397*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000793650793650793*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000396825396825397*G7_3_6_6 - 0.000396825396825397*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.000793650793650793*G7_3_7_5 - 0.000396825396825397*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00634920634920634*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00634920634920634*G8_1_4 + 0.00952380952380951*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00158730158730159*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00158730158730159*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_0_0 + 0.0416666666666666*G9_0_0_1 + 0.0416666666666666*G9_0_0_2 + 0.0416666666666666*G9_1_0_0 + 0.0416666666666666*G9_1_0_1 + 0.0416666666666666*G9_1_0_2 + 0.0416666666666666*G9_2_0_0 + 0.0416666666666666*G9_2_0_1 + 0.0416666666666666*G9_2_0_2 + 0.0416666666666666*G9_3_0_0 + 0.0416666666666666*G9_3_0_1 + 0.0416666666666666*G9_3_0_2;
-    A[13] = -0.000595238095238095*G4_0_4_4 - 0.000595238095238094*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000595238095238094*G4_0_5_4 - 0.00119047619047619*G4_0_5_5 - 0.000297619047619048*G4_0_5_6 - 0.000297619047619047*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 0.000297619047619047*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 0.000297619047619047*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000595238095238094*G4_1_4_4 - 0.00119047619047619*G4_1_4_5 - 0.000297619047619048*G4_1_4_6 - 0.000297619047619047*G4_1_4_7 - 0.00119047619047619*G4_1_5_4 - 0.00595238095238095*G4_1_5_5 - 0.00119047619047619*G4_1_5_6 - 0.00119047619047619*G4_1_5_7 - 0.000297619047619047*G4_1_6_4 - 0.00119047619047619*G4_1_6_5 - 0.000595238095238095*G4_1_6_6 - 0.000297619047619048*G4_1_6_7 - 0.000297619047619047*G4_1_7_4 - 0.00119047619047619*G4_1_7_5 - 0.000297619047619048*G4_1_7_6 - 0.000595238095238095*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 0.000297619047619047*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000297619047619047*G4_2_5_4 - 0.00119047619047619*G4_2_5_5 - 0.000595238095238095*G4_2_5_6 - 0.000297619047619048*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000595238095238095*G4_2_6_5 - 0.000595238095238095*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000297619047619048*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 0.000297619047619047*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 0.000297619047619047*G4_3_5_4 - 0.00119047619047619*G4_3_5_5 - 0.000297619047619048*G4_3_5_6 - 0.000595238095238095*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000297619047619048*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000595238095238095*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000595238095238095*G4_3_7_7 + 0.00158730158730159*G5_0_4 + 0.00238095238095238*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.00238095238095238*G5_1_4 + 0.00952380952380952*G5_1_5 + 0.00238095238095238*G5_1_6 + 0.00238095238095238*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.00238095238095238*G5_2_5 + 0.00158730158730159*G5_2_6 + 0.000793650793650794*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.00238095238095238*G5_3_5 + 0.000793650793650794*G5_3_6 + 0.00158730158730159*G5_3_7 - 0.00555555555555554*G6_0 - 0.0166666666666666*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.00238095238095238*G7_0_4_4 - 0.00238095238095238*G7_0_4_5 - 0.000793650793650794*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.00238095238095238*G7_0_5_4 - 0.00476190476190475*G7_0_5_5 - 0.00119047619047619*G7_0_5_6 - 0.00119047619047619*G7_0_5_7 - 0.000793650793650794*G7_0_6_4 - 0.00119047619047619*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.00119047619047619*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.00238095238095238*G7_1_4_4 - 0.00476190476190475*G7_1_4_5 - 0.00119047619047619*G7_1_4_6 - 0.00119047619047619*G7_1_4_7 - 0.00476190476190475*G7_1_5_4 - 0.0238095238095238*G7_1_5_5 - 0.00476190476190476*G7_1_5_6 - 0.00476190476190476*G7_1_5_7 - 0.00119047619047619*G7_1_6_4 - 0.00476190476190476*G7_1_6_5 - 0.00238095238095238*G7_1_6_6 - 0.00119047619047619*G7_1_6_7 - 0.00119047619047619*G7_1_7_4 - 0.00476190476190476*G7_1_7_5 - 0.00119047619047619*G7_1_7_6 - 0.00238095238095238*G7_1_7_7 - 0.000793650793650794*G7_2_4_4 - 0.00119047619047619*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.00119047619047619*G7_2_5_4 - 0.00476190476190476*G7_2_5_5 - 0.00238095238095238*G7_2_5_6 - 0.00119047619047619*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.00238095238095238*G7_2_6_5 - 0.00238095238095238*G7_2_6_6 - 0.000793650793650794*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.00119047619047619*G7_2_7_5 - 0.000793650793650794*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.00119047619047619*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.00119047619047619*G7_3_5_4 - 0.00476190476190476*G7_3_5_5 - 0.00119047619047619*G7_3_5_6 - 0.00238095238095238*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.00119047619047619*G7_3_6_5 - 0.000793650793650794*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.00238095238095238*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00238095238095238*G7_3_7_7 + 0.00634920634920634*G8_0_4 + 0.00952380952380951*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00952380952380951*G8_1_4 + 0.0380952380952381*G8_1_5 + 0.00952380952380952*G8_1_6 + 0.00952380952380952*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00952380952380952*G8_2_5 + 0.00634920634920635*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00952380952380952*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00634920634920635*G8_3_7 - 0.0416666666666666*G9_0_0_0 - 0.0416666666666666*G9_1_0_0 - 0.0416666666666666*G9_2_0_0 - 0.0416666666666666*G9_3_0_0;
-    A[14] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 9.92063492063492e-05*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619048*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 9.92063492063492e-05*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 9.92063492063492e-05*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619048*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000297619047619048*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000595238095238095*G4_1_5_6 - 0.000297619047619048*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000595238095238095*G4_1_6_5 - 0.000595238095238095*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000297619047619048*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000595238095238095*G4_2_5_5 - 0.000595238095238095*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000595238095238095*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619048*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000297619047619048*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 9.92063492063492e-05*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 9.92063492063492e-05*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000297619047619048*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000297619047619048*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 9.92063492063492e-05*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000396825396825397*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.00158730158730159*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.00158730158730159*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650794*G5_2_7 + 0.000396825396825397*G5_3_4 + 0.000793650793650794*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650794*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000396825396825397*G7_0_4_7 - 0.000793650793650794*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000396825396825397*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000396825396825397*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00238095238095238*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.00238095238095238*G7_1_6_5 - 0.00238095238095238*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.000793650793650794*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.00238095238095238*G7_2_5_5 - 0.00238095238095238*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00238095238095238*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.000396825396825397*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000396825396825397*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.000793650793650794*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.000396825396825397*G7_3_7_4 - 0.000793650793650794*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00158730158730159*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00634920634920635*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00634920634920635*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00158730158730159*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 - 0.0416666666666666*G9_0_0_1 - 0.0416666666666666*G9_1_0_1 - 0.0416666666666666*G9_2_0_1 - 0.0416666666666666*G9_3_0_1;
-    A[15] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 9.92063492063492e-05*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619047*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 9.92063492063492e-05*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 9.92063492063492e-05*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619047*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000297619047619047*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000595238095238095*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000297619047619048*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000595238095238095*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000595238095238095*G4_1_7_7 - 9.92063492063492e-05*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 9.92063492063492e-05*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 9.92063492063492e-05*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619048*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000595238095238095*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000595238095238095*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000595238095238095*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000396825396825397*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650794*G5_1_6 + 0.00158730158730159*G5_1_7 + 0.000396825396825397*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.000793650793650794*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.00158730158730159*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.000396825396825397*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.000396825396825397*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000396825396825397*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00238095238095238*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650794*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00238095238095238*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00238095238095238*G7_1_7_7 - 0.000396825396825397*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000396825396825397*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650794*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.000396825396825397*G7_2_6_4 - 0.000793650793650794*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650794*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.000793650793650794*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00238095238095238*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00238095238095238*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.000793650793650794*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00238095238095238*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00158730158730159*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00634920634920635*G8_1_7 + 0.00158730158730159*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00634920634920635*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380952*G8_3_7 - 0.0416666666666666*G9_0_0_2 - 0.0416666666666666*G9_1_0_2 - 0.0416666666666666*G9_2_0_2 - 0.0416666666666666*G9_3_0_2;
+    A[12] = -0.00238095238095238*G4_0_4_4 - 0.00158730158730159*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.00158730158730159*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.000793650793650793*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000793650793650793*G4_0_6_5 - 0.000793650793650793*G4_0_6_6 - 0.000396825396825397*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.000396825396825397*G4_0_7_6 - 0.000793650793650793*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00277777777777777*G5_0_6 + 0.00277777777777777*G5_0_7 - 0.0166666666666666*G6_0 - 0.00952380952380951*G7_0_4_4 - 0.00634920634920634*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00634920634920634*G7_0_5_4 - 0.00952380952380951*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00317460317460317*G7_0_6_6 - 0.00158730158730159*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00158730158730159*G7_0_7_6 - 0.00317460317460317*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0111111111111111*G8_0_6 + 0.0111111111111111*G8_0_7 + 0.166666666666666*G9_0_0_0 + 0.166666666666666*G9_0_0_1 + 0.166666666666666*G9_0_0_2;
+    A[13] = -0.00158730158730159*G4_0_4_4 - 0.00238095238095238*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.00238095238095238*G4_0_5_4 - 0.00952380952380952*G4_0_5_5 - 0.00238095238095238*G4_0_5_6 - 0.00238095238095238*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.00238095238095238*G4_0_6_5 - 0.00158730158730159*G4_0_6_6 - 0.000793650793650794*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.00238095238095238*G4_0_7_5 - 0.000793650793650794*G4_0_7_6 - 0.00158730158730159*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.0166666666666666*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0333333333333332*G6_0 - 0.00634920634920634*G7_0_4_4 - 0.00952380952380951*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00952380952380951*G7_0_5_4 - 0.0380952380952381*G7_0_5_5 - 0.00952380952380952*G7_0_5_6 - 0.00952380952380952*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00952380952380952*G7_0_6_5 - 0.00634920634920635*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00952380952380952*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00634920634920635*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0666666666666665*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_0_0;
+    A[14] = -0.000793650793650793*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.000396825396825397*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.00158730158730159*G4_0_5_6 - 0.000793650793650794*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.00158730158730159*G4_0_6_5 - 0.00238095238095238*G4_0_6_6 - 0.000793650793650794*G4_0_6_7 - 0.000396825396825397*G4_0_7_4 - 0.000793650793650794*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.000793650793650793*G4_0_7_7 + 0.00277777777777777*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00277777777777777*G5_0_7 - 0.0166666666666666*G6_0 - 0.00317460317460317*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00158730158730159*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00952380952380952*G7_0_5_5 - 0.00634920634920635*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00634920634920635*G7_0_6_5 - 0.00952380952380952*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00158730158730159*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00317460317460317*G7_0_7_7 + 0.0111111111111111*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0111111111111111*G8_0_7 - 0.166666666666666*G9_0_0_1;
+    A[15] = -0.000793650793650793*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000396825396825397*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.000793650793650794*G4_0_5_6 - 0.00158730158730159*G4_0_5_7 - 0.000396825396825397*G4_0_6_4 - 0.000793650793650794*G4_0_6_5 - 0.000793650793650794*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.00158730158730159*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.00238095238095238*G4_0_7_7 + 0.00277777777777777*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00277777777777777*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0166666666666666*G6_0 - 0.00317460317460317*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00158730158730159*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00952380952380952*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00634920634920635*G7_0_5_7 - 0.00158730158730159*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00317460317460317*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00634920634920635*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00952380952380952*G7_0_7_7 + 0.0111111111111111*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0111111111111111*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_0_2;
     A[16] = 0.00833333333333331*G3_;
     A[17] = 0.00833333333333331*G3_;
     A[18] = 0.0166666666666666*G3_;
     A[19] = 0.00833333333333331*G3_;
-    A[20] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000595238095238095*G4_0_4_6 - 0.000297619047619048*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000595238095238095*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000595238095238095*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000297619047619048*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 9.92063492063492e-05*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619047*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 9.92063492063492e-05*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 9.92063492063492e-05*G4_1_7_7 - 0.000595238095238095*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000595238095238095*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619047*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000595238095238095*G4_2_6_4 - 0.000297619047619047*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619047*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000297619047619047*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 0.000297619047619048*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 9.92063492063492e-05*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 9.92063492063492e-05*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000297619047619047*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 9.92063492063492e-05*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.00158730158730159*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000396825396825397*G5_1_7 + 0.00158730158730159*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000396825396825397*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00476190476190476*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00238095238095238*G7_0_4_6 - 0.00119047619047619*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650794*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.00238095238095238*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00238095238095238*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.00119047619047619*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.000793650793650794*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650794*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000793650793650794*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650793*G7_1_5_6 - 0.000396825396825397*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.000793650793650793*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000396825396825397*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.000396825396825397*G7_1_7_7 - 0.00238095238095238*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00238095238095238*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.000793650793650793*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.00238095238095238*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650793*G7_2_7_7 - 0.00119047619047619*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.000793650793650794*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000396825396825397*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.000396825396825397*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650793*G7_3_6_7 - 0.000793650793650794*G7_3_7_4 - 0.000396825396825397*G7_3_7_5 - 0.000793650793650793*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00952380952380952*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00634920634920634*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00158730158730159*G8_1_7 + 0.00634920634920634*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380951*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00158730158730159*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 + 0.0416666666666666*G9_0_1_0 + 0.0416666666666666*G9_0_1_1 + 0.0416666666666666*G9_0_1_2 + 0.0416666666666666*G9_1_1_0 + 0.0416666666666666*G9_1_1_1 + 0.0416666666666666*G9_1_1_2 + 0.0416666666666666*G9_2_1_0 + 0.0416666666666666*G9_2_1_1 + 0.0416666666666666*G9_2_1_2 + 0.0416666666666666*G9_3_1_0 + 0.0416666666666666*G9_3_1_1 + 0.0416666666666666*G9_3_1_2;
-    A[21] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 9.92063492063492e-05*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619047*G4_0_5_5 - 0.000198412698412698*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 0.000198412698412698*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 9.92063492063492e-05*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 9.92063492063492e-05*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619047*G4_1_4_5 - 0.000198412698412698*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000297619047619047*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000595238095238095*G4_1_5_6 - 0.000297619047619048*G4_1_5_7 - 0.000198412698412698*G4_1_6_4 - 0.000595238095238095*G4_1_6_5 - 0.000595238095238095*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000297619047619048*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 0.000198412698412698*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 0.000198412698412698*G4_2_5_4 - 0.000595238095238095*G4_2_5_5 - 0.000595238095238095*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000595238095238095*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000297619047619048*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000297619047619048*G4_2_7_6 - 0.000198412698412698*G4_2_7_7 - 9.92063492063492e-05*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 9.92063492063492e-05*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000297619047619048*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000297619047619048*G4_3_6_6 - 0.000198412698412698*G4_3_6_7 - 9.92063492063492e-05*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000198412698412698*G4_3_7_6 - 0.000297619047619047*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000396825396825397*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.00158730158730159*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.00158730158730159*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000396825396825397*G5_3_4 + 0.000793650793650794*G5_3_5 + 0.000793650793650794*G5_3_6 + 0.000793650793650793*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.00277777777777777*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650794*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000396825396825397*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000793650793650793*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000793650793650793*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000396825396825397*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.000396825396825397*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000793650793650793*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00238095238095238*G7_1_5_6 - 0.00119047619047619*G7_1_5_7 - 0.000793650793650793*G7_1_6_4 - 0.00238095238095238*G7_1_6_5 - 0.00238095238095238*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.00119047619047619*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.000793650793650794*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000793650793650793*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000793650793650793*G7_2_5_4 - 0.00238095238095238*G7_2_5_5 - 0.00238095238095238*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00238095238095238*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00119047619047619*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00119047619047619*G7_2_7_6 - 0.000793650793650794*G7_2_7_7 - 0.000396825396825397*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.000396825396825397*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.00119047619047619*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.000793650793650794*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00119047619047619*G7_3_6_6 - 0.000793650793650794*G7_3_6_7 - 0.000396825396825397*G7_3_7_4 - 0.000793650793650794*G7_3_7_5 - 0.000793650793650794*G7_3_7_6 - 0.00119047619047619*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00158730158730159*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00634920634920635*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00634920634920635*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00158730158730159*G8_3_4 + 0.00317460317460318*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00317460317460317*G8_3_7 - 0.0416666666666666*G9_0_1_0 - 0.0416666666666666*G9_1_1_0 - 0.0416666666666666*G9_2_1_0 - 0.0416666666666666*G9_3_1_0;
-    A[22] = -0.000595238095238095*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000595238095238095*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 0.000297619047619047*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000595238095238095*G4_0_6_4 - 0.000297619047619047*G4_0_6_5 - 0.00119047619047619*G4_0_6_6 - 0.000297619047619047*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000297619047619047*G4_0_7_6 - 0.000198412698412698*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 0.000297619047619047*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000595238095238095*G4_1_5_5 - 0.000595238095238095*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 0.000297619047619047*G4_1_6_4 - 0.000595238095238095*G4_1_6_5 - 0.00119047619047619*G4_1_6_6 - 0.000297619047619048*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 0.000297619047619048*G4_1_7_6 - 0.000198412698412698*G4_1_7_7 - 0.000595238095238095*G4_2_4_4 - 0.000297619047619047*G4_2_4_5 - 0.00119047619047619*G4_2_4_6 - 0.000297619047619047*G4_2_4_7 - 0.000297619047619047*G4_2_5_4 - 0.000595238095238095*G4_2_5_5 - 0.00119047619047619*G4_2_5_6 - 0.000297619047619048*G4_2_5_7 - 0.00119047619047619*G4_2_6_4 - 0.00119047619047619*G4_2_6_5 - 0.00595238095238095*G4_2_6_6 - 0.00119047619047619*G4_2_6_7 - 0.000297619047619047*G4_2_7_4 - 0.000297619047619048*G4_2_7_5 - 0.00119047619047619*G4_2_7_6 - 0.000595238095238095*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000297619047619047*G4_3_4_6 - 0.000198412698412698*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 0.000297619047619048*G4_3_5_6 - 0.000198412698412698*G4_3_5_7 - 0.000297619047619047*G4_3_6_4 - 0.000297619047619048*G4_3_6_5 - 0.00119047619047619*G4_3_6_6 - 0.000595238095238095*G4_3_6_7 - 0.000198412698412698*G4_3_7_4 - 0.000198412698412698*G4_3_7_5 - 0.000595238095238095*G4_3_7_6 - 0.000595238095238095*G4_3_7_7 + 0.00158730158730159*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.00238095238095238*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00158730158730159*G5_1_5 + 0.00238095238095238*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.00238095238095238*G5_2_4 + 0.00238095238095238*G5_2_5 + 0.00952380952380951*G5_2_6 + 0.00238095238095238*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.00238095238095238*G5_3_6 + 0.00158730158730159*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.0166666666666666*G6_2 - 0.00555555555555554*G6_3 - 0.00238095238095238*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.00238095238095238*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.00119047619047619*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.00238095238095238*G7_0_6_4 - 0.00119047619047619*G7_0_6_5 - 0.00476190476190476*G7_0_6_6 - 0.00119047619047619*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.00119047619047619*G7_0_7_6 - 0.000793650793650793*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.00119047619047619*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00238095238095238*G7_1_5_5 - 0.00238095238095238*G7_1_5_6 - 0.000793650793650794*G7_1_5_7 - 0.00119047619047619*G7_1_6_4 - 0.00238095238095238*G7_1_6_5 - 0.00476190476190476*G7_1_6_6 - 0.00119047619047619*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000793650793650794*G7_1_7_5 - 0.00119047619047619*G7_1_7_6 - 0.000793650793650794*G7_1_7_7 - 0.00238095238095238*G7_2_4_4 - 0.00119047619047619*G7_2_4_5 - 0.00476190476190476*G7_2_4_6 - 0.00119047619047619*G7_2_4_7 - 0.00119047619047619*G7_2_5_4 - 0.00238095238095238*G7_2_5_5 - 0.00476190476190476*G7_2_5_6 - 0.00119047619047619*G7_2_5_7 - 0.00476190476190476*G7_2_6_4 - 0.00476190476190476*G7_2_6_5 - 0.0238095238095238*G7_2_6_6 - 0.00476190476190476*G7_2_6_7 - 0.00119047619047619*G7_2_7_4 - 0.00119047619047619*G7_2_7_5 - 0.00476190476190476*G7_2_7_6 - 0.00238095238095238*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.00119047619047619*G7_3_4_6 - 0.000793650793650793*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000793650793650794*G7_3_5_5 - 0.00119047619047619*G7_3_5_6 - 0.000793650793650794*G7_3_5_7 - 0.00119047619047619*G7_3_6_4 - 0.00119047619047619*G7_3_6_5 - 0.00476190476190476*G7_3_6_6 - 0.00238095238095238*G7_3_6_7 - 0.000793650793650793*G7_3_7_4 - 0.000793650793650794*G7_3_7_5 - 0.00238095238095238*G7_3_7_6 - 0.00238095238095238*G7_3_7_7 + 0.00634920634920634*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00952380952380951*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00634920634920635*G8_1_5 + 0.00952380952380952*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00952380952380951*G8_2_4 + 0.00952380952380952*G8_2_5 + 0.0380952380952381*G8_2_6 + 0.00952380952380952*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00952380952380952*G8_3_6 + 0.00634920634920634*G8_3_7 - 0.0416666666666666*G9_0_1_1 - 0.0416666666666666*G9_1_1_1 - 0.0416666666666666*G9_2_1_1 - 0.0416666666666666*G9_3_1_1;
-    A[23] = -0.000297619047619048*G4_0_4_4 - 9.92063492063492e-05*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 9.92063492063492e-05*G4_0_5_4 - 9.92063492063492e-05*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 9.92063492063492e-05*G4_1_4_4 - 9.92063492063492e-05*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 9.92063492063492e-05*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619048*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619048*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000297619047619048*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000595238095238095*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000595238095238095*G4_2_7_6 - 0.000595238095238095*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000595238095238095*G4_3_6_6 - 0.000595238095238095*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000595238095238095*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000396825396825397*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000396825396825397*G5_1_4 + 0.000793650793650794*G5_1_5 + 0.000793650793650794*G5_1_6 + 0.000793650793650794*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.00158730158730159*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.00158730158730159*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000396825396825397*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000793650793650794*G7_0_4_7 - 0.000396825396825397*G7_0_5_4 - 0.000396825396825397*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.000793650793650794*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000396825396825397*G7_1_4_4 - 0.000396825396825397*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000396825396825397*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.000793650793650794*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000793650793650794*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00238095238095238*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00238095238095238*G7_2_7_6 - 0.00238095238095238*G7_2_7_7 - 0.000793650793650794*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000793650793650794*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00238095238095238*G7_3_6_6 - 0.00238095238095238*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00238095238095238*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00158730158730159*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00158730158730159*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00634920634920634*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00634920634920634*G8_3_6 + 0.00952380952380951*G8_3_7 - 0.0416666666666666*G9_0_1_2 - 0.0416666666666666*G9_1_1_2 - 0.0416666666666666*G9_2_1_2 - 0.0416666666666666*G9_3_1_2;
+    A[20] = -0.00238095238095238*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.00158730158730159*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.000793650793650793*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.000396825396825397*G4_0_5_7 - 0.00158730158730159*G4_0_6_4 - 0.000793650793650793*G4_0_6_5 - 0.00238095238095238*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000396825396825397*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.000793650793650793*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00277777777777777*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00277777777777777*G5_0_7 - 0.0166666666666666*G6_0 - 0.00952380952380952*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00634920634920634*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00317460317460317*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00158730158730159*G7_0_5_7 - 0.00634920634920634*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00952380952380951*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00158730158730159*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00317460317460317*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0111111111111111*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0111111111111111*G8_0_7 + 0.166666666666666*G9_0_1_0 + 0.166666666666666*G9_0_1_1 + 0.166666666666666*G9_0_1_2;
+    A[21] = -0.000793650793650793*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.000396825396825397*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.00158730158730159*G4_0_5_6 - 0.000793650793650794*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.00158730158730159*G4_0_6_5 - 0.00238095238095238*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.000396825396825397*G4_0_7_4 - 0.000793650793650794*G4_0_7_5 - 0.000793650793650794*G4_0_7_6 - 0.000793650793650793*G4_0_7_7 + 0.00277777777777777*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00277777777777777*G5_0_7 - 0.0166666666666666*G6_0 - 0.00317460317460317*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00158730158730159*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00952380952380952*G7_0_5_5 - 0.00634920634920635*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00634920634920635*G7_0_6_5 - 0.00952380952380952*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00158730158730159*G7_0_7_4 - 0.00317460317460318*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00317460317460317*G7_0_7_7 + 0.0111111111111111*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0111111111111111*G8_0_7 - 0.166666666666666*G9_0_1_0;
+    A[22] = -0.00158730158730159*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.00238095238095238*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.00158730158730159*G4_0_5_5 - 0.00238095238095238*G4_0_5_6 - 0.000793650793650794*G4_0_5_7 - 0.00238095238095238*G4_0_6_4 - 0.00238095238095238*G4_0_6_5 - 0.00952380952380951*G4_0_6_6 - 0.00238095238095238*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.00238095238095238*G4_0_7_6 - 0.00158730158730159*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.0166666666666666*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0333333333333332*G6_0 - 0.00634920634920634*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00952380952380951*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00634920634920635*G7_0_5_5 - 0.00952380952380952*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00952380952380951*G7_0_6_4 - 0.00952380952380952*G7_0_6_5 - 0.0380952380952381*G7_0_6_6 - 0.00952380952380952*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00952380952380952*G7_0_7_6 - 0.00634920634920634*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0666666666666665*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_1_1;
+    A[23] = -0.000793650793650793*G4_0_4_4 - 0.000396825396825397*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000396825396825397*G4_0_5_4 - 0.000793650793650794*G4_0_5_5 - 0.000793650793650794*G4_0_5_6 - 0.000793650793650794*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000793650793650794*G4_0_6_5 - 0.00238095238095238*G4_0_6_6 - 0.00158730158730159*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.00158730158730159*G4_0_7_6 - 0.00238095238095238*G4_0_7_7 + 0.00277777777777777*G5_0_4 + 0.00277777777777777*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0166666666666666*G6_0 - 0.00317460317460317*G7_0_4_4 - 0.00158730158730159*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00158730158730159*G7_0_5_4 - 0.00317460317460317*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00952380952380952*G7_0_6_6 - 0.00634920634920634*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00634920634920634*G7_0_7_6 - 0.00952380952380951*G7_0_7_7 + 0.0111111111111111*G8_0_4 + 0.0111111111111111*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_1_2;
     A[24] = 0.00833333333333331*G3_;
     A[25] = 0.00833333333333331*G3_;
     A[26] = 0.00833333333333331*G3_;
     A[27] = 0.0166666666666666*G3_;
-    A[28] = -0.00119047619047619*G4_0_4_4 - 0.000297619047619047*G4_0_4_5 - 0.000297619047619048*G4_0_4_6 - 0.000595238095238095*G4_0_4_7 - 0.000297619047619047*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 0.000297619047619048*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000595238095238095*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000595238095238094*G4_0_7_7 - 0.000297619047619047*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000297619047619047*G4_1_5_5 - 9.92063492063492e-05*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 9.92063492063492e-05*G4_1_6_5 - 9.92063492063492e-05*G4_1_6_6 - 9.92063492063492e-05*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 9.92063492063492e-05*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000297619047619048*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 9.92063492063492e-05*G4_2_5_5 - 9.92063492063492e-05*G4_2_5_6 - 9.92063492063492e-05*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 9.92063492063492e-05*G4_2_6_5 - 0.000297619047619047*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 9.92063492063492e-05*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000595238095238094*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000595238095238094*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 9.92063492063492e-05*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 9.92063492063492e-05*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000595238095238094*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.00238095238095238*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.00158730158730159*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.000793650793650793*G5_1_5 + 0.000396825396825397*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000396825396825397*G5_2_5 + 0.000793650793650793*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.00158730158730159*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00555555555555554*G6_0 - 0.00277777777777777*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00476190476190475*G7_0_4_4 - 0.00119047619047619*G7_0_4_5 - 0.00119047619047619*G7_0_4_6 - 0.00238095238095238*G7_0_4_7 - 0.00119047619047619*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.00119047619047619*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.000793650793650794*G7_0_6_7 - 0.00238095238095238*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000793650793650794*G7_0_7_6 - 0.00238095238095238*G7_0_7_7 - 0.00119047619047619*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000396825396825397*G7_1_5_6 - 0.000793650793650793*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000396825396825397*G7_1_6_5 - 0.000396825396825397*G7_1_6_6 - 0.000396825396825397*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.000793650793650793*G7_1_7_5 - 0.000396825396825397*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.00119047619047619*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.000793650793650794*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000396825396825397*G7_2_5_5 - 0.000396825396825397*G7_2_5_6 - 0.000396825396825397*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000396825396825397*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650793*G7_2_6_7 - 0.000793650793650794*G7_2_7_4 - 0.000396825396825397*G7_2_7_5 - 0.000793650793650793*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.00238095238095238*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.00238095238095238*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.000793650793650793*G7_3_5_5 - 0.000396825396825397*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650794*G7_3_6_4 - 0.000396825396825397*G7_3_6_5 - 0.000793650793650793*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00238095238095238*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00952380952380951*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00634920634920634*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00158730158730159*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00158730158730159*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00634920634920634*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380951*G8_3_7 + 0.0416666666666666*G9_0_2_0 + 0.0416666666666666*G9_0_2_1 + 0.0416666666666666*G9_0_2_2 + 0.0416666666666666*G9_1_2_0 + 0.0416666666666666*G9_1_2_1 + 0.0416666666666666*G9_1_2_2 + 0.0416666666666666*G9_2_2_0 + 0.0416666666666666*G9_2_2_1 + 0.0416666666666666*G9_2_2_2 + 0.0416666666666666*G9_3_2_0 + 0.0416666666666666*G9_3_2_1 + 0.0416666666666666*G9_3_2_2;
-    A[29] = -0.000297619047619047*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 9.92063492063492e-05*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000297619047619047*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000198412698412698*G4_0_5_7 - 9.92063492063492e-05*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 9.92063492063492e-05*G4_0_6_6 - 9.92063492063492e-05*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 0.000198412698412698*G4_0_7_5 - 9.92063492063492e-05*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000297619047619047*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000198412698412698*G4_1_4_7 - 0.000297619047619047*G4_1_5_4 - 0.00119047619047619*G4_1_5_5 - 0.000297619047619048*G4_1_5_6 - 0.000595238095238095*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000297619047619048*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 0.000198412698412698*G4_1_7_4 - 0.000595238095238095*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000595238095238095*G4_1_7_7 - 9.92063492063492e-05*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 9.92063492063492e-05*G4_2_4_6 - 9.92063492063492e-05*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000297619047619048*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 9.92063492063492e-05*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000297619047619048*G4_2_6_6 - 0.000198412698412698*G4_2_6_7 - 9.92063492063492e-05*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000198412698412698*G4_2_7_6 - 0.000297619047619047*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 0.000198412698412698*G4_3_4_5 - 9.92063492063492e-05*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 0.000198412698412698*G4_3_5_4 - 0.000595238095238095*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000595238095238095*G4_3_5_7 - 9.92063492063492e-05*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000198412698412698*G4_3_6_6 - 0.000297619047619047*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000595238095238095*G4_3_7_5 - 0.000297619047619047*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000396825396825397*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00238095238095238*G5_1_5 + 0.000793650793650794*G5_1_6 + 0.00158730158730159*G5_1_7 + 0.000396825396825397*G5_2_4 + 0.000793650793650794*G5_2_5 + 0.000793650793650794*G5_2_6 + 0.000793650793650793*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.00158730158730159*G5_3_5 + 0.000793650793650793*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00555555555555554*G6_1 - 0.00277777777777777*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.000396825396825397*G7_0_4_6 - 0.000793650793650793*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.00119047619047619*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000793650793650793*G7_0_5_7 - 0.000396825396825397*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000396825396825397*G7_0_6_6 - 0.000396825396825397*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000793650793650793*G7_0_7_5 - 0.000396825396825397*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.00119047619047619*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000793650793650793*G7_1_4_7 - 0.00119047619047619*G7_1_5_4 - 0.00476190476190476*G7_1_5_5 - 0.00119047619047619*G7_1_5_6 - 0.00238095238095238*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.00119047619047619*G7_1_6_5 - 0.000793650793650794*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000793650793650793*G7_1_7_4 - 0.00238095238095238*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00238095238095238*G7_1_7_7 - 0.000396825396825397*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000396825396825397*G7_2_4_6 - 0.000396825396825397*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.00119047619047619*G7_2_5_5 - 0.000793650793650794*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.000396825396825397*G7_2_6_4 - 0.000793650793650794*G7_2_6_5 - 0.00119047619047619*G7_2_6_6 - 0.000793650793650794*G7_2_6_7 - 0.000396825396825397*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.000793650793650794*G7_2_7_6 - 0.00119047619047619*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000793650793650793*G7_3_4_5 - 0.000396825396825397*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000793650793650793*G7_3_5_4 - 0.00238095238095238*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00238095238095238*G7_3_5_7 - 0.000396825396825397*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.000793650793650794*G7_3_6_6 - 0.00119047619047619*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00238095238095238*G7_3_7_5 - 0.00119047619047619*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00158730158730159*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00952380952380952*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00634920634920635*G8_1_7 + 0.00158730158730159*G8_2_4 + 0.00317460317460318*G8_2_5 + 0.00317460317460317*G8_2_6 + 0.00317460317460317*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00634920634920635*G8_3_5 + 0.00317460317460317*G8_3_6 + 0.00952380952380952*G8_3_7 - 0.0416666666666666*G9_0_2_0 - 0.0416666666666666*G9_1_2_0 - 0.0416666666666666*G9_2_2_0 - 0.0416666666666666*G9_3_2_0;
-    A[30] = -0.000297619047619048*G4_0_4_4 - 9.92063492063492e-05*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000198412698412698*G4_0_4_7 - 9.92063492063492e-05*G4_0_5_4 - 9.92063492063492e-05*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 9.92063492063492e-05*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000297619047619047*G4_0_6_6 - 0.000198412698412698*G4_0_6_7 - 0.000198412698412698*G4_0_7_4 - 9.92063492063492e-05*G4_0_7_5 - 0.000198412698412698*G4_0_7_6 - 0.000297619047619047*G4_0_7_7 - 9.92063492063492e-05*G4_1_4_4 - 9.92063492063492e-05*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 9.92063492063492e-05*G4_1_4_7 - 9.92063492063492e-05*G4_1_5_4 - 0.000297619047619048*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000198412698412698*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000297619047619048*G4_1_6_6 - 0.000198412698412698*G4_1_6_7 - 9.92063492063492e-05*G4_1_7_4 - 0.000198412698412698*G4_1_7_5 - 0.000198412698412698*G4_1_7_6 - 0.000297619047619047*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000297619047619047*G4_2_4_6 - 0.000198412698412698*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000297619047619048*G4_2_5_6 - 0.000198412698412698*G4_2_5_7 - 0.000297619047619047*G4_2_6_4 - 0.000297619047619048*G4_2_6_5 - 0.00119047619047619*G4_2_6_6 - 0.000595238095238095*G4_2_6_7 - 0.000198412698412698*G4_2_7_4 - 0.000198412698412698*G4_2_7_5 - 0.000595238095238095*G4_2_7_6 - 0.000595238095238095*G4_2_7_7 - 0.000198412698412698*G4_3_4_4 - 9.92063492063492e-05*G4_3_4_5 - 0.000198412698412698*G4_3_4_6 - 0.000297619047619047*G4_3_4_7 - 9.92063492063492e-05*G4_3_5_4 - 0.000198412698412698*G4_3_5_5 - 0.000198412698412698*G4_3_5_6 - 0.000297619047619047*G4_3_5_7 - 0.000198412698412698*G4_3_6_4 - 0.000198412698412698*G4_3_6_5 - 0.000595238095238095*G4_3_6_6 - 0.000595238095238095*G4_3_6_7 - 0.000297619047619047*G4_3_7_4 - 0.000297619047619047*G4_3_7_5 - 0.000595238095238095*G4_3_7_6 - 0.00119047619047619*G4_3_7_7 + 0.000793650793650793*G5_0_4 + 0.000396825396825397*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.000793650793650793*G5_0_7 + 0.000396825396825397*G5_1_4 + 0.000793650793650794*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.000793650793650793*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00238095238095238*G5_2_6 + 0.00158730158730159*G5_2_7 + 0.000793650793650793*G5_3_4 + 0.000793650793650793*G5_3_5 + 0.00158730158730159*G5_3_6 + 0.00238095238095238*G5_3_7 - 0.00277777777777777*G6_0 - 0.00277777777777777*G6_1 - 0.00555555555555554*G6_2 - 0.00555555555555554*G6_3 - 0.00119047619047619*G7_0_4_4 - 0.000396825396825397*G7_0_4_5 - 0.000793650793650793*G7_0_4_6 - 0.000793650793650794*G7_0_4_7 - 0.000396825396825397*G7_0_5_4 - 0.000396825396825397*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.000396825396825397*G7_0_5_7 - 0.000793650793650793*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.00119047619047619*G7_0_6_6 - 0.000793650793650793*G7_0_6_7 - 0.000793650793650793*G7_0_7_4 - 0.000396825396825397*G7_0_7_5 - 0.000793650793650793*G7_0_7_6 - 0.00119047619047619*G7_0_7_7 - 0.000396825396825397*G7_1_4_4 - 0.000396825396825397*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.000396825396825397*G7_1_4_7 - 0.000396825396825397*G7_1_5_4 - 0.00119047619047619*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.000793650793650794*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.00119047619047619*G7_1_6_6 - 0.000793650793650794*G7_1_6_7 - 0.000396825396825397*G7_1_7_4 - 0.000793650793650794*G7_1_7_5 - 0.000793650793650794*G7_1_7_6 - 0.00119047619047619*G7_1_7_7 - 0.000793650793650793*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.00119047619047619*G7_2_4_6 - 0.000793650793650793*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.00119047619047619*G7_2_5_6 - 0.000793650793650794*G7_2_5_7 - 0.00119047619047619*G7_2_6_4 - 0.00119047619047619*G7_2_6_5 - 0.00476190476190476*G7_2_6_6 - 0.00238095238095238*G7_2_6_7 - 0.000793650793650793*G7_2_7_4 - 0.000793650793650794*G7_2_7_5 - 0.00238095238095238*G7_2_7_6 - 0.00238095238095238*G7_2_7_7 - 0.000793650793650793*G7_3_4_4 - 0.000396825396825397*G7_3_4_5 - 0.000793650793650793*G7_3_4_6 - 0.00119047619047619*G7_3_4_7 - 0.000396825396825397*G7_3_5_4 - 0.000793650793650794*G7_3_5_5 - 0.000793650793650794*G7_3_5_6 - 0.00119047619047619*G7_3_5_7 - 0.000793650793650793*G7_3_6_4 - 0.000793650793650794*G7_3_6_5 - 0.00238095238095238*G7_3_6_6 - 0.00238095238095238*G7_3_6_7 - 0.00119047619047619*G7_3_7_4 - 0.00119047619047619*G7_3_7_5 - 0.00238095238095238*G7_3_7_6 - 0.00476190476190476*G7_3_7_7 + 0.00317460317460317*G8_0_4 + 0.00158730158730159*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00317460317460317*G8_0_7 + 0.00158730158730159*G8_1_4 + 0.00317460317460317*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00317460317460317*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00952380952380952*G8_2_6 + 0.00634920634920634*G8_2_7 + 0.00317460317460317*G8_3_4 + 0.00317460317460317*G8_3_5 + 0.00634920634920634*G8_3_6 + 0.00952380952380951*G8_3_7 - 0.0416666666666666*G9_0_2_1 - 0.0416666666666666*G9_1_2_1 - 0.0416666666666666*G9_2_2_1 - 0.0416666666666666*G9_3_2_1;
-    A[31] = -0.000595238095238094*G4_0_4_4 - 0.000198412698412698*G4_0_4_5 - 0.000198412698412698*G4_0_4_6 - 0.000595238095238094*G4_0_4_7 - 0.000198412698412698*G4_0_5_4 - 0.000198412698412698*G4_0_5_5 - 9.92063492063492e-05*G4_0_5_6 - 0.000297619047619047*G4_0_5_7 - 0.000198412698412698*G4_0_6_4 - 9.92063492063492e-05*G4_0_6_5 - 0.000198412698412698*G4_0_6_6 - 0.000297619047619047*G4_0_6_7 - 0.000595238095238094*G4_0_7_4 - 0.000297619047619047*G4_0_7_5 - 0.000297619047619047*G4_0_7_6 - 0.00119047619047619*G4_0_7_7 - 0.000198412698412698*G4_1_4_4 - 0.000198412698412698*G4_1_4_5 - 9.92063492063492e-05*G4_1_4_6 - 0.000297619047619047*G4_1_4_7 - 0.000198412698412698*G4_1_5_4 - 0.000595238095238095*G4_1_5_5 - 0.000198412698412698*G4_1_5_6 - 0.000595238095238095*G4_1_5_7 - 9.92063492063492e-05*G4_1_6_4 - 0.000198412698412698*G4_1_6_5 - 0.000198412698412698*G4_1_6_6 - 0.000297619047619047*G4_1_6_7 - 0.000297619047619047*G4_1_7_4 - 0.000595238095238095*G4_1_7_5 - 0.000297619047619047*G4_1_7_6 - 0.00119047619047619*G4_1_7_7 - 0.000198412698412698*G4_2_4_4 - 9.92063492063492e-05*G4_2_4_5 - 0.000198412698412698*G4_2_4_6 - 0.000297619047619047*G4_2_4_7 - 9.92063492063492e-05*G4_2_5_4 - 0.000198412698412698*G4_2_5_5 - 0.000198412698412698*G4_2_5_6 - 0.000297619047619047*G4_2_5_7 - 0.000198412698412698*G4_2_6_4 - 0.000198412698412698*G4_2_6_5 - 0.000595238095238095*G4_2_6_6 - 0.000595238095238095*G4_2_6_7 - 0.000297619047619047*G4_2_7_4 - 0.000297619047619047*G4_2_7_5 - 0.000595238095238095*G4_2_7_6 - 0.00119047619047619*G4_2_7_7 - 0.000595238095238094*G4_3_4_4 - 0.000297619047619047*G4_3_4_5 - 0.000297619047619047*G4_3_4_6 - 0.00119047619047619*G4_3_4_7 - 0.000297619047619047*G4_3_5_4 - 0.000595238095238095*G4_3_5_5 - 0.000297619047619047*G4_3_5_6 - 0.00119047619047619*G4_3_5_7 - 0.000297619047619047*G4_3_6_4 - 0.000297619047619047*G4_3_6_5 - 0.000595238095238095*G4_3_6_6 - 0.00119047619047619*G4_3_6_7 - 0.00119047619047619*G4_3_7_4 - 0.00119047619047619*G4_3_7_5 - 0.00119047619047619*G4_3_7_6 - 0.00595238095238094*G4_3_7_7 + 0.00158730158730159*G5_0_4 + 0.000793650793650793*G5_0_5 + 0.000793650793650793*G5_0_6 + 0.00238095238095238*G5_0_7 + 0.000793650793650793*G5_1_4 + 0.00158730158730159*G5_1_5 + 0.000793650793650793*G5_1_6 + 0.00238095238095238*G5_1_7 + 0.000793650793650793*G5_2_4 + 0.000793650793650793*G5_2_5 + 0.00158730158730159*G5_2_6 + 0.00238095238095238*G5_2_7 + 0.00238095238095238*G5_3_4 + 0.00238095238095238*G5_3_5 + 0.00238095238095238*G5_3_6 + 0.00952380952380951*G5_3_7 - 0.00555555555555554*G6_0 - 0.00555555555555554*G6_1 - 0.00555555555555554*G6_2 - 0.0166666666666666*G6_3 - 0.00238095238095238*G7_0_4_4 - 0.000793650793650793*G7_0_4_5 - 0.000793650793650794*G7_0_4_6 - 0.00238095238095238*G7_0_4_7 - 0.000793650793650793*G7_0_5_4 - 0.000793650793650793*G7_0_5_5 - 0.000396825396825397*G7_0_5_6 - 0.00119047619047619*G7_0_5_7 - 0.000793650793650794*G7_0_6_4 - 0.000396825396825397*G7_0_6_5 - 0.000793650793650793*G7_0_6_6 - 0.00119047619047619*G7_0_6_7 - 0.00238095238095238*G7_0_7_4 - 0.00119047619047619*G7_0_7_5 - 0.00119047619047619*G7_0_7_6 - 0.00476190476190476*G7_0_7_7 - 0.000793650793650793*G7_1_4_4 - 0.000793650793650793*G7_1_4_5 - 0.000396825396825397*G7_1_4_6 - 0.00119047619047619*G7_1_4_7 - 0.000793650793650793*G7_1_5_4 - 0.00238095238095238*G7_1_5_5 - 0.000793650793650794*G7_1_5_6 - 0.00238095238095238*G7_1_5_7 - 0.000396825396825397*G7_1_6_4 - 0.000793650793650794*G7_1_6_5 - 0.000793650793650794*G7_1_6_6 - 0.00119047619047619*G7_1_6_7 - 0.00119047619047619*G7_1_7_4 - 0.00238095238095238*G7_1_7_5 - 0.00119047619047619*G7_1_7_6 - 0.00476190476190476*G7_1_7_7 - 0.000793650793650794*G7_2_4_4 - 0.000396825396825397*G7_2_4_5 - 0.000793650793650793*G7_2_4_6 - 0.00119047619047619*G7_2_4_7 - 0.000396825396825397*G7_2_5_4 - 0.000793650793650794*G7_2_5_5 - 0.000793650793650794*G7_2_5_6 - 0.00119047619047619*G7_2_5_7 - 0.000793650793650793*G7_2_6_4 - 0.000793650793650794*G7_2_6_5 - 0.00238095238095238*G7_2_6_6 - 0.00238095238095238*G7_2_6_7 - 0.00119047619047619*G7_2_7_4 - 0.00119047619047619*G7_2_7_5 - 0.00238095238095238*G7_2_7_6 - 0.00476190476190476*G7_2_7_7 - 0.00238095238095238*G7_3_4_4 - 0.00119047619047619*G7_3_4_5 - 0.00119047619047619*G7_3_4_6 - 0.00476190476190476*G7_3_4_7 - 0.00119047619047619*G7_3_5_4 - 0.00238095238095238*G7_3_5_5 - 0.00119047619047619*G7_3_5_6 - 0.00476190476190476*G7_3_5_7 - 0.00119047619047619*G7_3_6_4 - 0.00119047619047619*G7_3_6_5 - 0.00238095238095238*G7_3_6_6 - 0.00476190476190476*G7_3_6_7 - 0.00476190476190476*G7_3_7_4 - 0.00476190476190476*G7_3_7_5 - 0.00476190476190476*G7_3_7_6 - 0.0238095238095238*G7_3_7_7 + 0.00634920634920634*G8_0_4 + 0.00317460317460317*G8_0_5 + 0.00317460317460317*G8_0_6 + 0.00952380952380951*G8_0_7 + 0.00317460317460317*G8_1_4 + 0.00634920634920635*G8_1_5 + 0.00317460317460317*G8_1_6 + 0.00952380952380952*G8_1_7 + 0.00317460317460317*G8_2_4 + 0.00317460317460317*G8_2_5 + 0.00634920634920634*G8_2_6 + 0.00952380952380951*G8_2_7 + 0.00952380952380951*G8_3_4 + 0.00952380952380952*G8_3_5 + 0.00952380952380951*G8_3_6 + 0.038095238095238*G8_3_7 - 0.0416666666666666*G9_0_2_2 - 0.0416666666666666*G9_1_2_2 - 0.0416666666666666*G9_2_2_2 - 0.0416666666666666*G9_3_2_2;
-    A[32] = 0.0166666666666666*G1_0_0_0_0 + 0.0166666666666666*G1_0_0_0_1 + 0.0166666666666666*G1_0_0_0_2 + 0.0166666666666666*G1_0_0_1_0 + 0.0166666666666666*G1_0_0_1_1 + 0.0166666666666666*G1_0_0_1_2 + 0.0166666666666666*G1_0_0_2_0 + 0.0166666666666666*G1_0_0_2_1 + 0.0166666666666666*G1_0_0_2_2 - 0.0166666666666666*G1_0_1_0_0 - 0.0166666666666666*G1_0_1_1_0 - 0.0166666666666666*G1_0_1_2_0 - 0.0166666666666666*G1_0_2_0_1 - 0.0166666666666666*G1_0_2_1_1 - 0.0166666666666666*G1_0_2_2_1 - 0.0166666666666666*G1_0_3_0_2 - 0.0166666666666666*G1_0_3_1_2 - 0.0166666666666666*G1_0_3_2_2 + 0.00833333333333331*G1_1_0_0_0 + 0.00833333333333331*G1_1_0_0_1 + 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_0_1_0 + 0.00833333333333331*G1_1_0_1_1 + 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_0_2_0 + 0.00833333333333331*G1_1_0_2_1 + 0.00833333333333331*G1_1_0_2_2 - 0.00833333333333331*G1_1_1_0_0 - 0.00833333333333331*G1_1_1_1_0 - 0.00833333333333331*G1_1_1_2_0 - 0.00833333333333331*G1_1_2_0_1 - 0.00833333333333331*G1_1_2_1_1 - 0.00833333333333331*G1_1_2_2_1 - 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_1_3_2_2 + 0.0083333333333333*G1_2_0_0_0 + 0.00833333333333331*G1_2_0_0_1 + 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_0_1_0 + 0.00833333333333331*G1_2_0_1_1 + 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_0_2_0 + 0.00833333333333331*G1_2_0_2_1 + 0.00833333333333331*G1_2_0_2_2 - 0.0083333333333333*G1_2_1_0_0 - 0.00833333333333331*G1_2_1_1_0 - 0.00833333333333331*G1_2_1_2_0 - 0.00833333333333331*G1_2_2_0_1 - 0.00833333333333331*G1_2_2_1_1 - 0.00833333333333331*G1_2_2_2_1 - 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_2_3_2_2 + 0.00833333333333331*G1_3_0_0_0 + 0.00833333333333331*G1_3_0_0_1 + 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_0_1_0 + 0.00833333333333331*G1_3_0_1_1 + 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_0_2_0 + 0.00833333333333331*G1_3_0_2_1 + 0.00833333333333331*G1_3_0_2_2 - 0.00833333333333331*G1_3_1_0_0 - 0.00833333333333331*G1_3_1_1_0 - 0.00833333333333331*G1_3_1_2_0 - 0.00833333333333331*G1_3_2_0_1 - 0.00833333333333331*G1_3_2_1_1 - 0.00833333333333331*G1_3_2_2_1 - 0.00833333333333331*G1_3_3_0_2 - 0.00833333333333331*G1_3_3_1_2 - 0.00833333333333331*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_0_0 + 0.0166666666666666*G2_0_0_0_1 + 0.0166666666666666*G2_0_0_0_2 + 0.0166666666666666*G2_0_0_1_0 + 0.0166666666666666*G2_0_0_1_1 + 0.0166666666666666*G2_0_0_1_2 + 0.0166666666666666*G2_0_0_2_0 + 0.0166666666666666*G2_0_0_2_1 + 0.0166666666666666*G2_0_0_2_2 + 0.00833333333333331*G2_0_1_0_0 + 0.00833333333333331*G2_0_1_0_1 + 0.00833333333333331*G2_0_1_0_2 + 0.00833333333333331*G2_0_1_1_0 + 0.00833333333333331*G2_0_1_1_1 + 0.00833333333333331*G2_0_1_1_2 + 0.00833333333333331*G2_0_1_2_0 + 0.00833333333333331*G2_0_1_2_1 + 0.00833333333333331*G2_0_1_2_2 + 0.00833333333333331*G2_0_2_0_0 + 0.00833333333333331*G2_0_2_0_1 + 0.00833333333333331*G2_0_2_0_2 + 0.00833333333333331*G2_0_2_1_0 + 0.00833333333333331*G2_0_2_1_1 + 0.00833333333333331*G2_0_2_1_2 + 0.00833333333333331*G2_0_2_2_0 + 0.00833333333333331*G2_0_2_2_1 + 0.00833333333333331*G2_0_2_2_2 + 0.00833333333333331*G2_0_3_0_0 + 0.00833333333333331*G2_0_3_0_1 + 0.00833333333333331*G2_0_3_0_2 + 0.00833333333333331*G2_0_3_1_0 + 0.00833333333333331*G2_0_3_1_1 + 0.00833333333333331*G2_0_3_1_2 + 0.00833333333333331*G2_0_3_2_0 + 0.00833333333333331*G2_0_3_2_1 + 0.00833333333333331*G2_0_3_2_2 + 0.00833333333333331*G2_1_0_0_0 + 0.00833333333333331*G2_1_0_0_1 + 0.00833333333333331*G2_1_0_0_2 + 0.00833333333333331*G2_1_0_1_0 + 0.00833333333333331*G2_1_0_1_1 + 0.00833333333333331*G2_1_0_1_2 + 0.00833333333333331*G2_1_0_2_0 + 0.00833333333333331*G2_1_0_2_1 + 0.00833333333333331*G2_1_0_2_2 + 0.0166666666666666*G2_1_1_0_0 + 0.0166666666666666*G2_1_1_0_1 + 0.0166666666666666*G2_1_1_0_2 + 0.0166666666666666*G2_1_1_1_0 + 0.0166666666666666*G2_1_1_1_1 + 0.0166666666666666*G2_1_1_1_2 + 0.0166666666666666*G2_1_1_2_0 + 0.0166666666666666*G2_1_1_2_1 + 0.0166666666666666*G2_1_1_2_2 + 0.00833333333333331*G2_1_2_0_0 + 0.00833333333333331*G2_1_2_0_1 + 0.00833333333333331*G2_1_2_0_2 + 0.00833333333333331*G2_1_2_1_0 + 0.00833333333333331*G2_1_2_1_1 + 0.00833333333333331*G2_1_2_1_2 + 0.00833333333333331*G2_1_2_2_0 + 0.00833333333333331*G2_1_2_2_1 + 0.00833333333333331*G2_1_2_2_2 + 0.00833333333333331*G2_1_3_0_0 + 0.00833333333333331*G2_1_3_0_1 + 0.00833333333333331*G2_1_3_0_2 + 0.00833333333333331*G2_1_3_1_0 + 0.00833333333333331*G2_1_3_1_1 + 0.00833333333333331*G2_1_3_1_2 + 0.00833333333333331*G2_1_3_2_0 + 0.00833333333333331*G2_1_3_2_1 + 0.00833333333333331*G2_1_3_2_2 + 0.0083333333333333*G2_2_0_0_0 + 0.00833333333333331*G2_2_0_0_1 + 0.00833333333333331*G2_2_0_0_2 + 0.00833333333333331*G2_2_0_1_0 + 0.00833333333333331*G2_2_0_1_1 + 0.00833333333333331*G2_2_0_1_2 + 0.00833333333333331*G2_2_0_2_0 + 0.00833333333333331*G2_2_0_2_1 + 0.00833333333333331*G2_2_0_2_2 + 0.00833333333333331*G2_2_1_0_0 + 0.00833333333333331*G2_2_1_0_1 + 0.00833333333333331*G2_2_1_0_2 + 0.00833333333333331*G2_2_1_1_0 + 0.00833333333333331*G2_2_1_1_1 + 0.00833333333333331*G2_2_1_1_2 + 0.00833333333333331*G2_2_1_2_0 + 0.00833333333333331*G2_2_1_2_1 + 0.00833333333333331*G2_2_1_2_2 + 0.0166666666666666*G2_2_2_0_0 + 0.0166666666666666*G2_2_2_0_1 + 0.0166666666666666*G2_2_2_0_2 + 0.0166666666666666*G2_2_2_1_0 + 0.0166666666666666*G2_2_2_1_1 + 0.0166666666666666*G2_2_2_1_2 + 0.0166666666666666*G2_2_2_2_0 + 0.0166666666666666*G2_2_2_2_1 + 0.0166666666666666*G2_2_2_2_2 + 0.00833333333333331*G2_2_3_0_0 + 0.00833333333333331*G2_2_3_0_1 + 0.00833333333333331*G2_2_3_0_2 + 0.00833333333333331*G2_2_3_1_0 + 0.00833333333333331*G2_2_3_1_1 + 0.00833333333333331*G2_2_3_1_2 + 0.00833333333333331*G2_2_3_2_0 + 0.00833333333333331*G2_2_3_2_1 + 0.00833333333333331*G2_2_3_2_2 + 0.00833333333333331*G2_3_0_0_0 + 0.00833333333333331*G2_3_0_0_1 + 0.00833333333333331*G2_3_0_0_2 + 0.00833333333333331*G2_3_0_1_0 + 0.00833333333333331*G2_3_0_1_1 + 0.00833333333333331*G2_3_0_1_2 + 0.00833333333333331*G2_3_0_2_0 + 0.00833333333333331*G2_3_0_2_1 + 0.00833333333333331*G2_3_0_2_2 + 0.00833333333333331*G2_3_1_0_0 + 0.00833333333333331*G2_3_1_0_1 + 0.00833333333333331*G2_3_1_0_2 + 0.00833333333333331*G2_3_1_1_0 + 0.00833333333333331*G2_3_1_1_1 + 0.00833333333333331*G2_3_1_1_2 + 0.00833333333333331*G2_3_1_2_0 + 0.00833333333333331*G2_3_1_2_1 + 0.00833333333333331*G2_3_1_2_2 + 0.00833333333333331*G2_3_2_0_0 + 0.00833333333333331*G2_3_2_0_1 + 0.00833333333333331*G2_3_2_0_2 + 0.00833333333333331*G2_3_2_1_0 + 0.00833333333333331*G2_3_2_1_1 + 0.00833333333333331*G2_3_2_1_2 + 0.00833333333333331*G2_3_2_2_0 + 0.00833333333333331*G2_3_2_2_1 + 0.00833333333333331*G2_3_2_2_2 + 0.0166666666666666*G2_3_3_0_0 + 0.0166666666666666*G2_3_3_0_1 + 0.0166666666666666*G2_3_3_0_2 + 0.0166666666666666*G2_3_3_1_0 + 0.0166666666666666*G2_3_3_1_1 + 0.0166666666666666*G2_3_3_1_2 + 0.0166666666666666*G2_3_3_2_0 + 0.0166666666666666*G2_3_3_2_1 + 0.0166666666666666*G2_3_3_2_2;
-    A[33] = 0.00833333333333331*G1_0_0_0_0 + 0.00833333333333331*G1_0_0_0_1 + 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_0_1_0 + 0.00833333333333331*G1_0_0_1_1 + 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_0_2_0 + 0.00833333333333331*G1_0_0_2_1 + 0.00833333333333331*G1_0_0_2_2 - 0.00833333333333331*G1_0_1_0_0 - 0.00833333333333331*G1_0_1_1_0 - 0.00833333333333331*G1_0_1_2_0 - 0.00833333333333331*G1_0_2_0_1 - 0.00833333333333331*G1_0_2_1_1 - 0.00833333333333331*G1_0_2_2_1 - 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_0_3_2_2 + 0.0166666666666666*G1_1_0_0_0 + 0.0166666666666666*G1_1_0_0_1 + 0.0166666666666666*G1_1_0_0_2 + 0.0166666666666666*G1_1_0_1_0 + 0.0166666666666666*G1_1_0_1_1 + 0.0166666666666666*G1_1_0_1_2 + 0.0166666666666666*G1_1_0_2_0 + 0.0166666666666666*G1_1_0_2_1 + 0.0166666666666666*G1_1_0_2_2 - 0.0166666666666666*G1_1_1_0_0 - 0.0166666666666666*G1_1_1_1_0 - 0.0166666666666666*G1_1_1_2_0 - 0.0166666666666666*G1_1_2_0_1 - 0.0166666666666666*G1_1_2_1_1 - 0.0166666666666666*G1_1_2_2_1 - 0.0166666666666666*G1_1_3_0_2 - 0.0166666666666666*G1_1_3_1_2 - 0.0166666666666666*G1_1_3_2_2 + 0.00833333333333331*G1_2_0_0_0 + 0.00833333333333331*G1_2_0_0_1 + 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_0_1_0 + 0.00833333333333331*G1_2_0_1_1 + 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_0_2_0 + 0.00833333333333331*G1_2_0_2_1 + 0.00833333333333331*G1_2_0_2_2 - 0.00833333333333331*G1_2_1_0_0 - 0.00833333333333331*G1_2_1_1_0 - 0.00833333333333331*G1_2_1_2_0 - 0.00833333333333331*G1_2_2_0_1 - 0.00833333333333331*G1_2_2_1_1 - 0.00833333333333331*G1_2_2_2_1 - 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_2_3_2_2 + 0.00833333333333331*G1_3_0_0_0 + 0.00833333333333331*G1_3_0_0_1 + 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_0_1_0 + 0.00833333333333331*G1_3_0_1_1 + 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_0_2_0 + 0.00833333333333331*G1_3_0_2_1 + 0.00833333333333331*G1_3_0_2_2 - 0.00833333333333331*G1_3_1_0_0 - 0.00833333333333331*G1_3_1_1_0 - 0.00833333333333331*G1_3_1_2_0 - 0.00833333333333331*G1_3_2_0_1 - 0.00833333333333331*G1_3_2_1_1 - 0.00833333333333331*G1_3_2_2_1 - 0.00833333333333331*G1_3_3_0_2 - 0.00833333333333331*G1_3_3_1_2 - 0.00833333333333331*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_0_0 - 0.0166666666666666*G2_0_0_1_0 - 0.0166666666666666*G2_0_0_2_0 - 0.00833333333333331*G2_0_1_0_0 - 0.00833333333333331*G2_0_1_1_0 - 0.00833333333333331*G2_0_1_2_0 - 0.00833333333333331*G2_0_2_0_0 - 0.00833333333333331*G2_0_2_1_0 - 0.00833333333333331*G2_0_2_2_0 - 0.00833333333333331*G2_0_3_0_0 - 0.00833333333333331*G2_0_3_1_0 - 0.00833333333333331*G2_0_3_2_0 - 0.00833333333333331*G2_1_0_0_0 - 0.00833333333333331*G2_1_0_1_0 - 0.00833333333333331*G2_1_0_2_0 - 0.0166666666666666*G2_1_1_0_0 - 0.0166666666666666*G2_1_1_1_0 - 0.0166666666666666*G2_1_1_2_0 - 0.00833333333333331*G2_1_2_0_0 - 0.00833333333333331*G2_1_2_1_0 - 0.00833333333333331*G2_1_2_2_0 - 0.00833333333333331*G2_1_3_0_0 - 0.00833333333333331*G2_1_3_1_0 - 0.00833333333333331*G2_1_3_2_0 - 0.0083333333333333*G2_2_0_0_0 - 0.00833333333333331*G2_2_0_1_0 - 0.00833333333333331*G2_2_0_2_0 - 0.00833333333333331*G2_2_1_0_0 - 0.00833333333333331*G2_2_1_1_0 - 0.00833333333333331*G2_2_1_2_0 - 0.0166666666666666*G2_2_2_0_0 - 0.0166666666666666*G2_2_2_1_0 - 0.0166666666666666*G2_2_2_2_0 - 0.00833333333333331*G2_2_3_0_0 - 0.00833333333333331*G2_2_3_1_0 - 0.00833333333333331*G2_2_3_2_0 - 0.00833333333333331*G2_3_0_0_0 - 0.00833333333333331*G2_3_0_1_0 - 0.00833333333333331*G2_3_0_2_0 - 0.00833333333333331*G2_3_1_0_0 - 0.00833333333333331*G2_3_1_1_0 - 0.00833333333333331*G2_3_1_2_0 - 0.00833333333333331*G2_3_2_0_0 - 0.00833333333333331*G2_3_2_1_0 - 0.00833333333333331*G2_3_2_2_0 - 0.0166666666666666*G2_3_3_0_0 - 0.0166666666666666*G2_3_3_1_0 - 0.0166666666666666*G2_3_3_2_0;
-    A[34] = 0.00833333333333331*G1_0_0_0_0 + 0.00833333333333331*G1_0_0_0_1 + 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_0_1_0 + 0.00833333333333331*G1_0_0_1_1 + 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_0_2_0 + 0.00833333333333331*G1_0_0_2_1 + 0.00833333333333331*G1_0_0_2_2 - 0.00833333333333331*G1_0_1_0_0 - 0.00833333333333331*G1_0_1_1_0 - 0.00833333333333331*G1_0_1_2_0 - 0.00833333333333331*G1_0_2_0_1 - 0.00833333333333331*G1_0_2_1_1 - 0.00833333333333331*G1_0_2_2_1 - 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_0_3_2_2 + 0.00833333333333331*G1_1_0_0_0 + 0.00833333333333331*G1_1_0_0_1 + 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_0_1_0 + 0.00833333333333331*G1_1_0_1_1 + 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_0_2_0 + 0.00833333333333331*G1_1_0_2_1 + 0.00833333333333331*G1_1_0_2_2 - 0.00833333333333331*G1_1_1_0_0 - 0.00833333333333331*G1_1_1_1_0 - 0.00833333333333331*G1_1_1_2_0 - 0.00833333333333331*G1_1_2_0_1 - 0.00833333333333331*G1_1_2_1_1 - 0.00833333333333331*G1_1_2_2_1 - 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_1_3_2_2 + 0.0166666666666666*G1_2_0_0_0 + 0.0166666666666666*G1_2_0_0_1 + 0.0166666666666666*G1_2_0_0_2 + 0.0166666666666666*G1_2_0_1_0 + 0.0166666666666666*G1_2_0_1_1 + 0.0166666666666666*G1_2_0_1_2 + 0.0166666666666666*G1_2_0_2_0 + 0.0166666666666666*G1_2_0_2_1 + 0.0166666666666666*G1_2_0_2_2 - 0.0166666666666666*G1_2_1_0_0 - 0.0166666666666666*G1_2_1_1_0 - 0.0166666666666666*G1_2_1_2_0 - 0.0166666666666666*G1_2_2_0_1 - 0.0166666666666666*G1_2_2_1_1 - 0.0166666666666666*G1_2_2_2_1 - 0.0166666666666666*G1_2_3_0_2 - 0.0166666666666666*G1_2_3_1_2 - 0.0166666666666666*G1_2_3_2_2 + 0.00833333333333331*G1_3_0_0_0 + 0.00833333333333331*G1_3_0_0_1 + 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_0_1_0 + 0.00833333333333331*G1_3_0_1_1 + 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_0_2_0 + 0.00833333333333331*G1_3_0_2_1 + 0.00833333333333331*G1_3_0_2_2 - 0.00833333333333331*G1_3_1_0_0 - 0.00833333333333331*G1_3_1_1_0 - 0.00833333333333331*G1_3_1_2_0 - 0.00833333333333331*G1_3_2_0_1 - 0.00833333333333331*G1_3_2_1_1 - 0.00833333333333331*G1_3_2_2_1 - 0.00833333333333331*G1_3_3_0_2 - 0.00833333333333331*G1_3_3_1_2 - 0.00833333333333331*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_0_1 - 0.0166666666666666*G2_0_0_1_1 - 0.0166666666666666*G2_0_0_2_1 - 0.00833333333333331*G2_0_1_0_1 - 0.00833333333333331*G2_0_1_1_1 - 0.00833333333333331*G2_0_1_2_1 - 0.00833333333333331*G2_0_2_0_1 - 0.00833333333333331*G2_0_2_1_1 - 0.00833333333333331*G2_0_2_2_1 - 0.00833333333333331*G2_0_3_0_1 - 0.00833333333333331*G2_0_3_1_1 - 0.00833333333333331*G2_0_3_2_1 - 0.00833333333333331*G2_1_0_0_1 - 0.00833333333333331*G2_1_0_1_1 - 0.00833333333333331*G2_1_0_2_1 - 0.0166666666666666*G2_1_1_0_1 - 0.0166666666666666*G2_1_1_1_1 - 0.0166666666666666*G2_1_1_2_1 - 0.00833333333333331*G2_1_2_0_1 - 0.00833333333333331*G2_1_2_1_1 - 0.00833333333333331*G2_1_2_2_1 - 0.00833333333333331*G2_1_3_0_1 - 0.00833333333333331*G2_1_3_1_1 - 0.00833333333333331*G2_1_3_2_1 - 0.00833333333333331*G2_2_0_0_1 - 0.00833333333333331*G2_2_0_1_1 - 0.00833333333333331*G2_2_0_2_1 - 0.00833333333333331*G2_2_1_0_1 - 0.00833333333333331*G2_2_1_1_1 - 0.00833333333333331*G2_2_1_2_1 - 0.0166666666666666*G2_2_2_0_1 - 0.0166666666666666*G2_2_2_1_1 - 0.0166666666666666*G2_2_2_2_1 - 0.00833333333333331*G2_2_3_0_1 - 0.00833333333333331*G2_2_3_1_1 - 0.00833333333333331*G2_2_3_2_1 - 0.00833333333333331*G2_3_0_0_1 - 0.00833333333333331*G2_3_0_1_1 - 0.00833333333333331*G2_3_0_2_1 - 0.00833333333333331*G2_3_1_0_1 - 0.00833333333333331*G2_3_1_1_1 - 0.00833333333333331*G2_3_1_2_1 - 0.00833333333333331*G2_3_2_0_1 - 0.00833333333333331*G2_3_2_1_1 - 0.00833333333333331*G2_3_2_2_1 - 0.0166666666666666*G2_3_3_0_1 - 0.0166666666666666*G2_3_3_1_1 - 0.0166666666666666*G2_3_3_2_1;
-    A[35] = 0.00833333333333331*G1_0_0_0_0 + 0.00833333333333331*G1_0_0_0_1 + 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_0_1_0 + 0.00833333333333331*G1_0_0_1_1 + 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_0_2_0 + 0.00833333333333331*G1_0_0_2_1 + 0.00833333333333331*G1_0_0_2_2 - 0.00833333333333331*G1_0_1_0_0 - 0.00833333333333331*G1_0_1_1_0 - 0.00833333333333331*G1_0_1_2_0 - 0.00833333333333331*G1_0_2_0_1 - 0.00833333333333331*G1_0_2_1_1 - 0.00833333333333331*G1_0_2_2_1 - 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_0_3_2_2 + 0.00833333333333331*G1_1_0_0_0 + 0.00833333333333331*G1_1_0_0_1 + 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_0_1_0 + 0.00833333333333331*G1_1_0_1_1 + 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_0_2_0 + 0.00833333333333331*G1_1_0_2_1 + 0.00833333333333331*G1_1_0_2_2 - 0.00833333333333331*G1_1_1_0_0 - 0.00833333333333331*G1_1_1_1_0 - 0.00833333333333331*G1_1_1_2_0 - 0.00833333333333331*G1_1_2_0_1 - 0.00833333333333331*G1_1_2_1_1 - 0.00833333333333331*G1_1_2_2_1 - 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_1_3_2_2 + 0.00833333333333331*G1_2_0_0_0 + 0.00833333333333331*G1_2_0_0_1 + 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_0_1_0 + 0.00833333333333331*G1_2_0_1_1 + 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_0_2_0 + 0.00833333333333331*G1_2_0_2_1 + 0.00833333333333331*G1_2_0_2_2 - 0.00833333333333331*G1_2_1_0_0 - 0.00833333333333331*G1_2_1_1_0 - 0.00833333333333331*G1_2_1_2_0 - 0.00833333333333331*G1_2_2_0_1 - 0.00833333333333331*G1_2_2_1_1 - 0.00833333333333331*G1_2_2_2_1 - 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_2_3_2_2 + 0.0166666666666666*G1_3_0_0_0 + 0.0166666666666666*G1_3_0_0_1 + 0.0166666666666666*G1_3_0_0_2 + 0.0166666666666666*G1_3_0_1_0 + 0.0166666666666666*G1_3_0_1_1 + 0.0166666666666666*G1_3_0_1_2 + 0.0166666666666666*G1_3_0_2_0 + 0.0166666666666666*G1_3_0_2_1 + 0.0166666666666666*G1_3_0_2_2 - 0.0166666666666666*G1_3_1_0_0 - 0.0166666666666666*G1_3_1_1_0 - 0.0166666666666666*G1_3_1_2_0 - 0.0166666666666666*G1_3_2_0_1 - 0.0166666666666666*G1_3_2_1_1 - 0.0166666666666666*G1_3_2_2_1 - 0.0166666666666666*G1_3_3_0_2 - 0.0166666666666666*G1_3_3_1_2 - 0.0166666666666666*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_0_2 - 0.0166666666666666*G2_0_0_1_2 - 0.0166666666666666*G2_0_0_2_2 - 0.00833333333333331*G2_0_1_0_2 - 0.00833333333333331*G2_0_1_1_2 - 0.00833333333333331*G2_0_1_2_2 - 0.00833333333333331*G2_0_2_0_2 - 0.00833333333333331*G2_0_2_1_2 - 0.00833333333333331*G2_0_2_2_2 - 0.00833333333333331*G2_0_3_0_2 - 0.00833333333333331*G2_0_3_1_2 - 0.00833333333333331*G2_0_3_2_2 - 0.00833333333333331*G2_1_0_0_2 - 0.00833333333333331*G2_1_0_1_2 - 0.00833333333333331*G2_1_0_2_2 - 0.0166666666666666*G2_1_1_0_2 - 0.0166666666666666*G2_1_1_1_2 - 0.0166666666666666*G2_1_1_2_2 - 0.00833333333333331*G2_1_2_0_2 - 0.00833333333333331*G2_1_2_1_2 - 0.00833333333333331*G2_1_2_2_2 - 0.00833333333333331*G2_1_3_0_2 - 0.00833333333333331*G2_1_3_1_2 - 0.00833333333333331*G2_1_3_2_2 - 0.00833333333333331*G2_2_0_0_2 - 0.00833333333333331*G2_2_0_1_2 - 0.00833333333333331*G2_2_0_2_2 - 0.00833333333333331*G2_2_1_0_2 - 0.00833333333333331*G2_2_1_1_2 - 0.00833333333333331*G2_2_1_2_2 - 0.0166666666666666*G2_2_2_0_2 - 0.0166666666666666*G2_2_2_1_2 - 0.0166666666666666*G2_2_2_2_2 - 0.00833333333333331*G2_2_3_0_2 - 0.00833333333333331*G2_2_3_1_2 - 0.00833333333333331*G2_2_3_2_2 - 0.00833333333333331*G2_3_0_0_2 - 0.00833333333333331*G2_3_0_1_2 - 0.00833333333333331*G2_3_0_2_2 - 0.00833333333333331*G2_3_1_0_2 - 0.00833333333333331*G2_3_1_1_2 - 0.00833333333333331*G2_3_1_2_2 - 0.00833333333333331*G2_3_2_0_2 - 0.00833333333333331*G2_3_2_1_2 - 0.00833333333333331*G2_3_2_2_2 - 0.0166666666666666*G2_3_3_0_2 - 0.0166666666666666*G2_3_3_1_2 - 0.0166666666666666*G2_3_3_2_2;
+    A[28] = -0.00238095238095238*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.00158730158730159*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.000793650793650793*G4_0_5_5 - 0.000396825396825397*G4_0_5_6 - 0.000793650793650793*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000396825396825397*G4_0_6_5 - 0.000793650793650793*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.00158730158730159*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.00238095238095238*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00277777777777777*G5_0_5 + 0.00277777777777777*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0166666666666666*G6_0 - 0.00952380952380951*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00634920634920634*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00317460317460317*G7_0_5_5 - 0.00158730158730159*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00158730158730159*G7_0_6_5 - 0.00317460317460317*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00634920634920634*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00952380952380951*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0111111111111111*G8_0_5 + 0.0111111111111111*G8_0_6 + 0.0222222222222222*G8_0_7 + 0.166666666666666*G9_0_2_0 + 0.166666666666666*G9_0_2_1 + 0.166666666666666*G9_0_2_2;
+    A[29] = -0.000793650793650793*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000396825396825397*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.00238095238095238*G4_0_5_5 - 0.000793650793650794*G4_0_5_6 - 0.00158730158730159*G4_0_5_7 - 0.000396825396825397*G4_0_6_4 - 0.000793650793650794*G4_0_6_5 - 0.000793650793650794*G4_0_6_6 - 0.000793650793650793*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.00158730158730159*G4_0_7_5 - 0.000793650793650793*G4_0_7_6 - 0.00238095238095238*G4_0_7_7 + 0.00277777777777777*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00277777777777777*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0166666666666666*G6_0 - 0.00317460317460317*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00158730158730159*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00952380952380952*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00634920634920635*G7_0_5_7 - 0.00158730158730159*G7_0_6_4 - 0.00317460317460318*G7_0_6_5 - 0.00317460317460317*G7_0_6_6 - 0.00317460317460317*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00634920634920635*G7_0_7_5 - 0.00317460317460317*G7_0_7_6 - 0.00952380952380952*G7_0_7_7 + 0.0111111111111111*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0111111111111111*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_2_0;
+    A[30] = -0.000793650793650793*G4_0_4_4 - 0.000396825396825397*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.000793650793650793*G4_0_4_7 - 0.000396825396825397*G4_0_5_4 - 0.000793650793650794*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.000793650793650793*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000793650793650793*G4_0_6_5 - 0.00238095238095238*G4_0_6_6 - 0.00158730158730159*G4_0_6_7 - 0.000793650793650793*G4_0_7_4 - 0.000793650793650793*G4_0_7_5 - 0.00158730158730159*G4_0_7_6 - 0.00238095238095238*G4_0_7_7 + 0.00277777777777777*G5_0_4 + 0.00277777777777777*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.00555555555555554*G5_0_7 - 0.0166666666666666*G6_0 - 0.00317460317460317*G7_0_4_4 - 0.00158730158730159*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00317460317460317*G7_0_4_7 - 0.00158730158730159*G7_0_5_4 - 0.00317460317460317*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00317460317460317*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00952380952380952*G7_0_6_6 - 0.00634920634920634*G7_0_6_7 - 0.00317460317460317*G7_0_7_4 - 0.00317460317460317*G7_0_7_5 - 0.00634920634920634*G7_0_7_6 - 0.00952380952380951*G7_0_7_7 + 0.0111111111111111*G8_0_4 + 0.0111111111111111*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0222222222222222*G8_0_7 - 0.166666666666666*G9_0_2_1;
+    A[31] = -0.00158730158730159*G4_0_4_4 - 0.000793650793650793*G4_0_4_5 - 0.000793650793650793*G4_0_4_6 - 0.00238095238095238*G4_0_4_7 - 0.000793650793650793*G4_0_5_4 - 0.00158730158730159*G4_0_5_5 - 0.000793650793650793*G4_0_5_6 - 0.00238095238095238*G4_0_5_7 - 0.000793650793650793*G4_0_6_4 - 0.000793650793650793*G4_0_6_5 - 0.00158730158730159*G4_0_6_6 - 0.00238095238095238*G4_0_6_7 - 0.00238095238095238*G4_0_7_4 - 0.00238095238095238*G4_0_7_5 - 0.00238095238095238*G4_0_7_6 - 0.00952380952380951*G4_0_7_7 + 0.00555555555555554*G5_0_4 + 0.00555555555555554*G5_0_5 + 0.00555555555555554*G5_0_6 + 0.0166666666666666*G5_0_7 - 0.0333333333333332*G6_0 - 0.00634920634920634*G7_0_4_4 - 0.00317460317460317*G7_0_4_5 - 0.00317460317460317*G7_0_4_6 - 0.00952380952380951*G7_0_4_7 - 0.00317460317460317*G7_0_5_4 - 0.00634920634920635*G7_0_5_5 - 0.00317460317460317*G7_0_5_6 - 0.00952380952380952*G7_0_5_7 - 0.00317460317460317*G7_0_6_4 - 0.00317460317460317*G7_0_6_5 - 0.00634920634920634*G7_0_6_6 - 0.00952380952380951*G7_0_6_7 - 0.00952380952380951*G7_0_7_4 - 0.00952380952380952*G7_0_7_5 - 0.00952380952380951*G7_0_7_6 - 0.038095238095238*G7_0_7_7 + 0.0222222222222222*G8_0_4 + 0.0222222222222222*G8_0_5 + 0.0222222222222222*G8_0_6 + 0.0666666666666665*G8_0_7 - 0.166666666666666*G9_0_2_2;
+    A[32] = 0.166666666666666*G2_0_0_0_0 + 0.166666666666666*G2_0_0_0_1 + 0.166666666666666*G2_0_0_0_2 + 0.166666666666666*G2_0_0_1_0 + 0.166666666666666*G2_0_0_1_1 + 0.166666666666666*G2_0_0_1_2 + 0.166666666666666*G2_0_0_2_0 + 0.166666666666666*G2_0_0_2_1 + 0.166666666666666*G2_0_0_2_2;
+    A[33] = -0.166666666666666*G2_0_0_0_0 - 0.166666666666666*G2_0_0_1_0 - 0.166666666666666*G2_0_0_2_0;
+    A[34] = -0.166666666666666*G2_0_0_0_1 - 0.166666666666666*G2_0_0_1_1 - 0.166666666666666*G2_0_0_2_1;
+    A[35] = -0.166666666666666*G2_0_0_0_2 - 0.166666666666666*G2_0_0_1_2 - 0.166666666666666*G2_0_0_2_2;
     A[36] = 0.0166666666666666*G0_;
     A[37] = 0.00833333333333331*G0_;
     A[38] = 0.00833333333333331*G0_;
     A[39] = 0.00833333333333331*G0_;
-    A[40] = -0.0166666666666666*G1_0_0_0_0 - 0.0166666666666666*G1_0_0_0_1 - 0.0166666666666666*G1_0_0_0_2 + 0.0166666666666666*G1_0_1_0_0 + 0.0166666666666666*G1_0_2_0_1 + 0.0166666666666666*G1_0_3_0_2 - 0.00833333333333331*G1_1_0_0_0 - 0.00833333333333331*G1_1_0_0_1 - 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_1_0_0 + 0.00833333333333331*G1_1_2_0_1 + 0.00833333333333331*G1_1_3_0_2 - 0.0083333333333333*G1_2_0_0_0 - 0.00833333333333331*G1_2_0_0_1 - 0.00833333333333331*G1_2_0_0_2 + 0.0083333333333333*G1_2_1_0_0 + 0.00833333333333331*G1_2_2_0_1 + 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_3_0_0_0 - 0.00833333333333331*G1_3_0_0_1 - 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_1_0_0 + 0.00833333333333331*G1_3_2_0_1 + 0.00833333333333331*G1_3_3_0_2 - 0.0166666666666666*G2_0_0_0_0 - 0.0166666666666666*G2_0_0_0_1 - 0.0166666666666666*G2_0_0_0_2 - 0.00833333333333331*G2_0_1_0_0 - 0.00833333333333331*G2_0_1_0_1 - 0.00833333333333331*G2_0_1_0_2 - 0.00833333333333331*G2_0_2_0_0 - 0.00833333333333331*G2_0_2_0_1 - 0.00833333333333331*G2_0_2_0_2 - 0.00833333333333331*G2_0_3_0_0 - 0.00833333333333331*G2_0_3_0_1 - 0.00833333333333331*G2_0_3_0_2 - 0.00833333333333331*G2_1_0_0_0 - 0.00833333333333331*G2_1_0_0_1 - 0.00833333333333331*G2_1_0_0_2 - 0.0166666666666666*G2_1_1_0_0 - 0.0166666666666666*G2_1_1_0_1 - 0.0166666666666666*G2_1_1_0_2 - 0.00833333333333331*G2_1_2_0_0 - 0.00833333333333331*G2_1_2_0_1 - 0.00833333333333331*G2_1_2_0_2 - 0.00833333333333331*G2_1_3_0_0 - 0.00833333333333331*G2_1_3_0_1 - 0.00833333333333331*G2_1_3_0_2 - 0.0083333333333333*G2_2_0_0_0 - 0.00833333333333331*G2_2_0_0_1 - 0.00833333333333331*G2_2_0_0_2 - 0.00833333333333331*G2_2_1_0_0 - 0.00833333333333331*G2_2_1_0_1 - 0.00833333333333331*G2_2_1_0_2 - 0.0166666666666666*G2_2_2_0_0 - 0.0166666666666666*G2_2_2_0_1 - 0.0166666666666666*G2_2_2_0_2 - 0.00833333333333331*G2_2_3_0_0 - 0.00833333333333331*G2_2_3_0_1 - 0.00833333333333331*G2_2_3_0_2 - 0.00833333333333331*G2_3_0_0_0 - 0.00833333333333331*G2_3_0_0_1 - 0.00833333333333331*G2_3_0_0_2 - 0.00833333333333331*G2_3_1_0_0 - 0.00833333333333331*G2_3_1_0_1 - 0.00833333333333331*G2_3_1_0_2 - 0.00833333333333331*G2_3_2_0_0 - 0.00833333333333331*G2_3_2_0_1 - 0.00833333333333331*G2_3_2_0_2 - 0.0166666666666666*G2_3_3_0_0 - 0.0166666666666666*G2_3_3_0_1 - 0.0166666666666666*G2_3_3_0_2;
-    A[41] = -0.00833333333333331*G1_0_0_0_0 - 0.00833333333333331*G1_0_0_0_1 - 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_1_0_0 + 0.00833333333333331*G1_0_2_0_1 + 0.00833333333333331*G1_0_3_0_2 - 0.0166666666666666*G1_1_0_0_0 - 0.0166666666666666*G1_1_0_0_1 - 0.0166666666666666*G1_1_0_0_2 + 0.0166666666666666*G1_1_1_0_0 + 0.0166666666666666*G1_1_2_0_1 + 0.0166666666666666*G1_1_3_0_2 - 0.00833333333333331*G1_2_0_0_0 - 0.00833333333333331*G1_2_0_0_1 - 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_1_0_0 + 0.00833333333333331*G1_2_2_0_1 + 0.00833333333333331*G1_2_3_0_2 - 0.00833333333333331*G1_3_0_0_0 - 0.00833333333333331*G1_3_0_0_1 - 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_1_0_0 + 0.00833333333333331*G1_3_2_0_1 + 0.00833333333333331*G1_3_3_0_2 + 0.0166666666666666*G2_0_0_0_0 + 0.00833333333333331*G2_0_1_0_0 + 0.00833333333333331*G2_0_2_0_0 + 0.00833333333333331*G2_0_3_0_0 + 0.00833333333333331*G2_1_0_0_0 + 0.0166666666666666*G2_1_1_0_0 + 0.00833333333333331*G2_1_2_0_0 + 0.00833333333333331*G2_1_3_0_0 + 0.0083333333333333*G2_2_0_0_0 + 0.00833333333333331*G2_2_1_0_0 + 0.0166666666666666*G2_2_2_0_0 + 0.00833333333333331*G2_2_3_0_0 + 0.00833333333333331*G2_3_0_0_0 + 0.00833333333333331*G2_3_1_0_0 + 0.00833333333333331*G2_3_2_0_0 + 0.0166666666666666*G2_3_3_0_0;
-    A[42] = -0.00833333333333331*G1_0_0_0_0 - 0.00833333333333331*G1_0_0_0_1 - 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_1_0_0 + 0.00833333333333331*G1_0_2_0_1 + 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_1_0_0_0 - 0.00833333333333331*G1_1_0_0_1 - 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_1_0_0 + 0.00833333333333331*G1_1_2_0_1 + 0.00833333333333331*G1_1_3_0_2 - 0.0166666666666666*G1_2_0_0_0 - 0.0166666666666666*G1_2_0_0_1 - 0.0166666666666666*G1_2_0_0_2 + 0.0166666666666666*G1_2_1_0_0 + 0.0166666666666666*G1_2_2_0_1 + 0.0166666666666666*G1_2_3_0_2 - 0.00833333333333331*G1_3_0_0_0 - 0.00833333333333331*G1_3_0_0_1 - 0.00833333333333331*G1_3_0_0_2 + 0.00833333333333331*G1_3_1_0_0 + 0.00833333333333331*G1_3_2_0_1 + 0.00833333333333331*G1_3_3_0_2 + 0.0166666666666666*G2_0_0_0_1 + 0.00833333333333331*G2_0_1_0_1 + 0.00833333333333331*G2_0_2_0_1 + 0.00833333333333331*G2_0_3_0_1 + 0.00833333333333331*G2_1_0_0_1 + 0.0166666666666666*G2_1_1_0_1 + 0.00833333333333331*G2_1_2_0_1 + 0.00833333333333331*G2_1_3_0_1 + 0.00833333333333331*G2_2_0_0_1 + 0.00833333333333331*G2_2_1_0_1 + 0.0166666666666666*G2_2_2_0_1 + 0.00833333333333331*G2_2_3_0_1 + 0.00833333333333331*G2_3_0_0_1 + 0.00833333333333331*G2_3_1_0_1 + 0.00833333333333331*G2_3_2_0_1 + 0.0166666666666666*G2_3_3_0_1;
-    A[43] = -0.00833333333333331*G1_0_0_0_0 - 0.00833333333333331*G1_0_0_0_1 - 0.00833333333333331*G1_0_0_0_2 + 0.00833333333333331*G1_0_1_0_0 + 0.00833333333333331*G1_0_2_0_1 + 0.00833333333333331*G1_0_3_0_2 - 0.00833333333333331*G1_1_0_0_0 - 0.00833333333333331*G1_1_0_0_1 - 0.00833333333333331*G1_1_0_0_2 + 0.00833333333333331*G1_1_1_0_0 + 0.00833333333333331*G1_1_2_0_1 + 0.00833333333333331*G1_1_3_0_2 - 0.00833333333333331*G1_2_0_0_0 - 0.00833333333333331*G1_2_0_0_1 - 0.00833333333333331*G1_2_0_0_2 + 0.00833333333333331*G1_2_1_0_0 + 0.00833333333333331*G1_2_2_0_1 + 0.00833333333333331*G1_2_3_0_2 - 0.0166666666666666*G1_3_0_0_0 - 0.0166666666666666*G1_3_0_0_1 - 0.0166666666666666*G1_3_0_0_2 + 0.0166666666666666*G1_3_1_0_0 + 0.0166666666666666*G1_3_2_0_1 + 0.0166666666666666*G1_3_3_0_2 + 0.0166666666666666*G2_0_0_0_2 + 0.00833333333333331*G2_0_1_0_2 + 0.00833333333333331*G2_0_2_0_2 + 0.00833333333333331*G2_0_3_0_2 + 0.00833333333333331*G2_1_0_0_2 + 0.0166666666666666*G2_1_1_0_2 + 0.00833333333333331*G2_1_2_0_2 + 0.00833333333333331*G2_1_3_0_2 + 0.00833333333333331*G2_2_0_0_2 + 0.00833333333333331*G2_2_1_0_2 + 0.0166666666666666*G2_2_2_0_2 + 0.00833333333333331*G2_2_3_0_2 + 0.00833333333333331*G2_3_0_0_2 + 0.00833333333333331*G2_3_1_0_2 + 0.00833333333333331*G2_3_2_0_2 + 0.0166666666666666*G2_3_3_0_2;
+    A[40] = -0.166666666666666*G2_0_0_0_0 - 0.166666666666666*G2_0_0_0_1 - 0.166666666666666*G2_0_0_0_2;
+    A[41] = 0.166666666666666*G2_0_0_0_0;
+    A[42] = 0.166666666666666*G2_0_0_0_1;
+    A[43] = 0.166666666666666*G2_0_0_0_2;
     A[44] = 0.00833333333333331*G0_;
     A[45] = 0.0166666666666666*G0_;
     A[46] = 0.00833333333333331*G0_;
     A[47] = 0.00833333333333331*G0_;
-    A[48] = -0.0166666666666666*G1_0_0_1_0 - 0.0166666666666666*G1_0_0_1_1 - 0.0166666666666666*G1_0_0_1_2 + 0.0166666666666666*G1_0_1_1_0 + 0.0166666666666666*G1_0_2_1_1 + 0.0166666666666666*G1_0_3_1_2 - 0.00833333333333331*G1_1_0_1_0 - 0.00833333333333331*G1_1_0_1_1 - 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_1_1_0 + 0.00833333333333331*G1_1_2_1_1 + 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_2_0_1_0 - 0.00833333333333331*G1_2_0_1_1 - 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_1_1_0 + 0.00833333333333331*G1_2_2_1_1 + 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_3_0_1_0 - 0.00833333333333331*G1_3_0_1_1 - 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_1_1_0 + 0.00833333333333331*G1_3_2_1_1 + 0.00833333333333331*G1_3_3_1_2 - 0.0166666666666666*G2_0_0_1_0 - 0.0166666666666666*G2_0_0_1_1 - 0.0166666666666666*G2_0_0_1_2 - 0.00833333333333331*G2_0_1_1_0 - 0.00833333333333331*G2_0_1_1_1 - 0.00833333333333331*G2_0_1_1_2 - 0.00833333333333331*G2_0_2_1_0 - 0.00833333333333331*G2_0_2_1_1 - 0.00833333333333331*G2_0_2_1_2 - 0.00833333333333331*G2_0_3_1_0 - 0.00833333333333331*G2_0_3_1_1 - 0.00833333333333331*G2_0_3_1_2 - 0.00833333333333331*G2_1_0_1_0 - 0.00833333333333331*G2_1_0_1_1 - 0.00833333333333331*G2_1_0_1_2 - 0.0166666666666666*G2_1_1_1_0 - 0.0166666666666666*G2_1_1_1_1 - 0.0166666666666666*G2_1_1_1_2 - 0.00833333333333331*G2_1_2_1_0 - 0.00833333333333331*G2_1_2_1_1 - 0.00833333333333331*G2_1_2_1_2 - 0.00833333333333331*G2_1_3_1_0 - 0.00833333333333331*G2_1_3_1_1 - 0.00833333333333331*G2_1_3_1_2 - 0.00833333333333331*G2_2_0_1_0 - 0.00833333333333331*G2_2_0_1_1 - 0.00833333333333331*G2_2_0_1_2 - 0.00833333333333331*G2_2_1_1_0 - 0.00833333333333331*G2_2_1_1_1 - 0.00833333333333331*G2_2_1_1_2 - 0.0166666666666666*G2_2_2_1_0 - 0.0166666666666666*G2_2_2_1_1 - 0.0166666666666666*G2_2_2_1_2 - 0.00833333333333331*G2_2_3_1_0 - 0.00833333333333331*G2_2_3_1_1 - 0.00833333333333331*G2_2_3_1_2 - 0.00833333333333331*G2_3_0_1_0 - 0.00833333333333331*G2_3_0_1_1 - 0.00833333333333331*G2_3_0_1_2 - 0.00833333333333331*G2_3_1_1_0 - 0.00833333333333331*G2_3_1_1_1 - 0.00833333333333331*G2_3_1_1_2 - 0.00833333333333331*G2_3_2_1_0 - 0.00833333333333331*G2_3_2_1_1 - 0.00833333333333331*G2_3_2_1_2 - 0.0166666666666666*G2_3_3_1_0 - 0.0166666666666666*G2_3_3_1_1 - 0.0166666666666666*G2_3_3_1_2;
-    A[49] = -0.00833333333333331*G1_0_0_1_0 - 0.00833333333333331*G1_0_0_1_1 - 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_1_1_0 + 0.00833333333333331*G1_0_2_1_1 + 0.00833333333333331*G1_0_3_1_2 - 0.0166666666666666*G1_1_0_1_0 - 0.0166666666666666*G1_1_0_1_1 - 0.0166666666666666*G1_1_0_1_2 + 0.0166666666666666*G1_1_1_1_0 + 0.0166666666666666*G1_1_2_1_1 + 0.0166666666666666*G1_1_3_1_2 - 0.00833333333333331*G1_2_0_1_0 - 0.00833333333333331*G1_2_0_1_1 - 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_1_1_0 + 0.00833333333333331*G1_2_2_1_1 + 0.00833333333333331*G1_2_3_1_2 - 0.00833333333333331*G1_3_0_1_0 - 0.00833333333333331*G1_3_0_1_1 - 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_1_1_0 + 0.00833333333333331*G1_3_2_1_1 + 0.00833333333333331*G1_3_3_1_2 + 0.0166666666666666*G2_0_0_1_0 + 0.00833333333333331*G2_0_1_1_0 + 0.00833333333333331*G2_0_2_1_0 + 0.00833333333333331*G2_0_3_1_0 + 0.00833333333333331*G2_1_0_1_0 + 0.0166666666666666*G2_1_1_1_0 + 0.00833333333333331*G2_1_2_1_0 + 0.00833333333333331*G2_1_3_1_0 + 0.00833333333333331*G2_2_0_1_0 + 0.00833333333333331*G2_2_1_1_0 + 0.0166666666666666*G2_2_2_1_0 + 0.00833333333333331*G2_2_3_1_0 + 0.00833333333333331*G2_3_0_1_0 + 0.00833333333333331*G2_3_1_1_0 + 0.00833333333333331*G2_3_2_1_0 + 0.0166666666666666*G2_3_3_1_0;
-    A[50] = -0.00833333333333331*G1_0_0_1_0 - 0.00833333333333331*G1_0_0_1_1 - 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_1_1_0 + 0.00833333333333331*G1_0_2_1_1 + 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_1_0_1_0 - 0.00833333333333331*G1_1_0_1_1 - 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_1_1_0 + 0.00833333333333331*G1_1_2_1_1 + 0.00833333333333331*G1_1_3_1_2 - 0.0166666666666666*G1_2_0_1_0 - 0.0166666666666666*G1_2_0_1_1 - 0.0166666666666666*G1_2_0_1_2 + 0.0166666666666666*G1_2_1_1_0 + 0.0166666666666666*G1_2_2_1_1 + 0.0166666666666666*G1_2_3_1_2 - 0.00833333333333331*G1_3_0_1_0 - 0.00833333333333331*G1_3_0_1_1 - 0.00833333333333331*G1_3_0_1_2 + 0.00833333333333331*G1_3_1_1_0 + 0.00833333333333331*G1_3_2_1_1 + 0.00833333333333331*G1_3_3_1_2 + 0.0166666666666666*G2_0_0_1_1 + 0.00833333333333331*G2_0_1_1_1 + 0.00833333333333331*G2_0_2_1_1 + 0.00833333333333331*G2_0_3_1_1 + 0.00833333333333331*G2_1_0_1_1 + 0.0166666666666666*G2_1_1_1_1 + 0.00833333333333331*G2_1_2_1_1 + 0.00833333333333331*G2_1_3_1_1 + 0.00833333333333331*G2_2_0_1_1 + 0.00833333333333331*G2_2_1_1_1 + 0.0166666666666666*G2_2_2_1_1 + 0.00833333333333331*G2_2_3_1_1 + 0.00833333333333331*G2_3_0_1_1 + 0.00833333333333331*G2_3_1_1_1 + 0.00833333333333331*G2_3_2_1_1 + 0.0166666666666666*G2_3_3_1_1;
-    A[51] = -0.00833333333333331*G1_0_0_1_0 - 0.00833333333333331*G1_0_0_1_1 - 0.00833333333333331*G1_0_0_1_2 + 0.00833333333333331*G1_0_1_1_0 + 0.00833333333333331*G1_0_2_1_1 + 0.00833333333333331*G1_0_3_1_2 - 0.00833333333333331*G1_1_0_1_0 - 0.00833333333333331*G1_1_0_1_1 - 0.00833333333333331*G1_1_0_1_2 + 0.00833333333333331*G1_1_1_1_0 + 0.00833333333333331*G1_1_2_1_1 + 0.00833333333333331*G1_1_3_1_2 - 0.00833333333333331*G1_2_0_1_0 - 0.00833333333333331*G1_2_0_1_1 - 0.00833333333333331*G1_2_0_1_2 + 0.00833333333333331*G1_2_1_1_0 + 0.00833333333333331*G1_2_2_1_1 + 0.00833333333333331*G1_2_3_1_2 - 0.0166666666666666*G1_3_0_1_0 - 0.0166666666666666*G1_3_0_1_1 - 0.0166666666666666*G1_3_0_1_2 + 0.0166666666666666*G1_3_1_1_0 + 0.0166666666666666*G1_3_2_1_1 + 0.0166666666666666*G1_3_3_1_2 + 0.0166666666666666*G2_0_0_1_2 + 0.00833333333333331*G2_0_1_1_2 + 0.00833333333333331*G2_0_2_1_2 + 0.00833333333333331*G2_0_3_1_2 + 0.00833333333333331*G2_1_0_1_2 + 0.0166666666666666*G2_1_1_1_2 + 0.00833333333333331*G2_1_2_1_2 + 0.00833333333333331*G2_1_3_1_2 + 0.00833333333333331*G2_2_0_1_2 + 0.00833333333333331*G2_2_1_1_2 + 0.0166666666666666*G2_2_2_1_2 + 0.00833333333333331*G2_2_3_1_2 + 0.00833333333333331*G2_3_0_1_2 + 0.00833333333333331*G2_3_1_1_2 + 0.00833333333333331*G2_3_2_1_2 + 0.0166666666666666*G2_3_3_1_2;
+    A[48] = -0.166666666666666*G2_0_0_1_0 - 0.166666666666666*G2_0_0_1_1 - 0.166666666666666*G2_0_0_1_2;
+    A[49] = 0.166666666666666*G2_0_0_1_0;
+    A[50] = 0.166666666666666*G2_0_0_1_1;
+    A[51] = 0.166666666666666*G2_0_0_1_2;
     A[52] = 0.00833333333333331*G0_;
     A[53] = 0.00833333333333331*G0_;
     A[54] = 0.0166666666666666*G0_;
     A[55] = 0.00833333333333331*G0_;
-    A[56] = -0.0166666666666666*G1_0_0_2_0 - 0.0166666666666666*G1_0_0_2_1 - 0.0166666666666666*G1_0_0_2_2 + 0.0166666666666666*G1_0_1_2_0 + 0.0166666666666666*G1_0_2_2_1 + 0.0166666666666666*G1_0_3_2_2 - 0.00833333333333331*G1_1_0_2_0 - 0.00833333333333331*G1_1_0_2_1 - 0.00833333333333331*G1_1_0_2_2 + 0.00833333333333331*G1_1_1_2_0 + 0.00833333333333331*G1_1_2_2_1 + 0.00833333333333331*G1_1_3_2_2 - 0.00833333333333331*G1_2_0_2_0 - 0.00833333333333331*G1_2_0_2_1 - 0.00833333333333331*G1_2_0_2_2 + 0.00833333333333331*G1_2_1_2_0 + 0.00833333333333331*G1_2_2_2_1 + 0.00833333333333331*G1_2_3_2_2 - 0.00833333333333331*G1_3_0_2_0 - 0.00833333333333331*G1_3_0_2_1 - 0.00833333333333331*G1_3_0_2_2 + 0.00833333333333331*G1_3_1_2_0 + 0.00833333333333331*G1_3_2_2_1 + 0.00833333333333331*G1_3_3_2_2 - 0.0166666666666666*G2_0_0_2_0 - 0.0166666666666666*G2_0_0_2_1 - 0.0166666666666666*G2_0_0_2_2 - 0.00833333333333331*G2_0_1_2_0 - 0.00833333333333331*G2_0_1_2_1 - 0.00833333333333331*G2_0_1_2_2 - 0.00833333333333331*G2_0_2_2_0 - 0.00833333333333331*G2_0_2_2_1 - 0.00833333333333331*G2_0_2_2_2 - 0.00833333333333331*G2_0_3_2_0 - 0.00833333333333331*G2_0_3_2_1 - 0.00833333333333331*G2_0_3_2_2 - 0.00833333333333331*G2_1_0_2_0 - 0.00833333333333331*G2_1_0_2_1 - 0.00833333333333331*G2_1_0_2_2 - 0.0166666666666666*G2_1_1_2_0 - 0.0166666666666666*G2_1_1_2_1 - 0.0166666666666666*G2_1_1_2_2 - 0.00833333333333331*G2_1_2_2_0 - 0.00833333333333331*G2_1_2_2_1 - 0.00833333333333331*G2_1_2_2_2 - 0.00833333333333331*G2_1_3_2_0 - 0.00833333333333331*G2_1_3_2_1 - 0.00833333333333331*G2_1_3_2_2 - 0.00833333333333331*G2_2_0_2_0 - 0.00833333333333331*G2_2_0_2_1 - 0.00833333333333331*G2_2_0_2_2 - 0.00833333333333331*G2_2_1_2_0 - 0.00833333333333331*G2_2_1_2_1 - 0.00833333333333331*G2_2_1_2_2 - 0.0166666666666666*G2_2_2_2_0 - 0.0166666666666666*G2_2_2_2_1 - 0.0166666666666666*G2_2_2_2_2 - 0.00833333333333331*G2_2_3_2_0 - 0.00833333333333331*G2_2_3_2_1 - 0.00833333333333331*G2_2_3_2_2 - 0.00833333333333331*G2_3_0_2_0 - 0.00833333333333331*G2_3_0_2_1 - 0.00833333333333331*G2_3_0_2_2 - 0.00833333333333331*G2_3_1_2_0 - 0.00833333333333331*G2_3_1_2_1 - 0.00833333333333331*G2_3_1_2_2 - 0.00833333333333331*G2_3_2_2_0 - 0.00833333333333331*G2_3_2_2_1 - 0.00833333333333331*G2_3_2_2_2 - 0.0166666666666666*G2_3_3_2_0 - 0.0166666666666666*G2_3_3_2_1 - 0.0166666666666666*G2_3_3_2_2;
-    A[57] = -0.00833333333333331*G1_0_0_2_0 - 0.00833333333333331*G1_0_0_2_1 - 0.00833333333333331*G1_0_0_2_2 + 0.00833333333333331*G1_0_1_2_0 + 0.00833333333333331*G1_0_2_2_1 + 0.00833333333333331*G1_0_3_2_2 - 0.0166666666666666*G1_1_0_2_0 - 0.0166666666666666*G1_1_0_2_1 - 0.0166666666666666*G1_1_0_2_2 + 0.0166666666666666*G1_1_1_2_0 + 0.0166666666666666*G1_1_2_2_1 + 0.0166666666666666*G1_1_3_2_2 - 0.00833333333333331*G1_2_0_2_0 - 0.00833333333333331*G1_2_0_2_1 - 0.00833333333333331*G1_2_0_2_2 + 0.00833333333333331*G1_2_1_2_0 + 0.00833333333333331*G1_2_2_2_1 + 0.00833333333333331*G1_2_3_2_2 - 0.00833333333333331*G1_3_0_2_0 - 0.00833333333333331*G1_3_0_2_1 - 0.00833333333333331*G1_3_0_2_2 + 0.00833333333333331*G1_3_1_2_0 + 0.00833333333333331*G1_3_2_2_1 + 0.00833333333333331*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_2_0 + 0.00833333333333331*G2_0_1_2_0 + 0.00833333333333331*G2_0_2_2_0 + 0.00833333333333331*G2_0_3_2_0 + 0.00833333333333331*G2_1_0_2_0 + 0.0166666666666666*G2_1_1_2_0 + 0.00833333333333331*G2_1_2_2_0 + 0.00833333333333331*G2_1_3_2_0 + 0.00833333333333331*G2_2_0_2_0 + 0.00833333333333331*G2_2_1_2_0 + 0.0166666666666666*G2_2_2_2_0 + 0.00833333333333331*G2_2_3_2_0 + 0.00833333333333331*G2_3_0_2_0 + 0.00833333333333331*G2_3_1_2_0 + 0.00833333333333331*G2_3_2_2_0 + 0.0166666666666666*G2_3_3_2_0;
-    A[58] = -0.00833333333333331*G1_0_0_2_0 - 0.00833333333333331*G1_0_0_2_1 - 0.00833333333333331*G1_0_0_2_2 + 0.00833333333333331*G1_0_1_2_0 + 0.00833333333333331*G1_0_2_2_1 + 0.00833333333333331*G1_0_3_2_2 - 0.00833333333333331*G1_1_0_2_0 - 0.00833333333333331*G1_1_0_2_1 - 0.00833333333333331*G1_1_0_2_2 + 0.00833333333333331*G1_1_1_2_0 + 0.00833333333333331*G1_1_2_2_1 + 0.00833333333333331*G1_1_3_2_2 - 0.0166666666666666*G1_2_0_2_0 - 0.0166666666666666*G1_2_0_2_1 - 0.0166666666666666*G1_2_0_2_2 + 0.0166666666666666*G1_2_1_2_0 + 0.0166666666666666*G1_2_2_2_1 + 0.0166666666666666*G1_2_3_2_2 - 0.00833333333333331*G1_3_0_2_0 - 0.00833333333333331*G1_3_0_2_1 - 0.00833333333333331*G1_3_0_2_2 + 0.00833333333333331*G1_3_1_2_0 + 0.00833333333333331*G1_3_2_2_1 + 0.00833333333333331*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_2_1 + 0.00833333333333331*G2_0_1_2_1 + 0.00833333333333331*G2_0_2_2_1 + 0.00833333333333331*G2_0_3_2_1 + 0.00833333333333331*G2_1_0_2_1 + 0.0166666666666666*G2_1_1_2_1 + 0.00833333333333331*G2_1_2_2_1 + 0.00833333333333331*G2_1_3_2_1 + 0.00833333333333331*G2_2_0_2_1 + 0.00833333333333331*G2_2_1_2_1 + 0.0166666666666666*G2_2_2_2_1 + 0.00833333333333331*G2_2_3_2_1 + 0.00833333333333331*G2_3_0_2_1 + 0.00833333333333331*G2_3_1_2_1 + 0.00833333333333331*G2_3_2_2_1 + 0.0166666666666666*G2_3_3_2_1;
-    A[59] = -0.00833333333333331*G1_0_0_2_0 - 0.00833333333333331*G1_0_0_2_1 - 0.00833333333333331*G1_0_0_2_2 + 0.00833333333333331*G1_0_1_2_0 + 0.00833333333333331*G1_0_2_2_1 + 0.00833333333333331*G1_0_3_2_2 - 0.00833333333333331*G1_1_0_2_0 - 0.00833333333333331*G1_1_0_2_1 - 0.00833333333333331*G1_1_0_2_2 + 0.00833333333333331*G1_1_1_2_0 + 0.00833333333333331*G1_1_2_2_1 + 0.00833333333333331*G1_1_3_2_2 - 0.00833333333333331*G1_2_0_2_0 - 0.00833333333333331*G1_2_0_2_1 - 0.00833333333333331*G1_2_0_2_2 + 0.00833333333333331*G1_2_1_2_0 + 0.00833333333333331*G1_2_2_2_1 + 0.00833333333333331*G1_2_3_2_2 - 0.0166666666666666*G1_3_0_2_0 - 0.0166666666666666*G1_3_0_2_1 - 0.0166666666666666*G1_3_0_2_2 + 0.0166666666666666*G1_3_1_2_0 + 0.0166666666666666*G1_3_2_2_1 + 0.0166666666666666*G1_3_3_2_2 + 0.0166666666666666*G2_0_0_2_2 + 0.00833333333333331*G2_0_1_2_2 + 0.00833333333333331*G2_0_2_2_2 + 0.00833333333333331*G2_0_3_2_2 + 0.00833333333333331*G2_1_0_2_2 + 0.0166666666666666*G2_1_1_2_2 + 0.00833333333333331*G2_1_2_2_2 + 0.00833333333333331*G2_1_3_2_2 + 0.00833333333333331*G2_2_0_2_2 + 0.00833333333333331*G2_2_1_2_2 + 0.0166666666666666*G2_2_2_2_2 + 0.00833333333333331*G2_2_3_2_2 + 0.00833333333333331*G2_3_0_2_2 + 0.00833333333333331*G2_3_1_2_2 + 0.00833333333333331*G2_3_2_2_2 + 0.0166666666666666*G2_3_3_2_2;
+    A[56] = -0.166666666666666*G2_0_0_2_0 - 0.166666666666666*G2_0_0_2_1 - 0.166666666666666*G2_0_0_2_2;
+    A[57] = 0.166666666666666*G2_0_0_2_0;
+    A[58] = 0.166666666666666*G2_0_0_2_1;
+    A[59] = 0.166666666666666*G2_0_0_2_2;
     A[60] = 0.00833333333333331*G0_;
     A[61] = 0.00833333333333331*G0_;
     A[62] = 0.00833333333333331*G0_;
@@ -9752,7 +9125,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return " | vi0[1]*vi1[1]*dX(0) + w3_a0w4_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) + w3_a0w4_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) + w3_a0w4_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) +  | vi0[0]*vi1[0]*dX(0) + -2.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + 2.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + 2.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + -2.0w2_a0 | vi0[0]*va0*vi1[1]*dX(0) + -8.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + 8.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + -2.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + -w1_a0(dXa1/dx0)(dXa2/dx0) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0) + -w1_a0(dXa1/dx1)(dXa2/dx1) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0) + -w1_a0(dXa1/dx2)(dXa2/dx2) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0)";
+    return " | vi0[1]*vi1[1]*dX(0) + w3_a0w4_a1(dXa2/dx0)(dXa3/dx0)(+/-) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) + w3_a0w4_a1(dXa2/dx1)(dXa3/dx1)(+/-) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) + w3_a0w4_a1(dXa2/dx2)(dXa3/dx2)(+/-) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) +  | vi0[0]*vi1[0]*dX(0) + -2.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + 2.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + 2.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + -2.0w2_a0 | vi0[0]*va0*vi1[1]*dX(0) + -8.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + 8.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + -2.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + -w1_a0(dXa1/dx0)(dXa2/dx0) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0) + -w1_a0(dXa1/dx1)(dXa2/dx1) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0) + -w1_a0(dXa1/dx2)(dXa2/dx2) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10145,7 +9518,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -10627,7 +10000,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -11163,7 +10536,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -11798,7 +11171,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -12280,7 +11653,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -12816,7 +12189,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -13451,7 +12824,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -13933,7 +13306,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -14469,7 +13842,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -14845,7 +14218,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -14857,7 +14230,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -14943,46 +14316,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -15104,7 +14460,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -15117,57 +14473,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -15175,59 +14508,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -15255,10 +14567,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -15287,9 +14599,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -15327,7 +14639,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -15339,7 +14651,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -15425,46 +14737,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -15586,7 +14881,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -15599,57 +14894,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -15657,59 +14929,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -15737,10 +14988,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -15769,9 +15020,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -15809,7 +15060,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -15821,7 +15072,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -15907,46 +15158,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -16068,7 +15302,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -16081,57 +15315,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -16139,59 +15350,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -16219,10 +15409,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -16251,9 +15441,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -16291,7 +15481,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -16303,7 +15493,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the rank of the value space
@@ -16389,46 +15579,29 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
+    *values = coeff0_0*basisvalue0;
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -16550,7 +15723,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -16563,57 +15736,34 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
     
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_10_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
-    {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
-    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
-    {0.288675134594813, 0, 0, 0.223606797749979}};
+    const static double coefficients0[1][1] = \
+    {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
-    {{0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats0[1][1] = \
+    {{0}};
     
-    const static double dmats1[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {2.73861278752583, 0, 0, 0},
-    {0, 0, 0, 0}};
+    const static double dmats1[1][1] = \
+    {{0}};
     
-    const static double dmats2[4][4] = \
-    {{0, 0, 0, 0},
-    {1.58113883008419, 0, 0, 0},
-    {0.912870929175277, 0, 0, 0},
-    {2.58198889747161, 0, 0, 0}};
+    const static double dmats2[1][1] = \
+    {{0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -16621,59 +15771,38 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3];
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3];
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
         }
         if(combinations[deriv_num][j] == 2)
         {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
+          new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
     
     // Transform derivatives back to physical element
@@ -16701,10 +15830,10 @@ public:
     double coordinates[3];
     
     // Nodal coordinates on reference cell
-    static double X[4][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
     
     // Components for each dof
-    static unsigned int components[4] = {0, 0, 0, 0};
+    static unsigned int components[1] = {0};
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -16733,9 +15862,9 @@ public:
                                          const ufc::cell& c) const
   {
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -18377,7 +17506,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -18386,7 +17515,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -18395,7 +17524,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -18404,7 +17533,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -18430,13 +17559,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -18444,10 +17573,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -18459,24 +17585,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -18488,18 +17606,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18542,7 +17651,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -18551,7 +17660,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -18560,7 +17669,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -18569,7 +17678,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -18595,13 +17704,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -18609,10 +17718,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -18624,24 +17730,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -18653,18 +17751,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18707,7 +17796,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -18716,7 +17805,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -18725,7 +17814,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -18734,7 +17823,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -18760,13 +17849,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -18774,10 +17863,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -18789,24 +17875,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -18818,18 +17896,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -18872,7 +17941,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -18881,7 +17950,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -18890,7 +17959,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -18899,7 +17968,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -18925,13 +17994,13 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 4;
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 0;
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -18939,10 +18008,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -18954,24 +18020,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
+      
       break;
     }
   }
@@ -18983,18 +18041,9 @@ public:
     // This function is implemented assuming affine mapping!!
     // Get cell vertices
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -19051,31 +18100,31 @@ public:
     const double J_22 = x[3][2] - x[0][2];
       
     // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_01 = J_12*J_20 - J_10*J_22;
+    const double d_02 = J_10*J_21 - J_11*J_20;
     
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_11 = J_00*J_22 - J_02*J_20;
+    const double d_12 = J_01*J_20 - J_00*J_21;
     
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    const double d_21 = J_02*J_10 - J_00*J_12;
+    const double d_22 = J_00*J_11 - J_01*J_10;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
       
     // Compute inverse of Jacobian
-    const double Jinv_00 = d00 / detJ;
-    const double Jinv_01 = d10 / detJ;
-    const double Jinv_02 = d20 / detJ;
-    const double Jinv_10 = d01 / detJ;
-    const double Jinv_11 = d11 / detJ;
-    const double Jinv_12 = d21 / detJ;
-    const double Jinv_20 = d02 / detJ;
-    const double Jinv_21 = d12 / detJ;
-    const double Jinv_22 = d22 / detJ;
+    const double Jinv_00 = d_00 / detJ;
+    const double Jinv_01 = d_10 / detJ;
+    const double Jinv_02 = d_20 / detJ;
+    const double Jinv_10 = d_01 / detJ;
+    const double Jinv_11 = d_11 / detJ;
+    const double Jinv_12 = d_21 / detJ;
+    const double Jinv_20 = d_02 / detJ;
+    const double Jinv_21 = d_12 / detJ;
+    const double Jinv_22 = d_22 / detJ;
     
     // Take absolute value of determinant
     detJ = std::abs(detJ);
@@ -19083,1661 +18132,323 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_4 = w[0][4];
+    const double c0_0_0_5 = w[0][5];
+    const double c0_0_0_6 = w[0][6];
+    const double c0_0_0_7 = w[0][7];
+    const double c1_1_0_4 = w[1][4];
+    const double c1_1_0_5 = w[1][5];
+    const double c1_1_0_6 = w[1][6];
+    const double c1_1_0_7 = w[1][7];
+    const double c4_5_0_0 = w[4][0];
+    const double c5_5_1_0 = w[5][0];
+    const double c1_5_2_0 = w[1][0];
+    const double c1_5_2_1 = w[1][1];
+    const double c1_5_2_2 = w[1][2];
+    const double c1_5_2_3 = w[1][3];
+    const double c4_6_0_0 = w[4][0];
+    const double c5_6_1_0 = w[5][0];
+    const double c1_6_2_0 = w[1][0];
+    const double c1_6_2_1 = w[1][1];
+    const double c1_6_2_2 = w[1][2];
+    const double c1_6_2_3 = w[1][3];
+    const double c4_7_0_0 = w[4][0];
+    const double c5_7_1_0 = w[5][0];
+    const double c1_7_2_0 = w[1][0];
+    const double c1_7_2_1 = w[1][1];
+    const double c1_7_2_2 = w[1][2];
+    const double c1_7_2_3 = w[1][3];
+    const double c4_8_0_0 = w[4][0];
+    const double c1_8_1_0 = w[1][0];
+    const double c1_8_1_1 = w[1][1];
+    const double c1_8_1_2 = w[1][2];
+    const double c1_8_1_3 = w[1][3];
+    const double c4_9_0_0 = w[4][0];
+    const double c1_9_1_0 = w[1][0];
+    const double c1_9_1_1 = w[1][1];
+    const double c1_9_1_2 = w[1][2];
+    const double c1_9_1_3 = w[1][3];
+    const double c4_10_0_0 = w[4][0];
+    const double c1_10_1_0 = w[1][0];
+    const double c1_10_1_1 = w[1][1];
+    const double c1_10_1_2 = w[1][2];
+    const double c1_10_1_3 = w[1][3];
+    const double c4_14_0_0 = w[4][0];
+    const double c5_14_1_0 = w[5][0];
+    const double c0_14_2_0 = w[0][0];
+    const double c0_14_2_1 = w[0][1];
+    const double c0_14_2_2 = w[0][2];
+    const double c0_14_2_3 = w[0][3];
+    const double c4_15_0_0 = w[4][0];
+    const double c5_15_1_0 = w[5][0];
+    const double c0_15_2_0 = w[0][0];
+    const double c0_15_2_1 = w[0][1];
+    const double c0_15_2_2 = w[0][2];
+    const double c0_15_2_3 = w[0][3];
+    const double c4_16_0_0 = w[4][0];
+    const double c5_16_1_0 = w[5][0];
+    const double c0_16_2_0 = w[0][0];
+    const double c0_16_2_1 = w[0][1];
+    const double c0_16_2_2 = w[0][2];
+    const double c0_16_2_3 = w[0][3];
+    const double c0_17_0_0 = w[0][0];
+    const double c0_17_0_1 = w[0][1];
+    const double c0_17_0_2 = w[0][2];
+    const double c0_17_0_3 = w[0][3];
+    const double c3_18_0_0 = w[3][0];
+    const double c0_18_1_4 = w[0][4];
+    const double c0_18_1_5 = w[0][5];
+    const double c0_18_1_6 = w[0][6];
+    const double c0_18_1_7 = w[0][7];
+    const double c0_18_2_4 = w[0][4];
+    const double c0_18_2_5 = w[0][5];
+    const double c0_18_2_6 = w[0][6];
+    const double c0_18_2_7 = w[0][7];
+    const double c0_18_3_4 = w[0][4];
+    const double c0_18_3_5 = w[0][5];
+    const double c0_18_3_6 = w[0][6];
+    const double c0_18_3_7 = w[0][7];
+    const double c3_19_0_0 = w[3][0];
+    const double c0_19_1_4 = w[0][4];
+    const double c0_19_1_5 = w[0][5];
+    const double c0_19_1_6 = w[0][6];
+    const double c0_19_1_7 = w[0][7];
+    const double c0_19_2_4 = w[0][4];
+    const double c0_19_2_5 = w[0][5];
+    const double c0_19_2_6 = w[0][6];
+    const double c0_19_2_7 = w[0][7];
+    const double c0_19_3_4 = w[0][4];
+    const double c0_19_3_5 = w[0][5];
+    const double c0_19_3_6 = w[0][6];
+    const double c0_19_3_7 = w[0][7];
+    const double c3_20_0_0 = w[3][0];
+    const double c0_20_1_4 = w[0][4];
+    const double c0_20_1_5 = w[0][5];
+    const double c0_20_1_6 = w[0][6];
+    const double c0_20_1_7 = w[0][7];
+    const double c0_20_2_4 = w[0][4];
+    const double c0_20_2_5 = w[0][5];
+    const double c0_20_2_6 = w[0][6];
+    const double c0_20_2_7 = w[0][7];
+    const double c3_21_0_0 = w[3][0];
+    const double c0_21_1_4 = w[0][4];
+    const double c0_21_1_5 = w[0][5];
+    const double c0_21_1_6 = w[0][6];
+    const double c0_21_1_7 = w[0][7];
+    const double c0_21_2_4 = w[0][4];
+    const double c0_21_2_5 = w[0][5];
+    const double c0_21_2_6 = w[0][6];
+    const double c0_21_2_7 = w[0][7];
+    const double c3_22_0_0 = w[3][0];
+    const double c0_22_1_4 = w[0][4];
+    const double c0_22_1_5 = w[0][5];
+    const double c0_22_1_6 = w[0][6];
+    const double c0_22_1_7 = w[0][7];
+    const double c0_22_2_4 = w[0][4];
+    const double c0_22_2_5 = w[0][5];
+    const double c0_22_2_6 = w[0][6];
+    const double c0_22_2_7 = w[0][7];
+    const double c3_23_0_0 = w[3][0];
+    const double c0_23_1_4 = w[0][4];
+    const double c0_23_1_5 = w[0][5];
+    const double c0_23_1_6 = w[0][6];
+    const double c0_23_1_7 = w[0][7];
+    const double c2_24_0_0 = w[2][0];
+    const double c0_24_1_4 = w[0][4];
+    const double c0_24_1_5 = w[0][5];
+    const double c0_24_1_6 = w[0][6];
+    const double c0_24_1_7 = w[0][7];
+    const double c2_25_0_0 = w[2][0];
+    const double c0_25_1_4 = w[0][4];
+    const double c0_25_1_5 = w[0][5];
+    const double c0_25_1_6 = w[0][6];
+    const double c0_25_1_7 = w[0][7];
+    const double c2_26_0_0 = w[2][0];
+    const double c0_26_1_4 = w[0][4];
+    const double c0_26_1_5 = w[0][5];
+    const double c0_26_1_6 = w[0][6];
+    const double c0_26_1_7 = w[0][7];
+    
     // Compute geometry tensors
-    const double G0_4 = det*w[0][4];
-    const double G0_5 = det*w[0][5];
-    const double G0_6 = det*w[0][6];
-    const double G0_7 = det*w[0][7];
-    const double G1_4 = det*w[1][4];
-    const double G1_5 = det*w[1][5];
-    const double G1_6 = det*w[1][6];
-    const double G1_7 = det*w[1][7];
-    const double G2_0_0_0_0_0 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_0_0_0_0_1 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_0_0_0_0_2 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_0_0_0_1_0 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_0_0_0_1_1 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_0_0_0_1_2 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_0_0_0_2_0 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_0_0_0_2_1 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_0_0_0_2_2 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_0_0_1_0_0 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_0_0_1_0_1 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_0_0_1_0_2 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_0_0_1_1_0 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_0_0_1_1_1 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_0_0_1_1_2 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_0_0_1_2_0 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_0_0_1_2_1 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_0_0_1_2_2 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_0_0_2_0_0 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_0_0_2_0_1 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_0_0_2_0_2 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_0_0_2_1_0 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_0_0_2_1_1 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_0_0_2_1_2 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_0_0_2_2_0 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_0_0_2_2_1 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_0_0_2_2_2 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_0_0_3_0_0 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_0_0_3_0_1 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_0_0_3_0_2 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_0_0_3_1_0 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_0_0_3_1_1 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_0_0_3_1_2 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_0_0_3_2_0 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_0_0_3_2_1 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_0_0_3_2_2 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_0_1_0_0_0 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_0_1_0_1_0 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_0_1_0_2_0 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_0_1_1_0_0 = det*w[4][0]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_0_1_1_1_0 = det*w[4][0]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_0_1_1_2_0 = det*w[4][0]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_0_1_2_0_0 = det*w[4][0]*w[5][1]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_0_1_2_1_0 = det*w[4][0]*w[5][1]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_0_1_2_2_0 = det*w[4][0]*w[5][1]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_0_1_3_0_0 = det*w[4][0]*w[5][1]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_0_1_3_1_0 = det*w[4][0]*w[5][1]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_0_1_3_2_0 = det*w[4][0]*w[5][1]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_0_2_0_0_1 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_0_2_0_1_1 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_0_2_0_2_1 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_0_2_1_0_1 = det*w[4][0]*w[5][2]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_0_2_1_1_1 = det*w[4][0]*w[5][2]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_0_2_1_2_1 = det*w[4][0]*w[5][2]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_0_2_2_0_1 = det*w[4][0]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_0_2_2_1_1 = det*w[4][0]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_0_2_2_2_1 = det*w[4][0]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_0_2_3_0_1 = det*w[4][0]*w[5][2]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_0_2_3_1_1 = det*w[4][0]*w[5][2]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_0_2_3_2_1 = det*w[4][0]*w[5][2]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_0_3_0_0_2 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_0_3_0_1_2 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_0_3_0_2_2 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_0_3_1_0_2 = det*w[4][0]*w[5][3]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_0_3_1_1_2 = det*w[4][0]*w[5][3]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_0_3_1_2_2 = det*w[4][0]*w[5][3]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_0_3_2_0_2 = det*w[4][0]*w[5][3]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_0_3_2_1_2 = det*w[4][0]*w[5][3]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_0_3_2_2_2 = det*w[4][0]*w[5][3]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_0_3_3_0_2 = det*w[4][0]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_0_3_3_1_2 = det*w[4][0]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_0_3_3_2_2 = det*w[4][0]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_1_0_0_0_0 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_1_0_0_0_1 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_1_0_0_0_2 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_1_0_0_1_0 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_1_0_0_1_1 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_1_0_0_1_2 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_1_0_0_2_0 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_1_0_0_2_1 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_1_0_0_2_2 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_1_0_1_0_0 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_1_0_1_0_1 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_1_0_1_0_2 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_1_0_1_1_0 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_1_0_1_1_1 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_1_0_1_1_2 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_1_0_1_2_0 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_1_0_1_2_1 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_1_0_1_2_2 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_1_0_2_0_0 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_1_0_2_0_1 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_1_0_2_0_2 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_1_0_2_1_0 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_1_0_2_1_1 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_1_0_2_1_2 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_1_0_2_2_0 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_1_0_2_2_1 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_1_0_2_2_2 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_1_0_3_0_0 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_1_0_3_0_1 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_1_0_3_0_2 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_1_0_3_1_0 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_1_0_3_1_1 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_1_0_3_1_2 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_1_0_3_2_0 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_1_0_3_2_1 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_1_0_3_2_2 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_1_1_0_0_0 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_1_1_0_1_0 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_1_1_0_2_0 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_1_1_1_0_0 = det*w[4][1]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_1_1_1_1_0 = det*w[4][1]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_1_1_1_2_0 = det*w[4][1]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_1_1_2_0_0 = det*w[4][1]*w[5][1]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_1_1_2_1_0 = det*w[4][1]*w[5][1]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_1_1_2_2_0 = det*w[4][1]*w[5][1]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_1_1_3_0_0 = det*w[4][1]*w[5][1]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_1_1_3_1_0 = det*w[4][1]*w[5][1]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_1_1_3_2_0 = det*w[4][1]*w[5][1]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_1_2_0_0_1 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_1_2_0_1_1 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_1_2_0_2_1 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_1_2_1_0_1 = det*w[4][1]*w[5][2]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_1_2_1_1_1 = det*w[4][1]*w[5][2]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_1_2_1_2_1 = det*w[4][1]*w[5][2]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_1_2_2_0_1 = det*w[4][1]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_1_2_2_1_1 = det*w[4][1]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_1_2_2_2_1 = det*w[4][1]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_1_2_3_0_1 = det*w[4][1]*w[5][2]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_1_2_3_1_1 = det*w[4][1]*w[5][2]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_1_2_3_2_1 = det*w[4][1]*w[5][2]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_1_3_0_0_2 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_1_3_0_1_2 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_1_3_0_2_2 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_1_3_1_0_2 = det*w[4][1]*w[5][3]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_1_3_1_1_2 = det*w[4][1]*w[5][3]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_1_3_1_2_2 = det*w[4][1]*w[5][3]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_1_3_2_0_2 = det*w[4][1]*w[5][3]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_1_3_2_1_2 = det*w[4][1]*w[5][3]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_1_3_2_2_2 = det*w[4][1]*w[5][3]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_1_3_3_0_2 = det*w[4][1]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_1_3_3_1_2 = det*w[4][1]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_1_3_3_2_2 = det*w[4][1]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_2_0_0_0_0 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_2_0_0_0_1 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_2_0_0_0_2 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_2_0_0_1_0 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_2_0_0_1_1 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_2_0_0_1_2 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_2_0_0_2_0 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_2_0_0_2_1 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_2_0_0_2_2 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_2_0_1_0_0 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_2_0_1_0_1 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_2_0_1_0_2 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_2_0_1_1_0 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_2_0_1_1_1 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_2_0_1_1_2 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_2_0_1_2_0 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_2_0_1_2_1 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_2_0_1_2_2 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_2_0_2_0_0 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_2_0_2_0_1 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_2_0_2_0_2 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_2_0_2_1_0 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_2_0_2_1_1 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_2_0_2_1_2 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_2_0_2_2_0 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_2_0_2_2_1 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_2_0_2_2_2 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_2_0_3_0_0 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_2_0_3_0_1 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_2_0_3_0_2 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_2_0_3_1_0 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_2_0_3_1_1 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_2_0_3_1_2 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_2_0_3_2_0 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_2_0_3_2_1 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_2_0_3_2_2 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_2_1_0_0_0 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_2_1_0_1_0 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_2_1_0_2_0 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_2_1_1_0_0 = det*w[4][2]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_2_1_1_1_0 = det*w[4][2]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_2_1_1_2_0 = det*w[4][2]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_2_1_2_0_0 = det*w[4][2]*w[5][1]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_2_1_2_1_0 = det*w[4][2]*w[5][1]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_2_1_2_2_0 = det*w[4][2]*w[5][1]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_2_1_3_0_0 = det*w[4][2]*w[5][1]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_2_1_3_1_0 = det*w[4][2]*w[5][1]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_2_1_3_2_0 = det*w[4][2]*w[5][1]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_2_2_0_0_1 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_2_2_0_1_1 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_2_2_0_2_1 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_2_2_1_0_1 = det*w[4][2]*w[5][2]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_2_2_1_1_1 = det*w[4][2]*w[5][2]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_2_2_1_2_1 = det*w[4][2]*w[5][2]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_2_2_2_0_1 = det*w[4][2]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_2_2_2_1_1 = det*w[4][2]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_2_2_2_2_1 = det*w[4][2]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_2_2_3_0_1 = det*w[4][2]*w[5][2]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_2_2_3_1_1 = det*w[4][2]*w[5][2]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_2_2_3_2_1 = det*w[4][2]*w[5][2]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_2_3_0_0_2 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_2_3_0_1_2 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_2_3_0_2_2 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_2_3_1_0_2 = det*w[4][2]*w[5][3]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_2_3_1_1_2 = det*w[4][2]*w[5][3]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_2_3_1_2_2 = det*w[4][2]*w[5][3]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_2_3_2_0_2 = det*w[4][2]*w[5][3]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_2_3_2_1_2 = det*w[4][2]*w[5][3]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_2_3_2_2_2 = det*w[4][2]*w[5][3]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_2_3_3_0_2 = det*w[4][2]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_2_3_3_1_2 = det*w[4][2]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_2_3_3_2_2 = det*w[4][2]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_3_0_0_0_0 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_3_0_0_0_1 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_3_0_0_0_2 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_3_0_0_1_0 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_3_0_0_1_1 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_3_0_0_1_2 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_3_0_0_2_0 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_3_0_0_2_1 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_3_0_0_2_2 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_3_0_1_0_0 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_3_0_1_0_1 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_3_0_1_0_2 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_3_0_1_1_0 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_3_0_1_1_1 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_3_0_1_1_2 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_3_0_1_2_0 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_3_0_1_2_1 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_3_0_1_2_2 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_3_0_2_0_0 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_3_0_2_0_1 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_3_0_2_0_2 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_3_0_2_1_0 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_3_0_2_1_1 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_3_0_2_1_2 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_3_0_2_2_0 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_3_0_2_2_1 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_3_0_2_2_2 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_3_0_3_0_0 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_3_0_3_0_1 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_3_0_3_0_2 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_3_0_3_1_0 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_3_0_3_1_1 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_3_0_3_1_2 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_3_0_3_2_0 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_3_0_3_2_1 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_3_0_3_2_2 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G2_3_1_0_0_0 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G2_3_1_0_1_0 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G2_3_1_0_2_0 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G2_3_1_1_0_0 = det*w[4][3]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G2_3_1_1_1_0 = det*w[4][3]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G2_3_1_1_2_0 = det*w[4][3]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G2_3_1_2_0_0 = det*w[4][3]*w[5][1]*w[1][2]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_02*Jinv_02;
-    const double G2_3_1_2_1_0 = det*w[4][3]*w[5][1]*w[1][2]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_12*Jinv_02;
-    const double G2_3_1_2_2_0 = det*w[4][3]*w[5][1]*w[1][2]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_22*Jinv_02;
-    const double G2_3_1_3_0_0 = det*w[4][3]*w[5][1]*w[1][3]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_02*Jinv_02;
-    const double G2_3_1_3_1_0 = det*w[4][3]*w[5][1]*w[1][3]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_12*Jinv_02;
-    const double G2_3_1_3_2_0 = det*w[4][3]*w[5][1]*w[1][3]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_22*Jinv_02;
-    const double G2_3_2_0_0_1 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G2_3_2_0_1_1 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G2_3_2_0_2_1 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G2_3_2_1_0_1 = det*w[4][3]*w[5][2]*w[1][1]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_02*Jinv_12;
-    const double G2_3_2_1_1_1 = det*w[4][3]*w[5][2]*w[1][1]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_12*Jinv_12;
-    const double G2_3_2_1_2_1 = det*w[4][3]*w[5][2]*w[1][1]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_22*Jinv_12;
-    const double G2_3_2_2_0_1 = det*w[4][3]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G2_3_2_2_1_1 = det*w[4][3]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G2_3_2_2_2_1 = det*w[4][3]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G2_3_2_3_0_1 = det*w[4][3]*w[5][2]*w[1][3]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_02*Jinv_12;
-    const double G2_3_2_3_1_1 = det*w[4][3]*w[5][2]*w[1][3]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_12*Jinv_12;
-    const double G2_3_2_3_2_1 = det*w[4][3]*w[5][2]*w[1][3]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_22*Jinv_12;
-    const double G2_3_3_0_0_2 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G2_3_3_0_1_2 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G2_3_3_0_2_2 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G2_3_3_1_0_2 = det*w[4][3]*w[5][3]*w[1][1]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_02*Jinv_22;
-    const double G2_3_3_1_1_2 = det*w[4][3]*w[5][3]*w[1][1]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_12*Jinv_22;
-    const double G2_3_3_1_2_2 = det*w[4][3]*w[5][3]*w[1][1]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_22*Jinv_22;
-    const double G2_3_3_2_0_2 = det*w[4][3]*w[5][3]*w[1][2]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_02*Jinv_22;
-    const double G2_3_3_2_1_2 = det*w[4][3]*w[5][3]*w[1][2]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_12*Jinv_22;
-    const double G2_3_3_2_2_2 = det*w[4][3]*w[5][3]*w[1][2]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_22*Jinv_22;
-    const double G2_3_3_3_0_2 = det*w[4][3]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G2_3_3_3_1_2 = det*w[4][3]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G2_3_3_3_2_2 = det*w[4][3]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_0_0_0_0_0 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_0_0_0_0_1 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_0_0_0_0_2 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_0_0_0_1_0 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_0_0_0_1_1 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_0_0_0_1_2 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_0_0_0_2_0 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_0_0_0_2_1 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_0_0_0_2_2 = det*w[4][0]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_0_0_1_0_0 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_0_0_1_1_0 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_0_0_1_2_0 = det*w[4][0]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_0_0_2_0_1 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_0_0_2_1_1 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_0_0_2_2_1 = det*w[4][0]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_0_0_3_0_2 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_0_0_3_1_2 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_0_0_3_2_2 = det*w[4][0]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_0_1_0_0_0 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_0_1_0_0_1 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_0_1_0_0_2 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_0_1_0_1_0 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_0_1_0_1_1 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_0_1_0_1_2 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_0_1_0_2_0 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_0_1_0_2_1 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_0_1_0_2_2 = det*w[4][0]*w[5][1]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][1]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_0_1_1_0_0 = det*w[4][0]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_0_1_1_1_0 = det*w[4][0]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_0_1_1_2_0 = det*w[4][0]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_0_1_2_0_1 = det*w[4][0]*w[5][1]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_0_1_2_1_1 = det*w[4][0]*w[5][1]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_0_1_2_2_1 = det*w[4][0]*w[5][1]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][1]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_0_1_3_0_2 = det*w[4][0]*w[5][1]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_0_1_3_1_2 = det*w[4][0]*w[5][1]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_0_1_3_2_2 = det*w[4][0]*w[5][1]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][1]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_0_2_0_0_0 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_0_2_0_0_1 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_0_2_0_0_2 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_0_2_0_1_0 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_0_2_0_1_1 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_0_2_0_1_2 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_0_2_0_2_0 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_0_2_0_2_1 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_0_2_0_2_2 = det*w[4][0]*w[5][2]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][2]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_0_2_1_0_0 = det*w[4][0]*w[5][2]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_0_2_1_1_0 = det*w[4][0]*w[5][2]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_0_2_1_2_0 = det*w[4][0]*w[5][2]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][2]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_0_2_2_0_1 = det*w[4][0]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_0_2_2_1_1 = det*w[4][0]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_0_2_2_2_1 = det*w[4][0]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_0_2_3_0_2 = det*w[4][0]*w[5][2]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_0_2_3_1_2 = det*w[4][0]*w[5][2]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_0_2_3_2_2 = det*w[4][0]*w[5][2]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][2]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_0_3_0_0_0 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_0_3_0_0_1 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_0_3_0_0_2 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_0_3_0_1_0 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_0_3_0_1_1 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_0_3_0_1_2 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_0_3_0_2_0 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_0_3_0_2_1 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_0_3_0_2_2 = det*w[4][0]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_0_3_1_0_0 = det*w[4][0]*w[5][3]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_0_3_1_1_0 = det*w[4][0]*w[5][3]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_0_3_1_2_0 = det*w[4][0]*w[5][3]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][3]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_0_3_2_0_1 = det*w[4][0]*w[5][3]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_0_3_2_1_1 = det*w[4][0]*w[5][3]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_0_3_2_2_1 = det*w[4][0]*w[5][3]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][3]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_0_3_3_0_2 = det*w[4][0]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_0_3_3_1_2 = det*w[4][0]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_0_3_3_2_2 = det*w[4][0]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_1_0_0_0_0 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_1_0_0_0_1 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_1_0_0_0_2 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_1_0_0_1_0 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_1_0_0_1_1 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_1_0_0_1_2 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_1_0_0_2_0 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_1_0_0_2_1 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_1_0_0_2_2 = det*w[4][1]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_1_0_1_0_0 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_1_0_1_1_0 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_1_0_1_2_0 = det*w[4][1]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_1_0_2_0_1 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_1_0_2_1_1 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_1_0_2_2_1 = det*w[4][1]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_1_0_3_0_2 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_1_0_3_1_2 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_1_0_3_2_2 = det*w[4][1]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_1_1_0_0_0 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_1_1_0_0_1 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_1_1_0_0_2 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_1_1_0_1_0 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_1_1_0_1_1 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_1_1_0_1_2 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_1_1_0_2_0 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_1_1_0_2_1 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_1_1_0_2_2 = det*w[4][1]*w[5][1]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][1]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_1_1_1_0_0 = det*w[4][1]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_1_1_1_1_0 = det*w[4][1]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_1_1_1_2_0 = det*w[4][1]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_1_1_2_0_1 = det*w[4][1]*w[5][1]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_1_1_2_1_1 = det*w[4][1]*w[5][1]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_1_1_2_2_1 = det*w[4][1]*w[5][1]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][1]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_1_1_3_0_2 = det*w[4][1]*w[5][1]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_1_1_3_1_2 = det*w[4][1]*w[5][1]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_1_1_3_2_2 = det*w[4][1]*w[5][1]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][1]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_1_2_0_0_0 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_1_2_0_0_1 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_1_2_0_0_2 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_1_2_0_1_0 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_1_2_0_1_1 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_1_2_0_1_2 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_1_2_0_2_0 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_1_2_0_2_1 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_1_2_0_2_2 = det*w[4][1]*w[5][2]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][2]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_1_2_1_0_0 = det*w[4][1]*w[5][2]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_1_2_1_1_0 = det*w[4][1]*w[5][2]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_1_2_1_2_0 = det*w[4][1]*w[5][2]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][2]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_1_2_2_0_1 = det*w[4][1]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_1_2_2_1_1 = det*w[4][1]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_1_2_2_2_1 = det*w[4][1]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_1_2_3_0_2 = det*w[4][1]*w[5][2]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_1_2_3_1_2 = det*w[4][1]*w[5][2]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_1_2_3_2_2 = det*w[4][1]*w[5][2]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][2]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_1_3_0_0_0 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_1_3_0_0_1 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_1_3_0_0_2 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_1_3_0_1_0 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_1_3_0_1_1 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_1_3_0_1_2 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_1_3_0_2_0 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_1_3_0_2_1 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_1_3_0_2_2 = det*w[4][1]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_1_3_1_0_0 = det*w[4][1]*w[5][3]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_1_3_1_1_0 = det*w[4][1]*w[5][3]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_1_3_1_2_0 = det*w[4][1]*w[5][3]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][3]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_1_3_2_0_1 = det*w[4][1]*w[5][3]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_1_3_2_1_1 = det*w[4][1]*w[5][3]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_1_3_2_2_1 = det*w[4][1]*w[5][3]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][3]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_1_3_3_0_2 = det*w[4][1]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_1_3_3_1_2 = det*w[4][1]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_1_3_3_2_2 = det*w[4][1]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_2_0_0_0_0 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_2_0_0_0_1 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_2_0_0_0_2 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_2_0_0_1_0 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_2_0_0_1_1 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_2_0_0_1_2 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_2_0_0_2_0 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_2_0_0_2_1 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_2_0_0_2_2 = det*w[4][2]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_2_0_1_0_0 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_2_0_1_1_0 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_2_0_1_2_0 = det*w[4][2]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_2_0_2_0_1 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_2_0_2_1_1 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_2_0_2_2_1 = det*w[4][2]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_2_0_3_0_2 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_2_0_3_1_2 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_2_0_3_2_2 = det*w[4][2]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_2_1_0_0_0 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_2_1_0_0_1 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_2_1_0_0_2 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_2_1_0_1_0 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_2_1_0_1_1 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_2_1_0_1_2 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_2_1_0_2_0 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_2_1_0_2_1 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_2_1_0_2_2 = det*w[4][2]*w[5][1]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][1]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_2_1_1_0_0 = det*w[4][2]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_2_1_1_1_0 = det*w[4][2]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_2_1_1_2_0 = det*w[4][2]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_2_1_2_0_1 = det*w[4][2]*w[5][1]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_2_1_2_1_1 = det*w[4][2]*w[5][1]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_2_1_2_2_1 = det*w[4][2]*w[5][1]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][1]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_2_1_3_0_2 = det*w[4][2]*w[5][1]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_2_1_3_1_2 = det*w[4][2]*w[5][1]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_2_1_3_2_2 = det*w[4][2]*w[5][1]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][1]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_2_2_0_0_0 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_2_2_0_0_1 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_2_2_0_0_2 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_2_2_0_1_0 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_2_2_0_1_1 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_2_2_0_1_2 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_2_2_0_2_0 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_2_2_0_2_1 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_2_2_0_2_2 = det*w[4][2]*w[5][2]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][2]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_2_2_1_0_0 = det*w[4][2]*w[5][2]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_2_2_1_1_0 = det*w[4][2]*w[5][2]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_2_2_1_2_0 = det*w[4][2]*w[5][2]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][2]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_2_2_2_0_1 = det*w[4][2]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_2_2_2_1_1 = det*w[4][2]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_2_2_2_2_1 = det*w[4][2]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_2_2_3_0_2 = det*w[4][2]*w[5][2]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_2_2_3_1_2 = det*w[4][2]*w[5][2]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_2_2_3_2_2 = det*w[4][2]*w[5][2]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][2]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_2_3_0_0_0 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_2_3_0_0_1 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_2_3_0_0_2 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_2_3_0_1_0 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_2_3_0_1_1 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_2_3_0_1_2 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_2_3_0_2_0 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_2_3_0_2_1 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_2_3_0_2_2 = det*w[4][2]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_2_3_1_0_0 = det*w[4][2]*w[5][3]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_2_3_1_1_0 = det*w[4][2]*w[5][3]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_2_3_1_2_0 = det*w[4][2]*w[5][3]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][3]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_2_3_2_0_1 = det*w[4][2]*w[5][3]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_2_3_2_1_1 = det*w[4][2]*w[5][3]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_2_3_2_2_1 = det*w[4][2]*w[5][3]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][3]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_2_3_3_0_2 = det*w[4][2]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_2_3_3_1_2 = det*w[4][2]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_2_3_3_2_2 = det*w[4][2]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_3_0_0_0_0 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_3_0_0_0_1 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_3_0_0_0_2 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_3_0_0_1_0 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_3_0_0_1_1 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_3_0_0_1_2 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_3_0_0_2_0 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_3_0_0_2_1 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_3_0_0_2_2 = det*w[4][3]*w[5][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_3_0_1_0_0 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_3_0_1_1_0 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_3_0_1_2_0 = det*w[4][3]*w[5][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_3_0_2_0_1 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_3_0_2_1_1 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_3_0_2_2_1 = det*w[4][3]*w[5][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_3_0_3_0_2 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_3_0_3_1_2 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_3_0_3_2_2 = det*w[4][3]*w[5][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_3_1_0_0_0 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_3_1_0_0_1 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_3_1_0_0_2 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_3_1_0_1_0 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_3_1_0_1_1 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_3_1_0_1_2 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_3_1_0_2_0 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_3_1_0_2_1 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_3_1_0_2_2 = det*w[4][3]*w[5][1]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][1]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_3_1_1_0_0 = det*w[4][3]*w[5][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_3_1_1_1_0 = det*w[4][3]*w[5][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_3_1_1_2_0 = det*w[4][3]*w[5][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_3_1_2_0_1 = det*w[4][3]*w[5][1]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_3_1_2_1_1 = det*w[4][3]*w[5][1]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_3_1_2_2_1 = det*w[4][3]*w[5][1]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][1]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_3_1_3_0_2 = det*w[4][3]*w[5][1]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_3_1_3_1_2 = det*w[4][3]*w[5][1]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_3_1_3_2_2 = det*w[4][3]*w[5][1]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][1]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_3_2_0_0_0 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_3_2_0_0_1 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_3_2_0_0_2 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_3_2_0_1_0 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_3_2_0_1_1 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_3_2_0_1_2 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_3_2_0_2_0 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_3_2_0_2_1 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_3_2_0_2_2 = det*w[4][3]*w[5][2]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][2]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_3_2_1_0_0 = det*w[4][3]*w[5][2]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_3_2_1_1_0 = det*w[4][3]*w[5][2]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_3_2_1_2_0 = det*w[4][3]*w[5][2]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][2]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_3_2_2_0_1 = det*w[4][3]*w[5][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_3_2_2_1_1 = det*w[4][3]*w[5][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_3_2_2_2_1 = det*w[4][3]*w[5][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_3_2_3_0_2 = det*w[4][3]*w[5][2]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_3_2_3_1_2 = det*w[4][3]*w[5][2]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_3_2_3_2_2 = det*w[4][3]*w[5][2]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][2]*w[1][3]*Jinv_22*Jinv_22;
-    const double G3_3_3_0_0_0 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_02*Jinv_02;
-    const double G3_3_3_0_0_1 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_02*Jinv_12;
-    const double G3_3_3_0_0_2 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G3_3_3_0_1_0 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_12*Jinv_02;
-    const double G3_3_3_0_1_1 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_12*Jinv_12;
-    const double G3_3_3_0_1_2 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G3_3_3_0_2_0 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_22*Jinv_02;
-    const double G3_3_3_0_2_1 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_22*Jinv_12;
-    const double G3_3_3_0_2_2 = det*w[4][3]*w[5][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G3_3_3_1_0_0 = det*w[4][3]*w[5][3]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_02*Jinv_02;
-    const double G3_3_3_1_1_0 = det*w[4][3]*w[5][3]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_12*Jinv_02;
-    const double G3_3_3_1_2_0 = det*w[4][3]*w[5][3]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][3]*w[1][1]*Jinv_22*Jinv_02;
-    const double G3_3_3_2_0_1 = det*w[4][3]*w[5][3]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_02*Jinv_12;
-    const double G3_3_3_2_1_1 = det*w[4][3]*w[5][3]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_12*Jinv_12;
-    const double G3_3_3_2_2_1 = det*w[4][3]*w[5][3]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][3]*w[1][2]*Jinv_22*Jinv_12;
-    const double G3_3_3_3_0_2 = det*w[4][3]*w[5][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G3_3_3_3_1_2 = det*w[4][3]*w[5][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G3_3_3_3_2_2 = det*w[4][3]*w[5][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G4_0_0_0_0 = det*w[4][0]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[1][0]*Jinv_02*Jinv_02;
-    const double G4_0_0_0_1 = det*w[4][0]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[1][0]*Jinv_02*Jinv_12;
-    const double G4_0_0_0_2 = det*w[4][0]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[1][0]*Jinv_02*Jinv_22;
-    const double G4_0_0_1_0 = det*w[4][0]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[1][0]*Jinv_12*Jinv_02;
-    const double G4_0_0_1_1 = det*w[4][0]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[1][0]*Jinv_12*Jinv_12;
-    const double G4_0_0_1_2 = det*w[4][0]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[1][0]*Jinv_12*Jinv_22;
-    const double G4_0_0_2_0 = det*w[4][0]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[1][0]*Jinv_22*Jinv_02;
-    const double G4_0_0_2_1 = det*w[4][0]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[1][0]*Jinv_22*Jinv_12;
-    const double G4_0_0_2_2 = det*w[4][0]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[1][0]*Jinv_22*Jinv_22;
-    const double G4_0_1_0_0 = det*w[4][0]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[1][1]*Jinv_02*Jinv_02;
-    const double G4_0_1_1_0 = det*w[4][0]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[1][1]*Jinv_12*Jinv_02;
-    const double G4_0_1_2_0 = det*w[4][0]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[1][1]*Jinv_22*Jinv_02;
-    const double G4_0_2_0_1 = det*w[4][0]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[1][2]*Jinv_02*Jinv_12;
-    const double G4_0_2_1_1 = det*w[4][0]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[1][2]*Jinv_12*Jinv_12;
-    const double G4_0_2_2_1 = det*w[4][0]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[1][2]*Jinv_22*Jinv_12;
-    const double G4_0_3_0_2 = det*w[4][0]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[1][3]*Jinv_02*Jinv_22;
-    const double G4_0_3_1_2 = det*w[4][0]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[1][3]*Jinv_12*Jinv_22;
-    const double G4_0_3_2_2 = det*w[4][0]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[1][3]*Jinv_22*Jinv_22;
-    const double G4_1_0_0_0 = det*w[4][1]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[1][0]*Jinv_02*Jinv_02;
-    const double G4_1_0_0_1 = det*w[4][1]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[1][0]*Jinv_02*Jinv_12;
-    const double G4_1_0_0_2 = det*w[4][1]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[1][0]*Jinv_02*Jinv_22;
-    const double G4_1_0_1_0 = det*w[4][1]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[1][0]*Jinv_12*Jinv_02;
-    const double G4_1_0_1_1 = det*w[4][1]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[1][0]*Jinv_12*Jinv_12;
-    const double G4_1_0_1_2 = det*w[4][1]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[1][0]*Jinv_12*Jinv_22;
-    const double G4_1_0_2_0 = det*w[4][1]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[1][0]*Jinv_22*Jinv_02;
-    const double G4_1_0_2_1 = det*w[4][1]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[1][0]*Jinv_22*Jinv_12;
-    const double G4_1_0_2_2 = det*w[4][1]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[1][0]*Jinv_22*Jinv_22;
-    const double G4_1_1_0_0 = det*w[4][1]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[1][1]*Jinv_02*Jinv_02;
-    const double G4_1_1_1_0 = det*w[4][1]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[1][1]*Jinv_12*Jinv_02;
-    const double G4_1_1_2_0 = det*w[4][1]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[1][1]*Jinv_22*Jinv_02;
-    const double G4_1_2_0_1 = det*w[4][1]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[1][2]*Jinv_02*Jinv_12;
-    const double G4_1_2_1_1 = det*w[4][1]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[1][2]*Jinv_12*Jinv_12;
-    const double G4_1_2_2_1 = det*w[4][1]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[1][2]*Jinv_22*Jinv_12;
-    const double G4_1_3_0_2 = det*w[4][1]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[1][3]*Jinv_02*Jinv_22;
-    const double G4_1_3_1_2 = det*w[4][1]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[1][3]*Jinv_12*Jinv_22;
-    const double G4_1_3_2_2 = det*w[4][1]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[1][3]*Jinv_22*Jinv_22;
-    const double G4_2_0_0_0 = det*w[4][2]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[1][0]*Jinv_02*Jinv_02;
-    const double G4_2_0_0_1 = det*w[4][2]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[1][0]*Jinv_02*Jinv_12;
-    const double G4_2_0_0_2 = det*w[4][2]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[1][0]*Jinv_02*Jinv_22;
-    const double G4_2_0_1_0 = det*w[4][2]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[1][0]*Jinv_12*Jinv_02;
-    const double G4_2_0_1_1 = det*w[4][2]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[1][0]*Jinv_12*Jinv_12;
-    const double G4_2_0_1_2 = det*w[4][2]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[1][0]*Jinv_12*Jinv_22;
-    const double G4_2_0_2_0 = det*w[4][2]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[1][0]*Jinv_22*Jinv_02;
-    const double G4_2_0_2_1 = det*w[4][2]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[1][0]*Jinv_22*Jinv_12;
-    const double G4_2_0_2_2 = det*w[4][2]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[1][0]*Jinv_22*Jinv_22;
-    const double G4_2_1_0_0 = det*w[4][2]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[1][1]*Jinv_02*Jinv_02;
-    const double G4_2_1_1_0 = det*w[4][2]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[1][1]*Jinv_12*Jinv_02;
-    const double G4_2_1_2_0 = det*w[4][2]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[1][1]*Jinv_22*Jinv_02;
-    const double G4_2_2_0_1 = det*w[4][2]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[1][2]*Jinv_02*Jinv_12;
-    const double G4_2_2_1_1 = det*w[4][2]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[1][2]*Jinv_12*Jinv_12;
-    const double G4_2_2_2_1 = det*w[4][2]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[1][2]*Jinv_22*Jinv_12;
-    const double G4_2_3_0_2 = det*w[4][2]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[1][3]*Jinv_02*Jinv_22;
-    const double G4_2_3_1_2 = det*w[4][2]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[1][3]*Jinv_12*Jinv_22;
-    const double G4_2_3_2_2 = det*w[4][2]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[1][3]*Jinv_22*Jinv_22;
-    const double G4_3_0_0_0 = det*w[4][3]*w[1][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[1][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[1][0]*Jinv_02*Jinv_02;
-    const double G4_3_0_0_1 = det*w[4][3]*w[1][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[1][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[1][0]*Jinv_02*Jinv_12;
-    const double G4_3_0_0_2 = det*w[4][3]*w[1][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[1][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[1][0]*Jinv_02*Jinv_22;
-    const double G4_3_0_1_0 = det*w[4][3]*w[1][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[1][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[1][0]*Jinv_12*Jinv_02;
-    const double G4_3_0_1_1 = det*w[4][3]*w[1][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[1][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[1][0]*Jinv_12*Jinv_12;
-    const double G4_3_0_1_2 = det*w[4][3]*w[1][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[1][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[1][0]*Jinv_12*Jinv_22;
-    const double G4_3_0_2_0 = det*w[4][3]*w[1][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[1][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[1][0]*Jinv_22*Jinv_02;
-    const double G4_3_0_2_1 = det*w[4][3]*w[1][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[1][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[1][0]*Jinv_22*Jinv_12;
-    const double G4_3_0_2_2 = det*w[4][3]*w[1][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[1][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[1][0]*Jinv_22*Jinv_22;
-    const double G4_3_1_0_0 = det*w[4][3]*w[1][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[1][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[1][1]*Jinv_02*Jinv_02;
-    const double G4_3_1_1_0 = det*w[4][3]*w[1][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[1][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[1][1]*Jinv_12*Jinv_02;
-    const double G4_3_1_2_0 = det*w[4][3]*w[1][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[1][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[1][1]*Jinv_22*Jinv_02;
-    const double G4_3_2_0_1 = det*w[4][3]*w[1][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[1][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[1][2]*Jinv_02*Jinv_12;
-    const double G4_3_2_1_1 = det*w[4][3]*w[1][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[1][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[1][2]*Jinv_12*Jinv_12;
-    const double G4_3_2_2_1 = det*w[4][3]*w[1][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[1][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[1][2]*Jinv_22*Jinv_12;
-    const double G4_3_3_0_2 = det*w[4][3]*w[1][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[1][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[1][3]*Jinv_02*Jinv_22;
-    const double G4_3_3_1_2 = det*w[4][3]*w[1][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[1][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[1][3]*Jinv_12*Jinv_22;
-    const double G4_3_3_2_2 = det*w[4][3]*w[1][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[1][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[1][3]*Jinv_22*Jinv_22;
-    const double G5_0_0_0_0_0 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_0_0_0_0_1 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_0_0_0_0_2 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_0_0_0_1_0 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_0_0_0_1_1 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_0_0_0_1_2 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_0_0_0_2_0 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_0_0_0_2_1 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_0_0_0_2_2 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_0_0_1_0_0 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_0_0_1_0_1 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_0_0_1_0_2 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_0_0_1_1_0 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_0_0_1_1_1 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_0_0_1_1_2 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_0_0_1_2_0 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_0_0_1_2_1 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_0_0_1_2_2 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_0_0_2_0_0 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_0_0_2_0_1 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_0_0_2_0_2 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_0_0_2_1_0 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_0_0_2_1_1 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_0_0_2_1_2 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_0_0_2_2_0 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_0_0_2_2_1 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_0_0_2_2_2 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_0_0_3_0_0 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_0_0_3_0_1 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_0_0_3_0_2 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_0_0_3_1_0 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_0_0_3_1_1 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_0_0_3_1_2 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_0_0_3_2_0 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_0_0_3_2_1 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_0_0_3_2_2 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_0_1_0_0_0 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_0_1_0_1_0 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_0_1_0_2_0 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_0_1_1_0_0 = det*w[4][0]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_0_1_1_1_0 = det*w[4][0]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_0_1_1_2_0 = det*w[4][0]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_0_1_2_0_0 = det*w[4][0]*w[5][1]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_0_1_2_1_0 = det*w[4][0]*w[5][1]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_0_1_2_2_0 = det*w[4][0]*w[5][1]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_0_1_3_0_0 = det*w[4][0]*w[5][1]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_0_1_3_1_0 = det*w[4][0]*w[5][1]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_0_1_3_2_0 = det*w[4][0]*w[5][1]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_0_2_0_0_1 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_0_2_0_1_1 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_0_2_0_2_1 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_0_2_1_0_1 = det*w[4][0]*w[5][2]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_0_2_1_1_1 = det*w[4][0]*w[5][2]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_0_2_1_2_1 = det*w[4][0]*w[5][2]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_0_2_2_0_1 = det*w[4][0]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_0_2_2_1_1 = det*w[4][0]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_0_2_2_2_1 = det*w[4][0]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_0_2_3_0_1 = det*w[4][0]*w[5][2]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_0_2_3_1_1 = det*w[4][0]*w[5][2]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_0_2_3_2_1 = det*w[4][0]*w[5][2]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_0_3_0_0_2 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_0_3_0_1_2 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_0_3_0_2_2 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_0_3_1_0_2 = det*w[4][0]*w[5][3]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_0_3_1_1_2 = det*w[4][0]*w[5][3]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_0_3_1_2_2 = det*w[4][0]*w[5][3]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_0_3_2_0_2 = det*w[4][0]*w[5][3]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_0_3_2_1_2 = det*w[4][0]*w[5][3]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_0_3_2_2_2 = det*w[4][0]*w[5][3]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_0_3_3_0_2 = det*w[4][0]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_0_3_3_1_2 = det*w[4][0]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_0_3_3_2_2 = det*w[4][0]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_1_0_0_0_0 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_1_0_0_0_1 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_1_0_0_0_2 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_1_0_0_1_0 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_1_0_0_1_1 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_1_0_0_1_2 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_1_0_0_2_0 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_1_0_0_2_1 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_1_0_0_2_2 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_1_0_1_0_0 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_1_0_1_0_1 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_1_0_1_0_2 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_1_0_1_1_0 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_1_0_1_1_1 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_1_0_1_1_2 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_1_0_1_2_0 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_1_0_1_2_1 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_1_0_1_2_2 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_1_0_2_0_0 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_1_0_2_0_1 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_1_0_2_0_2 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_1_0_2_1_0 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_1_0_2_1_1 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_1_0_2_1_2 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_1_0_2_2_0 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_1_0_2_2_1 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_1_0_2_2_2 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_1_0_3_0_0 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_1_0_3_0_1 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_1_0_3_0_2 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_1_0_3_1_0 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_1_0_3_1_1 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_1_0_3_1_2 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_1_0_3_2_0 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_1_0_3_2_1 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_1_0_3_2_2 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_1_1_0_0_0 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_1_1_0_1_0 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_1_1_0_2_0 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_1_1_1_0_0 = det*w[4][1]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_1_1_1_1_0 = det*w[4][1]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_1_1_1_2_0 = det*w[4][1]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_1_1_2_0_0 = det*w[4][1]*w[5][1]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_1_1_2_1_0 = det*w[4][1]*w[5][1]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_1_1_2_2_0 = det*w[4][1]*w[5][1]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_1_1_3_0_0 = det*w[4][1]*w[5][1]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_1_1_3_1_0 = det*w[4][1]*w[5][1]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_1_1_3_2_0 = det*w[4][1]*w[5][1]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_1_2_0_0_1 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_1_2_0_1_1 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_1_2_0_2_1 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_1_2_1_0_1 = det*w[4][1]*w[5][2]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_1_2_1_1_1 = det*w[4][1]*w[5][2]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_1_2_1_2_1 = det*w[4][1]*w[5][2]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_1_2_2_0_1 = det*w[4][1]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_1_2_2_1_1 = det*w[4][1]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_1_2_2_2_1 = det*w[4][1]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_1_2_3_0_1 = det*w[4][1]*w[5][2]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_1_2_3_1_1 = det*w[4][1]*w[5][2]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_1_2_3_2_1 = det*w[4][1]*w[5][2]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_1_3_0_0_2 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_1_3_0_1_2 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_1_3_0_2_2 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_1_3_1_0_2 = det*w[4][1]*w[5][3]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_1_3_1_1_2 = det*w[4][1]*w[5][3]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_1_3_1_2_2 = det*w[4][1]*w[5][3]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_1_3_2_0_2 = det*w[4][1]*w[5][3]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_1_3_2_1_2 = det*w[4][1]*w[5][3]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_1_3_2_2_2 = det*w[4][1]*w[5][3]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_1_3_3_0_2 = det*w[4][1]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_1_3_3_1_2 = det*w[4][1]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_1_3_3_2_2 = det*w[4][1]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_2_0_0_0_0 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_2_0_0_0_1 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_2_0_0_0_2 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_2_0_0_1_0 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_2_0_0_1_1 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_2_0_0_1_2 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_2_0_0_2_0 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_2_0_0_2_1 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_2_0_0_2_2 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_2_0_1_0_0 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_2_0_1_0_1 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_2_0_1_0_2 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_2_0_1_1_0 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_2_0_1_1_1 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_2_0_1_1_2 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_2_0_1_2_0 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_2_0_1_2_1 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_2_0_1_2_2 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_2_0_2_0_0 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_2_0_2_0_1 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_2_0_2_0_2 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_2_0_2_1_0 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_2_0_2_1_1 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_2_0_2_1_2 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_2_0_2_2_0 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_2_0_2_2_1 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_2_0_2_2_2 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_2_0_3_0_0 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_2_0_3_0_1 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_2_0_3_0_2 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_2_0_3_1_0 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_2_0_3_1_1 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_2_0_3_1_2 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_2_0_3_2_0 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_2_0_3_2_1 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_2_0_3_2_2 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_2_1_0_0_0 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_2_1_0_1_0 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_2_1_0_2_0 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_2_1_1_0_0 = det*w[4][2]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_2_1_1_1_0 = det*w[4][2]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_2_1_1_2_0 = det*w[4][2]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_2_1_2_0_0 = det*w[4][2]*w[5][1]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_2_1_2_1_0 = det*w[4][2]*w[5][1]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_2_1_2_2_0 = det*w[4][2]*w[5][1]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_2_1_3_0_0 = det*w[4][2]*w[5][1]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_2_1_3_1_0 = det*w[4][2]*w[5][1]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_2_1_3_2_0 = det*w[4][2]*w[5][1]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_2_2_0_0_1 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_2_2_0_1_1 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_2_2_0_2_1 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_2_2_1_0_1 = det*w[4][2]*w[5][2]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_2_2_1_1_1 = det*w[4][2]*w[5][2]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_2_2_1_2_1 = det*w[4][2]*w[5][2]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_2_2_2_0_1 = det*w[4][2]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_2_2_2_1_1 = det*w[4][2]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_2_2_2_2_1 = det*w[4][2]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_2_2_3_0_1 = det*w[4][2]*w[5][2]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_2_2_3_1_1 = det*w[4][2]*w[5][2]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_2_2_3_2_1 = det*w[4][2]*w[5][2]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_2_3_0_0_2 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_2_3_0_1_2 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_2_3_0_2_2 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_2_3_1_0_2 = det*w[4][2]*w[5][3]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_2_3_1_1_2 = det*w[4][2]*w[5][3]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_2_3_1_2_2 = det*w[4][2]*w[5][3]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_2_3_2_0_2 = det*w[4][2]*w[5][3]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_2_3_2_1_2 = det*w[4][2]*w[5][3]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_2_3_2_2_2 = det*w[4][2]*w[5][3]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_2_3_3_0_2 = det*w[4][2]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_2_3_3_1_2 = det*w[4][2]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_2_3_3_2_2 = det*w[4][2]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_3_0_0_0_0 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_3_0_0_0_1 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_3_0_0_0_2 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_3_0_0_1_0 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_3_0_0_1_1 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_3_0_0_1_2 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_3_0_0_2_0 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_3_0_0_2_1 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_3_0_0_2_2 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_3_0_1_0_0 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_3_0_1_0_1 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_3_0_1_0_2 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_3_0_1_1_0 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_3_0_1_1_1 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_3_0_1_1_2 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_3_0_1_2_0 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_3_0_1_2_1 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_3_0_1_2_2 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_3_0_2_0_0 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_3_0_2_0_1 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_3_0_2_0_2 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_3_0_2_1_0 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_3_0_2_1_1 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_3_0_2_1_2 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_3_0_2_2_0 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_3_0_2_2_1 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_3_0_2_2_2 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_3_0_3_0_0 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_3_0_3_0_1 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_3_0_3_0_2 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_3_0_3_1_0 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_3_0_3_1_1 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_3_0_3_1_2 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_3_0_3_2_0 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_3_0_3_2_1 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_3_0_3_2_2 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G5_3_1_0_0_0 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G5_3_1_0_1_0 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G5_3_1_0_2_0 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G5_3_1_1_0_0 = det*w[4][3]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G5_3_1_1_1_0 = det*w[4][3]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G5_3_1_1_2_0 = det*w[4][3]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G5_3_1_2_0_0 = det*w[4][3]*w[5][1]*w[0][2]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_02*Jinv_02;
-    const double G5_3_1_2_1_0 = det*w[4][3]*w[5][1]*w[0][2]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_12*Jinv_02;
-    const double G5_3_1_2_2_0 = det*w[4][3]*w[5][1]*w[0][2]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_22*Jinv_02;
-    const double G5_3_1_3_0_0 = det*w[4][3]*w[5][1]*w[0][3]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_02*Jinv_02;
-    const double G5_3_1_3_1_0 = det*w[4][3]*w[5][1]*w[0][3]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_12*Jinv_02;
-    const double G5_3_1_3_2_0 = det*w[4][3]*w[5][1]*w[0][3]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_22*Jinv_02;
-    const double G5_3_2_0_0_1 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G5_3_2_0_1_1 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G5_3_2_0_2_1 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G5_3_2_1_0_1 = det*w[4][3]*w[5][2]*w[0][1]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_02*Jinv_12;
-    const double G5_3_2_1_1_1 = det*w[4][3]*w[5][2]*w[0][1]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_12*Jinv_12;
-    const double G5_3_2_1_2_1 = det*w[4][3]*w[5][2]*w[0][1]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_22*Jinv_12;
-    const double G5_3_2_2_0_1 = det*w[4][3]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G5_3_2_2_1_1 = det*w[4][3]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G5_3_2_2_2_1 = det*w[4][3]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G5_3_2_3_0_1 = det*w[4][3]*w[5][2]*w[0][3]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_02*Jinv_12;
-    const double G5_3_2_3_1_1 = det*w[4][3]*w[5][2]*w[0][3]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_12*Jinv_12;
-    const double G5_3_2_3_2_1 = det*w[4][3]*w[5][2]*w[0][3]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_22*Jinv_12;
-    const double G5_3_3_0_0_2 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G5_3_3_0_1_2 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G5_3_3_0_2_2 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G5_3_3_1_0_2 = det*w[4][3]*w[5][3]*w[0][1]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_02*Jinv_22;
-    const double G5_3_3_1_1_2 = det*w[4][3]*w[5][3]*w[0][1]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_12*Jinv_22;
-    const double G5_3_3_1_2_2 = det*w[4][3]*w[5][3]*w[0][1]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_22*Jinv_22;
-    const double G5_3_3_2_0_2 = det*w[4][3]*w[5][3]*w[0][2]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_02*Jinv_22;
-    const double G5_3_3_2_1_2 = det*w[4][3]*w[5][3]*w[0][2]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_12*Jinv_22;
-    const double G5_3_3_2_2_2 = det*w[4][3]*w[5][3]*w[0][2]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_22*Jinv_22;
-    const double G5_3_3_3_0_2 = det*w[4][3]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G5_3_3_3_1_2 = det*w[4][3]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G5_3_3_3_2_2 = det*w[4][3]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_0_0_0_0_0 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_0_0_0_0_1 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_0_0_0_0_2 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_0_0_0_1_0 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_0_0_0_1_1 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_0_0_0_1_2 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_0_0_0_2_0 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_0_0_0_2_1 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_0_0_0_2_2 = det*w[4][0]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_0_0_1_0_0 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_0_0_1_1_0 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_0_0_1_2_0 = det*w[4][0]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_0_0_2_0_1 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_0_0_2_1_1 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_0_0_2_2_1 = det*w[4][0]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_0_0_3_0_2 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_0_0_3_1_2 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_0_0_3_2_2 = det*w[4][0]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_0_1_0_0_0 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_0_1_0_0_1 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_0_1_0_0_2 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_0_1_0_1_0 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_0_1_0_1_1 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_0_1_0_1_2 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_0_1_0_2_0 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_0_1_0_2_1 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_0_1_0_2_2 = det*w[4][0]*w[5][1]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][1]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_0_1_1_0_0 = det*w[4][0]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_0_1_1_1_0 = det*w[4][0]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_0_1_1_2_0 = det*w[4][0]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_0_1_2_0_1 = det*w[4][0]*w[5][1]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_0_1_2_1_1 = det*w[4][0]*w[5][1]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_0_1_2_2_1 = det*w[4][0]*w[5][1]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][1]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_0_1_3_0_2 = det*w[4][0]*w[5][1]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_0_1_3_1_2 = det*w[4][0]*w[5][1]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_0_1_3_2_2 = det*w[4][0]*w[5][1]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][1]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_0_2_0_0_0 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_0_2_0_0_1 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_0_2_0_0_2 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_0_2_0_1_0 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_0_2_0_1_1 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_0_2_0_1_2 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_0_2_0_2_0 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_0_2_0_2_1 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_0_2_0_2_2 = det*w[4][0]*w[5][2]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][2]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_0_2_1_0_0 = det*w[4][0]*w[5][2]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_0_2_1_1_0 = det*w[4][0]*w[5][2]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_0_2_1_2_0 = det*w[4][0]*w[5][2]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][2]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_0_2_2_0_1 = det*w[4][0]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_0_2_2_1_1 = det*w[4][0]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_0_2_2_2_1 = det*w[4][0]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_0_2_3_0_2 = det*w[4][0]*w[5][2]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_0_2_3_1_2 = det*w[4][0]*w[5][2]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_0_2_3_2_2 = det*w[4][0]*w[5][2]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][2]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_0_3_0_0_0 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_0_3_0_0_1 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_0_3_0_0_2 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_0_3_0_1_0 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_0_3_0_1_1 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_0_3_0_1_2 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_0_3_0_2_0 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_0_3_0_2_1 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_0_3_0_2_2 = det*w[4][0]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_0_3_1_0_0 = det*w[4][0]*w[5][3]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_0_3_1_1_0 = det*w[4][0]*w[5][3]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_0_3_1_2_0 = det*w[4][0]*w[5][3]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][0]*w[5][3]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_0_3_2_0_1 = det*w[4][0]*w[5][3]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_0_3_2_1_1 = det*w[4][0]*w[5][3]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_0_3_2_2_1 = det*w[4][0]*w[5][3]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][0]*w[5][3]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_0_3_3_0_2 = det*w[4][0]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_0_3_3_1_2 = det*w[4][0]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_0_3_3_2_2 = det*w[4][0]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][0]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_1_0_0_0_0 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_1_0_0_0_1 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_1_0_0_0_2 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_1_0_0_1_0 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_1_0_0_1_1 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_1_0_0_1_2 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_1_0_0_2_0 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_1_0_0_2_1 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_1_0_0_2_2 = det*w[4][1]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_1_0_1_0_0 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_1_0_1_1_0 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_1_0_1_2_0 = det*w[4][1]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_1_0_2_0_1 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_1_0_2_1_1 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_1_0_2_2_1 = det*w[4][1]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_1_0_3_0_2 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_1_0_3_1_2 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_1_0_3_2_2 = det*w[4][1]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_1_1_0_0_0 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_1_1_0_0_1 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_1_1_0_0_2 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_1_1_0_1_0 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_1_1_0_1_1 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_1_1_0_1_2 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_1_1_0_2_0 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_1_1_0_2_1 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_1_1_0_2_2 = det*w[4][1]*w[5][1]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][1]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_1_1_1_0_0 = det*w[4][1]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_1_1_1_1_0 = det*w[4][1]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_1_1_1_2_0 = det*w[4][1]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_1_1_2_0_1 = det*w[4][1]*w[5][1]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_1_1_2_1_1 = det*w[4][1]*w[5][1]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_1_1_2_2_1 = det*w[4][1]*w[5][1]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][1]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_1_1_3_0_2 = det*w[4][1]*w[5][1]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_1_1_3_1_2 = det*w[4][1]*w[5][1]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_1_1_3_2_2 = det*w[4][1]*w[5][1]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][1]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_1_2_0_0_0 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_1_2_0_0_1 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_1_2_0_0_2 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_1_2_0_1_0 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_1_2_0_1_1 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_1_2_0_1_2 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_1_2_0_2_0 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_1_2_0_2_1 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_1_2_0_2_2 = det*w[4][1]*w[5][2]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][2]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_1_2_1_0_0 = det*w[4][1]*w[5][2]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_1_2_1_1_0 = det*w[4][1]*w[5][2]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_1_2_1_2_0 = det*w[4][1]*w[5][2]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][2]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_1_2_2_0_1 = det*w[4][1]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_1_2_2_1_1 = det*w[4][1]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_1_2_2_2_1 = det*w[4][1]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_1_2_3_0_2 = det*w[4][1]*w[5][2]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_1_2_3_1_2 = det*w[4][1]*w[5][2]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_1_2_3_2_2 = det*w[4][1]*w[5][2]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][2]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_1_3_0_0_0 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_1_3_0_0_1 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_1_3_0_0_2 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_1_3_0_1_0 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_1_3_0_1_1 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_1_3_0_1_2 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_1_3_0_2_0 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_1_3_0_2_1 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_1_3_0_2_2 = det*w[4][1]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_1_3_1_0_0 = det*w[4][1]*w[5][3]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_1_3_1_1_0 = det*w[4][1]*w[5][3]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_1_3_1_2_0 = det*w[4][1]*w[5][3]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][1]*w[5][3]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_1_3_2_0_1 = det*w[4][1]*w[5][3]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_1_3_2_1_1 = det*w[4][1]*w[5][3]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_1_3_2_2_1 = det*w[4][1]*w[5][3]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][1]*w[5][3]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_1_3_3_0_2 = det*w[4][1]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_1_3_3_1_2 = det*w[4][1]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_1_3_3_2_2 = det*w[4][1]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][1]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_2_0_0_0_0 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_2_0_0_0_1 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_2_0_0_0_2 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_2_0_0_1_0 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_2_0_0_1_1 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_2_0_0_1_2 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_2_0_0_2_0 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_2_0_0_2_1 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_2_0_0_2_2 = det*w[4][2]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_2_0_1_0_0 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_2_0_1_1_0 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_2_0_1_2_0 = det*w[4][2]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_2_0_2_0_1 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_2_0_2_1_1 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_2_0_2_2_1 = det*w[4][2]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_2_0_3_0_2 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_2_0_3_1_2 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_2_0_3_2_2 = det*w[4][2]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_2_1_0_0_0 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_2_1_0_0_1 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_2_1_0_0_2 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_2_1_0_1_0 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_2_1_0_1_1 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_2_1_0_1_2 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_2_1_0_2_0 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_2_1_0_2_1 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_2_1_0_2_2 = det*w[4][2]*w[5][1]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][1]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_2_1_1_0_0 = det*w[4][2]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_2_1_1_1_0 = det*w[4][2]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_2_1_1_2_0 = det*w[4][2]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_2_1_2_0_1 = det*w[4][2]*w[5][1]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_2_1_2_1_1 = det*w[4][2]*w[5][1]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_2_1_2_2_1 = det*w[4][2]*w[5][1]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][1]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_2_1_3_0_2 = det*w[4][2]*w[5][1]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_2_1_3_1_2 = det*w[4][2]*w[5][1]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_2_1_3_2_2 = det*w[4][2]*w[5][1]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][1]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_2_2_0_0_0 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_2_2_0_0_1 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_2_2_0_0_2 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_2_2_0_1_0 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_2_2_0_1_1 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_2_2_0_1_2 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_2_2_0_2_0 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_2_2_0_2_1 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_2_2_0_2_2 = det*w[4][2]*w[5][2]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][2]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_2_2_1_0_0 = det*w[4][2]*w[5][2]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_2_2_1_1_0 = det*w[4][2]*w[5][2]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_2_2_1_2_0 = det*w[4][2]*w[5][2]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][2]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_2_2_2_0_1 = det*w[4][2]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_2_2_2_1_1 = det*w[4][2]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_2_2_2_2_1 = det*w[4][2]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_2_2_3_0_2 = det*w[4][2]*w[5][2]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_2_2_3_1_2 = det*w[4][2]*w[5][2]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_2_2_3_2_2 = det*w[4][2]*w[5][2]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][2]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_2_3_0_0_0 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_2_3_0_0_1 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_2_3_0_0_2 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_2_3_0_1_0 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_2_3_0_1_1 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_2_3_0_1_2 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_2_3_0_2_0 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_2_3_0_2_1 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_2_3_0_2_2 = det*w[4][2]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_2_3_1_0_0 = det*w[4][2]*w[5][3]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_2_3_1_1_0 = det*w[4][2]*w[5][3]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_2_3_1_2_0 = det*w[4][2]*w[5][3]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][2]*w[5][3]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_2_3_2_0_1 = det*w[4][2]*w[5][3]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_2_3_2_1_1 = det*w[4][2]*w[5][3]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_2_3_2_2_1 = det*w[4][2]*w[5][3]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][2]*w[5][3]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_2_3_3_0_2 = det*w[4][2]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_2_3_3_1_2 = det*w[4][2]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_2_3_3_2_2 = det*w[4][2]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][2]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_3_0_0_0_0 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_3_0_0_0_1 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_3_0_0_0_2 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_3_0_0_1_0 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_3_0_0_1_1 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_3_0_0_1_2 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_3_0_0_2_0 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_3_0_0_2_1 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_3_0_0_2_2 = det*w[4][3]*w[5][0]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_3_0_1_0_0 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_3_0_1_1_0 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_3_0_1_2_0 = det*w[4][3]*w[5][0]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][0]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_3_0_2_0_1 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_3_0_2_1_1 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_3_0_2_2_1 = det*w[4][3]*w[5][0]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][0]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_3_0_3_0_2 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_3_0_3_1_2 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_3_0_3_2_2 = det*w[4][3]*w[5][0]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][0]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_3_1_0_0_0 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_3_1_0_0_1 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_3_1_0_0_2 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_3_1_0_1_0 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_3_1_0_1_1 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_3_1_0_1_2 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_3_1_0_2_0 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_3_1_0_2_1 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_3_1_0_2_2 = det*w[4][3]*w[5][1]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][1]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_3_1_1_0_0 = det*w[4][3]*w[5][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_3_1_1_1_0 = det*w[4][3]*w[5][1]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_3_1_1_2_0 = det*w[4][3]*w[5][1]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][1]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_3_1_2_0_1 = det*w[4][3]*w[5][1]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_3_1_2_1_1 = det*w[4][3]*w[5][1]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_3_1_2_2_1 = det*w[4][3]*w[5][1]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][1]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_3_1_3_0_2 = det*w[4][3]*w[5][1]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_3_1_3_1_2 = det*w[4][3]*w[5][1]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_3_1_3_2_2 = det*w[4][3]*w[5][1]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][1]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_3_2_0_0_0 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_3_2_0_0_1 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_3_2_0_0_2 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_3_2_0_1_0 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_3_2_0_1_1 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_3_2_0_1_2 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_3_2_0_2_0 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_3_2_0_2_1 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_3_2_0_2_2 = det*w[4][3]*w[5][2]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][2]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_3_2_1_0_0 = det*w[4][3]*w[5][2]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_3_2_1_1_0 = det*w[4][3]*w[5][2]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_3_2_1_2_0 = det*w[4][3]*w[5][2]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][2]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_3_2_2_0_1 = det*w[4][3]*w[5][2]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_3_2_2_1_1 = det*w[4][3]*w[5][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_3_2_2_2_1 = det*w[4][3]*w[5][2]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][2]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_3_2_3_0_2 = det*w[4][3]*w[5][2]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_3_2_3_1_2 = det*w[4][3]*w[5][2]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_3_2_3_2_2 = det*w[4][3]*w[5][2]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][2]*w[0][3]*Jinv_22*Jinv_22;
-    const double G6_3_3_0_0_0 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_02*Jinv_02;
-    const double G6_3_3_0_0_1 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_02*Jinv_12;
-    const double G6_3_3_0_0_2 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_02*Jinv_22;
-    const double G6_3_3_0_1_0 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_12*Jinv_02;
-    const double G6_3_3_0_1_1 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_12*Jinv_12;
-    const double G6_3_3_0_1_2 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_12*Jinv_22;
-    const double G6_3_3_0_2_0 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_22*Jinv_02;
-    const double G6_3_3_0_2_1 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_22*Jinv_12;
-    const double G6_3_3_0_2_2 = det*w[4][3]*w[5][3]*w[0][0]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[0][0]*Jinv_22*Jinv_22;
-    const double G6_3_3_1_0_0 = det*w[4][3]*w[5][3]*w[0][1]*Jinv_00*Jinv_00 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_01*Jinv_01 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_02*Jinv_02;
-    const double G6_3_3_1_1_0 = det*w[4][3]*w[5][3]*w[0][1]*Jinv_10*Jinv_00 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_11*Jinv_01 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_12*Jinv_02;
-    const double G6_3_3_1_2_0 = det*w[4][3]*w[5][3]*w[0][1]*Jinv_20*Jinv_00 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_21*Jinv_01 + det*w[4][3]*w[5][3]*w[0][1]*Jinv_22*Jinv_02;
-    const double G6_3_3_2_0_1 = det*w[4][3]*w[5][3]*w[0][2]*Jinv_00*Jinv_10 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_01*Jinv_11 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_02*Jinv_12;
-    const double G6_3_3_2_1_1 = det*w[4][3]*w[5][3]*w[0][2]*Jinv_10*Jinv_10 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_11*Jinv_11 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_12*Jinv_12;
-    const double G6_3_3_2_2_1 = det*w[4][3]*w[5][3]*w[0][2]*Jinv_20*Jinv_10 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_21*Jinv_11 + det*w[4][3]*w[5][3]*w[0][2]*Jinv_22*Jinv_12;
-    const double G6_3_3_3_0_2 = det*w[4][3]*w[5][3]*w[0][3]*Jinv_00*Jinv_20 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_01*Jinv_21 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_02*Jinv_22;
-    const double G6_3_3_3_1_2 = det*w[4][3]*w[5][3]*w[0][3]*Jinv_10*Jinv_20 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_11*Jinv_21 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_12*Jinv_22;
-    const double G6_3_3_3_2_2 = det*w[4][3]*w[5][3]*w[0][3]*Jinv_20*Jinv_20 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_21*Jinv_21 + det*w[4][3]*w[5][3]*w[0][3]*Jinv_22*Jinv_22;
-    const double G7_0 = det*w[0][0];
-    const double G7_1 = det*w[0][1];
-    const double G7_2 = det*w[0][2];
-    const double G7_3 = det*w[0][3];
-    const double G8_0_4_4_4 = det*w[3][0]*w[0][4]*w[0][4]*w[0][4] + det*w[3][0]*w[0][4]*w[0][4]*w[0][4];
-    const double G8_0_4_4_5 = det*w[3][0]*w[0][4]*w[0][4]*w[0][5] + det*w[3][0]*w[0][4]*w[0][4]*w[0][5];
-    const double G8_0_4_4_6 = det*w[3][0]*w[0][4]*w[0][4]*w[0][6] + det*w[3][0]*w[0][4]*w[0][4]*w[0][6];
-    const double G8_0_4_4_7 = det*w[3][0]*w[0][4]*w[0][4]*w[0][7] + det*w[3][0]*w[0][4]*w[0][4]*w[0][7];
-    const double G8_0_4_5_4 = det*w[3][0]*w[0][4]*w[0][5]*w[0][4] + det*w[3][0]*w[0][4]*w[0][5]*w[0][4];
-    const double G8_0_4_5_5 = det*w[3][0]*w[0][4]*w[0][5]*w[0][5] + det*w[3][0]*w[0][4]*w[0][5]*w[0][5];
-    const double G8_0_4_5_6 = det*w[3][0]*w[0][4]*w[0][5]*w[0][6] + det*w[3][0]*w[0][4]*w[0][5]*w[0][6];
-    const double G8_0_4_5_7 = det*w[3][0]*w[0][4]*w[0][5]*w[0][7] + det*w[3][0]*w[0][4]*w[0][5]*w[0][7];
-    const double G8_0_4_6_4 = det*w[3][0]*w[0][4]*w[0][6]*w[0][4] + det*w[3][0]*w[0][4]*w[0][6]*w[0][4];
-    const double G8_0_4_6_5 = det*w[3][0]*w[0][4]*w[0][6]*w[0][5] + det*w[3][0]*w[0][4]*w[0][6]*w[0][5];
-    const double G8_0_4_6_6 = det*w[3][0]*w[0][4]*w[0][6]*w[0][6] + det*w[3][0]*w[0][4]*w[0][6]*w[0][6];
-    const double G8_0_4_6_7 = det*w[3][0]*w[0][4]*w[0][6]*w[0][7] + det*w[3][0]*w[0][4]*w[0][6]*w[0][7];
-    const double G8_0_4_7_4 = det*w[3][0]*w[0][4]*w[0][7]*w[0][4] + det*w[3][0]*w[0][4]*w[0][7]*w[0][4];
-    const double G8_0_4_7_5 = det*w[3][0]*w[0][4]*w[0][7]*w[0][5] + det*w[3][0]*w[0][4]*w[0][7]*w[0][5];
-    const double G8_0_4_7_6 = det*w[3][0]*w[0][4]*w[0][7]*w[0][6] + det*w[3][0]*w[0][4]*w[0][7]*w[0][6];
-    const double G8_0_4_7_7 = det*w[3][0]*w[0][4]*w[0][7]*w[0][7] + det*w[3][0]*w[0][4]*w[0][7]*w[0][7];
-    const double G8_0_5_4_4 = det*w[3][0]*w[0][5]*w[0][4]*w[0][4] + det*w[3][0]*w[0][5]*w[0][4]*w[0][4];
-    const double G8_0_5_4_5 = det*w[3][0]*w[0][5]*w[0][4]*w[0][5] + det*w[3][0]*w[0][5]*w[0][4]*w[0][5];
-    const double G8_0_5_4_6 = det*w[3][0]*w[0][5]*w[0][4]*w[0][6] + det*w[3][0]*w[0][5]*w[0][4]*w[0][6];
-    const double G8_0_5_4_7 = det*w[3][0]*w[0][5]*w[0][4]*w[0][7] + det*w[3][0]*w[0][5]*w[0][4]*w[0][7];
-    const double G8_0_5_5_4 = det*w[3][0]*w[0][5]*w[0][5]*w[0][4] + det*w[3][0]*w[0][5]*w[0][5]*w[0][4];
-    const double G8_0_5_5_5 = det*w[3][0]*w[0][5]*w[0][5]*w[0][5] + det*w[3][0]*w[0][5]*w[0][5]*w[0][5];
-    const double G8_0_5_5_6 = det*w[3][0]*w[0][5]*w[0][5]*w[0][6] + det*w[3][0]*w[0][5]*w[0][5]*w[0][6];
-    const double G8_0_5_5_7 = det*w[3][0]*w[0][5]*w[0][5]*w[0][7] + det*w[3][0]*w[0][5]*w[0][5]*w[0][7];
-    const double G8_0_5_6_4 = det*w[3][0]*w[0][5]*w[0][6]*w[0][4] + det*w[3][0]*w[0][5]*w[0][6]*w[0][4];
-    const double G8_0_5_6_5 = det*w[3][0]*w[0][5]*w[0][6]*w[0][5] + det*w[3][0]*w[0][5]*w[0][6]*w[0][5];
-    const double G8_0_5_6_6 = det*w[3][0]*w[0][5]*w[0][6]*w[0][6] + det*w[3][0]*w[0][5]*w[0][6]*w[0][6];
-    const double G8_0_5_6_7 = det*w[3][0]*w[0][5]*w[0][6]*w[0][7] + det*w[3][0]*w[0][5]*w[0][6]*w[0][7];
-    const double G8_0_5_7_4 = det*w[3][0]*w[0][5]*w[0][7]*w[0][4] + det*w[3][0]*w[0][5]*w[0][7]*w[0][4];
-    const double G8_0_5_7_5 = det*w[3][0]*w[0][5]*w[0][7]*w[0][5] + det*w[3][0]*w[0][5]*w[0][7]*w[0][5];
-    const double G8_0_5_7_6 = det*w[3][0]*w[0][5]*w[0][7]*w[0][6] + det*w[3][0]*w[0][5]*w[0][7]*w[0][6];
-    const double G8_0_5_7_7 = det*w[3][0]*w[0][5]*w[0][7]*w[0][7] + det*w[3][0]*w[0][5]*w[0][7]*w[0][7];
-    const double G8_0_6_4_4 = det*w[3][0]*w[0][6]*w[0][4]*w[0][4] + det*w[3][0]*w[0][6]*w[0][4]*w[0][4];
-    const double G8_0_6_4_5 = det*w[3][0]*w[0][6]*w[0][4]*w[0][5] + det*w[3][0]*w[0][6]*w[0][4]*w[0][5];
-    const double G8_0_6_4_6 = det*w[3][0]*w[0][6]*w[0][4]*w[0][6] + det*w[3][0]*w[0][6]*w[0][4]*w[0][6];
-    const double G8_0_6_4_7 = det*w[3][0]*w[0][6]*w[0][4]*w[0][7] + det*w[3][0]*w[0][6]*w[0][4]*w[0][7];
-    const double G8_0_6_5_4 = det*w[3][0]*w[0][6]*w[0][5]*w[0][4] + det*w[3][0]*w[0][6]*w[0][5]*w[0][4];
-    const double G8_0_6_5_5 = det*w[3][0]*w[0][6]*w[0][5]*w[0][5] + det*w[3][0]*w[0][6]*w[0][5]*w[0][5];
-    const double G8_0_6_5_6 = det*w[3][0]*w[0][6]*w[0][5]*w[0][6] + det*w[3][0]*w[0][6]*w[0][5]*w[0][6];
-    const double G8_0_6_5_7 = det*w[3][0]*w[0][6]*w[0][5]*w[0][7] + det*w[3][0]*w[0][6]*w[0][5]*w[0][7];
-    const double G8_0_6_6_4 = det*w[3][0]*w[0][6]*w[0][6]*w[0][4] + det*w[3][0]*w[0][6]*w[0][6]*w[0][4];
-    const double G8_0_6_6_5 = det*w[3][0]*w[0][6]*w[0][6]*w[0][5] + det*w[3][0]*w[0][6]*w[0][6]*w[0][5];
-    const double G8_0_6_6_6 = det*w[3][0]*w[0][6]*w[0][6]*w[0][6] + det*w[3][0]*w[0][6]*w[0][6]*w[0][6];
-    const double G8_0_6_6_7 = det*w[3][0]*w[0][6]*w[0][6]*w[0][7] + det*w[3][0]*w[0][6]*w[0][6]*w[0][7];
-    const double G8_0_6_7_4 = det*w[3][0]*w[0][6]*w[0][7]*w[0][4] + det*w[3][0]*w[0][6]*w[0][7]*w[0][4];
-    const double G8_0_6_7_5 = det*w[3][0]*w[0][6]*w[0][7]*w[0][5] + det*w[3][0]*w[0][6]*w[0][7]*w[0][5];
-    const double G8_0_6_7_6 = det*w[3][0]*w[0][6]*w[0][7]*w[0][6] + det*w[3][0]*w[0][6]*w[0][7]*w[0][6];
-    const double G8_0_6_7_7 = det*w[3][0]*w[0][6]*w[0][7]*w[0][7] + det*w[3][0]*w[0][6]*w[0][7]*w[0][7];
-    const double G8_0_7_4_4 = det*w[3][0]*w[0][7]*w[0][4]*w[0][4] + det*w[3][0]*w[0][7]*w[0][4]*w[0][4];
-    const double G8_0_7_4_5 = det*w[3][0]*w[0][7]*w[0][4]*w[0][5] + det*w[3][0]*w[0][7]*w[0][4]*w[0][5];
-    const double G8_0_7_4_6 = det*w[3][0]*w[0][7]*w[0][4]*w[0][6] + det*w[3][0]*w[0][7]*w[0][4]*w[0][6];
-    const double G8_0_7_4_7 = det*w[3][0]*w[0][7]*w[0][4]*w[0][7] + det*w[3][0]*w[0][7]*w[0][4]*w[0][7];
-    const double G8_0_7_5_4 = det*w[3][0]*w[0][7]*w[0][5]*w[0][4] + det*w[3][0]*w[0][7]*w[0][5]*w[0][4];
-    const double G8_0_7_5_5 = det*w[3][0]*w[0][7]*w[0][5]*w[0][5] + det*w[3][0]*w[0][7]*w[0][5]*w[0][5];
-    const double G8_0_7_5_6 = det*w[3][0]*w[0][7]*w[0][5]*w[0][6] + det*w[3][0]*w[0][7]*w[0][5]*w[0][6];
-    const double G8_0_7_5_7 = det*w[3][0]*w[0][7]*w[0][5]*w[0][7] + det*w[3][0]*w[0][7]*w[0][5]*w[0][7];
-    const double G8_0_7_6_4 = det*w[3][0]*w[0][7]*w[0][6]*w[0][4] + det*w[3][0]*w[0][7]*w[0][6]*w[0][4];
-    const double G8_0_7_6_5 = det*w[3][0]*w[0][7]*w[0][6]*w[0][5] + det*w[3][0]*w[0][7]*w[0][6]*w[0][5];
-    const double G8_0_7_6_6 = det*w[3][0]*w[0][7]*w[0][6]*w[0][6] + det*w[3][0]*w[0][7]*w[0][6]*w[0][6];
-    const double G8_0_7_6_7 = det*w[3][0]*w[0][7]*w[0][6]*w[0][7] + det*w[3][0]*w[0][7]*w[0][6]*w[0][7];
-    const double G8_0_7_7_4 = det*w[3][0]*w[0][7]*w[0][7]*w[0][4] + det*w[3][0]*w[0][7]*w[0][7]*w[0][4];
-    const double G8_0_7_7_5 = det*w[3][0]*w[0][7]*w[0][7]*w[0][5] + det*w[3][0]*w[0][7]*w[0][7]*w[0][5];
-    const double G8_0_7_7_6 = det*w[3][0]*w[0][7]*w[0][7]*w[0][6] + det*w[3][0]*w[0][7]*w[0][7]*w[0][6];
-    const double G8_0_7_7_7 = det*w[3][0]*w[0][7]*w[0][7]*w[0][7] + det*w[3][0]*w[0][7]*w[0][7]*w[0][7];
-    const double G8_1_4_4_4 = det*w[3][1]*w[0][4]*w[0][4]*w[0][4] + det*w[3][1]*w[0][4]*w[0][4]*w[0][4];
-    const double G8_1_4_4_5 = det*w[3][1]*w[0][4]*w[0][4]*w[0][5] + det*w[3][1]*w[0][4]*w[0][4]*w[0][5];
-    const double G8_1_4_4_6 = det*w[3][1]*w[0][4]*w[0][4]*w[0][6] + det*w[3][1]*w[0][4]*w[0][4]*w[0][6];
-    const double G8_1_4_4_7 = det*w[3][1]*w[0][4]*w[0][4]*w[0][7] + det*w[3][1]*w[0][4]*w[0][4]*w[0][7];
-    const double G8_1_4_5_4 = det*w[3][1]*w[0][4]*w[0][5]*w[0][4] + det*w[3][1]*w[0][4]*w[0][5]*w[0][4];
-    const double G8_1_4_5_5 = det*w[3][1]*w[0][4]*w[0][5]*w[0][5] + det*w[3][1]*w[0][4]*w[0][5]*w[0][5];
-    const double G8_1_4_5_6 = det*w[3][1]*w[0][4]*w[0][5]*w[0][6] + det*w[3][1]*w[0][4]*w[0][5]*w[0][6];
-    const double G8_1_4_5_7 = det*w[3][1]*w[0][4]*w[0][5]*w[0][7] + det*w[3][1]*w[0][4]*w[0][5]*w[0][7];
-    const double G8_1_4_6_4 = det*w[3][1]*w[0][4]*w[0][6]*w[0][4] + det*w[3][1]*w[0][4]*w[0][6]*w[0][4];
-    const double G8_1_4_6_5 = det*w[3][1]*w[0][4]*w[0][6]*w[0][5] + det*w[3][1]*w[0][4]*w[0][6]*w[0][5];
-    const double G8_1_4_6_6 = det*w[3][1]*w[0][4]*w[0][6]*w[0][6] + det*w[3][1]*w[0][4]*w[0][6]*w[0][6];
-    const double G8_1_4_6_7 = det*w[3][1]*w[0][4]*w[0][6]*w[0][7] + det*w[3][1]*w[0][4]*w[0][6]*w[0][7];
-    const double G8_1_4_7_4 = det*w[3][1]*w[0][4]*w[0][7]*w[0][4] + det*w[3][1]*w[0][4]*w[0][7]*w[0][4];
-    const double G8_1_4_7_5 = det*w[3][1]*w[0][4]*w[0][7]*w[0][5] + det*w[3][1]*w[0][4]*w[0][7]*w[0][5];
-    const double G8_1_4_7_6 = det*w[3][1]*w[0][4]*w[0][7]*w[0][6] + det*w[3][1]*w[0][4]*w[0][7]*w[0][6];
-    const double G8_1_4_7_7 = det*w[3][1]*w[0][4]*w[0][7]*w[0][7] + det*w[3][1]*w[0][4]*w[0][7]*w[0][7];
-    const double G8_1_5_4_4 = det*w[3][1]*w[0][5]*w[0][4]*w[0][4] + det*w[3][1]*w[0][5]*w[0][4]*w[0][4];
-    const double G8_1_5_4_5 = det*w[3][1]*w[0][5]*w[0][4]*w[0][5] + det*w[3][1]*w[0][5]*w[0][4]*w[0][5];
-    const double G8_1_5_4_6 = det*w[3][1]*w[0][5]*w[0][4]*w[0][6] + det*w[3][1]*w[0][5]*w[0][4]*w[0][6];
-    const double G8_1_5_4_7 = det*w[3][1]*w[0][5]*w[0][4]*w[0][7] + det*w[3][1]*w[0][5]*w[0][4]*w[0][7];
-    const double G8_1_5_5_4 = det*w[3][1]*w[0][5]*w[0][5]*w[0][4] + det*w[3][1]*w[0][5]*w[0][5]*w[0][4];
-    const double G8_1_5_5_5 = det*w[3][1]*w[0][5]*w[0][5]*w[0][5] + det*w[3][1]*w[0][5]*w[0][5]*w[0][5];
-    const double G8_1_5_5_6 = det*w[3][1]*w[0][5]*w[0][5]*w[0][6] + det*w[3][1]*w[0][5]*w[0][5]*w[0][6];
-    const double G8_1_5_5_7 = det*w[3][1]*w[0][5]*w[0][5]*w[0][7] + det*w[3][1]*w[0][5]*w[0][5]*w[0][7];
-    const double G8_1_5_6_4 = det*w[3][1]*w[0][5]*w[0][6]*w[0][4] + det*w[3][1]*w[0][5]*w[0][6]*w[0][4];
-    const double G8_1_5_6_5 = det*w[3][1]*w[0][5]*w[0][6]*w[0][5] + det*w[3][1]*w[0][5]*w[0][6]*w[0][5];
-    const double G8_1_5_6_6 = det*w[3][1]*w[0][5]*w[0][6]*w[0][6] + det*w[3][1]*w[0][5]*w[0][6]*w[0][6];
-    const double G8_1_5_6_7 = det*w[3][1]*w[0][5]*w[0][6]*w[0][7] + det*w[3][1]*w[0][5]*w[0][6]*w[0][7];
-    const double G8_1_5_7_4 = det*w[3][1]*w[0][5]*w[0][7]*w[0][4] + det*w[3][1]*w[0][5]*w[0][7]*w[0][4];
-    const double G8_1_5_7_5 = det*w[3][1]*w[0][5]*w[0][7]*w[0][5] + det*w[3][1]*w[0][5]*w[0][7]*w[0][5];
-    const double G8_1_5_7_6 = det*w[3][1]*w[0][5]*w[0][7]*w[0][6] + det*w[3][1]*w[0][5]*w[0][7]*w[0][6];
-    const double G8_1_5_7_7 = det*w[3][1]*w[0][5]*w[0][7]*w[0][7] + det*w[3][1]*w[0][5]*w[0][7]*w[0][7];
-    const double G8_1_6_4_4 = det*w[3][1]*w[0][6]*w[0][4]*w[0][4] + det*w[3][1]*w[0][6]*w[0][4]*w[0][4];
-    const double G8_1_6_4_5 = det*w[3][1]*w[0][6]*w[0][4]*w[0][5] + det*w[3][1]*w[0][6]*w[0][4]*w[0][5];
-    const double G8_1_6_4_6 = det*w[3][1]*w[0][6]*w[0][4]*w[0][6] + det*w[3][1]*w[0][6]*w[0][4]*w[0][6];
-    const double G8_1_6_4_7 = det*w[3][1]*w[0][6]*w[0][4]*w[0][7] + det*w[3][1]*w[0][6]*w[0][4]*w[0][7];
-    const double G8_1_6_5_4 = det*w[3][1]*w[0][6]*w[0][5]*w[0][4] + det*w[3][1]*w[0][6]*w[0][5]*w[0][4];
-    const double G8_1_6_5_5 = det*w[3][1]*w[0][6]*w[0][5]*w[0][5] + det*w[3][1]*w[0][6]*w[0][5]*w[0][5];
-    const double G8_1_6_5_6 = det*w[3][1]*w[0][6]*w[0][5]*w[0][6] + det*w[3][1]*w[0][6]*w[0][5]*w[0][6];
-    const double G8_1_6_5_7 = det*w[3][1]*w[0][6]*w[0][5]*w[0][7] + det*w[3][1]*w[0][6]*w[0][5]*w[0][7];
-    const double G8_1_6_6_4 = det*w[3][1]*w[0][6]*w[0][6]*w[0][4] + det*w[3][1]*w[0][6]*w[0][6]*w[0][4];
-    const double G8_1_6_6_5 = det*w[3][1]*w[0][6]*w[0][6]*w[0][5] + det*w[3][1]*w[0][6]*w[0][6]*w[0][5];
-    const double G8_1_6_6_6 = det*w[3][1]*w[0][6]*w[0][6]*w[0][6] + det*w[3][1]*w[0][6]*w[0][6]*w[0][6];
-    const double G8_1_6_6_7 = det*w[3][1]*w[0][6]*w[0][6]*w[0][7] + det*w[3][1]*w[0][6]*w[0][6]*w[0][7];
-    const double G8_1_6_7_4 = det*w[3][1]*w[0][6]*w[0][7]*w[0][4] + det*w[3][1]*w[0][6]*w[0][7]*w[0][4];
-    const double G8_1_6_7_5 = det*w[3][1]*w[0][6]*w[0][7]*w[0][5] + det*w[3][1]*w[0][6]*w[0][7]*w[0][5];
-    const double G8_1_6_7_6 = det*w[3][1]*w[0][6]*w[0][7]*w[0][6] + det*w[3][1]*w[0][6]*w[0][7]*w[0][6];
-    const double G8_1_6_7_7 = det*w[3][1]*w[0][6]*w[0][7]*w[0][7] + det*w[3][1]*w[0][6]*w[0][7]*w[0][7];
-    const double G8_1_7_4_4 = det*w[3][1]*w[0][7]*w[0][4]*w[0][4] + det*w[3][1]*w[0][7]*w[0][4]*w[0][4];
-    const double G8_1_7_4_5 = det*w[3][1]*w[0][7]*w[0][4]*w[0][5] + det*w[3][1]*w[0][7]*w[0][4]*w[0][5];
-    const double G8_1_7_4_6 = det*w[3][1]*w[0][7]*w[0][4]*w[0][6] + det*w[3][1]*w[0][7]*w[0][4]*w[0][6];
-    const double G8_1_7_4_7 = det*w[3][1]*w[0][7]*w[0][4]*w[0][7] + det*w[3][1]*w[0][7]*w[0][4]*w[0][7];
-    const double G8_1_7_5_4 = det*w[3][1]*w[0][7]*w[0][5]*w[0][4] + det*w[3][1]*w[0][7]*w[0][5]*w[0][4];
-    const double G8_1_7_5_5 = det*w[3][1]*w[0][7]*w[0][5]*w[0][5] + det*w[3][1]*w[0][7]*w[0][5]*w[0][5];
-    const double G8_1_7_5_6 = det*w[3][1]*w[0][7]*w[0][5]*w[0][6] + det*w[3][1]*w[0][7]*w[0][5]*w[0][6];
-    const double G8_1_7_5_7 = det*w[3][1]*w[0][7]*w[0][5]*w[0][7] + det*w[3][1]*w[0][7]*w[0][5]*w[0][7];
-    const double G8_1_7_6_4 = det*w[3][1]*w[0][7]*w[0][6]*w[0][4] + det*w[3][1]*w[0][7]*w[0][6]*w[0][4];
-    const double G8_1_7_6_5 = det*w[3][1]*w[0][7]*w[0][6]*w[0][5] + det*w[3][1]*w[0][7]*w[0][6]*w[0][5];
-    const double G8_1_7_6_6 = det*w[3][1]*w[0][7]*w[0][6]*w[0][6] + det*w[3][1]*w[0][7]*w[0][6]*w[0][6];
-    const double G8_1_7_6_7 = det*w[3][1]*w[0][7]*w[0][6]*w[0][7] + det*w[3][1]*w[0][7]*w[0][6]*w[0][7];
-    const double G8_1_7_7_4 = det*w[3][1]*w[0][7]*w[0][7]*w[0][4] + det*w[3][1]*w[0][7]*w[0][7]*w[0][4];
-    const double G8_1_7_7_5 = det*w[3][1]*w[0][7]*w[0][7]*w[0][5] + det*w[3][1]*w[0][7]*w[0][7]*w[0][5];
-    const double G8_1_7_7_6 = det*w[3][1]*w[0][7]*w[0][7]*w[0][6] + det*w[3][1]*w[0][7]*w[0][7]*w[0][6];
-    const double G8_1_7_7_7 = det*w[3][1]*w[0][7]*w[0][7]*w[0][7] + det*w[3][1]*w[0][7]*w[0][7]*w[0][7];
-    const double G8_2_4_4_4 = det*w[3][2]*w[0][4]*w[0][4]*w[0][4] + det*w[3][2]*w[0][4]*w[0][4]*w[0][4];
-    const double G8_2_4_4_5 = det*w[3][2]*w[0][4]*w[0][4]*w[0][5] + det*w[3][2]*w[0][4]*w[0][4]*w[0][5];
-    const double G8_2_4_4_6 = det*w[3][2]*w[0][4]*w[0][4]*w[0][6] + det*w[3][2]*w[0][4]*w[0][4]*w[0][6];
-    const double G8_2_4_4_7 = det*w[3][2]*w[0][4]*w[0][4]*w[0][7] + det*w[3][2]*w[0][4]*w[0][4]*w[0][7];
-    const double G8_2_4_5_4 = det*w[3][2]*w[0][4]*w[0][5]*w[0][4] + det*w[3][2]*w[0][4]*w[0][5]*w[0][4];
-    const double G8_2_4_5_5 = det*w[3][2]*w[0][4]*w[0][5]*w[0][5] + det*w[3][2]*w[0][4]*w[0][5]*w[0][5];
-    const double G8_2_4_5_6 = det*w[3][2]*w[0][4]*w[0][5]*w[0][6] + det*w[3][2]*w[0][4]*w[0][5]*w[0][6];
-    const double G8_2_4_5_7 = det*w[3][2]*w[0][4]*w[0][5]*w[0][7] + det*w[3][2]*w[0][4]*w[0][5]*w[0][7];
-    const double G8_2_4_6_4 = det*w[3][2]*w[0][4]*w[0][6]*w[0][4] + det*w[3][2]*w[0][4]*w[0][6]*w[0][4];
-    const double G8_2_4_6_5 = det*w[3][2]*w[0][4]*w[0][6]*w[0][5] + det*w[3][2]*w[0][4]*w[0][6]*w[0][5];
-    const double G8_2_4_6_6 = det*w[3][2]*w[0][4]*w[0][6]*w[0][6] + det*w[3][2]*w[0][4]*w[0][6]*w[0][6];
-    const double G8_2_4_6_7 = det*w[3][2]*w[0][4]*w[0][6]*w[0][7] + det*w[3][2]*w[0][4]*w[0][6]*w[0][7];
-    const double G8_2_4_7_4 = det*w[3][2]*w[0][4]*w[0][7]*w[0][4] + det*w[3][2]*w[0][4]*w[0][7]*w[0][4];
-    const double G8_2_4_7_5 = det*w[3][2]*w[0][4]*w[0][7]*w[0][5] + det*w[3][2]*w[0][4]*w[0][7]*w[0][5];
-    const double G8_2_4_7_6 = det*w[3][2]*w[0][4]*w[0][7]*w[0][6] + det*w[3][2]*w[0][4]*w[0][7]*w[0][6];
-    const double G8_2_4_7_7 = det*w[3][2]*w[0][4]*w[0][7]*w[0][7] + det*w[3][2]*w[0][4]*w[0][7]*w[0][7];
-    const double G8_2_5_4_4 = det*w[3][2]*w[0][5]*w[0][4]*w[0][4] + det*w[3][2]*w[0][5]*w[0][4]*w[0][4];
-    const double G8_2_5_4_5 = det*w[3][2]*w[0][5]*w[0][4]*w[0][5] + det*w[3][2]*w[0][5]*w[0][4]*w[0][5];
-    const double G8_2_5_4_6 = det*w[3][2]*w[0][5]*w[0][4]*w[0][6] + det*w[3][2]*w[0][5]*w[0][4]*w[0][6];
-    const double G8_2_5_4_7 = det*w[3][2]*w[0][5]*w[0][4]*w[0][7] + det*w[3][2]*w[0][5]*w[0][4]*w[0][7];
-    const double G8_2_5_5_4 = det*w[3][2]*w[0][5]*w[0][5]*w[0][4] + det*w[3][2]*w[0][5]*w[0][5]*w[0][4];
-    const double G8_2_5_5_5 = det*w[3][2]*w[0][5]*w[0][5]*w[0][5] + det*w[3][2]*w[0][5]*w[0][5]*w[0][5];
-    const double G8_2_5_5_6 = det*w[3][2]*w[0][5]*w[0][5]*w[0][6] + det*w[3][2]*w[0][5]*w[0][5]*w[0][6];
-    const double G8_2_5_5_7 = det*w[3][2]*w[0][5]*w[0][5]*w[0][7] + det*w[3][2]*w[0][5]*w[0][5]*w[0][7];
-    const double G8_2_5_6_4 = det*w[3][2]*w[0][5]*w[0][6]*w[0][4] + det*w[3][2]*w[0][5]*w[0][6]*w[0][4];
-    const double G8_2_5_6_5 = det*w[3][2]*w[0][5]*w[0][6]*w[0][5] + det*w[3][2]*w[0][5]*w[0][6]*w[0][5];
-    const double G8_2_5_6_6 = det*w[3][2]*w[0][5]*w[0][6]*w[0][6] + det*w[3][2]*w[0][5]*w[0][6]*w[0][6];
-    const double G8_2_5_6_7 = det*w[3][2]*w[0][5]*w[0][6]*w[0][7] + det*w[3][2]*w[0][5]*w[0][6]*w[0][7];
-    const double G8_2_5_7_4 = det*w[3][2]*w[0][5]*w[0][7]*w[0][4] + det*w[3][2]*w[0][5]*w[0][7]*w[0][4];
-    const double G8_2_5_7_5 = det*w[3][2]*w[0][5]*w[0][7]*w[0][5] + det*w[3][2]*w[0][5]*w[0][7]*w[0][5];
-    const double G8_2_5_7_6 = det*w[3][2]*w[0][5]*w[0][7]*w[0][6] + det*w[3][2]*w[0][5]*w[0][7]*w[0][6];
-    const double G8_2_5_7_7 = det*w[3][2]*w[0][5]*w[0][7]*w[0][7] + det*w[3][2]*w[0][5]*w[0][7]*w[0][7];
-    const double G8_2_6_4_4 = det*w[3][2]*w[0][6]*w[0][4]*w[0][4] + det*w[3][2]*w[0][6]*w[0][4]*w[0][4];
-    const double G8_2_6_4_5 = det*w[3][2]*w[0][6]*w[0][4]*w[0][5] + det*w[3][2]*w[0][6]*w[0][4]*w[0][5];
-    const double G8_2_6_4_6 = det*w[3][2]*w[0][6]*w[0][4]*w[0][6] + det*w[3][2]*w[0][6]*w[0][4]*w[0][6];
-    const double G8_2_6_4_7 = det*w[3][2]*w[0][6]*w[0][4]*w[0][7] + det*w[3][2]*w[0][6]*w[0][4]*w[0][7];
-    const double G8_2_6_5_4 = det*w[3][2]*w[0][6]*w[0][5]*w[0][4] + det*w[3][2]*w[0][6]*w[0][5]*w[0][4];
-    const double G8_2_6_5_5 = det*w[3][2]*w[0][6]*w[0][5]*w[0][5] + det*w[3][2]*w[0][6]*w[0][5]*w[0][5];
-    const double G8_2_6_5_6 = det*w[3][2]*w[0][6]*w[0][5]*w[0][6] + det*w[3][2]*w[0][6]*w[0][5]*w[0][6];
-    const double G8_2_6_5_7 = det*w[3][2]*w[0][6]*w[0][5]*w[0][7] + det*w[3][2]*w[0][6]*w[0][5]*w[0][7];
-    const double G8_2_6_6_4 = det*w[3][2]*w[0][6]*w[0][6]*w[0][4] + det*w[3][2]*w[0][6]*w[0][6]*w[0][4];
-    const double G8_2_6_6_5 = det*w[3][2]*w[0][6]*w[0][6]*w[0][5] + det*w[3][2]*w[0][6]*w[0][6]*w[0][5];
-    const double G8_2_6_6_6 = det*w[3][2]*w[0][6]*w[0][6]*w[0][6] + det*w[3][2]*w[0][6]*w[0][6]*w[0][6];
-    const double G8_2_6_6_7 = det*w[3][2]*w[0][6]*w[0][6]*w[0][7] + det*w[3][2]*w[0][6]*w[0][6]*w[0][7];
-    const double G8_2_6_7_4 = det*w[3][2]*w[0][6]*w[0][7]*w[0][4] + det*w[3][2]*w[0][6]*w[0][7]*w[0][4];
-    const double G8_2_6_7_5 = det*w[3][2]*w[0][6]*w[0][7]*w[0][5] + det*w[3][2]*w[0][6]*w[0][7]*w[0][5];
-    const double G8_2_6_7_6 = det*w[3][2]*w[0][6]*w[0][7]*w[0][6] + det*w[3][2]*w[0][6]*w[0][7]*w[0][6];
-    const double G8_2_6_7_7 = det*w[3][2]*w[0][6]*w[0][7]*w[0][7] + det*w[3][2]*w[0][6]*w[0][7]*w[0][7];
-    const double G8_2_7_4_4 = det*w[3][2]*w[0][7]*w[0][4]*w[0][4] + det*w[3][2]*w[0][7]*w[0][4]*w[0][4];
-    const double G8_2_7_4_5 = det*w[3][2]*w[0][7]*w[0][4]*w[0][5] + det*w[3][2]*w[0][7]*w[0][4]*w[0][5];
-    const double G8_2_7_4_6 = det*w[3][2]*w[0][7]*w[0][4]*w[0][6] + det*w[3][2]*w[0][7]*w[0][4]*w[0][6];
-    const double G8_2_7_4_7 = det*w[3][2]*w[0][7]*w[0][4]*w[0][7] + det*w[3][2]*w[0][7]*w[0][4]*w[0][7];
-    const double G8_2_7_5_4 = det*w[3][2]*w[0][7]*w[0][5]*w[0][4] + det*w[3][2]*w[0][7]*w[0][5]*w[0][4];
-    const double G8_2_7_5_5 = det*w[3][2]*w[0][7]*w[0][5]*w[0][5] + det*w[3][2]*w[0][7]*w[0][5]*w[0][5];
-    const double G8_2_7_5_6 = det*w[3][2]*w[0][7]*w[0][5]*w[0][6] + det*w[3][2]*w[0][7]*w[0][5]*w[0][6];
-    const double G8_2_7_5_7 = det*w[3][2]*w[0][7]*w[0][5]*w[0][7] + det*w[3][2]*w[0][7]*w[0][5]*w[0][7];
-    const double G8_2_7_6_4 = det*w[3][2]*w[0][7]*w[0][6]*w[0][4] + det*w[3][2]*w[0][7]*w[0][6]*w[0][4];
-    const double G8_2_7_6_5 = det*w[3][2]*w[0][7]*w[0][6]*w[0][5] + det*w[3][2]*w[0][7]*w[0][6]*w[0][5];
-    const double G8_2_7_6_6 = det*w[3][2]*w[0][7]*w[0][6]*w[0][6] + det*w[3][2]*w[0][7]*w[0][6]*w[0][6];
-    const double G8_2_7_6_7 = det*w[3][2]*w[0][7]*w[0][6]*w[0][7] + det*w[3][2]*w[0][7]*w[0][6]*w[0][7];
-    const double G8_2_7_7_4 = det*w[3][2]*w[0][7]*w[0][7]*w[0][4] + det*w[3][2]*w[0][7]*w[0][7]*w[0][4];
-    const double G8_2_7_7_5 = det*w[3][2]*w[0][7]*w[0][7]*w[0][5] + det*w[3][2]*w[0][7]*w[0][7]*w[0][5];
-    const double G8_2_7_7_6 = det*w[3][2]*w[0][7]*w[0][7]*w[0][6] + det*w[3][2]*w[0][7]*w[0][7]*w[0][6];
-    const double G8_2_7_7_7 = det*w[3][2]*w[0][7]*w[0][7]*w[0][7] + det*w[3][2]*w[0][7]*w[0][7]*w[0][7];
-    const double G8_3_4_4_4 = det*w[3][3]*w[0][4]*w[0][4]*w[0][4] + det*w[3][3]*w[0][4]*w[0][4]*w[0][4];
-    const double G8_3_4_4_5 = det*w[3][3]*w[0][4]*w[0][4]*w[0][5] + det*w[3][3]*w[0][4]*w[0][4]*w[0][5];
-    const double G8_3_4_4_6 = det*w[3][3]*w[0][4]*w[0][4]*w[0][6] + det*w[3][3]*w[0][4]*w[0][4]*w[0][6];
-    const double G8_3_4_4_7 = det*w[3][3]*w[0][4]*w[0][4]*w[0][7] + det*w[3][3]*w[0][4]*w[0][4]*w[0][7];
-    const double G8_3_4_5_4 = det*w[3][3]*w[0][4]*w[0][5]*w[0][4] + det*w[3][3]*w[0][4]*w[0][5]*w[0][4];
-    const double G8_3_4_5_5 = det*w[3][3]*w[0][4]*w[0][5]*w[0][5] + det*w[3][3]*w[0][4]*w[0][5]*w[0][5];
-    const double G8_3_4_5_6 = det*w[3][3]*w[0][4]*w[0][5]*w[0][6] + det*w[3][3]*w[0][4]*w[0][5]*w[0][6];
-    const double G8_3_4_5_7 = det*w[3][3]*w[0][4]*w[0][5]*w[0][7] + det*w[3][3]*w[0][4]*w[0][5]*w[0][7];
-    const double G8_3_4_6_4 = det*w[3][3]*w[0][4]*w[0][6]*w[0][4] + det*w[3][3]*w[0][4]*w[0][6]*w[0][4];
-    const double G8_3_4_6_5 = det*w[3][3]*w[0][4]*w[0][6]*w[0][5] + det*w[3][3]*w[0][4]*w[0][6]*w[0][5];
-    const double G8_3_4_6_6 = det*w[3][3]*w[0][4]*w[0][6]*w[0][6] + det*w[3][3]*w[0][4]*w[0][6]*w[0][6];
-    const double G8_3_4_6_7 = det*w[3][3]*w[0][4]*w[0][6]*w[0][7] + det*w[3][3]*w[0][4]*w[0][6]*w[0][7];
-    const double G8_3_4_7_4 = det*w[3][3]*w[0][4]*w[0][7]*w[0][4] + det*w[3][3]*w[0][4]*w[0][7]*w[0][4];
-    const double G8_3_4_7_5 = det*w[3][3]*w[0][4]*w[0][7]*w[0][5] + det*w[3][3]*w[0][4]*w[0][7]*w[0][5];
-    const double G8_3_4_7_6 = det*w[3][3]*w[0][4]*w[0][7]*w[0][6] + det*w[3][3]*w[0][4]*w[0][7]*w[0][6];
-    const double G8_3_4_7_7 = det*w[3][3]*w[0][4]*w[0][7]*w[0][7] + det*w[3][3]*w[0][4]*w[0][7]*w[0][7];
-    const double G8_3_5_4_4 = det*w[3][3]*w[0][5]*w[0][4]*w[0][4] + det*w[3][3]*w[0][5]*w[0][4]*w[0][4];
-    const double G8_3_5_4_5 = det*w[3][3]*w[0][5]*w[0][4]*w[0][5] + det*w[3][3]*w[0][5]*w[0][4]*w[0][5];
-    const double G8_3_5_4_6 = det*w[3][3]*w[0][5]*w[0][4]*w[0][6] + det*w[3][3]*w[0][5]*w[0][4]*w[0][6];
-    const double G8_3_5_4_7 = det*w[3][3]*w[0][5]*w[0][4]*w[0][7] + det*w[3][3]*w[0][5]*w[0][4]*w[0][7];
-    const double G8_3_5_5_4 = det*w[3][3]*w[0][5]*w[0][5]*w[0][4] + det*w[3][3]*w[0][5]*w[0][5]*w[0][4];
-    const double G8_3_5_5_5 = det*w[3][3]*w[0][5]*w[0][5]*w[0][5] + det*w[3][3]*w[0][5]*w[0][5]*w[0][5];
-    const double G8_3_5_5_6 = det*w[3][3]*w[0][5]*w[0][5]*w[0][6] + det*w[3][3]*w[0][5]*w[0][5]*w[0][6];
-    const double G8_3_5_5_7 = det*w[3][3]*w[0][5]*w[0][5]*w[0][7] + det*w[3][3]*w[0][5]*w[0][5]*w[0][7];
-    const double G8_3_5_6_4 = det*w[3][3]*w[0][5]*w[0][6]*w[0][4] + det*w[3][3]*w[0][5]*w[0][6]*w[0][4];
-    const double G8_3_5_6_5 = det*w[3][3]*w[0][5]*w[0][6]*w[0][5] + det*w[3][3]*w[0][5]*w[0][6]*w[0][5];
-    const double G8_3_5_6_6 = det*w[3][3]*w[0][5]*w[0][6]*w[0][6] + det*w[3][3]*w[0][5]*w[0][6]*w[0][6];
-    const double G8_3_5_6_7 = det*w[3][3]*w[0][5]*w[0][6]*w[0][7] + det*w[3][3]*w[0][5]*w[0][6]*w[0][7];
-    const double G8_3_5_7_4 = det*w[3][3]*w[0][5]*w[0][7]*w[0][4] + det*w[3][3]*w[0][5]*w[0][7]*w[0][4];
-    const double G8_3_5_7_5 = det*w[3][3]*w[0][5]*w[0][7]*w[0][5] + det*w[3][3]*w[0][5]*w[0][7]*w[0][5];
-    const double G8_3_5_7_6 = det*w[3][3]*w[0][5]*w[0][7]*w[0][6] + det*w[3][3]*w[0][5]*w[0][7]*w[0][6];
-    const double G8_3_5_7_7 = det*w[3][3]*w[0][5]*w[0][7]*w[0][7] + det*w[3][3]*w[0][5]*w[0][7]*w[0][7];
-    const double G8_3_6_4_4 = det*w[3][3]*w[0][6]*w[0][4]*w[0][4] + det*w[3][3]*w[0][6]*w[0][4]*w[0][4];
-    const double G8_3_6_4_5 = det*w[3][3]*w[0][6]*w[0][4]*w[0][5] + det*w[3][3]*w[0][6]*w[0][4]*w[0][5];
-    const double G8_3_6_4_6 = det*w[3][3]*w[0][6]*w[0][4]*w[0][6] + det*w[3][3]*w[0][6]*w[0][4]*w[0][6];
-    const double G8_3_6_4_7 = det*w[3][3]*w[0][6]*w[0][4]*w[0][7] + det*w[3][3]*w[0][6]*w[0][4]*w[0][7];
-    const double G8_3_6_5_4 = det*w[3][3]*w[0][6]*w[0][5]*w[0][4] + det*w[3][3]*w[0][6]*w[0][5]*w[0][4];
-    const double G8_3_6_5_5 = det*w[3][3]*w[0][6]*w[0][5]*w[0][5] + det*w[3][3]*w[0][6]*w[0][5]*w[0][5];
-    const double G8_3_6_5_6 = det*w[3][3]*w[0][6]*w[0][5]*w[0][6] + det*w[3][3]*w[0][6]*w[0][5]*w[0][6];
-    const double G8_3_6_5_7 = det*w[3][3]*w[0][6]*w[0][5]*w[0][7] + det*w[3][3]*w[0][6]*w[0][5]*w[0][7];
-    const double G8_3_6_6_4 = det*w[3][3]*w[0][6]*w[0][6]*w[0][4] + det*w[3][3]*w[0][6]*w[0][6]*w[0][4];
-    const double G8_3_6_6_5 = det*w[3][3]*w[0][6]*w[0][6]*w[0][5] + det*w[3][3]*w[0][6]*w[0][6]*w[0][5];
-    const double G8_3_6_6_6 = det*w[3][3]*w[0][6]*w[0][6]*w[0][6] + det*w[3][3]*w[0][6]*w[0][6]*w[0][6];
-    const double G8_3_6_6_7 = det*w[3][3]*w[0][6]*w[0][6]*w[0][7] + det*w[3][3]*w[0][6]*w[0][6]*w[0][7];
-    const double G8_3_6_7_4 = det*w[3][3]*w[0][6]*w[0][7]*w[0][4] + det*w[3][3]*w[0][6]*w[0][7]*w[0][4];
-    const double G8_3_6_7_5 = det*w[3][3]*w[0][6]*w[0][7]*w[0][5] + det*w[3][3]*w[0][6]*w[0][7]*w[0][5];
-    const double G8_3_6_7_6 = det*w[3][3]*w[0][6]*w[0][7]*w[0][6] + det*w[3][3]*w[0][6]*w[0][7]*w[0][6];
-    const double G8_3_6_7_7 = det*w[3][3]*w[0][6]*w[0][7]*w[0][7] + det*w[3][3]*w[0][6]*w[0][7]*w[0][7];
-    const double G8_3_7_4_4 = det*w[3][3]*w[0][7]*w[0][4]*w[0][4] + det*w[3][3]*w[0][7]*w[0][4]*w[0][4];
-    const double G8_3_7_4_5 = det*w[3][3]*w[0][7]*w[0][4]*w[0][5] + det*w[3][3]*w[0][7]*w[0][4]*w[0][5];
-    const double G8_3_7_4_6 = det*w[3][3]*w[0][7]*w[0][4]*w[0][6] + det*w[3][3]*w[0][7]*w[0][4]*w[0][6];
-    const double G8_3_7_4_7 = det*w[3][3]*w[0][7]*w[0][4]*w[0][7] + det*w[3][3]*w[0][7]*w[0][4]*w[0][7];
-    const double G8_3_7_5_4 = det*w[3][3]*w[0][7]*w[0][5]*w[0][4] + det*w[3][3]*w[0][7]*w[0][5]*w[0][4];
-    const double G8_3_7_5_5 = det*w[3][3]*w[0][7]*w[0][5]*w[0][5] + det*w[3][3]*w[0][7]*w[0][5]*w[0][5];
-    const double G8_3_7_5_6 = det*w[3][3]*w[0][7]*w[0][5]*w[0][6] + det*w[3][3]*w[0][7]*w[0][5]*w[0][6];
-    const double G8_3_7_5_7 = det*w[3][3]*w[0][7]*w[0][5]*w[0][7] + det*w[3][3]*w[0][7]*w[0][5]*w[0][7];
-    const double G8_3_7_6_4 = det*w[3][3]*w[0][7]*w[0][6]*w[0][4] + det*w[3][3]*w[0][7]*w[0][6]*w[0][4];
-    const double G8_3_7_6_5 = det*w[3][3]*w[0][7]*w[0][6]*w[0][5] + det*w[3][3]*w[0][7]*w[0][6]*w[0][5];
-    const double G8_3_7_6_6 = det*w[3][3]*w[0][7]*w[0][6]*w[0][6] + det*w[3][3]*w[0][7]*w[0][6]*w[0][6];
-    const double G8_3_7_6_7 = det*w[3][3]*w[0][7]*w[0][6]*w[0][7] + det*w[3][3]*w[0][7]*w[0][6]*w[0][7];
-    const double G8_3_7_7_4 = det*w[3][3]*w[0][7]*w[0][7]*w[0][4] + det*w[3][3]*w[0][7]*w[0][7]*w[0][4];
-    const double G8_3_7_7_5 = det*w[3][3]*w[0][7]*w[0][7]*w[0][5] + det*w[3][3]*w[0][7]*w[0][7]*w[0][5];
-    const double G8_3_7_7_6 = det*w[3][3]*w[0][7]*w[0][7]*w[0][6] + det*w[3][3]*w[0][7]*w[0][7]*w[0][6];
-    const double G8_3_7_7_7 = det*w[3][3]*w[0][7]*w[0][7]*w[0][7] + det*w[3][3]*w[0][7]*w[0][7]*w[0][7];
-    const double G9_0_4_4 = det*w[3][0]*w[0][4]*w[0][4] + det*w[3][0]*w[0][4]*w[0][4] + det*w[3][0]*w[0][4]*w[0][4];
-    const double G9_0_4_5 = det*w[3][0]*w[0][4]*w[0][5] + det*w[3][0]*w[0][4]*w[0][5] + det*w[3][0]*w[0][4]*w[0][5];
-    const double G9_0_4_6 = det*w[3][0]*w[0][4]*w[0][6] + det*w[3][0]*w[0][4]*w[0][6] + det*w[3][0]*w[0][4]*w[0][6];
-    const double G9_0_4_7 = det*w[3][0]*w[0][4]*w[0][7] + det*w[3][0]*w[0][4]*w[0][7] + det*w[3][0]*w[0][4]*w[0][7];
-    const double G9_0_5_4 = det*w[3][0]*w[0][5]*w[0][4] + det*w[3][0]*w[0][5]*w[0][4] + det*w[3][0]*w[0][5]*w[0][4];
-    const double G9_0_5_5 = det*w[3][0]*w[0][5]*w[0][5] + det*w[3][0]*w[0][5]*w[0][5] + det*w[3][0]*w[0][5]*w[0][5];
-    const double G9_0_5_6 = det*w[3][0]*w[0][5]*w[0][6] + det*w[3][0]*w[0][5]*w[0][6] + det*w[3][0]*w[0][5]*w[0][6];
-    const double G9_0_5_7 = det*w[3][0]*w[0][5]*w[0][7] + det*w[3][0]*w[0][5]*w[0][7] + det*w[3][0]*w[0][5]*w[0][7];
-    const double G9_0_6_4 = det*w[3][0]*w[0][6]*w[0][4] + det*w[3][0]*w[0][6]*w[0][4] + det*w[3][0]*w[0][6]*w[0][4];
-    const double G9_0_6_5 = det*w[3][0]*w[0][6]*w[0][5] + det*w[3][0]*w[0][6]*w[0][5] + det*w[3][0]*w[0][6]*w[0][5];
-    const double G9_0_6_6 = det*w[3][0]*w[0][6]*w[0][6] + det*w[3][0]*w[0][6]*w[0][6] + det*w[3][0]*w[0][6]*w[0][6];
-    const double G9_0_6_7 = det*w[3][0]*w[0][6]*w[0][7] + det*w[3][0]*w[0][6]*w[0][7] + det*w[3][0]*w[0][6]*w[0][7];
-    const double G9_0_7_4 = det*w[3][0]*w[0][7]*w[0][4] + det*w[3][0]*w[0][7]*w[0][4] + det*w[3][0]*w[0][7]*w[0][4];
-    const double G9_0_7_5 = det*w[3][0]*w[0][7]*w[0][5] + det*w[3][0]*w[0][7]*w[0][5] + det*w[3][0]*w[0][7]*w[0][5];
-    const double G9_0_7_6 = det*w[3][0]*w[0][7]*w[0][6] + det*w[3][0]*w[0][7]*w[0][6] + det*w[3][0]*w[0][7]*w[0][6];
-    const double G9_0_7_7 = det*w[3][0]*w[0][7]*w[0][7] + det*w[3][0]*w[0][7]*w[0][7] + det*w[3][0]*w[0][7]*w[0][7];
-    const double G9_1_4_4 = det*w[3][1]*w[0][4]*w[0][4] + det*w[3][1]*w[0][4]*w[0][4] + det*w[3][1]*w[0][4]*w[0][4];
-    const double G9_1_4_5 = det*w[3][1]*w[0][4]*w[0][5] + det*w[3][1]*w[0][4]*w[0][5] + det*w[3][1]*w[0][4]*w[0][5];
-    const double G9_1_4_6 = det*w[3][1]*w[0][4]*w[0][6] + det*w[3][1]*w[0][4]*w[0][6] + det*w[3][1]*w[0][4]*w[0][6];
-    const double G9_1_4_7 = det*w[3][1]*w[0][4]*w[0][7] + det*w[3][1]*w[0][4]*w[0][7] + det*w[3][1]*w[0][4]*w[0][7];
-    const double G9_1_5_4 = det*w[3][1]*w[0][5]*w[0][4] + det*w[3][1]*w[0][5]*w[0][4] + det*w[3][1]*w[0][5]*w[0][4];
-    const double G9_1_5_5 = det*w[3][1]*w[0][5]*w[0][5] + det*w[3][1]*w[0][5]*w[0][5] + det*w[3][1]*w[0][5]*w[0][5];
-    const double G9_1_5_6 = det*w[3][1]*w[0][5]*w[0][6] + det*w[3][1]*w[0][5]*w[0][6] + det*w[3][1]*w[0][5]*w[0][6];
-    const double G9_1_5_7 = det*w[3][1]*w[0][5]*w[0][7] + det*w[3][1]*w[0][5]*w[0][7] + det*w[3][1]*w[0][5]*w[0][7];
-    const double G9_1_6_4 = det*w[3][1]*w[0][6]*w[0][4] + det*w[3][1]*w[0][6]*w[0][4] + det*w[3][1]*w[0][6]*w[0][4];
-    const double G9_1_6_5 = det*w[3][1]*w[0][6]*w[0][5] + det*w[3][1]*w[0][6]*w[0][5] + det*w[3][1]*w[0][6]*w[0][5];
-    const double G9_1_6_6 = det*w[3][1]*w[0][6]*w[0][6] + det*w[3][1]*w[0][6]*w[0][6] + det*w[3][1]*w[0][6]*w[0][6];
-    const double G9_1_6_7 = det*w[3][1]*w[0][6]*w[0][7] + det*w[3][1]*w[0][6]*w[0][7] + det*w[3][1]*w[0][6]*w[0][7];
-    const double G9_1_7_4 = det*w[3][1]*w[0][7]*w[0][4] + det*w[3][1]*w[0][7]*w[0][4] + det*w[3][1]*w[0][7]*w[0][4];
-    const double G9_1_7_5 = det*w[3][1]*w[0][7]*w[0][5] + det*w[3][1]*w[0][7]*w[0][5] + det*w[3][1]*w[0][7]*w[0][5];
-    const double G9_1_7_6 = det*w[3][1]*w[0][7]*w[0][6] + det*w[3][1]*w[0][7]*w[0][6] + det*w[3][1]*w[0][7]*w[0][6];
-    const double G9_1_7_7 = det*w[3][1]*w[0][7]*w[0][7] + det*w[3][1]*w[0][7]*w[0][7] + det*w[3][1]*w[0][7]*w[0][7];
-    const double G9_2_4_4 = det*w[3][2]*w[0][4]*w[0][4] + det*w[3][2]*w[0][4]*w[0][4] + det*w[3][2]*w[0][4]*w[0][4];
-    const double G9_2_4_5 = det*w[3][2]*w[0][4]*w[0][5] + det*w[3][2]*w[0][4]*w[0][5] + det*w[3][2]*w[0][4]*w[0][5];
-    const double G9_2_4_6 = det*w[3][2]*w[0][4]*w[0][6] + det*w[3][2]*w[0][4]*w[0][6] + det*w[3][2]*w[0][4]*w[0][6];
-    const double G9_2_4_7 = det*w[3][2]*w[0][4]*w[0][7] + det*w[3][2]*w[0][4]*w[0][7] + det*w[3][2]*w[0][4]*w[0][7];
-    const double G9_2_5_4 = det*w[3][2]*w[0][5]*w[0][4] + det*w[3][2]*w[0][5]*w[0][4] + det*w[3][2]*w[0][5]*w[0][4];
-    const double G9_2_5_5 = det*w[3][2]*w[0][5]*w[0][5] + det*w[3][2]*w[0][5]*w[0][5] + det*w[3][2]*w[0][5]*w[0][5];
-    const double G9_2_5_6 = det*w[3][2]*w[0][5]*w[0][6] + det*w[3][2]*w[0][5]*w[0][6] + det*w[3][2]*w[0][5]*w[0][6];
-    const double G9_2_5_7 = det*w[3][2]*w[0][5]*w[0][7] + det*w[3][2]*w[0][5]*w[0][7] + det*w[3][2]*w[0][5]*w[0][7];
-    const double G9_2_6_4 = det*w[3][2]*w[0][6]*w[0][4] + det*w[3][2]*w[0][6]*w[0][4] + det*w[3][2]*w[0][6]*w[0][4];
-    const double G9_2_6_5 = det*w[3][2]*w[0][6]*w[0][5] + det*w[3][2]*w[0][6]*w[0][5] + det*w[3][2]*w[0][6]*w[0][5];
-    const double G9_2_6_6 = det*w[3][2]*w[0][6]*w[0][6] + det*w[3][2]*w[0][6]*w[0][6] + det*w[3][2]*w[0][6]*w[0][6];
-    const double G9_2_6_7 = det*w[3][2]*w[0][6]*w[0][7] + det*w[3][2]*w[0][6]*w[0][7] + det*w[3][2]*w[0][6]*w[0][7];
-    const double G9_2_7_4 = det*w[3][2]*w[0][7]*w[0][4] + det*w[3][2]*w[0][7]*w[0][4] + det*w[3][2]*w[0][7]*w[0][4];
-    const double G9_2_7_5 = det*w[3][2]*w[0][7]*w[0][5] + det*w[3][2]*w[0][7]*w[0][5] + det*w[3][2]*w[0][7]*w[0][5];
-    const double G9_2_7_6 = det*w[3][2]*w[0][7]*w[0][6] + det*w[3][2]*w[0][7]*w[0][6] + det*w[3][2]*w[0][7]*w[0][6];
-    const double G9_2_7_7 = det*w[3][2]*w[0][7]*w[0][7] + det*w[3][2]*w[0][7]*w[0][7] + det*w[3][2]*w[0][7]*w[0][7];
-    const double G9_3_4_4 = det*w[3][3]*w[0][4]*w[0][4] + det*w[3][3]*w[0][4]*w[0][4] + det*w[3][3]*w[0][4]*w[0][4];
-    const double G9_3_4_5 = det*w[3][3]*w[0][4]*w[0][5] + det*w[3][3]*w[0][4]*w[0][5] + det*w[3][3]*w[0][4]*w[0][5];
-    const double G9_3_4_6 = det*w[3][3]*w[0][4]*w[0][6] + det*w[3][3]*w[0][4]*w[0][6] + det*w[3][3]*w[0][4]*w[0][6];
-    const double G9_3_4_7 = det*w[3][3]*w[0][4]*w[0][7] + det*w[3][3]*w[0][4]*w[0][7] + det*w[3][3]*w[0][4]*w[0][7];
-    const double G9_3_5_4 = det*w[3][3]*w[0][5]*w[0][4] + det*w[3][3]*w[0][5]*w[0][4] + det*w[3][3]*w[0][5]*w[0][4];
-    const double G9_3_5_5 = det*w[3][3]*w[0][5]*w[0][5] + det*w[3][3]*w[0][5]*w[0][5] + det*w[3][3]*w[0][5]*w[0][5];
-    const double G9_3_5_6 = det*w[3][3]*w[0][5]*w[0][6] + det*w[3][3]*w[0][5]*w[0][6] + det*w[3][3]*w[0][5]*w[0][6];
-    const double G9_3_5_7 = det*w[3][3]*w[0][5]*w[0][7] + det*w[3][3]*w[0][5]*w[0][7] + det*w[3][3]*w[0][5]*w[0][7];
-    const double G9_3_6_4 = det*w[3][3]*w[0][6]*w[0][4] + det*w[3][3]*w[0][6]*w[0][4] + det*w[3][3]*w[0][6]*w[0][4];
-    const double G9_3_6_5 = det*w[3][3]*w[0][6]*w[0][5] + det*w[3][3]*w[0][6]*w[0][5] + det*w[3][3]*w[0][6]*w[0][5];
-    const double G9_3_6_6 = det*w[3][3]*w[0][6]*w[0][6] + det*w[3][3]*w[0][6]*w[0][6] + det*w[3][3]*w[0][6]*w[0][6];
-    const double G9_3_6_7 = det*w[3][3]*w[0][6]*w[0][7] + det*w[3][3]*w[0][6]*w[0][7] + det*w[3][3]*w[0][6]*w[0][7];
-    const double G9_3_7_4 = det*w[3][3]*w[0][7]*w[0][4] + det*w[3][3]*w[0][7]*w[0][4] + det*w[3][3]*w[0][7]*w[0][4];
-    const double G9_3_7_5 = det*w[3][3]*w[0][7]*w[0][5] + det*w[3][3]*w[0][7]*w[0][5] + det*w[3][3]*w[0][7]*w[0][5];
-    const double G9_3_7_6 = det*w[3][3]*w[0][7]*w[0][6] + det*w[3][3]*w[0][7]*w[0][6] + det*w[3][3]*w[0][7]*w[0][6];
-    const double G9_3_7_7 = det*w[3][3]*w[0][7]*w[0][7] + det*w[3][3]*w[0][7]*w[0][7] + det*w[3][3]*w[0][7]*w[0][7];
-    const double G10_0_4 = det*w[3][0]*w[0][4];
-    const double G10_0_5 = det*w[3][0]*w[0][5];
-    const double G10_0_6 = det*w[3][0]*w[0][6];
-    const double G10_0_7 = det*w[3][0]*w[0][7];
-    const double G10_1_4 = det*w[3][1]*w[0][4];
-    const double G10_1_5 = det*w[3][1]*w[0][5];
-    const double G10_1_6 = det*w[3][1]*w[0][6];
-    const double G10_1_7 = det*w[3][1]*w[0][7];
-    const double G10_2_4 = det*w[3][2]*w[0][4];
-    const double G10_2_5 = det*w[3][2]*w[0][5];
-    const double G10_2_6 = det*w[3][2]*w[0][6];
-    const double G10_2_7 = det*w[3][2]*w[0][7];
-    const double G10_3_4 = det*w[3][3]*w[0][4];
-    const double G10_3_5 = det*w[3][3]*w[0][5];
-    const double G10_3_6 = det*w[3][3]*w[0][6];
-    const double G10_3_7 = det*w[3][3]*w[0][7];
-    const double G11_0_4_0_0 = det*w[2][0]*w[0][4]*Jinv_00*Jinv_00 + det*w[2][0]*w[0][4]*Jinv_01*Jinv_01 + det*w[2][0]*w[0][4]*Jinv_02*Jinv_02;
-    const double G11_0_4_0_1 = det*w[2][0]*w[0][4]*Jinv_00*Jinv_10 + det*w[2][0]*w[0][4]*Jinv_01*Jinv_11 + det*w[2][0]*w[0][4]*Jinv_02*Jinv_12;
-    const double G11_0_4_0_2 = det*w[2][0]*w[0][4]*Jinv_00*Jinv_20 + det*w[2][0]*w[0][4]*Jinv_01*Jinv_21 + det*w[2][0]*w[0][4]*Jinv_02*Jinv_22;
-    const double G11_0_4_1_0 = det*w[2][0]*w[0][4]*Jinv_10*Jinv_00 + det*w[2][0]*w[0][4]*Jinv_11*Jinv_01 + det*w[2][0]*w[0][4]*Jinv_12*Jinv_02;
-    const double G11_0_4_1_1 = det*w[2][0]*w[0][4]*Jinv_10*Jinv_10 + det*w[2][0]*w[0][4]*Jinv_11*Jinv_11 + det*w[2][0]*w[0][4]*Jinv_12*Jinv_12;
-    const double G11_0_4_1_2 = det*w[2][0]*w[0][4]*Jinv_10*Jinv_20 + det*w[2][0]*w[0][4]*Jinv_11*Jinv_21 + det*w[2][0]*w[0][4]*Jinv_12*Jinv_22;
-    const double G11_0_4_2_0 = det*w[2][0]*w[0][4]*Jinv_20*Jinv_00 + det*w[2][0]*w[0][4]*Jinv_21*Jinv_01 + det*w[2][0]*w[0][4]*Jinv_22*Jinv_02;
-    const double G11_0_4_2_1 = det*w[2][0]*w[0][4]*Jinv_20*Jinv_10 + det*w[2][0]*w[0][4]*Jinv_21*Jinv_11 + det*w[2][0]*w[0][4]*Jinv_22*Jinv_12;
-    const double G11_0_4_2_2 = det*w[2][0]*w[0][4]*Jinv_20*Jinv_20 + det*w[2][0]*w[0][4]*Jinv_21*Jinv_21 + det*w[2][0]*w[0][4]*Jinv_22*Jinv_22;
-    const double G11_0_5_0_0 = det*w[2][0]*w[0][5]*Jinv_00*Jinv_00 + det*w[2][0]*w[0][5]*Jinv_01*Jinv_01 + det*w[2][0]*w[0][5]*Jinv_02*Jinv_02;
-    const double G11_0_5_1_0 = det*w[2][0]*w[0][5]*Jinv_10*Jinv_00 + det*w[2][0]*w[0][5]*Jinv_11*Jinv_01 + det*w[2][0]*w[0][5]*Jinv_12*Jinv_02;
-    const double G11_0_5_2_0 = det*w[2][0]*w[0][5]*Jinv_20*Jinv_00 + det*w[2][0]*w[0][5]*Jinv_21*Jinv_01 + det*w[2][0]*w[0][5]*Jinv_22*Jinv_02;
-    const double G11_0_6_0_1 = det*w[2][0]*w[0][6]*Jinv_00*Jinv_10 + det*w[2][0]*w[0][6]*Jinv_01*Jinv_11 + det*w[2][0]*w[0][6]*Jinv_02*Jinv_12;
-    const double G11_0_6_1_1 = det*w[2][0]*w[0][6]*Jinv_10*Jinv_10 + det*w[2][0]*w[0][6]*Jinv_11*Jinv_11 + det*w[2][0]*w[0][6]*Jinv_12*Jinv_12;
-    const double G11_0_6_2_1 = det*w[2][0]*w[0][6]*Jinv_20*Jinv_10 + det*w[2][0]*w[0][6]*Jinv_21*Jinv_11 + det*w[2][0]*w[0][6]*Jinv_22*Jinv_12;
-    const double G11_0_7_0_2 = det*w[2][0]*w[0][7]*Jinv_00*Jinv_20 + det*w[2][0]*w[0][7]*Jinv_01*Jinv_21 + det*w[2][0]*w[0][7]*Jinv_02*Jinv_22;
-    const double G11_0_7_1_2 = det*w[2][0]*w[0][7]*Jinv_10*Jinv_20 + det*w[2][0]*w[0][7]*Jinv_11*Jinv_21 + det*w[2][0]*w[0][7]*Jinv_12*Jinv_22;
-    const double G11_0_7_2_2 = det*w[2][0]*w[0][7]*Jinv_20*Jinv_20 + det*w[2][0]*w[0][7]*Jinv_21*Jinv_21 + det*w[2][0]*w[0][7]*Jinv_22*Jinv_22;
-    const double G11_1_4_0_0 = det*w[2][1]*w[0][4]*Jinv_00*Jinv_00 + det*w[2][1]*w[0][4]*Jinv_01*Jinv_01 + det*w[2][1]*w[0][4]*Jinv_02*Jinv_02;
-    const double G11_1_4_0_1 = det*w[2][1]*w[0][4]*Jinv_00*Jinv_10 + det*w[2][1]*w[0][4]*Jinv_01*Jinv_11 + det*w[2][1]*w[0][4]*Jinv_02*Jinv_12;
-    const double G11_1_4_0_2 = det*w[2][1]*w[0][4]*Jinv_00*Jinv_20 + det*w[2][1]*w[0][4]*Jinv_01*Jinv_21 + det*w[2][1]*w[0][4]*Jinv_02*Jinv_22;
-    const double G11_1_4_1_0 = det*w[2][1]*w[0][4]*Jinv_10*Jinv_00 + det*w[2][1]*w[0][4]*Jinv_11*Jinv_01 + det*w[2][1]*w[0][4]*Jinv_12*Jinv_02;
-    const double G11_1_4_1_1 = det*w[2][1]*w[0][4]*Jinv_10*Jinv_10 + det*w[2][1]*w[0][4]*Jinv_11*Jinv_11 + det*w[2][1]*w[0][4]*Jinv_12*Jinv_12;
-    const double G11_1_4_1_2 = det*w[2][1]*w[0][4]*Jinv_10*Jinv_20 + det*w[2][1]*w[0][4]*Jinv_11*Jinv_21 + det*w[2][1]*w[0][4]*Jinv_12*Jinv_22;
-    const double G11_1_4_2_0 = det*w[2][1]*w[0][4]*Jinv_20*Jinv_00 + det*w[2][1]*w[0][4]*Jinv_21*Jinv_01 + det*w[2][1]*w[0][4]*Jinv_22*Jinv_02;
-    const double G11_1_4_2_1 = det*w[2][1]*w[0][4]*Jinv_20*Jinv_10 + det*w[2][1]*w[0][4]*Jinv_21*Jinv_11 + det*w[2][1]*w[0][4]*Jinv_22*Jinv_12;
-    const double G11_1_4_2_2 = det*w[2][1]*w[0][4]*Jinv_20*Jinv_20 + det*w[2][1]*w[0][4]*Jinv_21*Jinv_21 + det*w[2][1]*w[0][4]*Jinv_22*Jinv_22;
-    const double G11_1_5_0_0 = det*w[2][1]*w[0][5]*Jinv_00*Jinv_00 + det*w[2][1]*w[0][5]*Jinv_01*Jinv_01 + det*w[2][1]*w[0][5]*Jinv_02*Jinv_02;
-    const double G11_1_5_1_0 = det*w[2][1]*w[0][5]*Jinv_10*Jinv_00 + det*w[2][1]*w[0][5]*Jinv_11*Jinv_01 + det*w[2][1]*w[0][5]*Jinv_12*Jinv_02;
-    const double G11_1_5_2_0 = det*w[2][1]*w[0][5]*Jinv_20*Jinv_00 + det*w[2][1]*w[0][5]*Jinv_21*Jinv_01 + det*w[2][1]*w[0][5]*Jinv_22*Jinv_02;
-    const double G11_1_6_0_1 = det*w[2][1]*w[0][6]*Jinv_00*Jinv_10 + det*w[2][1]*w[0][6]*Jinv_01*Jinv_11 + det*w[2][1]*w[0][6]*Jinv_02*Jinv_12;
-    const double G11_1_6_1_1 = det*w[2][1]*w[0][6]*Jinv_10*Jinv_10 + det*w[2][1]*w[0][6]*Jinv_11*Jinv_11 + det*w[2][1]*w[0][6]*Jinv_12*Jinv_12;
-    const double G11_1_6_2_1 = det*w[2][1]*w[0][6]*Jinv_20*Jinv_10 + det*w[2][1]*w[0][6]*Jinv_21*Jinv_11 + det*w[2][1]*w[0][6]*Jinv_22*Jinv_12;
-    const double G11_1_7_0_2 = det*w[2][1]*w[0][7]*Jinv_00*Jinv_20 + det*w[2][1]*w[0][7]*Jinv_01*Jinv_21 + det*w[2][1]*w[0][7]*Jinv_02*Jinv_22;
-    const double G11_1_7_1_2 = det*w[2][1]*w[0][7]*Jinv_10*Jinv_20 + det*w[2][1]*w[0][7]*Jinv_11*Jinv_21 + det*w[2][1]*w[0][7]*Jinv_12*Jinv_22;
-    const double G11_1_7_2_2 = det*w[2][1]*w[0][7]*Jinv_20*Jinv_20 + det*w[2][1]*w[0][7]*Jinv_21*Jinv_21 + det*w[2][1]*w[0][7]*Jinv_22*Jinv_22;
-    const double G11_2_4_0_0 = det*w[2][2]*w[0][4]*Jinv_00*Jinv_00 + det*w[2][2]*w[0][4]*Jinv_01*Jinv_01 + det*w[2][2]*w[0][4]*Jinv_02*Jinv_02;
-    const double G11_2_4_0_1 = det*w[2][2]*w[0][4]*Jinv_00*Jinv_10 + det*w[2][2]*w[0][4]*Jinv_01*Jinv_11 + det*w[2][2]*w[0][4]*Jinv_02*Jinv_12;
-    const double G11_2_4_0_2 = det*w[2][2]*w[0][4]*Jinv_00*Jinv_20 + det*w[2][2]*w[0][4]*Jinv_01*Jinv_21 + det*w[2][2]*w[0][4]*Jinv_02*Jinv_22;
-    const double G11_2_4_1_0 = det*w[2][2]*w[0][4]*Jinv_10*Jinv_00 + det*w[2][2]*w[0][4]*Jinv_11*Jinv_01 + det*w[2][2]*w[0][4]*Jinv_12*Jinv_02;
-    const double G11_2_4_1_1 = det*w[2][2]*w[0][4]*Jinv_10*Jinv_10 + det*w[2][2]*w[0][4]*Jinv_11*Jinv_11 + det*w[2][2]*w[0][4]*Jinv_12*Jinv_12;
-    const double G11_2_4_1_2 = det*w[2][2]*w[0][4]*Jinv_10*Jinv_20 + det*w[2][2]*w[0][4]*Jinv_11*Jinv_21 + det*w[2][2]*w[0][4]*Jinv_12*Jinv_22;
-    const double G11_2_4_2_0 = det*w[2][2]*w[0][4]*Jinv_20*Jinv_00 + det*w[2][2]*w[0][4]*Jinv_21*Jinv_01 + det*w[2][2]*w[0][4]*Jinv_22*Jinv_02;
-    const double G11_2_4_2_1 = det*w[2][2]*w[0][4]*Jinv_20*Jinv_10 + det*w[2][2]*w[0][4]*Jinv_21*Jinv_11 + det*w[2][2]*w[0][4]*Jinv_22*Jinv_12;
-    const double G11_2_4_2_2 = det*w[2][2]*w[0][4]*Jinv_20*Jinv_20 + det*w[2][2]*w[0][4]*Jinv_21*Jinv_21 + det*w[2][2]*w[0][4]*Jinv_22*Jinv_22;
-    const double G11_2_5_0_0 = det*w[2][2]*w[0][5]*Jinv_00*Jinv_00 + det*w[2][2]*w[0][5]*Jinv_01*Jinv_01 + det*w[2][2]*w[0][5]*Jinv_02*Jinv_02;
-    const double G11_2_5_1_0 = det*w[2][2]*w[0][5]*Jinv_10*Jinv_00 + det*w[2][2]*w[0][5]*Jinv_11*Jinv_01 + det*w[2][2]*w[0][5]*Jinv_12*Jinv_02;
-    const double G11_2_5_2_0 = det*w[2][2]*w[0][5]*Jinv_20*Jinv_00 + det*w[2][2]*w[0][5]*Jinv_21*Jinv_01 + det*w[2][2]*w[0][5]*Jinv_22*Jinv_02;
-    const double G11_2_6_0_1 = det*w[2][2]*w[0][6]*Jinv_00*Jinv_10 + det*w[2][2]*w[0][6]*Jinv_01*Jinv_11 + det*w[2][2]*w[0][6]*Jinv_02*Jinv_12;
-    const double G11_2_6_1_1 = det*w[2][2]*w[0][6]*Jinv_10*Jinv_10 + det*w[2][2]*w[0][6]*Jinv_11*Jinv_11 + det*w[2][2]*w[0][6]*Jinv_12*Jinv_12;
-    const double G11_2_6_2_1 = det*w[2][2]*w[0][6]*Jinv_20*Jinv_10 + det*w[2][2]*w[0][6]*Jinv_21*Jinv_11 + det*w[2][2]*w[0][6]*Jinv_22*Jinv_12;
-    const double G11_2_7_0_2 = det*w[2][2]*w[0][7]*Jinv_00*Jinv_20 + det*w[2][2]*w[0][7]*Jinv_01*Jinv_21 + det*w[2][2]*w[0][7]*Jinv_02*Jinv_22;
-    const double G11_2_7_1_2 = det*w[2][2]*w[0][7]*Jinv_10*Jinv_20 + det*w[2][2]*w[0][7]*Jinv_11*Jinv_21 + det*w[2][2]*w[0][7]*Jinv_12*Jinv_22;
-    const double G11_2_7_2_2 = det*w[2][2]*w[0][7]*Jinv_20*Jinv_20 + det*w[2][2]*w[0][7]*Jinv_21*Jinv_21 + det*w[2][2]*w[0][7]*Jinv_22*Jinv_22;
-    const double G11_3_4_0_0 = det*w[2][3]*w[0][4]*Jinv_00*Jinv_00 + det*w[2][3]*w[0][4]*Jinv_01*Jinv_01 + det*w[2][3]*w[0][4]*Jinv_02*Jinv_02;
-    const double G11_3_4_0_1 = det*w[2][3]*w[0][4]*Jinv_00*Jinv_10 + det*w[2][3]*w[0][4]*Jinv_01*Jinv_11 + det*w[2][3]*w[0][4]*Jinv_02*Jinv_12;
-    const double G11_3_4_0_2 = det*w[2][3]*w[0][4]*Jinv_00*Jinv_20 + det*w[2][3]*w[0][4]*Jinv_01*Jinv_21 + det*w[2][3]*w[0][4]*Jinv_02*Jinv_22;
-    const double G11_3_4_1_0 = det*w[2][3]*w[0][4]*Jinv_10*Jinv_00 + det*w[2][3]*w[0][4]*Jinv_11*Jinv_01 + det*w[2][3]*w[0][4]*Jinv_12*Jinv_02;
-    const double G11_3_4_1_1 = det*w[2][3]*w[0][4]*Jinv_10*Jinv_10 + det*w[2][3]*w[0][4]*Jinv_11*Jinv_11 + det*w[2][3]*w[0][4]*Jinv_12*Jinv_12;
-    const double G11_3_4_1_2 = det*w[2][3]*w[0][4]*Jinv_10*Jinv_20 + det*w[2][3]*w[0][4]*Jinv_11*Jinv_21 + det*w[2][3]*w[0][4]*Jinv_12*Jinv_22;
-    const double G11_3_4_2_0 = det*w[2][3]*w[0][4]*Jinv_20*Jinv_00 + det*w[2][3]*w[0][4]*Jinv_21*Jinv_01 + det*w[2][3]*w[0][4]*Jinv_22*Jinv_02;
-    const double G11_3_4_2_1 = det*w[2][3]*w[0][4]*Jinv_20*Jinv_10 + det*w[2][3]*w[0][4]*Jinv_21*Jinv_11 + det*w[2][3]*w[0][4]*Jinv_22*Jinv_12;
-    const double G11_3_4_2_2 = det*w[2][3]*w[0][4]*Jinv_20*Jinv_20 + det*w[2][3]*w[0][4]*Jinv_21*Jinv_21 + det*w[2][3]*w[0][4]*Jinv_22*Jinv_22;
-    const double G11_3_5_0_0 = det*w[2][3]*w[0][5]*Jinv_00*Jinv_00 + det*w[2][3]*w[0][5]*Jinv_01*Jinv_01 + det*w[2][3]*w[0][5]*Jinv_02*Jinv_02;
-    const double G11_3_5_1_0 = det*w[2][3]*w[0][5]*Jinv_10*Jinv_00 + det*w[2][3]*w[0][5]*Jinv_11*Jinv_01 + det*w[2][3]*w[0][5]*Jinv_12*Jinv_02;
-    const double G11_3_5_2_0 = det*w[2][3]*w[0][5]*Jinv_20*Jinv_00 + det*w[2][3]*w[0][5]*Jinv_21*Jinv_01 + det*w[2][3]*w[0][5]*Jinv_22*Jinv_02;
-    const double G11_3_6_0_1 = det*w[2][3]*w[0][6]*Jinv_00*Jinv_10 + det*w[2][3]*w[0][6]*Jinv_01*Jinv_11 + det*w[2][3]*w[0][6]*Jinv_02*Jinv_12;
-    const double G11_3_6_1_1 = det*w[2][3]*w[0][6]*Jinv_10*Jinv_10 + det*w[2][3]*w[0][6]*Jinv_11*Jinv_11 + det*w[2][3]*w[0][6]*Jinv_12*Jinv_12;
-    const double G11_3_6_2_1 = det*w[2][3]*w[0][6]*Jinv_20*Jinv_10 + det*w[2][3]*w[0][6]*Jinv_21*Jinv_11 + det*w[2][3]*w[0][6]*Jinv_22*Jinv_12;
-    const double G11_3_7_0_2 = det*w[2][3]*w[0][7]*Jinv_00*Jinv_20 + det*w[2][3]*w[0][7]*Jinv_01*Jinv_21 + det*w[2][3]*w[0][7]*Jinv_02*Jinv_22;
-    const double G11_3_7_1_2 = det*w[2][3]*w[0][7]*Jinv_10*Jinv_20 + det*w[2][3]*w[0][7]*Jinv_11*Jinv_21 + det*w[2][3]*w[0][7]*Jinv_12*Jinv_22;
-    const double G11_3_7_2_2 = det*w[2][3]*w[0][7]*Jinv_20*Jinv_20 + det*w[2][3]*w[0][7]*Jinv_21*Jinv_21 + det*w[2][3]*w[0][7]*Jinv_22*Jinv_22;
+    const double G0_4 = det*c0_0_0_4;
+    const double G0_5 = det*c0_0_0_5;
+    const double G0_6 = det*c0_0_0_6;
+    const double G0_7 = det*c0_0_0_7;
+    const double G1_4 = det*c1_1_0_4;
+    const double G1_5 = det*c1_1_0_5;
+    const double G1_6 = det*c1_1_0_6;
+    const double G1_7 = det*c1_1_0_7;
+    const double G3_0_0_0_0_0 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_00*Jinv_00 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_01*Jinv_01 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_02*Jinv_02);
+    const double G3_0_0_0_0_1 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_00*Jinv_10 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_01*Jinv_11 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_02*Jinv_12);
+    const double G3_0_0_0_0_2 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_00*Jinv_20 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_01*Jinv_21 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_02*Jinv_22);
+    const double G3_0_0_0_1_0 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_10*Jinv_00 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_11*Jinv_01 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_12*Jinv_02);
+    const double G3_0_0_0_1_1 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_10*Jinv_10 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_11*Jinv_11 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_12*Jinv_12);
+    const double G3_0_0_0_1_2 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_10*Jinv_20 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_11*Jinv_21 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_12*Jinv_22);
+    const double G3_0_0_0_2_0 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_20*Jinv_00 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_21*Jinv_01 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_22*Jinv_02);
+    const double G3_0_0_0_2_1 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_20*Jinv_10 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_21*Jinv_11 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_22*Jinv_12);
+    const double G3_0_0_0_2_2 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_0*Jinv_20*Jinv_20 + c4_6_0_0*c5_6_1_0*c1_6_2_0*Jinv_21*Jinv_21 + c4_7_0_0*c5_7_1_0*c1_7_2_0*Jinv_22*Jinv_22);
+    const double G3_0_0_1_0_0 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_1*Jinv_00*Jinv_00 + c4_6_0_0*c5_6_1_0*c1_6_2_1*Jinv_01*Jinv_01 + c4_7_0_0*c5_7_1_0*c1_7_2_1*Jinv_02*Jinv_02);
+    const double G3_0_0_1_1_0 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_1*Jinv_10*Jinv_00 + c4_6_0_0*c5_6_1_0*c1_6_2_1*Jinv_11*Jinv_01 + c4_7_0_0*c5_7_1_0*c1_7_2_1*Jinv_12*Jinv_02);
+    const double G3_0_0_1_2_0 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_1*Jinv_20*Jinv_00 + c4_6_0_0*c5_6_1_0*c1_6_2_1*Jinv_21*Jinv_01 + c4_7_0_0*c5_7_1_0*c1_7_2_1*Jinv_22*Jinv_02);
+    const double G3_0_0_2_0_1 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_2*Jinv_00*Jinv_10 + c4_6_0_0*c5_6_1_0*c1_6_2_2*Jinv_01*Jinv_11 + c4_7_0_0*c5_7_1_0*c1_7_2_2*Jinv_02*Jinv_12);
+    const double G3_0_0_2_1_1 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_2*Jinv_10*Jinv_10 + c4_6_0_0*c5_6_1_0*c1_6_2_2*Jinv_11*Jinv_11 + c4_7_0_0*c5_7_1_0*c1_7_2_2*Jinv_12*Jinv_12);
+    const double G3_0_0_2_2_1 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_2*Jinv_20*Jinv_10 + c4_6_0_0*c5_6_1_0*c1_6_2_2*Jinv_21*Jinv_11 + c4_7_0_0*c5_7_1_0*c1_7_2_2*Jinv_22*Jinv_12);
+    const double G3_0_0_3_0_2 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_3*Jinv_00*Jinv_20 + c4_6_0_0*c5_6_1_0*c1_6_2_3*Jinv_01*Jinv_21 + c4_7_0_0*c5_7_1_0*c1_7_2_3*Jinv_02*Jinv_22);
+    const double G3_0_0_3_1_2 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_3*Jinv_10*Jinv_20 + c4_6_0_0*c5_6_1_0*c1_6_2_3*Jinv_11*Jinv_21 + c4_7_0_0*c5_7_1_0*c1_7_2_3*Jinv_12*Jinv_22);
+    const double G3_0_0_3_2_2 = det*(c4_5_0_0*c5_5_1_0*c1_5_2_3*Jinv_20*Jinv_20 + c4_6_0_0*c5_6_1_0*c1_6_2_3*Jinv_21*Jinv_21 + c4_7_0_0*c5_7_1_0*c1_7_2_3*Jinv_22*Jinv_22);
+    const double G4_0_0_0_0 = det*(c4_8_0_0*c1_8_1_0*Jinv_00*Jinv_00 + c4_9_0_0*c1_9_1_0*Jinv_01*Jinv_01 + c4_10_0_0*c1_10_1_0*Jinv_02*Jinv_02);
+    const double G4_0_0_0_1 = det*(c4_8_0_0*c1_8_1_0*Jinv_00*Jinv_10 + c4_9_0_0*c1_9_1_0*Jinv_01*Jinv_11 + c4_10_0_0*c1_10_1_0*Jinv_02*Jinv_12);
+    const double G4_0_0_0_2 = det*(c4_8_0_0*c1_8_1_0*Jinv_00*Jinv_20 + c4_9_0_0*c1_9_1_0*Jinv_01*Jinv_21 + c4_10_0_0*c1_10_1_0*Jinv_02*Jinv_22);
+    const double G4_0_0_1_0 = det*(c4_8_0_0*c1_8_1_0*Jinv_10*Jinv_00 + c4_9_0_0*c1_9_1_0*Jinv_11*Jinv_01 + c4_10_0_0*c1_10_1_0*Jinv_12*Jinv_02);
+    const double G4_0_0_1_1 = det*(c4_8_0_0*c1_8_1_0*Jinv_10*Jinv_10 + c4_9_0_0*c1_9_1_0*Jinv_11*Jinv_11 + c4_10_0_0*c1_10_1_0*Jinv_12*Jinv_12);
+    const double G4_0_0_1_2 = det*(c4_8_0_0*c1_8_1_0*Jinv_10*Jinv_20 + c4_9_0_0*c1_9_1_0*Jinv_11*Jinv_21 + c4_10_0_0*c1_10_1_0*Jinv_12*Jinv_22);
+    const double G4_0_0_2_0 = det*(c4_8_0_0*c1_8_1_0*Jinv_20*Jinv_00 + c4_9_0_0*c1_9_1_0*Jinv_21*Jinv_01 + c4_10_0_0*c1_10_1_0*Jinv_22*Jinv_02);
+    const double G4_0_0_2_1 = det*(c4_8_0_0*c1_8_1_0*Jinv_20*Jinv_10 + c4_9_0_0*c1_9_1_0*Jinv_21*Jinv_11 + c4_10_0_0*c1_10_1_0*Jinv_22*Jinv_12);
+    const double G4_0_0_2_2 = det*(c4_8_0_0*c1_8_1_0*Jinv_20*Jinv_20 + c4_9_0_0*c1_9_1_0*Jinv_21*Jinv_21 + c4_10_0_0*c1_10_1_0*Jinv_22*Jinv_22);
+    const double G4_0_1_0_0 = det*(c4_8_0_0*c1_8_1_1*Jinv_00*Jinv_00 + c4_9_0_0*c1_9_1_1*Jinv_01*Jinv_01 + c4_10_0_0*c1_10_1_1*Jinv_02*Jinv_02);
+    const double G4_0_1_1_0 = det*(c4_8_0_0*c1_8_1_1*Jinv_10*Jinv_00 + c4_9_0_0*c1_9_1_1*Jinv_11*Jinv_01 + c4_10_0_0*c1_10_1_1*Jinv_12*Jinv_02);
+    const double G4_0_1_2_0 = det*(c4_8_0_0*c1_8_1_1*Jinv_20*Jinv_00 + c4_9_0_0*c1_9_1_1*Jinv_21*Jinv_01 + c4_10_0_0*c1_10_1_1*Jinv_22*Jinv_02);
+    const double G4_0_2_0_1 = det*(c4_8_0_0*c1_8_1_2*Jinv_00*Jinv_10 + c4_9_0_0*c1_9_1_2*Jinv_01*Jinv_11 + c4_10_0_0*c1_10_1_2*Jinv_02*Jinv_12);
+    const double G4_0_2_1_1 = det*(c4_8_0_0*c1_8_1_2*Jinv_10*Jinv_10 + c4_9_0_0*c1_9_1_2*Jinv_11*Jinv_11 + c4_10_0_0*c1_10_1_2*Jinv_12*Jinv_12);
+    const double G4_0_2_2_1 = det*(c4_8_0_0*c1_8_1_2*Jinv_20*Jinv_10 + c4_9_0_0*c1_9_1_2*Jinv_21*Jinv_11 + c4_10_0_0*c1_10_1_2*Jinv_22*Jinv_12);
+    const double G4_0_3_0_2 = det*(c4_8_0_0*c1_8_1_3*Jinv_00*Jinv_20 + c4_9_0_0*c1_9_1_3*Jinv_01*Jinv_21 + c4_10_0_0*c1_10_1_3*Jinv_02*Jinv_22);
+    const double G4_0_3_1_2 = det*(c4_8_0_0*c1_8_1_3*Jinv_10*Jinv_20 + c4_9_0_0*c1_9_1_3*Jinv_11*Jinv_21 + c4_10_0_0*c1_10_1_3*Jinv_12*Jinv_22);
+    const double G4_0_3_2_2 = det*(c4_8_0_0*c1_8_1_3*Jinv_20*Jinv_20 + c4_9_0_0*c1_9_1_3*Jinv_21*Jinv_21 + c4_10_0_0*c1_10_1_3*Jinv_22*Jinv_22);
+    const double G6_0_0_0_0_0 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_00*Jinv_00 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_01*Jinv_01 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_02*Jinv_02);
+    const double G6_0_0_0_0_1 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_00*Jinv_10 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_01*Jinv_11 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_02*Jinv_12);
+    const double G6_0_0_0_0_2 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_00*Jinv_20 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_01*Jinv_21 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_02*Jinv_22);
+    const double G6_0_0_0_1_0 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_10*Jinv_00 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_11*Jinv_01 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_12*Jinv_02);
+    const double G6_0_0_0_1_1 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_10*Jinv_10 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_11*Jinv_11 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_12*Jinv_12);
+    const double G6_0_0_0_1_2 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_10*Jinv_20 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_11*Jinv_21 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_12*Jinv_22);
+    const double G6_0_0_0_2_0 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_20*Jinv_00 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_21*Jinv_01 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_22*Jinv_02);
+    const double G6_0_0_0_2_1 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_20*Jinv_10 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_21*Jinv_11 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_22*Jinv_12);
+    const double G6_0_0_0_2_2 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_0*Jinv_20*Jinv_20 + c4_15_0_0*c5_15_1_0*c0_15_2_0*Jinv_21*Jinv_21 + c4_16_0_0*c5_16_1_0*c0_16_2_0*Jinv_22*Jinv_22);
+    const double G6_0_0_1_0_0 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_1*Jinv_00*Jinv_00 + c4_15_0_0*c5_15_1_0*c0_15_2_1*Jinv_01*Jinv_01 + c4_16_0_0*c5_16_1_0*c0_16_2_1*Jinv_02*Jinv_02);
+    const double G6_0_0_1_1_0 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_1*Jinv_10*Jinv_00 + c4_15_0_0*c5_15_1_0*c0_15_2_1*Jinv_11*Jinv_01 + c4_16_0_0*c5_16_1_0*c0_16_2_1*Jinv_12*Jinv_02);
+    const double G6_0_0_1_2_0 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_1*Jinv_20*Jinv_00 + c4_15_0_0*c5_15_1_0*c0_15_2_1*Jinv_21*Jinv_01 + c4_16_0_0*c5_16_1_0*c0_16_2_1*Jinv_22*Jinv_02);
+    const double G6_0_0_2_0_1 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_2*Jinv_00*Jinv_10 + c4_15_0_0*c5_15_1_0*c0_15_2_2*Jinv_01*Jinv_11 + c4_16_0_0*c5_16_1_0*c0_16_2_2*Jinv_02*Jinv_12);
+    const double G6_0_0_2_1_1 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_2*Jinv_10*Jinv_10 + c4_15_0_0*c5_15_1_0*c0_15_2_2*Jinv_11*Jinv_11 + c4_16_0_0*c5_16_1_0*c0_16_2_2*Jinv_12*Jinv_12);
+    const double G6_0_0_2_2_1 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_2*Jinv_20*Jinv_10 + c4_15_0_0*c5_15_1_0*c0_15_2_2*Jinv_21*Jinv_11 + c4_16_0_0*c5_16_1_0*c0_16_2_2*Jinv_22*Jinv_12);
+    const double G6_0_0_3_0_2 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_3*Jinv_00*Jinv_20 + c4_15_0_0*c5_15_1_0*c0_15_2_3*Jinv_01*Jinv_21 + c4_16_0_0*c5_16_1_0*c0_16_2_3*Jinv_02*Jinv_22);
+    const double G6_0_0_3_1_2 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_3*Jinv_10*Jinv_20 + c4_15_0_0*c5_15_1_0*c0_15_2_3*Jinv_11*Jinv_21 + c4_16_0_0*c5_16_1_0*c0_16_2_3*Jinv_12*Jinv_22);
+    const double G6_0_0_3_2_2 = det*(c4_14_0_0*c5_14_1_0*c0_14_2_3*Jinv_20*Jinv_20 + c4_15_0_0*c5_15_1_0*c0_15_2_3*Jinv_21*Jinv_21 + c4_16_0_0*c5_16_1_0*c0_16_2_3*Jinv_22*Jinv_22);
+    const double G7_0 = det*c0_17_0_0;
+    const double G7_1 = det*c0_17_0_1;
+    const double G7_2 = det*c0_17_0_2;
+    const double G7_3 = det*c0_17_0_3;
+    const double G8_0_4_4_4 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_4*c0_18_3_4 + c3_19_0_0*c0_19_1_4*c0_19_2_4*c0_19_3_4);
+    const double G8_0_4_4_5 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_4*c0_18_3_5 + c3_19_0_0*c0_19_1_4*c0_19_2_4*c0_19_3_5);
+    const double G8_0_4_4_6 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_4*c0_18_3_6 + c3_19_0_0*c0_19_1_4*c0_19_2_4*c0_19_3_6);
+    const double G8_0_4_4_7 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_4*c0_18_3_7 + c3_19_0_0*c0_19_1_4*c0_19_2_4*c0_19_3_7);
+    const double G8_0_4_5_4 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_5*c0_18_3_4 + c3_19_0_0*c0_19_1_4*c0_19_2_5*c0_19_3_4);
+    const double G8_0_4_5_5 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_5*c0_18_3_5 + c3_19_0_0*c0_19_1_4*c0_19_2_5*c0_19_3_5);
+    const double G8_0_4_5_6 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_5*c0_18_3_6 + c3_19_0_0*c0_19_1_4*c0_19_2_5*c0_19_3_6);
+    const double G8_0_4_5_7 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_5*c0_18_3_7 + c3_19_0_0*c0_19_1_4*c0_19_2_5*c0_19_3_7);
+    const double G8_0_4_6_4 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_6*c0_18_3_4 + c3_19_0_0*c0_19_1_4*c0_19_2_6*c0_19_3_4);
+    const double G8_0_4_6_5 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_6*c0_18_3_5 + c3_19_0_0*c0_19_1_4*c0_19_2_6*c0_19_3_5);
+    const double G8_0_4_6_6 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_6*c0_18_3_6 + c3_19_0_0*c0_19_1_4*c0_19_2_6*c0_19_3_6);
+    const double G8_0_4_6_7 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_6*c0_18_3_7 + c3_19_0_0*c0_19_1_4*c0_19_2_6*c0_19_3_7);
+    const double G8_0_4_7_4 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_7*c0_18_3_4 + c3_19_0_0*c0_19_1_4*c0_19_2_7*c0_19_3_4);
+    const double G8_0_4_7_5 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_7*c0_18_3_5 + c3_19_0_0*c0_19_1_4*c0_19_2_7*c0_19_3_5);
+    const double G8_0_4_7_6 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_7*c0_18_3_6 + c3_19_0_0*c0_19_1_4*c0_19_2_7*c0_19_3_6);
+    const double G8_0_4_7_7 = det*(c3_18_0_0*c0_18_1_4*c0_18_2_7*c0_18_3_7 + c3_19_0_0*c0_19_1_4*c0_19_2_7*c0_19_3_7);
+    const double G8_0_5_4_4 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_4*c0_18_3_4 + c3_19_0_0*c0_19_1_5*c0_19_2_4*c0_19_3_4);
+    const double G8_0_5_4_5 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_4*c0_18_3_5 + c3_19_0_0*c0_19_1_5*c0_19_2_4*c0_19_3_5);
+    const double G8_0_5_4_6 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_4*c0_18_3_6 + c3_19_0_0*c0_19_1_5*c0_19_2_4*c0_19_3_6);
+    const double G8_0_5_4_7 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_4*c0_18_3_7 + c3_19_0_0*c0_19_1_5*c0_19_2_4*c0_19_3_7);
+    const double G8_0_5_5_4 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_5*c0_18_3_4 + c3_19_0_0*c0_19_1_5*c0_19_2_5*c0_19_3_4);
+    const double G8_0_5_5_5 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_5*c0_18_3_5 + c3_19_0_0*c0_19_1_5*c0_19_2_5*c0_19_3_5);
+    const double G8_0_5_5_6 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_5*c0_18_3_6 + c3_19_0_0*c0_19_1_5*c0_19_2_5*c0_19_3_6);
+    const double G8_0_5_5_7 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_5*c0_18_3_7 + c3_19_0_0*c0_19_1_5*c0_19_2_5*c0_19_3_7);
+    const double G8_0_5_6_4 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_6*c0_18_3_4 + c3_19_0_0*c0_19_1_5*c0_19_2_6*c0_19_3_4);
+    const double G8_0_5_6_5 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_6*c0_18_3_5 + c3_19_0_0*c0_19_1_5*c0_19_2_6*c0_19_3_5);
+    const double G8_0_5_6_6 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_6*c0_18_3_6 + c3_19_0_0*c0_19_1_5*c0_19_2_6*c0_19_3_6);
+    const double G8_0_5_6_7 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_6*c0_18_3_7 + c3_19_0_0*c0_19_1_5*c0_19_2_6*c0_19_3_7);
+    const double G8_0_5_7_4 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_7*c0_18_3_4 + c3_19_0_0*c0_19_1_5*c0_19_2_7*c0_19_3_4);
+    const double G8_0_5_7_5 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_7*c0_18_3_5 + c3_19_0_0*c0_19_1_5*c0_19_2_7*c0_19_3_5);
+    const double G8_0_5_7_6 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_7*c0_18_3_6 + c3_19_0_0*c0_19_1_5*c0_19_2_7*c0_19_3_6);
+    const double G8_0_5_7_7 = det*(c3_18_0_0*c0_18_1_5*c0_18_2_7*c0_18_3_7 + c3_19_0_0*c0_19_1_5*c0_19_2_7*c0_19_3_7);
+    const double G8_0_6_4_4 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_4*c0_18_3_4 + c3_19_0_0*c0_19_1_6*c0_19_2_4*c0_19_3_4);
+    const double G8_0_6_4_5 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_4*c0_18_3_5 + c3_19_0_0*c0_19_1_6*c0_19_2_4*c0_19_3_5);
+    const double G8_0_6_4_6 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_4*c0_18_3_6 + c3_19_0_0*c0_19_1_6*c0_19_2_4*c0_19_3_6);
+    const double G8_0_6_4_7 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_4*c0_18_3_7 + c3_19_0_0*c0_19_1_6*c0_19_2_4*c0_19_3_7);
+    const double G8_0_6_5_4 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_5*c0_18_3_4 + c3_19_0_0*c0_19_1_6*c0_19_2_5*c0_19_3_4);
+    const double G8_0_6_5_5 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_5*c0_18_3_5 + c3_19_0_0*c0_19_1_6*c0_19_2_5*c0_19_3_5);
+    const double G8_0_6_5_6 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_5*c0_18_3_6 + c3_19_0_0*c0_19_1_6*c0_19_2_5*c0_19_3_6);
+    const double G8_0_6_5_7 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_5*c0_18_3_7 + c3_19_0_0*c0_19_1_6*c0_19_2_5*c0_19_3_7);
+    const double G8_0_6_6_4 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_6*c0_18_3_4 + c3_19_0_0*c0_19_1_6*c0_19_2_6*c0_19_3_4);
+    const double G8_0_6_6_5 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_6*c0_18_3_5 + c3_19_0_0*c0_19_1_6*c0_19_2_6*c0_19_3_5);
+    const double G8_0_6_6_6 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_6*c0_18_3_6 + c3_19_0_0*c0_19_1_6*c0_19_2_6*c0_19_3_6);
+    const double G8_0_6_6_7 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_6*c0_18_3_7 + c3_19_0_0*c0_19_1_6*c0_19_2_6*c0_19_3_7);
+    const double G8_0_6_7_4 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_7*c0_18_3_4 + c3_19_0_0*c0_19_1_6*c0_19_2_7*c0_19_3_4);
+    const double G8_0_6_7_5 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_7*c0_18_3_5 + c3_19_0_0*c0_19_1_6*c0_19_2_7*c0_19_3_5);
+    const double G8_0_6_7_6 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_7*c0_18_3_6 + c3_19_0_0*c0_19_1_6*c0_19_2_7*c0_19_3_6);
+    const double G8_0_6_7_7 = det*(c3_18_0_0*c0_18_1_6*c0_18_2_7*c0_18_3_7 + c3_19_0_0*c0_19_1_6*c0_19_2_7*c0_19_3_7);
+    const double G8_0_7_4_4 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_4*c0_18_3_4 + c3_19_0_0*c0_19_1_7*c0_19_2_4*c0_19_3_4);
+    const double G8_0_7_4_5 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_4*c0_18_3_5 + c3_19_0_0*c0_19_1_7*c0_19_2_4*c0_19_3_5);
+    const double G8_0_7_4_6 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_4*c0_18_3_6 + c3_19_0_0*c0_19_1_7*c0_19_2_4*c0_19_3_6);
+    const double G8_0_7_4_7 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_4*c0_18_3_7 + c3_19_0_0*c0_19_1_7*c0_19_2_4*c0_19_3_7);
+    const double G8_0_7_5_4 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_5*c0_18_3_4 + c3_19_0_0*c0_19_1_7*c0_19_2_5*c0_19_3_4);
+    const double G8_0_7_5_5 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_5*c0_18_3_5 + c3_19_0_0*c0_19_1_7*c0_19_2_5*c0_19_3_5);
+    const double G8_0_7_5_6 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_5*c0_18_3_6 + c3_19_0_0*c0_19_1_7*c0_19_2_5*c0_19_3_6);
+    const double G8_0_7_5_7 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_5*c0_18_3_7 + c3_19_0_0*c0_19_1_7*c0_19_2_5*c0_19_3_7);
+    const double G8_0_7_6_4 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_6*c0_18_3_4 + c3_19_0_0*c0_19_1_7*c0_19_2_6*c0_19_3_4);
+    const double G8_0_7_6_5 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_6*c0_18_3_5 + c3_19_0_0*c0_19_1_7*c0_19_2_6*c0_19_3_5);
+    const double G8_0_7_6_6 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_6*c0_18_3_6 + c3_19_0_0*c0_19_1_7*c0_19_2_6*c0_19_3_6);
+    const double G8_0_7_6_7 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_6*c0_18_3_7 + c3_19_0_0*c0_19_1_7*c0_19_2_6*c0_19_3_7);
+    const double G8_0_7_7_4 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_7*c0_18_3_4 + c3_19_0_0*c0_19_1_7*c0_19_2_7*c0_19_3_4);
+    const double G8_0_7_7_5 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_7*c0_18_3_5 + c3_19_0_0*c0_19_1_7*c0_19_2_7*c0_19_3_5);
+    const double G8_0_7_7_6 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_7*c0_18_3_6 + c3_19_0_0*c0_19_1_7*c0_19_2_7*c0_19_3_6);
+    const double G8_0_7_7_7 = det*(c3_18_0_0*c0_18_1_7*c0_18_2_7*c0_18_3_7 + c3_19_0_0*c0_19_1_7*c0_19_2_7*c0_19_3_7);
+    const double G9_0_4_4 = det*(c3_20_0_0*c0_20_1_4*c0_20_2_4 + c3_21_0_0*c0_21_1_4*c0_21_2_4 + c3_22_0_0*c0_22_1_4*c0_22_2_4);
+    const double G9_0_4_5 = det*(c3_20_0_0*c0_20_1_4*c0_20_2_5 + c3_21_0_0*c0_21_1_4*c0_21_2_5 + c3_22_0_0*c0_22_1_4*c0_22_2_5);
+    const double G9_0_4_6 = det*(c3_20_0_0*c0_20_1_4*c0_20_2_6 + c3_21_0_0*c0_21_1_4*c0_21_2_6 + c3_22_0_0*c0_22_1_4*c0_22_2_6);
+    const double G9_0_4_7 = det*(c3_20_0_0*c0_20_1_4*c0_20_2_7 + c3_21_0_0*c0_21_1_4*c0_21_2_7 + c3_22_0_0*c0_22_1_4*c0_22_2_7);
+    const double G9_0_5_4 = det*(c3_20_0_0*c0_20_1_5*c0_20_2_4 + c3_21_0_0*c0_21_1_5*c0_21_2_4 + c3_22_0_0*c0_22_1_5*c0_22_2_4);
+    const double G9_0_5_5 = det*(c3_20_0_0*c0_20_1_5*c0_20_2_5 + c3_21_0_0*c0_21_1_5*c0_21_2_5 + c3_22_0_0*c0_22_1_5*c0_22_2_5);
+    const double G9_0_5_6 = det*(c3_20_0_0*c0_20_1_5*c0_20_2_6 + c3_21_0_0*c0_21_1_5*c0_21_2_6 + c3_22_0_0*c0_22_1_5*c0_22_2_6);
+    const double G9_0_5_7 = det*(c3_20_0_0*c0_20_1_5*c0_20_2_7 + c3_21_0_0*c0_21_1_5*c0_21_2_7 + c3_22_0_0*c0_22_1_5*c0_22_2_7);
+    const double G9_0_6_4 = det*(c3_20_0_0*c0_20_1_6*c0_20_2_4 + c3_21_0_0*c0_21_1_6*c0_21_2_4 + c3_22_0_0*c0_22_1_6*c0_22_2_4);
+    const double G9_0_6_5 = det*(c3_20_0_0*c0_20_1_6*c0_20_2_5 + c3_21_0_0*c0_21_1_6*c0_21_2_5 + c3_22_0_0*c0_22_1_6*c0_22_2_5);
+    const double G9_0_6_6 = det*(c3_20_0_0*c0_20_1_6*c0_20_2_6 + c3_21_0_0*c0_21_1_6*c0_21_2_6 + c3_22_0_0*c0_22_1_6*c0_22_2_6);
+    const double G9_0_6_7 = det*(c3_20_0_0*c0_20_1_6*c0_20_2_7 + c3_21_0_0*c0_21_1_6*c0_21_2_7 + c3_22_0_0*c0_22_1_6*c0_22_2_7);
+    const double G9_0_7_4 = det*(c3_20_0_0*c0_20_1_7*c0_20_2_4 + c3_21_0_0*c0_21_1_7*c0_21_2_4 + c3_22_0_0*c0_22_1_7*c0_22_2_4);
+    const double G9_0_7_5 = det*(c3_20_0_0*c0_20_1_7*c0_20_2_5 + c3_21_0_0*c0_21_1_7*c0_21_2_5 + c3_22_0_0*c0_22_1_7*c0_22_2_5);
+    const double G9_0_7_6 = det*(c3_20_0_0*c0_20_1_7*c0_20_2_6 + c3_21_0_0*c0_21_1_7*c0_21_2_6 + c3_22_0_0*c0_22_1_7*c0_22_2_6);
+    const double G9_0_7_7 = det*(c3_20_0_0*c0_20_1_7*c0_20_2_7 + c3_21_0_0*c0_21_1_7*c0_21_2_7 + c3_22_0_0*c0_22_1_7*c0_22_2_7);
+    const double G10_0_4 = det*c3_23_0_0*c0_23_1_4;
+    const double G10_0_5 = det*c3_23_0_0*c0_23_1_5;
+    const double G10_0_6 = det*c3_23_0_0*c0_23_1_6;
+    const double G10_0_7 = det*c3_23_0_0*c0_23_1_7;
+    const double G11_0_4_0_0 = det*(c2_24_0_0*c0_24_1_4*Jinv_00*Jinv_00 + c2_25_0_0*c0_25_1_4*Jinv_01*Jinv_01 + c2_26_0_0*c0_26_1_4*Jinv_02*Jinv_02);
+    const double G11_0_4_0_1 = det*(c2_24_0_0*c0_24_1_4*Jinv_00*Jinv_10 + c2_25_0_0*c0_25_1_4*Jinv_01*Jinv_11 + c2_26_0_0*c0_26_1_4*Jinv_02*Jinv_12);
+    const double G11_0_4_0_2 = det*(c2_24_0_0*c0_24_1_4*Jinv_00*Jinv_20 + c2_25_0_0*c0_25_1_4*Jinv_01*Jinv_21 + c2_26_0_0*c0_26_1_4*Jinv_02*Jinv_22);
+    const double G11_0_4_1_0 = det*(c2_24_0_0*c0_24_1_4*Jinv_10*Jinv_00 + c2_25_0_0*c0_25_1_4*Jinv_11*Jinv_01 + c2_26_0_0*c0_26_1_4*Jinv_12*Jinv_02);
+    const double G11_0_4_1_1 = det*(c2_24_0_0*c0_24_1_4*Jinv_10*Jinv_10 + c2_25_0_0*c0_25_1_4*Jinv_11*Jinv_11 + c2_26_0_0*c0_26_1_4*Jinv_12*Jinv_12);
+    const double G11_0_4_1_2 = det*(c2_24_0_0*c0_24_1_4*Jinv_10*Jinv_20 + c2_25_0_0*c0_25_1_4*Jinv_11*Jinv_21 + c2_26_0_0*c0_26_1_4*Jinv_12*Jinv_22);
+    const double G11_0_4_2_0 = det*(c2_24_0_0*c0_24_1_4*Jinv_20*Jinv_00 + c2_25_0_0*c0_25_1_4*Jinv_21*Jinv_01 + c2_26_0_0*c0_26_1_4*Jinv_22*Jinv_02);
+    const double G11_0_4_2_1 = det*(c2_24_0_0*c0_24_1_4*Jinv_20*Jinv_10 + c2_25_0_0*c0_25_1_4*Jinv_21*Jinv_11 + c2_26_0_0*c0_26_1_4*Jinv_22*Jinv_12);
+    const double G11_0_4_2_2 = det*(c2_24_0_0*c0_24_1_4*Jinv_20*Jinv_20 + c2_25_0_0*c0_25_1_4*Jinv_21*Jinv_21 + c2_26_0_0*c0_26_1_4*Jinv_22*Jinv_22);
+    const double G11_0_5_0_0 = det*(c2_24_0_0*c0_24_1_5*Jinv_00*Jinv_00 + c2_25_0_0*c0_25_1_5*Jinv_01*Jinv_01 + c2_26_0_0*c0_26_1_5*Jinv_02*Jinv_02);
+    const double G11_0_5_1_0 = det*(c2_24_0_0*c0_24_1_5*Jinv_10*Jinv_00 + c2_25_0_0*c0_25_1_5*Jinv_11*Jinv_01 + c2_26_0_0*c0_26_1_5*Jinv_12*Jinv_02);
+    const double G11_0_5_2_0 = det*(c2_24_0_0*c0_24_1_5*Jinv_20*Jinv_00 + c2_25_0_0*c0_25_1_5*Jinv_21*Jinv_01 + c2_26_0_0*c0_26_1_5*Jinv_22*Jinv_02);
+    const double G11_0_6_0_1 = det*(c2_24_0_0*c0_24_1_6*Jinv_00*Jinv_10 + c2_25_0_0*c0_25_1_6*Jinv_01*Jinv_11 + c2_26_0_0*c0_26_1_6*Jinv_02*Jinv_12);
+    const double G11_0_6_1_1 = det*(c2_24_0_0*c0_24_1_6*Jinv_10*Jinv_10 + c2_25_0_0*c0_25_1_6*Jinv_11*Jinv_11 + c2_26_0_0*c0_26_1_6*Jinv_12*Jinv_12);
+    const double G11_0_6_2_1 = det*(c2_24_0_0*c0_24_1_6*Jinv_20*Jinv_10 + c2_25_0_0*c0_25_1_6*Jinv_21*Jinv_11 + c2_26_0_0*c0_26_1_6*Jinv_22*Jinv_12);
+    const double G11_0_7_0_2 = det*(c2_24_0_0*c0_24_1_7*Jinv_00*Jinv_20 + c2_25_0_0*c0_25_1_7*Jinv_01*Jinv_21 + c2_26_0_0*c0_26_1_7*Jinv_02*Jinv_22);
+    const double G11_0_7_1_2 = det*(c2_24_0_0*c0_24_1_7*Jinv_10*Jinv_20 + c2_25_0_0*c0_25_1_7*Jinv_11*Jinv_21 + c2_26_0_0*c0_26_1_7*Jinv_12*Jinv_22);
+    const double G11_0_7_2_2 = det*(c2_24_0_0*c0_24_1_7*Jinv_20*Jinv_20 + c2_25_0_0*c0_25_1_7*Jinv_21*Jinv_21 + c2_26_0_0*c0_26_1_7*Jinv_22*Jinv_22);
     
     // Compute element tensor
-    A[0] = -0.0166666666666666*G7_0 - 0.00833333333333331*G7_1 - 0.00833333333333331*G7_2 - 0.00833333333333331*G7_3 + 0.00595238095238094*G8_0_4_4_4 + 0.00119047619047619*G8_0_4_4_5 + 0.00119047619047619*G8_0_4_4_6 + 0.00119047619047619*G8_0_4_4_7 + 0.00119047619047619*G8_0_4_5_4 + 0.000595238095238095*G8_0_4_5_5 + 0.000297619047619047*G8_0_4_5_6 + 0.000297619047619047*G8_0_4_5_7 + 0.00119047619047619*G8_0_4_6_4 + 0.000297619047619047*G8_0_4_6_5 + 0.000595238095238095*G8_0_4_6_6 + 0.000297619047619048*G8_0_4_6_7 + 0.00119047619047619*G8_0_4_7_4 + 0.000297619047619047*G8_0_4_7_5 + 0.000297619047619048*G8_0_4_7_6 + 0.000595238095238094*G8_0_4_7_7 + 0.00119047619047619*G8_0_5_4_4 + 0.000595238095238095*G8_0_5_4_5 + 0.000297619047619047*G8_0_5_4_6 + 0.000297619047619047*G8_0_5_4_7 + 0.000595238095238095*G8_0_5_5_4 + 0.000595238095238094*G8_0_5_5_5 + 0.000198412698412698*G8_0_5_5_6 + 0.000198412698412698*G8_0_5_5_7 + 0.000297619047619047*G8_0_5_6_4 + 0.000198412698412698*G8_0_5_6_5 + 0.000198412698412698*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 0.000297619047619047*G8_0_5_7_4 + 0.000198412698412698*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 0.000198412698412698*G8_0_5_7_7 + 0.00119047619047619*G8_0_6_4_4 + 0.000297619047619047*G8_0_6_4_5 + 0.000595238095238095*G8_0_6_4_6 + 0.000297619047619048*G8_0_6_4_7 + 0.000297619047619047*G8_0_6_5_4 + 0.000198412698412698*G8_0_6_5_5 + 0.000198412698412698*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000595238095238095*G8_0_6_6_4 + 0.000198412698412698*G8_0_6_6_5 + 0.000595238095238095*G8_0_6_6_6 + 0.000198412698412698*G8_0_6_6_7 + 0.000297619047619048*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 0.000198412698412698*G8_0_6_7_6 + 0.000198412698412698*G8_0_6_7_7 + 0.00119047619047619*G8_0_7_4_4 + 0.000297619047619047*G8_0_7_4_5 + 0.000297619047619048*G8_0_7_4_6 + 0.000595238095238094*G8_0_7_4_7 + 0.000297619047619047*G8_0_7_5_4 + 0.000198412698412698*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 0.000198412698412698*G8_0_7_5_7 + 0.000297619047619048*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 0.000198412698412698*G8_0_7_6_6 + 0.000198412698412698*G8_0_7_6_7 + 0.000595238095238094*G8_0_7_7_4 + 0.000198412698412698*G8_0_7_7_5 + 0.000198412698412698*G8_0_7_7_6 + 0.000595238095238094*G8_0_7_7_7 + 0.00119047619047619*G8_1_4_4_4 + 0.000595238095238095*G8_1_4_4_5 + 0.000297619047619047*G8_1_4_4_6 + 0.000297619047619047*G8_1_4_4_7 + 0.000595238095238095*G8_1_4_5_4 + 0.000595238095238094*G8_1_4_5_5 + 0.000198412698412698*G8_1_4_5_6 + 0.000198412698412698*G8_1_4_5_7 + 0.000297619047619047*G8_1_4_6_4 + 0.000198412698412698*G8_1_4_6_5 + 0.000198412698412698*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 0.000297619047619047*G8_1_4_7_4 + 0.000198412698412698*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 0.000198412698412698*G8_1_4_7_7 + 0.000595238095238095*G8_1_5_4_4 + 0.000595238095238094*G8_1_5_4_5 + 0.000198412698412698*G8_1_5_4_6 + 0.000198412698412698*G8_1_5_4_7 + 0.000595238095238094*G8_1_5_5_4 + 0.00119047619047619*G8_1_5_5_5 + 0.000297619047619048*G8_1_5_5_6 + 0.000297619047619047*G8_1_5_5_7 + 0.000198412698412698*G8_1_5_6_4 + 0.000297619047619048*G8_1_5_6_5 + 0.000198412698412698*G8_1_5_6_6 + 9.92063492063492e-05*G8_1_5_6_7 + 0.000198412698412698*G8_1_5_7_4 + 0.000297619047619047*G8_1_5_7_5 + 9.92063492063492e-05*G8_1_5_7_6 + 0.000198412698412698*G8_1_5_7_7 + 0.000297619047619047*G8_1_6_4_4 + 0.000198412698412698*G8_1_6_4_5 + 0.000198412698412698*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 0.000198412698412698*G8_1_6_5_4 + 0.000297619047619047*G8_1_6_5_5 + 0.000198412698412698*G8_1_6_5_6 + 9.92063492063492e-05*G8_1_6_5_7 + 0.000198412698412698*G8_1_6_6_4 + 0.000198412698412698*G8_1_6_6_5 + 0.000297619047619047*G8_1_6_6_6 + 9.92063492063492e-05*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 9.92063492063492e-05*G8_1_6_7_5 + 9.92063492063492e-05*G8_1_6_7_6 + 9.92063492063492e-05*G8_1_6_7_7 + 0.000297619047619047*G8_1_7_4_4 + 0.000198412698412698*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 0.000198412698412698*G8_1_7_4_7 + 0.000198412698412698*G8_1_7_5_4 + 0.000297619047619047*G8_1_7_5_5 + 9.92063492063492e-05*G8_1_7_5_6 + 0.000198412698412698*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 9.92063492063492e-05*G8_1_7_6_5 + 9.92063492063492e-05*G8_1_7_6_6 + 9.92063492063492e-05*G8_1_7_6_7 + 0.000198412698412698*G8_1_7_7_4 + 0.000198412698412698*G8_1_7_7_5 + 9.92063492063492e-05*G8_1_7_7_6 + 0.000297619047619047*G8_1_7_7_7 + 0.00119047619047619*G8_2_4_4_4 + 0.000297619047619047*G8_2_4_4_5 + 0.000595238095238095*G8_2_4_4_6 + 0.000297619047619048*G8_2_4_4_7 + 0.000297619047619047*G8_2_4_5_4 + 0.000198412698412698*G8_2_4_5_5 + 0.000198412698412698*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000595238095238095*G8_2_4_6_4 + 0.000198412698412698*G8_2_4_6_5 + 0.000595238095238095*G8_2_4_6_6 + 0.000198412698412698*G8_2_4_6_7 + 0.000297619047619048*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 0.000198412698412698*G8_2_4_7_6 + 0.000198412698412698*G8_2_4_7_7 + 0.000297619047619047*G8_2_5_4_4 + 0.000198412698412698*G8_2_5_4_5 + 0.000198412698412698*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 0.000198412698412698*G8_2_5_5_4 + 0.000297619047619048*G8_2_5_5_5 + 0.000198412698412698*G8_2_5_5_6 + 9.92063492063492e-05*G8_2_5_5_7 + 0.000198412698412698*G8_2_5_6_4 + 0.000198412698412698*G8_2_5_6_5 + 0.000297619047619047*G8_2_5_6_6 + 9.92063492063492e-05*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 9.92063492063492e-05*G8_2_5_7_5 + 9.92063492063492e-05*G8_2_5_7_6 + 9.92063492063492e-05*G8_2_5_7_7 + 0.000595238095238095*G8_2_6_4_4 + 0.000198412698412698*G8_2_6_4_5 + 0.000595238095238095*G8_2_6_4_6 + 0.000198412698412698*G8_2_6_4_7 + 0.000198412698412698*G8_2_6_5_4 + 0.000198412698412698*G8_2_6_5_5 + 0.000297619047619047*G8_2_6_5_6 + 9.92063492063492e-05*G8_2_6_5_7 + 0.000595238095238095*G8_2_6_6_4 + 0.000297619047619047*G8_2_6_6_5 + 0.00119047619047619*G8_2_6_6_6 + 0.000297619047619047*G8_2_6_6_7 + 0.000198412698412698*G8_2_6_7_4 + 9.92063492063492e-05*G8_2_6_7_5 + 0.000297619047619047*G8_2_6_7_6 + 0.000198412698412698*G8_2_6_7_7 + 0.000297619047619048*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 0.000198412698412698*G8_2_7_4_6 + 0.000198412698412698*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 9.92063492063492e-05*G8_2_7_5_5 + 9.92063492063492e-05*G8_2_7_5_6 + 9.92063492063492e-05*G8_2_7_5_7 + 0.000198412698412698*G8_2_7_6_4 + 9.92063492063492e-05*G8_2_7_6_5 + 0.000297619047619047*G8_2_7_6_6 + 0.000198412698412698*G8_2_7_6_7 + 0.000198412698412698*G8_2_7_7_4 + 9.92063492063492e-05*G8_2_7_7_5 + 0.000198412698412698*G8_2_7_7_6 + 0.000297619047619047*G8_2_7_7_7 + 0.00119047619047619*G8_3_4_4_4 + 0.000297619047619047*G8_3_4_4_5 + 0.000297619047619048*G8_3_4_4_6 + 0.000595238095238094*G8_3_4_4_7 + 0.000297619047619047*G8_3_4_5_4 + 0.000198412698412698*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 0.000198412698412698*G8_3_4_5_7 + 0.000297619047619048*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 0.000198412698412698*G8_3_4_6_6 + 0.000198412698412698*G8_3_4_6_7 + 0.000595238095238095*G8_3_4_7_4 + 0.000198412698412698*G8_3_4_7_5 + 0.000198412698412698*G8_3_4_7_6 + 0.000595238095238094*G8_3_4_7_7 + 0.000297619047619047*G8_3_5_4_4 + 0.000198412698412698*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 0.000198412698412698*G8_3_5_4_7 + 0.000198412698412698*G8_3_5_5_4 + 0.000297619047619047*G8_3_5_5_5 + 9.92063492063492e-05*G8_3_5_5_6 + 0.000198412698412698*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 9.92063492063492e-05*G8_3_5_6_5 + 9.92063492063492e-05*G8_3_5_6_6 + 9.92063492063492e-05*G8_3_5_6_7 + 0.000198412698412698*G8_3_5_7_4 + 0.000198412698412698*G8_3_5_7_5 + 9.92063492063492e-05*G8_3_5_7_6 + 0.000297619047619047*G8_3_5_7_7 + 0.000297619047619048*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 0.000198412698412698*G8_3_6_4_6 + 0.000198412698412698*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 9.92063492063492e-05*G8_3_6_5_5 + 9.92063492063492e-05*G8_3_6_5_6 + 9.92063492063492e-05*G8_3_6_5_7 + 0.000198412698412698*G8_3_6_6_4 + 9.92063492063492e-05*G8_3_6_6_5 + 0.000297619047619047*G8_3_6_6_6 + 0.000198412698412698*G8_3_6_6_7 + 0.000198412698412698*G8_3_6_7_4 + 9.92063492063492e-05*G8_3_6_7_5 + 0.000198412698412698*G8_3_6_7_6 + 0.000297619047619047*G8_3_6_7_7 + 0.000595238095238095*G8_3_7_4_4 + 0.000198412698412698*G8_3_7_4_5 + 0.000198412698412698*G8_3_7_4_6 + 0.000595238095238094*G8_3_7_4_7 + 0.000198412698412698*G8_3_7_5_4 + 0.000198412698412698*G8_3_7_5_5 + 9.92063492063492e-05*G8_3_7_5_6 + 0.000297619047619047*G8_3_7_5_7 + 0.000198412698412698*G8_3_7_6_4 + 9.92063492063492e-05*G8_3_7_6_5 + 0.000198412698412698*G8_3_7_6_6 + 0.000297619047619047*G8_3_7_6_7 + 0.000595238095238094*G8_3_7_7_4 + 0.000297619047619047*G8_3_7_7_5 + 0.000297619047619047*G8_3_7_7_6 + 0.00119047619047619*G8_3_7_7_7 - 0.00952380952380951*G9_0_4_4 - 0.00238095238095238*G9_0_4_5 - 0.00238095238095238*G9_0_4_6 - 0.00238095238095238*G9_0_4_7 - 0.00238095238095238*G9_0_5_4 - 0.00158730158730159*G9_0_5_5 - 0.000793650793650793*G9_0_5_6 - 0.000793650793650793*G9_0_5_7 - 0.00238095238095238*G9_0_6_4 - 0.000793650793650794*G9_0_6_5 - 0.00158730158730159*G9_0_6_6 - 0.000793650793650793*G9_0_6_7 - 0.00238095238095238*G9_0_7_4 - 0.000793650793650793*G9_0_7_5 - 0.000793650793650793*G9_0_7_6 - 0.00158730158730159*G9_0_7_7 - 0.00238095238095238*G9_1_4_4 - 0.00158730158730159*G9_1_4_5 - 0.000793650793650793*G9_1_4_6 - 0.000793650793650793*G9_1_4_7 - 0.00158730158730159*G9_1_5_4 - 0.00238095238095238*G9_1_5_5 - 0.000793650793650793*G9_1_5_6 - 0.000793650793650793*G9_1_5_7 - 0.000793650793650793*G9_1_6_4 - 0.000793650793650793*G9_1_6_5 - 0.000793650793650793*G9_1_6_6 - 0.000396825396825397*G9_1_6_7 - 0.000793650793650793*G9_1_7_4 - 0.000793650793650793*G9_1_7_5 - 0.000396825396825397*G9_1_7_6 - 0.000793650793650793*G9_1_7_7 - 0.00238095238095238*G9_2_4_4 - 0.000793650793650793*G9_2_4_5 - 0.00158730158730159*G9_2_4_6 - 0.000793650793650793*G9_2_4_7 - 0.000793650793650794*G9_2_5_4 - 0.000793650793650793*G9_2_5_5 - 0.000793650793650793*G9_2_5_6 - 0.000396825396825397*G9_2_5_7 - 0.00158730158730159*G9_2_6_4 - 0.000793650793650793*G9_2_6_5 - 0.00238095238095238*G9_2_6_6 - 0.000793650793650793*G9_2_6_7 - 0.000793650793650793*G9_2_7_4 - 0.000396825396825397*G9_2_7_5 - 0.000793650793650793*G9_2_7_6 - 0.000793650793650793*G9_2_7_7 - 0.00238095238095238*G9_3_4_4 - 0.000793650793650793*G9_3_4_5 - 0.000793650793650793*G9_3_4_6 - 0.00158730158730159*G9_3_4_7 - 0.000793650793650793*G9_3_5_4 - 0.000793650793650793*G9_3_5_5 - 0.000396825396825397*G9_3_5_6 - 0.000793650793650793*G9_3_5_7 - 0.000793650793650793*G9_3_6_4 - 0.000396825396825397*G9_3_6_5 - 0.000793650793650793*G9_3_6_6 - 0.000793650793650793*G9_3_6_7 - 0.00158730158730159*G9_3_7_4 - 0.000793650793650793*G9_3_7_5 - 0.000793650793650793*G9_3_7_6 - 0.00238095238095238*G9_3_7_7 + 0.0166666666666666*G10_0_4 + 0.00555555555555554*G10_0_5 + 0.00555555555555554*G10_0_6 + 0.00555555555555554*G10_0_7 + 0.00555555555555554*G10_1_4 + 0.00555555555555554*G10_1_5 + 0.00277777777777777*G10_1_6 + 0.00277777777777777*G10_1_7 + 0.00555555555555554*G10_2_4 + 0.00277777777777777*G10_2_5 + 0.00555555555555554*G10_2_6 + 0.00277777777777777*G10_2_7 + 0.00555555555555554*G10_3_4 + 0.00277777777777777*G10_3_5 + 0.00277777777777777*G10_3_6 + 0.00555555555555554*G10_3_7 + 0.0416666666666666*G11_0_4_0_0 + 0.0416666666666666*G11_0_4_0_1 + 0.0416666666666666*G11_0_4_0_2 + 0.0416666666666666*G11_0_4_1_0 + 0.0416666666666666*G11_0_4_1_1 + 0.0416666666666666*G11_0_4_1_2 + 0.0416666666666666*G11_0_4_2_0 + 0.0416666666666666*G11_0_4_2_1 + 0.0416666666666666*G11_0_4_2_2 - 0.0416666666666666*G11_0_5_0_0 - 0.0416666666666666*G11_0_5_1_0 - 0.0416666666666666*G11_0_5_2_0 - 0.0416666666666666*G11_0_6_0_1 - 0.0416666666666666*G11_0_6_1_1 - 0.0416666666666666*G11_0_6_2_1 - 0.0416666666666666*G11_0_7_0_2 - 0.0416666666666666*G11_0_7_1_2 - 0.0416666666666666*G11_0_7_2_2 + 0.0416666666666666*G11_1_4_0_0 + 0.0416666666666666*G11_1_4_0_1 + 0.0416666666666666*G11_1_4_0_2 + 0.0416666666666666*G11_1_4_1_0 + 0.0416666666666666*G11_1_4_1_1 + 0.0416666666666666*G11_1_4_1_2 + 0.0416666666666666*G11_1_4_2_0 + 0.0416666666666666*G11_1_4_2_1 + 0.0416666666666666*G11_1_4_2_2 - 0.0416666666666666*G11_1_5_0_0 - 0.0416666666666666*G11_1_5_1_0 - 0.0416666666666666*G11_1_5_2_0 - 0.0416666666666666*G11_1_6_0_1 - 0.0416666666666666*G11_1_6_1_1 - 0.0416666666666666*G11_1_6_2_1 - 0.0416666666666666*G11_1_7_0_2 - 0.0416666666666666*G11_1_7_1_2 - 0.0416666666666666*G11_1_7_2_2 + 0.0416666666666666*G11_2_4_0_0 + 0.0416666666666666*G11_2_4_0_1 + 0.0416666666666666*G11_2_4_0_2 + 0.0416666666666666*G11_2_4_1_0 + 0.0416666666666666*G11_2_4_1_1 + 0.0416666666666666*G11_2_4_1_2 + 0.0416666666666666*G11_2_4_2_0 + 0.0416666666666666*G11_2_4_2_1 + 0.0416666666666666*G11_2_4_2_2 - 0.0416666666666666*G11_2_5_0_0 - 0.0416666666666666*G11_2_5_1_0 - 0.0416666666666666*G11_2_5_2_0 - 0.0416666666666666*G11_2_6_0_1 - 0.0416666666666666*G11_2_6_1_1 - 0.0416666666666666*G11_2_6_2_1 - 0.0416666666666666*G11_2_7_0_2 - 0.0416666666666666*G11_2_7_1_2 - 0.0416666666666666*G11_2_7_2_2 + 0.0416666666666666*G11_3_4_0_0 + 0.0416666666666666*G11_3_4_0_1 + 0.0416666666666666*G11_3_4_0_2 + 0.0416666666666666*G11_3_4_1_0 + 0.0416666666666666*G11_3_4_1_1 + 0.0416666666666666*G11_3_4_1_2 + 0.0416666666666666*G11_3_4_2_0 + 0.0416666666666666*G11_3_4_2_1 + 0.0416666666666666*G11_3_4_2_2 - 0.0416666666666666*G11_3_5_0_0 - 0.0416666666666666*G11_3_5_1_0 - 0.0416666666666666*G11_3_5_2_0 - 0.0416666666666666*G11_3_6_0_1 - 0.0416666666666666*G11_3_6_1_1 - 0.0416666666666666*G11_3_6_2_1 - 0.0416666666666666*G11_3_7_0_2 - 0.0416666666666666*G11_3_7_1_2 - 0.0416666666666666*G11_3_7_2_2;
-    A[1] = -0.00833333333333331*G7_0 - 0.0166666666666666*G7_1 - 0.00833333333333331*G7_2 - 0.00833333333333331*G7_3 + 0.00119047619047619*G8_0_4_4_4 + 0.000595238095238095*G8_0_4_4_5 + 0.000297619047619047*G8_0_4_4_6 + 0.000297619047619047*G8_0_4_4_7 + 0.000595238095238095*G8_0_4_5_4 + 0.000595238095238094*G8_0_4_5_5 + 0.000198412698412698*G8_0_4_5_6 + 0.000198412698412698*G8_0_4_5_7 + 0.000297619047619047*G8_0_4_6_4 + 0.000198412698412698*G8_0_4_6_5 + 0.000198412698412698*G8_0_4_6_6 + 9.92063492063492e-05*G8_0_4_6_7 + 0.000297619047619047*G8_0_4_7_4 + 0.000198412698412698*G8_0_4_7_5 + 9.92063492063492e-05*G8_0_4_7_6 + 0.000198412698412698*G8_0_4_7_7 + 0.000595238095238095*G8_0_5_4_4 + 0.000595238095238094*G8_0_5_4_5 + 0.000198412698412698*G8_0_5_4_6 + 0.000198412698412698*G8_0_5_4_7 + 0.000595238095238094*G8_0_5_5_4 + 0.00119047619047619*G8_0_5_5_5 + 0.000297619047619048*G8_0_5_5_6 + 0.000297619047619047*G8_0_5_5_7 + 0.000198412698412698*G8_0_5_6_4 + 0.000297619047619048*G8_0_5_6_5 + 0.000198412698412698*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 0.000198412698412698*G8_0_5_7_4 + 0.000297619047619047*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 0.000198412698412698*G8_0_5_7_7 + 0.000297619047619047*G8_0_6_4_4 + 0.000198412698412698*G8_0_6_4_5 + 0.000198412698412698*G8_0_6_4_6 + 9.92063492063492e-05*G8_0_6_4_7 + 0.000198412698412698*G8_0_6_5_4 + 0.000297619047619047*G8_0_6_5_5 + 0.000198412698412698*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000198412698412698*G8_0_6_6_4 + 0.000198412698412698*G8_0_6_6_5 + 0.000297619047619047*G8_0_6_6_6 + 9.92063492063492e-05*G8_0_6_6_7 + 9.92063492063492e-05*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 9.92063492063492e-05*G8_0_6_7_6 + 9.92063492063492e-05*G8_0_6_7_7 + 0.000297619047619047*G8_0_7_4_4 + 0.000198412698412698*G8_0_7_4_5 + 9.92063492063492e-05*G8_0_7_4_6 + 0.000198412698412698*G8_0_7_4_7 + 0.000198412698412698*G8_0_7_5_4 + 0.000297619047619047*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 0.000198412698412698*G8_0_7_5_7 + 9.92063492063492e-05*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 9.92063492063492e-05*G8_0_7_6_6 + 9.92063492063492e-05*G8_0_7_6_7 + 0.000198412698412698*G8_0_7_7_4 + 0.000198412698412698*G8_0_7_7_5 + 9.92063492063492e-05*G8_0_7_7_6 + 0.000297619047619047*G8_0_7_7_7 + 0.000595238095238095*G8_1_4_4_4 + 0.000595238095238094*G8_1_4_4_5 + 0.000198412698412698*G8_1_4_4_6 + 0.000198412698412698*G8_1_4_4_7 + 0.000595238095238094*G8_1_4_5_4 + 0.00119047619047619*G8_1_4_5_5 + 0.000297619047619048*G8_1_4_5_6 + 0.000297619047619047*G8_1_4_5_7 + 0.000198412698412698*G8_1_4_6_4 + 0.000297619047619048*G8_1_4_6_5 + 0.000198412698412698*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 0.000198412698412698*G8_1_4_7_4 + 0.000297619047619047*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 0.000198412698412698*G8_1_4_7_7 + 0.000595238095238094*G8_1_5_4_4 + 0.00119047619047619*G8_1_5_4_5 + 0.000297619047619048*G8_1_5_4_6 + 0.000297619047619047*G8_1_5_4_7 + 0.00119047619047619*G8_1_5_5_4 + 0.00595238095238095*G8_1_5_5_5 + 0.00119047619047619*G8_1_5_5_6 + 0.00119047619047619*G8_1_5_5_7 + 0.000297619047619048*G8_1_5_6_4 + 0.00119047619047619*G8_1_5_6_5 + 0.000595238095238095*G8_1_5_6_6 + 0.000297619047619048*G8_1_5_6_7 + 0.000297619047619047*G8_1_5_7_4 + 0.00119047619047619*G8_1_5_7_5 + 0.000297619047619048*G8_1_5_7_6 + 0.000595238095238095*G8_1_5_7_7 + 0.000198412698412698*G8_1_6_4_4 + 0.000297619047619047*G8_1_6_4_5 + 0.000198412698412698*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 0.000297619047619048*G8_1_6_5_4 + 0.00119047619047619*G8_1_6_5_5 + 0.000595238095238095*G8_1_6_5_6 + 0.000297619047619048*G8_1_6_5_7 + 0.000198412698412698*G8_1_6_6_4 + 0.000595238095238095*G8_1_6_6_5 + 0.000595238095238095*G8_1_6_6_6 + 0.000198412698412698*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 0.000297619047619048*G8_1_6_7_5 + 0.000198412698412698*G8_1_6_7_6 + 0.000198412698412698*G8_1_6_7_7 + 0.000198412698412698*G8_1_7_4_4 + 0.000297619047619047*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 0.000198412698412698*G8_1_7_4_7 + 0.000297619047619047*G8_1_7_5_4 + 0.00119047619047619*G8_1_7_5_5 + 0.000297619047619048*G8_1_7_5_6 + 0.000595238095238095*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 0.000297619047619048*G8_1_7_6_5 + 0.000198412698412698*G8_1_7_6_6 + 0.000198412698412698*G8_1_7_6_7 + 0.000198412698412698*G8_1_7_7_4 + 0.000595238095238095*G8_1_7_7_5 + 0.000198412698412698*G8_1_7_7_6 + 0.000595238095238095*G8_1_7_7_7 + 0.000297619047619047*G8_2_4_4_4 + 0.000198412698412698*G8_2_4_4_5 + 0.000198412698412698*G8_2_4_4_6 + 9.92063492063492e-05*G8_2_4_4_7 + 0.000198412698412698*G8_2_4_5_4 + 0.000297619047619047*G8_2_4_5_5 + 0.000198412698412698*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000198412698412698*G8_2_4_6_4 + 0.000198412698412698*G8_2_4_6_5 + 0.000297619047619047*G8_2_4_6_6 + 9.92063492063492e-05*G8_2_4_6_7 + 9.92063492063492e-05*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 9.92063492063492e-05*G8_2_4_7_6 + 9.92063492063492e-05*G8_2_4_7_7 + 0.000198412698412698*G8_2_5_4_4 + 0.000297619047619047*G8_2_5_4_5 + 0.000198412698412698*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 0.000297619047619048*G8_2_5_5_4 + 0.00119047619047619*G8_2_5_5_5 + 0.000595238095238095*G8_2_5_5_6 + 0.000297619047619048*G8_2_5_5_7 + 0.000198412698412698*G8_2_5_6_4 + 0.000595238095238095*G8_2_5_6_5 + 0.000595238095238095*G8_2_5_6_6 + 0.000198412698412698*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 0.000297619047619048*G8_2_5_7_5 + 0.000198412698412698*G8_2_5_7_6 + 0.000198412698412698*G8_2_5_7_7 + 0.000198412698412698*G8_2_6_4_4 + 0.000198412698412698*G8_2_6_4_5 + 0.000297619047619047*G8_2_6_4_6 + 9.92063492063492e-05*G8_2_6_4_7 + 0.000198412698412698*G8_2_6_5_4 + 0.000595238095238095*G8_2_6_5_5 + 0.000595238095238095*G8_2_6_5_6 + 0.000198412698412698*G8_2_6_5_7 + 0.000297619047619047*G8_2_6_6_4 + 0.000595238095238095*G8_2_6_6_5 + 0.00119047619047619*G8_2_6_6_6 + 0.000297619047619048*G8_2_6_6_7 + 9.92063492063492e-05*G8_2_6_7_4 + 0.000198412698412698*G8_2_6_7_5 + 0.000297619047619048*G8_2_6_7_6 + 0.000198412698412698*G8_2_6_7_7 + 9.92063492063492e-05*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 9.92063492063492e-05*G8_2_7_4_6 + 9.92063492063492e-05*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 0.000297619047619048*G8_2_7_5_5 + 0.000198412698412698*G8_2_7_5_6 + 0.000198412698412698*G8_2_7_5_7 + 9.92063492063492e-05*G8_2_7_6_4 + 0.000198412698412698*G8_2_7_6_5 + 0.000297619047619048*G8_2_7_6_6 + 0.000198412698412698*G8_2_7_6_7 + 9.92063492063492e-05*G8_2_7_7_4 + 0.000198412698412698*G8_2_7_7_5 + 0.000198412698412698*G8_2_7_7_6 + 0.000297619047619047*G8_2_7_7_7 + 0.000297619047619047*G8_3_4_4_4 + 0.000198412698412698*G8_3_4_4_5 + 9.92063492063492e-05*G8_3_4_4_6 + 0.000198412698412698*G8_3_4_4_7 + 0.000198412698412698*G8_3_4_5_4 + 0.000297619047619047*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 0.000198412698412698*G8_3_4_5_7 + 9.92063492063492e-05*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 9.92063492063492e-05*G8_3_4_6_6 + 9.92063492063492e-05*G8_3_4_6_7 + 0.000198412698412698*G8_3_4_7_4 + 0.000198412698412698*G8_3_4_7_5 + 9.92063492063492e-05*G8_3_4_7_6 + 0.000297619047619047*G8_3_4_7_7 + 0.000198412698412698*G8_3_5_4_4 + 0.000297619047619047*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 0.000198412698412698*G8_3_5_4_7 + 0.000297619047619047*G8_3_5_5_4 + 0.00119047619047619*G8_3_5_5_5 + 0.000297619047619048*G8_3_5_5_6 + 0.000595238095238095*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 0.000297619047619048*G8_3_5_6_5 + 0.000198412698412698*G8_3_5_6_6 + 0.000198412698412698*G8_3_5_6_7 + 0.000198412698412698*G8_3_5_7_4 + 0.000595238095238095*G8_3_5_7_5 + 0.000198412698412698*G8_3_5_7_6 + 0.000595238095238095*G8_3_5_7_7 + 9.92063492063492e-05*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 9.92063492063492e-05*G8_3_6_4_6 + 9.92063492063492e-05*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 0.000297619047619048*G8_3_6_5_5 + 0.000198412698412698*G8_3_6_5_6 + 0.000198412698412698*G8_3_6_5_7 + 9.92063492063492e-05*G8_3_6_6_4 + 0.000198412698412698*G8_3_6_6_5 + 0.000297619047619048*G8_3_6_6_6 + 0.000198412698412698*G8_3_6_6_7 + 9.92063492063492e-05*G8_3_6_7_4 + 0.000198412698412698*G8_3_6_7_5 + 0.000198412698412698*G8_3_6_7_6 + 0.000297619047619047*G8_3_6_7_7 + 0.000198412698412698*G8_3_7_4_4 + 0.000198412698412698*G8_3_7_4_5 + 9.92063492063492e-05*G8_3_7_4_6 + 0.000297619047619047*G8_3_7_4_7 + 0.000198412698412698*G8_3_7_5_4 + 0.000595238095238095*G8_3_7_5_5 + 0.000198412698412698*G8_3_7_5_6 + 0.000595238095238095*G8_3_7_5_7 + 9.92063492063492e-05*G8_3_7_6_4 + 0.000198412698412698*G8_3_7_6_5 + 0.000198412698412698*G8_3_7_6_6 + 0.000297619047619047*G8_3_7_6_7 + 0.000297619047619047*G8_3_7_7_4 + 0.000595238095238095*G8_3_7_7_5 + 0.000297619047619047*G8_3_7_7_6 + 0.00119047619047619*G8_3_7_7_7 - 0.00238095238095238*G9_0_4_4 - 0.00158730158730159*G9_0_4_5 - 0.000793650793650793*G9_0_4_6 - 0.000793650793650793*G9_0_4_7 - 0.00158730158730159*G9_0_5_4 - 0.00238095238095238*G9_0_5_5 - 0.000793650793650793*G9_0_5_6 - 0.000793650793650793*G9_0_5_7 - 0.000793650793650793*G9_0_6_4 - 0.000793650793650793*G9_0_6_5 - 0.000793650793650793*G9_0_6_6 - 0.000396825396825397*G9_0_6_7 - 0.000793650793650793*G9_0_7_4 - 0.000793650793650793*G9_0_7_5 - 0.000396825396825397*G9_0_7_6 - 0.000793650793650793*G9_0_7_7 - 0.00158730158730159*G9_1_4_4 - 0.00238095238095238*G9_1_4_5 - 0.000793650793650793*G9_1_4_6 - 0.000793650793650793*G9_1_4_7 - 0.00238095238095238*G9_1_5_4 - 0.00952380952380952*G9_1_5_5 - 0.00238095238095238*G9_1_5_6 - 0.00238095238095238*G9_1_5_7 - 0.000793650793650793*G9_1_6_4 - 0.00238095238095238*G9_1_6_5 - 0.00158730158730159*G9_1_6_6 - 0.000793650793650794*G9_1_6_7 - 0.000793650793650793*G9_1_7_4 - 0.00238095238095238*G9_1_7_5 - 0.000793650793650794*G9_1_7_6 - 0.00158730158730159*G9_1_7_7 - 0.000793650793650793*G9_2_4_4 - 0.000793650793650793*G9_2_4_5 - 0.000793650793650793*G9_2_4_6 - 0.000396825396825397*G9_2_4_7 - 0.000793650793650793*G9_2_5_4 - 0.00238095238095238*G9_2_5_5 - 0.00158730158730159*G9_2_5_6 - 0.000793650793650794*G9_2_5_7 - 0.000793650793650793*G9_2_6_4 - 0.00158730158730159*G9_2_6_5 - 0.00238095238095238*G9_2_6_6 - 0.000793650793650794*G9_2_6_7 - 0.000396825396825397*G9_2_7_4 - 0.000793650793650794*G9_2_7_5 - 0.000793650793650794*G9_2_7_6 - 0.000793650793650793*G9_2_7_7 - 0.000793650793650793*G9_3_4_4 - 0.000793650793650793*G9_3_4_5 - 0.000396825396825397*G9_3_4_6 - 0.000793650793650793*G9_3_4_7 - 0.000793650793650793*G9_3_5_4 - 0.00238095238095238*G9_3_5_5 - 0.000793650793650794*G9_3_5_6 - 0.00158730158730159*G9_3_5_7 - 0.000396825396825397*G9_3_6_4 - 0.000793650793650794*G9_3_6_5 - 0.000793650793650793*G9_3_6_6 - 0.000793650793650793*G9_3_6_7 - 0.000793650793650793*G9_3_7_4 - 0.00158730158730159*G9_3_7_5 - 0.000793650793650793*G9_3_7_6 - 0.00238095238095238*G9_3_7_7 + 0.00555555555555554*G10_0_4 + 0.00555555555555554*G10_0_5 + 0.00277777777777777*G10_0_6 + 0.00277777777777777*G10_0_7 + 0.00555555555555554*G10_1_4 + 0.0166666666666666*G10_1_5 + 0.00555555555555554*G10_1_6 + 0.00555555555555554*G10_1_7 + 0.00277777777777777*G10_2_4 + 0.00555555555555554*G10_2_5 + 0.00555555555555554*G10_2_6 + 0.00277777777777777*G10_2_7 + 0.00277777777777777*G10_3_4 + 0.00555555555555554*G10_3_5 + 0.00277777777777777*G10_3_6 + 0.00555555555555554*G10_3_7 - 0.0416666666666666*G11_0_4_0_0 - 0.0416666666666666*G11_0_4_0_1 - 0.0416666666666666*G11_0_4_0_2 + 0.0416666666666666*G11_0_5_0_0 + 0.0416666666666666*G11_0_6_0_1 + 0.0416666666666666*G11_0_7_0_2 - 0.0416666666666666*G11_1_4_0_0 - 0.0416666666666666*G11_1_4_0_1 - 0.0416666666666666*G11_1_4_0_2 + 0.0416666666666666*G11_1_5_0_0 + 0.0416666666666666*G11_1_6_0_1 + 0.0416666666666666*G11_1_7_0_2 - 0.0416666666666666*G11_2_4_0_0 - 0.0416666666666666*G11_2_4_0_1 - 0.0416666666666666*G11_2_4_0_2 + 0.0416666666666666*G11_2_5_0_0 + 0.0416666666666666*G11_2_6_0_1 + 0.0416666666666666*G11_2_7_0_2 - 0.0416666666666666*G11_3_4_0_0 - 0.0416666666666666*G11_3_4_0_1 - 0.0416666666666666*G11_3_4_0_2 + 0.0416666666666666*G11_3_5_0_0 + 0.0416666666666666*G11_3_6_0_1 + 0.0416666666666666*G11_3_7_0_2;
-    A[2] = -0.00833333333333331*G7_0 - 0.00833333333333331*G7_1 - 0.0166666666666666*G7_2 - 0.00833333333333331*G7_3 + 0.00119047619047619*G8_0_4_4_4 + 0.000297619047619047*G8_0_4_4_5 + 0.000595238095238095*G8_0_4_4_6 + 0.000297619047619048*G8_0_4_4_7 + 0.000297619047619047*G8_0_4_5_4 + 0.000198412698412698*G8_0_4_5_5 + 0.000198412698412698*G8_0_4_5_6 + 9.92063492063492e-05*G8_0_4_5_7 + 0.000595238095238095*G8_0_4_6_4 + 0.000198412698412698*G8_0_4_6_5 + 0.000595238095238095*G8_0_4_6_6 + 0.000198412698412698*G8_0_4_6_7 + 0.000297619047619048*G8_0_4_7_4 + 9.92063492063492e-05*G8_0_4_7_5 + 0.000198412698412698*G8_0_4_7_6 + 0.000198412698412698*G8_0_4_7_7 + 0.000297619047619047*G8_0_5_4_4 + 0.000198412698412698*G8_0_5_4_5 + 0.000198412698412698*G8_0_5_4_6 + 9.92063492063492e-05*G8_0_5_4_7 + 0.000198412698412698*G8_0_5_5_4 + 0.000297619047619047*G8_0_5_5_5 + 0.000198412698412698*G8_0_5_5_6 + 9.92063492063492e-05*G8_0_5_5_7 + 0.000198412698412698*G8_0_5_6_4 + 0.000198412698412698*G8_0_5_6_5 + 0.000297619047619047*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 9.92063492063492e-05*G8_0_5_7_4 + 9.92063492063492e-05*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 9.92063492063492e-05*G8_0_5_7_7 + 0.000595238095238095*G8_0_6_4_4 + 0.000198412698412698*G8_0_6_4_5 + 0.000595238095238095*G8_0_6_4_6 + 0.000198412698412698*G8_0_6_4_7 + 0.000198412698412698*G8_0_6_5_4 + 0.000198412698412698*G8_0_6_5_5 + 0.000297619047619047*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000595238095238095*G8_0_6_6_4 + 0.000297619047619047*G8_0_6_6_5 + 0.00119047619047619*G8_0_6_6_6 + 0.000297619047619047*G8_0_6_6_7 + 0.000198412698412698*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 0.000297619047619047*G8_0_6_7_6 + 0.000198412698412698*G8_0_6_7_7 + 0.000297619047619048*G8_0_7_4_4 + 9.92063492063492e-05*G8_0_7_4_5 + 0.000198412698412698*G8_0_7_4_6 + 0.000198412698412698*G8_0_7_4_7 + 9.92063492063492e-05*G8_0_7_5_4 + 9.92063492063492e-05*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 9.92063492063492e-05*G8_0_7_5_7 + 0.000198412698412698*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 0.000297619047619047*G8_0_7_6_6 + 0.000198412698412698*G8_0_7_6_7 + 0.000198412698412698*G8_0_7_7_4 + 9.92063492063492e-05*G8_0_7_7_5 + 0.000198412698412698*G8_0_7_7_6 + 0.000297619047619047*G8_0_7_7_7 + 0.000297619047619047*G8_1_4_4_4 + 0.000198412698412698*G8_1_4_4_5 + 0.000198412698412698*G8_1_4_4_6 + 9.92063492063492e-05*G8_1_4_4_7 + 0.000198412698412698*G8_1_4_5_4 + 0.000297619047619047*G8_1_4_5_5 + 0.000198412698412698*G8_1_4_5_6 + 9.92063492063492e-05*G8_1_4_5_7 + 0.000198412698412698*G8_1_4_6_4 + 0.000198412698412698*G8_1_4_6_5 + 0.000297619047619047*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 9.92063492063492e-05*G8_1_4_7_4 + 9.92063492063492e-05*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 9.92063492063492e-05*G8_1_4_7_7 + 0.000198412698412698*G8_1_5_4_4 + 0.000297619047619047*G8_1_5_4_5 + 0.000198412698412698*G8_1_5_4_6 + 9.92063492063492e-05*G8_1_5_4_7 + 0.000297619047619048*G8_1_5_5_4 + 0.00119047619047619*G8_1_5_5_5 + 0.000595238095238095*G8_1_5_5_6 + 0.000297619047619048*G8_1_5_5_7 + 0.000198412698412698*G8_1_5_6_4 + 0.000595238095238095*G8_1_5_6_5 + 0.000595238095238095*G8_1_5_6_6 + 0.000198412698412698*G8_1_5_6_7 + 9.92063492063492e-05*G8_1_5_7_4 + 0.000297619047619048*G8_1_5_7_5 + 0.000198412698412698*G8_1_5_7_6 + 0.000198412698412698*G8_1_5_7_7 + 0.000198412698412698*G8_1_6_4_4 + 0.000198412698412698*G8_1_6_4_5 + 0.000297619047619047*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 0.000198412698412698*G8_1_6_5_4 + 0.000595238095238095*G8_1_6_5_5 + 0.000595238095238095*G8_1_6_5_6 + 0.000198412698412698*G8_1_6_5_7 + 0.000297619047619047*G8_1_6_6_4 + 0.000595238095238095*G8_1_6_6_5 + 0.00119047619047619*G8_1_6_6_6 + 0.000297619047619048*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 0.000198412698412698*G8_1_6_7_5 + 0.000297619047619048*G8_1_6_7_6 + 0.000198412698412698*G8_1_6_7_7 + 9.92063492063492e-05*G8_1_7_4_4 + 9.92063492063492e-05*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 9.92063492063492e-05*G8_1_7_4_7 + 9.92063492063492e-05*G8_1_7_5_4 + 0.000297619047619048*G8_1_7_5_5 + 0.000198412698412698*G8_1_7_5_6 + 0.000198412698412698*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 0.000198412698412698*G8_1_7_6_5 + 0.000297619047619048*G8_1_7_6_6 + 0.000198412698412698*G8_1_7_6_7 + 9.92063492063492e-05*G8_1_7_7_4 + 0.000198412698412698*G8_1_7_7_5 + 0.000198412698412698*G8_1_7_7_6 + 0.000297619047619047*G8_1_7_7_7 + 0.000595238095238095*G8_2_4_4_4 + 0.000198412698412698*G8_2_4_4_5 + 0.000595238095238095*G8_2_4_4_6 + 0.000198412698412698*G8_2_4_4_7 + 0.000198412698412698*G8_2_4_5_4 + 0.000198412698412698*G8_2_4_5_5 + 0.000297619047619047*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000595238095238095*G8_2_4_6_4 + 0.000297619047619047*G8_2_4_6_5 + 0.00119047619047619*G8_2_4_6_6 + 0.000297619047619047*G8_2_4_6_7 + 0.000198412698412698*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 0.000297619047619047*G8_2_4_7_6 + 0.000198412698412698*G8_2_4_7_7 + 0.000198412698412698*G8_2_5_4_4 + 0.000198412698412698*G8_2_5_4_5 + 0.000297619047619047*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 0.000198412698412698*G8_2_5_5_4 + 0.000595238095238095*G8_2_5_5_5 + 0.000595238095238095*G8_2_5_5_6 + 0.000198412698412698*G8_2_5_5_7 + 0.000297619047619047*G8_2_5_6_4 + 0.000595238095238095*G8_2_5_6_5 + 0.00119047619047619*G8_2_5_6_6 + 0.000297619047619048*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 0.000198412698412698*G8_2_5_7_5 + 0.000297619047619048*G8_2_5_7_6 + 0.000198412698412698*G8_2_5_7_7 + 0.000595238095238095*G8_2_6_4_4 + 0.000297619047619047*G8_2_6_4_5 + 0.00119047619047619*G8_2_6_4_6 + 0.000297619047619047*G8_2_6_4_7 + 0.000297619047619047*G8_2_6_5_4 + 0.000595238095238095*G8_2_6_5_5 + 0.00119047619047619*G8_2_6_5_6 + 0.000297619047619048*G8_2_6_5_7 + 0.00119047619047619*G8_2_6_6_4 + 0.00119047619047619*G8_2_6_6_5 + 0.00595238095238095*G8_2_6_6_6 + 0.00119047619047619*G8_2_6_6_7 + 0.000297619047619047*G8_2_6_7_4 + 0.000297619047619048*G8_2_6_7_5 + 0.00119047619047619*G8_2_6_7_6 + 0.000595238095238095*G8_2_6_7_7 + 0.000198412698412698*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 0.000297619047619047*G8_2_7_4_6 + 0.000198412698412698*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 0.000198412698412698*G8_2_7_5_5 + 0.000297619047619048*G8_2_7_5_6 + 0.000198412698412698*G8_2_7_5_7 + 0.000297619047619047*G8_2_7_6_4 + 0.000297619047619048*G8_2_7_6_5 + 0.00119047619047619*G8_2_7_6_6 + 0.000595238095238095*G8_2_7_6_7 + 0.000198412698412698*G8_2_7_7_4 + 0.000198412698412698*G8_2_7_7_5 + 0.000595238095238095*G8_2_7_7_6 + 0.000595238095238095*G8_2_7_7_7 + 0.000297619047619048*G8_3_4_4_4 + 9.92063492063492e-05*G8_3_4_4_5 + 0.000198412698412698*G8_3_4_4_6 + 0.000198412698412698*G8_3_4_4_7 + 9.92063492063492e-05*G8_3_4_5_4 + 9.92063492063492e-05*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 9.92063492063492e-05*G8_3_4_5_7 + 0.000198412698412698*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 0.000297619047619047*G8_3_4_6_6 + 0.000198412698412698*G8_3_4_6_7 + 0.000198412698412698*G8_3_4_7_4 + 9.92063492063492e-05*G8_3_4_7_5 + 0.000198412698412698*G8_3_4_7_6 + 0.000297619047619047*G8_3_4_7_7 + 9.92063492063492e-05*G8_3_5_4_4 + 9.92063492063492e-05*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 9.92063492063492e-05*G8_3_5_4_7 + 9.92063492063492e-05*G8_3_5_5_4 + 0.000297619047619048*G8_3_5_5_5 + 0.000198412698412698*G8_3_5_5_6 + 0.000198412698412698*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 0.000198412698412698*G8_3_5_6_5 + 0.000297619047619048*G8_3_5_6_6 + 0.000198412698412698*G8_3_5_6_7 + 9.92063492063492e-05*G8_3_5_7_4 + 0.000198412698412698*G8_3_5_7_5 + 0.000198412698412698*G8_3_5_7_6 + 0.000297619047619047*G8_3_5_7_7 + 0.000198412698412698*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 0.000297619047619047*G8_3_6_4_6 + 0.000198412698412698*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 0.000198412698412698*G8_3_6_5_5 + 0.000297619047619048*G8_3_6_5_6 + 0.000198412698412698*G8_3_6_5_7 + 0.000297619047619047*G8_3_6_6_4 + 0.000297619047619048*G8_3_6_6_5 + 0.00119047619047619*G8_3_6_6_6 + 0.000595238095238095*G8_3_6_6_7 + 0.000198412698412698*G8_3_6_7_4 + 0.000198412698412698*G8_3_6_7_5 + 0.000595238095238095*G8_3_6_7_6 + 0.000595238095238095*G8_3_6_7_7 + 0.000198412698412698*G8_3_7_4_4 + 9.92063492063492e-05*G8_3_7_4_5 + 0.000198412698412698*G8_3_7_4_6 + 0.000297619047619047*G8_3_7_4_7 + 9.92063492063492e-05*G8_3_7_5_4 + 0.000198412698412698*G8_3_7_5_5 + 0.000198412698412698*G8_3_7_5_6 + 0.000297619047619047*G8_3_7_5_7 + 0.000198412698412698*G8_3_7_6_4 + 0.000198412698412698*G8_3_7_6_5 + 0.000595238095238095*G8_3_7_6_6 + 0.000595238095238095*G8_3_7_6_7 + 0.000297619047619047*G8_3_7_7_4 + 0.000297619047619047*G8_3_7_7_5 + 0.000595238095238095*G8_3_7_7_6 + 0.00119047619047619*G8_3_7_7_7 - 0.00238095238095238*G9_0_4_4 - 0.000793650793650793*G9_0_4_5 - 0.00158730158730159*G9_0_4_6 - 0.000793650793650793*G9_0_4_7 - 0.000793650793650793*G9_0_5_4 - 0.000793650793650793*G9_0_5_5 - 0.000793650793650793*G9_0_5_6 - 0.000396825396825397*G9_0_5_7 - 0.00158730158730159*G9_0_6_4 - 0.000793650793650793*G9_0_6_5 - 0.00238095238095238*G9_0_6_6 - 0.000793650793650793*G9_0_6_7 - 0.000793650793650793*G9_0_7_4 - 0.000396825396825397*G9_0_7_5 - 0.000793650793650793*G9_0_7_6 - 0.000793650793650793*G9_0_7_7 - 0.000793650793650793*G9_1_4_4 - 0.000793650793650793*G9_1_4_5 - 0.000793650793650793*G9_1_4_6 - 0.000396825396825397*G9_1_4_7 - 0.000793650793650793*G9_1_5_4 - 0.00238095238095238*G9_1_5_5 - 0.00158730158730159*G9_1_5_6 - 0.000793650793650794*G9_1_5_7 - 0.000793650793650793*G9_1_6_4 - 0.00158730158730159*G9_1_6_5 - 0.00238095238095238*G9_1_6_6 - 0.000793650793650794*G9_1_6_7 - 0.000396825396825397*G9_1_7_4 - 0.000793650793650794*G9_1_7_5 - 0.000793650793650794*G9_1_7_6 - 0.000793650793650794*G9_1_7_7 - 0.00158730158730159*G9_2_4_4 - 0.000793650793650793*G9_2_4_5 - 0.00238095238095238*G9_2_4_6 - 0.000793650793650793*G9_2_4_7 - 0.000793650793650793*G9_2_5_4 - 0.00158730158730159*G9_2_5_5 - 0.00238095238095238*G9_2_5_6 - 0.000793650793650794*G9_2_5_7 - 0.00238095238095238*G9_2_6_4 - 0.00238095238095238*G9_2_6_5 - 0.00952380952380951*G9_2_6_6 - 0.00238095238095238*G9_2_6_7 - 0.000793650793650793*G9_2_7_4 - 0.000793650793650793*G9_2_7_5 - 0.00238095238095238*G9_2_7_6 - 0.00158730158730159*G9_2_7_7 - 0.000793650793650793*G9_3_4_4 - 0.000396825396825397*G9_3_4_5 - 0.000793650793650793*G9_3_4_6 - 0.000793650793650793*G9_3_4_7 - 0.000396825396825397*G9_3_5_4 - 0.000793650793650794*G9_3_5_5 - 0.000793650793650793*G9_3_5_6 - 0.000793650793650793*G9_3_5_7 - 0.000793650793650793*G9_3_6_4 - 0.000793650793650794*G9_3_6_5 - 0.00238095238095238*G9_3_6_6 - 0.00158730158730159*G9_3_6_7 - 0.000793650793650793*G9_3_7_4 - 0.000793650793650793*G9_3_7_5 - 0.00158730158730159*G9_3_7_6 - 0.00238095238095238*G9_3_7_7 + 0.00555555555555554*G10_0_4 + 0.00277777777777777*G10_0_5 + 0.00555555555555554*G10_0_6 + 0.00277777777777777*G10_0_7 + 0.00277777777777777*G10_1_4 + 0.00555555555555554*G10_1_5 + 0.00555555555555554*G10_1_6 + 0.00277777777777777*G10_1_7 + 0.00555555555555554*G10_2_4 + 0.00555555555555554*G10_2_5 + 0.0166666666666666*G10_2_6 + 0.00555555555555554*G10_2_7 + 0.00277777777777777*G10_3_4 + 0.00277777777777777*G10_3_5 + 0.00555555555555554*G10_3_6 + 0.00555555555555554*G10_3_7 - 0.0416666666666666*G11_0_4_1_0 - 0.0416666666666666*G11_0_4_1_1 - 0.0416666666666666*G11_0_4_1_2 + 0.0416666666666666*G11_0_5_1_0 + 0.0416666666666666*G11_0_6_1_1 + 0.0416666666666666*G11_0_7_1_2 - 0.0416666666666666*G11_1_4_1_0 - 0.0416666666666666*G11_1_4_1_1 - 0.0416666666666666*G11_1_4_1_2 + 0.0416666666666666*G11_1_5_1_0 + 0.0416666666666666*G11_1_6_1_1 + 0.0416666666666666*G11_1_7_1_2 - 0.0416666666666666*G11_2_4_1_0 - 0.0416666666666666*G11_2_4_1_1 - 0.0416666666666666*G11_2_4_1_2 + 0.0416666666666666*G11_2_5_1_0 + 0.0416666666666666*G11_2_6_1_1 + 0.0416666666666666*G11_2_7_1_2 - 0.0416666666666666*G11_3_4_1_0 - 0.0416666666666666*G11_3_4_1_1 - 0.0416666666666666*G11_3_4_1_2 + 0.0416666666666666*G11_3_5_1_0 + 0.0416666666666666*G11_3_6_1_1 + 0.0416666666666666*G11_3_7_1_2;
-    A[3] = -0.00833333333333331*G7_0 - 0.00833333333333331*G7_1 - 0.00833333333333331*G7_2 - 0.0166666666666666*G7_3 + 0.00119047619047619*G8_0_4_4_4 + 0.000297619047619047*G8_0_4_4_5 + 0.000297619047619048*G8_0_4_4_6 + 0.000595238095238094*G8_0_4_4_7 + 0.000297619047619047*G8_0_4_5_4 + 0.000198412698412698*G8_0_4_5_5 + 9.92063492063492e-05*G8_0_4_5_6 + 0.000198412698412698*G8_0_4_5_7 + 0.000297619047619048*G8_0_4_6_4 + 9.92063492063492e-05*G8_0_4_6_5 + 0.000198412698412698*G8_0_4_6_6 + 0.000198412698412698*G8_0_4_6_7 + 0.000595238095238095*G8_0_4_7_4 + 0.000198412698412698*G8_0_4_7_5 + 0.000198412698412698*G8_0_4_7_6 + 0.000595238095238094*G8_0_4_7_7 + 0.000297619047619047*G8_0_5_4_4 + 0.000198412698412698*G8_0_5_4_5 + 9.92063492063492e-05*G8_0_5_4_6 + 0.000198412698412698*G8_0_5_4_7 + 0.000198412698412698*G8_0_5_5_4 + 0.000297619047619047*G8_0_5_5_5 + 9.92063492063492e-05*G8_0_5_5_6 + 0.000198412698412698*G8_0_5_5_7 + 9.92063492063492e-05*G8_0_5_6_4 + 9.92063492063492e-05*G8_0_5_6_5 + 9.92063492063492e-05*G8_0_5_6_6 + 9.92063492063492e-05*G8_0_5_6_7 + 0.000198412698412698*G8_0_5_7_4 + 0.000198412698412698*G8_0_5_7_5 + 9.92063492063492e-05*G8_0_5_7_6 + 0.000297619047619047*G8_0_5_7_7 + 0.000297619047619048*G8_0_6_4_4 + 9.92063492063492e-05*G8_0_6_4_5 + 0.000198412698412698*G8_0_6_4_6 + 0.000198412698412698*G8_0_6_4_7 + 9.92063492063492e-05*G8_0_6_5_4 + 9.92063492063492e-05*G8_0_6_5_5 + 9.92063492063492e-05*G8_0_6_5_6 + 9.92063492063492e-05*G8_0_6_5_7 + 0.000198412698412698*G8_0_6_6_4 + 9.92063492063492e-05*G8_0_6_6_5 + 0.000297619047619047*G8_0_6_6_6 + 0.000198412698412698*G8_0_6_6_7 + 0.000198412698412698*G8_0_6_7_4 + 9.92063492063492e-05*G8_0_6_7_5 + 0.000198412698412698*G8_0_6_7_6 + 0.000297619047619047*G8_0_6_7_7 + 0.000595238095238095*G8_0_7_4_4 + 0.000198412698412698*G8_0_7_4_5 + 0.000198412698412698*G8_0_7_4_6 + 0.000595238095238094*G8_0_7_4_7 + 0.000198412698412698*G8_0_7_5_4 + 0.000198412698412698*G8_0_7_5_5 + 9.92063492063492e-05*G8_0_7_5_6 + 0.000297619047619047*G8_0_7_5_7 + 0.000198412698412698*G8_0_7_6_4 + 9.92063492063492e-05*G8_0_7_6_5 + 0.000198412698412698*G8_0_7_6_6 + 0.000297619047619047*G8_0_7_6_7 + 0.000595238095238094*G8_0_7_7_4 + 0.000297619047619047*G8_0_7_7_5 + 0.000297619047619047*G8_0_7_7_6 + 0.00119047619047619*G8_0_7_7_7 + 0.000297619047619047*G8_1_4_4_4 + 0.000198412698412698*G8_1_4_4_5 + 9.92063492063492e-05*G8_1_4_4_6 + 0.000198412698412698*G8_1_4_4_7 + 0.000198412698412698*G8_1_4_5_4 + 0.000297619047619047*G8_1_4_5_5 + 9.92063492063492e-05*G8_1_4_5_6 + 0.000198412698412698*G8_1_4_5_7 + 9.92063492063492e-05*G8_1_4_6_4 + 9.92063492063492e-05*G8_1_4_6_5 + 9.92063492063492e-05*G8_1_4_6_6 + 9.92063492063492e-05*G8_1_4_6_7 + 0.000198412698412698*G8_1_4_7_4 + 0.000198412698412698*G8_1_4_7_5 + 9.92063492063492e-05*G8_1_4_7_6 + 0.000297619047619047*G8_1_4_7_7 + 0.000198412698412698*G8_1_5_4_4 + 0.000297619047619047*G8_1_5_4_5 + 9.92063492063492e-05*G8_1_5_4_6 + 0.000198412698412698*G8_1_5_4_7 + 0.000297619047619047*G8_1_5_5_4 + 0.00119047619047619*G8_1_5_5_5 + 0.000297619047619048*G8_1_5_5_6 + 0.000595238095238095*G8_1_5_5_7 + 9.92063492063492e-05*G8_1_5_6_4 + 0.000297619047619048*G8_1_5_6_5 + 0.000198412698412698*G8_1_5_6_6 + 0.000198412698412698*G8_1_5_6_7 + 0.000198412698412698*G8_1_5_7_4 + 0.000595238095238095*G8_1_5_7_5 + 0.000198412698412698*G8_1_5_7_6 + 0.000595238095238095*G8_1_5_7_7 + 9.92063492063492e-05*G8_1_6_4_4 + 9.92063492063492e-05*G8_1_6_4_5 + 9.92063492063492e-05*G8_1_6_4_6 + 9.92063492063492e-05*G8_1_6_4_7 + 9.92063492063492e-05*G8_1_6_5_4 + 0.000297619047619048*G8_1_6_5_5 + 0.000198412698412698*G8_1_6_5_6 + 0.000198412698412698*G8_1_6_5_7 + 9.92063492063492e-05*G8_1_6_6_4 + 0.000198412698412698*G8_1_6_6_5 + 0.000297619047619048*G8_1_6_6_6 + 0.000198412698412698*G8_1_6_6_7 + 9.92063492063492e-05*G8_1_6_7_4 + 0.000198412698412698*G8_1_6_7_5 + 0.000198412698412698*G8_1_6_7_6 + 0.000297619047619047*G8_1_6_7_7 + 0.000198412698412698*G8_1_7_4_4 + 0.000198412698412698*G8_1_7_4_5 + 9.92063492063492e-05*G8_1_7_4_6 + 0.000297619047619047*G8_1_7_4_7 + 0.000198412698412698*G8_1_7_5_4 + 0.000595238095238095*G8_1_7_5_5 + 0.000198412698412698*G8_1_7_5_6 + 0.000595238095238095*G8_1_7_5_7 + 9.92063492063492e-05*G8_1_7_6_4 + 0.000198412698412698*G8_1_7_6_5 + 0.000198412698412698*G8_1_7_6_6 + 0.000297619047619047*G8_1_7_6_7 + 0.000297619047619047*G8_1_7_7_4 + 0.000595238095238095*G8_1_7_7_5 + 0.000297619047619047*G8_1_7_7_6 + 0.00119047619047619*G8_1_7_7_7 + 0.000297619047619048*G8_2_4_4_4 + 9.92063492063492e-05*G8_2_4_4_5 + 0.000198412698412698*G8_2_4_4_6 + 0.000198412698412698*G8_2_4_4_7 + 9.92063492063492e-05*G8_2_4_5_4 + 9.92063492063492e-05*G8_2_4_5_5 + 9.92063492063492e-05*G8_2_4_5_6 + 9.92063492063492e-05*G8_2_4_5_7 + 0.000198412698412698*G8_2_4_6_4 + 9.92063492063492e-05*G8_2_4_6_5 + 0.000297619047619047*G8_2_4_6_6 + 0.000198412698412698*G8_2_4_6_7 + 0.000198412698412698*G8_2_4_7_4 + 9.92063492063492e-05*G8_2_4_7_5 + 0.000198412698412698*G8_2_4_7_6 + 0.000297619047619047*G8_2_4_7_7 + 9.92063492063492e-05*G8_2_5_4_4 + 9.92063492063492e-05*G8_2_5_4_5 + 9.92063492063492e-05*G8_2_5_4_6 + 9.92063492063492e-05*G8_2_5_4_7 + 9.92063492063492e-05*G8_2_5_5_4 + 0.000297619047619048*G8_2_5_5_5 + 0.000198412698412698*G8_2_5_5_6 + 0.000198412698412698*G8_2_5_5_7 + 9.92063492063492e-05*G8_2_5_6_4 + 0.000198412698412698*G8_2_5_6_5 + 0.000297619047619048*G8_2_5_6_6 + 0.000198412698412698*G8_2_5_6_7 + 9.92063492063492e-05*G8_2_5_7_4 + 0.000198412698412698*G8_2_5_7_5 + 0.000198412698412698*G8_2_5_7_6 + 0.000297619047619047*G8_2_5_7_7 + 0.000198412698412698*G8_2_6_4_4 + 9.92063492063492e-05*G8_2_6_4_5 + 0.000297619047619047*G8_2_6_4_6 + 0.000198412698412698*G8_2_6_4_7 + 9.92063492063492e-05*G8_2_6_5_4 + 0.000198412698412698*G8_2_6_5_5 + 0.000297619047619048*G8_2_6_5_6 + 0.000198412698412698*G8_2_6_5_7 + 0.000297619047619047*G8_2_6_6_4 + 0.000297619047619048*G8_2_6_6_5 + 0.00119047619047619*G8_2_6_6_6 + 0.000595238095238095*G8_2_6_6_7 + 0.000198412698412698*G8_2_6_7_4 + 0.000198412698412698*G8_2_6_7_5 + 0.000595238095238095*G8_2_6_7_6 + 0.000595238095238095*G8_2_6_7_7 + 0.000198412698412698*G8_2_7_4_4 + 9.92063492063492e-05*G8_2_7_4_5 + 0.000198412698412698*G8_2_7_4_6 + 0.000297619047619047*G8_2_7_4_7 + 9.92063492063492e-05*G8_2_7_5_4 + 0.000198412698412698*G8_2_7_5_5 + 0.000198412698412698*G8_2_7_5_6 + 0.000297619047619047*G8_2_7_5_7 + 0.000198412698412698*G8_2_7_6_4 + 0.000198412698412698*G8_2_7_6_5 + 0.000595238095238095*G8_2_7_6_6 + 0.000595238095238095*G8_2_7_6_7 + 0.000297619047619047*G8_2_7_7_4 + 0.000297619047619047*G8_2_7_7_5 + 0.000595238095238095*G8_2_7_7_6 + 0.00119047619047619*G8_2_7_7_7 + 0.000595238095238094*G8_3_4_4_4 + 0.000198412698412698*G8_3_4_4_5 + 0.000198412698412698*G8_3_4_4_6 + 0.000595238095238094*G8_3_4_4_7 + 0.000198412698412698*G8_3_4_5_4 + 0.000198412698412698*G8_3_4_5_5 + 9.92063492063492e-05*G8_3_4_5_6 + 0.000297619047619047*G8_3_4_5_7 + 0.000198412698412698*G8_3_4_6_4 + 9.92063492063492e-05*G8_3_4_6_5 + 0.000198412698412698*G8_3_4_6_6 + 0.000297619047619047*G8_3_4_6_7 + 0.000595238095238094*G8_3_4_7_4 + 0.000297619047619047*G8_3_4_7_5 + 0.000297619047619047*G8_3_4_7_6 + 0.00119047619047619*G8_3_4_7_7 + 0.000198412698412698*G8_3_5_4_4 + 0.000198412698412698*G8_3_5_4_5 + 9.92063492063492e-05*G8_3_5_4_6 + 0.000297619047619047*G8_3_5_4_7 + 0.000198412698412698*G8_3_5_5_4 + 0.000595238095238095*G8_3_5_5_5 + 0.000198412698412698*G8_3_5_5_6 + 0.000595238095238095*G8_3_5_5_7 + 9.92063492063492e-05*G8_3_5_6_4 + 0.000198412698412698*G8_3_5_6_5 + 0.000198412698412698*G8_3_5_6_6 + 0.000297619047619047*G8_3_5_6_7 + 0.000297619047619047*G8_3_5_7_4 + 0.000595238095238095*G8_3_5_7_5 + 0.000297619047619047*G8_3_5_7_6 + 0.00119047619047619*G8_3_5_7_7 + 0.000198412698412698*G8_3_6_4_4 + 9.92063492063492e-05*G8_3_6_4_5 + 0.000198412698412698*G8_3_6_4_6 + 0.000297619047619047*G8_3_6_4_7 + 9.92063492063492e-05*G8_3_6_5_4 + 0.000198412698412698*G8_3_6_5_5 + 0.000198412698412698*G8_3_6_5_6 + 0.000297619047619047*G8_3_6_5_7 + 0.000198412698412698*G8_3_6_6_4 + 0.000198412698412698*G8_3_6_6_5 + 0.000595238095238095*G8_3_6_6_6 + 0.000595238095238095*G8_3_6_6_7 + 0.000297619047619047*G8_3_6_7_4 + 0.000297619047619047*G8_3_6_7_5 + 0.000595238095238095*G8_3_6_7_6 + 0.00119047619047619*G8_3_6_7_7 + 0.000595238095238094*G8_3_7_4_4 + 0.000297619047619047*G8_3_7_4_5 + 0.000297619047619047*G8_3_7_4_6 + 0.00119047619047619*G8_3_7_4_7 + 0.000297619047619047*G8_3_7_5_4 + 0.000595238095238095*G8_3_7_5_5 + 0.000297619047619047*G8_3_7_5_6 + 0.00119047619047619*G8_3_7_5_7 + 0.000297619047619047*G8_3_7_6_4 + 0.000297619047619047*G8_3_7_6_5 + 0.000595238095238095*G8_3_7_6_6 + 0.00119047619047619*G8_3_7_6_7 + 0.00119047619047619*G8_3_7_7_4 + 0.00119047619047619*G8_3_7_7_5 + 0.00119047619047619*G8_3_7_7_6 + 0.00595238095238094*G8_3_7_7_7 - 0.00238095238095238*G9_0_4_4 - 0.000793650793650793*G9_0_4_5 - 0.000793650793650793*G9_0_4_6 - 0.00158730158730159*G9_0_4_7 - 0.000793650793650793*G9_0_5_4 - 0.000793650793650793*G9_0_5_5 - 0.000396825396825397*G9_0_5_6 - 0.000793650793650793*G9_0_5_7 - 0.000793650793650793*G9_0_6_4 - 0.000396825396825397*G9_0_6_5 - 0.000793650793650793*G9_0_6_6 - 0.000793650793650793*G9_0_6_7 - 0.00158730158730159*G9_0_7_4 - 0.000793650793650793*G9_0_7_5 - 0.000793650793650793*G9_0_7_6 - 0.00238095238095238*G9_0_7_7 - 0.000793650793650793*G9_1_4_4 - 0.000793650793650793*G9_1_4_5 - 0.000396825396825397*G9_1_4_6 - 0.000793650793650793*G9_1_4_7 - 0.000793650793650793*G9_1_5_4 - 0.00238095238095238*G9_1_5_5 - 0.000793650793650794*G9_1_5_6 - 0.00158730158730159*G9_1_5_7 - 0.000396825396825397*G9_1_6_4 - 0.000793650793650794*G9_1_6_5 - 0.000793650793650793*G9_1_6_6 - 0.000793650793650793*G9_1_6_7 - 0.000793650793650793*G9_1_7_4 - 0.00158730158730159*G9_1_7_5 - 0.000793650793650793*G9_1_7_6 - 0.00238095238095238*G9_1_7_7 - 0.000793650793650793*G9_2_4_4 - 0.000396825396825397*G9_2_4_5 - 0.000793650793650793*G9_2_4_6 - 0.000793650793650793*G9_2_4_7 - 0.000396825396825397*G9_2_5_4 - 0.000793650793650794*G9_2_5_5 - 0.000793650793650793*G9_2_5_6 - 0.000793650793650793*G9_2_5_7 - 0.000793650793650793*G9_2_6_4 - 0.000793650793650794*G9_2_6_5 - 0.00238095238095238*G9_2_6_6 - 0.00158730158730159*G9_2_6_7 - 0.000793650793650793*G9_2_7_4 - 0.000793650793650793*G9_2_7_5 - 0.00158730158730159*G9_2_7_6 - 0.00238095238095238*G9_2_7_7 - 0.00158730158730159*G9_3_4_4 - 0.000793650793650793*G9_3_4_5 - 0.000793650793650793*G9_3_4_6 - 0.00238095238095238*G9_3_4_7 - 0.000793650793650793*G9_3_5_4 - 0.00158730158730159*G9_3_5_5 - 0.000793650793650793*G9_3_5_6 - 0.00238095238095238*G9_3_5_7 - 0.000793650793650793*G9_3_6_4 - 0.000793650793650793*G9_3_6_5 - 0.00158730158730159*G9_3_6_6 - 0.00238095238095238*G9_3_6_7 - 0.00238095238095238*G9_3_7_4 - 0.00238095238095238*G9_3_7_5 - 0.00238095238095238*G9_3_7_6 - 0.00952380952380951*G9_3_7_7 + 0.00555555555555554*G10_0_4 + 0.00277777777777777*G10_0_5 + 0.00277777777777777*G10_0_6 + 0.00555555555555554*G10_0_7 + 0.00277777777777777*G10_1_4 + 0.00555555555555554*G10_1_5 + 0.00277777777777777*G10_1_6 + 0.00555555555555554*G10_1_7 + 0.00277777777777777*G10_2_4 + 0.00277777777777777*G10_2_5 + 0.00555555555555554*G10_2_6 + 0.00555555555555554*G10_2_7 + 0.00555555555555554*G10_3_4 + 0.00555555555555554*G10_3_5 + 0.00555555555555554*G10_3_6 + 0.0166666666666666*G10_3_7 - 0.0416666666666666*G11_0_4_2_0 - 0.0416666666666666*G11_0_4_2_1 - 0.0416666666666666*G11_0_4_2_2 + 0.0416666666666666*G11_0_5_2_0 + 0.0416666666666666*G11_0_6_2_1 + 0.0416666666666666*G11_0_7_2_2 - 0.0416666666666666*G11_1_4_2_0 - 0.0416666666666666*G11_1_4_2_1 - 0.0416666666666666*G11_1_4_2_2 + 0.0416666666666666*G11_1_5_2_0 + 0.0416666666666666*G11_1_6_2_1 + 0.0416666666666666*G11_1_7_2_2 - 0.0416666666666666*G11_2_4_2_0 - 0.0416666666666666*G11_2_4_2_1 - 0.0416666666666666*G11_2_4_2_2 + 0.0416666666666666*G11_2_5_2_0 + 0.0416666666666666*G11_2_6_2_1 + 0.0416666666666666*G11_2_7_2_2 - 0.0416666666666666*G11_3_4_2_0 - 0.0416666666666666*G11_3_4_2_1 - 0.0416666666666666*G11_3_4_2_2 + 0.0416666666666666*G11_3_5_2_0 + 0.0416666666666666*G11_3_6_2_1 + 0.0416666666666666*G11_3_7_2_2;
-    A[4] = -0.0166666666666666*G0_4 - 0.00833333333333331*G0_5 - 0.00833333333333331*G0_6 - 0.00833333333333331*G0_7 + 0.0166666666666666*G1_4 + 0.00833333333333331*G1_5 + 0.00833333333333331*G1_6 + 0.00833333333333331*G1_7 + 0.0166666666666666*G2_0_0_0_0_0 + 0.0166666666666666*G2_0_0_0_0_1 + 0.0166666666666666*G2_0_0_0_0_2 + 0.0166666666666666*G2_0_0_0_1_0 + 0.0166666666666666*G2_0_0_0_1_1 + 0.0166666666666666*G2_0_0_0_1_2 + 0.0166666666666666*G2_0_0_0_2_0 + 0.0166666666666666*G2_0_0_0_2_1 + 0.0166666666666666*G2_0_0_0_2_2 + 0.00833333333333331*G2_0_0_1_0_0 + 0.00833333333333331*G2_0_0_1_0_1 + 0.00833333333333331*G2_0_0_1_0_2 + 0.00833333333333331*G2_0_0_1_1_0 + 0.00833333333333331*G2_0_0_1_1_1 + 0.00833333333333331*G2_0_0_1_1_2 + 0.00833333333333331*G2_0_0_1_2_0 + 0.00833333333333331*G2_0_0_1_2_1 + 0.00833333333333331*G2_0_0_1_2_2 + 0.00833333333333331*G2_0_0_2_0_0 + 0.00833333333333331*G2_0_0_2_0_1 + 0.00833333333333331*G2_0_0_2_0_2 + 0.00833333333333331*G2_0_0_2_1_0 + 0.00833333333333331*G2_0_0_2_1_1 + 0.00833333333333331*G2_0_0_2_1_2 + 0.00833333333333331*G2_0_0_2_2_0 + 0.00833333333333331*G2_0_0_2_2_1 + 0.00833333333333331*G2_0_0_2_2_2 + 0.00833333333333331*G2_0_0_3_0_0 + 0.00833333333333331*G2_0_0_3_0_1 + 0.00833333333333331*G2_0_0_3_0_2 + 0.00833333333333331*G2_0_0_3_1_0 + 0.00833333333333331*G2_0_0_3_1_1 + 0.00833333333333331*G2_0_0_3_1_2 + 0.00833333333333331*G2_0_0_3_2_0 + 0.00833333333333331*G2_0_0_3_2_1 + 0.00833333333333331*G2_0_0_3_2_2 - 0.0166666666666666*G2_0_1_0_0_0 - 0.0166666666666666*G2_0_1_0_1_0 - 0.0166666666666666*G2_0_1_0_2_0 - 0.00833333333333331*G2_0_1_1_0_0 - 0.00833333333333331*G2_0_1_1_1_0 - 0.00833333333333331*G2_0_1_1_2_0 - 0.00833333333333331*G2_0_1_2_0_0 - 0.00833333333333331*G2_0_1_2_1_0 - 0.00833333333333331*G2_0_1_2_2_0 - 0.00833333333333331*G2_0_1_3_0_0 - 0.00833333333333331*G2_0_1_3_1_0 - 0.00833333333333331*G2_0_1_3_2_0 - 0.0166666666666666*G2_0_2_0_0_1 - 0.0166666666666666*G2_0_2_0_1_1 - 0.0166666666666666*G2_0_2_0_2_1 - 0.00833333333333331*G2_0_2_1_0_1 - 0.00833333333333331*G2_0_2_1_1_1 - 0.00833333333333331*G2_0_2_1_2_1 - 0.00833333333333331*G2_0_2_2_0_1 - 0.00833333333333331*G2_0_2_2_1_1 - 0.00833333333333331*G2_0_2_2_2_1 - 0.00833333333333331*G2_0_2_3_0_1 - 0.00833333333333331*G2_0_2_3_1_1 - 0.00833333333333331*G2_0_2_3_2_1 - 0.0166666666666666*G2_0_3_0_0_2 - 0.0166666666666666*G2_0_3_0_1_2 - 0.0166666666666666*G2_0_3_0_2_2 - 0.00833333333333331*G2_0_3_1_0_2 - 0.00833333333333331*G2_0_3_1_1_2 - 0.00833333333333331*G2_0_3_1_2_2 - 0.00833333333333331*G2_0_3_2_0_2 - 0.00833333333333331*G2_0_3_2_1_2 - 0.00833333333333331*G2_0_3_2_2_2 - 0.00833333333333331*G2_0_3_3_0_2 - 0.00833333333333331*G2_0_3_3_1_2 - 0.00833333333333331*G2_0_3_3_2_2 + 0.00833333333333331*G2_1_0_0_0_0 + 0.00833333333333331*G2_1_0_0_0_1 + 0.00833333333333331*G2_1_0_0_0_2 + 0.00833333333333331*G2_1_0_0_1_0 + 0.00833333333333331*G2_1_0_0_1_1 + 0.00833333333333331*G2_1_0_0_1_2 + 0.00833333333333331*G2_1_0_0_2_0 + 0.00833333333333331*G2_1_0_0_2_1 + 0.00833333333333331*G2_1_0_0_2_2 + 0.0166666666666666*G2_1_0_1_0_0 + 0.0166666666666666*G2_1_0_1_0_1 + 0.0166666666666666*G2_1_0_1_0_2 + 0.0166666666666666*G2_1_0_1_1_0 + 0.0166666666666666*G2_1_0_1_1_1 + 0.0166666666666666*G2_1_0_1_1_2 + 0.0166666666666666*G2_1_0_1_2_0 + 0.0166666666666666*G2_1_0_1_2_1 + 0.0166666666666666*G2_1_0_1_2_2 + 0.00833333333333331*G2_1_0_2_0_0 + 0.00833333333333331*G2_1_0_2_0_1 + 0.00833333333333331*G2_1_0_2_0_2 + 0.00833333333333331*G2_1_0_2_1_0 + 0.00833333333333331*G2_1_0_2_1_1 + 0.00833333333333331*G2_1_0_2_1_2 + 0.00833333333333331*G2_1_0_2_2_0 + 0.00833333333333331*G2_1_0_2_2_1 + 0.00833333333333331*G2_1_0_2_2_2 + 0.00833333333333331*G2_1_0_3_0_0 + 0.00833333333333331*G2_1_0_3_0_1 + 0.00833333333333331*G2_1_0_3_0_2 + 0.00833333333333331*G2_1_0_3_1_0 + 0.00833333333333331*G2_1_0_3_1_1 + 0.00833333333333331*G2_1_0_3_1_2 + 0.00833333333333331*G2_1_0_3_2_0 + 0.00833333333333331*G2_1_0_3_2_1 + 0.00833333333333331*G2_1_0_3_2_2 - 0.00833333333333331*G2_1_1_0_0_0 - 0.00833333333333331*G2_1_1_0_1_0 - 0.00833333333333331*G2_1_1_0_2_0 - 0.0166666666666666*G2_1_1_1_0_0 - 0.0166666666666666*G2_1_1_1_1_0 - 0.0166666666666666*G2_1_1_1_2_0 - 0.00833333333333331*G2_1_1_2_0_0 - 0.00833333333333331*G2_1_1_2_1_0 - 0.00833333333333331*G2_1_1_2_2_0 - 0.00833333333333331*G2_1_1_3_0_0 - 0.00833333333333331*G2_1_1_3_1_0 - 0.00833333333333331*G2_1_1_3_2_0 - 0.00833333333333331*G2_1_2_0_0_1 - 0.00833333333333331*G2_1_2_0_1_1 - 0.00833333333333331*G2_1_2_0_2_1 - 0.0166666666666666*G2_1_2_1_0_1 - 0.0166666666666666*G2_1_2_1_1_1 - 0.0166666666666666*G2_1_2_1_2_1 - 0.00833333333333331*G2_1_2_2_0_1 - 0.00833333333333331*G2_1_2_2_1_1 - 0.00833333333333331*G2_1_2_2_2_1 - 0.00833333333333331*G2_1_2_3_0_1 - 0.00833333333333331*G2_1_2_3_1_1 - 0.00833333333333331*G2_1_2_3_2_1 - 0.00833333333333331*G2_1_3_0_0_2 - 0.00833333333333331*G2_1_3_0_1_2 - 0.00833333333333331*G2_1_3_0_2_2 - 0.0166666666666666*G2_1_3_1_0_2 - 0.0166666666666666*G2_1_3_1_1_2 - 0.0166666666666666*G2_1_3_1_2_2 - 0.00833333333333331*G2_1_3_2_0_2 - 0.00833333333333331*G2_1_3_2_1_2 - 0.00833333333333331*G2_1_3_2_2_2 - 0.00833333333333331*G2_1_3_3_0_2 - 0.00833333333333331*G2_1_3_3_1_2 - 0.00833333333333331*G2_1_3_3_2_2 + 0.0083333333333333*G2_2_0_0_0_0 + 0.00833333333333331*G2_2_0_0_0_1 + 0.00833333333333331*G2_2_0_0_0_2 + 0.00833333333333331*G2_2_0_0_1_0 + 0.00833333333333331*G2_2_0_0_1_1 + 0.00833333333333331*G2_2_0_0_1_2 + 0.00833333333333331*G2_2_0_0_2_0 + 0.00833333333333331*G2_2_0_0_2_1 + 0.00833333333333331*G2_2_0_0_2_2 + 0.00833333333333331*G2_2_0_1_0_0 + 0.00833333333333331*G2_2_0_1_0_1 + 0.00833333333333331*G2_2_0_1_0_2 + 0.00833333333333331*G2_2_0_1_1_0 + 0.00833333333333331*G2_2_0_1_1_1 + 0.00833333333333331*G2_2_0_1_1_2 + 0.00833333333333331*G2_2_0_1_2_0 + 0.00833333333333331*G2_2_0_1_2_1 + 0.00833333333333331*G2_2_0_1_2_2 + 0.0166666666666666*G2_2_0_2_0_0 + 0.0166666666666666*G2_2_0_2_0_1 + 0.0166666666666666*G2_2_0_2_0_2 + 0.0166666666666666*G2_2_0_2_1_0 + 0.0166666666666666*G2_2_0_2_1_1 + 0.0166666666666666*G2_2_0_2_1_2 + 0.0166666666666666*G2_2_0_2_2_0 + 0.0166666666666666*G2_2_0_2_2_1 + 0.0166666666666666*G2_2_0_2_2_2 + 0.00833333333333331*G2_2_0_3_0_0 + 0.00833333333333331*G2_2_0_3_0_1 + 0.00833333333333331*G2_2_0_3_0_2 + 0.00833333333333331*G2_2_0_3_1_0 + 0.00833333333333331*G2_2_0_3_1_1 + 0.00833333333333331*G2_2_0_3_1_2 + 0.00833333333333331*G2_2_0_3_2_0 + 0.00833333333333331*G2_2_0_3_2_1 + 0.00833333333333331*G2_2_0_3_2_2 - 0.0083333333333333*G2_2_1_0_0_0 - 0.00833333333333331*G2_2_1_0_1_0 - 0.00833333333333331*G2_2_1_0_2_0 - 0.00833333333333331*G2_2_1_1_0_0 - 0.00833333333333331*G2_2_1_1_1_0 - 0.00833333333333331*G2_2_1_1_2_0 - 0.0166666666666666*G2_2_1_2_0_0 - 0.0166666666666666*G2_2_1_2_1_0 - 0.0166666666666666*G2_2_1_2_2_0 - 0.00833333333333331*G2_2_1_3_0_0 - 0.00833333333333331*G2_2_1_3_1_0 - 0.00833333333333331*G2_2_1_3_2_0 - 0.00833333333333331*G2_2_2_0_0_1 - 0.00833333333333331*G2_2_2_0_1_1 - 0.00833333333333331*G2_2_2_0_2_1 - 0.00833333333333331*G2_2_2_1_0_1 - 0.00833333333333331*G2_2_2_1_1_1 - 0.00833333333333331*G2_2_2_1_2_1 - 0.0166666666666666*G2_2_2_2_0_1 - 0.0166666666666666*G2_2_2_2_1_1 - 0.0166666666666666*G2_2_2_2_2_1 - 0.00833333333333331*G2_2_2_3_0_1 - 0.00833333333333331*G2_2_2_3_1_1 - 0.00833333333333331*G2_2_2_3_2_1 - 0.00833333333333331*G2_2_3_0_0_2 - 0.00833333333333331*G2_2_3_0_1_2 - 0.00833333333333331*G2_2_3_0_2_2 - 0.00833333333333331*G2_2_3_1_0_2 - 0.00833333333333331*G2_2_3_1_1_2 - 0.00833333333333331*G2_2_3_1_2_2 - 0.0166666666666666*G2_2_3_2_0_2 - 0.0166666666666666*G2_2_3_2_1_2 - 0.0166666666666666*G2_2_3_2_2_2 - 0.00833333333333331*G2_2_3_3_0_2 - 0.00833333333333331*G2_2_3_3_1_2 - 0.00833333333333331*G2_2_3_3_2_2 + 0.00833333333333331*G2_3_0_0_0_0 + 0.00833333333333331*G2_3_0_0_0_1 + 0.00833333333333331*G2_3_0_0_0_2 + 0.00833333333333331*G2_3_0_0_1_0 + 0.00833333333333331*G2_3_0_0_1_1 + 0.00833333333333331*G2_3_0_0_1_2 + 0.00833333333333331*G2_3_0_0_2_0 + 0.00833333333333331*G2_3_0_0_2_1 + 0.00833333333333331*G2_3_0_0_2_2 + 0.00833333333333331*G2_3_0_1_0_0 + 0.00833333333333331*G2_3_0_1_0_1 + 0.00833333333333331*G2_3_0_1_0_2 + 0.00833333333333331*G2_3_0_1_1_0 + 0.00833333333333331*G2_3_0_1_1_1 + 0.00833333333333331*G2_3_0_1_1_2 + 0.00833333333333331*G2_3_0_1_2_0 + 0.00833333333333331*G2_3_0_1_2_1 + 0.00833333333333331*G2_3_0_1_2_2 + 0.00833333333333331*G2_3_0_2_0_0 + 0.00833333333333331*G2_3_0_2_0_1 + 0.00833333333333331*G2_3_0_2_0_2 + 0.00833333333333331*G2_3_0_2_1_0 + 0.00833333333333331*G2_3_0_2_1_1 + 0.00833333333333331*G2_3_0_2_1_2 + 0.00833333333333331*G2_3_0_2_2_0 + 0.00833333333333331*G2_3_0_2_2_1 + 0.00833333333333331*G2_3_0_2_2_2 + 0.0166666666666666*G2_3_0_3_0_0 + 0.0166666666666666*G2_3_0_3_0_1 + 0.0166666666666666*G2_3_0_3_0_2 + 0.0166666666666666*G2_3_0_3_1_0 + 0.0166666666666666*G2_3_0_3_1_1 + 0.0166666666666666*G2_3_0_3_1_2 + 0.0166666666666666*G2_3_0_3_2_0 + 0.0166666666666666*G2_3_0_3_2_1 + 0.0166666666666666*G2_3_0_3_2_2 - 0.00833333333333331*G2_3_1_0_0_0 - 0.00833333333333331*G2_3_1_0_1_0 - 0.00833333333333331*G2_3_1_0_2_0 - 0.00833333333333331*G2_3_1_1_0_0 - 0.00833333333333331*G2_3_1_1_1_0 - 0.00833333333333331*G2_3_1_1_2_0 - 0.00833333333333331*G2_3_1_2_0_0 - 0.00833333333333331*G2_3_1_2_1_0 - 0.00833333333333331*G2_3_1_2_2_0 - 0.0166666666666666*G2_3_1_3_0_0 - 0.0166666666666666*G2_3_1_3_1_0 - 0.0166666666666666*G2_3_1_3_2_0 - 0.00833333333333331*G2_3_2_0_0_1 - 0.00833333333333331*G2_3_2_0_1_1 - 0.00833333333333331*G2_3_2_0_2_1 - 0.00833333333333331*G2_3_2_1_0_1 - 0.00833333333333331*G2_3_2_1_1_1 - 0.00833333333333331*G2_3_2_1_2_1 - 0.00833333333333331*G2_3_2_2_0_1 - 0.00833333333333331*G2_3_2_2_1_1 - 0.00833333333333331*G2_3_2_2_2_1 - 0.0166666666666666*G2_3_2_3_0_1 - 0.0166666666666666*G2_3_2_3_1_1 - 0.0166666666666666*G2_3_2_3_2_1 - 0.00833333333333331*G2_3_3_0_0_2 - 0.00833333333333331*G2_3_3_0_1_2 - 0.00833333333333331*G2_3_3_0_2_2 - 0.00833333333333331*G2_3_3_1_0_2 - 0.00833333333333331*G2_3_3_1_1_2 - 0.00833333333333331*G2_3_3_1_2_2 - 0.00833333333333331*G2_3_3_2_0_2 - 0.00833333333333331*G2_3_3_2_1_2 - 0.00833333333333331*G2_3_3_2_2_2 - 0.0166666666666666*G2_3_3_3_0_2 - 0.0166666666666666*G2_3_3_3_1_2 - 0.0166666666666666*G2_3_3_3_2_2 + 0.0166666666666666*G3_0_0_0_0_0 + 0.0166666666666666*G3_0_0_0_0_1 + 0.0166666666666666*G3_0_0_0_0_2 + 0.0166666666666666*G3_0_0_0_1_0 + 0.0166666666666666*G3_0_0_0_1_1 + 0.0166666666666666*G3_0_0_0_1_2 + 0.0166666666666666*G3_0_0_0_2_0 + 0.0166666666666666*G3_0_0_0_2_1 + 0.0166666666666666*G3_0_0_0_2_2 - 0.0166666666666666*G3_0_0_1_0_0 - 0.0166666666666666*G3_0_0_1_1_0 - 0.0166666666666666*G3_0_0_1_2_0 - 0.0166666666666666*G3_0_0_2_0_1 - 0.0166666666666666*G3_0_0_2_1_1 - 0.0166666666666666*G3_0_0_2_2_1 - 0.0166666666666666*G3_0_0_3_0_2 - 0.0166666666666666*G3_0_0_3_1_2 - 0.0166666666666666*G3_0_0_3_2_2 + 0.00833333333333331*G3_0_1_0_0_0 + 0.00833333333333331*G3_0_1_0_0_1 + 0.00833333333333331*G3_0_1_0_0_2 + 0.00833333333333331*G3_0_1_0_1_0 + 0.00833333333333331*G3_0_1_0_1_1 + 0.00833333333333331*G3_0_1_0_1_2 + 0.00833333333333331*G3_0_1_0_2_0 + 0.00833333333333331*G3_0_1_0_2_1 + 0.00833333333333331*G3_0_1_0_2_2 - 0.00833333333333331*G3_0_1_1_0_0 - 0.00833333333333331*G3_0_1_1_1_0 - 0.00833333333333331*G3_0_1_1_2_0 - 0.00833333333333331*G3_0_1_2_0_1 - 0.00833333333333331*G3_0_1_2_1_1 - 0.00833333333333331*G3_0_1_2_2_1 - 0.00833333333333331*G3_0_1_3_0_2 - 0.00833333333333331*G3_0_1_3_1_2 - 0.00833333333333331*G3_0_1_3_2_2 + 0.00833333333333331*G3_0_2_0_0_0 + 0.00833333333333331*G3_0_2_0_0_1 + 0.00833333333333331*G3_0_2_0_0_2 + 0.00833333333333331*G3_0_2_0_1_0 + 0.00833333333333331*G3_0_2_0_1_1 + 0.00833333333333331*G3_0_2_0_1_2 + 0.00833333333333331*G3_0_2_0_2_0 + 0.00833333333333331*G3_0_2_0_2_1 + 0.00833333333333331*G3_0_2_0_2_2 - 0.00833333333333331*G3_0_2_1_0_0 - 0.00833333333333331*G3_0_2_1_1_0 - 0.00833333333333331*G3_0_2_1_2_0 - 0.00833333333333331*G3_0_2_2_0_1 - 0.00833333333333331*G3_0_2_2_1_1 - 0.00833333333333331*G3_0_2_2_2_1 - 0.00833333333333331*G3_0_2_3_0_2 - 0.00833333333333331*G3_0_2_3_1_2 - 0.00833333333333331*G3_0_2_3_2_2 + 0.00833333333333331*G3_0_3_0_0_0 + 0.00833333333333331*G3_0_3_0_0_1 + 0.00833333333333331*G3_0_3_0_0_2 + 0.00833333333333331*G3_0_3_0_1_0 + 0.00833333333333331*G3_0_3_0_1_1 + 0.00833333333333331*G3_0_3_0_1_2 + 0.00833333333333331*G3_0_3_0_2_0 + 0.00833333333333331*G3_0_3_0_2_1 + 0.00833333333333331*G3_0_3_0_2_2 - 0.00833333333333331*G3_0_3_1_0_0 - 0.00833333333333331*G3_0_3_1_1_0 - 0.00833333333333331*G3_0_3_1_2_0 - 0.00833333333333331*G3_0_3_2_0_1 - 0.00833333333333331*G3_0_3_2_1_1 - 0.00833333333333331*G3_0_3_2_2_1 - 0.00833333333333331*G3_0_3_3_0_2 - 0.00833333333333331*G3_0_3_3_1_2 - 0.00833333333333331*G3_0_3_3_2_2 + 0.00833333333333331*G3_1_0_0_0_0 + 0.00833333333333331*G3_1_0_0_0_1 + 0.00833333333333331*G3_1_0_0_0_2 + 0.00833333333333331*G3_1_0_0_1_0 + 0.00833333333333331*G3_1_0_0_1_1 + 0.00833333333333331*G3_1_0_0_1_2 + 0.00833333333333331*G3_1_0_0_2_0 + 0.00833333333333331*G3_1_0_0_2_1 + 0.00833333333333331*G3_1_0_0_2_2 - 0.00833333333333331*G3_1_0_1_0_0 - 0.00833333333333331*G3_1_0_1_1_0 - 0.00833333333333331*G3_1_0_1_2_0 - 0.00833333333333331*G3_1_0_2_0_1 - 0.00833333333333331*G3_1_0_2_1_1 - 0.00833333333333331*G3_1_0_2_2_1 - 0.00833333333333331*G3_1_0_3_0_2 - 0.00833333333333331*G3_1_0_3_1_2 - 0.00833333333333331*G3_1_0_3_2_2 + 0.0166666666666666*G3_1_1_0_0_0 + 0.0166666666666666*G3_1_1_0_0_1 + 0.0166666666666666*G3_1_1_0_0_2 + 0.0166666666666666*G3_1_1_0_1_0 + 0.0166666666666666*G3_1_1_0_1_1 + 0.0166666666666666*G3_1_1_0_1_2 + 0.0166666666666666*G3_1_1_0_2_0 + 0.0166666666666666*G3_1_1_0_2_1 + 0.0166666666666666*G3_1_1_0_2_2 - 0.0166666666666666*G3_1_1_1_0_0 - 0.0166666666666666*G3_1_1_1_1_0 - 0.0166666666666666*G3_1_1_1_2_0 - 0.0166666666666666*G3_1_1_2_0_1 - 0.0166666666666666*G3_1_1_2_1_1 - 0.0166666666666666*G3_1_1_2_2_1 - 0.0166666666666666*G3_1_1_3_0_2 - 0.0166666666666666*G3_1_1_3_1_2 - 0.0166666666666666*G3_1_1_3_2_2 + 0.00833333333333331*G3_1_2_0_0_0 + 0.00833333333333331*G3_1_2_0_0_1 + 0.00833333333333331*G3_1_2_0_0_2 + 0.00833333333333331*G3_1_2_0_1_0 + 0.00833333333333331*G3_1_2_0_1_1 + 0.00833333333333331*G3_1_2_0_1_2 + 0.00833333333333331*G3_1_2_0_2_0 + 0.00833333333333331*G3_1_2_0_2_1 + 0.00833333333333331*G3_1_2_0_2_2 - 0.00833333333333331*G3_1_2_1_0_0 - 0.00833333333333331*G3_1_2_1_1_0 - 0.00833333333333331*G3_1_2_1_2_0 - 0.00833333333333331*G3_1_2_2_0_1 - 0.00833333333333331*G3_1_2_2_1_1 - 0.00833333333333331*G3_1_2_2_2_1 - 0.00833333333333331*G3_1_2_3_0_2 - 0.00833333333333331*G3_1_2_3_1_2 - 0.00833333333333331*G3_1_2_3_2_2 + 0.00833333333333331*G3_1_3_0_0_0 + 0.00833333333333331*G3_1_3_0_0_1 + 0.00833333333333331*G3_1_3_0_0_2 + 0.00833333333333331*G3_1_3_0_1_0 + 0.00833333333333331*G3_1_3_0_1_1 + 0.00833333333333331*G3_1_3_0_1_2 + 0.00833333333333331*G3_1_3_0_2_0 + 0.00833333333333331*G3_1_3_0_2_1 + 0.00833333333333331*G3_1_3_0_2_2 - 0.00833333333333331*G3_1_3_1_0_0 - 0.00833333333333331*G3_1_3_1_1_0 - 0.00833333333333331*G3_1_3_1_2_0 - 0.00833333333333331*G3_1_3_2_0_1 - 0.00833333333333331*G3_1_3_2_1_1 - 0.00833333333333331*G3_1_3_2_2_1 - 0.00833333333333331*G3_1_3_3_0_2 - 0.00833333333333331*G3_1_3_3_1_2 - 0.00833333333333331*G3_1_3_3_2_2 + 0.0083333333333333*G3_2_0_0_0_0 + 0.00833333333333331*G3_2_0_0_0_1 + 0.00833333333333331*G3_2_0_0_0_2 + 0.00833333333333331*G3_2_0_0_1_0 + 0.00833333333333331*G3_2_0_0_1_1 + 0.00833333333333331*G3_2_0_0_1_2 + 0.00833333333333331*G3_2_0_0_2_0 + 0.00833333333333331*G3_2_0_0_2_1 + 0.00833333333333331*G3_2_0_0_2_2 - 0.0083333333333333*G3_2_0_1_0_0 - 0.00833333333333331*G3_2_0_1_1_0 - 0.00833333333333331*G3_2_0_1_2_0 - 0.00833333333333331*G3_2_0_2_0_1 - 0.00833333333333331*G3_2_0_2_1_1 - 0.00833333333333331*G3_2_0_2_2_1 - 0.00833333333333331*G3_2_0_3_0_2 - 0.00833333333333331*G3_2_0_3_1_2 - 0.00833333333333331*G3_2_0_3_2_2 + 0.00833333333333331*G3_2_1_0_0_0 + 0.00833333333333331*G3_2_1_0_0_1 + 0.00833333333333331*G3_2_1_0_0_2 + 0.00833333333333331*G3_2_1_0_1_0 + 0.00833333333333331*G3_2_1_0_1_1 + 0.00833333333333331*G3_2_1_0_1_2 + 0.00833333333333331*G3_2_1_0_2_0 + 0.00833333333333331*G3_2_1_0_2_1 + 0.00833333333333331*G3_2_1_0_2_2 - 0.00833333333333331*G3_2_1_1_0_0 - 0.00833333333333331*G3_2_1_1_1_0 - 0.00833333333333331*G3_2_1_1_2_0 - 0.00833333333333331*G3_2_1_2_0_1 - 0.00833333333333331*G3_2_1_2_1_1 - 0.00833333333333331*G3_2_1_2_2_1 - 0.00833333333333331*G3_2_1_3_0_2 - 0.00833333333333331*G3_2_1_3_1_2 - 0.00833333333333331*G3_2_1_3_2_2 + 0.0166666666666666*G3_2_2_0_0_0 + 0.0166666666666666*G3_2_2_0_0_1 + 0.0166666666666666*G3_2_2_0_0_2 + 0.0166666666666666*G3_2_2_0_1_0 + 0.0166666666666666*G3_2_2_0_1_1 + 0.0166666666666666*G3_2_2_0_1_2 + 0.0166666666666666*G3_2_2_0_2_0 + 0.0166666666666666*G3_2_2_0_2_1 + 0.0166666666666666*G3_2_2_0_2_2 - 0.0166666666666666*G3_2_2_1_0_0 - 0.0166666666666666*G3_2_2_1_1_0 - 0.0166666666666666*G3_2_2_1_2_0 - 0.0166666666666666*G3_2_2_2_0_1 - 0.0166666666666666*G3_2_2_2_1_1 - 0.0166666666666666*G3_2_2_2_2_1 - 0.0166666666666666*G3_2_2_3_0_2 - 0.0166666666666666*G3_2_2_3_1_2 - 0.0166666666666666*G3_2_2_3_2_2 + 0.00833333333333331*G3_2_3_0_0_0 + 0.00833333333333331*G3_2_3_0_0_1 + 0.00833333333333331*G3_2_3_0_0_2 + 0.00833333333333331*G3_2_3_0_1_0 + 0.00833333333333331*G3_2_3_0_1_1 + 0.00833333333333331*G3_2_3_0_1_2 + 0.00833333333333331*G3_2_3_0_2_0 + 0.00833333333333331*G3_2_3_0_2_1 + 0.00833333333333331*G3_2_3_0_2_2 - 0.00833333333333331*G3_2_3_1_0_0 - 0.00833333333333331*G3_2_3_1_1_0 - 0.00833333333333331*G3_2_3_1_2_0 - 0.00833333333333331*G3_2_3_2_0_1 - 0.00833333333333331*G3_2_3_2_1_1 - 0.00833333333333331*G3_2_3_2_2_1 - 0.00833333333333331*G3_2_3_3_0_2 - 0.00833333333333331*G3_2_3_3_1_2 - 0.00833333333333331*G3_2_3_3_2_2 + 0.00833333333333331*G3_3_0_0_0_0 + 0.00833333333333331*G3_3_0_0_0_1 + 0.00833333333333331*G3_3_0_0_0_2 + 0.00833333333333331*G3_3_0_0_1_0 + 0.00833333333333331*G3_3_0_0_1_1 + 0.00833333333333331*G3_3_0_0_1_2 + 0.00833333333333331*G3_3_0_0_2_0 + 0.00833333333333331*G3_3_0_0_2_1 + 0.00833333333333331*G3_3_0_0_2_2 - 0.00833333333333331*G3_3_0_1_0_0 - 0.00833333333333331*G3_3_0_1_1_0 - 0.00833333333333331*G3_3_0_1_2_0 - 0.00833333333333331*G3_3_0_2_0_1 - 0.00833333333333331*G3_3_0_2_1_1 - 0.00833333333333331*G3_3_0_2_2_1 - 0.00833333333333331*G3_3_0_3_0_2 - 0.00833333333333331*G3_3_0_3_1_2 - 0.00833333333333331*G3_3_0_3_2_2 + 0.00833333333333331*G3_3_1_0_0_0 + 0.00833333333333331*G3_3_1_0_0_1 + 0.00833333333333331*G3_3_1_0_0_2 + 0.00833333333333331*G3_3_1_0_1_0 + 0.00833333333333331*G3_3_1_0_1_1 + 0.00833333333333331*G3_3_1_0_1_2 + 0.00833333333333331*G3_3_1_0_2_0 + 0.00833333333333331*G3_3_1_0_2_1 + 0.00833333333333331*G3_3_1_0_2_2 - 0.00833333333333331*G3_3_1_1_0_0 - 0.00833333333333331*G3_3_1_1_1_0 - 0.00833333333333331*G3_3_1_1_2_0 - 0.00833333333333331*G3_3_1_2_0_1 - 0.00833333333333331*G3_3_1_2_1_1 - 0.00833333333333331*G3_3_1_2_2_1 - 0.00833333333333331*G3_3_1_3_0_2 - 0.00833333333333331*G3_3_1_3_1_2 - 0.00833333333333331*G3_3_1_3_2_2 + 0.00833333333333331*G3_3_2_0_0_0 + 0.00833333333333331*G3_3_2_0_0_1 + 0.00833333333333331*G3_3_2_0_0_2 + 0.00833333333333331*G3_3_2_0_1_0 + 0.00833333333333331*G3_3_2_0_1_1 + 0.00833333333333331*G3_3_2_0_1_2 + 0.00833333333333331*G3_3_2_0_2_0 + 0.00833333333333331*G3_3_2_0_2_1 + 0.00833333333333331*G3_3_2_0_2_2 - 0.00833333333333331*G3_3_2_1_0_0 - 0.00833333333333331*G3_3_2_1_1_0 - 0.00833333333333331*G3_3_2_1_2_0 - 0.00833333333333331*G3_3_2_2_0_1 - 0.00833333333333331*G3_3_2_2_1_1 - 0.00833333333333331*G3_3_2_2_2_1 - 0.00833333333333331*G3_3_2_3_0_2 - 0.00833333333333331*G3_3_2_3_1_2 - 0.00833333333333331*G3_3_2_3_2_2 + 0.0166666666666666*G3_3_3_0_0_0 + 0.0166666666666666*G3_3_3_0_0_1 + 0.0166666666666666*G3_3_3_0_0_2 + 0.0166666666666666*G3_3_3_0_1_0 + 0.0166666666666666*G3_3_3_0_1_1 + 0.0166666666666666*G3_3_3_0_1_2 + 0.0166666666666666*G3_3_3_0_2_0 + 0.0166666666666666*G3_3_3_0_2_1 + 0.0166666666666666*G3_3_3_0_2_2 - 0.0166666666666666*G3_3_3_1_0_0 - 0.0166666666666666*G3_3_3_1_1_0 - 0.0166666666666666*G3_3_3_1_2_0 - 0.0166666666666666*G3_3_3_2_0_1 - 0.0166666666666666*G3_3_3_2_1_1 - 0.0166666666666666*G3_3_3_2_2_1 - 0.0166666666666666*G3_3_3_3_0_2 - 0.0166666666666666*G3_3_3_3_1_2 - 0.0166666666666666*G3_3_3_3_2_2 - 0.0416666666666666*G4_0_0_0_0 - 0.0416666666666666*G4_0_0_0_1 - 0.0416666666666666*G4_0_0_0_2 - 0.0416666666666666*G4_0_0_1_0 - 0.0416666666666666*G4_0_0_1_1 - 0.0416666666666666*G4_0_0_1_2 - 0.0416666666666666*G4_0_0_2_0 - 0.0416666666666666*G4_0_0_2_1 - 0.0416666666666666*G4_0_0_2_2 + 0.0416666666666666*G4_0_1_0_0 + 0.0416666666666666*G4_0_1_1_0 + 0.0416666666666666*G4_0_1_2_0 + 0.0416666666666666*G4_0_2_0_1 + 0.0416666666666666*G4_0_2_1_1 + 0.0416666666666666*G4_0_2_2_1 + 0.0416666666666666*G4_0_3_0_2 + 0.0416666666666666*G4_0_3_1_2 + 0.0416666666666666*G4_0_3_2_2 - 0.0416666666666666*G4_1_0_0_0 - 0.0416666666666666*G4_1_0_0_1 - 0.0416666666666666*G4_1_0_0_2 - 0.0416666666666666*G4_1_0_1_0 - 0.0416666666666666*G4_1_0_1_1 - 0.0416666666666666*G4_1_0_1_2 - 0.0416666666666666*G4_1_0_2_0 - 0.0416666666666666*G4_1_0_2_1 - 0.0416666666666666*G4_1_0_2_2 + 0.0416666666666666*G4_1_1_0_0 + 0.0416666666666666*G4_1_1_1_0 + 0.0416666666666666*G4_1_1_2_0 + 0.0416666666666666*G4_1_2_0_1 + 0.0416666666666666*G4_1_2_1_1 + 0.0416666666666666*G4_1_2_2_1 + 0.0416666666666666*G4_1_3_0_2 + 0.0416666666666666*G4_1_3_1_2 + 0.0416666666666666*G4_1_3_2_2 - 0.0416666666666666*G4_2_0_0_0 - 0.0416666666666666*G4_2_0_0_1 - 0.0416666666666666*G4_2_0_0_2 - 0.0416666666666666*G4_2_0_1_0 - 0.0416666666666666*G4_2_0_1_1 - 0.0416666666666666*G4_2_0_1_2 - 0.0416666666666666*G4_2_0_2_0 - 0.0416666666666666*G4_2_0_2_1 - 0.0416666666666666*G4_2_0_2_2 + 0.0416666666666666*G4_2_1_0_0 + 0.0416666666666666*G4_2_1_1_0 + 0.0416666666666666*G4_2_1_2_0 + 0.0416666666666666*G4_2_2_0_1 + 0.0416666666666666*G4_2_2_1_1 + 0.0416666666666666*G4_2_2_2_1 + 0.0416666666666666*G4_2_3_0_2 + 0.0416666666666666*G4_2_3_1_2 + 0.0416666666666666*G4_2_3_2_2 - 0.0416666666666666*G4_3_0_0_0 - 0.0416666666666666*G4_3_0_0_1 - 0.0416666666666666*G4_3_0_0_2 - 0.0416666666666666*G4_3_0_1_0 - 0.0416666666666666*G4_3_0_1_1 - 0.0416666666666666*G4_3_0_1_2 - 0.0416666666666666*G4_3_0_2_0 - 0.0416666666666666*G4_3_0_2_1 - 0.0416666666666666*G4_3_0_2_2 + 0.0416666666666666*G4_3_1_0_0 + 0.0416666666666666*G4_3_1_1_0 + 0.0416666666666666*G4_3_1_2_0 + 0.0416666666666666*G4_3_2_0_1 + 0.0416666666666666*G4_3_2_1_1 + 0.0416666666666666*G4_3_2_2_1 + 0.0416666666666666*G4_3_3_0_2 + 0.0416666666666666*G4_3_3_1_2 + 0.0416666666666666*G4_3_3_2_2 - 0.0166666666666666*G5_0_0_0_0_0 - 0.0166666666666666*G5_0_0_0_0_1 - 0.0166666666666666*G5_0_0_0_0_2 - 0.0166666666666666*G5_0_0_0_1_0 - 0.0166666666666666*G5_0_0_0_1_1 - 0.0166666666666666*G5_0_0_0_1_2 - 0.0166666666666666*G5_0_0_0_2_0 - 0.0166666666666666*G5_0_0_0_2_1 - 0.0166666666666666*G5_0_0_0_2_2 - 0.00833333333333331*G5_0_0_1_0_0 - 0.00833333333333331*G5_0_0_1_0_1 - 0.00833333333333331*G5_0_0_1_0_2 - 0.00833333333333331*G5_0_0_1_1_0 - 0.00833333333333331*G5_0_0_1_1_1 - 0.00833333333333331*G5_0_0_1_1_2 - 0.00833333333333331*G5_0_0_1_2_0 - 0.00833333333333331*G5_0_0_1_2_1 - 0.00833333333333331*G5_0_0_1_2_2 - 0.00833333333333331*G5_0_0_2_0_0 - 0.00833333333333331*G5_0_0_2_0_1 - 0.00833333333333331*G5_0_0_2_0_2 - 0.00833333333333331*G5_0_0_2_1_0 - 0.00833333333333331*G5_0_0_2_1_1 - 0.00833333333333331*G5_0_0_2_1_2 - 0.00833333333333331*G5_0_0_2_2_0 - 0.00833333333333331*G5_0_0_2_2_1 - 0.00833333333333331*G5_0_0_2_2_2 - 0.00833333333333331*G5_0_0_3_0_0 - 0.00833333333333331*G5_0_0_3_0_1 - 0.00833333333333331*G5_0_0_3_0_2 - 0.00833333333333331*G5_0_0_3_1_0 - 0.00833333333333331*G5_0_0_3_1_1 - 0.00833333333333331*G5_0_0_3_1_2 - 0.00833333333333331*G5_0_0_3_2_0 - 0.00833333333333331*G5_0_0_3_2_1 - 0.00833333333333331*G5_0_0_3_2_2 + 0.0166666666666666*G5_0_1_0_0_0 + 0.0166666666666666*G5_0_1_0_1_0 + 0.0166666666666666*G5_0_1_0_2_0 + 0.00833333333333331*G5_0_1_1_0_0 + 0.00833333333333331*G5_0_1_1_1_0 + 0.00833333333333331*G5_0_1_1_2_0 + 0.00833333333333331*G5_0_1_2_0_0 + 0.00833333333333331*G5_0_1_2_1_0 + 0.00833333333333331*G5_0_1_2_2_0 + 0.00833333333333331*G5_0_1_3_0_0 + 0.00833333333333331*G5_0_1_3_1_0 + 0.00833333333333331*G5_0_1_3_2_0 + 0.0166666666666666*G5_0_2_0_0_1 + 0.0166666666666666*G5_0_2_0_1_1 + 0.0166666666666666*G5_0_2_0_2_1 + 0.00833333333333331*G5_0_2_1_0_1 + 0.00833333333333331*G5_0_2_1_1_1 + 0.00833333333333331*G5_0_2_1_2_1 + 0.00833333333333331*G5_0_2_2_0_1 + 0.00833333333333331*G5_0_2_2_1_1 + 0.00833333333333331*G5_0_2_2_2_1 + 0.00833333333333331*G5_0_2_3_0_1 + 0.00833333333333331*G5_0_2_3_1_1 + 0.00833333333333331*G5_0_2_3_2_1 + 0.0166666666666666*G5_0_3_0_0_2 + 0.0166666666666666*G5_0_3_0_1_2 + 0.0166666666666666*G5_0_3_0_2_2 + 0.00833333333333331*G5_0_3_1_0_2 + 0.00833333333333331*G5_0_3_1_1_2 + 0.00833333333333331*G5_0_3_1_2_2 + 0.00833333333333331*G5_0_3_2_0_2 + 0.00833333333333331*G5_0_3_2_1_2 + 0.00833333333333331*G5_0_3_2_2_2 + 0.00833333333333331*G5_0_3_3_0_2 + 0.00833333333333331*G5_0_3_3_1_2 + 0.00833333333333331*G5_0_3_3_2_2 - 0.00833333333333331*G5_1_0_0_0_0 - 0.00833333333333331*G5_1_0_0_0_1 - 0.00833333333333331*G5_1_0_0_0_2 - 0.00833333333333331*G5_1_0_0_1_0 - 0.00833333333333331*G5_1_0_0_1_1 - 0.00833333333333331*G5_1_0_0_1_2 - 0.00833333333333331*G5_1_0_0_2_0 - 0.00833333333333331*G5_1_0_0_2_1 - 0.00833333333333331*G5_1_0_0_2_2 - 0.0166666666666666*G5_1_0_1_0_0 - 0.0166666666666666*G5_1_0_1_0_1 - 0.0166666666666666*G5_1_0_1_0_2 - 0.0166666666666666*G5_1_0_1_1_0 - 0.0166666666666666*G5_1_0_1_1_1 - 0.0166666666666666*G5_1_0_1_1_2 - 0.0166666666666666*G5_1_0_1_2_0 - 0.0166666666666666*G5_1_0_1_2_1 - 0.0166666666666666*G5_1_0_1_2_2 - 0.00833333333333331*G5_1_0_2_0_0 - 0.00833333333333331*G5_1_0_2_0_1 - 0.00833333333333331*G5_1_0_2_0_2 - 0.00833333333333331*G5_1_0_2_1_0 - 0.00833333333333331*G5_1_0_2_1_1 - 0.00833333333333331*G5_1_0_2_1_2 - 0.00833333333333331*G5_1_0_2_2_0 - 0.00833333333333331*G5_1_0_2_2_1 - 0.00833333333333331*G5_1_0_2_2_2 - 0.00833333333333331*G5_1_0_3_0_0 - 0.00833333333333331*G5_1_0_3_0_1 - 0.00833333333333331*G5_1_0_3_0_2 - 0.00833333333333331*G5_1_0_3_1_0 - 0.00833333333333331*G5_1_0_3_1_1 - 0.00833333333333331*G5_1_0_3_1_2 - 0.00833333333333331*G5_1_0_3_2_0 - 0.00833333333333331*G5_1_0_3_2_1 - 0.00833333333333331*G5_1_0_3_2_2 + 0.00833333333333331*G5_1_1_0_0_0 + 0.00833333333333331*G5_1_1_0_1_0 + 0.00833333333333331*G5_1_1_0_2_0 + 0.0166666666666666*G5_1_1_1_0_0 + 0.0166666666666666*G5_1_1_1_1_0 + 0.0166666666666666*G5_1_1_1_2_0 + 0.00833333333333331*G5_1_1_2_0_0 + 0.00833333333333331*G5_1_1_2_1_0 + 0.00833333333333331*G5_1_1_2_2_0 + 0.00833333333333331*G5_1_1_3_0_0 + 0.00833333333333331*G5_1_1_3_1_0 + 0.00833333333333331*G5_1_1_3_2_0 + 0.00833333333333331*G5_1_2_0_0_1 + 0.00833333333333331*G5_1_2_0_1_1 + 0.00833333333333331*G5_1_2_0_2_1 + 0.0166666666666666*G5_1_2_1_0_1 + 0.0166666666666666*G5_1_2_1_1_1 + 0.0166666666666666*G5_1_2_1_2_1 + 0.00833333333333331*G5_1_2_2_0_1 + 0.00833333333333331*G5_1_2_2_1_1 + 0.00833333333333331*G5_1_2_2_2_1 + 0.00833333333333331*G5_1_2_3_0_1 + 0.00833333333333331*G5_1_2_3_1_1 + 0.00833333333333331*G5_1_2_3_2_1 + 0.00833333333333331*G5_1_3_0_0_2 + 0.00833333333333331*G5_1_3_0_1_2 + 0.00833333333333331*G5_1_3_0_2_2 + 0.0166666666666666*G5_1_3_1_0_2 + 0.0166666666666666*G5_1_3_1_1_2 + 0.0166666666666666*G5_1_3_1_2_2 + 0.00833333333333331*G5_1_3_2_0_2 + 0.00833333333333331*G5_1_3_2_1_2 + 0.00833333333333331*G5_1_3_2_2_2 + 0.00833333333333331*G5_1_3_3_0_2 + 0.00833333333333331*G5_1_3_3_1_2 + 0.00833333333333331*G5_1_3_3_2_2 - 0.0083333333333333*G5_2_0_0_0_0 - 0.00833333333333331*G5_2_0_0_0_1 - 0.00833333333333331*G5_2_0_0_0_2 - 0.00833333333333331*G5_2_0_0_1_0 - 0.00833333333333331*G5_2_0_0_1_1 - 0.00833333333333331*G5_2_0_0_1_2 - 0.00833333333333331*G5_2_0_0_2_0 - 0.00833333333333331*G5_2_0_0_2_1 - 0.00833333333333331*G5_2_0_0_2_2 - 0.00833333333333331*G5_2_0_1_0_0 - 0.00833333333333331*G5_2_0_1_0_1 - 0.00833333333333331*G5_2_0_1_0_2 - 0.00833333333333331*G5_2_0_1_1_0 - 0.00833333333333331*G5_2_0_1_1_1 - 0.00833333333333331*G5_2_0_1_1_2 - 0.00833333333333331*G5_2_0_1_2_0 - 0.00833333333333331*G5_2_0_1_2_1 - 0.00833333333333331*G5_2_0_1_2_2 - 0.0166666666666666*G5_2_0_2_0_0 - 0.0166666666666666*G5_2_0_2_0_1 - 0.0166666666666666*G5_2_0_2_0_2 - 0.0166666666666666*G5_2_0_2_1_0 - 0.0166666666666666*G5_2_0_2_1_1 - 0.0166666666666666*G5_2_0_2_1_2 - 0.0166666666666666*G5_2_0_2_2_0 - 0.0166666666666666*G5_2_0_2_2_1 - 0.0166666666666666*G5_2_0_2_2_2 - 0.00833333333333331*G5_2_0_3_0_0 - 0.00833333333333331*G5_2_0_3_0_1 - 0.00833333333333331*G5_2_0_3_0_2 - 0.00833333333333331*G5_2_0_3_1_0 - 0.00833333333333331*G5_2_0_3_1_1 - 0.00833333333333331*G5_2_0_3_1_2 - 0.00833333333333331*G5_2_0_3_2_0 - 0.00833333333333331*G5_2_0_3_2_1 - 0.00833333333333331*G5_2_0_3_2_2 + 0.0083333333333333*G5_2_1_0_0_0 + 0.00833333333333331*G5_2_1_0_1_0 + 0.00833333333333331*G5_2_1_0_2_0 + 0.00833333333333331*G5_2_1_1_0_0 + 0.00833333333333331*G5_2_1_1_1_0 + 0.00833333333333331*G5_2_1_1_2_0 + 0.0166666666666666*G5_2_1_2_0_0 + 0.0166666666666666*G5_2_1_2_1_0 + 0.0166666666666666*G5_2_1_2_2_0 + 0.00833333333333331*G5_2_1_3_0_0 + 0.00833333333333331*G5_2_1_3_1_0 + 0.00833333333333331*G5_2_1_3_2_0 + 0.00833333333333331*G5_2_2_0_0_1 + 0.00833333333333331*G5_2_2_0_1_1 + 0.00833333333333331*G5_2_2_0_2_1 + 0.00833333333333331*G5_2_2_1_0_1 + 0.00833333333333331*G5_2_2_1_1_1 + 0.00833333333333331*G5_2_2_1_2_1 + 0.0166666666666666*G5_2_2_2_0_1 + 0.0166666666666666*G5_2_2_2_1_1 + 0.0166666666666666*G5_2_2_2_2_1 + 0.00833333333333331*G5_2_2_3_0_1 + 0.00833333333333331*G5_2_2_3_1_1 + 0.00833333333333331*G5_2_2_3_2_1 + 0.00833333333333331*G5_2_3_0_0_2 + 0.00833333333333331*G5_2_3_0_1_2 + 0.00833333333333331*G5_2_3_0_2_2 + 0.00833333333333331*G5_2_3_1_0_2 + 0.00833333333333331*G5_2_3_1_1_2 + 0.00833333333333331*G5_2_3_1_2_2 + 0.0166666666666666*G5_2_3_2_0_2 + 0.0166666666666666*G5_2_3_2_1_2 + 0.0166666666666666*G5_2_3_2_2_2 + 0.00833333333333331*G5_2_3_3_0_2 + 0.00833333333333331*G5_2_3_3_1_2 + 0.00833333333333331*G5_2_3_3_2_2 - 0.00833333333333331*G5_3_0_0_0_0 - 0.00833333333333331*G5_3_0_0_0_1 - 0.00833333333333331*G5_3_0_0_0_2 - 0.00833333333333331*G5_3_0_0_1_0 - 0.00833333333333331*G5_3_0_0_1_1 - 0.00833333333333331*G5_3_0_0_1_2 - 0.00833333333333331*G5_3_0_0_2_0 - 0.00833333333333331*G5_3_0_0_2_1 - 0.00833333333333331*G5_3_0_0_2_2 - 0.00833333333333331*G5_3_0_1_0_0 - 0.00833333333333331*G5_3_0_1_0_1 - 0.00833333333333331*G5_3_0_1_0_2 - 0.00833333333333331*G5_3_0_1_1_0 - 0.00833333333333331*G5_3_0_1_1_1 - 0.00833333333333331*G5_3_0_1_1_2 - 0.00833333333333331*G5_3_0_1_2_0 - 0.00833333333333331*G5_3_0_1_2_1 - 0.00833333333333331*G5_3_0_1_2_2 - 0.00833333333333331*G5_3_0_2_0_0 - 0.00833333333333331*G5_3_0_2_0_1 - 0.00833333333333331*G5_3_0_2_0_2 - 0.00833333333333331*G5_3_0_2_1_0 - 0.00833333333333331*G5_3_0_2_1_1 - 0.00833333333333331*G5_3_0_2_1_2 - 0.00833333333333331*G5_3_0_2_2_0 - 0.00833333333333331*G5_3_0_2_2_1 - 0.00833333333333331*G5_3_0_2_2_2 - 0.0166666666666666*G5_3_0_3_0_0 - 0.0166666666666666*G5_3_0_3_0_1 - 0.0166666666666666*G5_3_0_3_0_2 - 0.0166666666666666*G5_3_0_3_1_0 - 0.0166666666666666*G5_3_0_3_1_1 - 0.0166666666666666*G5_3_0_3_1_2 - 0.0166666666666666*G5_3_0_3_2_0 - 0.0166666666666666*G5_3_0_3_2_1 - 0.0166666666666666*G5_3_0_3_2_2 + 0.00833333333333331*G5_3_1_0_0_0 + 0.00833333333333331*G5_3_1_0_1_0 + 0.00833333333333331*G5_3_1_0_2_0 + 0.00833333333333331*G5_3_1_1_0_0 + 0.00833333333333331*G5_3_1_1_1_0 + 0.00833333333333331*G5_3_1_1_2_0 + 0.00833333333333331*G5_3_1_2_0_0 + 0.00833333333333331*G5_3_1_2_1_0 + 0.00833333333333331*G5_3_1_2_2_0 + 0.0166666666666666*G5_3_1_3_0_0 + 0.0166666666666666*G5_3_1_3_1_0 + 0.0166666666666666*G5_3_1_3_2_0 + 0.00833333333333331*G5_3_2_0_0_1 + 0.00833333333333331*G5_3_2_0_1_1 + 0.00833333333333331*G5_3_2_0_2_1 + 0.00833333333333331*G5_3_2_1_0_1 + 0.00833333333333331*G5_3_2_1_1_1 + 0.00833333333333331*G5_3_2_1_2_1 + 0.00833333333333331*G5_3_2_2_0_1 + 0.00833333333333331*G5_3_2_2_1_1 + 0.00833333333333331*G5_3_2_2_2_1 + 0.0166666666666666*G5_3_2_3_0_1 + 0.0166666666666666*G5_3_2_3_1_1 + 0.0166666666666666*G5_3_2_3_2_1 + 0.00833333333333331*G5_3_3_0_0_2 + 0.00833333333333331*G5_3_3_0_1_2 + 0.00833333333333331*G5_3_3_0_2_2 + 0.00833333333333331*G5_3_3_1_0_2 + 0.00833333333333331*G5_3_3_1_1_2 + 0.00833333333333331*G5_3_3_1_2_2 + 0.00833333333333331*G5_3_3_2_0_2 + 0.00833333333333331*G5_3_3_2_1_2 + 0.00833333333333331*G5_3_3_2_2_2 + 0.0166666666666666*G5_3_3_3_0_2 + 0.0166666666666666*G5_3_3_3_1_2 + 0.0166666666666666*G5_3_3_3_2_2 - 0.0166666666666666*G6_0_0_0_0_0 - 0.0166666666666666*G6_0_0_0_0_1 - 0.0166666666666666*G6_0_0_0_0_2 - 0.0166666666666666*G6_0_0_0_1_0 - 0.0166666666666666*G6_0_0_0_1_1 - 0.0166666666666666*G6_0_0_0_1_2 - 0.0166666666666666*G6_0_0_0_2_0 - 0.0166666666666666*G6_0_0_0_2_1 - 0.0166666666666666*G6_0_0_0_2_2 + 0.0166666666666666*G6_0_0_1_0_0 + 0.0166666666666666*G6_0_0_1_1_0 + 0.0166666666666666*G6_0_0_1_2_0 + 0.0166666666666666*G6_0_0_2_0_1 + 0.0166666666666666*G6_0_0_2_1_1 + 0.0166666666666666*G6_0_0_2_2_1 + 0.0166666666666666*G6_0_0_3_0_2 + 0.0166666666666666*G6_0_0_3_1_2 + 0.0166666666666666*G6_0_0_3_2_2 - 0.00833333333333331*G6_0_1_0_0_0 - 0.00833333333333331*G6_0_1_0_0_1 - 0.00833333333333331*G6_0_1_0_0_2 - 0.00833333333333331*G6_0_1_0_1_0 - 0.00833333333333331*G6_0_1_0_1_1 - 0.00833333333333331*G6_0_1_0_1_2 - 0.00833333333333331*G6_0_1_0_2_0 - 0.00833333333333331*G6_0_1_0_2_1 - 0.00833333333333331*G6_0_1_0_2_2 + 0.00833333333333331*G6_0_1_1_0_0 + 0.00833333333333331*G6_0_1_1_1_0 + 0.00833333333333331*G6_0_1_1_2_0 + 0.00833333333333331*G6_0_1_2_0_1 + 0.00833333333333331*G6_0_1_2_1_1 + 0.00833333333333331*G6_0_1_2_2_1 + 0.00833333333333331*G6_0_1_3_0_2 + 0.00833333333333331*G6_0_1_3_1_2 + 0.00833333333333331*G6_0_1_3_2_2 - 0.00833333333333331*G6_0_2_0_0_0 - 0.00833333333333331*G6_0_2_0_0_1 - 0.00833333333333331*G6_0_2_0_0_2 - 0.00833333333333331*G6_0_2_0_1_0 - 0.00833333333333331*G6_0_2_0_1_1 - 0.00833333333333331*G6_0_2_0_1_2 - 0.00833333333333331*G6_0_2_0_2_0 - 0.00833333333333331*G6_0_2_0_2_1 - 0.00833333333333331*G6_0_2_0_2_2 + 0.00833333333333331*G6_0_2_1_0_0 + 0.00833333333333331*G6_0_2_1_1_0 + 0.00833333333333331*G6_0_2_1_2_0 + 0.00833333333333331*G6_0_2_2_0_1 + 0.00833333333333331*G6_0_2_2_1_1 + 0.00833333333333331*G6_0_2_2_2_1 + 0.00833333333333331*G6_0_2_3_0_2 + 0.00833333333333331*G6_0_2_3_1_2 + 0.00833333333333331*G6_0_2_3_2_2 - 0.00833333333333331*G6_0_3_0_0_0 - 0.00833333333333331*G6_0_3_0_0_1 - 0.00833333333333331*G6_0_3_0_0_2 - 0.00833333333333331*G6_0_3_0_1_0 - 0.00833333333333331*G6_0_3_0_1_1 - 0.00833333333333331*G6_0_3_0_1_2 - 0.00833333333333331*G6_0_3_0_2_0 - 0.00833333333333331*G6_0_3_0_2_1 - 0.00833333333333331*G6_0_3_0_2_2 + 0.00833333333333331*G6_0_3_1_0_0 + 0.00833333333333331*G6_0_3_1_1_0 + 0.00833333333333331*G6_0_3_1_2_0 + 0.00833333333333331*G6_0_3_2_0_1 + 0.00833333333333331*G6_0_3_2_1_1 + 0.00833333333333331*G6_0_3_2_2_1 + 0.00833333333333331*G6_0_3_3_0_2 + 0.00833333333333331*G6_0_3_3_1_2 + 0.00833333333333331*G6_0_3_3_2_2 - 0.00833333333333331*G6_1_0_0_0_0 - 0.00833333333333331*G6_1_0_0_0_1 - 0.00833333333333331*G6_1_0_0_0_2 - 0.00833333333333331*G6_1_0_0_1_0 - 0.00833333333333331*G6_1_0_0_1_1 - 0.00833333333333331*G6_1_0_0_1_2 - 0.00833333333333331*G6_1_0_0_2_0 - 0.00833333333333331*G6_1_0_0_2_1 - 0.00833333333333331*G6_1_0_0_2_2 + 0.00833333333333331*G6_1_0_1_0_0 + 0.00833333333333331*G6_1_0_1_1_0 + 0.00833333333333331*G6_1_0_1_2_0 + 0.00833333333333331*G6_1_0_2_0_1 + 0.00833333333333331*G6_1_0_2_1_1 + 0.00833333333333331*G6_1_0_2_2_1 + 0.00833333333333331*G6_1_0_3_0_2 + 0.00833333333333331*G6_1_0_3_1_2 + 0.00833333333333331*G6_1_0_3_2_2 - 0.0166666666666666*G6_1_1_0_0_0 - 0.0166666666666666*G6_1_1_0_0_1 - 0.0166666666666666*G6_1_1_0_0_2 - 0.0166666666666666*G6_1_1_0_1_0 - 0.0166666666666666*G6_1_1_0_1_1 - 0.0166666666666666*G6_1_1_0_1_2 - 0.0166666666666666*G6_1_1_0_2_0 - 0.0166666666666666*G6_1_1_0_2_1 - 0.0166666666666666*G6_1_1_0_2_2 + 0.0166666666666666*G6_1_1_1_0_0 + 0.0166666666666666*G6_1_1_1_1_0 + 0.0166666666666666*G6_1_1_1_2_0 + 0.0166666666666666*G6_1_1_2_0_1 + 0.0166666666666666*G6_1_1_2_1_1 + 0.0166666666666666*G6_1_1_2_2_1 + 0.0166666666666666*G6_1_1_3_0_2 + 0.0166666666666666*G6_1_1_3_1_2 + 0.0166666666666666*G6_1_1_3_2_2 - 0.00833333333333331*G6_1_2_0_0_0 - 0.00833333333333331*G6_1_2_0_0_1 - 0.00833333333333331*G6_1_2_0_0_2 - 0.00833333333333331*G6_1_2_0_1_0 - 0.00833333333333331*G6_1_2_0_1_1 - 0.00833333333333331*G6_1_2_0_1_2 - 0.00833333333333331*G6_1_2_0_2_0 - 0.00833333333333331*G6_1_2_0_2_1 - 0.00833333333333331*G6_1_2_0_2_2 + 0.00833333333333331*G6_1_2_1_0_0 + 0.00833333333333331*G6_1_2_1_1_0 + 0.00833333333333331*G6_1_2_1_2_0 + 0.00833333333333331*G6_1_2_2_0_1 + 0.00833333333333331*G6_1_2_2_1_1 + 0.00833333333333331*G6_1_2_2_2_1 + 0.00833333333333331*G6_1_2_3_0_2 + 0.00833333333333331*G6_1_2_3_1_2 + 0.00833333333333331*G6_1_2_3_2_2 - 0.00833333333333331*G6_1_3_0_0_0 - 0.00833333333333331*G6_1_3_0_0_1 - 0.00833333333333331*G6_1_3_0_0_2 - 0.00833333333333331*G6_1_3_0_1_0 - 0.00833333333333331*G6_1_3_0_1_1 - 0.00833333333333331*G6_1_3_0_1_2 - 0.00833333333333331*G6_1_3_0_2_0 - 0.00833333333333331*G6_1_3_0_2_1 - 0.00833333333333331*G6_1_3_0_2_2 + 0.00833333333333331*G6_1_3_1_0_0 + 0.00833333333333331*G6_1_3_1_1_0 + 0.00833333333333331*G6_1_3_1_2_0 + 0.00833333333333331*G6_1_3_2_0_1 + 0.00833333333333331*G6_1_3_2_1_1 + 0.00833333333333331*G6_1_3_2_2_1 + 0.00833333333333331*G6_1_3_3_0_2 + 0.00833333333333331*G6_1_3_3_1_2 + 0.00833333333333331*G6_1_3_3_2_2 - 0.0083333333333333*G6_2_0_0_0_0 - 0.00833333333333331*G6_2_0_0_0_1 - 0.00833333333333331*G6_2_0_0_0_2 - 0.00833333333333331*G6_2_0_0_1_0 - 0.00833333333333331*G6_2_0_0_1_1 - 0.00833333333333331*G6_2_0_0_1_2 - 0.00833333333333331*G6_2_0_0_2_0 - 0.00833333333333331*G6_2_0_0_2_1 - 0.00833333333333331*G6_2_0_0_2_2 + 0.0083333333333333*G6_2_0_1_0_0 + 0.00833333333333331*G6_2_0_1_1_0 + 0.00833333333333331*G6_2_0_1_2_0 + 0.00833333333333331*G6_2_0_2_0_1 + 0.00833333333333331*G6_2_0_2_1_1 + 0.00833333333333331*G6_2_0_2_2_1 + 0.00833333333333331*G6_2_0_3_0_2 + 0.00833333333333331*G6_2_0_3_1_2 + 0.00833333333333331*G6_2_0_3_2_2 - 0.00833333333333331*G6_2_1_0_0_0 - 0.00833333333333331*G6_2_1_0_0_1 - 0.00833333333333331*G6_2_1_0_0_2 - 0.00833333333333331*G6_2_1_0_1_0 - 0.00833333333333331*G6_2_1_0_1_1 - 0.00833333333333331*G6_2_1_0_1_2 - 0.00833333333333331*G6_2_1_0_2_0 - 0.00833333333333331*G6_2_1_0_2_1 - 0.00833333333333331*G6_2_1_0_2_2 + 0.00833333333333331*G6_2_1_1_0_0 + 0.00833333333333331*G6_2_1_1_1_0 + 0.00833333333333331*G6_2_1_1_2_0 + 0.00833333333333331*G6_2_1_2_0_1 + 0.00833333333333331*G6_2_1_2_1_1 + 0.00833333333333331*G6_2_1_2_2_1 + 0.00833333333333331*G6_2_1_3_0_2 + 0.00833333333333331*G6_2_1_3_1_2 + 0.00833333333333331*G6_2_1_3_2_2 - 0.0166666666666666*G6_2_2_0_0_0 - 0.0166666666666666*G6_2_2_0_0_1 - 0.0166666666666666*G6_2_2_0_0_2 - 0.0166666666666666*G6_2_2_0_1_0 - 0.0166666666666666*G6_2_2_0_1_1 - 0.0166666666666666*G6_2_2_0_1_2 - 0.0166666666666666*G6_2_2_0_2_0 - 0.0166666666666666*G6_2_2_0_2_1 - 0.0166666666666666*G6_2_2_0_2_2 + 0.0166666666666666*G6_2_2_1_0_0 + 0.0166666666666666*G6_2_2_1_1_0 + 0.0166666666666666*G6_2_2_1_2_0 + 0.0166666666666666*G6_2_2_2_0_1 + 0.0166666666666666*G6_2_2_2_1_1 + 0.0166666666666666*G6_2_2_2_2_1 + 0.0166666666666666*G6_2_2_3_0_2 + 0.0166666666666666*G6_2_2_3_1_2 + 0.0166666666666666*G6_2_2_3_2_2 - 0.00833333333333331*G6_2_3_0_0_0 - 0.00833333333333331*G6_2_3_0_0_1 - 0.00833333333333331*G6_2_3_0_0_2 - 0.00833333333333331*G6_2_3_0_1_0 - 0.00833333333333331*G6_2_3_0_1_1 - 0.00833333333333331*G6_2_3_0_1_2 - 0.00833333333333331*G6_2_3_0_2_0 - 0.00833333333333331*G6_2_3_0_2_1 - 0.00833333333333331*G6_2_3_0_2_2 + 0.00833333333333331*G6_2_3_1_0_0 + 0.00833333333333331*G6_2_3_1_1_0 + 0.00833333333333331*G6_2_3_1_2_0 + 0.00833333333333331*G6_2_3_2_0_1 + 0.00833333333333331*G6_2_3_2_1_1 + 0.00833333333333331*G6_2_3_2_2_1 + 0.00833333333333331*G6_2_3_3_0_2 + 0.00833333333333331*G6_2_3_3_1_2 + 0.00833333333333331*G6_2_3_3_2_2 - 0.00833333333333331*G6_3_0_0_0_0 - 0.00833333333333331*G6_3_0_0_0_1 - 0.00833333333333331*G6_3_0_0_0_2 - 0.00833333333333331*G6_3_0_0_1_0 - 0.00833333333333331*G6_3_0_0_1_1 - 0.00833333333333331*G6_3_0_0_1_2 - 0.00833333333333331*G6_3_0_0_2_0 - 0.00833333333333331*G6_3_0_0_2_1 - 0.00833333333333331*G6_3_0_0_2_2 + 0.00833333333333331*G6_3_0_1_0_0 + 0.00833333333333331*G6_3_0_1_1_0 + 0.00833333333333331*G6_3_0_1_2_0 + 0.00833333333333331*G6_3_0_2_0_1 + 0.00833333333333331*G6_3_0_2_1_1 + 0.00833333333333331*G6_3_0_2_2_1 + 0.00833333333333331*G6_3_0_3_0_2 + 0.00833333333333331*G6_3_0_3_1_2 + 0.00833333333333331*G6_3_0_3_2_2 - 0.00833333333333331*G6_3_1_0_0_0 - 0.00833333333333331*G6_3_1_0_0_1 - 0.00833333333333331*G6_3_1_0_0_2 - 0.00833333333333331*G6_3_1_0_1_0 - 0.00833333333333331*G6_3_1_0_1_1 - 0.00833333333333331*G6_3_1_0_1_2 - 0.00833333333333331*G6_3_1_0_2_0 - 0.00833333333333331*G6_3_1_0_2_1 - 0.00833333333333331*G6_3_1_0_2_2 + 0.00833333333333331*G6_3_1_1_0_0 + 0.00833333333333331*G6_3_1_1_1_0 + 0.00833333333333331*G6_3_1_1_2_0 + 0.00833333333333331*G6_3_1_2_0_1 + 0.00833333333333331*G6_3_1_2_1_1 + 0.00833333333333331*G6_3_1_2_2_1 + 0.00833333333333331*G6_3_1_3_0_2 + 0.00833333333333331*G6_3_1_3_1_2 + 0.00833333333333331*G6_3_1_3_2_2 - 0.00833333333333331*G6_3_2_0_0_0 - 0.00833333333333331*G6_3_2_0_0_1 - 0.00833333333333331*G6_3_2_0_0_2 - 0.00833333333333331*G6_3_2_0_1_0 - 0.00833333333333331*G6_3_2_0_1_1 - 0.00833333333333331*G6_3_2_0_1_2 - 0.00833333333333331*G6_3_2_0_2_0 - 0.00833333333333331*G6_3_2_0_2_1 - 0.00833333333333331*G6_3_2_0_2_2 + 0.00833333333333331*G6_3_2_1_0_0 + 0.00833333333333331*G6_3_2_1_1_0 + 0.00833333333333331*G6_3_2_1_2_0 + 0.00833333333333331*G6_3_2_2_0_1 + 0.00833333333333331*G6_3_2_2_1_1 + 0.00833333333333331*G6_3_2_2_2_1 + 0.00833333333333331*G6_3_2_3_0_2 + 0.00833333333333331*G6_3_2_3_1_2 + 0.00833333333333331*G6_3_2_3_2_2 - 0.0166666666666666*G6_3_3_0_0_0 - 0.0166666666666666*G6_3_3_0_0_1 - 0.0166666666666666*G6_3_3_0_0_2 - 0.0166666666666666*G6_3_3_0_1_0 - 0.0166666666666666*G6_3_3_0_1_1 - 0.0166666666666666*G6_3_3_0_1_2 - 0.0166666666666666*G6_3_3_0_2_0 - 0.0166666666666666*G6_3_3_0_2_1 - 0.0166666666666666*G6_3_3_0_2_2 + 0.0166666666666666*G6_3_3_1_0_0 + 0.0166666666666666*G6_3_3_1_1_0 + 0.0166666666666666*G6_3_3_1_2_0 + 0.0166666666666666*G6_3_3_2_0_1 + 0.0166666666666666*G6_3_3_2_1_1 + 0.0166666666666666*G6_3_3_2_2_1 + 0.0166666666666666*G6_3_3_3_0_2 + 0.0166666666666666*G6_3_3_3_1_2 + 0.0166666666666666*G6_3_3_3_2_2;
-    A[5] = -0.00833333333333331*G0_4 - 0.0166666666666666*G0_5 - 0.00833333333333331*G0_6 - 0.00833333333333331*G0_7 + 0.00833333333333331*G1_4 + 0.0166666666666666*G1_5 + 0.00833333333333331*G1_6 + 0.00833333333333331*G1_7 - 0.0166666666666666*G2_0_0_0_0_0 - 0.0166666666666666*G2_0_0_0_0_1 - 0.0166666666666666*G2_0_0_0_0_2 - 0.00833333333333331*G2_0_0_1_0_0 - 0.00833333333333331*G2_0_0_1_0_1 - 0.00833333333333331*G2_0_0_1_0_2 - 0.00833333333333331*G2_0_0_2_0_0 - 0.00833333333333331*G2_0_0_2_0_1 - 0.00833333333333331*G2_0_0_2_0_2 - 0.00833333333333331*G2_0_0_3_0_0 - 0.00833333333333331*G2_0_0_3_0_1 - 0.00833333333333331*G2_0_0_3_0_2 + 0.0166666666666666*G2_0_1_0_0_0 + 0.00833333333333331*G2_0_1_1_0_0 + 0.00833333333333331*G2_0_1_2_0_0 + 0.00833333333333331*G2_0_1_3_0_0 + 0.0166666666666666*G2_0_2_0_0_1 + 0.00833333333333331*G2_0_2_1_0_1 + 0.00833333333333331*G2_0_2_2_0_1 + 0.00833333333333331*G2_0_2_3_0_1 + 0.0166666666666666*G2_0_3_0_0_2 + 0.00833333333333331*G2_0_3_1_0_2 + 0.00833333333333331*G2_0_3_2_0_2 + 0.00833333333333331*G2_0_3_3_0_2 - 0.00833333333333331*G2_1_0_0_0_0 - 0.00833333333333331*G2_1_0_0_0_1 - 0.00833333333333331*G2_1_0_0_0_2 - 0.0166666666666666*G2_1_0_1_0_0 - 0.0166666666666666*G2_1_0_1_0_1 - 0.0166666666666666*G2_1_0_1_0_2 - 0.00833333333333331*G2_1_0_2_0_0 - 0.00833333333333331*G2_1_0_2_0_1 - 0.00833333333333331*G2_1_0_2_0_2 - 0.00833333333333331*G2_1_0_3_0_0 - 0.00833333333333331*G2_1_0_3_0_1 - 0.00833333333333331*G2_1_0_3_0_2 + 0.00833333333333331*G2_1_1_0_0_0 + 0.0166666666666666*G2_1_1_1_0_0 + 0.00833333333333331*G2_1_1_2_0_0 + 0.00833333333333331*G2_1_1_3_0_0 + 0.00833333333333331*G2_1_2_0_0_1 + 0.0166666666666666*G2_1_2_1_0_1 + 0.00833333333333331*G2_1_2_2_0_1 + 0.00833333333333331*G2_1_2_3_0_1 + 0.00833333333333331*G2_1_3_0_0_2 + 0.0166666666666666*G2_1_3_1_0_2 + 0.00833333333333331*G2_1_3_2_0_2 + 0.00833333333333331*G2_1_3_3_0_2 - 0.0083333333333333*G2_2_0_0_0_0 - 0.00833333333333331*G2_2_0_0_0_1 - 0.00833333333333331*G2_2_0_0_0_2 - 0.00833333333333331*G2_2_0_1_0_0 - 0.00833333333333331*G2_2_0_1_0_1 - 0.00833333333333331*G2_2_0_1_0_2 - 0.0166666666666666*G2_2_0_2_0_0 - 0.0166666666666666*G2_2_0_2_0_1 - 0.0166666666666666*G2_2_0_2_0_2 - 0.00833333333333331*G2_2_0_3_0_0 - 0.00833333333333331*G2_2_0_3_0_1 - 0.00833333333333331*G2_2_0_3_0_2 + 0.0083333333333333*G2_2_1_0_0_0 + 0.00833333333333331*G2_2_1_1_0_0 + 0.0166666666666666*G2_2_1_2_0_0 + 0.00833333333333331*G2_2_1_3_0_0 + 0.00833333333333331*G2_2_2_0_0_1 + 0.00833333333333331*G2_2_2_1_0_1 + 0.0166666666666666*G2_2_2_2_0_1 + 0.00833333333333331*G2_2_2_3_0_1 + 0.00833333333333331*G2_2_3_0_0_2 + 0.00833333333333331*G2_2_3_1_0_2 + 0.0166666666666666*G2_2_3_2_0_2 + 0.00833333333333331*G2_2_3_3_0_2 - 0.00833333333333331*G2_3_0_0_0_0 - 0.00833333333333331*G2_3_0_0_0_1 - 0.00833333333333331*G2_3_0_0_0_2 - 0.00833333333333331*G2_3_0_1_0_0 - 0.00833333333333331*G2_3_0_1_0_1 - 0.00833333333333331*G2_3_0_1_0_2 - 0.00833333333333331*G2_3_0_2_0_0 - 0.00833333333333331*G2_3_0_2_0_1 - 0.00833333333333331*G2_3_0_2_0_2 - 0.0166666666666666*G2_3_0_3_0_0 - 0.0166666666666666*G2_3_0_3_0_1 - 0.0166666666666666*G2_3_0_3_0_2 + 0.00833333333333331*G2_3_1_0_0_0 + 0.00833333333333331*G2_3_1_1_0_0 + 0.00833333333333331*G2_3_1_2_0_0 + 0.0166666666666666*G2_3_1_3_0_0 + 0.00833333333333331*G2_3_2_0_0_1 + 0.00833333333333331*G2_3_2_1_0_1 + 0.00833333333333331*G2_3_2_2_0_1 + 0.0166666666666666*G2_3_2_3_0_1 + 0.00833333333333331*G2_3_3_0_0_2 + 0.00833333333333331*G2_3_3_1_0_2 + 0.00833333333333331*G2_3_3_2_0_2 + 0.0166666666666666*G2_3_3_3_0_2 - 0.0166666666666666*G3_0_0_0_0_0 - 0.0166666666666666*G3_0_0_0_0_1 - 0.0166666666666666*G3_0_0_0_0_2 + 0.0166666666666666*G3_0_0_1_0_0 + 0.0166666666666666*G3_0_0_2_0_1 + 0.0166666666666666*G3_0_0_3_0_2 - 0.00833333333333331*G3_0_1_0_0_0 - 0.00833333333333331*G3_0_1_0_0_1 - 0.00833333333333331*G3_0_1_0_0_2 + 0.00833333333333331*G3_0_1_1_0_0 + 0.00833333333333331*G3_0_1_2_0_1 + 0.00833333333333331*G3_0_1_3_0_2 - 0.00833333333333331*G3_0_2_0_0_0 - 0.00833333333333331*G3_0_2_0_0_1 - 0.00833333333333331*G3_0_2_0_0_2 + 0.00833333333333331*G3_0_2_1_0_0 + 0.00833333333333331*G3_0_2_2_0_1 + 0.00833333333333331*G3_0_2_3_0_2 - 0.00833333333333331*G3_0_3_0_0_0 - 0.00833333333333331*G3_0_3_0_0_1 - 0.00833333333333331*G3_0_3_0_0_2 + 0.00833333333333331*G3_0_3_1_0_0 + 0.00833333333333331*G3_0_3_2_0_1 + 0.00833333333333331*G3_0_3_3_0_2 - 0.00833333333333331*G3_1_0_0_0_0 - 0.00833333333333331*G3_1_0_0_0_1 - 0.00833333333333331*G3_1_0_0_0_2 + 0.00833333333333331*G3_1_0_1_0_0 + 0.00833333333333331*G3_1_0_2_0_1 + 0.00833333333333331*G3_1_0_3_0_2 - 0.0166666666666666*G3_1_1_0_0_0 - 0.0166666666666666*G3_1_1_0_0_1 - 0.0166666666666666*G3_1_1_0_0_2 + 0.0166666666666666*G3_1_1_1_0_0 + 0.0166666666666666*G3_1_1_2_0_1 + 0.0166666666666666*G3_1_1_3_0_2 - 0.00833333333333331*G3_1_2_0_0_0 - 0.00833333333333331*G3_1_2_0_0_1 - 0.00833333333333331*G3_1_2_0_0_2 + 0.00833333333333331*G3_1_2_1_0_0 + 0.00833333333333331*G3_1_2_2_0_1 + 0.00833333333333331*G3_1_2_3_0_2 - 0.00833333333333331*G3_1_3_0_0_0 - 0.00833333333333331*G3_1_3_0_0_1 - 0.00833333333333331*G3_1_3_0_0_2 + 0.00833333333333331*G3_1_3_1_0_0 + 0.00833333333333331*G3_1_3_2_0_1 + 0.00833333333333331*G3_1_3_3_0_2 - 0.0083333333333333*G3_2_0_0_0_0 - 0.00833333333333331*G3_2_0_0_0_1 - 0.00833333333333331*G3_2_0_0_0_2 + 0.0083333333333333*G3_2_0_1_0_0 + 0.00833333333333331*G3_2_0_2_0_1 + 0.00833333333333331*G3_2_0_3_0_2 - 0.00833333333333331*G3_2_1_0_0_0 - 0.00833333333333331*G3_2_1_0_0_1 - 0.00833333333333331*G3_2_1_0_0_2 + 0.00833333333333331*G3_2_1_1_0_0 + 0.00833333333333331*G3_2_1_2_0_1 + 0.00833333333333331*G3_2_1_3_0_2 - 0.0166666666666666*G3_2_2_0_0_0 - 0.0166666666666666*G3_2_2_0_0_1 - 0.0166666666666666*G3_2_2_0_0_2 + 0.0166666666666666*G3_2_2_1_0_0 + 0.0166666666666666*G3_2_2_2_0_1 + 0.0166666666666666*G3_2_2_3_0_2 - 0.00833333333333331*G3_2_3_0_0_0 - 0.00833333333333331*G3_2_3_0_0_1 - 0.00833333333333331*G3_2_3_0_0_2 + 0.00833333333333331*G3_2_3_1_0_0 + 0.00833333333333331*G3_2_3_2_0_1 + 0.00833333333333331*G3_2_3_3_0_2 - 0.00833333333333331*G3_3_0_0_0_0 - 0.00833333333333331*G3_3_0_0_0_1 - 0.00833333333333331*G3_3_0_0_0_2 + 0.00833333333333331*G3_3_0_1_0_0 + 0.00833333333333331*G3_3_0_2_0_1 + 0.00833333333333331*G3_3_0_3_0_2 - 0.00833333333333331*G3_3_1_0_0_0 - 0.00833333333333331*G3_3_1_0_0_1 - 0.00833333333333331*G3_3_1_0_0_2 + 0.00833333333333331*G3_3_1_1_0_0 + 0.00833333333333331*G3_3_1_2_0_1 + 0.00833333333333331*G3_3_1_3_0_2 - 0.00833333333333331*G3_3_2_0_0_0 - 0.00833333333333331*G3_3_2_0_0_1 - 0.00833333333333331*G3_3_2_0_0_2 + 0.00833333333333331*G3_3_2_1_0_0 + 0.00833333333333331*G3_3_2_2_0_1 + 0.00833333333333331*G3_3_2_3_0_2 - 0.0166666666666666*G3_3_3_0_0_0 - 0.0166666666666666*G3_3_3_0_0_1 - 0.0166666666666666*G3_3_3_0_0_2 + 0.0166666666666666*G3_3_3_1_0_0 + 0.0166666666666666*G3_3_3_2_0_1 + 0.0166666666666666*G3_3_3_3_0_2 + 0.0416666666666666*G4_0_0_0_0 + 0.0416666666666666*G4_0_0_0_1 + 0.0416666666666666*G4_0_0_0_2 - 0.0416666666666666*G4_0_1_0_0 - 0.0416666666666666*G4_0_2_0_1 - 0.0416666666666666*G4_0_3_0_2 + 0.0416666666666666*G4_1_0_0_0 + 0.0416666666666666*G4_1_0_0_1 + 0.0416666666666666*G4_1_0_0_2 - 0.0416666666666666*G4_1_1_0_0 - 0.0416666666666666*G4_1_2_0_1 - 0.0416666666666666*G4_1_3_0_2 + 0.0416666666666666*G4_2_0_0_0 + 0.0416666666666666*G4_2_0_0_1 + 0.0416666666666666*G4_2_0_0_2 - 0.0416666666666666*G4_2_1_0_0 - 0.0416666666666666*G4_2_2_0_1 - 0.0416666666666666*G4_2_3_0_2 + 0.0416666666666666*G4_3_0_0_0 + 0.0416666666666666*G4_3_0_0_1 + 0.0416666666666666*G4_3_0_0_2 - 0.0416666666666666*G4_3_1_0_0 - 0.0416666666666666*G4_3_2_0_1 - 0.0416666666666666*G4_3_3_0_2 + 0.0166666666666666*G5_0_0_0_0_0 + 0.0166666666666666*G5_0_0_0_0_1 + 0.0166666666666666*G5_0_0_0_0_2 + 0.00833333333333331*G5_0_0_1_0_0 + 0.00833333333333331*G5_0_0_1_0_1 + 0.00833333333333331*G5_0_0_1_0_2 + 0.00833333333333331*G5_0_0_2_0_0 + 0.00833333333333331*G5_0_0_2_0_1 + 0.00833333333333331*G5_0_0_2_0_2 + 0.00833333333333331*G5_0_0_3_0_0 + 0.00833333333333331*G5_0_0_3_0_1 + 0.00833333333333331*G5_0_0_3_0_2 - 0.0166666666666666*G5_0_1_0_0_0 - 0.00833333333333331*G5_0_1_1_0_0 - 0.00833333333333331*G5_0_1_2_0_0 - 0.00833333333333331*G5_0_1_3_0_0 - 0.0166666666666666*G5_0_2_0_0_1 - 0.00833333333333331*G5_0_2_1_0_1 - 0.00833333333333331*G5_0_2_2_0_1 - 0.00833333333333331*G5_0_2_3_0_1 - 0.0166666666666666*G5_0_3_0_0_2 - 0.00833333333333331*G5_0_3_1_0_2 - 0.00833333333333331*G5_0_3_2_0_2 - 0.00833333333333331*G5_0_3_3_0_2 + 0.00833333333333331*G5_1_0_0_0_0 + 0.00833333333333331*G5_1_0_0_0_1 + 0.00833333333333331*G5_1_0_0_0_2 + 0.0166666666666666*G5_1_0_1_0_0 + 0.0166666666666666*G5_1_0_1_0_1 + 0.0166666666666666*G5_1_0_1_0_2 + 0.00833333333333331*G5_1_0_2_0_0 + 0.00833333333333331*G5_1_0_2_0_1 + 0.00833333333333331*G5_1_0_2_0_2 + 0.00833333333333331*G5_1_0_3_0_0 + 0.00833333333333331*G5_1_0_3_0_1 + 0.00833333333333331*G5_1_0_3_0_2 - 0.00833333333333331*G5_1_1_0_0_0 - 0.0166666666666666*G5_1_1_1_0_0 - 0.00833333333333331*G5_1_1_2_0_0 - 0.00833333333333331*G5_1_1_3_0_0 - 0.00833333333333331*G5_1_2_0_0_1 - 0.0166666666666666*G5_1_2_1_0_1 - 0.00833333333333331*G5_1_2_2_0_1 - 0.00833333333333331*G5_1_2_3_0_1 - 0.00833333333333331*G5_1_3_0_0_2 - 0.0166666666666666*G5_1_3_1_0_2 - 0.00833333333333331*G5_1_3_2_0_2 - 0.00833333333333331*G5_1_3_3_0_2 + 0.0083333333333333*G5_2_0_0_0_0 + 0.00833333333333331*G5_2_0_0_0_1 + 0.00833333333333331*G5_2_0_0_0_2 + 0.00833333333333331*G5_2_0_1_0_0 + 0.00833333333333331*G5_2_0_1_0_1 + 0.00833333333333331*G5_2_0_1_0_2 + 0.0166666666666666*G5_2_0_2_0_0 + 0.0166666666666666*G5_2_0_2_0_1 + 0.0166666666666666*G5_2_0_2_0_2 + 0.00833333333333331*G5_2_0_3_0_0 + 0.00833333333333331*G5_2_0_3_0_1 + 0.00833333333333331*G5_2_0_3_0_2 - 0.0083333333333333*G5_2_1_0_0_0 - 0.00833333333333331*G5_2_1_1_0_0 - 0.0166666666666666*G5_2_1_2_0_0 - 0.00833333333333331*G5_2_1_3_0_0 - 0.00833333333333331*G5_2_2_0_0_1 - 0.00833333333333331*G5_2_2_1_0_1 - 0.0166666666666666*G5_2_2_2_0_1 - 0.00833333333333331*G5_2_2_3_0_1 - 0.00833333333333331*G5_2_3_0_0_2 - 0.00833333333333331*G5_2_3_1_0_2 - 0.0166666666666666*G5_2_3_2_0_2 - 0.00833333333333331*G5_2_3_3_0_2 + 0.00833333333333331*G5_3_0_0_0_0 + 0.00833333333333331*G5_3_0_0_0_1 + 0.00833333333333331*G5_3_0_0_0_2 + 0.00833333333333331*G5_3_0_1_0_0 + 0.00833333333333331*G5_3_0_1_0_1 + 0.00833333333333331*G5_3_0_1_0_2 + 0.00833333333333331*G5_3_0_2_0_0 + 0.00833333333333331*G5_3_0_2_0_1 + 0.00833333333333331*G5_3_0_2_0_2 + 0.0166666666666666*G5_3_0_3_0_0 + 0.0166666666666666*G5_3_0_3_0_1 + 0.0166666666666666*G5_3_0_3_0_2 - 0.00833333333333331*G5_3_1_0_0_0 - 0.00833333333333331*G5_3_1_1_0_0 - 0.00833333333333331*G5_3_1_2_0_0 - 0.0166666666666666*G5_3_1_3_0_0 - 0.00833333333333331*G5_3_2_0_0_1 - 0.00833333333333331*G5_3_2_1_0_1 - 0.00833333333333331*G5_3_2_2_0_1 - 0.0166666666666666*G5_3_2_3_0_1 - 0.00833333333333331*G5_3_3_0_0_2 - 0.00833333333333331*G5_3_3_1_0_2 - 0.00833333333333331*G5_3_3_2_0_2 - 0.0166666666666666*G5_3_3_3_0_2 + 0.0166666666666666*G6_0_0_0_0_0 + 0.0166666666666666*G6_0_0_0_0_1 + 0.0166666666666666*G6_0_0_0_0_2 - 0.0166666666666666*G6_0_0_1_0_0 - 0.0166666666666666*G6_0_0_2_0_1 - 0.0166666666666666*G6_0_0_3_0_2 + 0.00833333333333331*G6_0_1_0_0_0 + 0.00833333333333331*G6_0_1_0_0_1 + 0.00833333333333331*G6_0_1_0_0_2 - 0.00833333333333331*G6_0_1_1_0_0 - 0.00833333333333331*G6_0_1_2_0_1 - 0.00833333333333331*G6_0_1_3_0_2 + 0.00833333333333331*G6_0_2_0_0_0 + 0.00833333333333331*G6_0_2_0_0_1 + 0.00833333333333331*G6_0_2_0_0_2 - 0.00833333333333331*G6_0_2_1_0_0 - 0.00833333333333331*G6_0_2_2_0_1 - 0.00833333333333331*G6_0_2_3_0_2 + 0.00833333333333331*G6_0_3_0_0_0 + 0.00833333333333331*G6_0_3_0_0_1 + 0.00833333333333331*G6_0_3_0_0_2 - 0.00833333333333331*G6_0_3_1_0_0 - 0.00833333333333331*G6_0_3_2_0_1 - 0.00833333333333331*G6_0_3_3_0_2 + 0.00833333333333331*G6_1_0_0_0_0 + 0.00833333333333331*G6_1_0_0_0_1 + 0.00833333333333331*G6_1_0_0_0_2 - 0.00833333333333331*G6_1_0_1_0_0 - 0.00833333333333331*G6_1_0_2_0_1 - 0.00833333333333331*G6_1_0_3_0_2 + 0.0166666666666666*G6_1_1_0_0_0 + 0.0166666666666666*G6_1_1_0_0_1 + 0.0166666666666666*G6_1_1_0_0_2 - 0.0166666666666666*G6_1_1_1_0_0 - 0.0166666666666666*G6_1_1_2_0_1 - 0.0166666666666666*G6_1_1_3_0_2 + 0.00833333333333331*G6_1_2_0_0_0 + 0.00833333333333331*G6_1_2_0_0_1 + 0.00833333333333331*G6_1_2_0_0_2 - 0.00833333333333331*G6_1_2_1_0_0 - 0.00833333333333331*G6_1_2_2_0_1 - 0.00833333333333331*G6_1_2_3_0_2 + 0.00833333333333331*G6_1_3_0_0_0 + 0.00833333333333331*G6_1_3_0_0_1 + 0.00833333333333331*G6_1_3_0_0_2 - 0.00833333333333331*G6_1_3_1_0_0 - 0.00833333333333331*G6_1_3_2_0_1 - 0.00833333333333331*G6_1_3_3_0_2 + 0.0083333333333333*G6_2_0_0_0_0 + 0.00833333333333331*G6_2_0_0_0_1 + 0.00833333333333331*G6_2_0_0_0_2 - 0.0083333333333333*G6_2_0_1_0_0 - 0.00833333333333331*G6_2_0_2_0_1 - 0.00833333333333331*G6_2_0_3_0_2 + 0.00833333333333331*G6_2_1_0_0_0 + 0.00833333333333331*G6_2_1_0_0_1 + 0.00833333333333331*G6_2_1_0_0_2 - 0.00833333333333331*G6_2_1_1_0_0 - 0.00833333333333331*G6_2_1_2_0_1 - 0.00833333333333331*G6_2_1_3_0_2 + 0.0166666666666666*G6_2_2_0_0_0 + 0.0166666666666666*G6_2_2_0_0_1 + 0.0166666666666666*G6_2_2_0_0_2 - 0.0166666666666666*G6_2_2_1_0_0 - 0.0166666666666666*G6_2_2_2_0_1 - 0.0166666666666666*G6_2_2_3_0_2 + 0.00833333333333331*G6_2_3_0_0_0 + 0.00833333333333331*G6_2_3_0_0_1 + 0.00833333333333331*G6_2_3_0_0_2 - 0.00833333333333331*G6_2_3_1_0_0 - 0.00833333333333331*G6_2_3_2_0_1 - 0.00833333333333331*G6_2_3_3_0_2 + 0.00833333333333331*G6_3_0_0_0_0 + 0.00833333333333331*G6_3_0_0_0_1 + 0.00833333333333331*G6_3_0_0_0_2 - 0.00833333333333331*G6_3_0_1_0_0 - 0.00833333333333331*G6_3_0_2_0_1 - 0.00833333333333331*G6_3_0_3_0_2 + 0.00833333333333331*G6_3_1_0_0_0 + 0.00833333333333331*G6_3_1_0_0_1 + 0.00833333333333331*G6_3_1_0_0_2 - 0.00833333333333331*G6_3_1_1_0_0 - 0.00833333333333331*G6_3_1_2_0_1 - 0.00833333333333331*G6_3_1_3_0_2 + 0.00833333333333331*G6_3_2_0_0_0 + 0.00833333333333331*G6_3_2_0_0_1 + 0.00833333333333331*G6_3_2_0_0_2 - 0.00833333333333331*G6_3_2_1_0_0 - 0.00833333333333331*G6_3_2_2_0_1 - 0.00833333333333331*G6_3_2_3_0_2 + 0.0166666666666666*G6_3_3_0_0_0 + 0.0166666666666666*G6_3_3_0_0_1 + 0.0166666666666666*G6_3_3_0_0_2 - 0.0166666666666666*G6_3_3_1_0_0 - 0.0166666666666666*G6_3_3_2_0_1 - 0.0166666666666666*G6_3_3_3_0_2;
-    A[6] = -0.00833333333333331*G0_4 - 0.00833333333333331*G0_5 - 0.0166666666666666*G0_6 - 0.00833333333333331*G0_7 + 0.00833333333333331*G1_4 + 0.00833333333333331*G1_5 + 0.0166666666666666*G1_6 + 0.00833333333333331*G1_7 - 0.0166666666666666*G2_0_0_0_1_0 - 0.0166666666666666*G2_0_0_0_1_1 - 0.0166666666666666*G2_0_0_0_1_2 - 0.00833333333333331*G2_0_0_1_1_0 - 0.00833333333333331*G2_0_0_1_1_1 - 0.00833333333333331*G2_0_0_1_1_2 - 0.00833333333333331*G2_0_0_2_1_0 - 0.00833333333333331*G2_0_0_2_1_1 - 0.00833333333333331*G2_0_0_2_1_2 - 0.00833333333333331*G2_0_0_3_1_0 - 0.00833333333333331*G2_0_0_3_1_1 - 0.00833333333333331*G2_0_0_3_1_2 + 0.0166666666666666*G2_0_1_0_1_0 + 0.00833333333333331*G2_0_1_1_1_0 + 0.00833333333333331*G2_0_1_2_1_0 + 0.00833333333333331*G2_0_1_3_1_0 + 0.0166666666666666*G2_0_2_0_1_1 + 0.00833333333333331*G2_0_2_1_1_1 + 0.00833333333333331*G2_0_2_2_1_1 + 0.00833333333333331*G2_0_2_3_1_1 + 0.0166666666666666*G2_0_3_0_1_2 + 0.00833333333333331*G2_0_3_1_1_2 + 0.00833333333333331*G2_0_3_2_1_2 + 0.00833333333333331*G2_0_3_3_1_2 - 0.00833333333333331*G2_1_0_0_1_0 - 0.00833333333333331*G2_1_0_0_1_1 - 0.00833333333333331*G2_1_0_0_1_2 - 0.0166666666666666*G2_1_0_1_1_0 - 0.0166666666666666*G2_1_0_1_1_1 - 0.0166666666666666*G2_1_0_1_1_2 - 0.00833333333333331*G2_1_0_2_1_0 - 0.00833333333333331*G2_1_0_2_1_1 - 0.00833333333333331*G2_1_0_2_1_2 - 0.00833333333333331*G2_1_0_3_1_0 - 0.00833333333333331*G2_1_0_3_1_1 - 0.00833333333333331*G2_1_0_3_1_2 + 0.00833333333333331*G2_1_1_0_1_0 + 0.0166666666666666*G2_1_1_1_1_0 + 0.00833333333333331*G2_1_1_2_1_0 + 0.00833333333333331*G2_1_1_3_1_0 + 0.00833333333333331*G2_1_2_0_1_1 + 0.0166666666666666*G2_1_2_1_1_1 + 0.00833333333333331*G2_1_2_2_1_1 + 0.00833333333333331*G2_1_2_3_1_1 + 0.00833333333333331*G2_1_3_0_1_2 + 0.0166666666666666*G2_1_3_1_1_2 + 0.00833333333333331*G2_1_3_2_1_2 + 0.00833333333333331*G2_1_3_3_1_2 - 0.00833333333333331*G2_2_0_0_1_0 - 0.00833333333333331*G2_2_0_0_1_1 - 0.00833333333333331*G2_2_0_0_1_2 - 0.00833333333333331*G2_2_0_1_1_0 - 0.00833333333333331*G2_2_0_1_1_1 - 0.00833333333333331*G2_2_0_1_1_2 - 0.0166666666666666*G2_2_0_2_1_0 - 0.0166666666666666*G2_2_0_2_1_1 - 0.0166666666666666*G2_2_0_2_1_2 - 0.00833333333333331*G2_2_0_3_1_0 - 0.00833333333333331*G2_2_0_3_1_1 - 0.00833333333333331*G2_2_0_3_1_2 + 0.00833333333333331*G2_2_1_0_1_0 + 0.00833333333333331*G2_2_1_1_1_0 + 0.0166666666666666*G2_2_1_2_1_0 + 0.00833333333333331*G2_2_1_3_1_0 + 0.00833333333333331*G2_2_2_0_1_1 + 0.00833333333333331*G2_2_2_1_1_1 + 0.0166666666666666*G2_2_2_2_1_1 + 0.00833333333333331*G2_2_2_3_1_1 + 0.00833333333333331*G2_2_3_0_1_2 + 0.00833333333333331*G2_2_3_1_1_2 + 0.0166666666666666*G2_2_3_2_1_2 + 0.00833333333333331*G2_2_3_3_1_2 - 0.00833333333333331*G2_3_0_0_1_0 - 0.00833333333333331*G2_3_0_0_1_1 - 0.00833333333333331*G2_3_0_0_1_2 - 0.00833333333333331*G2_3_0_1_1_0 - 0.00833333333333331*G2_3_0_1_1_1 - 0.00833333333333331*G2_3_0_1_1_2 - 0.00833333333333331*G2_3_0_2_1_0 - 0.00833333333333331*G2_3_0_2_1_1 - 0.00833333333333331*G2_3_0_2_1_2 - 0.0166666666666666*G2_3_0_3_1_0 - 0.0166666666666666*G2_3_0_3_1_1 - 0.0166666666666666*G2_3_0_3_1_2 + 0.00833333333333331*G2_3_1_0_1_0 + 0.00833333333333331*G2_3_1_1_1_0 + 0.00833333333333331*G2_3_1_2_1_0 + 0.0166666666666666*G2_3_1_3_1_0 + 0.00833333333333331*G2_3_2_0_1_1 + 0.00833333333333331*G2_3_2_1_1_1 + 0.00833333333333331*G2_3_2_2_1_1 + 0.0166666666666666*G2_3_2_3_1_1 + 0.00833333333333331*G2_3_3_0_1_2 + 0.00833333333333331*G2_3_3_1_1_2 + 0.00833333333333331*G2_3_3_2_1_2 + 0.0166666666666666*G2_3_3_3_1_2 - 0.0166666666666666*G3_0_0_0_1_0 - 0.0166666666666666*G3_0_0_0_1_1 - 0.0166666666666666*G3_0_0_0_1_2 + 0.0166666666666666*G3_0_0_1_1_0 + 0.0166666666666666*G3_0_0_2_1_1 + 0.0166666666666666*G3_0_0_3_1_2 - 0.00833333333333331*G3_0_1_0_1_0 - 0.00833333333333331*G3_0_1_0_1_1 - 0.00833333333333331*G3_0_1_0_1_2 + 0.00833333333333331*G3_0_1_1_1_0 + 0.00833333333333331*G3_0_1_2_1_1 + 0.00833333333333331*G3_0_1_3_1_2 - 0.00833333333333331*G3_0_2_0_1_0 - 0.00833333333333331*G3_0_2_0_1_1 - 0.00833333333333331*G3_0_2_0_1_2 + 0.00833333333333331*G3_0_2_1_1_0 + 0.00833333333333331*G3_0_2_2_1_1 + 0.00833333333333331*G3_0_2_3_1_2 - 0.00833333333333331*G3_0_3_0_1_0 - 0.00833333333333331*G3_0_3_0_1_1 - 0.00833333333333331*G3_0_3_0_1_2 + 0.00833333333333331*G3_0_3_1_1_0 + 0.00833333333333331*G3_0_3_2_1_1 + 0.00833333333333331*G3_0_3_3_1_2 - 0.00833333333333331*G3_1_0_0_1_0 - 0.00833333333333331*G3_1_0_0_1_1 - 0.00833333333333331*G3_1_0_0_1_2 + 0.00833333333333331*G3_1_0_1_1_0 + 0.00833333333333331*G3_1_0_2_1_1 + 0.00833333333333331*G3_1_0_3_1_2 - 0.0166666666666666*G3_1_1_0_1_0 - 0.0166666666666666*G3_1_1_0_1_1 - 0.0166666666666666*G3_1_1_0_1_2 + 0.0166666666666666*G3_1_1_1_1_0 + 0.0166666666666666*G3_1_1_2_1_1 + 0.0166666666666666*G3_1_1_3_1_2 - 0.00833333333333331*G3_1_2_0_1_0 - 0.00833333333333331*G3_1_2_0_1_1 - 0.00833333333333331*G3_1_2_0_1_2 + 0.00833333333333331*G3_1_2_1_1_0 + 0.00833333333333331*G3_1_2_2_1_1 + 0.00833333333333331*G3_1_2_3_1_2 - 0.00833333333333331*G3_1_3_0_1_0 - 0.00833333333333331*G3_1_3_0_1_1 - 0.00833333333333331*G3_1_3_0_1_2 + 0.00833333333333331*G3_1_3_1_1_0 + 0.00833333333333331*G3_1_3_2_1_1 + 0.00833333333333331*G3_1_3_3_1_2 - 0.00833333333333331*G3_2_0_0_1_0 - 0.00833333333333331*G3_2_0_0_1_1 - 0.00833333333333331*G3_2_0_0_1_2 + 0.00833333333333331*G3_2_0_1_1_0 + 0.00833333333333331*G3_2_0_2_1_1 + 0.00833333333333331*G3_2_0_3_1_2 - 0.00833333333333331*G3_2_1_0_1_0 - 0.00833333333333331*G3_2_1_0_1_1 - 0.00833333333333331*G3_2_1_0_1_2 + 0.00833333333333331*G3_2_1_1_1_0 + 0.00833333333333331*G3_2_1_2_1_1 + 0.00833333333333331*G3_2_1_3_1_2 - 0.0166666666666666*G3_2_2_0_1_0 - 0.0166666666666666*G3_2_2_0_1_1 - 0.0166666666666666*G3_2_2_0_1_2 + 0.0166666666666666*G3_2_2_1_1_0 + 0.0166666666666666*G3_2_2_2_1_1 + 0.0166666666666666*G3_2_2_3_1_2 - 0.00833333333333331*G3_2_3_0_1_0 - 0.00833333333333331*G3_2_3_0_1_1 - 0.00833333333333331*G3_2_3_0_1_2 + 0.00833333333333331*G3_2_3_1_1_0 + 0.00833333333333331*G3_2_3_2_1_1 + 0.00833333333333331*G3_2_3_3_1_2 - 0.00833333333333331*G3_3_0_0_1_0 - 0.00833333333333331*G3_3_0_0_1_1 - 0.00833333333333331*G3_3_0_0_1_2 + 0.00833333333333331*G3_3_0_1_1_0 + 0.00833333333333331*G3_3_0_2_1_1 + 0.00833333333333331*G3_3_0_3_1_2 - 0.00833333333333331*G3_3_1_0_1_0 - 0.00833333333333331*G3_3_1_0_1_1 - 0.00833333333333331*G3_3_1_0_1_2 + 0.00833333333333331*G3_3_1_1_1_0 + 0.00833333333333331*G3_3_1_2_1_1 + 0.00833333333333331*G3_3_1_3_1_2 - 0.00833333333333331*G3_3_2_0_1_0 - 0.00833333333333331*G3_3_2_0_1_1 - 0.00833333333333331*G3_3_2_0_1_2 + 0.00833333333333331*G3_3_2_1_1_0 + 0.00833333333333331*G3_3_2_2_1_1 + 0.00833333333333331*G3_3_2_3_1_2 - 0.0166666666666666*G3_3_3_0_1_0 - 0.0166666666666666*G3_3_3_0_1_1 - 0.0166666666666666*G3_3_3_0_1_2 + 0.0166666666666666*G3_3_3_1_1_0 + 0.0166666666666666*G3_3_3_2_1_1 + 0.0166666666666666*G3_3_3_3_1_2 + 0.0416666666666666*G4_0_0_1_0 + 0.0416666666666666*G4_0_0_1_1 + 0.0416666666666666*G4_0_0_1_2 - 0.0416666666666666*G4_0_1_1_0 - 0.0416666666666666*G4_0_2_1_1 - 0.0416666666666666*G4_0_3_1_2 + 0.0416666666666666*G4_1_0_1_0 + 0.0416666666666666*G4_1_0_1_1 + 0.0416666666666666*G4_1_0_1_2 - 0.0416666666666666*G4_1_1_1_0 - 0.0416666666666666*G4_1_2_1_1 - 0.0416666666666666*G4_1_3_1_2 + 0.0416666666666666*G4_2_0_1_0 + 0.0416666666666666*G4_2_0_1_1 + 0.0416666666666666*G4_2_0_1_2 - 0.0416666666666666*G4_2_1_1_0 - 0.0416666666666666*G4_2_2_1_1 - 0.0416666666666666*G4_2_3_1_2 + 0.0416666666666666*G4_3_0_1_0 + 0.0416666666666666*G4_3_0_1_1 + 0.0416666666666666*G4_3_0_1_2 - 0.0416666666666666*G4_3_1_1_0 - 0.0416666666666666*G4_3_2_1_1 - 0.0416666666666666*G4_3_3_1_2 + 0.0166666666666666*G5_0_0_0_1_0 + 0.0166666666666666*G5_0_0_0_1_1 + 0.0166666666666666*G5_0_0_0_1_2 + 0.00833333333333331*G5_0_0_1_1_0 + 0.00833333333333331*G5_0_0_1_1_1 + 0.00833333333333331*G5_0_0_1_1_2 + 0.00833333333333331*G5_0_0_2_1_0 + 0.00833333333333331*G5_0_0_2_1_1 + 0.00833333333333331*G5_0_0_2_1_2 + 0.00833333333333331*G5_0_0_3_1_0 + 0.00833333333333331*G5_0_0_3_1_1 + 0.00833333333333331*G5_0_0_3_1_2 - 0.0166666666666666*G5_0_1_0_1_0 - 0.00833333333333331*G5_0_1_1_1_0 - 0.00833333333333331*G5_0_1_2_1_0 - 0.00833333333333331*G5_0_1_3_1_0 - 0.0166666666666666*G5_0_2_0_1_1 - 0.00833333333333331*G5_0_2_1_1_1 - 0.00833333333333331*G5_0_2_2_1_1 - 0.00833333333333331*G5_0_2_3_1_1 - 0.0166666666666666*G5_0_3_0_1_2 - 0.00833333333333331*G5_0_3_1_1_2 - 0.00833333333333331*G5_0_3_2_1_2 - 0.00833333333333331*G5_0_3_3_1_2 + 0.00833333333333331*G5_1_0_0_1_0 + 0.00833333333333331*G5_1_0_0_1_1 + 0.00833333333333331*G5_1_0_0_1_2 + 0.0166666666666666*G5_1_0_1_1_0 + 0.0166666666666666*G5_1_0_1_1_1 + 0.0166666666666666*G5_1_0_1_1_2 + 0.00833333333333331*G5_1_0_2_1_0 + 0.00833333333333331*G5_1_0_2_1_1 + 0.00833333333333331*G5_1_0_2_1_2 + 0.00833333333333331*G5_1_0_3_1_0 + 0.00833333333333331*G5_1_0_3_1_1 + 0.00833333333333331*G5_1_0_3_1_2 - 0.00833333333333331*G5_1_1_0_1_0 - 0.0166666666666666*G5_1_1_1_1_0 - 0.00833333333333331*G5_1_1_2_1_0 - 0.00833333333333331*G5_1_1_3_1_0 - 0.00833333333333331*G5_1_2_0_1_1 - 0.0166666666666666*G5_1_2_1_1_1 - 0.00833333333333331*G5_1_2_2_1_1 - 0.00833333333333331*G5_1_2_3_1_1 - 0.00833333333333331*G5_1_3_0_1_2 - 0.0166666666666666*G5_1_3_1_1_2 - 0.00833333333333331*G5_1_3_2_1_2 - 0.00833333333333331*G5_1_3_3_1_2 + 0.00833333333333331*G5_2_0_0_1_0 + 0.00833333333333331*G5_2_0_0_1_1 + 0.00833333333333331*G5_2_0_0_1_2 + 0.00833333333333331*G5_2_0_1_1_0 + 0.00833333333333331*G5_2_0_1_1_1 + 0.00833333333333331*G5_2_0_1_1_2 + 0.0166666666666666*G5_2_0_2_1_0 + 0.0166666666666666*G5_2_0_2_1_1 + 0.0166666666666666*G5_2_0_2_1_2 + 0.00833333333333331*G5_2_0_3_1_0 + 0.00833333333333331*G5_2_0_3_1_1 + 0.00833333333333331*G5_2_0_3_1_2 - 0.00833333333333331*G5_2_1_0_1_0 - 0.00833333333333331*G5_2_1_1_1_0 - 0.0166666666666666*G5_2_1_2_1_0 - 0.00833333333333331*G5_2_1_3_1_0 - 0.00833333333333331*G5_2_2_0_1_1 - 0.00833333333333331*G5_2_2_1_1_1 - 0.0166666666666666*G5_2_2_2_1_1 - 0.00833333333333331*G5_2_2_3_1_1 - 0.00833333333333331*G5_2_3_0_1_2 - 0.00833333333333331*G5_2_3_1_1_2 - 0.0166666666666666*G5_2_3_2_1_2 - 0.00833333333333331*G5_2_3_3_1_2 + 0.00833333333333331*G5_3_0_0_1_0 + 0.00833333333333331*G5_3_0_0_1_1 + 0.00833333333333331*G5_3_0_0_1_2 + 0.00833333333333331*G5_3_0_1_1_0 + 0.00833333333333331*G5_3_0_1_1_1 + 0.00833333333333331*G5_3_0_1_1_2 + 0.00833333333333331*G5_3_0_2_1_0 + 0.00833333333333331*G5_3_0_2_1_1 + 0.00833333333333331*G5_3_0_2_1_2 + 0.0166666666666666*G5_3_0_3_1_0 + 0.0166666666666666*G5_3_0_3_1_1 + 0.0166666666666666*G5_3_0_3_1_2 - 0.00833333333333331*G5_3_1_0_1_0 - 0.00833333333333331*G5_3_1_1_1_0 - 0.00833333333333331*G5_3_1_2_1_0 - 0.0166666666666666*G5_3_1_3_1_0 - 0.00833333333333331*G5_3_2_0_1_1 - 0.00833333333333331*G5_3_2_1_1_1 - 0.00833333333333331*G5_3_2_2_1_1 - 0.0166666666666666*G5_3_2_3_1_1 - 0.00833333333333331*G5_3_3_0_1_2 - 0.00833333333333331*G5_3_3_1_1_2 - 0.00833333333333331*G5_3_3_2_1_2 - 0.0166666666666666*G5_3_3_3_1_2 + 0.0166666666666666*G6_0_0_0_1_0 + 0.0166666666666666*G6_0_0_0_1_1 + 0.0166666666666666*G6_0_0_0_1_2 - 0.0166666666666666*G6_0_0_1_1_0 - 0.0166666666666666*G6_0_0_2_1_1 - 0.0166666666666666*G6_0_0_3_1_2 + 0.00833333333333331*G6_0_1_0_1_0 + 0.00833333333333331*G6_0_1_0_1_1 + 0.00833333333333331*G6_0_1_0_1_2 - 0.00833333333333331*G6_0_1_1_1_0 - 0.00833333333333331*G6_0_1_2_1_1 - 0.00833333333333331*G6_0_1_3_1_2 + 0.00833333333333331*G6_0_2_0_1_0 + 0.00833333333333331*G6_0_2_0_1_1 + 0.00833333333333331*G6_0_2_0_1_2 - 0.00833333333333331*G6_0_2_1_1_0 - 0.00833333333333331*G6_0_2_2_1_1 - 0.00833333333333331*G6_0_2_3_1_2 + 0.00833333333333331*G6_0_3_0_1_0 + 0.00833333333333331*G6_0_3_0_1_1 + 0.00833333333333331*G6_0_3_0_1_2 - 0.00833333333333331*G6_0_3_1_1_0 - 0.00833333333333331*G6_0_3_2_1_1 - 0.00833333333333331*G6_0_3_3_1_2 + 0.00833333333333331*G6_1_0_0_1_0 + 0.00833333333333331*G6_1_0_0_1_1 + 0.00833333333333331*G6_1_0_0_1_2 - 0.00833333333333331*G6_1_0_1_1_0 - 0.00833333333333331*G6_1_0_2_1_1 - 0.00833333333333331*G6_1_0_3_1_2 + 0.0166666666666666*G6_1_1_0_1_0 + 0.0166666666666666*G6_1_1_0_1_1 + 0.0166666666666666*G6_1_1_0_1_2 - 0.0166666666666666*G6_1_1_1_1_0 - 0.0166666666666666*G6_1_1_2_1_1 - 0.0166666666666666*G6_1_1_3_1_2 + 0.00833333333333331*G6_1_2_0_1_0 + 0.00833333333333331*G6_1_2_0_1_1 + 0.00833333333333331*G6_1_2_0_1_2 - 0.00833333333333331*G6_1_2_1_1_0 - 0.00833333333333331*G6_1_2_2_1_1 - 0.00833333333333331*G6_1_2_3_1_2 + 0.00833333333333331*G6_1_3_0_1_0 + 0.00833333333333331*G6_1_3_0_1_1 + 0.00833333333333331*G6_1_3_0_1_2 - 0.00833333333333331*G6_1_3_1_1_0 - 0.00833333333333331*G6_1_3_2_1_1 - 0.00833333333333331*G6_1_3_3_1_2 + 0.00833333333333331*G6_2_0_0_1_0 + 0.00833333333333331*G6_2_0_0_1_1 + 0.00833333333333331*G6_2_0_0_1_2 - 0.00833333333333331*G6_2_0_1_1_0 - 0.00833333333333331*G6_2_0_2_1_1 - 0.00833333333333331*G6_2_0_3_1_2 + 0.00833333333333331*G6_2_1_0_1_0 + 0.00833333333333331*G6_2_1_0_1_1 + 0.00833333333333331*G6_2_1_0_1_2 - 0.00833333333333331*G6_2_1_1_1_0 - 0.00833333333333331*G6_2_1_2_1_1 - 0.00833333333333331*G6_2_1_3_1_2 + 0.0166666666666666*G6_2_2_0_1_0 + 0.0166666666666666*G6_2_2_0_1_1 + 0.0166666666666666*G6_2_2_0_1_2 - 0.0166666666666666*G6_2_2_1_1_0 - 0.0166666666666666*G6_2_2_2_1_1 - 0.0166666666666666*G6_2_2_3_1_2 + 0.00833333333333331*G6_2_3_0_1_0 + 0.00833333333333331*G6_2_3_0_1_1 + 0.00833333333333331*G6_2_3_0_1_2 - 0.00833333333333331*G6_2_3_1_1_0 - 0.00833333333333331*G6_2_3_2_1_1 - 0.00833333333333331*G6_2_3_3_1_2 + 0.00833333333333331*G6_3_0_0_1_0 + 0.00833333333333331*G6_3_0_0_1_1 + 0.00833333333333331*G6_3_0_0_1_2 - 0.00833333333333331*G6_3_0_1_1_0 - 0.00833333333333331*G6_3_0_2_1_1 - 0.00833333333333331*G6_3_0_3_1_2 + 0.00833333333333331*G6_3_1_0_1_0 + 0.00833333333333331*G6_3_1_0_1_1 + 0.00833333333333331*G6_3_1_0_1_2 - 0.00833333333333331*G6_3_1_1_1_0 - 0.00833333333333331*G6_3_1_2_1_1 - 0.00833333333333331*G6_3_1_3_1_2 + 0.00833333333333331*G6_3_2_0_1_0 + 0.00833333333333331*G6_3_2_0_1_1 + 0.00833333333333331*G6_3_2_0_1_2 - 0.00833333333333331*G6_3_2_1_1_0 - 0.00833333333333331*G6_3_2_2_1_1 - 0.00833333333333331*G6_3_2_3_1_2 + 0.0166666666666666*G6_3_3_0_1_0 + 0.0166666666666666*G6_3_3_0_1_1 + 0.0166666666666666*G6_3_3_0_1_2 - 0.0166666666666666*G6_3_3_1_1_0 - 0.0166666666666666*G6_3_3_2_1_1 - 0.0166666666666666*G6_3_3_3_1_2;
-    A[7] = -0.00833333333333331*G0_4 - 0.00833333333333331*G0_5 - 0.00833333333333331*G0_6 - 0.0166666666666666*G0_7 + 0.00833333333333331*G1_4 + 0.00833333333333331*G1_5 + 0.00833333333333331*G1_6 + 0.0166666666666666*G1_7 - 0.0166666666666666*G2_0_0_0_2_0 - 0.0166666666666666*G2_0_0_0_2_1 - 0.0166666666666666*G2_0_0_0_2_2 - 0.00833333333333331*G2_0_0_1_2_0 - 0.00833333333333331*G2_0_0_1_2_1 - 0.00833333333333331*G2_0_0_1_2_2 - 0.00833333333333331*G2_0_0_2_2_0 - 0.00833333333333331*G2_0_0_2_2_1 - 0.00833333333333331*G2_0_0_2_2_2 - 0.00833333333333331*G2_0_0_3_2_0 - 0.00833333333333331*G2_0_0_3_2_1 - 0.00833333333333331*G2_0_0_3_2_2 + 0.0166666666666666*G2_0_1_0_2_0 + 0.00833333333333331*G2_0_1_1_2_0 + 0.00833333333333331*G2_0_1_2_2_0 + 0.00833333333333331*G2_0_1_3_2_0 + 0.0166666666666666*G2_0_2_0_2_1 + 0.00833333333333331*G2_0_2_1_2_1 + 0.00833333333333331*G2_0_2_2_2_1 + 0.00833333333333331*G2_0_2_3_2_1 + 0.0166666666666666*G2_0_3_0_2_2 + 0.00833333333333331*G2_0_3_1_2_2 + 0.00833333333333331*G2_0_3_2_2_2 + 0.00833333333333331*G2_0_3_3_2_2 - 0.00833333333333331*G2_1_0_0_2_0 - 0.00833333333333331*G2_1_0_0_2_1 - 0.00833333333333331*G2_1_0_0_2_2 - 0.0166666666666666*G2_1_0_1_2_0 - 0.0166666666666666*G2_1_0_1_2_1 - 0.0166666666666666*G2_1_0_1_2_2 - 0.00833333333333331*G2_1_0_2_2_0 - 0.00833333333333331*G2_1_0_2_2_1 - 0.00833333333333331*G2_1_0_2_2_2 - 0.00833333333333331*G2_1_0_3_2_0 - 0.00833333333333331*G2_1_0_3_2_1 - 0.00833333333333331*G2_1_0_3_2_2 + 0.00833333333333331*G2_1_1_0_2_0 + 0.0166666666666666*G2_1_1_1_2_0 + 0.00833333333333331*G2_1_1_2_2_0 + 0.00833333333333331*G2_1_1_3_2_0 + 0.00833333333333331*G2_1_2_0_2_1 + 0.0166666666666666*G2_1_2_1_2_1 + 0.00833333333333331*G2_1_2_2_2_1 + 0.00833333333333331*G2_1_2_3_2_1 + 0.00833333333333331*G2_1_3_0_2_2 + 0.0166666666666666*G2_1_3_1_2_2 + 0.00833333333333331*G2_1_3_2_2_2 + 0.00833333333333331*G2_1_3_3_2_2 - 0.00833333333333331*G2_2_0_0_2_0 - 0.00833333333333331*G2_2_0_0_2_1 - 0.00833333333333331*G2_2_0_0_2_2 - 0.00833333333333331*G2_2_0_1_2_0 - 0.00833333333333331*G2_2_0_1_2_1 - 0.00833333333333331*G2_2_0_1_2_2 - 0.0166666666666666*G2_2_0_2_2_0 - 0.0166666666666666*G2_2_0_2_2_1 - 0.0166666666666666*G2_2_0_2_2_2 - 0.00833333333333331*G2_2_0_3_2_0 - 0.00833333333333331*G2_2_0_3_2_1 - 0.00833333333333331*G2_2_0_3_2_2 + 0.00833333333333331*G2_2_1_0_2_0 + 0.00833333333333331*G2_2_1_1_2_0 + 0.0166666666666666*G2_2_1_2_2_0 + 0.00833333333333331*G2_2_1_3_2_0 + 0.00833333333333331*G2_2_2_0_2_1 + 0.00833333333333331*G2_2_2_1_2_1 + 0.0166666666666666*G2_2_2_2_2_1 + 0.00833333333333331*G2_2_2_3_2_1 + 0.00833333333333331*G2_2_3_0_2_2 + 0.00833333333333331*G2_2_3_1_2_2 + 0.0166666666666666*G2_2_3_2_2_2 + 0.00833333333333331*G2_2_3_3_2_2 - 0.00833333333333331*G2_3_0_0_2_0 - 0.00833333333333331*G2_3_0_0_2_1 - 0.00833333333333331*G2_3_0_0_2_2 - 0.00833333333333331*G2_3_0_1_2_0 - 0.00833333333333331*G2_3_0_1_2_1 - 0.00833333333333331*G2_3_0_1_2_2 - 0.00833333333333331*G2_3_0_2_2_0 - 0.00833333333333331*G2_3_0_2_2_1 - 0.00833333333333331*G2_3_0_2_2_2 - 0.0166666666666666*G2_3_0_3_2_0 - 0.0166666666666666*G2_3_0_3_2_1 - 0.0166666666666666*G2_3_0_3_2_2 + 0.00833333333333331*G2_3_1_0_2_0 + 0.00833333333333331*G2_3_1_1_2_0 + 0.00833333333333331*G2_3_1_2_2_0 + 0.0166666666666666*G2_3_1_3_2_0 + 0.00833333333333331*G2_3_2_0_2_1 + 0.00833333333333331*G2_3_2_1_2_1 + 0.00833333333333331*G2_3_2_2_2_1 + 0.0166666666666666*G2_3_2_3_2_1 + 0.00833333333333331*G2_3_3_0_2_2 + 0.00833333333333331*G2_3_3_1_2_2 + 0.00833333333333331*G2_3_3_2_2_2 + 0.0166666666666666*G2_3_3_3_2_2 - 0.0166666666666666*G3_0_0_0_2_0 - 0.0166666666666666*G3_0_0_0_2_1 - 0.0166666666666666*G3_0_0_0_2_2 + 0.0166666666666666*G3_0_0_1_2_0 + 0.0166666666666666*G3_0_0_2_2_1 + 0.0166666666666666*G3_0_0_3_2_2 - 0.00833333333333331*G3_0_1_0_2_0 - 0.00833333333333331*G3_0_1_0_2_1 - 0.00833333333333331*G3_0_1_0_2_2 + 0.00833333333333331*G3_0_1_1_2_0 + 0.00833333333333331*G3_0_1_2_2_1 + 0.00833333333333331*G3_0_1_3_2_2 - 0.00833333333333331*G3_0_2_0_2_0 - 0.00833333333333331*G3_0_2_0_2_1 - 0.00833333333333331*G3_0_2_0_2_2 + 0.00833333333333331*G3_0_2_1_2_0 + 0.00833333333333331*G3_0_2_2_2_1 + 0.00833333333333331*G3_0_2_3_2_2 - 0.00833333333333331*G3_0_3_0_2_0 - 0.00833333333333331*G3_0_3_0_2_1 - 0.00833333333333331*G3_0_3_0_2_2 + 0.00833333333333331*G3_0_3_1_2_0 + 0.00833333333333331*G3_0_3_2_2_1 + 0.00833333333333331*G3_0_3_3_2_2 - 0.00833333333333331*G3_1_0_0_2_0 - 0.00833333333333331*G3_1_0_0_2_1 - 0.00833333333333331*G3_1_0_0_2_2 + 0.00833333333333331*G3_1_0_1_2_0 + 0.00833333333333331*G3_1_0_2_2_1 + 0.00833333333333331*G3_1_0_3_2_2 - 0.0166666666666666*G3_1_1_0_2_0 - 0.0166666666666666*G3_1_1_0_2_1 - 0.0166666666666666*G3_1_1_0_2_2 + 0.0166666666666666*G3_1_1_1_2_0 + 0.0166666666666666*G3_1_1_2_2_1 + 0.0166666666666666*G3_1_1_3_2_2 - 0.00833333333333331*G3_1_2_0_2_0 - 0.00833333333333331*G3_1_2_0_2_1 - 0.00833333333333331*G3_1_2_0_2_2 + 0.00833333333333331*G3_1_2_1_2_0 + 0.00833333333333331*G3_1_2_2_2_1 + 0.00833333333333331*G3_1_2_3_2_2 - 0.00833333333333331*G3_1_3_0_2_0 - 0.00833333333333331*G3_1_3_0_2_1 - 0.00833333333333331*G3_1_3_0_2_2 + 0.00833333333333331*G3_1_3_1_2_0 + 0.00833333333333331*G3_1_3_2_2_1 + 0.00833333333333331*G3_1_3_3_2_2 - 0.00833333333333331*G3_2_0_0_2_0 - 0.00833333333333331*G3_2_0_0_2_1 - 0.00833333333333331*G3_2_0_0_2_2 + 0.00833333333333331*G3_2_0_1_2_0 + 0.00833333333333331*G3_2_0_2_2_1 + 0.00833333333333331*G3_2_0_3_2_2 - 0.00833333333333331*G3_2_1_0_2_0 - 0.00833333333333331*G3_2_1_0_2_1 - 0.00833333333333331*G3_2_1_0_2_2 + 0.00833333333333331*G3_2_1_1_2_0 + 0.00833333333333331*G3_2_1_2_2_1 + 0.00833333333333331*G3_2_1_3_2_2 - 0.0166666666666666*G3_2_2_0_2_0 - 0.0166666666666666*G3_2_2_0_2_1 - 0.0166666666666666*G3_2_2_0_2_2 + 0.0166666666666666*G3_2_2_1_2_0 + 0.0166666666666666*G3_2_2_2_2_1 + 0.0166666666666666*G3_2_2_3_2_2 - 0.00833333333333331*G3_2_3_0_2_0 - 0.00833333333333331*G3_2_3_0_2_1 - 0.00833333333333331*G3_2_3_0_2_2 + 0.00833333333333331*G3_2_3_1_2_0 + 0.00833333333333331*G3_2_3_2_2_1 + 0.00833333333333331*G3_2_3_3_2_2 - 0.00833333333333331*G3_3_0_0_2_0 - 0.00833333333333331*G3_3_0_0_2_1 - 0.00833333333333331*G3_3_0_0_2_2 + 0.00833333333333331*G3_3_0_1_2_0 + 0.00833333333333331*G3_3_0_2_2_1 + 0.00833333333333331*G3_3_0_3_2_2 - 0.00833333333333331*G3_3_1_0_2_0 - 0.00833333333333331*G3_3_1_0_2_1 - 0.00833333333333331*G3_3_1_0_2_2 + 0.00833333333333331*G3_3_1_1_2_0 + 0.00833333333333331*G3_3_1_2_2_1 + 0.00833333333333331*G3_3_1_3_2_2 - 0.00833333333333331*G3_3_2_0_2_0 - 0.00833333333333331*G3_3_2_0_2_1 - 0.00833333333333331*G3_3_2_0_2_2 + 0.00833333333333331*G3_3_2_1_2_0 + 0.00833333333333331*G3_3_2_2_2_1 + 0.00833333333333331*G3_3_2_3_2_2 - 0.0166666666666666*G3_3_3_0_2_0 - 0.0166666666666666*G3_3_3_0_2_1 - 0.0166666666666666*G3_3_3_0_2_2 + 0.0166666666666666*G3_3_3_1_2_0 + 0.0166666666666666*G3_3_3_2_2_1 + 0.0166666666666666*G3_3_3_3_2_2 + 0.0416666666666666*G4_0_0_2_0 + 0.0416666666666666*G4_0_0_2_1 + 0.0416666666666666*G4_0_0_2_2 - 0.0416666666666666*G4_0_1_2_0 - 0.0416666666666666*G4_0_2_2_1 - 0.0416666666666666*G4_0_3_2_2 + 0.0416666666666666*G4_1_0_2_0 + 0.0416666666666666*G4_1_0_2_1 + 0.0416666666666666*G4_1_0_2_2 - 0.0416666666666666*G4_1_1_2_0 - 0.0416666666666666*G4_1_2_2_1 - 0.0416666666666666*G4_1_3_2_2 + 0.0416666666666666*G4_2_0_2_0 + 0.0416666666666666*G4_2_0_2_1 + 0.0416666666666666*G4_2_0_2_2 - 0.0416666666666666*G4_2_1_2_0 - 0.0416666666666666*G4_2_2_2_1 - 0.0416666666666666*G4_2_3_2_2 + 0.0416666666666666*G4_3_0_2_0 + 0.0416666666666666*G4_3_0_2_1 + 0.0416666666666666*G4_3_0_2_2 - 0.0416666666666666*G4_3_1_2_0 - 0.0416666666666666*G4_3_2_2_1 - 0.0416666666666666*G4_3_3_2_2 + 0.0166666666666666*G5_0_0_0_2_0 + 0.0166666666666666*G5_0_0_0_2_1 + 0.0166666666666666*G5_0_0_0_2_2 + 0.00833333333333331*G5_0_0_1_2_0 + 0.00833333333333331*G5_0_0_1_2_1 + 0.00833333333333331*G5_0_0_1_2_2 + 0.00833333333333331*G5_0_0_2_2_0 + 0.00833333333333331*G5_0_0_2_2_1 + 0.00833333333333331*G5_0_0_2_2_2 + 0.00833333333333331*G5_0_0_3_2_0 + 0.00833333333333331*G5_0_0_3_2_1 + 0.00833333333333331*G5_0_0_3_2_2 - 0.0166666666666666*G5_0_1_0_2_0 - 0.00833333333333331*G5_0_1_1_2_0 - 0.00833333333333331*G5_0_1_2_2_0 - 0.00833333333333331*G5_0_1_3_2_0 - 0.0166666666666666*G5_0_2_0_2_1 - 0.00833333333333331*G5_0_2_1_2_1 - 0.00833333333333331*G5_0_2_2_2_1 - 0.00833333333333331*G5_0_2_3_2_1 - 0.0166666666666666*G5_0_3_0_2_2 - 0.00833333333333331*G5_0_3_1_2_2 - 0.00833333333333331*G5_0_3_2_2_2 - 0.00833333333333331*G5_0_3_3_2_2 + 0.00833333333333331*G5_1_0_0_2_0 + 0.00833333333333331*G5_1_0_0_2_1 + 0.00833333333333331*G5_1_0_0_2_2 + 0.0166666666666666*G5_1_0_1_2_0 + 0.0166666666666666*G5_1_0_1_2_1 + 0.0166666666666666*G5_1_0_1_2_2 + 0.00833333333333331*G5_1_0_2_2_0 + 0.00833333333333331*G5_1_0_2_2_1 + 0.00833333333333331*G5_1_0_2_2_2 + 0.00833333333333331*G5_1_0_3_2_0 + 0.00833333333333331*G5_1_0_3_2_1 + 0.00833333333333331*G5_1_0_3_2_2 - 0.00833333333333331*G5_1_1_0_2_0 - 0.0166666666666666*G5_1_1_1_2_0 - 0.00833333333333331*G5_1_1_2_2_0 - 0.00833333333333331*G5_1_1_3_2_0 - 0.00833333333333331*G5_1_2_0_2_1 - 0.0166666666666666*G5_1_2_1_2_1 - 0.00833333333333331*G5_1_2_2_2_1 - 0.00833333333333331*G5_1_2_3_2_1 - 0.00833333333333331*G5_1_3_0_2_2 - 0.0166666666666666*G5_1_3_1_2_2 - 0.00833333333333331*G5_1_3_2_2_2 - 0.00833333333333331*G5_1_3_3_2_2 + 0.00833333333333331*G5_2_0_0_2_0 + 0.00833333333333331*G5_2_0_0_2_1 + 0.00833333333333331*G5_2_0_0_2_2 + 0.00833333333333331*G5_2_0_1_2_0 + 0.00833333333333331*G5_2_0_1_2_1 + 0.00833333333333331*G5_2_0_1_2_2 + 0.0166666666666666*G5_2_0_2_2_0 + 0.0166666666666666*G5_2_0_2_2_1 + 0.0166666666666666*G5_2_0_2_2_2 + 0.00833333333333331*G5_2_0_3_2_0 + 0.00833333333333331*G5_2_0_3_2_1 + 0.00833333333333331*G5_2_0_3_2_2 - 0.00833333333333331*G5_2_1_0_2_0 - 0.00833333333333331*G5_2_1_1_2_0 - 0.0166666666666666*G5_2_1_2_2_0 - 0.00833333333333331*G5_2_1_3_2_0 - 0.00833333333333331*G5_2_2_0_2_1 - 0.00833333333333331*G5_2_2_1_2_1 - 0.0166666666666666*G5_2_2_2_2_1 - 0.00833333333333331*G5_2_2_3_2_1 - 0.00833333333333331*G5_2_3_0_2_2 - 0.00833333333333331*G5_2_3_1_2_2 - 0.0166666666666666*G5_2_3_2_2_2 - 0.00833333333333331*G5_2_3_3_2_2 + 0.00833333333333331*G5_3_0_0_2_0 + 0.00833333333333331*G5_3_0_0_2_1 + 0.00833333333333331*G5_3_0_0_2_2 + 0.00833333333333331*G5_3_0_1_2_0 + 0.00833333333333331*G5_3_0_1_2_1 + 0.00833333333333331*G5_3_0_1_2_2 + 0.00833333333333331*G5_3_0_2_2_0 + 0.00833333333333331*G5_3_0_2_2_1 + 0.00833333333333331*G5_3_0_2_2_2 + 0.0166666666666666*G5_3_0_3_2_0 + 0.0166666666666666*G5_3_0_3_2_1 + 0.0166666666666666*G5_3_0_3_2_2 - 0.00833333333333331*G5_3_1_0_2_0 - 0.00833333333333331*G5_3_1_1_2_0 - 0.00833333333333331*G5_3_1_2_2_0 - 0.0166666666666666*G5_3_1_3_2_0 - 0.00833333333333331*G5_3_2_0_2_1 - 0.00833333333333331*G5_3_2_1_2_1 - 0.00833333333333331*G5_3_2_2_2_1 - 0.0166666666666666*G5_3_2_3_2_1 - 0.00833333333333331*G5_3_3_0_2_2 - 0.00833333333333331*G5_3_3_1_2_2 - 0.00833333333333331*G5_3_3_2_2_2 - 0.0166666666666666*G5_3_3_3_2_2 + 0.0166666666666666*G6_0_0_0_2_0 + 0.0166666666666666*G6_0_0_0_2_1 + 0.0166666666666666*G6_0_0_0_2_2 - 0.0166666666666666*G6_0_0_1_2_0 - 0.0166666666666666*G6_0_0_2_2_1 - 0.0166666666666666*G6_0_0_3_2_2 + 0.00833333333333331*G6_0_1_0_2_0 + 0.00833333333333331*G6_0_1_0_2_1 + 0.00833333333333331*G6_0_1_0_2_2 - 0.00833333333333331*G6_0_1_1_2_0 - 0.00833333333333331*G6_0_1_2_2_1 - 0.00833333333333331*G6_0_1_3_2_2 + 0.00833333333333331*G6_0_2_0_2_0 + 0.00833333333333331*G6_0_2_0_2_1 + 0.00833333333333331*G6_0_2_0_2_2 - 0.00833333333333331*G6_0_2_1_2_0 - 0.00833333333333331*G6_0_2_2_2_1 - 0.00833333333333331*G6_0_2_3_2_2 + 0.00833333333333331*G6_0_3_0_2_0 + 0.00833333333333331*G6_0_3_0_2_1 + 0.00833333333333331*G6_0_3_0_2_2 - 0.00833333333333331*G6_0_3_1_2_0 - 0.00833333333333331*G6_0_3_2_2_1 - 0.00833333333333331*G6_0_3_3_2_2 + 0.00833333333333331*G6_1_0_0_2_0 + 0.00833333333333331*G6_1_0_0_2_1 + 0.00833333333333331*G6_1_0_0_2_2 - 0.00833333333333331*G6_1_0_1_2_0 - 0.00833333333333331*G6_1_0_2_2_1 - 0.00833333333333331*G6_1_0_3_2_2 + 0.0166666666666666*G6_1_1_0_2_0 + 0.0166666666666666*G6_1_1_0_2_1 + 0.0166666666666666*G6_1_1_0_2_2 - 0.0166666666666666*G6_1_1_1_2_0 - 0.0166666666666666*G6_1_1_2_2_1 - 0.0166666666666666*G6_1_1_3_2_2 + 0.00833333333333331*G6_1_2_0_2_0 + 0.00833333333333331*G6_1_2_0_2_1 + 0.00833333333333331*G6_1_2_0_2_2 - 0.00833333333333331*G6_1_2_1_2_0 - 0.00833333333333331*G6_1_2_2_2_1 - 0.00833333333333331*G6_1_2_3_2_2 + 0.00833333333333331*G6_1_3_0_2_0 + 0.00833333333333331*G6_1_3_0_2_1 + 0.00833333333333331*G6_1_3_0_2_2 - 0.00833333333333331*G6_1_3_1_2_0 - 0.00833333333333331*G6_1_3_2_2_1 - 0.00833333333333331*G6_1_3_3_2_2 + 0.00833333333333331*G6_2_0_0_2_0 + 0.00833333333333331*G6_2_0_0_2_1 + 0.00833333333333331*G6_2_0_0_2_2 - 0.00833333333333331*G6_2_0_1_2_0 - 0.00833333333333331*G6_2_0_2_2_1 - 0.00833333333333331*G6_2_0_3_2_2 + 0.00833333333333331*G6_2_1_0_2_0 + 0.00833333333333331*G6_2_1_0_2_1 + 0.00833333333333331*G6_2_1_0_2_2 - 0.00833333333333331*G6_2_1_1_2_0 - 0.00833333333333331*G6_2_1_2_2_1 - 0.00833333333333331*G6_2_1_3_2_2 + 0.0166666666666666*G6_2_2_0_2_0 + 0.0166666666666666*G6_2_2_0_2_1 + 0.0166666666666666*G6_2_2_0_2_2 - 0.0166666666666666*G6_2_2_1_2_0 - 0.0166666666666666*G6_2_2_2_2_1 - 0.0166666666666666*G6_2_2_3_2_2 + 0.00833333333333331*G6_2_3_0_2_0 + 0.00833333333333331*G6_2_3_0_2_1 + 0.00833333333333331*G6_2_3_0_2_2 - 0.00833333333333331*G6_2_3_1_2_0 - 0.00833333333333331*G6_2_3_2_2_1 - 0.00833333333333331*G6_2_3_3_2_2 + 0.00833333333333331*G6_3_0_0_2_0 + 0.00833333333333331*G6_3_0_0_2_1 + 0.00833333333333331*G6_3_0_0_2_2 - 0.00833333333333331*G6_3_0_1_2_0 - 0.00833333333333331*G6_3_0_2_2_1 - 0.00833333333333331*G6_3_0_3_2_2 + 0.00833333333333331*G6_3_1_0_2_0 + 0.00833333333333331*G6_3_1_0_2_1 + 0.00833333333333331*G6_3_1_0_2_2 - 0.00833333333333331*G6_3_1_1_2_0 - 0.00833333333333331*G6_3_1_2_2_1 - 0.00833333333333331*G6_3_1_3_2_2 + 0.00833333333333331*G6_3_2_0_2_0 + 0.00833333333333331*G6_3_2_0_2_1 + 0.00833333333333331*G6_3_2_0_2_2 - 0.00833333333333331*G6_3_2_1_2_0 - 0.00833333333333331*G6_3_2_2_2_1 - 0.00833333333333331*G6_3_2_3_2_2 + 0.0166666666666666*G6_3_3_0_2_0 + 0.0166666666666666*G6_3_3_0_2_1 + 0.0166666666666666*G6_3_3_0_2_2 - 0.0166666666666666*G6_3_3_1_2_0 - 0.0166666666666666*G6_3_3_2_2_1 - 0.0166666666666666*G6_3_3_3_2_2;
+    A[0] = -0.0166666666666666*G7_0 - 0.00833333333333331*G7_1 - 0.00833333333333331*G7_2 - 0.00833333333333331*G7_3 + 0.00952380952380951*G8_0_4_4_4 + 0.00238095238095238*G8_0_4_4_5 + 0.00238095238095238*G8_0_4_4_6 + 0.00238095238095238*G8_0_4_4_7 + 0.00238095238095238*G8_0_4_5_4 + 0.00158730158730159*G8_0_4_5_5 + 0.000793650793650793*G8_0_4_5_6 + 0.000793650793650793*G8_0_4_5_7 + 0.00238095238095238*G8_0_4_6_4 + 0.000793650793650794*G8_0_4_6_5 + 0.00158730158730159*G8_0_4_6_6 + 0.000793650793650793*G8_0_4_6_7 + 0.00238095238095238*G8_0_4_7_4 + 0.000793650793650793*G8_0_4_7_5 + 0.000793650793650793*G8_0_4_7_6 + 0.00158730158730159*G8_0_4_7_7 + 0.00238095238095238*G8_0_5_4_4 + 0.00158730158730159*G8_0_5_4_5 + 0.000793650793650793*G8_0_5_4_6 + 0.000793650793650793*G8_0_5_4_7 + 0.00158730158730159*G8_0_5_5_4 + 0.00238095238095238*G8_0_5_5_5 + 0.000793650793650793*G8_0_5_5_6 + 0.000793650793650793*G8_0_5_5_7 + 0.000793650793650793*G8_0_5_6_4 + 0.000793650793650793*G8_0_5_6_5 + 0.000793650793650793*G8_0_5_6_6 + 0.000396825396825397*G8_0_5_6_7 + 0.000793650793650793*G8_0_5_7_4 + 0.000793650793650793*G8_0_5_7_5 + 0.000396825396825397*G8_0_5_7_6 + 0.000793650793650793*G8_0_5_7_7 + 0.00238095238095238*G8_0_6_4_4 + 0.000793650793650793*G8_0_6_4_5 + 0.00158730158730159*G8_0_6_4_6 + 0.000793650793650793*G8_0_6_4_7 + 0.000793650793650794*G8_0_6_5_4 + 0.000793650793650793*G8_0_6_5_5 + 0.000793650793650793*G8_0_6_5_6 + 0.000396825396825397*G8_0_6_5_7 + 0.00158730158730159*G8_0_6_6_4 + 0.000793650793650793*G8_0_6_6_5 + 0.00238095238095238*G8_0_6_6_6 + 0.000793650793650793*G8_0_6_6_7 + 0.000793650793650793*G8_0_6_7_4 + 0.000396825396825397*G8_0_6_7_5 + 0.000793650793650793*G8_0_6_7_6 + 0.000793650793650793*G8_0_6_7_7 + 0.00238095238095238*G8_0_7_4_4 + 0.000793650793650793*G8_0_7_4_5 + 0.000793650793650793*G8_0_7_4_6 + 0.00158730158730159*G8_0_7_4_7 + 0.000793650793650793*G8_0_7_5_4 + 0.000793650793650793*G8_0_7_5_5 + 0.000396825396825397*G8_0_7_5_6 + 0.000793650793650793*G8_0_7_5_7 + 0.000793650793650793*G8_0_7_6_4 + 0.000396825396825397*G8_0_7_6_5 + 0.000793650793650793*G8_0_7_6_6 + 0.000793650793650793*G8_0_7_6_7 + 0.00158730158730159*G8_0_7_7_4 + 0.000793650793650793*G8_0_7_7_5 + 0.000793650793650793*G8_0_7_7_6 + 0.00238095238095238*G8_0_7_7_7 - 0.0166666666666666*G9_0_4_4 - 0.00555555555555554*G9_0_4_5 - 0.00555555555555554*G9_0_4_6 - 0.00555555555555554*G9_0_4_7 - 0.00555555555555554*G9_0_5_4 - 0.00555555555555554*G9_0_5_5 - 0.00277777777777777*G9_0_5_6 - 0.00277777777777777*G9_0_5_7 - 0.00555555555555554*G9_0_6_4 - 0.00277777777777777*G9_0_6_5 - 0.00555555555555554*G9_0_6_6 - 0.00277777777777777*G9_0_6_7 - 0.00555555555555554*G9_0_7_4 - 0.00277777777777777*G9_0_7_5 - 0.00277777777777777*G9_0_7_6 - 0.00555555555555554*G9_0_7_7 + 0.0333333333333332*G10_0_4 + 0.0166666666666666*G10_0_5 + 0.0166666666666666*G10_0_6 + 0.0166666666666666*G10_0_7 + 0.166666666666666*G11_0_4_0_0 + 0.166666666666666*G11_0_4_0_1 + 0.166666666666666*G11_0_4_0_2 + 0.166666666666666*G11_0_4_1_0 + 0.166666666666666*G11_0_4_1_1 + 0.166666666666666*G11_0_4_1_2 + 0.166666666666666*G11_0_4_2_0 + 0.166666666666666*G11_0_4_2_1 + 0.166666666666666*G11_0_4_2_2 - 0.166666666666666*G11_0_5_0_0 - 0.166666666666666*G11_0_5_1_0 - 0.166666666666666*G11_0_5_2_0 - 0.166666666666666*G11_0_6_0_1 - 0.166666666666666*G11_0_6_1_1 - 0.166666666666666*G11_0_6_2_1 - 0.166666666666666*G11_0_7_0_2 - 0.166666666666666*G11_0_7_1_2 - 0.166666666666666*G11_0_7_2_2;
+    A[1] = -0.00833333333333331*G7_0 - 0.0166666666666666*G7_1 - 0.00833333333333331*G7_2 - 0.00833333333333331*G7_3 + 0.00238095238095238*G8_0_4_4_4 + 0.00158730158730159*G8_0_4_4_5 + 0.000793650793650793*G8_0_4_4_6 + 0.000793650793650793*G8_0_4_4_7 + 0.00158730158730159*G8_0_4_5_4 + 0.00238095238095238*G8_0_4_5_5 + 0.000793650793650793*G8_0_4_5_6 + 0.000793650793650793*G8_0_4_5_7 + 0.000793650793650793*G8_0_4_6_4 + 0.000793650793650793*G8_0_4_6_5 + 0.000793650793650793*G8_0_4_6_6 + 0.000396825396825397*G8_0_4_6_7 + 0.000793650793650793*G8_0_4_7_4 + 0.000793650793650793*G8_0_4_7_5 + 0.000396825396825397*G8_0_4_7_6 + 0.000793650793650793*G8_0_4_7_7 + 0.00158730158730159*G8_0_5_4_4 + 0.00238095238095238*G8_0_5_4_5 + 0.000793650793650793*G8_0_5_4_6 + 0.000793650793650793*G8_0_5_4_7 + 0.00238095238095238*G8_0_5_5_4 + 0.00952380952380952*G8_0_5_5_5 + 0.00238095238095238*G8_0_5_5_6 + 0.00238095238095238*G8_0_5_5_7 + 0.000793650793650793*G8_0_5_6_4 + 0.00238095238095238*G8_0_5_6_5 + 0.00158730158730159*G8_0_5_6_6 + 0.000793650793650794*G8_0_5_6_7 + 0.000793650793650793*G8_0_5_7_4 + 0.00238095238095238*G8_0_5_7_5 + 0.000793650793650794*G8_0_5_7_6 + 0.00158730158730159*G8_0_5_7_7 + 0.000793650793650793*G8_0_6_4_4 + 0.000793650793650793*G8_0_6_4_5 + 0.000793650793650793*G8_0_6_4_6 + 0.000396825396825397*G8_0_6_4_7 + 0.000793650793650793*G8_0_6_5_4 + 0.00238095238095238*G8_0_6_5_5 + 0.00158730158730159*G8_0_6_5_6 + 0.000793650793650794*G8_0_6_5_7 + 0.000793650793650793*G8_0_6_6_4 + 0.00158730158730159*G8_0_6_6_5 + 0.00238095238095238*G8_0_6_6_6 + 0.000793650793650794*G8_0_6_6_7 + 0.000396825396825397*G8_0_6_7_4 + 0.000793650793650794*G8_0_6_7_5 + 0.000793650793650794*G8_0_6_7_6 + 0.000793650793650793*G8_0_6_7_7 + 0.000793650793650793*G8_0_7_4_4 + 0.000793650793650793*G8_0_7_4_5 + 0.000396825396825397*G8_0_7_4_6 + 0.000793650793650793*G8_0_7_4_7 + 0.000793650793650793*G8_0_7_5_4 + 0.00238095238095238*G8_0_7_5_5 + 0.000793650793650794*G8_0_7_5_6 + 0.00158730158730159*G8_0_7_5_7 + 0.000396825396825397*G8_0_7_6_4 + 0.000793650793650794*G8_0_7_6_5 + 0.000793650793650793*G8_0_7_6_6 + 0.000793650793650793*G8_0_7_6_7 + 0.000793650793650793*G8_0_7_7_4 + 0.00158730158730159*G8_0_7_7_5 + 0.000793650793650793*G8_0_7_7_6 + 0.00238095238095238*G8_0_7_7_7 - 0.00555555555555554*G9_0_4_4 - 0.00555555555555554*G9_0_4_5 - 0.00277777777777777*G9_0_4_6 - 0.00277777777777777*G9_0_4_7 - 0.00555555555555554*G9_0_5_4 - 0.0166666666666666*G9_0_5_5 - 0.00555555555555554*G9_0_5_6 - 0.00555555555555554*G9_0_5_7 - 0.00277777777777777*G9_0_6_4 - 0.00555555555555554*G9_0_6_5 - 0.00555555555555554*G9_0_6_6 - 0.00277777777777777*G9_0_6_7 - 0.00277777777777777*G9_0_7_4 - 0.00555555555555554*G9_0_7_5 - 0.00277777777777777*G9_0_7_6 - 0.00555555555555554*G9_0_7_7 + 0.0166666666666666*G10_0_4 + 0.0333333333333332*G10_0_5 + 0.0166666666666666*G10_0_6 + 0.0166666666666666*G10_0_7 - 0.166666666666666*G11_0_4_0_0 - 0.166666666666666*G11_0_4_0_1 - 0.166666666666666*G11_0_4_0_2 + 0.166666666666666*G11_0_5_0_0 + 0.166666666666666*G11_0_6_0_1 + 0.166666666666666*G11_0_7_0_2;
+    A[2] = -0.00833333333333331*G7_0 - 0.00833333333333331*G7_1 - 0.0166666666666666*G7_2 - 0.00833333333333331*G7_3 + 0.00238095238095238*G8_0_4_4_4 + 0.000793650793650793*G8_0_4_4_5 + 0.00158730158730159*G8_0_4_4_6 + 0.000793650793650793*G8_0_4_4_7 + 0.000793650793650793*G8_0_4_5_4 + 0.000793650793650793*G8_0_4_5_5 + 0.000793650793650793*G8_0_4_5_6 + 0.000396825396825397*G8_0_4_5_7 + 0.00158730158730159*G8_0_4_6_4 + 0.000793650793650793*G8_0_4_6_5 + 0.00238095238095238*G8_0_4_6_6 + 0.000793650793650793*G8_0_4_6_7 + 0.000793650793650793*G8_0_4_7_4 + 0.000396825396825397*G8_0_4_7_5 + 0.000793650793650793*G8_0_4_7_6 + 0.000793650793650793*G8_0_4_7_7 + 0.000793650793650793*G8_0_5_4_4 + 0.000793650793650793*G8_0_5_4_5 + 0.000793650793650793*G8_0_5_4_6 + 0.000396825396825397*G8_0_5_4_7 + 0.000793650793650793*G8_0_5_5_4 + 0.00238095238095238*G8_0_5_5_5 + 0.00158730158730159*G8_0_5_5_6 + 0.000793650793650794*G8_0_5_5_7 + 0.000793650793650793*G8_0_5_6_4 + 0.00158730158730159*G8_0_5_6_5 + 0.00238095238095238*G8_0_5_6_6 + 0.000793650793650794*G8_0_5_6_7 + 0.000396825396825397*G8_0_5_7_4 + 0.000793650793650794*G8_0_5_7_5 + 0.000793650793650794*G8_0_5_7_6 + 0.000793650793650794*G8_0_5_7_7 + 0.00158730158730159*G8_0_6_4_4 + 0.000793650793650793*G8_0_6_4_5 + 0.00238095238095238*G8_0_6_4_6 + 0.000793650793650793*G8_0_6_4_7 + 0.000793650793650793*G8_0_6_5_4 + 0.00158730158730159*G8_0_6_5_5 + 0.00238095238095238*G8_0_6_5_6 + 0.000793650793650794*G8_0_6_5_7 + 0.00238095238095238*G8_0_6_6_4 + 0.00238095238095238*G8_0_6_6_5 + 0.00952380952380951*G8_0_6_6_6 + 0.00238095238095238*G8_0_6_6_7 + 0.000793650793650793*G8_0_6_7_4 + 0.000793650793650793*G8_0_6_7_5 + 0.00238095238095238*G8_0_6_7_6 + 0.00158730158730159*G8_0_6_7_7 + 0.000793650793650793*G8_0_7_4_4 + 0.000396825396825397*G8_0_7_4_5 + 0.000793650793650793*G8_0_7_4_6 + 0.000793650793650793*G8_0_7_4_7 + 0.000396825396825397*G8_0_7_5_4 + 0.000793650793650794*G8_0_7_5_5 + 0.000793650793650793*G8_0_7_5_6 + 0.000793650793650793*G8_0_7_5_7 + 0.000793650793650793*G8_0_7_6_4 + 0.000793650793650794*G8_0_7_6_5 + 0.00238095238095238*G8_0_7_6_6 + 0.00158730158730159*G8_0_7_6_7 + 0.000793650793650793*G8_0_7_7_4 + 0.000793650793650793*G8_0_7_7_5 + 0.00158730158730159*G8_0_7_7_6 + 0.00238095238095238*G8_0_7_7_7 - 0.00555555555555554*G9_0_4_4 - 0.00277777777777777*G9_0_4_5 - 0.00555555555555554*G9_0_4_6 - 0.00277777777777777*G9_0_4_7 - 0.00277777777777777*G9_0_5_4 - 0.00555555555555554*G9_0_5_5 - 0.00555555555555554*G9_0_5_6 - 0.00277777777777777*G9_0_5_7 - 0.00555555555555554*G9_0_6_4 - 0.00555555555555554*G9_0_6_5 - 0.0166666666666666*G9_0_6_6 - 0.00555555555555554*G9_0_6_7 - 0.00277777777777777*G9_0_7_4 - 0.00277777777777777*G9_0_7_5 - 0.00555555555555554*G9_0_7_6 - 0.00555555555555554*G9_0_7_7 + 0.0166666666666666*G10_0_4 + 0.0166666666666666*G10_0_5 + 0.0333333333333332*G10_0_6 + 0.0166666666666666*G10_0_7 - 0.166666666666666*G11_0_4_1_0 - 0.166666666666666*G11_0_4_1_1 - 0.166666666666666*G11_0_4_1_2 + 0.166666666666666*G11_0_5_1_0 + 0.166666666666666*G11_0_6_1_1 + 0.166666666666666*G11_0_7_1_2;
+    A[3] = -0.00833333333333331*G7_0 - 0.00833333333333331*G7_1 - 0.00833333333333331*G7_2 - 0.0166666666666666*G7_3 + 0.00238095238095238*G8_0_4_4_4 + 0.000793650793650793*G8_0_4_4_5 + 0.000793650793650793*G8_0_4_4_6 + 0.00158730158730159*G8_0_4_4_7 + 0.000793650793650793*G8_0_4_5_4 + 0.000793650793650793*G8_0_4_5_5 + 0.000396825396825397*G8_0_4_5_6 + 0.000793650793650793*G8_0_4_5_7 + 0.000793650793650793*G8_0_4_6_4 + 0.000396825396825397*G8_0_4_6_5 + 0.000793650793650793*G8_0_4_6_6 + 0.000793650793650793*G8_0_4_6_7 + 0.00158730158730159*G8_0_4_7_4 + 0.000793650793650793*G8_0_4_7_5 + 0.000793650793650793*G8_0_4_7_6 + 0.00238095238095238*G8_0_4_7_7 + 0.000793650793650793*G8_0_5_4_4 + 0.000793650793650793*G8_0_5_4_5 + 0.000396825396825397*G8_0_5_4_6 + 0.000793650793650793*G8_0_5_4_7 + 0.000793650793650793*G8_0_5_5_4 + 0.00238095238095238*G8_0_5_5_5 + 0.000793650793650794*G8_0_5_5_6 + 0.00158730158730159*G8_0_5_5_7 + 0.000396825396825397*G8_0_5_6_4 + 0.000793650793650794*G8_0_5_6_5 + 0.000793650793650793*G8_0_5_6_6 + 0.000793650793650793*G8_0_5_6_7 + 0.000793650793650793*G8_0_5_7_4 + 0.00158730158730159*G8_0_5_7_5 + 0.000793650793650793*G8_0_5_7_6 + 0.00238095238095238*G8_0_5_7_7 + 0.000793650793650793*G8_0_6_4_4 + 0.000396825396825397*G8_0_6_4_5 + 0.000793650793650793*G8_0_6_4_6 + 0.000793650793650793*G8_0_6_4_7 + 0.000396825396825397*G8_0_6_5_4 + 0.000793650793650794*G8_0_6_5_5 + 0.000793650793650793*G8_0_6_5_6 + 0.000793650793650793*G8_0_6_5_7 + 0.000793650793650793*G8_0_6_6_4 + 0.000793650793650794*G8_0_6_6_5 + 0.00238095238095238*G8_0_6_6_6 + 0.00158730158730159*G8_0_6_6_7 + 0.000793650793650793*G8_0_6_7_4 + 0.000793650793650793*G8_0_6_7_5 + 0.00158730158730159*G8_0_6_7_6 + 0.00238095238095238*G8_0_6_7_7 + 0.00158730158730159*G8_0_7_4_4 + 0.000793650793650793*G8_0_7_4_5 + 0.000793650793650793*G8_0_7_4_6 + 0.00238095238095238*G8_0_7_4_7 + 0.000793650793650793*G8_0_7_5_4 + 0.00158730158730159*G8_0_7_5_5 + 0.000793650793650793*G8_0_7_5_6 + 0.00238095238095238*G8_0_7_5_7 + 0.000793650793650793*G8_0_7_6_4 + 0.000793650793650793*G8_0_7_6_5 + 0.00158730158730159*G8_0_7_6_6 + 0.00238095238095238*G8_0_7_6_7 + 0.00238095238095238*G8_0_7_7_4 + 0.00238095238095238*G8_0_7_7_5 + 0.00238095238095238*G8_0_7_7_6 + 0.00952380952380951*G8_0_7_7_7 - 0.00555555555555554*G9_0_4_4 - 0.00277777777777777*G9_0_4_5 - 0.00277777777777777*G9_0_4_6 - 0.00555555555555554*G9_0_4_7 - 0.00277777777777777*G9_0_5_4 - 0.00555555555555554*G9_0_5_5 - 0.00277777777777777*G9_0_5_6 - 0.00555555555555554*G9_0_5_7 - 0.00277777777777777*G9_0_6_4 - 0.00277777777777777*G9_0_6_5 - 0.00555555555555554*G9_0_6_6 - 0.00555555555555554*G9_0_6_7 - 0.00555555555555554*G9_0_7_4 - 0.00555555555555554*G9_0_7_5 - 0.00555555555555554*G9_0_7_6 - 0.0166666666666666*G9_0_7_7 + 0.0166666666666666*G10_0_4 + 0.0166666666666666*G10_0_5 + 0.0166666666666666*G10_0_6 + 0.0333333333333332*G10_0_7 - 0.166666666666666*G11_0_4_2_0 - 0.166666666666666*G11_0_4_2_1 - 0.166666666666666*G11_0_4_2_2 + 0.166666666666666*G11_0_5_2_0 + 0.166666666666666*G11_0_6_2_1 + 0.166666666666666*G11_0_7_2_2;
+    A[4] = -0.0166666666666666*G0_4 - 0.00833333333333331*G0_5 - 0.00833333333333331*G0_6 - 0.00833333333333331*G0_7 + 0.0166666666666666*G1_4 + 0.00833333333333331*G1_5 + 0.00833333333333331*G1_6 + 0.00833333333333331*G1_7 + 0.166666666666666*G3_0_0_0_0_0 + 0.166666666666666*G3_0_0_0_0_1 + 0.166666666666666*G3_0_0_0_0_2 + 0.166666666666666*G3_0_0_0_1_0 + 0.166666666666666*G3_0_0_0_1_1 + 0.166666666666666*G3_0_0_0_1_2 + 0.166666666666666*G3_0_0_0_2_0 + 0.166666666666666*G3_0_0_0_2_1 + 0.166666666666666*G3_0_0_0_2_2 - 0.166666666666666*G3_0_0_1_0_0 - 0.166666666666666*G3_0_0_1_1_0 - 0.166666666666666*G3_0_0_1_2_0 - 0.166666666666666*G3_0_0_2_0_1 - 0.166666666666666*G3_0_0_2_1_1 - 0.166666666666666*G3_0_0_2_2_1 - 0.166666666666666*G3_0_0_3_0_2 - 0.166666666666666*G3_0_0_3_1_2 - 0.166666666666666*G3_0_0_3_2_2 - 0.166666666666666*G4_0_0_0_0 - 0.166666666666666*G4_0_0_0_1 - 0.166666666666666*G4_0_0_0_2 - 0.166666666666666*G4_0_0_1_0 - 0.166666666666666*G4_0_0_1_1 - 0.166666666666666*G4_0_0_1_2 - 0.166666666666666*G4_0_0_2_0 - 0.166666666666666*G4_0_0_2_1 - 0.166666666666666*G4_0_0_2_2 + 0.166666666666666*G4_0_1_0_0 + 0.166666666666666*G4_0_1_1_0 + 0.166666666666666*G4_0_1_2_0 + 0.166666666666666*G4_0_2_0_1 + 0.166666666666666*G4_0_2_1_1 + 0.166666666666666*G4_0_2_2_1 + 0.166666666666666*G4_0_3_0_2 + 0.166666666666666*G4_0_3_1_2 + 0.166666666666666*G4_0_3_2_2 - 0.166666666666666*G6_0_0_0_0_0 - 0.166666666666666*G6_0_0_0_0_1 - 0.166666666666666*G6_0_0_0_0_2 - 0.166666666666666*G6_0_0_0_1_0 - 0.166666666666666*G6_0_0_0_1_1 - 0.166666666666666*G6_0_0_0_1_2 - 0.166666666666666*G6_0_0_0_2_0 - 0.166666666666666*G6_0_0_0_2_1 - 0.166666666666666*G6_0_0_0_2_2 + 0.166666666666666*G6_0_0_1_0_0 + 0.166666666666666*G6_0_0_1_1_0 + 0.166666666666666*G6_0_0_1_2_0 + 0.166666666666666*G6_0_0_2_0_1 + 0.166666666666666*G6_0_0_2_1_1 + 0.166666666666666*G6_0_0_2_2_1 + 0.166666666666666*G6_0_0_3_0_2 + 0.166666666666666*G6_0_0_3_1_2 + 0.166666666666666*G6_0_0_3_2_2;
+    A[5] = -0.00833333333333331*G0_4 - 0.0166666666666666*G0_5 - 0.00833333333333331*G0_6 - 0.00833333333333331*G0_7 + 0.00833333333333331*G1_4 + 0.0166666666666666*G1_5 + 0.00833333333333331*G1_6 + 0.00833333333333331*G1_7 - 0.166666666666666*G3_0_0_0_0_0 - 0.166666666666666*G3_0_0_0_0_1 - 0.166666666666666*G3_0_0_0_0_2 + 0.166666666666666*G3_0_0_1_0_0 + 0.166666666666666*G3_0_0_2_0_1 + 0.166666666666666*G3_0_0_3_0_2 + 0.166666666666666*G4_0_0_0_0 + 0.166666666666666*G4_0_0_0_1 + 0.166666666666666*G4_0_0_0_2 - 0.166666666666666*G4_0_1_0_0 - 0.166666666666666*G4_0_2_0_1 - 0.166666666666666*G4_0_3_0_2 + 0.166666666666666*G6_0_0_0_0_0 + 0.166666666666666*G6_0_0_0_0_1 + 0.166666666666666*G6_0_0_0_0_2 - 0.166666666666666*G6_0_0_1_0_0 - 0.166666666666666*G6_0_0_2_0_1 - 0.166666666666666*G6_0_0_3_0_2;
+    A[6] = -0.00833333333333331*G0_4 - 0.00833333333333331*G0_5 - 0.0166666666666666*G0_6 - 0.00833333333333331*G0_7 + 0.00833333333333331*G1_4 + 0.00833333333333331*G1_5 + 0.0166666666666666*G1_6 + 0.00833333333333331*G1_7 - 0.166666666666666*G3_0_0_0_1_0 - 0.166666666666666*G3_0_0_0_1_1 - 0.166666666666666*G3_0_0_0_1_2 + 0.166666666666666*G3_0_0_1_1_0 + 0.166666666666666*G3_0_0_2_1_1 + 0.166666666666666*G3_0_0_3_1_2 + 0.166666666666666*G4_0_0_1_0 + 0.166666666666666*G4_0_0_1_1 + 0.166666666666666*G4_0_0_1_2 - 0.166666666666666*G4_0_1_1_0 - 0.166666666666666*G4_0_2_1_1 - 0.166666666666666*G4_0_3_1_2 + 0.166666666666666*G6_0_0_0_1_0 + 0.166666666666666*G6_0_0_0_1_1 + 0.166666666666666*G6_0_0_0_1_2 - 0.166666666666666*G6_0_0_1_1_0 - 0.166666666666666*G6_0_0_2_1_1 - 0.166666666666666*G6_0_0_3_1_2;
+    A[7] = -0.00833333333333331*G0_4 - 0.00833333333333331*G0_5 - 0.00833333333333331*G0_6 - 0.0166666666666666*G0_7 + 0.00833333333333331*G1_4 + 0.00833333333333331*G1_5 + 0.00833333333333331*G1_6 + 0.0166666666666666*G1_7 - 0.166666666666666*G3_0_0_0_2_0 - 0.166666666666666*G3_0_0_0_2_1 - 0.166666666666666*G3_0_0_0_2_2 + 0.166666666666666*G3_0_0_1_2_0 + 0.166666666666666*G3_0_0_2_2_1 + 0.166666666666666*G3_0_0_3_2_2 + 0.166666666666666*G4_0_0_2_0 + 0.166666666666666*G4_0_0_2_1 + 0.166666666666666*G4_0_0_2_2 - 0.166666666666666*G4_0_1_2_0 - 0.166666666666666*G4_0_2_2_1 - 0.166666666666666*G4_0_3_2_2 + 0.166666666666666*G6_0_0_0_2_0 + 0.166666666666666*G6_0_0_0_2_1 + 0.166666666666666*G6_0_0_0_2_2 - 0.166666666666666*G6_0_0_1_2_0 - 0.166666666666666*G6_0_0_2_2_1 - 0.166666666666666*G6_0_0_3_2_2;
   }
 
 };
@@ -20776,7 +18487,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "-w0_a0 | vi0[1]*va0[1]*dX(0) + w1_a0 | vi0[1]*va0[1]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx0)(dXa4/dx0) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx0)(dXa4/dx0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx0)(dXa4/dx0) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx0)(dXa4/dx0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx1)(dXa4/dx1) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx1)(dXa4/dx1) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx1)(dXa4/dx1) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx1)(dXa4/dx1) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx2)(dXa4/dx2) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx2)(dXa4/dx2) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx2)(dXa4/dx2) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx2)(dXa4/dx2) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w0_a0 | vi0[0]*va0[0]*dX(0) + 2.0w3_a0w0_a1w0_a2w0_a3 | vi0[0]*va0*va1[1]*va2[1]*va3[1]*dX(0) + -2.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + -2.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + 2.0w3_a0w0_a1 | vi0[0]*va0*va1[1]*dX(0) + 2.0w3_a0w0_a1w0_a2w0_a3 | vi0[0]*va0*va1[1]*va2[1]*va3[1]*dX(0) + -2.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + w2_a0w0_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0) + w2_a0w0_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0) + w2_a0w0_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0)";
+    return "-w0_a0 | vi0[1]*va0[1]*dX(0) + w1_a0 | vi0[1]*va0[1]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx0)(dXa4/dx0)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx0)(dXa4/dx0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx0)(dXa4/dx0)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx0)(dXa4/dx0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx1)(dXa4/dx1)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx1)(dXa4/dx1) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx1)(dXa4/dx1)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx1)(dXa4/dx1) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx2)(dXa4/dx2)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dx2)(dXa4/dx2) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx2)(dXa4/dx2)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dx2)(dXa4/dx2) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w0_a0 | vi0[0]*va0[0]*dX(0) + 2.0w3_a0w0_a1w0_a2w0_a3 | vi0[0]*va0*va1[1]*va2[1]*va3[1]*dX(0) + -2.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + -2.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + 2.0w3_a0w0_a1 | vi0[0]*va0*va1[1]*dX(0) + 2.0w3_a0w0_a1w0_a2w0_a3 | vi0[0]*va0*va1[1]*va2[1]*va3[1]*dX(0) + -2.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + w2_a0w0_a1(dXa2/dx0)(dXa3/dx0) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0) + w2_a0w0_a1(dXa2/dx1)(dXa3/dx1) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0) + w2_a0w0_a1(dXa2/dx2)(dXa3/dx2) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
