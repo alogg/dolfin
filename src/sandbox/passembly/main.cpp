@@ -7,6 +7,8 @@
 // This file is used for testing parallel assembly
 
 #include <dolfin.h>
+#include <dolfin/DofMaps.h>
+#include <dolfin/UFC.h>
 #include "Poisson2D.h"
 
 #include <parmetis.h>
@@ -53,7 +55,7 @@ void testMeshPartition(Mesh& mesh, MeshFunction<dolfin::uint>& cell_partition_fu
     // Create mesh structure for METIS
     dolfin::uint i = 0;
     for (CellIterator cell(mesh); !cell.end(); ++cell)
-      for (VertexIterator vertex(cell); !vertex.end(); ++vertex)
+      for (VertexIterator vertex(*cell); !vertex.end(); ++vertex)
         mesh_data[i++] = vertex->index();
 
       // Use METIS to partition mesh
@@ -110,9 +112,9 @@ int main(int argc, char* argv[])
   UnitSquare mesh(2000,2000);
 
   // Create linear and bilinear form
-  Function f = 1.0;
-  Poisson2D::BilinearForm a; 
-  Poisson2D::LinearForm L(f); 
+  Function f(mesh, 1.0);
+  Poisson2DBilinearForm a; 
+  Poisson2DLinearForm L(f); 
 
 /*  
   if ( num_processes < 2 )
@@ -201,40 +203,49 @@ int main(int argc, char* argv[])
   VecZeroEntries(b);
   cout << "Finished zeroing parallel vectors/matrices " << process << endl;
 
+  // Prepare for assembly
+  DofMaps dof_maps;
+  dof_maps.update(a.form(), mesh);
+  UFC ufc(a.form(), mesh, dof_maps);
 
   /// Start assembly
   real* A_block = new real[vertices_per_cell*vertices_per_cell];
   real* b_block = new real[vertices_per_cell];
   int*  pos     = new int[vertices_per_cell];
 
-  // Create affine map
-  AffineMap map;
 
-  cout << "Starting assembly " << process << endl;
+  // Assemble over cells
+  cout << "Starting assembly on processor " << process << endl;
   tic();
-  // Assemble if cell belongs to this process's partition
-  for(CellIterator cell(mesh); !cell.end(); ++cell)
+  for (CellIterator cell(mesh); !cell.end(); ++cell)
   {
-    if(cell_partition_function.get(*cell) == static_cast<unsigned int>(process) )
-    {
-      map.update(*cell);
-      a.update(*cell, map);
-//      L.update(*cell, map);
+    if (cell_partition_function.get(*cell) != static_cast<unsigned int>(process))
+      continue;
 
-      // Create mapping for cell
-      int i = 0;
-      for(VertexIterator vertex(cell); !vertex.end(); ++vertex)
-        pos[i++] = new_map[ vertex->index() ];
+    // Update to current cell
+    ufc.update(*cell);
 
-      // Evaluate element matrix and vector
-      a.eval(A_block, map, map.det);
-//      L.eval(b_block, map);
+    // Interpolate coefficients on cell
+    //for (dolfin::uint i = 0; i < coefficients.size(); i++)
+    //  coefficients[i]->interpolate(ufc.w[i], ufc.cell, *ufc.coefficient_elements[i], *cell);
+    
+    // Tabulate dofs for each dimension
+    for (dolfin::uint i = 0; i < ufc.form.rank(); i++)
+      ufc.dof_maps[i]->tabulate_dofs(ufc.dofs[i], ufc.mesh, ufc.cell);
 
-      // Add values
-      MatSetValues(A, vertices_per_cell, pos, vertices_per_cell, pos, A_block, ADD_VALUES);
-//      VecSetValues(b, vertices_per_cell, pos, b_block, ADD_VALUES);
-    }
-  }  
+    // Tabulate cell tensor
+    ufc.cell_integrals[0]->tabulate_tensor(ufc.A, ufc.w, ufc.cell);
+
+    // Create mapping for cell
+    int i = 0;
+    for(VertexIterator vertex(*cell); !vertex.end(); ++vertex)
+      pos[i++] = new_map[ vertex->index() ];
+    
+    // Add entries to global tensor
+    MatSetValues(A, vertices_per_cell, pos, vertices_per_cell, pos, ufc.A, ADD_VALUES);
+    //A.add(ufc.A, ufc.local_dimensions, ufc.dofs);
+  }
+
   cout << "Finished assembly " << process << "  " << toc() << endl;
   
   // Finalise assembly
