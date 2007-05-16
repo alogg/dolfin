@@ -22,7 +22,7 @@ int main()
   };
 
   // Create mesh
-  UnitCube mesh(4, 4, 4);
+  UnitCube mesh(8, 8, 8);
 
   // Create functions
   Source f(mesh);

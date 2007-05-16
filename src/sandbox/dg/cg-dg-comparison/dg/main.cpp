@@ -23,7 +23,7 @@ int main()
   };
 
   // Create mesh
-  UnitCube mesh(4, 4, 4);
+  UnitCube mesh(8, 8, 8);
 
   // Create functions
   Source f(mesh);
@@ -50,10 +50,11 @@ int main()
 
   // Plot solution
   plot(u);
+  plot(uu);
 
   // Save solution to file
   File file("poisson.pvd");
-  file << u;
+  file << uu;
 
   return 0;
 }

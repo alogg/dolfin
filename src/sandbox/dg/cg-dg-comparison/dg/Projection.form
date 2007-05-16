@@ -1,5 +1,5 @@
-CG1 = FiniteElement("Lagrange", "triangle", 1)
-DG1 =  FiniteElement("Discontinuous Lagrange", "triangle", 1)
+CG1 = FiniteElement("Lagrange", "tetrahedron", 1)
+DG1 = FiniteElement("Discontinuous Lagrange", "tetrahedron", 1)
 
 v = TestFunction(CG1)
 u = TrialFunction(CG1)
