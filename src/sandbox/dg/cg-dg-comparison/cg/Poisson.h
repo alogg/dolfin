@@ -1464,17 +1464,22 @@ public:
     // Take absolute value of determinant
     detJ = std::abs(detJ);
     
-    // Vertices on edges
-    static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
+    // Vertices on faces
+    static unsigned int face_vertices[4][3] = {{1, 2, 3}, {0, 2, 3}, {0, 1, 3}, {0, 1, 2}};
     
     // Get vertices
-    const unsigned int v0 = edge_vertices[facet][0];
-    const unsigned int v1 = edge_vertices[facet][1];
+    const unsigned int v0 = face_vertices[facet][0];
+    const unsigned int v1 = face_vertices[facet][1];
+    const unsigned int v2 = face_vertices[facet][2];
     
-    // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
-    const double det = std::sqrt(dx0*dx0 + dx1*dx1);
+    // Compute scale factor (area of face scaled by area of reference triangle)
+    const double a0 = (x[v0][1]*x[v1][2] + x[v0][2]*x[v2][1] + x[v1][1]*x[v2][2])
+                  - (x[v2][1]*x[v1][2] + x[v2][2]*x[v0][1] + x[v1][1]*x[v0][2]);
+    const double a1 = (x[v0][2]*x[v1][0] + x[v0][0]*x[v2][2] + x[v1][2]*x[v2][0])
+                  - (x[v2][2]*x[v1][0] + x[v2][0]*x[v0][2] + x[v1][2]*x[v0][0]);
+    const double a2 = (x[v0][0]*x[v1][1] + x[v0][1]*x[v2][0] + x[v1][0]*x[v2][1])
+                  - (x[v2][0]*x[v1][1] + x[v2][1]*x[v0][0] + x[v1][0]*x[v0][1]);
+    const double det = std::sqrt(a0*a0 + a1*a1 + a2*a2);
     
     // Compute geometry tensors
     const double G0_ = det;
