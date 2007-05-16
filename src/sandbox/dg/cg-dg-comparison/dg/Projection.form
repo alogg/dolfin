@@ -1,0 +1,9 @@
+CG1 = FiniteElement("Lagrange", "triangle", 1)
+DG1 =  FiniteElement("Discontinuous Lagrange", "triangle", 1)
+
+v = TestFunction(CG1)
+u = TrialFunction(CG1)
+f = Function(DG1)
+
+a = v*u*dx
+L = v*f*dx

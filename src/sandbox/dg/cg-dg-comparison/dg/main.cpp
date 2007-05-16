@@ -1,5 +1,6 @@
 #include <dolfin.h>
 #include "Poisson.h"
+#include "Projection.h"
 
 using namespace dolfin;
 
@@ -37,10 +38,15 @@ int main()
   // Solve PDE
   Function u;
   pde.set("PDE linear solver", "direct");
-  dolfin_debug("hej");
   pde.solve(u);
-  dolfin_debug("hej");
 
+  // Project solution onto piecewise linears
+  Function uu;
+  ProjectionBilinearForm aa;
+  ProjectionLinearForm LL(u);
+  LinearPDE projection(aa, LL, mesh);
+  projection.set("PDE linear solver", "direct");
+  projection.solve(uu);
 
   // Plot solution
   plot(u);
