@@ -4,7 +4,7 @@ v = TestFunction(element)
 u = TrialFunction(element)
 f = Function(element)
 
-gamma = 2.0
+gamma = 100.0
 
 a = dot(grad(v), grad(u))*dx + gamma*v*u*ds
 L = v*f*dx
