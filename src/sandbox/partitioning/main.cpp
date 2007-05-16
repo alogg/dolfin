@@ -102,15 +102,13 @@ void testDolfinMesh(Mesh& mesh, int num_part)
 {
   std::cout << "Testing mesh partitioning" << std::endl;
   MeshFunction<dolfin::uint> partitions;
-  partitions.init(mesh, mesh.topology().dim());
+  std::cout << "Testing mesh partitioning" << std::endl;
   mesh.partition(num_part, partitions);
 
-  //Graph graph(mesh, Graph::dual);
-  //GraphPartition::check(graph, num_part, partitions.values());
-  //GraphPartition::eval(graph, num_part, partitions.values());
-  //GraphPartition::disp(graph, num_part, partitions.values());
-  //Array<Mesh> meshes 
-  //MeshPartitioning::partition(mesh, meshes, num_partitions);
+  Graph graph(mesh, Graph::dual);
+  GraphPartition::check(graph, num_part, partitions.values());
+  GraphPartition::eval(graph, num_part, partitions.values());
+  GraphPartition::disp(graph, num_part, partitions.values());
 
   File file("mesh_partition.xml");
   file << partitions;
@@ -148,9 +146,11 @@ int main(int argc, char* argv[])
   //testMetis(graph, 16);
   //testMeshPartition(mesh, 16);
 
-  UnitSquare mesh(4, 4);
+  //UnitSquare mesh(4, 4);
+  Mesh mesh;
+  createSimpleMesh(mesh);
 
-  Graph graph(mesh, "nodal");
+  //Graph graph(mesh, "nodal");
   //testDolfinGraph(graph, 3);
   testDolfinMesh(mesh, 3);
 }
