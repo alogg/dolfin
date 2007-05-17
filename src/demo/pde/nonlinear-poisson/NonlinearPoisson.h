@@ -218,7 +218,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -593,7 +593,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -968,7 +968,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1626,71 +1626,85 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    const double c0_0_1_0 = w[0][0];
+    const double c0_0_1_1 = w[0][1];
+    const double c0_0_1_2 = w[0][2];
+    const double c0_2_0_0 = w[0][0];
+    const double c0_2_0_1 = w[0][1];
+    const double c0_2_0_2 = w[0][2];
+    const double c0_2_1_0 = w[0][0];
+    const double c0_2_1_1 = w[0][1];
+    const double c0_2_1_2 = w[0][2];
+    
     // Compute geometry tensors
-    const double G0_0_0_0_0 = det*w[0][0]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_0_0_0_1 = det*w[0][0]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_0_0_1_0 = det*w[0][0]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_0_0_1_1 = det*w[0][0]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_0_1_0_0 = det*w[0][0]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_0_1_0_1 = det*w[0][0]*w[0][1]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_0_1_1_0 = det*w[0][0]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_0_1_1_1 = det*w[0][0]*w[0][1]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_0_2_0_0 = det*w[0][0]*w[0][2]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_0_2_0_1 = det*w[0][0]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_0_2_1_0 = det*w[0][0]*w[0][2]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_0_2_1_1 = det*w[0][0]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_1_0_0_0 = det*w[0][1]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_1_0_0_1 = det*w[0][1]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_1_0_1_0 = det*w[0][1]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_1_0_1_1 = det*w[0][1]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_1_1_0_0 = det*w[0][1]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_1_1_0_1 = det*w[0][1]*w[0][1]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_1_1_1_0 = det*w[0][1]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_1_1_1_1 = det*w[0][1]*w[0][1]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_1_2_0_0 = det*w[0][1]*w[0][2]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_1_2_0_1 = det*w[0][1]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_1_2_1_0 = det*w[0][1]*w[0][2]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_1_2_1_1 = det*w[0][1]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_2_0_0_0 = det*w[0][2]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_2_0_0_1 = det*w[0][2]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_2_0_1_0 = det*w[0][2]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_2_0_1_1 = det*w[0][2]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_2_1_0_0 = det*w[0][2]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_2_1_0_1 = det*w[0][2]*w[0][1]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_2_1_1_0 = det*w[0][2]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_2_1_1_1 = det*w[0][2]*w[0][1]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G0_2_2_0_0 = det*w[0][2]*w[0][2]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_2_2_0_1 = det*w[0][2]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_2_2_1_0 = det*w[0][2]*w[0][2]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_2_2_1_1 = det*w[0][2]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_0_0_0_0 = det*c0_0_0_0*c0_0_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_0_0_1 = det*c0_0_0_0*c0_0_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_0_0_1_0 = det*c0_0_0_0*c0_0_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_0_0_1_1 = det*c0_0_0_0*c0_0_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_0_1_0_0 = det*c0_0_0_0*c0_0_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_1_0_1 = det*c0_0_0_0*c0_0_1_1*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_0_1_1_0 = det*c0_0_0_0*c0_0_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_0_1_1_1 = det*c0_0_0_0*c0_0_1_1*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_0_2_0_0 = det*c0_0_0_0*c0_0_1_2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_2_0_1 = det*c0_0_0_0*c0_0_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_0_2_1_0 = det*c0_0_0_0*c0_0_1_2*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_0_2_1_1 = det*c0_0_0_0*c0_0_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_1_0_0_0 = det*c0_0_0_1*c0_0_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_1_0_0_1 = det*c0_0_0_1*c0_0_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_0_1_0 = det*c0_0_0_1*c0_0_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_0_1_1 = det*c0_0_0_1*c0_0_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_1_1_0_0 = det*c0_0_0_1*c0_0_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_1_1_0_1 = det*c0_0_0_1*c0_0_1_1*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_1_1_0 = det*c0_0_0_1*c0_0_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_1_1_1 = det*c0_0_0_1*c0_0_1_1*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_1_2_0_0 = det*c0_0_0_1*c0_0_1_2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_1_2_0_1 = det*c0_0_0_1*c0_0_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_2_1_0 = det*c0_0_0_1*c0_0_1_2*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_2_1_1 = det*c0_0_0_1*c0_0_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_2_0_0_0 = det*c0_0_0_2*c0_0_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_2_0_0_1 = det*c0_0_0_2*c0_0_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_2_0_1_0 = det*c0_0_0_2*c0_0_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_2_0_1_1 = det*c0_0_0_2*c0_0_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_2_1_0_0 = det*c0_0_0_2*c0_0_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_2_1_0_1 = det*c0_0_0_2*c0_0_1_1*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_2_1_1_0 = det*c0_0_0_2*c0_0_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_2_1_1_1 = det*c0_0_0_2*c0_0_1_1*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_2_2_0_0 = det*c0_0_0_2*c0_0_1_2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_2_2_0_1 = det*c0_0_0_2*c0_0_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_2_2_1_0 = det*c0_0_0_2*c0_0_1_2*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_2_2_1_1 = det*c0_0_0_2*c0_0_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     const double G1_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     const double G1_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
     const double G1_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
     const double G1_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_0_0_0_0 = det*w[0][0]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_0_0_1 = det*w[0][0]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_0_0_1_0 = det*w[0][0]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_0_2_1 = det*w[0][0]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_0_1_0_0 = det*w[0][0]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_0_1_0_1 = det*w[0][0]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_0_1_1_0 = det*w[0][0]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_0_1_2_1 = det*w[0][0]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_1_0_0_0 = det*w[0][1]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_1_0_0_1 = det*w[0][1]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_1_0_1_0 = det*w[0][1]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_1_0_2_1 = det*w[0][1]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_1_1_0_0 = det*w[0][1]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_1_1_0_1 = det*w[0][1]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_1_1_1_0 = det*w[0][1]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_1_1_2_1 = det*w[0][1]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_2_0_0_0 = det*w[0][2]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_2_0_0_1 = det*w[0][2]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_2_0_1_0 = det*w[0][2]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_2_0_2_1 = det*w[0][2]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_2_1_0_0 = det*w[0][2]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_2_1_0_1 = det*w[0][2]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_2_1_1_0 = det*w[0][2]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_2_1_2_1 = det*w[0][2]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_0_0_0_0 = det*c0_2_0_0*c0_2_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_0_0_1 = det*c0_2_0_0*c0_2_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_0_0_1_0 = det*c0_2_0_0*c0_2_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_0_2_1 = det*c0_2_0_0*c0_2_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_0_1_0_0 = det*c0_2_0_0*c0_2_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_0_1_0_1 = det*c0_2_0_0*c0_2_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_0_1_1_0 = det*c0_2_0_0*c0_2_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_0_1_2_1 = det*c0_2_0_0*c0_2_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_1_0_0_0 = det*c0_2_0_1*c0_2_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_1_0_0_1 = det*c0_2_0_1*c0_2_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_1_0_1_0 = det*c0_2_0_1*c0_2_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_1_0_2_1 = det*c0_2_0_1*c0_2_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_1_1_0_0 = det*c0_2_0_1*c0_2_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_1_1_0_1 = det*c0_2_0_1*c0_2_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_1_1_1_0 = det*c0_2_0_1*c0_2_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_1_1_2_1 = det*c0_2_0_1*c0_2_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_2_0_0_0 = det*c0_2_0_2*c0_2_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_2_0_0_1 = det*c0_2_0_2*c0_2_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_2_0_1_0 = det*c0_2_0_2*c0_2_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_2_0_2_1 = det*c0_2_0_2*c0_2_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_2_1_0_0 = det*c0_2_0_2*c0_2_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_2_1_0_1 = det*c0_2_0_2*c0_2_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_2_1_1_0 = det*c0_2_0_2*c0_2_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_2_1_2_1 = det*c0_2_0_2*c0_2_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
     A[0] = 0.0833333333333332*G0_0_0_0_0 + 0.0833333333333332*G0_0_0_0_1 + 0.0833333333333332*G0_0_0_1_0 + 0.0833333333333332*G0_0_0_1_1 + 0.0416666666666666*G0_0_1_0_0 + 0.0416666666666666*G0_0_1_0_1 + 0.0416666666666666*G0_0_1_1_0 + 0.0416666666666666*G0_0_1_1_1 + 0.0416666666666666*G0_0_2_0_0 + 0.0416666666666666*G0_0_2_0_1 + 0.0416666666666666*G0_0_2_1_0 + 0.0416666666666666*G0_0_2_1_1 + 0.0416666666666666*G0_1_0_0_0 + 0.0416666666666666*G0_1_0_0_1 + 0.0416666666666666*G0_1_0_1_0 + 0.0416666666666666*G0_1_0_1_1 + 0.0833333333333332*G0_1_1_0_0 + 0.0833333333333332*G0_1_1_0_1 + 0.0833333333333332*G0_1_1_1_0 + 0.0833333333333332*G0_1_1_1_1 + 0.0416666666666666*G0_1_2_0_0 + 0.0416666666666666*G0_1_2_0_1 + 0.0416666666666666*G0_1_2_1_0 + 0.0416666666666666*G0_1_2_1_1 + 0.0416666666666666*G0_2_0_0_0 + 0.0416666666666666*G0_2_0_0_1 + 0.0416666666666666*G0_2_0_1_0 + 0.0416666666666666*G0_2_0_1_1 + 0.0416666666666666*G0_2_1_0_0 + 0.0416666666666666*G0_2_1_0_1 + 0.0416666666666666*G0_2_1_1_0 + 0.0416666666666666*G0_2_1_1_1 + 0.0833333333333332*G0_2_2_0_0 + 0.0833333333333332*G0_2_2_0_1 + 0.0833333333333332*G0_2_2_1_0 + 0.0833333333333332*G0_2_2_1_1 + 0.5*G1_0_0 + 0.5*G1_0_1 + 0.5*G1_1_0 + 0.5*G1_1_1 + 0.166666666666666*G2_0_0_0_0 + 0.166666666666666*G2_0_0_0_1 - 0.166666666666666*G2_0_0_1_0 - 0.166666666666666*G2_0_0_2_1 + 0.166666666666666*G2_0_1_0_0 + 0.166666666666666*G2_0_1_0_1 - 0.166666666666666*G2_0_1_1_0 - 0.166666666666666*G2_0_1_2_1 + 0.0833333333333332*G2_1_0_0_0 + 0.0833333333333332*G2_1_0_0_1 - 0.0833333333333332*G2_1_0_1_0 - 0.0833333333333332*G2_1_0_2_1 + 0.0833333333333332*G2_1_1_0_0 + 0.0833333333333332*G2_1_1_0_1 - 0.0833333333333332*G2_1_1_1_0 - 0.0833333333333332*G2_1_1_2_1 + 0.0833333333333332*G2_2_0_0_0 + 0.0833333333333332*G2_2_0_0_1 - 0.0833333333333332*G2_2_0_1_0 - 0.0833333333333332*G2_2_0_2_1 + 0.0833333333333332*G2_2_1_0_0 + 0.0833333333333332*G2_2_1_0_1 - 0.0833333333333332*G2_2_1_1_0 - 0.0833333333333332*G2_2_1_2_1;
@@ -2036,7 +2050,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2411,7 +2425,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2786,7 +2800,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3444,90 +3458,107 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c1_0_0_0 = w[1][0];
+    const double c1_0_0_1 = w[1][1];
+    const double c1_0_0_2 = w[1][2];
+    const double c0_1_0_0 = w[0][0];
+    const double c0_1_0_1 = w[0][1];
+    const double c0_1_0_2 = w[0][2];
+    const double c0_1_1_0 = w[0][0];
+    const double c0_1_1_1 = w[0][1];
+    const double c0_1_1_2 = w[0][2];
+    const double c0_1_2_0 = w[0][0];
+    const double c0_1_2_1 = w[0][1];
+    const double c0_1_2_2 = w[0][2];
+    const double c0_2_0_0 = w[0][0];
+    const double c0_2_0_1 = w[0][1];
+    const double c0_2_0_2 = w[0][2];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[1][0];
-    const double G0_1 = det*w[1][1];
-    const double G0_2 = det*w[1][2];
-    const double G1_0_0_0_0_0 = det*w[0][0]*w[0][0]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_0_0_0_1 = det*w[0][0]*w[0][0]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_0_0_1_0 = det*w[0][0]*w[0][0]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_0_0_2_1 = det*w[0][0]*w[0][0]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_0_1_0_0 = det*w[0][0]*w[0][0]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_0_1_0_1 = det*w[0][0]*w[0][0]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_0_1_1_0 = det*w[0][0]*w[0][0]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_0_1_2_1 = det*w[0][0]*w[0][0]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_1_0_0_0 = det*w[0][0]*w[0][1]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_1_0_0_1 = det*w[0][0]*w[0][1]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_1_0_1_0 = det*w[0][0]*w[0][1]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_1_0_2_1 = det*w[0][0]*w[0][1]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_1_1_0_0 = det*w[0][0]*w[0][1]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_1_1_0_1 = det*w[0][0]*w[0][1]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_1_1_1_0 = det*w[0][0]*w[0][1]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_1_1_2_1 = det*w[0][0]*w[0][1]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_2_0_0_0 = det*w[0][0]*w[0][2]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_2_0_0_1 = det*w[0][0]*w[0][2]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_2_0_1_0 = det*w[0][0]*w[0][2]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_2_0_2_1 = det*w[0][0]*w[0][2]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_2_1_0_0 = det*w[0][0]*w[0][2]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_2_1_0_1 = det*w[0][0]*w[0][2]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_2_1_1_0 = det*w[0][0]*w[0][2]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_2_1_2_1 = det*w[0][0]*w[0][2]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_0_0_0_0 = det*w[0][1]*w[0][0]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_0_0_0_1 = det*w[0][1]*w[0][0]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_0_0_1_0 = det*w[0][1]*w[0][0]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_0_0_2_1 = det*w[0][1]*w[0][0]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_0_1_0_0 = det*w[0][1]*w[0][0]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_0_1_0_1 = det*w[0][1]*w[0][0]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_0_1_1_0 = det*w[0][1]*w[0][0]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_0_1_2_1 = det*w[0][1]*w[0][0]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_1_0_0_0 = det*w[0][1]*w[0][1]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_1_0_0_1 = det*w[0][1]*w[0][1]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_1_0_1_0 = det*w[0][1]*w[0][1]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_1_0_2_1 = det*w[0][1]*w[0][1]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_1_1_0_0 = det*w[0][1]*w[0][1]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_1_1_0_1 = det*w[0][1]*w[0][1]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_1_1_1_0 = det*w[0][1]*w[0][1]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_1_1_2_1 = det*w[0][1]*w[0][1]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_2_0_0_0 = det*w[0][1]*w[0][2]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_2_0_0_1 = det*w[0][1]*w[0][2]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_2_0_1_0 = det*w[0][1]*w[0][2]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_2_0_2_1 = det*w[0][1]*w[0][2]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_2_1_0_0 = det*w[0][1]*w[0][2]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_2_1_0_1 = det*w[0][1]*w[0][2]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_2_1_1_0 = det*w[0][1]*w[0][2]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_2_1_2_1 = det*w[0][1]*w[0][2]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_0_0_0_0 = det*w[0][2]*w[0][0]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_0_0_0_1 = det*w[0][2]*w[0][0]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_0_0_1_0 = det*w[0][2]*w[0][0]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_0_0_2_1 = det*w[0][2]*w[0][0]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_0_1_0_0 = det*w[0][2]*w[0][0]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_0_1_0_1 = det*w[0][2]*w[0][0]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_0_1_1_0 = det*w[0][2]*w[0][0]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_0_1_2_1 = det*w[0][2]*w[0][0]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_1_0_0_0 = det*w[0][2]*w[0][1]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_1_0_0_1 = det*w[0][2]*w[0][1]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_1_0_1_0 = det*w[0][2]*w[0][1]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_1_0_2_1 = det*w[0][2]*w[0][1]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_1_1_0_0 = det*w[0][2]*w[0][1]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_1_1_0_1 = det*w[0][2]*w[0][1]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_1_1_1_0 = det*w[0][2]*w[0][1]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_1_1_2_1 = det*w[0][2]*w[0][1]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_2_0_0_0 = det*w[0][2]*w[0][2]*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_2_0_0_1 = det*w[0][2]*w[0][2]*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_2_0_1_0 = det*w[0][2]*w[0][2]*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_2_0_2_1 = det*w[0][2]*w[0][2]*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_2_1_0_0 = det*w[0][2]*w[0][2]*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_2_1_0_1 = det*w[0][2]*w[0][2]*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_2_1_1_0 = det*w[0][2]*w[0][2]*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_2_1_2_1 = det*w[0][2]*w[0][2]*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_0_0_0 = det*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_0_1 = det*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_0_1_0 = det*w[0][1]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_2_1 = det*w[0][2]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_1_0_0 = det*w[0][0]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_1_0_1 = det*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_1_1_0 = det*w[0][1]*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_1_2_1 = det*w[0][2]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_0 = det*c1_0_0_0;
+    const double G0_1 = det*c1_0_0_1;
+    const double G0_2 = det*c1_0_0_2;
+    const double G1_0_0_0_0_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_0_0_0_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_0_1_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_0_0_2_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_1_0_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_0_1_0_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_0_1_1_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_0_1_2_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_0_0_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_1_0_0_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_1_0_1_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_1_0_2_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_1_1_0_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_1_1_0_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_1_1_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_1_1_2_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_2_0_0_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_2_0_0_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_2_0_1_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_2_0_2_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_2_1_0_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_2_1_0_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_2_1_1_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_2_1_2_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_0_0_0_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_0_0_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_0_1_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_0_2_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_1_0_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_0_1_0_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_0_1_1_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_0_1_2_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_1_0_0_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_1_0_0_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_1_0_1_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_1_0_2_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_1_1_0_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_1_1_0_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_1_1_1_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_1_1_2_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_2_0_0_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_2_0_0_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_2_0_1_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_2_0_2_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_2_1_0_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_2_1_0_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_2_1_1_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_2_1_2_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_0_0_0_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_0_0_0_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_0_0_1_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_0_0_2_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_0_1_0_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_0_1_0_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_0_1_1_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_0_1_2_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_1_0_0_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_1_0_0_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_1_0_1_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_1_0_2_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_1_1_0_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_1_0_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_1_1_1_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_1_2_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_2_0_0_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_2_0_0_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_2_0_1_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_2_0_2_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_2_1_0_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_2_1_0_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_2_1_1_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_2_1_2_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_0_0_0 = det*c0_2_0_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_0_1 = det*c0_2_0_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_0_1_0 = det*c0_2_0_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_2_1 = det*c0_2_0_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_1_0_0 = det*c0_2_0_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_1_0_1 = det*c0_2_0_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_1_1_0 = det*c0_2_0_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_1_2_1 = det*c0_2_0_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2 - 0.0833333333333332*G1_0_0_0_0_0 - 0.0833333333333332*G1_0_0_0_0_1 + 0.0833333333333332*G1_0_0_0_1_0 + 0.0833333333333332*G1_0_0_0_2_1 - 0.0833333333333332*G1_0_0_1_0_0 - 0.0833333333333332*G1_0_0_1_0_1 + 0.0833333333333332*G1_0_0_1_1_0 + 0.0833333333333332*G1_0_0_1_2_1 - 0.0416666666666666*G1_0_1_0_0_0 - 0.0416666666666666*G1_0_1_0_0_1 + 0.0416666666666666*G1_0_1_0_1_0 + 0.0416666666666666*G1_0_1_0_2_1 - 0.0416666666666666*G1_0_1_1_0_0 - 0.0416666666666666*G1_0_1_1_0_1 + 0.0416666666666666*G1_0_1_1_1_0 + 0.0416666666666666*G1_0_1_1_2_1 - 0.0416666666666666*G1_0_2_0_0_0 - 0.0416666666666666*G1_0_2_0_0_1 + 0.0416666666666666*G1_0_2_0_1_0 + 0.0416666666666666*G1_0_2_0_2_1 - 0.0416666666666666*G1_0_2_1_0_0 - 0.0416666666666666*G1_0_2_1_0_1 + 0.0416666666666666*G1_0_2_1_1_0 + 0.0416666666666666*G1_0_2_1_2_1 - 0.0416666666666666*G1_1_0_0_0_0 - 0.0416666666666666*G1_1_0_0_0_1 + 0.0416666666666666*G1_1_0_0_1_0 + 0.0416666666666666*G1_1_0_0_2_1 - 0.0416666666666666*G1_1_0_1_0_0 - 0.0416666666666666*G1_1_0_1_0_1 + 0.0416666666666666*G1_1_0_1_1_0 + 0.0416666666666666*G1_1_0_1_2_1 - 0.0833333333333332*G1_1_1_0_0_0 - 0.0833333333333332*G1_1_1_0_0_1 + 0.0833333333333332*G1_1_1_0_1_0 + 0.0833333333333332*G1_1_1_0_2_1 - 0.0833333333333332*G1_1_1_1_0_0 - 0.0833333333333332*G1_1_1_1_0_1 + 0.0833333333333332*G1_1_1_1_1_0 + 0.0833333333333332*G1_1_1_1_2_1 - 0.0416666666666666*G1_1_2_0_0_0 - 0.0416666666666666*G1_1_2_0_0_1 + 0.0416666666666666*G1_1_2_0_1_0 + 0.0416666666666666*G1_1_2_0_2_1 - 0.0416666666666666*G1_1_2_1_0_0 - 0.0416666666666666*G1_1_2_1_0_1 + 0.0416666666666666*G1_1_2_1_1_0 + 0.0416666666666666*G1_1_2_1_2_1 - 0.0416666666666666*G1_2_0_0_0_0 - 0.0416666666666666*G1_2_0_0_0_1 + 0.0416666666666666*G1_2_0_0_1_0 + 0.0416666666666666*G1_2_0_0_2_1 - 0.0416666666666666*G1_2_0_1_0_0 - 0.0416666666666666*G1_2_0_1_0_1 + 0.0416666666666666*G1_2_0_1_1_0 + 0.0416666666666666*G1_2_0_1_2_1 - 0.0416666666666666*G1_2_1_0_0_0 - 0.0416666666666666*G1_2_1_0_0_1 + 0.0416666666666666*G1_2_1_0_1_0 + 0.0416666666666666*G1_2_1_0_2_1 - 0.0416666666666666*G1_2_1_1_0_0 - 0.0416666666666666*G1_2_1_1_0_1 + 0.0416666666666666*G1_2_1_1_1_0 + 0.0416666666666666*G1_2_1_1_2_1 - 0.0833333333333332*G1_2_2_0_0_0 - 0.0833333333333332*G1_2_2_0_0_1 + 0.0833333333333332*G1_2_2_0_1_0 + 0.0833333333333332*G1_2_2_0_2_1 - 0.0833333333333332*G1_2_2_1_0_0 - 0.0833333333333332*G1_2_2_1_0_1 + 0.0833333333333332*G1_2_2_1_1_0 + 0.0833333333333332*G1_2_2_1_2_1 - 0.5*G2_0_0_0 - 0.5*G2_0_0_1 + 0.5*G2_0_1_0 + 0.5*G2_0_2_1 - 0.5*G2_1_0_0 - 0.5*G2_1_0_1 + 0.5*G2_1_1_0 + 0.5*G2_1_2_1;

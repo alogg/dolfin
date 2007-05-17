@@ -1105,10 +1105,10 @@ public:
     const double det = detJ;
     
     // Compute geometry tensors
-    const double G0_0_0 = det*Jinv_00*Jinv_00 + det*Jinv_01*Jinv_01;
-    const double G0_0_1 = det*Jinv_00*Jinv_10 + det*Jinv_01*Jinv_11;
-    const double G0_1_0 = det*Jinv_10*Jinv_00 + det*Jinv_11*Jinv_01;
-    const double G0_1_1 = det*Jinv_10*Jinv_10 + det*Jinv_11*Jinv_11;
+    const double G0_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
     A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1;
@@ -1158,7 +1158,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0) + (dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0)";
+    return "(dXa0/dxb0)(dXa1/dxb0) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)

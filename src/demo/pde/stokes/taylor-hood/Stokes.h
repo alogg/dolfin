@@ -232,7 +232,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -656,7 +656,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1137,7 +1137,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1703,7 +1703,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2188,7 +2188,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2588,7 +2588,32 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    throw std::runtime_error("evaluate_dof not implemented for this type of element");
+    double values[3];
+    double coordinates[2];
+    
+    // Nodal coordinates on reference cell
+    static double X[15][2] = {{0, 0}, {1, 0}, {0, 1}, {0.5, 0.5}, {0, 0.5}, {0.5, 0}, {0, 0}, {1, 0}, {0, 1}, {0.5, 0.5}, {0, 0.5}, {0.5, 0}, {0, 0}, {1, 0}, {0, 1}};
+    
+    // Components for each dof
+    static unsigned int components[15] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2};
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0] - X[i][1];
+    const double w1 = X[i][0];
+    const double w2 = X[i][1];
+    
+    // Compute affine mapping x = F(X)
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at coordinates
+    f.evaluate(values, coordinates, c);
+    
+    // Pick component for evaluation
+    return values[components[i]];
   }
 
   /// Interpolate vertex values from dof values
@@ -2851,7 +2876,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3275,7 +3300,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3756,7 +3781,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4322,7 +4347,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -4807,7 +4832,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -5207,7 +5232,32 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    throw std::runtime_error("evaluate_dof not implemented for this type of element");
+    double values[3];
+    double coordinates[2];
+    
+    // Nodal coordinates on reference cell
+    static double X[15][2] = {{0, 0}, {1, 0}, {0, 1}, {0.5, 0.5}, {0, 0.5}, {0.5, 0}, {0, 0}, {1, 0}, {0, 1}, {0.5, 0.5}, {0, 0.5}, {0.5, 0}, {0, 0}, {1, 0}, {0, 1}};
+    
+    // Components for each dof
+    static unsigned int components[15] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2};
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0] - X[i][1];
+    const double w1 = X[i][0];
+    const double w2 = X[i][1];
+    
+    // Compute affine mapping x = F(X)
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at coordinates
+    f.evaluate(values, coordinates, c);
+    
+    // Pick component for evaluation
+    return values[components[i]];
   }
 
   /// Interpolate vertex values from dof values
@@ -7057,22 +7107,18 @@ public:
     const double det = detJ;
     
     // Compute geometry tensors
-    const double G0_0_0 = det*Jinv_00*Jinv_00 + det*Jinv_01*Jinv_01;
-    const double G0_0_1 = det*Jinv_00*Jinv_10 + det*Jinv_01*Jinv_11;
-    const double G0_1_0 = det*Jinv_10*Jinv_00 + det*Jinv_11*Jinv_01;
-    const double G0_1_1 = det*Jinv_10*Jinv_10 + det*Jinv_11*Jinv_11;
-    const double G1_0_0 = det*Jinv_00*Jinv_00 + det*Jinv_01*Jinv_01;
-    const double G1_0_1 = det*Jinv_00*Jinv_10 + det*Jinv_01*Jinv_11;
-    const double G1_1_0 = det*Jinv_10*Jinv_00 + det*Jinv_11*Jinv_01;
-    const double G1_1_1 = det*Jinv_10*Jinv_10 + det*Jinv_11*Jinv_11;
-    const double G2_0 = det*Jinv_00;
-    const double G2_1 = det*Jinv_10;
-    const double G3_0 = det*Jinv_01;
-    const double G3_1 = det*Jinv_11;
-    const double G4_0 = det*Jinv_00;
-    const double G4_1 = det*Jinv_10;
-    const double G5_0 = det*Jinv_01;
-    const double G5_1 = det*Jinv_11;
+    const double G0_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_0 = det*Jinv_00;
+    const double G1_0_1 = det*Jinv_01;
+    const double G1_1_0 = det*Jinv_10;
+    const double G1_1_1 = det*Jinv_11;
+    const double G2_0_0 = det*Jinv_00;
+    const double G2_0_1 = det*Jinv_01;
+    const double G2_1_0 = det*Jinv_10;
+    const double G2_1_1 = det*Jinv_11;
     
     // Compute element tensor
     A[0] = 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0 + 0.499999999999999*G0_1_1;
@@ -7087,7 +7133,7 @@ public:
     A[9] = 0;
     A[10] = 0;
     A[11] = 0;
-    A[12] = 0.166666666666666*G2_0 + 0.166666666666666*G2_1;
+    A[12] = 0.166666666666666*G1_0_0 + 0.166666666666666*G1_1_0;
     A[13] = 0;
     A[14] = 0;
     A[15] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1;
@@ -7103,7 +7149,7 @@ public:
     A[25] = 0;
     A[26] = 0;
     A[27] = 0;
-    A[28] = -0.166666666666666*G2_0;
+    A[28] = -0.166666666666666*G1_0_0;
     A[29] = 0;
     A[30] = 0.166666666666667*G0_1_0 + 0.166666666666667*G0_1_1;
     A[31] = -0.166666666666666*G0_1_0;
@@ -7119,7 +7165,7 @@ public:
     A[41] = 0;
     A[42] = 0;
     A[43] = 0;
-    A[44] = -0.166666666666666*G2_1;
+    A[44] = -0.166666666666666*G1_1_0;
     A[45] = 0;
     A[46] = 0.666666666666665*G0_1_0;
     A[47] = 0.666666666666665*G0_0_1;
@@ -7132,9 +7178,9 @@ public:
     A[54] = 0;
     A[55] = 0;
     A[56] = 0;
-    A[57] = -0.166666666666666*G2_0 - 0.166666666666666*G2_1;
-    A[58] = -0.166666666666666*G2_0 - 0.333333333333333*G2_1;
-    A[59] = -0.333333333333333*G2_0 - 0.166666666666666*G2_1;
+    A[57] = -0.166666666666666*G1_0_0 - 0.166666666666666*G1_1_0;
+    A[58] = -0.166666666666666*G1_0_0 - 0.333333333333333*G1_1_0;
+    A[59] = -0.333333333333333*G1_0_0 - 0.166666666666666*G1_1_0;
     A[60] = -0.666666666666666*G0_1_0 - 0.666666666666666*G0_1_1;
     A[61] = 0;
     A[62] = -0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_1;
@@ -7147,9 +7193,9 @@ public:
     A[69] = 0;
     A[70] = 0;
     A[71] = 0;
-    A[72] = 0.166666666666666*G2_0 - 0.166666666666666*G2_1;
-    A[73] = 0.166666666666666*G2_0;
-    A[74] = 0.333333333333333*G2_0 + 0.166666666666666*G2_1;
+    A[72] = 0.166666666666666*G1_0_0 - 0.166666666666666*G1_1_0;
+    A[73] = 0.166666666666666*G1_0_0;
+    A[74] = 0.333333333333333*G1_0_0 + 0.166666666666666*G1_1_0;
     A[75] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_0_1;
     A[76] = -0.666666666666665*G0_0_0 - 0.666666666666666*G0_1_0;
     A[77] = 0;
@@ -7162,22 +7208,22 @@ public:
     A[84] = 0;
     A[85] = 0;
     A[86] = 0;
-    A[87] = -0.166666666666666*G2_0 + 0.166666666666666*G2_1;
-    A[88] = 0.166666666666666*G2_0 + 0.333333333333333*G2_1;
-    A[89] = 0.166666666666666*G2_1;
+    A[87] = -0.166666666666666*G1_0_0 + 0.166666666666666*G1_1_0;
+    A[88] = 0.166666666666666*G1_0_0 + 0.333333333333333*G1_1_0;
+    A[89] = 0.166666666666666*G1_1_0;
     A[90] = 0;
     A[91] = 0;
     A[92] = 0;
     A[93] = 0;
     A[94] = 0;
     A[95] = 0;
-    A[96] = 0.499999999999999*G1_0_0 + 0.499999999999999*G1_0_1 + 0.499999999999999*G1_1_0 + 0.499999999999999*G1_1_1;
-    A[97] = 0.166666666666666*G1_0_0 + 0.166666666666666*G1_1_0;
-    A[98] = 0.166666666666667*G1_0_1 + 0.166666666666666*G1_1_1;
+    A[96] = 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0 + 0.499999999999999*G0_1_1;
+    A[97] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_1_0;
+    A[98] = 0.166666666666667*G0_0_1 + 0.166666666666666*G0_1_1;
     A[99] = 0;
-    A[100] = -0.666666666666666*G1_0_1 - 0.666666666666666*G1_1_1;
-    A[101] = -0.666666666666666*G1_0_0 - 0.666666666666666*G1_1_0;
-    A[102] = 0.166666666666666*G3_0 + 0.166666666666666*G3_1;
+    A[100] = -0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_1;
+    A[101] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_1_0;
+    A[102] = 0.166666666666666*G1_0_1 + 0.166666666666666*G1_1_1;
     A[103] = 0;
     A[104] = 0;
     A[105] = 0;
@@ -7186,14 +7232,14 @@ public:
     A[108] = 0;
     A[109] = 0;
     A[110] = 0;
-    A[111] = 0.166666666666666*G1_0_0 + 0.166666666666666*G1_0_1;
-    A[112] = 0.499999999999999*G1_0_0;
-    A[113] = -0.166666666666666*G1_0_1;
-    A[114] = 0.666666666666665*G1_0_1;
+    A[111] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1;
+    A[112] = 0.499999999999999*G0_0_0;
+    A[113] = -0.166666666666666*G0_0_1;
+    A[114] = 0.666666666666665*G0_0_1;
     A[115] = 0;
-    A[116] = -0.666666666666665*G1_0_0 - 0.666666666666666*G1_0_1;
+    A[116] = -0.666666666666665*G0_0_0 - 0.666666666666666*G0_0_1;
     A[117] = 0;
-    A[118] = -0.166666666666666*G3_0;
+    A[118] = -0.166666666666666*G1_0_1;
     A[119] = 0;
     A[120] = 0;
     A[121] = 0;
@@ -7201,15 +7247,15 @@ public:
     A[123] = 0;
     A[124] = 0;
     A[125] = 0;
-    A[126] = 0.166666666666667*G1_1_0 + 0.166666666666667*G1_1_1;
-    A[127] = -0.166666666666666*G1_1_0;
-    A[128] = 0.499999999999999*G1_1_1;
-    A[129] = 0.666666666666665*G1_1_0;
-    A[130] = -0.666666666666665*G1_1_0 - 0.666666666666666*G1_1_1;
+    A[126] = 0.166666666666667*G0_1_0 + 0.166666666666667*G0_1_1;
+    A[127] = -0.166666666666666*G0_1_0;
+    A[128] = 0.499999999999999*G0_1_1;
+    A[129] = 0.666666666666665*G0_1_0;
+    A[130] = -0.666666666666665*G0_1_0 - 0.666666666666666*G0_1_1;
     A[131] = 0;
     A[132] = 0;
     A[133] = 0;
-    A[134] = -0.166666666666666*G3_1;
+    A[134] = -0.166666666666666*G1_1_1;
     A[135] = 0;
     A[136] = 0;
     A[137] = 0;
@@ -7217,86 +7263,86 @@ public:
     A[139] = 0;
     A[140] = 0;
     A[141] = 0;
-    A[142] = 0.666666666666665*G1_1_0;
-    A[143] = 0.666666666666665*G1_0_1;
-    A[144] = 1.33333333333333*G1_0_0 + 0.666666666666665*G1_0_1 + 0.666666666666665*G1_1_0 + 1.33333333333333*G1_1_1;
-    A[145] = -1.33333333333333*G1_0_0 - 0.666666666666666*G1_0_1 - 0.666666666666665*G1_1_0;
-    A[146] = -0.666666666666665*G1_0_1 - 0.666666666666665*G1_1_0 - 1.33333333333333*G1_1_1;
-    A[147] = -0.166666666666666*G3_0 - 0.166666666666666*G3_1;
-    A[148] = -0.166666666666666*G3_0 - 0.333333333333333*G3_1;
-    A[149] = -0.333333333333333*G3_0 - 0.166666666666666*G3_1;
+    A[142] = 0.666666666666665*G0_1_0;
+    A[143] = 0.666666666666665*G0_0_1;
+    A[144] = 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[145] = -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[146] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[147] = -0.166666666666666*G1_0_1 - 0.166666666666666*G1_1_1;
+    A[148] = -0.166666666666666*G1_0_1 - 0.333333333333333*G1_1_1;
+    A[149] = -0.333333333333333*G1_0_1 - 0.166666666666666*G1_1_1;
     A[150] = 0;
     A[151] = 0;
     A[152] = 0;
     A[153] = 0;
     A[154] = 0;
     A[155] = 0;
-    A[156] = -0.666666666666666*G1_1_0 - 0.666666666666666*G1_1_1;
+    A[156] = -0.666666666666666*G0_1_0 - 0.666666666666666*G0_1_1;
     A[157] = 0;
-    A[158] = -0.666666666666665*G1_0_1 - 0.666666666666666*G1_1_1;
-    A[159] = -1.33333333333333*G1_0_0 - 0.666666666666665*G1_0_1 - 0.666666666666666*G1_1_0;
-    A[160] = 1.33333333333333*G1_0_0 + 0.666666666666666*G1_0_1 + 0.666666666666666*G1_1_0 + 1.33333333333333*G1_1_1;
-    A[161] = 0.666666666666665*G1_0_1 + 0.666666666666666*G1_1_0;
-    A[162] = 0.166666666666666*G3_0 - 0.166666666666666*G3_1;
-    A[163] = 0.166666666666666*G3_0;
-    A[164] = 0.333333333333333*G3_0 + 0.166666666666666*G3_1;
+    A[158] = -0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_1;
+    A[159] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0;
+    A[160] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[161] = 0.666666666666665*G0_0_1 + 0.666666666666666*G0_1_0;
+    A[162] = 0.166666666666666*G1_0_1 - 0.166666666666666*G1_1_1;
+    A[163] = 0.166666666666666*G1_0_1;
+    A[164] = 0.333333333333333*G1_0_1 + 0.166666666666666*G1_1_1;
     A[165] = 0;
     A[166] = 0;
     A[167] = 0;
     A[168] = 0;
     A[169] = 0;
     A[170] = 0;
-    A[171] = -0.666666666666666*G1_0_0 - 0.666666666666666*G1_0_1;
-    A[172] = -0.666666666666665*G1_0_0 - 0.666666666666666*G1_1_0;
+    A[171] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_0_1;
+    A[172] = -0.666666666666665*G0_0_0 - 0.666666666666666*G0_1_0;
     A[173] = 0;
-    A[174] = -0.666666666666665*G1_0_1 - 0.666666666666665*G1_1_0 - 1.33333333333333*G1_1_1;
-    A[175] = 0.666666666666666*G1_0_1 + 0.666666666666665*G1_1_0;
-    A[176] = 1.33333333333333*G1_0_0 + 0.666666666666666*G1_0_1 + 0.666666666666666*G1_1_0 + 1.33333333333333*G1_1_1;
-    A[177] = -0.166666666666666*G3_0 + 0.166666666666666*G3_1;
-    A[178] = 0.166666666666666*G3_0 + 0.333333333333333*G3_1;
-    A[179] = 0.166666666666666*G3_1;
-    A[180] = -0.166666666666666*G4_0 - 0.166666666666666*G4_1;
+    A[174] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[175] = 0.666666666666666*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[176] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[177] = -0.166666666666666*G1_0_1 + 0.166666666666666*G1_1_1;
+    A[178] = 0.166666666666666*G1_0_1 + 0.333333333333333*G1_1_1;
+    A[179] = 0.166666666666666*G1_1_1;
+    A[180] = -0.166666666666666*G2_0_0 - 0.166666666666666*G2_1_0;
     A[181] = 0;
     A[182] = 0;
-    A[183] = 0.166666666666666*G4_0 + 0.166666666666666*G4_1;
-    A[184] = -0.166666666666666*G4_0 + 0.166666666666666*G4_1;
-    A[185] = 0.166666666666666*G4_0 - 0.166666666666666*G4_1;
-    A[186] = -0.166666666666666*G5_0 - 0.166666666666666*G5_1;
+    A[183] = 0.166666666666666*G2_0_0 + 0.166666666666666*G2_1_0;
+    A[184] = -0.166666666666666*G2_0_0 + 0.166666666666666*G2_1_0;
+    A[185] = 0.166666666666666*G2_0_0 - 0.166666666666666*G2_1_0;
+    A[186] = -0.166666666666666*G2_0_1 - 0.166666666666666*G2_1_1;
     A[187] = 0;
     A[188] = 0;
-    A[189] = 0.166666666666666*G5_0 + 0.166666666666666*G5_1;
-    A[190] = -0.166666666666666*G5_0 + 0.166666666666666*G5_1;
-    A[191] = 0.166666666666666*G5_0 - 0.166666666666666*G5_1;
+    A[189] = 0.166666666666666*G2_0_1 + 0.166666666666666*G2_1_1;
+    A[190] = -0.166666666666666*G2_0_1 + 0.166666666666666*G2_1_1;
+    A[191] = 0.166666666666666*G2_0_1 - 0.166666666666666*G2_1_1;
     A[192] = 0;
     A[193] = 0;
     A[194] = 0;
     A[195] = 0;
-    A[196] = 0.166666666666666*G4_0;
+    A[196] = 0.166666666666666*G2_0_0;
     A[197] = 0;
-    A[198] = 0.166666666666666*G4_0 + 0.333333333333333*G4_1;
-    A[199] = -0.166666666666666*G4_0;
-    A[200] = -0.166666666666666*G4_0 - 0.333333333333333*G4_1;
+    A[198] = 0.166666666666666*G2_0_0 + 0.333333333333333*G2_1_0;
+    A[199] = -0.166666666666666*G2_0_0;
+    A[200] = -0.166666666666666*G2_0_0 - 0.333333333333333*G2_1_0;
     A[201] = 0;
-    A[202] = 0.166666666666666*G5_0;
+    A[202] = 0.166666666666666*G2_0_1;
     A[203] = 0;
-    A[204] = 0.166666666666666*G5_0 + 0.333333333333333*G5_1;
-    A[205] = -0.166666666666666*G5_0;
-    A[206] = -0.166666666666666*G5_0 - 0.333333333333333*G5_1;
+    A[204] = 0.166666666666666*G2_0_1 + 0.333333333333333*G2_1_1;
+    A[205] = -0.166666666666666*G2_0_1;
+    A[206] = -0.166666666666666*G2_0_1 - 0.333333333333333*G2_1_1;
     A[207] = 0;
     A[208] = 0;
     A[209] = 0;
     A[210] = 0;
     A[211] = 0;
-    A[212] = 0.166666666666666*G4_1;
-    A[213] = 0.333333333333333*G4_0 + 0.166666666666666*G4_1;
-    A[214] = -0.333333333333333*G4_0 - 0.166666666666666*G4_1;
-    A[215] = -0.166666666666666*G4_1;
+    A[212] = 0.166666666666666*G2_1_0;
+    A[213] = 0.333333333333333*G2_0_0 + 0.166666666666666*G2_1_0;
+    A[214] = -0.333333333333333*G2_0_0 - 0.166666666666666*G2_1_0;
+    A[215] = -0.166666666666666*G2_1_0;
     A[216] = 0;
     A[217] = 0;
-    A[218] = 0.166666666666666*G5_1;
-    A[219] = 0.333333333333333*G5_0 + 0.166666666666666*G5_1;
-    A[220] = -0.333333333333333*G5_0 - 0.166666666666666*G5_1;
-    A[221] = -0.166666666666666*G5_1;
+    A[218] = 0.166666666666666*G2_1_1;
+    A[219] = 0.333333333333333*G2_0_1 + 0.166666666666666*G2_1_1;
+    A[220] = -0.333333333333333*G2_0_1 - 0.166666666666666*G2_1_1;
+    A[221] = -0.166666666666666*G2_1_1;
     A[222] = 0;
     A[223] = 0;
     A[224] = 0;
@@ -7338,7 +7384,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "(dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0[0])*((d/dXa1)vi1[0])*dX(0) + (dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0[0])*((d/dXa1)vi1[0])*dX(0) + (dXa0/dx0)(dXa1/dx0) | ((d/dXa0)vi0[1])*((d/dXa1)vi1[1])*dX(0) + (dXa0/dx1)(dXa1/dx1) | ((d/dXa0)vi0[1])*((d/dXa1)vi1[1])*dX(0) + -(dXa0/dx0) | ((d/dXa0)vi0[0])*vi1[2]*dX(0) + -(dXa0/dx1) | ((d/dXa0)vi0[1])*vi1[2]*dX(0) + (dXa0/dx0) | vi0[2]*((d/dXa0)vi1[0])*dX(0) + (dXa0/dx1) | vi0[2]*((d/dXa0)vi1[1])*dX(0)";
+    return "(dXa0/dxb0)(dXa1/dxb0) | ((d/dXa0)vi0[b0])*((d/dXa1)vi1[b0])*dX(0) + -(dXa0/dxa1) | ((d/dXa0)vi0[a1])*vi1[2]*dX(0) + (dXa0/dxa1) | vi0[2]*((d/dXa0)vi1[a1])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7642,7 +7688,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -8066,7 +8112,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -8547,7 +8593,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -9113,7 +9159,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -9598,7 +9644,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -9998,7 +10044,32 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    throw std::runtime_error("evaluate_dof not implemented for this type of element");
+    double values[3];
+    double coordinates[2];
+    
+    // Nodal coordinates on reference cell
+    static double X[15][2] = {{0, 0}, {1, 0}, {0, 1}, {0.5, 0.5}, {0, 0.5}, {0.5, 0}, {0, 0}, {1, 0}, {0, 1}, {0.5, 0.5}, {0, 0.5}, {0.5, 0}, {0, 0}, {1, 0}, {0, 1}};
+    
+    // Components for each dof
+    static unsigned int components[15] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2};
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0] - X[i][1];
+    const double w1 = X[i][0];
+    const double w2 = X[i][1];
+    
+    // Compute affine mapping x = F(X)
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at coordinates
+    f.evaluate(values, coordinates, c);
+    
+    // Pick component for evaluation
+    return values[components[i]];
   }
 
   /// Interpolate vertex values from dof values
@@ -10261,7 +10332,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -10685,7 +10756,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -11166,7 +11237,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -12967,19 +13038,33 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    const double c0_0_0_3 = w[0][3];
+    const double c0_0_0_4 = w[0][4];
+    const double c0_0_0_5 = w[0][5];
+    const double c0_0_0_6 = w[0][6];
+    const double c0_0_0_7 = w[0][7];
+    const double c0_0_0_8 = w[0][8];
+    const double c0_0_0_9 = w[0][9];
+    const double c0_0_0_10 = w[0][10];
+    const double c0_0_0_11 = w[0][11];
+    
     // Compute geometry tensors
-    const double G0_0 = det*w[0][0];
-    const double G0_1 = det*w[0][1];
-    const double G0_2 = det*w[0][2];
-    const double G0_3 = det*w[0][3];
-    const double G0_4 = det*w[0][4];
-    const double G0_5 = det*w[0][5];
-    const double G1_6 = det*w[0][6];
-    const double G1_7 = det*w[0][7];
-    const double G1_8 = det*w[0][8];
-    const double G1_9 = det*w[0][9];
-    const double G1_10 = det*w[0][10];
-    const double G1_11 = det*w[0][11];
+    const double G0_0 = det*c0_0_0_0;
+    const double G0_1 = det*c0_0_0_1;
+    const double G0_2 = det*c0_0_0_2;
+    const double G0_3 = det*c0_0_0_3;
+    const double G0_4 = det*c0_0_0_4;
+    const double G0_5 = det*c0_0_0_5;
+    const double G0_6 = det*c0_0_0_6;
+    const double G0_7 = det*c0_0_0_7;
+    const double G0_8 = det*c0_0_0_8;
+    const double G0_9 = det*c0_0_0_9;
+    const double G0_10 = det*c0_0_0_10;
+    const double G0_11 = det*c0_0_0_11;
     
     // Compute element tensor
     A[0] = 0.0166666666666666*G0_0 - 0.00277777777777777*G0_1 - 0.00277777777777777*G0_2 - 0.0111111111111111*G0_3;
@@ -12988,12 +13073,12 @@ public:
     A[3] = -0.0111111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444444*G0_4 + 0.0444444444444444*G0_5;
     A[4] = -0.0111111111111111*G0_1 + 0.0444444444444444*G0_3 + 0.0888888888888888*G0_4 + 0.0444444444444444*G0_5;
     A[5] = -0.0111111111111111*G0_2 + 0.0444444444444444*G0_3 + 0.0444444444444444*G0_4 + 0.0888888888888888*G0_5;
-    A[6] = 0.0166666666666666*G1_6 - 0.00277777777777777*G1_7 - 0.00277777777777777*G1_8 - 0.0111111111111111*G1_9;
-    A[7] = -0.00277777777777777*G1_6 + 0.0166666666666666*G1_7 - 0.00277777777777778*G1_8 - 0.0111111111111111*G1_10;
-    A[8] = -0.00277777777777777*G1_6 - 0.00277777777777777*G1_7 + 0.0166666666666667*G1_8 - 0.0111111111111111*G1_11;
-    A[9] = -0.0111111111111111*G1_6 + 0.0888888888888888*G1_9 + 0.0444444444444444*G1_10 + 0.0444444444444444*G1_11;
-    A[10] = -0.0111111111111111*G1_7 + 0.0444444444444444*G1_9 + 0.0888888888888888*G1_10 + 0.0444444444444444*G1_11;
-    A[11] = -0.0111111111111111*G1_8 + 0.0444444444444444*G1_9 + 0.0444444444444444*G1_10 + 0.0888888888888888*G1_11;
+    A[6] = 0.0166666666666666*G0_6 - 0.00277777777777777*G0_7 - 0.00277777777777777*G0_8 - 0.0111111111111111*G0_9;
+    A[7] = -0.00277777777777777*G0_6 + 0.0166666666666666*G0_7 - 0.00277777777777778*G0_8 - 0.0111111111111111*G0_10;
+    A[8] = -0.00277777777777777*G0_6 - 0.00277777777777777*G0_7 + 0.0166666666666667*G0_8 - 0.0111111111111111*G0_11;
+    A[9] = -0.0111111111111111*G0_6 + 0.0888888888888888*G0_9 + 0.0444444444444444*G0_10 + 0.0444444444444444*G0_11;
+    A[10] = -0.0111111111111111*G0_7 + 0.0444444444444444*G0_9 + 0.0888888888888888*G0_10 + 0.0444444444444444*G0_11;
+    A[11] = -0.0111111111111111*G0_8 + 0.0444444444444444*G0_9 + 0.0444444444444444*G0_10 + 0.0888888888888888*G0_11;
     A[12] = 0;
     A[13] = 0;
     A[14] = 0;
@@ -13035,7 +13120,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0 | vi0[0]*va0[0]*dX(0) + w0_a0 | vi0[1]*va0[1]*dX(0)";
+    return "w0_a0 | vi0[b0]*va0[b0]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)

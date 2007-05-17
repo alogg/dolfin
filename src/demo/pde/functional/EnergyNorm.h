@@ -232,7 +232,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -644,95 +644,121 @@ public:
     // Set scale factor
     const double det = detJ;
     
+    // Compute coefficients
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    const double c0_0_0_3 = w[0][3];
+    const double c0_0_0_4 = w[0][4];
+    const double c0_0_0_5 = w[0][5];
+    const double c0_0_1_0 = w[0][0];
+    const double c0_0_1_1 = w[0][1];
+    const double c0_0_1_2 = w[0][2];
+    const double c0_0_1_3 = w[0][3];
+    const double c0_0_1_4 = w[0][4];
+    const double c0_0_1_5 = w[0][5];
+    const double c0_1_0_0 = w[0][0];
+    const double c0_1_0_1 = w[0][1];
+    const double c0_1_0_2 = w[0][2];
+    const double c0_1_0_3 = w[0][3];
+    const double c0_1_0_4 = w[0][4];
+    const double c0_1_0_5 = w[0][5];
+    const double c0_1_1_0 = w[0][0];
+    const double c0_1_1_1 = w[0][1];
+    const double c0_1_1_2 = w[0][2];
+    const double c0_1_1_3 = w[0][3];
+    const double c0_1_1_4 = w[0][4];
+    const double c0_1_1_5 = w[0][5];
+    
     // Compute geometry tensors
-    const double G0_0_0 = det*w[0][0]*w[0][0];
-    const double G0_0_1 = det*w[0][0]*w[0][1];
-    const double G0_0_2 = det*w[0][0]*w[0][2];
-    const double G0_0_3 = det*w[0][0]*w[0][3];
-    const double G0_1_0 = det*w[0][1]*w[0][0];
-    const double G0_1_1 = det*w[0][1]*w[0][1];
-    const double G0_1_2 = det*w[0][1]*w[0][2];
-    const double G0_1_4 = det*w[0][1]*w[0][4];
-    const double G0_2_0 = det*w[0][2]*w[0][0];
-    const double G0_2_1 = det*w[0][2]*w[0][1];
-    const double G0_2_2 = det*w[0][2]*w[0][2];
-    const double G0_2_5 = det*w[0][2]*w[0][5];
-    const double G0_3_0 = det*w[0][3]*w[0][0];
-    const double G0_3_3 = det*w[0][3]*w[0][3];
-    const double G0_3_4 = det*w[0][3]*w[0][4];
-    const double G0_3_5 = det*w[0][3]*w[0][5];
-    const double G0_4_1 = det*w[0][4]*w[0][1];
-    const double G0_4_3 = det*w[0][4]*w[0][3];
-    const double G0_4_4 = det*w[0][4]*w[0][4];
-    const double G0_4_5 = det*w[0][4]*w[0][5];
-    const double G0_5_2 = det*w[0][5]*w[0][2];
-    const double G0_5_3 = det*w[0][5]*w[0][3];
-    const double G0_5_4 = det*w[0][5]*w[0][4];
-    const double G0_5_5 = det*w[0][5]*w[0][5];
-    const double G1_0_0_0_0 = det*w[0][0]*w[0][0]*Jinv_00*Jinv_00 + det*w[0][0]*w[0][0]*Jinv_01*Jinv_01;
-    const double G1_0_0_0_1 = det*w[0][0]*w[0][0]*Jinv_00*Jinv_10 + det*w[0][0]*w[0][0]*Jinv_01*Jinv_11;
-    const double G1_0_0_1_0 = det*w[0][0]*w[0][1]*Jinv_00*Jinv_00 + det*w[0][0]*w[0][1]*Jinv_01*Jinv_01;
-    const double G1_0_0_2_1 = det*w[0][0]*w[0][2]*Jinv_00*Jinv_10 + det*w[0][0]*w[0][2]*Jinv_01*Jinv_11;
-    const double G1_0_0_4_1 = det*w[0][0]*w[0][4]*Jinv_00*Jinv_10 + det*w[0][0]*w[0][4]*Jinv_01*Jinv_11;
-    const double G1_0_0_5_0 = det*w[0][0]*w[0][5]*Jinv_00*Jinv_00 + det*w[0][0]*w[0][5]*Jinv_01*Jinv_01;
-    const double G1_0_1_0_0 = det*w[0][0]*w[0][0]*Jinv_10*Jinv_00 + det*w[0][0]*w[0][0]*Jinv_11*Jinv_01;
-    const double G1_0_1_0_1 = det*w[0][0]*w[0][0]*Jinv_10*Jinv_10 + det*w[0][0]*w[0][0]*Jinv_11*Jinv_11;
-    const double G1_0_1_1_0 = det*w[0][0]*w[0][1]*Jinv_10*Jinv_00 + det*w[0][0]*w[0][1]*Jinv_11*Jinv_01;
-    const double G1_0_1_2_1 = det*w[0][0]*w[0][2]*Jinv_10*Jinv_10 + det*w[0][0]*w[0][2]*Jinv_11*Jinv_11;
-    const double G1_0_1_4_1 = det*w[0][0]*w[0][4]*Jinv_10*Jinv_10 + det*w[0][0]*w[0][4]*Jinv_11*Jinv_11;
-    const double G1_0_1_5_0 = det*w[0][0]*w[0][5]*Jinv_10*Jinv_00 + det*w[0][0]*w[0][5]*Jinv_11*Jinv_01;
-    const double G1_1_0_0_0 = det*w[0][1]*w[0][0]*Jinv_00*Jinv_00 + det*w[0][1]*w[0][0]*Jinv_01*Jinv_01;
-    const double G1_1_0_0_1 = det*w[0][1]*w[0][0]*Jinv_00*Jinv_10 + det*w[0][1]*w[0][0]*Jinv_01*Jinv_11;
-    const double G1_1_0_1_0 = det*w[0][1]*w[0][1]*Jinv_00*Jinv_00 + det*w[0][1]*w[0][1]*Jinv_01*Jinv_01;
-    const double G1_1_0_2_1 = det*w[0][1]*w[0][2]*Jinv_00*Jinv_10 + det*w[0][1]*w[0][2]*Jinv_01*Jinv_11;
-    const double G1_1_0_3_1 = det*w[0][1]*w[0][3]*Jinv_00*Jinv_10 + det*w[0][1]*w[0][3]*Jinv_01*Jinv_11;
-    const double G1_1_0_5_0 = det*w[0][1]*w[0][5]*Jinv_00*Jinv_00 + det*w[0][1]*w[0][5]*Jinv_01*Jinv_01;
-    const double G1_1_0_5_1 = det*w[0][1]*w[0][5]*Jinv_00*Jinv_10 + det*w[0][1]*w[0][5]*Jinv_01*Jinv_11;
-    const double G1_2_1_0_0 = det*w[0][2]*w[0][0]*Jinv_10*Jinv_00 + det*w[0][2]*w[0][0]*Jinv_11*Jinv_01;
-    const double G1_2_1_0_1 = det*w[0][2]*w[0][0]*Jinv_10*Jinv_10 + det*w[0][2]*w[0][0]*Jinv_11*Jinv_11;
-    const double G1_2_1_1_0 = det*w[0][2]*w[0][1]*Jinv_10*Jinv_00 + det*w[0][2]*w[0][1]*Jinv_11*Jinv_01;
-    const double G1_2_1_2_1 = det*w[0][2]*w[0][2]*Jinv_10*Jinv_10 + det*w[0][2]*w[0][2]*Jinv_11*Jinv_11;
-    const double G1_2_1_3_0 = det*w[0][2]*w[0][3]*Jinv_10*Jinv_00 + det*w[0][2]*w[0][3]*Jinv_11*Jinv_01;
-    const double G1_2_1_4_0 = det*w[0][2]*w[0][4]*Jinv_10*Jinv_00 + det*w[0][2]*w[0][4]*Jinv_11*Jinv_01;
-    const double G1_2_1_4_1 = det*w[0][2]*w[0][4]*Jinv_10*Jinv_10 + det*w[0][2]*w[0][4]*Jinv_11*Jinv_11;
-    const double G1_3_0_2_1 = det*w[0][3]*w[0][2]*Jinv_00*Jinv_10 + det*w[0][3]*w[0][2]*Jinv_01*Jinv_11;
-    const double G1_3_0_3_0 = det*w[0][3]*w[0][3]*Jinv_00*Jinv_00 + det*w[0][3]*w[0][3]*Jinv_01*Jinv_01;
-    const double G1_3_0_3_1 = det*w[0][3]*w[0][3]*Jinv_00*Jinv_10 + det*w[0][3]*w[0][3]*Jinv_01*Jinv_11;
-    const double G1_3_0_4_0 = det*w[0][3]*w[0][4]*Jinv_00*Jinv_00 + det*w[0][3]*w[0][4]*Jinv_01*Jinv_01;
-    const double G1_3_0_4_1 = det*w[0][3]*w[0][4]*Jinv_00*Jinv_10 + det*w[0][3]*w[0][4]*Jinv_01*Jinv_11;
-    const double G1_3_0_5_1 = det*w[0][3]*w[0][5]*Jinv_00*Jinv_10 + det*w[0][3]*w[0][5]*Jinv_01*Jinv_11;
-    const double G1_3_1_1_0 = det*w[0][3]*w[0][1]*Jinv_10*Jinv_00 + det*w[0][3]*w[0][1]*Jinv_11*Jinv_01;
-    const double G1_3_1_3_0 = det*w[0][3]*w[0][3]*Jinv_10*Jinv_00 + det*w[0][3]*w[0][3]*Jinv_11*Jinv_01;
-    const double G1_3_1_3_1 = det*w[0][3]*w[0][3]*Jinv_10*Jinv_10 + det*w[0][3]*w[0][3]*Jinv_11*Jinv_11;
-    const double G1_3_1_4_0 = det*w[0][3]*w[0][4]*Jinv_10*Jinv_00 + det*w[0][3]*w[0][4]*Jinv_11*Jinv_01;
-    const double G1_3_1_5_0 = det*w[0][3]*w[0][5]*Jinv_10*Jinv_00 + det*w[0][3]*w[0][5]*Jinv_11*Jinv_01;
-    const double G1_3_1_5_1 = det*w[0][3]*w[0][5]*Jinv_10*Jinv_10 + det*w[0][3]*w[0][5]*Jinv_11*Jinv_11;
-    const double G1_4_0_2_1 = det*w[0][4]*w[0][2]*Jinv_00*Jinv_10 + det*w[0][4]*w[0][2]*Jinv_01*Jinv_11;
-    const double G1_4_0_3_0 = det*w[0][4]*w[0][3]*Jinv_00*Jinv_00 + det*w[0][4]*w[0][3]*Jinv_01*Jinv_01;
-    const double G1_4_0_3_1 = det*w[0][4]*w[0][3]*Jinv_00*Jinv_10 + det*w[0][4]*w[0][3]*Jinv_01*Jinv_11;
-    const double G1_4_0_4_0 = det*w[0][4]*w[0][4]*Jinv_00*Jinv_00 + det*w[0][4]*w[0][4]*Jinv_01*Jinv_01;
-    const double G1_4_0_4_1 = det*w[0][4]*w[0][4]*Jinv_00*Jinv_10 + det*w[0][4]*w[0][4]*Jinv_01*Jinv_11;
-    const double G1_4_0_5_1 = det*w[0][4]*w[0][5]*Jinv_00*Jinv_10 + det*w[0][4]*w[0][5]*Jinv_01*Jinv_11;
-    const double G1_4_1_0_0 = det*w[0][4]*w[0][0]*Jinv_10*Jinv_00 + det*w[0][4]*w[0][0]*Jinv_11*Jinv_01;
-    const double G1_4_1_0_1 = det*w[0][4]*w[0][0]*Jinv_10*Jinv_10 + det*w[0][4]*w[0][0]*Jinv_11*Jinv_11;
-    const double G1_4_1_2_1 = det*w[0][4]*w[0][2]*Jinv_10*Jinv_10 + det*w[0][4]*w[0][2]*Jinv_11*Jinv_11;
-    const double G1_4_1_3_0 = det*w[0][4]*w[0][3]*Jinv_10*Jinv_00 + det*w[0][4]*w[0][3]*Jinv_11*Jinv_01;
-    const double G1_4_1_4_0 = det*w[0][4]*w[0][4]*Jinv_10*Jinv_00 + det*w[0][4]*w[0][4]*Jinv_11*Jinv_01;
-    const double G1_4_1_4_1 = det*w[0][4]*w[0][4]*Jinv_10*Jinv_10 + det*w[0][4]*w[0][4]*Jinv_11*Jinv_11;
-    const double G1_4_1_5_0 = det*w[0][4]*w[0][5]*Jinv_10*Jinv_00 + det*w[0][4]*w[0][5]*Jinv_11*Jinv_01;
-    const double G1_5_0_0_0 = det*w[0][5]*w[0][0]*Jinv_00*Jinv_00 + det*w[0][5]*w[0][0]*Jinv_01*Jinv_01;
-    const double G1_5_0_0_1 = det*w[0][5]*w[0][0]*Jinv_00*Jinv_10 + det*w[0][5]*w[0][0]*Jinv_01*Jinv_11;
-    const double G1_5_0_1_0 = det*w[0][5]*w[0][1]*Jinv_00*Jinv_00 + det*w[0][5]*w[0][1]*Jinv_01*Jinv_01;
-    const double G1_5_0_3_1 = det*w[0][5]*w[0][3]*Jinv_00*Jinv_10 + det*w[0][5]*w[0][3]*Jinv_01*Jinv_11;
-    const double G1_5_0_4_1 = det*w[0][5]*w[0][4]*Jinv_00*Jinv_10 + det*w[0][5]*w[0][4]*Jinv_01*Jinv_11;
-    const double G1_5_0_5_0 = det*w[0][5]*w[0][5]*Jinv_00*Jinv_00 + det*w[0][5]*w[0][5]*Jinv_01*Jinv_01;
-    const double G1_5_0_5_1 = det*w[0][5]*w[0][5]*Jinv_00*Jinv_10 + det*w[0][5]*w[0][5]*Jinv_01*Jinv_11;
-    const double G1_5_1_1_0 = det*w[0][5]*w[0][1]*Jinv_10*Jinv_00 + det*w[0][5]*w[0][1]*Jinv_11*Jinv_01;
-    const double G1_5_1_3_0 = det*w[0][5]*w[0][3]*Jinv_10*Jinv_00 + det*w[0][5]*w[0][3]*Jinv_11*Jinv_01;
-    const double G1_5_1_3_1 = det*w[0][5]*w[0][3]*Jinv_10*Jinv_10 + det*w[0][5]*w[0][3]*Jinv_11*Jinv_11;
-    const double G1_5_1_4_0 = det*w[0][5]*w[0][4]*Jinv_10*Jinv_00 + det*w[0][5]*w[0][4]*Jinv_11*Jinv_01;
-    const double G1_5_1_5_0 = det*w[0][5]*w[0][5]*Jinv_10*Jinv_00 + det*w[0][5]*w[0][5]*Jinv_11*Jinv_01;
-    const double G1_5_1_5_1 = det*w[0][5]*w[0][5]*Jinv_10*Jinv_10 + det*w[0][5]*w[0][5]*Jinv_11*Jinv_11;
+    const double G0_0_0 = det*c0_0_0_0*c0_0_1_0;
+    const double G0_0_1 = det*c0_0_0_0*c0_0_1_1;
+    const double G0_0_2 = det*c0_0_0_0*c0_0_1_2;
+    const double G0_0_3 = det*c0_0_0_0*c0_0_1_3;
+    const double G0_1_0 = det*c0_0_0_1*c0_0_1_0;
+    const double G0_1_1 = det*c0_0_0_1*c0_0_1_1;
+    const double G0_1_2 = det*c0_0_0_1*c0_0_1_2;
+    const double G0_1_4 = det*c0_0_0_1*c0_0_1_4;
+    const double G0_2_0 = det*c0_0_0_2*c0_0_1_0;
+    const double G0_2_1 = det*c0_0_0_2*c0_0_1_1;
+    const double G0_2_2 = det*c0_0_0_2*c0_0_1_2;
+    const double G0_2_5 = det*c0_0_0_2*c0_0_1_5;
+    const double G0_3_0 = det*c0_0_0_3*c0_0_1_0;
+    const double G0_3_3 = det*c0_0_0_3*c0_0_1_3;
+    const double G0_3_4 = det*c0_0_0_3*c0_0_1_4;
+    const double G0_3_5 = det*c0_0_0_3*c0_0_1_5;
+    const double G0_4_1 = det*c0_0_0_4*c0_0_1_1;
+    const double G0_4_3 = det*c0_0_0_4*c0_0_1_3;
+    const double G0_4_4 = det*c0_0_0_4*c0_0_1_4;
+    const double G0_4_5 = det*c0_0_0_4*c0_0_1_5;
+    const double G0_5_2 = det*c0_0_0_5*c0_0_1_2;
+    const double G0_5_3 = det*c0_0_0_5*c0_0_1_3;
+    const double G0_5_4 = det*c0_0_0_5*c0_0_1_4;
+    const double G0_5_5 = det*c0_0_0_5*c0_0_1_5;
+    const double G1_0_0_0_0 = det*c0_1_0_0*c0_1_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_0_0_1 = det*c0_1_0_0*c0_1_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_1_0 = det*c0_1_0_0*c0_1_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_0_2_1 = det*c0_1_0_0*c0_1_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_4_1 = det*c0_1_0_0*c0_1_1_4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_5_0 = det*c0_1_0_0*c0_1_1_5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_1_0_0 = det*c0_1_0_0*c0_1_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_1_0_1 = det*c0_1_0_0*c0_1_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_1_0 = det*c0_1_0_0*c0_1_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_1_2_1 = det*c0_1_0_0*c0_1_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_4_1 = det*c0_1_0_0*c0_1_1_4*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_5_0 = det*c0_1_0_0*c0_1_1_5*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_0_0_0 = det*c0_1_0_1*c0_1_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_0_1 = det*c0_1_0_1*c0_1_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_1_0 = det*c0_1_0_1*c0_1_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_2_1 = det*c0_1_0_1*c0_1_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_3_1 = det*c0_1_0_1*c0_1_1_3*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_5_0 = det*c0_1_0_1*c0_1_1_5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_5_1 = det*c0_1_0_1*c0_1_1_5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_1_0_0 = det*c0_1_0_2*c0_1_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_0_1 = det*c0_1_0_2*c0_1_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_1_1_0 = det*c0_1_0_2*c0_1_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_2_1 = det*c0_1_0_2*c0_1_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_1_3_0 = det*c0_1_0_2*c0_1_1_3*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_4_0 = det*c0_1_0_2*c0_1_1_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_4_1 = det*c0_1_0_2*c0_1_1_4*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_3_0_2_1 = det*c0_1_0_3*c0_1_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_3_0_3_0 = det*c0_1_0_3*c0_1_1_3*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_3_0_3_1 = det*c0_1_0_3*c0_1_1_3*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_3_0_4_0 = det*c0_1_0_3*c0_1_1_4*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_3_0_4_1 = det*c0_1_0_3*c0_1_1_4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_3_0_5_1 = det*c0_1_0_3*c0_1_1_5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_3_1_1_0 = det*c0_1_0_3*c0_1_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_3_1_3_0 = det*c0_1_0_3*c0_1_1_3*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_3_1_3_1 = det*c0_1_0_3*c0_1_1_3*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_3_1_4_0 = det*c0_1_0_3*c0_1_1_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_3_1_5_0 = det*c0_1_0_3*c0_1_1_5*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_3_1_5_1 = det*c0_1_0_3*c0_1_1_5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_4_0_2_1 = det*c0_1_0_4*c0_1_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_4_0_3_0 = det*c0_1_0_4*c0_1_1_3*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_4_0_3_1 = det*c0_1_0_4*c0_1_1_3*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_4_0_4_0 = det*c0_1_0_4*c0_1_1_4*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_4_0_4_1 = det*c0_1_0_4*c0_1_1_4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_4_0_5_1 = det*c0_1_0_4*c0_1_1_5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_4_1_0_0 = det*c0_1_0_4*c0_1_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_4_1_0_1 = det*c0_1_0_4*c0_1_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_4_1_2_1 = det*c0_1_0_4*c0_1_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_4_1_3_0 = det*c0_1_0_4*c0_1_1_3*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_4_1_4_0 = det*c0_1_0_4*c0_1_1_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_4_1_4_1 = det*c0_1_0_4*c0_1_1_4*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_4_1_5_0 = det*c0_1_0_4*c0_1_1_5*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_5_0_0_0 = det*c0_1_0_5*c0_1_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_5_0_0_1 = det*c0_1_0_5*c0_1_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_5_0_1_0 = det*c0_1_0_5*c0_1_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_5_0_3_1 = det*c0_1_0_5*c0_1_1_3*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_5_0_4_1 = det*c0_1_0_5*c0_1_1_4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_5_0_5_0 = det*c0_1_0_5*c0_1_1_5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_5_0_5_1 = det*c0_1_0_5*c0_1_1_5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_5_1_1_0 = det*c0_1_0_5*c0_1_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_5_1_3_0 = det*c0_1_0_5*c0_1_1_3*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_5_1_3_1 = det*c0_1_0_5*c0_1_1_3*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_5_1_4_0 = det*c0_1_0_5*c0_1_1_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_5_1_5_0 = det*c0_1_0_5*c0_1_1_5*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_5_1_5_1 = det*c0_1_0_5*c0_1_1_5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
     A[0] = 0.0166666666666667*G0_0_0 - 0.00277777777777777*G0_0_1 - 0.00277777777777778*G0_0_2 - 0.0111111111111111*G0_0_3 - 0.00277777777777777*G0_1_0 + 0.0166666666666667*G0_1_1 - 0.00277777777777778*G0_1_2 - 0.0111111111111111*G0_1_4 - 0.00277777777777778*G0_2_0 - 0.00277777777777778*G0_2_1 + 0.0166666666666667*G0_2_2 - 0.0111111111111111*G0_2_5 - 0.0111111111111111*G0_3_0 + 0.0888888888888888*G0_3_3 + 0.0444444444444444*G0_3_4 + 0.0444444444444444*G0_3_5 - 0.0111111111111111*G0_4_1 + 0.0444444444444444*G0_4_3 + 0.0888888888888888*G0_4_4 + 0.0444444444444444*G0_4_5 - 0.0111111111111111*G0_5_2 + 0.0444444444444444*G0_5_3 + 0.0444444444444444*G0_5_4 + 0.0888888888888888*G0_5_5 + 0.499999999999999*G1_0_0_0_0 + 0.499999999999999*G1_0_0_0_1 + 0.166666666666666*G1_0_0_1_0 + 0.166666666666667*G1_0_0_2_1 - 0.666666666666666*G1_0_0_4_1 - 0.666666666666666*G1_0_0_5_0 + 0.499999999999999*G1_0_1_0_0 + 0.499999999999999*G1_0_1_0_1 + 0.166666666666666*G1_0_1_1_0 + 0.166666666666666*G1_0_1_2_1 - 0.666666666666666*G1_0_1_4_1 - 0.666666666666666*G1_0_1_5_0 + 0.166666666666666*G1_1_0_0_0 + 0.166666666666666*G1_1_0_0_1 + 0.499999999999999*G1_1_0_1_0 - 0.166666666666666*G1_1_0_2_1 + 0.666666666666665*G1_1_0_3_1 - 0.666666666666665*G1_1_0_5_0 - 0.666666666666666*G1_1_0_5_1 + 0.166666666666667*G1_2_1_0_0 + 0.166666666666667*G1_2_1_0_1 - 0.166666666666666*G1_2_1_1_0 + 0.499999999999999*G1_2_1_2_1 + 0.666666666666665*G1_2_1_3_0 - 0.666666666666665*G1_2_1_4_0 - 0.666666666666666*G1_2_1_4_1 + 0.666666666666665*G1_3_0_2_1 + 1.33333333333333*G1_3_0_3_0 + 0.666666666666665*G1_3_0_3_1 - 1.33333333333333*G1_3_0_4_0 - 0.666666666666666*G1_3_0_4_1 - 0.666666666666665*G1_3_0_5_1 + 0.666666666666665*G1_3_1_1_0 + 0.666666666666665*G1_3_1_3_0 + 1.33333333333333*G1_3_1_3_1 - 0.666666666666665*G1_3_1_4_0 - 0.666666666666665*G1_3_1_5_0 - 1.33333333333333*G1_3_1_5_1 - 0.666666666666665*G1_4_0_2_1 - 1.33333333333333*G1_4_0_3_0 - 0.666666666666665*G1_4_0_3_1 + 1.33333333333333*G1_4_0_4_0 + 0.666666666666666*G1_4_0_4_1 + 0.666666666666665*G1_4_0_5_1 - 0.666666666666666*G1_4_1_0_0 - 0.666666666666666*G1_4_1_0_1 - 0.666666666666666*G1_4_1_2_1 - 0.666666666666666*G1_4_1_3_0 + 0.666666666666666*G1_4_1_4_0 + 1.33333333333333*G1_4_1_4_1 + 0.666666666666666*G1_4_1_5_0 - 0.666666666666666*G1_5_0_0_0 - 0.666666666666666*G1_5_0_0_1 - 0.666666666666665*G1_5_0_1_0 - 0.666666666666665*G1_5_0_3_1 + 0.666666666666666*G1_5_0_4_1 + 1.33333333333333*G1_5_0_5_0 + 0.666666666666666*G1_5_0_5_1 - 0.666666666666666*G1_5_1_1_0 - 0.666666666666665*G1_5_1_3_0 - 1.33333333333333*G1_5_1_3_1 + 0.666666666666665*G1_5_1_4_0 + 0.666666666666666*G1_5_1_5_0 + 1.33333333333333*G1_5_1_5_1;
@@ -774,7 +800,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0w0_a1 | va0*va1*dX(0) + w0_a0w0_a2(dXa1/dx0)(dXa3/dx0) | ((d/dXa1)va0)*((d/dXa3)va2)*dX(0) + w0_a0w0_a2(dXa1/dx1)(dXa3/dx1) | ((d/dXa1)va0)*((d/dXa3)va2)*dX(0)";
+    return "w0_a0w0_a1 | va0*va1*dX(0) + w0_a0w0_a2(dXa1/dxb0)(dXa3/dxb0) | ((d/dXa1)va0)*((d/dXa3)va2)*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
