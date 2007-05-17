@@ -288,7 +288,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -770,7 +770,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1252,7 +1252,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1838,7 +1838,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2470,7 +2470,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2621,7 +2635,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2772,7 +2800,21 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2957,7 +2999,45 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)

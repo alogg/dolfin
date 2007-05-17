@@ -318,7 +318,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -914,7 +914,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -1510,7 +1510,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -2270,7 +2270,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -3173,7 +3173,39 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[9][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[9][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[9][2] = 0.5*x[2][2] + 0.5*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3343,7 +3375,39 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[9][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[9][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[9][2] = 0.5*x[2][2] + 0.5*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3513,7 +3577,39 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[9][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[9][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[9][2] = 0.5*x[2][2] + 0.5*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3755,7 +3851,99 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[9][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[9][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[9][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[10][0] = x[0][0];
+    coordinates[10][1] = x[0][1];
+    coordinates[10][2] = x[0][2];
+    coordinates[11][0] = x[1][0];
+    coordinates[11][1] = x[1][1];
+    coordinates[11][2] = x[1][2];
+    coordinates[12][0] = x[2][0];
+    coordinates[12][1] = x[2][1];
+    coordinates[12][2] = x[2][2];
+    coordinates[13][0] = x[3][0];
+    coordinates[13][1] = x[3][1];
+    coordinates[13][2] = x[3][2];
+    coordinates[14][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[14][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[14][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[15][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[15][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[15][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[16][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[16][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[16][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[18][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[18][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[18][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[19][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[19][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[19][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[20][0] = x[0][0];
+    coordinates[20][1] = x[0][1];
+    coordinates[20][2] = x[0][2];
+    coordinates[21][0] = x[1][0];
+    coordinates[21][1] = x[1][1];
+    coordinates[21][2] = x[1][2];
+    coordinates[22][0] = x[2][0];
+    coordinates[22][1] = x[2][1];
+    coordinates[22][2] = x[2][2];
+    coordinates[23][0] = x[3][0];
+    coordinates[23][1] = x[3][1];
+    coordinates[23][2] = x[3][2];
+    coordinates[24][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[24][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[24][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[25][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[25][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[25][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[26][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[26][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[26][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[28][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[28][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[28][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[29][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[29][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[29][2] = 0.5*x[2][2] + 0.5*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)

@@ -318,7 +318,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -549,7 +549,34 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    throw std::runtime_error("evaluate_dof not implemented for this type of element");
+    double values[1];
+    double coordinates[3];
+    
+    // Nodal coordinates on reference cell
+    static double X[10][3] = {{0, 0, 0}, {0.5, 0, 0}, {1, 0, 0}, {0, 0.5, 0}, {0.5, 0.5, 0}, {0, 1, 0}, {0, 0, 0.5}, {0.5, 0, 0.5}, {0, 0.5, 0.5}, {0, 0, 1}};
+    
+    // Components for each dof
+    static unsigned int components[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0] - X[i][1] - X[i][2];
+    const double w1 = X[i][0];
+    const double w2 = X[i][1];
+    const double w3 = X[i][2];
+    
+    // Compute affine mapping x = F(X)
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
+    coordinates[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    
+    // Evaluate function at coordinates
+    f.evaluate(values, coordinates, c);
+    
+    // Pick component for evaluation
+    return values[components[i]];
   }
 
   /// Interpolate vertex values from dof values
@@ -709,7 +736,39 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[0][2] = x[0][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)

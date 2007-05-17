@@ -205,7 +205,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -297,7 +297,32 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    throw std::runtime_error("evaluate_dof not implemented for this type of element");
+    double values[1];
+    double coordinates[2];
+    
+    // Nodal coordinates on reference cell
+    static double X[1][2] = {{0.333333333333333, 0.333333333333333}};
+    
+    // Components for each dof
+    static unsigned int components[1] = {0};
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0] - X[i][1];
+    const double w1 = X[i][0];
+    const double w2 = X[i][1];
+    
+    // Compute affine mapping x = F(X)
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at coordinates
+    f.evaluate(values, coordinates, c);
+    
+    // Pick component for evaluation
+    return values[components[i]];
   }
 
   /// Interpolate vertex values from dof values
@@ -441,7 +466,11 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
+    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)

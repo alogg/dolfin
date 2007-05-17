@@ -271,7 +271,7 @@ public:
       for (unsigned int col = 0; col < num_derivatives; col++)
       {
         for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[row][k]][combinations[col][k]];
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
     
@@ -374,7 +374,34 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    throw std::runtime_error("evaluate_dof not implemented for this type of element");
+    double values[1];
+    double coordinates[3];
+    
+    // Nodal coordinates on reference cell
+    static double X[1][3] = {{0.25, 0.25, 0.25}};
+    
+    // Components for each dof
+    static unsigned int components[1] = {0};
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0] - X[i][1] - X[i][2];
+    const double w1 = X[i][0];
+    const double w2 = X[i][1];
+    const double w3 = X[i][2];
+    
+    // Compute affine mapping x = F(X)
+    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
+    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
+    coordinates[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    
+    // Evaluate function at coordinates
+    f.evaluate(values, coordinates, c);
+    
+    // Pick component for evaluation
+    return values[components[i]];
   }
 
   /// Interpolate vertex values from dof values
@@ -525,7 +552,12 @@ public:
   virtual void tabulate_coordinates(double **coordinates,
                                     const ufc::cell& c) const
   {
-    throw std::runtime_error("tabulate_coordinates not implemented (in preparation)");
+    // This function is implemented assuming affine mapping!!
+    // Get cell vertices
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
