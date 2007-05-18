@@ -386,12 +386,53 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const
   {
-    vertex_values[0] = dof_values[2] - 2*dof_values[3];
-    vertex_values[1] = 2*dof_values[0] - dof_values[1] - dof_values[4] + 2*dof_values[5];
-    vertex_values[2] = -2*dof_values[2] + dof_values[3];
-    vertex_values[3] = -2*dof_values[4] + dof_values[5];
-    vertex_values[4] = dof_values[4] - 2*dof_values[5];
-    vertex_values[5] = dof_values[0] + 2*dof_values[1] + 2*dof_values[2] - dof_values[3];
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+      
+    // Compute determinant of Jacobian
+    double detJ = J_00*J_11 - J_01*J_10;
+      
+    // Compute inverse of Jacobian
+    
+    // Take absolute value of determinant
+    detJ = std::abs(detJ);
+    
+    // Compute signs of edges (need to flip edge degrees of freedom)
+    
+    // Compute the edges
+    const double e0_0 = x[2][0] - x[1][0];
+    const double e0_1 = x[2][1] - x[1][1];
+    const double e1_0 = x[2][0] - x[0][0];
+    const double e1_1 = x[2][1] - x[0][1];
+    const double e2_0 = x[1][0] - x[0][0];
+    const double e2_1 = x[1][1] - x[0][1];
+    
+    // Compute edges normals by rotating edges 90 degrees clockwise
+    const double n0_0 = e0_1;
+    const double n0_1 = -e0_0;
+    const double n1_0 = e1_1;
+    const double n1_1 = -e1_0;
+    const double n2_0 = e2_1;
+    const double n2_1 = -e2_0;
+    
+    // Compute the orientation of the normals relative to the cell
+    int sign_e0 = n0_0*e2_0 + n0_1*e2_1 > 0 ? 1 : -1;
+    int sign_e1 = n1_0*e0_0 + n1_1*e0_1 > 0 ? 1 : -1;
+    int sign_e2 = n2_0*e1_0 + n2_1*e1_1 < 0 ? 1 : -1;
+    
+    // Evaluate at vertices and use Piola mapping
+    vertex_values[0] = (1.0/detJ)*(sign_e1*dof_values[2]*J_00 + sign_e1*dof_values[3]*(-2*J_00) + sign_e2*dof_values[4]*(-2*J_01) + sign_e2*dof_values[5]*J_01);
+    vertex_values[1] = (1.0/detJ)*(sign_e0*dof_values[0]*2*J_00 + sign_e0*dof_values[1]*J_00 + sign_e2*dof_values[4]*(J_00 + J_01) + sign_e2*dof_values[5]*(2*J_00 - 2*J_01));
+    vertex_values[2] = (1.0/detJ)*(sign_e0*dof_values[0]*J_01 + sign_e0*dof_values[1]*2*J_01 + sign_e1*dof_values[2]*(-2*J_00 + 2*J_01) + sign_e1*dof_values[3]*(J_00 - J_01));
+    vertex_values[3] = (1.0/detJ)*(sign_e1*dof_values[2]*J_10 + sign_e1*dof_values[3]*(-2*J_10) + sign_e2*dof_values[4]*(-2*J_11) + sign_e2*dof_values[5]*J_11);
+    vertex_values[4] = (1.0/detJ)*(sign_e0*dof_values[0]*2*J_10 + sign_e0*dof_values[1]*J_10 + sign_e2*dof_values[4]*(J_10 + J_11) + sign_e2*dof_values[5]*(2*J_10 - 2*J_11));
+    vertex_values[5] = (1.0/detJ)*(sign_e0*dof_values[0]*J_11 + sign_e0*dof_values[1]*2*J_11 + sign_e1*dof_values[2]*(-2*J_10 + 2*J_11) + sign_e1*dof_values[3]*(J_10 - J_11));
   }
 
   /// Return the number of sub elements (for a mixed element)
