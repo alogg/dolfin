@@ -774,6 +774,7 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const
   {
+    // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[0];
     vertex_values[2] = dof_values[0];
@@ -1336,6 +1337,7 @@ public:
     vertex_values[3] = (1.0/detJ)*(sign_e1*dof_values[2]*J_10 + sign_e1*dof_values[3]*(-2*J_10) + sign_e2*dof_values[4]*(-2*J_11) + sign_e2*dof_values[5]*J_11);
     vertex_values[4] = (1.0/detJ)*(sign_e0*dof_values[0]*2*J_10 + sign_e0*dof_values[1]*J_10 + sign_e2*dof_values[4]*(J_10 + J_11) + sign_e2*dof_values[5]*(2*J_10 - 2*J_11));
     vertex_values[5] = (1.0/detJ)*(sign_e0*dof_values[0]*J_11 + sign_e0*dof_values[1]*2*J_11 + sign_e1*dof_values[2]*(-2*J_10 + 2*J_11) + sign_e1*dof_values[3]*(J_10 - J_11));
+    // Evaluate at vertices and use affine mapping
     vertex_values[6] = dof_values[6];
     vertex_values[7] = dof_values[6];
     vertex_values[8] = dof_values[6];
@@ -2127,6 +2129,7 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const
   {
+    // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[0];
     vertex_values[2] = dof_values[0];
@@ -2689,6 +2692,7 @@ public:
     vertex_values[3] = (1.0/detJ)*(sign_e1*dof_values[2]*J_10 + sign_e1*dof_values[3]*(-2*J_10) + sign_e2*dof_values[4]*(-2*J_11) + sign_e2*dof_values[5]*J_11);
     vertex_values[4] = (1.0/detJ)*(sign_e0*dof_values[0]*2*J_10 + sign_e0*dof_values[1]*J_10 + sign_e2*dof_values[4]*(J_10 + J_11) + sign_e2*dof_values[5]*(2*J_10 - 2*J_11));
     vertex_values[5] = (1.0/detJ)*(sign_e0*dof_values[0]*J_11 + sign_e0*dof_values[1]*2*J_11 + sign_e1*dof_values[2]*(-2*J_10 + 2*J_11) + sign_e1*dof_values[3]*(J_10 - J_11));
+    // Evaluate at vertices and use affine mapping
     vertex_values[6] = dof_values[6];
     vertex_values[7] = dof_values[6];
     vertex_values[8] = dof_values[6];
@@ -3629,10 +3633,10 @@ public:
     const double det = detJ;
     
     // Compute geometry tensors
-    const double G0_0_0 = 1.0/(detJ*detJ)*det*(J_00*J_00 + J_01*J_01);
-    const double G0_0_1 = 1.0/(detJ*detJ)*det*(J_00*J_10 + J_01*J_11);
-    const double G0_1_0 = 1.0/(detJ*detJ)*det*(J_10*J_00 + J_11*J_01);
-    const double G0_1_1 = 1.0/(detJ*detJ)*det*(J_10*J_10 + J_11*J_11);
+    const double G0_0_0 = 1.0/(detJ*detJ)*det*(J_00*J_00 + J_10*J_10);
+    const double G0_0_1 = 1.0/(detJ*detJ)*det*(J_00*J_01 + J_10*J_11);
+    const double G0_1_0 = 1.0/(detJ*detJ)*det*(J_01*J_00 + J_11*J_10);
+    const double G0_1_1 = 1.0/(detJ*detJ)*det*(J_01*J_01 + J_11*J_11);
     const double G1_ = 1.0/(detJ)*det;
     const double G2_ = 1.0/(detJ)*det;
     
@@ -4609,6 +4613,7 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const
   {
+    // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[0];
     vertex_values[2] = dof_values[0];
@@ -5171,6 +5176,7 @@ public:
     vertex_values[3] = (1.0/detJ)*(sign_e1*dof_values[2]*J_10 + sign_e1*dof_values[3]*(-2*J_10) + sign_e2*dof_values[4]*(-2*J_11) + sign_e2*dof_values[5]*J_11);
     vertex_values[4] = (1.0/detJ)*(sign_e0*dof_values[0]*2*J_10 + sign_e0*dof_values[1]*J_10 + sign_e2*dof_values[4]*(J_10 + J_11) + sign_e2*dof_values[5]*(2*J_10 - 2*J_11));
     vertex_values[5] = (1.0/detJ)*(sign_e0*dof_values[0]*J_11 + sign_e0*dof_values[1]*2*J_11 + sign_e1*dof_values[2]*(-2*J_10 + 2*J_11) + sign_e1*dof_values[3]*(J_10 - J_11));
+    // Evaluate at vertices and use affine mapping
     vertex_values[6] = dof_values[6];
     vertex_values[7] = dof_values[6];
     vertex_values[8] = dof_values[6];
@@ -5521,6 +5527,7 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const
   {
+    // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[0];
     vertex_values[2] = dof_values[0];
