@@ -22,8 +22,7 @@ int main()
   };
 
   // Create mesh
-//  UnitCube mesh(10, 10, 10);
-  UnitCube mesh(5, 5, 5);
+  UnitCube mesh(8, 8, 8);
 
   // Create functions
   Source f(mesh);
@@ -32,7 +31,6 @@ int main()
   InvMeshSize h(mesh);
 
   // Define PDE
-//  PoissonBilinearForm a;
   PoissonBilinearForm a(n,h);
   PoissonLinearForm L(f);
   LinearPDE pde(a, L, mesh);
@@ -46,8 +44,7 @@ int main()
   plot(u);
 
   // Save solution to file
-  File file("poissonCG_stabilised_gamma4_mesh5.pvd");
-//  File file("poissonCG_gamma100_mesh10.pvd");
+  File file("poisson.pvd");
   file << u;
 
   return 0;
