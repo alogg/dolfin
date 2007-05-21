@@ -13,16 +13,19 @@ int main()
     
     Source(Mesh& mesh) : Function(mesh) {}
 
-    real eval(const real* x)
+    real eval(const real* x) const
     {
       real dx = x[0] - 0.5;
       real dy = x[1] - 0.5;
+//      real dz = x[2] - 0.5;
+//      return 500.0*exp(-(dx*dx + dy*dy + dz*dz)/0.02);
       return 500.0*exp(-(dx*dx + dy*dy)/0.02);
     }
 
   };
 
   // Create mesh
+//  UnitCube mesh(10, 10, 10);
   UnitCube mesh(5, 5, 5);
 
   // Create functions
@@ -53,7 +56,7 @@ int main()
   plot(uu);
 
   // Save solution to file
-  File file("poisson.pvd");
+  File file("poissonDG_stabilised_gamma24_alpha8_mesh5.pvd");
   file << uu;
 
   return 0;
