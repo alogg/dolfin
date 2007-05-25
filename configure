@@ -20941,7 +20941,7 @@ echo "${ECHO_T}yes" >&6; }
 fi
 
 # Prepare for AMD and UMFPACK tests
-have_umfpack_header=yes
+have_umfpack_header=no
 have_amd_lib=no
 have_umfpack_and_amd_lib=no
 
