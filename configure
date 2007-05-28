@@ -22360,7 +22360,7 @@ DOLFIN_EXT_LIBS="$PETSC_LIBS $SLEPC_LIBS $XML_LIBS $UMFPACK_LIBS $GLIB_LIBS $GTS
 echo "external libraries: $DOLFIN_EXT_LIBS"
 
 # Library list which DOLFIN applications need to link against
-DOLFIN_LIBS="-ldolfin"
+DOLFIN_LIBS="-ldolfin $PETSC_LIBS"
 DOLFIN_LIBS="$DOLFIN_LIBS $DOLFIN_EXT_LIBS"
 
 

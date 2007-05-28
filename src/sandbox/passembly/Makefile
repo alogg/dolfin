@@ -1,10 +1,9 @@
-#PARMETIS = /usr/local/garth/software/ParMetis-3.1
-PARMETIS = /usr/src/ParMetis-3.1
+PARMETIS = ${HOME}/code/software/ParMetis-3.1
+#PARMETIS = /usr/src/ParMetis-3.1
 
-CFLAGS  = `pkg-config dolfin --cflags` -I$(PARMETIS) -I$(PARMETIS)/METISLib -DMPICH_IGNORE_CXX_SEEK
-LIBS    = -L$(PARMETIS) -lparmetis -lmetis `pkg-config dolfin --libs` 
-CXX     = g++
-LINK    = libtool --silent --mode=link --tag CXX g++
+CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS) -I$(PARMETIS)/METISLib
+LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -lparmetis -lmetis
+CXX     = `pkg-config --variable=compiler dolfin`
 
 DEST    = dolfin-parallel-test
 OBJECTS = main.o
@@ -13,13 +12,12 @@ all: $(DEST)
 
 install:
 
-uninstall:
-
 clean:
-	        -rm -f *.o core *.core $(OBJECTS) $(DEST)
+	-rm -f *.o core *.core $(OBJECTS) $(DEST)
 
 $(DEST): $(OBJECTS)
-	         $(LINK) -o $@ $(OBJECTS) $(CFLAGS) $(LIBS)
+	 $(CXX) -o $@ $(OBJECTS) $(CFLAGS) $(LIBS)
 
 .cpp.o:
-	        $(CXX) $(CFLAGS) -c $<
+	$(CXX) $(CFLAGS) -c $<
+
