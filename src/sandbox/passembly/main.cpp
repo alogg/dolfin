@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
   unsigned int this_process = process_int;
 
   // Create mesh
-  UnitSquare mesh(4,4);
+  UnitSquare mesh(1500, 1500);
 
   MeshFunction<dolfin::uint> cell_partition_function;
   MeshFunction<dolfin::uint> vertex_partition_function;
@@ -67,6 +67,8 @@ int main(int argc, char* argv[])
   unsigned int dof_counter = 0;
   std::vector<unsigned int> partition_dof_counter(num_processes);
   partition_dof_counter.clear();
+
+  cout << "Total dofs " << A_size0 << endl;
 
   for (unsigned int proc = 0; proc < num_processes; ++proc)
   {
@@ -114,7 +116,7 @@ int main(int argc, char* argv[])
   unsigned int counter = 0;
 
   // Initialize new dof mapping
-  int** dofs;
+/*  int** dofs;
   dofs = new int*[ufc_a.form.rank()];
   for (unsigned int i = 0; i < ufc_a.form.rank(); i++)
   {
@@ -122,6 +124,11 @@ int main(int argc, char* argv[])
     for (unsigned int j = 0; j < ufc_a.local_dimensions[i]; j++)
       dofs[i][j] = 0;
   }
+*/
+  int* dofs;
+  dofs = new int[ufc_a.local_dimensions[0]];
+  for (unsigned int i = 0; i < ufc_a.local_dimensions[0]; i++)
+      dofs[i] = 0;
 
   tic();
   for (CellIterator cell(mesh); !cell.end(); ++cell)
@@ -138,28 +145,34 @@ int main(int argc, char* argv[])
     
     // Tabulate dofs for each dimension
     for (dolfin::uint i = 0; i < ufc_a.form.rank(); i++)
-    {
       ufc_a.dof_maps[i]->tabulate_dofs(ufc_a.dofs[i], ufc_a.mesh, ufc_a.cell);
-      for(unsigned int j = 0; j < ufc_a.local_dimensions[j]; j++)
-        dofs[i][j] = map[ (ufc_a.dofs[i])[j] ];
-    }
+
+    for(unsigned int i = 0; i < ufc_a.local_dimensions[0]; i++)
+      dofs[i] = map[ (ufc_a.dofs[0])[i] ];
 
     // Tabulate cell tensor
     ufc_a.cell_integrals[0]->tabulate_tensor(ufc_a.A, ufc_a.w, ufc_a.cell);
 
     // Add entries to global tensor
-    MatSetValues(A, ufc_a.local_dimensions[0], *dofs, ufc_a.local_dimensions[0], *dofs, ufc_a.A, ADD_VALUES);
+    MatSetValues(A, ufc_a.local_dimensions[0], dofs, ufc_a.local_dimensions[0], dofs, ufc_a.A, ADD_VALUES);
 //    A.add(ufc_a.A, ufc.local_dimensions, dofs);
     counter++;
   }
   cout << "Finished assembly " << this_process << "  " << toc() << endl;
-  cout << "Number of cells   " << counter << endl;
 
   cout << "Starting finalise assmebly " << this_process << endl;
   tic();
   MatAssemblyBegin(A, MAT_FINAL_ASSEMBLY);
   MatAssemblyEnd(A, MAT_FINAL_ASSEMBLY);
-  cout << "Finished finalise assembly " << this_process << "  " << toc() << endl;
+  real time2 = toc();
+  cout << "Finished finalise assembly " << this_process << "  " << time2 << endl;
+
+  tic();
+  Matrix B;
+  Assembler assembler;
+  assembler.assemble(B, a, mesh);
+  real time1 = toc();
+  cout << "Standard assemble time " << time1 << endl;
 
 /*
   int i = 0;
