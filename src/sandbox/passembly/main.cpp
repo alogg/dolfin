@@ -6,90 +6,11 @@
 //
 // This file is used for testing parallel assembly
 
-#include <dolfin.h>
-#include <dolfin/DofMaps.h>
-#include <dolfin/UFC.h>
+#include <set>
+#include "partition.h"
 #include "Poisson2D.h"
 
-#include <parmetis.h>
-extern "C"
-{
-  #include <metis.h>
-}
-
 using namespace dolfin;
-//-----------------------------------------------------------------------------
-void testMeshPartition(Mesh& mesh, MeshFunction<dolfin::uint>& cell_partition_function,
-          MeshFunction<dolfin::uint>& vertex_partition_function, int num_partitions)
-{
-  int num_cells     = mesh.numCells() ;
-  int num_vertices  = mesh.numVertices();
-  
-  int index_base = 0;  // zero-based indexing
-  int edges_cut  = 0;
-
-  int cell_type = 0;
-  idxtype* cell_partition   = new int[num_cells];
-  idxtype* vertex_partition = new int[num_vertices];
-  idxtype* mesh_data = 0;
-
-  // Set cell type and allocate memory for METIS mesh structure
-  if(mesh.type().cellType() == CellType::triangle)
-  {
-    cell_type = 1;
-    mesh_data = new int[3*num_cells];
-  }
-  else if(mesh.type().cellType() == CellType::tetrahedron) 
-  {
-    cell_type = 2;
-    mesh_data = new int[4*num_cells];
-  }
-  else
-    error("Do not know how to partition mesh of this type");
-  
-  cell_partition_function.init(mesh, mesh.topology().dim());
-  vertex_partition_function.init(mesh, 0);
-
-  if(num_partitions > 1)
-  {
-    // Create mesh structure for METIS
-    dolfin::uint i = 0;
-    for (CellIterator cell(mesh); !cell.end(); ++cell)
-      for (VertexIterator vertex(*cell); !vertex.end(); ++vertex)
-        mesh_data[i++] = vertex->index();
-
-      // Use METIS to partition mesh
-    METIS_PartMeshNodal(&num_cells, &num_vertices, mesh_data, &cell_type, &index_base, 
-                        &num_partitions, &edges_cut, cell_partition, vertex_partition);
-  
-    // Set partition numbers on cells
-    i = 0;
-    for (CellIterator cell(mesh); !cell.end(); ++cell)
-      cell_partition_function.set(cell->index(), cell_partition[i++]);
-
-    // Set partition numbers on vertexes
-    i = 0;
-    for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-      vertex_partition_function.set(vertex->index(), vertex_partition[i++]);
-  }
-  else
-  {
-    // Set partition numbers on cells
-    dolfin::uint i = 0;
-    for (CellIterator cell(mesh); !cell.end(); ++cell)
-      cell_partition_function.set(cell->index(), 0);
-
-    // Set partition numbers on vertexes
-    i = 0;
-    for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-      vertex_partition_function.set(vertex->index(), 0);
-  
-  }
-  // Clean up
-  delete [] cell_partition;
-  delete [] vertex_partition;
-  delete [] mesh_data;
-}
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
@@ -106,50 +27,153 @@ int main(int argc, char* argv[])
   // Get this process number
   int process_int;
   MPI_Comm_rank(PETSC_COMM_WORLD, &process_int);
-  unsigned int process = process_int;
+  unsigned int this_process = process_int;
 
   // Create mesh
-  UnitSquare mesh(2000,2000);
+  UnitSquare mesh(1500, 1500);
 
-  // Create linear and bilinear form
+  MeshFunction<dolfin::uint> cell_partition_function;
+  MeshFunction<dolfin::uint> vertex_partition_function;
+  cout << "Creating mesh partition (using METIS)" << endl; 
+  tic();
+  testMeshPartition(mesh, cell_partition_function, vertex_partition_function,
+                    num_processes);
+  real time = toc();
+  cout << "Finished partitioning mesh " << time << endl;
+
+  // Create linear and bilinear forms
   Function f(mesh, 1.0);
   Poisson2DBilinearForm a; 
   Poisson2DLinearForm L(f); 
 
-/*  
-  if ( num_processes < 2 )
-    error("Cannot create single partition. You need to run with \"mpirun -np num_proc ./dolfin-parallel-test\"\
- (num_proc > 1)");
-*/
-  // Partition mesh (number of partitions = number of processes)
-  // Create mesh functions for partition numbers
-  MeshFunction<dolfin::uint> cell_partition_function;
-  MeshFunction<dolfin::uint> vertex_partition_function;
-  cout << "Partitioning mesh " << process << endl;
-  testMeshPartition(mesh, cell_partition_function, vertex_partition_function,
-                    num_processes);
-  cout << "Finished partitioning mesh " << process << endl;
+  // Prepare for assembly
+  DofMaps dof_maps_a;
+  DofMaps dof_maps_L;
+  dof_maps_a.update(a.form(), mesh);
+  dof_maps_L.update(L.form(), mesh);
+  UFC ufc_a(a.form(), mesh, dof_maps_a);
+  UFC ufc_L(L.form(), mesh, dof_maps_L);
 
-  // Need to regenerate degree of freedom mapping here so that matrix/vector entries
-  // generated on a given processor also reside on the processor. DOFs for partition 0
-  // should run 0 -> m-1, for partition 1 run m -> m+n-1, etc. 
+  // Initialize global parallel tensor
+  dolfin::uint A_size0 = ufc_a.global_dimensions[0];
+  dolfin::uint A_size1 = ufc_a.global_dimensions[1];
+  dolfin::uint L_size  = ufc_L.global_dimensions[0];
   
-  int vertices_per_cell = 0;
-  if(mesh.type().cellType() == CellType::triangle)
-    vertices_per_cell = 3;
-  else if(mesh.type().cellType() == CellType::tetrahedron) 
-    vertices_per_cell = 4;
-  else
-    error("Do not know how to work with meshes of this type");
+  std::vector<unsigned int> map(A_size0);
+  map.clear();
+  std::set<unsigned int> set;
+  std::pair<std::set<unsigned int>::const_iterator, bool> set_return;
 
-  // Renumber degrees of freedom. Starting at process 0, go through all cells
-  // on given process, then the vertices of the cell and number sequentially 
-  // if they have not already been renumbered.
-  const int M = mesh.numVertices(); 
-  int*  new_map = new int[M];
+  unsigned int dof_counter = 0;
+  std::vector<unsigned int> partition_dof_counter(num_processes);
+  partition_dof_counter.clear();
 
+  cout << "Total dofs " << A_size0 << endl;
 
-  cout << "Renumbering dofs " << process << endl;
+  for (unsigned int proc = 0; proc < num_processes; ++proc)
+  {
+    for (CellIterator cell(mesh); !cell.end(); ++cell)
+    {
+      if (cell_partition_function.get(*cell) != static_cast<unsigned int>(proc))
+        continue;
+
+      // Update to current cell
+      ufc_a.update(*cell);
+  
+      // Tabulate dofs for each dimension
+      ufc_a.dof_maps[0]->tabulate_dofs(ufc_a.dofs[0], ufc_a.mesh, ufc_a.cell);
+      ufc_a.dof_maps[1]->tabulate_dofs(ufc_a.dofs[1], ufc_a.mesh, ufc_a.cell);
+
+      for(unsigned int i=0; i < ufc_a.dof_maps[0]->local_dimension(); ++i)
+      {
+        set_return = set.insert( (ufc_a.dofs[0])[i] );
+        if( set_return.second )
+        {
+          map[ (ufc_a.dofs[0])[i] ] = dof_counter++;
+          partition_dof_counter[proc]++;
+        }
+      }
+    }
+  }
+  cout << "Number of dofs on process " << this_process << " = " << partition_dof_counter[this_process] << endl;
+
+  // Create PETSc parallel vectors
+  Vec b, x;
+  VecCreateMPI(PETSC_COMM_WORLD, PETSC_DECIDE, L_size, &b);
+  VecCreateMPI(PETSC_COMM_WORLD, PETSC_DECIDE, L_size, &x);
+
+  // Create PETSc parallel matrix with a guess for number of non-zeroes (10 in thise case)
+  Mat A;
+  MatCreateMPIAIJ(PETSC_COMM_WORLD, partition_dof_counter[this_process], partition_dof_counter[this_process], 
+                  A_size0, A_size1, 10, PETSC_NULL, 10, PETSC_NULL, &A); 
+
+  // Zero matrix and vector
+  MatZeroEntries(A);
+  VecZeroEntries(b);
+
+  // Assemble over cells
+  cout << "Starting assembly on processor " << this_process << endl;
+  unsigned int counter = 0;
+
+  // Initialize new dof mapping
+/*  int** dofs;
+  dofs = new int*[ufc_a.form.rank()];
+  for (unsigned int i = 0; i < ufc_a.form.rank(); i++)
+  {
+    dofs[i] = new int[ufc_a.local_dimensions[i]];
+    for (unsigned int j = 0; j < ufc_a.local_dimensions[i]; j++)
+      dofs[i][j] = 0;
+  }
+*/
+  int* dofs;
+  dofs = new int[ufc_a.local_dimensions[0]];
+  for (unsigned int i = 0; i < ufc_a.local_dimensions[0]; i++)
+      dofs[i] = 0;
+
+  tic();
+  for (CellIterator cell(mesh); !cell.end(); ++cell)
+  {
+    if (cell_partition_function.get(*cell) != static_cast<unsigned int>(this_process))
+      continue;
+
+    // Update to current cell
+    ufc_a.update(*cell);
+
+    // Interpolate coefficients on cell
+//    for (dolfin::uint i = 0; i < coefficients.size(); i++)
+//      coefficients[i]->interpolate(ufc.w[i], ufc_a.cell, *ufc_a.coefficient_elements[i], *cell);
+    
+    // Tabulate dofs for each dimension
+    for (dolfin::uint i = 0; i < ufc_a.form.rank(); i++)
+      ufc_a.dof_maps[i]->tabulate_dofs(ufc_a.dofs[i], ufc_a.mesh, ufc_a.cell);
+
+    for(unsigned int i = 0; i < ufc_a.local_dimensions[0]; i++)
+      dofs[i] = map[ (ufc_a.dofs[0])[i] ];
+
+    // Tabulate cell tensor
+    ufc_a.cell_integrals[0]->tabulate_tensor(ufc_a.A, ufc_a.w, ufc_a.cell);
+
+    // Add entries to global tensor
+    MatSetValues(A, ufc_a.local_dimensions[0], dofs, ufc_a.local_dimensions[0], dofs, ufc_a.A, ADD_VALUES);
+//    A.add(ufc_a.A, ufc.local_dimensions, dofs);
+    counter++;
+  }
+  cout << "Finished assembly " << this_process << "  " << toc() << endl;
+
+  cout << "Starting finalise assmebly " << this_process << endl;
+  tic();
+  MatAssemblyBegin(A, MAT_FINAL_ASSEMBLY);
+  MatAssemblyEnd(A, MAT_FINAL_ASSEMBLY);
+  real time2 = toc();
+  cout << "Finished finalise assembly " << this_process << "  " << time2 << endl;
+
+  tic();
+  Matrix B;
+  Assembler assembler;
+  assembler.assemble(B, a, mesh);
+  real time1 = toc();
+  cout << "Standard assemble time " << time1 << endl;
+
 /*
   int i = 0;
   std::set<int> remapped_dof;
@@ -164,102 +188,10 @@ int main(int argc, char* argv[])
             new_map[ vertex->index() ] = i++;
         }
   remapped_dof.clear();
-*/
-  // No renumbering
-  for(VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-    new_map[ vertex->index() ] = vertex->index();
-  
-  cout << "Finished renumbering dofs " << process << endl;
-
-  // Global matrix size
-  cout << "Computing global matrix size " << process << endl;
-//  const int N = FEM::size(mesh, a.test());
-  const int N = mesh.numVertices();
-  cout << "Finsihed computing global matrix size " << N << "  " << process << endl;
-
-  cout << "Computing local matrix size " << process << endl;
-  // Compute number of vertices belonging to this processor 
-  int num_local_vertices = 0;
-  for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-    if ( vertex_partition_function.get(*vertex) == process )
-      ++num_local_vertices;
-  cout << "Finished computing local matrix size " << process << endl;
-
-  cout << "Creating and intialising parallel vectors/matrices " << process << endl;
-  // Create PETSc parallel vectors
-  Vec b, x;
-  VecCreateMPI(PETSC_COMM_WORLD, num_local_vertices, N, &b);
-  VecCreateMPI(PETSC_COMM_WORLD, num_local_vertices, N, &x);
-
-  // Create PETSc parallel  matrix (with guess at number of non-zeroes)
-  Mat A;
-  MatCreateMPIAIJ(PETSC_COMM_WORLD, num_local_vertices, num_local_vertices, N, N, 
-                    10, PETSC_NULL, 10, PETSC_NULL, &A); 
-  cout << "Finished creating and intialising parallel vectors/matrices " << process << endl;
- 
-  // Zero matrix
-  cout << "Zeroing parallel vectors/matrices " << process << endl;
-  MatZeroEntries(A);
-  VecZeroEntries(b);
-  cout << "Finished zeroing parallel vectors/matrices " << process << endl;
-
-  // Prepare for assembly
-  DofMaps dof_maps;
-  dof_maps.update(a.form(), mesh);
-  UFC ufc(a.form(), mesh, dof_maps);
-
-  /// Start assembly
-  real* A_block = new real[vertices_per_cell*vertices_per_cell];
-  real* b_block = new real[vertices_per_cell];
-  int*  pos     = new int[vertices_per_cell];
-
-
-  // Assemble over cells
-  cout << "Starting assembly on processor " << process << endl;
-  tic();
-  for (CellIterator cell(mesh); !cell.end(); ++cell)
-  {
-    if (cell_partition_function.get(*cell) != static_cast<unsigned int>(process))
-      continue;
-
-    // Update to current cell
-    ufc.update(*cell);
-
-    // Interpolate coefficients on cell
-    //for (dolfin::uint i = 0; i < coefficients.size(); i++)
-    //  coefficients[i]->interpolate(ufc.w[i], ufc.cell, *ufc.coefficient_elements[i], *cell);
-    
-    // Tabulate dofs for each dimension
-    for (dolfin::uint i = 0; i < ufc.form.rank(); i++)
-      ufc.dof_maps[i]->tabulate_dofs(ufc.dofs[i], ufc.mesh, ufc.cell);
-
-    // Tabulate cell tensor
-    ufc.cell_integrals[0]->tabulate_tensor(ufc.A, ufc.w, ufc.cell);
-
-    // Create mapping for cell
-    int i = 0;
-    for(VertexIterator vertex(*cell); !vertex.end(); ++vertex)
-      pos[i++] = new_map[ vertex->index() ];
-    
-    // Add entries to global tensor
-    MatSetValues(A, vertices_per_cell, pos, vertices_per_cell, pos, ufc.A, ADD_VALUES);
-    //A.add(ufc.A, ufc.local_dimensions, ufc.dofs);
-  }
-
-  cout << "Finished assembly " << process << "  " << toc() << endl;
-  
-  // Finalise assembly
-  cout << "Starting finalise assmebly " << process << endl;
-  tic();
-//  VecAssemblyBegin(b);
-//  VecAssemblyEnd(b);
-  MatAssemblyBegin(A, MAT_FINAL_ASSEMBLY);
-  MatAssemblyEnd(A, MAT_FINAL_ASSEMBLY);
-  cout << "Finished finalise assembly " << process << "  " << toc() << endl;
 
   // Apply some boundary conditions so that the system can be solved
   // Just apply homogeneous Dirichlet bc to the first three vertices
-/*
+
   IS is = 0;
   int nrows = 3;
 //  int rows[3] = {0, 1, 2};
@@ -268,7 +200,6 @@ int main(int argc, char* argv[])
   PetscScalar one = 1.0;
   MatZeroRowsIS(A, is, one);
   ISDestroy(is);
-
 
   real bc_values[3] = {0, 0, 0};
   VecSetValues(b, nrows, rows, bc_values, INSERT_VALUES);
@@ -284,25 +215,18 @@ int main(int argc, char* argv[])
   cout << "Starting solve " << process << endl;
   KSPSolve(ksp, b, x);
   cout << "Finished solve " << process << endl;
-*/
+
   // Print parallel  results
 //  cout << "Parallel RHS vector " << endl;
 //  VecView(b, PETSC_VIEWER_STDOUT_WORLD);
 //  cout << "Parallel matrix " << endl;
 //  MatView(A, PETSC_VIEWER_STDOUT_WORLD);
 
-/*
+
   if(process == 0)
     cout << "*** Parallel solution vector " << endl;
   VecView(x, PETSC_VIEWER_STDOUT_WORLD);
-*/
 
-  delete [] A_block;
-  delete [] b_block;
-  delete [] pos;
-  delete [] new_map;
-
-/*
   if(process == 0)
   {
     set("output destination", "silent");
