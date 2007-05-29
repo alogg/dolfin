@@ -1,7 +1,7 @@
-// Copyright (C) 2006 Garth N. Wells.
+// Copyright (C) 2007 Garth N. Wells.
 // Licensed under the GNU LGPL Version 2.1.
 //
-// First added:  2006-12-01
+// First added:  2007-05-27
 // Last changed: 
 //
 // This file is used for testing parallel assembly
@@ -10,8 +10,6 @@
 #define __PARTITION_H
 
 #include <dolfin.h>
-#include <dolfin/DofMaps.h>
-#include <dolfin/UFC.h>
 
 #include <parmetis.h>
 extern "C"
