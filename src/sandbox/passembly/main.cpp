@@ -15,6 +15,7 @@ using namespace dolfin;
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
+
   cout << "Starting parallel assemble/solve test." << endl;    
 
   // Initialise PETSc  
