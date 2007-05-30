@@ -3,7 +3,8 @@ LIBS    = `pkg-config --libs dolfin`
 CXX     = `pkg-config --variable=compiler dolfin`
 
 DEST    = dolfin-dg
-OBJECTS = main.o
+#OBJECTS = main.o
+OBJECTS = main.o Assembler.o
 
 all: $(DEST)
 
