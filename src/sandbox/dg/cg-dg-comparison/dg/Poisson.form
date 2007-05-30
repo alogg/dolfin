@@ -10,19 +10,20 @@ alpha = 8.0
 n = FacetNormal("tetrahedron")
 h = MeshSize("tetrahedron")
 
-def Jump(v):
-  return [v*n[i] for i in range(element.cell_shape())]
-
 #a = dot(grad(v), grad(u))*dx \
 #   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS \
 #   + gamma*h*v*u*ds
 
+#   + alpha/h('+')*dot(jump(v, n), jump(u, n))*dS \
+#   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS \
+
+
 a = dot(grad(v), grad(u))*dx \
    - dot(avg(grad(v)), jump(u, n))*dS \
    - dot(jump(v, n), avg(grad(u)))*dS \
-   + alpha*avg(h)*dot(jump(v, n), jump(u, n))*dS \
-   - dot(grad(v), Jump(u))*ds \
-   - dot(Jump(v), grad(u))*ds \
-   + gamma*h*v*u*ds
+   + alpha/h('+')*dot(jump(v, n), jump(u, n))*dS \
+   - dot(grad(v), jump(u,n))*ds \
+   - dot(jump(v,n), grad(u))*ds \
+   + gamma/h*v*u*ds
 
 L = v*f*dx

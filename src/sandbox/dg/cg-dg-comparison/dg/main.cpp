@@ -23,12 +23,13 @@ int main()
   };
 
   // Create mesh
-  UnitCube mesh(12, 12, 12);
+  UnitCube mesh(10, 10, 10);
 
   // Create functions
   Source f(mesh);
   FacetNormal n(mesh);
-  InvMeshSize h(mesh);
+//  InvMeshSize h(mesh);
+  AvgMeshSize h(mesh);
 
   // Define PDE
   PoissonBilinearForm a(n,h);
