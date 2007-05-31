@@ -2,14 +2,12 @@
 //#include <dolfin/GraphPartition.h>
 #include <iostream>
 
-/*
-#include <parmetis.h>
-#include <scotch.h>
+//#include <parmetis.h>
 extern "C"
 {
-  #include <metis.h>
+  #include <scotch.h>
+  //#include <metis.h>
 }
-*/
 using namespace dolfin;
 
 /*
@@ -73,19 +71,62 @@ void testMetisMesh(Mesh& mesh, int num_partitions)
   delete [] vertex_partition;
   delete [] mesh_data;
 }
+*/
 //-----------------------------------------------------------------------------
 
-void testScotch(Graph& graph, int num_partitions)
+void testScotch(Mesh& mesh, int num_part)
 {
-  //SCOTCH_Graph grafdat;
+  MeshFunction<dolfin::uint> partitions;
+  partitions.init(mesh, mesh.topology().dim());
+  Graph graph(mesh);
+
+  SCOTCH_Graph grafdat;
+  SCOTCH_Strat strat;
   //FILE* fileptr;
 
-  //if ((fileptr = fopen ("/home/magnus/doc/uio/master/dolfin_tests/fem_graphs/unitcube.grf", "r")) == NULL) {
-  //}
-  //if (SCOTCH_graphLoad (&grafdat, fileptr, -1, 0) != 0) {
- // }
+  if (SCOTCH_graphInit (&grafdat) != 0) {
+  }
+  /*
+  if ((fileptr = fopen ("/home/magnus/doc/uio/master/dolfin_tests/fem_graphs/unitcube.grf", "r")) == NULL) {
+  }
+  if (SCOTCH_graphLoad (&grafdat, fileptr, -1, 0) != 0) {
+  }
+  */
+  if (SCOTCH_graphBuild (&grafdat, 0, static_cast<int>(graph.numVertices()), reinterpret_cast<int*>(graph.offsets()), NULL, NULL, NULL, static_cast<int>(graph.numArches()), reinterpret_cast<int*>(graph.connectivity()), NULL) != 0) {
+  }
+
+  SCOTCH_stratInit(&strat);
+
+  // Only some graphs successfully partitioned, why?
+  if (SCOTCH_graphPart (&grafdat, num_part, &strat, reinterpret_cast<int*>(partitions.values())) != 0) {
+  }
+
+  SCOTCH_stratExit (&strat);
+  SCOTCH_graphExit (&grafdat);
+ 
+  std::cout << "Graph vertices " << graph.numVertices() << std::endl;
+  std::cout << "Number of partitions " << num_part << std::endl;
+
+  /*
+  for (dolfin::uint i=0; i<graph.numVertices(); ++i)
+  {
+    std::cout << parttab[i] << " ";
+  }
+  std::cout << std::endl;
+  */
+
+  File file("mesh_partition_scotch.xml");
+  file << partitions;
+
+  File file2("mesh_partition_scotch.pvd");
+  file2 << partitions;
+
+  GraphPartition::check(graph, num_part, partitions.values());
+  GraphPartition::eval(graph, num_part, partitions.values());
+  GraphPartition::disp(graph, num_part, partitions.values());
+
+  plot(partitions);
 }
-*/
 
 void testDolfinGraph(Graph& graph, int num_part)
 {
@@ -110,10 +151,10 @@ void testDolfinMesh(Mesh& mesh, int num_part)
   GraphPartition::eval(graph, num_part, partitions.values());
   GraphPartition::disp(graph, num_part, partitions.values());
 
-  File file("mesh_partition.xml");
+  File file("mesh_partition_dolfin.xml");
   file << partitions;
 
-  File file2("mesh_partition.pvd");
+  File file2("mesh_partition_dolfin.pvd");
   file2 << partitions;
 }
 
@@ -143,14 +184,18 @@ void createSimpleMesh(Mesh& mesh)
 
 int main(int argc, char* argv[])
 {
+  UnitSquare mesh(40, 40);
+  std::cout << "Mesh numvertices " << mesh.numVertices() << std::endl;
+  std::cout << "Mesh numcells " << mesh.numCells() << std::endl;
+  //Mesh mesh;
+  //createSimpleMesh(mesh);
+
+
+  //testDolfinGraph(graph, 2);
+  testDolfinMesh(mesh, 8);
+
   //testMetis(graph, 16);
   //testMeshPartition(mesh, 16);
 
-  //UnitSquare mesh(4, 4);
-  Mesh mesh;
-  createSimpleMesh(mesh);
-
-  //Graph graph(mesh, "nodal");
-  //testDolfinGraph(graph, 3);
-  testDolfinMesh(mesh, 3);
+  //testScotch(mesh, 8);
 }
