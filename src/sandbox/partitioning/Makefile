@@ -1,8 +1,9 @@
 PARMETIS=/usr/src/ParMetis-3.1/
-#SCOTCH_LIB=/usr/src/scotch_4.0/
 
-CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS) -I$(PARMETIS)/METISLib
-LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -L$(SCOTCH_LIB) -lparmetis -lmetis -lmpi -llapack -lX11 -lm
+#CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS) -I$(PARMETIS)/METISLib
+CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS)/METISLib
+#LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -L$(SCOTCH_LIB) -lparmetis -lmetis -lmpi -llapack -lX11 -lm
+LIBS    = `pkg-config --libs dolfin` -L$(SCOTCH_LIB) -lmetis -llapack -lX11 -lm
 CXX     = `pkg-config --variable=compiler dolfin`
 
 DEST    = dolfin-partition

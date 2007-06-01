@@ -1,11 +1,10 @@
 #include <dolfin.h>
-//#include <dolfin/GraphPartition.h>
 #include <iostream>
 
 //#include <parmetis.h>
+#include <metis.h>
 extern "C"
 {
-  #include <scotch.h>
   //#include <metis.h>
 }
 using namespace dolfin;
@@ -26,6 +25,7 @@ void testMetisGraph(Graph& graph, int num_partitions)
   METIS_PartGraphRecursive(&num_vertices, xadj, adjncy, NULL, NULL, &wgtflag, &pnumflag, &num_partitions, options, &edgecut, parts);
 }
 //-----------------------------------------------------------------------------
+*/
 void testMetisMesh(Mesh& mesh, int num_partitions)
 {
   int num_cells     = mesh.numCells() ;
@@ -51,7 +51,7 @@ void testMetisMesh(Mesh& mesh, int num_partitions)
     mesh_data = new int[4*num_cells];
   }
   else
-    dolfin_error("Do not know how to partition mesh of this type");
+    error("Do not know how to partition mesh of this type");
   
   if(num_partitions > 1)
   {
@@ -71,9 +71,9 @@ void testMetisMesh(Mesh& mesh, int num_partitions)
   delete [] vertex_partition;
   delete [] mesh_data;
 }
-*/
 //-----------------------------------------------------------------------------
 
+/*
 void testScotch(Mesh& mesh, int num_part)
 {
   MeshFunction<dolfin::uint> partitions;
@@ -86,18 +86,15 @@ void testScotch(Mesh& mesh, int num_part)
 
   if (SCOTCH_graphInit (&grafdat) != 0) {
   }
-  /*
   if ((fileptr = fopen ("/home/magnus/doc/uio/master/dolfin_tests/fem_graphs/unitcube.grf", "r")) == NULL) {
   }
   if (SCOTCH_graphLoad (&grafdat, fileptr, -1, 0) != 0) {
   }
-  */
   if (SCOTCH_graphBuild (&grafdat, 0, static_cast<int>(graph.numVertices()), reinterpret_cast<int*>(graph.offsets()), NULL, NULL, NULL, static_cast<int>(graph.numArches()), reinterpret_cast<int*>(graph.connectivity()), NULL) != 0) {
   }
 
   SCOTCH_stratInit(&strat);
 
-  // Only some graphs successfully partitioned, why?
   if (SCOTCH_graphPart (&grafdat, num_part, &strat, reinterpret_cast<int*>(partitions.values())) != 0) {
   }
 
@@ -106,14 +103,6 @@ void testScotch(Mesh& mesh, int num_part)
  
   std::cout << "Graph vertices " << graph.numVertices() << std::endl;
   std::cout << "Number of partitions " << num_part << std::endl;
-
-  /*
-  for (dolfin::uint i=0; i<graph.numVertices(); ++i)
-  {
-    std::cout << parttab[i] << " ";
-  }
-  std::cout << std::endl;
-  */
 
   File file("mesh_partition_scotch.xml");
   file << partitions;
@@ -127,6 +116,7 @@ void testScotch(Mesh& mesh, int num_part)
 
   plot(partitions);
 }
+*/
 
 void testDolfinGraph(Graph& graph, int num_part)
 {
@@ -192,7 +182,8 @@ int main(int argc, char* argv[])
 
 
   //testDolfinGraph(graph, 2);
-  testDolfinMesh(mesh, 8);
+  //testDolfinMesh(mesh, 8);
+  testMetisMesh(mesh, 8);
 
   //testMetis(graph, 16);
   //testMeshPartition(mesh, 16);
