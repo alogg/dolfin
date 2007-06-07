@@ -1,0 +1,220 @@
+#!/usr/bin/env python
+
+def main(argv):
+
+    # Get dictionary of connectivities
+    dic_connects = get_connects(argv)
+
+    # Verify connectivities
+    check_sort(dic_connects)
+
+    check_2_1(dic_connects)
+
+    check_3_2(dic_connects)
+
+    check_3_1(dic_connects)
+
+def check_2_1(dic_connects):
+
+    dic21 = (2,1)
+    dic20 = (2,0)
+    dic10 = (1,0)
+    non_inc = [0,1,2]
+
+    print "\n ---- Verifying (2-1) ----"
+    ok = True
+
+    entities21 = dic_connects[dic21]
+    entities20 = dic_connects[dic20]
+    entities10 = dic_connects[dic10]
+    # Inverting dictionary
+    inv10 = {}
+    for e10 in entities10:
+        inv10[tuple(entities10[e10])] = [e10]
+
+    for e21 in entities21:
+        l = []
+        # Get list of edges on cell/facet to compare against
+        l21 = entities21[e21]
+        # Get list of vertices for cell/facet
+        l20 = entities20[e21]
+        for n in non_inc:
+            # Copy vertices and remove non-incident vertices
+            le = [l2 for l2 in l20]
+            le.remove(l20[n])
+            # Look for the edge with these vertices
+            l += inv10[tuple(le)]
+        # If the two list are not equal, reordering is not OK
+        if not l == l21:
+            ok = False
+            print "l:   ",l
+            print "l21: ",l21
+            print ""
+
+    if ok and entities21:
+        print " - OK"
+    elif not ok:
+        print " - NOT OK"
+    else:
+        print " - nothing to do"
+
+
+def check_3_2(dic_connects):
+
+    dic32 = (3,2)
+    dic30 = (3,0)
+    dic20 = (2,0)
+    non_inc = [0,1,2,3]
+
+    print "\n ---- Verifying (3-2) ----"
+    ok = True
+
+    entities32 = dic_connects[dic32]
+    entities30 = dic_connects[dic30]
+    entities20 = dic_connects[dic20]
+    # Inverting dictionary
+    inv20 = {}
+    for e20 in entities20:
+        inv20[tuple(entities20[e20])] = [e20]
+
+    for e32 in entities32:
+        l = []
+        # Get list of facets on cell to compare against
+        l32 = entities32[e32]
+        # Get list of vertices for cell
+        l30 = entities30[e32]
+        for n in non_inc:
+            le = [l3 for l3 in l30]
+            le.remove(l30[n])
+            # Look for the facet with these vertices
+            l += inv20[tuple(le)]
+        # If the two list are not equal, reordering is not OK
+        if not l == l32:
+            ok = False
+            print "l:   ",l
+            print "l32: ",l32
+            print ""
+
+    if ok and entities32:
+        print " - OK"
+    elif not ok:
+        print " - NOT OK"
+    else:
+        print " - nothing to do"
+
+
+def check_3_1(dic_connects):
+
+    dic31 = (3,1)
+    dic30 = (3,0)
+    dic10 = (1,0)
+    non_inc = [(0,1), (0,2), (0,3), (1,2), (1,3), (2,3)]
+
+    print "\n ---- Verifying (3-1) ----"
+    ok = True
+
+    entities31 = dic_connects[dic31]
+    entities30 = dic_connects[dic30]
+    entities10 = dic_connects[dic10]
+    # Inverting dictionary
+    inv10 = {}
+    for e10 in entities10:
+        inv10[tuple(entities10[e10])] = [e10]
+
+    for e31 in entities31:
+        l = []
+        # Get list of edges on cell to compare against
+        l31 = entities31[e31]
+        # Get list of vertices for cell
+        l30 = entities30[e31]
+        for nc in non_inc:
+            # Copy vertices and remove non-incident vertices
+            le = [l3 for l3 in l30]
+            for n in nc:
+                le.remove(l30[n])
+            # Look for the facet with these vertices
+            l += inv10[tuple(le)]
+        # If the two list are not equal, reordering is not OK
+        if not l == l31:
+            ok = False
+            print "l:   ",l
+            print "l31: ",l31
+            print ""
+
+    if ok and entities31:
+        print " - OK"
+    elif not ok:
+        print " - NOT OK"
+    else:
+        print " - nothing to do"
+
+
+def check_sort(dic_connects):
+
+    # Connectivities that should be sorted lexicographically
+    sort_dics = [(1,0), (2,0), (3,0)]
+
+    print "\n ---- Verifying that vertices are sorted on all mesh entities ----"
+    for dic in sort_dics:
+        ok = True
+        print " -", dic
+        # Get dictionary of entities
+        ent_dic = dic_connects[dic]
+        if ent_dic:
+            for entity in ent_dic:
+                # Get list of vertices
+                l = ent_dic[entity]
+                # Copy list
+                ls = [s for s in l]
+                # Sort original list and compare lists
+                l.sort()
+                if not l == ls:
+                    ok = False
+            if ok:
+                print " - OK"
+            else:
+                print " - NOT OK"
+
+        else:
+            print " - nothing to do"
+
+def get_connects(name):
+
+    # Supported connectivities
+    connects = [(1,0), (2,0), (3,0), (2,1), (3,1), (3,2)]
+    # Look for this
+
+    dic = {}
+    for entry in connects:
+        dic[entry] = {}
+
+    # Read file, and get lines
+    f = open(name, "r")
+    lines = f.read().split("\n")
+    f.close()
+    # Remove blank lines
+    lines = [line for line in lines if line.split()]
+
+    # Loop lines and check for supported connectivities
+    entry = ()
+    ints = ["0", "1", "2", "3"]
+    for line in lines:
+        if not ("--" in line or ":" in line):
+            entry = ()
+        if "Connect" in line and "--" in line:
+            words = line.split(" ")
+            entry = tuple([int(w.replace(":","")) for w in words if w.replace(":","") in ints])
+            if not entry in connects:
+                entry = ()
+            line = ""
+
+        if entry and line:
+            if ":" in line:
+                entity = line.split(":")[0].split(" ")[-1]
+                vals = [int(v) for v in line.split(":")[1].split(" ") if v]
+                dic[entry][int(entity)] = vals
+
+    return dic
+
+if __name__ == "__main__":
+    main("file")

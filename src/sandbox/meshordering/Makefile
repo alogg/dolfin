@@ -5,6 +5,7 @@ CXX     = `pkg-config --variable=compiler dolfin`
 DEST    = dolfin-meshordering
 OBJECTS = main.o
 #OBJECTS = main.o Triangle.o
+#OBJECTS = main.o DofMap.o
 
 all: $(DEST)
 
