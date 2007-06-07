@@ -12,17 +12,18 @@ using namespace dolfin;
 
 int main()
 {
-//  UnitSquare mesh(2, 2);
+//  UnitSquare mesh(5, 5);
   UnitCube mesh(2, 2, 2);
   mesh.order();
-//  mesh.init();
+  mesh.init();
 //  mesh.init(0);
-  mesh.init(1);
+//  mesh.init(1);
 //  mesh.init(2);
-  mesh.init(3);
+//  mesh.init(3);
 //  mesh.init(4);
 
-//  mesh.disp();
-//  mesh.order();
   mesh.disp();
+//  mesh.order();
+//  mesh.disp();
+
 }

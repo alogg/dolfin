@@ -6,6 +6,7 @@ DEST    = dolfin-meshordering
 OBJECTS = main.o
 #OBJECTS = main.o Triangle.o
 #OBJECTS = main.o DofMap.o
+OBJECTS = main.o uBlasVector.o
 
 all: $(DEST)
 
