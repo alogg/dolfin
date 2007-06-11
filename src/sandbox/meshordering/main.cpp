@@ -47,13 +47,13 @@ public:
   Poisson3D_2BilinearForm a;
   Poisson3D_2LinearForm L(f);
 
-  assemble(A, a, mesh);
+//  assemble(A, a, mesh);
   assemble(b, L, mesh);
 
   mesh.disp();
 
-  File file("Adev.xml");
-  file << A;
+//  File file("Adev.xml");
+//  file << A;
 
   File file_b("bdev.xml");
   file_b << b;
