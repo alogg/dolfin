@@ -9034,7 +9034,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return " | vi0[b0 + 1]*vi1[b0 + 1]*dX(0) + w3_a0w4_a1(dXa2/dxb0)(dXa3/dxb0)(+/-) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dxb0)(dXa3/dxb0) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) + -12.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + 12.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + -2.0w2_a0 | vi0[0]*va0*vi1[1]*dX(0) + -w1_a0(dXa1/dxb0)(dXa2/dxb0) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0)";
+    return " | vi0[b0]*vi1[b0]*dX(0) + w3_a0w4_a1(dXa2/dxb0)(dXa3/dxb0)(+/-) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1)*vi1[0]*dX(0) + w3_a0w4_a1(dXa2/dxb0)(dXa3/dxb0) | va0*((d/dXa2)vi0[1])*va1*((d/dXa3)vi1[0])*dX(0) + -12.0w2_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*vi1[1]*dX(0) + 12.0w2_a0w0_a1 | vi0[0]*va0*va1[1]*vi1[1]*dX(0) + -2.0w2_a0 | vi0[0]*va0*vi1[1]*dX(0) + -w1_a0(dXa1/dxb0)(dXa2/dxb0) | va0*((d/dXa1)vi0[0])*((d/dXa2)vi1[1])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -18285,7 +18285,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "-w0_a0 | vi0[b0 + 1]*va0[b0 + 1]*dX(0) + w1_a0 | vi0[1]*va0[1]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dxb0)(dXa4/dxb0)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dxb0)(dXa4/dxb0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dxb0)(dXa3/dxb0) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dxb0)(dXa4/dxb0)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dxb0)(dXa4/dxb0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + 4.0w3_a0w0_a1w0_a2w0_a3 | vi0[0]*va0*va1[1]*va2[1]*va3[1]*dX(0) + -6.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + 2.0w3_a0w0_a1 | vi0[0]*va0*va1[1]*dX(0) + w2_a0w0_a1(dXa2/dxb0)(dXa3/dxb0) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0)";
+    return "-w0_a0 | vi0[b0]*va0[b0]*dX(0) + w1_a0 | vi0[1]*va0[1]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dxb0)(dXa4/dxb0)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + w4_a0w5_a1w1_a2(dXa3/dxb0)(dXa4/dxb0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + -w4_a0w1_a1(dXa2/dxb0)(dXa3/dxb0) | va0*((d/dXa2)vi0[1])*((d/dXa3)va1[0])*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dxb0)(dXa4/dxb0)(+/-) | va0*((d/dXa3)vi0[1])*((d/dXa4)va1)*va2[0]*dX(0) + -w4_a0w5_a1w0_a2(dXa3/dxb0)(dXa4/dxb0) | va0*((d/dXa3)vi0[1])*va1*((d/dXa4)va2[0])*dX(0) + 4.0w3_a0w0_a1w0_a2w0_a3 | vi0[0]*va0*va1[1]*va2[1]*va3[1]*dX(0) + -6.0w3_a0w0_a1w0_a2 | vi0[0]*va0*va1[1]*va2[1]*dX(0) + 2.0w3_a0w0_a1 | vi0[0]*va0*va1[1]*dX(0) + w2_a0w0_a1(dXa2/dxb0)(dXa3/dxb0) | va0*((d/dXa2)vi0[0])*((d/dXa3)va1[1])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
