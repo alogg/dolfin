@@ -31,17 +31,13 @@ int main(int argc, char* argv[])
   MPI_Comm_rank(PETSC_COMM_WORLD, &process_int);
   unsigned int this_process = process_int;
 
-  // Create mesh
-  UnitSquare mesh(2, 2);
-
+  // Create mesh and partion
+  UnitSquare mesh(50, 50);
   MeshFunction<dolfin::uint> cell_partition_function;
-  MeshFunction<dolfin::uint> vertex_partition_function;
-  cout << "Creating mesh partition (using METIS)" << endl; 
-  tic();
-  testMeshPartition(mesh, cell_partition_function, vertex_partition_function,
-                    num_processes);
-  real time = toc();
-  cout << "Finished partitioning mesh " << time << endl;
+  mesh.partition(num_processes, cell_partition_function);
+
+  if(this_process == 0)
+    plot(cell_partition_function);
 
   // Create linear and bilinear forms
   Function f(mesh, 1.0);
