@@ -1,10 +1,14 @@
-The UFC specification dictates a certain ordering of the vertices,
+\index{numbering}
+
+The UFC specification dictates a certain numbering of the vertices,
 edges etc. of the cells of a finite element mesh. First, an \emph{ad
-hoc} ordering is picked for the vertices of each cell. Then, the
+hoc} numbering is picked for the vertices of each cell. Then, the
 remaining entities are ordered based on a simple rule, as described in
 detail below.
 
 \section{Basic concepts}
+\index{mesh entity}
+\index{topological dimension}
 
 The topological entities of a cell (or mesh) are referred to as
 \emph{mesh entities}. A mesh entity can be identified by a pair
@@ -51,6 +55,7 @@ $c_0 = (3, 0)$.
 \end{table}
 
 \section{Numbering of vertices}
+\index{vertex numbering}
 
 For simplicial cells (intervals, triangles and tetrahedra) of a finite
 element mesh, the vertices are numbered locally based on the
@@ -76,7 +81,7 @@ two triangles.
   \end{center}
 \end{figure}
 
-For non-simplicial cells (quadrilaterals and hexahedra), the ordering
+For non-simplicial cells (quadrilaterals and hexahedra), the numbering
 is arbitrary, as long as each cell is isomorphic to the corresponding
 reference cell by matching each vertex with the corresponding vertex
 in the reference cell. This is illustrated in
@@ -104,7 +109,7 @@ consisting of two quadrilaterals.
   \end{center}
 \end{figure}
 
-\section{Numbering of remaining mesh entities}
+\section{Numbering of other mesh entities}
 
 When the vertices have been numbered, the remaining mesh entities are
 numbered within each topological dimension based on a
@@ -170,7 +175,7 @@ v_2, v_3)$.
 For simplicial cells, the relative ordering in combination with the
 convention of numbering the vertices locally based on global vertex
 indices means that two incident cells will always agree on the
-orientation of incident sub simplices. Thus, two incident triangles
+orientation of incident subsimplices. Thus, two incident triangles
 will agree on the orientation of the common edge and two incident
 tetrahedra will agree on the orientation of the common edge(s) and the
 orientation of the common face (if any). This is illustrated in
@@ -202,7 +207,7 @@ edges incident to vertices.
 
 \newpage
 
-\section{Numbering for reference cells}
+\section{Numbering schemes for reference cells}
 
 The numbering scheme is demonstrated below for cells
 isomorphic to each of the five reference cells.
