@@ -39,7 +39,7 @@ The format (type) of a file is determined by its filename suffix, if
 not otherwise specified. Thus, the following code creates a
 \texttt{File} for reading/writing data in \dolfin{} XML format:
 \begin{code}
-File file(``data.xml'');
+File file("data.xml");
 \end{code}
 A complete list of file formats and corresponding file name suffixes
 is given in Table~\ref{tab:formats}.
@@ -48,7 +48,7 @@ Alternatively, the format of a file may be explicitly defined. One may
 thus create a file named \texttt{data.xml} for reading/writing data in
 GNU~Octave format:
 \begin{code}
-File file(``data.xml'', File::octave);
+File file("data.xml", File::octave);
 \end{code}
 
 \begin{table}[htbp]
@@ -67,8 +67,6 @@ File file(``data.xml'', File::octave);
       \texttt{.m} & \texttt{File::octave} & GNU Octave \\
       \hline
       (\texttt{.m}) & \texttt{File::matlab} & MATLAB \\
-      \hline
-      \texttt{.msh}/\texttt{.res} & \texttt{File::gid} & GiD \\
       \hline
     \end{tabular}
     \caption{File formats and corresponding file name suffixes.}
@@ -100,8 +98,6 @@ given in Table~\ref{tab:classes,formats}.
       \texttt{File::octave}  & out    & out    & out    & out & out \\
       \hline
       \texttt{File::matlab}  & out    & out    & out    & out & out \\
-      \hline
-      \texttt{File::gid}     & ---    & ---    & out    & out & ---\\
       \hline
     \end{tabular}
     \caption{Matrix of supported combinations of classes and file
@@ -137,10 +133,10 @@ a compressed \dolfin{} XML file and saves the mesh to an uncompressed
 \begin{code}
 Mesh mesh;
 
-File in(``mesh.xml.gz'');
+File in("mesh.xml.gz");
 in >> mesh;
 
-File out(``mesh.xml'');
+File out("mesh.xml");
 out << mesh;
 \end{code}
 The same thing can of course be accomplished by
@@ -148,9 +144,6 @@ The same thing can of course be accomplished by
 # gunzip -c mesh.xml.gz > mesh.xml
 \end{code}
 on the command-line.
-
-There is currently no visualization tool that can read \dolfin{} XML
-files, so the main purpose of this format is to save and transfer data.
 
 \subsection{VTK}
 
@@ -164,7 +157,7 @@ The below code illustrates how to export a function in VTK format:
 \begin{code}
 Function u;
 
-File out(``data.pvd'');
+File out("data.pvd");
 out << u;
 \end{code}
 The sample code produces the file \texttt{data.pvd}, which can be read 
@@ -235,13 +228,6 @@ much the same way in MATLAB as in GNU~Octave, using the
 MATLAB~commands \texttt{pdemesh}, \texttt{pdesurf} and
 \texttt{pdeplot}.
 
-\subsection{GiD}
-
-GiD~\cite{www:GiD} is a proprietary visualization tool.
-The GiD format is not actively maintained and may be removed in
-future versions of \dolfin{} (if there is not sufficient interest to
-maintain the format).
-
 %------------------------------------------------------------------------------
 \section{Converting between file formats}
 
@@ -287,4 +273,4 @@ at \texttt{dolfin-dev@fenics.org} for directions.
 
 Also consider contributing to the \texttt{dolfin-convert} script by
 adding a conversion routine for your favorite format. The script is
-written in Python and should be easy to extend with new formats.
+written in Python and should be easy to extend with new formats.g
