@@ -68,8 +68,6 @@ File file("data.xml", File::octave);
       \hline
       (\texttt{.m}) & \texttt{File::matlab} & MATLAB \\
       \hline
-      \texttt{.msh}/\texttt{.res} & \texttt{File::gid} & GiD \\
-      \hline
     \end{tabular}
     \caption{File formats and corresponding file name suffixes.}
     \label{tab:formats}
@@ -100,8 +98,6 @@ given in Table~\ref{tab:classes,formats}.
       \texttt{File::octave}  & out    & out    & out    & out & out \\
       \hline
       \texttt{File::matlab}  & out    & out    & out    & out & out \\
-      \hline
-      \texttt{File::gid}     & ---    & ---    & out    & out & ---\\
       \hline
     \end{tabular}
     \caption{Matrix of supported combinations of classes and file
@@ -277,4 +273,4 @@ at \texttt{dolfin-dev@fenics.org} for directions.
 
 Also consider contributing to the \texttt{dolfin-convert} script by
 adding a conversion routine for your favorite format. The script is
-written in Python and should be easy to extend with new formats.
+written in Python and should be easy to extend with new formats.g

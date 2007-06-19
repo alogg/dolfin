@@ -18,7 +18,7 @@ uBlas~\cite{www:ublas} and PETSc~\cite{www:petsc}.
 \index{\texttt{Vector}}
 
 The two basic linear algebra data structures are the classes
-\texttt{Matrix} and \texttt{Vector}, representing a (sparse) $M\times
+\texttt{Matrix} and \texttt{Vector}, representing a sparse $M\times
 N$ matrix and a vector of length $N$ respectively.
 
 The following code demonstrates how to create a matrix and a vector:
@@ -100,8 +100,8 @@ corresponding class \texttt{uBlasVector}.
 \dolfin{} provides the class \texttt{DenseMatrix} for representation
 of dense matrices. A dense matrix representation is often preferable
 when computing with matrices of small to moderate size. In particular,
-accessing individual elements (and solving linear systems with a
-direct solver) is more efficient with a dense matrix representation.
+accessing individual elements 
+is more efficient with a dense matrix representation.
 
 A \texttt{DenseMatrix} is represented as uBlas dense matrix and
 alternatively the class \texttt{uBlasDenseMatrix} may be used,
@@ -254,23 +254,27 @@ be used and for PETSc matrices and vectors, the class
 \index{eigenvalue problems}
 \index{SLEPc}
 
-\dolfin{} also provides a solver for eigenvalue
-problems\index{eigenvalue solver}. The solver is only available when
-\dolfin{} has been compiled with support for PETSc and SLEPc \cite{www:slepc}.
+\dolfin{} also provides a solver for eigenvalue problems\index{eigenvalue solver}. 
+The solver is only available when \dolfin{} has been compiled with support for 
+PETSc and SLEPc~\cite{www:slepc}.
 
 For the basic eigenvalue problem
+%
 \begin{equation}
   Ax = \lambda x,
 \end{equation}
+%
 the following code demonstrates how to compute the zeroth eigenpair:
+%
 \begin{code} 
-PETScEigenvalueSolver esolver; 
+SLEPcEigenvalueSolver esolver; 
 esolver.solve(A);
 
 real lr, lc;
 PETScVector xr, xc;
 esolver.getEigenpair(lr, lc, xr, xc, 0);
 \end{code} 
+%
 The real and complex components of the eigenvalue are returned in \texttt{lr}
 and \texttt{lc}, respectively, and the real and complex parts of the eigenvector
 are returned in \texttt{xr} and \texttt{xc}, respectively.
@@ -288,7 +292,6 @@ real lr, lc;
 PETScVector xr, xc;
 esolver.getEigenpair(lr, lc, xr, xc, 2);
 \end{code} 
-
 %------------------------------------------------------------------------------
 \section{Linear algebra backends}
 \index{linear algebra backends}
@@ -309,7 +312,7 @@ corresponding uBlas classes, which means that all standard
 advanced usage not covered by the common \dolfin{} interface specified
 by the classes \texttt{GenericMatrix} and \texttt{GenericVector},
 refer directly to the documentation of \texttt{uBlas}.
-
+%------------------------------------------------------------------------------
 \subsection{PETSc}
 \index{PETSc}
 
