@@ -18,9 +18,8 @@ The following basic properties hold for all \texttt{Function}s:
 \item
   A \texttt{Function} can be scalar or vector-valued;
 \item
-  A \texttt{Function} can be evaluated at each \texttt{Vertex} of a \texttt{Mesh};
-\item
-  A \texttt{Function} can be restricted to each local \texttt{Cell} of a \texttt{Mesh};
+  A \texttt{Function} can be restricted (interpolated) to each local
+  \texttt{Cell} of a \texttt{Mesh};
 \item
   The underlying representation of a \texttt{Function} may vary.
 \end{itemize}
@@ -31,46 +30,9 @@ may also be possible to evaluate a \texttt{Function} at any given \texttt{Point}
 \subsection{Representation}
 
 Currently supported representations of \texttt{Function}s include
-\emph{discrete} \texttt{Function}s and \emph{user-defined}
-\texttt{Function}s. These are discussed in detail below.
-
-\subsection{Evaluation}
-
-All \texttt{Function}s can be evaluated at the \texttt{Vertices} of a
-\texttt{Mesh}. The following example illustrates how to evaluate a
-scalar \texttt{Function} at each \texttt{Vertex} of a given
-\texttt{Mesh}:
-\begin{code}
-Function u;
-Mesh mesh;
-
-for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-  cout << ``Value at vertex `` << *vertex << ``: ``
-       << u(*vertex) << endl;
-\end{code}
-
-If the \texttt{Function} is vector-valued, an additional argument is
-needed to specify the component.  The following example illustrates
-how to evaluate all components of a vector-valued \texttt{Function}
-at all each \texttt{Vertex} of a given \texttt{Mesh}:
-\begin{code}
-Function u;
-Mesh mesh;
-
-for (VertexIterator vertex(mesh); !vertex.end(); ++vertex)
-  for (unsigned int i = 0; i < u.vectordim(); i++)
-    cout << ``Value of component `` << i << `` at vertex ``
-         << *vertex << ``: `` << u(*vertex, i) << endl;
-\end{code}
-
-If allowed by the underlying representation, a \texttt{Function}
-\texttt{u} may also be evaluated directly at any given \texttt{Point}:
-\begin{code}
-Point p(0.5, 0.5, 0.5);
-cout << ``Value at p = `` << p << ``: `` << u(p) << endl;
-\end{code}
-As in the case of evaluation at a \texttt{Vertex}, the component index
-may be given as an additional argument for a vector-valued \texttt{Function}.
+\emph{discrete} \texttt{Function}s, \emph{user-defined}
+\texttt{Function}s and \emph{constant} \texttt{Function}s. These are
+discussed in detail below.
 
 \subsection{Assignment}
 
@@ -79,39 +41,34 @@ One \texttt{Function} may be assigned to another \texttt{Function}:
 Function v;
 Function u = v;
 \end{code}
-Assignment creates a new \texttt{Function} sharing the same data.  In
-particular, this means that modifying the data of one of the two
-\texttt{Function}s will also affect the other \texttt{Function}.
 
-\subsection{Components and sub functions}
+\subsection{Components and subfunctions}
 
-If a \texttt{Function} is vector-valued, a new \texttt{Function} may be
-created to represent any given component of the original \texttt{Function},
-as illustrated by the following example:
+If a \texttt{Function} is vector-valued, or in general \emph{nested}
+(mixed), a new \texttt{Function} may be created to represent any given
+\emph{subsystem} (component) of the original \texttt{Function}, as
+illustrated by the following example:
 \begin{code}
-Function u;         // Function with three components
-Function u0 = u[0]; // first component
-Function u1 = u[1]; // second component
-Function u2 = u[2]; // third component
+Function u;         // Function with two components
+Function u0 = u[0]; // First subsystem (component) of u
+Function u1 = u[1]; // First subsystem (component) of u
 \end{code}
 
-If a \texttt{Function} represents a \emph{mixed} function (one defined in terms
-of a mixed \texttt{FiniteElement}, see below), then indexing has the effect of
-picking out sub functions. With \texttt{w} a \texttt{Function} representing the
-solution $w = (u, p)$ of a Stokes or Navier-Stokes system (with $u$ the vector-valued
-velocity and $p$ the scalar pressure), the following example illustrates how to
-pick sub functions and components of \texttt{w}:
+If a \texttt{Function} represents a nested function (one defined in
+terms of a mixed finite element, see below), then indexing has the
+effect of picking out subfunctions. With \texttt{w} a
+\texttt{Function} representing the solution $w = (u, p)$ of a Stokes
+or Navier-Stokes system (with $u$ the vector-valued velocity and $p$
+the scalar pressure), the following example illustrates how to pick
+subfunctions and components of \texttt{w}:
 \begin{code}
-Function w; // mixed Function (u, p)
-u = w[0];   // first sub function (velocity)
-p = w[1];   // second sub function (pressure)
-u0 = u[0];  // first component of the velocity
-u1 = u[1];  // second component of the velocity
-u2 = u[2];  // third component of the velocity
+Function w; // Mixed Function (u, p)
+u = w[0];   // First subfunction (velocity)
+p = w[1];   // Second subfunction (pressure)
+u0 = u[0];  // First component of the velocity
+u1 = u[1];  // Second component of the velocity
+u2 = u[2];  // Third component of the velocity
 \end{code}
-
-Note that picking a component or sub function creates a new
-\texttt{Function} that shares data with the original \texttt{Function}.
 
 \subsection{Output}
 \index{ParaView}
@@ -122,7 +79,7 @@ To write a \texttt{Function}~\texttt{u} to file in VTK~format,
 suitable for viewing in ParaView or MayaVi, create a file with
 extension \texttt{.pvd}:
 \begin{code}
-File file(``solution.pvd'');
+File file("solution.pvd");
 file << u;
 \end{code}
 
@@ -132,98 +89,18 @@ Chapter~\ref{chapter:io}.
 %------------------------------------------------------------------------------
 \section{Discrete functions}
 
-A \emph{discrete} \texttt{Function} is defined in terms of a \texttt{Vector} of nodal
-values (degrees of freedom), a \texttt{Mesh} and
-a \texttt{FiniteElement} specifying the distribution of the nodal values
-on the \texttt{Mesh}. In particular, a discrete \texttt{Function}
-is given by a linear combinations of basis functions:
+A discrete \texttt{Function} is defined in terms of a
+\texttt{Vector} of degrees of freedom, a \texttt{Mesh}, a
+local-to-global mapping (\texttt{DofMap}) and a finite element.  In
+particular, a discrete \texttt{Function} is given by a linear
+combinations of basis functions:
 \begin{equation}
   v = \sum_{i=1}^{N} v_i \phi_{i},
 \end{equation}
 where $\{\phi_i\}_{i=1}^N$ is the global basis of the finite element
-space defined by the \texttt{Mesh} and the \texttt{FiniteElement}, and
+space defined by the \texttt{Mesh} and the finite element, and
 the nodal values $\{v_i\}_{i=1}^N$ are given by the values of a
 \texttt{Vector}.
-
-Note that a \emph{discrete} \texttt{Function} may not be evaluated at
-arbitrary points (only at each \texttt{Vertex} of a \texttt{Mesh}).
-
-\subsection{Creating a discrete function}
-
-A discrete \texttt{Function} can be initialized in several ways.
-In the simplest case, only a \texttt{Vector} \texttt{x} of nodal
-values needs to be specified:
-\begin{code}
-Vector x;
-
-Function u(x);
-\end{code}
-If possible, \dolfin{} will then automatically try to determine the
-\texttt{Mesh} and the \texttt{FiniteElement}.
-
-In some cases, it is necessary to also supply a \texttt{Mesh}
-when initializing a discrete \texttt{Function}:
-\begin{code}
-Vector x;
-Mesh mesh;
-
-Function u(x, mesh);
-\end{code}
-If possible, \dolfin{} will then automatically try to determine the
-\texttt{FiniteElement}.
-
-In general however, a discrete \texttt{Function} must be initialized
-from a given \texttt{Vector}, a \texttt{Mesh}
-and a \texttt{FiniteElement}:
-\begin{code}
-Vector x;
-Mesh mesh;
-FiniteElement element;
-
-Function u(x, mesh, element);
-\end{code}
-
-\subsection{Accessing discrete function data}
-
-It is possible to access the data of a discrete \texttt{Function},
-including the associated \texttt{Vector}, \texttt{Mesh}
-and \texttt{FiniteElement}:
-\begin{code}
-Vector& x              = u.vector();
-Mesh& mesh             = u.mesh();
-FiniteElement& element = u.element();
-\end{code}
-
-\subsection{Attaching discrete function data}
-
-After a discrete \texttt{Function} has been initialized, it is
-possible to associate or reassociate data with the \texttt{Function}:
-\begin{code}
-Vector x;
-Mesh mesh;
-FiniteElement element;
-
-Function u(x);
-u.attach(mesh);
-u.attach(element);
-\end{code}
-
-Usually, the \texttt{FiniteElement} is given by the
-\texttt{BilinearForm} defining the problem. Considering the Poisson
-example in Chapter~\ref{chap:quickstart}, a \texttt{Function}
-\texttt{u} representing the solution can be initialized as follows:
-\begin{code}
-Vector x;
-Mesh mesh;
-Function u(x, mesh);
-
-Poisson::BilinearForm a;
-
-FiniteElement& element = a.trial();
-u.attach(element); 
-\end{code}
-In this example, the \texttt{Function}~\texttt{u} represents a
-function in the trial space for the \texttt{BilinearForm}~\texttt{a}.
 
 %------------------------------------------------------------------------------
 \section{User-defined functions}
@@ -237,12 +114,6 @@ term could be given by
   f = f(x, y, z) = xy \sin(z / \pi).
 \end{equation}
 
-There are two ways to create a user-defined \texttt{Function}; either
-by creating a sub class of \texttt{Function} or by creating a
-\texttt{Function} from a given function pointer.
-
-\subsection{Creating a sub class}
-
 A user-defined \texttt{Function} may be defined by creating a sub
 class of \texttt{Function} and overloading the \texttt{eval()}
 function.  The following example illustrates how to create a
@@ -251,77 +122,21 @@ function.  The following example illustrates how to create a
 \begin{code}
 class Source : public Function
 {
-  real eval(const Point& p, unsigned int i)
-  { 
-    real x=p.x();
-    real y=p.y();
-    real z=p.z();
-    return x*y*sin(z / DOLFIN_PI);
-  }
-};
-
-Source f;
-\end{code}
-
-To create a vector-valued \texttt{Function}, the vector dimension must
-be supplied to the constructor of \texttt{Function}:
-\begin{code}
-class Source : public Function
-{
 public:
+    
+  Source(Mesh& mesh) : Function(mesh) {}
 
-  Source() : Function(3) {}
-
-  real eval(const Point& p, unsigned int i)
+  real eval(const real* x) const
   {
-    real x=p.x();
-    real y=p.y();
-    real z=p.z();
-    if ( i == 0 )
-      return 0.0;
-    else if ( i == 1 )
-      return x*y*sin(z / DOLFIN_PI);
-    else
-      return x + y;
+    return x[0]*x[1]*sin(x[2] / DOLFIN_PI);
   }
+
 };
 
 Source f;
 \end{code}
 
-\subsection{Specifying a function-pointer}
-
-A user-defined \texttt{Function} may alternatively be defined by
-specifying a function pointer. The following example illustrates
-an alternative way of creating a \texttt{Function} representing the
-function in (\ref{eq:functionexample}):
-\begin{code}
-real source(const Point& p, unsigned int i)
-{
-  return x*y*sin(z / DOLFIN_PI);
-}
-
-Function f(source);
-\end{code}
-
-As before, for vector-valued \texttt{Function}s, the vector dimension
-must be supplied to the constructor of \texttt{Function}:
-\begin{code}
-real source(const Point& p, unsigned int i)
-{
-  real x=p.x();
-  real y=p.y();
-  real z=p.z();
-  if ( i == 0 )
-    return 0.0;
-  else if ( i == 1 )
-    return x*y*sin(z / DOLFIN_PI);
-  else
-    return x + y;
-}
-
-Function f(source, 3);
-\end{code}
+\devnote{Write about how to define vector-valued functions.}
 
 \subsection{Cell-dependent functions}
 
@@ -335,23 +150,23 @@ The following example illustrates how to create such as
 \begin{code}
 class MeshSize : public Function
 {
-  real eval(const Point& p, unsigned int i)
+public:
+
+  MeshSize(Mesh& mesh) : Function(mesh) {}
+
+  real eval(const real* x) const
   {
     return cell().diameter();
   }
-}
+    
+};
 
 MeshSize h;
 \end{code}
 
 Note that the current \texttt{Cell} is only available during assembly
-and has no meaning otherwise. It is thus not possible to write the
-\texttt{Function}~\texttt{h} to file, since the current \texttt{Cell}
-is not available when evaluating a \texttt{Function} at any given
-\texttt{Vertex}. Furthermore, note that the current \texttt{Cell} is
-not available when creating a \texttt{Function} from a function pointer.
+and has no meaning otherwise. For example, it is not possible to write the
+\texttt{Function}~\texttt{h} to file.
 
-%------------------------------------------------------------------------------
-\section{Time-dependent functions}
-
-\devnote{Write about time-dependent and pseudo time-dependent functions.}
+\devnote{Write about predefined special functions like
+\texttt{MeshSize} and \texttt{FacetNormal}.}
