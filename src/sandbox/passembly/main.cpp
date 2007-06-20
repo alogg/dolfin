@@ -45,12 +45,12 @@ int main(int argc, char* argv[])
   Poisson2DLinearForm L(f); 
 
   // Prepare for assembly
-  DofMaps dof_maps_a;
-  DofMaps dof_maps_L;
-  dof_maps_a.update(a.form(), mesh);
-  dof_maps_L.update(L.form(), mesh);
-  UFC ufc_a(a.form(), mesh, dof_maps_a);
-  UFC ufc_L(L.form(), mesh, dof_maps_L);
+  DofMapSet dof_map_set_a;
+  DofMapSet dof_map_set_L;
+  dof_map_set_a.update(a.form(), mesh);
+  dof_map_set_L.update(L.form(), mesh);
+  UFC ufc_a(a.form(), mesh, dof_map_set_a);
+  UFC ufc_L(L.form(), mesh, dof_map_set_L);
 
   // Initialize global parallel tensor
   dolfin::uint A_size0 = ufc_a.global_dimensions[0];
