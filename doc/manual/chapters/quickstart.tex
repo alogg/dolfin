@@ -229,12 +229,12 @@ where it should be applied:
 \begin{code}
 Function u0(mesh, 0.0);
 DirichletBoundary boundary;
-BoundaryCondition bc(u0, mesh, boundary);
+DirichletBC bc(u0, mesh, boundary);
 \end{code}
 Note the difference in how Dirichlet and Neumann boundary conditions
 are applied. The Dirichlet condition is applied here strongly (but it
-can also be applied weakly) using the \texttt{BoundaryCondition}
-class, while the Neumann boundary condition is defined as part of the
+can also be applied weakly) using the \texttt{DirichletBC} class,
+while the Neumann boundary condition is defined as part of the
 variational problem. (It is a \emph{natural} boundary condition for
 this variational formulation of Poisson's equation.)
 
@@ -337,7 +337,7 @@ int main()
   // Create boundary condition
   Function u0(mesh, 0.0);
   DirichletBoundary boundary;
-  BoundaryCondition bc(u0, mesh, boundary);
+  DirichletBC bc(u0, mesh, boundary);
   
   // Define PDE
   PoissonBilinearForm a;
