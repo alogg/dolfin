@@ -37,19 +37,24 @@ mesh = UnitSquare(10, 10)
 
 A = Matrix()
 
-print isinstance(A, Matrix)
-print isinstance(A, GenericMatrix)
-print isinstance(A, GenericTensor)
+print "A is Matrix:", isinstance(A, Matrix)
+print "A is GenericMatrix:", isinstance(A, GenericMatrix)
+print "A is GenericTensor:", isinstance(A, GenericTensor)
 
 compiled_form = jit(a)
+print "Type of form:", type(a)
+print "Type of compiled form:", type(compiled_form)
+
+assemble_test(compiled_form)
+
 #print isinstance(compiled_form, Form)
 
 #print Form
 
-coefficients = ArrayFunctionPtr()
-cell_domains = MeshFunction("uint")
-exterior_facet_domains = MeshFunction("uint")
-interior_facet_domains = MeshFunction("uint")
-assemble(A, a, mesh, coefficients, cell_domains, exterior_facet_domains, interior_facet_domains)
+#coefficients = ArrayFunctionPtr()
+#cell_domains = MeshFunction("uint")
+#exterior_facet_domains = MeshFunction("uint")
+#interior_facet_domains = MeshFunction("uint")
+#assemble(A, a, mesh, coefficients, cell_domains, exterior_facet_domains, interior_facet_domains)
 
 #assemble(1, 1, 1, 1)
