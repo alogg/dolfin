@@ -45,6 +45,8 @@ compiled_form = jit(a)
 print "Type of form:", type(a)
 print "Type of compiled form:", type(compiled_form)
 
+print type(compiled_form)
+
 assemble_test(compiled_form)
 
 #print isinstance(compiled_form, Form)
