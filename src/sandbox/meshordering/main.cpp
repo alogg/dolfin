@@ -2,7 +2,7 @@
 // Licensed under the GNU LGPL Version 2.1.
 //
 // First added:  2007-01-30
-// Last changed: 2007-02-27
+// Last changed: 2007-08-20
 //
 // Testing experimental code for ordering of mesh entities.
 
