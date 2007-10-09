@@ -8,7 +8,7 @@
 \dolfin{} provides a high-performance linear algebra library,
 including matrices and vectors, a set of linear solvers,
 preconditioners, and an eigenvalue solver. The core part of the
-functionality is provided through a wrappers that provide a common
+functionality is provided through wrappers that provide a common
 interface to the functionality of the linear algebra libraries
 uBlas~\cite{www:ublas} and PETSc~\cite{www:petsc}.
 
@@ -264,7 +264,7 @@ For the basic eigenvalue problem
   Ax = \lambda x,
 \end{equation}
 %
-the following code demonstrates how to compute the zeroth eigenpair:
+the following code demonstrates how to compute the first eigenpair:
 %
 \begin{code} 
 SLEPcEigenvalueSolver esolver; 
@@ -283,7 +283,7 @@ For the generalized eigenvalue problem
 \begin{equation}
  A x = \lambda B x,
 \end{equation}
-the following code demonstrates how to compute the second eigenpair:
+the following code demonstrates how to compute the third eigenpair:
 \begin{code} 
 PETScEigenvalueSolver esolver; 
 esolver.solve(A, B);
