@@ -1,6 +1,9 @@
 #include <dolfin.h>
 #include <iostream>
 
+#undef SEEK_SET
+#undef SEEK_END
+#undef SEEK_CUR
 #include <parmetis.h>
 extern "C"
 {
