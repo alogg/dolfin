@@ -1,9 +1,6 @@
 #include <dolfin.h>
 #include <iostream>
 
-#undef SEEK_SET
-#undef SEEK_END
-#undef SEEK_CUR
 #include <parmetis.h>
 extern "C"
 {
@@ -12,7 +9,7 @@ extern "C"
 }
 using namespace dolfin;
 
-void metisPartitioning(Graph& graph, int num_part, idxtype* vtx_part)
+void metisKwayPartitioning(Graph& graph, int num_part, idxtype* vtx_part)
 {
   int options[5];
   int num_vertices = graph.numVertices();
@@ -24,7 +21,7 @@ void metisPartitioning(Graph& graph, int num_part, idxtype* vtx_part)
   //idxtype* adjncy = reinterpret_cast<idxtype*>(graph.connectivity());
   //idxtype* xadj = reinterpret_cast<idxtype*>(graph.offsets() + 1);
 
-  // Copying values instead
+  // Copying values instead (time to copy << time to partitioning)
   idxtype* adjncy = new idxtype[graph.numArches()];
   idxtype* xadj = new idxtype[graph.numVertices() + 1];
   for(unsigned int i=0; i<graph.numArches(); ++i)
@@ -36,14 +33,42 @@ void metisPartitioning(Graph& graph, int num_part, idxtype* vtx_part)
   METIS_PartGraphKway(&num_vertices, xadj, adjncy, NULL, NULL, &wgtflag, &pnumflag, &num_part, options, &edgecut, vtx_part);
 }
 
+void metisRecursivePartitioning(Graph& graph, int num_part, int* vtx_part)
+{
+  int options[5];
+  int num_vertices = graph.numVertices();
+  int wgtflag = 0;
+  int pnumflag = 0;
+  int edgecut = 0;
+  
+  // This results in segfault
+  //idxtype* adjncy = reinterpret_cast<idxtype*>(graph.connectivity());
+  //idxtype* xadj = reinterpret_cast<idxtype*>(graph.offsets() + 1);
+
+  // Copying values instead (time to copy << time to partitioning)
+  idxtype* adjncy = new idxtype[graph.numArches()];
+  idxtype* xadj = new idxtype[graph.numVertices() + 1];
+  for(unsigned int i=0; i<graph.numArches(); ++i)
+    adjncy[i] = graph.connectivity()[i];
+  for(unsigned int i=0; i<=graph.numVertices(); ++i)
+    xadj[i] = graph.offsets()[i];
+
+  options[0] = 0;
+  METIS_PartGraphRecursive(&num_vertices, xadj, adjncy, NULL, NULL, &wgtflag, &pnumflag, &num_part, options, &edgecut, vtx_part);
+}
+
 void scotchPartitioning(Graph& graph, int num_part, int* vtx_part)
 {
   SCOTCH_Graph grafdat;
   SCOTCH_Strat strat;
 
   if (SCOTCH_graphInit (&grafdat) != 0) {
+    std::cerr << "Error in SCOTCH_graphInit. Exiting" << std::endl;
+    exit(1);
   }
   if (SCOTCH_graphBuild (&grafdat, 0, static_cast<int>(graph.numVertices()), reinterpret_cast<int*>(graph.offsets()), NULL, NULL, NULL, static_cast<int>(graph.numArches()), reinterpret_cast<int*>(graph.connectivity()), NULL) != 0) {
+    std::cerr << "Error in SCOTCH_graphBuild. Exiting" << std::endl;
+    exit(1);
   }
 
   SCOTCH_stratInit(&strat);
@@ -54,6 +79,8 @@ void scotchPartitioning(Graph& graph, int num_part, int* vtx_part)
   */
 
   if (SCOTCH_graphPart (&grafdat, num_part, &strat, vtx_part) != 0) {
+    std::cerr << "Error in SCOTCH_graphPart. Exiting" << std::endl;
+    exit(1);
   }
 
   SCOTCH_stratExit (&strat);
