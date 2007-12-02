@@ -43,5 +43,6 @@ int main(int argc, char* argv[])
 
   // This should not be necessary (finalize should be called by ~MPIManager())
   MPIManager::finalize();
+
   return 0;
 }
