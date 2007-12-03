@@ -12,14 +12,13 @@ using namespace dolfin;
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-
   // Single processor initializes mesh and broadcasts
-  UnitCube mesh(9, 9, 9);
+  UnitSquare mesh(9, 9);
 
   // All processors
   mesh.init();
 
-  int p = MPIManager::processNum();
+  unsigned int p = MPIManager::processNumber();
 
   std::stringstream meshstream;
   meshstream << "mesh_p" << p << ".xml";
