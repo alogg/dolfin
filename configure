@@ -1527,6 +1527,7 @@ Optional Features:
   --disable-pydolfin      Disable compilation of PyDOLFIN, the DOLFIN Python
                           interface
   --enable-petsc          Compile with support for PETSc linear algebra
+  --enable-mpi            Compile with support for MPI
   --enable-scotch         Compile with support for SCOTCH graph partitioning
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
@@ -2560,6 +2561,15 @@ fi
 # Check whether --with-petsc-dir was given.
 if test "${with_petsc_dir+set}" = set; then
   withval=$with_petsc_dir; PETSC_DIR=$with_petsc_dir
+fi
+
+
+# Option --enable/disable-mpi
+# Check whether --enable-mpi was given.
+if test "${enable_mpi+set}" = set; then
+  enableval=$enable_mpi; enable_mpi=$enableval
+else
+  enable_mpi=yes
 fi
 
 
@@ -5705,7 +5715,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 5708 "configure"' > conftest.$ac_ext
+  echo '#line 5718 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -7724,11 +7734,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7727: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7737: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7731: \$? = $ac_status" >&5
+   echo "$as_me:7741: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7992,11 +8002,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7995: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:8005: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7999: \$? = $ac_status" >&5
+   echo "$as_me:8009: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -8096,11 +8106,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:8099: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:8109: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:8103: \$? = $ac_status" >&5
+   echo "$as_me:8113: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -10426,7 +10436,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10429 "configure"
+#line 10439 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10526,7 +10536,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10529 "configure"
+#line 10539 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12866,11 +12876,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12869: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12879: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:12873: \$? = $ac_status" >&5
+   echo "$as_me:12883: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -12970,11 +12980,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12973: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12983: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:12977: \$? = $ac_status" >&5
+   echo "$as_me:12987: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -14558,11 +14568,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14561: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14571: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:14565: \$? = $ac_status" >&5
+   echo "$as_me:14575: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -14662,11 +14672,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14665: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14675: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14669: \$? = $ac_status" >&5
+   echo "$as_me:14679: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -16886,11 +16896,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16889: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16899: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16893: \$? = $ac_status" >&5
+   echo "$as_me:16903: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -17154,11 +17164,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:17157: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17167: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:17161: \$? = $ac_status" >&5
+   echo "$as_me:17171: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -17258,11 +17268,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:17261: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17271: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:17265: \$? = $ac_status" >&5
+   echo "$as_me:17275: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -22447,8 +22457,11 @@ else
     PETSC_CFLAGS=""
 fi
 
-# Check for MPI and print message if not found
-# Extract the first word of "mpirun", so it can be a program name with args.
+# Handle option --disable-mpi
+if test x$enable_mpi = xyes; then
+
+   # Check for MPI and print message if not found
+   # Extract the first word of "mpirun", so it can be a program name with args.
 set dummy mpirun; ac_word=$2
 { echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
@@ -22486,11 +22499,13 @@ echo "${ECHO_T}no" >&6; }
 fi
 
 
-if test $mpi_found = no; then
-    echo "MPI not found (might not work if PETSc uses MPI)."
-else
-    # Found MPI, so set HAVE_MPI_H and IGNORE_CXX_SEEK (mpich2 bug)
-    CXXFLAGS="-DHAVE_MPI_H=1 -DMPICH_IGNORE_CXX_SEEK $CXXFLAGS"
+   if test $mpi_found = no; then
+       echo "MPI not found (might not work if PETSc uses MPI)."
+   else
+       # Found MPI, so set HAVE_MPI_H and IGNORE_CXX_SEEK (mpich2 bug)
+       CXXFLAGS="-DHAVE_MPI_H=1 -DMPICH_IGNORE_CXX_SEEK $CXXFLAGS"
+   fi
+
 fi
 
 # Handle option --disable-scotch
