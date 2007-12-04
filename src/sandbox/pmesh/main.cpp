@@ -13,7 +13,8 @@ using namespace dolfin;
 int main(int argc, char* argv[])
 {
   // Single processor initializes mesh and broadcasts
-  UnitSquare mesh(9, 9);
+  //UnitSquare mesh(9, 9);
+  UnitCube mesh(12, 12, 12);
 
   // All processors
   mesh.init();
@@ -21,20 +22,20 @@ int main(int argc, char* argv[])
   unsigned int p = MPIManager::processNumber();
 
   std::stringstream meshstream;
-  meshstream << "mesh_p" << p << ".xml";
+  meshstream << "mesh_p" << p << "_" << ".pvd";
   std::string meshfile = meshstream.str();
 
   File file(meshfile);
   file << mesh;
 
   std::stringstream stream;
-  stream << "mesh_function_" << p << ".xml";
+  stream << "mesh_function_p" << p << "_" << ".pvd";
   std::string filename = stream.str();
 
   MeshFunction<unsigned int> f(mesh, 0);
 
   // Single processor partitions mesh and broadcasts
-  mesh.partition(6, f);
+  mesh.partition(MPIManager::numProcesses(), f);
 
   // All processors
   File funcfile(filename);
