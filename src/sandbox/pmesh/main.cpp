@@ -2,7 +2,7 @@
 // Licensed under the GNU LGPL Version 2.1.
 //
 // First added:  2007-10-30
-// Last changed:
+// Last changed: 2007-12-06
 //
 // This file is used for testing distribution of the mesh using MPI
 
@@ -40,9 +40,6 @@ int main(int argc, char* argv[])
   // All processors
   File funcfile(filename);
   funcfile << f;
-
-  // This should not be necessary (finalize should be called by ~MPIManager())
-  MPIManager::finalize();
 
   return 0;
 }
