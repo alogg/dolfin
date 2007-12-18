@@ -1,9 +1,10 @@
 PARMETIS = /usr/src/ParMetis-3.1
-SCOTCH = /usr/src/scotch_4.0
+#SCOTCH = /usr/src/scotch_5.0
 
-CFLAGS = -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_VERSION=4.0 -DHAVE_SCOTCH_H=1 -DDEBUG -g -O2 -Wall -ansi -DNDEBUG -pedantic -Wno-long-long -std=c++98 -I../../../local/include -I/usr/include/libxml2 -I$(PARMETIS) -I$(PARMETIS)/METISLib -I$(SCOTCH)
-#CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS) -I$(PARMETIS)/METISLib # MPI gives warnings that are being treated as errors
-LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -L$(SCOTCH) -lparmetis -lmetis -lscotch -lscotcherrcom -lcommon
+#CFLAGS = -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DHAVE_SCOTCH_H=1 -DDEBUG -g -O2 -Wall -ansi -DNDEBUG -pedantic -Wno-long-long -std=c++98 -I../../../local/include -I/usr/include/libxml2 -I$(PARMETIS) -I$(PARMETIS)/METISLib -I$(SCOTCH)
+CFLAGS  = `pkg-config --cflags dolfin` -I$(PARMETIS) -I$(PARMETIS)/METISLib # MPI gives warnings that are being treated as errors
+#LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -L$(SCOTCH) -lparmetis -lmetis -lscotch -lscotcherrcom -lcommon
+LIBS    = `pkg-config --libs dolfin` -L$(PARMETIS) -L$(SCOTCH) -lparmetis -lmetis
 CXX     = `pkg-config --variable=compiler dolfin`
 
 DEST    = benchmark

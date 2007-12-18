@@ -2,9 +2,10 @@
 // Licensed under the GNU LGPL Version 2.1.
 //
 // Modified by Garth N. Wells, 2007
+// Modified by Ola Skavhaug, 2007
 //
 // First added:  2007-01-17
-// Last changed: 2007-09-17
+// Last changed: 2007-12-07
 
 #include <dolfin/dolfin_log.h>
 #include <dolfin/Array.h>
@@ -22,6 +23,7 @@
 #include <dolfin/Assembler.h>
 #include <dolfin/SparsityPattern.h>
 #include <dolfin/SparsityPatternBuilder.h>
+#include <dolfin/DofMapSet.h>
 
 using namespace dolfin;
 
@@ -36,13 +38,13 @@ Assembler::~Assembler()
   // Do nothing
 }
 //-----------------------------------------------------------------------------
-void Assembler::assemble(GenericTensor& A, const Form& form,
-                         bool reset_tensor)
+void Assembler::assemble(GenericTensor& A, Form& form, bool reset_tensor)
 {
-  assemble(A, form.form(), form.coefficients(), 0, 0, 0, reset_tensor);
+  form.updateDofMaps(mesh);
+  assemble(A, form.form(), form.coefficients(), form.dofMaps(), 0, 0, 0, reset_tensor);
 }
 //-----------------------------------------------------------------------------
-void Assembler::assemble(GenericTensor& A, const Form& form,
+void Assembler::assemble(GenericTensor& A, Form& form,
                          const SubDomain& sub_domain, bool reset_tensor)
 {
   // Extract cell domains
@@ -65,7 +67,8 @@ void Assembler::assemble(GenericTensor& A, const Form& form,
   }
 
   // Assemble
-  assemble(A, form.form(), form.coefficients(),
+  form.updateDofMaps(mesh);
+  assemble(A, form.form(), form.coefficients(), form.dofMaps(),
            cell_domains, facet_domains, facet_domains, reset_tensor);
 
   // Delete domains
@@ -75,24 +78,25 @@ void Assembler::assemble(GenericTensor& A, const Form& form,
     delete facet_domains;
 }
 //-----------------------------------------------------------------------------
-void Assembler::assemble(GenericTensor& A, const Form& form,
+void Assembler::assemble(GenericTensor& A, Form& form,
                          const MeshFunction<uint>& cell_domains,
                          const MeshFunction<uint>& exterior_facet_domains,
                          const MeshFunction<uint>& interior_facet_domains,
                          bool reset_tensor)
 {
-  assemble(A, form.form(), form.coefficients(), &cell_domains, 
+  form.updateDofMaps(mesh);
+  assemble(A, form.form(), form.coefficients(), form.dofMaps(), &cell_domains, 
            &exterior_facet_domains, &interior_facet_domains, reset_tensor);
 }
 //-----------------------------------------------------------------------------
-dolfin::real Assembler::assemble(const Form& form)
+dolfin::real Assembler::assemble(Form& form)
 {
   Scalar value;
   assemble(value, form);
   return value;
 }
 //-----------------------------------------------------------------------------
-dolfin::real Assembler::assemble(const Form& form,
+dolfin::real Assembler::assemble(Form& form,
                                  const SubDomain& sub_domain)
 {
   Scalar value;
@@ -100,7 +104,7 @@ dolfin::real Assembler::assemble(const Form& form,
   return value;
 }
 //-----------------------------------------------------------------------------
-dolfin::real Assembler::assemble(const Form& form,
+dolfin::real Assembler::assemble(Form& form,
                                  const MeshFunction<uint>& cell_domains,
                                  const MeshFunction<uint>& exterior_facet_domains,
                                  const MeshFunction<uint>& interior_facet_domains)
@@ -113,6 +117,7 @@ dolfin::real Assembler::assemble(const Form& form,
 //-----------------------------------------------------------------------------
 void Assembler::assemble(GenericTensor& A, const ufc::form& form,
                          const Array<Function*>& coefficients,
+                         const DofMapSet& dof_map_set,
                          const MeshFunction<uint>* cell_domains,
                          const MeshFunction<uint>* exterior_facet_domains,
                          const MeshFunction<uint>* interior_facet_domains,
@@ -126,23 +131,20 @@ void Assembler::assemble(GenericTensor& A, const ufc::form& form,
   // Check arguments
   check(form, coefficients);
 
-  // Update dof maps
-  dof_map_set.update(form, mesh);
-
   // Create data structure for local assembly data
   UFC ufc(form, mesh, dof_map_set);
 
   // Initialize global tensor
-  initGlobalTensor(A, ufc, reset_tensor);
+  initGlobalTensor(A, dof_map_set, ufc, reset_tensor);
 
   // Assemble over cells
-  assembleCells(A, coefficients, ufc, cell_domains);
+  assembleCells(A, coefficients, dof_map_set, ufc, cell_domains);
 
-  // Assemble over exterior facets
-  assembleExteriorFacets(A, coefficients, ufc, exterior_facet_domains);
+  // Assemble over exterior facets 
+  assembleExteriorFacets(A, coefficients, dof_map_set, ufc, exterior_facet_domains);
 
   // Assemble over interior facets
-  assembleInteriorFacets(A, coefficients, ufc, interior_facet_domains);
+  assembleInteriorFacets(A, coefficients, dof_map_set, ufc, interior_facet_domains);
 
   // Finalise assembly of global tensor
   A.apply();
@@ -150,6 +152,7 @@ void Assembler::assemble(GenericTensor& A, const ufc::form& form,
 //-----------------------------------------------------------------------------
 void Assembler::assembleCells(GenericTensor& A,
                               const Array<Function*>& coefficients,
+                              const DofMapSet& dof_map_set,
                               UFC& ufc,
                               const MeshFunction<uint>* domains) const
 {
@@ -183,7 +186,7 @@ void Assembler::assembleCells(GenericTensor& A,
     
     // Tabulate dofs for each dimension
     for (uint i = 0; i < ufc.form.rank(); i++)
-      ufc.dof_maps[i]->tabulate_dofs(ufc.dofs[i], ufc.mesh, ufc.cell);
+      dof_map_set[i].tabulate_dofs(ufc.dofs[i], *cell);
 
     // Tabulate cell tensor
     integral->tabulate_tensor(ufc.A, ufc.w, ufc.cell);
@@ -197,6 +200,7 @@ void Assembler::assembleCells(GenericTensor& A,
 //-----------------------------------------------------------------------------
 void Assembler::assembleExteriorFacets(GenericTensor& A,
                                        const Array<Function*>& coefficients,
+                                       const DofMapSet& dof_map_set,
                                        UFC& ufc,
                                        const MeshFunction<uint>* domains) const
 {
@@ -245,7 +249,7 @@ void Assembler::assembleExteriorFacets(GenericTensor& A,
 
     // Tabulate dofs for each dimension
     for (uint i = 0; i < ufc.form.rank(); i++)
-      ufc.dof_maps[i]->tabulate_dofs(ufc.dofs[i], ufc.mesh, ufc.cell);
+      dof_map_set[i].tabulate_dofs(ufc.dofs[i], mesh_cell);    
 
     // Tabulate exterior facet tensor
     ufc.exterior_facet_integrals[0]->tabulate_tensor(ufc.A, ufc.w, ufc.cell, local_facet);
@@ -259,6 +263,7 @@ void Assembler::assembleExteriorFacets(GenericTensor& A,
 //-----------------------------------------------------------------------------
 void Assembler::assembleInteriorFacets(GenericTensor& A,
                                        const Array<Function*>& coefficients,
+                                       const DofMapSet& dof_map_set,
                                        UFC& ufc,
                                        const MeshFunction<uint>* domains) const
 {
@@ -318,8 +323,8 @@ void Assembler::assembleInteriorFacets(GenericTensor& A,
     for (uint i = 0; i < ufc.form.rank(); i++)
     {
       const uint offset = ufc.local_dimensions[i];
-      ufc.dof_maps[i]->tabulate_dofs(ufc.macro_dofs[i], ufc.mesh, ufc.cell0);
-      ufc.dof_maps[i]->tabulate_dofs(ufc.macro_dofs[i] + offset, ufc.mesh, ufc.cell1);
+      dof_map_set[i].tabulate_dofs(ufc.macro_dofs[i], cell0);
+      dof_map_set[i].tabulate_dofs(ufc.macro_dofs[i] + offset, cell1);
     }
 
     // Tabulate exterior interior facet tensor on macro element
@@ -341,14 +346,15 @@ void Assembler::check(const ufc::form& form,
                   coefficients.size(), form.num_coefficients());
 }
 //-----------------------------------------------------------------------------
-void Assembler::initGlobalTensor(GenericTensor& A, UFC& ufc,
+void Assembler::initGlobalTensor(GenericTensor& A, const DofMapSet& dof_map_set, UFC& ufc,
                                  bool reset_tensor) const
 {
   if( reset_tensor )
   {
-    SparsityPattern sparsity_pattern; 
-    SparsityPatternBuilder::build(sparsity_pattern, mesh, ufc);
-    A.init(sparsity_pattern);
+    GenericSparsityPattern* sparsity_pattern = A.factory().createPattern(); 
+    SparsityPatternBuilder::build(*sparsity_pattern, mesh, ufc, dof_map_set);
+    A.init(*sparsity_pattern);
+    delete sparsity_pattern;
   }
   else
     A.zero();
