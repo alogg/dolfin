@@ -13,9 +13,11 @@ using namespace dolfin;
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-  UnitCube mesh(12, 12, 12);
+  UnitCube mesh(4, 4, 4);
   MeshFunction<dolfin::uint> partitions;
   mesh.partition(MPIManager::numProcesses(), partitions);
+
+  partitions.disp();
 
   Matrix B;
   Poisson2DBilinearForm a;
