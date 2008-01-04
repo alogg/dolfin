@@ -17,11 +17,9 @@ int main(int argc, char* argv[])
   MeshFunction<dolfin::uint> partitions;
   mesh.partition(MPIManager::numProcesses(), partitions);
 
-  partitions.disp();
-
   Matrix B;
   Poisson2DBilinearForm a;
-  pAssembler assembler(mesh);
+  pAssembler assembler(mesh, partitions);
   assembler.assemble(B, a, true);
 
   return 0;
