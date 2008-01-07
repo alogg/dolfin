@@ -19,10 +19,10 @@ int main(int argc, char* argv[])
 
   partitions.disp();
 
-  Matrix B;
-  Poisson2DBilinearForm a;
-  pAssembler assembler(mesh);
-  assembler.assemble(B, a, true);
+  //Matrix B;
+  //Poisson2DBilinearForm a;
+  //pAssembler assembler(mesh);
+  //assembler.assemble(B, a, true);
 
   return 0;
 }
