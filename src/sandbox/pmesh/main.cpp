@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 {
   UnitCube mesh(4, 4, 4);
   MeshFunction<dolfin::uint> partitions;
-  mesh.partition(MPIManager::numProcesses(), partitions);
+  mesh.partition(dolfin::MPI::numProcesses(), partitions);
 
   partitions.disp();
 
