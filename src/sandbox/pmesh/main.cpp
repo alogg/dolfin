@@ -15,14 +15,12 @@ int main(int argc, char* argv[])
 {
   UnitCube mesh(4, 4, 4);
   MeshFunction<dolfin::uint> partitions;
-  mesh.partition(dolfin::MPI::numProcesses(), partitions);
+  mesh.partition(MPIManager::numProcesses(), partitions);
 
-  partitions.disp();
-
-  //Matrix B;
-  //Poisson2DBilinearForm a;
-  //pAssembler assembler(mesh);
-  //assembler.assemble(B, a, true);
+  Matrix B;
+  Poisson2DBilinearForm a;
+  pAssembler assembler(mesh, partitions);
+  assembler.assemble(B, a, true);
 
   return 0;
 }
