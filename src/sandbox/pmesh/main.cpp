@@ -13,7 +13,7 @@ using namespace dolfin;
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-  UnitCube mesh(4, 4, 4);
+  UnitCube mesh(25, 25, 25);
   MeshFunction<dolfin::uint> partitions;
   mesh.partition(dolfin::MPI::numProcesses(), partitions);
 
