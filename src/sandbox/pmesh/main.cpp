@@ -26,8 +26,9 @@ void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
     Matrix A;
     Assembler assembler(mesh);
     assembler.assemble(A, a, true);
+    A.disp();
 
-    File file_a("matA.m");
+    //File file_a("matA.m");
     //file_a << A;
   }
   else
@@ -36,9 +37,10 @@ void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
     pAssembler passembler(mesh, partitions);
     passembler.assemble(B, a, true);
     B.rename("B", "Parallel matrix B");
+    std::cout << "Displaying matrix on cpu: " << dolfin::MPI::processNumber() << std::endl;
+    B.disp();
 
-    File file_b(appendRank("matB", "m"));
-
+    //File file_b(appendRank("matB", "m"));
     //file_b << B;
   }
 }
@@ -67,9 +69,9 @@ int main(int argc, char* argv[])
   UnitSquare mesh(num_cells, num_cells);
   MeshFunction<dolfin::uint> partitions;
   mesh.partition(dolfin::MPI::numProcesses(), partitions);
-
+  
   Poisson2DBilinearForm a;
 
-  //check(mesh, partitions, a);
-  timer(mesh, partitions, a);
+  check(mesh, partitions, a);
+  //timer(mesh, partitions, a);
 }
