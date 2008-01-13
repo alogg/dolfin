@@ -33,6 +33,7 @@ void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
   }
   else
   {
+    /*
     Matrix B;
     pAssembler passembler(mesh, partitions);
     passembler.assemble(B, a, true);
@@ -40,18 +41,20 @@ void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
     std::cout << "Displaying matrix on cpu: " << dolfin::MPI::processNumber() << std::endl;
     B.disp();
 
+    */
     //File file_b(appendRank("matB", "m"));
     //file_b << B;
   }
 }
 
-void timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
+void timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, pForm& a)
 {
   Matrix B;
   pAssembler passembler(mesh, partitions);
   tic();
   passembler.assemble(B, a, true);
   std::cout << "Processor " << dolfin::MPI::processNumber() << " assemble time: " << toc() << std::endl;
+  B.disp();
 }
 
 int main(int argc, char* argv[])
@@ -72,6 +75,6 @@ int main(int argc, char* argv[])
   
   Poisson2DBilinearForm a;
 
-  check(mesh, partitions, a);
-  //timer(mesh, partitions, a);
+  //check(mesh, partitions, a);
+  timer(mesh, partitions, a);
 }

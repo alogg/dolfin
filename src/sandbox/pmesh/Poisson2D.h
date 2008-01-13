@@ -2474,13 +2474,13 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/Form.h>
+#include <dolfin/pForm.h>
 
-class Poisson2DBilinearForm : public dolfin::Form
+class Poisson2DBilinearForm : public dolfin::pForm
 {
 public:
 
-  Poisson2DBilinearForm() : dolfin::Form()
+  Poisson2DBilinearForm() : dolfin::pForm()
   {
     // Do nothing
   }
@@ -2507,11 +2507,11 @@ private:
 
 };
 
-class Poisson2DLinearForm : public dolfin::Form
+class Poisson2DLinearForm : public dolfin::pForm
 {
 public:
 
-  Poisson2DLinearForm(dolfin::Function& w0) : dolfin::Form()
+  Poisson2DLinearForm(dolfin::Function& w0) : dolfin::pForm()
   {
     __coefficients.push_back(&w0);
   }
