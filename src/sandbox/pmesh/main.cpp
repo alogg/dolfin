@@ -28,8 +28,8 @@ void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
     assembler.assemble(A, a, true);
     A.disp();
 
-    //File file_a("matA.m");
-    //file_a << A;
+    File file_a("matA.m");
+    file_a << A;
   }
   else
   {
