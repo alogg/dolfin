@@ -4,8 +4,8 @@
 // Warning: This code was generated with the option '-l dolfin'
 // and contains DOLFIN-specific wrappers that depend on DOLFIN.
 
-#ifndef __POISSON2D_H
-#define __POISSON2D_H
+#ifndef __PPOISSON2D_H
+#define __PPOISSON2D_H
 
 #include <cmath>
 #include <stdexcept>
@@ -14,18 +14,18 @@
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2DBilinearForm_finite_element_0: public ufc::finite_element
+class UFC_pPoisson2DBilinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DBilinearForm_finite_element_0() : ufc::finite_element()
+  UFC_pPoisson2DBilinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DBilinearForm_finite_element_0()
+  virtual ~UFC_pPoisson2DBilinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -395,25 +395,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2DBilinearForm_finite_element_0();
+    return new UFC_pPoisson2DBilinearForm_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2DBilinearForm_finite_element_1: public ufc::finite_element
+class UFC_pPoisson2DBilinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DBilinearForm_finite_element_1() : ufc::finite_element()
+  UFC_pPoisson2DBilinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DBilinearForm_finite_element_1()
+  virtual ~UFC_pPoisson2DBilinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -783,7 +783,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2DBilinearForm_finite_element_1();
+    return new UFC_pPoisson2DBilinearForm_finite_element_1();
   }
 
 };
@@ -791,7 +791,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2DBilinearForm_dof_map_0: public ufc::dof_map
+class UFC_pPoisson2DBilinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -800,13 +800,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2DBilinearForm_dof_map_0() : ufc::dof_map()
+  UFC_pPoisson2DBilinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DBilinearForm_dof_map_0()
+  virtual ~UFC_pPoisson2DBilinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -926,7 +926,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2DBilinearForm_dof_map_0();
+    return new UFC_pPoisson2DBilinearForm_dof_map_0();
   }
 
 };
@@ -934,7 +934,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2DBilinearForm_dof_map_1: public ufc::dof_map
+class UFC_pPoisson2DBilinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -943,13 +943,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2DBilinearForm_dof_map_1() : ufc::dof_map()
+  UFC_pPoisson2DBilinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DBilinearForm_dof_map_1()
+  virtual ~UFC_pPoisson2DBilinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -1069,7 +1069,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2DBilinearForm_dof_map_1();
+    return new UFC_pPoisson2DBilinearForm_dof_map_1();
   }
 
 };
@@ -1078,18 +1078,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2DBilinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_pPoisson2DBilinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DBilinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_pPoisson2DBilinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DBilinearForm_cell_integral_0()
+  virtual ~UFC_pPoisson2DBilinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -1155,18 +1155,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_Poisson2DBilinearForm: public ufc::form
+class UFC_pPoisson2DBilinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DBilinearForm() : ufc::form()
+  UFC_pPoisson2DBilinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DBilinearForm()
+  virtual ~UFC_pPoisson2DBilinearForm()
   {
     // Do nothing
   }
@@ -1213,10 +1213,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_Poisson2DBilinearForm_finite_element_0();
+      return new UFC_pPoisson2DBilinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_Poisson2DBilinearForm_finite_element_1();
+      return new UFC_pPoisson2DBilinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -1228,10 +1228,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_Poisson2DBilinearForm_dof_map_0();
+      return new UFC_pPoisson2DBilinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_Poisson2DBilinearForm_dof_map_1();
+      return new UFC_pPoisson2DBilinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -1240,7 +1240,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_Poisson2DBilinearForm_cell_integral_0();
+    return new UFC_pPoisson2DBilinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -1259,18 +1259,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2DLinearForm_finite_element_0: public ufc::finite_element
+class UFC_pPoisson2DLinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DLinearForm_finite_element_0() : ufc::finite_element()
+  UFC_pPoisson2DLinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DLinearForm_finite_element_0()
+  virtual ~UFC_pPoisson2DLinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -1640,25 +1640,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2DLinearForm_finite_element_0();
+    return new UFC_pPoisson2DLinearForm_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2DLinearForm_finite_element_1: public ufc::finite_element
+class UFC_pPoisson2DLinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DLinearForm_finite_element_1() : ufc::finite_element()
+  UFC_pPoisson2DLinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DLinearForm_finite_element_1()
+  virtual ~UFC_pPoisson2DLinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -2028,7 +2028,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2DLinearForm_finite_element_1();
+    return new UFC_pPoisson2DLinearForm_finite_element_1();
   }
 
 };
@@ -2036,7 +2036,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2DLinearForm_dof_map_0: public ufc::dof_map
+class UFC_pPoisson2DLinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2045,13 +2045,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2DLinearForm_dof_map_0() : ufc::dof_map()
+  UFC_pPoisson2DLinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DLinearForm_dof_map_0()
+  virtual ~UFC_pPoisson2DLinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -2171,7 +2171,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2DLinearForm_dof_map_0();
+    return new UFC_pPoisson2DLinearForm_dof_map_0();
   }
 
 };
@@ -2179,7 +2179,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2DLinearForm_dof_map_1: public ufc::dof_map
+class UFC_pPoisson2DLinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -2188,13 +2188,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2DLinearForm_dof_map_1() : ufc::dof_map()
+  UFC_pPoisson2DLinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DLinearForm_dof_map_1()
+  virtual ~UFC_pPoisson2DLinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -2314,7 +2314,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2DLinearForm_dof_map_1();
+    return new UFC_pPoisson2DLinearForm_dof_map_1();
   }
 
 };
@@ -2323,18 +2323,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2DLinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_pPoisson2DLinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DLinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_pPoisson2DLinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DLinearForm_cell_integral_0()
+  virtual ~UFC_pPoisson2DLinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -2394,18 +2394,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_Poisson2DLinearForm: public ufc::form
+class UFC_pPoisson2DLinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DLinearForm() : ufc::form()
+  UFC_pPoisson2DLinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DLinearForm()
+  virtual ~UFC_pPoisson2DLinearForm()
   {
     // Do nothing
   }
@@ -2452,10 +2452,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_Poisson2DLinearForm_finite_element_0();
+      return new UFC_pPoisson2DLinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_Poisson2DLinearForm_finite_element_1();
+      return new UFC_pPoisson2DLinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -2467,10 +2467,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_Poisson2DLinearForm_dof_map_0();
+      return new UFC_pPoisson2DLinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_Poisson2DLinearForm_dof_map_1();
+      return new UFC_pPoisson2DLinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -2479,7 +2479,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_Poisson2DLinearForm_cell_integral_0();
+    return new UFC_pPoisson2DLinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -2498,13 +2498,13 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/Form.h>
+#include <dolfin/pForm.h>
 
-class Poisson2DBilinearForm : public dolfin::Form
+class pPoisson2DBilinearForm : public dolfin::pForm
 {
 public:
 
-  Poisson2DBilinearForm() : dolfin::Form()
+  pPoisson2DBilinearForm() : dolfin::pForm()
   {
     // Do nothing
   }
@@ -2524,18 +2524,18 @@ public:
 private:
 
   // UFC form
-  UFC_Poisson2DBilinearForm __form;
+  UFC_pPoisson2DBilinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
 
 };
 
-class Poisson2DLinearForm : public dolfin::Form
+class pPoisson2DLinearForm : public dolfin::pForm
 {
 public:
 
-  Poisson2DLinearForm(dolfin::Function& w0) : dolfin::Form()
+  pPoisson2DLinearForm(dolfin::Function& w0) : dolfin::pForm()
   {
     __coefficients.push_back(&w0);
   }
@@ -2555,7 +2555,7 @@ public:
 private:
 
   // UFC form
-  UFC_Poisson2DLinearForm __form;
+  UFC_pPoisson2DLinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
