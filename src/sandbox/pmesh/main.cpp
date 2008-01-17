@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
   mesh.partition(dolfin::MPI::numProcesses(), partitions);
 
   //check(mesh, partitions);
-  if(MPI::numProcesses() == 1)
+  if(dolfin::MPI::numProcesses() == 1)
     timer(mesh, partitions, num_iterations);
   else
     p_timer(mesh, partitions, num_iterations);
