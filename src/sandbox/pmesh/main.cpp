@@ -8,6 +8,8 @@
 // This file is used for testing distribution of the mesh using MPI
 
 #include <dolfin.h>
+#include <dolfin/pUFC.h>
+#include "pPoisson2D.h"
 #include "Poisson2D.h"
 
 using namespace dolfin;
@@ -19,62 +21,83 @@ std::string appendRank(std::string base, std::string ext)
   return stream.str();
 }
 
-void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, Form& a)
+void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions)
 {
+  // Do normal assembly on process 1
+  Poisson2DBilinearForm a;
+  pPoisson2DBilinearForm b;
+  Matrix A, B;
+
   if(dolfin::MPI::numProcesses() == 1)
   {
-    Matrix A;
     Assembler assembler(mesh);
     assembler.assemble(A, a, true);
-    A.disp();
-
-    File file_a("matA.m");
-    file_a << A;
   }
-  else
+  // Parallel assembly on all procs
   {
-    /*
-    Matrix B;
     pAssembler passembler(mesh, partitions);
-    passembler.assemble(B, a, true);
-    B.rename("B", "Parallel matrix B");
-    std::cout << "Displaying matrix on cpu: " << dolfin::MPI::processNumber() << std::endl;
-    B.disp();
-
-    */
-    //File file_b(appendRank("matB", "m"));
-    //file_b << B;
+    passembler.assemble(B, b, true);
   }
-}
+  pDofMapSet& dof_map_set = b.dofMaps();
 
-void timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, pForm& a)
-{
-  Matrix B;
-  pAssembler passembler(mesh, partitions);
-  tic();
-  passembler.assemble(B, a, true);
-  std::cout << "Processor " << dolfin::MPI::processNumber() << " assemble time: " << toc() << std::endl;
+  // Would be nice to have automatic testing of B = A * modified dofs
+  // Currently just printing so that matrices can be manually inspected
+  A.disp();
+  dolfin::cout << "Mapping: " << dolfin::endl;
+  std::map<const dolfin::uint, dolfin::uint> map = dof_map_set[0].getMap();
+  for(dolfin::uint i=0; i<mesh.numCells(); ++i)
+  {
+    dolfin::cout << i << " => " << map[i] << dolfin::endl;
+  }
   B.disp();
 }
 
+void timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations)
+{
+  set("debug level", -1);
+  Poisson2DBilinearForm a;
+  Matrix A;
+  Assembler assembler(mesh);
+  tic();
+  for(int i=0; i<num_iterations; ++i)
+    assembler.assemble(A, a, true);
+  std::cout << "Average assemble time: " << toc()/num_iterations << std::endl;
+}
+
+void p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations)
+{
+  set("debug level", -1);
+  pPoisson2DBilinearForm a;
+  Matrix B;
+  pAssembler passembler(mesh, partitions);
+  tic();
+  for(int i=0; i<num_iterations; ++i)
+    passembler.assemble(B, a, true);
+  std::cout << "Processor " << dolfin::MPI::processNumber() << " Average assemble time: " << toc()/num_iterations << std::endl;
+}
+
+
 int main(int argc, char* argv[])
 {
-  if(argc < 2)
+  if(argc < 3)
   {
-    std::cerr << "Usage: " << argv[0] << " <num_cells>\n";
+    std::cerr << "Usage: " << argv[0] << 
+      " <num_cells> <num_iterations>\n";
     exit(1);
   }
 
   dolfin_init(argc, argv);
 
   int num_cells = atoi(argv[1]);
+  int num_iterations = atoi(argv[2]);
 
   UnitSquare mesh(num_cells, num_cells);
   MeshFunction<dolfin::uint> partitions;
   mesh.partition(dolfin::MPI::numProcesses(), partitions);
-  
-  Poisson2DBilinearForm a;
 
-  //check(mesh, partitions, a);
-  timer(mesh, partitions, a);
+  //check(mesh, partitions);
+  if(dolfin::MPI::numProcesses() == 1)
+    timer(mesh, partitions, num_iterations);
+  else
+    p_timer(mesh, partitions, num_iterations);
 }
