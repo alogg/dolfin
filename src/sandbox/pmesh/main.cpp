@@ -61,7 +61,7 @@ void timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iteration
   tic();
   for(int i=0; i<num_iterations; ++i)
     assembler.assemble(A, a, true);
-  std::cout << "Average assemble time: " << toc()/num_iterations << std::endl;
+  printf("Average assemble time: %.3e\n", toc() / static_cast<real>(num_iterations));
 }
 
 void p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations)
@@ -73,7 +73,7 @@ void p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterati
   tic();
   for(int i=0; i<num_iterations; ++i)
     passembler.assemble(B, a, true);
-  std::cout << "Processor " << dolfin::MPI::processNumber() << " Average assemble time: " << toc()/num_iterations << std::endl;
+  printf("Processor %d: Average assemble time: %.3e\n", dolfin::MPI::processNumber(), toc() / static_cast<real>(num_iterations));
 }
 
 
