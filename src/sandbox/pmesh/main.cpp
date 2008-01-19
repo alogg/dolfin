@@ -42,14 +42,21 @@ void check(Mesh& mesh, MeshFunction<dolfin::uint>& partitions)
 
   // Would be nice to have automatic testing of B = A * modified dofs
   // Currently just printing so that matrices can be manually inspected
-  A.disp();
+  PetscViewer viewer_a(PETSC_VIEWER_STDOUT_SELF);
+  PetscViewerASCIIOpen(PETSC_COMM_WORLD, "A.m", &viewer_a);
+  //PetscViewerSetFormat(viewer_a, PETSC_VIEWER_ASCII_MATLAB);
+  MatView(A.mat().mat(), viewer_a);
+
   dolfin::cout << "Mapping: " << dolfin::endl;
   std::map<const dolfin::uint, dolfin::uint> map = dof_map_set[0].getMap();
-  for(dolfin::uint i=0; i<mesh.numCells(); ++i)
+  for(dolfin::uint i=0; i<map.size(); ++i)
   {
     dolfin::cout << i << " => " << map[i] << dolfin::endl;
   }
-  B.disp();
+  PetscViewer viewer(PETSC_VIEWER_STDOUT_WORLD);
+  PetscViewerASCIIOpen(PETSC_COMM_WORLD, "B.m", &viewer);
+  //PetscViewerSetFormat(viewer, PETSC_VIEWER_ASCII_MATLAB);
+  MatView(B.mat().mat(), viewer);
 }
 
 void timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations)
@@ -82,22 +89,24 @@ int main(int argc, char* argv[])
   if(argc < 3)
   {
     std::cerr << "Usage: " << argv[0] << 
-      " <num_cells> <num_iterations>\n";
+      " <mesh_file> <num_iterations>\n";
     exit(1);
   }
 
   dolfin_init(argc, argv);
 
-  int num_cells = atoi(argv[1]);
+  char* infilename = argv[1];
   int num_iterations = atoi(argv[2]);
 
-  UnitSquare mesh(num_cells, num_cells);
+  Mesh mesh(infilename);
+
   MeshFunction<dolfin::uint> partitions;
   mesh.partition(dolfin::MPI::numProcesses(), partitions);
 
-  //check(mesh, partitions);
   if(dolfin::MPI::numProcesses() == 1)
     timer(mesh, partitions, num_iterations);
   else
     p_timer(mesh, partitions, num_iterations);
+
+  check(mesh, partitions);
 }
