@@ -20,7 +20,6 @@ using namespace dolfin;
 void timer(Mesh& mesh, int num_iterations)
 {
   dolfin::cout << "Assembling with sequential assembler." << dolfin::endl;
-  set("debug level", -1);
   Poisson2DBilinearForm a;
   Matrix A;
   Assembler assembler(mesh);
@@ -34,7 +33,6 @@ void timer(Mesh& mesh, int num_iterations)
 void p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations)
 {
   dolfin::cout << "Assembling with parallel assembler." << dolfin::endl;
-  set("debug level", -1);
   pPoisson2DBilinearForm a;
   Matrix B;
   pAssembler passembler(mesh, partitions);
@@ -52,6 +50,7 @@ int main(int argc, char* argv[])
   int cells = 200;
   int num_iterations = 1;
   int num_part = dolfin::MPI::numProcesses();
+  int debug = -1;
   bool check = false;
   bool sequential = false;
 
@@ -65,6 +64,7 @@ int main(int argc, char* argv[])
   listOpts.addOption("", "resultfile", "File to save results in", true);
   listOpts.addOption("", "num_iterations", "Number of times to assemble", true);
   listOpts.addOption("", "check", "Verify assembly result", false);
+  listOpts.addOption("", "debug", "Prints debugging info", false);
 
   if (listOpts.parse(argc, argv))
     while ((switchInt = listOpts.cycle()) >= 0)
@@ -95,6 +95,9 @@ int main(int argc, char* argv[])
         case 7:
           check = true;
           break;
+        case 8:
+          debug = 1;
+          break;
         default:
           break;
       }
@@ -102,6 +105,7 @@ int main(int argc, char* argv[])
 
   Mesh mesh;
   MeshFunction<dolfin::uint>* partitions;
+  set("debug level", debug);
   if(meshfile != "")
   {
     dolfin::cout << "Reading mesh from file: " << meshfile << dolfin::endl;
@@ -138,7 +142,6 @@ int main(int argc, char* argv[])
 
   if(check)
   {
-    set("debug level", 1);
     dolfin::cout << "Verifying assembly" << dolfin::endl;
     check_assembly(mesh, *partitions);
   }
