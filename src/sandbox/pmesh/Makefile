@@ -3,7 +3,7 @@ LIBS    = `pkg-config --libs dolfin`
 CXX     = `pkg-config --variable=compiler dolfin`
 
 DEST    = dolfin-pmesh-test
-OBJECTS = main.o
+OBJECTS = main.o getopts.o
 
 all: $(DEST)
 
