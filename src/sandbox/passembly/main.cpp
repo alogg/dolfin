@@ -19,8 +19,11 @@ int main(int argc, char* argv[])
   cout << "Starting parallel assemble/solve test." << endl;    
 
   // Initialise PETSc  
-  PETScManager::init(argc, argv);
+  //PETScManager::init(argc, argv);
 
+  // Initializes MPI PETSc
+  dolfin::SubSystemsManager::initMPI();
+  dolfin::SubSystemsManager::initPETSc();
   // Get number of processes
   int num_processes_int;
   MPI_Comm_size(PETSC_COMM_WORLD, &num_processes_int);
@@ -36,8 +39,10 @@ int main(int argc, char* argv[])
   MeshFunction<dolfin::uint> cell_partition_function;
   mesh.partition(num_processes, cell_partition_function);
 
+  /*
   if(this_process == 0)
     plot(cell_partition_function);
+    */
 
   // Create linear and bilinear forms
   Function f(mesh, 1.0);
@@ -103,7 +108,9 @@ int main(int argc, char* argv[])
     
     // Tabulate unmodified dofs for each dimension
     for (dolfin::uint i = 0; i < ufc_a.form.rank(); i++)
-      ufc_a.dof_maps[i]->tabulate_dofs(ufc_a.dofs[i], ufc_a.mesh, ufc_a.cell);
+      dof_map_set_a[i].tabulate_dofs(ufc_a.dofs[i], ufc_a.cell);
+      //dof_mapa[i]->tabulate_dofs(ufc_a.dofs[i], ufc_a.mesh, ufc_a.cell);
+      //ufc_a.dof_maps[i]->tabulate_dofs(ufc_a.dofs[i], ufc_a.mesh, ufc_a.cell);
 
     // Compute parallel dof map
     pdof_map.update(dofs, ufc_a.dofs[0], ufc_a.local_dimensions[0]);
