@@ -12,6 +12,8 @@
 #include "Poisson2D.h"
 #include "pPoisson3D_1.h"
 #include "Poisson3D_1.h"
+//#include "pNonlinear2D.h"
+//#include "Nonlinear2D.h"
 #include <iostream>
 #include <fstream>
 #include "getopts.h"
@@ -25,10 +27,11 @@ real timer(Mesh& mesh, int num_iterations, Form& a)
   Matrix A;
   Assembler assembler(mesh);
 
+  assembler.assemble(A, a, true);
   tic();
   for(int i=0; i<num_iterations; ++i)
-    assembler.assemble(A, a, true);
-  return toc()/static_cast<real>(num_iterations);
+    assembler.assemble(A, a, false);
+  printf("Average assemble time: %.3e\n", toc()/static_cast<real>(num_iterations));
 }
 
 real p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations, pForm& a)
@@ -37,10 +40,11 @@ real p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterati
   Matrix B;
   pAssembler passembler(mesh, partitions);
 
+  passembler.assemble(B, a, true);
   tic();
   for(int i=0; i<num_iterations; ++i)
-    passembler.assemble(B, a, true);
-  return toc()/static_cast<real>(num_iterations);
+    passembler.assemble(B, a, false);
+  printf("Processor %d: Average assemble time: %.3e\n", dolfin::MPI::processNumber(), toc()/static_cast<real>(num_iterations));
 }
 
 int main(int argc, char* argv[])
