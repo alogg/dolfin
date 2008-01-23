@@ -10,6 +10,8 @@
 #include <dolfin.h>
 #include "pPoisson2D.h"
 #include "Poisson2D.h"
+//#include "pNonlinear2D.h"
+//#include "Nonlinear2D.h"
 #include <iostream>
 #include <fstream>
 #include "getopts.h"
@@ -20,26 +22,32 @@ using namespace dolfin;
 void timer(Mesh& mesh, int num_iterations)
 {
   dolfin::cout << "Assembling with sequential assembler." << dolfin::endl;
+  //Function w(mesh, 1.0);
+  //Nonlinear2DBilinearForm a(w);
   Poisson2DBilinearForm a;
   Matrix A;
   Assembler assembler(mesh);
 
+  assembler.assemble(A, a, true);
   tic();
   for(int i=0; i<num_iterations; ++i)
-    assembler.assemble(A, a, true);
+    assembler.assemble(A, a, false);
   printf("Average assemble time: %.3e\n", toc()/static_cast<real>(num_iterations));
 }
 
 void p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations)
 {
   dolfin::cout << "Assembling with parallel assembler." << dolfin::endl;
+  //Function w(mesh, 1.0);
+  //pNonlinear2DBilinearForm a(w);
   pPoisson2DBilinearForm a;
   Matrix B;
   pAssembler passembler(mesh, partitions);
 
+  passembler.assemble(B, a, true);
   tic();
   for(int i=0; i<num_iterations; ++i)
-    passembler.assemble(B, a, true);
+    passembler.assemble(B, a, false);
   printf("Processor %d: Average assemble time: %.3e\n", dolfin::MPI::processNumber(), toc()/static_cast<real>(num_iterations));
 }
 
