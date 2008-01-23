@@ -8,8 +8,8 @@
 // This file is used for testing distribution of the mesh using MPI
 
 #include <dolfin.h>
-#include "pPoisson2D.h"
-#include "Poisson2D.h"
+#include "pPoisson.h"
+#include "Poisson.h"
 //#include "pNonlinear2D.h"
 //#include "Nonlinear2D.h"
 #include <iostream>
@@ -24,7 +24,7 @@ void timer(Mesh& mesh, int num_iterations)
   dolfin::cout << "Assembling with sequential assembler." << dolfin::endl;
   //Function w(mesh, 1.0);
   //Nonlinear2DBilinearForm a(w);
-  Poisson2DBilinearForm a;
+  PoissonBilinearForm a;
   Matrix A;
   Assembler assembler(mesh);
 
@@ -40,7 +40,7 @@ void p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterati
   dolfin::cout << "Assembling with parallel assembler." << dolfin::endl;
   //Function w(mesh, 1.0);
   //pNonlinear2DBilinearForm a(w);
-  pPoisson2DBilinearForm a;
+  pPoissonBilinearForm a;
   Matrix B;
   pAssembler passembler(mesh, partitions);
 
@@ -121,8 +121,8 @@ int main(int argc, char* argv[])
   }
   else
   {
-    printf("Creating UnitSquare(%d,%d)\n", cells, cells);
-    mesh = UnitSquare(cells, cells);
+    printf("Creating UnitCube(%d, %d, %d)\n", cells, cells, cells);
+    mesh = UnitCube(cells, cells, cells);
   }
   if(partitionsfile != "")
   {
@@ -138,13 +138,13 @@ int main(int argc, char* argv[])
   if(sequential)
   {
     dolfin::cout << "Assembling with sequential assembler." << dolfin::endl;
-    printf("Number of iteration: %d Number of partitions: %d\n", num_iterations, num_part);
+    printf("Number of iterations: %d Number of partitions: %d\n", num_iterations, num_part);
     timer(mesh, num_iterations);
   }
   else
   {
     dolfin::cout << "Assembling with parallel assembler." << dolfin::endl;
-    printf("Number of iteration: %d Number of partitions: %d\n", num_iterations, num_part);
+    printf("Number of iterations: %d Number of partitions: %d\n", num_iterations, num_part);
     p_timer(mesh, *partitions, num_iterations);
   }
 
