@@ -12,8 +12,8 @@
 #include "Poisson2D.h"
 #include "pPoisson3D_1.h"
 #include "Poisson3D_1.h"
-//#include "pNonlinear2D.h"
-//#include "Nonlinear2D.h"
+#include "pNonlinear2D.h"
+#include "Nonlinear2D.h"
 #include <iostream>
 #include <fstream>
 #include "getopts.h"
@@ -31,7 +31,7 @@ real timer(Mesh& mesh, int num_iterations, Form& a)
   tic();
   for(int i=0; i<num_iterations; ++i)
     assembler.assemble(A, a, false);
-  printf("Average assemble time: %.3e\n", toc()/static_cast<real>(num_iterations));
+  return toc()/static_cast<real>(num_iterations);
 }
 
 real p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterations, pForm& a)
@@ -44,7 +44,7 @@ real p_timer(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, int num_iterati
   tic();
   for(int i=0; i<num_iterations; ++i)
     passembler.assemble(B, a, false);
-  printf("Processor %d: Average assemble time: %.3e\n", dolfin::MPI::processNumber(), toc()/static_cast<real>(num_iterations));
+  return toc()/static_cast<real>(num_iterations);
 }
 
 int main(int argc, char* argv[])
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
   listOpts.addOption("", "num_iterations", "Number of times to assemble", true);
   listOpts.addOption("", "check", "Verify assembly result", false);
   listOpts.addOption("", "debug", "Prints debugging info", false);
-  listOpts.addOption("", "testtype", "Type of test: Poisson2D, Poisson3D", true);
+  listOpts.addOption("", "testtype", "Type of test: Poisson2D, Poisson3D, Nonlinear2D", true);
 
   if (listOpts.parse(argc, argv))
     while ((switchInt = listOpts.cycle()) >= 0)
@@ -126,12 +126,12 @@ int main(int argc, char* argv[])
   {
     if(testtype == "Poisson3D")
     {
-      printf("Creating UnitCube(%d,%d,%d)\n", cells_3D, cells_3D, cells_3D);
+      printf("Creating UnitCube(%d, %d, %d)\n", cells_3D, cells_3D, cells_3D);
       mesh = UnitCube(cells_3D, cells_3D, cells_3D);
     }
     else
     {
-      printf("Creating UnitSquare(%d,%d)\n",  cells, cells);
+      printf("Creating UnitSquare(%d, %d)\n",  cells, cells);
       mesh = UnitSquare(cells, cells);
     }
   }
@@ -152,6 +152,11 @@ int main(int argc, char* argv[])
     Form* a;
     if(testtype == "Poisson3D")
       a = new Poisson3D_1BilinearForm();
+    else if(testtype == "Nonlinear2D")
+    {
+      Function w(mesh, 1.0);
+      a = new Nonlinear2DBilinearForm(w);
+    }
     else
       a = new Poisson2DBilinearForm();
 
@@ -165,6 +170,11 @@ int main(int argc, char* argv[])
     pForm* a;
     if(testtype == "Poisson3D")
       a = new pPoisson3D_1BilinearForm();
+    else if(testtype == "Nonlinear2D")
+    {
+      Function w(mesh, 1.0);
+      a = new pNonlinear2DBilinearForm(w);
+    }
     else
       a = new pPoisson2DBilinearForm();
 
@@ -186,8 +196,8 @@ int main(int argc, char* argv[])
   }
   if(check)
   {
-    dolfin::cout << "Verifying assembly" << dolfin::endl;
-    check_assembly(mesh, *partitions);
+    dolfin::cout << "Not implemented" << dolfin::endl;
+    //check_assembly(mesh, *partitions);
   }
   return 0;
 }

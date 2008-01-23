@@ -1,4 +1,6 @@
 #include <dolfin.h>
+#include "Poisson2D.h"
+#include "pPoisson2D.h"
 
 using namespace dolfin;
 //-----------------------------------------------------------------------------
@@ -17,8 +19,8 @@ void assemble(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, char* filename
 void check_assembly(Mesh& mesh, MeshFunction<dolfin::uint>& partitions)
 {
   // Do normal assembly on process 1
-  PoissonBilinearForm a;
-  pPoissonBilinearForm b;
+  Poisson2DBilinearForm a;
+  pPoisson2DBilinearForm b;
   Matrix A, B;
 
   if(dolfin::MPI::numProcesses() == 1)
