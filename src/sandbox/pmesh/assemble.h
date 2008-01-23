@@ -17,8 +17,8 @@ void assemble(Mesh& mesh, MeshFunction<dolfin::uint>& partitions, char* filename
 void check_assembly(Mesh& mesh, MeshFunction<dolfin::uint>& partitions)
 {
   // Do normal assembly on process 1
-  Poisson2DBilinearForm a;
-  pPoisson2DBilinearForm b;
+  PoissonBilinearForm a;
+  pPoissonBilinearForm b;
   Matrix A, B;
 
   if(dolfin::MPI::numProcesses() == 1)
