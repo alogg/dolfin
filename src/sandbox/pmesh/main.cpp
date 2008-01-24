@@ -8,10 +8,8 @@
 // This file is used for testing distribution of the mesh using MPI
 
 #include <dolfin.h>
-#include "pPoisson2D.h"
-#include "Poisson2D.h"
-#include "pPoisson3D_1.h"
-#include "Poisson3D_1.h"
+#include "pPoisson.h"
+#include "Poisson.h"
 #include "pNonlinear2D.h"
 #include "Nonlinear2D.h"
 #include <iostream>
@@ -52,13 +50,14 @@ int main(int argc, char* argv[])
   std::string meshfile, partitionsfile, resultfile;
   std::string assembler = "parallel";
   int cells = 400;
-  int cells_3D = 30;
+  int cells_3D = 40;
   int num_iterations = 1;
   int num_part = dolfin::MPI::numProcesses();
   int debug = -1;
   bool check = false;
   bool sequential = false;
-  std::string testtype = "Poisson2D";
+  std::string testtype = "Poisson3D";
+  bool petsc_info = false;
 
   Options listOpts;
   int switchInt;
@@ -72,6 +71,7 @@ int main(int argc, char* argv[])
   listOpts.addOption("", "check", "Verify assembly result", false);
   listOpts.addOption("", "debug", "Prints debugging info", false);
   listOpts.addOption("", "testtype", "Type of test: Poisson2D, Poisson3D, Nonlinear2D", true);
+  listOpts.addOption("", "petsc_info", "Print info from PETSc", false);
 
   if (listOpts.parse(argc, argv))
     while ((switchInt = listOpts.cycle()) >= 0)
@@ -109,6 +109,9 @@ int main(int argc, char* argv[])
         case 9:
           testtype = listOpts.getArgs(switchInt);
           break;
+        case 10:
+          petsc_info = true;
+          break;
         default:
           break;
       }
@@ -117,6 +120,15 @@ int main(int argc, char* argv[])
   Mesh mesh;
   MeshFunction<dolfin::uint>* partitions;
   set("debug level", debug);
+  //dolfin_init(argc, argv);
+  if(petsc_info)
+  {
+    char** init_argv = new char*[2];
+    init_argv[0] = argv[0];
+    init_argv[1] = "-info";
+    dolfin::cout << "dolfin_init" << dolfin::endl;
+    dolfin_init(2, init_argv);
+  }
   if(meshfile != "")
   {
     dolfin::cout << "Reading mesh from file: " << meshfile << dolfin::endl;
@@ -124,15 +136,15 @@ int main(int argc, char* argv[])
   }
   else
   {
-    if(testtype == "Poisson3D")
-    {
-      printf("Creating UnitCube(%d, %d, %d)\n", cells_3D, cells_3D, cells_3D);
-      mesh = UnitCube(cells_3D, cells_3D, cells_3D);
-    }
-    else
+    if(testtype == "Nonlinear2D" || testtype == "Poisson2D")
     {
       printf("Creating UnitSquare(%d, %d)\n",  cells, cells);
       mesh = UnitSquare(cells, cells);
+    }
+    else
+    {
+      printf("Creating UnitCube(%d, %d, %d)\n", cells_3D, cells_3D, cells_3D);
+      mesh = UnitCube(cells_3D, cells_3D, cells_3D);
     }
   }
   if(partitionsfile != "")
@@ -151,14 +163,14 @@ int main(int argc, char* argv[])
   {
     Form* a;
     if(testtype == "Poisson3D")
-      a = new Poisson3D_1BilinearForm();
+      a = new PoissonBilinearForm();
     else if(testtype == "Nonlinear2D")
     {
       Function w(mesh, 1.0);
       a = new Nonlinear2DBilinearForm(w);
     }
     else
-      a = new Poisson2DBilinearForm();
+      a = new PoissonBilinearForm();
 
     dolfin::cout << "Running test " << testtype << dolfin::endl;
     dolfin::cout << "Assembling with sequential assembler." << dolfin::endl;
@@ -169,14 +181,14 @@ int main(int argc, char* argv[])
   {
     pForm* a;
     if(testtype == "Poisson3D")
-      a = new pPoisson3D_1BilinearForm();
+      a = new pPoissonBilinearForm();
     else if(testtype == "Nonlinear2D")
     {
       Function w(mesh, 1.0);
       a = new pNonlinear2DBilinearForm(w);
     }
     else
-      a = new pPoisson2DBilinearForm();
+      a = new pPoissonBilinearForm();
 
     dolfin::cout << "Running test " << testtype << dolfin::endl;
     dolfin::cout << "Assembling with parallel assembler." << dolfin::endl;
