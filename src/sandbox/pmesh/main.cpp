@@ -199,7 +199,7 @@ int main(int argc, char* argv[])
   {
     dolfin::cout << "Appending results to " << resultfile << dolfin::endl;
     std::ofstream outfile(resultfile.c_str(), std::ofstream::app);
-    outfile << cells << " " << dolfin::MPI::numProcesses() << " " << time << std::endl;
+    outfile << dolfin::MPI::numProcesses() << " " << time << std::endl;
     outfile.close();
   }
   else
