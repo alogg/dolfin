@@ -1,6 +1,6 @@
 #!/bin/bash
 outfile=parallel_poisson_cube.dat
-num_procs=8
+num_procs=4
 iter=1
 num_cells=30
 
