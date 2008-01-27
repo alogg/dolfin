@@ -1,4 +1,3 @@
-from dolfin import *
 from pylab import *
 
 if (size(sys.argv) < 3):

@@ -120,7 +120,6 @@ int main(int argc, char* argv[])
   Mesh mesh;
   MeshFunction<dolfin::uint>* partitions;
   set("debug level", debug);
-  //dolfin_init(argc, argv);
   if(petsc_info)
   {
     char** init_argv = new char*[2];
@@ -147,17 +146,6 @@ int main(int argc, char* argv[])
       mesh = UnitCube(cells_3D, cells_3D, cells_3D);
     }
   }
-  if(partitionsfile != "")
-  {
-    dolfin::cout << "Reading partitions from file: " << partitionsfile << dolfin::endl;
-    partitions = new MeshFunction<dolfin::uint>(mesh, partitionsfile);
-  }
-  else
-  {
-    dolfin::cout << "Partitioning mesh into: " << num_part << " partitions" << dolfin::endl;
-    partitions = new MeshFunction<dolfin::uint>(mesh);
-    mesh.partition(num_part, *partitions);
-  }
   real time = 0;
   if(sequential)
   {
@@ -174,11 +162,23 @@ int main(int argc, char* argv[])
 
     dolfin::cout << "Running test " << testtype << dolfin::endl;
     dolfin::cout << "Assembling with sequential assembler." << dolfin::endl;
-    printf("Number of iteration: %d Number of partitions: %d\n", num_iterations, num_part);
+    printf("Number of iteration(s): %d\n", num_iterations);
     time = timer(mesh, num_iterations, *a);
   }
   else
   {
+    if(partitionsfile != "")
+    {
+      dolfin::cout << "Reading partitions from file: " << partitionsfile << dolfin::endl;
+      partitions = new MeshFunction<dolfin::uint>(mesh, partitionsfile);
+    }
+    else
+    {
+      dolfin::cout << "Partitioning mesh into: " << num_part << " partitions" << dolfin::endl;
+      partitions = new MeshFunction<dolfin::uint>(mesh);
+      mesh.partition(num_part, *partitions);
+    }
+
     pForm* a;
     if(testtype == "Poisson3D")
       a = new pPoissonBilinearForm();
@@ -192,7 +192,7 @@ int main(int argc, char* argv[])
 
     dolfin::cout << "Running test " << testtype << dolfin::endl;
     dolfin::cout << "Assembling with parallel assembler." << dolfin::endl;
-    printf("Number of iteration: %d Number of partitions: %d\n", num_iterations, num_part);
+    printf("Number of iteration(s): %d Number of partitions: %d\n", num_iterations, num_part);
     time = p_timer(mesh, *partitions, num_iterations, *a);
   }
   if(resultfile != "")
