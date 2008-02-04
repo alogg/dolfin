@@ -35,6 +35,7 @@ namespace dolfin
     void create(unsigned int num_processes, unsigned int this_process, Mesh& mesh, UFC& ufc,
                 MeshFunction<unsigned int>& cell_partition_function)
     {
+      dolfin_debug("create()");
       std::set<unsigned int> set;
       std::pair<std::set<unsigned int>::const_iterator, bool> set_return;
 
@@ -43,20 +44,25 @@ namespace dolfin
 
       for (unsigned int proc = 0; proc < num_processes; ++proc)
       {
+        dolfin_debug1("proc = %d", proc);
         for (CellIterator cell(mesh); !cell.end(); ++cell)
         {
           if (cell_partition_function.get(*cell) != static_cast<unsigned int>(proc))
             continue;
 
+          dolfin_debug1("Updating cell = %d", cell->index());
           // Update to current cell
           ufc.update(*cell);
   
           // Tabulate dofs for each dimension
-          ufc.dof_maps[0]->tabulate_dofs(ufc.dofs[0], ufc.mesh, ufc.cell);
-          ufc.dof_maps[1]->tabulate_dofs(ufc.dofs[1], ufc.mesh, ufc.cell);
+          dolfin_debug1("Tabulate dofs for cell = %d dim 0", cell->index());
+          ufc_dof_map[0].tabulate_dofs(ufc.dofs[0], ufc.mesh, ufc.cell);
+          dolfin_debug1("Tabulate dofs for cell = %d dim 1", cell->index());
+          ufc_dof_map[1].tabulate_dofs(ufc.dofs[1], ufc.mesh, ufc.cell);
 
-          for(unsigned int i=0; i < ufc.dof_maps[0]->local_dimension(); ++i)
+          for(unsigned int i=0; i < ufc_dof_map->local_dimension(); ++i)
           {
+            dolfin_debug1("dof = %d", i);
             set_return = set.insert( (ufc.dofs[0])[i] );
             if( set_return.second )
             {
@@ -65,6 +71,10 @@ namespace dolfin
             }
           }
         }
+      }
+      for(unsigned int i=0; i<map.size(); ++i)
+      {
+        dolfin_debug2("map[%d] = %d", i, map[i]);
       }
     };
 
@@ -81,6 +91,8 @@ namespace dolfin
 
     std::vector<unsigned int> map;
     std::vector<unsigned int> _process_dimension;
+
+    ufc::dof_map* ufc_dof_map;
 
   };
 }
