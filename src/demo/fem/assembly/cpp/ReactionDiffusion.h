@@ -3165,13 +3165,13 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/pForm.h>
+#include <dolfin/Form.h>
 
-class ReactionDiffusionBilinearForm : public dolfin::pForm
+class ReactionDiffusionBilinearForm : public dolfin::Form
 {
 public:
 
-  ReactionDiffusionBilinearForm() : dolfin::pForm()
+  ReactionDiffusionBilinearForm() : dolfin::Form()
   {
     // Do nothing
   }
@@ -3198,11 +3198,11 @@ private:
 
 };
 
-class ReactionDiffusionLinearForm : public dolfin::pForm
+class ReactionDiffusionLinearForm : public dolfin::Form
 {
 public:
 
-  ReactionDiffusionLinearForm(dolfin::Function& w0) : dolfin::pForm()
+  ReactionDiffusionLinearForm(dolfin::Function& w0) : dolfin::Form()
   {
     __coefficients.push_back(&w0);
   }
