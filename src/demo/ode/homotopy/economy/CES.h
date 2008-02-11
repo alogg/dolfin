@@ -339,7 +339,7 @@ public:
     
     this->real_valued = real_valued;
 
-    tol = get("homotopy solution tolerance");
+    tol = dolfin_get("homotopy solution tolerance");
 
     init(&tmp0);
     init(&tmp1);
