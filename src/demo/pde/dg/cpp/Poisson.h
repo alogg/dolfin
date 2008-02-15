@@ -134,6 +134,14 @@ public:
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -342,37 +350,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[3][2] = {{0, 0}, {1, 0}, {0, 1}};
-    
-    // Components for each dof
-    static unsigned int components[3] = {0, 0, 0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -522,6 +555,14 @@ public:
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -730,37 +771,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[3][2] = {{0, 0}, {1, 0}, {0, 1}};
-    
-    // Components for each dof
-    static unsigned int components[3] = {0, 0, 0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -900,6 +966,14 @@ public:
     *values = coeff0_0*basisvalue0;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -1084,37 +1158,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[1][2] = {{0.333333333333333, 0.333333333333333}};
-    
-    // Components for each dof
-    static unsigned int components[1] = {0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -1254,6 +1353,14 @@ public:
     *values = coeff0_0*basisvalue0;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -1438,37 +1545,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[1][2] = {{0.333333333333333, 0.333333333333333}};
-    
-    // Components for each dof
-    static unsigned int components[1] = {0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -1639,6 +1771,14 @@ public:
       values[1] = coeff0_0*basisvalue0;
     }
     
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -1916,37 +2056,62 @@ public:
     
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[2];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[2][1][2] = {{{0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333}}};
+    const static double W[2][1] = {{1}, {1}};
+    const static double D[2][1][2] = {{{1, 0}}, {{0, 1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[2][2] = {{0.333333333333333, 0.333333333333333}, {0.333333333333333, 0.333333333333333}};
-    
-    // Components for each dof
-    static unsigned int components[2] = {0, 1};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[2];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 2; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -2097,6 +2262,14 @@ public:
     
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -2283,37 +2456,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[1][2] = {{0.333333333333333, 0.333333333333333}};
-    
-    // Components for each dof
-    static unsigned int components[1] = {0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -2420,10 +2618,22 @@ public:
     return 3;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -2452,6 +2662,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -2560,10 +2777,22 @@ public:
     return 3;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -2592,6 +2821,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -2700,10 +2936,22 @@ public:
     return 1;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -2730,6 +2978,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -2834,10 +3089,22 @@ public:
     return 1;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -2864,6 +3131,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -2968,10 +3242,22 @@ public:
     return 2;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -3000,6 +3286,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -3115,10 +3408,22 @@ public:
     return 1;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -3145,6 +3450,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -4123,6 +4435,14 @@ public:
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -4331,37 +4651,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[3][2] = {{0, 0}, {1, 0}, {0, 1}};
-    
-    // Components for each dof
-    static unsigned int components[3] = {0, 0, 0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -4511,6 +4856,14 @@ public:
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -4719,37 +5072,62 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    double values[1];
-    double coordinates[2];
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
-    // Nodal coordinates on reference cell
-    static double X[3][2] = {{0, 0}, {1, 0}, {0, 1}};
-    
-    // Components for each dof
-    static unsigned int components[3] = {0, 0, 0};
-    
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
+    double result = 0.0;
+    // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0] - X[i][1];
-    const double w1 = X[i][0];
-    const double w2 = X[i][1];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
     
-    // Compute affine mapping x = F(X)
-    coordinates[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    coordinates[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
-    // Evaluate function at coordinates
-    f.evaluate(values, coordinates, c);
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
     
-    // Pick component for evaluation
-    return values[components[i]];
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -4856,10 +5234,22 @@ public:
     return 3;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -4888,6 +5278,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -4996,10 +5393,22 @@ public:
     return 3;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -5028,6 +5437,13 @@ public:
       
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
