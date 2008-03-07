@@ -5,7 +5,7 @@
 # a mixed formulation of Poisson's equation with BDM
 # (Brezzi-Douglas-Marini) elements.
 
-# Compile this form with FFC: ffc MixedPoisson.form
+# Compile this form with FFC: ffc -l dolfin MixedPoisson.form
 
 q = 1
 
