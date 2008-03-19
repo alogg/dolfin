@@ -37,7 +37,7 @@ file.write("\n")
 for (name, element_signature, dof_map_signature) in signatures:
     file.write("#include \"%s.h\"\n" % name)
 file.write("\n")
-file.write("#include <dolfin/ElementLibrary.h>\n")
+file.write("#include \"ElementLibrary.h\"\n")
 file.write("\n")
 file.write("ufc::finite_element* dolfin::ElementLibrary::create_finite_element(const char* signature)\n")
 file.write("{\n")
