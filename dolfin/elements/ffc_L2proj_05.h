@@ -33,19 +33,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::triangle;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 20;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -66,192 +66,15 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
-    const double coeff0_6 = coefficients0[dof][6];
-    const double coeff0_7 = coefficients0[dof][7];
-    const double coeff0_8 = coefficients0[dof][8];
-    const double coeff0_9 = coefficients0[dof][9];
-    const double coeff0_10 = coefficients0[dof][10];
-    const double coeff0_11 = coefficients0[dof][11];
-    const double coeff0_12 = coefficients0[dof][12];
-    const double coeff0_13 = coefficients0[dof][13];
-    const double coeff0_14 = coefficients0[dof][14];
-    const double coeff0_15 = coefficients0[dof][15];
-    const double coeff0_16 = coefficients0[dof][16];
-    const double coeff0_17 = coefficients0[dof][17];
-    const double coeff0_18 = coefficients0[dof][18];
-    const double coeff0_19 = coefficients0[dof][19];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -261,489 +84,16 @@ public:
                                           const double* coordinates,
                                           const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 3;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 2)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {6.32455532033676, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 11.2249721603218, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4.58257569495584, 0, 8.36660026534076, -1.18321595661992, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.74165738677394, 0, 0, 8.69482604771366, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.49909083394701, 0, -3.3466401061363, -2.36643191323985, 15.4919333848297, 0, 0.692820323027551, 0, 0.565685424949239, 0.400000000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.89897948556636, 0, 0, 0, 14.1985914794391, 0, -0.82807867121083, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.6, 0, 8.76356092008266, -1.54919333848297, 0, 0, 9.52470471983253, 0, -1.48131215963608, 0.261861468283192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.24264068711928, 0, 0, 0, 0, 0, 14.3427433120127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.11769145362398, 0, 3.16227766016838, 4.91934955049954, 0, 0, 0, 0, 10.690449676497, -2.41897262725906, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.54558441227157, 0, 0, 7.66811580507233, 0, 0, 0, 0, 0, 10.3691851174526, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats1[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.47722557505166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.591607978309959, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-2.64575131106459, 0, 9.66091783079296, 0.683130051063973, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 0, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.24037034920393, 0, 0, 7.52994023880668, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.28284271247462, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, -5.69209978830308, 4.38178046004133, -0.774596669241487, 0, 10.998181667894, 4.76235235991626, 0.962140470884726, -0.740656079818041, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.19615242270664, 0, -3.16227766016838, -2.23606797749979, 0, 0, 13.7477270848675, 0, 0.534522483824849, 0.37796447300923, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463864, 3.17542648054294, 0, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0, 0, 0, 9.25820099772551, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-1.8, 0, 3.65148371670111, -2.84018778721878, 0, 0, 0, 0, 12.3442679969674, 1.39659449751035, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613579, 0, 0, 3.83405790253616, 0, 0, 0, 0, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.20454076850486, 0, 0, 6.6407830863536, 0, 0, 0, 0, 0, 8.97997772825746, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats2[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.82574185835055, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.16397779494322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.59160797830996, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.32287565553229, 0, 3.86436713231718, -0.341565025531987, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 7.09929573971954, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.08012344973464, 0, 7.09929573971954, 2.50998007960222, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-3.81881307912986, 0, 0, 8.87411967464942, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.282842712474619, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 1.30930734141595, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241484, 0, 3.14233761939829, 4.76235235991626, -0.10690449676497, -0.740656079818042, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.03923048454133, 0, 3.16227766016838, -0.447213595499959, 0, 0, 5.8918830363718, 0, -0.53452248382485, 0.0755928946018459, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054294, 9.07114735222145, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 0.547722557505165, 1.58113883008419, 2.45967477524977, 0, 9.07114735222145, 0, 1.8516401995451, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.900000000000001, 0, 1.46059348668045, 1.42009389360939, 0, 0, 9.07114735222145, 0, 4.93770719878694, -0.698297248755175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613578, -6.26099033699941, 0, 3.83405790253616, 0, 0, 0, 10.5830052442584, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.734846922834954, 0, -6.26099033699941, 2.21359436211787, 0, 0, 0, 0, 10.5830052442584, 2.99332590941915, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.7157676649773, 0, 0, -4.69574275274955, 0, 0, 0, 0, 0, 12.69960629311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
-    double coeff0_6 = 0;
-    double coeff0_7 = 0;
-    double coeff0_8 = 0;
-    double coeff0_9 = 0;
-    double coeff0_10 = 0;
-    double coeff0_11 = 0;
-    double coeff0_12 = 0;
-    double coeff0_13 = 0;
-    double coeff0_14 = 0;
-    double coeff0_15 = 0;
-    double coeff0_16 = 0;
-    double coeff0_17 = 0;
-    double coeff0_18 = 0;
-    double coeff0_19 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
-    double new_coeff0_6 = 0;
-    double new_coeff0_7 = 0;
-    double new_coeff0_8 = 0;
-    double new_coeff0_9 = 0;
-    double new_coeff0_10 = 0;
-    double new_coeff0_11 = 0;
-    double new_coeff0_12 = 0;
-    double new_coeff0_13 = 0;
-    double new_coeff0_14 = 0;
-    double new_coeff0_15 = 0;
-    double new_coeff0_16 = 0;
-    double new_coeff0_17 = 0;
-    double new_coeff0_18 = 0;
-    double new_coeff0_19 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
-      new_coeff0_6 = coefficients0[dof][6];
-      new_coeff0_7 = coefficients0[dof][7];
-      new_coeff0_8 = coefficients0[dof][8];
-      new_coeff0_9 = coefficients0[dof][9];
-      new_coeff0_10 = coefficients0[dof][10];
-      new_coeff0_11 = coefficients0[dof][11];
-      new_coeff0_12 = coefficients0[dof][12];
-      new_coeff0_13 = coefficients0[dof][13];
-      new_coeff0_14 = coefficients0[dof][14];
-      new_coeff0_15 = coefficients0[dof][15];
-      new_coeff0_16 = coefficients0[dof][16];
-      new_coeff0_17 = coefficients0[dof][17];
-      new_coeff0_18 = coefficients0[dof][18];
-      new_coeff0_19 = coefficients0[dof][19];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
-        coeff0_6 = new_coeff0_6;
-        coeff0_7 = new_coeff0_7;
-        coeff0_8 = new_coeff0_8;
-        coeff0_9 = new_coeff0_9;
-        coeff0_10 = new_coeff0_10;
-        coeff0_11 = new_coeff0_11;
-        coeff0_12 = new_coeff0_12;
-        coeff0_13 = new_coeff0_13;
-        coeff0_14 = new_coeff0_14;
-        coeff0_15 = new_coeff0_15;
-        coeff0_16 = new_coeff0_16;
-        coeff0_17 = new_coeff0_17;
-        coeff0_18 = new_coeff0_18;
-        coeff0_19 = new_coeff0_19;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
-          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
-          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
-          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
-          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
-          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
-          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
-          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
-          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
-          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
-          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
-          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
-          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
-          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
-          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
-          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
-          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
-          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
-          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
-          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
-          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
-          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
-          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
-          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
-          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
-          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
-          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
-          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
-          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
-        }
-        if(combinations[deriv_num][j] == 2)
-        {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
-          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
-          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
-          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
-          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
-          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
-          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
-          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
-          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
-          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
-          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
-          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
-          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
-          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
-          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
-          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
-          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
+    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -752,24 +102,22 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[20][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.666666666666667, 0.333333333333333}}, {{0, 0.333333333333333, 0.666666666666667}}, {{0.666666666666667, 0, 0.333333333333333}}, {{0.333333333333333, 0, 0.666666666666667}}, {{0.666666666666667, 0.333333333333333, 0}}, {{0.333333333333333, 0.666666666666667, 0}}, {{0, 0, 0.333333333333333}}, {{0, 0, 0.666666666666667}}, {{0, 0.333333333333333, 0}}, {{0, 0.666666666666667, 0}}, {{0.333333333333333, 0, 0}}, {{0.666666666666667, 0, 0}}, {{0.333333333333333, 0.333333333333333, 0.333333333333333}}, {{0, 0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333, 0}}};
-    const static double W[20][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[20][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
     // Evaluate function at physical points
     double values[1];
@@ -789,6 +137,14 @@ public:
     return result;
   }
 
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
@@ -798,7 +154,6 @@ public:
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[1];
     vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -836,19 +191,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::triangle;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 20;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -869,192 +224,15 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
-    const double coeff0_6 = coefficients0[dof][6];
-    const double coeff0_7 = coefficients0[dof][7];
-    const double coeff0_8 = coefficients0[dof][8];
-    const double coeff0_9 = coefficients0[dof][9];
-    const double coeff0_10 = coefficients0[dof][10];
-    const double coeff0_11 = coefficients0[dof][11];
-    const double coeff0_12 = coefficients0[dof][12];
-    const double coeff0_13 = coefficients0[dof][13];
-    const double coeff0_14 = coefficients0[dof][14];
-    const double coeff0_15 = coefficients0[dof][15];
-    const double coeff0_16 = coefficients0[dof][16];
-    const double coeff0_17 = coefficients0[dof][17];
-    const double coeff0_18 = coefficients0[dof][18];
-    const double coeff0_19 = coefficients0[dof][19];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -1064,489 +242,16 @@ public:
                                           const double* coordinates,
                                           const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 3;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 2)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {6.32455532033676, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 11.2249721603218, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4.58257569495584, 0, 8.36660026534076, -1.18321595661992, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.74165738677394, 0, 0, 8.69482604771366, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.49909083394701, 0, -3.3466401061363, -2.36643191323985, 15.4919333848297, 0, 0.692820323027551, 0, 0.565685424949239, 0.400000000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.89897948556636, 0, 0, 0, 14.1985914794391, 0, -0.82807867121083, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.6, 0, 8.76356092008266, -1.54919333848297, 0, 0, 9.52470471983253, 0, -1.48131215963608, 0.261861468283192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.24264068711928, 0, 0, 0, 0, 0, 14.3427433120127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.11769145362398, 0, 3.16227766016838, 4.91934955049954, 0, 0, 0, 0, 10.690449676497, -2.41897262725906, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.54558441227157, 0, 0, 7.66811580507233, 0, 0, 0, 0, 0, 10.3691851174526, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats1[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.47722557505166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.591607978309959, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-2.64575131106459, 0, 9.66091783079296, 0.683130051063973, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 0, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.24037034920393, 0, 0, 7.52994023880668, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.28284271247462, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, -5.69209978830308, 4.38178046004133, -0.774596669241487, 0, 10.998181667894, 4.76235235991626, 0.962140470884726, -0.740656079818041, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.19615242270664, 0, -3.16227766016838, -2.23606797749979, 0, 0, 13.7477270848675, 0, 0.534522483824849, 0.37796447300923, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463864, 3.17542648054294, 0, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0, 0, 0, 9.25820099772551, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-1.8, 0, 3.65148371670111, -2.84018778721878, 0, 0, 0, 0, 12.3442679969674, 1.39659449751035, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613579, 0, 0, 3.83405790253616, 0, 0, 0, 0, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.20454076850486, 0, 0, 6.6407830863536, 0, 0, 0, 0, 0, 8.97997772825746, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats2[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.82574185835055, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.16397779494322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.59160797830996, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.32287565553229, 0, 3.86436713231718, -0.341565025531987, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 7.09929573971954, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.08012344973464, 0, 7.09929573971954, 2.50998007960222, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-3.81881307912986, 0, 0, 8.87411967464942, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.282842712474619, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 1.30930734141595, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241484, 0, 3.14233761939829, 4.76235235991626, -0.10690449676497, -0.740656079818042, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.03923048454133, 0, 3.16227766016838, -0.447213595499959, 0, 0, 5.8918830363718, 0, -0.53452248382485, 0.0755928946018459, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054294, 9.07114735222145, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 0.547722557505165, 1.58113883008419, 2.45967477524977, 0, 9.07114735222145, 0, 1.8516401995451, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.900000000000001, 0, 1.46059348668045, 1.42009389360939, 0, 0, 9.07114735222145, 0, 4.93770719878694, -0.698297248755175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613578, -6.26099033699941, 0, 3.83405790253616, 0, 0, 0, 10.5830052442584, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.734846922834954, 0, -6.26099033699941, 2.21359436211787, 0, 0, 0, 0, 10.5830052442584, 2.99332590941915, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.7157676649773, 0, 0, -4.69574275274955, 0, 0, 0, 0, 0, 12.69960629311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
-    double coeff0_6 = 0;
-    double coeff0_7 = 0;
-    double coeff0_8 = 0;
-    double coeff0_9 = 0;
-    double coeff0_10 = 0;
-    double coeff0_11 = 0;
-    double coeff0_12 = 0;
-    double coeff0_13 = 0;
-    double coeff0_14 = 0;
-    double coeff0_15 = 0;
-    double coeff0_16 = 0;
-    double coeff0_17 = 0;
-    double coeff0_18 = 0;
-    double coeff0_19 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
-    double new_coeff0_6 = 0;
-    double new_coeff0_7 = 0;
-    double new_coeff0_8 = 0;
-    double new_coeff0_9 = 0;
-    double new_coeff0_10 = 0;
-    double new_coeff0_11 = 0;
-    double new_coeff0_12 = 0;
-    double new_coeff0_13 = 0;
-    double new_coeff0_14 = 0;
-    double new_coeff0_15 = 0;
-    double new_coeff0_16 = 0;
-    double new_coeff0_17 = 0;
-    double new_coeff0_18 = 0;
-    double new_coeff0_19 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
-      new_coeff0_6 = coefficients0[dof][6];
-      new_coeff0_7 = coefficients0[dof][7];
-      new_coeff0_8 = coefficients0[dof][8];
-      new_coeff0_9 = coefficients0[dof][9];
-      new_coeff0_10 = coefficients0[dof][10];
-      new_coeff0_11 = coefficients0[dof][11];
-      new_coeff0_12 = coefficients0[dof][12];
-      new_coeff0_13 = coefficients0[dof][13];
-      new_coeff0_14 = coefficients0[dof][14];
-      new_coeff0_15 = coefficients0[dof][15];
-      new_coeff0_16 = coefficients0[dof][16];
-      new_coeff0_17 = coefficients0[dof][17];
-      new_coeff0_18 = coefficients0[dof][18];
-      new_coeff0_19 = coefficients0[dof][19];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
-        coeff0_6 = new_coeff0_6;
-        coeff0_7 = new_coeff0_7;
-        coeff0_8 = new_coeff0_8;
-        coeff0_9 = new_coeff0_9;
-        coeff0_10 = new_coeff0_10;
-        coeff0_11 = new_coeff0_11;
-        coeff0_12 = new_coeff0_12;
-        coeff0_13 = new_coeff0_13;
-        coeff0_14 = new_coeff0_14;
-        coeff0_15 = new_coeff0_15;
-        coeff0_16 = new_coeff0_16;
-        coeff0_17 = new_coeff0_17;
-        coeff0_18 = new_coeff0_18;
-        coeff0_19 = new_coeff0_19;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
-          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
-          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
-          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
-          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
-          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
-          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
-          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
-          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
-          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
-          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
-          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
-          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
-          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
-          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
-          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
-          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
-          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
-          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
-          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
-          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
-          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
-          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
-          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
-          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
-          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
-          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
-          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
-          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
-        }
-        if(combinations[deriv_num][j] == 2)
-        {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
-          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
-          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
-          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
-          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
-          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
-          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
-          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
-          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
-          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
-          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
-          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
-          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
-          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
-          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
-          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
-          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
+    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -1555,24 +260,22 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[20][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.666666666666667, 0.333333333333333}}, {{0, 0.333333333333333, 0.666666666666667}}, {{0.666666666666667, 0, 0.333333333333333}}, {{0.333333333333333, 0, 0.666666666666667}}, {{0.666666666666667, 0.333333333333333, 0}}, {{0.333333333333333, 0.666666666666667, 0}}, {{0, 0, 0.333333333333333}}, {{0, 0, 0.666666666666667}}, {{0, 0.333333333333333, 0}}, {{0, 0.666666666666667, 0}}, {{0.333333333333333, 0, 0}}, {{0.666666666666667, 0, 0}}, {{0.333333333333333, 0.333333333333333, 0.333333333333333}}, {{0, 0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333, 0}}};
-    const static double W[20][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[20][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
     // Evaluate function at physical points
     double values[1];
@@ -1592,6 +295,14 @@ public:
     return result;
   }
 
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
@@ -1601,7 +312,6 @@ public:
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[1];
     vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1644,7 +354,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1653,16 +363,13 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return true;
-      break;
-    case 3:
-      return false;
       break;
     }
     return false;
@@ -1671,7 +378,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + 2*m.num_entities[1] + m.num_entities[2];
+    __global_dimension = 3*m.num_entities[2];
     return false;
   }
 
@@ -1697,13 +404,25 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 20;
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 10;
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -1711,28 +430,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + 2*c.entity_indices[1][0];
-    dofs[5] = offset + 2*c.entity_indices[1][0] + 1;
-    dofs[6] = offset + 2*c.entity_indices[1][1];
-    dofs[7] = offset + 2*c.entity_indices[1][1] + 1;
-    dofs[8] = offset + 2*c.entity_indices[1][2];
-    dofs[9] = offset + 2*c.entity_indices[1][2] + 1;
-    dofs[10] = offset + 2*c.entity_indices[1][3];
-    dofs[11] = offset + 2*c.entity_indices[1][3] + 1;
-    dofs[12] = offset + 2*c.entity_indices[1][4];
-    dofs[13] = offset + 2*c.entity_indices[1][4] + 1;
-    dofs[14] = offset + 2*c.entity_indices[1][5];
-    dofs[15] = offset + 2*c.entity_indices[1][5] + 1;
-    offset = offset + 2*m.num_entities[1];
-    dofs[16] = offset + c.entity_indices[2][0];
-    dofs[17] = offset + c.entity_indices[2][1];
-    dofs[18] = offset + c.entity_indices[2][2];
-    dofs[19] = offset + c.entity_indices[2][3];
+    dofs[0] = 3*c.entity_indices[2][0];
+    dofs[1] = 3*c.entity_indices[2][0] + 1;
+    dofs[2] = 3*c.entity_indices[2][0] + 2;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1742,54 +442,22 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 7;
-      dofs[7] = 8;
-      dofs[8] = 9;
-      dofs[9] = 16;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 17;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 6;
-      dofs[4] = 7;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 18;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 8;
-      dofs[4] = 9;
-      dofs[5] = 12;
-      dofs[6] = 13;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 19;
+      
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -1799,64 +467,10 @@ public:
     const double * const * x = c.coordinates;
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
     coordinates[1][0] = x[1][0];
     coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[4][1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[4][2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[5][0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-    coordinates[5][1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-    coordinates[5][2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
-    coordinates[6][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[6][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[6][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[7][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-    coordinates[7][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-    coordinates[7][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
-    coordinates[8][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[8][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[8][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
-    coordinates[9][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[9][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[9][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
-    coordinates[10][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-    coordinates[10][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-    coordinates[10][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
-    coordinates[11][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-    coordinates[11][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-    coordinates[11][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
-    coordinates[12][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[12][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[12][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
-    coordinates[13][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[13][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[13][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
-    coordinates[14][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[14][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[14][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
-    coordinates[15][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[15][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[15][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
-    coordinates[16][0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[16][1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[16][2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[17][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[17][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[17][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[18][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[18][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[18][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[19][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[19][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[19][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1899,7 +513,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1908,16 +522,13 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return true;
-      break;
-    case 3:
-      return false;
       break;
     }
     return false;
@@ -1926,7 +537,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + 2*m.num_entities[1] + m.num_entities[2];
+    __global_dimension = 3*m.num_entities[2];
     return false;
   }
 
@@ -1952,13 +563,25 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 20;
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 10;
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -1966,28 +589,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + 2*c.entity_indices[1][0];
-    dofs[5] = offset + 2*c.entity_indices[1][0] + 1;
-    dofs[6] = offset + 2*c.entity_indices[1][1];
-    dofs[7] = offset + 2*c.entity_indices[1][1] + 1;
-    dofs[8] = offset + 2*c.entity_indices[1][2];
-    dofs[9] = offset + 2*c.entity_indices[1][2] + 1;
-    dofs[10] = offset + 2*c.entity_indices[1][3];
-    dofs[11] = offset + 2*c.entity_indices[1][3] + 1;
-    dofs[12] = offset + 2*c.entity_indices[1][4];
-    dofs[13] = offset + 2*c.entity_indices[1][4] + 1;
-    dofs[14] = offset + 2*c.entity_indices[1][5];
-    dofs[15] = offset + 2*c.entity_indices[1][5] + 1;
-    offset = offset + 2*m.num_entities[1];
-    dofs[16] = offset + c.entity_indices[2][0];
-    dofs[17] = offset + c.entity_indices[2][1];
-    dofs[18] = offset + c.entity_indices[2][2];
-    dofs[19] = offset + c.entity_indices[2][3];
+    dofs[0] = 3*c.entity_indices[2][0];
+    dofs[1] = 3*c.entity_indices[2][0] + 1;
+    dofs[2] = 3*c.entity_indices[2][0] + 2;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1997,54 +601,22 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 7;
-      dofs[7] = 8;
-      dofs[8] = 9;
-      dofs[9] = 16;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 17;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 6;
-      dofs[4] = 7;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 18;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 8;
-      dofs[4] = 9;
-      dofs[5] = 12;
-      dofs[6] = 13;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 19;
+      
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -2054,64 +626,10 @@ public:
     const double * const * x = c.coordinates;
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
     coordinates[1][0] = x[1][0];
     coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[4][1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[4][2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[5][0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-    coordinates[5][1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-    coordinates[5][2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
-    coordinates[6][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[6][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[6][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[7][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-    coordinates[7][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-    coordinates[7][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
-    coordinates[8][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[8][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[8][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
-    coordinates[9][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[9][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[9][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
-    coordinates[10][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-    coordinates[10][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-    coordinates[10][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
-    coordinates[11][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-    coordinates[11][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-    coordinates[11][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
-    coordinates[12][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[12][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[12][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
-    coordinates[13][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[13][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[13][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
-    coordinates[14][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[14][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[14][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
-    coordinates[15][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[15][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[15][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
-    coordinates[16][0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[16][1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[16][2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[17][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[17][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[17][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[18][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[18][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[18][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[19][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[19][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[19][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2159,23 +677,11 @@ public:
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
     const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-      
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    
-    const double d_20 = J_01*J_12 - J_02*J_11;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    double detJ = J_00*J_11 - J_01*J_10;
       
     // Compute inverse of Jacobian
     
@@ -2186,406 +692,15 @@ public:
     const double G0_ = det;
     
     // Compute element tensor
-    A[0] = 0.000595238095238095*G0_;
-    A[1] = 7.44047619047619e-05*G0_;
-    A[2] = 7.44047619047618e-05*G0_;
-    A[3] = 7.44047619047618e-05*G0_;
-    A[4] = 0.000111607142857143*G0_;
-    A[5] = 0.000111607142857143*G0_;
-    A[6] = 0.000111607142857143*G0_;
-    A[7] = 0.000111607142857143*G0_;
-    A[8] = 0.000111607142857142*G0_;
-    A[9] = 0.000111607142857143*G0_;
-    A[10] = -0.000446428571428572*G0_;
-    A[11] = 0.000223214285714286*G0_;
-    A[12] = -0.000446428571428572*G0_;
-    A[13] = 0.000223214285714286*G0_;
-    A[14] = -0.000446428571428572*G0_;
-    A[15] = 0.000223214285714286*G0_;
-    A[16] = 0.00133928571428572*G0_;
-    A[17] = 0.000669642857142858*G0_;
-    A[18] = 0.000669642857142858*G0_;
-    A[19] = 0.000669642857142858*G0_;
-    A[20] = 7.44047619047619e-05*G0_;
-    A[21] = 0.000595238095238094*G0_;
-    A[22] = 7.44047619047617e-05*G0_;
-    A[23] = 7.44047619047616e-05*G0_;
-    A[24] = 0.000111607142857143*G0_;
-    A[25] = 0.000111607142857143*G0_;
-    A[26] = -0.000446428571428571*G0_;
-    A[27] = 0.000223214285714286*G0_;
-    A[28] = -0.000446428571428571*G0_;
-    A[29] = 0.000223214285714286*G0_;
-    A[30] = 0.000111607142857142*G0_;
-    A[31] = 0.000111607142857143*G0_;
-    A[32] = 0.000111607142857142*G0_;
-    A[33] = 0.000111607142857143*G0_;
-    A[34] = 0.000223214285714285*G0_;
-    A[35] = -0.000446428571428571*G0_;
-    A[36] = 0.000669642857142857*G0_;
-    A[37] = 0.00133928571428571*G0_;
-    A[38] = 0.000669642857142856*G0_;
-    A[39] = 0.000669642857142856*G0_;
-    A[40] = 7.44047619047618e-05*G0_;
-    A[41] = 7.44047619047616e-05*G0_;
-    A[42] = 0.000595238095238094*G0_;
-    A[43] = 7.44047619047617e-05*G0_;
-    A[44] = -0.00044642857142857*G0_;
-    A[45] = 0.000223214285714285*G0_;
-    A[46] = 0.000111607142857143*G0_;
-    A[47] = 0.000111607142857143*G0_;
-    A[48] = 0.000223214285714285*G0_;
-    A[49] = -0.00044642857142857*G0_;
-    A[50] = 0.000111607142857142*G0_;
-    A[51] = 0.000111607142857143*G0_;
-    A[52] = 0.000223214285714286*G0_;
-    A[53] = -0.00044642857142857*G0_;
-    A[54] = 0.000111607142857142*G0_;
-    A[55] = 0.000111607142857143*G0_;
-    A[56] = 0.000669642857142856*G0_;
-    A[57] = 0.000669642857142856*G0_;
-    A[58] = 0.00133928571428571*G0_;
-    A[59] = 0.000669642857142857*G0_;
-    A[60] = 7.44047619047618e-05*G0_;
-    A[61] = 7.44047619047616e-05*G0_;
-    A[62] = 7.44047619047617e-05*G0_;
-    A[63] = 0.000595238095238094*G0_;
-    A[64] = 0.000223214285714285*G0_;
-    A[65] = -0.00044642857142857*G0_;
-    A[66] = 0.000223214285714285*G0_;
-    A[67] = -0.00044642857142857*G0_;
-    A[68] = 0.000111607142857142*G0_;
-    A[69] = 0.000111607142857143*G0_;
-    A[70] = 0.000223214285714285*G0_;
-    A[71] = -0.00044642857142857*G0_;
-    A[72] = 0.000111607142857142*G0_;
-    A[73] = 0.000111607142857143*G0_;
-    A[74] = 0.000111607142857142*G0_;
-    A[75] = 0.000111607142857143*G0_;
-    A[76] = 0.000669642857142854*G0_;
-    A[77] = 0.000669642857142855*G0_;
-    A[78] = 0.000669642857142855*G0_;
-    A[79] = 0.00133928571428571*G0_;
-    A[80] = 0.000111607142857143*G0_;
-    A[81] = 0.000111607142857143*G0_;
-    A[82] = -0.00044642857142857*G0_;
-    A[83] = 0.000223214285714285*G0_;
-    A[84] = 0.00401785714285714*G0_;
-    A[85] = -0.00200892857142857*G0_;
-    A[86] = 0;
-    A[87] = -0.00100446428571429*G0_;
-    A[88] = -0.00100446428571428*G0_;
-    A[89] = 0.00200892857142857*G0_;
-    A[90] = 0;
-    A[91] = -0.00100446428571429*G0_;
-    A[92] = -0.00100446428571428*G0_;
-    A[93] = 0.00200892857142857*G0_;
-    A[94] = 0;
-    A[95] = 0;
-    A[96] = 0;
-    A[97] = 0;
-    A[98] = -0.00200892857142857*G0_;
-    A[99] = 0;
-    A[100] = 0.000111607142857143*G0_;
-    A[101] = 0.000111607142857143*G0_;
-    A[102] = 0.000223214285714285*G0_;
-    A[103] = -0.00044642857142857*G0_;
-    A[104] = -0.00200892857142857*G0_;
-    A[105] = 0.00401785714285714*G0_;
-    A[106] = -0.00100446428571429*G0_;
-    A[107] = 0.00200892857142857*G0_;
-    A[108] = 0;
-    A[109] = -0.00100446428571428*G0_;
-    A[110] = -0.00100446428571429*G0_;
-    A[111] = 0.00200892857142857*G0_;
-    A[112] = 0;
-    A[113] = -0.00100446428571428*G0_;
-    A[114] = 0;
-    A[115] = 0;
-    A[116] = 0;
-    A[117] = 0;
-    A[118] = 0;
-    A[119] = -0.00200892857142857*G0_;
-    A[120] = 0.000111607142857143*G0_;
-    A[121] = -0.000446428571428571*G0_;
-    A[122] = 0.000111607142857142*G0_;
-    A[123] = 0.000223214285714285*G0_;
-    A[124] = 0;
-    A[125] = -0.00100446428571429*G0_;
-    A[126] = 0.00401785714285713*G0_;
-    A[127] = -0.00200892857142857*G0_;
-    A[128] = 0.00200892857142856*G0_;
-    A[129] = -0.00100446428571428*G0_;
-    A[130] = 0;
-    A[131] = -0.00100446428571429*G0_;
-    A[132] = 0;
-    A[133] = 0;
-    A[134] = -0.00100446428571428*G0_;
-    A[135] = 0.00200892857142857*G0_;
-    A[136] = 0;
-    A[137] = -0.00200892857142857*G0_;
-    A[138] = 0;
-    A[139] = 0;
-    A[140] = 0.000111607142857143*G0_;
-    A[141] = 0.000223214285714286*G0_;
-    A[142] = 0.000111607142857143*G0_;
-    A[143] = -0.00044642857142857*G0_;
-    A[144] = -0.00100446428571429*G0_;
-    A[145] = 0.00200892857142857*G0_;
-    A[146] = -0.00200892857142857*G0_;
-    A[147] = 0.00401785714285714*G0_;
-    A[148] = -0.00100446428571428*G0_;
-    A[149] = 0;
-    A[150] = -0.00100446428571429*G0_;
-    A[151] = 0.00200892857142857*G0_;
-    A[152] = 0;
-    A[153] = 0;
-    A[154] = 0;
-    A[155] = -0.00100446428571428*G0_;
-    A[156] = 0;
-    A[157] = 0;
-    A[158] = 0;
-    A[159] = -0.00200892857142857*G0_;
-    A[160] = 0.000111607142857142*G0_;
-    A[161] = -0.000446428571428571*G0_;
-    A[162] = 0.000223214285714285*G0_;
-    A[163] = 0.000111607142857142*G0_;
-    A[164] = -0.00100446428571428*G0_;
-    A[165] = 0;
-    A[166] = 0.00200892857142856*G0_;
-    A[167] = -0.00100446428571428*G0_;
-    A[168] = 0.00401785714285713*G0_;
-    A[169] = -0.00200892857142857*G0_;
-    A[170] = 0;
-    A[171] = 0;
-    A[172] = 0;
-    A[173] = -0.00100446428571428*G0_;
-    A[174] = -0.00100446428571428*G0_;
-    A[175] = 0.00200892857142857*G0_;
-    A[176] = 0;
-    A[177] = -0.00200892857142857*G0_;
-    A[178] = 0;
-    A[179] = 0;
-    A[180] = 0.000111607142857143*G0_;
-    A[181] = 0.000223214285714286*G0_;
-    A[182] = -0.00044642857142857*G0_;
-    A[183] = 0.000111607142857143*G0_;
-    A[184] = 0.00200892857142857*G0_;
-    A[185] = -0.00100446428571428*G0_;
-    A[186] = -0.00100446428571428*G0_;
-    A[187] = 0;
-    A[188] = -0.00200892857142857*G0_;
-    A[189] = 0.00401785714285714*G0_;
-    A[190] = 0;
-    A[191] = 0;
-    A[192] = -0.00100446428571429*G0_;
-    A[193] = 0.00200892857142857*G0_;
-    A[194] = 0;
-    A[195] = -0.00100446428571428*G0_;
-    A[196] = 0;
-    A[197] = 0;
-    A[198] = -0.00200892857142857*G0_;
-    A[199] = 0;
-    A[200] = -0.000446428571428572*G0_;
-    A[201] = 0.000111607142857142*G0_;
-    A[202] = 0.000111607142857142*G0_;
-    A[203] = 0.000223214285714285*G0_;
-    A[204] = 0;
-    A[205] = -0.00100446428571429*G0_;
-    A[206] = 0;
-    A[207] = -0.00100446428571429*G0_;
-    A[208] = 0;
-    A[209] = 0;
-    A[210] = 0.00401785714285714*G0_;
-    A[211] = -0.00200892857142857*G0_;
-    A[212] = 0.00200892857142857*G0_;
-    A[213] = -0.00100446428571428*G0_;
-    A[214] = 0.00200892857142857*G0_;
-    A[215] = -0.00100446428571428*G0_;
-    A[216] = -0.00200892857142857*G0_;
-    A[217] = 0;
-    A[218] = 0;
-    A[219] = 0;
-    A[220] = 0.000223214285714286*G0_;
-    A[221] = 0.000111607142857143*G0_;
-    A[222] = 0.000111607142857143*G0_;
-    A[223] = -0.00044642857142857*G0_;
-    A[224] = -0.00100446428571429*G0_;
-    A[225] = 0.00200892857142857*G0_;
-    A[226] = -0.00100446428571428*G0_;
-    A[227] = 0.00200892857142857*G0_;
-    A[228] = 0;
-    A[229] = 0;
-    A[230] = -0.00200892857142857*G0_;
-    A[231] = 0.00401785714285714*G0_;
-    A[232] = -0.00100446428571428*G0_;
-    A[233] = 0;
-    A[234] = -0.00100446428571428*G0_;
-    A[235] = 0;
-    A[236] = 0;
-    A[237] = 0;
-    A[238] = 0;
-    A[239] = -0.00200892857142857*G0_;
-    A[240] = -0.000446428571428572*G0_;
-    A[241] = 0.000111607142857142*G0_;
-    A[242] = 0.000223214285714286*G0_;
-    A[243] = 0.000111607142857142*G0_;
-    A[244] = -0.00100446428571429*G0_;
-    A[245] = 0;
-    A[246] = 0;
-    A[247] = 0;
-    A[248] = 0;
-    A[249] = -0.00100446428571429*G0_;
-    A[250] = 0.00200892857142857*G0_;
-    A[251] = -0.00100446428571428*G0_;
-    A[252] = 0.00401785714285713*G0_;
-    A[253] = -0.00200892857142857*G0_;
-    A[254] = 0.00200892857142857*G0_;
-    A[255] = -0.00100446428571428*G0_;
-    A[256] = -0.00200892857142857*G0_;
-    A[257] = 0;
-    A[258] = 0;
-    A[259] = 0;
-    A[260] = 0.000223214285714286*G0_;
-    A[261] = 0.000111607142857143*G0_;
-    A[262] = -0.00044642857142857*G0_;
-    A[263] = 0.000111607142857143*G0_;
-    A[264] = 0.00200892857142857*G0_;
-    A[265] = -0.00100446428571428*G0_;
-    A[266] = 0;
-    A[267] = 0;
-    A[268] = -0.00100446428571428*G0_;
-    A[269] = 0.00200892857142857*G0_;
-    A[270] = -0.00100446428571428*G0_;
-    A[271] = 0;
-    A[272] = -0.00200892857142857*G0_;
-    A[273] = 0.00401785714285713*G0_;
-    A[274] = -0.00100446428571428*G0_;
-    A[275] = 0;
-    A[276] = 0;
-    A[277] = 0;
-    A[278] = -0.00200892857142857*G0_;
-    A[279] = 0;
-    A[280] = -0.000446428571428572*G0_;
-    A[281] = 0.000223214285714285*G0_;
-    A[282] = 0.000111607142857142*G0_;
-    A[283] = 0.000111607142857142*G0_;
-    A[284] = 0;
-    A[285] = 0;
-    A[286] = -0.00100446428571428*G0_;
-    A[287] = 0;
-    A[288] = -0.00100446428571428*G0_;
-    A[289] = 0;
-    A[290] = 0.00200892857142857*G0_;
-    A[291] = -0.00100446428571428*G0_;
-    A[292] = 0.00200892857142857*G0_;
-    A[293] = -0.00100446428571428*G0_;
-    A[294] = 0.00401785714285714*G0_;
-    A[295] = -0.00200892857142857*G0_;
-    A[296] = -0.00200892857142857*G0_;
-    A[297] = 0;
-    A[298] = 0;
-    A[299] = 0;
-    A[300] = 0.000223214285714286*G0_;
-    A[301] = -0.000446428571428571*G0_;
-    A[302] = 0.000111607142857143*G0_;
-    A[303] = 0.000111607142857143*G0_;
-    A[304] = 0;
-    A[305] = 0;
-    A[306] = 0.00200892857142857*G0_;
-    A[307] = -0.00100446428571428*G0_;
-    A[308] = 0.00200892857142857*G0_;
-    A[309] = -0.00100446428571428*G0_;
-    A[310] = -0.00100446428571428*G0_;
-    A[311] = 0;
-    A[312] = -0.00100446428571428*G0_;
-    A[313] = 0;
-    A[314] = -0.00200892857142857*G0_;
-    A[315] = 0.00401785714285714*G0_;
-    A[316] = 0;
-    A[317] = -0.00200892857142857*G0_;
-    A[318] = 0;
-    A[319] = 0;
-    A[320] = 0.00133928571428571*G0_;
-    A[321] = 0.000669642857142857*G0_;
-    A[322] = 0.000669642857142856*G0_;
-    A[323] = 0.000669642857142854*G0_;
-    A[324] = 0;
-    A[325] = 0;
-    A[326] = 0;
-    A[327] = 0;
-    A[328] = 0;
-    A[329] = 0;
-    A[330] = -0.00200892857142857*G0_;
-    A[331] = 0;
-    A[332] = -0.00200892857142857*G0_;
-    A[333] = 0;
-    A[334] = -0.00200892857142857*G0_;
-    A[335] = 0;
-    A[336] = 0.0160714285714286*G0_;
-    A[337] = 0.00803571428571428*G0_;
-    A[338] = 0.00803571428571428*G0_;
-    A[339] = 0.00803571428571429*G0_;
-    A[340] = 0.000669642857142858*G0_;
-    A[341] = 0.00133928571428571*G0_;
-    A[342] = 0.000669642857142856*G0_;
-    A[343] = 0.000669642857142855*G0_;
-    A[344] = 0;
-    A[345] = 0;
-    A[346] = -0.00200892857142857*G0_;
-    A[347] = 0;
-    A[348] = -0.00200892857142857*G0_;
-    A[349] = 0;
-    A[350] = 0;
-    A[351] = 0;
-    A[352] = 0;
-    A[353] = 0;
-    A[354] = 0;
-    A[355] = -0.00200892857142857*G0_;
-    A[356] = 0.00803571428571428*G0_;
-    A[357] = 0.0160714285714286*G0_;
-    A[358] = 0.00803571428571429*G0_;
-    A[359] = 0.00803571428571428*G0_;
-    A[360] = 0.000669642857142858*G0_;
-    A[361] = 0.000669642857142856*G0_;
-    A[362] = 0.00133928571428571*G0_;
-    A[363] = 0.000669642857142855*G0_;
-    A[364] = -0.00200892857142857*G0_;
-    A[365] = 0;
-    A[366] = 0;
-    A[367] = 0;
-    A[368] = 0;
-    A[369] = -0.00200892857142857*G0_;
-    A[370] = 0;
-    A[371] = 0;
-    A[372] = 0;
-    A[373] = -0.00200892857142857*G0_;
-    A[374] = 0;
-    A[375] = 0;
-    A[376] = 0.00803571428571428*G0_;
-    A[377] = 0.00803571428571429*G0_;
-    A[378] = 0.0160714285714286*G0_;
-    A[379] = 0.00803571428571428*G0_;
-    A[380] = 0.000669642857142858*G0_;
-    A[381] = 0.000669642857142855*G0_;
-    A[382] = 0.000669642857142857*G0_;
-    A[383] = 0.00133928571428571*G0_;
-    A[384] = 0;
-    A[385] = -0.00200892857142857*G0_;
-    A[386] = 0;
-    A[387] = -0.00200892857142857*G0_;
-    A[388] = 0;
-    A[389] = 0;
-    A[390] = 0;
-    A[391] = -0.00200892857142857*G0_;
-    A[392] = 0;
-    A[393] = 0;
-    A[394] = 0;
-    A[395] = 0;
-    A[396] = 0.00803571428571429*G0_;
-    A[397] = 0.00803571428571428*G0_;
-    A[398] = 0.00803571428571428*G0_;
-    A[399] = 0.0160714285714286*G0_;
+    A[0] = 0.0833333333333332*G0_;
+    A[1] = 0.0416666666666666*G0_;
+    A[2] = 0.0416666666666666*G0_;
+    A[3] = 0.0416666666666666*G0_;
+    A[4] = 0.0833333333333332*G0_;
+    A[5] = 0.0416666666666666*G0_;
+    A[6] = 0.0416666666666666*G0_;
+    A[7] = 0.0416666666666666*G0_;
+    A[8] = 0.0833333333333332*G0_;
   }
 
 };
@@ -2624,7 +739,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return " | vi1*vi0*dX(0)";
+    return " | vi1[0, 1, 2]*vi0[0, 1, 2]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2728,19 +843,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::triangle;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 20;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -2761,192 +876,15 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
-    const double coeff0_6 = coefficients0[dof][6];
-    const double coeff0_7 = coefficients0[dof][7];
-    const double coeff0_8 = coefficients0[dof][8];
-    const double coeff0_9 = coefficients0[dof][9];
-    const double coeff0_10 = coefficients0[dof][10];
-    const double coeff0_11 = coefficients0[dof][11];
-    const double coeff0_12 = coefficients0[dof][12];
-    const double coeff0_13 = coefficients0[dof][13];
-    const double coeff0_14 = coefficients0[dof][14];
-    const double coeff0_15 = coefficients0[dof][15];
-    const double coeff0_16 = coefficients0[dof][16];
-    const double coeff0_17 = coefficients0[dof][17];
-    const double coeff0_18 = coefficients0[dof][18];
-    const double coeff0_19 = coefficients0[dof][19];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -2956,489 +894,16 @@ public:
                                           const double* coordinates,
                                           const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 3;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 2)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {6.32455532033676, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 11.2249721603218, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4.58257569495584, 0, 8.36660026534076, -1.18321595661992, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.74165738677394, 0, 0, 8.69482604771366, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.49909083394701, 0, -3.3466401061363, -2.36643191323985, 15.4919333848297, 0, 0.692820323027551, 0, 0.565685424949239, 0.400000000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.89897948556636, 0, 0, 0, 14.1985914794391, 0, -0.82807867121083, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.6, 0, 8.76356092008266, -1.54919333848297, 0, 0, 9.52470471983253, 0, -1.48131215963608, 0.261861468283192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.24264068711928, 0, 0, 0, 0, 0, 14.3427433120127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.11769145362398, 0, 3.16227766016838, 4.91934955049954, 0, 0, 0, 0, 10.690449676497, -2.41897262725906, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.54558441227157, 0, 0, 7.66811580507233, 0, 0, 0, 0, 0, 10.3691851174526, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats1[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.47722557505166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.591607978309959, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-2.64575131106459, 0, 9.66091783079296, 0.683130051063973, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 0, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.24037034920393, 0, 0, 7.52994023880668, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.28284271247462, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, -5.69209978830308, 4.38178046004133, -0.774596669241487, 0, 10.998181667894, 4.76235235991626, 0.962140470884726, -0.740656079818041, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.19615242270664, 0, -3.16227766016838, -2.23606797749979, 0, 0, 13.7477270848675, 0, 0.534522483824849, 0.37796447300923, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463864, 3.17542648054294, 0, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0, 0, 0, 9.25820099772551, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-1.8, 0, 3.65148371670111, -2.84018778721878, 0, 0, 0, 0, 12.3442679969674, 1.39659449751035, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613579, 0, 0, 3.83405790253616, 0, 0, 0, 0, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.20454076850486, 0, 0, 6.6407830863536, 0, 0, 0, 0, 0, 8.97997772825746, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats2[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.82574185835055, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.16397779494322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.59160797830996, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.32287565553229, 0, 3.86436713231718, -0.341565025531987, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 7.09929573971954, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.08012344973464, 0, 7.09929573971954, 2.50998007960222, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-3.81881307912986, 0, 0, 8.87411967464942, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.282842712474619, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 1.30930734141595, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241484, 0, 3.14233761939829, 4.76235235991626, -0.10690449676497, -0.740656079818042, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.03923048454133, 0, 3.16227766016838, -0.447213595499959, 0, 0, 5.8918830363718, 0, -0.53452248382485, 0.0755928946018459, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054294, 9.07114735222145, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 0.547722557505165, 1.58113883008419, 2.45967477524977, 0, 9.07114735222145, 0, 1.8516401995451, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.900000000000001, 0, 1.46059348668045, 1.42009389360939, 0, 0, 9.07114735222145, 0, 4.93770719878694, -0.698297248755175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613578, -6.26099033699941, 0, 3.83405790253616, 0, 0, 0, 10.5830052442584, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.734846922834954, 0, -6.26099033699941, 2.21359436211787, 0, 0, 0, 0, 10.5830052442584, 2.99332590941915, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.7157676649773, 0, 0, -4.69574275274955, 0, 0, 0, 0, 0, 12.69960629311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
-    double coeff0_6 = 0;
-    double coeff0_7 = 0;
-    double coeff0_8 = 0;
-    double coeff0_9 = 0;
-    double coeff0_10 = 0;
-    double coeff0_11 = 0;
-    double coeff0_12 = 0;
-    double coeff0_13 = 0;
-    double coeff0_14 = 0;
-    double coeff0_15 = 0;
-    double coeff0_16 = 0;
-    double coeff0_17 = 0;
-    double coeff0_18 = 0;
-    double coeff0_19 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
-    double new_coeff0_6 = 0;
-    double new_coeff0_7 = 0;
-    double new_coeff0_8 = 0;
-    double new_coeff0_9 = 0;
-    double new_coeff0_10 = 0;
-    double new_coeff0_11 = 0;
-    double new_coeff0_12 = 0;
-    double new_coeff0_13 = 0;
-    double new_coeff0_14 = 0;
-    double new_coeff0_15 = 0;
-    double new_coeff0_16 = 0;
-    double new_coeff0_17 = 0;
-    double new_coeff0_18 = 0;
-    double new_coeff0_19 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
-      new_coeff0_6 = coefficients0[dof][6];
-      new_coeff0_7 = coefficients0[dof][7];
-      new_coeff0_8 = coefficients0[dof][8];
-      new_coeff0_9 = coefficients0[dof][9];
-      new_coeff0_10 = coefficients0[dof][10];
-      new_coeff0_11 = coefficients0[dof][11];
-      new_coeff0_12 = coefficients0[dof][12];
-      new_coeff0_13 = coefficients0[dof][13];
-      new_coeff0_14 = coefficients0[dof][14];
-      new_coeff0_15 = coefficients0[dof][15];
-      new_coeff0_16 = coefficients0[dof][16];
-      new_coeff0_17 = coefficients0[dof][17];
-      new_coeff0_18 = coefficients0[dof][18];
-      new_coeff0_19 = coefficients0[dof][19];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
-        coeff0_6 = new_coeff0_6;
-        coeff0_7 = new_coeff0_7;
-        coeff0_8 = new_coeff0_8;
-        coeff0_9 = new_coeff0_9;
-        coeff0_10 = new_coeff0_10;
-        coeff0_11 = new_coeff0_11;
-        coeff0_12 = new_coeff0_12;
-        coeff0_13 = new_coeff0_13;
-        coeff0_14 = new_coeff0_14;
-        coeff0_15 = new_coeff0_15;
-        coeff0_16 = new_coeff0_16;
-        coeff0_17 = new_coeff0_17;
-        coeff0_18 = new_coeff0_18;
-        coeff0_19 = new_coeff0_19;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
-          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
-          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
-          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
-          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
-          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
-          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
-          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
-          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
-          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
-          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
-          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
-          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
-          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
-          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
-          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
-          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
-          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
-          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
-          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
-          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
-          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
-          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
-          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
-          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
-          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
-          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
-          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
-          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
-        }
-        if(combinations[deriv_num][j] == 2)
-        {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
-          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
-          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
-          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
-          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
-          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
-          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
-          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
-          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
-          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
-          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
-          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
-          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
-          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
-          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
-          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
-          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
+    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -3447,24 +912,22 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[20][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.666666666666667, 0.333333333333333}}, {{0, 0.333333333333333, 0.666666666666667}}, {{0.666666666666667, 0, 0.333333333333333}}, {{0.333333333333333, 0, 0.666666666666667}}, {{0.666666666666667, 0.333333333333333, 0}}, {{0.333333333333333, 0.666666666666667, 0}}, {{0, 0, 0.333333333333333}}, {{0, 0, 0.666666666666667}}, {{0, 0.333333333333333, 0}}, {{0, 0.666666666666667, 0}}, {{0.333333333333333, 0, 0}}, {{0.666666666666667, 0, 0}}, {{0.333333333333333, 0.333333333333333, 0.333333333333333}}, {{0, 0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333, 0}}};
-    const static double W[20][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[20][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
     // Evaluate function at physical points
     double values[1];
@@ -3484,6 +947,14 @@ public:
     return result;
   }
 
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
@@ -3493,7 +964,6 @@ public:
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[1];
     vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -3531,19 +1001,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::triangle;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 20;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -3564,192 +1034,15 @@ public:
                               const double* coordinates,
                               const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
-    const double coeff0_6 = coefficients0[dof][6];
-    const double coeff0_7 = coefficients0[dof][7];
-    const double coeff0_8 = coefficients0[dof][8];
-    const double coeff0_9 = coefficients0[dof][9];
-    const double coeff0_10 = coefficients0[dof][10];
-    const double coeff0_11 = coefficients0[dof][11];
-    const double coeff0_12 = coefficients0[dof][12];
-    const double coeff0_13 = coefficients0[dof][13];
-    const double coeff0_14 = coefficients0[dof][14];
-    const double coeff0_15 = coefficients0[dof][15];
-    const double coeff0_16 = coefficients0[dof][16];
-    const double coeff0_17 = coefficients0[dof][17];
-    const double coeff0_18 = coefficients0[dof][18];
-    const double coeff0_19 = coefficients0[dof][19];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5 + coeff0_6*basisvalue6 + coeff0_7*basisvalue7 + coeff0_8*basisvalue8 + coeff0_9*basisvalue9 + coeff0_10*basisvalue10 + coeff0_11*basisvalue11 + coeff0_12*basisvalue12 + coeff0_13*basisvalue13 + coeff0_14*basisvalue14 + coeff0_15*basisvalue15 + coeff0_16*basisvalue16 + coeff0_17*basisvalue17 + coeff0_18*basisvalue18 + coeff0_19*basisvalue19;
+    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
   }
 
   /// Evaluate order n derivatives of basis function i at given point in cell
@@ -3759,489 +1052,16 @@ public:
                                           const double* coordinates,
                                           const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_02 = element_coordinates[3][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-    const double J_12 = element_coordinates[3][1] - element_coordinates[0][1];
-    const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
-    const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
-    const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
-    // Compute sub determinants
-    const double d00 = J_11*J_22 - J_12*J_21;
-    const double d01 = J_12*J_20 - J_10*J_22;
-    const double d02 = J_10*J_21 - J_11*J_20;
-    
-    const double d10 = J_02*J_21 - J_01*J_22;
-    const double d11 = J_00*J_22 - J_02*J_20;
-    const double d12 = J_01*J_20 - J_00*J_21;
-    
-    const double d20 = J_01*J_12 - J_02*J_11;
-    const double d21 = J_02*J_10 - J_00*J_12;
-    const double d22 = J_00*J_11 - J_01*J_10;
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
-                    + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
-                    + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-    
-    const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
-                    + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
-                    + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-    
-    const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
-                    + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
-                    + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-    
-    // Get coordinates and map to the UFC reference element
-    double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
-    double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
-    double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-    
-    // Map coordinates to the reference cube
-    if (std::abs(y + z - 1.0) < 1e-14)
-      x = 1.0;
-    else
-      x = -2.0 * x/(y + z - 1.0) - 1.0;
-    if (std::abs(z - 1.0) < 1e-14)
-      y = -1.0;
-    else
-      y = 2.0 * y/(1.0 - z) - 1.0;
-    z = 2.0 * z - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 3;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 2)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
-    const double scalings_y_3 = scalings_y_2*(0.5 - 0.5*y);
-    const double scalings_z_0 = 1;
-    const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-    const double scalings_z_2 = scalings_z_1*(0.5 - 0.5*z);
-    const double scalings_z_3 = scalings_z_2*(0.5 - 0.5*z);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
-    const double psitilde_a_3 = 1.66666666666667*x*psitilde_a_2 - 0.666666666666667*psitilde_a_1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
-    const double psitilde_bs_0_3 = 0.05*psitilde_bs_0_2 + 1.75*y*psitilde_bs_0_2 - 0.7*psitilde_bs_0_1;
-    const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_1_2 = 0.54*psitilde_bs_1_1 + 2.1*y*psitilde_bs_1_1 - 0.56*psitilde_bs_1_0;
-    const double psitilde_bs_2_0 = 1;
-    const double psitilde_bs_2_1 = 3.5*y + 2.5;
-    const double psitilde_bs_3_0 = 1;
-    
-    // Compute psitilde_cs
-    const double psitilde_cs_00_0 = 1;
-    const double psitilde_cs_00_1 = 2*z + 1;
-    const double psitilde_cs_00_2 = 0.3125*psitilde_cs_00_1 + 1.875*z*psitilde_cs_00_1 - 0.5625*psitilde_cs_00_0;
-    const double psitilde_cs_00_3 = 0.155555555555556*psitilde_cs_00_2 + 1.86666666666667*z*psitilde_cs_00_2 - 0.711111111111111*psitilde_cs_00_1;
-    const double psitilde_cs_01_0 = 1;
-    const double psitilde_cs_01_1 = 3*z + 2;
-    const double psitilde_cs_01_2 = 0.777777777777778*psitilde_cs_01_1 + 2.33333333333333*z*psitilde_cs_01_1 - 0.555555555555556*psitilde_cs_01_0;
-    const double psitilde_cs_02_0 = 1;
-    const double psitilde_cs_02_1 = 4*z + 3;
-    const double psitilde_cs_03_0 = 1;
-    const double psitilde_cs_10_0 = 1;
-    const double psitilde_cs_10_1 = 3*z + 2;
-    const double psitilde_cs_10_2 = 0.777777777777778*psitilde_cs_10_1 + 2.33333333333333*z*psitilde_cs_10_1 - 0.555555555555556*psitilde_cs_10_0;
-    const double psitilde_cs_11_0 = 1;
-    const double psitilde_cs_11_1 = 4*z + 3;
-    const double psitilde_cs_12_0 = 1;
-    const double psitilde_cs_20_0 = 1;
-    const double psitilde_cs_20_1 = 4*z + 3;
-    const double psitilde_cs_21_0 = 1;
-    const double psitilde_cs_30_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-    const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
-    const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
-    const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-    const double basisvalue4 = 5.1234753829798*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_0;
-    const double basisvalue5 = 3.96862696659689*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_0;
-    const double basisvalue6 = 2.29128784747792*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_0;
-    const double basisvalue7 = 3.24037034920393*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_1;
-    const double basisvalue8 = 1.87082869338697*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_1;
-    const double basisvalue9 = 1.3228756555323*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_2;
-    const double basisvalue10 = 7.93725393319377*psitilde_a_3*scalings_y_3*psitilde_bs_3_0*scalings_z_3*psitilde_cs_30_0;
-    const double basisvalue11 = 6.70820393249937*psitilde_a_2*scalings_y_2*psitilde_bs_2_1*scalings_z_3*psitilde_cs_21_0;
-    const double basisvalue12 = 5.19615242270663*psitilde_a_1*scalings_y_1*psitilde_bs_1_2*scalings_z_3*psitilde_cs_12_0;
-    const double basisvalue13 = 3*psitilde_a_0*scalings_y_0*psitilde_bs_0_3*scalings_z_3*psitilde_cs_03_0;
-    const double basisvalue14 = 5.80947501931113*psitilde_a_2*scalings_y_2*psitilde_bs_2_0*scalings_z_2*psitilde_cs_20_1;
-    const double basisvalue15 = 4.5*psitilde_a_1*scalings_y_1*psitilde_bs_1_1*scalings_z_2*psitilde_cs_11_1;
-    const double basisvalue16 = 2.59807621135332*psitilde_a_0*scalings_y_0*psitilde_bs_0_2*scalings_z_2*psitilde_cs_02_1;
-    const double basisvalue17 = 3.67423461417477*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_2;
-    const double basisvalue18 = 2.12132034355964*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_2;
-    const double basisvalue19 = 1.5*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_3;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[20][20] = \
-    {{0.0288675134594813, 0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.00818317088384971, 0.0115727512471569, 0.0066815310478106, 0.00472455591261534, -0.028347335475692, -0.0239578711874978, -0.0185576872239523, -0.0107142857142857, -0.0207481250689683, -0.0160714285714286, -0.00927884361197613, -0.0131222664791956, -0.00757614408414158, -0.00535714285714285},
-    {0.0288675134594813, -0.0130410132739325, 0.00752923252421044, 0.0053239713749995, 0.018298126367785, -0.014173667737846, 0.00818317088384972, -0.0115727512471569, 0.00668153104781061, 0.00472455591261535, 0.028347335475692, -0.0239578711874977, 0.0185576872239523, -0.0107142857142857, -0.0207481250689683, 0.0160714285714286, -0.00927884361197613, 0.0131222664791956, -0.00757614408414158, -0.00535714285714286},
-    {0.0288675134594813, 0, -0.0150584650484208, 0.00532397137499948, 0, 0, 0.0245495126515492, 0, -0.0133630620956212, 0.00472455591261535, 0, 0, 0, 0.0428571428571429, 0, 0, -0.0278365308359284, 0, 0.0151522881682832, -0.00535714285714286},
-    {0.0288675134594812, 0, 0, -0.0159719141249985, 0, 0, 0, 0, 0, 0.0283473354756921, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0535714285714286},
-    {0, 0, 0.112938487863156, -0.063887656499994, 0, 0, 0.0736485379546474, 0, 0.0267261241912424, -0.0236227795630767, 0, 0, 0, 0, 0, 0, 0.0649519052838329, 0, -0.0606091526731327, 0.0267857142857143},
-    {0, 0, -0.0225876975726313, 0.127775312999988, 0, 0, 0, 0, 0.0668153104781061, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0, 0.0757614408414158, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0245495126515492, 0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, -0.0375, 0.021650635094611, -0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, -0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, 0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, 0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, 0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0245495126515492, -0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, -0.0618589574131742, 0.0428571428571429, -0.0069160416896561, -0.0160714285714286, 0.0154647393532936, 0.00874817765279706, 0, -0.00535714285714286},
-    {0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, 0.0566946709513841, 0.0245495126515492, -0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, 0.0618589574131742, -0.0642857142857143, 0, -0.0214285714285714, 0.00927884361197612, 0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, 0.0245495126515492, -0.0231455024943138, -0.0133630620956212, -0.0236227795630767, 0, 0, 0, 0, 0.0484122918275927, 0.0375, 0.021650635094611, 0.0524890659167824, 0.0303045763365663, 0.0267857142857143},
-    {0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0, 0, 0, -0.0578637562357845, -0.0334076552390531, 0.0472455591261534, 0, 0, 0, 0, 0, 0, 0, -0.065611332395978, -0.0378807204207079, -0.0535714285714286},
-    {0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, -0.0245495126515491, 0.0462910049886276, 0.0133630620956212, 0.0236227795630767, 0, 0.0479157423749955, 0.0618589574131742, 0.0428571428571429, -0.0069160416896561, 0.0160714285714286, 0.0154647393532935, -0.00874817765279706, 0, -0.00535714285714285},
-    {0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0, -0.0566946709513841, 0.0245495126515491, 0.0115727512471569, -0.0467707173346743, 0.0236227795630767, 0, 0, -0.0618589574131742, -0.0642857142857143, 0, 0.0214285714285714, 0.00927884361197613, -0.00437408882639853, 0.00757614408414158, -0.00535714285714285},
-    {0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.042521003213538, 0.0409158544192486, 0.0347182537414707, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874978, -0.00618589574131742, -0.0107142857142857, 0.0207481250689683, -0.00535714285714286, -0.00927884361197612, -0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, 0.0409158544192486, -0.0347182537414707, 0.033407655239053, 0.0236227795630767, -0.0850420064270761, 0.0239578711874977, 0.00618589574131741, -0.0107142857142857, 0.0207481250689683, 0.00535714285714286, -0.00927884361197612, 0.00437408882639853, -0.00757614408414158, -0.00535714285714286},
-    {0.259807621135332, 0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, 0.0850420064270761, -0.0736485379546474, 0.0694365074829413, 0.0400891862868637, -0.0992156741649221, 0, 0, 0, 0, 0, 0.075, -0.0649519052838329, -0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749955, 0, -0.0850420064270761, -0.0736485379546474, -0.0694365074829414, 0.0400891862868637, -0.0992156741649222, 0, 0, 0, 0, 0, -0.075, -0.0649519052838329, 0.0262445329583912, -0.0151522881682832, 0.0267857142857143},
-    {0.259807621135332, 0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0, 0.0245495126515491, 0, -0.0801783725737273, -0.0992156741649221, 0, 0, 0, 0, -0.0968245836551854, 0, 0.021650635094611, 0, 0.0303045763365663, 0.0267857142857143},
-    {0.259807621135332, 0, 0, -0.143747227124986, -0.10978875820671, 0, -0.122747563257746, 0, 0, 0.0425210032135381, 0, -0.095831484749991, 0, 0.0428571428571429, 0.0138320833793122, 0, 0.0154647393532935, 0, 0, -0.00535714285714285}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {6.32455532033676, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 11.2249721603218, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4.58257569495584, 0, 8.36660026534076, -1.18321595661992, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.74165738677394, 0, 0, 8.69482604771366, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.49909083394701, 0, -3.3466401061363, -2.36643191323985, 15.4919333848297, 0, 0.692820323027551, 0, 0.565685424949239, 0.400000000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.89897948556636, 0, 0, 0, 14.1985914794391, 0, -0.82807867121083, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.6, 0, 8.76356092008266, -1.54919333848297, 0, 0, 9.52470471983253, 0, -1.48131215963608, 0.261861468283192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 4.24264068711928, 0, 0, 0, 0, 0, 14.3427433120127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.11769145362398, 0, 3.16227766016838, 4.91934955049954, 0, 0, 0, 0, 10.690449676497, -2.41897262725906, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.54558441227157, 0, 0, 7.66811580507233, 0, 0, 0, 0, 0, 10.3691851174526, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats1[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.47722557505166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.591607978309959, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-2.64575131106459, 0, 9.66091783079296, 0.683130051063973, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 0, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.24037034920393, 0, 0, 7.52994023880668, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.28284271247462, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, -5.69209978830308, 4.38178046004133, -0.774596669241487, 0, 10.998181667894, 4.76235235991626, 0.962140470884726, -0.740656079818041, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.19615242270664, 0, -3.16227766016838, -2.23606797749979, 0, 0, 13.7477270848675, 0, 0.534522483824849, 0.37796447300923, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463864, 3.17542648054294, 0, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0, 0, 0, 9.25820099772551, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-1.8, 0, 3.65148371670111, -2.84018778721878, 0, 0, 0, 0, 12.3442679969674, 1.39659449751035, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613579, 0, 0, 3.83405790253616, 0, 0, 0, 0, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.20454076850486, 0, 0, 6.6407830863536, 0, 0, 0, 0, 0, 8.97997772825746, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double dmats2[20][20] = \
-    {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {3.16227766016838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.82574185835055, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.16397779494322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.59160797830996, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.32287565553229, 0, 3.86436713231718, -0.341565025531987, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.87082869338697, 7.09929573971954, 0, 4.34741302385683, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.08012344973464, 0, 7.09929573971954, 2.50998007960222, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {-3.81881307912986, 0, 0, 8.87411967464942, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.74954541697351, 5.79655069847577, -1.67332005306815, -1.18321595661992, 7.74596669241483, -1.2, 0.346410161513776, -0.979795897113271, 0.282842712474619, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 1.30930734141595, 7.09929573971954, -2.04939015319192, -0.414039335605415, -0.478091443733757, 0.169030850945704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241484, 0, 3.14233761939829, 4.76235235991626, -0.10690449676497, -0.740656079818042, 0.130930734141596, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.03923048454133, 0, 3.16227766016838, -0.447213595499959, 0, 0, 5.8918830363718, 0, -0.53452248382485, 0.0755928946018459, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054294, 9.07114735222145, 0, 0, 7.17137165600636, -1.38013111868471, -1.56144011671765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.55884572681199, 0.547722557505165, 1.58113883008419, 2.45967477524977, 0, 9.07114735222145, 0, 1.8516401995451, 5.34522483824849, -1.20948631362953, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.900000000000001, 0, 1.46059348668045, 1.42009389360939, 0, 0, 9.07114735222145, 0, 4.93770719878694, -0.698297248755175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1.27279220613578, -6.26099033699941, 0, 3.83405790253616, 0, 0, 0, 10.5830052442584, 0, 5.18459255872629, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0.734846922834954, 0, -6.26099033699941, 2.21359436211787, 0, 0, 0, 0, 10.5830052442584, 2.99332590941915, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.7157676649773, 0, 0, -4.69574275274955, 0, 0, 0, 0, 0, 12.69960629311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
-    double coeff0_6 = 0;
-    double coeff0_7 = 0;
-    double coeff0_8 = 0;
-    double coeff0_9 = 0;
-    double coeff0_10 = 0;
-    double coeff0_11 = 0;
-    double coeff0_12 = 0;
-    double coeff0_13 = 0;
-    double coeff0_14 = 0;
-    double coeff0_15 = 0;
-    double coeff0_16 = 0;
-    double coeff0_17 = 0;
-    double coeff0_18 = 0;
-    double coeff0_19 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
-    double new_coeff0_6 = 0;
-    double new_coeff0_7 = 0;
-    double new_coeff0_8 = 0;
-    double new_coeff0_9 = 0;
-    double new_coeff0_10 = 0;
-    double new_coeff0_11 = 0;
-    double new_coeff0_12 = 0;
-    double new_coeff0_13 = 0;
-    double new_coeff0_14 = 0;
-    double new_coeff0_15 = 0;
-    double new_coeff0_16 = 0;
-    double new_coeff0_17 = 0;
-    double new_coeff0_18 = 0;
-    double new_coeff0_19 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
-      new_coeff0_6 = coefficients0[dof][6];
-      new_coeff0_7 = coefficients0[dof][7];
-      new_coeff0_8 = coefficients0[dof][8];
-      new_coeff0_9 = coefficients0[dof][9];
-      new_coeff0_10 = coefficients0[dof][10];
-      new_coeff0_11 = coefficients0[dof][11];
-      new_coeff0_12 = coefficients0[dof][12];
-      new_coeff0_13 = coefficients0[dof][13];
-      new_coeff0_14 = coefficients0[dof][14];
-      new_coeff0_15 = coefficients0[dof][15];
-      new_coeff0_16 = coefficients0[dof][16];
-      new_coeff0_17 = coefficients0[dof][17];
-      new_coeff0_18 = coefficients0[dof][18];
-      new_coeff0_19 = coefficients0[dof][19];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
-        coeff0_6 = new_coeff0_6;
-        coeff0_7 = new_coeff0_7;
-        coeff0_8 = new_coeff0_8;
-        coeff0_9 = new_coeff0_9;
-        coeff0_10 = new_coeff0_10;
-        coeff0_11 = new_coeff0_11;
-        coeff0_12 = new_coeff0_12;
-        coeff0_13 = new_coeff0_13;
-        coeff0_14 = new_coeff0_14;
-        coeff0_15 = new_coeff0_15;
-        coeff0_16 = new_coeff0_16;
-        coeff0_17 = new_coeff0_17;
-        coeff0_18 = new_coeff0_18;
-        coeff0_19 = new_coeff0_19;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0] + coeff0_6*dmats0[6][0] + coeff0_7*dmats0[7][0] + coeff0_8*dmats0[8][0] + coeff0_9*dmats0[9][0] + coeff0_10*dmats0[10][0] + coeff0_11*dmats0[11][0] + coeff0_12*dmats0[12][0] + coeff0_13*dmats0[13][0] + coeff0_14*dmats0[14][0] + coeff0_15*dmats0[15][0] + coeff0_16*dmats0[16][0] + coeff0_17*dmats0[17][0] + coeff0_18*dmats0[18][0] + coeff0_19*dmats0[19][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1] + coeff0_6*dmats0[6][1] + coeff0_7*dmats0[7][1] + coeff0_8*dmats0[8][1] + coeff0_9*dmats0[9][1] + coeff0_10*dmats0[10][1] + coeff0_11*dmats0[11][1] + coeff0_12*dmats0[12][1] + coeff0_13*dmats0[13][1] + coeff0_14*dmats0[14][1] + coeff0_15*dmats0[15][1] + coeff0_16*dmats0[16][1] + coeff0_17*dmats0[17][1] + coeff0_18*dmats0[18][1] + coeff0_19*dmats0[19][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2] + coeff0_6*dmats0[6][2] + coeff0_7*dmats0[7][2] + coeff0_8*dmats0[8][2] + coeff0_9*dmats0[9][2] + coeff0_10*dmats0[10][2] + coeff0_11*dmats0[11][2] + coeff0_12*dmats0[12][2] + coeff0_13*dmats0[13][2] + coeff0_14*dmats0[14][2] + coeff0_15*dmats0[15][2] + coeff0_16*dmats0[16][2] + coeff0_17*dmats0[17][2] + coeff0_18*dmats0[18][2] + coeff0_19*dmats0[19][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3] + coeff0_6*dmats0[6][3] + coeff0_7*dmats0[7][3] + coeff0_8*dmats0[8][3] + coeff0_9*dmats0[9][3] + coeff0_10*dmats0[10][3] + coeff0_11*dmats0[11][3] + coeff0_12*dmats0[12][3] + coeff0_13*dmats0[13][3] + coeff0_14*dmats0[14][3] + coeff0_15*dmats0[15][3] + coeff0_16*dmats0[16][3] + coeff0_17*dmats0[17][3] + coeff0_18*dmats0[18][3] + coeff0_19*dmats0[19][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4] + coeff0_6*dmats0[6][4] + coeff0_7*dmats0[7][4] + coeff0_8*dmats0[8][4] + coeff0_9*dmats0[9][4] + coeff0_10*dmats0[10][4] + coeff0_11*dmats0[11][4] + coeff0_12*dmats0[12][4] + coeff0_13*dmats0[13][4] + coeff0_14*dmats0[14][4] + coeff0_15*dmats0[15][4] + coeff0_16*dmats0[16][4] + coeff0_17*dmats0[17][4] + coeff0_18*dmats0[18][4] + coeff0_19*dmats0[19][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5] + coeff0_6*dmats0[6][5] + coeff0_7*dmats0[7][5] + coeff0_8*dmats0[8][5] + coeff0_9*dmats0[9][5] + coeff0_10*dmats0[10][5] + coeff0_11*dmats0[11][5] + coeff0_12*dmats0[12][5] + coeff0_13*dmats0[13][5] + coeff0_14*dmats0[14][5] + coeff0_15*dmats0[15][5] + coeff0_16*dmats0[16][5] + coeff0_17*dmats0[17][5] + coeff0_18*dmats0[18][5] + coeff0_19*dmats0[19][5];
-          new_coeff0_6 = coeff0_0*dmats0[0][6] + coeff0_1*dmats0[1][6] + coeff0_2*dmats0[2][6] + coeff0_3*dmats0[3][6] + coeff0_4*dmats0[4][6] + coeff0_5*dmats0[5][6] + coeff0_6*dmats0[6][6] + coeff0_7*dmats0[7][6] + coeff0_8*dmats0[8][6] + coeff0_9*dmats0[9][6] + coeff0_10*dmats0[10][6] + coeff0_11*dmats0[11][6] + coeff0_12*dmats0[12][6] + coeff0_13*dmats0[13][6] + coeff0_14*dmats0[14][6] + coeff0_15*dmats0[15][6] + coeff0_16*dmats0[16][6] + coeff0_17*dmats0[17][6] + coeff0_18*dmats0[18][6] + coeff0_19*dmats0[19][6];
-          new_coeff0_7 = coeff0_0*dmats0[0][7] + coeff0_1*dmats0[1][7] + coeff0_2*dmats0[2][7] + coeff0_3*dmats0[3][7] + coeff0_4*dmats0[4][7] + coeff0_5*dmats0[5][7] + coeff0_6*dmats0[6][7] + coeff0_7*dmats0[7][7] + coeff0_8*dmats0[8][7] + coeff0_9*dmats0[9][7] + coeff0_10*dmats0[10][7] + coeff0_11*dmats0[11][7] + coeff0_12*dmats0[12][7] + coeff0_13*dmats0[13][7] + coeff0_14*dmats0[14][7] + coeff0_15*dmats0[15][7] + coeff0_16*dmats0[16][7] + coeff0_17*dmats0[17][7] + coeff0_18*dmats0[18][7] + coeff0_19*dmats0[19][7];
-          new_coeff0_8 = coeff0_0*dmats0[0][8] + coeff0_1*dmats0[1][8] + coeff0_2*dmats0[2][8] + coeff0_3*dmats0[3][8] + coeff0_4*dmats0[4][8] + coeff0_5*dmats0[5][8] + coeff0_6*dmats0[6][8] + coeff0_7*dmats0[7][8] + coeff0_8*dmats0[8][8] + coeff0_9*dmats0[9][8] + coeff0_10*dmats0[10][8] + coeff0_11*dmats0[11][8] + coeff0_12*dmats0[12][8] + coeff0_13*dmats0[13][8] + coeff0_14*dmats0[14][8] + coeff0_15*dmats0[15][8] + coeff0_16*dmats0[16][8] + coeff0_17*dmats0[17][8] + coeff0_18*dmats0[18][8] + coeff0_19*dmats0[19][8];
-          new_coeff0_9 = coeff0_0*dmats0[0][9] + coeff0_1*dmats0[1][9] + coeff0_2*dmats0[2][9] + coeff0_3*dmats0[3][9] + coeff0_4*dmats0[4][9] + coeff0_5*dmats0[5][9] + coeff0_6*dmats0[6][9] + coeff0_7*dmats0[7][9] + coeff0_8*dmats0[8][9] + coeff0_9*dmats0[9][9] + coeff0_10*dmats0[10][9] + coeff0_11*dmats0[11][9] + coeff0_12*dmats0[12][9] + coeff0_13*dmats0[13][9] + coeff0_14*dmats0[14][9] + coeff0_15*dmats0[15][9] + coeff0_16*dmats0[16][9] + coeff0_17*dmats0[17][9] + coeff0_18*dmats0[18][9] + coeff0_19*dmats0[19][9];
-          new_coeff0_10 = coeff0_0*dmats0[0][10] + coeff0_1*dmats0[1][10] + coeff0_2*dmats0[2][10] + coeff0_3*dmats0[3][10] + coeff0_4*dmats0[4][10] + coeff0_5*dmats0[5][10] + coeff0_6*dmats0[6][10] + coeff0_7*dmats0[7][10] + coeff0_8*dmats0[8][10] + coeff0_9*dmats0[9][10] + coeff0_10*dmats0[10][10] + coeff0_11*dmats0[11][10] + coeff0_12*dmats0[12][10] + coeff0_13*dmats0[13][10] + coeff0_14*dmats0[14][10] + coeff0_15*dmats0[15][10] + coeff0_16*dmats0[16][10] + coeff0_17*dmats0[17][10] + coeff0_18*dmats0[18][10] + coeff0_19*dmats0[19][10];
-          new_coeff0_11 = coeff0_0*dmats0[0][11] + coeff0_1*dmats0[1][11] + coeff0_2*dmats0[2][11] + coeff0_3*dmats0[3][11] + coeff0_4*dmats0[4][11] + coeff0_5*dmats0[5][11] + coeff0_6*dmats0[6][11] + coeff0_7*dmats0[7][11] + coeff0_8*dmats0[8][11] + coeff0_9*dmats0[9][11] + coeff0_10*dmats0[10][11] + coeff0_11*dmats0[11][11] + coeff0_12*dmats0[12][11] + coeff0_13*dmats0[13][11] + coeff0_14*dmats0[14][11] + coeff0_15*dmats0[15][11] + coeff0_16*dmats0[16][11] + coeff0_17*dmats0[17][11] + coeff0_18*dmats0[18][11] + coeff0_19*dmats0[19][11];
-          new_coeff0_12 = coeff0_0*dmats0[0][12] + coeff0_1*dmats0[1][12] + coeff0_2*dmats0[2][12] + coeff0_3*dmats0[3][12] + coeff0_4*dmats0[4][12] + coeff0_5*dmats0[5][12] + coeff0_6*dmats0[6][12] + coeff0_7*dmats0[7][12] + coeff0_8*dmats0[8][12] + coeff0_9*dmats0[9][12] + coeff0_10*dmats0[10][12] + coeff0_11*dmats0[11][12] + coeff0_12*dmats0[12][12] + coeff0_13*dmats0[13][12] + coeff0_14*dmats0[14][12] + coeff0_15*dmats0[15][12] + coeff0_16*dmats0[16][12] + coeff0_17*dmats0[17][12] + coeff0_18*dmats0[18][12] + coeff0_19*dmats0[19][12];
-          new_coeff0_13 = coeff0_0*dmats0[0][13] + coeff0_1*dmats0[1][13] + coeff0_2*dmats0[2][13] + coeff0_3*dmats0[3][13] + coeff0_4*dmats0[4][13] + coeff0_5*dmats0[5][13] + coeff0_6*dmats0[6][13] + coeff0_7*dmats0[7][13] + coeff0_8*dmats0[8][13] + coeff0_9*dmats0[9][13] + coeff0_10*dmats0[10][13] + coeff0_11*dmats0[11][13] + coeff0_12*dmats0[12][13] + coeff0_13*dmats0[13][13] + coeff0_14*dmats0[14][13] + coeff0_15*dmats0[15][13] + coeff0_16*dmats0[16][13] + coeff0_17*dmats0[17][13] + coeff0_18*dmats0[18][13] + coeff0_19*dmats0[19][13];
-          new_coeff0_14 = coeff0_0*dmats0[0][14] + coeff0_1*dmats0[1][14] + coeff0_2*dmats0[2][14] + coeff0_3*dmats0[3][14] + coeff0_4*dmats0[4][14] + coeff0_5*dmats0[5][14] + coeff0_6*dmats0[6][14] + coeff0_7*dmats0[7][14] + coeff0_8*dmats0[8][14] + coeff0_9*dmats0[9][14] + coeff0_10*dmats0[10][14] + coeff0_11*dmats0[11][14] + coeff0_12*dmats0[12][14] + coeff0_13*dmats0[13][14] + coeff0_14*dmats0[14][14] + coeff0_15*dmats0[15][14] + coeff0_16*dmats0[16][14] + coeff0_17*dmats0[17][14] + coeff0_18*dmats0[18][14] + coeff0_19*dmats0[19][14];
-          new_coeff0_15 = coeff0_0*dmats0[0][15] + coeff0_1*dmats0[1][15] + coeff0_2*dmats0[2][15] + coeff0_3*dmats0[3][15] + coeff0_4*dmats0[4][15] + coeff0_5*dmats0[5][15] + coeff0_6*dmats0[6][15] + coeff0_7*dmats0[7][15] + coeff0_8*dmats0[8][15] + coeff0_9*dmats0[9][15] + coeff0_10*dmats0[10][15] + coeff0_11*dmats0[11][15] + coeff0_12*dmats0[12][15] + coeff0_13*dmats0[13][15] + coeff0_14*dmats0[14][15] + coeff0_15*dmats0[15][15] + coeff0_16*dmats0[16][15] + coeff0_17*dmats0[17][15] + coeff0_18*dmats0[18][15] + coeff0_19*dmats0[19][15];
-          new_coeff0_16 = coeff0_0*dmats0[0][16] + coeff0_1*dmats0[1][16] + coeff0_2*dmats0[2][16] + coeff0_3*dmats0[3][16] + coeff0_4*dmats0[4][16] + coeff0_5*dmats0[5][16] + coeff0_6*dmats0[6][16] + coeff0_7*dmats0[7][16] + coeff0_8*dmats0[8][16] + coeff0_9*dmats0[9][16] + coeff0_10*dmats0[10][16] + coeff0_11*dmats0[11][16] + coeff0_12*dmats0[12][16] + coeff0_13*dmats0[13][16] + coeff0_14*dmats0[14][16] + coeff0_15*dmats0[15][16] + coeff0_16*dmats0[16][16] + coeff0_17*dmats0[17][16] + coeff0_18*dmats0[18][16] + coeff0_19*dmats0[19][16];
-          new_coeff0_17 = coeff0_0*dmats0[0][17] + coeff0_1*dmats0[1][17] + coeff0_2*dmats0[2][17] + coeff0_3*dmats0[3][17] + coeff0_4*dmats0[4][17] + coeff0_5*dmats0[5][17] + coeff0_6*dmats0[6][17] + coeff0_7*dmats0[7][17] + coeff0_8*dmats0[8][17] + coeff0_9*dmats0[9][17] + coeff0_10*dmats0[10][17] + coeff0_11*dmats0[11][17] + coeff0_12*dmats0[12][17] + coeff0_13*dmats0[13][17] + coeff0_14*dmats0[14][17] + coeff0_15*dmats0[15][17] + coeff0_16*dmats0[16][17] + coeff0_17*dmats0[17][17] + coeff0_18*dmats0[18][17] + coeff0_19*dmats0[19][17];
-          new_coeff0_18 = coeff0_0*dmats0[0][18] + coeff0_1*dmats0[1][18] + coeff0_2*dmats0[2][18] + coeff0_3*dmats0[3][18] + coeff0_4*dmats0[4][18] + coeff0_5*dmats0[5][18] + coeff0_6*dmats0[6][18] + coeff0_7*dmats0[7][18] + coeff0_8*dmats0[8][18] + coeff0_9*dmats0[9][18] + coeff0_10*dmats0[10][18] + coeff0_11*dmats0[11][18] + coeff0_12*dmats0[12][18] + coeff0_13*dmats0[13][18] + coeff0_14*dmats0[14][18] + coeff0_15*dmats0[15][18] + coeff0_16*dmats0[16][18] + coeff0_17*dmats0[17][18] + coeff0_18*dmats0[18][18] + coeff0_19*dmats0[19][18];
-          new_coeff0_19 = coeff0_0*dmats0[0][19] + coeff0_1*dmats0[1][19] + coeff0_2*dmats0[2][19] + coeff0_3*dmats0[3][19] + coeff0_4*dmats0[4][19] + coeff0_5*dmats0[5][19] + coeff0_6*dmats0[6][19] + coeff0_7*dmats0[7][19] + coeff0_8*dmats0[8][19] + coeff0_9*dmats0[9][19] + coeff0_10*dmats0[10][19] + coeff0_11*dmats0[11][19] + coeff0_12*dmats0[12][19] + coeff0_13*dmats0[13][19] + coeff0_14*dmats0[14][19] + coeff0_15*dmats0[15][19] + coeff0_16*dmats0[16][19] + coeff0_17*dmats0[17][19] + coeff0_18*dmats0[18][19] + coeff0_19*dmats0[19][19];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0] + coeff0_6*dmats1[6][0] + coeff0_7*dmats1[7][0] + coeff0_8*dmats1[8][0] + coeff0_9*dmats1[9][0] + coeff0_10*dmats1[10][0] + coeff0_11*dmats1[11][0] + coeff0_12*dmats1[12][0] + coeff0_13*dmats1[13][0] + coeff0_14*dmats1[14][0] + coeff0_15*dmats1[15][0] + coeff0_16*dmats1[16][0] + coeff0_17*dmats1[17][0] + coeff0_18*dmats1[18][0] + coeff0_19*dmats1[19][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1] + coeff0_6*dmats1[6][1] + coeff0_7*dmats1[7][1] + coeff0_8*dmats1[8][1] + coeff0_9*dmats1[9][1] + coeff0_10*dmats1[10][1] + coeff0_11*dmats1[11][1] + coeff0_12*dmats1[12][1] + coeff0_13*dmats1[13][1] + coeff0_14*dmats1[14][1] + coeff0_15*dmats1[15][1] + coeff0_16*dmats1[16][1] + coeff0_17*dmats1[17][1] + coeff0_18*dmats1[18][1] + coeff0_19*dmats1[19][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2] + coeff0_6*dmats1[6][2] + coeff0_7*dmats1[7][2] + coeff0_8*dmats1[8][2] + coeff0_9*dmats1[9][2] + coeff0_10*dmats1[10][2] + coeff0_11*dmats1[11][2] + coeff0_12*dmats1[12][2] + coeff0_13*dmats1[13][2] + coeff0_14*dmats1[14][2] + coeff0_15*dmats1[15][2] + coeff0_16*dmats1[16][2] + coeff0_17*dmats1[17][2] + coeff0_18*dmats1[18][2] + coeff0_19*dmats1[19][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3] + coeff0_6*dmats1[6][3] + coeff0_7*dmats1[7][3] + coeff0_8*dmats1[8][3] + coeff0_9*dmats1[9][3] + coeff0_10*dmats1[10][3] + coeff0_11*dmats1[11][3] + coeff0_12*dmats1[12][3] + coeff0_13*dmats1[13][3] + coeff0_14*dmats1[14][3] + coeff0_15*dmats1[15][3] + coeff0_16*dmats1[16][3] + coeff0_17*dmats1[17][3] + coeff0_18*dmats1[18][3] + coeff0_19*dmats1[19][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4] + coeff0_6*dmats1[6][4] + coeff0_7*dmats1[7][4] + coeff0_8*dmats1[8][4] + coeff0_9*dmats1[9][4] + coeff0_10*dmats1[10][4] + coeff0_11*dmats1[11][4] + coeff0_12*dmats1[12][4] + coeff0_13*dmats1[13][4] + coeff0_14*dmats1[14][4] + coeff0_15*dmats1[15][4] + coeff0_16*dmats1[16][4] + coeff0_17*dmats1[17][4] + coeff0_18*dmats1[18][4] + coeff0_19*dmats1[19][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5] + coeff0_6*dmats1[6][5] + coeff0_7*dmats1[7][5] + coeff0_8*dmats1[8][5] + coeff0_9*dmats1[9][5] + coeff0_10*dmats1[10][5] + coeff0_11*dmats1[11][5] + coeff0_12*dmats1[12][5] + coeff0_13*dmats1[13][5] + coeff0_14*dmats1[14][5] + coeff0_15*dmats1[15][5] + coeff0_16*dmats1[16][5] + coeff0_17*dmats1[17][5] + coeff0_18*dmats1[18][5] + coeff0_19*dmats1[19][5];
-          new_coeff0_6 = coeff0_0*dmats1[0][6] + coeff0_1*dmats1[1][6] + coeff0_2*dmats1[2][6] + coeff0_3*dmats1[3][6] + coeff0_4*dmats1[4][6] + coeff0_5*dmats1[5][6] + coeff0_6*dmats1[6][6] + coeff0_7*dmats1[7][6] + coeff0_8*dmats1[8][6] + coeff0_9*dmats1[9][6] + coeff0_10*dmats1[10][6] + coeff0_11*dmats1[11][6] + coeff0_12*dmats1[12][6] + coeff0_13*dmats1[13][6] + coeff0_14*dmats1[14][6] + coeff0_15*dmats1[15][6] + coeff0_16*dmats1[16][6] + coeff0_17*dmats1[17][6] + coeff0_18*dmats1[18][6] + coeff0_19*dmats1[19][6];
-          new_coeff0_7 = coeff0_0*dmats1[0][7] + coeff0_1*dmats1[1][7] + coeff0_2*dmats1[2][7] + coeff0_3*dmats1[3][7] + coeff0_4*dmats1[4][7] + coeff0_5*dmats1[5][7] + coeff0_6*dmats1[6][7] + coeff0_7*dmats1[7][7] + coeff0_8*dmats1[8][7] + coeff0_9*dmats1[9][7] + coeff0_10*dmats1[10][7] + coeff0_11*dmats1[11][7] + coeff0_12*dmats1[12][7] + coeff0_13*dmats1[13][7] + coeff0_14*dmats1[14][7] + coeff0_15*dmats1[15][7] + coeff0_16*dmats1[16][7] + coeff0_17*dmats1[17][7] + coeff0_18*dmats1[18][7] + coeff0_19*dmats1[19][7];
-          new_coeff0_8 = coeff0_0*dmats1[0][8] + coeff0_1*dmats1[1][8] + coeff0_2*dmats1[2][8] + coeff0_3*dmats1[3][8] + coeff0_4*dmats1[4][8] + coeff0_5*dmats1[5][8] + coeff0_6*dmats1[6][8] + coeff0_7*dmats1[7][8] + coeff0_8*dmats1[8][8] + coeff0_9*dmats1[9][8] + coeff0_10*dmats1[10][8] + coeff0_11*dmats1[11][8] + coeff0_12*dmats1[12][8] + coeff0_13*dmats1[13][8] + coeff0_14*dmats1[14][8] + coeff0_15*dmats1[15][8] + coeff0_16*dmats1[16][8] + coeff0_17*dmats1[17][8] + coeff0_18*dmats1[18][8] + coeff0_19*dmats1[19][8];
-          new_coeff0_9 = coeff0_0*dmats1[0][9] + coeff0_1*dmats1[1][9] + coeff0_2*dmats1[2][9] + coeff0_3*dmats1[3][9] + coeff0_4*dmats1[4][9] + coeff0_5*dmats1[5][9] + coeff0_6*dmats1[6][9] + coeff0_7*dmats1[7][9] + coeff0_8*dmats1[8][9] + coeff0_9*dmats1[9][9] + coeff0_10*dmats1[10][9] + coeff0_11*dmats1[11][9] + coeff0_12*dmats1[12][9] + coeff0_13*dmats1[13][9] + coeff0_14*dmats1[14][9] + coeff0_15*dmats1[15][9] + coeff0_16*dmats1[16][9] + coeff0_17*dmats1[17][9] + coeff0_18*dmats1[18][9] + coeff0_19*dmats1[19][9];
-          new_coeff0_10 = coeff0_0*dmats1[0][10] + coeff0_1*dmats1[1][10] + coeff0_2*dmats1[2][10] + coeff0_3*dmats1[3][10] + coeff0_4*dmats1[4][10] + coeff0_5*dmats1[5][10] + coeff0_6*dmats1[6][10] + coeff0_7*dmats1[7][10] + coeff0_8*dmats1[8][10] + coeff0_9*dmats1[9][10] + coeff0_10*dmats1[10][10] + coeff0_11*dmats1[11][10] + coeff0_12*dmats1[12][10] + coeff0_13*dmats1[13][10] + coeff0_14*dmats1[14][10] + coeff0_15*dmats1[15][10] + coeff0_16*dmats1[16][10] + coeff0_17*dmats1[17][10] + coeff0_18*dmats1[18][10] + coeff0_19*dmats1[19][10];
-          new_coeff0_11 = coeff0_0*dmats1[0][11] + coeff0_1*dmats1[1][11] + coeff0_2*dmats1[2][11] + coeff0_3*dmats1[3][11] + coeff0_4*dmats1[4][11] + coeff0_5*dmats1[5][11] + coeff0_6*dmats1[6][11] + coeff0_7*dmats1[7][11] + coeff0_8*dmats1[8][11] + coeff0_9*dmats1[9][11] + coeff0_10*dmats1[10][11] + coeff0_11*dmats1[11][11] + coeff0_12*dmats1[12][11] + coeff0_13*dmats1[13][11] + coeff0_14*dmats1[14][11] + coeff0_15*dmats1[15][11] + coeff0_16*dmats1[16][11] + coeff0_17*dmats1[17][11] + coeff0_18*dmats1[18][11] + coeff0_19*dmats1[19][11];
-          new_coeff0_12 = coeff0_0*dmats1[0][12] + coeff0_1*dmats1[1][12] + coeff0_2*dmats1[2][12] + coeff0_3*dmats1[3][12] + coeff0_4*dmats1[4][12] + coeff0_5*dmats1[5][12] + coeff0_6*dmats1[6][12] + coeff0_7*dmats1[7][12] + coeff0_8*dmats1[8][12] + coeff0_9*dmats1[9][12] + coeff0_10*dmats1[10][12] + coeff0_11*dmats1[11][12] + coeff0_12*dmats1[12][12] + coeff0_13*dmats1[13][12] + coeff0_14*dmats1[14][12] + coeff0_15*dmats1[15][12] + coeff0_16*dmats1[16][12] + coeff0_17*dmats1[17][12] + coeff0_18*dmats1[18][12] + coeff0_19*dmats1[19][12];
-          new_coeff0_13 = coeff0_0*dmats1[0][13] + coeff0_1*dmats1[1][13] + coeff0_2*dmats1[2][13] + coeff0_3*dmats1[3][13] + coeff0_4*dmats1[4][13] + coeff0_5*dmats1[5][13] + coeff0_6*dmats1[6][13] + coeff0_7*dmats1[7][13] + coeff0_8*dmats1[8][13] + coeff0_9*dmats1[9][13] + coeff0_10*dmats1[10][13] + coeff0_11*dmats1[11][13] + coeff0_12*dmats1[12][13] + coeff0_13*dmats1[13][13] + coeff0_14*dmats1[14][13] + coeff0_15*dmats1[15][13] + coeff0_16*dmats1[16][13] + coeff0_17*dmats1[17][13] + coeff0_18*dmats1[18][13] + coeff0_19*dmats1[19][13];
-          new_coeff0_14 = coeff0_0*dmats1[0][14] + coeff0_1*dmats1[1][14] + coeff0_2*dmats1[2][14] + coeff0_3*dmats1[3][14] + coeff0_4*dmats1[4][14] + coeff0_5*dmats1[5][14] + coeff0_6*dmats1[6][14] + coeff0_7*dmats1[7][14] + coeff0_8*dmats1[8][14] + coeff0_9*dmats1[9][14] + coeff0_10*dmats1[10][14] + coeff0_11*dmats1[11][14] + coeff0_12*dmats1[12][14] + coeff0_13*dmats1[13][14] + coeff0_14*dmats1[14][14] + coeff0_15*dmats1[15][14] + coeff0_16*dmats1[16][14] + coeff0_17*dmats1[17][14] + coeff0_18*dmats1[18][14] + coeff0_19*dmats1[19][14];
-          new_coeff0_15 = coeff0_0*dmats1[0][15] + coeff0_1*dmats1[1][15] + coeff0_2*dmats1[2][15] + coeff0_3*dmats1[3][15] + coeff0_4*dmats1[4][15] + coeff0_5*dmats1[5][15] + coeff0_6*dmats1[6][15] + coeff0_7*dmats1[7][15] + coeff0_8*dmats1[8][15] + coeff0_9*dmats1[9][15] + coeff0_10*dmats1[10][15] + coeff0_11*dmats1[11][15] + coeff0_12*dmats1[12][15] + coeff0_13*dmats1[13][15] + coeff0_14*dmats1[14][15] + coeff0_15*dmats1[15][15] + coeff0_16*dmats1[16][15] + coeff0_17*dmats1[17][15] + coeff0_18*dmats1[18][15] + coeff0_19*dmats1[19][15];
-          new_coeff0_16 = coeff0_0*dmats1[0][16] + coeff0_1*dmats1[1][16] + coeff0_2*dmats1[2][16] + coeff0_3*dmats1[3][16] + coeff0_4*dmats1[4][16] + coeff0_5*dmats1[5][16] + coeff0_6*dmats1[6][16] + coeff0_7*dmats1[7][16] + coeff0_8*dmats1[8][16] + coeff0_9*dmats1[9][16] + coeff0_10*dmats1[10][16] + coeff0_11*dmats1[11][16] + coeff0_12*dmats1[12][16] + coeff0_13*dmats1[13][16] + coeff0_14*dmats1[14][16] + coeff0_15*dmats1[15][16] + coeff0_16*dmats1[16][16] + coeff0_17*dmats1[17][16] + coeff0_18*dmats1[18][16] + coeff0_19*dmats1[19][16];
-          new_coeff0_17 = coeff0_0*dmats1[0][17] + coeff0_1*dmats1[1][17] + coeff0_2*dmats1[2][17] + coeff0_3*dmats1[3][17] + coeff0_4*dmats1[4][17] + coeff0_5*dmats1[5][17] + coeff0_6*dmats1[6][17] + coeff0_7*dmats1[7][17] + coeff0_8*dmats1[8][17] + coeff0_9*dmats1[9][17] + coeff0_10*dmats1[10][17] + coeff0_11*dmats1[11][17] + coeff0_12*dmats1[12][17] + coeff0_13*dmats1[13][17] + coeff0_14*dmats1[14][17] + coeff0_15*dmats1[15][17] + coeff0_16*dmats1[16][17] + coeff0_17*dmats1[17][17] + coeff0_18*dmats1[18][17] + coeff0_19*dmats1[19][17];
-          new_coeff0_18 = coeff0_0*dmats1[0][18] + coeff0_1*dmats1[1][18] + coeff0_2*dmats1[2][18] + coeff0_3*dmats1[3][18] + coeff0_4*dmats1[4][18] + coeff0_5*dmats1[5][18] + coeff0_6*dmats1[6][18] + coeff0_7*dmats1[7][18] + coeff0_8*dmats1[8][18] + coeff0_9*dmats1[9][18] + coeff0_10*dmats1[10][18] + coeff0_11*dmats1[11][18] + coeff0_12*dmats1[12][18] + coeff0_13*dmats1[13][18] + coeff0_14*dmats1[14][18] + coeff0_15*dmats1[15][18] + coeff0_16*dmats1[16][18] + coeff0_17*dmats1[17][18] + coeff0_18*dmats1[18][18] + coeff0_19*dmats1[19][18];
-          new_coeff0_19 = coeff0_0*dmats1[0][19] + coeff0_1*dmats1[1][19] + coeff0_2*dmats1[2][19] + coeff0_3*dmats1[3][19] + coeff0_4*dmats1[4][19] + coeff0_5*dmats1[5][19] + coeff0_6*dmats1[6][19] + coeff0_7*dmats1[7][19] + coeff0_8*dmats1[8][19] + coeff0_9*dmats1[9][19] + coeff0_10*dmats1[10][19] + coeff0_11*dmats1[11][19] + coeff0_12*dmats1[12][19] + coeff0_13*dmats1[13][19] + coeff0_14*dmats1[14][19] + coeff0_15*dmats1[15][19] + coeff0_16*dmats1[16][19] + coeff0_17*dmats1[17][19] + coeff0_18*dmats1[18][19] + coeff0_19*dmats1[19][19];
-        }
-        if(combinations[deriv_num][j] == 2)
-        {
-          new_coeff0_0 = coeff0_0*dmats2[0][0] + coeff0_1*dmats2[1][0] + coeff0_2*dmats2[2][0] + coeff0_3*dmats2[3][0] + coeff0_4*dmats2[4][0] + coeff0_5*dmats2[5][0] + coeff0_6*dmats2[6][0] + coeff0_7*dmats2[7][0] + coeff0_8*dmats2[8][0] + coeff0_9*dmats2[9][0] + coeff0_10*dmats2[10][0] + coeff0_11*dmats2[11][0] + coeff0_12*dmats2[12][0] + coeff0_13*dmats2[13][0] + coeff0_14*dmats2[14][0] + coeff0_15*dmats2[15][0] + coeff0_16*dmats2[16][0] + coeff0_17*dmats2[17][0] + coeff0_18*dmats2[18][0] + coeff0_19*dmats2[19][0];
-          new_coeff0_1 = coeff0_0*dmats2[0][1] + coeff0_1*dmats2[1][1] + coeff0_2*dmats2[2][1] + coeff0_3*dmats2[3][1] + coeff0_4*dmats2[4][1] + coeff0_5*dmats2[5][1] + coeff0_6*dmats2[6][1] + coeff0_7*dmats2[7][1] + coeff0_8*dmats2[8][1] + coeff0_9*dmats2[9][1] + coeff0_10*dmats2[10][1] + coeff0_11*dmats2[11][1] + coeff0_12*dmats2[12][1] + coeff0_13*dmats2[13][1] + coeff0_14*dmats2[14][1] + coeff0_15*dmats2[15][1] + coeff0_16*dmats2[16][1] + coeff0_17*dmats2[17][1] + coeff0_18*dmats2[18][1] + coeff0_19*dmats2[19][1];
-          new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2] + coeff0_4*dmats2[4][2] + coeff0_5*dmats2[5][2] + coeff0_6*dmats2[6][2] + coeff0_7*dmats2[7][2] + coeff0_8*dmats2[8][2] + coeff0_9*dmats2[9][2] + coeff0_10*dmats2[10][2] + coeff0_11*dmats2[11][2] + coeff0_12*dmats2[12][2] + coeff0_13*dmats2[13][2] + coeff0_14*dmats2[14][2] + coeff0_15*dmats2[15][2] + coeff0_16*dmats2[16][2] + coeff0_17*dmats2[17][2] + coeff0_18*dmats2[18][2] + coeff0_19*dmats2[19][2];
-          new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3] + coeff0_4*dmats2[4][3] + coeff0_5*dmats2[5][3] + coeff0_6*dmats2[6][3] + coeff0_7*dmats2[7][3] + coeff0_8*dmats2[8][3] + coeff0_9*dmats2[9][3] + coeff0_10*dmats2[10][3] + coeff0_11*dmats2[11][3] + coeff0_12*dmats2[12][3] + coeff0_13*dmats2[13][3] + coeff0_14*dmats2[14][3] + coeff0_15*dmats2[15][3] + coeff0_16*dmats2[16][3] + coeff0_17*dmats2[17][3] + coeff0_18*dmats2[18][3] + coeff0_19*dmats2[19][3];
-          new_coeff0_4 = coeff0_0*dmats2[0][4] + coeff0_1*dmats2[1][4] + coeff0_2*dmats2[2][4] + coeff0_3*dmats2[3][4] + coeff0_4*dmats2[4][4] + coeff0_5*dmats2[5][4] + coeff0_6*dmats2[6][4] + coeff0_7*dmats2[7][4] + coeff0_8*dmats2[8][4] + coeff0_9*dmats2[9][4] + coeff0_10*dmats2[10][4] + coeff0_11*dmats2[11][4] + coeff0_12*dmats2[12][4] + coeff0_13*dmats2[13][4] + coeff0_14*dmats2[14][4] + coeff0_15*dmats2[15][4] + coeff0_16*dmats2[16][4] + coeff0_17*dmats2[17][4] + coeff0_18*dmats2[18][4] + coeff0_19*dmats2[19][4];
-          new_coeff0_5 = coeff0_0*dmats2[0][5] + coeff0_1*dmats2[1][5] + coeff0_2*dmats2[2][5] + coeff0_3*dmats2[3][5] + coeff0_4*dmats2[4][5] + coeff0_5*dmats2[5][5] + coeff0_6*dmats2[6][5] + coeff0_7*dmats2[7][5] + coeff0_8*dmats2[8][5] + coeff0_9*dmats2[9][5] + coeff0_10*dmats2[10][5] + coeff0_11*dmats2[11][5] + coeff0_12*dmats2[12][5] + coeff0_13*dmats2[13][5] + coeff0_14*dmats2[14][5] + coeff0_15*dmats2[15][5] + coeff0_16*dmats2[16][5] + coeff0_17*dmats2[17][5] + coeff0_18*dmats2[18][5] + coeff0_19*dmats2[19][5];
-          new_coeff0_6 = coeff0_0*dmats2[0][6] + coeff0_1*dmats2[1][6] + coeff0_2*dmats2[2][6] + coeff0_3*dmats2[3][6] + coeff0_4*dmats2[4][6] + coeff0_5*dmats2[5][6] + coeff0_6*dmats2[6][6] + coeff0_7*dmats2[7][6] + coeff0_8*dmats2[8][6] + coeff0_9*dmats2[9][6] + coeff0_10*dmats2[10][6] + coeff0_11*dmats2[11][6] + coeff0_12*dmats2[12][6] + coeff0_13*dmats2[13][6] + coeff0_14*dmats2[14][6] + coeff0_15*dmats2[15][6] + coeff0_16*dmats2[16][6] + coeff0_17*dmats2[17][6] + coeff0_18*dmats2[18][6] + coeff0_19*dmats2[19][6];
-          new_coeff0_7 = coeff0_0*dmats2[0][7] + coeff0_1*dmats2[1][7] + coeff0_2*dmats2[2][7] + coeff0_3*dmats2[3][7] + coeff0_4*dmats2[4][7] + coeff0_5*dmats2[5][7] + coeff0_6*dmats2[6][7] + coeff0_7*dmats2[7][7] + coeff0_8*dmats2[8][7] + coeff0_9*dmats2[9][7] + coeff0_10*dmats2[10][7] + coeff0_11*dmats2[11][7] + coeff0_12*dmats2[12][7] + coeff0_13*dmats2[13][7] + coeff0_14*dmats2[14][7] + coeff0_15*dmats2[15][7] + coeff0_16*dmats2[16][7] + coeff0_17*dmats2[17][7] + coeff0_18*dmats2[18][7] + coeff0_19*dmats2[19][7];
-          new_coeff0_8 = coeff0_0*dmats2[0][8] + coeff0_1*dmats2[1][8] + coeff0_2*dmats2[2][8] + coeff0_3*dmats2[3][8] + coeff0_4*dmats2[4][8] + coeff0_5*dmats2[5][8] + coeff0_6*dmats2[6][8] + coeff0_7*dmats2[7][8] + coeff0_8*dmats2[8][8] + coeff0_9*dmats2[9][8] + coeff0_10*dmats2[10][8] + coeff0_11*dmats2[11][8] + coeff0_12*dmats2[12][8] + coeff0_13*dmats2[13][8] + coeff0_14*dmats2[14][8] + coeff0_15*dmats2[15][8] + coeff0_16*dmats2[16][8] + coeff0_17*dmats2[17][8] + coeff0_18*dmats2[18][8] + coeff0_19*dmats2[19][8];
-          new_coeff0_9 = coeff0_0*dmats2[0][9] + coeff0_1*dmats2[1][9] + coeff0_2*dmats2[2][9] + coeff0_3*dmats2[3][9] + coeff0_4*dmats2[4][9] + coeff0_5*dmats2[5][9] + coeff0_6*dmats2[6][9] + coeff0_7*dmats2[7][9] + coeff0_8*dmats2[8][9] + coeff0_9*dmats2[9][9] + coeff0_10*dmats2[10][9] + coeff0_11*dmats2[11][9] + coeff0_12*dmats2[12][9] + coeff0_13*dmats2[13][9] + coeff0_14*dmats2[14][9] + coeff0_15*dmats2[15][9] + coeff0_16*dmats2[16][9] + coeff0_17*dmats2[17][9] + coeff0_18*dmats2[18][9] + coeff0_19*dmats2[19][9];
-          new_coeff0_10 = coeff0_0*dmats2[0][10] + coeff0_1*dmats2[1][10] + coeff0_2*dmats2[2][10] + coeff0_3*dmats2[3][10] + coeff0_4*dmats2[4][10] + coeff0_5*dmats2[5][10] + coeff0_6*dmats2[6][10] + coeff0_7*dmats2[7][10] + coeff0_8*dmats2[8][10] + coeff0_9*dmats2[9][10] + coeff0_10*dmats2[10][10] + coeff0_11*dmats2[11][10] + coeff0_12*dmats2[12][10] + coeff0_13*dmats2[13][10] + coeff0_14*dmats2[14][10] + coeff0_15*dmats2[15][10] + coeff0_16*dmats2[16][10] + coeff0_17*dmats2[17][10] + coeff0_18*dmats2[18][10] + coeff0_19*dmats2[19][10];
-          new_coeff0_11 = coeff0_0*dmats2[0][11] + coeff0_1*dmats2[1][11] + coeff0_2*dmats2[2][11] + coeff0_3*dmats2[3][11] + coeff0_4*dmats2[4][11] + coeff0_5*dmats2[5][11] + coeff0_6*dmats2[6][11] + coeff0_7*dmats2[7][11] + coeff0_8*dmats2[8][11] + coeff0_9*dmats2[9][11] + coeff0_10*dmats2[10][11] + coeff0_11*dmats2[11][11] + coeff0_12*dmats2[12][11] + coeff0_13*dmats2[13][11] + coeff0_14*dmats2[14][11] + coeff0_15*dmats2[15][11] + coeff0_16*dmats2[16][11] + coeff0_17*dmats2[17][11] + coeff0_18*dmats2[18][11] + coeff0_19*dmats2[19][11];
-          new_coeff0_12 = coeff0_0*dmats2[0][12] + coeff0_1*dmats2[1][12] + coeff0_2*dmats2[2][12] + coeff0_3*dmats2[3][12] + coeff0_4*dmats2[4][12] + coeff0_5*dmats2[5][12] + coeff0_6*dmats2[6][12] + coeff0_7*dmats2[7][12] + coeff0_8*dmats2[8][12] + coeff0_9*dmats2[9][12] + coeff0_10*dmats2[10][12] + coeff0_11*dmats2[11][12] + coeff0_12*dmats2[12][12] + coeff0_13*dmats2[13][12] + coeff0_14*dmats2[14][12] + coeff0_15*dmats2[15][12] + coeff0_16*dmats2[16][12] + coeff0_17*dmats2[17][12] + coeff0_18*dmats2[18][12] + coeff0_19*dmats2[19][12];
-          new_coeff0_13 = coeff0_0*dmats2[0][13] + coeff0_1*dmats2[1][13] + coeff0_2*dmats2[2][13] + coeff0_3*dmats2[3][13] + coeff0_4*dmats2[4][13] + coeff0_5*dmats2[5][13] + coeff0_6*dmats2[6][13] + coeff0_7*dmats2[7][13] + coeff0_8*dmats2[8][13] + coeff0_9*dmats2[9][13] + coeff0_10*dmats2[10][13] + coeff0_11*dmats2[11][13] + coeff0_12*dmats2[12][13] + coeff0_13*dmats2[13][13] + coeff0_14*dmats2[14][13] + coeff0_15*dmats2[15][13] + coeff0_16*dmats2[16][13] + coeff0_17*dmats2[17][13] + coeff0_18*dmats2[18][13] + coeff0_19*dmats2[19][13];
-          new_coeff0_14 = coeff0_0*dmats2[0][14] + coeff0_1*dmats2[1][14] + coeff0_2*dmats2[2][14] + coeff0_3*dmats2[3][14] + coeff0_4*dmats2[4][14] + coeff0_5*dmats2[5][14] + coeff0_6*dmats2[6][14] + coeff0_7*dmats2[7][14] + coeff0_8*dmats2[8][14] + coeff0_9*dmats2[9][14] + coeff0_10*dmats2[10][14] + coeff0_11*dmats2[11][14] + coeff0_12*dmats2[12][14] + coeff0_13*dmats2[13][14] + coeff0_14*dmats2[14][14] + coeff0_15*dmats2[15][14] + coeff0_16*dmats2[16][14] + coeff0_17*dmats2[17][14] + coeff0_18*dmats2[18][14] + coeff0_19*dmats2[19][14];
-          new_coeff0_15 = coeff0_0*dmats2[0][15] + coeff0_1*dmats2[1][15] + coeff0_2*dmats2[2][15] + coeff0_3*dmats2[3][15] + coeff0_4*dmats2[4][15] + coeff0_5*dmats2[5][15] + coeff0_6*dmats2[6][15] + coeff0_7*dmats2[7][15] + coeff0_8*dmats2[8][15] + coeff0_9*dmats2[9][15] + coeff0_10*dmats2[10][15] + coeff0_11*dmats2[11][15] + coeff0_12*dmats2[12][15] + coeff0_13*dmats2[13][15] + coeff0_14*dmats2[14][15] + coeff0_15*dmats2[15][15] + coeff0_16*dmats2[16][15] + coeff0_17*dmats2[17][15] + coeff0_18*dmats2[18][15] + coeff0_19*dmats2[19][15];
-          new_coeff0_16 = coeff0_0*dmats2[0][16] + coeff0_1*dmats2[1][16] + coeff0_2*dmats2[2][16] + coeff0_3*dmats2[3][16] + coeff0_4*dmats2[4][16] + coeff0_5*dmats2[5][16] + coeff0_6*dmats2[6][16] + coeff0_7*dmats2[7][16] + coeff0_8*dmats2[8][16] + coeff0_9*dmats2[9][16] + coeff0_10*dmats2[10][16] + coeff0_11*dmats2[11][16] + coeff0_12*dmats2[12][16] + coeff0_13*dmats2[13][16] + coeff0_14*dmats2[14][16] + coeff0_15*dmats2[15][16] + coeff0_16*dmats2[16][16] + coeff0_17*dmats2[17][16] + coeff0_18*dmats2[18][16] + coeff0_19*dmats2[19][16];
-          new_coeff0_17 = coeff0_0*dmats2[0][17] + coeff0_1*dmats2[1][17] + coeff0_2*dmats2[2][17] + coeff0_3*dmats2[3][17] + coeff0_4*dmats2[4][17] + coeff0_5*dmats2[5][17] + coeff0_6*dmats2[6][17] + coeff0_7*dmats2[7][17] + coeff0_8*dmats2[8][17] + coeff0_9*dmats2[9][17] + coeff0_10*dmats2[10][17] + coeff0_11*dmats2[11][17] + coeff0_12*dmats2[12][17] + coeff0_13*dmats2[13][17] + coeff0_14*dmats2[14][17] + coeff0_15*dmats2[15][17] + coeff0_16*dmats2[16][17] + coeff0_17*dmats2[17][17] + coeff0_18*dmats2[18][17] + coeff0_19*dmats2[19][17];
-          new_coeff0_18 = coeff0_0*dmats2[0][18] + coeff0_1*dmats2[1][18] + coeff0_2*dmats2[2][18] + coeff0_3*dmats2[3][18] + coeff0_4*dmats2[4][18] + coeff0_5*dmats2[5][18] + coeff0_6*dmats2[6][18] + coeff0_7*dmats2[7][18] + coeff0_8*dmats2[8][18] + coeff0_9*dmats2[9][18] + coeff0_10*dmats2[10][18] + coeff0_11*dmats2[11][18] + coeff0_12*dmats2[12][18] + coeff0_13*dmats2[13][18] + coeff0_14*dmats2[14][18] + coeff0_15*dmats2[15][18] + coeff0_16*dmats2[16][18] + coeff0_17*dmats2[17][18] + coeff0_18*dmats2[18][18] + coeff0_19*dmats2[19][18];
-          new_coeff0_19 = coeff0_0*dmats2[0][19] + coeff0_1*dmats2[1][19] + coeff0_2*dmats2[2][19] + coeff0_3*dmats2[3][19] + coeff0_4*dmats2[4][19] + coeff0_5*dmats2[5][19] + coeff0_6*dmats2[6][19] + coeff0_7*dmats2[7][19] + coeff0_8*dmats2[8][19] + coeff0_9*dmats2[9][19] + coeff0_10*dmats2[10][19] + coeff0_11*dmats2[11][19] + coeff0_12*dmats2[12][19] + coeff0_13*dmats2[13][19] + coeff0_14*dmats2[14][19] + coeff0_15*dmats2[15][19] + coeff0_16*dmats2[16][19] + coeff0_17*dmats2[17][19] + coeff0_18*dmats2[18][19] + coeff0_19*dmats2[19][19];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5 + new_coeff0_6*basisvalue6 + new_coeff0_7*basisvalue7 + new_coeff0_8*basisvalue8 + new_coeff0_9*basisvalue9 + new_coeff0_10*basisvalue10 + new_coeff0_11*basisvalue11 + new_coeff0_12*basisvalue12 + new_coeff0_13*basisvalue13 + new_coeff0_14*basisvalue14 + new_coeff0_15*basisvalue15 + new_coeff0_16*basisvalue16 + new_coeff0_17*basisvalue17 + new_coeff0_18*basisvalue18 + new_coeff0_19*basisvalue19;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
+    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
   }
 
   /// Evaluate linear functional for dof i on the function f
@@ -4250,24 +1070,22 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[20][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.666666666666667, 0.333333333333333}}, {{0, 0.333333333333333, 0.666666666666667}}, {{0.666666666666667, 0, 0.333333333333333}}, {{0.333333333333333, 0, 0.666666666666667}}, {{0.666666666666667, 0.333333333333333, 0}}, {{0.333333333333333, 0.666666666666667, 0}}, {{0, 0, 0.333333333333333}}, {{0, 0, 0.666666666666667}}, {{0, 0.333333333333333, 0}}, {{0, 0.666666666666667, 0}}, {{0.333333333333333, 0, 0}}, {{0.666666666666667, 0, 0}}, {{0.333333333333333, 0.333333333333333, 0.333333333333333}}, {{0, 0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333, 0}}};
-    const static double W[20][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[20][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
     // Evaluate function at physical points
     double values[1];
@@ -4287,6 +1105,14 @@ public:
     return result;
   }
 
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
@@ -4296,7 +1122,6 @@ public:
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[1];
     vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4339,7 +1164,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4348,16 +1173,13 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return true;
-      break;
-    case 3:
-      return false;
       break;
     }
     return false;
@@ -4366,7 +1188,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + 2*m.num_entities[1] + m.num_entities[2];
+    __global_dimension = 3*m.num_entities[2];
     return false;
   }
 
@@ -4392,13 +1214,25 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 20;
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 10;
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -4406,28 +1240,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + 2*c.entity_indices[1][0];
-    dofs[5] = offset + 2*c.entity_indices[1][0] + 1;
-    dofs[6] = offset + 2*c.entity_indices[1][1];
-    dofs[7] = offset + 2*c.entity_indices[1][1] + 1;
-    dofs[8] = offset + 2*c.entity_indices[1][2];
-    dofs[9] = offset + 2*c.entity_indices[1][2] + 1;
-    dofs[10] = offset + 2*c.entity_indices[1][3];
-    dofs[11] = offset + 2*c.entity_indices[1][3] + 1;
-    dofs[12] = offset + 2*c.entity_indices[1][4];
-    dofs[13] = offset + 2*c.entity_indices[1][4] + 1;
-    dofs[14] = offset + 2*c.entity_indices[1][5];
-    dofs[15] = offset + 2*c.entity_indices[1][5] + 1;
-    offset = offset + 2*m.num_entities[1];
-    dofs[16] = offset + c.entity_indices[2][0];
-    dofs[17] = offset + c.entity_indices[2][1];
-    dofs[18] = offset + c.entity_indices[2][2];
-    dofs[19] = offset + c.entity_indices[2][3];
+    dofs[0] = 3*c.entity_indices[2][0];
+    dofs[1] = 3*c.entity_indices[2][0] + 1;
+    dofs[2] = 3*c.entity_indices[2][0] + 2;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4437,54 +1252,22 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 7;
-      dofs[7] = 8;
-      dofs[8] = 9;
-      dofs[9] = 16;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 17;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 6;
-      dofs[4] = 7;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 18;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 8;
-      dofs[4] = 9;
-      dofs[5] = 12;
-      dofs[6] = 13;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 19;
+      
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -4494,64 +1277,10 @@ public:
     const double * const * x = c.coordinates;
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
     coordinates[1][0] = x[1][0];
     coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[4][1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[4][2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[5][0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-    coordinates[5][1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-    coordinates[5][2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
-    coordinates[6][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[6][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[6][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[7][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-    coordinates[7][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-    coordinates[7][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
-    coordinates[8][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[8][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[8][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
-    coordinates[9][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[9][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[9][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
-    coordinates[10][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-    coordinates[10][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-    coordinates[10][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
-    coordinates[11][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-    coordinates[11][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-    coordinates[11][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
-    coordinates[12][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[12][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[12][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
-    coordinates[13][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[13][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[13][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
-    coordinates[14][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[14][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[14][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
-    coordinates[15][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[15][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[15][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
-    coordinates[16][0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[16][1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[16][2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[17][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[17][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[17][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[18][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[18][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[18][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[19][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[19][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[19][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -4594,7 +1323,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4603,16 +1332,13 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return true;
-      break;
-    case 3:
-      return false;
       break;
     }
     return false;
@@ -4621,7 +1347,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + 2*m.num_entities[1] + m.num_entities[2];
+    __global_dimension = 3*m.num_entities[2];
     return false;
   }
 
@@ -4647,13 +1373,25 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 20;
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 10;
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -4661,28 +1399,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + 2*c.entity_indices[1][0];
-    dofs[5] = offset + 2*c.entity_indices[1][0] + 1;
-    dofs[6] = offset + 2*c.entity_indices[1][1];
-    dofs[7] = offset + 2*c.entity_indices[1][1] + 1;
-    dofs[8] = offset + 2*c.entity_indices[1][2];
-    dofs[9] = offset + 2*c.entity_indices[1][2] + 1;
-    dofs[10] = offset + 2*c.entity_indices[1][3];
-    dofs[11] = offset + 2*c.entity_indices[1][3] + 1;
-    dofs[12] = offset + 2*c.entity_indices[1][4];
-    dofs[13] = offset + 2*c.entity_indices[1][4] + 1;
-    dofs[14] = offset + 2*c.entity_indices[1][5];
-    dofs[15] = offset + 2*c.entity_indices[1][5] + 1;
-    offset = offset + 2*m.num_entities[1];
-    dofs[16] = offset + c.entity_indices[2][0];
-    dofs[17] = offset + c.entity_indices[2][1];
-    dofs[18] = offset + c.entity_indices[2][2];
-    dofs[19] = offset + c.entity_indices[2][3];
+    dofs[0] = 3*c.entity_indices[2][0];
+    dofs[1] = 3*c.entity_indices[2][0] + 1;
+    dofs[2] = 3*c.entity_indices[2][0] + 2;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4692,54 +1411,22 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 7;
-      dofs[7] = 8;
-      dofs[8] = 9;
-      dofs[9] = 16;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 17;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 6;
-      dofs[4] = 7;
-      dofs[5] = 10;
-      dofs[6] = 11;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 18;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 8;
-      dofs[4] = 9;
-      dofs[5] = 12;
-      dofs[6] = 13;
-      dofs[7] = 14;
-      dofs[8] = 15;
-      dofs[9] = 19;
+      
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -4749,64 +1436,10 @@ public:
     const double * const * x = c.coordinates;
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
     coordinates[1][0] = x[1][0];
     coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[4][1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[4][2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[5][0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-    coordinates[5][1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-    coordinates[5][2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
-    coordinates[6][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[6][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[6][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[7][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-    coordinates[7][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-    coordinates[7][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
-    coordinates[8][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[8][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[8][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
-    coordinates[9][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[9][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[9][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
-    coordinates[10][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-    coordinates[10][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-    coordinates[10][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
-    coordinates[11][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-    coordinates[11][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-    coordinates[11][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
-    coordinates[12][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[12][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[12][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
-    coordinates[13][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[13][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[13][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
-    coordinates[14][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[14][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[14][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
-    coordinates[15][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[15][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[15][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
-    coordinates[16][0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[16][1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[16][2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[17][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[17][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[17][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[18][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[18][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[18][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[19][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[19][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[19][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -4854,23 +1487,11 @@ public:
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
     const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-      
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    
-    const double d_20 = J_01*J_12 - J_02*J_11;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    double detJ = J_00*J_11 - J_01*J_10;
       
     // Compute inverse of Jacobian
     
@@ -4881,67 +1502,16 @@ public:
     const double c0_0_0_0 = w[0][0];
     const double c0_0_0_1 = w[0][1];
     const double c0_0_0_2 = w[0][2];
-    const double c0_0_0_3 = w[0][3];
-    const double c0_0_0_4 = w[0][4];
-    const double c0_0_0_5 = w[0][5];
-    const double c0_0_0_6 = w[0][6];
-    const double c0_0_0_7 = w[0][7];
-    const double c0_0_0_8 = w[0][8];
-    const double c0_0_0_9 = w[0][9];
-    const double c0_0_0_10 = w[0][10];
-    const double c0_0_0_11 = w[0][11];
-    const double c0_0_0_12 = w[0][12];
-    const double c0_0_0_13 = w[0][13];
-    const double c0_0_0_14 = w[0][14];
-    const double c0_0_0_15 = w[0][15];
-    const double c0_0_0_16 = w[0][16];
-    const double c0_0_0_17 = w[0][17];
-    const double c0_0_0_18 = w[0][18];
-    const double c0_0_0_19 = w[0][19];
     
     // Compute geometry tensors
     const double G0_0 = det*c0_0_0_0;
     const double G0_1 = det*c0_0_0_1;
     const double G0_2 = det*c0_0_0_2;
-    const double G0_3 = det*c0_0_0_3;
-    const double G0_4 = det*c0_0_0_4;
-    const double G0_5 = det*c0_0_0_5;
-    const double G0_6 = det*c0_0_0_6;
-    const double G0_7 = det*c0_0_0_7;
-    const double G0_8 = det*c0_0_0_8;
-    const double G0_9 = det*c0_0_0_9;
-    const double G0_10 = det*c0_0_0_10;
-    const double G0_11 = det*c0_0_0_11;
-    const double G0_12 = det*c0_0_0_12;
-    const double G0_13 = det*c0_0_0_13;
-    const double G0_14 = det*c0_0_0_14;
-    const double G0_15 = det*c0_0_0_15;
-    const double G0_16 = det*c0_0_0_16;
-    const double G0_17 = det*c0_0_0_17;
-    const double G0_18 = det*c0_0_0_18;
-    const double G0_19 = det*c0_0_0_19;
     
     // Compute element tensor
-    A[0] = 0.000595238095238095*G0_0 + 7.44047619047619e-05*G0_1 + 7.44047619047618e-05*G0_2 + 7.44047619047618e-05*G0_3 + 0.000111607142857143*G0_4 + 0.000111607142857143*G0_5 + 0.000111607142857142*G0_6 + 0.000111607142857143*G0_7 + 0.000111607142857142*G0_8 + 0.000111607142857143*G0_9 - 0.000446428571428571*G0_10 + 0.000223214285714286*G0_11 - 0.000446428571428571*G0_12 + 0.000223214285714286*G0_13 - 0.000446428571428572*G0_14 + 0.000223214285714286*G0_15 + 0.00133928571428572*G0_16 + 0.000669642857142858*G0_17 + 0.000669642857142858*G0_18 + 0.000669642857142858*G0_19;
-    A[1] = 7.44047619047619e-05*G0_0 + 0.000595238095238094*G0_1 + 7.44047619047616e-05*G0_2 + 7.44047619047616e-05*G0_3 + 0.000111607142857143*G0_4 + 0.000111607142857143*G0_5 - 0.000446428571428572*G0_6 + 0.000223214285714286*G0_7 - 0.000446428571428571*G0_8 + 0.000223214285714286*G0_9 + 0.000111607142857143*G0_10 + 0.000111607142857143*G0_11 + 0.000111607142857142*G0_12 + 0.000111607142857143*G0_13 + 0.000223214285714286*G0_14 - 0.000446428571428572*G0_15 + 0.000669642857142857*G0_16 + 0.00133928571428571*G0_17 + 0.000669642857142856*G0_18 + 0.000669642857142856*G0_19;
-    A[2] = 7.44047619047618e-05*G0_0 + 7.44047619047616e-05*G0_1 + 0.000595238095238094*G0_2 + 7.44047619047616e-05*G0_3 - 0.000446428571428571*G0_4 + 0.000223214285714285*G0_5 + 0.000111607142857142*G0_6 + 0.000111607142857143*G0_7 + 0.000223214285714285*G0_8 - 0.00044642857142857*G0_9 + 0.000111607142857143*G0_10 + 0.000111607142857143*G0_11 + 0.000223214285714285*G0_12 - 0.00044642857142857*G0_13 + 0.000111607142857142*G0_14 + 0.000111607142857143*G0_15 + 0.000669642857142856*G0_16 + 0.000669642857142856*G0_17 + 0.00133928571428571*G0_18 + 0.000669642857142857*G0_19;
-    A[3] = 7.44047619047618e-05*G0_0 + 7.44047619047616e-05*G0_1 + 7.44047619047616e-05*G0_2 + 0.000595238095238094*G0_3 + 0.000223214285714285*G0_4 - 0.00044642857142857*G0_5 + 0.000223214285714285*G0_6 - 0.00044642857142857*G0_7 + 0.000111607142857142*G0_8 + 0.000111607142857143*G0_9 + 0.000223214285714285*G0_10 - 0.00044642857142857*G0_11 + 0.000111607142857143*G0_12 + 0.000111607142857142*G0_13 + 0.000111607142857143*G0_14 + 0.000111607142857143*G0_15 + 0.000669642857142855*G0_16 + 0.000669642857142855*G0_17 + 0.000669642857142855*G0_18 + 0.00133928571428571*G0_19;
-    A[4] = 0.000111607142857143*G0_0 + 0.000111607142857143*G0_1 - 0.000446428571428571*G0_2 + 0.000223214285714285*G0_3 + 0.00401785714285714*G0_4 - 0.00200892857142857*G0_5 - 0.00100446428571429*G0_7 - 0.00100446428571428*G0_8 + 0.00200892857142857*G0_9 - 0.00100446428571429*G0_11 - 0.00100446428571428*G0_12 + 0.00200892857142857*G0_13 - 0.00200892857142857*G0_18;
-    A[5] = 0.000111607142857143*G0_0 + 0.000111607142857143*G0_1 + 0.000223214285714285*G0_2 - 0.00044642857142857*G0_3 - 0.00200892857142857*G0_4 + 0.00401785714285714*G0_5 - 0.00100446428571429*G0_6 + 0.00200892857142857*G0_7 - 0.00100446428571428*G0_9 - 0.00100446428571429*G0_10 + 0.00200892857142857*G0_11 - 0.00100446428571428*G0_13 - 0.00200892857142857*G0_19;
-    A[6] = 0.000111607142857142*G0_0 - 0.000446428571428572*G0_1 + 0.000111607142857142*G0_2 + 0.000223214285714285*G0_3 - 0.00100446428571429*G0_5 + 0.00401785714285713*G0_6 - 0.00200892857142857*G0_7 + 0.00200892857142856*G0_8 - 0.00100446428571428*G0_9 - 0.00100446428571429*G0_11 - 0.00100446428571428*G0_14 + 0.00200892857142857*G0_15 - 0.00200892857142857*G0_17;
-    A[7] = 0.000111607142857143*G0_0 + 0.000223214285714286*G0_1 + 0.000111607142857143*G0_2 - 0.00044642857142857*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_5 - 0.00200892857142857*G0_6 + 0.00401785714285714*G0_7 - 0.00100446428571428*G0_8 - 0.00100446428571429*G0_10 + 0.00200892857142857*G0_11 - 0.00100446428571428*G0_15 - 0.00200892857142857*G0_19;
-    A[8] = 0.000111607142857142*G0_0 - 0.000446428571428571*G0_1 + 0.000223214285714285*G0_2 + 0.000111607142857142*G0_3 - 0.00100446428571428*G0_4 + 0.00200892857142857*G0_6 - 0.00100446428571428*G0_7 + 0.00401785714285713*G0_8 - 0.00200892857142857*G0_9 - 0.00100446428571428*G0_13 - 0.00100446428571428*G0_14 + 0.00200892857142857*G0_15 - 0.00200892857142857*G0_17;
-    A[9] = 0.000111607142857143*G0_0 + 0.000223214285714286*G0_1 - 0.00044642857142857*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_4 - 0.00100446428571428*G0_5 - 0.00100446428571428*G0_6 - 0.00200892857142857*G0_8 + 0.00401785714285714*G0_9 - 0.00100446428571429*G0_12 + 0.00200892857142857*G0_13 - 0.00100446428571428*G0_15 - 0.00200892857142857*G0_18;
-    A[10] = -0.000446428571428571*G0_0 + 0.000111607142857143*G0_1 + 0.000111607142857143*G0_2 + 0.000223214285714285*G0_3 - 0.00100446428571429*G0_5 - 0.00100446428571429*G0_7 + 0.00401785714285714*G0_10 - 0.00200892857142857*G0_11 + 0.00200892857142857*G0_12 - 0.00100446428571428*G0_13 + 0.00200892857142857*G0_14 - 0.00100446428571428*G0_15 - 0.00200892857142857*G0_16;
-    A[11] = 0.000223214285714286*G0_0 + 0.000111607142857143*G0_1 + 0.000111607142857143*G0_2 - 0.00044642857142857*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_5 - 0.00100446428571429*G0_6 + 0.00200892857142857*G0_7 - 0.00200892857142857*G0_10 + 0.00401785714285714*G0_11 - 0.00100446428571428*G0_12 - 0.00100446428571428*G0_14 - 0.00200892857142857*G0_19;
-    A[12] = -0.000446428571428571*G0_0 + 0.000111607142857142*G0_1 + 0.000223214285714285*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571428*G0_4 - 0.00100446428571429*G0_9 + 0.00200892857142857*G0_10 - 0.00100446428571428*G0_11 + 0.00401785714285713*G0_12 - 0.00200892857142857*G0_13 + 0.00200892857142857*G0_14 - 0.00100446428571428*G0_15 - 0.00200892857142857*G0_16;
-    A[13] = 0.000223214285714286*G0_0 + 0.000111607142857143*G0_1 - 0.00044642857142857*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_4 - 0.00100446428571428*G0_5 - 0.00100446428571428*G0_8 + 0.00200892857142857*G0_9 - 0.00100446428571428*G0_10 - 0.00200892857142857*G0_12 + 0.00401785714285713*G0_13 - 0.00100446428571428*G0_14 - 0.00200892857142857*G0_18;
-    A[14] = -0.000446428571428572*G0_0 + 0.000223214285714286*G0_1 + 0.000111607142857142*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571428*G0_6 - 0.00100446428571428*G0_8 + 0.00200892857142857*G0_10 - 0.00100446428571428*G0_11 + 0.00200892857142857*G0_12 - 0.00100446428571428*G0_13 + 0.00401785714285714*G0_14 - 0.00200892857142857*G0_15 - 0.00200892857142857*G0_16;
-    A[15] = 0.000223214285714286*G0_0 - 0.000446428571428572*G0_1 + 0.000111607142857143*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_6 - 0.00100446428571428*G0_7 + 0.00200892857142857*G0_8 - 0.00100446428571428*G0_9 - 0.00100446428571428*G0_10 - 0.00100446428571428*G0_12 - 0.00200892857142857*G0_14 + 0.00401785714285714*G0_15 - 0.00200892857142857*G0_17;
-    A[16] = 0.00133928571428571*G0_0 + 0.000669642857142857*G0_1 + 0.000669642857142856*G0_2 + 0.000669642857142855*G0_3 - 0.00200892857142857*G0_10 - 0.00200892857142857*G0_12 - 0.00200892857142857*G0_14 + 0.0160714285714286*G0_16 + 0.00803571428571428*G0_17 + 0.00803571428571428*G0_18 + 0.00803571428571429*G0_19;
-    A[17] = 0.000669642857142858*G0_0 + 0.00133928571428571*G0_1 + 0.000669642857142856*G0_2 + 0.000669642857142855*G0_3 - 0.00200892857142857*G0_6 - 0.00200892857142857*G0_8 - 0.00200892857142857*G0_15 + 0.00803571428571428*G0_16 + 0.0160714285714286*G0_17 + 0.00803571428571428*G0_18 + 0.00803571428571428*G0_19;
-    A[18] = 0.000669642857142858*G0_0 + 0.000669642857142856*G0_1 + 0.00133928571428571*G0_2 + 0.000669642857142855*G0_3 - 0.00200892857142857*G0_4 - 0.00200892857142857*G0_9 - 0.00200892857142857*G0_13 + 0.00803571428571428*G0_16 + 0.00803571428571428*G0_17 + 0.0160714285714286*G0_18 + 0.00803571428571428*G0_19;
-    A[19] = 0.000669642857142858*G0_0 + 0.000669642857142856*G0_1 + 0.000669642857142857*G0_2 + 0.00133928571428571*G0_3 - 0.00200892857142857*G0_5 - 0.00200892857142857*G0_7 - 0.00200892857142857*G0_11 + 0.00803571428571429*G0_16 + 0.00803571428571428*G0_17 + 0.00803571428571428*G0_18 + 0.0160714285714286*G0_19;
+    A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
+    A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
   }
 
 };
@@ -4980,7 +1550,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0 | va0*vi0*dX(0)";
+    return "w0_a0[0, 1, 2] | va0[0, 1, 2]*vi0[0, 1, 2]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
