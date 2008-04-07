@@ -166,13 +166,17 @@ class BlockMatrix(object):
 # OLD CODE:
 #            res.data.append(numpy.zeros(n, dtype='d'))
 # NEW CODE:
-            res.data.append(other.data[i].copy())
+            rhs_i = other.data[i].copy()
+            rhs_i.zero()
+            res.data.append(rhs_i)
+
+            # temporal variable
+            tmp = res[i].copy()
             for j in range(self.m):
 # OLD CODE: 
 #                tmp = self.data[i][j]*other.data[j]
 #                res[i] += self.data[i][j]*other.data[j]
 # NEW CODE: 
-                tmp = res[i].copy()
                 self.data[i][j].mult(other.data[j], tmp)
                 res[i].add(tmp)
         return res
