@@ -232,7 +232,8 @@ def BiCGStab(A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=
         As    = A*s
         w     = inner(As,s)/inner(As,As)
         x    += alpha*p+w*s
-        r     = s -w*As
+#        r     = s -w*As
+        r = b - A*x
         rrn   = inner(r,rs)
         beta  = (rrn/rr)*(alpha/w)
         if beta==0.0:

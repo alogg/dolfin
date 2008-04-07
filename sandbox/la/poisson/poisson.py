@@ -55,6 +55,7 @@ boundary = DirichletBoundary()
 bc = DirichletBC(u0, mesh, boundary)
 bc.apply(A, b, a)
 
+
 x = b.copy()
 x.zero()
 
@@ -62,15 +63,31 @@ AA = BlockMatrix(1,1); AA[0,0] = A
 xx = BlockVector(1);   xx[0]   = x 
 bb = BlockVector(1);   bb[0]   = b 
 
-print "xx ", xx.inner(xx)
+
+
 print "bb ", bb.inner(bb)
+xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
 
 
-BiCGStab(AA, xx, bb, 10e-8, True, 1000)
+rr = bb - AA*xx
+print "bb ", bb.inner(bb)
+print "residual ", rr.inner(rr)
 
-print "xx after", xx.inner(xx)
 
-U = Function(element, mesh, x)
-plot(U)
-interactive()
+U = Function(element, mesh, xx[0])
+#plot(U)
+
+file = File("A.m")
+file <<A 
+file = File("b.m")
+file <<b 
+
+# Save solution to file
+file = File("poisson.pvd")
+file << U
+
+
+
+
+#interactive()
 
