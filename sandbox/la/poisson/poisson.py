@@ -43,11 +43,6 @@ g = Flux(element, mesh)
 a = dot(grad(v), grad(u))*dx
 L = v*f*dx + v*g*ds
 
-u0 = Function(mesh, 0.0)
-boundary = DirichletBoundary()
-bc = DirichletBC(u0, mesh, boundary)
-
-"""
 # Assemble matrices
 A = assemble(a, mesh)
 b = assemble(L, mesh)
@@ -59,38 +54,26 @@ boundary = DirichletBoundary()
 bc = DirichletBC(u0, mesh, boundary)
 bc.apply(A, b, a)
 
-
-x = b.copy()
-x.zero()
-"""
-
-(A, dof_maps)   = assemble(a, mesh, return_dofmaps=True)
-(b, dof_maps_L) = assemble(L, mesh, return_dofmaps=True)
-
-(compiled_form, module, form_data) = jit(a)
-
-cpp_DirichletBC.apply(bc, A, b, dof_maps.sub(1), compiled_form)
-
+# create solution vector (also used as start vector) 
 x = b.copy()
 x.zero()
 
-
+# create block system
 AA = BlockMatrix(1,1); AA[0,0] = A
 xx = BlockVector(1);   xx[0]   = x 
 bb = BlockVector(1);   bb[0]   = b 
 
 
-
+# solve the system
 xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
-
 
 # plot the solution
 U = Function(element, mesh, xx[0])
 plot(U)
+interactive()
 
 # Save solution to file
 file = File("poisson.pvd")
 file << U
 
-interactive()
 
