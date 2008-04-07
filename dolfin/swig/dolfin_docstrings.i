@@ -494,6 +494,16 @@ Apply boundary condition to linear system for a nonlinear problem. ";
 
 Apply boundary condition to linear system for a nonlinear problem. ";
 
+%feature("docstring")  dolfin::DirichletBC::zero "
+
+make row associated with boundary conditions zero, useful for non-
+diagonal matrices in a block matrix. ";
+
+%feature("docstring")  dolfin::DirichletBC::zero "
+
+make row associated with boundary conditions zero, useful for non-
+diagonal matrices in a block matrix. ";
+
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
 Return mesh. ";
@@ -1018,14 +1028,6 @@ Destructor. ";
 Initialize zero tensor using sparsity pattern (implemented by sub
 class) ";
 
-%feature("docstring")  dolfin::GenericMatrix::create "
-
-Create uninitialized matrix. ";
-
-%feature("docstring")  dolfin::GenericMatrix::copy "
-
-Create copy of matrix. ";
-
 %feature("docstring")  dolfin::GenericMatrix::rank "
 
 Return rank of tensor (number of dimensions). ";
@@ -1080,6 +1082,20 @@ Add block of values. ";
 %feature("docstring")  dolfin::GenericMatrix::ident "
 
 Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::GenericMatrix::zero "
+
+Set given matrix rows to zero. ";
+
+%feature("docstring")  dolfin::GenericMatrix::set "
+
+Set given matrix entry to value. ";
+
+%feature("docstring")  dolfin::GenericMatrix::mult "";
+
+%feature("docstring")  dolfin::GenericMatrix::getRow "
+
+Get non-zero values of row i. ";
 
 
 // File: classdolfin_1_1GenericSparsityPattern.xml
@@ -1153,14 +1169,6 @@ Destructor. ";
 
 Initialize zero tensor using sparsity pattern. ";
 
-%feature("docstring")  dolfin::GenericTensor::create "
-
-Create uninitialized tensor. ";
-
-%feature("docstring")  dolfin::GenericTensor::copy "
-
-Create copy of tensor. ";
-
 %feature("docstring")  dolfin::GenericTensor::rank "
 
 Return rank of tensor (number of dimensions). ";
@@ -1222,14 +1230,6 @@ Initialize zero tensor of given rank and dimensions ";
 %feature("docstring")  dolfin::GenericVector::init "
 
 Initialize zero tensor using sparsity pattern. ";
-
-%feature("docstring")  dolfin::GenericVector::create "
-
-Create uninitialized vector. ";
-
-%feature("docstring")  dolfin::GenericVector::copy "
-
-Create copy of vector. ";
 
 %feature("docstring")  dolfin::GenericVector::rank "
 
@@ -1297,6 +1297,12 @@ Set block of values. ";
 %feature("docstring")  dolfin::GenericVector::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::GenericVector::inner "
+
+Inner product. ";
+
+%feature("docstring")  dolfin::GenericVector::add "";
 
 
 // File: classdolfin_1_1GMRES.xml
@@ -1901,6 +1907,10 @@ Add block of values. ";
 Set all entries to zero and keep any sparse structure (implemented by
 sub class). ";
 
+%feature("docstring")  dolfin::Matrix::zero "
+
+Set given rows to zero matrix. ";
+
 %feature("docstring")  dolfin::Matrix::ident "
 
 Set given rows to identity matrix. ";
@@ -1931,6 +1941,8 @@ Return const reference to implementation. ";
 %feature("docstring")  dolfin::Matrix::factory "
 
 Get LA backend factory. ";
+
+%feature("docstring")  dolfin::Matrix::mult "";
 
 
 // File: classdolfin_1_1MatrixFactory.xml
@@ -2802,6 +2814,22 @@ User-defined function to compute F(u). ";
 User-defined function to compute Jacobian matrix. ";
 
 
+// File: classdolfin_1_1NonMatchingFunction.xml
+%feature("docstring") dolfin::NonMatchingFunction "
+
+Represent discrete function fA as pointwise user-defined function.
+
+C++ includes: ProjectL2.h ";
+
+%feature("docstring")
+dolfin::NonMatchingFunction::NonMatchingFunction "";
+
+%feature("docstring")  dolfin::NonMatchingFunction::eval "
+
+Evaluate function at given point (overload for scalar user-defined
+function). ";
+
+
 // File: classdolfin_1_1ODE.xml
 %feature("docstring") dolfin::ODE "
 
@@ -3212,6 +3240,14 @@ Create progress bar with an unknown number of steps. ";
 Destructor. ";
 
 
+// File: classdolfin_1_1ProjectionLibrary.xml
+%feature("docstring") dolfin::ProjectionLibrary "
+
+Library of pregenerated L2 projections.
+
+C++ includes: ProjectionLibrary.h ";
+
+
 // File: classdolfin_1_1Quadrature.xml
 %feature("docstring") dolfin::Quadrature "";
 
@@ -3293,14 +3329,6 @@ Initialize zero tensor of given rank and dimensions ";
 %feature("docstring")  dolfin::Scalar::init "
 
 Initialize zero tensor using sparsity pattern. ";
-
-%feature("docstring")  dolfin::Scalar::create "
-
-Create uninitialized scalar. ";
-
-%feature("docstring")  dolfin::Scalar::copy "
-
-Create copy of scalar. ";
 
 %feature("docstring")  dolfin::Scalar::rank "
 
@@ -3557,6 +3585,10 @@ Return the current time t. ";
 %feature("docstring") ublas_dense_matrix "";
 
 
+// File: classublas__sparse__matrix.xml
+%feature("docstring") ublas_sparse_matrix "";
+
+
 // File: classdolfin_1_1uBlasFactory.xml
 %feature("docstring") dolfin::uBlasFactory "";
 
@@ -3575,6 +3607,34 @@ Create empty sparsity pattern. ";
 %feature("docstring")  dolfin::uBlasFactory::createVector "
 
 Create empty vector. ";
+
+
+// File: classdolfin_1_1uBlasILUPreconditioner.xml
+%feature("docstring") dolfin::uBlasILUPreconditioner "
+
+This class implements an incomplete LU factorization (ILU)
+preconditioner for the uBlas Krylov solver.
+
+C++ includes: uBlasILUPreconditioner.h ";
+
+%feature("docstring")
+dolfin::uBlasILUPreconditioner::uBlasILUPreconditioner "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::uBlasILUPreconditioner::uBlasILUPreconditioner "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::uBlasILUPreconditioner::~uBlasILUPreconditioner "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::uBlasILUPreconditioner::solve "
+
+Solve linear system Ax = b approximately. ";
 
 
 // File: classdolfin_1_1uBlasKrylovSolver.xml
@@ -3761,9 +3821,17 @@ Apply changes to matrix. ";
 
 Set all entries to zero. ";
 
+%feature("docstring")  dolfin::uBlasMatrix::zero "
+
+Set given rows to zero matrix. ";
+
 %feature("docstring")  dolfin::uBlasMatrix::ident "
 
 Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::mult "
+
+Compute product y = Ax. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::mult "
 
@@ -3799,6 +3867,48 @@ Create copy of matrix. ";
 %feature("docstring")  dolfin::uBlasMatrix::factory "
 
 Get LA backend factory. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::init "
+
+--- Implementation of GenericTensor interface ---
+
+Initialize zero tensor using sparsity pattern (implemented by sub
+class) ";
+
+
+// File: classdolfin_1_1uBlasPreconditioner.xml
+%feature("docstring") dolfin::uBlasPreconditioner "
+
+This class specifies the interface for preconditioners for the uBlas
+Krylov solver.
+
+C++ includes: uBlasPreconditioner.h ";
+
+%feature("docstring")
+dolfin::uBlasPreconditioner::uBlasPreconditioner "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::uBlasPreconditioner::~uBlasPreconditioner "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::uBlasPreconditioner::init "
+
+Initialise preconditioner (dense matrix). ";
+
+%feature("docstring")  dolfin::uBlasPreconditioner::init "
+
+Initialise preconditioner (dense matrix). ";
+
+%feature("docstring")  dolfin::uBlasPreconditioner::init "
+
+Initialise preconditioner (virtual matrix). ";
+
+%feature("docstring")  dolfin::uBlasPreconditioner::solve "
+
+Solve linear system (M^-1)Ax = y. ";
 
 
 // File: classdolfin_1_1uBlasVector.xml
@@ -3892,6 +4002,12 @@ Addition (AXPY). ";
 %feature("docstring")  dolfin::uBlasVector::mult "
 
 Scalar multiplication. ";
+
+%feature("docstring")  dolfin::uBlasVector::inner "
+
+Inner product. ";
+
+%feature("docstring")  dolfin::uBlasVector::add "";
 
 %feature("docstring")  dolfin::uBlasVector::div "
 
@@ -4064,6 +4180,14 @@ Return implementation. ";
 
 Return backend factory. ";
 
+%feature("docstring")  dolfin::Vector::inner "
+
+inner product ";
+
+%feature("docstring")  dolfin::Vector::add "
+
+this += a*x ";
+
 
 // File: classdolfin_1_1Vertex.xml
 %feature("docstring") dolfin::Vertex "
@@ -4210,6 +4334,15 @@ GMRES) are also available through the KrylovSolver interface. ";
 
 Compute residual ||Ax - b||. ";
 
+%feature("docstring")  dolfin::projectL2 "
+
+Compute L2 projection fB of fA on FEM space element. ";
+
+%feature("docstring")  dolfin::projectL2NonMatching "
+
+Compute L2 projection fB of fA (discrete function) on FEM space
+element. ";
+
 %feature("docstring")  dolfin::dolfin_init "
 
 Initialize DOLFIN (and PETSc) with command-line arguments. This should
@@ -4293,6 +4426,9 @@ domains. ";
 // File: ElementLibrary_8h.xml
 
 
+// File: ProjectionLibrary_8h.xml
+
+
 // File: assemble_8h.xml
 
 
@@ -4324,6 +4460,9 @@ domains. ";
 
 
 // File: Function_8h.xml
+
+
+// File: ProjectL2_8h.xml
 
 
 // File: SpecialFunctions_8h.xml
@@ -4428,6 +4567,9 @@ domains. ";
 // File: uBlasFactory_8h.xml
 
 
+// File: uBlasILUPreconditioner_8h.xml
+
+
 // File: uBlasKrylovSolver_8h.xml
 
 
@@ -4438,6 +4580,9 @@ domains. ";
 
 
 // File: uBlasMatrix_8h.xml
+
+
+// File: uBlasPreconditioner_8h.xml
 
 
 // File: uBlasVector_8h.xml
@@ -4593,53 +4738,53 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_9b535f71bf19b1ee1fc93a78626e348a.xml
+// File: dir_f67caee761b31debf79b427d824fcb86.xml
 
 
-// File: dir_35618063ea0d495f93f5261c0bf9ac8a.xml
+// File: dir_9ca999a4982cfbe36c101ade6238b5da.xml
 
 
-// File: dir_3cdd0c05a9683bc6732fdab22745b036.xml
+// File: dir_fa068acbfb6c36bda2d6730b64e3cfe1.xml
 
 
-// File: dir_560ef3c41ac3e5bde0b08c72b43d5665.xml
+// File: dir_9a33837534d83c442431167511ae46d6.xml
 
 
-// File: dir_6a1b8cfcff59c2e011df928fb970dd6f.xml
+// File: dir_accb03781b2e35ea4e8928b49729892c.xml
 
 
-// File: dir_ed4ee90f35923570c869f752c49ad9c2.xml
+// File: dir_1a6e74077839256c67ab657c06defcd7.xml
 
 
-// File: dir_55d3a5570a6a0b761e7d589355b71786.xml
+// File: dir_e00413835d21b5fe861937c41db99920.xml
 
 
-// File: dir_a479e80d5be55b4a0abdffc467d410b7.xml
+// File: dir_f9e15eca777b9217c1c220575deedbfa.xml
 
 
-// File: dir_1a8d6991e4570fb70133a4674b402aa1.xml
+// File: dir_cfbcd3974f3b8738f9d87ca2595722a7.xml
 
 
-// File: dir_ab5d62f64032353b767ebc5edfc160b7.xml
+// File: dir_047eb08f999213c504d6b46b91bb4229.xml
 
 
-// File: dir_8732823a061b0264f03e41acd6330d47.xml
+// File: dir_a39976d8888834ee35220e9c60a28f1f.xml
 
 
-// File: dir_b2ffc11ce099cb6fb198d538395c331c.xml
+// File: dir_c5af44ff6548e8ed37682ea8b29fc09c.xml
 
 
-// File: dir_e18639b3d0a3765b4436cd655332e401.xml
+// File: dir_34b6f3902ef71ca2a21708496ecf8cde.xml
 
 
-// File: dir_3bffc879fb8d1a2aa73327e67dfb4ca5.xml
+// File: dir_42ac68ee965aa9f5530cab172041eaec.xml
 
 
-// File: dir_e0cf6cc4bb90e38e003ff515125aeb44.xml
+// File: dir_2163e1ee893c5593a86de00f721262f1.xml
 
 
-// File: dir_eb0db9beb886d72606c540e402620c67.xml
+// File: dir_65d48c4810b0dbf4a742ced695d22dca.xml
 
 
-// File: dir_454e2e9471edf9c289586af5b9030f3a.xml
+// File: dir_e91b514dd4feb42e21d8fcbf7ad79712.xml
 
