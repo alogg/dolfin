@@ -173,9 +173,6 @@ class BlockMatrix(object):
 #                res[i] += self.data[i][j]*other.data[j]
 # NEW CODE: 
                 tmp = res[i].copy()
-                print type(tmp)
-                print type(self.data[i][j])
-                print type(other.data[j])
                 self.data[i][j].mult(other.data[j], tmp)
                 res[i].add(tmp)
         return res

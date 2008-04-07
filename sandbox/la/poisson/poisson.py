@@ -56,9 +56,21 @@ bc = DirichletBC(u0, mesh, boundary)
 bc.apply(A, b, a)
 
 x = b.copy()
+x.zero()
 
 AA = BlockMatrix(1,1); AA[0,0] = A
 xx = BlockVector(1);   xx[0]   = x 
 bb = BlockVector(1);   bb[0]   = b 
 
-BiCGStab(AA, xx, bb, 10e-18, True, 1000)
+print "xx ", xx.inner(xx)
+print "bb ", bb.inner(bb)
+
+
+BiCGStab(AA, xx, bb, 10e-8, True, 1000)
+
+print "xx after", xx.inner(xx)
+
+U = Function(element, mesh, x)
+plot(U)
+interactive()
+
