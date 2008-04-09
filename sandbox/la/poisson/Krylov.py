@@ -61,7 +61,7 @@ def inner(u,v):
         return _n.dot(u,v)
     else:
         # assume that left operand implements inner
-        return u.inner(v)
+        return u.inner(v) 
 
 """Conjugate Gradient Methods"""
 
@@ -224,18 +224,31 @@ def BiCGStab(A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=
     if relativeconv:
         tolerance *= sqrt(inner(b,b))
     iter = 0
-    #debug("r0=",sqrt(inner(r,r)))
+    debug("r0=" +  str(sqrt(inner(r,r))), 0)
     while sqrt(inner(r,r)) > tolerance  and  iter < maxiter:
         Ap    = A*p
         alpha = rr/inner(rs,Ap)
+        print "alpha ", alpha
         s     = r-alpha*Ap
         As    = A*s
         w     = inner(As,s)/inner(As,As)
         x    += alpha*p+w*s
-#        r     = s -w*As
-        r = b - A*x
+        r     = s -w*As
+#        r = b - A*x
         rrn   = inner(r,rs)
+        print "rr ", inner(r,r) 
+        print "rs ", inner(rs,rs) 
+        print "r disp " 
+        print "+++++++++"
+        r[0].disp()
+        print "---------"
+        print "rs disp " 
+        print "+++++++++"
+        rs[0].disp()
+        print "---------"
+        print "rrn ", rrn
         beta  = (rrn/rr)*(alpha/w)
+        print "beta ", beta
         if beta==0.0:
             debug("BiCGStab breakdown, beta=0, at iter=" + str(iter) + " with residual=" + str(sqrt(inner(r,r))), 0)
             return (x,iter,sqrt(inner(r,r)))
@@ -428,7 +441,7 @@ def CGN_AA(A, x, b, tolerance=1.0E-05, relativeconv=False):
     beta_v=[]
     iter=0
     error   = sqrt(rho)/bnrm2
-    debug("error0=",error)
+    debug("error0="+str(error), 0)
 
     while error>=tolerance:
         p_a     = A*p
@@ -440,7 +453,7 @@ def CGN_AA(A, x, b, tolerance=1.0E-05, relativeconv=False):
         rho     = inner(r_a,r_a)
         beta    = rho/rho1
         error   = sqrt(rho)/bnrm2
-        debug("error = ",error)
+        debug("error = " + str(error), 0)
 
         alpha_v.append(alpha)
         beta_v.append(beta)

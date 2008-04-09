@@ -68,7 +68,7 @@ bb = BlockVector(1);   bb[0]   = b
 xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
 
 # plot the solution
-U = Function(element, mesh, xx[0])
+U = Function(element, mesh, x)
 plot(U)
 interactive()
 

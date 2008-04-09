@@ -187,16 +187,31 @@ class BlockMatrix(object):
             raise TypeError, "Can not multiply BlockMatrix with %s" % (str(type(other)))
         if (not x.n == self.m):
             raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the BlockMatrix (%d, %d)" % (x.n, self.n, self.m)
-        if not transposed:
-            for i in range(self.n):
-                b.data[i] = numpy.multiply(b.data[i], 0.0)
-                for j in range(self.m):
-                    self.data[i][j].mxv(x.data[j], b.data[i])
-        else:
-            for i in xrange(self.n):
-                b.data[i] = numpy.multiply(b.data[i], 0.0)
-                for j in xrange(self.m):
-                    self.data[j][i].mxv(x.data[j], b.data[i])
+
+        b *= 0.0
+
+# OLD CODE: 
+#        if not transposed:
+#            for i in range(self.n):
+#                b.data[i] = numpy.multiply(b.data[i], 0.0)
+#                for j in range(self.m):
+#                    self.data[i][j].mxv(x.data[j], b.data[i])
+#        else:
+#            for i in xrange(self.n):
+#                b.data[i] = numpy.multiply(b.data[i], 0.0)
+#                for j in xrange(self.m):
+#                    self.data[j][i].mxv(x.data[j], b.data[i])
+# NEW CODE
+
+        for i in range(self.n):
+            tmp = b[i].copy()
+            for j in range(self.m):
+                if transposed: 
+                    self.data[i][j].mult(x.data[j], tmp, transposed)
+                else: 
+                    self.data[j][i].mult(x.data[j], tmp, transposed)
+                b[i].add(tmp)
+
 
     def _check_tuple(self, idx):
         """Assure that idx is a tuple containing two-elements inside the
@@ -702,7 +717,7 @@ class BlockVector(object):
 
     def __imul__(self, other):
         for i in range(self.n):
-            self.data[i] *= other
+            self.data[i].mult(other) 
         return self
 
     def __iadd__(self, other):
@@ -715,7 +730,7 @@ class BlockVector(object):
 
     def __isub__(self, other):
         for i in range(self.n):
-            self.data[i] -= other.data[i]
+            self.data[i].add(other.data[i], -1.0)
         return self
 
 
