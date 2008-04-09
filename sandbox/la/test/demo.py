@@ -51,7 +51,6 @@ file = File("b1.m"); file << b1;
 file = File("b2.m"); file << b2;  
 file = File("b3.m"); file << b3;  
 
-
 print ""
 print "testing Matrix Vector Product"
 print " testing Vector (transposed)", 
@@ -60,7 +59,7 @@ x.zero()
 A.mult(b1, x, True)
 print x.inner(x)
 
-#x.zero()
+x.zero()
 print " testing BlockVector (transposed)", 
 AA = BlockMatrix(1,1); AA[0,0] = A; 
 bb1 = BlockVector(1) ; bb1[0] = b1;  
@@ -82,10 +81,9 @@ x = A*b2
 print x.inner(x)
 
 
-print ""
 print " testing BlockVector", 
 
-#x.zero()
+x.zero()
 bb2 = BlockVector(1) ; bb2[0] = b2;  
 xx = BlockVector(1); xx[0] = x; 
 
@@ -110,7 +108,7 @@ print ""
 print "testing Vector Subtraction "
 tmp = b1.copy()
 print " testing Vector", 
-tmp.add(b3, -1.0) 
+tmp -= b3 
 print tmp.inner(tmp)
 
 tmp = b1.copy()
@@ -119,19 +117,20 @@ bb3 = BlockVector(1) ; bb3[0] = b3;
 bb1 -= bb3
 print " testing BlockVector", bb1.inner(bb1)
 
-print ""
-print "testing Vector Multiplication "
-tmp = b1.copy()
-print " testing Vector", 
-tmp.mult(3.7) 
-print tmp.inner(tmp)
 
-tmp = b1.copy()
-bb1 = BlockVector(1) ; bb1[0] = tmp;  
-bb3 = BlockVector(1) ; bb3[0] = b3;  
-bb1 *= 3.7
-print " testing BlockVector", bb1.inner(bb1)
-
+#print ""
+#print "testing Vector Multiplication "
+#tmp = b1.copy()
+#print " testing Vector", 
+#tmp *=3.7 
+#print tmp.inner(tmp)
+#
+#tmp = b1.copy()
+#bb1 = BlockVector(1) ; bb1[0] = tmp;  
+#bb3 = BlockVector(1) ; bb3[0] = b3;  
+#bb1 *= 3.7
+#print " testing BlockVector", bb1.inner(bb1)
+#
 
 
 
