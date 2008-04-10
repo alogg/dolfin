@@ -5,6 +5,9 @@
   As a result, some of the information in this chapter may be
   outdated, incomplete or simply wrong.}
 
+
+
+
 \dolfin{} provides a high-performance linear algebra library,
 including matrices and vectors, a set of linear solvers,
 preconditioners, and an eigenvalue solver. The core part of the
@@ -116,6 +119,19 @@ structures, the two classes \texttt{GenericMatrix} and
 \texttt{GenericVector} define a common interface to all matrices and
 vectors. Refer to the \emph{DOLFIN programmer's reference} for the
 exact specification of these interfaces.
+
+The following points should be noted:
+\begin{enumerate}
+\item
+  If you want a specific backend like PETSc, then use
+  \texttt{PETScVector}/\texttt{PETScMatrix}.
+\item
+  If you don't care about the backend, then use \texttt{Vector}/\texttt{Matrix}.
+\item
+  If you write a \emph{function} that should be able to accept vectors
+  and matrices from any backend as input, then use
+  \texttt{GenericVector}/\texttt{GenericMatrix}.
+\end{enumerate}
 
 %------------------------------------------------------------------------------
 \section{Solving linear systems}
