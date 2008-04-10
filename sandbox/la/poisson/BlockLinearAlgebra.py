@@ -678,7 +678,7 @@ class BlockVector(object):
 #            res.data.append(self.data[i]+other.data[i])
 #   NEW CODE: 
             tmp = self.data[i].copy()
-            tmp.add(other.data[i], 1.0)
+            tmp.axpy(1.0, other.data[i])
             res.data.append(tmp)
         return res
 
@@ -690,7 +690,7 @@ class BlockVector(object):
 #            res.data.append(self.data[i]-other.data[i])
 # NEW CODE: 
             tmp = self.data[i].copy()
-            tmp.add(other.data[i], -1.0)
+            tmp.axpy(-1.0, other.data[i])
             res.data.append(tmp)
         return res
 
