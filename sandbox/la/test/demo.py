@@ -118,19 +118,19 @@ bb1 -= bb3
 print " testing BlockVector", bb1.inner(bb1)
 
 
-#print ""
-#print "testing Vector Multiplication "
-#tmp = b1.copy()
-#print " testing Vector", 
-#tmp *=3.7 
-#print tmp.inner(tmp)
-#
-#tmp = b1.copy()
-#bb1 = BlockVector(1) ; bb1[0] = tmp;  
-#bb3 = BlockVector(1) ; bb3[0] = b3;  
-#bb1 *= 3.7
-#print " testing BlockVector", bb1.inner(bb1)
-#
+print ""
+print "testing Vector Multiplication "
+tmp = b1.copy()
+print " testing Vector", 
+tmp *=3.7 
+print tmp.inner(tmp)
+
+tmp = b1.copy()
+bb1 = BlockVector(1) ; bb1[0] = tmp;  
+bb3 = BlockVector(1) ; bb3[0] = b3;  
+bb1 *= 3.7
+print " testing BlockVector", bb1.inner(bb1)
+
 
 
 
