@@ -59,13 +59,16 @@ x = b.copy()
 x.zero()
 
 # create block system
-AA = BlockMatrix(1,1); AA[0,0] = A
-xx = BlockVector(1);   xx[0]   = x 
-bb = BlockVector(1);   bb[0]   = b 
+#AA = BlockMatrix(1,1); AA[0,0] = A
+#xx = BlockVector(1);   xx[0]   = x 
+#bb = BlockVector(1);   bb[0]   = b 
 
 
 # solve the system
-xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
+#xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
+
+
+x = BiCGStab(A, x, b, 10e-12, True, 1000)
 
 # plot the solution
 U = Function(element, mesh, x)
