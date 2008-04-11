@@ -236,19 +236,7 @@ def BiCGStab(A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=
         r     = s -w*As
 #        r = b - A*x
         rrn   = inner(r,rs)
-        print "rr ", inner(r,r) 
-        print "rs ", inner(rs,rs) 
-        print "r disp " 
-        print "+++++++++"
-        r[0].disp()
-        print "---------"
-        print "rs disp " 
-        print "+++++++++"
-        rs[0].disp()
-        print "---------"
-        print "rrn ", rrn
         beta  = (rrn/rr)*(alpha/w)
-        print "beta ", beta
         if beta==0.0:
             debug("BiCGStab breakdown, beta=0, at iter=" + str(iter) + " with residual=" + str(sqrt(inner(r,r))), 0)
             return (x,iter,sqrt(inner(r,r)))
