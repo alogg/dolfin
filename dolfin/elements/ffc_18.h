@@ -29,7 +29,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
+    return "Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -98,7 +98,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -150,9 +150,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[2];
-    vertex_values[2] = dof_values[5];
-    vertex_values[3] = dof_values[9];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -190,7 +190,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
+    return "Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -259,7 +259,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -311,9 +311,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[2];
-    vertex_values[2] = dof_values[5];
-    vertex_values[3] = dof_values[9];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -351,7 +351,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
+    return "Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -420,7 +420,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -472,9 +472,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[2];
-    vertex_values[2] = dof_values[5];
-    vertex_values[3] = dof_values[9];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+    vertex_values[3] = dof_values[3];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -512,7 +512,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -581,7 +581,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
+    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
     const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
@@ -633,19 +633,19 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[2];
-    vertex_values[2] = dof_values[5];
-    vertex_values[3] = dof_values[9];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+    vertex_values[3] = dof_values[3];
     // Evaluate at vertices and use affine mapping
     vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[12];
-    vertex_values[6] = dof_values[15];
-    vertex_values[7] = dof_values[19];
+    vertex_values[5] = dof_values[11];
+    vertex_values[6] = dof_values[12];
+    vertex_values[7] = dof_values[13];
     // Evaluate at vertices and use affine mapping
     vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[22];
-    vertex_values[10] = dof_values[25];
-    vertex_values[11] = dof_values[29];
+    vertex_values[9] = dof_values[21];
+    vertex_values[10] = dof_values[22];
+    vertex_values[11] = dof_values[23];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -700,7 +700,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -709,16 +709,16 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -727,7 +727,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 10*m.num_entities[3];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -765,7 +765,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -779,16 +779,17 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 10*c.entity_indices[3][0];
-    dofs[1] = 10*c.entity_indices[3][0] + 1;
-    dofs[2] = 10*c.entity_indices[3][0] + 2;
-    dofs[3] = 10*c.entity_indices[3][0] + 3;
-    dofs[4] = 10*c.entity_indices[3][0] + 4;
-    dofs[5] = 10*c.entity_indices[3][0] + 5;
-    dofs[6] = 10*c.entity_indices[3][0] + 6;
-    dofs[7] = 10*c.entity_indices[3][0] + 7;
-    dofs[8] = 10*c.entity_indices[3][0] + 8;
-    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[1][0];
+    dofs[5] = offset + c.entity_indices[1][1];
+    dofs[6] = offset + c.entity_indices[1][2];
+    dofs[7] = offset + c.entity_indices[1][3];
+    dofs[8] = offset + c.entity_indices[1][4];
+    dofs[9] = offset + c.entity_indices[1][5];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -798,16 +799,36 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 7;
+      dofs[5] = 8;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 7;
+      dofs[5] = 9;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     }
   }
@@ -827,33 +848,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[2][0] = x[1][0];
-    coordinates[2][1] = x[1][1];
-    coordinates[2][2] = x[1][2];
-    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
-    coordinates[5][2] = x[2][2];
-    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[9][0] = x[3][0];
-    coordinates[9][1] = x[3][1];
-    coordinates[9][2] = x[3][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -896,7 +917,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -905,16 +926,16 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -923,7 +944,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 10*m.num_entities[3];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -961,7 +982,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -975,16 +996,17 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 10*c.entity_indices[3][0];
-    dofs[1] = 10*c.entity_indices[3][0] + 1;
-    dofs[2] = 10*c.entity_indices[3][0] + 2;
-    dofs[3] = 10*c.entity_indices[3][0] + 3;
-    dofs[4] = 10*c.entity_indices[3][0] + 4;
-    dofs[5] = 10*c.entity_indices[3][0] + 5;
-    dofs[6] = 10*c.entity_indices[3][0] + 6;
-    dofs[7] = 10*c.entity_indices[3][0] + 7;
-    dofs[8] = 10*c.entity_indices[3][0] + 8;
-    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[1][0];
+    dofs[5] = offset + c.entity_indices[1][1];
+    dofs[6] = offset + c.entity_indices[1][2];
+    dofs[7] = offset + c.entity_indices[1][3];
+    dofs[8] = offset + c.entity_indices[1][4];
+    dofs[9] = offset + c.entity_indices[1][5];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -994,16 +1016,36 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 7;
+      dofs[5] = 8;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 7;
+      dofs[5] = 9;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     }
   }
@@ -1023,33 +1065,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[2][0] = x[1][0];
-    coordinates[2][1] = x[1][1];
-    coordinates[2][2] = x[1][2];
-    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
-    coordinates[5][2] = x[2][2];
-    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[9][0] = x[3][0];
-    coordinates[9][1] = x[3][1];
-    coordinates[9][2] = x[3][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1092,7 +1134,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1101,16 +1143,16 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1119,7 +1161,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 10*m.num_entities[3];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -1157,7 +1199,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1171,16 +1213,17 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 10*c.entity_indices[3][0];
-    dofs[1] = 10*c.entity_indices[3][0] + 1;
-    dofs[2] = 10*c.entity_indices[3][0] + 2;
-    dofs[3] = 10*c.entity_indices[3][0] + 3;
-    dofs[4] = 10*c.entity_indices[3][0] + 4;
-    dofs[5] = 10*c.entity_indices[3][0] + 5;
-    dofs[6] = 10*c.entity_indices[3][0] + 6;
-    dofs[7] = 10*c.entity_indices[3][0] + 7;
-    dofs[8] = 10*c.entity_indices[3][0] + 8;
-    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[1][0];
+    dofs[5] = offset + c.entity_indices[1][1];
+    dofs[6] = offset + c.entity_indices[1][2];
+    dofs[7] = offset + c.entity_indices[1][3];
+    dofs[8] = offset + c.entity_indices[1][4];
+    dofs[9] = offset + c.entity_indices[1][5];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1190,16 +1233,36 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 7;
+      dofs[5] = 8;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 7;
+      dofs[5] = 9;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     }
   }
@@ -1219,33 +1282,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[2][0] = x[1][0];
-    coordinates[2][1] = x[1][1];
-    coordinates[2][2] = x[1][2];
-    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
-    coordinates[5][2] = x[2][2];
-    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[9][0] = x[3][0];
-    coordinates[9][1] = x[3][1];
-    coordinates[9][2] = x[3][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1288,7 +1351,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1297,16 +1360,16 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1315,7 +1378,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 30*m.num_entities[3];
+    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
     return false;
   }
 
@@ -1353,7 +1416,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 18;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1367,38 +1430,41 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 10*c.entity_indices[3][0];
-    dofs[1] = 10*c.entity_indices[3][0] + 1;
-    dofs[2] = 10*c.entity_indices[3][0] + 2;
-    dofs[3] = 10*c.entity_indices[3][0] + 3;
-    dofs[4] = 10*c.entity_indices[3][0] + 4;
-    dofs[5] = 10*c.entity_indices[3][0] + 5;
-    dofs[6] = 10*c.entity_indices[3][0] + 6;
-    dofs[7] = 10*c.entity_indices[3][0] + 7;
-    dofs[8] = 10*c.entity_indices[3][0] + 8;
-    dofs[9] = 10*c.entity_indices[3][0] + 9;
-    unsigned int offset = 10*m.num_entities[3];
-    dofs[10] = offset + 10*c.entity_indices[3][0];
-    dofs[11] = offset + 10*c.entity_indices[3][0] + 1;
-    dofs[12] = offset + 10*c.entity_indices[3][0] + 2;
-    dofs[13] = offset + 10*c.entity_indices[3][0] + 3;
-    dofs[14] = offset + 10*c.entity_indices[3][0] + 4;
-    dofs[15] = offset + 10*c.entity_indices[3][0] + 5;
-    dofs[16] = offset + 10*c.entity_indices[3][0] + 6;
-    dofs[17] = offset + 10*c.entity_indices[3][0] + 7;
-    dofs[18] = offset + 10*c.entity_indices[3][0] + 8;
-    dofs[19] = offset + 10*c.entity_indices[3][0] + 9;
-    offset = offset + 10*m.num_entities[3];
-    dofs[20] = offset + 10*c.entity_indices[3][0];
-    dofs[21] = offset + 10*c.entity_indices[3][0] + 1;
-    dofs[22] = offset + 10*c.entity_indices[3][0] + 2;
-    dofs[23] = offset + 10*c.entity_indices[3][0] + 3;
-    dofs[24] = offset + 10*c.entity_indices[3][0] + 4;
-    dofs[25] = offset + 10*c.entity_indices[3][0] + 5;
-    dofs[26] = offset + 10*c.entity_indices[3][0] + 6;
-    dofs[27] = offset + 10*c.entity_indices[3][0] + 7;
-    dofs[28] = offset + 10*c.entity_indices[3][0] + 8;
-    dofs[29] = offset + 10*c.entity_indices[3][0] + 9;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[1][0];
+    dofs[5] = offset + c.entity_indices[1][1];
+    dofs[6] = offset + c.entity_indices[1][2];
+    dofs[7] = offset + c.entity_indices[1][3];
+    dofs[8] = offset + c.entity_indices[1][4];
+    dofs[9] = offset + c.entity_indices[1][5];
+    offset = offset + m.num_entities[1];
+    dofs[10] = offset + c.entity_indices[0][0];
+    dofs[11] = offset + c.entity_indices[0][1];
+    dofs[12] = offset + c.entity_indices[0][2];
+    dofs[13] = offset + c.entity_indices[0][3];
+    offset = offset + m.num_entities[0];
+    dofs[14] = offset + c.entity_indices[1][0];
+    dofs[15] = offset + c.entity_indices[1][1];
+    dofs[16] = offset + c.entity_indices[1][2];
+    dofs[17] = offset + c.entity_indices[1][3];
+    dofs[18] = offset + c.entity_indices[1][4];
+    dofs[19] = offset + c.entity_indices[1][5];
+    offset = offset + m.num_entities[1];
+    dofs[20] = offset + c.entity_indices[0][0];
+    dofs[21] = offset + c.entity_indices[0][1];
+    dofs[22] = offset + c.entity_indices[0][2];
+    dofs[23] = offset + c.entity_indices[0][3];
+    offset = offset + m.num_entities[0];
+    dofs[24] = offset + c.entity_indices[1][0];
+    dofs[25] = offset + c.entity_indices[1][1];
+    dofs[26] = offset + c.entity_indices[1][2];
+    dofs[27] = offset + c.entity_indices[1][3];
+    dofs[28] = offset + c.entity_indices[1][4];
+    dofs[29] = offset + c.entity_indices[1][5];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1408,16 +1474,84 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
+      dofs[6] = 11;
+      dofs[7] = 12;
+      dofs[8] = 13;
+      dofs[9] = 14;
+      dofs[10] = 15;
+      dofs[11] = 16;
+      dofs[12] = 21;
+      dofs[13] = 22;
+      dofs[14] = 23;
+      dofs[15] = 24;
+      dofs[16] = 25;
+      dofs[17] = 26;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 7;
+      dofs[5] = 8;
+      dofs[6] = 10;
+      dofs[7] = 12;
+      dofs[8] = 13;
+      dofs[9] = 14;
+      dofs[10] = 17;
+      dofs[11] = 18;
+      dofs[12] = 20;
+      dofs[13] = 22;
+      dofs[14] = 23;
+      dofs[15] = 24;
+      dofs[16] = 27;
+      dofs[17] = 28;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 7;
+      dofs[5] = 9;
+      dofs[6] = 10;
+      dofs[7] = 11;
+      dofs[8] = 13;
+      dofs[9] = 15;
+      dofs[10] = 17;
+      dofs[11] = 19;
+      dofs[12] = 20;
+      dofs[13] = 21;
+      dofs[14] = 23;
+      dofs[15] = 25;
+      dofs[16] = 27;
+      dofs[17] = 29;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 9;
+      dofs[6] = 10;
+      dofs[7] = 11;
+      dofs[8] = 12;
+      dofs[9] = 16;
+      dofs[10] = 18;
+      dofs[11] = 19;
+      dofs[12] = 20;
+      dofs[13] = 21;
+      dofs[14] = 22;
+      dofs[15] = 26;
+      dofs[16] = 28;
+      dofs[17] = 29;
       break;
     }
   }
@@ -1437,93 +1571,93 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[2][0] = x[1][0];
-    coordinates[2][1] = x[1][1];
-    coordinates[2][2] = x[1][2];
-    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
-    coordinates[5][2] = x[2][2];
-    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[9][0] = x[3][0];
-    coordinates[9][1] = x[3][1];
-    coordinates[9][2] = x[3][2];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[1][2] = x[1][2];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[2][2] = x[2][2];
+    coordinates[3][0] = x[3][0];
+    coordinates[3][1] = x[3][1];
+    coordinates[3][2] = x[3][2];
+    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
     coordinates[10][0] = x[0][0];
     coordinates[10][1] = x[0][1];
     coordinates[10][2] = x[0][2];
-    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[11][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[12][0] = x[1][0];
-    coordinates[12][1] = x[1][1];
-    coordinates[12][2] = x[1][2];
-    coordinates[13][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[13][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[13][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[14][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[14][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[14][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[15][0] = x[2][0];
-    coordinates[15][1] = x[2][1];
-    coordinates[15][2] = x[2][2];
-    coordinates[16][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[16][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[16][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[17][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[18][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[18][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[19][0] = x[3][0];
-    coordinates[19][1] = x[3][1];
-    coordinates[19][2] = x[3][2];
+    coordinates[11][0] = x[1][0];
+    coordinates[11][1] = x[1][1];
+    coordinates[11][2] = x[1][2];
+    coordinates[12][0] = x[2][0];
+    coordinates[12][1] = x[2][1];
+    coordinates[12][2] = x[2][2];
+    coordinates[13][0] = x[3][0];
+    coordinates[13][1] = x[3][1];
+    coordinates[13][2] = x[3][2];
+    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
     coordinates[20][0] = x[0][0];
     coordinates[20][1] = x[0][1];
     coordinates[20][2] = x[0][2];
-    coordinates[21][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[21][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[21][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[22][0] = x[1][0];
-    coordinates[22][1] = x[1][1];
-    coordinates[22][2] = x[1][2];
-    coordinates[23][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[23][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[23][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[24][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[24][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[24][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[25][0] = x[2][0];
-    coordinates[25][1] = x[2][1];
-    coordinates[25][2] = x[2][2];
-    coordinates[26][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[26][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[26][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[27][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[28][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[28][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[29][0] = x[3][0];
-    coordinates[29][1] = x[3][1];
-    coordinates[29][2] = x[3][2];
+    coordinates[21][0] = x[1][0];
+    coordinates[21][1] = x[1][1];
+    coordinates[21][2] = x[1][2];
+    coordinates[22][0] = x[2][0];
+    coordinates[22][1] = x[2][1];
+    coordinates[22][2] = x[2][2];
+    coordinates[23][0] = x[3][0];
+    coordinates[23][1] = x[3][1];
+    coordinates[23][2] = x[3][2];
+    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)

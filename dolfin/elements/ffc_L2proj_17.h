@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -194,7 +194,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -355,7 +355,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -516,7 +516,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -699,7 +699,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -860,7 +860,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -1021,7 +1021,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -1182,7 +1182,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -1370,7 +1370,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1379,7 +1379,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -1388,7 +1388,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1397,7 +1397,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1435,7 +1435,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1449,10 +1449,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1462,16 +1462,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -1542,7 +1550,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1551,7 +1559,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -1560,7 +1568,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1569,7 +1577,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1607,7 +1615,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1621,10 +1629,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1634,16 +1642,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -1714,7 +1730,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1723,7 +1739,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -1732,7 +1748,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1741,7 +1757,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1779,7 +1795,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1793,10 +1809,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1806,16 +1822,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -1886,7 +1910,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1895,7 +1919,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -1904,7 +1928,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1913,7 +1937,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 12*m.num_entities[3];
+    __global_dimension = 3*m.num_entities[0];
     return false;
   }
 
@@ -1951,7 +1975,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 9;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1965,20 +1989,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
-    unsigned int offset = 4*m.num_entities[3];
-    dofs[4] = offset + 4*c.entity_indices[3][0];
-    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
-    offset = offset + 4*m.num_entities[3];
-    dofs[8] = offset + 4*c.entity_indices[3][0];
-    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[0][0];
+    dofs[5] = offset + c.entity_indices[0][1];
+    dofs[6] = offset + c.entity_indices[0][2];
+    dofs[7] = offset + c.entity_indices[0][3];
+    offset = offset + m.num_entities[0];
+    dofs[8] = offset + c.entity_indices[0][0];
+    dofs[9] = offset + c.entity_indices[0][1];
+    dofs[10] = offset + c.entity_indices[0][2];
+    dofs[11] = offset + c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1988,16 +2012,48 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 9;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 11;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 10;
       break;
     }
   }
@@ -2104,7 +2160,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2113,7 +2169,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -2122,7 +2178,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -2131,7 +2187,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -2169,7 +2225,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2183,10 +2239,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2196,16 +2252,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -2276,7 +2340,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2285,7 +2349,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -2294,7 +2358,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -2303,7 +2367,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -2341,7 +2405,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2355,10 +2419,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2368,16 +2432,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -2448,7 +2520,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2457,7 +2529,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -2466,7 +2538,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -2475,7 +2547,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -2513,7 +2585,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2527,10 +2599,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2540,16 +2612,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -2620,7 +2700,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2629,7 +2709,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -2638,7 +2718,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -2647,7 +2727,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 12*m.num_entities[3];
+    __global_dimension = 3*m.num_entities[0];
     return false;
   }
 
@@ -2685,7 +2765,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 9;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2699,20 +2779,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
-    unsigned int offset = 4*m.num_entities[3];
-    dofs[4] = offset + 4*c.entity_indices[3][0];
-    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
-    offset = offset + 4*m.num_entities[3];
-    dofs[8] = offset + 4*c.entity_indices[3][0];
-    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[0][0];
+    dofs[5] = offset + c.entity_indices[0][1];
+    dofs[6] = offset + c.entity_indices[0][2];
+    dofs[7] = offset + c.entity_indices[0][3];
+    offset = offset + m.num_entities[0];
+    dofs[8] = offset + c.entity_indices[0][0];
+    dofs[9] = offset + c.entity_indices[0][1];
+    dofs[10] = offset + c.entity_indices[0][2];
+    dofs[11] = offset + c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2722,16 +2802,48 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 9;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 11;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 10;
       break;
     }
   }
@@ -3156,7 +3268,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -3317,7 +3429,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -3478,7 +3590,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -3639,7 +3751,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -3822,7 +3934,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -3983,7 +4095,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4144,7 +4256,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4305,7 +4417,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -4493,7 +4605,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4502,7 +4614,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -4511,7 +4623,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -4520,7 +4632,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -4558,7 +4670,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -4572,10 +4684,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4585,16 +4697,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -4665,7 +4785,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4674,7 +4794,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -4683,7 +4803,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -4692,7 +4812,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -4730,7 +4850,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -4744,10 +4864,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4757,16 +4877,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -4837,7 +4965,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4846,7 +4974,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -4855,7 +4983,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -4864,7 +4992,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -4902,7 +5030,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -4916,10 +5044,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4929,16 +5057,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -5009,7 +5145,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5018,7 +5154,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -5027,7 +5163,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -5036,7 +5172,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 12*m.num_entities[3];
+    __global_dimension = 3*m.num_entities[0];
     return false;
   }
 
@@ -5074,7 +5210,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 9;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5088,20 +5224,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
-    unsigned int offset = 4*m.num_entities[3];
-    dofs[4] = offset + 4*c.entity_indices[3][0];
-    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
-    offset = offset + 4*m.num_entities[3];
-    dofs[8] = offset + 4*c.entity_indices[3][0];
-    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[0][0];
+    dofs[5] = offset + c.entity_indices[0][1];
+    dofs[6] = offset + c.entity_indices[0][2];
+    dofs[7] = offset + c.entity_indices[0][3];
+    offset = offset + m.num_entities[0];
+    dofs[8] = offset + c.entity_indices[0][0];
+    dofs[9] = offset + c.entity_indices[0][1];
+    dofs[10] = offset + c.entity_indices[0][2];
+    dofs[11] = offset + c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5111,16 +5247,48 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 9;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 11;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 10;
       break;
     }
   }
@@ -5227,7 +5395,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5236,7 +5404,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -5245,7 +5413,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -5254,7 +5422,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -5292,7 +5460,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5306,10 +5474,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5319,16 +5487,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -5399,7 +5575,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5408,7 +5584,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -5417,7 +5593,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -5426,7 +5602,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -5464,7 +5640,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5478,10 +5654,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5491,16 +5667,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -5571,7 +5755,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5580,7 +5764,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -5589,7 +5773,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -5598,7 +5782,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 4*m.num_entities[3];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -5636,7 +5820,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5650,10 +5834,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5663,16 +5847,24 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
       break;
     }
   }
@@ -5743,7 +5935,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5752,7 +5944,7 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
@@ -5761,7 +5953,7 @@ public:
       return false;
       break;
     case 3:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -5770,7 +5962,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 12*m.num_entities[3];
+    __global_dimension = 3*m.num_entities[0];
     return false;
   }
 
@@ -5808,7 +6000,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 9;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5822,20 +6014,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 4*c.entity_indices[3][0];
-    dofs[1] = 4*c.entity_indices[3][0] + 1;
-    dofs[2] = 4*c.entity_indices[3][0] + 2;
-    dofs[3] = 4*c.entity_indices[3][0] + 3;
-    unsigned int offset = 4*m.num_entities[3];
-    dofs[4] = offset + 4*c.entity_indices[3][0];
-    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
-    offset = offset + 4*m.num_entities[3];
-    dofs[8] = offset + 4*c.entity_indices[3][0];
-    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
-    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
-    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    dofs[3] = c.entity_indices[0][3];
+    unsigned int offset = m.num_entities[0];
+    dofs[4] = offset + c.entity_indices[0][0];
+    dofs[5] = offset + c.entity_indices[0][1];
+    dofs[6] = offset + c.entity_indices[0][2];
+    dofs[7] = offset + c.entity_indices[0][3];
+    offset = offset + m.num_entities[0];
+    dofs[8] = offset + c.entity_indices[0][0];
+    dofs[9] = offset + c.entity_indices[0][1];
+    dofs[10] = offset + c.entity_indices[0][2];
+    dofs[11] = offset + c.entity_indices[0][3];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5845,16 +6037,48 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 9;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 6;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 10;
+      dofs[8] = 11;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 7;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 11;
       break;
     case 3:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+      dofs[3] = 4;
+      dofs[4] = 5;
+      dofs[5] = 6;
+      dofs[6] = 8;
+      dofs[7] = 9;
+      dofs[8] = 10;
       break;
     }
   }

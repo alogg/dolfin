@@ -33,19 +33,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::interval;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the rank of the value space
@@ -102,24 +102,20 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    const static double X[2][1][1] = {{{0}}, {{1}}};
+    const static double W[2][1] = {{1}, {1}};
+    const static double D[2][1][1] = {{{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0];
     const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[1];
+    y[0] = w0*x[0][0] + w1*x[1][0];
     
     // Evaluate function at physical points
     double values[1];
@@ -154,9 +150,7 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-    vertex_values[3] = dof_values[0];
+    vertex_values[1] = dof_values[1];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -194,19 +188,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::interval;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the rank of the value space
@@ -263,24 +257,20 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    const static double X[2][1][1] = {{{0}}, {{1}}};
+    const static double W[2][1] = {{1}, {1}};
+    const static double D[2][1][1] = {{{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0];
     const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[1];
+    y[0] = w0*x[0][0] + w1*x[1][0];
     
     // Evaluate function at physical points
     double values[1];
@@ -315,9 +305,7 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-    vertex_values[3] = dof_values[0];
+    vertex_values[1] = dof_values[1];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -360,7 +348,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -372,12 +360,6 @@ public:
       return false;
       break;
     case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
       return true;
       break;
     }
@@ -387,7 +369,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[3];
+    __global_dimension = 2*m.num_entities[1];
     return false;
   }
 
@@ -413,7 +395,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -439,7 +421,8 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[3][0];
+    dofs[0] = 2*c.entity_indices[1][0];
+    dofs[1] = 2*c.entity_indices[1][0] + 1;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -452,12 +435,6 @@ public:
       
       break;
     case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    case 3:
       
       break;
     }
@@ -475,9 +452,8 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
-    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
-    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
+    coordinates[0][0] = x[0][0];
+    coordinates[1][0] = x[1][0];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -520,7 +496,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -532,12 +508,6 @@ public:
       return false;
       break;
     case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
       return true;
       break;
     }
@@ -547,7 +517,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[3];
+    __global_dimension = 2*m.num_entities[1];
     return false;
   }
 
@@ -573,7 +543,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -599,7 +569,8 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[3][0];
+    dofs[0] = 2*c.entity_indices[1][0];
+    dofs[1] = 2*c.entity_indices[1][0] + 1;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -612,12 +583,6 @@ public:
       
       break;
     case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    case 3:
       
       break;
     }
@@ -635,9 +600,8 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
-    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
-    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
+    coordinates[0][0] = x[0][0];
+    coordinates[1][0] = x[1][0];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -684,24 +648,9 @@ public:
     
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-      
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    
-    const double d_20 = J_01*J_12 - J_02*J_11;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    double detJ = J_00;
       
     // Compute inverse of Jacobian
     
@@ -712,7 +661,10 @@ public:
     const double G0_ = det;
     
     // Compute element tensor
-    A[0] = 0.166666666666666*G0_;
+    A[0] = 0.333333333333333*G0_;
+    A[1] = 0.166666666666666*G0_;
+    A[2] = 0.166666666666666*G0_;
+    A[3] = 0.333333333333333*G0_;
   }
 
 };
@@ -751,7 +703,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return " | vi1[0]*vi0[0]*dX(0)";
+    return " | vi1[0, 1]*vi0[0, 1]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -855,19 +807,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::interval;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the rank of the value space
@@ -924,24 +876,20 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    const static double X[2][1][1] = {{{0}}, {{1}}};
+    const static double W[2][1] = {{1}, {1}};
+    const static double D[2][1][1] = {{{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0];
     const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[1];
+    y[0] = w0*x[0][0] + w1*x[1][0];
     
     // Evaluate function at physical points
     double values[1];
@@ -976,9 +924,7 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-    vertex_values[3] = dof_values[0];
+    vertex_values[1] = dof_values[1];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1016,19 +962,19 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const
   {
-    return ufc::tetrahedron;
+    return ufc::interval;
   }
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the rank of the value space
@@ -1085,24 +1031,20 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    const static double X[2][1][1] = {{{0}}, {{1}}};
+    const static double W[2][1] = {{1}, {1}};
+    const static double D[2][1][1] = {{{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
+    const double w0 = 1.0 - X[i][0][0];
     const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
     
     // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
+    double y[1];
+    y[0] = w0*x[0][0] + w1*x[1][0];
     
     // Evaluate function at physical points
     double values[1];
@@ -1137,9 +1079,7 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-    vertex_values[3] = dof_values[0];
+    vertex_values[1] = dof_values[1];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1182,7 +1122,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1194,12 +1134,6 @@ public:
       return false;
       break;
     case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
       return true;
       break;
     }
@@ -1209,7 +1143,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[3];
+    __global_dimension = 2*m.num_entities[1];
     return false;
   }
 
@@ -1235,7 +1169,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1261,7 +1195,8 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[3][0];
+    dofs[0] = 2*c.entity_indices[1][0];
+    dofs[1] = 2*c.entity_indices[1][0] + 1;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1274,12 +1209,6 @@ public:
       
       break;
     case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    case 3:
       
       break;
     }
@@ -1297,9 +1226,8 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
-    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
-    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
+    coordinates[0][0] = x[0][0];
+    coordinates[1][0] = x[1][0];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1342,7 +1270,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a interval";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1354,12 +1282,6 @@ public:
       return false;
       break;
     case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
       return true;
       break;
     }
@@ -1369,7 +1291,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[3];
+    __global_dimension = 2*m.num_entities[1];
     return false;
   }
 
@@ -1395,7 +1317,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 1;
+    return 2;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1421,7 +1343,8 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[3][0];
+    dofs[0] = 2*c.entity_indices[1][0];
+    dofs[1] = 2*c.entity_indices[1][0] + 1;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1434,12 +1357,6 @@ public:
       
       break;
     case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    case 3:
       
       break;
     }
@@ -1457,9 +1374,8 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
-    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
-    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
+    coordinates[0][0] = x[0][0];
+    coordinates[1][0] = x[1][0];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1506,24 +1422,9 @@ public:
     
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-      
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    
-    const double d_20 = J_01*J_12 - J_02*J_11;
       
     // Compute determinant of Jacobian
-    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    double detJ = J_00;
       
     // Compute inverse of Jacobian
     
@@ -1532,12 +1433,15 @@ public:
     
     // Compute coefficients
     const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
     
     // Compute geometry tensors
     const double G0_0 = det*c0_0_0_0;
+    const double G0_1 = det*c0_0_0_1;
     
     // Compute element tensor
-    A[0] = 0.166666666666666*G0_0;
+    A[0] = 0.333333333333333*G0_0 + 0.166666666666666*G0_1;
+    A[1] = 0.166666666666666*G0_0 + 0.333333333333333*G0_1;
   }
 
 };
@@ -1576,7 +1480,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0[0] | va0[0]*vi0[0]*dX(0)";
+    return "w0_a0[0, 1] | va0[0, 1]*vi0[0, 1]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)

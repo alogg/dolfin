@@ -10,489 +10,6 @@
 
 /// This class defines the interface for a finite element.
 
-class ffc_12_finite_element_0_0: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  ffc_12_finite_element_0_0() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~ffc_12_finite_element_0_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::tetrahedron;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 4;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 0;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 1;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-    
-    const double * const * x = c.coordinates;
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
-    
-    // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-    
-    // Evaluate function at physical points
-    double values[1];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Affine map: Do nothing
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 1; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate at vertices and use affine mapping
-    vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new ffc_12_finite_element_0_0();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class ffc_12_finite_element_0_1: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  ffc_12_finite_element_0_1() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~ffc_12_finite_element_0_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::tetrahedron;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 4;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 0;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 1;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-    
-    const double * const * x = c.coordinates;
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
-    
-    // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-    
-    // Evaluate function at physical points
-    double values[1];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Affine map: Do nothing
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 1; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate at vertices and use affine mapping
-    vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new ffc_12_finite_element_0_1();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class ffc_12_finite_element_0_2: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  ffc_12_finite_element_0_2() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~ffc_12_finite_element_0_2()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::tetrahedron;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 4;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 0;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 1;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("// Function evaluate_basis not generated (compiled with -fno-evaluate_basis)");
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    throw std::runtime_error("// Function evaluate_basis_derivatives not generated (compiled with -fno-evaluate_basis_derivatives)");
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-    
-    const double * const * x = c.coordinates;
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1] - X[i][0][2];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    const double w3 = X[i][0][2];
-    
-    // Compute affine mapping y = F(X)
-    double y[3];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
-    y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-    
-    // Evaluate function at physical points
-    double values[1];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Affine map: Do nothing
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 1; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate at vertices and use affine mapping
-    vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new ffc_12_finite_element_0_2();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
 class ffc_12_finite_element_0: public ufc::finite_element
 {
 public:
@@ -512,7 +29,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -524,19 +41,19 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 12;
+    return 1;
   }
 
   /// Return the rank of the value space
   virtual unsigned int value_rank() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the dimension of the value space for axis i
   virtual unsigned int value_dimension(unsigned int i) const
   {
-    return 3;
+    return 1;
   }
 
   /// Evaluate basis function i at given point in cell
@@ -581,9 +98,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[12][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[12][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -601,7 +118,7 @@ public:
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
     
     // Evaluate function at physical points
-    double values[3];
+    double values[1];
     f.evaluate(values, y, c);
     
     // Map function values using appropriate mapping
@@ -610,7 +127,7 @@ public:
     // Note that we do not map the weights (yet).
     
     // Take directional components
-    for(int k = 0; k < 3; k++)
+    for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
     // Multiply by weights 
     result *= W[i][0];
@@ -633,583 +150,21 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
-    // Evaluate at vertices and use affine mapping
-    vertex_values[4] = dof_values[4];
-    vertex_values[5] = dof_values[5];
-    vertex_values[6] = dof_values[6];
-    vertex_values[7] = dof_values[7];
-    // Evaluate at vertices and use affine mapping
-    vertex_values[8] = dof_values[8];
-    vertex_values[9] = dof_values[9];
-    vertex_values[10] = dof_values[10];
-    vertex_values[11] = dof_values[11];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
   }
 
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
-    return 3;
+    return 1;
   }
 
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch ( i )
-    {
-    case 0:
-      return new ffc_12_finite_element_0_0();
-      break;
-    case 1:
-      return new ffc_12_finite_element_0_1();
-      break;
-    case 2:
-      return new ffc_12_finite_element_0_2();
-      break;
-    }
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class ffc_12_dof_map_0_0: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  ffc_12_dof_map_0_0() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~ffc_12_dof_map_0_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return true;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
-      return false;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[0];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 4;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 3;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      break;
-    case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      break;
-    case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new ffc_12_dof_map_0_0();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class ffc_12_dof_map_0_1: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  ffc_12_dof_map_0_1() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~ffc_12_dof_map_0_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return true;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
-      return false;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[0];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 4;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 3;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      break;
-    case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      break;
-    case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new ffc_12_dof_map_0_1();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class ffc_12_dof_map_0_2: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  ffc_12_dof_map_0_2() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~ffc_12_dof_map_0_2()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return true;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return false;
-      break;
-    case 3:
-      return false;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[0];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 4;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 3;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      break;
-    case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      break;
-    case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      break;
-    case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new ffc_12_dof_map_0_2();
+    return new ffc_12_finite_element_0();
   }
 
 };
@@ -1240,7 +195,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1249,7 +204,7 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
       return false;
@@ -1258,7 +213,7 @@ public:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1267,7 +222,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0];
+    __global_dimension = m.num_entities[3];
     return false;
   }
 
@@ -1293,7 +248,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 12;
+    return 1;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1305,7 +260,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 9;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1319,20 +274,7 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[0][0];
-    dofs[5] = offset + c.entity_indices[0][1];
-    dofs[6] = offset + c.entity_indices[0][2];
-    dofs[7] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[8] = offset + c.entity_indices[0][0];
-    dofs[9] = offset + c.entity_indices[0][1];
-    dofs[10] = offset + c.entity_indices[0][2];
-    dofs[11] = offset + c.entity_indices[0][3];
+    dofs[0] = c.entity_indices[3][0];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1342,48 +284,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 6;
-      dofs[5] = 7;
-      dofs[6] = 9;
-      dofs[7] = 10;
-      dofs[8] = 11;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 6;
-      dofs[5] = 7;
-      dofs[6] = 8;
-      dofs[7] = 10;
-      dofs[8] = 11;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 7;
-      dofs[6] = 8;
-      dofs[7] = 9;
-      dofs[8] = 11;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 8;
-      dofs[7] = 9;
-      dofs[8] = 10;
+      
       break;
     }
   }
@@ -1400,66 +310,21 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = x[0][0];
-    coordinates[4][1] = x[0][1];
-    coordinates[4][2] = x[0][2];
-    coordinates[5][0] = x[1][0];
-    coordinates[5][1] = x[1][1];
-    coordinates[5][2] = x[1][2];
-    coordinates[6][0] = x[2][0];
-    coordinates[6][1] = x[2][1];
-    coordinates[6][2] = x[2][2];
-    coordinates[7][0] = x[3][0];
-    coordinates[7][1] = x[3][1];
-    coordinates[7][2] = x[3][2];
-    coordinates[8][0] = x[0][0];
-    coordinates[8][1] = x[0][1];
-    coordinates[8][2] = x[0][2];
-    coordinates[9][0] = x[1][0];
-    coordinates[9][1] = x[1][1];
-    coordinates[9][2] = x[1][2];
-    coordinates[10][0] = x[2][0];
-    coordinates[10][1] = x[2][1];
-    coordinates[10][2] = x[2][2];
-    coordinates[11][0] = x[3][0];
-    coordinates[11][1] = x[3][1];
-    coordinates[11][2] = x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dof_maps() const
   {
-    return 3;
+    return 1;
   }
 
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch ( i )
-    {
-    case 0:
-      return new ffc_12_dof_map_0_0();
-      break;
-    case 1:
-      return new ffc_12_dof_map_0_1();
-      break;
-    case 2:
-      return new ffc_12_dof_map_0_2();
-      break;
-    }
-    return 0;
+    return new ffc_12_dof_map_0();
   }
 
 };
