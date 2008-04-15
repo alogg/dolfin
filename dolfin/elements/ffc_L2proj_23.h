@@ -4,8 +4,8 @@
 // Warning: This code was generated with the option '-l dolfin'
 // and contains DOLFIN-specific wrappers that depend on DOLFIN.
 
-#ifndef __FFC_L2PROJ_18_H
-#define __FFC_L2PROJ_18_H
+#ifndef __FFC_L2PROJ_23_H
+#define __FFC_L2PROJ_23_H
 
 #include <cmath>
 #include <stdexcept>
@@ -14,18 +14,18 @@
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0_0: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0_0() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -102,7 +102,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -154,9 +154,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -168,25 +168,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_0();
+    return new UFC_ffc_L2proj_23BilinearForm_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0_1: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0_1() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0_1()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_0_1()
   {
     // Do nothing
   }
@@ -194,7 +194,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -263,7 +263,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -315,9 +315,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -329,25 +329,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_1();
+    return new UFC_ffc_L2proj_23BilinearForm_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0_2: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0_2() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0_2()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_0_2()
   {
     // Do nothing
   }
@@ -355,7 +355,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -424,7 +424,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -476,9 +476,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -490,25 +490,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_2();
+    return new UFC_ffc_L2proj_23BilinearForm_finite_element_0_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -516,7 +516,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -585,7 +585,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[30][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
@@ -637,19 +637,19 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
     // Evaluate at vertices and use affine mapping
     vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[5] = dof_values[12];
+    vertex_values[6] = dof_values[15];
+    vertex_values[7] = dof_values[19];
     // Evaluate at vertices and use affine mapping
     vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[9] = dof_values[22];
+    vertex_values[10] = dof_values[25];
+    vertex_values[11] = dof_values[29];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -664,13 +664,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_0();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_1();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_2();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_0_2();
       break;
     }
     return 0;
@@ -680,18 +680,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1_0: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1_0() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_1_0()
   {
     // Do nothing
   }
@@ -699,7 +699,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -768,7 +768,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -820,9 +820,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -834,25 +834,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_0();
+    return new UFC_ffc_L2proj_23BilinearForm_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1_1: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1_1() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1_1()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_1_1()
   {
     // Do nothing
   }
@@ -860,7 +860,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -929,7 +929,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -981,9 +981,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -995,25 +995,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_1();
+    return new UFC_ffc_L2proj_23BilinearForm_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1_2: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1_2() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1_2()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_1_2()
   {
     // Do nothing
   }
@@ -1021,7 +1021,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -1090,7 +1090,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -1142,9 +1142,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1156,25 +1156,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_2();
+    return new UFC_ffc_L2proj_23BilinearForm_finite_element_1_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1: public ufc::finite_element
+class UFC_ffc_L2proj_23BilinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1() : ufc::finite_element()
+  UFC_ffc_L2proj_23BilinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -1182,7 +1182,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -1251,7 +1251,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[30][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
@@ -1303,19 +1303,19 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
     // Evaluate at vertices and use affine mapping
     vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[5] = dof_values[12];
+    vertex_values[6] = dof_values[15];
+    vertex_values[7] = dof_values[19];
     // Evaluate at vertices and use affine mapping
     vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[9] = dof_values[22];
+    vertex_values[10] = dof_values[25];
+    vertex_values[11] = dof_values[29];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1330,13 +1330,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_0();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_1();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_2();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_1_2();
       break;
     }
     return 0;
@@ -1347,7 +1347,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0_0: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -1356,13 +1356,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0_0() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_0_0()
   {
     // Do nothing
   }
@@ -1370,7 +1370,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1379,16 +1379,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1397,7 +1397,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -1435,7 +1435,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1449,17 +1449,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1469,36 +1468,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -1518,33 +1497,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1556,7 +1535,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_0();
+    return new UFC_ffc_L2proj_23BilinearForm_dof_map_0_0();
   }
 
 };
@@ -1564,7 +1543,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0_1: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -1573,13 +1552,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0_1() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0_1()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_0_1()
   {
     // Do nothing
   }
@@ -1587,7 +1566,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1596,16 +1575,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1614,7 +1593,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -1652,7 +1631,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1666,17 +1645,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1686,36 +1664,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -1735,33 +1693,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1773,7 +1731,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_1();
+    return new UFC_ffc_L2proj_23BilinearForm_dof_map_0_1();
   }
 
 };
@@ -1781,7 +1739,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0_2: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_0_2: public ufc::dof_map
 {
 private:
 
@@ -1790,13 +1748,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0_2() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_0_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0_2()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_0_2()
   {
     // Do nothing
   }
@@ -1804,7 +1762,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1813,16 +1771,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1831,7 +1789,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -1869,7 +1827,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1883,17 +1841,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1903,36 +1860,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -1952,33 +1889,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1990,7 +1927,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_2();
+    return new UFC_ffc_L2proj_23BilinearForm_dof_map_0_2();
   }
 
 };
@@ -1998,7 +1935,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2007,13 +1944,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -2021,7 +1958,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2030,16 +1967,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2048,7 +1985,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 30*m.num_entities[3];
     return false;
   }
 
@@ -2086,7 +2023,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2100,41 +2037,38 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    unsigned int offset = 10*m.num_entities[3];
+    dofs[10] = offset + 10*c.entity_indices[3][0];
+    dofs[11] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[12] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[13] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[14] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[15] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[16] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[17] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[18] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[19] = offset + 10*c.entity_indices[3][0] + 9;
+    offset = offset + 10*m.num_entities[3];
+    dofs[20] = offset + 10*c.entity_indices[3][0];
+    dofs[21] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[22] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[23] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[24] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[25] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[26] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[27] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[28] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[29] = offset + 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2144,84 +2078,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -2241,93 +2107,93 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
     coordinates[10][0] = x[0][0];
     coordinates[10][1] = x[0][1];
     coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[11][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[12][0] = x[1][0];
+    coordinates[12][1] = x[1][1];
+    coordinates[12][2] = x[1][2];
+    coordinates[13][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[13][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[13][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[14][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[14][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[14][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[15][0] = x[2][0];
+    coordinates[15][1] = x[2][1];
+    coordinates[15][2] = x[2][2];
+    coordinates[16][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[16][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[16][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[17][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[17][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[17][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[18][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[18][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[18][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[19][0] = x[3][0];
+    coordinates[19][1] = x[3][1];
+    coordinates[19][2] = x[3][2];
     coordinates[20][0] = x[0][0];
     coordinates[20][1] = x[0][1];
     coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[21][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[21][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[21][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[22][0] = x[1][0];
+    coordinates[22][1] = x[1][1];
+    coordinates[22][2] = x[1][2];
+    coordinates[23][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[23][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[23][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[24][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[24][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[24][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[25][0] = x[2][0];
+    coordinates[25][1] = x[2][1];
+    coordinates[25][2] = x[2][2];
+    coordinates[26][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[26][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[26][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[27][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[27][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[27][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[28][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[28][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[28][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[29][0] = x[3][0];
+    coordinates[29][1] = x[3][1];
+    coordinates[29][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2342,13 +2208,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_0();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_1();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_2();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_0_2();
       break;
     }
     return 0;
@@ -2359,7 +2225,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1_0: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -2368,13 +2234,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1_0() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_1_0()
   {
     // Do nothing
   }
@@ -2382,7 +2248,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2391,16 +2257,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2409,7 +2275,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -2447,7 +2313,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2461,17 +2327,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2481,36 +2346,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -2530,33 +2375,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2568,7 +2413,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_0();
+    return new UFC_ffc_L2proj_23BilinearForm_dof_map_1_0();
   }
 
 };
@@ -2576,7 +2421,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1_1: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -2585,13 +2430,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1_1() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1_1()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_1_1()
   {
     // Do nothing
   }
@@ -2599,7 +2444,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2608,16 +2453,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2626,7 +2471,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -2664,7 +2509,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2678,17 +2523,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2698,36 +2542,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -2747,33 +2571,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2785,7 +2609,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_1();
+    return new UFC_ffc_L2proj_23BilinearForm_dof_map_1_1();
   }
 
 };
@@ -2793,7 +2617,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1_2: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_1_2: public ufc::dof_map
 {
 private:
 
@@ -2802,13 +2626,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1_2() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_1_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1_2()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_1_2()
   {
     // Do nothing
   }
@@ -2816,7 +2640,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2825,16 +2649,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2843,7 +2667,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -2881,7 +2705,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2895,17 +2719,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2915,36 +2738,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -2964,33 +2767,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3002,7 +2805,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_2();
+    return new UFC_ffc_L2proj_23BilinearForm_dof_map_1_2();
   }
 
 };
@@ -3010,7 +2813,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1: public ufc::dof_map
+class UFC_ffc_L2proj_23BilinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -3019,13 +2822,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1() : ufc::dof_map()
+  UFC_ffc_L2proj_23BilinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -3033,7 +2836,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3042,16 +2845,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -3060,7 +2863,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 30*m.num_entities[3];
     return false;
   }
 
@@ -3098,7 +2901,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3112,41 +2915,38 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    unsigned int offset = 10*m.num_entities[3];
+    dofs[10] = offset + 10*c.entity_indices[3][0];
+    dofs[11] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[12] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[13] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[14] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[15] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[16] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[17] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[18] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[19] = offset + 10*c.entity_indices[3][0] + 9;
+    offset = offset + 10*m.num_entities[3];
+    dofs[20] = offset + 10*c.entity_indices[3][0];
+    dofs[21] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[22] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[23] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[24] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[25] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[26] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[27] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[28] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[29] = offset + 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3156,84 +2956,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -3253,93 +2985,93 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
     coordinates[10][0] = x[0][0];
     coordinates[10][1] = x[0][1];
     coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[11][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[12][0] = x[1][0];
+    coordinates[12][1] = x[1][1];
+    coordinates[12][2] = x[1][2];
+    coordinates[13][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[13][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[13][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[14][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[14][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[14][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[15][0] = x[2][0];
+    coordinates[15][1] = x[2][1];
+    coordinates[15][2] = x[2][2];
+    coordinates[16][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[16][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[16][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[17][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[17][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[17][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[18][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[18][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[18][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[19][0] = x[3][0];
+    coordinates[19][1] = x[3][1];
+    coordinates[19][2] = x[3][2];
     coordinates[20][0] = x[0][0];
     coordinates[20][1] = x[0][1];
     coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[21][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[21][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[21][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[22][0] = x[1][0];
+    coordinates[22][1] = x[1][1];
+    coordinates[22][2] = x[1][2];
+    coordinates[23][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[23][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[23][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[24][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[24][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[24][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[25][0] = x[2][0];
+    coordinates[25][1] = x[2][1];
+    coordinates[25][2] = x[2][2];
+    coordinates[26][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[26][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[26][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[27][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[27][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[27][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[28][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[28][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[28][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[29][0] = x[3][0];
+    coordinates[29][1] = x[3][1];
+    coordinates[29][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3354,13 +3086,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_0();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_1();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_2();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_1_2();
       break;
     }
     return 0;
@@ -3372,18 +3104,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ffc_L2proj_18BilinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_ffc_L2proj_23BilinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_ffc_L2proj_23BilinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_cell_integral_0()
+  virtual ~UFC_ffc_L2proj_23BilinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -3427,15 +3159,15 @@ public:
     
     // Compute element tensor
     A[0] = 0.00238095238095237*G0_;
-    A[1] = 0.000396825396825395*G0_;
-    A[2] = 0.000396825396825396*G0_;
-    A[3] = 0.000396825396825397*G0_;
+    A[1] = -0.00158730158730158*G0_;
+    A[2] = 0.000396825396825395*G0_;
+    A[3] = -0.00158730158730158*G0_;
     A[4] = -0.00238095238095238*G0_;
-    A[5] = -0.00238095238095238*G0_;
-    A[6] = -0.00238095238095238*G0_;
-    A[7] = -0.00158730158730158*G0_;
-    A[8] = -0.00158730158730158*G0_;
-    A[9] = -0.00158730158730158*G0_;
+    A[5] = 0.000396825396825396*G0_;
+    A[6] = -0.00158730158730158*G0_;
+    A[7] = -0.00238095238095238*G0_;
+    A[8] = -0.00238095238095238*G0_;
+    A[9] = 0.000396825396825397*G0_;
     A[10] = 0;
     A[11] = 0;
     A[12] = 0;
@@ -3456,16 +3188,16 @@ public:
     A[27] = 0;
     A[28] = 0;
     A[29] = 0;
-    A[30] = 0.000396825396825395*G0_;
-    A[31] = 0.00238095238095238*G0_;
-    A[32] = 0.000396825396825396*G0_;
-    A[33] = 0.000396825396825396*G0_;
-    A[34] = -0.00238095238095237*G0_;
-    A[35] = -0.00158730158730158*G0_;
-    A[36] = -0.00158730158730158*G0_;
-    A[37] = -0.00238095238095237*G0_;
-    A[38] = -0.00238095238095237*G0_;
-    A[39] = -0.00158730158730158*G0_;
+    A[30] = -0.00158730158730158*G0_;
+    A[31] = 0.0126984126984127*G0_;
+    A[32] = -0.00158730158730158*G0_;
+    A[33] = 0.00634920634920634*G0_;
+    A[34] = 0.00634920634920634*G0_;
+    A[35] = -0.00238095238095238*G0_;
+    A[36] = 0.00634920634920633*G0_;
+    A[37] = 0.00634920634920634*G0_;
+    A[38] = 0.00317460317460317*G0_;
+    A[39] = -0.00238095238095238*G0_;
     A[40] = 0;
     A[41] = 0;
     A[42] = 0;
@@ -3486,16 +3218,16 @@ public:
     A[57] = 0;
     A[58] = 0;
     A[59] = 0;
-    A[60] = 0.000396825396825396*G0_;
-    A[61] = 0.000396825396825396*G0_;
+    A[60] = 0.000396825396825395*G0_;
+    A[61] = -0.00158730158730158*G0_;
     A[62] = 0.00238095238095238*G0_;
-    A[63] = 0.000396825396825398*G0_;
-    A[64] = -0.00158730158730159*G0_;
-    A[65] = -0.00238095238095238*G0_;
-    A[66] = -0.00158730158730159*G0_;
-    A[67] = -0.00238095238095238*G0_;
-    A[68] = -0.00158730158730159*G0_;
-    A[69] = -0.00238095238095238*G0_;
+    A[63] = -0.00238095238095237*G0_;
+    A[64] = -0.00158730158730158*G0_;
+    A[65] = 0.000396825396825396*G0_;
+    A[66] = -0.00238095238095237*G0_;
+    A[67] = -0.00158730158730158*G0_;
+    A[68] = -0.00238095238095237*G0_;
+    A[69] = 0.000396825396825396*G0_;
     A[70] = 0;
     A[71] = 0;
     A[72] = 0;
@@ -3516,15 +3248,15 @@ public:
     A[87] = 0;
     A[88] = 0;
     A[89] = 0;
-    A[90] = 0.000396825396825396*G0_;
-    A[91] = 0.000396825396825396*G0_;
-    A[92] = 0.000396825396825398*G0_;
-    A[93] = 0.00238095238095238*G0_;
-    A[94] = -0.00158730158730159*G0_;
+    A[90] = -0.00158730158730158*G0_;
+    A[91] = 0.00634920634920634*G0_;
+    A[92] = -0.00238095238095237*G0_;
+    A[93] = 0.0126984126984127*G0_;
+    A[94] = 0.00634920634920634*G0_;
     A[95] = -0.00158730158730159*G0_;
-    A[96] = -0.00238095238095238*G0_;
-    A[97] = -0.00158730158730159*G0_;
-    A[98] = -0.00238095238095238*G0_;
+    A[96] = 0.00634920634920634*G0_;
+    A[97] = 0.00317460317460317*G0_;
+    A[98] = 0.00634920634920634*G0_;
     A[99] = -0.00238095238095238*G0_;
     A[100] = 0;
     A[101] = 0;
@@ -3547,15 +3279,15 @@ public:
     A[118] = 0;
     A[119] = 0;
     A[120] = -0.00238095238095238*G0_;
-    A[121] = -0.00238095238095238*G0_;
-    A[122] = -0.00158730158730159*G0_;
-    A[123] = -0.00158730158730159*G0_;
+    A[121] = 0.00634920634920634*G0_;
+    A[122] = -0.00158730158730158*G0_;
+    A[123] = 0.00634920634920634*G0_;
     A[124] = 0.0126984126984127*G0_;
-    A[125] = 0.00634920634920634*G0_;
-    A[126] = 0.00634920634920635*G0_;
-    A[127] = 0.00634920634920634*G0_;
-    A[128] = 0.00634920634920634*G0_;
-    A[129] = 0.00317460317460317*G0_;
+    A[125] = -0.00158730158730159*G0_;
+    A[126] = 0.00317460317460317*G0_;
+    A[127] = 0.00634920634920635*G0_;
+    A[128] = 0.00634920634920635*G0_;
+    A[129] = -0.00238095238095238*G0_;
     A[130] = 0;
     A[131] = 0;
     A[132] = 0;
@@ -3576,16 +3308,16 @@ public:
     A[147] = 0;
     A[148] = 0;
     A[149] = 0;
-    A[150] = -0.00238095238095238*G0_;
-    A[151] = -0.00158730158730158*G0_;
-    A[152] = -0.00238095238095238*G0_;
+    A[150] = 0.000396825396825396*G0_;
+    A[151] = -0.00238095238095238*G0_;
+    A[152] = 0.000396825396825396*G0_;
     A[153] = -0.00158730158730159*G0_;
-    A[154] = 0.00634920634920634*G0_;
-    A[155] = 0.0126984126984127*G0_;
-    A[156] = 0.00634920634920635*G0_;
-    A[157] = 0.00634920634920634*G0_;
-    A[158] = 0.00317460317460317*G0_;
-    A[159] = 0.00634920634920634*G0_;
+    A[154] = -0.00158730158730159*G0_;
+    A[155] = 0.00238095238095238*G0_;
+    A[156] = -0.00238095238095238*G0_;
+    A[157] = -0.00238095238095238*G0_;
+    A[158] = -0.00158730158730159*G0_;
+    A[159] = 0.000396825396825398*G0_;
     A[160] = 0;
     A[161] = 0;
     A[162] = 0;
@@ -3606,16 +3338,16 @@ public:
     A[177] = 0;
     A[178] = 0;
     A[179] = 0;
-    A[180] = -0.00238095238095238*G0_;
-    A[181] = -0.00158730158730158*G0_;
-    A[182] = -0.00158730158730159*G0_;
-    A[183] = -0.00238095238095238*G0_;
-    A[184] = 0.00634920634920635*G0_;
-    A[185] = 0.00634920634920635*G0_;
+    A[180] = -0.00158730158730158*G0_;
+    A[181] = 0.00634920634920633*G0_;
+    A[182] = -0.00238095238095237*G0_;
+    A[183] = 0.00634920634920634*G0_;
+    A[184] = 0.00317460317460317*G0_;
+    A[185] = -0.00238095238095238*G0_;
     A[186] = 0.0126984126984127*G0_;
-    A[187] = 0.00317460317460317*G0_;
+    A[187] = 0.00634920634920634*G0_;
     A[188] = 0.00634920634920634*G0_;
-    A[189] = 0.00634920634920634*G0_;
+    A[189] = -0.00158730158730159*G0_;
     A[190] = 0;
     A[191] = 0;
     A[192] = 0;
@@ -3636,16 +3368,16 @@ public:
     A[207] = 0;
     A[208] = 0;
     A[209] = 0;
-    A[210] = -0.00158730158730158*G0_;
-    A[211] = -0.00238095238095237*G0_;
-    A[212] = -0.00238095238095238*G0_;
-    A[213] = -0.00158730158730159*G0_;
-    A[214] = 0.00634920634920634*G0_;
-    A[215] = 0.00634920634920634*G0_;
-    A[216] = 0.00317460317460317*G0_;
+    A[210] = -0.00238095238095238*G0_;
+    A[211] = 0.00634920634920634*G0_;
+    A[212] = -0.00158730158730158*G0_;
+    A[213] = 0.00317460317460317*G0_;
+    A[214] = 0.00634920634920635*G0_;
+    A[215] = -0.00238095238095238*G0_;
+    A[216] = 0.00634920634920634*G0_;
     A[217] = 0.0126984126984127*G0_;
     A[218] = 0.00634920634920634*G0_;
-    A[219] = 0.00634920634920633*G0_;
+    A[219] = -0.00158730158730159*G0_;
     A[220] = 0;
     A[221] = 0;
     A[222] = 0;
@@ -3666,16 +3398,16 @@ public:
     A[237] = 0;
     A[238] = 0;
     A[239] = 0;
-    A[240] = -0.00158730158730158*G0_;
-    A[241] = -0.00238095238095237*G0_;
-    A[242] = -0.00158730158730159*G0_;
-    A[243] = -0.00238095238095238*G0_;
-    A[244] = 0.00634920634920634*G0_;
-    A[245] = 0.00317460317460317*G0_;
+    A[240] = -0.00238095238095238*G0_;
+    A[241] = 0.00317460317460317*G0_;
+    A[242] = -0.00238095238095238*G0_;
+    A[243] = 0.00634920634920634*G0_;
+    A[244] = 0.00634920634920635*G0_;
+    A[245] = -0.00158730158730159*G0_;
     A[246] = 0.00634920634920634*G0_;
     A[247] = 0.00634920634920634*G0_;
     A[248] = 0.0126984126984127*G0_;
-    A[249] = 0.00634920634920634*G0_;
+    A[249] = -0.00158730158730159*G0_;
     A[250] = 0;
     A[251] = 0;
     A[252] = 0;
@@ -3696,16 +3428,16 @@ public:
     A[267] = 0;
     A[268] = 0;
     A[269] = 0;
-    A[270] = -0.00158730158730158*G0_;
-    A[271] = -0.00158730158730158*G0_;
-    A[272] = -0.00238095238095238*G0_;
+    A[270] = 0.000396825396825396*G0_;
+    A[271] = -0.00238095238095238*G0_;
+    A[272] = 0.000396825396825396*G0_;
     A[273] = -0.00238095238095238*G0_;
-    A[274] = 0.00317460317460317*G0_;
-    A[275] = 0.00634920634920634*G0_;
-    A[276] = 0.00634920634920634*G0_;
-    A[277] = 0.00634920634920633*G0_;
-    A[278] = 0.00634920634920634*G0_;
-    A[279] = 0.0126984126984127*G0_;
+    A[274] = -0.00238095238095238*G0_;
+    A[275] = 0.000396825396825398*G0_;
+    A[276] = -0.00158730158730159*G0_;
+    A[277] = -0.00158730158730159*G0_;
+    A[278] = -0.00158730158730159*G0_;
+    A[279] = 0.00238095238095238*G0_;
     A[280] = 0;
     A[281] = 0;
     A[282] = 0;
@@ -3737,15 +3469,15 @@ public:
     A[308] = 0;
     A[309] = 0;
     A[310] = 0.00238095238095237*G0_;
-    A[311] = 0.000396825396825395*G0_;
-    A[312] = 0.000396825396825396*G0_;
-    A[313] = 0.000396825396825397*G0_;
+    A[311] = -0.00158730158730158*G0_;
+    A[312] = 0.000396825396825395*G0_;
+    A[313] = -0.00158730158730158*G0_;
     A[314] = -0.00238095238095238*G0_;
-    A[315] = -0.00238095238095238*G0_;
-    A[316] = -0.00238095238095238*G0_;
-    A[317] = -0.00158730158730158*G0_;
-    A[318] = -0.00158730158730158*G0_;
-    A[319] = -0.00158730158730158*G0_;
+    A[315] = 0.000396825396825396*G0_;
+    A[316] = -0.00158730158730158*G0_;
+    A[317] = -0.00238095238095238*G0_;
+    A[318] = -0.00238095238095238*G0_;
+    A[319] = 0.000396825396825397*G0_;
     A[320] = 0;
     A[321] = 0;
     A[322] = 0;
@@ -3766,16 +3498,16 @@ public:
     A[337] = 0;
     A[338] = 0;
     A[339] = 0;
-    A[340] = 0.000396825396825395*G0_;
-    A[341] = 0.00238095238095238*G0_;
-    A[342] = 0.000396825396825396*G0_;
-    A[343] = 0.000396825396825396*G0_;
-    A[344] = -0.00238095238095237*G0_;
-    A[345] = -0.00158730158730158*G0_;
-    A[346] = -0.00158730158730158*G0_;
-    A[347] = -0.00238095238095237*G0_;
-    A[348] = -0.00238095238095237*G0_;
-    A[349] = -0.00158730158730158*G0_;
+    A[340] = -0.00158730158730158*G0_;
+    A[341] = 0.0126984126984127*G0_;
+    A[342] = -0.00158730158730158*G0_;
+    A[343] = 0.00634920634920634*G0_;
+    A[344] = 0.00634920634920634*G0_;
+    A[345] = -0.00238095238095238*G0_;
+    A[346] = 0.00634920634920633*G0_;
+    A[347] = 0.00634920634920634*G0_;
+    A[348] = 0.00317460317460317*G0_;
+    A[349] = -0.00238095238095238*G0_;
     A[350] = 0;
     A[351] = 0;
     A[352] = 0;
@@ -3796,16 +3528,16 @@ public:
     A[367] = 0;
     A[368] = 0;
     A[369] = 0;
-    A[370] = 0.000396825396825396*G0_;
-    A[371] = 0.000396825396825396*G0_;
+    A[370] = 0.000396825396825395*G0_;
+    A[371] = -0.00158730158730158*G0_;
     A[372] = 0.00238095238095238*G0_;
-    A[373] = 0.000396825396825398*G0_;
-    A[374] = -0.00158730158730159*G0_;
-    A[375] = -0.00238095238095238*G0_;
-    A[376] = -0.00158730158730159*G0_;
-    A[377] = -0.00238095238095238*G0_;
-    A[378] = -0.00158730158730159*G0_;
-    A[379] = -0.00238095238095238*G0_;
+    A[373] = -0.00238095238095237*G0_;
+    A[374] = -0.00158730158730158*G0_;
+    A[375] = 0.000396825396825396*G0_;
+    A[376] = -0.00238095238095237*G0_;
+    A[377] = -0.00158730158730158*G0_;
+    A[378] = -0.00238095238095237*G0_;
+    A[379] = 0.000396825396825396*G0_;
     A[380] = 0;
     A[381] = 0;
     A[382] = 0;
@@ -3826,15 +3558,15 @@ public:
     A[397] = 0;
     A[398] = 0;
     A[399] = 0;
-    A[400] = 0.000396825396825396*G0_;
-    A[401] = 0.000396825396825396*G0_;
-    A[402] = 0.000396825396825398*G0_;
-    A[403] = 0.00238095238095238*G0_;
-    A[404] = -0.00158730158730159*G0_;
+    A[400] = -0.00158730158730158*G0_;
+    A[401] = 0.00634920634920634*G0_;
+    A[402] = -0.00238095238095237*G0_;
+    A[403] = 0.0126984126984127*G0_;
+    A[404] = 0.00634920634920634*G0_;
     A[405] = -0.00158730158730159*G0_;
-    A[406] = -0.00238095238095238*G0_;
-    A[407] = -0.00158730158730159*G0_;
-    A[408] = -0.00238095238095238*G0_;
+    A[406] = 0.00634920634920634*G0_;
+    A[407] = 0.00317460317460317*G0_;
+    A[408] = 0.00634920634920634*G0_;
     A[409] = -0.00238095238095238*G0_;
     A[410] = 0;
     A[411] = 0;
@@ -3857,15 +3589,15 @@ public:
     A[428] = 0;
     A[429] = 0;
     A[430] = -0.00238095238095238*G0_;
-    A[431] = -0.00238095238095238*G0_;
-    A[432] = -0.00158730158730159*G0_;
-    A[433] = -0.00158730158730159*G0_;
+    A[431] = 0.00634920634920634*G0_;
+    A[432] = -0.00158730158730158*G0_;
+    A[433] = 0.00634920634920634*G0_;
     A[434] = 0.0126984126984127*G0_;
-    A[435] = 0.00634920634920634*G0_;
-    A[436] = 0.00634920634920635*G0_;
-    A[437] = 0.00634920634920634*G0_;
-    A[438] = 0.00634920634920634*G0_;
-    A[439] = 0.00317460317460317*G0_;
+    A[435] = -0.00158730158730159*G0_;
+    A[436] = 0.00317460317460317*G0_;
+    A[437] = 0.00634920634920635*G0_;
+    A[438] = 0.00634920634920635*G0_;
+    A[439] = -0.00238095238095238*G0_;
     A[440] = 0;
     A[441] = 0;
     A[442] = 0;
@@ -3886,16 +3618,16 @@ public:
     A[457] = 0;
     A[458] = 0;
     A[459] = 0;
-    A[460] = -0.00238095238095238*G0_;
-    A[461] = -0.00158730158730158*G0_;
-    A[462] = -0.00238095238095238*G0_;
+    A[460] = 0.000396825396825396*G0_;
+    A[461] = -0.00238095238095238*G0_;
+    A[462] = 0.000396825396825396*G0_;
     A[463] = -0.00158730158730159*G0_;
-    A[464] = 0.00634920634920634*G0_;
-    A[465] = 0.0126984126984127*G0_;
-    A[466] = 0.00634920634920635*G0_;
-    A[467] = 0.00634920634920634*G0_;
-    A[468] = 0.00317460317460317*G0_;
-    A[469] = 0.00634920634920634*G0_;
+    A[464] = -0.00158730158730159*G0_;
+    A[465] = 0.00238095238095238*G0_;
+    A[466] = -0.00238095238095238*G0_;
+    A[467] = -0.00238095238095238*G0_;
+    A[468] = -0.00158730158730159*G0_;
+    A[469] = 0.000396825396825398*G0_;
     A[470] = 0;
     A[471] = 0;
     A[472] = 0;
@@ -3916,16 +3648,16 @@ public:
     A[487] = 0;
     A[488] = 0;
     A[489] = 0;
-    A[490] = -0.00238095238095238*G0_;
-    A[491] = -0.00158730158730158*G0_;
-    A[492] = -0.00158730158730159*G0_;
-    A[493] = -0.00238095238095238*G0_;
-    A[494] = 0.00634920634920635*G0_;
-    A[495] = 0.00634920634920635*G0_;
+    A[490] = -0.00158730158730158*G0_;
+    A[491] = 0.00634920634920633*G0_;
+    A[492] = -0.00238095238095237*G0_;
+    A[493] = 0.00634920634920634*G0_;
+    A[494] = 0.00317460317460317*G0_;
+    A[495] = -0.00238095238095238*G0_;
     A[496] = 0.0126984126984127*G0_;
-    A[497] = 0.00317460317460317*G0_;
+    A[497] = 0.00634920634920634*G0_;
     A[498] = 0.00634920634920634*G0_;
-    A[499] = 0.00634920634920634*G0_;
+    A[499] = -0.00158730158730159*G0_;
     A[500] = 0;
     A[501] = 0;
     A[502] = 0;
@@ -3946,16 +3678,16 @@ public:
     A[517] = 0;
     A[518] = 0;
     A[519] = 0;
-    A[520] = -0.00158730158730158*G0_;
-    A[521] = -0.00238095238095237*G0_;
-    A[522] = -0.00238095238095238*G0_;
-    A[523] = -0.00158730158730159*G0_;
-    A[524] = 0.00634920634920634*G0_;
-    A[525] = 0.00634920634920634*G0_;
-    A[526] = 0.00317460317460317*G0_;
+    A[520] = -0.00238095238095238*G0_;
+    A[521] = 0.00634920634920634*G0_;
+    A[522] = -0.00158730158730158*G0_;
+    A[523] = 0.00317460317460317*G0_;
+    A[524] = 0.00634920634920635*G0_;
+    A[525] = -0.00238095238095238*G0_;
+    A[526] = 0.00634920634920634*G0_;
     A[527] = 0.0126984126984127*G0_;
     A[528] = 0.00634920634920634*G0_;
-    A[529] = 0.00634920634920633*G0_;
+    A[529] = -0.00158730158730159*G0_;
     A[530] = 0;
     A[531] = 0;
     A[532] = 0;
@@ -3976,16 +3708,16 @@ public:
     A[547] = 0;
     A[548] = 0;
     A[549] = 0;
-    A[550] = -0.00158730158730158*G0_;
-    A[551] = -0.00238095238095237*G0_;
-    A[552] = -0.00158730158730159*G0_;
-    A[553] = -0.00238095238095238*G0_;
-    A[554] = 0.00634920634920634*G0_;
-    A[555] = 0.00317460317460317*G0_;
+    A[550] = -0.00238095238095238*G0_;
+    A[551] = 0.00317460317460317*G0_;
+    A[552] = -0.00238095238095238*G0_;
+    A[553] = 0.00634920634920634*G0_;
+    A[554] = 0.00634920634920635*G0_;
+    A[555] = -0.00158730158730159*G0_;
     A[556] = 0.00634920634920634*G0_;
     A[557] = 0.00634920634920634*G0_;
     A[558] = 0.0126984126984127*G0_;
-    A[559] = 0.00634920634920634*G0_;
+    A[559] = -0.00158730158730159*G0_;
     A[560] = 0;
     A[561] = 0;
     A[562] = 0;
@@ -4006,16 +3738,16 @@ public:
     A[577] = 0;
     A[578] = 0;
     A[579] = 0;
-    A[580] = -0.00158730158730158*G0_;
-    A[581] = -0.00158730158730158*G0_;
-    A[582] = -0.00238095238095238*G0_;
+    A[580] = 0.000396825396825396*G0_;
+    A[581] = -0.00238095238095238*G0_;
+    A[582] = 0.000396825396825396*G0_;
     A[583] = -0.00238095238095238*G0_;
-    A[584] = 0.00317460317460317*G0_;
-    A[585] = 0.00634920634920634*G0_;
-    A[586] = 0.00634920634920634*G0_;
-    A[587] = 0.00634920634920633*G0_;
-    A[588] = 0.00634920634920634*G0_;
-    A[589] = 0.0126984126984127*G0_;
+    A[584] = -0.00238095238095238*G0_;
+    A[585] = 0.000396825396825398*G0_;
+    A[586] = -0.00158730158730159*G0_;
+    A[587] = -0.00158730158730159*G0_;
+    A[588] = -0.00158730158730159*G0_;
+    A[589] = 0.00238095238095238*G0_;
     A[590] = 0;
     A[591] = 0;
     A[592] = 0;
@@ -4047,15 +3779,15 @@ public:
     A[618] = 0;
     A[619] = 0;
     A[620] = 0.00238095238095237*G0_;
-    A[621] = 0.000396825396825395*G0_;
-    A[622] = 0.000396825396825396*G0_;
-    A[623] = 0.000396825396825397*G0_;
+    A[621] = -0.00158730158730158*G0_;
+    A[622] = 0.000396825396825395*G0_;
+    A[623] = -0.00158730158730158*G0_;
     A[624] = -0.00238095238095238*G0_;
-    A[625] = -0.00238095238095238*G0_;
-    A[626] = -0.00238095238095238*G0_;
-    A[627] = -0.00158730158730158*G0_;
-    A[628] = -0.00158730158730158*G0_;
-    A[629] = -0.00158730158730158*G0_;
+    A[625] = 0.000396825396825396*G0_;
+    A[626] = -0.00158730158730158*G0_;
+    A[627] = -0.00238095238095238*G0_;
+    A[628] = -0.00238095238095238*G0_;
+    A[629] = 0.000396825396825397*G0_;
     A[630] = 0;
     A[631] = 0;
     A[632] = 0;
@@ -4076,16 +3808,16 @@ public:
     A[647] = 0;
     A[648] = 0;
     A[649] = 0;
-    A[650] = 0.000396825396825395*G0_;
-    A[651] = 0.00238095238095238*G0_;
-    A[652] = 0.000396825396825396*G0_;
-    A[653] = 0.000396825396825396*G0_;
-    A[654] = -0.00238095238095237*G0_;
-    A[655] = -0.00158730158730158*G0_;
-    A[656] = -0.00158730158730158*G0_;
-    A[657] = -0.00238095238095237*G0_;
-    A[658] = -0.00238095238095237*G0_;
-    A[659] = -0.00158730158730158*G0_;
+    A[650] = -0.00158730158730158*G0_;
+    A[651] = 0.0126984126984127*G0_;
+    A[652] = -0.00158730158730158*G0_;
+    A[653] = 0.00634920634920634*G0_;
+    A[654] = 0.00634920634920634*G0_;
+    A[655] = -0.00238095238095238*G0_;
+    A[656] = 0.00634920634920633*G0_;
+    A[657] = 0.00634920634920634*G0_;
+    A[658] = 0.00317460317460317*G0_;
+    A[659] = -0.00238095238095238*G0_;
     A[660] = 0;
     A[661] = 0;
     A[662] = 0;
@@ -4106,16 +3838,16 @@ public:
     A[677] = 0;
     A[678] = 0;
     A[679] = 0;
-    A[680] = 0.000396825396825396*G0_;
-    A[681] = 0.000396825396825396*G0_;
+    A[680] = 0.000396825396825395*G0_;
+    A[681] = -0.00158730158730158*G0_;
     A[682] = 0.00238095238095238*G0_;
-    A[683] = 0.000396825396825398*G0_;
-    A[684] = -0.00158730158730159*G0_;
-    A[685] = -0.00238095238095238*G0_;
-    A[686] = -0.00158730158730159*G0_;
-    A[687] = -0.00238095238095238*G0_;
-    A[688] = -0.00158730158730159*G0_;
-    A[689] = -0.00238095238095238*G0_;
+    A[683] = -0.00238095238095237*G0_;
+    A[684] = -0.00158730158730158*G0_;
+    A[685] = 0.000396825396825396*G0_;
+    A[686] = -0.00238095238095237*G0_;
+    A[687] = -0.00158730158730158*G0_;
+    A[688] = -0.00238095238095237*G0_;
+    A[689] = 0.000396825396825396*G0_;
     A[690] = 0;
     A[691] = 0;
     A[692] = 0;
@@ -4136,15 +3868,15 @@ public:
     A[707] = 0;
     A[708] = 0;
     A[709] = 0;
-    A[710] = 0.000396825396825396*G0_;
-    A[711] = 0.000396825396825396*G0_;
-    A[712] = 0.000396825396825398*G0_;
-    A[713] = 0.00238095238095238*G0_;
-    A[714] = -0.00158730158730159*G0_;
+    A[710] = -0.00158730158730158*G0_;
+    A[711] = 0.00634920634920634*G0_;
+    A[712] = -0.00238095238095237*G0_;
+    A[713] = 0.0126984126984127*G0_;
+    A[714] = 0.00634920634920634*G0_;
     A[715] = -0.00158730158730159*G0_;
-    A[716] = -0.00238095238095238*G0_;
-    A[717] = -0.00158730158730159*G0_;
-    A[718] = -0.00238095238095238*G0_;
+    A[716] = 0.00634920634920634*G0_;
+    A[717] = 0.00317460317460317*G0_;
+    A[718] = 0.00634920634920634*G0_;
     A[719] = -0.00238095238095238*G0_;
     A[720] = 0;
     A[721] = 0;
@@ -4167,15 +3899,15 @@ public:
     A[738] = 0;
     A[739] = 0;
     A[740] = -0.00238095238095238*G0_;
-    A[741] = -0.00238095238095238*G0_;
-    A[742] = -0.00158730158730159*G0_;
-    A[743] = -0.00158730158730159*G0_;
+    A[741] = 0.00634920634920634*G0_;
+    A[742] = -0.00158730158730158*G0_;
+    A[743] = 0.00634920634920634*G0_;
     A[744] = 0.0126984126984127*G0_;
-    A[745] = 0.00634920634920634*G0_;
-    A[746] = 0.00634920634920635*G0_;
-    A[747] = 0.00634920634920634*G0_;
-    A[748] = 0.00634920634920634*G0_;
-    A[749] = 0.00317460317460317*G0_;
+    A[745] = -0.00158730158730159*G0_;
+    A[746] = 0.00317460317460317*G0_;
+    A[747] = 0.00634920634920635*G0_;
+    A[748] = 0.00634920634920635*G0_;
+    A[749] = -0.00238095238095238*G0_;
     A[750] = 0;
     A[751] = 0;
     A[752] = 0;
@@ -4196,16 +3928,16 @@ public:
     A[767] = 0;
     A[768] = 0;
     A[769] = 0;
-    A[770] = -0.00238095238095238*G0_;
-    A[771] = -0.00158730158730158*G0_;
-    A[772] = -0.00238095238095238*G0_;
+    A[770] = 0.000396825396825396*G0_;
+    A[771] = -0.00238095238095238*G0_;
+    A[772] = 0.000396825396825396*G0_;
     A[773] = -0.00158730158730159*G0_;
-    A[774] = 0.00634920634920634*G0_;
-    A[775] = 0.0126984126984127*G0_;
-    A[776] = 0.00634920634920635*G0_;
-    A[777] = 0.00634920634920634*G0_;
-    A[778] = 0.00317460317460317*G0_;
-    A[779] = 0.00634920634920634*G0_;
+    A[774] = -0.00158730158730159*G0_;
+    A[775] = 0.00238095238095238*G0_;
+    A[776] = -0.00238095238095238*G0_;
+    A[777] = -0.00238095238095238*G0_;
+    A[778] = -0.00158730158730159*G0_;
+    A[779] = 0.000396825396825398*G0_;
     A[780] = 0;
     A[781] = 0;
     A[782] = 0;
@@ -4226,16 +3958,16 @@ public:
     A[797] = 0;
     A[798] = 0;
     A[799] = 0;
-    A[800] = -0.00238095238095238*G0_;
-    A[801] = -0.00158730158730158*G0_;
-    A[802] = -0.00158730158730159*G0_;
-    A[803] = -0.00238095238095238*G0_;
-    A[804] = 0.00634920634920635*G0_;
-    A[805] = 0.00634920634920635*G0_;
+    A[800] = -0.00158730158730158*G0_;
+    A[801] = 0.00634920634920633*G0_;
+    A[802] = -0.00238095238095237*G0_;
+    A[803] = 0.00634920634920634*G0_;
+    A[804] = 0.00317460317460317*G0_;
+    A[805] = -0.00238095238095238*G0_;
     A[806] = 0.0126984126984127*G0_;
-    A[807] = 0.00317460317460317*G0_;
+    A[807] = 0.00634920634920634*G0_;
     A[808] = 0.00634920634920634*G0_;
-    A[809] = 0.00634920634920634*G0_;
+    A[809] = -0.00158730158730159*G0_;
     A[810] = 0;
     A[811] = 0;
     A[812] = 0;
@@ -4256,16 +3988,16 @@ public:
     A[827] = 0;
     A[828] = 0;
     A[829] = 0;
-    A[830] = -0.00158730158730158*G0_;
-    A[831] = -0.00238095238095237*G0_;
-    A[832] = -0.00238095238095238*G0_;
-    A[833] = -0.00158730158730159*G0_;
-    A[834] = 0.00634920634920634*G0_;
-    A[835] = 0.00634920634920634*G0_;
-    A[836] = 0.00317460317460317*G0_;
+    A[830] = -0.00238095238095238*G0_;
+    A[831] = 0.00634920634920634*G0_;
+    A[832] = -0.00158730158730158*G0_;
+    A[833] = 0.00317460317460317*G0_;
+    A[834] = 0.00634920634920635*G0_;
+    A[835] = -0.00238095238095238*G0_;
+    A[836] = 0.00634920634920634*G0_;
     A[837] = 0.0126984126984127*G0_;
     A[838] = 0.00634920634920634*G0_;
-    A[839] = 0.00634920634920633*G0_;
+    A[839] = -0.00158730158730159*G0_;
     A[840] = 0;
     A[841] = 0;
     A[842] = 0;
@@ -4286,16 +4018,16 @@ public:
     A[857] = 0;
     A[858] = 0;
     A[859] = 0;
-    A[860] = -0.00158730158730158*G0_;
-    A[861] = -0.00238095238095237*G0_;
-    A[862] = -0.00158730158730159*G0_;
-    A[863] = -0.00238095238095238*G0_;
-    A[864] = 0.00634920634920634*G0_;
-    A[865] = 0.00317460317460317*G0_;
+    A[860] = -0.00238095238095238*G0_;
+    A[861] = 0.00317460317460317*G0_;
+    A[862] = -0.00238095238095238*G0_;
+    A[863] = 0.00634920634920634*G0_;
+    A[864] = 0.00634920634920635*G0_;
+    A[865] = -0.00158730158730159*G0_;
     A[866] = 0.00634920634920634*G0_;
     A[867] = 0.00634920634920634*G0_;
     A[868] = 0.0126984126984127*G0_;
-    A[869] = 0.00634920634920634*G0_;
+    A[869] = -0.00158730158730159*G0_;
     A[870] = 0;
     A[871] = 0;
     A[872] = 0;
@@ -4316,16 +4048,16 @@ public:
     A[887] = 0;
     A[888] = 0;
     A[889] = 0;
-    A[890] = -0.00158730158730158*G0_;
-    A[891] = -0.00158730158730158*G0_;
-    A[892] = -0.00238095238095238*G0_;
+    A[890] = 0.000396825396825396*G0_;
+    A[891] = -0.00238095238095238*G0_;
+    A[892] = 0.000396825396825396*G0_;
     A[893] = -0.00238095238095238*G0_;
-    A[894] = 0.00317460317460317*G0_;
-    A[895] = 0.00634920634920634*G0_;
-    A[896] = 0.00634920634920634*G0_;
-    A[897] = 0.00634920634920633*G0_;
-    A[898] = 0.00634920634920634*G0_;
-    A[899] = 0.0126984126984127*G0_;
+    A[894] = -0.00238095238095238*G0_;
+    A[895] = 0.000396825396825398*G0_;
+    A[896] = -0.00158730158730159*G0_;
+    A[897] = -0.00158730158730159*G0_;
+    A[898] = -0.00158730158730159*G0_;
+    A[899] = 0.00238095238095238*G0_;
   }
 
 };
@@ -4345,18 +4077,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ffc_L2proj_18BilinearForm: public ufc::form
+class UFC_ffc_L2proj_23BilinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm() : ufc::form()
+  UFC_ffc_L2proj_23BilinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm()
+  virtual ~UFC_ffc_L2proj_23BilinearForm()
   {
     // Do nothing
   }
@@ -4403,10 +4135,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1();
+      return new UFC_ffc_L2proj_23BilinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -4418,10 +4150,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1();
+      return new UFC_ffc_L2proj_23BilinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -4430,7 +4162,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_cell_integral_0();
+    return new UFC_ffc_L2proj_23BilinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -4449,18 +4181,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0_0: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0_0() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -4468,7 +4200,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4537,7 +4269,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -4589,9 +4321,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4603,25 +4335,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_0_0();
+    return new UFC_ffc_L2proj_23LinearForm_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0_1: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0_1() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0_1()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_0_1()
   {
     // Do nothing
   }
@@ -4629,7 +4361,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4698,7 +4430,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -4750,9 +4482,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4764,25 +4496,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_0_1();
+    return new UFC_ffc_L2proj_23LinearForm_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0_2: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0_2() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0_2()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_0_2()
   {
     // Do nothing
   }
@@ -4790,7 +4522,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4859,7 +4591,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -4911,9 +4643,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4925,25 +4657,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_0_2();
+    return new UFC_ffc_L2proj_23LinearForm_finite_element_0_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -4951,7 +4683,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -5020,7 +4752,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[30][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
@@ -5072,19 +4804,19 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
     // Evaluate at vertices and use affine mapping
     vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[5] = dof_values[12];
+    vertex_values[6] = dof_values[15];
+    vertex_values[7] = dof_values[19];
     // Evaluate at vertices and use affine mapping
     vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[9] = dof_values[22];
+    vertex_values[10] = dof_values[25];
+    vertex_values[11] = dof_values[29];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5099,13 +4831,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0_0();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0_1();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0_2();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_0_2();
       break;
     }
     return 0;
@@ -5115,18 +4847,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1_0: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1_0() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_1_0()
   {
     // Do nothing
   }
@@ -5134,7 +4866,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5203,7 +4935,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -5255,9 +4987,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5269,25 +5001,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_1_0();
+    return new UFC_ffc_L2proj_23LinearForm_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1_1: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1_1() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1_1()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_1_1()
   {
     // Do nothing
   }
@@ -5295,7 +5027,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5364,7 +5096,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -5416,9 +5148,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5430,25 +5162,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_1_1();
+    return new UFC_ffc_L2proj_23LinearForm_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1_2: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1_2() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1_2()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_1_2()
   {
     // Do nothing
   }
@@ -5456,7 +5188,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5525,7 +5257,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[10][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
@@ -5577,9 +5309,9 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5591,25 +5323,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_1_2();
+    return new UFC_ffc_L2proj_23LinearForm_finite_element_1_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1: public ufc::finite_element
+class UFC_ffc_L2proj_23LinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1() : ufc::finite_element()
+  UFC_ffc_L2proj_23LinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1()
+  virtual ~UFC_ffc_L2proj_23LinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -5617,7 +5349,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -5686,7 +5418,7 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
+    const static double X[30][1][3] = {{{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}, {{0, 0, 0}}, {{0.5, 0, 0}}, {{1, 0, 0}}, {{0, 0.5, 0}}, {{0.5, 0.5, 0}}, {{0, 1, 0}}, {{0, 0, 0.5}}, {{0.5, 0, 0.5}}, {{0, 0.5, 0.5}}, {{0, 0, 1}}};
     const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
@@ -5738,19 +5470,19 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
-    vertex_values[3] = dof_values[3];
+    vertex_values[1] = dof_values[2];
+    vertex_values[2] = dof_values[5];
+    vertex_values[3] = dof_values[9];
     // Evaluate at vertices and use affine mapping
     vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[5] = dof_values[12];
+    vertex_values[6] = dof_values[15];
+    vertex_values[7] = dof_values[19];
     // Evaluate at vertices and use affine mapping
     vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[9] = dof_values[22];
+    vertex_values[10] = dof_values[25];
+    vertex_values[11] = dof_values[29];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5765,13 +5497,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1_0();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1_1();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1_2();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_1_2();
       break;
     }
     return 0;
@@ -5782,7 +5514,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0_0: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -5791,13 +5523,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0_0() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_0_0()
   {
     // Do nothing
   }
@@ -5805,7 +5537,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5814,16 +5546,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -5832,7 +5564,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -5870,7 +5602,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5884,17 +5616,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5904,36 +5635,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -5953,33 +5664,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5991,7 +5702,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_0_0();
+    return new UFC_ffc_L2proj_23LinearForm_dof_map_0_0();
   }
 
 };
@@ -5999,7 +5710,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0_1: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -6008,13 +5719,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0_1() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0_1()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_0_1()
   {
     // Do nothing
   }
@@ -6022,7 +5733,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6031,16 +5742,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6049,7 +5760,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -6087,7 +5798,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6101,17 +5812,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6121,36 +5831,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -6170,33 +5860,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6208,7 +5898,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_0_1();
+    return new UFC_ffc_L2proj_23LinearForm_dof_map_0_1();
   }
 
 };
@@ -6216,7 +5906,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0_2: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_0_2: public ufc::dof_map
 {
 private:
 
@@ -6225,13 +5915,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0_2() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_0_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0_2()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_0_2()
   {
     // Do nothing
   }
@@ -6239,7 +5929,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6248,16 +5938,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6266,7 +5956,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -6304,7 +5994,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6318,17 +6008,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6338,36 +6027,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -6387,33 +6056,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6425,7 +6094,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_0_2();
+    return new UFC_ffc_L2proj_23LinearForm_dof_map_0_2();
   }
 
 };
@@ -6433,7 +6102,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -6442,13 +6111,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -6456,7 +6125,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6465,16 +6134,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6483,7 +6152,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 30*m.num_entities[3];
     return false;
   }
 
@@ -6521,7 +6190,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6535,41 +6204,38 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    unsigned int offset = 10*m.num_entities[3];
+    dofs[10] = offset + 10*c.entity_indices[3][0];
+    dofs[11] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[12] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[13] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[14] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[15] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[16] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[17] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[18] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[19] = offset + 10*c.entity_indices[3][0] + 9;
+    offset = offset + 10*m.num_entities[3];
+    dofs[20] = offset + 10*c.entity_indices[3][0];
+    dofs[21] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[22] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[23] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[24] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[25] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[26] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[27] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[28] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[29] = offset + 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6579,84 +6245,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -6676,93 +6274,93 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
     coordinates[10][0] = x[0][0];
     coordinates[10][1] = x[0][1];
     coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[11][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[12][0] = x[1][0];
+    coordinates[12][1] = x[1][1];
+    coordinates[12][2] = x[1][2];
+    coordinates[13][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[13][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[13][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[14][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[14][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[14][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[15][0] = x[2][0];
+    coordinates[15][1] = x[2][1];
+    coordinates[15][2] = x[2][2];
+    coordinates[16][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[16][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[16][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[17][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[17][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[17][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[18][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[18][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[18][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[19][0] = x[3][0];
+    coordinates[19][1] = x[3][1];
+    coordinates[19][2] = x[3][2];
     coordinates[20][0] = x[0][0];
     coordinates[20][1] = x[0][1];
     coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[21][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[21][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[21][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[22][0] = x[1][0];
+    coordinates[22][1] = x[1][1];
+    coordinates[22][2] = x[1][2];
+    coordinates[23][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[23][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[23][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[24][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[24][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[24][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[25][0] = x[2][0];
+    coordinates[25][1] = x[2][1];
+    coordinates[25][2] = x[2][2];
+    coordinates[26][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[26][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[26][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[27][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[27][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[27][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[28][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[28][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[28][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[29][0] = x[3][0];
+    coordinates[29][1] = x[3][1];
+    coordinates[29][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6777,13 +6375,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0_0();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0_1();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0_2();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_0_2();
       break;
     }
     return 0;
@@ -6794,7 +6392,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1_0: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -6803,13 +6401,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1_0() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_1_0()
   {
     // Do nothing
   }
@@ -6817,7 +6415,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6826,16 +6424,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6844,7 +6442,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -6882,7 +6480,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6896,17 +6494,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6916,36 +6513,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -6965,33 +6542,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7003,7 +6580,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_1_0();
+    return new UFC_ffc_L2proj_23LinearForm_dof_map_1_0();
   }
 
 };
@@ -7011,7 +6588,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1_1: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -7020,13 +6597,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1_1() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1_1()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_1_1()
   {
     // Do nothing
   }
@@ -7034,7 +6611,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7043,16 +6620,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -7061,7 +6638,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -7099,7 +6676,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7113,17 +6690,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7133,36 +6709,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -7182,33 +6738,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7220,7 +6776,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_1_1();
+    return new UFC_ffc_L2proj_23LinearForm_dof_map_1_1();
   }
 
 };
@@ -7228,7 +6784,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1_2: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_1_2: public ufc::dof_map
 {
 private:
 
@@ -7237,13 +6793,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1_2() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_1_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1_2()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_1_2()
   {
     // Do nothing
   }
@@ -7251,7 +6807,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 2 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7260,16 +6816,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -7278,7 +6834,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 10*m.num_entities[3];
     return false;
   }
 
@@ -7316,7 +6872,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7330,17 +6886,16 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7350,36 +6905,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -7399,33 +6934,33 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7437,7 +6972,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_1_2();
+    return new UFC_ffc_L2proj_23LinearForm_dof_map_1_2();
   }
 
 };
@@ -7445,7 +6980,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1: public ufc::dof_map
+class UFC_ffc_L2proj_23LinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -7454,13 +6989,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1() : ufc::dof_map()
+  UFC_ffc_L2proj_23LinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1()
+  virtual ~UFC_ffc_L2proj_23LinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -7468,7 +7003,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron, Discontinuous Lagrange finite element of degree 2 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7477,16 +7012,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -7495,7 +7030,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 30*m.num_entities[3];
     return false;
   }
 
@@ -7533,7 +7068,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7547,41 +7082,38 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 10*c.entity_indices[3][0];
+    dofs[1] = 10*c.entity_indices[3][0] + 1;
+    dofs[2] = 10*c.entity_indices[3][0] + 2;
+    dofs[3] = 10*c.entity_indices[3][0] + 3;
+    dofs[4] = 10*c.entity_indices[3][0] + 4;
+    dofs[5] = 10*c.entity_indices[3][0] + 5;
+    dofs[6] = 10*c.entity_indices[3][0] + 6;
+    dofs[7] = 10*c.entity_indices[3][0] + 7;
+    dofs[8] = 10*c.entity_indices[3][0] + 8;
+    dofs[9] = 10*c.entity_indices[3][0] + 9;
+    unsigned int offset = 10*m.num_entities[3];
+    dofs[10] = offset + 10*c.entity_indices[3][0];
+    dofs[11] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[12] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[13] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[14] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[15] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[16] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[17] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[18] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[19] = offset + 10*c.entity_indices[3][0] + 9;
+    offset = offset + 10*m.num_entities[3];
+    dofs[20] = offset + 10*c.entity_indices[3][0];
+    dofs[21] = offset + 10*c.entity_indices[3][0] + 1;
+    dofs[22] = offset + 10*c.entity_indices[3][0] + 2;
+    dofs[23] = offset + 10*c.entity_indices[3][0] + 3;
+    dofs[24] = offset + 10*c.entity_indices[3][0] + 4;
+    dofs[25] = offset + 10*c.entity_indices[3][0] + 5;
+    dofs[26] = offset + 10*c.entity_indices[3][0] + 6;
+    dofs[27] = offset + 10*c.entity_indices[3][0] + 7;
+    dofs[28] = offset + 10*c.entity_indices[3][0] + 8;
+    dofs[29] = offset + 10*c.entity_indices[3][0] + 9;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7591,84 +7123,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -7688,93 +7152,93 @@ public:
     coordinates[0][0] = x[0][0];
     coordinates[0][1] = x[0][1];
     coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[1][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[1][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[1][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[2][0] = x[1][0];
+    coordinates[2][1] = x[1][1];
+    coordinates[2][2] = x[1][2];
+    coordinates[3][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[3][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[4][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+    coordinates[5][2] = x[2][2];
+    coordinates[6][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[6][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[6][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[7][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[7][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[7][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[8][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[8][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[8][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[9][0] = x[3][0];
+    coordinates[9][1] = x[3][1];
+    coordinates[9][2] = x[3][2];
     coordinates[10][0] = x[0][0];
     coordinates[10][1] = x[0][1];
     coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[11][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[12][0] = x[1][0];
+    coordinates[12][1] = x[1][1];
+    coordinates[12][2] = x[1][2];
+    coordinates[13][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[13][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[13][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[14][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[14][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[14][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[15][0] = x[2][0];
+    coordinates[15][1] = x[2][1];
+    coordinates[15][2] = x[2][2];
+    coordinates[16][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[16][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[16][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[17][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[17][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[17][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[18][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[18][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[18][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[19][0] = x[3][0];
+    coordinates[19][1] = x[3][1];
+    coordinates[19][2] = x[3][2];
     coordinates[20][0] = x[0][0];
     coordinates[20][1] = x[0][1];
     coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[21][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[21][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[21][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[22][0] = x[1][0];
+    coordinates[22][1] = x[1][1];
+    coordinates[22][2] = x[1][2];
+    coordinates[23][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[23][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[23][2] = 0.5*x[0][2] + 0.5*x[2][2];
+    coordinates[24][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[24][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[24][2] = 0.5*x[1][2] + 0.5*x[2][2];
+    coordinates[25][0] = x[2][0];
+    coordinates[25][1] = x[2][1];
+    coordinates[25][2] = x[2][2];
+    coordinates[26][0] = 0.5*x[0][0] + 0.5*x[3][0];
+    coordinates[26][1] = 0.5*x[0][1] + 0.5*x[3][1];
+    coordinates[26][2] = 0.5*x[0][2] + 0.5*x[3][2];
+    coordinates[27][0] = 0.5*x[1][0] + 0.5*x[3][0];
+    coordinates[27][1] = 0.5*x[1][1] + 0.5*x[3][1];
+    coordinates[27][2] = 0.5*x[1][2] + 0.5*x[3][2];
+    coordinates[28][0] = 0.5*x[2][0] + 0.5*x[3][0];
+    coordinates[28][1] = 0.5*x[2][1] + 0.5*x[3][1];
+    coordinates[28][2] = 0.5*x[2][2] + 0.5*x[3][2];
+    coordinates[29][0] = x[3][0];
+    coordinates[29][1] = x[3][1];
+    coordinates[29][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7789,13 +7253,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1_0();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1_1();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1_2();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_1_2();
       break;
     }
     return 0;
@@ -7807,18 +7271,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ffc_L2proj_18LinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_ffc_L2proj_23LinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_ffc_L2proj_23LinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_cell_integral_0()
+  virtual ~UFC_ffc_L2proj_23LinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -7922,36 +7386,36 @@ public:
     const double G0_29 = det*c0_0_0_29;
     
     // Compute element tensor
-    A[0] = 0.00238095238095237*G0_0 + 0.000396825396825395*G0_1 + 0.000396825396825396*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095238*G0_4 - 0.00238095238095238*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730158*G0_7 - 0.00158730158730158*G0_8 - 0.00158730158730158*G0_9;
-    A[1] = 0.000396825396825395*G0_0 + 0.00238095238095238*G0_1 + 0.000396825396825396*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095237*G0_4 - 0.00158730158730158*G0_5 - 0.00158730158730158*G0_6 - 0.00238095238095237*G0_7 - 0.00238095238095237*G0_8 - 0.00158730158730158*G0_9;
-    A[2] = 0.000396825396825396*G0_0 + 0.000396825396825396*G0_1 + 0.00238095238095238*G0_2 + 0.000396825396825398*G0_3 - 0.00158730158730159*G0_4 - 0.00238095238095238*G0_5 - 0.00158730158730159*G0_6 - 0.00238095238095238*G0_7 - 0.00158730158730159*G0_8 - 0.00238095238095238*G0_9;
-    A[3] = 0.000396825396825396*G0_0 + 0.000396825396825396*G0_1 + 0.000396825396825398*G0_2 + 0.00238095238095238*G0_3 - 0.00158730158730159*G0_4 - 0.00158730158730159*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730159*G0_7 - 0.00238095238095238*G0_8 - 0.00238095238095238*G0_9;
-    A[4] = -0.00238095238095238*G0_0 - 0.00238095238095238*G0_1 - 0.00158730158730159*G0_2 - 0.00158730158730159*G0_3 + 0.0126984126984127*G0_4 + 0.00634920634920634*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920634*G0_7 + 0.00634920634920634*G0_8 + 0.00317460317460317*G0_9;
-    A[5] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920634*G0_4 + 0.0126984126984127*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920634*G0_7 + 0.00317460317460317*G0_8 + 0.00634920634920634*G0_9;
-    A[6] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920635*G0_4 + 0.00634920634920635*G0_5 + 0.0126984126984127*G0_6 + 0.00317460317460317*G0_7 + 0.00634920634920634*G0_8 + 0.00634920634920634*G0_9;
-    A[7] = -0.00158730158730158*G0_0 - 0.00238095238095237*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920634*G0_4 + 0.00634920634920634*G0_5 + 0.00317460317460317*G0_6 + 0.0126984126984127*G0_7 + 0.00634920634920634*G0_8 + 0.00634920634920633*G0_9;
-    A[8] = -0.00158730158730158*G0_0 - 0.00238095238095237*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920634*G0_4 + 0.00317460317460317*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920634*G0_7 + 0.0126984126984127*G0_8 + 0.00634920634920634*G0_9;
-    A[9] = -0.00158730158730158*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00238095238095238*G0_3 + 0.00317460317460317*G0_4 + 0.00634920634920634*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920633*G0_7 + 0.00634920634920634*G0_8 + 0.0126984126984127*G0_9;
-    A[10] = 0.00238095238095237*G0_10 + 0.000396825396825395*G0_11 + 0.000396825396825396*G0_12 + 0.000396825396825396*G0_13 - 0.00238095238095238*G0_14 - 0.00238095238095238*G0_15 - 0.00238095238095238*G0_16 - 0.00158730158730158*G0_17 - 0.00158730158730158*G0_18 - 0.00158730158730158*G0_19;
-    A[11] = 0.000396825396825395*G0_10 + 0.00238095238095238*G0_11 + 0.000396825396825396*G0_12 + 0.000396825396825396*G0_13 - 0.00238095238095237*G0_14 - 0.00158730158730158*G0_15 - 0.00158730158730158*G0_16 - 0.00238095238095237*G0_17 - 0.00238095238095237*G0_18 - 0.00158730158730158*G0_19;
-    A[12] = 0.000396825396825396*G0_10 + 0.000396825396825396*G0_11 + 0.00238095238095238*G0_12 + 0.000396825396825398*G0_13 - 0.00158730158730159*G0_14 - 0.00238095238095238*G0_15 - 0.00158730158730159*G0_16 - 0.00238095238095238*G0_17 - 0.00158730158730159*G0_18 - 0.00238095238095238*G0_19;
-    A[13] = 0.000396825396825396*G0_10 + 0.000396825396825396*G0_11 + 0.000396825396825398*G0_12 + 0.00238095238095238*G0_13 - 0.00158730158730159*G0_14 - 0.00158730158730159*G0_15 - 0.00238095238095238*G0_16 - 0.00158730158730159*G0_17 - 0.00238095238095238*G0_18 - 0.00238095238095238*G0_19;
-    A[14] = -0.00238095238095238*G0_10 - 0.00238095238095238*G0_11 - 0.00158730158730159*G0_12 - 0.00158730158730159*G0_13 + 0.0126984126984127*G0_14 + 0.00634920634920634*G0_15 + 0.00634920634920635*G0_16 + 0.00634920634920634*G0_17 + 0.00634920634920634*G0_18 + 0.00317460317460317*G0_19;
-    A[15] = -0.00238095238095238*G0_10 - 0.00158730158730158*G0_11 - 0.00238095238095238*G0_12 - 0.00158730158730159*G0_13 + 0.00634920634920634*G0_14 + 0.0126984126984127*G0_15 + 0.00634920634920635*G0_16 + 0.00634920634920634*G0_17 + 0.00317460317460317*G0_18 + 0.00634920634920634*G0_19;
-    A[16] = -0.00238095238095238*G0_10 - 0.00158730158730158*G0_11 - 0.00158730158730159*G0_12 - 0.00238095238095238*G0_13 + 0.00634920634920635*G0_14 + 0.00634920634920635*G0_15 + 0.0126984126984127*G0_16 + 0.00317460317460317*G0_17 + 0.00634920634920634*G0_18 + 0.00634920634920634*G0_19;
-    A[17] = -0.00158730158730158*G0_10 - 0.00238095238095237*G0_11 - 0.00238095238095238*G0_12 - 0.00158730158730159*G0_13 + 0.00634920634920634*G0_14 + 0.00634920634920634*G0_15 + 0.00317460317460317*G0_16 + 0.0126984126984127*G0_17 + 0.00634920634920634*G0_18 + 0.00634920634920633*G0_19;
-    A[18] = -0.00158730158730158*G0_10 - 0.00238095238095237*G0_11 - 0.00158730158730159*G0_12 - 0.00238095238095238*G0_13 + 0.00634920634920634*G0_14 + 0.00317460317460317*G0_15 + 0.00634920634920634*G0_16 + 0.00634920634920634*G0_17 + 0.0126984126984127*G0_18 + 0.00634920634920634*G0_19;
-    A[19] = -0.00158730158730158*G0_10 - 0.00158730158730158*G0_11 - 0.00238095238095238*G0_12 - 0.00238095238095238*G0_13 + 0.00317460317460317*G0_14 + 0.00634920634920634*G0_15 + 0.00634920634920634*G0_16 + 0.00634920634920633*G0_17 + 0.00634920634920634*G0_18 + 0.0126984126984127*G0_19;
-    A[20] = 0.00238095238095237*G0_20 + 0.000396825396825395*G0_21 + 0.000396825396825396*G0_22 + 0.000396825396825396*G0_23 - 0.00238095238095238*G0_24 - 0.00238095238095238*G0_25 - 0.00238095238095238*G0_26 - 0.00158730158730158*G0_27 - 0.00158730158730158*G0_28 - 0.00158730158730158*G0_29;
-    A[21] = 0.000396825396825395*G0_20 + 0.00238095238095238*G0_21 + 0.000396825396825396*G0_22 + 0.000396825396825396*G0_23 - 0.00238095238095237*G0_24 - 0.00158730158730158*G0_25 - 0.00158730158730158*G0_26 - 0.00238095238095237*G0_27 - 0.00238095238095237*G0_28 - 0.00158730158730158*G0_29;
-    A[22] = 0.000396825396825396*G0_20 + 0.000396825396825396*G0_21 + 0.00238095238095238*G0_22 + 0.000396825396825398*G0_23 - 0.00158730158730159*G0_24 - 0.00238095238095238*G0_25 - 0.00158730158730159*G0_26 - 0.00238095238095238*G0_27 - 0.00158730158730159*G0_28 - 0.00238095238095238*G0_29;
-    A[23] = 0.000396825396825396*G0_20 + 0.000396825396825396*G0_21 + 0.000396825396825398*G0_22 + 0.00238095238095238*G0_23 - 0.00158730158730159*G0_24 - 0.00158730158730159*G0_25 - 0.00238095238095238*G0_26 - 0.00158730158730159*G0_27 - 0.00238095238095238*G0_28 - 0.00238095238095238*G0_29;
-    A[24] = -0.00238095238095238*G0_20 - 0.00238095238095238*G0_21 - 0.00158730158730159*G0_22 - 0.00158730158730159*G0_23 + 0.0126984126984127*G0_24 + 0.00634920634920634*G0_25 + 0.00634920634920635*G0_26 + 0.00634920634920634*G0_27 + 0.00634920634920634*G0_28 + 0.00317460317460317*G0_29;
-    A[25] = -0.00238095238095238*G0_20 - 0.00158730158730158*G0_21 - 0.00238095238095238*G0_22 - 0.00158730158730159*G0_23 + 0.00634920634920634*G0_24 + 0.0126984126984127*G0_25 + 0.00634920634920635*G0_26 + 0.00634920634920634*G0_27 + 0.00317460317460317*G0_28 + 0.00634920634920634*G0_29;
-    A[26] = -0.00238095238095238*G0_20 - 0.00158730158730158*G0_21 - 0.00158730158730159*G0_22 - 0.00238095238095238*G0_23 + 0.00634920634920635*G0_24 + 0.00634920634920635*G0_25 + 0.0126984126984127*G0_26 + 0.00317460317460317*G0_27 + 0.00634920634920634*G0_28 + 0.00634920634920634*G0_29;
-    A[27] = -0.00158730158730158*G0_20 - 0.00238095238095237*G0_21 - 0.00238095238095238*G0_22 - 0.00158730158730159*G0_23 + 0.00634920634920634*G0_24 + 0.00634920634920634*G0_25 + 0.00317460317460317*G0_26 + 0.0126984126984127*G0_27 + 0.00634920634920634*G0_28 + 0.00634920634920633*G0_29;
-    A[28] = -0.00158730158730158*G0_20 - 0.00238095238095237*G0_21 - 0.00158730158730159*G0_22 - 0.00238095238095238*G0_23 + 0.00634920634920634*G0_24 + 0.00317460317460317*G0_25 + 0.00634920634920634*G0_26 + 0.00634920634920634*G0_27 + 0.0126984126984127*G0_28 + 0.00634920634920634*G0_29;
-    A[29] = -0.00158730158730158*G0_20 - 0.00158730158730158*G0_21 - 0.00238095238095238*G0_22 - 0.00238095238095238*G0_23 + 0.00317460317460317*G0_24 + 0.00634920634920634*G0_25 + 0.00634920634920634*G0_26 + 0.00634920634920633*G0_27 + 0.00634920634920634*G0_28 + 0.0126984126984127*G0_29;
+    A[0] = 0.00238095238095237*G0_0 - 0.00158730158730158*G0_1 + 0.000396825396825395*G0_2 - 0.00158730158730158*G0_3 - 0.00238095238095238*G0_4 + 0.000396825396825396*G0_5 - 0.00158730158730158*G0_6 - 0.00238095238095238*G0_7 - 0.00238095238095238*G0_8 + 0.000396825396825396*G0_9;
+    A[1] = -0.00158730158730158*G0_0 + 0.0126984126984127*G0_1 - 0.00158730158730158*G0_2 + 0.00634920634920634*G0_3 + 0.00634920634920634*G0_4 - 0.00238095238095238*G0_5 + 0.00634920634920633*G0_6 + 0.00634920634920634*G0_7 + 0.00317460317460317*G0_8 - 0.00238095238095238*G0_9;
+    A[2] = 0.000396825396825395*G0_0 - 0.00158730158730158*G0_1 + 0.00238095238095238*G0_2 - 0.00238095238095237*G0_3 - 0.00158730158730158*G0_4 + 0.000396825396825396*G0_5 - 0.00238095238095237*G0_6 - 0.00158730158730158*G0_7 - 0.00238095238095237*G0_8 + 0.000396825396825396*G0_9;
+    A[3] = -0.00158730158730158*G0_0 + 0.00634920634920634*G0_1 - 0.00238095238095237*G0_2 + 0.0126984126984127*G0_3 + 0.00634920634920634*G0_4 - 0.00158730158730159*G0_5 + 0.00634920634920634*G0_6 + 0.00317460317460317*G0_7 + 0.00634920634920634*G0_8 - 0.00238095238095238*G0_9;
+    A[4] = -0.00238095238095238*G0_0 + 0.00634920634920634*G0_1 - 0.00158730158730158*G0_2 + 0.00634920634920634*G0_3 + 0.0126984126984127*G0_4 - 0.00158730158730159*G0_5 + 0.00317460317460317*G0_6 + 0.00634920634920635*G0_7 + 0.00634920634920635*G0_8 - 0.00238095238095238*G0_9;
+    A[5] = 0.000396825396825396*G0_0 - 0.00238095238095238*G0_1 + 0.000396825396825396*G0_2 - 0.00158730158730159*G0_3 - 0.00158730158730159*G0_4 + 0.00238095238095238*G0_5 - 0.00238095238095238*G0_6 - 0.00238095238095238*G0_7 - 0.00158730158730159*G0_8 + 0.000396825396825398*G0_9;
+    A[6] = -0.00158730158730158*G0_0 + 0.00634920634920633*G0_1 - 0.00238095238095237*G0_2 + 0.00634920634920634*G0_3 + 0.00317460317460317*G0_4 - 0.00238095238095238*G0_5 + 0.0126984126984127*G0_6 + 0.00634920634920634*G0_7 + 0.00634920634920634*G0_8 - 0.00158730158730159*G0_9;
+    A[7] = -0.00238095238095238*G0_0 + 0.00634920634920634*G0_1 - 0.00158730158730158*G0_2 + 0.00317460317460317*G0_3 + 0.00634920634920635*G0_4 - 0.00238095238095238*G0_5 + 0.00634920634920634*G0_6 + 0.0126984126984127*G0_7 + 0.00634920634920634*G0_8 - 0.00158730158730159*G0_9;
+    A[8] = -0.00238095238095238*G0_0 + 0.00317460317460317*G0_1 - 0.00238095238095238*G0_2 + 0.00634920634920634*G0_3 + 0.00634920634920635*G0_4 - 0.00158730158730159*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920634*G0_7 + 0.0126984126984127*G0_8 - 0.00158730158730159*G0_9;
+    A[9] = 0.000396825396825396*G0_0 - 0.00238095238095238*G0_1 + 0.000396825396825396*G0_2 - 0.00238095238095238*G0_3 - 0.00238095238095238*G0_4 + 0.000396825396825398*G0_5 - 0.00158730158730159*G0_6 - 0.00158730158730159*G0_7 - 0.00158730158730159*G0_8 + 0.00238095238095238*G0_9;
+    A[10] = 0.00238095238095237*G0_10 - 0.00158730158730158*G0_11 + 0.000396825396825395*G0_12 - 0.00158730158730158*G0_13 - 0.00238095238095238*G0_14 + 0.000396825396825396*G0_15 - 0.00158730158730158*G0_16 - 0.00238095238095238*G0_17 - 0.00238095238095238*G0_18 + 0.000396825396825396*G0_19;
+    A[11] = -0.00158730158730158*G0_10 + 0.0126984126984127*G0_11 - 0.00158730158730158*G0_12 + 0.00634920634920634*G0_13 + 0.00634920634920634*G0_14 - 0.00238095238095238*G0_15 + 0.00634920634920633*G0_16 + 0.00634920634920634*G0_17 + 0.00317460317460317*G0_18 - 0.00238095238095238*G0_19;
+    A[12] = 0.000396825396825395*G0_10 - 0.00158730158730158*G0_11 + 0.00238095238095238*G0_12 - 0.00238095238095237*G0_13 - 0.00158730158730158*G0_14 + 0.000396825396825396*G0_15 - 0.00238095238095237*G0_16 - 0.00158730158730158*G0_17 - 0.00238095238095237*G0_18 + 0.000396825396825396*G0_19;
+    A[13] = -0.00158730158730158*G0_10 + 0.00634920634920634*G0_11 - 0.00238095238095237*G0_12 + 0.0126984126984127*G0_13 + 0.00634920634920634*G0_14 - 0.00158730158730159*G0_15 + 0.00634920634920634*G0_16 + 0.00317460317460317*G0_17 + 0.00634920634920634*G0_18 - 0.00238095238095238*G0_19;
+    A[14] = -0.00238095238095238*G0_10 + 0.00634920634920634*G0_11 - 0.00158730158730158*G0_12 + 0.00634920634920634*G0_13 + 0.0126984126984127*G0_14 - 0.00158730158730159*G0_15 + 0.00317460317460317*G0_16 + 0.00634920634920635*G0_17 + 0.00634920634920635*G0_18 - 0.00238095238095238*G0_19;
+    A[15] = 0.000396825396825396*G0_10 - 0.00238095238095238*G0_11 + 0.000396825396825396*G0_12 - 0.00158730158730159*G0_13 - 0.00158730158730159*G0_14 + 0.00238095238095238*G0_15 - 0.00238095238095238*G0_16 - 0.00238095238095238*G0_17 - 0.00158730158730159*G0_18 + 0.000396825396825398*G0_19;
+    A[16] = -0.00158730158730158*G0_10 + 0.00634920634920633*G0_11 - 0.00238095238095237*G0_12 + 0.00634920634920634*G0_13 + 0.00317460317460317*G0_14 - 0.00238095238095238*G0_15 + 0.0126984126984127*G0_16 + 0.00634920634920634*G0_17 + 0.00634920634920634*G0_18 - 0.00158730158730159*G0_19;
+    A[17] = -0.00238095238095238*G0_10 + 0.00634920634920634*G0_11 - 0.00158730158730158*G0_12 + 0.00317460317460317*G0_13 + 0.00634920634920635*G0_14 - 0.00238095238095238*G0_15 + 0.00634920634920634*G0_16 + 0.0126984126984127*G0_17 + 0.00634920634920634*G0_18 - 0.00158730158730159*G0_19;
+    A[18] = -0.00238095238095238*G0_10 + 0.00317460317460317*G0_11 - 0.00238095238095238*G0_12 + 0.00634920634920634*G0_13 + 0.00634920634920635*G0_14 - 0.00158730158730159*G0_15 + 0.00634920634920634*G0_16 + 0.00634920634920634*G0_17 + 0.0126984126984127*G0_18 - 0.00158730158730159*G0_19;
+    A[19] = 0.000396825396825396*G0_10 - 0.00238095238095238*G0_11 + 0.000396825396825396*G0_12 - 0.00238095238095238*G0_13 - 0.00238095238095238*G0_14 + 0.000396825396825398*G0_15 - 0.00158730158730159*G0_16 - 0.00158730158730159*G0_17 - 0.00158730158730159*G0_18 + 0.00238095238095238*G0_19;
+    A[20] = 0.00238095238095237*G0_20 - 0.00158730158730158*G0_21 + 0.000396825396825395*G0_22 - 0.00158730158730158*G0_23 - 0.00238095238095238*G0_24 + 0.000396825396825396*G0_25 - 0.00158730158730158*G0_26 - 0.00238095238095238*G0_27 - 0.00238095238095238*G0_28 + 0.000396825396825396*G0_29;
+    A[21] = -0.00158730158730158*G0_20 + 0.0126984126984127*G0_21 - 0.00158730158730158*G0_22 + 0.00634920634920634*G0_23 + 0.00634920634920634*G0_24 - 0.00238095238095238*G0_25 + 0.00634920634920633*G0_26 + 0.00634920634920634*G0_27 + 0.00317460317460317*G0_28 - 0.00238095238095238*G0_29;
+    A[22] = 0.000396825396825395*G0_20 - 0.00158730158730158*G0_21 + 0.00238095238095238*G0_22 - 0.00238095238095237*G0_23 - 0.00158730158730158*G0_24 + 0.000396825396825396*G0_25 - 0.00238095238095237*G0_26 - 0.00158730158730158*G0_27 - 0.00238095238095237*G0_28 + 0.000396825396825396*G0_29;
+    A[23] = -0.00158730158730158*G0_20 + 0.00634920634920634*G0_21 - 0.00238095238095237*G0_22 + 0.0126984126984127*G0_23 + 0.00634920634920634*G0_24 - 0.00158730158730159*G0_25 + 0.00634920634920634*G0_26 + 0.00317460317460317*G0_27 + 0.00634920634920634*G0_28 - 0.00238095238095238*G0_29;
+    A[24] = -0.00238095238095238*G0_20 + 0.00634920634920634*G0_21 - 0.00158730158730158*G0_22 + 0.00634920634920634*G0_23 + 0.0126984126984127*G0_24 - 0.00158730158730159*G0_25 + 0.00317460317460317*G0_26 + 0.00634920634920635*G0_27 + 0.00634920634920635*G0_28 - 0.00238095238095238*G0_29;
+    A[25] = 0.000396825396825396*G0_20 - 0.00238095238095238*G0_21 + 0.000396825396825396*G0_22 - 0.00158730158730159*G0_23 - 0.00158730158730159*G0_24 + 0.00238095238095238*G0_25 - 0.00238095238095238*G0_26 - 0.00238095238095238*G0_27 - 0.00158730158730159*G0_28 + 0.000396825396825398*G0_29;
+    A[26] = -0.00158730158730158*G0_20 + 0.00634920634920633*G0_21 - 0.00238095238095237*G0_22 + 0.00634920634920634*G0_23 + 0.00317460317460317*G0_24 - 0.00238095238095238*G0_25 + 0.0126984126984127*G0_26 + 0.00634920634920634*G0_27 + 0.00634920634920634*G0_28 - 0.00158730158730159*G0_29;
+    A[27] = -0.00238095238095238*G0_20 + 0.00634920634920634*G0_21 - 0.00158730158730158*G0_22 + 0.00317460317460317*G0_23 + 0.00634920634920635*G0_24 - 0.00238095238095238*G0_25 + 0.00634920634920634*G0_26 + 0.0126984126984127*G0_27 + 0.00634920634920634*G0_28 - 0.00158730158730159*G0_29;
+    A[28] = -0.00238095238095238*G0_20 + 0.00317460317460317*G0_21 - 0.00238095238095238*G0_22 + 0.00634920634920634*G0_23 + 0.00634920634920635*G0_24 - 0.00158730158730159*G0_25 + 0.00634920634920634*G0_26 + 0.00634920634920634*G0_27 + 0.0126984126984127*G0_28 - 0.00158730158730159*G0_29;
+    A[29] = 0.000396825396825396*G0_20 - 0.00238095238095238*G0_21 + 0.000396825396825396*G0_22 - 0.00238095238095238*G0_23 - 0.00238095238095238*G0_24 + 0.000396825396825398*G0_25 - 0.00158730158730159*G0_26 - 0.00158730158730159*G0_27 - 0.00158730158730159*G0_28 + 0.00238095238095238*G0_29;
   }
 
 };
@@ -7971,18 +7435,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ffc_L2proj_18LinearForm: public ufc::form
+class UFC_ffc_L2proj_23LinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm() : ufc::form()
+  UFC_ffc_L2proj_23LinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm()
+  virtual ~UFC_ffc_L2proj_23LinearForm()
   {
     // Do nothing
   }
@@ -8029,10 +7493,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1();
+      return new UFC_ffc_L2proj_23LinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -8044,10 +7508,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1();
+      return new UFC_ffc_L2proj_23LinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -8056,7 +7520,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_cell_integral_0();
+    return new UFC_ffc_L2proj_23LinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -8077,11 +7541,11 @@ public:
 
 #include <dolfin/fem/Form.h>
 
-class ffc_L2proj_18BilinearForm : public dolfin::Form
+class ffc_L2proj_23BilinearForm : public dolfin::Form
 {
 public:
 
-  ffc_L2proj_18BilinearForm() : dolfin::Form()
+  ffc_L2proj_23BilinearForm() : dolfin::Form()
   {
     // Do nothing
   }
@@ -8101,18 +7565,18 @@ public:
 private:
 
   // UFC form
-  UFC_ffc_L2proj_18BilinearForm __form;
+  UFC_ffc_L2proj_23BilinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
 
 };
 
-class ffc_L2proj_18LinearForm : public dolfin::Form
+class ffc_L2proj_23LinearForm : public dolfin::Form
 {
 public:
 
-  ffc_L2proj_18LinearForm(dolfin::Function& w0) : dolfin::Form()
+  ffc_L2proj_23LinearForm(dolfin::Function& w0) : dolfin::Form()
   {
     __coefficients.push_back(&w0);
   }
@@ -8132,7 +7596,7 @@ public:
 private:
 
   // UFC form
-  UFC_ffc_L2proj_18LinearForm __form;
+  UFC_ffc_L2proj_23LinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;

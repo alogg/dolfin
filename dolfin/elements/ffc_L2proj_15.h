@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -191,7 +191,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -349,7 +349,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return the cell shape
@@ -520,7 +520,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -678,7 +678,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -836,7 +836,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return the cell shape
@@ -1012,7 +1012,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1021,13 +1021,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1036,7 +1036,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1074,7 +1074,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1088,9 +1088,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1100,13 +1100,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -1171,7 +1174,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1180,13 +1183,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1195,7 +1198,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1233,7 +1236,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1247,9 +1250,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1259,13 +1262,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -1330,7 +1336,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1339,13 +1345,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1354,7 +1360,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 6*m.num_entities[2];
+    __global_dimension = 2*m.num_entities[0];
     return false;
   }
 
@@ -1392,7 +1398,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 4;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1406,13 +1412,13 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
-    unsigned int offset = 3*m.num_entities[2];
-    dofs[3] = offset + 3*c.entity_indices[2][0];
-    dofs[4] = offset + 3*c.entity_indices[2][0] + 1;
-    dofs[5] = offset + 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1422,13 +1428,22 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
       break;
     }
   }
@@ -1508,7 +1523,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1517,13 +1532,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1532,7 +1547,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1570,7 +1585,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1584,9 +1599,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1596,13 +1611,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -1667,7 +1685,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1676,13 +1694,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1691,7 +1709,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1729,7 +1747,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1743,9 +1761,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1755,13 +1773,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -1826,7 +1847,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1835,13 +1856,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -1850,7 +1871,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 6*m.num_entities[2];
+    __global_dimension = 2*m.num_entities[0];
     return false;
   }
 
@@ -1888,7 +1909,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 4;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1902,13 +1923,13 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
-    unsigned int offset = 3*m.num_entities[2];
-    dofs[3] = offset + 3*c.entity_indices[2][0];
-    dofs[4] = offset + 3*c.entity_indices[2][0] + 1;
-    dofs[5] = offset + 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1918,13 +1939,22 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
       break;
     }
   }
@@ -2202,7 +2232,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -2360,7 +2390,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -2518,7 +2548,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return the cell shape
@@ -2689,7 +2719,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -2847,7 +2877,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -3005,7 +3035,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return the cell shape
@@ -3181,7 +3211,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3190,13 +3220,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -3205,7 +3235,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -3243,7 +3273,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3257,9 +3287,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3269,13 +3299,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -3340,7 +3373,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3349,13 +3382,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -3364,7 +3397,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -3402,7 +3435,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3416,9 +3449,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3428,13 +3461,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -3499,7 +3535,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3508,13 +3544,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -3523,7 +3559,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 6*m.num_entities[2];
+    __global_dimension = 2*m.num_entities[0];
     return false;
   }
 
@@ -3561,7 +3597,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 4;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3575,13 +3611,13 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
-    unsigned int offset = 3*m.num_entities[2];
-    dofs[3] = offset + 3*c.entity_indices[2][0];
-    dofs[4] = offset + 3*c.entity_indices[2][0] + 1;
-    dofs[5] = offset + 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3591,13 +3627,22 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
       break;
     }
   }
@@ -3677,7 +3722,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3686,13 +3731,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -3701,7 +3746,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -3739,7 +3784,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3753,9 +3798,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3765,13 +3810,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -3836,7 +3884,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3845,13 +3893,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -3860,7 +3908,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[2];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -3898,7 +3946,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3912,9 +3960,9 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3924,13 +3972,16 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
       break;
     }
   }
@@ -3995,7 +4046,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 1 on a triangle]";
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4004,13 +4055,13 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
       return false;
       break;
     case 2:
-      return true;
+      return false;
       break;
     }
     return false;
@@ -4019,7 +4070,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 6*m.num_entities[2];
+    __global_dimension = 2*m.num_entities[0];
     return false;
   }
 
@@ -4057,7 +4108,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 4;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -4071,13 +4122,13 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 3*c.entity_indices[2][0];
-    dofs[1] = 3*c.entity_indices[2][0] + 1;
-    dofs[2] = 3*c.entity_indices[2][0] + 2;
-    unsigned int offset = 3*m.num_entities[2];
-    dofs[3] = offset + 3*c.entity_indices[2][0];
-    dofs[4] = offset + 3*c.entity_indices[2][0] + 1;
-    dofs[5] = offset + 3*c.entity_indices[2][0] + 2;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4087,13 +4138,22 @@ public:
     switch ( facet )
     {
     case 0:
-      
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
       break;
     case 1:
-      
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
       break;
     case 2:
-      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
       break;
     }
   }

@@ -4,8 +4,8 @@
 // Warning: This code was generated with the option '-l dolfin'
 // and contains DOLFIN-specific wrappers that depend on DOLFIN.
 
-#ifndef __FFC_L2PROJ_18_H
-#define __FFC_L2PROJ_18_H
+#ifndef __FFC_L2PROJ_22_H
+#define __FFC_L2PROJ_22_H
 
 #include <cmath>
 #include <stdexcept>
@@ -14,18 +14,18 @@
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0_0: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0_0() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -45,7 +45,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -102,9 +102,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -168,25 +168,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_0();
+    return new UFC_ffc_L2proj_22BilinearForm_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0_1: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0_1() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0_1()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_0_1()
   {
     // Do nothing
   }
@@ -194,7 +194,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -206,7 +206,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -263,9 +263,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -329,25 +329,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_1();
+    return new UFC_ffc_L2proj_22BilinearForm_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0_2: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0_2() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0_2()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_0_2()
   {
     // Do nothing
   }
@@ -355,7 +355,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -367,7 +367,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -424,9 +424,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -490,25 +490,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_2();
+    return new UFC_ffc_L2proj_22BilinearForm_finite_element_0_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_0: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_0() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -516,7 +516,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -528,7 +528,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -585,9 +585,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    const static double X[12][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[12][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -641,15 +641,15 @@ public:
     vertex_values[2] = dof_values[2];
     vertex_values[3] = dof_values[3];
     // Evaluate at vertices and use affine mapping
-    vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[4] = dof_values[4];
+    vertex_values[5] = dof_values[5];
+    vertex_values[6] = dof_values[6];
+    vertex_values[7] = dof_values[7];
     // Evaluate at vertices and use affine mapping
-    vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[8] = dof_values[8];
+    vertex_values[9] = dof_values[9];
+    vertex_values[10] = dof_values[10];
+    vertex_values[11] = dof_values[11];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -664,13 +664,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_0();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_1();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0_2();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_0_2();
       break;
     }
     return 0;
@@ -680,18 +680,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1_0: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1_0() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_1_0()
   {
     // Do nothing
   }
@@ -699,7 +699,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -711,7 +711,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -768,9 +768,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -834,25 +834,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_0();
+    return new UFC_ffc_L2proj_22BilinearForm_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1_1: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1_1() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1_1()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_1_1()
   {
     // Do nothing
   }
@@ -860,7 +860,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -872,7 +872,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -929,9 +929,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -995,25 +995,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_1();
+    return new UFC_ffc_L2proj_22BilinearForm_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1_2: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1_2() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1_2()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_1_2()
   {
     // Do nothing
   }
@@ -1021,7 +1021,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -1033,7 +1033,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -1090,9 +1090,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1156,25 +1156,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_2();
+    return new UFC_ffc_L2proj_22BilinearForm_finite_element_1_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18BilinearForm_finite_element_1: public ufc::finite_element
+class UFC_ffc_L2proj_22BilinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_finite_element_1() : ufc::finite_element()
+  UFC_ffc_L2proj_22BilinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_finite_element_1()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -1182,7 +1182,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -1194,7 +1194,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -1251,9 +1251,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    const static double X[12][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[12][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1307,15 +1307,15 @@ public:
     vertex_values[2] = dof_values[2];
     vertex_values[3] = dof_values[3];
     // Evaluate at vertices and use affine mapping
-    vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[4] = dof_values[4];
+    vertex_values[5] = dof_values[5];
+    vertex_values[6] = dof_values[6];
+    vertex_values[7] = dof_values[7];
     // Evaluate at vertices and use affine mapping
-    vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[8] = dof_values[8];
+    vertex_values[9] = dof_values[9];
+    vertex_values[10] = dof_values[10];
+    vertex_values[11] = dof_values[11];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1330,13 +1330,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_0();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_1();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1_2();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_1_2();
       break;
     }
     return 0;
@@ -1347,7 +1347,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0_0: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -1356,13 +1356,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0_0() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_0_0()
   {
     // Do nothing
   }
@@ -1370,7 +1370,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1379,16 +1379,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1397,7 +1397,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -1423,7 +1423,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1435,7 +1435,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1449,17 +1449,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1469,36 +1462,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -1527,24 +1500,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1556,7 +1511,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_0();
+    return new UFC_ffc_L2proj_22BilinearForm_dof_map_0_0();
   }
 
 };
@@ -1564,7 +1519,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0_1: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -1573,13 +1528,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0_1() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0_1()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_0_1()
   {
     // Do nothing
   }
@@ -1587,7 +1542,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1596,16 +1551,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1614,7 +1569,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -1640,7 +1595,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1652,7 +1607,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1666,17 +1621,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1686,36 +1634,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -1744,24 +1672,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1773,7 +1683,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_1();
+    return new UFC_ffc_L2proj_22BilinearForm_dof_map_0_1();
   }
 
 };
@@ -1781,7 +1691,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0_2: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_0_2: public ufc::dof_map
 {
 private:
 
@@ -1790,13 +1700,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0_2() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_0_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0_2()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_0_2()
   {
     // Do nothing
   }
@@ -1804,7 +1714,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1813,16 +1723,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -1831,7 +1741,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -1857,7 +1767,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1869,7 +1779,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1883,17 +1793,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -1903,36 +1806,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -1961,24 +1844,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1990,7 +1855,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_2();
+    return new UFC_ffc_L2proj_22BilinearForm_dof_map_0_2();
   }
 
 };
@@ -1998,7 +1863,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_0: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2007,13 +1872,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_0() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -2021,7 +1886,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2030,16 +1895,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2048,7 +1913,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 12*m.num_entities[3];
     return false;
   }
 
@@ -2074,7 +1939,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2086,7 +1951,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2100,41 +1965,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    unsigned int offset = 4*m.num_entities[3];
+    dofs[4] = offset + 4*c.entity_indices[3][0];
+    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
+    offset = offset + 4*m.num_entities[3];
+    dofs[8] = offset + 4*c.entity_indices[3][0];
+    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2144,84 +1988,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -2250,84 +2026,30 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[10][0] = x[0][0];
-    coordinates[10][1] = x[0][1];
-    coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[20][0] = x[0][0];
-    coordinates[20][1] = x[0][1];
-    coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2342,13 +2064,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_0();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_1();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0_2();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_0_2();
       break;
     }
     return 0;
@@ -2359,7 +2081,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1_0: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -2368,13 +2090,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1_0() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_1_0()
   {
     // Do nothing
   }
@@ -2382,7 +2104,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2391,16 +2113,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2409,7 +2131,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -2435,7 +2157,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2447,7 +2169,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2461,17 +2183,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2481,36 +2196,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -2539,24 +2234,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2568,7 +2245,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_0();
+    return new UFC_ffc_L2proj_22BilinearForm_dof_map_1_0();
   }
 
 };
@@ -2576,7 +2253,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1_1: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -2585,13 +2262,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1_1() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1_1()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_1_1()
   {
     // Do nothing
   }
@@ -2599,7 +2276,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2608,16 +2285,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2626,7 +2303,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -2652,7 +2329,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2664,7 +2341,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2678,17 +2355,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2698,36 +2368,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -2756,24 +2406,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2785,7 +2417,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_1();
+    return new UFC_ffc_L2proj_22BilinearForm_dof_map_1_1();
   }
 
 };
@@ -2793,7 +2425,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1_2: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_1_2: public ufc::dof_map
 {
 private:
 
@@ -2802,13 +2434,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1_2() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_1_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1_2()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_1_2()
   {
     // Do nothing
   }
@@ -2816,7 +2448,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2825,16 +2457,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -2843,7 +2475,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -2869,7 +2501,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2881,7 +2513,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2895,17 +2527,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2915,36 +2540,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -2973,24 +2578,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3002,7 +2589,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_2();
+    return new UFC_ffc_L2proj_22BilinearForm_dof_map_1_2();
   }
 
 };
@@ -3010,7 +2597,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18BilinearForm_dof_map_1: public ufc::dof_map
+class UFC_ffc_L2proj_22BilinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -3019,13 +2606,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_dof_map_1() : ufc::dof_map()
+  UFC_ffc_L2proj_22BilinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_dof_map_1()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -3033,7 +2620,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3042,16 +2629,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -3060,7 +2647,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 12*m.num_entities[3];
     return false;
   }
 
@@ -3086,7 +2673,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -3098,7 +2685,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3112,41 +2699,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    unsigned int offset = 4*m.num_entities[3];
+    dofs[4] = offset + 4*c.entity_indices[3][0];
+    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
+    offset = offset + 4*m.num_entities[3];
+    dofs[8] = offset + 4*c.entity_indices[3][0];
+    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3156,84 +2722,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -3262,84 +2760,30 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[10][0] = x[0][0];
-    coordinates[10][1] = x[0][1];
-    coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[20][0] = x[0][0];
-    coordinates[20][1] = x[0][1];
-    coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3354,13 +2798,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_0();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_1();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1_2();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_1_2();
       break;
     }
     return 0;
@@ -3372,18 +2816,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ffc_L2proj_18BilinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_ffc_L2proj_22BilinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_ffc_L2proj_22BilinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm_cell_integral_0()
+  virtual ~UFC_ffc_L2proj_22BilinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -3426,22 +2870,22 @@ public:
     const double G0_ = det;
     
     // Compute element tensor
-    A[0] = 0.00238095238095237*G0_;
-    A[1] = 0.000396825396825395*G0_;
-    A[2] = 0.000396825396825396*G0_;
-    A[3] = 0.000396825396825397*G0_;
-    A[4] = -0.00238095238095238*G0_;
-    A[5] = -0.00238095238095238*G0_;
-    A[6] = -0.00238095238095238*G0_;
-    A[7] = -0.00158730158730158*G0_;
-    A[8] = -0.00158730158730158*G0_;
-    A[9] = -0.00158730158730158*G0_;
+    A[0] = 0.0166666666666666*G0_;
+    A[1] = 0.00833333333333331*G0_;
+    A[2] = 0.00833333333333331*G0_;
+    A[3] = 0.00833333333333331*G0_;
+    A[4] = 0;
+    A[5] = 0;
+    A[6] = 0;
+    A[7] = 0;
+    A[8] = 0;
+    A[9] = 0;
     A[10] = 0;
     A[11] = 0;
-    A[12] = 0;
-    A[13] = 0;
-    A[14] = 0;
-    A[15] = 0;
+    A[12] = 0.00833333333333331*G0_;
+    A[13] = 0.0166666666666666*G0_;
+    A[14] = 0.00833333333333331*G0_;
+    A[15] = 0.00833333333333331*G0_;
     A[16] = 0;
     A[17] = 0;
     A[18] = 0;
@@ -3450,22 +2894,22 @@ public:
     A[21] = 0;
     A[22] = 0;
     A[23] = 0;
-    A[24] = 0;
-    A[25] = 0;
-    A[26] = 0;
-    A[27] = 0;
+    A[24] = 0.00833333333333331*G0_;
+    A[25] = 0.00833333333333331*G0_;
+    A[26] = 0.0166666666666666*G0_;
+    A[27] = 0.00833333333333331*G0_;
     A[28] = 0;
     A[29] = 0;
-    A[30] = 0.000396825396825395*G0_;
-    A[31] = 0.00238095238095238*G0_;
-    A[32] = 0.000396825396825396*G0_;
-    A[33] = 0.000396825396825396*G0_;
-    A[34] = -0.00238095238095237*G0_;
-    A[35] = -0.00158730158730158*G0_;
-    A[36] = -0.00158730158730158*G0_;
-    A[37] = -0.00238095238095237*G0_;
-    A[38] = -0.00238095238095237*G0_;
-    A[39] = -0.00158730158730158*G0_;
+    A[30] = 0;
+    A[31] = 0;
+    A[32] = 0;
+    A[33] = 0;
+    A[34] = 0;
+    A[35] = 0;
+    A[36] = 0.00833333333333331*G0_;
+    A[37] = 0.00833333333333331*G0_;
+    A[38] = 0.00833333333333331*G0_;
+    A[39] = 0.0166666666666666*G0_;
     A[40] = 0;
     A[41] = 0;
     A[42] = 0;
@@ -3478,34 +2922,34 @@ public:
     A[49] = 0;
     A[50] = 0;
     A[51] = 0;
-    A[52] = 0;
-    A[53] = 0;
-    A[54] = 0;
-    A[55] = 0;
+    A[52] = 0.0166666666666666*G0_;
+    A[53] = 0.00833333333333331*G0_;
+    A[54] = 0.00833333333333331*G0_;
+    A[55] = 0.00833333333333331*G0_;
     A[56] = 0;
     A[57] = 0;
     A[58] = 0;
     A[59] = 0;
-    A[60] = 0.000396825396825396*G0_;
-    A[61] = 0.000396825396825396*G0_;
-    A[62] = 0.00238095238095238*G0_;
-    A[63] = 0.000396825396825398*G0_;
-    A[64] = -0.00158730158730159*G0_;
-    A[65] = -0.00238095238095238*G0_;
-    A[66] = -0.00158730158730159*G0_;
-    A[67] = -0.00238095238095238*G0_;
-    A[68] = -0.00158730158730159*G0_;
-    A[69] = -0.00238095238095238*G0_;
+    A[60] = 0;
+    A[61] = 0;
+    A[62] = 0;
+    A[63] = 0;
+    A[64] = 0.00833333333333331*G0_;
+    A[65] = 0.0166666666666666*G0_;
+    A[66] = 0.00833333333333331*G0_;
+    A[67] = 0.00833333333333331*G0_;
+    A[68] = 0;
+    A[69] = 0;
     A[70] = 0;
     A[71] = 0;
     A[72] = 0;
     A[73] = 0;
     A[74] = 0;
     A[75] = 0;
-    A[76] = 0;
-    A[77] = 0;
-    A[78] = 0;
-    A[79] = 0;
+    A[76] = 0.00833333333333331*G0_;
+    A[77] = 0.00833333333333331*G0_;
+    A[78] = 0.0166666666666666*G0_;
+    A[79] = 0.00833333333333331*G0_;
     A[80] = 0;
     A[81] = 0;
     A[82] = 0;
@@ -3514,26 +2958,26 @@ public:
     A[85] = 0;
     A[86] = 0;
     A[87] = 0;
-    A[88] = 0;
-    A[89] = 0;
-    A[90] = 0.000396825396825396*G0_;
-    A[91] = 0.000396825396825396*G0_;
-    A[92] = 0.000396825396825398*G0_;
-    A[93] = 0.00238095238095238*G0_;
-    A[94] = -0.00158730158730159*G0_;
-    A[95] = -0.00158730158730159*G0_;
-    A[96] = -0.00238095238095238*G0_;
-    A[97] = -0.00158730158730159*G0_;
-    A[98] = -0.00238095238095238*G0_;
-    A[99] = -0.00238095238095238*G0_;
+    A[88] = 0.00833333333333331*G0_;
+    A[89] = 0.00833333333333331*G0_;
+    A[90] = 0.00833333333333331*G0_;
+    A[91] = 0.0166666666666666*G0_;
+    A[92] = 0;
+    A[93] = 0;
+    A[94] = 0;
+    A[95] = 0;
+    A[96] = 0;
+    A[97] = 0;
+    A[98] = 0;
+    A[99] = 0;
     A[100] = 0;
     A[101] = 0;
     A[102] = 0;
     A[103] = 0;
-    A[104] = 0;
-    A[105] = 0;
-    A[106] = 0;
-    A[107] = 0;
+    A[104] = 0.0166666666666666*G0_;
+    A[105] = 0.00833333333333331*G0_;
+    A[106] = 0.00833333333333331*G0_;
+    A[107] = 0.00833333333333331*G0_;
     A[108] = 0;
     A[109] = 0;
     A[110] = 0;
@@ -3542,22 +2986,22 @@ public:
     A[113] = 0;
     A[114] = 0;
     A[115] = 0;
-    A[116] = 0;
-    A[117] = 0;
-    A[118] = 0;
-    A[119] = 0;
-    A[120] = -0.00238095238095238*G0_;
-    A[121] = -0.00238095238095238*G0_;
-    A[122] = -0.00158730158730159*G0_;
-    A[123] = -0.00158730158730159*G0_;
-    A[124] = 0.0126984126984127*G0_;
-    A[125] = 0.00634920634920634*G0_;
-    A[126] = 0.00634920634920635*G0_;
-    A[127] = 0.00634920634920634*G0_;
-    A[128] = 0.00634920634920634*G0_;
-    A[129] = 0.00317460317460317*G0_;
-    A[130] = 0;
-    A[131] = 0;
+    A[116] = 0.00833333333333331*G0_;
+    A[117] = 0.0166666666666666*G0_;
+    A[118] = 0.00833333333333331*G0_;
+    A[119] = 0.00833333333333331*G0_;
+    A[120] = 0;
+    A[121] = 0;
+    A[122] = 0;
+    A[123] = 0;
+    A[124] = 0;
+    A[125] = 0;
+    A[126] = 0;
+    A[127] = 0;
+    A[128] = 0.00833333333333331*G0_;
+    A[129] = 0.00833333333333331*G0_;
+    A[130] = 0.0166666666666666*G0_;
+    A[131] = 0.00833333333333331*G0_;
     A[132] = 0;
     A[133] = 0;
     A[134] = 0;
@@ -3566,766 +3010,10 @@ public:
     A[137] = 0;
     A[138] = 0;
     A[139] = 0;
-    A[140] = 0;
-    A[141] = 0;
-    A[142] = 0;
-    A[143] = 0;
-    A[144] = 0;
-    A[145] = 0;
-    A[146] = 0;
-    A[147] = 0;
-    A[148] = 0;
-    A[149] = 0;
-    A[150] = -0.00238095238095238*G0_;
-    A[151] = -0.00158730158730158*G0_;
-    A[152] = -0.00238095238095238*G0_;
-    A[153] = -0.00158730158730159*G0_;
-    A[154] = 0.00634920634920634*G0_;
-    A[155] = 0.0126984126984127*G0_;
-    A[156] = 0.00634920634920635*G0_;
-    A[157] = 0.00634920634920634*G0_;
-    A[158] = 0.00317460317460317*G0_;
-    A[159] = 0.00634920634920634*G0_;
-    A[160] = 0;
-    A[161] = 0;
-    A[162] = 0;
-    A[163] = 0;
-    A[164] = 0;
-    A[165] = 0;
-    A[166] = 0;
-    A[167] = 0;
-    A[168] = 0;
-    A[169] = 0;
-    A[170] = 0;
-    A[171] = 0;
-    A[172] = 0;
-    A[173] = 0;
-    A[174] = 0;
-    A[175] = 0;
-    A[176] = 0;
-    A[177] = 0;
-    A[178] = 0;
-    A[179] = 0;
-    A[180] = -0.00238095238095238*G0_;
-    A[181] = -0.00158730158730158*G0_;
-    A[182] = -0.00158730158730159*G0_;
-    A[183] = -0.00238095238095238*G0_;
-    A[184] = 0.00634920634920635*G0_;
-    A[185] = 0.00634920634920635*G0_;
-    A[186] = 0.0126984126984127*G0_;
-    A[187] = 0.00317460317460317*G0_;
-    A[188] = 0.00634920634920634*G0_;
-    A[189] = 0.00634920634920634*G0_;
-    A[190] = 0;
-    A[191] = 0;
-    A[192] = 0;
-    A[193] = 0;
-    A[194] = 0;
-    A[195] = 0;
-    A[196] = 0;
-    A[197] = 0;
-    A[198] = 0;
-    A[199] = 0;
-    A[200] = 0;
-    A[201] = 0;
-    A[202] = 0;
-    A[203] = 0;
-    A[204] = 0;
-    A[205] = 0;
-    A[206] = 0;
-    A[207] = 0;
-    A[208] = 0;
-    A[209] = 0;
-    A[210] = -0.00158730158730158*G0_;
-    A[211] = -0.00238095238095237*G0_;
-    A[212] = -0.00238095238095238*G0_;
-    A[213] = -0.00158730158730159*G0_;
-    A[214] = 0.00634920634920634*G0_;
-    A[215] = 0.00634920634920634*G0_;
-    A[216] = 0.00317460317460317*G0_;
-    A[217] = 0.0126984126984127*G0_;
-    A[218] = 0.00634920634920634*G0_;
-    A[219] = 0.00634920634920633*G0_;
-    A[220] = 0;
-    A[221] = 0;
-    A[222] = 0;
-    A[223] = 0;
-    A[224] = 0;
-    A[225] = 0;
-    A[226] = 0;
-    A[227] = 0;
-    A[228] = 0;
-    A[229] = 0;
-    A[230] = 0;
-    A[231] = 0;
-    A[232] = 0;
-    A[233] = 0;
-    A[234] = 0;
-    A[235] = 0;
-    A[236] = 0;
-    A[237] = 0;
-    A[238] = 0;
-    A[239] = 0;
-    A[240] = -0.00158730158730158*G0_;
-    A[241] = -0.00238095238095237*G0_;
-    A[242] = -0.00158730158730159*G0_;
-    A[243] = -0.00238095238095238*G0_;
-    A[244] = 0.00634920634920634*G0_;
-    A[245] = 0.00317460317460317*G0_;
-    A[246] = 0.00634920634920634*G0_;
-    A[247] = 0.00634920634920634*G0_;
-    A[248] = 0.0126984126984127*G0_;
-    A[249] = 0.00634920634920634*G0_;
-    A[250] = 0;
-    A[251] = 0;
-    A[252] = 0;
-    A[253] = 0;
-    A[254] = 0;
-    A[255] = 0;
-    A[256] = 0;
-    A[257] = 0;
-    A[258] = 0;
-    A[259] = 0;
-    A[260] = 0;
-    A[261] = 0;
-    A[262] = 0;
-    A[263] = 0;
-    A[264] = 0;
-    A[265] = 0;
-    A[266] = 0;
-    A[267] = 0;
-    A[268] = 0;
-    A[269] = 0;
-    A[270] = -0.00158730158730158*G0_;
-    A[271] = -0.00158730158730158*G0_;
-    A[272] = -0.00238095238095238*G0_;
-    A[273] = -0.00238095238095238*G0_;
-    A[274] = 0.00317460317460317*G0_;
-    A[275] = 0.00634920634920634*G0_;
-    A[276] = 0.00634920634920634*G0_;
-    A[277] = 0.00634920634920633*G0_;
-    A[278] = 0.00634920634920634*G0_;
-    A[279] = 0.0126984126984127*G0_;
-    A[280] = 0;
-    A[281] = 0;
-    A[282] = 0;
-    A[283] = 0;
-    A[284] = 0;
-    A[285] = 0;
-    A[286] = 0;
-    A[287] = 0;
-    A[288] = 0;
-    A[289] = 0;
-    A[290] = 0;
-    A[291] = 0;
-    A[292] = 0;
-    A[293] = 0;
-    A[294] = 0;
-    A[295] = 0;
-    A[296] = 0;
-    A[297] = 0;
-    A[298] = 0;
-    A[299] = 0;
-    A[300] = 0;
-    A[301] = 0;
-    A[302] = 0;
-    A[303] = 0;
-    A[304] = 0;
-    A[305] = 0;
-    A[306] = 0;
-    A[307] = 0;
-    A[308] = 0;
-    A[309] = 0;
-    A[310] = 0.00238095238095237*G0_;
-    A[311] = 0.000396825396825395*G0_;
-    A[312] = 0.000396825396825396*G0_;
-    A[313] = 0.000396825396825397*G0_;
-    A[314] = -0.00238095238095238*G0_;
-    A[315] = -0.00238095238095238*G0_;
-    A[316] = -0.00238095238095238*G0_;
-    A[317] = -0.00158730158730158*G0_;
-    A[318] = -0.00158730158730158*G0_;
-    A[319] = -0.00158730158730158*G0_;
-    A[320] = 0;
-    A[321] = 0;
-    A[322] = 0;
-    A[323] = 0;
-    A[324] = 0;
-    A[325] = 0;
-    A[326] = 0;
-    A[327] = 0;
-    A[328] = 0;
-    A[329] = 0;
-    A[330] = 0;
-    A[331] = 0;
-    A[332] = 0;
-    A[333] = 0;
-    A[334] = 0;
-    A[335] = 0;
-    A[336] = 0;
-    A[337] = 0;
-    A[338] = 0;
-    A[339] = 0;
-    A[340] = 0.000396825396825395*G0_;
-    A[341] = 0.00238095238095238*G0_;
-    A[342] = 0.000396825396825396*G0_;
-    A[343] = 0.000396825396825396*G0_;
-    A[344] = -0.00238095238095237*G0_;
-    A[345] = -0.00158730158730158*G0_;
-    A[346] = -0.00158730158730158*G0_;
-    A[347] = -0.00238095238095237*G0_;
-    A[348] = -0.00238095238095237*G0_;
-    A[349] = -0.00158730158730158*G0_;
-    A[350] = 0;
-    A[351] = 0;
-    A[352] = 0;
-    A[353] = 0;
-    A[354] = 0;
-    A[355] = 0;
-    A[356] = 0;
-    A[357] = 0;
-    A[358] = 0;
-    A[359] = 0;
-    A[360] = 0;
-    A[361] = 0;
-    A[362] = 0;
-    A[363] = 0;
-    A[364] = 0;
-    A[365] = 0;
-    A[366] = 0;
-    A[367] = 0;
-    A[368] = 0;
-    A[369] = 0;
-    A[370] = 0.000396825396825396*G0_;
-    A[371] = 0.000396825396825396*G0_;
-    A[372] = 0.00238095238095238*G0_;
-    A[373] = 0.000396825396825398*G0_;
-    A[374] = -0.00158730158730159*G0_;
-    A[375] = -0.00238095238095238*G0_;
-    A[376] = -0.00158730158730159*G0_;
-    A[377] = -0.00238095238095238*G0_;
-    A[378] = -0.00158730158730159*G0_;
-    A[379] = -0.00238095238095238*G0_;
-    A[380] = 0;
-    A[381] = 0;
-    A[382] = 0;
-    A[383] = 0;
-    A[384] = 0;
-    A[385] = 0;
-    A[386] = 0;
-    A[387] = 0;
-    A[388] = 0;
-    A[389] = 0;
-    A[390] = 0;
-    A[391] = 0;
-    A[392] = 0;
-    A[393] = 0;
-    A[394] = 0;
-    A[395] = 0;
-    A[396] = 0;
-    A[397] = 0;
-    A[398] = 0;
-    A[399] = 0;
-    A[400] = 0.000396825396825396*G0_;
-    A[401] = 0.000396825396825396*G0_;
-    A[402] = 0.000396825396825398*G0_;
-    A[403] = 0.00238095238095238*G0_;
-    A[404] = -0.00158730158730159*G0_;
-    A[405] = -0.00158730158730159*G0_;
-    A[406] = -0.00238095238095238*G0_;
-    A[407] = -0.00158730158730159*G0_;
-    A[408] = -0.00238095238095238*G0_;
-    A[409] = -0.00238095238095238*G0_;
-    A[410] = 0;
-    A[411] = 0;
-    A[412] = 0;
-    A[413] = 0;
-    A[414] = 0;
-    A[415] = 0;
-    A[416] = 0;
-    A[417] = 0;
-    A[418] = 0;
-    A[419] = 0;
-    A[420] = 0;
-    A[421] = 0;
-    A[422] = 0;
-    A[423] = 0;
-    A[424] = 0;
-    A[425] = 0;
-    A[426] = 0;
-    A[427] = 0;
-    A[428] = 0;
-    A[429] = 0;
-    A[430] = -0.00238095238095238*G0_;
-    A[431] = -0.00238095238095238*G0_;
-    A[432] = -0.00158730158730159*G0_;
-    A[433] = -0.00158730158730159*G0_;
-    A[434] = 0.0126984126984127*G0_;
-    A[435] = 0.00634920634920634*G0_;
-    A[436] = 0.00634920634920635*G0_;
-    A[437] = 0.00634920634920634*G0_;
-    A[438] = 0.00634920634920634*G0_;
-    A[439] = 0.00317460317460317*G0_;
-    A[440] = 0;
-    A[441] = 0;
-    A[442] = 0;
-    A[443] = 0;
-    A[444] = 0;
-    A[445] = 0;
-    A[446] = 0;
-    A[447] = 0;
-    A[448] = 0;
-    A[449] = 0;
-    A[450] = 0;
-    A[451] = 0;
-    A[452] = 0;
-    A[453] = 0;
-    A[454] = 0;
-    A[455] = 0;
-    A[456] = 0;
-    A[457] = 0;
-    A[458] = 0;
-    A[459] = 0;
-    A[460] = -0.00238095238095238*G0_;
-    A[461] = -0.00158730158730158*G0_;
-    A[462] = -0.00238095238095238*G0_;
-    A[463] = -0.00158730158730159*G0_;
-    A[464] = 0.00634920634920634*G0_;
-    A[465] = 0.0126984126984127*G0_;
-    A[466] = 0.00634920634920635*G0_;
-    A[467] = 0.00634920634920634*G0_;
-    A[468] = 0.00317460317460317*G0_;
-    A[469] = 0.00634920634920634*G0_;
-    A[470] = 0;
-    A[471] = 0;
-    A[472] = 0;
-    A[473] = 0;
-    A[474] = 0;
-    A[475] = 0;
-    A[476] = 0;
-    A[477] = 0;
-    A[478] = 0;
-    A[479] = 0;
-    A[480] = 0;
-    A[481] = 0;
-    A[482] = 0;
-    A[483] = 0;
-    A[484] = 0;
-    A[485] = 0;
-    A[486] = 0;
-    A[487] = 0;
-    A[488] = 0;
-    A[489] = 0;
-    A[490] = -0.00238095238095238*G0_;
-    A[491] = -0.00158730158730158*G0_;
-    A[492] = -0.00158730158730159*G0_;
-    A[493] = -0.00238095238095238*G0_;
-    A[494] = 0.00634920634920635*G0_;
-    A[495] = 0.00634920634920635*G0_;
-    A[496] = 0.0126984126984127*G0_;
-    A[497] = 0.00317460317460317*G0_;
-    A[498] = 0.00634920634920634*G0_;
-    A[499] = 0.00634920634920634*G0_;
-    A[500] = 0;
-    A[501] = 0;
-    A[502] = 0;
-    A[503] = 0;
-    A[504] = 0;
-    A[505] = 0;
-    A[506] = 0;
-    A[507] = 0;
-    A[508] = 0;
-    A[509] = 0;
-    A[510] = 0;
-    A[511] = 0;
-    A[512] = 0;
-    A[513] = 0;
-    A[514] = 0;
-    A[515] = 0;
-    A[516] = 0;
-    A[517] = 0;
-    A[518] = 0;
-    A[519] = 0;
-    A[520] = -0.00158730158730158*G0_;
-    A[521] = -0.00238095238095237*G0_;
-    A[522] = -0.00238095238095238*G0_;
-    A[523] = -0.00158730158730159*G0_;
-    A[524] = 0.00634920634920634*G0_;
-    A[525] = 0.00634920634920634*G0_;
-    A[526] = 0.00317460317460317*G0_;
-    A[527] = 0.0126984126984127*G0_;
-    A[528] = 0.00634920634920634*G0_;
-    A[529] = 0.00634920634920633*G0_;
-    A[530] = 0;
-    A[531] = 0;
-    A[532] = 0;
-    A[533] = 0;
-    A[534] = 0;
-    A[535] = 0;
-    A[536] = 0;
-    A[537] = 0;
-    A[538] = 0;
-    A[539] = 0;
-    A[540] = 0;
-    A[541] = 0;
-    A[542] = 0;
-    A[543] = 0;
-    A[544] = 0;
-    A[545] = 0;
-    A[546] = 0;
-    A[547] = 0;
-    A[548] = 0;
-    A[549] = 0;
-    A[550] = -0.00158730158730158*G0_;
-    A[551] = -0.00238095238095237*G0_;
-    A[552] = -0.00158730158730159*G0_;
-    A[553] = -0.00238095238095238*G0_;
-    A[554] = 0.00634920634920634*G0_;
-    A[555] = 0.00317460317460317*G0_;
-    A[556] = 0.00634920634920634*G0_;
-    A[557] = 0.00634920634920634*G0_;
-    A[558] = 0.0126984126984127*G0_;
-    A[559] = 0.00634920634920634*G0_;
-    A[560] = 0;
-    A[561] = 0;
-    A[562] = 0;
-    A[563] = 0;
-    A[564] = 0;
-    A[565] = 0;
-    A[566] = 0;
-    A[567] = 0;
-    A[568] = 0;
-    A[569] = 0;
-    A[570] = 0;
-    A[571] = 0;
-    A[572] = 0;
-    A[573] = 0;
-    A[574] = 0;
-    A[575] = 0;
-    A[576] = 0;
-    A[577] = 0;
-    A[578] = 0;
-    A[579] = 0;
-    A[580] = -0.00158730158730158*G0_;
-    A[581] = -0.00158730158730158*G0_;
-    A[582] = -0.00238095238095238*G0_;
-    A[583] = -0.00238095238095238*G0_;
-    A[584] = 0.00317460317460317*G0_;
-    A[585] = 0.00634920634920634*G0_;
-    A[586] = 0.00634920634920634*G0_;
-    A[587] = 0.00634920634920633*G0_;
-    A[588] = 0.00634920634920634*G0_;
-    A[589] = 0.0126984126984127*G0_;
-    A[590] = 0;
-    A[591] = 0;
-    A[592] = 0;
-    A[593] = 0;
-    A[594] = 0;
-    A[595] = 0;
-    A[596] = 0;
-    A[597] = 0;
-    A[598] = 0;
-    A[599] = 0;
-    A[600] = 0;
-    A[601] = 0;
-    A[602] = 0;
-    A[603] = 0;
-    A[604] = 0;
-    A[605] = 0;
-    A[606] = 0;
-    A[607] = 0;
-    A[608] = 0;
-    A[609] = 0;
-    A[610] = 0;
-    A[611] = 0;
-    A[612] = 0;
-    A[613] = 0;
-    A[614] = 0;
-    A[615] = 0;
-    A[616] = 0;
-    A[617] = 0;
-    A[618] = 0;
-    A[619] = 0;
-    A[620] = 0.00238095238095237*G0_;
-    A[621] = 0.000396825396825395*G0_;
-    A[622] = 0.000396825396825396*G0_;
-    A[623] = 0.000396825396825397*G0_;
-    A[624] = -0.00238095238095238*G0_;
-    A[625] = -0.00238095238095238*G0_;
-    A[626] = -0.00238095238095238*G0_;
-    A[627] = -0.00158730158730158*G0_;
-    A[628] = -0.00158730158730158*G0_;
-    A[629] = -0.00158730158730158*G0_;
-    A[630] = 0;
-    A[631] = 0;
-    A[632] = 0;
-    A[633] = 0;
-    A[634] = 0;
-    A[635] = 0;
-    A[636] = 0;
-    A[637] = 0;
-    A[638] = 0;
-    A[639] = 0;
-    A[640] = 0;
-    A[641] = 0;
-    A[642] = 0;
-    A[643] = 0;
-    A[644] = 0;
-    A[645] = 0;
-    A[646] = 0;
-    A[647] = 0;
-    A[648] = 0;
-    A[649] = 0;
-    A[650] = 0.000396825396825395*G0_;
-    A[651] = 0.00238095238095238*G0_;
-    A[652] = 0.000396825396825396*G0_;
-    A[653] = 0.000396825396825396*G0_;
-    A[654] = -0.00238095238095237*G0_;
-    A[655] = -0.00158730158730158*G0_;
-    A[656] = -0.00158730158730158*G0_;
-    A[657] = -0.00238095238095237*G0_;
-    A[658] = -0.00238095238095237*G0_;
-    A[659] = -0.00158730158730158*G0_;
-    A[660] = 0;
-    A[661] = 0;
-    A[662] = 0;
-    A[663] = 0;
-    A[664] = 0;
-    A[665] = 0;
-    A[666] = 0;
-    A[667] = 0;
-    A[668] = 0;
-    A[669] = 0;
-    A[670] = 0;
-    A[671] = 0;
-    A[672] = 0;
-    A[673] = 0;
-    A[674] = 0;
-    A[675] = 0;
-    A[676] = 0;
-    A[677] = 0;
-    A[678] = 0;
-    A[679] = 0;
-    A[680] = 0.000396825396825396*G0_;
-    A[681] = 0.000396825396825396*G0_;
-    A[682] = 0.00238095238095238*G0_;
-    A[683] = 0.000396825396825398*G0_;
-    A[684] = -0.00158730158730159*G0_;
-    A[685] = -0.00238095238095238*G0_;
-    A[686] = -0.00158730158730159*G0_;
-    A[687] = -0.00238095238095238*G0_;
-    A[688] = -0.00158730158730159*G0_;
-    A[689] = -0.00238095238095238*G0_;
-    A[690] = 0;
-    A[691] = 0;
-    A[692] = 0;
-    A[693] = 0;
-    A[694] = 0;
-    A[695] = 0;
-    A[696] = 0;
-    A[697] = 0;
-    A[698] = 0;
-    A[699] = 0;
-    A[700] = 0;
-    A[701] = 0;
-    A[702] = 0;
-    A[703] = 0;
-    A[704] = 0;
-    A[705] = 0;
-    A[706] = 0;
-    A[707] = 0;
-    A[708] = 0;
-    A[709] = 0;
-    A[710] = 0.000396825396825396*G0_;
-    A[711] = 0.000396825396825396*G0_;
-    A[712] = 0.000396825396825398*G0_;
-    A[713] = 0.00238095238095238*G0_;
-    A[714] = -0.00158730158730159*G0_;
-    A[715] = -0.00158730158730159*G0_;
-    A[716] = -0.00238095238095238*G0_;
-    A[717] = -0.00158730158730159*G0_;
-    A[718] = -0.00238095238095238*G0_;
-    A[719] = -0.00238095238095238*G0_;
-    A[720] = 0;
-    A[721] = 0;
-    A[722] = 0;
-    A[723] = 0;
-    A[724] = 0;
-    A[725] = 0;
-    A[726] = 0;
-    A[727] = 0;
-    A[728] = 0;
-    A[729] = 0;
-    A[730] = 0;
-    A[731] = 0;
-    A[732] = 0;
-    A[733] = 0;
-    A[734] = 0;
-    A[735] = 0;
-    A[736] = 0;
-    A[737] = 0;
-    A[738] = 0;
-    A[739] = 0;
-    A[740] = -0.00238095238095238*G0_;
-    A[741] = -0.00238095238095238*G0_;
-    A[742] = -0.00158730158730159*G0_;
-    A[743] = -0.00158730158730159*G0_;
-    A[744] = 0.0126984126984127*G0_;
-    A[745] = 0.00634920634920634*G0_;
-    A[746] = 0.00634920634920635*G0_;
-    A[747] = 0.00634920634920634*G0_;
-    A[748] = 0.00634920634920634*G0_;
-    A[749] = 0.00317460317460317*G0_;
-    A[750] = 0;
-    A[751] = 0;
-    A[752] = 0;
-    A[753] = 0;
-    A[754] = 0;
-    A[755] = 0;
-    A[756] = 0;
-    A[757] = 0;
-    A[758] = 0;
-    A[759] = 0;
-    A[760] = 0;
-    A[761] = 0;
-    A[762] = 0;
-    A[763] = 0;
-    A[764] = 0;
-    A[765] = 0;
-    A[766] = 0;
-    A[767] = 0;
-    A[768] = 0;
-    A[769] = 0;
-    A[770] = -0.00238095238095238*G0_;
-    A[771] = -0.00158730158730158*G0_;
-    A[772] = -0.00238095238095238*G0_;
-    A[773] = -0.00158730158730159*G0_;
-    A[774] = 0.00634920634920634*G0_;
-    A[775] = 0.0126984126984127*G0_;
-    A[776] = 0.00634920634920635*G0_;
-    A[777] = 0.00634920634920634*G0_;
-    A[778] = 0.00317460317460317*G0_;
-    A[779] = 0.00634920634920634*G0_;
-    A[780] = 0;
-    A[781] = 0;
-    A[782] = 0;
-    A[783] = 0;
-    A[784] = 0;
-    A[785] = 0;
-    A[786] = 0;
-    A[787] = 0;
-    A[788] = 0;
-    A[789] = 0;
-    A[790] = 0;
-    A[791] = 0;
-    A[792] = 0;
-    A[793] = 0;
-    A[794] = 0;
-    A[795] = 0;
-    A[796] = 0;
-    A[797] = 0;
-    A[798] = 0;
-    A[799] = 0;
-    A[800] = -0.00238095238095238*G0_;
-    A[801] = -0.00158730158730158*G0_;
-    A[802] = -0.00158730158730159*G0_;
-    A[803] = -0.00238095238095238*G0_;
-    A[804] = 0.00634920634920635*G0_;
-    A[805] = 0.00634920634920635*G0_;
-    A[806] = 0.0126984126984127*G0_;
-    A[807] = 0.00317460317460317*G0_;
-    A[808] = 0.00634920634920634*G0_;
-    A[809] = 0.00634920634920634*G0_;
-    A[810] = 0;
-    A[811] = 0;
-    A[812] = 0;
-    A[813] = 0;
-    A[814] = 0;
-    A[815] = 0;
-    A[816] = 0;
-    A[817] = 0;
-    A[818] = 0;
-    A[819] = 0;
-    A[820] = 0;
-    A[821] = 0;
-    A[822] = 0;
-    A[823] = 0;
-    A[824] = 0;
-    A[825] = 0;
-    A[826] = 0;
-    A[827] = 0;
-    A[828] = 0;
-    A[829] = 0;
-    A[830] = -0.00158730158730158*G0_;
-    A[831] = -0.00238095238095237*G0_;
-    A[832] = -0.00238095238095238*G0_;
-    A[833] = -0.00158730158730159*G0_;
-    A[834] = 0.00634920634920634*G0_;
-    A[835] = 0.00634920634920634*G0_;
-    A[836] = 0.00317460317460317*G0_;
-    A[837] = 0.0126984126984127*G0_;
-    A[838] = 0.00634920634920634*G0_;
-    A[839] = 0.00634920634920633*G0_;
-    A[840] = 0;
-    A[841] = 0;
-    A[842] = 0;
-    A[843] = 0;
-    A[844] = 0;
-    A[845] = 0;
-    A[846] = 0;
-    A[847] = 0;
-    A[848] = 0;
-    A[849] = 0;
-    A[850] = 0;
-    A[851] = 0;
-    A[852] = 0;
-    A[853] = 0;
-    A[854] = 0;
-    A[855] = 0;
-    A[856] = 0;
-    A[857] = 0;
-    A[858] = 0;
-    A[859] = 0;
-    A[860] = -0.00158730158730158*G0_;
-    A[861] = -0.00238095238095237*G0_;
-    A[862] = -0.00158730158730159*G0_;
-    A[863] = -0.00238095238095238*G0_;
-    A[864] = 0.00634920634920634*G0_;
-    A[865] = 0.00317460317460317*G0_;
-    A[866] = 0.00634920634920634*G0_;
-    A[867] = 0.00634920634920634*G0_;
-    A[868] = 0.0126984126984127*G0_;
-    A[869] = 0.00634920634920634*G0_;
-    A[870] = 0;
-    A[871] = 0;
-    A[872] = 0;
-    A[873] = 0;
-    A[874] = 0;
-    A[875] = 0;
-    A[876] = 0;
-    A[877] = 0;
-    A[878] = 0;
-    A[879] = 0;
-    A[880] = 0;
-    A[881] = 0;
-    A[882] = 0;
-    A[883] = 0;
-    A[884] = 0;
-    A[885] = 0;
-    A[886] = 0;
-    A[887] = 0;
-    A[888] = 0;
-    A[889] = 0;
-    A[890] = -0.00158730158730158*G0_;
-    A[891] = -0.00158730158730158*G0_;
-    A[892] = -0.00238095238095238*G0_;
-    A[893] = -0.00238095238095238*G0_;
-    A[894] = 0.00317460317460317*G0_;
-    A[895] = 0.00634920634920634*G0_;
-    A[896] = 0.00634920634920634*G0_;
-    A[897] = 0.00634920634920633*G0_;
-    A[898] = 0.00634920634920634*G0_;
-    A[899] = 0.0126984126984127*G0_;
+    A[140] = 0.00833333333333331*G0_;
+    A[141] = 0.00833333333333331*G0_;
+    A[142] = 0.00833333333333331*G0_;
+    A[143] = 0.0166666666666666*G0_;
   }
 
 };
@@ -4345,18 +3033,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ffc_L2proj_18BilinearForm: public ufc::form
+class UFC_ffc_L2proj_22BilinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18BilinearForm() : ufc::form()
+  UFC_ffc_L2proj_22BilinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18BilinearForm()
+  virtual ~UFC_ffc_L2proj_22BilinearForm()
   {
     // Do nothing
   }
@@ -4364,7 +3052,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return " | vi1[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29][b0[0, 1, 2]]*vi0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29][b0[0, 1, 2]]*dX(0)";
+    return " | vi1[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11][b0[0, 1, 2]]*vi0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11][b0[0, 1, 2]]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4403,10 +3091,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_0();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_finite_element_1();
+      return new UFC_ffc_L2proj_22BilinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -4418,10 +3106,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_0();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18BilinearForm_dof_map_1();
+      return new UFC_ffc_L2proj_22BilinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -4430,7 +3118,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18BilinearForm_cell_integral_0();
+    return new UFC_ffc_L2proj_22BilinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -4449,18 +3137,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0_0: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0_0() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -4468,7 +3156,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4480,7 +3168,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -4537,9 +3225,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4603,25 +3291,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_0_0();
+    return new UFC_ffc_L2proj_22LinearForm_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0_1: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0_1() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0_1()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_0_1()
   {
     // Do nothing
   }
@@ -4629,7 +3317,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4641,7 +3329,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -4698,9 +3386,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4764,25 +3452,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_0_1();
+    return new UFC_ffc_L2proj_22LinearForm_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0_2: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0_2() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0_2()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_0_2()
   {
     // Do nothing
   }
@@ -4790,7 +3478,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -4802,7 +3490,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -4859,9 +3547,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4925,25 +3613,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_0_2();
+    return new UFC_ffc_L2proj_22LinearForm_finite_element_0_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_0: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_0() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -4951,7 +3639,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -4963,7 +3651,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -5020,9 +3708,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    const static double X[12][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[12][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5076,15 +3764,15 @@ public:
     vertex_values[2] = dof_values[2];
     vertex_values[3] = dof_values[3];
     // Evaluate at vertices and use affine mapping
-    vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[4] = dof_values[4];
+    vertex_values[5] = dof_values[5];
+    vertex_values[6] = dof_values[6];
+    vertex_values[7] = dof_values[7];
     // Evaluate at vertices and use affine mapping
-    vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[8] = dof_values[8];
+    vertex_values[9] = dof_values[9];
+    vertex_values[10] = dof_values[10];
+    vertex_values[11] = dof_values[11];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5099,13 +3787,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0_0();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0_1();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0_2();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_0_2();
       break;
     }
     return 0;
@@ -5115,18 +3803,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1_0: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1_0() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_1_0()
   {
     // Do nothing
   }
@@ -5134,7 +3822,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5146,7 +3834,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -5203,9 +3891,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5269,25 +3957,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_1_0();
+    return new UFC_ffc_L2proj_22LinearForm_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1_1: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1_1() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1_1()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_1_1()
   {
     // Do nothing
   }
@@ -5295,7 +3983,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5307,7 +3995,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -5364,9 +4052,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5430,25 +4118,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_1_1();
+    return new UFC_ffc_L2proj_22LinearForm_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1_2: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1_2() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1_2()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_1_2()
   {
     // Do nothing
   }
@@ -5456,7 +4144,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 2 on a tetrahedron";
+    return "Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return the cell shape
@@ -5468,7 +4156,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   /// Return the rank of the value space
@@ -5525,9 +4213,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[10][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[10][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[10][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[4][1] = {{1}, {1}, {1}, {1}};
+    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5591,25 +4279,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_finite_element_1_2();
+    return new UFC_ffc_L2proj_22LinearForm_finite_element_1_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ffc_L2proj_18LinearForm_finite_element_1: public ufc::finite_element
+class UFC_ffc_L2proj_22LinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_finite_element_1() : ufc::finite_element()
+  UFC_ffc_L2proj_22LinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_finite_element_1()
+  virtual ~UFC_ffc_L2proj_22LinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -5617,7 +4305,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return the cell shape
@@ -5629,7 +4317,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -5686,9 +4374,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[30][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0.5, 0.5}}, {{0.5, 0, 0.5}}, {{0.5, 0.5, 0}}, {{0, 0, 0.5}}, {{0, 0.5, 0}}, {{0.5, 0, 0}}};
-    const static double W[30][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[30][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    const static double X[12][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    const static double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[12][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5742,15 +4430,15 @@ public:
     vertex_values[2] = dof_values[2];
     vertex_values[3] = dof_values[3];
     // Evaluate at vertices and use affine mapping
-    vertex_values[4] = dof_values[10];
-    vertex_values[5] = dof_values[11];
-    vertex_values[6] = dof_values[12];
-    vertex_values[7] = dof_values[13];
+    vertex_values[4] = dof_values[4];
+    vertex_values[5] = dof_values[5];
+    vertex_values[6] = dof_values[6];
+    vertex_values[7] = dof_values[7];
     // Evaluate at vertices and use affine mapping
-    vertex_values[8] = dof_values[20];
-    vertex_values[9] = dof_values[21];
-    vertex_values[10] = dof_values[22];
-    vertex_values[11] = dof_values[23];
+    vertex_values[8] = dof_values[8];
+    vertex_values[9] = dof_values[9];
+    vertex_values[10] = dof_values[10];
+    vertex_values[11] = dof_values[11];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5765,13 +4453,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1_0();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1_1();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1_2();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_1_2();
       break;
     }
     return 0;
@@ -5782,7 +4470,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0_0: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -5791,13 +4479,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0_0() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_0_0()
   {
     // Do nothing
   }
@@ -5805,7 +4493,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5814,16 +4502,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -5832,7 +4520,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -5858,7 +4546,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -5870,7 +4558,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -5884,17 +4572,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -5904,36 +4585,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -5962,24 +4623,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -5991,7 +4634,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_0_0();
+    return new UFC_ffc_L2proj_22LinearForm_dof_map_0_0();
   }
 
 };
@@ -5999,7 +4642,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0_1: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -6008,13 +4651,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0_1() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0_1()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_0_1()
   {
     // Do nothing
   }
@@ -6022,7 +4665,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6031,16 +4674,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6049,7 +4692,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -6075,7 +4718,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -6087,7 +4730,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6101,17 +4744,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6121,36 +4757,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -6179,24 +4795,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6208,7 +4806,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_0_1();
+    return new UFC_ffc_L2proj_22LinearForm_dof_map_0_1();
   }
 
 };
@@ -6216,7 +4814,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0_2: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_0_2: public ufc::dof_map
 {
 private:
 
@@ -6225,13 +4823,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0_2() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_0_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0_2()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_0_2()
   {
     // Do nothing
   }
@@ -6239,7 +4837,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6248,16 +4846,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6266,7 +4864,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -6292,7 +4890,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -6304,7 +4902,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6318,17 +4916,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6338,36 +4929,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -6396,24 +4967,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6425,7 +4978,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_0_2();
+    return new UFC_ffc_L2proj_22LinearForm_dof_map_0_2();
   }
 
 };
@@ -6433,7 +4986,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_0: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -6442,13 +4995,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_0() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -6456,7 +5009,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6465,16 +5018,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6483,7 +5036,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 12*m.num_entities[3];
     return false;
   }
 
@@ -6509,7 +5062,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -6521,7 +5074,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6535,41 +5088,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    unsigned int offset = 4*m.num_entities[3];
+    dofs[4] = offset + 4*c.entity_indices[3][0];
+    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
+    offset = offset + 4*m.num_entities[3];
+    dofs[8] = offset + 4*c.entity_indices[3][0];
+    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6579,84 +5111,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -6685,84 +5149,30 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[10][0] = x[0][0];
-    coordinates[10][1] = x[0][1];
-    coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[20][0] = x[0][0];
-    coordinates[20][1] = x[0][1];
-    coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -6777,13 +5187,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0_0();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_0_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0_1();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_0_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0_2();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_0_2();
       break;
     }
     return 0;
@@ -6794,7 +5204,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1_0: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -6803,13 +5213,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1_0() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_1_0()
   {
     // Do nothing
   }
@@ -6817,7 +5227,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6826,16 +5236,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -6844,7 +5254,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -6870,7 +5280,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -6882,7 +5292,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -6896,17 +5306,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6916,36 +5319,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -6974,24 +5357,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7003,7 +5368,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_1_0();
+    return new UFC_ffc_L2proj_22LinearForm_dof_map_1_0();
   }
 
 };
@@ -7011,7 +5376,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1_1: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -7020,13 +5385,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1_1() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1_1()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_1_1()
   {
     // Do nothing
   }
@@ -7034,7 +5399,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7043,16 +5408,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -7061,7 +5426,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -7087,7 +5452,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7099,7 +5464,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7113,17 +5478,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7133,36 +5491,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -7191,24 +5529,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7220,7 +5540,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_1_1();
+    return new UFC_ffc_L2proj_22LinearForm_dof_map_1_1();
   }
 
 };
@@ -7228,7 +5548,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1_2: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_1_2: public ufc::dof_map
 {
 private:
 
@@ -7237,13 +5557,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1_2() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_1_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1_2()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_1_2()
   {
     // Do nothing
   }
@@ -7251,7 +5571,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 2 on a tetrahedron";
+    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a tetrahedron";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7260,16 +5580,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -7278,7 +5598,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = 4*m.num_entities[3];
     return false;
   }
 
@@ -7304,7 +5624,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 10;
+    return 4;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7316,7 +5636,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 6;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7330,17 +5650,10 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7350,36 +5663,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
+      
       break;
     }
   }
@@ -7408,24 +5701,6 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7437,7 +5712,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_dof_map_1_2();
+    return new UFC_ffc_L2proj_22LinearForm_dof_map_1_2();
   }
 
 };
@@ -7445,7 +5720,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ffc_L2proj_18LinearForm_dof_map_1: public ufc::dof_map
+class UFC_ffc_L2proj_22LinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -7454,13 +5729,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_dof_map_1() : ufc::dof_map()
+  UFC_ffc_L2proj_22LinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_dof_map_1()
+  virtual ~UFC_ffc_L2proj_22LinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -7468,7 +5743,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron, Lagrange finite element of degree 2 on a tetrahedron]";
+    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron, Discontinuous Lagrange finite element of degree 1 on a tetrahedron]";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7477,16 +5752,16 @@ public:
     switch ( d )
     {
     case 0:
-      return true;
+      return false;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
       break;
     case 3:
-      return false;
+      return true;
       break;
     }
     return false;
@@ -7495,7 +5770,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 3*m.num_entities[0] + 3*m.num_entities[1];
+    __global_dimension = 12*m.num_entities[3];
     return false;
   }
 
@@ -7521,7 +5796,7 @@ public:
   /// Return the dimension of the local finite element function space
   virtual unsigned int local_dimension() const
   {
-    return 30;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7533,7 +5808,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 18;
+    return 0;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7547,41 +5822,20 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[0][0];
-    dofs[1] = c.entity_indices[0][1];
-    dofs[2] = c.entity_indices[0][2];
-    dofs[3] = c.entity_indices[0][3];
-    unsigned int offset = m.num_entities[0];
-    dofs[4] = offset + c.entity_indices[1][0];
-    dofs[5] = offset + c.entity_indices[1][1];
-    dofs[6] = offset + c.entity_indices[1][2];
-    dofs[7] = offset + c.entity_indices[1][3];
-    dofs[8] = offset + c.entity_indices[1][4];
-    dofs[9] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[10] = offset + c.entity_indices[0][0];
-    dofs[11] = offset + c.entity_indices[0][1];
-    dofs[12] = offset + c.entity_indices[0][2];
-    dofs[13] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[14] = offset + c.entity_indices[1][0];
-    dofs[15] = offset + c.entity_indices[1][1];
-    dofs[16] = offset + c.entity_indices[1][2];
-    dofs[17] = offset + c.entity_indices[1][3];
-    dofs[18] = offset + c.entity_indices[1][4];
-    dofs[19] = offset + c.entity_indices[1][5];
-    offset = offset + m.num_entities[1];
-    dofs[20] = offset + c.entity_indices[0][0];
-    dofs[21] = offset + c.entity_indices[0][1];
-    dofs[22] = offset + c.entity_indices[0][2];
-    dofs[23] = offset + c.entity_indices[0][3];
-    offset = offset + m.num_entities[0];
-    dofs[24] = offset + c.entity_indices[1][0];
-    dofs[25] = offset + c.entity_indices[1][1];
-    dofs[26] = offset + c.entity_indices[1][2];
-    dofs[27] = offset + c.entity_indices[1][3];
-    dofs[28] = offset + c.entity_indices[1][4];
-    dofs[29] = offset + c.entity_indices[1][5];
+    dofs[0] = 4*c.entity_indices[3][0];
+    dofs[1] = 4*c.entity_indices[3][0] + 1;
+    dofs[2] = 4*c.entity_indices[3][0] + 2;
+    dofs[3] = 4*c.entity_indices[3][0] + 3;
+    unsigned int offset = 4*m.num_entities[3];
+    dofs[4] = offset + 4*c.entity_indices[3][0];
+    dofs[5] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[6] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[7] = offset + 4*c.entity_indices[3][0] + 3;
+    offset = offset + 4*m.num_entities[3];
+    dofs[8] = offset + 4*c.entity_indices[3][0];
+    dofs[9] = offset + 4*c.entity_indices[3][0] + 1;
+    dofs[10] = offset + 4*c.entity_indices[3][0] + 2;
+    dofs[11] = offset + 4*c.entity_indices[3][0] + 3;
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7591,84 +5845,16 @@ public:
     switch ( facet )
     {
     case 0:
-      dofs[0] = 1;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 5;
-      dofs[5] = 6;
-      dofs[6] = 11;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 15;
-      dofs[11] = 16;
-      dofs[12] = 21;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 25;
-      dofs[17] = 26;
+      
       break;
     case 1:
-      dofs[0] = 0;
-      dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 4;
-      dofs[4] = 7;
-      dofs[5] = 8;
-      dofs[6] = 10;
-      dofs[7] = 12;
-      dofs[8] = 13;
-      dofs[9] = 14;
-      dofs[10] = 17;
-      dofs[11] = 18;
-      dofs[12] = 20;
-      dofs[13] = 22;
-      dofs[14] = 23;
-      dofs[15] = 24;
-      dofs[16] = 27;
-      dofs[17] = 28;
+      
       break;
     case 2:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 5;
-      dofs[4] = 7;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 13;
-      dofs[9] = 15;
-      dofs[10] = 17;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 23;
-      dofs[15] = 25;
-      dofs[16] = 27;
-      dofs[17] = 29;
+      
       break;
     case 3:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-      dofs[3] = 6;
-      dofs[4] = 8;
-      dofs[5] = 9;
-      dofs[6] = 10;
-      dofs[7] = 11;
-      dofs[8] = 12;
-      dofs[9] = 16;
-      dofs[10] = 18;
-      dofs[11] = 19;
-      dofs[12] = 20;
-      dofs[13] = 21;
-      dofs[14] = 22;
-      dofs[15] = 26;
-      dofs[16] = 28;
-      dofs[17] = 29;
+      
       break;
     }
   }
@@ -7697,84 +5883,30 @@ public:
     coordinates[3][0] = x[3][0];
     coordinates[3][1] = x[3][1];
     coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[10][0] = x[0][0];
-    coordinates[10][1] = x[0][1];
-    coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[20][0] = x[0][0];
-    coordinates[20][1] = x[0][1];
-    coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    coordinates[4][0] = x[0][0];
+    coordinates[4][1] = x[0][1];
+    coordinates[4][2] = x[0][2];
+    coordinates[5][0] = x[1][0];
+    coordinates[5][1] = x[1][1];
+    coordinates[5][2] = x[1][2];
+    coordinates[6][0] = x[2][0];
+    coordinates[6][1] = x[2][1];
+    coordinates[6][2] = x[2][2];
+    coordinates[7][0] = x[3][0];
+    coordinates[7][1] = x[3][1];
+    coordinates[7][2] = x[3][2];
+    coordinates[8][0] = x[0][0];
+    coordinates[8][1] = x[0][1];
+    coordinates[8][2] = x[0][2];
+    coordinates[9][0] = x[1][0];
+    coordinates[9][1] = x[1][1];
+    coordinates[9][2] = x[1][2];
+    coordinates[10][0] = x[2][0];
+    coordinates[10][1] = x[2][1];
+    coordinates[10][2] = x[2][2];
+    coordinates[11][0] = x[3][0];
+    coordinates[11][1] = x[3][1];
+    coordinates[11][2] = x[3][2];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7789,13 +5921,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1_0();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_1_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1_1();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_1_1();
       break;
     case 2:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1_2();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_1_2();
       break;
     }
     return 0;
@@ -7807,18 +5939,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ffc_L2proj_18LinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_ffc_L2proj_22LinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_ffc_L2proj_22LinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm_cell_integral_0()
+  virtual ~UFC_ffc_L2proj_22LinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -7870,24 +6002,6 @@ public:
     const double c0_0_0_9 = w[0][9];
     const double c0_0_0_10 = w[0][10];
     const double c0_0_0_11 = w[0][11];
-    const double c0_0_0_12 = w[0][12];
-    const double c0_0_0_13 = w[0][13];
-    const double c0_0_0_14 = w[0][14];
-    const double c0_0_0_15 = w[0][15];
-    const double c0_0_0_16 = w[0][16];
-    const double c0_0_0_17 = w[0][17];
-    const double c0_0_0_18 = w[0][18];
-    const double c0_0_0_19 = w[0][19];
-    const double c0_0_0_20 = w[0][20];
-    const double c0_0_0_21 = w[0][21];
-    const double c0_0_0_22 = w[0][22];
-    const double c0_0_0_23 = w[0][23];
-    const double c0_0_0_24 = w[0][24];
-    const double c0_0_0_25 = w[0][25];
-    const double c0_0_0_26 = w[0][26];
-    const double c0_0_0_27 = w[0][27];
-    const double c0_0_0_28 = w[0][28];
-    const double c0_0_0_29 = w[0][29];
     
     // Compute geometry tensors
     const double G0_0 = det*c0_0_0_0;
@@ -7902,56 +6016,20 @@ public:
     const double G0_9 = det*c0_0_0_9;
     const double G0_10 = det*c0_0_0_10;
     const double G0_11 = det*c0_0_0_11;
-    const double G0_12 = det*c0_0_0_12;
-    const double G0_13 = det*c0_0_0_13;
-    const double G0_14 = det*c0_0_0_14;
-    const double G0_15 = det*c0_0_0_15;
-    const double G0_16 = det*c0_0_0_16;
-    const double G0_17 = det*c0_0_0_17;
-    const double G0_18 = det*c0_0_0_18;
-    const double G0_19 = det*c0_0_0_19;
-    const double G0_20 = det*c0_0_0_20;
-    const double G0_21 = det*c0_0_0_21;
-    const double G0_22 = det*c0_0_0_22;
-    const double G0_23 = det*c0_0_0_23;
-    const double G0_24 = det*c0_0_0_24;
-    const double G0_25 = det*c0_0_0_25;
-    const double G0_26 = det*c0_0_0_26;
-    const double G0_27 = det*c0_0_0_27;
-    const double G0_28 = det*c0_0_0_28;
-    const double G0_29 = det*c0_0_0_29;
     
     // Compute element tensor
-    A[0] = 0.00238095238095237*G0_0 + 0.000396825396825395*G0_1 + 0.000396825396825396*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095238*G0_4 - 0.00238095238095238*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730158*G0_7 - 0.00158730158730158*G0_8 - 0.00158730158730158*G0_9;
-    A[1] = 0.000396825396825395*G0_0 + 0.00238095238095238*G0_1 + 0.000396825396825396*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095237*G0_4 - 0.00158730158730158*G0_5 - 0.00158730158730158*G0_6 - 0.00238095238095237*G0_7 - 0.00238095238095237*G0_8 - 0.00158730158730158*G0_9;
-    A[2] = 0.000396825396825396*G0_0 + 0.000396825396825396*G0_1 + 0.00238095238095238*G0_2 + 0.000396825396825398*G0_3 - 0.00158730158730159*G0_4 - 0.00238095238095238*G0_5 - 0.00158730158730159*G0_6 - 0.00238095238095238*G0_7 - 0.00158730158730159*G0_8 - 0.00238095238095238*G0_9;
-    A[3] = 0.000396825396825396*G0_0 + 0.000396825396825396*G0_1 + 0.000396825396825398*G0_2 + 0.00238095238095238*G0_3 - 0.00158730158730159*G0_4 - 0.00158730158730159*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730159*G0_7 - 0.00238095238095238*G0_8 - 0.00238095238095238*G0_9;
-    A[4] = -0.00238095238095238*G0_0 - 0.00238095238095238*G0_1 - 0.00158730158730159*G0_2 - 0.00158730158730159*G0_3 + 0.0126984126984127*G0_4 + 0.00634920634920634*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920634*G0_7 + 0.00634920634920634*G0_8 + 0.00317460317460317*G0_9;
-    A[5] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920634*G0_4 + 0.0126984126984127*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920634*G0_7 + 0.00317460317460317*G0_8 + 0.00634920634920634*G0_9;
-    A[6] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920635*G0_4 + 0.00634920634920635*G0_5 + 0.0126984126984127*G0_6 + 0.00317460317460317*G0_7 + 0.00634920634920634*G0_8 + 0.00634920634920634*G0_9;
-    A[7] = -0.00158730158730158*G0_0 - 0.00238095238095237*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920634*G0_4 + 0.00634920634920634*G0_5 + 0.00317460317460317*G0_6 + 0.0126984126984127*G0_7 + 0.00634920634920634*G0_8 + 0.00634920634920633*G0_9;
-    A[8] = -0.00158730158730158*G0_0 - 0.00238095238095237*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920634*G0_4 + 0.00317460317460317*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920634*G0_7 + 0.0126984126984127*G0_8 + 0.00634920634920634*G0_9;
-    A[9] = -0.00158730158730158*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00238095238095238*G0_3 + 0.00317460317460317*G0_4 + 0.00634920634920634*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920633*G0_7 + 0.00634920634920634*G0_8 + 0.0126984126984127*G0_9;
-    A[10] = 0.00238095238095237*G0_10 + 0.000396825396825395*G0_11 + 0.000396825396825396*G0_12 + 0.000396825396825396*G0_13 - 0.00238095238095238*G0_14 - 0.00238095238095238*G0_15 - 0.00238095238095238*G0_16 - 0.00158730158730158*G0_17 - 0.00158730158730158*G0_18 - 0.00158730158730158*G0_19;
-    A[11] = 0.000396825396825395*G0_10 + 0.00238095238095238*G0_11 + 0.000396825396825396*G0_12 + 0.000396825396825396*G0_13 - 0.00238095238095237*G0_14 - 0.00158730158730158*G0_15 - 0.00158730158730158*G0_16 - 0.00238095238095237*G0_17 - 0.00238095238095237*G0_18 - 0.00158730158730158*G0_19;
-    A[12] = 0.000396825396825396*G0_10 + 0.000396825396825396*G0_11 + 0.00238095238095238*G0_12 + 0.000396825396825398*G0_13 - 0.00158730158730159*G0_14 - 0.00238095238095238*G0_15 - 0.00158730158730159*G0_16 - 0.00238095238095238*G0_17 - 0.00158730158730159*G0_18 - 0.00238095238095238*G0_19;
-    A[13] = 0.000396825396825396*G0_10 + 0.000396825396825396*G0_11 + 0.000396825396825398*G0_12 + 0.00238095238095238*G0_13 - 0.00158730158730159*G0_14 - 0.00158730158730159*G0_15 - 0.00238095238095238*G0_16 - 0.00158730158730159*G0_17 - 0.00238095238095238*G0_18 - 0.00238095238095238*G0_19;
-    A[14] = -0.00238095238095238*G0_10 - 0.00238095238095238*G0_11 - 0.00158730158730159*G0_12 - 0.00158730158730159*G0_13 + 0.0126984126984127*G0_14 + 0.00634920634920634*G0_15 + 0.00634920634920635*G0_16 + 0.00634920634920634*G0_17 + 0.00634920634920634*G0_18 + 0.00317460317460317*G0_19;
-    A[15] = -0.00238095238095238*G0_10 - 0.00158730158730158*G0_11 - 0.00238095238095238*G0_12 - 0.00158730158730159*G0_13 + 0.00634920634920634*G0_14 + 0.0126984126984127*G0_15 + 0.00634920634920635*G0_16 + 0.00634920634920634*G0_17 + 0.00317460317460317*G0_18 + 0.00634920634920634*G0_19;
-    A[16] = -0.00238095238095238*G0_10 - 0.00158730158730158*G0_11 - 0.00158730158730159*G0_12 - 0.00238095238095238*G0_13 + 0.00634920634920635*G0_14 + 0.00634920634920635*G0_15 + 0.0126984126984127*G0_16 + 0.00317460317460317*G0_17 + 0.00634920634920634*G0_18 + 0.00634920634920634*G0_19;
-    A[17] = -0.00158730158730158*G0_10 - 0.00238095238095237*G0_11 - 0.00238095238095238*G0_12 - 0.00158730158730159*G0_13 + 0.00634920634920634*G0_14 + 0.00634920634920634*G0_15 + 0.00317460317460317*G0_16 + 0.0126984126984127*G0_17 + 0.00634920634920634*G0_18 + 0.00634920634920633*G0_19;
-    A[18] = -0.00158730158730158*G0_10 - 0.00238095238095237*G0_11 - 0.00158730158730159*G0_12 - 0.00238095238095238*G0_13 + 0.00634920634920634*G0_14 + 0.00317460317460317*G0_15 + 0.00634920634920634*G0_16 + 0.00634920634920634*G0_17 + 0.0126984126984127*G0_18 + 0.00634920634920634*G0_19;
-    A[19] = -0.00158730158730158*G0_10 - 0.00158730158730158*G0_11 - 0.00238095238095238*G0_12 - 0.00238095238095238*G0_13 + 0.00317460317460317*G0_14 + 0.00634920634920634*G0_15 + 0.00634920634920634*G0_16 + 0.00634920634920633*G0_17 + 0.00634920634920634*G0_18 + 0.0126984126984127*G0_19;
-    A[20] = 0.00238095238095237*G0_20 + 0.000396825396825395*G0_21 + 0.000396825396825396*G0_22 + 0.000396825396825396*G0_23 - 0.00238095238095238*G0_24 - 0.00238095238095238*G0_25 - 0.00238095238095238*G0_26 - 0.00158730158730158*G0_27 - 0.00158730158730158*G0_28 - 0.00158730158730158*G0_29;
-    A[21] = 0.000396825396825395*G0_20 + 0.00238095238095238*G0_21 + 0.000396825396825396*G0_22 + 0.000396825396825396*G0_23 - 0.00238095238095237*G0_24 - 0.00158730158730158*G0_25 - 0.00158730158730158*G0_26 - 0.00238095238095237*G0_27 - 0.00238095238095237*G0_28 - 0.00158730158730158*G0_29;
-    A[22] = 0.000396825396825396*G0_20 + 0.000396825396825396*G0_21 + 0.00238095238095238*G0_22 + 0.000396825396825398*G0_23 - 0.00158730158730159*G0_24 - 0.00238095238095238*G0_25 - 0.00158730158730159*G0_26 - 0.00238095238095238*G0_27 - 0.00158730158730159*G0_28 - 0.00238095238095238*G0_29;
-    A[23] = 0.000396825396825396*G0_20 + 0.000396825396825396*G0_21 + 0.000396825396825398*G0_22 + 0.00238095238095238*G0_23 - 0.00158730158730159*G0_24 - 0.00158730158730159*G0_25 - 0.00238095238095238*G0_26 - 0.00158730158730159*G0_27 - 0.00238095238095238*G0_28 - 0.00238095238095238*G0_29;
-    A[24] = -0.00238095238095238*G0_20 - 0.00238095238095238*G0_21 - 0.00158730158730159*G0_22 - 0.00158730158730159*G0_23 + 0.0126984126984127*G0_24 + 0.00634920634920634*G0_25 + 0.00634920634920635*G0_26 + 0.00634920634920634*G0_27 + 0.00634920634920634*G0_28 + 0.00317460317460317*G0_29;
-    A[25] = -0.00238095238095238*G0_20 - 0.00158730158730158*G0_21 - 0.00238095238095238*G0_22 - 0.00158730158730159*G0_23 + 0.00634920634920634*G0_24 + 0.0126984126984127*G0_25 + 0.00634920634920635*G0_26 + 0.00634920634920634*G0_27 + 0.00317460317460317*G0_28 + 0.00634920634920634*G0_29;
-    A[26] = -0.00238095238095238*G0_20 - 0.00158730158730158*G0_21 - 0.00158730158730159*G0_22 - 0.00238095238095238*G0_23 + 0.00634920634920635*G0_24 + 0.00634920634920635*G0_25 + 0.0126984126984127*G0_26 + 0.00317460317460317*G0_27 + 0.00634920634920634*G0_28 + 0.00634920634920634*G0_29;
-    A[27] = -0.00158730158730158*G0_20 - 0.00238095238095237*G0_21 - 0.00238095238095238*G0_22 - 0.00158730158730159*G0_23 + 0.00634920634920634*G0_24 + 0.00634920634920634*G0_25 + 0.00317460317460317*G0_26 + 0.0126984126984127*G0_27 + 0.00634920634920634*G0_28 + 0.00634920634920633*G0_29;
-    A[28] = -0.00158730158730158*G0_20 - 0.00238095238095237*G0_21 - 0.00158730158730159*G0_22 - 0.00238095238095238*G0_23 + 0.00634920634920634*G0_24 + 0.00317460317460317*G0_25 + 0.00634920634920634*G0_26 + 0.00634920634920634*G0_27 + 0.0126984126984127*G0_28 + 0.00634920634920634*G0_29;
-    A[29] = -0.00158730158730158*G0_20 - 0.00158730158730158*G0_21 - 0.00238095238095238*G0_22 - 0.00238095238095238*G0_23 + 0.00317460317460317*G0_24 + 0.00634920634920634*G0_25 + 0.00634920634920634*G0_26 + 0.00634920634920633*G0_27 + 0.00634920634920634*G0_28 + 0.0126984126984127*G0_29;
+    A[0] = 0.0166666666666666*G0_0 + 0.00833333333333331*G0_1 + 0.00833333333333331*G0_2 + 0.00833333333333331*G0_3;
+    A[1] = 0.00833333333333331*G0_0 + 0.0166666666666666*G0_1 + 0.00833333333333331*G0_2 + 0.00833333333333331*G0_3;
+    A[2] = 0.00833333333333331*G0_0 + 0.00833333333333331*G0_1 + 0.0166666666666666*G0_2 + 0.00833333333333331*G0_3;
+    A[3] = 0.00833333333333331*G0_0 + 0.00833333333333331*G0_1 + 0.00833333333333331*G0_2 + 0.0166666666666666*G0_3;
+    A[4] = 0.0166666666666666*G0_4 + 0.00833333333333331*G0_5 + 0.00833333333333331*G0_6 + 0.00833333333333331*G0_7;
+    A[5] = 0.00833333333333331*G0_4 + 0.0166666666666666*G0_5 + 0.00833333333333331*G0_6 + 0.00833333333333331*G0_7;
+    A[6] = 0.00833333333333331*G0_4 + 0.00833333333333331*G0_5 + 0.0166666666666666*G0_6 + 0.00833333333333331*G0_7;
+    A[7] = 0.00833333333333331*G0_4 + 0.00833333333333331*G0_5 + 0.00833333333333331*G0_6 + 0.0166666666666666*G0_7;
+    A[8] = 0.0166666666666666*G0_8 + 0.00833333333333331*G0_9 + 0.00833333333333331*G0_10 + 0.00833333333333331*G0_11;
+    A[9] = 0.00833333333333331*G0_8 + 0.0166666666666666*G0_9 + 0.00833333333333331*G0_10 + 0.00833333333333331*G0_11;
+    A[10] = 0.00833333333333331*G0_8 + 0.00833333333333331*G0_9 + 0.0166666666666666*G0_10 + 0.00833333333333331*G0_11;
+    A[11] = 0.00833333333333331*G0_8 + 0.00833333333333331*G0_9 + 0.00833333333333331*G0_10 + 0.0166666666666666*G0_11;
   }
 
 };
@@ -7971,18 +6049,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ffc_L2proj_18LinearForm: public ufc::form
+class UFC_ffc_L2proj_22LinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ffc_L2proj_18LinearForm() : ufc::form()
+  UFC_ffc_L2proj_22LinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ffc_L2proj_18LinearForm()
+  virtual ~UFC_ffc_L2proj_22LinearForm()
   {
     // Do nothing
   }
@@ -7990,7 +6068,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] | va0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29][b0[0, 1, 2]]*vi0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29][b0[0, 1, 2]]*dX(0)";
+    return "w0_a0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] | va0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11][b0[0, 1, 2]]*vi0[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11][b0[0, 1, 2]]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8029,10 +6107,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_0();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_finite_element_1();
+      return new UFC_ffc_L2proj_22LinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -8044,10 +6122,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_0();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_ffc_L2proj_18LinearForm_dof_map_1();
+      return new UFC_ffc_L2proj_22LinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -8056,7 +6134,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ffc_L2proj_18LinearForm_cell_integral_0();
+    return new UFC_ffc_L2proj_22LinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -8077,11 +6155,11 @@ public:
 
 #include <dolfin/fem/Form.h>
 
-class ffc_L2proj_18BilinearForm : public dolfin::Form
+class ffc_L2proj_22BilinearForm : public dolfin::Form
 {
 public:
 
-  ffc_L2proj_18BilinearForm() : dolfin::Form()
+  ffc_L2proj_22BilinearForm() : dolfin::Form()
   {
     // Do nothing
   }
@@ -8101,18 +6179,18 @@ public:
 private:
 
   // UFC form
-  UFC_ffc_L2proj_18BilinearForm __form;
+  UFC_ffc_L2proj_22BilinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
 
 };
 
-class ffc_L2proj_18LinearForm : public dolfin::Form
+class ffc_L2proj_22LinearForm : public dolfin::Form
 {
 public:
 
-  ffc_L2proj_18LinearForm(dolfin::Function& w0) : dolfin::Form()
+  ffc_L2proj_22LinearForm(dolfin::Function& w0) : dolfin::Form()
   {
     __coefficients.push_back(&w0);
   }
@@ -8132,7 +6210,7 @@ public:
 private:
 
   // UFC form
-  UFC_ffc_L2proj_18LinearForm __form;
+  UFC_ffc_L2proj_22LinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
