@@ -496,12 +496,12 @@ Apply boundary condition to linear system for a nonlinear problem. ";
 
 %feature("docstring")  dolfin::DirichletBC::zero "
 
-make row associated with boundary conditions zero, useful for non-
+Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
 
 %feature("docstring")  dolfin::DirichletBC::zero "
 
-make row associated with boundary conditions zero, useful for non-
+Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
 
 %feature("docstring")  dolfin::DirichletBC::mesh "
@@ -587,6 +587,10 @@ Build parallel dof map. ";
 %feature("docstring")  dolfin::DofMap::getMap "
 
 Return renumbering (used for testing). ";
+
+%feature("docstring")  dolfin::DofMap::disp "
+
+Display mapping. ";
 
 
 // File: classdolfin_1_1DofMapSet.xml
@@ -1087,15 +1091,27 @@ Set given rows to identity matrix. ";
 
 Set given matrix rows to zero. ";
 
-%feature("docstring")  dolfin::GenericMatrix::set "
+%feature("docstring")  dolfin::GenericMatrix::setitem "
 
 Set given matrix entry to value. ";
+
+%feature("docstring")  dolfin::GenericMatrix::getitem "
+
+Get given matrix entry. ";
 
 %feature("docstring")  dolfin::GenericMatrix::mult "";
 
 %feature("docstring")  dolfin::GenericMatrix::getRow "
 
 Get non-zero values of row i. ";
+
+%feature("docstring")  dolfin::GenericMatrix::instance "
+
+Return const GenericMatrix* (internal library use only!). ";
+
+%feature("docstring")  dolfin::GenericMatrix::instance "
+
+Return GenericMatrix* (internal library use only!). ";
 
 
 // File: classdolfin_1_1GenericSparsityPattern.xml
@@ -1205,6 +1221,26 @@ Display tensor. ";
 
 Get LA backend factory. ";
 
+%feature("docstring")  dolfin::GenericTensor::instance "
+
+Return const GenericTensor* (internal library use only!). ";
+
+%feature("docstring")  dolfin::GenericTensor::instance "
+
+Return GenericTensor* (internal library use only!). ";
+
+%feature("docstring")  dolfin::GenericTensor::down_cast "
+
+Cast a GenericTensor to its derived class (const version). ";
+
+%feature("docstring")  dolfin::GenericTensor::down_cast "
+
+Cast a GenericTensor to its derived class (non-const version). ";
+
+%feature("docstring")  dolfin::GenericTensor::has_type "
+
+Check wether the GenericTensor object matches a specific type. ";
+
 
 // File: classdolfin_1_1GenericVector.xml
 %feature("docstring") dolfin::GenericVector "
@@ -1302,7 +1338,15 @@ Add block of values. ";
 
 Inner product. ";
 
-%feature("docstring")  dolfin::GenericVector::add "";
+%feature("docstring")  dolfin::GenericVector::axpy "";
+
+%feature("docstring")  dolfin::GenericVector::instance "
+
+Return const GenericVector* (internal library use only!). ";
+
+%feature("docstring")  dolfin::GenericVector::instance "
+
+Return GenericVector* (internal library use only!). ";
 
 
 // File: classdolfin_1_1GMRES.xml
@@ -1923,20 +1967,20 @@ Finalise assembly of matrix. ";
 
 Display matrix (sparse output is default). ";
 
+%feature("docstring")  dolfin::Matrix::instance "
+
+Return const GenericMatrix* (internal library use only!). ";
+
+%feature("docstring")  dolfin::Matrix::instance "
+
+Return GenericMatrix* (internal library use only!). ";
+
 %feature("docstring")  dolfin::Matrix::getRow "
 
 Get non-zero values of row i.
 
 FIXME: Functions below are not in the GenericVector interface. FIXME:
 Should these be removed or added to the interface? ";
-
-%feature("docstring")  dolfin::Matrix::mat "
-
-Return const reference to implementation. ";
-
-%feature("docstring")  dolfin::Matrix::mat "
-
-Return const reference to implementation. ";
 
 %feature("docstring")  dolfin::Matrix::factory "
 
@@ -2895,14 +2939,6 @@ Compute product y = Mx for implicit system (optional). ";
 
 Compute product y = Jx for Jacobian J (optional). ";
 
-%feature("docstring")  dolfin::ODE::Jmatrix "
-
-Compute Jacobian matrix J (optional). ";
-
-%feature("docstring")  dolfin::ODE::Mmatrix "
-
-Compute LHS matrix M (optional). ";
-
 %feature("docstring")  dolfin::ODE::dfdu "
 
 Compute entry of Jacobian (optional). ";
@@ -3682,31 +3718,6 @@ Solve linear system Ax = b and return number of iterations (virtual
 matrix). ";
 
 
-// File: classdolfin_1_1uBlasLinearSolver.xml
-%feature("docstring") dolfin::uBlasLinearSolver "
-
-This class defines the interfaces for uBlas-based linear solvers for
-systems of the form Ax = b.
-
-C++ includes: uBlasLinearSolver.h ";
-
-%feature("docstring")  dolfin::uBlasLinearSolver::uBlasLinearSolver "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::uBlasLinearSolver::~uBlasLinearSolver "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::uBlasLinearSolver::solve "
-
-Solve linear system Ax = b (A is dense). ";
-
-%feature("docstring")  dolfin::uBlasLinearSolver::solve "
-
-Solve linear system Ax = b (A is sparse). ";
-
-
 // File: classdolfin_1_1uBlasLUSolver.xml
 %feature("docstring") dolfin::uBlasLUSolver "
 
@@ -3845,12 +3856,20 @@ Compress matrix (eliminate all non-zeros from a sparse matrix). ";
 
 Display matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::init "
+%feature("docstring")  dolfin::uBlasMatrix::instance "
 
-Initialize M x N matrix.
+Return concrete (const) uBlasMatrix<Mat> instance.
 
 The below functions have specialisations for particular matrix types.
 In order to link correctly, they must be made inline functions. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::instance "
+
+Return concrete uBlasMatrix<Mat> instance. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::init "
+
+Initialize M x N matrix. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::init "
 
@@ -3953,7 +3972,9 @@ Create copy of vector. ";
 
 %feature("docstring")  dolfin::uBlasVector::size "
 
-Return size. ";
+Assignment from a vector_expression.
+
+Return size ";
 
 %feature("docstring")  dolfin::uBlasVector::get "
 
@@ -4007,8 +4028,6 @@ Scalar multiplication. ";
 
 Inner product. ";
 
-%feature("docstring")  dolfin::uBlasVector::add "";
-
 %feature("docstring")  dolfin::uBlasVector::div "
 
 Element-wise division. ";
@@ -4020,6 +4039,14 @@ Display vector. ";
 %feature("docstring")  dolfin::uBlasVector::factory "
 
 Return backend factory. ";
+
+%feature("docstring")  dolfin::uBlasVector::vec "
+
+Return uBLAS ublas_vector reference. ";
+
+%feature("docstring")  dolfin::uBlasVector::vec "
+
+Return uBLAS ublas_vector reference. ";
 
 %feature("docstring")  dolfin::uBlasVector::copy "";
 
@@ -4168,14 +4195,6 @@ Display matrix (sparse output is default). ";
 
 Compute norm of vector. ";
 
-%feature("docstring")  dolfin::Vector::vec "
-
-Return const implementation. ";
-
-%feature("docstring")  dolfin::Vector::vec "
-
-Return implementation. ";
-
 %feature("docstring")  dolfin::Vector::factory "
 
 Return backend factory. ";
@@ -4184,9 +4203,21 @@ Return backend factory. ";
 
 inner product ";
 
-%feature("docstring")  dolfin::Vector::add "
+%feature("docstring")  dolfin::Vector::axpy "
 
 this += a*x ";
+
+%feature("docstring")  dolfin::Vector::mult "
+
+this *= a ";
+
+%feature("docstring")  dolfin::Vector::instance "
+
+Return const GenericVector* (internal library use only!). ";
+
+%feature("docstring")  dolfin::Vector::instance "
+
+Return GenericVector* (internal library use only!). ";
 
 
 // File: classdolfin_1_1Vertex.xml
@@ -4531,9 +4562,6 @@ domains. ";
 // File: PETScKrylovSolver_8h.xml
 
 
-// File: PETScLinearSolver_8h.xml
-
-
 // File: PETScLUSolver_8h.xml
 
 
@@ -4571,9 +4599,6 @@ domains. ";
 
 
 // File: uBlasKrylovSolver_8h.xml
-
-
-// File: uBlasLinearSolver_8h.xml
 
 
 // File: uBlasLUSolver_8h.xml
@@ -4738,53 +4763,53 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_f67caee761b31debf79b427d824fcb86.xml
+// File: dir_c569ee784d9ec6ae98f65d3b6aa7e711.xml
 
 
-// File: dir_9ca999a4982cfbe36c101ade6238b5da.xml
+// File: dir_ad82cc48375952761505fd9b21c36315.xml
 
 
-// File: dir_fa068acbfb6c36bda2d6730b64e3cfe1.xml
+// File: dir_6bcfaa691f1b67b57bfaba2b079bda3f.xml
 
 
-// File: dir_9a33837534d83c442431167511ae46d6.xml
+// File: dir_171eb7a8d0ec3ee4b2ca7cd340484634.xml
 
 
-// File: dir_accb03781b2e35ea4e8928b49729892c.xml
+// File: dir_ce11f9d5d2929d35b4c70cef043a3cf1.xml
 
 
-// File: dir_1a6e74077839256c67ab657c06defcd7.xml
+// File: dir_0512fb81e3e45de9b65c6c7a833d3823.xml
 
 
-// File: dir_e00413835d21b5fe861937c41db99920.xml
+// File: dir_065367c2e0439fecffa58b7cf6bb691d.xml
 
 
-// File: dir_f9e15eca777b9217c1c220575deedbfa.xml
+// File: dir_fa30e0f4b3d905a89227b8ae3a80b122.xml
 
 
-// File: dir_cfbcd3974f3b8738f9d87ca2595722a7.xml
+// File: dir_28aed864a592ec480ff18ed03b485bfc.xml
 
 
-// File: dir_047eb08f999213c504d6b46b91bb4229.xml
+// File: dir_a07d89c46e00f7f919347038ef4eae1e.xml
 
 
-// File: dir_a39976d8888834ee35220e9c60a28f1f.xml
+// File: dir_87d7877df9e4f762bb38e6cb71071a58.xml
 
 
-// File: dir_c5af44ff6548e8ed37682ea8b29fc09c.xml
+// File: dir_7b2e7e029743b24255ddd52f0115784d.xml
 
 
-// File: dir_34b6f3902ef71ca2a21708496ecf8cde.xml
+// File: dir_fadcafd5a71cf06464ead075056d0d70.xml
 
 
-// File: dir_42ac68ee965aa9f5530cab172041eaec.xml
+// File: dir_9fa68a94bf8749c7617594b2eea04deb.xml
 
 
-// File: dir_2163e1ee893c5593a86de00f721262f1.xml
+// File: dir_ab5e4da1e63ca068dee3ddb455da78c0.xml
 
 
-// File: dir_65d48c4810b0dbf4a742ced695d22dca.xml
+// File: dir_26766475c2cc4b8d0a30b0028bd93df0.xml
 
 
-// File: dir_e91b514dd4feb42e21d8fcbf7ad79712.xml
+// File: dir_12c0947e7f25b4a71e2dd233130460f5.xml
 
