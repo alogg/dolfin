@@ -49,8 +49,9 @@ L = v*f*dx + v*g*ds
 backend = EpetraFactory.instance()
 
 # Assemble matrices
-A = assemble(a, mesh, backend)
-b = assemble(L, mesh, backend)
+A = assemble(a, mesh, None, None, None, None, None, None, None, backend)
+print type(A)
+b = assemble(L, mesh, None, None, None, None, None, None, None, backend)
 
 
 # Define boundary condition
@@ -63,27 +64,17 @@ bc.apply(A, b, a)
 x = b.copy()
 x.zero()
 
-# create block system
-#AA = BlockMatrix(1,1); AA[0,0] = A
-#xx = BlockVector(1);   xx[0]   = x 
-#bb = BlockVector(1);   bb[0]   = b 
-
-
-# solve the system
-#xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
-
-
 x = BiCGStab(A, x, b, 10e-12, True, 1000)
 
 print x 
 
 # plot the solution
-U = Function(element, mesh, x)
-plot(U)
-interactive()
+#U = Function(element, mesh, x)
+#plot(U)
+#interactive()
 
 # Save solution to file
-file = File("poisson.pvd")
-file << U
+#file = File("poisson.pvd")
+#file << U
 
 
