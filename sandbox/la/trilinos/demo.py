@@ -1,9 +1,11 @@
-
 from dolfin import *
 
+from sys import path 
+path.append("../poisson")
+
+
+
 from Krylov import *
-
-
 
 # Create mesh and finite element
 mesh = UnitSquare(32, 32)
@@ -42,9 +44,13 @@ g = Flux(element, mesh)
 a = dot(grad(v), grad(u))*dx
 L = v*f*dx + v*g*ds
 
+
+
+backend = EpetraFactory.instance()
+
 # Assemble matrices
-A = assemble(a, mesh)
-b = assemble(L, mesh)
+A = assemble(a, mesh, backend)
+b = assemble(L, mesh, backend)
 
 
 # Define boundary condition
