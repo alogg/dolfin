@@ -2,7 +2,6 @@
 from dolfin import *
 
 from Krylov import *
-from BlockLinearAlgebra import *
 
 
 
@@ -69,6 +68,8 @@ x.zero()
 
 
 x = BiCGStab(A, x, b, 10e-12, True, 1000)
+
+print x 
 
 # plot the solution
 U = Function(element, mesh, x)

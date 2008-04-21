@@ -1,20 +1,15 @@
-
 from dolfin import *
 
 from sys import path 
 path.append("../poisson")
 
-
 from Krylov import *
-from BlockLinearAlgebra import *
 
 class Prec: 
     def __init__(self): 
         pass
     def __mul__(self, other): 
         return other.copy()
-
-
 
 # Create mesh and finite element
 N = 32 
@@ -56,12 +51,10 @@ class W(Function):
     def dim(self, i):
         return 2
 
-
 # Sub domain for Dirichlet boundary condition
 class DirichletBoundary(SubDomain):
     def inside(self, x, on_boundary):
         return bool(on_boundary)
-
 
 # Define variational problem
 v = TestFunction(element)
@@ -73,13 +66,11 @@ tau = Function(DG, mesh, 1.0*h**2)
 eps = Function(DG, mesh, epsilon) 
 
 a = dot(w, grad(u))*v*dx + eps*dot(grad(v), grad(u))*dx + tau*dot(dot(w, grad(u)), dot(w, grad(v)))*dx
-#a = eps*dot(grad(v), grad(u))*dx 
 L = v*f*dx 
 
 # Assemble matrices
 A = assemble(a, mesh)
 b = assemble(L, mesh)
-
 
 # Define boundary condition
 boundary = DirichletBoundary()
@@ -87,25 +78,16 @@ bc_func = BC(element, mesh)
 bc = DirichletBC(bc_func, mesh, boundary)
 bc.apply(A, b, a)
 
-b.disp()
-
 # create solution vector (also used as start vector) 
 x = b.copy()
 x.zero()
 
-# create block system
-AA = BlockMatrix(1,1); AA[0,0] = A
-xx = BlockVector(1);   xx[0]   = x 
-bb = BlockVector(1);   bb[0]   = b 
-
-#solve(A,x,b)
-
-BB = Prec()
+B = Prec()
 
 # solve the system
-xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
-#xx = precondBiCGStab(BB, AA, xx, bb, 10e-12, True, 1000)
-#xx = CGN_AA(AA, xx, bb, 10e-12, True)
+regularization_parameter = 1.0/10
+#x = Richardson(A, x, b, regularization_parameter, 10e-6, True, 10000)
+x = precRichardson(B, A, x, b, regularization_parameter, 10e-6, True, 10000)
 
 # plot the solution
 U = Function(element, mesh, x)
