@@ -239,7 +239,8 @@ def BiCGStab(A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=
         beta  = (rrn/rr)*(alpha/w)
         if beta==0.0:
             debug("BiCGStab breakdown, beta=0, at iter=" + str(iter) + " with residual=" + str(sqrt(inner(r,r))), 0)
-            return (x,iter,sqrt(inner(r,r)))
+#            return (x,iter,sqrt(inner(r,r)))
+            return x 
         rr    = rrn
         p     = r+beta*(p-w*Ap)
         iter += 1
@@ -248,6 +249,7 @@ def BiCGStab(A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=
     if info:
         info = {}
         info["iter"] = iter
+        print "Her jeg her" 
         return x, info
     return x
 
@@ -312,7 +314,8 @@ def precondBiCGStab(B, A, x, b, tolerance=1.0E-05, relativeconv=False, maxit=200
         beta  = (rrn/rr)*(alpha/w)
         if beta==0.0:
             debug("BiCGStab breakdown, beta=0, at iter=" + str(iter)+" with residual=" + str(sqrt(inner(r,r))), 0)
-            return (x,iter,sqrt(inner(r,r)))
+#            return (x,iter,sqrt(inner(r,r)))
+            return x
         debug("|r|_%d = %e " %(iter,sqrt(inner(r,r))), 1)
         rr    = rrn
         p     = r+beta*(p-w*Ap)
@@ -678,5 +681,45 @@ def precondRconjgrad(B, A, x, b, tolerance=1.0E-05, relativeconv=False):
         beta_v.append(beta)
         iter += 1
     return (x,iter,alpha_v,beta_v)
+
+
+def Richardson(A, x, b, tau=1, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=False):
+
+    r = b - A*x
+    rho = rho0 = inner(r, r)
+    if relativeconv:
+        tolerance *= sqrt(inner(b,b))
+    print "tolerance ", tolerance
+    iter = 0
+    while sqrt(rho) > tolerance and iter <= maxiter:
+        x += tau*r
+        r = b - A*x
+        rho = inner(r,r)
+        print "iteration ", iter, " rho= ",  sqrt(rho)
+        iter += 1
+    return x 
+
+
+def precRichardson(B, A, x, b, tau=1, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=False):
+
+    r = b - A*x
+    s = B*r
+    rho = rho0 = inner(r, r)
+    if relativeconv:
+        tolerance *= sqrt(inner(b,b))
+    print "tolerance ", tolerance
+    iter = 0
+    while sqrt(rho) > tolerance and iter <= maxiter:
+        x += tau*s
+        r = b - A*x
+        s = B*r 
+        rho = inner(r,r)
+        print "iteration ", iter, " rho= ",  sqrt(rho)
+        iter += 1
+    return x 
+
+
+
+
 
 
