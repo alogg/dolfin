@@ -47,7 +47,6 @@ b = assemble(L, mesh, backend=backend)
 # import Trilinos stuff
 from PyTrilinos import Epetra, EpetraExt, ML, AztecOO 
 
-
 # Define boundary condition
 u0 = Function(mesh, 0.0)
 boundary = DirichletBoundary()
@@ -64,7 +63,6 @@ MLList = {"max levels"        : 3,
       "smoother: type"    : "symmetric Gauss-Seidel",
       "aggregation: type" : "Uncoupled",
       "ML validate parameter list" : False}
-
 
 # Create the preconditioner 
 Prec = ML.MultiLevelPreconditioner(A.mat(), False)
