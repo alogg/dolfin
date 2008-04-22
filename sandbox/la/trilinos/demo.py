@@ -4,7 +4,7 @@ from sys import path
 path.append("../poisson")
 
 
-from PyTrilinos import Epetra, ML, AztecOO 
+from PyTrilinos import Epetra, EpetraExt, ML, AztecOO 
 
 from Krylov import *
 
@@ -72,7 +72,7 @@ A = assemble(a, mesh, backend=backend)
 A.disp()
 
 
-file=File("A.m") ; file << A;  
+#file=File("A.m") ; file << A;  
 
 #b = assemble(L, mesh, backend=backend) 
 #print "b inner ", b.inner(b)
@@ -91,7 +91,6 @@ file=File("A.m") ; file << A;
 
 
 
-dabla = """
 
 
 # sets up the parameters for ML using a python dictionary
@@ -103,23 +102,20 @@ MLList = {
 }
 
 # creates the preconditioner and computes it
+print type(A)
+print type(A.mat())
+print dir(A.mat())
 Prec = ML.MultiLevelPreconditioner(A.mat(), False)
-# Prec.ComputePreconditioner()
-
-print "Prec created "
-
-print type(Prec)
-print dir(Prec)
-
-#Prec.SetParameterList(MLList)
-#Prec.ComputePreconditioner()
-
+Prec.SetParameterList(MLList)
+print "computing ML prec" 
+Prec.ComputePreconditioner()
+print "done computing ML prec" 
 B = MLPreconditioner(Prec)
-
-#B.__mul__(x.vec(),b.vec())
-
+B.__mul__(x.vec(),b.vec())
 
 
+
+dabla = """
 # sets up the solver, specifies Prec as preconditioner, and
 # solves using CG.
 #Solver = AztecOO.AztecOO(A.mat(), x.vec(), b.vec())
