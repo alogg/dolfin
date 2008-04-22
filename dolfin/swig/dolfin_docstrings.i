@@ -1606,9 +1606,10 @@ Compute overlap with point. ";
 
 Compute overlap with bounding box. ";
 
-%feature("docstring")  dolfin::IntersectionDetector::curve_overlap "
+%feature("docstring")  dolfin::IntersectionDetector::overlap "
 
-Compute overlap with set of line segments. ";
+Compute which cells are intersected by a polygon (defined by points).
+";
 
 
 // File: classdolfin_1_1InvMeshSize.xml
@@ -1886,8 +1887,7 @@ C++ includes: LU.h ";
 
 %feature("docstring")  dolfin::LUSolver::LUSolver "
 
-This class defines an interface for a LU solver. The underlying type
-of LU is defined in default_la_types.h. ";
+LU solver for the built-in LA backends. ";
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
@@ -3887,13 +3887,6 @@ Create copy of matrix. ";
 
 Get LA backend factory. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::init "
-
---- Implementation of GenericTensor interface ---
-
-Initialize zero tensor using sparsity pattern (implemented by sub
-class) ";
-
 
 // File: classdolfin_1_1uBlasPreconditioner.xml
 %feature("docstring") dolfin::uBlasPreconditioner "
@@ -4520,6 +4513,15 @@ domains. ";
 // File: default__la__types_8h.xml
 
 
+// File: EpetraFactory_8h.xml
+
+
+// File: EpetraMatrix_8h.xml
+
+
+// File: EpetraVector_8h.xml
+
+
 // File: GenericMatrix_8h.xml
 
 
@@ -4626,9 +4628,6 @@ domains. ";
 
 
 // File: Progress_8h.xml
-
-
-// File: constants_8h.xml
 
 
 // File: init_8h.xml
@@ -4763,53 +4762,53 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_c569ee784d9ec6ae98f65d3b6aa7e711.xml
+// File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
 
 
-// File: dir_ad82cc48375952761505fd9b21c36315.xml
+// File: dir_c2d8b013fd04ed882f8d87b68325caba.xml
 
 
-// File: dir_6bcfaa691f1b67b57bfaba2b079bda3f.xml
+// File: dir_1890b655131c1abe796835d1d7e57599.xml
 
 
-// File: dir_171eb7a8d0ec3ee4b2ca7cd340484634.xml
+// File: dir_fa7665f4f771f6b9bd3285cc3526e10d.xml
 
 
-// File: dir_ce11f9d5d2929d35b4c70cef043a3cf1.xml
+// File: dir_7ae9b525fa735889416df9a88318a409.xml
 
 
-// File: dir_0512fb81e3e45de9b65c6c7a833d3823.xml
+// File: dir_4c8349339c79835b7014fb341fef0206.xml
 
 
-// File: dir_065367c2e0439fecffa58b7cf6bb691d.xml
+// File: dir_4d7e92e23f6ea876d470371aa3d29376.xml
 
 
-// File: dir_fa30e0f4b3d905a89227b8ae3a80b122.xml
+// File: dir_3c2ad13ee8805033db44e75511328743.xml
 
 
-// File: dir_28aed864a592ec480ff18ed03b485bfc.xml
+// File: dir_837f57fa7b99817fc9c065cd33a24294.xml
 
 
-// File: dir_a07d89c46e00f7f919347038ef4eae1e.xml
+// File: dir_2e3d752c0dc6db1308f89f3ade9719f6.xml
 
 
-// File: dir_87d7877df9e4f762bb38e6cb71071a58.xml
+// File: dir_40fb3cedb271a8bfe5ce264c8f153c9b.xml
 
 
-// File: dir_7b2e7e029743b24255ddd52f0115784d.xml
+// File: dir_4051ad071076088e8c66a6e80c9a9988.xml
 
 
-// File: dir_fadcafd5a71cf06464ead075056d0d70.xml
+// File: dir_cfbe19ce0dad3eee24aad31a4afa5d0e.xml
 
 
-// File: dir_9fa68a94bf8749c7617594b2eea04deb.xml
+// File: dir_c5290f3dab994c0c9dba61554566fc4f.xml
 
 
-// File: dir_ab5e4da1e63ca068dee3ddb455da78c0.xml
+// File: dir_f52db9cf4adc49528fc87123266f9c76.xml
 
 
-// File: dir_26766475c2cc4b8d0a30b0028bd93df0.xml
+// File: dir_913f640bc454e255461704ebdcb6a817.xml
 
 
-// File: dir_12c0947e7f25b4a71e2dd233130460f5.xml
+// File: dir_a66f8f551e7465104f1dbcd89b910c46.xml
 
