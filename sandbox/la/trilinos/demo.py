@@ -23,7 +23,7 @@ class MLPreconditioner:
     
 
 # Create mesh and finite element
-mesh = UnitSquare(8,8)
+mesh = UnitSquare(2,2)
 element = FiniteElement("Lagrange", "triangle", 1)
 
 # Source term
@@ -62,8 +62,8 @@ L = v*f*dx + v*g*ds
 
 
 #backend = EpetraFactory.instance()
-#backend = EpetraFactory.instance()
-backend = PETScFactory.instance()
+backend = EpetraFactory.instance()
+#backend = PETScFactory.instance()
 
 # Assemble matrices
 #A = assemble(a, mesh, None, None, None, None, None, None, None, backend)
@@ -72,20 +72,20 @@ A = assemble(a, mesh, backend=backend)
 A.disp()
 
 
-#file=File("A.m") ; file << A;  
+file=File("A.m") ; file << A;  
 
-b = assemble(L, mesh, backend=backend) 
-print "b inner ", b.inner(b)
+#b = assemble(L, mesh, backend=backend) 
+#print "b inner ", b.inner(b)
 
 # Define boundary condition
-u0 = Function(mesh, 0.0)
-boundary = DirichletBoundary()
-bc = DirichletBC(u0, mesh, boundary)
-bc.apply(A, b, a)
+#u0 = Function(mesh, 0.0)
+#boundary = DirichletBoundary()
+#bc = DirichletBC(u0, mesh, boundary)
+#bc.apply(A, b, a)
 
 # create solution vector (also used as start vector) 
-x = b.copy()
-x.zero()
+#x = b.copy()
+#x.zero()
 
 #x = BiCGStab(A, x, b, 10e-12, True, 1000)
 
