@@ -1,29 +1,7 @@
 from dolfin import *
 
-from sys import path 
-path.append("../poisson")
-
-
-from PyTrilinos import Epetra, ML, AztecOO 
-
-from Krylov import *
-
-class MLPreconditioner: 
-    def __init__(self, prec): 
-        self.prec = prec
-
-    def __mul__(self, b):
-        x = b.copy()
-        x.zero()
-        self.prec.Apply(b.vec(),x.vec())
-
-        print "b inner ", b.inner(b) 
-        print "x inner ", x.inner(x) 
-        return x
-    
-
 # Create mesh and finite element
-mesh = UnitSquare(8,8)
+mesh = UnitSquare(200,200)
 element = FiniteElement("Lagrange", "triangle", 1)
 
 # Source term
@@ -56,26 +34,18 @@ u = TrialFunction(element)
 f = Source(element, mesh)
 g = Flux(element, mesh)
 
-a = dot(grad(v), grad(u))*dx
+a = u*v*dx +  dot(grad(v), grad(u))*dx
 L = v*f*dx + v*g*ds
 
-
-
-#backend = EpetraFactory.instance()
-#backend = EpetraFactory.instance()
-backend = PETScFactory.instance()
+# Create backend
+backend = EpetraFactory.instance()
 
 # Assemble matrices
-#A = assemble(a, mesh, None, None, None, None, None, None, None, backend)
 A = assemble(a, mesh, backend=backend)
-
-A.disp()
-
-
-#file=File("A.m") ; file << A;  
-
 b = assemble(L, mesh, backend=backend) 
-print "b inner ", b.inner(b)
+
+# import Trilinos stuff
+from PyTrilinos import Epetra, EpetraExt, ML, AztecOO 
 
 # Define boundary condition
 u0 = Function(mesh, 0.0)
@@ -83,63 +53,28 @@ boundary = DirichletBoundary()
 bc = DirichletBC(u0, mesh, boundary)
 bc.apply(A, b, a)
 
-# create solution vector (also used as start vector) 
+# Create solution vector (also used as start vector) 
 x = b.copy()
 x.zero()
 
-#x = BiCGStab(A, x, b, 10e-12, True, 1000)
+# Sets up the parameters for ML using a python dictionary
+MLList = {"max levels"        : 3, 
+      "output"            : 10,
+      "smoother: type"    : "symmetric Gauss-Seidel",
+      "aggregation: type" : "Uncoupled",
+      "ML validate parameter list" : False}
 
-
-
-dabla = """
-
-
-# sets up the parameters for ML using a python dictionary
-MLList = {
-  "max levels"        : 3, 
-  "output"            : 10,
-  "smoother: type"    : "symmetric Gauss-Seidel",
-  "aggregation: type" : "Uncoupled"
-}
-
-# creates the preconditioner and computes it
+# Create the preconditioner 
 Prec = ML.MultiLevelPreconditioner(A.mat(), False)
-# Prec.ComputePreconditioner()
+Prec.SetParameterList(MLList)
+Prec.ComputePreconditioner()
 
-print "Prec created "
-
-print type(Prec)
-print dir(Prec)
-
-#Prec.SetParameterList(MLList)
-#Prec.ComputePreconditioner()
-
-B = MLPreconditioner(Prec)
-
-#B.__mul__(x.vec(),b.vec())
-
-
-
-# sets up the solver, specifies Prec as preconditioner, and
-# solves using CG.
-#Solver = AztecOO.AztecOO(A.mat(), x.vec(), b.vec())
-#Solver.SetPrecOperator(Prec)
-#Solver.SetAztecOption(AztecOO.AZ_solver, AztecOO.AZ_cg)
-#Solver.SetAztecOption(AztecOO.AZ_output, 16)
-#Solver.Iterate(1550, 1e-5)
-
-
-
-
-regularization_parameter = 1.0/10
-x = precRichardson(B, A, x, b, regularization_parameter, 10e-6, True, 10)
-
-r = b-A*x
-print "r inner ", r.inner(r) 
-
-#print x 
-
-#A.disp()
+# Create solver and solve system 
+Solver = AztecOO.AztecOO(A.mat(), x.vec(), b.vec())
+Solver.SetPrecOperator(Prec)
+Solver.SetAztecOption(AztecOO.AZ_solver, AztecOO.AZ_cg)
+Solver.SetAztecOption(AztecOO.AZ_output, 16)
+Solver.Iterate(1550, 1e-5)
 
 # plot the solution
 U = Function(element, mesh, x)
@@ -147,9 +82,8 @@ plot(U)
 interactive()
 
 # Save solution to file
-#file = File("poisson.pvd")
-#file << U
+file = File("poisson.pvd")
+file << U
 
-"""
 
 
