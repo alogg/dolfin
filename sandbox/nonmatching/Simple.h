@@ -134,6 +134,14 @@ public:
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
   /// Evaluate order n derivatives of basis function i at given point in cell
   virtual void evaluate_basis_derivatives(unsigned int i,
                                           unsigned int n,
@@ -342,6 +350,15 @@ public:
     delete [] transform;
   }
 
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(unsigned int i,
                               const ufc::function& f,
@@ -381,6 +398,14 @@ public:
     result *= W[i][0];
     
     return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Interpolate vertex values from dof values
@@ -487,10 +512,22 @@ public:
     return 3;
   }
 
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
     return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the local-to-global mapping of dofs on a cell
@@ -522,6 +559,13 @@ public:
       dofs[1] = 1;
       break;
     }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -652,7 +696,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0w0_a1 | va0*va1*dX(0)";
+    return "w0_a0[0, 1, 2]w0_a1[0, 1, 2] | va0[0, 1, 2]*va1[0, 1, 2]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)

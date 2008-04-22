@@ -468,11 +468,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[6];
-    vertex_values[4] = dof_values[7];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
     vertex_values[5] = dof_values[8];
   }
 
@@ -955,11 +955,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[6];
-    vertex_values[4] = dof_values[7];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
     vertex_values[5] = dof_values[8];
   }
 
@@ -2171,7 +2171,7 @@ public:
     A[10] = 0;
     A[11] = 0;
     A[12] = -0.00277777777777777*G0_;
-    A[13] = 0.0166666666666666*G0_;
+    A[13] = 0.0166666666666667*G0_;
     A[14] = -0.00277777777777777*G0_;
     A[15] = 0;
     A[16] = -0.0111111111111111*G0_;
@@ -2249,7 +2249,7 @@ public:
     A[88] = 0;
     A[89] = 0;
     A[90] = -0.00277777777777777*G0_;
-    A[91] = 0.0166666666666666*G0_;
+    A[91] = 0.0166666666666667*G0_;
     A[92] = -0.00277777777777777*G0_;
     A[93] = 0;
     A[94] = -0.0111111111111111*G0_;
@@ -2879,11 +2879,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[6];
-    vertex_values[4] = dof_values[7];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
     vertex_values[5] = dof_values[8];
   }
 
@@ -3366,11 +3366,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[6];
-    vertex_values[4] = dof_values[7];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
     vertex_values[5] = dof_values[8];
   }
 
@@ -4594,14 +4594,14 @@ public:
     const double G0_11 = det*c0_0_0_11;
     
     // Compute element tensor
-    A[0] = 0.0166666666666666*G0_0 - 0.00277777777777777*G0_1 - 0.00277777777777778*G0_2 - 0.0111111111111111*G0_3;
-    A[1] = -0.00277777777777777*G0_0 + 0.0166666666666666*G0_1 - 0.00277777777777777*G0_2 - 0.0111111111111111*G0_4;
+    A[0] = 0.0166666666666666*G0_0 - 0.00277777777777777*G0_1 - 0.00277777777777777*G0_2 - 0.0111111111111111*G0_3;
+    A[1] = -0.00277777777777777*G0_0 + 0.0166666666666667*G0_1 - 0.00277777777777777*G0_2 - 0.0111111111111111*G0_4;
     A[2] = -0.00277777777777778*G0_0 - 0.00277777777777777*G0_1 + 0.0166666666666666*G0_2 - 0.0111111111111111*G0_5;
     A[3] = -0.0111111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444444*G0_4 + 0.0444444444444444*G0_5;
     A[4] = -0.0111111111111111*G0_1 + 0.0444444444444444*G0_3 + 0.0888888888888888*G0_4 + 0.0444444444444444*G0_5;
     A[5] = -0.0111111111111111*G0_2 + 0.0444444444444444*G0_3 + 0.0444444444444444*G0_4 + 0.0888888888888888*G0_5;
-    A[6] = 0.0166666666666666*G0_6 - 0.00277777777777777*G0_7 - 0.00277777777777778*G0_8 - 0.0111111111111111*G0_9;
-    A[7] = -0.00277777777777777*G0_6 + 0.0166666666666666*G0_7 - 0.00277777777777777*G0_8 - 0.0111111111111111*G0_10;
+    A[6] = 0.0166666666666666*G0_6 - 0.00277777777777777*G0_7 - 0.00277777777777777*G0_8 - 0.0111111111111111*G0_9;
+    A[7] = -0.00277777777777777*G0_6 + 0.0166666666666667*G0_7 - 0.00277777777777777*G0_8 - 0.0111111111111111*G0_10;
     A[8] = -0.00277777777777778*G0_6 - 0.00277777777777777*G0_7 + 0.0166666666666666*G0_8 - 0.0111111111111111*G0_11;
     A[9] = -0.0111111111111111*G0_6 + 0.0888888888888888*G0_9 + 0.0444444444444444*G0_10 + 0.0444444444444444*G0_11;
     A[10] = -0.0111111111111111*G0_7 + 0.0444444444444444*G0_9 + 0.0888888888888888*G0_10 + 0.0444444444444444*G0_11;

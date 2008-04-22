@@ -468,11 +468,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[3];
-    vertex_values[4] = dof_values[4];
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
     vertex_values[5] = dof_values[5];
   }
 
@@ -955,11 +955,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[3];
-    vertex_values[4] = dof_values[4];
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
     vertex_values[5] = dof_values[5];
   }
 
@@ -2637,11 +2637,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[3];
-    vertex_values[4] = dof_values[4];
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
     vertex_values[5] = dof_values[5];
   }
 
@@ -3124,11 +3124,11 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[1];
-    vertex_values[2] = dof_values[2];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[3] = dof_values[3];
-    vertex_values[4] = dof_values[4];
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
     vertex_values[5] = dof_values[5];
   }
 

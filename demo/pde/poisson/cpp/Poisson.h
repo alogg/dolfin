@@ -1278,7 +1278,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "(dXa0/dxb0)(dXa1/dxb0) | ((d/dXa0)vi0)*((d/dXa1)vi1)*dX(0)";
+    return "(dXa0[0, 1]/dxb0[0, 1])(dXa1[0, 1]/dxb0[0, 1]) | ((d/dXa0[0, 1])vi0[0, 1, 2])*((d/dXa1[0, 1])vi1[0, 1, 2])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3242,7 +3242,7 @@ public:
       break;
     case 2:
       A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
-      A[1] = 0.166666666666666*G0_0 + 0.333333333333333*G0_1;
+      A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
       A[2] = 0;
       break;
     }
@@ -3284,7 +3284,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0 | vi0*va0*dX(0) + w1_a0 | vi0*va0*ds(0)";
+    return "w0_a0[0, 1, 2] | vi0[0, 1, 2]*va0[0, 1, 2]*dX(0) + w1_a0[0, 1, 2] | vi0[0, 1, 2]*va0[0, 1, 2]*ds(0)";
   }
 
   /// Return the rank of the global tensor (r)
