@@ -216,7 +216,6 @@ def BiCGStab(A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=
     """
 
     r = b - A*x
-
     p = r.copy()
     rs= r.copy()
     rr = inner(r,rs)
