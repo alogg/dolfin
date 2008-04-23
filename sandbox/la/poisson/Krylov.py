@@ -102,6 +102,7 @@ def conjgrad(A, x, b, tolerance=1.0E-05, relativeconv=False, maxit=500):
         p *= r1/r0
         p += r
         r0 = r1
+        print "rho ", sqrt(r0)
         iter += 1
     #debug("CG finished, iter: %d, ||e||=%e" % (iter,sqrt(r0)))
     return x
@@ -125,6 +126,7 @@ def precondconjgrad(B, A, x, b, tolerance=1.0E-05, relativeconv=False, maxiter=5
         z = B*r
         rz_prev = rz
         rz = inner(r,z)
+        print "rho ", sqrt(rz) 
         beta =  rz / rz_prev
         d = z + beta*d
         iter += 1
