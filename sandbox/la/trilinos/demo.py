@@ -1,7 +1,7 @@
 from dolfin import *
 
 # Create mesh and finite element
-mesh = UnitSquare(200,200)
+mesh = UnitSquare(20,20)
 element = FiniteElement("Lagrange", "triangle", 1)
 
 # Source term

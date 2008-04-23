@@ -701,6 +701,13 @@ def Richardson(A, x, b, tau=1, tolerance=1.0E-05, relativeconv=False, maxiter=10
 
 def precRichardson(B, A, x, b, tau=1, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=False):
 
+    print "----------------------------------------------------------------"
+    print "inside precRichardson"
+    print "----------------------------------------------------------------"
+
+    print b.inner(b)
+    print x.inner(x)
+
     r = b - A*x
     s = B*r
     rho = rho0 = inner(r, r)
