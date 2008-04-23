@@ -1,7 +1,7 @@
 from dolfin import *
 
 # Create mesh and finite element
-mesh = UnitSquare(200,200)
+mesh = UnitSquare(80,80)
 element = FiniteElement("Lagrange", "triangle", 1)
 
 # Source term
@@ -59,14 +59,14 @@ x.zero()
 
 # Sets up the parameters for ML using a python dictionary
 MLList = {"max levels"        : 3, 
-      "output"            : 10,
-      "smoother: type"    : "symmetric Gauss-Seidel",
-      "aggregation: type" : "Uncoupled",
-      "ML validate parameter list" : False}
+          "output"            : 10,
+          "smoother: type"    : "symmetric Gauss-Seidel",
+          "aggregation: type" : "Uncoupled",
+          "ML validate parameter list" : False}
 
 # Create the preconditioner 
 Prec = ML.MultiLevelPreconditioner(A.mat(), False)
-Prec.SetParameterList(MLList)
+#Prec.SetParameterList(MLList)
 Prec.ComputePreconditioner()
 
 # Create solver and solve system 
