@@ -1,7 +1,39 @@
+
+from PyTrilinos import Epetra, AztecOO, TriUtils, ML 
 from dolfin import *
 
+from sys import path 
+path.append("../poisson")
+from Krylov import *
+
+
+class MLPreconditioner: 
+    def __init__(self, A): 
+        # Sets up the parameters for ML using a python dictionary
+        MLList = {
+              "max levels"        : 3, 
+              "output"            : 10,
+              "smoother: type"    : "ML symmetric Gauss-Seidel",
+              "aggregation: type" : "Uncoupled",
+              "ML validate parameter list" : False
+        }
+        ml_prec = ML.MultiLevelPreconditioner(A.mat(), False)
+        ml_prec.SetParameterList(MLList)
+        ml_prec.ComputePreconditioner()
+        self.ml_prec = ml_prec
+
+    def __mul__(self, b):
+        x = b.copy()
+        x.zero()
+        err = self.ml_prec.ApplyInverse(b.vec(),x.vec())
+        if not err == 0: 
+            print "err ", err
+            return -1 
+        return x
+    
+
 # Create mesh and finite element
-mesh = UnitSquare(200,200)
+mesh = UnitSquare(20,20)
 element = FiniteElement("Lagrange", "triangle", 1)
 
 # Source term
@@ -28,24 +60,24 @@ class DirichletBoundary(SubDomain):
     def inside(self, x, on_boundary):
         return bool(on_boundary and x[0] < DOLFIN_EPS)
 
+
 # Define variational problem
 v = TestFunction(element)
 u = TrialFunction(element)
 f = Source(element, mesh)
 g = Flux(element, mesh)
 
-a = u*v*dx +  dot(grad(v), grad(u))*dx
+a = dot(grad(v), grad(u))*dx
 L = v*f*dx + v*g*ds
 
-# Create backend
 backend = EpetraFactory.instance()
+#backend = PETScFactory.instance()
 
 # Assemble matrices
 A = assemble(a, mesh, backend=backend)
 b = assemble(L, mesh, backend=backend) 
 
-# import Trilinos stuff
-from PyTrilinos import Epetra, EpetraExt, ML, AztecOO 
+#file = File("A.m"); file <<A
 
 # Define boundary condition
 u0 = Function(mesh, 0.0)
@@ -53,28 +85,13 @@ boundary = DirichletBoundary()
 bc = DirichletBC(u0, mesh, boundary)
 bc.apply(A, b, a)
 
-# Create solution vector (also used as start vector) 
+# create solution vector (also used as start vector) 
 x = b.copy()
 x.zero()
 
-# Sets up the parameters for ML using a python dictionary
-MLList = {"max levels"        : 3, 
-      "output"            : 10,
-      "smoother: type"    : "symmetric Gauss-Seidel",
-      "aggregation: type" : "Uncoupled",
-      "ML validate parameter list" : False}
-
-# Create the preconditioner 
-Prec = ML.MultiLevelPreconditioner(A.mat(), False)
-Prec.SetParameterList(MLList)
-Prec.ComputePreconditioner()
-
-# Create solver and solve system 
-Solver = AztecOO.AztecOO(A.mat(), x.vec(), b.vec())
-Solver.SetPrecOperator(Prec)
-Solver.SetAztecOption(AztecOO.AZ_solver, AztecOO.AZ_cg)
-Solver.SetAztecOption(AztecOO.AZ_output, 16)
-Solver.Iterate(1550, 1e-5)
+B = MLPreconditioner(A)
+x = precondconjgrad(B, A, x, b, 10e-6, True, 100)
+#x = conjgrad(A, x, b, 10e-6, True, 100)
 
 # plot the solution
 U = Function(element, mesh, x)
@@ -84,6 +101,7 @@ interactive()
 # Save solution to file
 file = File("poisson.pvd")
 file << U
+
 
 
 
