@@ -1,3 +1,4 @@
+from PyTrilinos import Epetra, AztecOO, TriUtils, ML 
 from dolfin import *
 
 from sys import path 
@@ -5,14 +6,32 @@ path.append("../poisson")
 
 from Krylov import *
 
-class Prec: 
-    def __init__(self): 
-        pass
-    def __mul__(self, other): 
-        return other.copy()
+class MLPreconditioner: 
+    def __init__(self, A): 
+        # Sets up the parameters for ML using a python dictionary
+        MLList = {
+              "max levels"        : 5, 
+              "output"            : 10,
+              "smoother: type"    : "ML symmetric Gauss-Seidel",
+              "aggregation: type" : "Uncoupled",
+              "ML validate parameter list" : False
+        }
+        ml_prec = ML.MultiLevelPreconditioner(A.mat(), False)
+        ml_prec.SetParameterList(MLList)
+        ml_prec.ComputePreconditioner()
+        self.ml_prec = ml_prec
+
+    def __mul__(self, b):
+        x = b.copy()
+        x.zero()
+        err = self.ml_prec.ApplyInverse(b.vec(),x.vec())
+        if not err == 0: 
+            print "err ", err
+            return -1 
+        return x
 
 # Create mesh and finite element
-N = 32 
+N = 10 
 mesh = UnitSquare(N,N)
 mesh.disp()
 element = FiniteElement("Lagrange", "triangle", 1)
@@ -65,12 +84,14 @@ h = 1.0/N
 tau = Function(DG, mesh, 1.0*h**2) 
 eps = Function(DG, mesh, epsilon) 
 
-a = dot(w, grad(u))*v*dx + eps*dot(grad(v), grad(u))*dx + tau*dot(dot(w, grad(u)), dot(w, grad(v)))*dx
+a = dot(w, grad(u))*v*dx + eps*dot(grad(v), grad(u))*dx  #+ tau*dot(dot(w, grad(u)), dot(w, grad(v)))*dx
 L = v*f*dx 
 
+backend = EpetraFactory.instance()
+
 # Assemble matrices
-A = assemble(a, mesh)
-b = assemble(L, mesh)
+A = assemble(a, mesh, backend=backend)
+b = assemble(L, mesh, backend=backend)
 
 # Define boundary condition
 boundary = DirichletBoundary()
@@ -78,21 +99,35 @@ bc_func = BC(element, mesh)
 bc = DirichletBC(bc_func, mesh, boundary)
 bc.apply(A, b, a)
 
+A.disp()
+
 # create solution vector (also used as start vector) 
 x = b.copy()
 x.zero()
 
-B = Prec()
+B = MLPreconditioner(A)
+
+U = Function(element, mesh, x)
+#plot(U)
+#interactive()
+
+F = Function(element, mesh, b)
+#plot(F)
+#interactive()
+
+
+
 
 # solve the system
-regularization_parameter = 1.0/10
-#x = Richardson(A, x, b, regularization_parameter, 10e-6, True, 10000)
-x = precRichardson(B, A, x, b, regularization_parameter, 10e-6, True, 10000)
+regularization_parameter = 1.0/2
+#x = Richardson(A, x, b, regularization_parameter, 10e-6, True, 20)
+x = precRichardson(B, A, x, b, regularization_parameter, 10e-6, True, 20)
+#x = precondBiCGStab(B, A, x, b, 10e-6, True, 20)
 
 # plot the solution
 U = Function(element, mesh, x)
-plot(U)
-interactive()
+#plot(U)
+#interactive()
 
 # Save solution to file
 #file = File("conv-diff.pvd")
