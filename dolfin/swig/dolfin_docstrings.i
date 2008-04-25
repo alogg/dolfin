@@ -1017,28 +1017,25 @@ This class defines a common interface for matrices.
 
 C++ includes: GenericMatrix.h ";
 
-%feature("docstring")  dolfin::GenericMatrix::GenericMatrix "
-
-Constructor. ";
-
 %feature("docstring")  dolfin::GenericMatrix::~GenericMatrix "
 
 Destructor. ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
 
---- Implementation of GenericTensor interface ---
+Initialize zero tensor using sparsity pattern. ";
 
-Initialize zero tensor using sparsity pattern (implemented by sub
-class) ";
+%feature("docstring")  dolfin::GenericMatrix::copy "
+
+Return copy of tensor. ";
 
 %feature("docstring")  dolfin::GenericMatrix::rank "
 
-Return rank of tensor (number of dimensions). ";
+Return tensor rank (number of dimensions). ";
 
 %feature("docstring")  dolfin::GenericMatrix::size "
 
-Return size of given dimension (implemented by sub class). ";
+Return size of given dimension. ";
 
 %feature("docstring")  dolfin::GenericMatrix::get "
 
@@ -1054,22 +1051,19 @@ Add block of values. ";
 
 %feature("docstring")  dolfin::GenericMatrix::zero "
 
-Set all entries to zero and keep any sparse structure (implemented by
-sub class). ";
+Set all entries to zero and keep any sparse structure. ";
 
 %feature("docstring")  dolfin::GenericMatrix::apply "
 
-Finalise assembly of tensor (implemented by sub class). ";
+Finalize assembly of tensor. ";
 
 %feature("docstring")  dolfin::GenericMatrix::disp "
 
-Display tensor (implemented by sub class). ";
+Display tensor. ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
 
---- Matrix interface ---
-
-Initialize M x N matrix ";
+Initialize M x N matrix. ";
 
 %feature("docstring")  dolfin::GenericMatrix::get "
 
@@ -1082,43 +1076,37 @@ Set block of values. ";
 %feature("docstring")  dolfin::GenericMatrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::GenericMatrix::getrow "
+
+Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::GenericMatrix::zero "
+
+Set given rows to zero. ";
 
 %feature("docstring")  dolfin::GenericMatrix::ident "
 
 Set given rows to identity matrix. ";
 
-%feature("docstring")  dolfin::GenericMatrix::zero "
+%feature("docstring")  dolfin::GenericMatrix::mult "
 
-Set given matrix rows to zero. ";
-
-%feature("docstring")  dolfin::GenericMatrix::setitem "
-
-Set given matrix entry to value. ";
+Matrix-vector product, y = Ax. ";
 
 %feature("docstring")  dolfin::GenericMatrix::getitem "
 
-Get given matrix entry. ";
+Get value of given entry. ";
 
-%feature("docstring")  dolfin::GenericMatrix::mult "";
+%feature("docstring")  dolfin::GenericMatrix::setitem "
 
-%feature("docstring")  dolfin::GenericMatrix::getRow "
-
-Get non-zero values of row i. ";
-
-%feature("docstring")  dolfin::GenericMatrix::instance "
-
-Return const GenericMatrix* (internal library use only!). ";
-
-%feature("docstring")  dolfin::GenericMatrix::instance "
-
-Return GenericMatrix* (internal library use only!). ";
+Set given entry to value. ";
 
 
 // File: classdolfin_1_1GenericSparsityPattern.xml
 %feature("docstring") dolfin::GenericSparsityPattern "
 
 Base class for sparsity patterns of vectors/matrices. Concrete sub
-classes can be used to initalise vectors and sparse matrices.
+classes can be used to initialize vectors and sparse matrices.
 
 C++ includes: GenericSparsityPattern.h ";
 
@@ -1134,7 +1122,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::init "
 
-Initialise sparsity pattern for a generic tensor. ";
+Initialize sparsity pattern for a generic tensor. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::pinit "
 
@@ -1169,13 +1157,9 @@ Finalize sparsity pattern (needed by most parallel la backends). ";
 // File: classdolfin_1_1GenericTensor.xml
 %feature("docstring") dolfin::GenericTensor "
 
-This class defines a common interface for general tensors.
+This class defines a common interface for arbitrary rank tensors.
 
 C++ includes: GenericTensor.h ";
-
-%feature("docstring")  dolfin::GenericTensor::GenericTensor "
-
-Constructor. ";
 
 %feature("docstring")  dolfin::GenericTensor::~GenericTensor "
 
@@ -1185,9 +1169,13 @@ Destructor. ";
 
 Initialize zero tensor using sparsity pattern. ";
 
+%feature("docstring")  dolfin::GenericTensor::copy "
+
+Return copy of tensor. ";
+
 %feature("docstring")  dolfin::GenericTensor::rank "
 
-Return rank of tensor (number of dimensions). ";
+Return tensor rank (number of dimensions). ";
 
 %feature("docstring")  dolfin::GenericTensor::size "
 
@@ -1211,7 +1199,7 @@ Set all entries to zero and keep any sparse structure. ";
 
 %feature("docstring")  dolfin::GenericTensor::apply "
 
-Finalise assembly of tensor. ";
+Finalize assembly of tensor. ";
 
 %feature("docstring")  dolfin::GenericTensor::disp "
 
@@ -1219,15 +1207,7 @@ Display tensor. ";
 
 %feature("docstring")  dolfin::GenericTensor::factory "
 
-Get LA backend factory. ";
-
-%feature("docstring")  dolfin::GenericTensor::instance "
-
-Return const GenericTensor* (internal library use only!). ";
-
-%feature("docstring")  dolfin::GenericTensor::instance "
-
-Return GenericTensor* (internal library use only!). ";
+Return linear algebra backend factory. ";
 
 %feature("docstring")  dolfin::GenericTensor::down_cast "
 
@@ -1239,19 +1219,23 @@ Cast a GenericTensor to its derived class (non-const version). ";
 
 %feature("docstring")  dolfin::GenericTensor::has_type "
 
-Check wether the GenericTensor object matches a specific type. ";
+Check whether the GenericTensor instance matches a specific type. ";
+
+%feature("docstring")  dolfin::GenericTensor::instance "
+
+Return concrete instance / unwrap (const version). ";
+
+%feature("docstring")  dolfin::GenericTensor::instance "
+
+Return concrete instance / unwrap (non-const version). ";
 
 
 // File: classdolfin_1_1GenericVector.xml
 %feature("docstring") dolfin::GenericVector "
 
-This class defines a common interface for matrices.
+This class defines a common interface for vectors.
 
 C++ includes: GenericVector.h ";
-
-%feature("docstring")  dolfin::GenericVector::GenericVector "
-
-Constructor. ";
 
 %feature("docstring")  dolfin::GenericVector::~GenericVector "
 
@@ -1259,17 +1243,15 @@ Destructor. ";
 
 %feature("docstring")  dolfin::GenericVector::init "
 
---- Implementation of GenericTensor interface ---
-
-Initialize zero tensor of given rank and dimensions ";
-
-%feature("docstring")  dolfin::GenericVector::init "
-
 Initialize zero tensor using sparsity pattern. ";
+
+%feature("docstring")  dolfin::GenericVector::copy "
+
+Return copy of tensor. ";
 
 %feature("docstring")  dolfin::GenericVector::rank "
 
-Return rank of tensor (number of dimensions). ";
+Return tensor rank (number of dimensions). ";
 
 %feature("docstring")  dolfin::GenericVector::size "
 
@@ -1289,38 +1271,23 @@ Add block of values. ";
 
 %feature("docstring")  dolfin::GenericVector::zero "
 
-Set all entries to zero and keep any sparse structure (implemented by
-sub class). ";
+Set all entries to zero and keep any sparse structure. ";
 
 %feature("docstring")  dolfin::GenericVector::apply "
 
-Finalise assembly of tensor (implemented by sub class). ";
+Finalize assembly of tensor. ";
 
 %feature("docstring")  dolfin::GenericVector::disp "
 
-Display tensor (implemented by sub class). ";
+Display tensor. ";
 
 %feature("docstring")  dolfin::GenericVector::init "
 
---- Vector interface ---
-
-Initialize vector of size N ";
+Initialize vector of size N. ";
 
 %feature("docstring")  dolfin::GenericVector::size "
 
-Return size. ";
-
-%feature("docstring")  dolfin::GenericVector::get "
-
-Get values. ";
-
-%feature("docstring")  dolfin::GenericVector::set "
-
-Set values. ";
-
-%feature("docstring")  dolfin::GenericVector::add "
-
-Add values. ";
+Return size of vector. ";
 
 %feature("docstring")  dolfin::GenericVector::get "
 
@@ -1334,19 +1301,37 @@ Set block of values. ";
 
 Add block of values. ";
 
+%feature("docstring")  dolfin::GenericVector::get "
+
+Get all values. ";
+
+%feature("docstring")  dolfin::GenericVector::set "
+
+Set all values. ";
+
+%feature("docstring")  dolfin::GenericVector::add "
+
+Add values to each entry. ";
+
+%feature("docstring")  dolfin::GenericVector::axpy "
+
+Add multiple of given vector (AXPY operation). ";
+
 %feature("docstring")  dolfin::GenericVector::inner "
 
-Inner product. ";
+Return inner product with given vector. ";
 
-%feature("docstring")  dolfin::GenericVector::axpy "";
+%feature("docstring")  dolfin::GenericVector::norm "
 
-%feature("docstring")  dolfin::GenericVector::instance "
+Return norm of vector. ";
 
-Return const GenericVector* (internal library use only!). ";
+%feature("docstring")  dolfin::GenericVector::getitem "
 
-%feature("docstring")  dolfin::GenericVector::instance "
+Get value of given entry. ";
 
-Return GenericVector* (internal library use only!). ";
+%feature("docstring")  dolfin::GenericVector::setitem "
+
+Set given entry to value. ";
 
 
 // File: classdolfin_1_1GMRES.xml
@@ -1897,18 +1882,22 @@ LU solver for the built-in LA backends. ";
 // File: classdolfin_1_1Matrix.xml
 %feature("docstring") dolfin::Matrix "
 
-This class provides an interface to the default DOLFIN matrix
-implementation as decided in default_la_types.h.
+This class provides the default DOLFIN matrix class, based on the
+default DOLFIN linear algebra backend.
 
 C++ includes: Matrix.h ";
 
 %feature("docstring")  dolfin::Matrix::Matrix "
 
-Constructor. ";
+Create empty matrix. ";
 
 %feature("docstring")  dolfin::Matrix::Matrix "
 
-Constructor. ";
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::Matrix::Matrix "
+
+Copy constructor. ";
 
 %feature("docstring")  dolfin::Matrix::~Matrix "
 
@@ -1916,23 +1905,31 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Matrix::init "
 
-Initialize M x N matrix. ";
-
-%feature("docstring")  dolfin::Matrix::init "
-
-Initialize zero matrix using sparsity pattern. ";
-
-%feature("docstring")  dolfin::Matrix::create "
-
-Create uninitialized matrix. ";
+Initialize zero tensor using sparsity pattern. ";
 
 %feature("docstring")  dolfin::Matrix::copy "
 
-Create copy of matrix. ";
+Return copy of tensor. ";
 
 %feature("docstring")  dolfin::Matrix::size "
 
 Return size of given dimension. ";
+
+%feature("docstring")  dolfin::Matrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::Matrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::Matrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::Matrix::init "
+
+Initialize M x N matrix. ";
 
 %feature("docstring")  dolfin::Matrix::get "
 
@@ -1946,47 +1943,33 @@ Set block of values. ";
 
 Add block of values. ";
 
+%feature("docstring")  dolfin::Matrix::getrow "
+
+Get non-zero values of given row. ";
+
 %feature("docstring")  dolfin::Matrix::zero "
 
-Set all entries to zero and keep any sparse structure (implemented by
-sub class). ";
-
-%feature("docstring")  dolfin::Matrix::zero "
-
-Set given rows to zero matrix. ";
+Set given rows to zero. ";
 
 %feature("docstring")  dolfin::Matrix::ident "
 
 Set given rows to identity matrix. ";
 
-%feature("docstring")  dolfin::Matrix::apply "
+%feature("docstring")  dolfin::Matrix::mult "
 
-Finalise assembly of matrix. ";
-
-%feature("docstring")  dolfin::Matrix::disp "
-
-Display matrix (sparse output is default). ";
-
-%feature("docstring")  dolfin::Matrix::instance "
-
-Return const GenericMatrix* (internal library use only!). ";
-
-%feature("docstring")  dolfin::Matrix::instance "
-
-Return GenericMatrix* (internal library use only!). ";
-
-%feature("docstring")  dolfin::Matrix::getRow "
-
-Get non-zero values of row i.
-
-FIXME: Functions below are not in the GenericVector interface. FIXME:
-Should these be removed or added to the interface? ";
+Matrix-vector product, y = Ax. ";
 
 %feature("docstring")  dolfin::Matrix::factory "
 
-Get LA backend factory. ";
+Return linear algebra backend factory. ";
 
-%feature("docstring")  dolfin::Matrix::mult "";
+%feature("docstring")  dolfin::Matrix::instance "
+
+Return concrete instance / unwrap (const version). ";
+
+%feature("docstring")  dolfin::Matrix::instance "
+
+Return concrete instance / unwrap (non-const version). ";
 
 
 // File: classdolfin_1_1MatrixFactory.xml
@@ -2939,6 +2922,11 @@ Compute product y = Mx for implicit system (optional). ";
 
 Compute product y = Jx for Jacobian J (optional). ";
 
+%feature("docstring")  dolfin::ODE::JT "
+
+Compute product y = tranpose(J)x for Jacobian J (optional) Used when
+computing error estimate only ";
+
 %feature("docstring")  dolfin::ODE::dfdu "
 
 Compute entry of Jacobian (optional). ";
@@ -3350,7 +3338,7 @@ C++ includes: Scalar.h ";
 
 %feature("docstring")  dolfin::Scalar::Scalar "
 
-Constructor. ";
+Create zero scalar. ";
 
 %feature("docstring")  dolfin::Scalar::~Scalar "
 
@@ -3358,17 +3346,15 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Scalar::init "
 
---- Implementation of GenericTensor interface ---
-
-Initialize zero tensor of given rank and dimensions ";
-
-%feature("docstring")  dolfin::Scalar::init "
-
 Initialize zero tensor using sparsity pattern. ";
+
+%feature("docstring")  dolfin::Scalar::copy "
+
+Return copy of tensor. ";
 
 %feature("docstring")  dolfin::Scalar::rank "
 
-Return rank of tensor (number of dimensions). ";
+Return tensor rank (number of dimensions). ";
 
 %feature("docstring")  dolfin::Scalar::size "
 
@@ -3388,24 +3374,23 @@ Add block of values. ";
 
 %feature("docstring")  dolfin::Scalar::zero "
 
-Set all entries to zero and keep any sparse structure (implemented by
-sub class). ";
+Set all entries to zero and keep any sparse structure. ";
 
 %feature("docstring")  dolfin::Scalar::apply "
 
-Finalise assembly of tensor. ";
+Finalize assembly of tensor. ";
 
 %feature("docstring")  dolfin::Scalar::disp "
 
 Display tensor. ";
 
-%feature("docstring")  dolfin::Scalar::getval "
-
-Get value (needed for SWIG interface). ";
-
 %feature("docstring")  dolfin::Scalar::factory "
 
 Return a factory for the default linear algebra backend. ";
+
+%feature("docstring")  dolfin::Scalar::getval "
+
+Get value. ";
 
 
 // File: classdolfin_1_1simple__array.xml
@@ -3617,14 +3602,6 @@ Associate object with time t. ";
 Return the current time t. ";
 
 
-// File: classublas__dense__matrix.xml
-%feature("docstring") ublas_dense_matrix "";
-
-
-// File: classublas__sparse__matrix.xml
-%feature("docstring") ublas_sparse_matrix "";
-
-
 // File: classdolfin_1_1uBlasFactory.xml
 %feature("docstring") dolfin::uBlasFactory "";
 
@@ -3763,38 +3740,70 @@ Compute the inverse of A (A is dense or sparse). ";
 // File: classdolfin_1_1uBlasMatrix.xml
 %feature("docstring") dolfin::uBlasMatrix "
 
+This class provides a simple matrix class based on uBLAS. It is a
+simple wrapper for a uBLAS matrix implementing the GenericMatrix
+interface.
+
+The interface is intentionally simple. For advanced usage, access the
+underlying uBLAS matrix and use the standard uBLAS interface which is
+documented athttp://www.boost.org/libs/numeric/ublas/doc/index.htm.
+
 Developer note: specialised member functions must be inlined to avoid
 link errors.
-
-This class represents a matrix (dense or sparse) of dimension M x N.
-It is a wrapper for a Boost uBLAS matrix of type Mat.
-
-The interface is intended to provide uniformity with respect to other
-matrix data types. For advanced usage, refer to the documentation for
-uBLAS which can be found
-athttp://www.boost.org/libs/numeric/ublas/doc/index.htm.
 
 C++ includes: uBlasMatrix.h ";
 
 %feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
 
-Constructor. ";
+Create empty matrix. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
 
-Constructor. ";
+Create M x N matrix. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
 
-Constructor from a uBlas matrix_expression. ";
+Copy constructor. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
+
+Create matrix from given uBLAS matrix expression. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::~uBlasMatrix "
 
 Destructor. ";
 
+%feature("docstring")  dolfin::uBlasMatrix::init "
+
+Initialize zero tensor using sparsity pattern. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::copy "
+
+Return copy of tensor. ";
+
 %feature("docstring")  dolfin::uBlasMatrix::size "
 
-Return number of rows (dim = 0) or columns (dim = 1). ";
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::init "
+
+Initialize M x N matrix. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::get "
+
+Get block of values. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::set "
 
@@ -3804,17 +3813,33 @@ Set block of values. ";
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::getRow "
+%feature("docstring")  dolfin::uBlasMatrix::getrow "
 
-Get non-zero values of row i. ";
+Get non-zero values of given row. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::get "
+%feature("docstring")  dolfin::uBlasMatrix::zero "
 
-Get block of values. ";
+Set given rows to zero. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::lump "
+%feature("docstring")  dolfin::uBlasMatrix::ident "
 
-Lump matrix into vector m. ";
+Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::mult "
+
+Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::factory "
+
+Return linear algebra backend factory. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::mat "
+
+Return reference to uBLAS matrix (const version). ";
+
+%feature("docstring")  dolfin::uBlasMatrix::mat "
+
+Return reference to uBLAS matrix (non-const version). ";
 
 %feature("docstring")  dolfin::uBlasMatrix::solve "
 
@@ -3824,68 +3849,17 @@ Solve Ax = b out-of-place (A is not destroyed). ";
 
 Compute inverse of matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::apply "
+%feature("docstring")  dolfin::uBlasMatrix::lump "
 
-Apply changes to matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::zero "
-
-Set all entries to zero. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::zero "
-
-Set given rows to zero matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::ident "
-
-Set given rows to identity matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::mult "
-
-Compute product y = Ax. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::mult "
-
-Compute product y = Ax. ";
+Lump matrix into vector m. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::compress "
 
 Compress matrix (eliminate all non-zeros from a sparse matrix). ";
 
-%feature("docstring")  dolfin::uBlasMatrix::disp "
-
-Display matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::instance "
-
-Return concrete (const) uBlasMatrix<Mat> instance.
-
-The below functions have specialisations for particular matrix types.
-In order to link correctly, they must be made inline functions. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::instance "
-
-Return concrete uBlasMatrix<Mat> instance. ";
-
 %feature("docstring")  dolfin::uBlasMatrix::init "
 
-Initialize M x N matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::init "
-
-Initialize a matrix from the sparsity pattern. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::create "
-
-Create uninitialized matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::copy "
-
-Create copy of matrix. ";
-
-%feature("docstring")  dolfin::uBlasMatrix::factory "
-
-Get LA backend factory. ";
+Initialize zero tensor using sparsity pattern. ";
 
 
 // File: classdolfin_1_1uBlasPreconditioner.xml
@@ -3926,60 +3900,59 @@ Solve linear system (M^-1)Ax = y. ";
 // File: classdolfin_1_1uBlasVector.xml
 %feature("docstring") dolfin::uBlasVector "
 
-This class represents a dense vector of dimension N. It is a simple
-wrapper for a Boost ublas vector.
+This class provides a simple vector class based on uBLAS. It is a
+simple wrapper for a uBLAS vector implementing the GenericVector
+interface.
 
-The interface is intentionally simple. For advanced usage, refer to
-the documentation for ublas which can be found
-athttp://www.boost.org/libs/numeric/ublas/doc/index.htm.
+The interface is intentionally simple. For advanced usage, access the
+underlying uBLAS vector and use the standard uBLAS interface which is
+documented athttp://www.boost.org/libs/numeric/ublas/doc/index.htm.
 
 C++ includes: uBlasVector.h ";
 
 %feature("docstring")  dolfin::uBlasVector::uBlasVector "
 
-Constructor. ";
+Create empty vector. ";
 
 %feature("docstring")  dolfin::uBlasVector::uBlasVector "
 
-Constructor. ";
+Create vector of size N. ";
 
 %feature("docstring")  dolfin::uBlasVector::uBlasVector "
 
-Constructor from a uBlas vector_expression. ";
+Copy constructor. ";
+
+%feature("docstring")  dolfin::uBlasVector::uBlasVector "
+
+Create vector from given uBLAS vector expression. ";
 
 %feature("docstring")  dolfin::uBlasVector::~uBlasVector "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasVector::init "
-
-Initialize a vector of length N. ";
-
-%feature("docstring")  dolfin::uBlasVector::create "
-
-Create uninitialized vector. ";
-
 %feature("docstring")  dolfin::uBlasVector::copy "
 
-Create copy of vector. ";
+Create copy of tensor. ";
+
+%feature("docstring")  dolfin::uBlasVector::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::uBlasVector::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::uBlasVector::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::uBlasVector::init "
+
+Initialize vector of size N. ";
 
 %feature("docstring")  dolfin::uBlasVector::size "
 
-Assignment from a vector_expression.
-
-Return size ";
-
-%feature("docstring")  dolfin::uBlasVector::get "
-
-Get values. ";
-
-%feature("docstring")  dolfin::uBlasVector::set "
-
-Set values. ";
-
-%feature("docstring")  dolfin::uBlasVector::add "
-
-Add values. ";
+Return size of vector. ";
 
 %feature("docstring")  dolfin::uBlasVector::get "
 
@@ -3993,55 +3966,41 @@ Set block of values. ";
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::uBlasVector::apply "
+%feature("docstring")  dolfin::uBlasVector::get "
 
-Apply changes to vector (dummy function for compatibility). ";
+Get all values. ";
 
-%feature("docstring")  dolfin::uBlasVector::zero "
+%feature("docstring")  dolfin::uBlasVector::set "
 
-Set all entries to zero. ";
+Set all values. ";
+
+%feature("docstring")  dolfin::uBlasVector::add "
+
+Add values to each entry. ";
+
+%feature("docstring")  dolfin::uBlasVector::axpy "
+
+Add multiple of given vector (AXPY operation). ";
+
+%feature("docstring")  dolfin::uBlasVector::inner "
+
+Return inner product with given vector. ";
 
 %feature("docstring")  dolfin::uBlasVector::norm "
 
 Compute norm of vector. ";
 
-%feature("docstring")  dolfin::uBlasVector::sum "
-
-Compute sum of vector. ";
-
-%feature("docstring")  dolfin::uBlasVector::axpy "
-
-Addition (AXPY). ";
-
-%feature("docstring")  dolfin::uBlasVector::mult "
-
-Scalar multiplication. ";
-
-%feature("docstring")  dolfin::uBlasVector::inner "
-
-Inner product. ";
-
-%feature("docstring")  dolfin::uBlasVector::div "
-
-Element-wise division. ";
-
-%feature("docstring")  dolfin::uBlasVector::disp "
-
-Display vector. ";
-
 %feature("docstring")  dolfin::uBlasVector::factory "
 
-Return backend factory. ";
+Return linear algebra backend factory. ";
 
 %feature("docstring")  dolfin::uBlasVector::vec "
 
-Return uBLAS ublas_vector reference. ";
+Return reference to uBLAS vector (const version). ";
 
 %feature("docstring")  dolfin::uBlasVector::vec "
 
-Return uBLAS ublas_vector reference. ";
-
-%feature("docstring")  dolfin::uBlasVector::copy "";
+Return reference to uBLAS vector (non-const version). ";
 
 
 // File: classdolfin_1_1UndirectedClique.xml
@@ -4115,50 +4074,50 @@ C++ includes: UnitSquare.h ";
 // File: classdolfin_1_1Vector.xml
 %feature("docstring") dolfin::Vector "
 
-This class provides an interface to the default DOLFIN vector
-implementation as decided in default_la_types.h.
+This class provides the default DOLFIN vector class, based on the
+default DOLFIN linear algebra backend.
 
 C++ includes: Vector.h ";
 
 %feature("docstring")  dolfin::Vector::Vector "
 
-Constructor. ";
+Create empty vector. ";
 
 %feature("docstring")  dolfin::Vector::Vector "
 
-Constructor. ";
+Create vector of size N. ";
+
+%feature("docstring")  dolfin::Vector::Vector "
+
+Copy constructor. ";
 
 %feature("docstring")  dolfin::Vector::~Vector "
 
 Destructor. ";
 
+%feature("docstring")  dolfin::Vector::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::Vector::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::Vector::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::Vector::disp "
+
+Display tensor. ";
+
 %feature("docstring")  dolfin::Vector::init "
 
 Initialize vector of size N. ";
 
-%feature("docstring")  dolfin::Vector::create "
-
-Create uninitialized vector. ";
-
-%feature("docstring")  dolfin::Vector::copy "
-
-Create copy of vector. ";
-
 %feature("docstring")  dolfin::Vector::size "
 
-Return size. ";
-
-%feature("docstring")  dolfin::Vector::get "
-
-Get values. ";
-
-%feature("docstring")  dolfin::Vector::set "
-
-Set values. ";
-
-%feature("docstring")  dolfin::Vector::add "
-
-Add values. ";
+Return size of vector. ";
 
 %feature("docstring")  dolfin::Vector::get "
 
@@ -4172,45 +4131,41 @@ Set block of values. ";
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::Vector::zero "
+%feature("docstring")  dolfin::Vector::get "
 
-Set all entries to zero. ";
+Get all values. ";
 
-%feature("docstring")  dolfin::Vector::apply "
+%feature("docstring")  dolfin::Vector::set "
 
-Apply changes to matrix. ";
+Set all values. ";
 
-%feature("docstring")  dolfin::Vector::disp "
+%feature("docstring")  dolfin::Vector::add "
 
-Display matrix (sparse output is default). ";
-
-%feature("docstring")  dolfin::Vector::norm "
-
-Compute norm of vector. ";
-
-%feature("docstring")  dolfin::Vector::factory "
-
-Return backend factory. ";
-
-%feature("docstring")  dolfin::Vector::inner "
-
-inner product ";
+Add values to each entry. ";
 
 %feature("docstring")  dolfin::Vector::axpy "
 
-this += a*x ";
+Add multiple of given vector (AXPY operation). ";
 
-%feature("docstring")  dolfin::Vector::mult "
+%feature("docstring")  dolfin::Vector::inner "
 
-this *= a ";
+Return inner product with given vector. ";
+
+%feature("docstring")  dolfin::Vector::norm "
+
+Return norm of vector. ";
+
+%feature("docstring")  dolfin::Vector::factory "
+
+Return linear algebra backend factory. ";
 
 %feature("docstring")  dolfin::Vector::instance "
 
-Return const GenericVector* (internal library use only!). ";
+Return concrete instance / unwrap (const version). ";
 
 %feature("docstring")  dolfin::Vector::instance "
 
-Return GenericVector* (internal library use only!). ";
+Return concrete instance / unwrap (non-const version). ";
 
 
 // File: classdolfin_1_1Vertex.xml
@@ -4432,6 +4387,9 @@ domains. ";
 // File: Array_8h.xml
 
 
+// File: constants_8h.xml
+
+
 // File: List_8h.xml
 
 
@@ -4442,6 +4400,9 @@ domains. ";
 
 
 // File: timing_8h.xml
+
+
+// File: types_8h.xml
 
 
 // File: Variable_8h.xml
@@ -4616,6 +4577,9 @@ domains. ";
 
 
 // File: Vector_8h.xml
+
+
+// File: VectorNormType_8h.xml
 
 
 // File: Event_8h.xml
