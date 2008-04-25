@@ -33,11 +33,10 @@ class MLPreconditioner:
 # Create mesh and finite element
 N = 10 
 mesh = UnitSquare(N,N)
-mesh.disp()
 element = FiniteElement("Lagrange", "triangle", 1)
 DG = FiniteElement("DG", "triangle", 0)
 vector_element = VectorElement("Lagrange", "triangle", 1)
-epsilon = 1.0
+epsilon = 1.0/100
 w_value = 1.0
 
 # Source term
@@ -53,8 +52,8 @@ class BC(Function):
         Function.__init__(self, element, mesh)
     def eval(self, values, x):
         y = x[1]
-        values[0] = exp(w_value*y/epsilon) - y*exp(w_value/epsilon) 
-        
+        c = 1/epsilon
+        values[0] = exp(c*y)/exp(c) 
 
 # Velocity term
 class W(Function):
@@ -81,15 +80,15 @@ w = W(vector_element, mesh)
 u = TrialFunction(element)
 f = Source(element, mesh)
 h = 1.0/N
-tau = Function(DG, mesh, 1.0*h**2) 
+tau = Function(DG, mesh, 5.0*h**2) 
 eps = Function(DG, mesh, epsilon) 
 
-a = dot(w, grad(u))*v*dx + eps*dot(grad(v), grad(u))*dx  #+ tau*dot(dot(w, grad(u)), dot(w, grad(v)))*dx
+a = eps*dot(grad(v), grad(u))*dx - dot(w, grad(u))*v*dx + tau*dot(dot(w, grad(u)), dot(w, grad(v)))*dx
 L = v*f*dx 
 
-backend = EpetraFactory.instance()
 
-# Assemble matrices
+# Assemble matrix and right hand side
+backend = EpetraFactory.instance()
 A = assemble(a, mesh, backend=backend)
 b = assemble(L, mesh, backend=backend)
 
@@ -99,35 +98,25 @@ bc_func = BC(element, mesh)
 bc = DirichletBC(bc_func, mesh, boundary)
 bc.apply(A, b, a)
 
-A.disp()
-
 # create solution vector (also used as start vector) 
 x = b.copy()
 x.zero()
 
+# create preconditioner
 B = MLPreconditioner(A)
-
-U = Function(element, mesh, x)
-#plot(U)
-#interactive()
-
-F = Function(element, mesh, b)
-#plot(F)
-#interactive()
-
-
-
 
 # solve the system
 regularization_parameter = 1.0/2
-#x = Richardson(A, x, b, regularization_parameter, 10e-6, True, 20)
-x = precRichardson(B, A, x, b, regularization_parameter, 10e-6, True, 20)
+x = precRichardson(B, A, x, b, regularization_parameter, 10e-8, True, 20)
 #x = precondBiCGStab(B, A, x, b, 10e-6, True, 20)
+
+print x.norm(linf)
+
 
 # plot the solution
 U = Function(element, mesh, x)
-#plot(U)
-#interactive()
+plot(U)
+interactive()
 
 # Save solution to file
 #file = File("conv-diff.pvd")
