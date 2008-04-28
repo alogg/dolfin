@@ -177,7 +177,9 @@ class BlockMatrix(object):
 #                tmp = self.data[i][j]*other.data[j]
 #                res[i] += self.data[i][j]*other.data[j]
 # NEW CODE: 
+
                 self.data[i][j].mult(other.data[j], tmp)
+
                 res[i].axpy(1.0,tmp)
         return res
 
@@ -707,7 +709,7 @@ class BlockVector(object):
 #                res.data.append(self.data[i]*other)
 # NEW CODE
                 tmp = self.data[i].copy()
-                tmp.mult(other)
+                tmp *= other
                 res.data.append(tmp)
         return res
 
