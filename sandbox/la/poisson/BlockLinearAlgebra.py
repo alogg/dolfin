@@ -1,7 +1,7 @@
 #
 # objdoc: Block Linear Algebra module
 # Ola Skavhaug
-# hacks to port to uBLAS by Kent-Andre Mardal (not completed yet)
+# modified by Kent-Andre Mardal 
 
 """
 Python block matrices and block vectors. This module provides three classes for block linear algebra systems in
@@ -163,9 +163,6 @@ class BlockMatrix(object):
             self.check()
         for i in range(self.n):
             n = self.rdim[i]
-# OLD CODE:
-#            res.data.append(numpy.zeros(n, dtype='d'))
-# NEW CODE:
             rhs_i = other.data[i].copy()
             rhs_i.zero()
             res.data.append(rhs_i)
@@ -173,13 +170,7 @@ class BlockMatrix(object):
             # temporal variable
             tmp = res[i].copy()
             for j in range(self.m):
-# OLD CODE: 
-#                tmp = self.data[i][j]*other.data[j]
-#                res[i] += self.data[i][j]*other.data[j]
-# NEW CODE: 
-
                 self.data[i][j].mult(other.data[j], tmp)
-
                 res[i].axpy(1.0,tmp)
         return res
 
@@ -189,19 +180,6 @@ class BlockMatrix(object):
             raise TypeError, "Can not multiply BlockMatrix with %s" % (str(type(other)))
         if (not x.n == self.m):
             raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the BlockMatrix (%d, %d)" % (x.n, self.n, self.m)
-
-# OLD CODE: 
-#        if not transposed:
-#            for i in range(self.n):
-#                b.data[i] = numpy.multiply(b.data[i], 0.0)
-#                for j in range(self.m):
-#                    self.data[i][j].mxv(x.data[j], b.data[i])
-#        else:
-#            for i in xrange(self.n):
-#                b.data[i] = numpy.multiply(b.data[i], 0.0)
-#                for j in xrange(self.m):
-#                    self.data[j][i].mxv(x.data[j], b.data[i])
-# NEW CODE
 
         for i in range(self.n):
             tmp = b[i].copy()
@@ -240,292 +218,6 @@ class BlockMatrix(object):
                 else: col_offset = self.cdim[j-1]
                 B.add(self[i,j], False, row_offset, col_offset)
         return CRS(B)
-
-class LowerTriagPrecBlockMatrix(object):
-    """A simple block lower triangular matrix implementation in Python.
-    The blocks are typically
-    matrices implemented in compile languages and later exposed to Python
-    either manually or using some sort of wrapper generator software."""
-
-    def __init__(self, *args):
-        """Input arguments are either two integer values
-        specifying the number of block rows and columns, or a nested Python
-        list containing the block elements directly."""
-        if isinstance(args[0], int):
-            n,m = args
-            self.n = n
-            self.m = m
-            self.data = []
-            for i in range(n):
-                self.data.append([])
-                for j in range(m):
-                    self.data[i].append(0)
-        elif isinstance(args[0], (list, tuple)):
-            self.n = len(args)
-            self.m = len(args[0])
-            self.data = list(args)
-
-
-    def shape(self):
-        """Return the number of block rows and columns."""
-        return (self.n,self.m)
-
-    shape = property(shape)
-
-    def __str__(self):
-        """Pretty print (ugly)."""
-        return str(self.data)
-
-    def __repr__(self):
-        """Return string capable of copying the object when calling
-        C{eval(repr(self))}"""
-        return "BlockMatrix(%d, %d)" % (self.n, self.m)
-
-    def __setitem__(self, idx, entry):
-        """Set a block matrix entry."""
-        if (self._check_tuple(idx)):
-            i = idx[0]; j = idx[1]
-            self.data[i][j] = entry
-
-    def __getitem__(self, idx):
-        """Get a block matrix entry."""
-        if (self._check_tuple(idx)):
-            return self.data[idx[0]][idx[1]]
-
-    def __add__(self, other):
-        """Add two block matrices."""
-        if (not isinstance(other, BlockMatrix)):
-            raise TypeError, "Can not add a BlockMatrix and a %s" %(str(other))
-        if (not self.shape == other.shape):
-            raise ValueError, "The BlockMatrices have different shapes: %s, %s" % (str(self.shape), str(other.shape))
-        b = Blockmatrix(self.n, self.m)
-        for i in range(self.n):
-            for j in range(self.m):
-                b[i,j] = self[i]+other[j]
-        return b
-
-    def __mul__(self, other):
-        """Matrix vector product."""
-        if (not isinstance(other, BlockVector)):
-            raise TypeError, "Can not multiply BlockMatrix with %s" % (str(type(other)))
-        if (not other.n == self.m):
-            raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the BlockMatrix (%d, %d)" % (other.n, self.n, self.m)
-        res = BlockVector()
-        res.n = self.n
-        for i in range(self.n):
-            n = self.data[i][0].shape[0]
-            res.data.append(numpy.zeros(n, dtype='d'))
-            tmp = other.data[i].copy()#numpy.zeros(n, dtype='d')
-            for j in range(i):
-                tmp -= self.data[i][j]*res[j]
-            res[i]=self.data[i][i]*tmp
-        return res
-
-    def prod(self, x, b,transposed=False): #Compute b = A*x
-        """Bug in prod!!"""
-        print "LowerTriagPrecBlockMatrix::prod"
-        if (not isinstance(x, BlockVector)):
-            raise TypeError, "Can not multiply BlockMatrix with %s" % (str(type(other)))
-        if (not x.n == self.m):
-            raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the BlockMatrix (%d, %d)" % (x.n, self.n, self.m)
-        if not transposed:
-            for i in range(self.n):
-                b.data[i] = numpy.multiply(b.data[i], 0.0)
-                for j in range(i):
-                    self.data[i][j].mxv(x.data[j], b.data[i])
-        else:
-            for i in range(self.n):
-                b.data[i] = numpy.multiply(b.data[i], 0.0)
-                for j in range(self.m):
-                    self.data[j][i].transposed = True
-                    self.data[j][i].mxv(x.data[j], b.data[i])
-                    self.data[j][i].transposed = False
-            
-#                res[i] += self.data[i][j]*other.data[j]
-#        return res
-
-    def _check_tuple(self, idx):
-        """Assure that idx is a tuple containing two-elements inside the
-        range (self.n-1, self.m-1)"""
-        if (not isinstance(idx, tuple)):
-            raise TypeError, "wrong type: %s as index" % (str(type(idx)))
-        if (not len(idx) == 2):
-            raise ValueError, "length of index tuple must be 2, got %d" %(len(idx))
-        if (idx[0] > self.n-1):
-            raise ValueError, "index out of range, %d" %(idx[0])
-        if (idx[1] > self.m-1):
-            raise ValueError, "index out of range, %d" %(idx[1])
-        return True
-
-
-class SSORPrecBlockMatrix(object):
-    """A simple Symmetric Gauss Seidel block  matrix implementation in Python.
-    The blocks are typically
-    matrices implemented in compile languages and later exposed to Python
-    either manually or using some sort of wrapper generator software."""
-
-    def __init__(self, *args):
-        """Input arguments are either two integer values
-        specifying the number of block rows and columns, or a nested Python
-        list containing the block elements directly."""
-        if isinstance(args[0], int):
-            n,m = args
-            self.n = n
-            self.m = m
-            self.data = []
-            self.A = None
-            self.iter = 1
-            self.w    = 1 # SGS
-            for i in range(n):
-                self.data.append([])
-                for j in range(m):
-                    self.data[i].append(0)
-        elif isinstance(args[0], (list, tuple)):
-            self.n = len(args)
-            self.m = len(args[0])
-            self.data = list(args)
-
-    def setA(self,A_):
-        self.A=A_
-
-    def setIter(self,it_):
-        self.iter = it_
-
-    def setRelaxation(self,w_):
-        self.w = w_
-
-    def shape(self):
-        """Return the number of block rows and columns."""
-        return (self.n,self.m)
-
-    shape = property(shape)
-
-    def __str__(self):
-        """Pretty print (ugly)."""
-        return str(self.data)
-
-    def __repr__(self):
-        """Return string capable of copying the object when calling
-        C{eval(repr(self))}"""
-        return "BlockMatrix(%d, %d)" % (self.n, self.m)
-
-    def __setitem__(self, idx, entry):
-        """Set a block matrix entry."""
-        if (self._check_tuple(idx)):
-            i = idx[0]; j = idx[1]
-            self.data[i][j] = entry
-
-    def __getitem__(self, idx):
-        """Get a block matrix entry."""
-        if (self._check_tuple(idx)):
-            return self.data[idx[0]][idx[1]]
-
-    def __add__(self, other):
-        """Add two block matrices."""
-        if (not isinstance(other, BlockMatrix)):
-            raise TypeError, "Can not add a BlockMatrix and a %s" %(str(other))
-        if (not self.shape == other.shape):
-            raise ValueError, "The BlockMatrices have different shapes: %s, %s" % (str(self.shape), str(other.shape))
-        b = Blockmatrix(self.n, self.m)
-        for i in range(self.n):
-            for j in range(self.m):
-                b[i,j] = self[i]+other[j]
-        return b
-
-    def __mul__(self, other):
-        """Matrix vector product."""
-        if (not isinstance(other, BlockVector)):
-            raise TypeError, "Can not multiply BlockMatrix with %s" % (str(type(other)))
-        if (not other.n == self.m):
-            raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the BlockMatrix (%d, %d)" % (other.n, self.n, self.m)
-        res = BlockVector()
-        res.n = self.n
-        
-        # We append memory to the return BlockVector
-        for i in xrange(self.n):
-            n = self.data[i][0].shape[0]
-            res.data.append(numpy.zeros(n, dtype='d'))
-
-
-        if self.iter==1:
-            # Forward SOR
-            for i in xrange(self.n):
-                tmp = other.data[i].copy()
-                for j in xrange(i):
-                    tmp -= self.data[i][j]*res[j]
-                #for j in xrange(i+1,self.n):
-                #    tmp -= self.data[i][j]*res[j]
-                res[i]+=self.w*(self.data[i][i]*tmp-res[i])
-
-            # Backward SOR
-            for i in xrange(self.n-1,-1,-1):
-                tmp = other.data[i].copy()
-                for j in xrange(i):
-                    tmp -= self.data[i][j]*res[j]
-                for j in xrange(i+1,self.n):
-                    tmp -= self.data[i][j]*res[j]
-                res[i]+=self.w*(self.data[i][i]*tmp-res[i])
-
-        else:
-            for k in xrange(self.iter):
-                # Forward SOR
-                for i in xrange(self.n):
-                    tmp = other.data[i].copy()
-                    for j in xrange(i):
-                        tmp -= self.data[i][j]*res[j]
-                    for j in xrange(i+1,self.n):
-                        tmp -= self.data[i][j]*res[j]
-                    res[i]+=self.w*(self.data[i][i]*tmp-res[i])
-
-                # Backward SOR
-                for i in xrange(self.n-1,-1,-1):
-                    tmp = other.data[i].copy()
-                    for j in xrange(i):
-                        tmp -= self.data[i][j]*res[j]
-                    for j in xrange(i+1,self.n):
-                        tmp -= self.data[i][j]*res[j]
-                    res[i]+=self.w*(self.data[i][i]*tmp-res[i])
-        return res
-
-
-    def prod(self, x, b,transposed=False): #Compute b = A*x
-        """Bug in prod!!"""
-        print "SSORPrecBlockMatrix::prod"
-        if (not isinstance(x, BlockVector)):
-            raise TypeError, "Can not multiply BlockMatrix with %s" % (str(type(other)))
-        if (not x.n == self.m):
-            raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the BlockMatrix (%d, %d)" % (x.n, self.n, self.m)
-        if not transposed:
-            for i in range(self.n):
-                b.data[i] = numpy.multiply(b.data[i], 0.0)
-                for j in range(i):
-                    self.data[i][j].mxv(x.data[j], b.data[i])
-        else:
-            for i in range(self.n):
-                b.data[i] = numpy.multiply(b.data[i], 0.0)
-                for j in range(self.m):
-                    self.data[j][i].transposed = True
-                    self.data[j][i].mxv(x.data[j], b.data[i])
-                    self.data[j][i].transposed = False
-            
-#                res[i] += self.data[i][j]*other.data[j]
-#        return res
-
-    def _check_tuple(self, idx):
-        """Assure that idx is a tuple containing two-elements inside the
-        range (self.n-1, self.m-1)"""
-        if (not isinstance(idx, tuple)):
-            raise TypeError, "wrong type: %s as index" % (str(type(idx)))
-        if (not len(idx) == 2):
-            raise ValueError, "length of index tuple must be 2, got %d" %(len(idx))
-        if (idx[0] > self.n-1):
-            raise ValueError, "index out of range, %d" %(idx[0])
-        if (idx[1] > self.m-1):
-            raise ValueError, "index out of range, %d" %(idx[1])
-        return True
-
-
-
 
 
 class DiagBlockMatrix(object):
@@ -610,17 +302,12 @@ class DiagBlockMatrix(object):
             raise ValueError, "The length of the BlockVector (%d) does not match the dimention of the DiagBlockMatrix (%d, %d)" % (x.n, self.n, self.n)
         if not transposed:
             for i in range(self.n):
-                #b.data[i] = numpy.multiply(b.data[i], 0.0)
-                #self.data[i].mxv(x.data[i], b.data[i])
                 b.data[i]=self.data[i]*x.data[i]
         else:
             for i in range(self.n):
-                #b.data[i] = numpy.multiply(b.data[i], 0.0)
                 self.data[i].transposed = True
                 b.data[i]=self.data[i]*x.data[i]
                 self.data[i].transposed = False
-            
-#                res[i] += self.data[i][j]*other.data[j]
 #        return res
 
 
@@ -658,27 +345,26 @@ class BlockVector(object):
     def shape(self):
         """Return the number of blocks."""
         return self.n
-    
+
     shape = property(shape)
+
+    def num_entries(self):  
+        len = 0 
+        for i in range(self.n):
+            len += self.data[i].size()
+        return len
+    
 
     def norm(self):
         return reduce(operator.add, map(lambda x: numpy.dot(x,x), self.data))
 
     def inner(self, other):
-#   OLD CODE: 
-#        return reduce(operator.add, map(lambda x,y: numpy.dot(x,y), self.data, other.data))
-#   NEW CODE: 
         return reduce(operator.add, map(lambda x,y: x.inner(y), self.data, other.data))
-
-        return reduce(operator.add, map(lambda x,y: numpy.dot(x,y), self.data, other.data))
 
     def __add__(self, other):
         res = BlockVector()
         res.n = self.n
         for i in range(self.n):
-#   OLD CODE: 
-#            res.data.append(self.data[i]+other.data[i])
-#   NEW CODE: 
             tmp = self.data[i].copy()
             tmp.axpy(1.0, other.data[i])
             res.data.append(tmp)
@@ -688,9 +374,6 @@ class BlockVector(object):
         res = BlockVector()
         res.n = self.n
         for i in range(self.n):
-# OLD CODE: 
-#            res.data.append(self.data[i]-other.data[i])
-# NEW CODE: 
             tmp = self.data[i].copy()
             tmp.axpy(-1.0, other.data[i])
             res.data.append(tmp)
@@ -705,9 +388,6 @@ class BlockVector(object):
                 res.data.append(self.data[i]*other[i])
         else:
             for i in range(self.n):
-# OLD CODE: 
-#                res.data.append(self.data[i]*other)
-# NEW CODE
                 tmp = self.data[i].copy()
                 tmp *= other
                 res.data.append(tmp)
