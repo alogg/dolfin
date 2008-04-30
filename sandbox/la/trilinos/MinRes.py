@@ -161,8 +161,8 @@ def precondMinRes(B, A, x, b, tolerance=1.0E-05, relativeconv=False, maxit=500, 
         c = sqrt(r.inner(r)/len)
         cc = c 
         
-        print " c ", c 
-        r0 = r - c
+#        print " c ", c 
+#        r0 = r - c
         
         t     = A*u
         alpha = inner(t,u)

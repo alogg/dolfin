@@ -131,6 +131,8 @@ AA[1,0] = A10
 AA[0,1] = A01 
 AA[1,1] = A11 
 
+file = File("A00.m"); file << A00
+
 # create block vector 
 bb = BlockVector(2)  
 bb[0] = b0

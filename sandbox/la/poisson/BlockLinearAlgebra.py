@@ -206,20 +206,6 @@ class BlockMatrix(object):
             raise ValueError, "index out of range, %d" %(idx[1])
         return True
 
-    def collect(self):
-        """Convert a block matrix to crs"""
-        from MatSparse import MapMatSparse, CRS
-        B = MapMatSparse()
-        for i in xrange(self.shape[0]):
-            if i==0: row_offset=0
-            else: row_offset = self.rdim[i-1]
-            for j in xrange(self.shape[1]):
-                if j==0: col_offset=0
-                else: col_offset = self.cdim[j-1]
-                B.add(self[i,j], False, row_offset, col_offset)
-        return CRS(B)
-
-
 class DiagBlockMatrix(object):
     """A diagonal block matrix implementation in Python. This class is
     typically used to store block diagonal preconditioners"""
