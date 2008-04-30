@@ -71,7 +71,7 @@ class Source(Function):
         return 2
 
 
-N = 10 
+N = 1 
 mesh = UnitSquare(N,N) 
 shape = "triangle"
 V = VectorElement("CG", shape, 2)
@@ -104,7 +104,8 @@ L0 = dot(v, f)*dx
 #FIXME: does not remember stabilization terms on rhs right now
 L1 = tau*q*dx  
 
-backend = EpetraFactory.instance()
+#backend = EpetraFactory.instance()
+backend = PETScFactory.instance()
 
 # Solution vectors 
 x0 = backend.createVector()
@@ -131,7 +132,10 @@ AA[1,0] = A10
 AA[0,1] = A01 
 AA[1,1] = A11 
 
-file = File("A00.m"); file << A00
+file = File("AP00.m"); file << A00
+file = File("AP10.m"); file << A10
+file = File("AP01.m"); file << A01
+file = File("AP11.m"); file << A11
 
 # create block vector 
 bb = BlockVector(2)  
