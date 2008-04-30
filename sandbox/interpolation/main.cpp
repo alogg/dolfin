@@ -13,7 +13,7 @@
 using namespace dolfin;
 
 #define SIGN(v) (v < 0 ? -1 :1)
-#define det(u,v,w) (u[0]*(v[1]*w[2]-v[2]*w[1])-u[1]*(v[0]*w[2]-v[2]*w[0])+u[2]*(v[0]*w[1]-v[1]*w[0]))
+#define det(u, v, w) (u[0]*(v[1]*w[2]-v[2]*w[1])-u[1]*(v[0]*w[2]-v[2]*w[0])+u[2]*(v[0]*w[1]-v[1]*w[0]))
 const real epsilon=1.0e-8;
 
 unsigned int index(unsigned int i, unsigned int n) {
@@ -42,11 +42,12 @@ unsigned int previous(unsigned int i, unsigned int dim)
 
 void computeWeights(real* w, real** u, real* d, unsigned int dim, unsigned int num_vertices)
 {
-  real * ell = new real [num_vertices];
-  real * theta = new real [num_vertices];
-  real h=0;
+  real* ell = new real [num_vertices];
+  real* theta = new real [num_vertices];
+  real h = 0.0;
   
-  for (unsigned int i=0; i<num_vertices; i++) {
+  for (unsigned int i = 0; i < num_vertices; i++)
+  {
     const unsigned int ind1 = next(i, num_vertices);
     const unsigned int ind2 = previous(i, num_vertices);
 
@@ -55,18 +56,16 @@ void computeWeights(real* w, real** u, real* d, unsigned int dim, unsigned int n
     theta[i]=2*asin(ell[i]/2.0);
     h+=theta[i]/2.0;
   }
-  
     
-  real sinus;
-  real * c=new real[num_vertices];
-  real * s = new real[num_vertices];
+  real* c = new real[num_vertices];
+  real* s = new real[num_vertices];
   
   for (unsigned int i=0; i<num_vertices; i++) {
     const unsigned int ind1 = next(i, num_vertices);
     const unsigned int ind2 = previous(i, num_vertices);
 
     c[i]=(2*sin(h)*sin(h-theta[i]))/(sin(theta[ind1])*sin(theta[ind2]))-1;
-    sinus=1-c[i]*c[i];
+    const real sinus=1-c[i]*c[i];
     if(sinus<0 || sqrt(sinus)<epsilon) {
       for (unsigned int i=0; i<num_vertices; i++) 
 	w[i]=0;
@@ -75,8 +74,8 @@ void computeWeights(real* w, real** u, real* d, unsigned int dim, unsigned int n
     s[i]=SIGN(det(u[0],u[1],u[2]))*sqrt(sinus);
   }
   
-  
-  for (unsigned int i=0; i<num_vertices; i++) {
+  for (unsigned int i=0; i < num_vertices; i++)
+  {
     const unsigned int ind1 = next(i, num_vertices);
     const unsigned int ind2 = previous(i, num_vertices);
     
@@ -187,7 +186,7 @@ void meanValue(real* new_x, unsigned int dim, Mesh& new_boundary,
   delete [] dCell;
 }
 
-void deform(Mesh& mesh, Mesh& new_boundary, MeshFunction<unsigned int>& vertex_map, MeshFunction<unsigned int>& cell_map)
+void deform(Mesh& mesh, Mesh& new_boundary, MeshFunction<unsigned int>& vertex_map)
 {
   // Extract old coordinates
   const unsigned int dim = mesh.geometry().dim();
@@ -240,7 +239,7 @@ int main()
   plot(boundary);
 
   // Deform mesh
-  deform(mesh, boundary, vertex_map, cell_map);
+  deform(mesh, boundary, vertex_map);
   plot(mesh);
 
   // Save mesh to file for visualization
