@@ -17,7 +17,7 @@ using namespace dolfin;
 int main()
 {
   // Create mesh
-  UnitCube mesh(10, 10, 10);
+  UnitCube mesh(8, 8, 8);
   plot(mesh);
 
   // Create boundary mesh
