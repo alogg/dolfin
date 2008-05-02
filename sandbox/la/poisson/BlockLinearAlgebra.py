@@ -351,18 +351,24 @@ class BlockVector(object):
         res = BlockVector()
         res.n = self.n
         for i in range(self.n):
-            tmp = self.data[i].copy()
-            tmp.axpy(1.0, other.data[i])
-            res.data.append(tmp)
+#            tmp = self.data[i].copy()
+#            tmp.axpy(1.0, other.data[i])
+#            res.data.append(tmp)
+            a = self.data[i].copy()
+            a += other.data[i]
+            res.data.append(a)
         return res
 
     def __sub__(self, other):
         res = BlockVector()
         res.n = self.n
         for i in range(self.n):
-            tmp = self.data[i].copy()
-            tmp.axpy(-1.0, other.data[i])
-            res.data.append(tmp)
+#            tmp = self.data[i].copy()
+#            tmp.axpy(-1.0, other.data[i])
+#            res.data.append(tmp)
+            a = self.data[i].copy()
+            a -= other.data[i]
+            res.data.append(a)
         return res
 
 

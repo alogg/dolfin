@@ -154,8 +154,9 @@ def precondMinRes(B, A, x, b, tolerance=1.0E-05, relativeconv=False, maxit=500, 
             rho -= alpha*alpha
 #        print "iter = ", iter, " rho=",rho
         rho = fabs(rho)
-        print "iter = ", iter, " rho=",rho
-        print " r norm ", r.inner(r)
+        print "iter = ", iter, " rho=", sqrt(rho)
+        print " r norm ", sqrt(r.inner(r))
+#        r[0].disp()
         len = r[0].size() + r[1].size()
         cc = r.copy(); 
         c = sqrt(r.inner(r)/len)
@@ -185,5 +186,5 @@ def precondMinRes(B, A, x, b, tolerance=1.0E-05, relativeconv=False, maxit=500, 
         iter += 1
         #print "r",iter,"=",sqrt(inner(r,r))
     print "precondMinRes finished, iter: %d, ||e||=%e" % (iter,sqrt(inner(r,r)))
-    return (x,iter)
+    return (x,r,iter)
 

@@ -687,7 +687,7 @@ def precondRconjgrad(B, A, x, b, tolerance=1.0E-05, relativeconv=False):
 def Richardson(A, x, b, tau=1, tolerance=1.0E-05, relativeconv=False, maxiter=1000, info=False):
 
     print "b ", b.inner(b)
-    b.disp()
+#    b.disp()
     print "x ", x.inner(x)
 
 

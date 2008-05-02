@@ -6,7 +6,7 @@ from Krylov import *
 
 
 # Create mesh and finite element
-mesh = UnitSquare(32, 32)
+mesh = UnitSquare(320, 320)
 element = FiniteElement("Lagrange", "triangle", 1)
 
 # Source term
@@ -67,7 +67,7 @@ x.zero()
 #xx = BiCGStab(AA, xx, bb, 10e-12, True, 1000)
 
 
-x = BiCGStab(A, x, b, 10e-12, True, 1000)
+x = BiCGStab(A, x, b, 10e-18, True, 1000)
 
 print x 
 
