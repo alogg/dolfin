@@ -1068,7 +1068,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1227,7 +1227,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1386,7 +1386,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1564,7 +1564,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1723,7 +1723,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1882,7 +1882,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -2038,7 +2038,7 @@ public:
     A[11] = 0;
     A[12] = 0.0416666666666666*G0_;
     A[13] = 0.0416666666666666*G0_;
-    A[14] = 0.0833333333333332*G0_;
+    A[14] = 0.0833333333333331*G0_;
     A[15] = 0;
     A[16] = 0;
     A[17] = 0;
@@ -2059,7 +2059,7 @@ public:
     A[32] = 0;
     A[33] = 0.0416666666666666*G0_;
     A[34] = 0.0416666666666666*G0_;
-    A[35] = 0.0833333333333332*G0_;
+    A[35] = 0.0833333333333331*G0_;
   }
 
 };
@@ -3237,7 +3237,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -3396,7 +3396,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -3555,7 +3555,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -3733,7 +3733,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -3892,7 +3892,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -4051,7 +4051,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -4208,10 +4208,10 @@ public:
     // Compute element tensor
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
     A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333331*G0_2;
     A[3] = 0.0833333333333332*G0_3 + 0.0416666666666666*G0_4 + 0.0416666666666666*G0_5;
     A[4] = 0.0416666666666666*G0_3 + 0.0833333333333332*G0_4 + 0.0416666666666666*G0_5;
-    A[5] = 0.0416666666666666*G0_3 + 0.0416666666666666*G0_4 + 0.0833333333333332*G0_5;
+    A[5] = 0.0416666666666666*G0_3 + 0.0416666666666666*G0_4 + 0.0833333333333331*G0_5;
   }
 
 };

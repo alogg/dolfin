@@ -401,7 +401,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
@@ -551,7 +551,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1184,7 +1184,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1334,7 +1334,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 1;
   }
 
   /// Return the number of dofs on each cell facet

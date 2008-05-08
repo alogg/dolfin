@@ -1626,7 +1626,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 3;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1798,7 +1798,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 3;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1970,7 +1970,7 @@ public:
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const
   {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+    return 3;
   }
 
   /// Return the number of dofs on each cell facet
@@ -2811,7 +2811,7 @@ public:
         A[10] = 0;
         A[11] = 0;
         A[12] = 0.0416666666666666*G0_0;
-        A[13] = 0.0833333333333332*G0_0;
+        A[13] = 0.0833333333333331*G0_0;
         A[14] = 0;
         A[15] = 0.0416666666666666*G0_0;
         A[16] = 0;
@@ -2877,7 +2877,7 @@ public:
         A[10] = 0;
         A[11] = 0;
         A[12] = 0.0416666666666666*G0_0;
-        A[13] = 0.0833333333333332*G0_0;
+        A[13] = 0.0833333333333331*G0_0;
         A[14] = 0.0416666666666666*G0_0;
         A[15] = 0;
         A[16] = 0;
@@ -3080,7 +3080,7 @@ public:
         A[10] = 0;
         A[11] = 0;
         A[12] = 0.0416666666666666*G0_0;
-        A[13] = 0.0833333333333332*G0_0;
+        A[13] = 0.0833333333333331*G0_0;
         A[14] = 0;
         A[15] = 0.0416666666666666*G0_0;
         A[16] = 0;
@@ -3146,7 +3146,7 @@ public:
         A[10] = 0;
         A[11] = 0;
         A[12] = 0.0416666666666666*G0_0;
-        A[13] = 0.0833333333333332*G0_0;
+        A[13] = 0.0833333333333331*G0_0;
         A[14] = 0.0416666666666666*G0_0;
         A[15] = 0;
         A[16] = 0;
