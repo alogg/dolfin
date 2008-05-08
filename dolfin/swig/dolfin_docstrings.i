@@ -3,6 +3,17 @@
 
 // File: index.xml
 
+// File: classdolfin_1_1ALE.xml
+%feature("docstring") dolfin::ALE "
+
+This class provides functionality useful for implementation of ALE
+(Arbitrary Lagrangian-Eulerian) methods, in particular moving the
+boundary vertices of a mesh and then interpolating the new coordinates
+for the interior vertices accordingly.
+
+C++ includes: ALE.h ";
+
+
 // File: classdolfin_1_1Array.xml
 %feature("docstring") dolfin::Array "
 
@@ -73,7 +84,9 @@ Assemble tensor from given variational form over a sub domain. ";
 
 %feature("docstring")  dolfin::Assembler::assemble "
 
-Assemble tensor from given variational form over sub domains. ";
+Assemble tensor from given variational form over a sub domain.
+
+Assemble tensor from given variational form over sub domains ";
 
 %feature("docstring")  dolfin::Assembler::assemble "
 
@@ -168,6 +181,12 @@ Create boundary mesh from given mesh. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
 
+Create boundary mesh from given mesh and a mapping from the vertices
+of the boundary to the corresponding mesh entities in the original
+mesh ";
+
+%feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
+
 Create boundary mesh from given mesh and compute a pair of mappings
 from the vertices and cells of the boundary to the corresponding mesh
 entities in the original mesh ";
@@ -178,13 +197,15 @@ Destructor. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::init "
 
-Initialize boundary mesh from given mesh. ";
+Initialize boundary mesh. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::init "
 
-Initialize boundary mesh from given mesh, including a pair of mappings
-from the vertices and cells of the boundary to the corresponding mesh
-entities in the original mesh ";
+Initialize boundary mesh. ";
+
+%feature("docstring")  dolfin::BoundaryMesh::init "
+
+Initialize boundary mesh. ";
 
 
 // File: classdolfin_1_1Cell.xml
@@ -894,7 +915,11 @@ Create constant function from given value. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant function from given value.
+Create function from given ufc::function. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create function from given GenericFunction.
 
 Create discrete function for argument function i of form ";
 
@@ -1325,6 +1350,14 @@ Return inner product with given vector. ";
 
 Return norm of vector. ";
 
+%feature("docstring")  dolfin::GenericVector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::GenericVector::max "
+
+Return maximum value of vector. ";
+
 %feature("docstring")  dolfin::GenericVector::getitem "
 
 Get value of given entry. ";
@@ -1621,13 +1654,13 @@ Krylov solver type is defined in default_type.h.
 
 C++ includes: KrylovSolver.h ";
 
-%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "";
+%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "
 
-%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "";
+Create Krylov solver. ";
 
-%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "";
+%feature("docstring")  dolfin::KrylovSolver::~KrylovSolver "
 
-%feature("docstring")  dolfin::KrylovSolver::~KrylovSolver "";
+Destructor. ";
 
 %feature("docstring")  dolfin::KrylovSolver::solve "
 
@@ -1878,6 +1911,10 @@ LU solver for the built-in LA backends. ";
 
 %feature("docstring")  dolfin::LUSolver::solve "";
 
+%feature("docstring")  dolfin::LUSolver::factorize "";
+
+%feature("docstring")  dolfin::LUSolver::factorized_solve "";
+
 
 // File: classdolfin_1_1Matrix.xml
 %feature("docstring") dolfin::Matrix "
@@ -2126,6 +2163,10 @@ Coarsen mesh uniformly. ";
 %feature("docstring")  dolfin::Mesh::coarsen "
 
 Coarsen mesh according to cells marked for coarsening. ";
+
+%feature("docstring")  dolfin::Mesh::move "
+
+Move coordinates of mesh according to new boundary coordinates. ";
 
 %feature("docstring")  dolfin::Mesh::smooth "
 
@@ -3724,6 +3765,14 @@ Solve linear system Ax = b for a dense matrix. ";
 Solve linear system Ax = b for a sparse matrix using UMFPACK if
 installed. ";
 
+%feature("docstring")  dolfin::uBlasLUSolver::factorize "
+
+LU-factor sparse matrix A if UMFPACK is installed. ";
+
+%feature("docstring")  dolfin::uBlasLUSolver::factorized_solve "
+
+Solve factorized system (UMFPACK). ";
+
 %feature("docstring")  dolfin::uBlasLUSolver::solve "
 
 Solve linear system Ax = b for a Krylov matrix. ";
@@ -3990,6 +4039,14 @@ Return inner product with given vector. ";
 
 Compute norm of vector. ";
 
+%feature("docstring")  dolfin::uBlasVector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::uBlasVector::max "
+
+Return maximum value of vector. ";
+
 %feature("docstring")  dolfin::uBlasVector::factory "
 
 Return linear algebra backend factory. ";
@@ -4154,6 +4211,14 @@ Return inner product with given vector. ";
 %feature("docstring")  dolfin::Vector::norm "
 
 Return norm of vector. ";
+
+%feature("docstring")  dolfin::Vector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::Vector::max "
+
+Return maximum value of vector. ";
 
 %feature("docstring")  dolfin::Vector::factory "
 
@@ -4498,9 +4563,6 @@ domains. ";
 // File: GMRES_8h.xml
 
 
-// File: KrylovMethod_8h.xml
-
-
 // File: KrylovSolver_8h.xml
 
 
@@ -4537,7 +4599,7 @@ domains. ";
 // File: PETScVector_8h.xml
 
 
-// File: Preconditioner_8h.xml
+// File: PreconditionerType_8h.xml
 
 
 // File: Scalar_8h.xml
@@ -4547,6 +4609,9 @@ domains. ";
 
 
 // File: solve_8h.xml
+
+
+// File: SolverType_8h.xml
 
 
 // File: SparsityPattern_8h.xml
@@ -4604,6 +4669,9 @@ domains. ";
 
 
 // File: Legendre_8h.xml
+
+
+// File: ALE_8h.xml
 
 
 // File: BoundaryMesh_8h.xml
