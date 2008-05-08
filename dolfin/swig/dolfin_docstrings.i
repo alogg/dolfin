@@ -1367,15 +1367,6 @@ Get value of given entry. ";
 Set given entry to value. ";
 
 
-// File: classdolfin_1_1GMRES.xml
-%feature("docstring") dolfin::GMRES "
-
-This class provides methods for solving a linear system with the GMRES
-method, with an optional preconditioner.
-
-C++ includes: GMRES.h ";
-
-
 // File: classdolfin_1_1Graph.xml
 %feature("docstring") dolfin::Graph "
 
@@ -1889,15 +1880,6 @@ Display quadrature data. ";
 %feature("docstring")  dolfin::LogStream::~LogStream "";
 
 %feature("docstring")  dolfin::LogStream::disp "";
-
-
-// File: classdolfin_1_1LU.xml
-%feature("docstring") dolfin::LU "
-
-This class provides methods for solving a linear system by LU
-factorization.
-
-C++ includes: LU.h ";
 
 
 // File: classdolfin_1_1LUSolver.xml
@@ -3739,12 +3721,11 @@ matrix). ";
 // File: classdolfin_1_1uBlasLUSolver.xml
 %feature("docstring") dolfin::uBlasLUSolver "
 
-This class implements the direct solution ( LU factorization) of
-linear systems of the form Ax = b using uBlas data types. Dense
-matrices are solved using uBlas LU factorisation, and sparse matrices
-are solved using UMFPACK
-(http://www.cise.ufl.edu/research/sparse/umfpack/) is installed.
-Matrices can also be inverted.
+This class implements the direct solution (LU factorization) of linear
+systems of the form Ax = b using uBlas data types. Dense matrices are
+solved using uBlas LU factorisation, and sparse matrices are solved
+using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) is
+installed. Matrices can also be inverted.
 
 C++ includes: uBlasLUSolver.h ";
 
@@ -4368,11 +4349,7 @@ End task (decrease indentation level). ";
 
 %feature("docstring")  dolfin::solve "
 
-Solve linear system Ax = b.
-
-Solve linear system Ax = b using a direct method ( LU factorization).
-Note that iterative methods (preconditioned Krylov methods including
-GMRES) are also available through the KrylovSolver interface. ";
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::residual "
 
@@ -4560,9 +4537,6 @@ domains. ";
 // File: GenericVector_8h.xml
 
 
-// File: GMRES_8h.xml
-
-
 // File: KrylovSolver_8h.xml
 
 
@@ -4570,9 +4544,6 @@ domains. ";
 
 
 // File: LinearSolver_8h.xml
-
-
-// File: LU_8h.xml
 
 
 // File: LUSolver_8h.xml
