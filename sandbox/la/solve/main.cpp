@@ -103,10 +103,17 @@ int main()
 
   // Second option
   tic();
-  KrylovSolver solver(gmres, amg);
+  KrylovSolver krylov_solver(gmres, amg);
   for (int i = 0; i < 10; i++)
-    solver.solve(A, u.vector(), b);
-  message("--- Reusing solver: %g seconds", toc());
+    krylov_solver.solve(A, u.vector(), b);
+  message("--- Reusing KrylovSolver: %g seconds", toc());
+
+  // Third option
+  tic();
+  LinearSolver linear_solver(gmres, amg);
+  for (int i = 0; i < 10; i++)
+    linear_solver.solve(A, u.vector(), b);
+  message("--- Reusing LinearSolver: %g seconds", toc());
   
   // Plot solution
   plot(u);
