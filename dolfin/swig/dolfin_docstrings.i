@@ -248,6 +248,10 @@ Compute midpoint of cell. ";
 Compute component i of normal of given facet with respect to the cell.
 ";
 
+%feature("docstring")  dolfin::Cell::normal "
+
+Compute normal of given facet with respect to the cell. ";
+
 
 // File: classdolfin_1_1CellIterator.xml
 %feature("docstring") dolfin::CellIterator "
@@ -1812,14 +1816,15 @@ Solve PDE system and extract sub functions. ";
 // File: classdolfin_1_1LinearSolver.xml
 %feature("docstring") dolfin::LinearSolver "
 
-This class defines the interfaces for default linear solvers for
-systems of the form Ax = b.
+This class provides a general solver for linear systems Ax = b.
+Available methods are defined in SolverType.h and available
+preconditioners are defined in PreconditionerType.h.
 
 C++ includes: LinearSolver.h ";
 
 %feature("docstring")  dolfin::LinearSolver::LinearSolver "
 
-Constructor. ";
+Create linear solver. ";
 
 %feature("docstring")  dolfin::LinearSolver::~LinearSolver "
 
@@ -3224,6 +3229,10 @@ C++ includes: Point.h ";
 %feature("docstring")  dolfin::Point::Point "
 
 Create a point at (x, y, z). ";
+
+%feature("docstring")  dolfin::Point::Point "
+
+Copy constructor. ";
 
 %feature("docstring")  dolfin::Point::~Point "
 
