@@ -1,8 +1,10 @@
-// Copyright (C) 2006-2007 Anders Logg.
+// Copyright (C) 2008 Anders Logg.
 // Licensed under the GNU LGPL Version 2.1.
 //
 // Simple test program for solving a singular system
 // with GMRES + AMG (PETSc + Hypre BoomerAMG)
+//
+// Singular solver converges much better
 
 #include <dolfin.h>
 #include "Poisson.h"
@@ -34,7 +36,7 @@ int main(int argc, char* argv[])
   };
 
   // Create mesh
-  UnitSquare mesh(32, 32);
+  UnitSquare mesh(2, 2);
 
   // Create functions
   Source f(mesh);
@@ -49,8 +51,13 @@ int main(int argc, char* argv[])
   assemble(A, a, mesh);
   assemble(b, L, mesh);
 
-  // Solve linear sysem
-  solve(A, x, b, gmres, amg);
+  // Solve linear system using ordinary linear solver
+  LinearSolver s0(gmres, amg);
+  s0.solve(A, x, b);
+
+  // Solve linear system using special singular solver
+  SingularSolver s1(gmres, amg);
+  s1.solve(A, x, b);
 
   return 0;
 }

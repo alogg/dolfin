@@ -2598,6 +2598,10 @@ C++ includes: SpecialFunctions.h ";
 Evaluate scalar function at given point (overload for scalar user-
 defined function). ";
 
+%feature("docstring")  dolfin::MeshSize::min "
+
+Compute minimal cell diameter. ";
+
 
 // File: classdolfin_1_1MeshTopology.xml
 %feature("docstring") dolfin::MeshTopology "
@@ -3443,6 +3447,47 @@ Constructor. ";
 %feature("docstring")  dolfin::simple_array::simple_array "
 
 Destructor. ";
+
+
+// File: classdolfin_1_1SingularSolver.xml
+%feature("docstring") dolfin::SingularSolver "
+
+This class provides a linear solver for singular linear systems Ax = b
+where A has a one-dimensional null-space (kernel). This may happen for
+example when solving Poisson's equation with pure Neumann boundary
+conditions.
+
+The solver attempts to create an extended non-singular system by
+adding the constraint [1, 1, 1, ...]^T x = 0.
+
+If an optional mass matrix M is supplied, the solver attempts to
+create an extended non-singular system by adding the constraint m^T x
+= 0 where m is the lumped mass matrix. This corresponds to setting the
+average (integral) of the finite element function with coefficients x
+to zero.
+
+The solver makes not attempt to check that the null-space is indeed
+one-dimensional. It is also assumed that the system Ax = b retains its
+sparsity pattern between calls to solve().
+
+C++ includes: SingularSolver.h ";
+
+%feature("docstring")  dolfin::SingularSolver::SingularSolver "
+
+Create linear solver. ";
+
+%feature("docstring")  dolfin::SingularSolver::~SingularSolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::SingularSolver::solve "
+
+Solve linear system Ax = b. ";
+
+%feature("docstring")  dolfin::SingularSolver::solve "
+
+Solve linear system Ax = b using mass matrix M for setting constraint.
+";
 
 
 // File: classdolfin_1_1SparsityPattern.xml
@@ -4583,6 +4628,9 @@ domains. ";
 
 
 // File: Scalar_8h.xml
+
+
+// File: SingularSolver_8h.xml
 
 
 // File: SLEPcEigenvalueSolver_8h.xml
