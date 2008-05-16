@@ -59,5 +59,21 @@ int main(int argc, char* argv[])
   SingularSolver s1(gmres, amg);
   s1.solve(A, x, b);
 
+
+  // Compute constant, c = int_\Omega b and subtract it from b  
+  real c = 0.0; 
+  for (unsigned int i=0; i<b.size(); i++) {
+    c += b[i]; 
+  }
+  c /= b.size(); 
+  Vector bhat(b.size()); 
+  bhat = c; 
+  b -= bhat; 
+
+  // Solve linear system using ordinary linear solver
+  LinearSolver s2(gmres, amg);
+  s2.solve(A, x, b);
+
+
   return 0;
 }
