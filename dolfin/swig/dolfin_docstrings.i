@@ -4615,9 +4615,6 @@ domains. ";
 // File: File_8h.xml
 
 
-// File: default__la__types_8h.xml
-
-
 // File: DefaultFactory_8h.xml
 
 
