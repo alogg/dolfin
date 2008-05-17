@@ -399,6 +399,30 @@ Return time step for real-valued ODE. ";
 Update for real-valued ODE. ";
 
 
+// File: classdolfin_1_1DefaultFactory.xml
+%feature("docstring") dolfin::DefaultFactory "";
+
+%feature("docstring")  dolfin::DefaultFactory::DefaultFactory "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DefaultFactory::~DefaultFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
 // File: classdolfin_1_1dGqMethod.xml
 %feature("docstring") dolfin::dGqMethod "
 
@@ -1110,6 +1134,10 @@ Add block of values. ";
 
 Get non-zero values of given row. ";
 
+%feature("docstring")  dolfin::GenericMatrix::setrow "
+
+Set values for given row. ";
+
 %feature("docstring")  dolfin::GenericMatrix::zero "
 
 Set given rows to zero. ";
@@ -1763,13 +1791,13 @@ Destructor. ";
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
-
-Create empty sparsity pattern. ";
-
 %feature("docstring")  dolfin::LinearAlgebraFactory::createVector "
 
 Create empty vector. ";
+
+%feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
+
+Create empty sparsity pattern. ";
 
 
 // File: classdolfin_1_1LinearPDE.xml
@@ -1970,6 +1998,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::Matrix::getrow "
 
 Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::Matrix::setrow "
+
+Set values for given row. ";
 
 %feature("docstring")  dolfin::Matrix::zero "
 
@@ -3501,7 +3533,15 @@ C++ includes: SparsityPattern.h ";
 
 %feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
 
-Constructor. ";
+Create empty sparsity pattern. ";
+
+%feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
+
+Create sparsity pattern for matrix of given dimensions. ";
+
+%feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
+
+Create sparsity pattern for vector of given dimension. ";
 
 %feature("docstring")  dolfin::SparsityPattern::~SparsityPattern "
 
@@ -3519,7 +3559,11 @@ rows and columns. ";
 
 %feature("docstring")  dolfin::SparsityPattern::insert "
 
-Insert non-zero entry. ";
+Insert non-zero entries. ";
+
+%feature("docstring")  dolfin::SparsityPattern::insert "
+
+Insert non-zero entries. ";
 
 %feature("docstring")  dolfin::SparsityPattern::pinsert "
 
@@ -3690,13 +3734,13 @@ Destructor. ";
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::uBlasFactory::createPattern "
-
-Create empty sparsity pattern. ";
-
 %feature("docstring")  dolfin::uBlasFactory::createVector "
 
 Create empty vector. ";
+
+%feature("docstring")  dolfin::uBlasFactory::createPattern "
+
+Create empty sparsity pattern. ";
 
 
 // File: classdolfin_1_1uBlasILUPreconditioner.xml
@@ -3900,6 +3944,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::uBlasMatrix::getrow "
 
 Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::setrow "
+
+Set values for given row. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::zero "
 
@@ -4568,6 +4616,9 @@ domains. ";
 
 
 // File: default__la__types_8h.xml
+
+
+// File: DefaultFactory_8h.xml
 
 
 // File: EpetraFactory_8h.xml
