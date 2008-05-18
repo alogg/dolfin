@@ -553,6 +553,10 @@ diagonal matrices in a block matrix. ";
 Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
 
+%feature("docstring")  dolfin::DirichletBC::setSubSystem "
+
+Set (or update) value for sub system. ";
+
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
 Return mesh. ";
@@ -3734,13 +3738,13 @@ Destructor. ";
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::uBlasFactory::createVector "
-
-Create empty vector. ";
-
 %feature("docstring")  dolfin::uBlasFactory::createPattern "
 
 Create empty sparsity pattern. ";
+
+%feature("docstring")  dolfin::uBlasFactory::createVector "
+
+Create empty vector. ";
 
 
 // File: classdolfin_1_1uBlasILUPreconditioner.xml
