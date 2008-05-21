@@ -10,9 +10,6 @@ void dolfin::assembly_tester(Mesh& mesh, Form& a, std::string name, int n_reasm)
   backends[2] = "Epetra";
   backends[3] = "Assembly";
   for (int j = 0; j < 4; ++j){
-
-    printf("Test: %s with backend: %s\n",name.c_str(), backends[j].c_str());
-
     ufc::finite_element* finite_element = 
       a.form().create_finite_element(0);
     //printf("Element: %s\n",finite_element->signature() );
@@ -21,6 +18,8 @@ void dolfin::assembly_tester(Mesh& mesh, Form& a, std::string name, int n_reasm)
     dolfin_set("linear algebra backend", backends[j].c_str());
     Matrix A;
     Assembler ass(mesh);
+    std::string backend = dolfin_get("linear algebra backend");
+    printf("Test: %s with backend: %s\n",name.c_str(), backend.c_str());
     
     tic();
     ass.assemble(A,a);
