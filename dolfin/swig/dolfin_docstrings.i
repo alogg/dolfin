@@ -491,9 +491,23 @@ u = g on G,
 where u is the solution to be computed, g is a function and G is a sub
 domain of the mesh.
 
-A DirichletBC is specified by a Function, a Mesh, a MeshFunction<uint>
-over the facets of the mesh and an integer sub_domain specifying the
-sub domain on which the boundary condition is to be applied.
+A DirichletBC is specified by the Function g, the Mesh, and boundary
+indicators on (a subset of) the mesh boundary.
+
+The boundary indicators may be specified in a number of different
+ways.
+
+The simplest approach is to specify the boundary by a SubDomain
+object, using the inside() function to specify on which facets the
+boundary conditions should be applied.
+
+Alternatively, the boundary may be specified by a MeshFunction
+labeling all mesh facets together with a number that specifies which
+facets should be included in the boundary.
+
+The third option is to attach the boundary information to the mesh.
+This is handled automatically when exporting a mesh from for example
+VMTK.
 
 For mixed systems (vector-valued and mixed elements), an optional set
 of parameters may be used to specify for which sub system the boundary
@@ -511,6 +525,10 @@ Create boundary condition for sub domain specified by index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
+Create boundary condition for boundary data included in the mesh. ";
+
+%feature("docstring")  dolfin::DirichletBC::DirichletBC "
+
 Create sub system boundary condition for sub domain. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
@@ -520,8 +538,8 @@ index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Simple creation of boundary condition with given value on the entire
-boundary. ";
+Create sub system boundary condition for boundary data included in the
+mesh. ";
 
 %feature("docstring")  dolfin::DirichletBC::~DirichletBC "
 
@@ -2131,19 +2149,23 @@ Return number of entities of given topological dimension. ";
 
 %feature("docstring")  dolfin::Mesh::topology "
 
-Return mesh topology. ";
+Return mesh topology (non-const version). ";
 
 %feature("docstring")  dolfin::Mesh::topology "
 
-Return mesh topology. ";
+Return mesh topology (const version). ";
 
 %feature("docstring")  dolfin::Mesh::geometry "
 
-Return mesh geometry. ";
+Return mesh geometry (non-const version). ";
 
 %feature("docstring")  dolfin::Mesh::geometry "
 
-Return mesh geometry. ";
+Return mesh geometry (const version). ";
+
+%feature("docstring")  dolfin::Mesh::data "
+
+Return mesh data. ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
@@ -2165,6 +2187,10 @@ Compute connectivity between given pair of dimensions. ";
 %feature("docstring")  dolfin::Mesh::init "
 
 Compute all entities and connectivity. ";
+
+%feature("docstring")  dolfin::Mesh::clear "
+
+Clear all mesh data. ";
 
 %feature("docstring")  dolfin::Mesh::order "
 
@@ -2277,6 +2303,52 @@ Set all connections for given entity. ";
 Set all connections for all entities. ";
 
 %feature("docstring")  dolfin::MeshConnectivity::disp "
+
+Display data. ";
+
+
+// File: classdolfin_1_1MeshData.xml
+%feature("docstring") dolfin::MeshData "
+
+The class MeshData is a container for auxiliary mesh data, represented
+either as MeshFunctions over topological mesh entities or Arrays. Each
+dataset is identified by a unique user-specified string.
+
+Currently, only uint-valued data is supported.
+
+C++ includes: MeshData.h ";
+
+%feature("docstring")  dolfin::MeshData::MeshData "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::MeshData::~MeshData "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::MeshData::clear "
+
+Clear all data. ";
+
+%feature("docstring")  dolfin::MeshData::createMeshFunction "
+
+Create MeshFunction with given name on entities of given dimension. ";
+
+%feature("docstring")  dolfin::MeshData::createArray "
+
+Create Array with given name and size. ";
+
+%feature("docstring")  dolfin::MeshData::meshfunction "
+
+Return MeshFunction with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::array "
+
+Return Array with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::disp "
 
 Display data. ";
 
@@ -4776,6 +4848,9 @@ domains. ";
 
 
 // File: MeshConnectivity_8h.xml
+
+
+// File: MeshData_8h.xml
 
 
 // File: MeshEditor_8h.xml
