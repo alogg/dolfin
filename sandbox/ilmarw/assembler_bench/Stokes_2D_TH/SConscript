@@ -1,0 +1,2 @@
+Import('env')
+env.Program('assembler_test', ['main.cpp','../assembly_tester.cpp'])
