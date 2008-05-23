@@ -54,26 +54,26 @@ int main(int argc, char* argv[])
   // Solve linear system using ordinary linear solver
   LinearSolver s0(gmres, amg);
   s0.solve(A, x, b);
+  cout << "Residual: " << residual(A, x, b) << endl;
 
   // Solve linear system using special singular solver
   SingularSolver s1(gmres, amg);
   s1.solve(A, x, b);
-
+  cout << "Residual: " << residual(A, x, b) << endl;
 
   // Compute constant, c = int_\Omega b and subtract it from b  
-  real c = 0.0; 
-  for (unsigned int i=0; i<b.size(); i++) {
-    c += b[i]; 
-  }
-  c /= b.size(); 
-  Vector bhat(b.size()); 
-  bhat = c; 
-  b -= bhat; 
+  real c = 0.0;
+  for (unsigned int i=0; i<b.size(); i++)
+    c += b[i];
+  c /= static_cast<real>(b.size());
+  Vector bhat(b.size());
+  for (unsigned int i=0; i<b.size(); i++)
+    bhat.setitem(i, b[i] - c);
 
-  // Solve linear system using ordinary linear solver
+  // Solve modified linear system using ordinary linear solver
   LinearSolver s2(gmres, amg);
-  s2.solve(A, x, b);
-
+  s2.solve(A, x, bhat);
+  cout << "Residual: " << residual(A, x, b) << endl;
 
   return 0;
 }
