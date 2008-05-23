@@ -4533,6 +4533,10 @@ Solve linear system Ax = b. ";
 
 Compute residual ||Ax - b||. ";
 
+%feature("docstring")  dolfin::normalize "
+
+Normalize vector according to given normalization type. ";
+
 %feature("docstring")  dolfin::projectL2 "
 
 Compute L2 projection fB of fA on FEM space element. ";
