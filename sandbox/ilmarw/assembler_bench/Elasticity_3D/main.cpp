@@ -6,9 +6,9 @@ using namespace dolfin;
 
 int main(int args, char* argv[])
 {
-  dolfin_set("output destination","silent");
+//  dolfin_set("output destination","silent");
 
-  dolfin_set("linear algebra backend","PETSc");
+  //dolfin_set("linear algebra backend","PETSc");
 
   int N = atoi(argv[1]);
   UnitCube mesh(N, N, N);
