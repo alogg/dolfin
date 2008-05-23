@@ -4734,6 +4734,9 @@ domains. ";
 // File: Matrix_8h.xml
 
 
+// File: NormalizationType_8h.xml
+
+
 // File: PETScFactory_8h.xml
 
 
