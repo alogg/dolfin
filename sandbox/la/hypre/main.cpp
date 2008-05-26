@@ -4,7 +4,15 @@
 // Simple test program for solving a singular system
 // with GMRES + AMG (PETSc + Hypre BoomerAMG)
 //
-// Singular solver converges much better
+// This system has a zero eigenvalue with corresponding
+// eigenvector v = (1, 1, 1, ...). This gives a compatibility
+// condition (corresponding to the integral of the right-hand
+// side being zero for the Neumann problem).
+//
+// To solve the linear system, we must therefore either make the
+// system nonsingular by adding a constraint, like zero average for x,
+// or modify the right-hand side to satisfy the compatibility
+// condition.
 
 #include <dolfin.h>
 #include "Poisson.h"
@@ -54,26 +62,18 @@ int main(int argc, char* argv[])
   // Solve linear system using ordinary linear solver
   LinearSolver s0(gmres, amg);
   s0.solve(A, x, b);
+  cout << "Residual: " << residual(A, x, b) << endl;
 
   // Solve linear system using special singular solver
   SingularSolver s1(gmres, amg);
   s1.solve(A, x, b);
+  cout << "Residual: " << residual(A, x, b) << endl;
 
-
-  // Compute constant, c = int_\Omega b and subtract it from b  
-  real c = 0.0; 
-  for (unsigned int i=0; i<b.size(); i++) {
-    c += b[i]; 
-  }
-  c /= b.size(); 
-  Vector bhat(b.size()); 
-  bhat = c; 
-  b -= bhat; 
-
-  // Solve linear system using ordinary linear solver
+  // Solve modified linear system using ordinary linear solver
   LinearSolver s2(gmres, amg);
+  normalize(b, average);
   s2.solve(A, x, b);
-
+  cout << "Residual: " << residual(A, x, b) << endl;
 
   return 0;
 }

@@ -723,6 +723,28 @@ Build parallel dof maps. ";
 %feature("docstring")  dolfin::DofMapSet::parallel "";
 
 
+// File: classdolfin_1_1DomainBoundary.xml
+%feature("docstring") dolfin::DomainBoundary "
+
+This class provides a SubDomain which picks out the boundary of a
+mesh, and provides a convenient way to specify boundary conditions on
+the entire boundary of a mesh.
+
+C++ includes: DomainBoundary.h ";
+
+%feature("docstring")  dolfin::DomainBoundary::DomainBoundary "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DomainBoundary::~DomainBoundary "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DomainBoundary::inside "
+
+Return true for points on the boundary. ";
+
+
 // File: classdolfin_1_1Edge.xml
 %feature("docstring") dolfin::Edge "
 
@@ -4533,6 +4555,10 @@ Solve linear system Ax = b. ";
 
 Compute residual ||Ax - b||. ";
 
+%feature("docstring")  dolfin::normalize "
+
+Normalize vector according to given normalization type. ";
+
 %feature("docstring")  dolfin::projectL2 "
 
 Compute L2 projection fB of fA on FEM space element. ";
@@ -4730,6 +4756,9 @@ domains. ";
 // File: Matrix_8h.xml
 
 
+// File: NormalizationType_8h.xml
+
+
 // File: PETScFactory_8h.xml
 
 
@@ -4830,6 +4859,9 @@ domains. ";
 
 
 // File: Cell_8h.xml
+
+
+// File: DomainBoundary_8h.xml
 
 
 // File: Edge_8h.xml
