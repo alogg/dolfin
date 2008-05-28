@@ -113,6 +113,116 @@ that the tensor should be assembled over the entire set of cells or
 facets. ";
 
 
+// File: classdolfin_1_1AssemblyFactory.xml
+%feature("docstring") dolfin::AssemblyFactory "";
+
+%feature("docstring")  dolfin::AssemblyFactory::~AssemblyFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::AssemblyFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::AssemblyFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::AssemblyFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
+// File: classdolfin_1_1AssemblyMatrix.xml
+%feature("docstring") dolfin::AssemblyMatrix "";
+
+%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::~AssemblyMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::init "
+
+--- Implementation of the GenericTensor interface ---
+
+Initialize zero tensor using sparsity pattern ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::init "
+
+Initialize M x N matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::get "
+
+Get block of values. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::set "
+
+Set block of values. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::add "
+
+Add block of values. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::getrow "
+
+Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::setrow "
+
+Set values for given row. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::zero "
+
+Set given rows to zero. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::ident "
+
+Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::mult "";
+
+%feature("docstring")  dolfin::AssemblyMatrix::factory "
+
+--- Specialized matrix functions ---
+
+Return linear algebra backend factory ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::init "
+
+Initialize zero tensor of given rank and dimensions. ";
+
+
 // File: classdolfin_1_1AvgMeshSize.xml
 %feature("docstring") dolfin::AvgMeshSize "
 
@@ -179,29 +289,9 @@ Create an empty boundary mesh. ";
 
 Create boundary mesh from given mesh. ";
 
-%feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
-
-Create boundary mesh from given mesh and a mapping from the vertices
-of the boundary to the corresponding mesh entities in the original
-mesh ";
-
-%feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
-
-Create boundary mesh from given mesh and compute a pair of mappings
-from the vertices and cells of the boundary to the corresponding mesh
-entities in the original mesh ";
-
 %feature("docstring")  dolfin::BoundaryMesh::~BoundaryMesh "
 
 Destructor. ";
-
-%feature("docstring")  dolfin::BoundaryMesh::init "
-
-Initialize boundary mesh. ";
-
-%feature("docstring")  dolfin::BoundaryMesh::init "
-
-Initialize boundary mesh. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::init "
 
@@ -2360,7 +2450,7 @@ Create MeshFunction with given name on entities of given dimension. ";
 
 Create Array with given name and size. ";
 
-%feature("docstring")  dolfin::MeshData::meshfunction "
+%feature("docstring")  dolfin::MeshData::meshFunction "
 
 Return MeshFunction with given name (returning zero if data is not
 available). ";
@@ -4717,6 +4807,12 @@ domains. ";
 // File: File_8h.xml
 
 
+// File: AssemblyFactory_8h.xml
+
+
+// File: AssemblyMatrix_8h.xml
+
+
 // File: DefaultFactory_8h.xml
 
 
@@ -4853,6 +4949,9 @@ domains. ";
 
 
 // File: ALE_8h.xml
+
+
+// File: ALEType_8h.xml
 
 
 // File: BoundaryMesh_8h.xml
