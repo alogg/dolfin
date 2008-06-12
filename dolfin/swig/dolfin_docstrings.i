@@ -113,6 +113,116 @@ that the tensor should be assembled over the entire set of cells or
 facets. ";
 
 
+// File: classdolfin_1_1AssemblyFactory.xml
+%feature("docstring") dolfin::AssemblyFactory "";
+
+%feature("docstring")  dolfin::AssemblyFactory::~AssemblyFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::AssemblyFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::AssemblyFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::AssemblyFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
+// File: classdolfin_1_1AssemblyMatrix.xml
+%feature("docstring") dolfin::AssemblyMatrix "";
+
+%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::~AssemblyMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::init "
+
+--- Implementation of the GenericTensor interface ---
+
+Initialize zero tensor using sparsity pattern ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::init "
+
+Initialize M x N matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::get "
+
+Get block of values. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::set "
+
+Set block of values. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::add "
+
+Add block of values. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::getrow "
+
+Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::setrow "
+
+Set values for given row. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::zero "
+
+Set given rows to zero. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::ident "
+
+Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::mult "";
+
+%feature("docstring")  dolfin::AssemblyMatrix::factory "
+
+--- Specialized matrix functions ---
+
+Return linear algebra backend factory ";
+
+%feature("docstring")  dolfin::AssemblyMatrix::init "
+
+Initialize zero tensor of given rank and dimensions. ";
+
+
 // File: classdolfin_1_1AvgMeshSize.xml
 %feature("docstring") dolfin::AvgMeshSize "
 
@@ -179,29 +289,9 @@ Create an empty boundary mesh. ";
 
 Create boundary mesh from given mesh. ";
 
-%feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
-
-Create boundary mesh from given mesh and a mapping from the vertices
-of the boundary to the corresponding mesh entities in the original
-mesh ";
-
-%feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
-
-Create boundary mesh from given mesh and compute a pair of mappings
-from the vertices and cells of the boundary to the corresponding mesh
-entities in the original mesh ";
-
 %feature("docstring")  dolfin::BoundaryMesh::~BoundaryMesh "
 
 Destructor. ";
-
-%feature("docstring")  dolfin::BoundaryMesh::init "
-
-Initialize boundary mesh. ";
-
-%feature("docstring")  dolfin::BoundaryMesh::init "
-
-Initialize boundary mesh. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::init "
 
@@ -399,6 +489,30 @@ Return time step for real-valued ODE. ";
 Update for real-valued ODE. ";
 
 
+// File: classdolfin_1_1DefaultFactory.xml
+%feature("docstring") dolfin::DefaultFactory "";
+
+%feature("docstring")  dolfin::DefaultFactory::DefaultFactory "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DefaultFactory::~DefaultFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
 // File: classdolfin_1_1dGqMethod.xml
 %feature("docstring") dolfin::dGqMethod "
 
@@ -467,9 +581,23 @@ u = g on G,
 where u is the solution to be computed, g is a function and G is a sub
 domain of the mesh.
 
-A DirichletBC is specified by a Function, a Mesh, a MeshFunction<uint>
-over the facets of the mesh and an integer sub_domain specifying the
-sub domain on which the boundary condition is to be applied.
+A DirichletBC is specified by the Function g, the Mesh, and boundary
+indicators on (a subset of) the mesh boundary.
+
+The boundary indicators may be specified in a number of different
+ways.
+
+The simplest approach is to specify the boundary by a SubDomain
+object, using the inside() function to specify on which facets the
+boundary conditions should be applied.
+
+Alternatively, the boundary may be specified by a MeshFunction
+labeling all mesh facets together with a number that specifies which
+facets should be included in the boundary.
+
+The third option is to attach the boundary information to the mesh.
+This is handled automatically when exporting a mesh from for example
+VMTK.
 
 For mixed systems (vector-valued and mixed elements), an optional set
 of parameters may be used to specify for which sub system the boundary
@@ -487,6 +615,10 @@ Create boundary condition for sub domain specified by index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
+Create boundary condition for boundary data included in the mesh. ";
+
+%feature("docstring")  dolfin::DirichletBC::DirichletBC "
+
 Create sub system boundary condition for sub domain. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
@@ -496,8 +628,8 @@ index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Simple creation of boundary condition with given value on the entire
-boundary. ";
+Create sub system boundary condition for boundary data included in the
+mesh. ";
 
 %feature("docstring")  dolfin::DirichletBC::~DirichletBC "
 
@@ -528,6 +660,10 @@ diagonal matrices in a block matrix. ";
 
 Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
+
+%feature("docstring")  dolfin::DirichletBC::setSubSystem "
+
+Set (or update) value for sub system. ";
 
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
@@ -675,6 +811,28 @@ Return number of dof maps. ";
 Build parallel dof maps. ";
 
 %feature("docstring")  dolfin::DofMapSet::parallel "";
+
+
+// File: classdolfin_1_1DomainBoundary.xml
+%feature("docstring") dolfin::DomainBoundary "
+
+This class provides a SubDomain which picks out the boundary of a
+mesh, and provides a convenient way to specify boundary conditions on
+the entire boundary of a mesh.
+
+C++ includes: DomainBoundary.h ";
+
+%feature("docstring")  dolfin::DomainBoundary::DomainBoundary "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DomainBoundary::~DomainBoundary "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DomainBoundary::inside "
+
+Return true for points on the boundary. ";
 
 
 // File: classdolfin_1_1Edge.xml
@@ -1109,6 +1267,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::GenericMatrix::getrow "
 
 Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::GenericMatrix::setrow "
+
+Set values for given row. ";
 
 %feature("docstring")  dolfin::GenericMatrix::zero "
 
@@ -1763,13 +1925,13 @@ Destructor. ";
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
-
-Create empty sparsity pattern. ";
-
 %feature("docstring")  dolfin::LinearAlgebraFactory::createVector "
 
 Create empty vector. ";
+
+%feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
+
+Create empty sparsity pattern. ";
 
 
 // File: classdolfin_1_1LinearPDE.xml
@@ -1971,6 +2133,10 @@ Add block of values. ";
 
 Get non-zero values of given row. ";
 
+%feature("docstring")  dolfin::Matrix::setrow "
+
+Set values for given row. ";
+
 %feature("docstring")  dolfin::Matrix::zero "
 
 Set given rows to zero. ";
@@ -2095,19 +2261,23 @@ Return number of entities of given topological dimension. ";
 
 %feature("docstring")  dolfin::Mesh::topology "
 
-Return mesh topology. ";
+Return mesh topology (non-const version). ";
 
 %feature("docstring")  dolfin::Mesh::topology "
 
-Return mesh topology. ";
+Return mesh topology (const version). ";
 
 %feature("docstring")  dolfin::Mesh::geometry "
 
-Return mesh geometry. ";
+Return mesh geometry (non-const version). ";
 
 %feature("docstring")  dolfin::Mesh::geometry "
 
-Return mesh geometry. ";
+Return mesh geometry (const version). ";
+
+%feature("docstring")  dolfin::Mesh::data "
+
+Return mesh data. ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
@@ -2129,6 +2299,10 @@ Compute connectivity between given pair of dimensions. ";
 %feature("docstring")  dolfin::Mesh::init "
 
 Compute all entities and connectivity. ";
+
+%feature("docstring")  dolfin::Mesh::clear "
+
+Clear all mesh data. ";
 
 %feature("docstring")  dolfin::Mesh::order "
 
@@ -2241,6 +2415,52 @@ Set all connections for given entity. ";
 Set all connections for all entities. ";
 
 %feature("docstring")  dolfin::MeshConnectivity::disp "
+
+Display data. ";
+
+
+// File: classdolfin_1_1MeshData.xml
+%feature("docstring") dolfin::MeshData "
+
+The class MeshData is a container for auxiliary mesh data, represented
+either as MeshFunctions over topological mesh entities or Arrays. Each
+dataset is identified by a unique user-specified string.
+
+Currently, only uint-valued data is supported.
+
+C++ includes: MeshData.h ";
+
+%feature("docstring")  dolfin::MeshData::MeshData "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::MeshData::~MeshData "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::MeshData::clear "
+
+Clear all data. ";
+
+%feature("docstring")  dolfin::MeshData::createMeshFunction "
+
+Create MeshFunction with given name on entities of given dimension. ";
+
+%feature("docstring")  dolfin::MeshData::createArray "
+
+Create Array with given name and size. ";
+
+%feature("docstring")  dolfin::MeshData::meshFunction "
+
+Return MeshFunction with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::array "
+
+Return Array with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::disp "
 
 Display data. ";
 
@@ -3501,7 +3721,15 @@ C++ includes: SparsityPattern.h ";
 
 %feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
 
-Constructor. ";
+Create empty sparsity pattern. ";
+
+%feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
+
+Create sparsity pattern for matrix of given dimensions. ";
+
+%feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
+
+Create sparsity pattern for vector of given dimension. ";
 
 %feature("docstring")  dolfin::SparsityPattern::~SparsityPattern "
 
@@ -3519,7 +3747,11 @@ rows and columns. ";
 
 %feature("docstring")  dolfin::SparsityPattern::insert "
 
-Insert non-zero entry. ";
+Insert non-zero entries. ";
+
+%feature("docstring")  dolfin::SparsityPattern::insert "
+
+Insert non-zero entries. ";
 
 %feature("docstring")  dolfin::SparsityPattern::pinsert "
 
@@ -3900,6 +4132,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::uBlasMatrix::getrow "
 
 Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::setrow "
+
+Set values for given row. ";
 
 %feature("docstring")  dolfin::uBlasMatrix::zero "
 
@@ -4409,6 +4645,10 @@ Solve linear system Ax = b. ";
 
 Compute residual ||Ax - b||. ";
 
+%feature("docstring")  dolfin::normalize "
+
+Normalize vector according to given normalization type. ";
+
 %feature("docstring")  dolfin::projectL2 "
 
 Compute L2 projection fB of fA on FEM space element. ";
@@ -4567,7 +4807,13 @@ domains. ";
 // File: File_8h.xml
 
 
-// File: default__la__types_8h.xml
+// File: AssemblyFactory_8h.xml
+
+
+// File: AssemblyMatrix_8h.xml
+
+
+// File: DefaultFactory_8h.xml
 
 
 // File: EpetraFactory_8h.xml
@@ -4604,6 +4850,9 @@ domains. ";
 
 
 // File: Matrix_8h.xml
+
+
+// File: NormalizationType_8h.xml
 
 
 // File: PETScFactory_8h.xml
@@ -4702,10 +4951,16 @@ domains. ";
 // File: ALE_8h.xml
 
 
+// File: ALEType_8h.xml
+
+
 // File: BoundaryMesh_8h.xml
 
 
 // File: Cell_8h.xml
+
+
+// File: DomainBoundary_8h.xml
 
 
 // File: Edge_8h.xml
@@ -4724,6 +4979,9 @@ domains. ";
 
 
 // File: MeshConnectivity_8h.xml
+
+
+// File: MeshData_8h.xml
 
 
 // File: MeshEditor_8h.xml
