@@ -2444,7 +2444,7 @@ Clear all data. ";
 
 %feature("docstring")  dolfin::MeshData::createMeshFunction "
 
-Create MeshFunction with given name on entities of given dimension. ";
+Create MeshFunction with given name (uninitialized). ";
 
 %feature("docstring")  dolfin::MeshData::createArray "
 
@@ -2821,6 +2821,10 @@ defined function). ";
 %feature("docstring")  dolfin::MeshSize::min "
 
 Compute minimal cell diameter. ";
+
+%feature("docstring")  dolfin::MeshSize::max "
+
+Compute maximal cell diameter. ";
 
 
 // File: classdolfin_1_1MeshTopology.xml
@@ -3219,6 +3223,20 @@ Return end time (final time T). ";
 %feature("docstring")  dolfin::ODE::solve "
 
 Solve ODE. ";
+
+
+// File: classdolfin_1_1ODESolution.xml
+%feature("docstring") dolfin::ODESolution "";
+
+%feature("docstring")  dolfin::ODESolution::ODESolution "";
+
+%feature("docstring")  dolfin::ODESolution::ODESolution "";
+
+%feature("docstring")  dolfin::ODESolution::~ODESolution "";
+
+%feature("docstring")  dolfin::ODESolution::eval "";
+
+%feature("docstring")  dolfin::ODESolution::printVector "";
 
 
 // File: classdolfin_1_1Parameter.xml
@@ -3909,6 +3927,42 @@ Associate object with time t. ";
 %feature("docstring")  dolfin::TimeDependent::time "
 
 Return the current time t. ";
+
+
+// File: classdolfin_1_1Timer.xml
+%feature("docstring") dolfin::Timer "
+
+A timer can be used for timing tasks. The basic usage is
+
+Timer timer(\"Assembling over cells\");
+
+The timer is started at construction and timing ends when the timer is
+destroyed (goes out of scope). It is also possible to start and stop a
+timer explicitly by
+
+timer.start(); timer.stop();
+
+Timings are stored globally and a summary may be printed by calling
+
+summary();
+
+C++ includes: Timer.h ";
+
+%feature("docstring")  dolfin::Timer::Timer "
+
+Create timer. ";
+
+%feature("docstring")  dolfin::Timer::~Timer "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Timer::start "
+
+Start timer. ";
+
+%feature("docstring")  dolfin::Timer::stop "
+
+Stop timer. ";
 
 
 // File: classdolfin_1_1uBlasFactory.xml
@@ -4633,6 +4687,10 @@ Begin task (increase indentation level). ";
 
 End task (decrease indentation level). ";
 
+%feature("docstring")  dolfin::summary "
+
+Print summary of timings and tasks. ";
+
 %feature("docstring")  dolfin::__debug "";
 
 %feature("docstring")  dolfin::__dolfin_assert "";
@@ -4733,6 +4791,9 @@ domains. ";
 
 
 // File: TimeDependent_8h.xml
+
+
+// File: Timer_8h.xml
 
 
 // File: timing_8h.xml
@@ -5048,6 +5109,9 @@ domains. ";
 
 
 // File: ODE_8h.xml
+
+
+// File: ODESolution_8h.xml
 
 
 // File: Parameter_8h.xml
