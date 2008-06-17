@@ -3230,8 +3230,6 @@ Solve ODE. ";
 
 %feature("docstring")  dolfin::ODESolution::ODESolution "";
 
-%feature("docstring")  dolfin::ODESolution::ODESolution "";
-
 %feature("docstring")  dolfin::ODESolution::~ODESolution "";
 
 %feature("docstring")  dolfin::ODESolution::eval "";
@@ -4689,7 +4687,11 @@ End task (decrease indentation level). ";
 
 %feature("docstring")  dolfin::summary "
 
-Print summary of timings and tasks. ";
+Print summary of timings and tasks, clearing stored timings. ";
+
+%feature("docstring")  dolfin::timings "
+
+Return summary of timings. ";
 
 %feature("docstring")  dolfin::__debug "";
 
