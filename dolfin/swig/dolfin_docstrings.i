@@ -342,6 +342,10 @@ Compute component i of normal of given facet with respect to the cell.
 
 Compute normal of given facet with respect to the cell. ";
 
+%feature("docstring")  dolfin::Cell::facetArea "
+
+Compute the area/length of given facet with respect to the cell. ";
+
 
 // File: classdolfin_1_1CellIterator.xml
 %feature("docstring") dolfin::CellIterator "
@@ -955,6 +959,21 @@ Constructor. ";
 %feature("docstring")  dolfin::Facet::~Facet "
 
 Destructor. ";
+
+
+// File: classdolfin_1_1FacetArea.xml
+%feature("docstring") dolfin::FacetArea "
+
+This function represents the area/length of a mesh facet.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::FacetArea::FacetArea "";
+
+%feature("docstring")  dolfin::FacetArea::eval "
+
+Evaluate function at given point (overload for scalar user-defined
+function). ";
 
 
 // File: classdolfin_1_1FacetIterator.xml
@@ -1787,6 +1806,21 @@ Compute which cells are intersected by a polygon (defined by points).
 ";
 
 
+// File: classdolfin_1_1InvFacetArea.xml
+%feature("docstring") dolfin::InvFacetArea "
+
+This function represents the inverse area/length of a mesh facet.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "";
+
+%feature("docstring")  dolfin::InvFacetArea::eval "
+
+Evaluate function at given point (overload for scalar user-defined
+function). ";
+
+
 // File: classdolfin_1_1InvMeshSize.xml
 %feature("docstring") dolfin::InvMeshSize "
 
@@ -2308,6 +2342,10 @@ Clear all mesh data. ";
 
 Order all mesh entities (not needed if \"mesh order entities\" is
 set). ";
+
+%feature("docstring")  dolfin::Mesh::ordered "
+
+Return true iff topology is ordered according to the UFC numbering. ";
 
 %feature("docstring")  dolfin::Mesh::refine "
 
@@ -3204,6 +3242,10 @@ Update ODE, return false to stop (optional). ";
 
 Save sample (optional). ";
 
+%feature("docstring")  dolfin::ODE::time "
+
+Return real time (might be flipped backwards for dual). ";
+
 %feature("docstring")  dolfin::ODE::sparse "
 
 Automatically detect sparsity (optional). ";
@@ -3228,13 +3270,19 @@ Solve ODE. ";
 // File: classdolfin_1_1ODESolution.xml
 %feature("docstring") dolfin::ODESolution "";
 
-%feature("docstring")  dolfin::ODESolution::ODESolution "";
+%feature("docstring")  dolfin::ODESolution::ODESolution "
+
+Create solution data for given ODE. ";
 
 %feature("docstring")  dolfin::ODESolution::~ODESolution "";
 
-%feature("docstring")  dolfin::ODESolution::eval "";
+%feature("docstring")  dolfin::ODESolution::eval "
 
-%feature("docstring")  dolfin::ODESolution::printVector "";
+Evaluate (interpolate) value og solution at given time. ";
+
+%feature("docstring")  dolfin::ODESolution::printVector "
+
+for testing ";
 
 
 // File: classdolfin_1_1Parameter.xml
