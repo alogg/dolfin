@@ -298,6 +298,19 @@ Destructor. ";
 Initialize boundary mesh. ";
 
 
+// File: classdolfin_1_1Box.xml
+%feature("docstring") dolfin::Box "
+
+Tetrahedral mesh of the 3D rectangular prysm (a,b) x (c,d) x (e,f).
+Given the number of cells (nx, ny, nz) in each direction, the total
+number of tetrahedra will be 6*nx*ny*nz and the total number of
+vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+
+C++ includes: Box.h ";
+
+%feature("docstring")  dolfin::Box::Box "";
+
+
 // File: classdolfin_1_1Cell.xml
 %feature("docstring") dolfin::Cell "
 
@@ -3052,12 +3065,13 @@ C++ includes: NewtonSolver.h ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 
-Initialise nonlinear solver and choose LU solver. ";
+Create nonlinear solver with default linear solver and default linear
+algebra backend ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 
-Initialise nonlinear solver and choose Krylov solver and
-preconditioner. ";
+Create nonlinear solver specified linear solver and linear algebra
+backend determined by A ";
 
 %feature("docstring")  dolfin::NewtonSolver::~NewtonSolver "
 
@@ -3646,6 +3660,21 @@ C++ includes: RadauQuadrature.h ";
 %feature("docstring")  dolfin::RadauQuadrature::disp "
 
 Display quadrature data. ";
+
+
+// File: classdolfin_1_1Rectangle.xml
+%feature("docstring") dolfin::Rectangle "
+
+Triangular mesh of the 2D rectangle (a,b) x (c,d). Given the number of
+cells (nx, ny) in each direction, the total number of triangles will
+be 2*nx*ny and the total number of vertices will be (nx + 1)*(ny + 1).
+The Type is an enumerater taking values in {left, right or crisscross}
+indicating the direction of the diagonals for left/right or both ==
+crisscross. The default is right.
+
+C++ includes: Rectangle.h ";
+
+%feature("docstring")  dolfin::Rectangle::Rectangle "";
 
 
 // File: classdolfin_1_1Scalar.xml
@@ -4443,6 +4472,21 @@ C++ includes: UndirectedClique.h ";
 %feature("docstring")  dolfin::UndirectedClique::UndirectedClique "";
 
 
+// File: classdolfin_1_1UnitCircle.xml
+%feature("docstring") dolfin::UnitCircle "
+
+Triangular mesh of the 2D unit circle. Given the number of cells (nx,
+ny) in each direction, the total number of triangles will be 2*nx*ny
+and the total number of vertices will be (nx + 1)*(ny + 1). The Type
+is an enumerater taking values in {left, right or crisscross}
+indicating the direction of the diagonals for left/right or both ==
+crisscross. The default is right.
+
+C++ includes: UnitCircle.h ";
+
+%feature("docstring")  dolfin::UnitCircle::UnitCircle "";
+
+
 // File: classdolfin_1_1UnitCube.xml
 %feature("docstring") dolfin::UnitCube "
 
@@ -5068,6 +5112,9 @@ domains. ";
 // File: BoundaryMesh_8h.xml
 
 
+// File: Box_8h.xml
+
+
 // File: Cell_8h.xml
 
 
@@ -5119,7 +5166,13 @@ domains. ";
 // File: Point_8h.xml
 
 
+// File: Rectangle_8h.xml
+
+
 // File: SubDomain_8h.xml
+
+
+// File: UnitCircle_8h.xml
 
 
 // File: UnitCube_8h.xml
