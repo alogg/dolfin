@@ -4,8 +4,8 @@
 // Warning: This code was generated with the option '-l dolfin'
 // and contains DOLFIN-specific wrappers that depend on DOLFIN.
 
-#ifndef __MIXEDPOISSON_H
-#define __MIXEDPOISSON_H
+#ifndef __P1PROJECTION_H
+#define __P1PROJECTION_H
 
 #include <cmath>
 #include <stdexcept>
@@ -14,18 +14,18 @@
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_0_0: public ufc::finite_element
+class UFC_P1ProjectionBilinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_0_0() : ufc::finite_element()
+  UFC_P1ProjectionBilinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_0_0()
+  virtual ~UFC_P1ProjectionBilinearForm_finite_element_0_0()
   {
     // Do nothing
   }
@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Brezzi-Douglas-Marini finite element of degree 1 on a triangle";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -45,520 +45,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 1;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 2;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    values[0] = 0;
-    values[1] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[6][3] = \
-    {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
-    {0.471404520791032, 0.288675134594813, 0.833333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-    const static double coefficients1[6][3] = \
-    {{-0.471404520791032, 0, -0.333333333333333},
-    {0.942809041582063, 0, 0.666666666666667},
-    {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582063, 0, -0.666666666666667},
-    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-    {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff1_0 = coefficients1[dof][0];
-    const double coeff1_1 = coefficients1[dof][1];
-    const double coeff1_2 = coefficients1[dof][2];
-    
-    // Compute value(s)
-    const double tmp0_0 = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
-    const double tmp0_1 = coeff1_0*basisvalue0 + coeff1_1*basisvalue1 + coeff1_2*basisvalue2;
-    // Using contravariant Piola transform to map values back to the physical element
-    values[0] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-    values[1] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 2*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[6][3] = \
-    {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
-    {0.471404520791032, 0.288675134594813, 0.833333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-    const static double coefficients1[6][3] = \
-    {{-0.471404520791032, 0, -0.333333333333333},
-    {0.942809041582063, 0, 0.666666666666667},
-    {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582063, 0, -0.666666666666667},
-    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-    {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
-    
-    const static double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [2*num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff1_0 = 0;
-    double coeff1_1 = 0;
-    double coeff1_2 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff1_0 = 0;
-    double new_coeff1_1 = 0;
-    double new_coeff1_2 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff1_0 = coefficients1[dof][0];
-      new_coeff1_1 = coefficients1[dof][1];
-      new_coeff1_2 = coefficients1[dof][2];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff1_0 = new_coeff1_0;
-        coeff1_1 = new_coeff1_1;
-        coeff1_2 = new_coeff1_2;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
-          new_coeff1_0 = coeff1_0*dmats0[0][0] + coeff1_1*dmats0[1][0] + coeff1_2*dmats0[2][0];
-          new_coeff1_1 = coeff1_0*dmats0[0][1] + coeff1_1*dmats0[1][1] + coeff1_2*dmats0[2][1];
-          new_coeff1_2 = coeff1_0*dmats0[0][2] + coeff1_1*dmats0[1][2] + coeff1_2*dmats0[2][2];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
-          new_coeff1_0 = coeff1_0*dmats1[0][0] + coeff1_1*dmats1[1][0] + coeff1_2*dmats1[2][0];
-          new_coeff1_1 = coeff1_0*dmats1[0][1] + coeff1_1*dmats1[1][1] + coeff1_2*dmats1[2][1];
-          new_coeff1_2 = coeff1_0*dmats1[0][2] + coeff1_1*dmats1[1][2] + coeff1_2*dmats1[2][2];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      // Correct values by the contravariant Piola transform
-      const double tmp0_0 = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
-      const double tmp0_1 = new_coeff1_0*basisvalue0 + new_coeff1_1*basisvalue1 + new_coeff1_2*basisvalue2;
-      derivatives[deriv_num] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-      derivatives[num_derivatives + deriv_num] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-        values[num_derivatives + row] += transform[row][col]*derivatives[num_derivatives + col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0.666666666666667, 0.333333333333333}}, {{0.333333333333333, 0.666666666666667}}, {{0, 0.333333333333333}}, {{0, 0.666666666666667}}, {{0.333333333333333, 0}}, {{0.666666666666667, 0}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][2] = {{{1, 1}}, {{1, 1}}, {{1, 0}}, {{1, 0}}, {{0, -1}}, {{0, -1}}};
-    
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    const double Jinv_00 =  J_11 / detJ;
-    const double Jinv_01 = -J_01 / detJ;
-    const double Jinv_10 = -J_10 / detJ;
-    const double Jinv_11 =  J_00 / detJ;
-    
-    double copyofvalues[2];
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[2];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Copy old values:
-    copyofvalues[0] = values[0];
-    copyofvalues[1] = values[1];
-    // Do the inverse of div piola 
-    values[0] = detJ*(Jinv_00*copyofvalues[0]+Jinv_01*copyofvalues[1]);
-    values[1] = detJ*(Jinv_10*copyofvalues[0]+Jinv_11*copyofvalues[1]);
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 2; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    // Evaluate at vertices and use Piola mapping
-    vertex_values[0] = (1.0/detJ)*(dof_values[2]*2*J_00 + dof_values[3]*J_00 + dof_values[4]*(-2*J_01) + dof_values[5]*J_01);
-    vertex_values[2] = (1.0/detJ)*(dof_values[0]*2*J_00 + dof_values[1]*J_00 + dof_values[4]*(J_00 + J_01) + dof_values[5]*(2*J_00 - 2*J_01));
-    vertex_values[4] = (1.0/detJ)*(dof_values[0]*J_01 + dof_values[1]*2*J_01 + dof_values[2]*(J_00 + J_01) + dof_values[3]*(2*J_00 - 2*J_01));
-    vertex_values[1] = (1.0/detJ)*(dof_values[2]*2*J_10 + dof_values[3]*J_10 + dof_values[4]*(-2*J_11) + dof_values[5]*J_11);
-    vertex_values[3] = (1.0/detJ)*(dof_values[0]*2*J_10 + dof_values[1]*J_10 + dof_values[4]*(J_10 + J_11) + dof_values[5]*(2*J_10 - 2*J_11));
-    vertex_values[5] = (1.0/detJ)*(dof_values[0]*J_11 + dof_values[1]*2*J_11 + dof_values[2]*(J_10 + J_11) + dof_values[3]*(2*J_10 - 2*J_11));
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new UFC_MixedPoissonBilinearForm_finite_element_0_0();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class UFC_MixedPoissonBilinearForm_finite_element_0_1: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_0_1() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_0_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 1;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -616,25 +103,35 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -749,27 +246,39 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
-    {{0}};
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
     
-    const static double dmats1[1][1] = \
-    {{0}};
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -777,34 +286,46 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
     }
     
     // Transform derivatives back to physical element
@@ -844,9 +365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -894,8 +415,8 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -907,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_finite_element_0_1();
+    return new UFC_P1ProjectionBilinearForm_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_0: public ufc::finite_element
+class UFC_P1ProjectionBilinearForm_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_0() : ufc::finite_element()
+  UFC_P1ProjectionBilinearForm_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_0()
+  virtual ~UFC_P1ProjectionBilinearForm_finite_element_0_1()
   {
     // Do nothing
   }
@@ -933,7 +454,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Brezzi-Douglas-Marini finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
+    return "Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return the cell shape
@@ -944,1178 +465,8 @@ public:
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
-  {
-    return 7;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 1;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
   {
     return 3;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    values[0] = 0;
-    values[1] = 0;
-    values[2] = 0;
-    
-    if (0 <= i && i <= 5)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-      const double psitilde_a_1 = x;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-      const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_1_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[6][3] =   \
-      {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
-      {0.471404520791032, 0.288675134594813, 0.833333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-      const static double coefficients1[6][3] =   \
-      {{-0.471404520791032, 0, -0.333333333333333},
-      {0.942809041582063, 0, 0.666666666666667},
-      {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582063, 0, -0.666666666666667},
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-      {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-      // Extract relevant coefficients
-      const double coeff0_0 =   coefficients0[dof][0];
-      const double coeff0_1 =   coefficients0[dof][1];
-      const double coeff0_2 =   coefficients0[dof][2];
-      const double coeff1_0 =   coefficients1[dof][0];
-      const double coeff1_1 =   coefficients1[dof][1];
-      const double coeff1_2 =   coefficients1[dof][2];
-    
-      // Compute value(s)
-      const double tmp0_0 = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
-      const double tmp0_1 = coeff1_0*basisvalue0 + coeff1_1*basisvalue1 + coeff1_2*basisvalue2;
-      // Using contravariant Piola transform to map values back to the physical element
-      values[0] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-      values[1] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-    }
-    
-    if (6 <= i && i <= 6)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 6;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
-      {{1.41421356237309}};
-    
-      // Extract relevant coefficients
-      const double coeff0_0 =   coefficients0[dof][0];
-    
-      // Compute value(s)
-      values[2] = coeff0_0*basisvalue0;
-    }
-    
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 3*num_derivatives; j++)
-      values[j] = 0;
-    
-    if (0 <= i && i <= 5)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-      const double psitilde_a_1 = x;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-      const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_1_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[6][3] =   \
-      {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
-      {0.471404520791032, 0.288675134594813, 0.833333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-      const static double coefficients1[6][3] =   \
-      {{-0.471404520791032, 0, -0.333333333333333},
-      {0.942809041582063, 0, 0.666666666666667},
-      {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582063, 0, -0.666666666666667},
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-      {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-      // Interesting (new) part
-      // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
-    
-      const static double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
-    
-      // Compute reference derivatives
-      // Declare pointer to array of derivatives on FIAT element
-      double *derivatives = new double [2*num_derivatives];
-    
-      // Declare coefficients
-      double coeff0_0 = 0;
-      double coeff0_1 = 0;
-      double coeff0_2 = 0;
-      double coeff1_0 = 0;
-      double coeff1_1 = 0;
-      double coeff1_2 = 0;
-    
-      // Declare new coefficients
-      double new_coeff0_0 = 0;
-      double new_coeff0_1 = 0;
-      double new_coeff0_2 = 0;
-      double new_coeff1_0 = 0;
-      double new_coeff1_1 = 0;
-      double new_coeff1_2 = 0;
-    
-      // Loop possible derivatives
-      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-      {
-        // Get values from coefficients array
-        new_coeff0_0 = coefficients0[dof][0];
-        new_coeff0_1 = coefficients0[dof][1];
-        new_coeff0_2 = coefficients0[dof][2];
-        new_coeff1_0 = coefficients1[dof][0];
-        new_coeff1_1 = coefficients1[dof][1];
-        new_coeff1_2 = coefficients1[dof][2];
-    
-        // Loop derivative order
-        for (unsigned int j = 0; j < n; j++)
-        {
-          // Update old coefficients
-          coeff0_0 = new_coeff0_0;
-          coeff0_1 = new_coeff0_1;
-          coeff0_2 = new_coeff0_2;
-          coeff1_0 = new_coeff1_0;
-          coeff1_1 = new_coeff1_1;
-          coeff1_2 = new_coeff1_2;
-    
-          if(combinations[deriv_num][j] == 0)
-          {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
-            new_coeff1_0 = coeff1_0*dmats0[0][0] + coeff1_1*dmats0[1][0] + coeff1_2*dmats0[2][0];
-            new_coeff1_1 = coeff1_0*dmats0[0][1] + coeff1_1*dmats0[1][1] + coeff1_2*dmats0[2][1];
-            new_coeff1_2 = coeff1_0*dmats0[0][2] + coeff1_1*dmats0[1][2] + coeff1_2*dmats0[2][2];
-          }
-          if(combinations[deriv_num][j] == 1)
-          {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
-            new_coeff1_0 = coeff1_0*dmats1[0][0] + coeff1_1*dmats1[1][0] + coeff1_2*dmats1[2][0];
-            new_coeff1_1 = coeff1_0*dmats1[0][1] + coeff1_1*dmats1[1][1] + coeff1_2*dmats1[2][1];
-            new_coeff1_2 = coeff1_0*dmats1[0][2] + coeff1_1*dmats1[1][2] + coeff1_2*dmats1[2][2];
-          }
-    
-        }
-        // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        // Correct values by the contravariant Piola transform
-        const double tmp0_0 = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
-        const double tmp0_1 = new_coeff1_0*basisvalue0 + new_coeff1_1*basisvalue1 + new_coeff1_2*basisvalue2;
-        derivatives[deriv_num] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-        derivatives[num_derivatives + deriv_num] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-      }
-    
-      // Transform derivatives back to physical element
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        for (unsigned int col = 0; col < num_derivatives; col++)
-        {
-          values[row] += transform[row][col]*derivatives[col];
-          values[num_derivatives + row] += transform[row][col]*derivatives[num_derivatives + col];
-        }
-      }
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-    
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        delete [] combinations[row];
-        delete [] transform[row];
-      }
-    
-      delete [] combinations;
-      delete [] transform;
-    }
-    
-    if (6 <= i && i <= 6)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 6;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
-      {{1.41421356237309}};
-    
-      // Interesting (new) part
-      // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[1][1] =   \
-      {{0}};
-    
-      const static double dmats1[1][1] =   \
-      {{0}};
-    
-      // Compute reference derivatives
-      // Declare pointer to array of derivatives on FIAT element
-      double *derivatives = new double [num_derivatives];
-    
-      // Declare coefficients
-      double coeff0_0 = 0;
-    
-      // Declare new coefficients
-      double new_coeff0_0 = 0;
-    
-      // Loop possible derivatives
-      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-      {
-        // Get values from coefficients array
-        new_coeff0_0 = coefficients0[dof][0];
-    
-        // Loop derivative order
-        for (unsigned int j = 0; j < n; j++)
-        {
-          // Update old coefficients
-          coeff0_0 = new_coeff0_0;
-    
-          if(combinations[deriv_num][j] == 0)
-          {
-            new_coeff0_0 = coeff0_0*dmats0[0][0];
-          }
-          if(combinations[deriv_num][j] == 1)
-          {
-            new_coeff0_0 = coeff0_0*dmats1[0][0];
-          }
-    
-        }
-        // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0;
-      }
-    
-      // Transform derivatives back to physical element
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        for (unsigned int col = 0; col < num_derivatives; col++)
-        {
-          values[2*num_derivatives + row] += transform[row][col]*derivatives[col];
-        }
-      }
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-    
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        delete [] combinations[row];
-        delete [] transform[row];
-      }
-    
-      delete [] combinations;
-      delete [] transform;
-    }
-    
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[7][1][2] = {{{0.666666666666667, 0.333333333333333}}, {{0.333333333333333, 0.666666666666667}}, {{0, 0.333333333333333}}, {{0, 0.666666666666667}}, {{0.333333333333333, 0}}, {{0.666666666666667, 0}}, {{0.333333333333333, 0.333333333333333}}};
-    const static double W[7][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[7][1][3] = {{{1, 1, 0}}, {{1, 1, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, -1, 0}}, {{0, -1, 0}}, {{0, 0, 1}}};
-    
-    static const unsigned int mappings[7] = {1, 1, 1, 1, 1, 1, 0};
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    const double Jinv_00 =  J_11 / detJ;
-    const double Jinv_01 = -J_01 / detJ;
-    const double Jinv_10 = -J_10 / detJ;
-    const double Jinv_11 =  J_00 / detJ;
-    
-    double copyofvalues[3];
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[3];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    if (mappings[i] == 0) { 
-      // Affine map: Do nothing
-    } else if (mappings[i] == 1) {
-       // Copy old values:
-      copyofvalues[0] = values[0];
-      copyofvalues[1] = values[1];
-      // Do the inverse of div piola 
-      values[0] = detJ*(Jinv_00*copyofvalues[0]+Jinv_01*copyofvalues[1]);
-      values[1] = detJ*(Jinv_10*copyofvalues[0]+Jinv_11*copyofvalues[1]); 
-    } else { 
-       // Other mappings not applicable. 
-    }
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 3; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    // Evaluate at vertices and use Piola mapping
-    vertex_values[0] = (1.0/detJ)*(dof_values[2]*2*J_00 + dof_values[3]*J_00 + dof_values[4]*(-2*J_01) + dof_values[5]*J_01);
-    vertex_values[3] = (1.0/detJ)*(dof_values[0]*2*J_00 + dof_values[1]*J_00 + dof_values[4]*(J_00 + J_01) + dof_values[5]*(2*J_00 - 2*J_01));
-    vertex_values[6] = (1.0/detJ)*(dof_values[0]*J_01 + dof_values[1]*2*J_01 + dof_values[2]*(J_00 + J_01) + dof_values[3]*(2*J_00 - 2*J_01));
-    vertex_values[1] = (1.0/detJ)*(dof_values[2]*2*J_10 + dof_values[3]*J_10 + dof_values[4]*(-2*J_11) + dof_values[5]*J_11);
-    vertex_values[4] = (1.0/detJ)*(dof_values[0]*2*J_10 + dof_values[1]*J_10 + dof_values[4]*(J_10 + J_11) + dof_values[5]*(2*J_10 - 2*J_11));
-    vertex_values[7] = (1.0/detJ)*(dof_values[0]*J_11 + dof_values[1]*2*J_11 + dof_values[2]*(J_10 + J_11) + dof_values[3]*(2*J_10 - 2*J_11));
-    // Evaluate at vertices and use affine mapping
-    vertex_values[2] = dof_values[6];
-    vertex_values[5] = dof_values[6];
-    vertex_values[8] = dof_values[6];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 2;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    switch ( i )
-    {
-    case 0:
-      return new UFC_MixedPoissonBilinearForm_finite_element_0_0();
-      break;
-    case 1:
-      return new UFC_MixedPoissonBilinearForm_finite_element_0_1();
-      break;
-    }
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class UFC_MixedPoissonBilinearForm_finite_element_1_0: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_1_0() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_1_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Brezzi-Douglas-Marini finite element of degree 1 on a triangle";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 6;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 1;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 2;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    values[0] = 0;
-    values[1] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[6][3] = \
-    {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
-    {0.471404520791032, 0.288675134594813, 0.833333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-    const static double coefficients1[6][3] = \
-    {{-0.471404520791032, 0, -0.333333333333333},
-    {0.942809041582063, 0, 0.666666666666667},
-    {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582063, 0, -0.666666666666667},
-    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-    {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    const double coeff0_1 = coefficients0[dof][1];
-    const double coeff0_2 = coefficients0[dof][2];
-    const double coeff1_0 = coefficients1[dof][0];
-    const double coeff1_1 = coefficients1[dof][1];
-    const double coeff1_2 = coefficients1[dof][2];
-    
-    // Compute value(s)
-    const double tmp0_0 = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
-    const double tmp0_1 = coeff1_0*basisvalue0 + coeff1_1*basisvalue1 + coeff1_2*basisvalue2;
-    // Using contravariant Piola transform to map values back to the physical element
-    values[0] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-    values[1] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 2*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    const double psitilde_a_1 = x;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_1_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[6][3] = \
-    {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
-    {0.471404520791032, 0.288675134594813, 0.833333333333333},
-    {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-    const static double coefficients1[6][3] = \
-    {{-0.471404520791032, 0, -0.333333333333333},
-    {0.942809041582063, 0, 0.666666666666667},
-    {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582063, 0, -0.666666666666667},
-    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-    {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
-    
-    const static double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [2*num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    double coeff0_1 = 0;
-    double coeff0_2 = 0;
-    double coeff1_0 = 0;
-    double coeff1_1 = 0;
-    double coeff1_2 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    double new_coeff0_1 = 0;
-    double new_coeff0_2 = 0;
-    double new_coeff1_0 = 0;
-    double new_coeff1_1 = 0;
-    double new_coeff1_2 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-      new_coeff0_1 = coefficients0[dof][1];
-      new_coeff0_2 = coefficients0[dof][2];
-      new_coeff1_0 = coefficients1[dof][0];
-      new_coeff1_1 = coefficients1[dof][1];
-      new_coeff1_2 = coefficients1[dof][2];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-        coeff0_1 = new_coeff0_1;
-        coeff0_2 = new_coeff0_2;
-        coeff1_0 = new_coeff1_0;
-        coeff1_1 = new_coeff1_1;
-        coeff1_2 = new_coeff1_2;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
-          new_coeff1_0 = coeff1_0*dmats0[0][0] + coeff1_1*dmats0[1][0] + coeff1_2*dmats0[2][0];
-          new_coeff1_1 = coeff1_0*dmats0[0][1] + coeff1_1*dmats0[1][1] + coeff1_2*dmats0[2][1];
-          new_coeff1_2 = coeff1_0*dmats0[0][2] + coeff1_1*dmats0[1][2] + coeff1_2*dmats0[2][2];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
-          new_coeff1_0 = coeff1_0*dmats1[0][0] + coeff1_1*dmats1[1][0] + coeff1_2*dmats1[2][0];
-          new_coeff1_1 = coeff1_0*dmats1[0][1] + coeff1_1*dmats1[1][1] + coeff1_2*dmats1[2][1];
-          new_coeff1_2 = coeff1_0*dmats1[0][2] + coeff1_1*dmats1[1][2] + coeff1_2*dmats1[2][2];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      // Correct values by the contravariant Piola transform
-      const double tmp0_0 = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
-      const double tmp0_1 = new_coeff1_0*basisvalue0 + new_coeff1_1*basisvalue1 + new_coeff1_2*basisvalue2;
-      derivatives[deriv_num] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-      derivatives[num_derivatives + deriv_num] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-        values[num_derivatives + row] += transform[row][col]*derivatives[num_derivatives + col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0.666666666666667, 0.333333333333333}}, {{0.333333333333333, 0.666666666666667}}, {{0, 0.333333333333333}}, {{0, 0.666666666666667}}, {{0.333333333333333, 0}}, {{0.666666666666667, 0}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][2] = {{{1, 1}}, {{1, 1}}, {{1, 0}}, {{1, 0}}, {{0, -1}}, {{0, -1}}};
-    
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    const double Jinv_00 =  J_11 / detJ;
-    const double Jinv_01 = -J_01 / detJ;
-    const double Jinv_10 = -J_10 / detJ;
-    const double Jinv_11 =  J_00 / detJ;
-    
-    double copyofvalues[2];
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[2];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Copy old values:
-    copyofvalues[0] = values[0];
-    copyofvalues[1] = values[1];
-    // Do the inverse of div piola 
-    values[0] = detJ*(Jinv_00*copyofvalues[0]+Jinv_01*copyofvalues[1]);
-    values[1] = detJ*(Jinv_10*copyofvalues[0]+Jinv_11*copyofvalues[1]);
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 2; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    // Evaluate at vertices and use Piola mapping
-    vertex_values[0] = (1.0/detJ)*(dof_values[2]*2*J_00 + dof_values[3]*J_00 + dof_values[4]*(-2*J_01) + dof_values[5]*J_01);
-    vertex_values[2] = (1.0/detJ)*(dof_values[0]*2*J_00 + dof_values[1]*J_00 + dof_values[4]*(J_00 + J_01) + dof_values[5]*(2*J_00 - 2*J_01));
-    vertex_values[4] = (1.0/detJ)*(dof_values[0]*J_01 + dof_values[1]*2*J_01 + dof_values[2]*(J_00 + J_01) + dof_values[3]*(2*J_00 - 2*J_01));
-    vertex_values[1] = (1.0/detJ)*(dof_values[2]*2*J_10 + dof_values[3]*J_10 + dof_values[4]*(-2*J_11) + dof_values[5]*J_11);
-    vertex_values[3] = (1.0/detJ)*(dof_values[0]*2*J_10 + dof_values[1]*J_10 + dof_values[4]*(J_10 + J_11) + dof_values[5]*(2*J_10 - 2*J_11));
-    vertex_values[5] = (1.0/detJ)*(dof_values[0]*J_11 + dof_values[1]*2*J_11 + dof_values[2]*(J_10 + J_11) + dof_values[3]*(2*J_10 - 2*J_11));
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new UFC_MixedPoissonBilinearForm_finite_element_1_0();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class UFC_MixedPoissonBilinearForm_finite_element_1_1: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_1_1() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_1_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 1;
   }
 
   /// Return the rank of the value space
@@ -2173,25 +524,35 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -2306,27 +667,39 @@ public:
     
     // Generate scalings
     const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
-    {{0}};
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
     
-    const static double dmats1[1][1] = \
-    {{0}};
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2334,34 +707,46 @@ public:
     
     // Declare coefficients
     double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
     }
     
     // Transform derivatives back to physical element
@@ -2401,9 +786,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2451,8 +836,8 @@ public:
   {
     // Evaluate at vertices and use affine mapping
     vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -2464,25 +849,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_finite_element_1_1();
+    return new UFC_P1ProjectionBilinearForm_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_1: public ufc::finite_element
+class UFC_P1ProjectionBilinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_1() : ufc::finite_element()
+  UFC_P1ProjectionBilinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_1()
+  virtual ~UFC_P1ProjectionBilinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -2490,7 +875,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Brezzi-Douglas-Marini finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
   }
 
   /// Return the cell shape
@@ -2502,7 +887,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 7;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -2514,7 +899,7 @@ public:
   /// Return the dimension of the value space for axis i
   virtual unsigned int value_dimension(unsigned int i) const
   {
-    return 3;
+    return 2;
   }
 
   /// Evaluate basis function i at given point in cell
@@ -2555,9 +940,8 @@ public:
     // Reset values
     values[0] = 0;
     values[1] = 0;
-    values[2] = 0;
     
-    if (0 <= i && i <= 5)
+    if (0 <= i && i <= 2)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -2581,64 +965,56 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[6][3] =   \
-      {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
-      {0.471404520791032, 0.288675134594813, 0.833333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-      const static double coefficients1[6][3] =   \
-      {{-0.471404520791032, 0, -0.333333333333333},
-      {0.942809041582063, 0, 0.666666666666667},
-      {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582063, 0, -0.666666666666667},
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-      {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
-      const double coeff1_0 =   coefficients1[dof][0];
-      const double coeff1_1 =   coefficients1[dof][1];
-      const double coeff1_2 =   coefficients1[dof][2];
     
       // Compute value(s)
-      const double tmp0_0 = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
-      const double tmp0_1 = coeff1_0*basisvalue0 + coeff1_1*basisvalue1 + coeff1_2*basisvalue2;
-      // Using contravariant Piola transform to map values back to the physical element
-      values[0] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-      values[1] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
     }
     
-    if (6 <= i && i <= 6)
+    if (3 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 6;
+      const unsigned int dof = i - 3;
     
       // Generate scalings
       const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
-      {{1.41421356237309}};
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
     
       // Compute value(s)
-      values[2] = coeff0_0*basisvalue0;
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
     }
     
   }
@@ -2747,10 +1123,10 @@ public:
     }
     
     // Reset values
-    for (unsigned int j = 0; j < 3*num_derivatives; j++)
+    for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
     
-    if (0 <= i && i <= 5)
+    if (0 <= i && i <= 2)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -2774,21 +1150,10 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[6][3] =   \
-      {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
-      {0.471404520791032, 0.288675134594813, 0.833333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-      const static double coefficients1[6][3] =   \
-      {{-0.471404520791032, 0, -0.333333333333333},
-      {0.942809041582063, 0, 0.666666666666667},
-      {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582063, 0, -0.666666666666667},
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-      {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
@@ -2804,23 +1169,17 @@ public:
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
-      double *derivatives = new double [2*num_derivatives];
+      double *derivatives = new double [num_derivatives];
     
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
-      double coeff1_0 = 0;
-      double coeff1_1 = 0;
-      double coeff1_2 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
-      double new_coeff1_0 = 0;
-      double new_coeff1_1 = 0;
-      double new_coeff1_2 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -2829,9 +1188,6 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
-        new_coeff1_0 = coefficients1[dof][0];
-        new_coeff1_1 = coefficients1[dof][1];
-        new_coeff1_2 = coefficients1[dof][2];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -2840,36 +1196,23 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
-          coeff1_0 = new_coeff1_0;
-          coeff1_1 = new_coeff1_1;
-          coeff1_2 = new_coeff1_2;
     
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
             new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
             new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
-            new_coeff1_0 = coeff1_0*dmats0[0][0] + coeff1_1*dmats0[1][0] + coeff1_2*dmats0[2][0];
-            new_coeff1_1 = coeff1_0*dmats0[0][1] + coeff1_1*dmats0[1][1] + coeff1_2*dmats0[2][1];
-            new_coeff1_2 = coeff1_0*dmats0[0][2] + coeff1_1*dmats0[1][2] + coeff1_2*dmats0[2][2];
           }
           if(combinations[deriv_num][j] == 1)
           {
             new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
             new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
             new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
-            new_coeff1_0 = coeff1_0*dmats1[0][0] + coeff1_1*dmats1[1][0] + coeff1_2*dmats1[2][0];
-            new_coeff1_1 = coeff1_0*dmats1[0][1] + coeff1_1*dmats1[1][1] + coeff1_2*dmats1[2][1];
-            new_coeff1_2 = coeff1_0*dmats1[0][2] + coeff1_1*dmats1[1][2] + coeff1_2*dmats1[2][2];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        // Correct values by the contravariant Piola transform
-        const double tmp0_0 = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
-        const double tmp0_1 = new_coeff1_0*basisvalue0 + new_coeff1_1*basisvalue1 + new_coeff1_2*basisvalue2;
-        derivatives[deriv_num] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-        derivatives[num_derivatives + deriv_num] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
       }
     
       // Transform derivatives back to physical element
@@ -2878,7 +1221,6 @@ public:
         for (unsigned int col = 0; col < num_derivatives; col++)
         {
           values[row] += transform[row][col]*derivatives[col];
-          values[num_derivatives + row] += transform[row][col]*derivatives[num_derivatives + col];
         }
       }
       // Delete pointer to array of derivatives on FIAT element
@@ -2895,34 +1237,46 @@ public:
       delete [] transform;
     }
     
-    if (6 <= i && i <= 6)
+    if (3 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 6;
+      const unsigned int dof = i - 3;
     
       // Generate scalings
       const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
-      {{1.41421356237309}};
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[1][1] =   \
-      {{0}};
+      const static double dmats0[3][3] =   \
+      {{0, 0, 0},
+      {4.89897948556636, 0, 0},
+      {0, 0, 0}};
     
-      const static double dmats1[1][1] =   \
-      {{0}};
+      const static double dmats1[3][3] =   \
+      {{0, 0, 0},
+      {2.44948974278318, 0, 0},
+      {4.24264068711928, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2930,34 +1284,46 @@ public:
     
       // Declare coefficients
       double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
         // Get values from coefficients array
         new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
           // Update old coefficients
           coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
       }
     
       // Transform derivatives back to physical element
@@ -2965,7 +1331,7 @@ public:
       {
         for (unsigned int col = 0; col < num_derivatives; col++)
         {
-          values[2*num_derivatives + row] += transform[row][col]*derivatives[col];
+          values[num_derivatives + row] += transform[row][col]*derivatives[col];
         }
       }
       // Delete pointer to array of derivatives on FIAT element
@@ -2999,30 +1365,11 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[7][1][2] = {{{0.666666666666667, 0.333333333333333}}, {{0.333333333333333, 0.666666666666667}}, {{0, 0.333333333333333}}, {{0, 0.666666666666667}}, {{0.333333333333333, 0}}, {{0.666666666666667, 0}}, {{0.333333333333333, 0.333333333333333}}};
-    const static double W[7][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[7][1][3] = {{{1, 1, 0}}, {{1, 1, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, -1, 0}}, {{0, -1, 0}}, {{0, 0, 1}}};
+    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
-    static const unsigned int mappings[7] = {1, 1, 1, 1, 1, 1, 0};
-    // Extract vertex coordinates
     const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    const double Jinv_00 =  J_11 / detJ;
-    const double Jinv_01 = -J_01 / detJ;
-    const double Jinv_10 = -J_10 / detJ;
-    const double Jinv_11 =  J_00 / detJ;
-    
-    double copyofvalues[3];
     double result = 0.0;
     // Iterate over the points:
     // Evaluate basis functions for affine mapping
@@ -3036,27 +1383,16 @@ public:
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
     
     // Evaluate function at physical points
-    double values[3];
+    double values[2];
     f.evaluate(values, y, c);
     
     // Map function values using appropriate mapping
-    if (mappings[i] == 0) { 
-      // Affine map: Do nothing
-    } else if (mappings[i] == 1) {
-       // Copy old values:
-      copyofvalues[0] = values[0];
-      copyofvalues[1] = values[1];
-      // Do the inverse of div piola 
-      values[0] = detJ*(Jinv_00*copyofvalues[0]+Jinv_01*copyofvalues[1]);
-      values[1] = detJ*(Jinv_10*copyofvalues[0]+Jinv_11*copyofvalues[1]); 
-    } else { 
-       // Other mappings not applicable. 
-    }
+    // Affine map: Do nothing
     
     // Note that we do not map the weights (yet).
     
     // Take directional components
-    for(int k = 0; k < 3; k++)
+    for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
     // Multiply by weights 
     result *= W[i][0];
@@ -3077,30 +1413,14 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    // Evaluate at vertices and use Piola mapping
-    vertex_values[0] = (1.0/detJ)*(dof_values[2]*2*J_00 + dof_values[3]*J_00 + dof_values[4]*(-2*J_01) + dof_values[5]*J_01);
-    vertex_values[3] = (1.0/detJ)*(dof_values[0]*2*J_00 + dof_values[1]*J_00 + dof_values[4]*(J_00 + J_01) + dof_values[5]*(2*J_00 - 2*J_01));
-    vertex_values[6] = (1.0/detJ)*(dof_values[0]*J_01 + dof_values[1]*2*J_01 + dof_values[2]*(J_00 + J_01) + dof_values[3]*(2*J_00 - 2*J_01));
-    vertex_values[1] = (1.0/detJ)*(dof_values[2]*2*J_10 + dof_values[3]*J_10 + dof_values[4]*(-2*J_11) + dof_values[5]*J_11);
-    vertex_values[4] = (1.0/detJ)*(dof_values[0]*2*J_10 + dof_values[1]*J_10 + dof_values[4]*(J_10 + J_11) + dof_values[5]*(2*J_10 - 2*J_11));
-    vertex_values[7] = (1.0/detJ)*(dof_values[0]*J_11 + dof_values[1]*2*J_11 + dof_values[2]*(J_10 + J_11) + dof_values[3]*(2*J_10 - 2*J_11));
     // Evaluate at vertices and use affine mapping
-    vertex_values[2] = dof_values[6];
-    vertex_values[5] = dof_values[6];
-    vertex_values[8] = dof_values[6];
+    vertex_values[0] = dof_values[0];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
+    // Evaluate at vertices and use affine mapping
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
+    vertex_values[5] = dof_values[5];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -3115,10 +1435,1444 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_finite_element_1_0();
+      return new UFC_P1ProjectionBilinearForm_finite_element_0_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_finite_element_1_1();
+      return new UFC_P1ProjectionBilinearForm_finite_element_0_1();
+      break;
+    }
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_P1ProjectionBilinearForm_finite_element_1_0: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_finite_element_1_0() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_finite_element_1_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
+    
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_P1ProjectionBilinearForm_finite_element_1_0();
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_P1ProjectionBilinearForm_finite_element_1_1: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_finite_element_1_1() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_finite_element_1_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
+    
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_P1ProjectionBilinearForm_finite_element_1_1();
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_P1ProjectionBilinearForm_finite_element_1: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_finite_element_1() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_finite_element_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 6;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 1;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 2;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    
+    if (0 <= i && i <= 2)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
+    if (3 <= i && i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 3;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 2*num_derivatives; j++)
+      values[j] = 0;
+    
+    if (0 <= i && i <= 2)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[3][3] =   \
+      {{0, 0, 0},
+      {4.89897948556636, 0, 0},
+      {0, 0, 0}};
+    
+      const static double dmats1[3][3] =   \
+      {{0, 0, 0},
+      {2.44948974278318, 0, 0},
+      {4.24264068711928, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        delete [] combinations[row];
+        delete [] transform[row];
+      }
+    
+      delete [] combinations;
+      delete [] transform;
+    }
+    
+    if (3 <= i && i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 3;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[3][3] =   \
+      {{0, 0, 0},
+      {4.89897948556636, 0, 0},
+      {0, 0, 0}};
+    
+      const static double dmats1[3][3] =   \
+      {{0, 0, 0},
+      {2.44948974278318, 0, 0},
+      {4.24264068711928, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[num_derivatives + row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        delete [] combinations[row];
+        delete [] transform[row];
+      }
+    
+      delete [] combinations;
+      delete [] transform;
+    }
+    
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[2];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 2; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
+    // Evaluate at vertices and use affine mapping
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
+    vertex_values[5] = dof_values[5];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 2;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    switch ( i )
+    {
+    case 0:
+      return new UFC_P1ProjectionBilinearForm_finite_element_1_0();
+      break;
+    case 1:
+      return new UFC_P1ProjectionBilinearForm_finite_element_1_1();
       break;
     }
     return 0;
@@ -3129,7 +2883,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_0_0: public ufc::dof_map
+class UFC_P1ProjectionBilinearForm_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -3138,13 +2892,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_0_0() : ufc::dof_map()
+  UFC_P1ProjectionBilinearForm_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_0_0()
+  virtual ~UFC_P1ProjectionBilinearForm_dof_map_0_0()
   {
     // Do nothing
   }
@@ -3152,7 +2906,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Brezzi-Douglas-Marini finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3161,10 +2915,10 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
@@ -3176,7 +2930,331 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 2*m.num_entities[1];
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_P1ProjectionBilinearForm_dof_map_0_0();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionBilinearForm_dof_map_0_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_dof_map_0_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_dof_map_0_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_P1ProjectionBilinearForm_dof_map_0_1();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionBilinearForm_dof_map_0: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_dof_map_0() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_dof_map_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = 2*m.num_entities[0];
     return false;
   }
 
@@ -3214,7 +3292,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 4;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3228,12 +3306,13 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 2*c.entity_indices[1][0];
-    dofs[1] = 2*c.entity_indices[1][0] + 1;
-    dofs[2] = 2*c.entity_indices[1][1];
-    dofs[3] = 2*c.entity_indices[1][1] + 1;
-    dofs[4] = 2*c.entity_indices[1][2];
-    dofs[5] = 2*c.entity_indices[1][2] + 1;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3243,16 +3322,22 @@ public:
     switch ( facet )
     {
     case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      break;
+    case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      break;
-    case 1:
-      dofs[0] = 2;
-      dofs[1] = 3;
-      break;
-    case 2:
-      dofs[0] = 4;
-      dofs[1] = 5;
+      dofs[2] = 3;
+      dofs[3] = 4;
       break;
     }
   }
@@ -3269,346 +3354,18 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[1][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[1][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[2][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[2][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[3][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[3][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[4][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[4][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[5][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[5][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new UFC_MixedPoissonBilinearForm_dof_map_0_0();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonBilinearForm_dof_map_0_1: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_0_1() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_0_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      
-      break;
-    case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new UFC_MixedPoissonBilinearForm_dof_map_0_1();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonBilinearForm_dof_map_0: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_0() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Mixed finite element: [Brezzi-Douglas-Marini finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return true;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = 2*m.num_entities[1] + m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 7;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = 2*c.entity_indices[1][0];
-    dofs[1] = 2*c.entity_indices[1][0] + 1;
-    dofs[2] = 2*c.entity_indices[1][1];
-    dofs[3] = 2*c.entity_indices[1][1] + 1;
-    dofs[4] = 2*c.entity_indices[1][2];
-    dofs[5] = 2*c.entity_indices[1][2] + 1;
-    unsigned int offset = 2*m.num_entities[1];
-    dofs[6] = offset + c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      break;
-    case 1:
-      dofs[0] = 2;
-      dofs[1] = 3;
-      break;
-    case 2:
-      dofs[0] = 4;
-      dofs[1] = 5;
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[1][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[1][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[2][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[2][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[3][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[3][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[4][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[4][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[5][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[5][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[6][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[6][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3623,10 +3380,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_dof_map_0_0();
+      return new UFC_P1ProjectionBilinearForm_dof_map_0_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_dof_map_0_1();
+      return new UFC_P1ProjectionBilinearForm_dof_map_0_1();
       break;
     }
     return 0;
@@ -3637,7 +3394,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_1_0: public ufc::dof_map
+class UFC_P1ProjectionBilinearForm_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -3646,13 +3403,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_1_0() : ufc::dof_map()
+  UFC_P1ProjectionBilinearForm_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_1_0()
+  virtual ~UFC_P1ProjectionBilinearForm_dof_map_1_0()
   {
     // Do nothing
   }
@@ -3660,7 +3417,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Brezzi-Douglas-Marini finite element of degree 1 on a triangle";
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3669,10 +3426,10 @@ public:
     switch ( d )
     {
     case 0:
-      return false;
+      return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
@@ -3684,7 +3441,331 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 2*m.num_entities[1];
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_P1ProjectionBilinearForm_dof_map_1_0();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionBilinearForm_dof_map_1_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_dof_map_1_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_dof_map_1_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_P1ProjectionBilinearForm_dof_map_1_1();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionBilinearForm_dof_map_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionBilinearForm_dof_map_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionBilinearForm_dof_map_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = 2*m.num_entities[0];
     return false;
   }
 
@@ -3722,7 +3803,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 4;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3736,12 +3817,13 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = 2*c.entity_indices[1][0];
-    dofs[1] = 2*c.entity_indices[1][0] + 1;
-    dofs[2] = 2*c.entity_indices[1][1];
-    dofs[3] = 2*c.entity_indices[1][1] + 1;
-    dofs[4] = 2*c.entity_indices[1][2];
-    dofs[5] = 2*c.entity_indices[1][2] + 1;
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3751,16 +3833,22 @@ public:
     switch ( facet )
     {
     case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      break;
+    case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      break;
-    case 1:
-      dofs[0] = 2;
-      dofs[1] = 3;
-      break;
-    case 2:
-      dofs[0] = 4;
-      dofs[1] = 5;
+      dofs[2] = 3;
+      dofs[3] = 4;
       break;
     }
   }
@@ -3777,346 +3865,18 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[1][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[1][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[2][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[2][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[3][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[3][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[4][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[4][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[5][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[5][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new UFC_MixedPoissonBilinearForm_dof_map_1_0();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonBilinearForm_dof_map_1_1: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_1_1() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_1_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      
-      break;
-    case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new UFC_MixedPoissonBilinearForm_dof_map_1_1();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonBilinearForm_dof_map_1: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_1() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Mixed finite element: [Brezzi-Douglas-Marini finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return true;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = 2*m.num_entities[1] + m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 7;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = 2*c.entity_indices[1][0];
-    dofs[1] = 2*c.entity_indices[1][0] + 1;
-    dofs[2] = 2*c.entity_indices[1][1];
-    dofs[3] = 2*c.entity_indices[1][1] + 1;
-    dofs[4] = 2*c.entity_indices[1][2];
-    dofs[5] = 2*c.entity_indices[1][2] + 1;
-    unsigned int offset = 2*m.num_entities[1];
-    dofs[6] = offset + c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      break;
-    case 1:
-      dofs[0] = 2;
-      dofs[1] = 3;
-      break;
-    case 2:
-      dofs[0] = 4;
-      dofs[1] = 5;
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[1][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[1][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[2][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[2][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[3][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[3][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[4][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[4][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[5][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[5][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[6][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[6][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -4131,10 +3891,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_dof_map_1_0();
+      return new UFC_P1ProjectionBilinearForm_dof_map_1_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_dof_map_1_1();
+      return new UFC_P1ProjectionBilinearForm_dof_map_1_1();
       break;
     }
     return 0;
@@ -4146,18 +3906,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_MixedPoissonBilinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_P1ProjectionBilinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_P1ProjectionBilinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_cell_integral_0()
+  virtual ~UFC_P1ProjectionBilinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -4185,63 +3945,45 @@ public:
     const double det = std::abs(detJ);
     
     // Compute geometry tensors
-    const double G0_0_0 = 1.0/(detJ*detJ)*det*(J_00*J_00 + J_10*J_10);
-    const double G0_0_1 = 1.0/(detJ*detJ)*det*(J_00*J_01 + J_10*J_11);
-    const double G0_1_0 = 1.0/(detJ*detJ)*det*(J_01*J_00 + J_11*J_10);
-    const double G0_1_1 = 1.0/(detJ*detJ)*det*(J_01*J_01 + J_11*J_11);
-    const double G1_ = 1.0/(detJ)*det;
-    const double G2_ = 1.0/(detJ)*det;
+    const double G0_ = det;
     
     // Compute element tensor
-    A[0] = 0.333333333333333*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.0833333333333332*G0_1_0 + 0.0833333333333332*G0_1_1;
-    A[1] = -0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1 + 0.0416666666666666*G0_1_0 - 0.166666666666666*G0_1_1;
-    A[2] = 0.0833333333333332*G0_0_0 + 0.0833333333333332*G0_0_1 - 0.0833333333333332*G0_1_1;
-    A[3] = 0.0833333333333332*G0_0_0 - 0.166666666666666*G0_0_1 - 0.125*G0_1_0 + 0.166666666666666*G0_1_1;
-    A[4] = -0.166666666666666*G0_0_0 + 0.0416666666666666*G0_1_0 + 0.0416666666666666*G0_1_1;
-    A[5] = 0.333333333333333*G0_0_0 - 0.249999999999999*G0_0_1 - 0.0833333333333332*G0_1_0 + 0.0416666666666666*G0_1_1;
-    A[6] = -0.499999999999999*G1_;
-    A[7] = -0.166666666666666*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.166666666666666*G0_1_0 - 0.166666666666666*G0_1_1;
-    A[8] = 0.0833333333333331*G0_0_0 - 0.0833333333333331*G0_0_1 - 0.0833333333333331*G0_1_0 + 0.333333333333333*G0_1_1;
-    A[9] = -0.0416666666666666*G0_0_0 - 0.0416666666666666*G0_0_1 + 0.166666666666666*G0_1_1;
-    A[10] = -0.0416666666666665*G0_0_0 + 0.0833333333333331*G0_0_1 + 0.25*G0_1_0 - 0.333333333333333*G0_1_1;
-    A[11] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_1_0 - 0.0833333333333331*G0_1_1;
-    A[12] = -0.166666666666666*G0_0_0 + 0.125*G0_0_1 + 0.166666666666666*G0_1_0 - 0.0833333333333331*G0_1_1;
-    A[13] = -0.5*G1_;
-    A[14] = 0.0833333333333332*G0_0_0 + 0.0833333333333332*G0_1_0 - 0.0833333333333332*G0_1_1;
-    A[15] = -0.0416666666666666*G0_0_0 - 0.0416666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
-    A[16] = 0.249999999999999*G0_0_0 + 0.0833333333333332*G0_1_1;
-    A[17] = -0.125*G0_0_0 + 0.125*G0_1_0 - 0.166666666666666*G0_1_1;
-    A[18] = -0.0416666666666666*G0_0_0 - 0.208333333333333*G0_0_1 - 0.0416666666666666*G0_1_0 - 0.0416666666666666*G0_1_1;
-    A[19] = 0.0833333333333332*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0833333333333332*G0_1_0 - 0.0416666666666666*G0_1_1;
-    A[20] = 0.499999999999999*G1_;
-    A[21] = 0.0833333333333331*G0_0_0 - 0.125*G0_0_1 - 0.166666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
-    A[22] = -0.0416666666666665*G0_0_0 + 0.249999999999999*G0_0_1 + 0.0833333333333331*G0_1_0 - 0.333333333333333*G0_1_1;
-    A[23] = -0.125*G0_0_0 + 0.125*G0_0_1 - 0.166666666666666*G0_1_1;
-    A[24] = 0.25*G0_0_0 - 0.249999999999999*G0_0_1 - 0.25*G0_1_0 + 0.333333333333333*G0_1_1;
-    A[25] = -0.0416666666666666*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0833333333333332*G0_1_0 + 0.0833333333333331*G0_1_1;
-    A[26] = 0.0833333333333331*G0_0_0 - 0.0833333333333331*G0_0_1 - 0.166666666666666*G0_1_0 + 0.0833333333333331*G0_1_1;
-    A[27] = 0.5*G1_;
-    A[28] = -0.166666666666666*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0416666666666666*G0_1_1;
-    A[29] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.0833333333333331*G0_1_1;
-    A[30] = -0.0416666666666666*G0_0_0 - 0.0416666666666666*G0_0_1 - 0.208333333333333*G0_1_0 - 0.0416666666666666*G0_1_1;
-    A[31] = -0.0416666666666666*G0_0_0 + 0.0833333333333332*G0_0_1 + 0.0416666666666666*G0_1_0 + 0.0833333333333331*G0_1_1;
-    A[32] = 0.0833333333333332*G0_0_0 + 0.25*G0_1_1;
-    A[33] = -0.166666666666666*G0_0_0 + 0.125*G0_0_1 - 0.125*G0_1_1;
-    A[34] = -0.499999999999999*G1_;
-    A[35] = 0.333333333333333*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.249999999999999*G0_1_0 + 0.0416666666666666*G0_1_1;
-    A[36] = -0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1 + 0.125*G0_1_0 - 0.0833333333333331*G0_1_1;
-    A[37] = 0.0833333333333332*G0_0_0 + 0.0833333333333332*G0_0_1 + 0.0416666666666666*G0_1_0 - 0.0416666666666666*G0_1_1;
-    A[38] = 0.0833333333333332*G0_0_0 - 0.166666666666666*G0_0_1 - 0.0833333333333331*G0_1_0 + 0.0833333333333331*G0_1_1;
-    A[39] = -0.166666666666666*G0_0_0 + 0.125*G0_1_0 - 0.125*G0_1_1;
-    A[40] = 0.333333333333333*G0_0_0 - 0.25*G0_0_1 - 0.25*G0_1_0 + 0.25*G0_1_1;
-    A[41] = -0.5*G1_;
-    A[42] = 0.499999999999999*G2_;
-    A[43] = 0.5*G2_;
-    A[44] = -0.499999999999999*G2_;
-    A[45] = -0.5*G2_;
-    A[46] = 0.499999999999999*G2_;
-    A[47] = 0.5*G2_;
-    A[48] = 0;
+    A[0] = 0.0833333333333332*G0_;
+    A[1] = 0.0416666666666666*G0_;
+    A[2] = 0.0416666666666666*G0_;
+    A[3] = 0;
+    A[4] = 0;
+    A[5] = 0;
+    A[6] = 0.0416666666666666*G0_;
+    A[7] = 0.0833333333333332*G0_;
+    A[8] = 0.0416666666666666*G0_;
+    A[9] = 0;
+    A[10] = 0;
+    A[11] = 0;
+    A[12] = 0.0416666666666666*G0_;
+    A[13] = 0.0416666666666666*G0_;
+    A[14] = 0.0833333333333332*G0_;
+    A[15] = 0;
+    A[16] = 0;
+    A[17] = 0;
+    A[18] = 0;
+    A[19] = 0;
+    A[20] = 0;
+    A[21] = 0.0833333333333332*G0_;
+    A[22] = 0.0416666666666666*G0_;
+    A[23] = 0.0416666666666666*G0_;
+    A[24] = 0;
+    A[25] = 0;
+    A[26] = 0;
+    A[27] = 0.0416666666666666*G0_;
+    A[28] = 0.0833333333333332*G0_;
+    A[29] = 0.0416666666666666*G0_;
+    A[30] = 0;
+    A[31] = 0;
+    A[32] = 0;
+    A[33] = 0.0416666666666666*G0_;
+    A[34] = 0.0416666666666666*G0_;
+    A[35] = 0.0833333333333332*G0_;
   }
 
 };
@@ -4261,18 +4003,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_MixedPoissonBilinearForm: public ufc::form
+class UFC_P1ProjectionBilinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm() : ufc::form()
+  UFC_P1ProjectionBilinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm()
+  virtual ~UFC_P1ProjectionBilinearForm()
   {
     // Do nothing
   }
@@ -4280,7 +4022,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "(det J)^(-2)(dxb0[0, 1]/dXa0[0, 1])(dxb0[0, 1]/dXa1[0, 1]) | vi0[0, 1, 2, 3, 4, 5, 6][a0[0, 1]]*vi1[0, 1, 2, 3, 4, 5, 6][a1[0, 1]]*dX(0) + -(det J)^(-1) | ((d/dXb0[0, 1])vi0[0, 1, 2, 3, 4, 5, 6][b0[0, 1]])*vi1[0, 1, 2, 3, 4, 5, 6][2]*dX(0) + (det J)^(-1) | vi0[0, 1, 2, 3, 4, 5, 6][2]*((d/dXb0[0, 1])vi1[0, 1, 2, 3, 4, 5, 6][b0[0, 1]])*dX(0)";
+    return " | vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4319,10 +4061,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_finite_element_0();
+      return new UFC_P1ProjectionBilinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_finite_element_1();
+      return new UFC_P1ProjectionBilinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -4334,10 +4076,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_dof_map_0();
+      return new UFC_P1ProjectionBilinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_dof_map_1();
+      return new UFC_P1ProjectionBilinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -4346,7 +4088,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_cell_integral_0();
+    return new UFC_P1ProjectionBilinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -4365,18 +4107,1452 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonLinearForm_finite_element_0_0: public ufc::finite_element
+class UFC_P1ProjectionLinearForm_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_0_0() : ufc::finite_element()
+  UFC_P1ProjectionLinearForm_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_0_0()
+  virtual ~UFC_P1ProjectionLinearForm_finite_element_0_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
+    
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_P1ProjectionLinearForm_finite_element_0_0();
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_P1ProjectionLinearForm_finite_element_0_1: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_P1ProjectionLinearForm_finite_element_0_1() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionLinearForm_finite_element_0_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    const double coeff0_1 = coefficients0[dof][1];
+    const double coeff0_2 = coefficients0[dof][2];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    const double psitilde_a_1 = x;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_1_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+    const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
+    
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    double coeff0_1 = 0;
+    double coeff0_2 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    double new_coeff0_1 = 0;
+    double new_coeff0_2 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+      new_coeff0_1 = coefficients0[dof][1];
+      new_coeff0_2 = coefficients0[dof][2];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+        coeff0_1 = new_coeff0_1;
+        coeff0_2 = new_coeff0_2;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[1];
+    vertex_values[2] = dof_values[2];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_P1ProjectionLinearForm_finite_element_0_1();
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_P1ProjectionLinearForm_finite_element_0: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_P1ProjectionLinearForm_finite_element_0() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionLinearForm_finite_element_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 6;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 1;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 2;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    values[0] = 0;
+    values[1] = 0;
+    
+    if (0 <= i && i <= 2)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
+    if (3 <= i && i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 3;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Extract relevant coefficients
+      const double coeff0_0 =   coefficients0[dof][0];
+      const double coeff0_1 =   coefficients0[dof][1];
+      const double coeff0_2 =   coefficients0[dof][2];
+    
+      // Compute value(s)
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    }
+    
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 2*num_derivatives; j++)
+      values[j] = 0;
+    
+    if (0 <= i && i <= 2)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[3][3] =   \
+      {{0, 0, 0},
+      {4.89897948556636, 0, 0},
+      {0, 0, 0}};
+    
+      const static double dmats1[3][3] =   \
+      {{0, 0, 0},
+      {2.44948974278318, 0, 0},
+      {4.24264068711928, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        delete [] combinations[row];
+        delete [] transform[row];
+      }
+    
+      delete [] combinations;
+      delete [] transform;
+    }
+    
+    if (3 <= i && i <= 5)
+    {
+      // Map degree of freedom to element degree of freedom
+      const unsigned int dof = i - 3;
+    
+      // Generate scalings
+      const double scalings_y_0 = 1;
+      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    
+      // Compute psitilde_a
+      const double psitilde_a_0 = 1;
+      const double psitilde_a_1 = x;
+    
+      // Compute psitilde_bs
+      const double psitilde_bs_0_0 = 1;
+      const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_1_0 = 1;
+    
+      // Compute basisvalues
+      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
+      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    
+      // Table(s) of coefficients
+      const static double coefficients0[3][3] =   \
+      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0.288675134594813, -0.166666666666667},
+      {0.471404520791032, 0, 0.333333333333333}};
+    
+      // Interesting (new) part
+      // Tables of derivatives of the polynomial base (transpose)
+      const static double dmats0[3][3] =   \
+      {{0, 0, 0},
+      {4.89897948556636, 0, 0},
+      {0, 0, 0}};
+    
+      const static double dmats1[3][3] =   \
+      {{0, 0, 0},
+      {2.44948974278318, 0, 0},
+      {4.24264068711928, 0, 0}};
+    
+      // Compute reference derivatives
+      // Declare pointer to array of derivatives on FIAT element
+      double *derivatives = new double [num_derivatives];
+    
+      // Declare coefficients
+      double coeff0_0 = 0;
+      double coeff0_1 = 0;
+      double coeff0_2 = 0;
+    
+      // Declare new coefficients
+      double new_coeff0_0 = 0;
+      double new_coeff0_1 = 0;
+      double new_coeff0_2 = 0;
+    
+      // Loop possible derivatives
+      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+      {
+        // Get values from coefficients array
+        new_coeff0_0 = coefficients0[dof][0];
+        new_coeff0_1 = coefficients0[dof][1];
+        new_coeff0_2 = coefficients0[dof][2];
+    
+        // Loop derivative order
+        for (unsigned int j = 0; j < n; j++)
+        {
+          // Update old coefficients
+          coeff0_0 = new_coeff0_0;
+          coeff0_1 = new_coeff0_1;
+          coeff0_2 = new_coeff0_2;
+    
+          if(combinations[deriv_num][j] == 0)
+          {
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          }
+          if(combinations[deriv_num][j] == 1)
+          {
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          }
+    
+        }
+        // Compute derivatives on reference element as dot product of coefficients and basisvalues
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      }
+    
+      // Transform derivatives back to physical element
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        for (unsigned int col = 0; col < num_derivatives; col++)
+        {
+          values[num_derivatives + row] += transform[row][col]*derivatives[col];
+        }
+      }
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+    
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int row = 0; row < num_derivatives; row++)
+      {
+        delete [] combinations[row];
+        delete [] transform[row];
+      }
+    
+      delete [] combinations;
+      delete [] transform;
+    }
+    
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[2];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 2; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[2] = dof_values[1];
+    vertex_values[4] = dof_values[2];
+    // Evaluate at vertices and use affine mapping
+    vertex_values[1] = dof_values[3];
+    vertex_values[3] = dof_values[4];
+    vertex_values[5] = dof_values[5];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 2;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    switch ( i )
+    {
+    case 0:
+      return new UFC_P1ProjectionLinearForm_finite_element_0_0();
+      break;
+    case 1:
+      return new UFC_P1ProjectionLinearForm_finite_element_0_1();
+      break;
+    }
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_P1ProjectionLinearForm_finite_element_1: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_P1ProjectionLinearForm_finite_element_1() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionLinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -4871,1438 +6047,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_finite_element_0_0();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class UFC_MixedPoissonLinearForm_finite_element_0_1: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_0_1() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_0_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 1;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 0;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 1;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0;
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
-    {{0}};
-    
-    const static double dmats1[1][1] = \
-    {{0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
-    
-    const double * const * x = c.coordinates;
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[1];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Affine map: Do nothing
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 1; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate at vertices and use affine mapping
-    vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new UFC_MixedPoissonLinearForm_finite_element_0_1();
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class UFC_MixedPoissonLinearForm_finite_element_0: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_0() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Mixed finite element: [Brezzi-Douglas-Marini finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 7;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 1;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 3;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    values[0] = 0;
-    values[1] = 0;
-    values[2] = 0;
-    
-    if (0 <= i && i <= 5)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-      const double psitilde_a_1 = x;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-      const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_1_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[6][3] =   \
-      {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
-      {0.471404520791032, 0.288675134594813, 0.833333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-      const static double coefficients1[6][3] =   \
-      {{-0.471404520791032, 0, -0.333333333333333},
-      {0.942809041582063, 0, 0.666666666666667},
-      {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582063, 0, -0.666666666666667},
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-      {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-      // Extract relevant coefficients
-      const double coeff0_0 =   coefficients0[dof][0];
-      const double coeff0_1 =   coefficients0[dof][1];
-      const double coeff0_2 =   coefficients0[dof][2];
-      const double coeff1_0 =   coefficients1[dof][0];
-      const double coeff1_1 =   coefficients1[dof][1];
-      const double coeff1_2 =   coefficients1[dof][2];
-    
-      // Compute value(s)
-      const double tmp0_0 = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
-      const double tmp0_1 = coeff1_0*basisvalue0 + coeff1_1*basisvalue1 + coeff1_2*basisvalue2;
-      // Using contravariant Piola transform to map values back to the physical element
-      values[0] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-      values[1] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-    }
-    
-    if (6 <= i && i <= 6)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 6;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
-      {{1.41421356237309}};
-    
-      // Extract relevant coefficients
-      const double coeff0_0 =   coefficients0[dof][0];
-    
-      // Compute value(s)
-      values[2] = coeff0_0*basisvalue0;
-    }
-    
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 3*num_derivatives; j++)
-      values[j] = 0;
-    
-    if (0 <= i && i <= 5)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-      const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-      const double psitilde_a_1 = x;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-      const double psitilde_bs_0_1 = 1.5*y + 0.5;
-      const double psitilde_bs_1_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-      const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
-      const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[6][3] =   \
-      {{0.942809041582063, 0.577350269189626, -0.333333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
-      {0.471404520791032, 0.288675134594813, 0.833333333333333},
-      {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582063, 0.577350269189626, -0.333333333333333}};
-    
-      const static double coefficients1[6][3] =   \
-      {{-0.471404520791032, 0, -0.333333333333333},
-      {0.942809041582063, 0, 0.666666666666667},
-      {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582063, 0, -0.666666666666667},
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
-      {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
-    
-      // Interesting (new) part
-      // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
-    
-      const static double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
-    
-      // Compute reference derivatives
-      // Declare pointer to array of derivatives on FIAT element
-      double *derivatives = new double [2*num_derivatives];
-    
-      // Declare coefficients
-      double coeff0_0 = 0;
-      double coeff0_1 = 0;
-      double coeff0_2 = 0;
-      double coeff1_0 = 0;
-      double coeff1_1 = 0;
-      double coeff1_2 = 0;
-    
-      // Declare new coefficients
-      double new_coeff0_0 = 0;
-      double new_coeff0_1 = 0;
-      double new_coeff0_2 = 0;
-      double new_coeff1_0 = 0;
-      double new_coeff1_1 = 0;
-      double new_coeff1_2 = 0;
-    
-      // Loop possible derivatives
-      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-      {
-        // Get values from coefficients array
-        new_coeff0_0 = coefficients0[dof][0];
-        new_coeff0_1 = coefficients0[dof][1];
-        new_coeff0_2 = coefficients0[dof][2];
-        new_coeff1_0 = coefficients1[dof][0];
-        new_coeff1_1 = coefficients1[dof][1];
-        new_coeff1_2 = coefficients1[dof][2];
-    
-        // Loop derivative order
-        for (unsigned int j = 0; j < n; j++)
-        {
-          // Update old coefficients
-          coeff0_0 = new_coeff0_0;
-          coeff0_1 = new_coeff0_1;
-          coeff0_2 = new_coeff0_2;
-          coeff1_0 = new_coeff1_0;
-          coeff1_1 = new_coeff1_1;
-          coeff1_2 = new_coeff1_2;
-    
-          if(combinations[deriv_num][j] == 0)
-          {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
-            new_coeff1_0 = coeff1_0*dmats0[0][0] + coeff1_1*dmats0[1][0] + coeff1_2*dmats0[2][0];
-            new_coeff1_1 = coeff1_0*dmats0[0][1] + coeff1_1*dmats0[1][1] + coeff1_2*dmats0[2][1];
-            new_coeff1_2 = coeff1_0*dmats0[0][2] + coeff1_1*dmats0[1][2] + coeff1_2*dmats0[2][2];
-          }
-          if(combinations[deriv_num][j] == 1)
-          {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
-            new_coeff1_0 = coeff1_0*dmats1[0][0] + coeff1_1*dmats1[1][0] + coeff1_2*dmats1[2][0];
-            new_coeff1_1 = coeff1_0*dmats1[0][1] + coeff1_1*dmats1[1][1] + coeff1_2*dmats1[2][1];
-            new_coeff1_2 = coeff1_0*dmats1[0][2] + coeff1_1*dmats1[1][2] + coeff1_2*dmats1[2][2];
-          }
-    
-        }
-        // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        // Correct values by the contravariant Piola transform
-        const double tmp0_0 = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
-        const double tmp0_1 = new_coeff1_0*basisvalue0 + new_coeff1_1*basisvalue1 + new_coeff1_2*basisvalue2;
-        derivatives[deriv_num] = (1.0/detJ)*(J_00*tmp0_0 + J_01*tmp0_1);
-        derivatives[num_derivatives + deriv_num] = (1.0/detJ)*(J_10*tmp0_0 + J_11*tmp0_1);
-      }
-    
-      // Transform derivatives back to physical element
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        for (unsigned int col = 0; col < num_derivatives; col++)
-        {
-          values[row] += transform[row][col]*derivatives[col];
-          values[num_derivatives + row] += transform[row][col]*derivatives[num_derivatives + col];
-        }
-      }
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-    
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        delete [] combinations[row];
-        delete [] transform[row];
-      }
-    
-      delete [] combinations;
-      delete [] transform;
-    }
-    
-    if (6 <= i && i <= 6)
-    {
-      // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 6;
-    
-      // Generate scalings
-      const double scalings_y_0 = 1;
-    
-      // Compute psitilde_a
-      const double psitilde_a_0 = 1;
-    
-      // Compute psitilde_bs
-      const double psitilde_bs_0_0 = 1;
-    
-      // Compute basisvalues
-      const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-      // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
-      {{1.41421356237309}};
-    
-      // Interesting (new) part
-      // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[1][1] =   \
-      {{0}};
-    
-      const static double dmats1[1][1] =   \
-      {{0}};
-    
-      // Compute reference derivatives
-      // Declare pointer to array of derivatives on FIAT element
-      double *derivatives = new double [num_derivatives];
-    
-      // Declare coefficients
-      double coeff0_0 = 0;
-    
-      // Declare new coefficients
-      double new_coeff0_0 = 0;
-    
-      // Loop possible derivatives
-      for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-      {
-        // Get values from coefficients array
-        new_coeff0_0 = coefficients0[dof][0];
-    
-        // Loop derivative order
-        for (unsigned int j = 0; j < n; j++)
-        {
-          // Update old coefficients
-          coeff0_0 = new_coeff0_0;
-    
-          if(combinations[deriv_num][j] == 0)
-          {
-            new_coeff0_0 = coeff0_0*dmats0[0][0];
-          }
-          if(combinations[deriv_num][j] == 1)
-          {
-            new_coeff0_0 = coeff0_0*dmats1[0][0];
-          }
-    
-        }
-        // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0;
-      }
-    
-      // Transform derivatives back to physical element
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        for (unsigned int col = 0; col < num_derivatives; col++)
-        {
-          values[2*num_derivatives + row] += transform[row][col]*derivatives[col];
-        }
-      }
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-    
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int row = 0; row < num_derivatives; row++)
-      {
-        delete [] combinations[row];
-        delete [] transform[row];
-      }
-    
-      delete [] combinations;
-      delete [] transform;
-    }
-    
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[7][1][2] = {{{0.666666666666667, 0.333333333333333}}, {{0.333333333333333, 0.666666666666667}}, {{0, 0.333333333333333}}, {{0, 0.666666666666667}}, {{0.333333333333333, 0}}, {{0.666666666666667, 0}}, {{0.333333333333333, 0.333333333333333}}};
-    const static double W[7][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[7][1][3] = {{{1, 1, 0}}, {{1, 1, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, -1, 0}}, {{0, -1, 0}}, {{0, 0, 1}}};
-    
-    static const unsigned int mappings[7] = {1, 1, 1, 1, 1, 1, 0};
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    const double Jinv_00 =  J_11 / detJ;
-    const double Jinv_01 = -J_01 / detJ;
-    const double Jinv_10 = -J_10 / detJ;
-    const double Jinv_11 =  J_00 / detJ;
-    
-    double copyofvalues[3];
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[3];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    if (mappings[i] == 0) { 
-      // Affine map: Do nothing
-    } else if (mappings[i] == 1) {
-       // Copy old values:
-      copyofvalues[0] = values[0];
-      copyofvalues[1] = values[1];
-      // Do the inverse of div piola 
-      values[0] = detJ*(Jinv_00*copyofvalues[0]+Jinv_01*copyofvalues[1]);
-      values[1] = detJ*(Jinv_10*copyofvalues[0]+Jinv_11*copyofvalues[1]); 
-    } else { 
-       // Other mappings not applicable. 
-    }
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 3; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-      
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-      
-    // Compute inverse of Jacobian
-    // Evaluate at vertices and use Piola mapping
-    vertex_values[0] = (1.0/detJ)*(dof_values[2]*2*J_00 + dof_values[3]*J_00 + dof_values[4]*(-2*J_01) + dof_values[5]*J_01);
-    vertex_values[3] = (1.0/detJ)*(dof_values[0]*2*J_00 + dof_values[1]*J_00 + dof_values[4]*(J_00 + J_01) + dof_values[5]*(2*J_00 - 2*J_01));
-    vertex_values[6] = (1.0/detJ)*(dof_values[0]*J_01 + dof_values[1]*2*J_01 + dof_values[2]*(J_00 + J_01) + dof_values[3]*(2*J_00 - 2*J_01));
-    vertex_values[1] = (1.0/detJ)*(dof_values[2]*2*J_10 + dof_values[3]*J_10 + dof_values[4]*(-2*J_11) + dof_values[5]*J_11);
-    vertex_values[4] = (1.0/detJ)*(dof_values[0]*2*J_10 + dof_values[1]*J_10 + dof_values[4]*(J_10 + J_11) + dof_values[5]*(2*J_10 - 2*J_11));
-    vertex_values[7] = (1.0/detJ)*(dof_values[0]*J_11 + dof_values[1]*2*J_11 + dof_values[2]*(J_10 + J_11) + dof_values[3]*(2*J_10 - 2*J_11));
-    // Evaluate at vertices and use affine mapping
-    vertex_values[2] = dof_values[6];
-    vertex_values[5] = dof_values[6];
-    vertex_values[8] = dof_values[6];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 2;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    switch ( i )
-    {
-    case 0:
-      return new UFC_MixedPoissonLinearForm_finite_element_0_0();
-      break;
-    case 1:
-      return new UFC_MixedPoissonLinearForm_finite_element_0_1();
-      break;
-    }
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class UFC_MixedPoissonLinearForm_finite_element_1: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_1() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 1;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 0;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 1;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0;
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
-    {{0}};
-    
-    const static double dmats1[1][1] = \
-    {{0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
-    
-    const double * const * x = c.coordinates;
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[1];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Affine map: Do nothing
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 1; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate at vertices and use affine mapping
-    vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new UFC_MixedPoissonLinearForm_finite_element_1();
+    return new UFC_P1ProjectionLinearForm_finite_element_1();
   }
 
 };
@@ -6310,7 +6055,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonLinearForm_dof_map_0_0: public ufc::dof_map
+class UFC_P1ProjectionLinearForm_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -6319,13 +6064,524 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_0_0() : ufc::dof_map()
+  UFC_P1ProjectionLinearForm_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_0_0()
+  virtual ~UFC_P1ProjectionLinearForm_dof_map_0_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_P1ProjectionLinearForm_dof_map_0_0();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionLinearForm_dof_map_0_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionLinearForm_dof_map_0_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionLinearForm_dof_map_0_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_P1ProjectionLinearForm_dof_map_0_1();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionLinearForm_dof_map_0: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionLinearForm_dof_map_0() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionLinearForm_dof_map_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a triangle, Lagrange finite element of degree 1 on a triangle]";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return true;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return false;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = 2*m.num_entities[0];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 6;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 4;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[0][0];
+    dofs[1] = c.entity_indices[0][1];
+    dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[0][0];
+    dofs[4] = offset + c.entity_indices[0][1];
+    dofs[5] = offset + c.entity_indices[0][2];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      dofs[0] = 1;
+      dofs[1] = 2;
+      dofs[2] = 4;
+      dofs[3] = 5;
+      break;
+    case 1:
+      dofs[0] = 0;
+      dofs[1] = 2;
+      dofs[2] = 3;
+      dofs[3] = 5;
+      break;
+    case 2:
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 3;
+      dofs[3] = 4;
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = x[0][0];
+    coordinates[0][1] = x[0][1];
+    coordinates[1][0] = x[1][0];
+    coordinates[1][1] = x[1][1];
+    coordinates[2][0] = x[2][0];
+    coordinates[2][1] = x[2][1];
+    coordinates[3][0] = x[0][0];
+    coordinates[3][1] = x[0][1];
+    coordinates[4][0] = x[1][0];
+    coordinates[4][1] = x[1][1];
+    coordinates[5][0] = x[2][0];
+    coordinates[5][1] = x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 2;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    switch ( i )
+    {
+    case 0:
+      return new UFC_P1ProjectionLinearForm_dof_map_0_0();
+      break;
+    case 1:
+      return new UFC_P1ProjectionLinearForm_dof_map_0_1();
+      break;
+    }
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_P1ProjectionLinearForm_dof_map_1: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_P1ProjectionLinearForm_dof_map_1() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_P1ProjectionLinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -6473,497 +6729,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_dof_map_0_0();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonLinearForm_dof_map_0_1: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_0_1() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_0_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      
-      break;
-    case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new UFC_MixedPoissonLinearForm_dof_map_0_1();
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonLinearForm_dof_map_0: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_0() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Mixed finite element: [Brezzi-Douglas-Marini finite element of degree 1 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return true;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = 2*m.num_entities[1] + m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 7;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = 2*c.entity_indices[1][0];
-    dofs[1] = 2*c.entity_indices[1][0] + 1;
-    dofs[2] = 2*c.entity_indices[1][1];
-    dofs[3] = 2*c.entity_indices[1][1] + 1;
-    dofs[4] = 2*c.entity_indices[1][2];
-    dofs[5] = 2*c.entity_indices[1][2] + 1;
-    unsigned int offset = 2*m.num_entities[1];
-    dofs[6] = offset + c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      dofs[0] = 0;
-      dofs[1] = 1;
-      break;
-    case 1:
-      dofs[0] = 2;
-      dofs[1] = 3;
-      break;
-    case 2:
-      dofs[0] = 4;
-      dofs[1] = 5;
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[1][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[1][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[2][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[2][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[3][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[3][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[4][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[4][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[5][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[5][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[6][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[6][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 2;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    switch ( i )
-    {
-    case 0:
-      return new UFC_MixedPoissonLinearForm_dof_map_0_0();
-      break;
-    case 1:
-      return new UFC_MixedPoissonLinearForm_dof_map_0_1();
-      break;
-    }
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class UFC_MixedPoissonLinearForm_dof_map_1: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_1() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a triangle";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
-  {
-    return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      
-      break;
-    case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new UFC_MixedPoissonLinearForm_dof_map_1();
+    return new UFC_P1ProjectionLinearForm_dof_map_1();
   }
 
 };
@@ -6972,18 +6738,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_MixedPoissonLinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_P1ProjectionLinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_P1ProjectionLinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_cell_integral_0()
+  virtual ~UFC_P1ProjectionLinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -7012,18 +6778,45 @@ public:
     
     // Compute coefficients
     const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    const double c0_0_0_3 = w[0][3];
+    const double c0_0_0_4 = w[0][4];
+    const double c0_0_0_5 = w[0][5];
     
     // Compute geometry tensors
-    const double G0_0 = det*c0_0_0_0;
+    const double G0_0_0_0 = 1.0/(detJ)*det*c0_0_0_0*J_00;
+    const double G0_0_0_1 = 1.0/(detJ)*det*c0_0_0_0*J_01;
+    const double G0_0_1_0 = 1.0/(detJ)*det*c0_0_0_1*J_00;
+    const double G0_0_1_1 = 1.0/(detJ)*det*c0_0_0_1*J_01;
+    const double G0_0_2_0 = 1.0/(detJ)*det*c0_0_0_2*J_00;
+    const double G0_0_2_1 = 1.0/(detJ)*det*c0_0_0_2*J_01;
+    const double G0_0_3_0 = 1.0/(detJ)*det*c0_0_0_3*J_00;
+    const double G0_0_3_1 = 1.0/(detJ)*det*c0_0_0_3*J_01;
+    const double G0_0_4_0 = 1.0/(detJ)*det*c0_0_0_4*J_00;
+    const double G0_0_4_1 = 1.0/(detJ)*det*c0_0_0_4*J_01;
+    const double G0_0_5_0 = 1.0/(detJ)*det*c0_0_0_5*J_00;
+    const double G0_0_5_1 = 1.0/(detJ)*det*c0_0_0_5*J_01;
+    const double G0_1_0_0 = 1.0/(detJ)*det*c0_0_0_0*J_10;
+    const double G0_1_0_1 = 1.0/(detJ)*det*c0_0_0_0*J_11;
+    const double G0_1_1_0 = 1.0/(detJ)*det*c0_0_0_1*J_10;
+    const double G0_1_1_1 = 1.0/(detJ)*det*c0_0_0_1*J_11;
+    const double G0_1_2_0 = 1.0/(detJ)*det*c0_0_0_2*J_10;
+    const double G0_1_2_1 = 1.0/(detJ)*det*c0_0_0_2*J_11;
+    const double G0_1_3_0 = 1.0/(detJ)*det*c0_0_0_3*J_10;
+    const double G0_1_3_1 = 1.0/(detJ)*det*c0_0_0_3*J_11;
+    const double G0_1_4_0 = 1.0/(detJ)*det*c0_0_0_4*J_10;
+    const double G0_1_4_1 = 1.0/(detJ)*det*c0_0_0_4*J_11;
+    const double G0_1_5_0 = 1.0/(detJ)*det*c0_0_0_5*J_10;
+    const double G0_1_5_1 = 1.0/(detJ)*det*c0_0_0_5*J_11;
     
     // Compute element tensor
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0.5*G0_0;
+    A[0] = 0.0833333333333332*G0_0_0_0 - 0.0416666666666666*G0_0_0_1 - 0.0416666666666666*G0_0_1_0 + 0.0833333333333332*G0_0_1_1 + 0.125*G0_0_2_0 + 0.0416666666666666*G0_0_2_1 - 0.0833333333333332*G0_0_3_1 - 0.0416666666666666*G0_0_4_0 - 0.125*G0_0_4_1 + 0.0833333333333332*G0_0_5_0;
+    A[1] = 0.166666666666666*G0_0_0_0 - 0.0416666666666666*G0_0_0_1 - 0.0833333333333332*G0_0_1_0 + 0.0833333333333332*G0_0_1_1 + 0.0416666666666666*G0_0_2_0 + 0.0416666666666666*G0_0_2_1 + 0.0416666666666666*G0_0_3_0 - 0.0833333333333332*G0_0_3_1 - 0.0833333333333332*G0_0_4_0 + 0.166666666666666*G0_0_5_0 - 0.125*G0_0_5_1;
+    A[2] = 0.0833333333333332*G0_0_0_0 - 0.0833333333333332*G0_0_0_1 - 0.0416666666666666*G0_0_1_0 + 0.166666666666666*G0_0_1_1 + 0.0833333333333332*G0_0_2_1 + 0.125*G0_0_3_0 - 0.166666666666666*G0_0_3_1 - 0.0416666666666666*G0_0_4_0 - 0.0416666666666666*G0_0_4_1 + 0.0833333333333332*G0_0_5_0 - 0.0416666666666666*G0_0_5_1;
+    A[3] = 0.0833333333333332*G0_1_0_0 - 0.0416666666666666*G0_1_0_1 - 0.0416666666666666*G0_1_1_0 + 0.0833333333333332*G0_1_1_1 + 0.125*G0_1_2_0 + 0.0416666666666666*G0_1_2_1 - 0.0833333333333332*G0_1_3_1 - 0.0416666666666666*G0_1_4_0 - 0.125*G0_1_4_1 + 0.0833333333333332*G0_1_5_0;
+    A[4] = 0.166666666666666*G0_1_0_0 - 0.0416666666666666*G0_1_0_1 - 0.0833333333333332*G0_1_1_0 + 0.0833333333333332*G0_1_1_1 + 0.0416666666666666*G0_1_2_0 + 0.0416666666666666*G0_1_2_1 + 0.0416666666666666*G0_1_3_0 - 0.0833333333333332*G0_1_3_1 - 0.0833333333333332*G0_1_4_0 + 0.166666666666666*G0_1_5_0 - 0.125*G0_1_5_1;
+    A[5] = 0.0833333333333332*G0_1_0_0 - 0.0833333333333332*G0_1_0_1 - 0.0416666666666666*G0_1_1_0 + 0.166666666666666*G0_1_1_1 + 0.0833333333333332*G0_1_2_1 + 0.125*G0_1_3_0 - 0.166666666666666*G0_1_3_1 - 0.0416666666666666*G0_1_4_0 - 0.0416666666666666*G0_1_4_1 + 0.0833333333333332*G0_1_5_0 - 0.0416666666666666*G0_1_5_1;
   }
 
 };
@@ -7043,18 +6836,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_MixedPoissonLinearForm: public ufc::form
+class UFC_P1ProjectionLinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm() : ufc::form()
+  UFC_P1ProjectionLinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm()
+  virtual ~UFC_P1ProjectionLinearForm()
   {
     // Do nothing
   }
@@ -7062,7 +6855,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0[0] | vi0[0, 1, 2, 3, 4, 5, 6][2]*va0[0]*dX(0)";
+    return "(det J)^(-1)w0_a1[0, 1, 2, 3, 4, 5](dxa0[0, 1]/dXa2[0, 1]) | vi0[0, 1, 2, 3, 4, 5][a0[0, 1]]*va1[0, 1, 2, 3, 4, 5][a2[0, 1]]*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7101,10 +6894,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonLinearForm_finite_element_0();
+      return new UFC_P1ProjectionLinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_MixedPoissonLinearForm_finite_element_1();
+      return new UFC_P1ProjectionLinearForm_finite_element_1();
       break;
     }
     return 0;
@@ -7116,10 +6909,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonLinearForm_dof_map_0();
+      return new UFC_P1ProjectionLinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_MixedPoissonLinearForm_dof_map_1();
+      return new UFC_P1ProjectionLinearForm_dof_map_1();
       break;
     }
     return 0;
@@ -7128,7 +6921,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_cell_integral_0();
+    return new UFC_P1ProjectionLinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -7149,11 +6942,11 @@ public:
 
 #include <dolfin/fem/Form.h>
 
-class MixedPoissonBilinearForm : public dolfin::Form
+class P1ProjectionBilinearForm : public dolfin::Form
 {
 public:
 
-  MixedPoissonBilinearForm() : dolfin::Form()
+  P1ProjectionBilinearForm() : dolfin::Form()
   {
     // Do nothing
   }
@@ -7173,18 +6966,18 @@ public:
 private:
 
   // UFC form
-  UFC_MixedPoissonBilinearForm __form;
+  UFC_P1ProjectionBilinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
 
 };
 
-class MixedPoissonLinearForm : public dolfin::Form
+class P1ProjectionLinearForm : public dolfin::Form
 {
 public:
 
-  MixedPoissonLinearForm(dolfin::Function& w0) : dolfin::Form()
+  P1ProjectionLinearForm(dolfin::Function& w0) : dolfin::Form()
   {
     __coefficients.push_back(&w0);
   }
@@ -7204,7 +6997,7 @@ public:
 private:
 
   // UFC form
-  UFC_MixedPoissonLinearForm __form;
+  UFC_P1ProjectionLinearForm __form;
 
   /// Array of coefficients
   dolfin::Array<dolfin::Function*> __coefficients;
