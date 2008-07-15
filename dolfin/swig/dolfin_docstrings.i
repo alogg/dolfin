@@ -112,6 +112,10 @@ Either a null pointer or an empty MeshFunction may be used to specify
 that the tensor should be assembled over the entire set of cells or
 facets. ";
 
+%feature("docstring")  dolfin::Assembler::assemble_system "";
+
+%feature("docstring")  dolfin::Assembler::applyTraces "";
+
 
 // File: classdolfin_1_1AssemblyFactory.xml
 %feature("docstring") dolfin::AssemblyFactory "";
@@ -301,7 +305,7 @@ Initialize boundary mesh. ";
 // File: classdolfin_1_1Box.xml
 %feature("docstring") dolfin::Box "
 
-Tetrahedral mesh of the 3D rectangular prysm (a,b) x (c,d) x (e,f).
+Tetrahedral mesh of the 3D rectangular prism (a,b) x (c,d) x (e,f).
 Given the number of cells (nx, ny, nz) in each direction, the total
 number of tetrahedra will be 6*nx*ny*nz and the total number of
 vertices will be (nx + 1)*(ny + 1)*(nz + 1).
@@ -682,6 +686,10 @@ diagonal matrices in a block matrix. ";
 
 Set (or update) value for sub system. ";
 
+%feature("docstring")  dolfin::DirichletBC::getBC "
+
+get Dirichlet values and indicators ";
+
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
 Return mesh. ";
@@ -1016,6 +1024,14 @@ C++ includes: SpecialFunctions.h ";
 Evaluate function at given point (overload for scalar user-defined
 function). ";
 
+%feature("docstring")  dolfin::FacetNormal::rank "
+
+Return the rank of the value space. ";
+
+%feature("docstring")  dolfin::FacetNormal::dim "
+
+Return the dimension of the value space for axis i. ";
+
 
 // File: classdolfin_1_1File.xml
 %feature("docstring") dolfin::File "
@@ -1105,7 +1121,19 @@ Create user-defined function (evaluation operator must be overloaded).
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant function from given value. ";
+Create constant scalar function from given value. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create constant vector function from given size and value. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create constant vector function from given size and values. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create constant tensor function from given shape and values. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1160,6 +1188,10 @@ Return the dimension of the value space for axis i. ";
 %feature("docstring")  dolfin::Function::mesh "
 
 Return the mesh. ";
+
+%feature("docstring")  dolfin::Function::signature "
+
+Return the signature of a DiscreteFunction. ";
 
 %feature("docstring")  dolfin::Function::vector "
 
@@ -4512,6 +4544,20 @@ C++ includes: UnitInterval.h ";
 %feature("docstring")  dolfin::UnitInterval::UnitInterval "";
 
 
+// File: classdolfin_1_1UnitSphere.xml
+%feature("docstring") dolfin::UnitSphere "
+
+Triangular mesh of the 3D unit sphere.
+
+Given the number of cells (nx, ny, nz) in each direction, the total
+number of tetrahedra will be 6*nx*ny*nz and the total number of
+vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+
+C++ includes: UnitSphere.h ";
+
+%feature("docstring")  dolfin::UnitSphere::UnitSphere "";
+
+
 // File: classdolfin_1_1UnitSquare.xml
 %feature("docstring") dolfin::UnitSquare "
 
@@ -4871,6 +4917,11 @@ Assemble scalar from given variational form and mesh over sub domains.
 Assemble tensor from given (UFC) form, mesh, coefficients and sub
 domains. ";
 
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble tensor from given (UFC) form, mesh, coefficients and sub
+domains. ";
+
 
 // File: Array_8h.xml
 
@@ -5179,6 +5230,9 @@ domains. ";
 
 
 // File: UnitInterval_8h.xml
+
+
+// File: UnitSphere_8h.xml
 
 
 // File: UnitSquare_8h.xml
