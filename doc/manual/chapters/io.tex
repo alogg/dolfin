@@ -62,8 +62,6 @@ File file("data.xml", File::octave);
       \hline
       \texttt{.pvd} & \texttt{File::vtk} & VTK \\
       \hline
-      \texttt{.dx} & \texttt{File::opendx} & OpenDX \\
-      \hline
       \texttt{.m} & \texttt{File::octave} & GNU Octave \\
       \hline
       (\texttt{.m}) & \texttt{File::matlab} & MATLAB \\
@@ -92,8 +90,6 @@ given in Table~\ref{tab:classes,formats}.
       \texttt{File::xml}     & in/out & in/out & in/out & --- & --- \\
       \hline
       \texttt{File::vtk}     & ---    & ---    & out    & out & --- \\
-      \hline
-      \texttt{File::opendx}  & ---    & ---    & out    & out & --- \\
       \hline
       \texttt{File::octave}  & out    & out    & out    & out & out \\
       \hline
@@ -179,18 +175,6 @@ in various formats can be produced using a combination of ParaView and
 MEncoder~\cite{www:MEncoder}.
 
 \devnote{Add MEncoder example to create animation.}
-
-\subsection{OpenDX}
-
-OpenDX~\cite{www:OpenDX} is a powerful free visualization tool based
-on IBM's \emph{Visualization Data Explorer}. To visualize data with
-OpenDX, a user needs to build a \emph{visual program} that instructs
-OpenDX how to extract and visualize relevant parts of your
-data. \dolfin{} provides a ready-made visual program suitable for
-visualization of \dolfin{} data in OpenDX. The visual program can be
-found in the subdirectory \texttt{src/utils/opendx/} of the \dolfin{}
-source tree (file \texttt{dolfin.net} and accompanying configuration
-\texttt{dolfin.cfg}).
 
 \subsection{GNU Octave}
 
