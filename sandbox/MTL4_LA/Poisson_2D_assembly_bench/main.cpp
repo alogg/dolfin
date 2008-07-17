@@ -26,12 +26,13 @@ int main(int args, char* argv[])
   cout << "MTL --------------------------------------------------------" << endl;
   DirectAssembler ass_mtl4(mesh); 
   const int NN = (int)sqr(N+1);
-
   MTL_Matrix A_mtl4(NN,NN,5);
+
   tic(); 
   ass_mtl4.assemble(A_mtl4, a, false); 
   real mtl4_assembly = toc();
   cout << "Assembly time: " << mtl4_assembly << endl;
+
   tic(); 
   ass_mtl4.assemble(A_mtl4, a, false); 
   real mtl4_reassembly = toc();
@@ -46,6 +47,7 @@ int main(int args, char* argv[])
   cout << "UBLAS ------------------------------------------------------" << endl;
   Assembler ass_ublas(mesh);
   Matrix A_ublas;
+
   tic(); 
   ass_ublas.assemble(A_ublas, a); 
   real ublas_assembly = toc();
