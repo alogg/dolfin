@@ -13,7 +13,8 @@ including matrices and vectors, a set of linear solvers,
 preconditioners, and an eigenvalue solver. The core part of the
 functionality is provided through wrappers that provide a common
 interface to the functionality of the linear algebra libraries
-uBlas~\cite{www:ublas} and PETSc~\cite{www:petsc}.
+uBLAS~\cite{www:ublas}, PETSc~\cite{www:petsc} and 
+Trilinos~\cite{www.trilonos}.
 
 %------------------------------------------------------------------------------
 \section{Matrices and vectors}
@@ -93,7 +94,7 @@ class \texttt{PETScMatrix} may be used, together with the corresponding
 class \texttt{PETScVector}.
 
 If \dolfin{} has been compiled without support for PETSc, then the
-sparse matrix is represented as a uBlas sparse matrix. Alternatively,
+sparse matrix is represented as a uBLAS sparse matrix. Alternatively,
 the class \texttt{uBlasSparseMatrix} may be used, together with the
 corresponding class \texttt{uBlasVector}.
 
@@ -106,7 +107,7 @@ when computing with matrices of small to moderate size. In particular,
 accessing individual elements 
 is more efficient with a dense matrix representation.
 
-A \texttt{DenseMatrix} is represented as uBlas dense matrix and
+A \texttt{DenseMatrix} is represented as uBLAS dense matrix and
 alternatively the class \texttt{uBlasDenseMatrix} may be used,
 together with the corresponding class \texttt{uBlasVector}.
 
@@ -169,7 +170,7 @@ KrylovSolver solver(gmres, ilu);
 solver.solve(A, x, b);
 \end{code}
 
-For uBlas matrices and vectors, the class \texttt{uBlasKrylovSolver}
+For uBLAS matrices and vectors, the class \texttt{uBlasKrylovSolver}
 may be used and for PETSc matrices and vectors, the class
 \texttt{PETScKrylovSolver} may be used.
 
@@ -261,7 +262,7 @@ LUSolver solver;
 solver.solve(A, x, b);
 \end{code}
 
-For uBlas matrices and vectors, the class \texttt{uBlasLUSolver} may
+For uBLAS matrices and vectors, the class \texttt{uBlasLUSolver} may
 be used and for PETSc matrices and vectors, the class
 \texttt{PETScLUSolver} may be used.
 
@@ -312,26 +313,26 @@ esolver.getEigenpair(lr, lc, xr, xc, 2);
 \section{Linear algebra backends}
 \index{linear algebra backends}
 
-\subsection{uBlas}
-\index{uBlas}
+\subsection{uBLAS}
+\index{uBLAS}
 
-uBlas is a C++ template library that provides BLAS level 1, 2 and 3
+uBLAS is a C++ template library that provides BLAS level 1, 2 and 3
 functionality (and more) for dense, packed and sparse matrices.
 The design and implementation unify mathematical notation via operator
 overloading and efficient code generation via expression templates.
 
-\dolfin{} wrappers for uBlas linear algebra is provided through the
+\dolfin{} wrappers for uBLAS linear algebra is provided through the
 classes \texttt{uBlasSparseMatrix}, \texttt{uBlasDenseMatrix} and
 \texttt{uBlasVector}. These classes are implemented by subclassing the
-corresponding uBlas classes, which means that all standard
-\texttt{uBlas} operations are supported for these classes. For
+corresponding uBLAS classes, which means that all standard
+\texttt{uBLAS} operations are supported for these classes. For
 advanced usage not covered by the common \dolfin{} interface specified
 by the classes \texttt{GenericMatrix} and \texttt{GenericVector},
-refer directly to the documentation of \texttt{uBlas}.
+refer directly to the documentation of \texttt{uBLAS}.
 %------------------------------------------------------------------------------
 \subsection{PETSc}
 \index{PETSc}
-
+%
 PETSc is a suite of data structures and routines for the scalable
 (parallel) solution of scientific applications modeled by partial
 differential equations. It employs the MPI standard for all 
@@ -345,3 +346,16 @@ and \texttt{Vec} pointers respectively. For advanced usage not covered
 by the common \dolfin{} interface specified by the classes
 \texttt{GenericMatrix} and \texttt{GenericVector}, refer directly to
 the documentation of PETSc.
+
+%------------------------------------------------------------------------------
+\subsection{Trilinos}
+\index{Trilinos}
+%
+Trilinos . . . . 
+%------------------------------------------------------------------------------
+\subsection{User provided linear algebra backends}
+\index{Trilinos}
+%
+\devnote{This section will explain how a user-provided linear alegra backend
+          can be used with \dolfin{}.}
+
