@@ -14,6 +14,9 @@ env = Environment(ENV=os.environ, CXX="g++")
 # Get compiler flags from pkg-config
 env.ParseConfig('pkg-config --cflags --libs dolfin')
 
+mtl4_path = os.environ['MTL4_DIR']
+env.Append(CPPPATH=mtl4_path)
+
 env.Append(CXXFLAGS='-DHAS_MTL')
 #env.Append(CXXFLAGS='-DHAS_MTL -pg', LINKFLAGS='-pg')
 #env.Append(CXXFLAGS='-DHAS_MTL -fopenmp',LINKFLAGS='-fopenmp')
