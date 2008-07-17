@@ -88,11 +88,12 @@ namespace dolfin
     	ins = new mtl::matrix::
     	  inserter<MTL4_sparse_matrix, mtl::update_plus<real> >(A, nnz_row);
 
-      mtl::dense_vector<const uint> row(m,rows);
-      mtl::dense_vector<const uint> col(n,cols);
-      mtl::dense2D<const double> blk(m,n,block);
+      error("Funcion add_II needs to be debugged.");
+      //mtl::dense_vector<const uint> row(m,rows);
+      //mtl::dense_vector<const uint> col(n,cols);
+      //mtl::dense2D<const double> blk(m,n,block);
 
-      (*ins) << mtl::element_matrix(blk, row, col);
+      //(*ins) << mtl::element_matrix(blk, row, col);
     }
 
     // does not compile yet...

@@ -15,6 +15,9 @@ int main(int args, char* argv[])
 {
   //dolfin_set("output destination", "silent");
 
+  dolfin_assert(argv[1]);
+  dolfin_assert(argv[2]);
+
   const int N = atoi(argv[1]);
   const int N_rep = atoi(argv[2]);
 
@@ -22,6 +25,7 @@ int main(int args, char* argv[])
   //mesh.init(mesh.topology().dim());
   Function f(mesh,1.0);
   NSEMomentum3DBilinearForm a(f,f,f,f,f);
+
 
   if(1)
     {
@@ -43,7 +47,7 @@ int main(int args, char* argv[])
       printf("%d mat-vec mult, mat: %d-by-%d, elapsed %f seconds\n", 
 	     N_rep, NN, NN, toc());
     }
-
+/*
   if(1)
     {
       printf("UBLAS ------------------------------------------------------\n");
@@ -73,6 +77,6 @@ int main(int args, char* argv[])
 	     N_rep, NN, NN, toc());
 
     }
-
+*/
   return 0;
 }
