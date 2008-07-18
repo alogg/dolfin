@@ -230,17 +230,18 @@ Initialize zero tensor of given rank and dimensions. ";
 // File: classdolfin_1_1AvgMeshSize.xml
 %feature("docstring") dolfin::AvgMeshSize "
 
-This function represents the average of the local mesh size on a given
-mesh.
+This Function represents the average of the local cell size (average
+of cell sharing a facet) on a given mesh.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "";
+%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::AvgMeshSize::eval "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Return average cell size. ";
 
 
 // File: classdolfin_1_1BoundaryCondition.xml
@@ -985,7 +986,7 @@ Destructor. ";
 // File: classdolfin_1_1FacetArea.xml
 %feature("docstring") dolfin::FacetArea "
 
-This function represents the area/length of a mesh facet.
+This function represents the area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
 
@@ -1012,7 +1013,7 @@ C++ includes: Facet.h ";
 // File: classdolfin_1_1FacetNormal.xml
 %feature("docstring") dolfin::FacetNormal "
 
-This function represents the outward unit normal on mesh facets. Note
+This Function represents the outward unit normal on cell facets. Note
 that it is only nonzero on cell facets (not on cells).
 
 C++ includes: SpecialFunctions.h ";
@@ -1854,7 +1855,7 @@ Compute which cells are intersected by a polygon (defined by points).
 // File: classdolfin_1_1InvFacetArea.xml
 %feature("docstring") dolfin::InvFacetArea "
 
-This function represents the inverse area/length of a mesh facet.
+This function represents the inverse area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
 
@@ -1869,17 +1870,18 @@ function). ";
 // File: classdolfin_1_1InvMeshSize.xml
 %feature("docstring") dolfin::InvMeshSize "
 
-This function represents the inverse of the local mesh size on a given
+This Function represents the inverse of the local cell size on a given
 mesh.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "";
+%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::InvMeshSize::eval "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Return inverse of cell size. ";
 
 
 // File: classdolfin_1_1KrylovSolver.xml
@@ -2890,16 +2892,17 @@ Display data. ";
 // File: classdolfin_1_1MeshSize.xml
 %feature("docstring") dolfin::MeshSize "
 
-This function represents the local mesh size on a given mesh.
+This Function represents the local mesh size on a given mesh.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::MeshSize::MeshSize "";
+%feature("docstring")  dolfin::MeshSize::MeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::MeshSize::eval "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Return cell size. ";
 
 %feature("docstring")  dolfin::MeshSize::min "
 
@@ -3329,6 +3332,27 @@ Evaluate (interpolate) value og solution at given time. ";
 %feature("docstring")  dolfin::ODESolution::printVector "
 
 for testing ";
+
+
+// File: classdolfin_1_1OutflowFacet.xml
+%feature("docstring") dolfin::OutflowFacet "
+
+This function determines if the current facet is an outflow facet with
+respect to the current cell. It accepts as argument the mesh and a
+form M = dot(n, v)*ds, a functional, defined on the normal vector to
+the facet and velocity vector integrated over the exterior of the
+cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::OutflowFacet::OutflowFacet "";
+
+%feature("docstring")  dolfin::OutflowFacet::~OutflowFacet "";
+
+%feature("docstring")  dolfin::OutflowFacet::eval "
+
+Evaluate scalar function at given point (overload for scalar user-
+defined function). ";
 
 
 // File: classdolfin_1_1Parameter.xml
@@ -4165,55 +4189,6 @@ Solve linear system Ax = b and return number of iterations (virtual
 matrix). ";
 
 
-// File: classdolfin_1_1uBlasLUSolver.xml
-%feature("docstring") dolfin::uBlasLUSolver "
-
-This class implements the direct solution (LU factorization) of linear
-systems of the form Ax = b using uBlas data types. Dense matrices are
-solved using uBlas LU factorisation, and sparse matrices are solved
-using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) is
-installed. Matrices can also be inverted.
-
-C++ includes: uBlasLUSolver.h ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::uBlasLUSolver "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::~uBlasLUSolver "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solve "
-
-Solve linear system Ax = b for a dense matrix. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solve "
-
-Solve linear system Ax = b for a sparse matrix using UMFPACK if
-installed. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::factorize "
-
-LU-factor sparse matrix A if UMFPACK is installed. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::factorized_solve "
-
-Solve factorized system (UMFPACK). ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solve "
-
-Solve linear system Ax = b for a Krylov matrix. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solveInPlaceUBlas "
-
-Solve linear system Ax = b in place (A is dense). ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::invert "
-
-Compute the inverse of A (A is dense or sparse). ";
-
-
 // File: classdolfin_1_1uBlasMatrix.xml
 %feature("docstring") dolfin::uBlasMatrix "
 
@@ -4490,6 +4465,55 @@ Return reference to uBLAS vector (const version). ";
 %feature("docstring")  dolfin::uBlasVector::vec "
 
 Return reference to uBLAS vector (non-const version). ";
+
+
+// File: classdolfin_1_1UmfpackLUSolver.xml
+%feature("docstring") dolfin::UmfpackLUSolver "
+
+This class implements the direct solution (LU factorization) of linear
+systems of the form Ax = b using uBlas data types. Dense matrices are
+solved using uBlas LU factorisation, and sparse matrices are solved
+using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) is
+installed. Matrices can also be inverted.
+
+C++ includes: UmfpackLUSolver.h ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::UmfpackLUSolver "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::~UmfpackLUSolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::solve "
+
+Solve linear system Ax = b for a dense matrix. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::solve "
+
+Solve linear system Ax = b for a sparse matrix using UMFPACK if
+installed. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::factorize "
+
+LU-factor sparse matrix A if UMFPACK is installed. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::factorized_solve "
+
+Solve factorized system (UMFPACK). ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::solve "
+
+Solve linear system Ax = b for a Krylov matrix. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::solveInPlaceUBlas "
+
+Solve linear system Ax = b in place (A is dense). ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::invert "
+
+Compute the inverse of A (A is dense or sparse). ";
 
 
 // File: classdolfin_1_1UndirectedClique.xml
@@ -5058,6 +5082,15 @@ domains. ";
 // File: Matrix_8h.xml
 
 
+// File: MTL4Factory_8h.xml
+
+
+// File: MTL4Matrix_8h.xml
+
+
+// File: MTL4Vector_8h.xml
+
+
 // File: NormalizationType_8h.xml
 
 
@@ -5112,9 +5145,6 @@ domains. ";
 // File: uBlasKrylovSolver_8h.xml
 
 
-// File: uBlasLUSolver_8h.xml
-
-
 // File: uBlasMatrix_8h.xml
 
 
@@ -5122,6 +5152,9 @@ domains. ";
 
 
 // File: uBlasVector_8h.xml
+
+
+// File: UmfpackLUSolver_8h.xml
 
 
 // File: Vector_8h.xml
@@ -5301,53 +5334,53 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
+// File: dir_61b770f0937adfd483bee94c54785c28.xml
 
 
-// File: dir_c2d8b013fd04ed882f8d87b68325caba.xml
+// File: dir_9a0a383802c047a642ba8b9e9648764f.xml
 
 
-// File: dir_1890b655131c1abe796835d1d7e57599.xml
+// File: dir_21f317d844c2695f111e378e352a1260.xml
 
 
-// File: dir_fa7665f4f771f6b9bd3285cc3526e10d.xml
+// File: dir_d3a4ed116c4f150a9ffd6b3aea53093d.xml
 
 
-// File: dir_7ae9b525fa735889416df9a88318a409.xml
+// File: dir_c21a82147204075d697450081c18391d.xml
 
 
-// File: dir_4c8349339c79835b7014fb341fef0206.xml
+// File: dir_66fb7a450ac8a3129d111ef92fc14081.xml
 
 
-// File: dir_4d7e92e23f6ea876d470371aa3d29376.xml
+// File: dir_7a3f6a15d062466e32e5a1f100373fe2.xml
 
 
-// File: dir_3c2ad13ee8805033db44e75511328743.xml
+// File: dir_b3a5b05a749b7e34549750a0df22e430.xml
 
 
-// File: dir_837f57fa7b99817fc9c065cd33a24294.xml
+// File: dir_ddf6f5040ef421343e41733dbe0f726e.xml
 
 
-// File: dir_2e3d752c0dc6db1308f89f3ade9719f6.xml
+// File: dir_9b0d9390340a10f04dc743d2d285fa48.xml
 
 
-// File: dir_40fb3cedb271a8bfe5ce264c8f153c9b.xml
+// File: dir_493c292554ac78639f1633e2e8cf04dc.xml
 
 
-// File: dir_4051ad071076088e8c66a6e80c9a9988.xml
+// File: dir_ba133e61784fe7e267132621babbd280.xml
 
 
-// File: dir_cfbe19ce0dad3eee24aad31a4afa5d0e.xml
+// File: dir_3bfb0a40a7cbfe474becb977b602aaed.xml
 
 
-// File: dir_c5290f3dab994c0c9dba61554566fc4f.xml
+// File: dir_3134c96b8fd6f75bdef848738080f2d3.xml
 
 
-// File: dir_f52db9cf4adc49528fc87123266f9c76.xml
+// File: dir_fe60f2cd4177c0c410d87a20848af90b.xml
 
 
-// File: dir_913f640bc454e255461704ebdcb6a817.xml
+// File: dir_3ba855bc0d2f956d8a6cb00c441d502c.xml
 
 
-// File: dir_a66f8f551e7465104f1dbcd89b910c46.xml
+// File: dir_571ad6a86b7e8eddef0b4d1e5a683d92.xml
 
