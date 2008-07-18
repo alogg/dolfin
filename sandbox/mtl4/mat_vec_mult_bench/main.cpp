@@ -1,15 +1,8 @@
 #include <dolfin.h>
 
 #include "NSEMomentum3D.h"
-
-#include "../DirectAssembler.h"
-#include "../MTL_Matrix.h"
-#include "../MTL_Vector.h"
   
 using namespace dolfin;
-
-void foo(MTL4_sparse_matrix& A, MTL4_vector& b)
-{}
 
 int main(int args, char* argv[])
 {
@@ -18,11 +11,13 @@ int main(int args, char* argv[])
   dolfin_assert(argv[1]);
   dolfin_assert(argv[2]);
 
+  if(!argv[1] && !!argv[2])
+    error("This program requires an two integer command line arugment, e.g. ./demo 100 10");   
+
   const int N = atoi(argv[1]);
   const int N_rep = atoi(argv[2]);
 
   UnitCube mesh(N, N, N);
-  //mesh.init(mesh.topology().dim());
   Array<real> f_array(0.0, 0.0, 1.0);
   Function f_vec(mesh, f_array);
   Function f_scalar(mesh, 1.0);
@@ -30,15 +25,15 @@ int main(int args, char* argv[])
 
 
   cout << "MTL --------------------------------------------------------" << endl;;
-  DirectAssembler ass_mtl4(mesh); 
+  Assembler ass_mtl4(mesh); 
   const int NN = 3*(N+1)*(N+1)*(N+1);
-  MTL_Matrix A_mtl4(NN, NN, 45);
 
+  MTL4Matrix A_mtl4(NN, NN, 45);
   ass_mtl4.assemble(A_mtl4, a, false);
 
-  MTL4_sparse_matrix& mat_mtl4 = A_mtl4.mat(); 
-  MTL4_vector x1_mtl4(NN);
-  MTL4_vector x2_mtl4(NN);
+  mtl4_sparse_matrix& mat_mtl4 = A_mtl4.mat(); 
+  mtl4_vector x1_mtl4(NN);
+  mtl4_vector x2_mtl4(NN);
 
   for(int i=0; i<NN; i++)
     x1_mtl4[i] = 3.14;
