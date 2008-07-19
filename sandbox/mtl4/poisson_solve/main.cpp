@@ -21,17 +21,18 @@ int main()
   Function g(mesh, 0.0);
   DirichletBC bc(g, mesh, boundary); 
   
-  tic(); 
   ass_ublas.assemble(A_ublas, a); 
   ass_ublas.assemble(b_ublas, L); 
   bc.apply(A_ublas, b_ublas, a);
-  uBlasLUSolver lu_ublas;
+  UmfpackLUSolver lu_ublas;
+  tic(); 
   lu_ublas.solve(A_ublas, x_ublas, b_ublas);
   real ublas_solve = toc();
   cout << "Solve time: " << ublas_solve << endl;
 
   x_ublas.disp();
 
+/*
   // Assemble and solve using MTL4
   printf("MTL4 with specified number of nonzeros----------------------\n");
   Assembler ass_mtl4(mesh); 
@@ -50,6 +51,7 @@ int main()
   cout << "Solve time: " << mtl4_solve << endl;
   for(dolfin::uint i = 0; i < x_mtl4.size(); ++i)
     std::cout<< x_mtl4.vec()[i] << std::endl;
+*/
 
   return 0;
 }
