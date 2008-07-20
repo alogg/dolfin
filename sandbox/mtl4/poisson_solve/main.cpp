@@ -6,7 +6,7 @@ using namespace dolfin;
 int main()
 {
   // Create mesh and forms
-  UnitSquare mesh(700, 700);
+  UnitSquare mesh(100, 100);
   DomainBoundary boundary;
   Function g(mesh, 0.0);
   DirichletBC bc(g, mesh, boundary); 
@@ -14,6 +14,8 @@ int main()
   Function f(mesh, 2.0);
   PoissonBilinearForm a;
   PoissonLinearForm L(f);
+
+  Table table;
 
   // Assemble and solve using uBLAS
   cout << "uBLAS ------------------------------------------------------" << endl;
@@ -27,7 +29,7 @@ int main()
   bc.apply(A_ublas, b_ublas, a);
   UmfpackLUSolver lu_ublas;
   lu_ublas.solve(A_ublas, x_ublas, b_ublas);
-  real ublas_solve = toc();
+  table("uBLAS", "solve") =  toc();
 
   //x_ublas.disp();
 
@@ -45,7 +47,7 @@ int main()
   //ITLKrylovSolver solver_itl;
   UmfpackLUSolver solver_itl;
   solver_itl.solve(A_mtl4, x_mtl4, b_mtl4);
-  real mtl4_solve = toc();
+  table("MTL4", "solve") =  toc();
 
 
   //Function u;
@@ -54,8 +56,7 @@ int main()
   //file << u;
   //x_mtl4.disp();
 
-  cout << "Solve time (uBLAS): " << ublas_solve << endl;
-  cout << "Solve time (MTL4):  " << mtl4_solve << endl;
+  table.disp();
 
   return 0;
 }
