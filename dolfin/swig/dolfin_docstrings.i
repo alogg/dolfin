@@ -4034,6 +4034,60 @@ Extract sub finite element of given finite element. ";
 Return array which defines sub system. ";
 
 
+// File: classdolfin_1_1Table.xml
+%feature("docstring") dolfin::Table "
+
+This class provides storage and pretty-printing for tables. Example
+usage:
+
+Table table(\"Timings\");
+
+table(\"uBLAS\", \"Assemble\") = 0.010; table(\"uBLAS\", \"Solve\") =
+0.020; table(\"PETSc\", \"Assemble\") = 0.011; table(\"PETSc\",
+\"Solve\") = 0.019; table(\"Epetra\", \"Assemble\") = 0.012;
+table(\"Epetra\", \"Solve\") = 0.018;
+
+table.disp();
+
+C++ includes: Table.h ";
+
+%feature("docstring")  dolfin::Table::Table "
+
+Create empty table. ";
+
+%feature("docstring")  dolfin::Table::~Table "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Table::get "
+
+Get value of table entry. ";
+
+%feature("docstring")  dolfin::Table::set "
+
+Set value of table entry. ";
+
+%feature("docstring")  dolfin::Table::disp "
+
+Display table. ";
+
+
+// File: classdolfin_1_1TableEntry.xml
+%feature("docstring") dolfin::TableEntry "
+
+This class represents an entry in a Table.
+
+C++ includes: Table.h ";
+
+%feature("docstring")  dolfin::TableEntry::TableEntry "
+
+Create table entry. ";
+
+%feature("docstring")  dolfin::TableEntry::~TableEntry "
+
+Destructor. ";
+
+
 // File: classdolfin_1_1TimeDependent.xml
 %feature("docstring") dolfin::TimeDependent "
 
@@ -4299,7 +4353,11 @@ Return reference to uBLAS matrix (non-const version). ";
 
 %feature("docstring")  dolfin::uBlasMatrix::solve "
 
-Solve Ax = b out-of-place (A is not destroyed). ";
+Solve Ax = b out-of-place using uBLAS (A is not destroyed). ";
+
+%feature("docstring")  dolfin::uBlasMatrix::solveInPlace "
+
+Solve Ax = b in-place using uBLAS(A is destroyed). ";
 
 %feature("docstring")  dolfin::uBlasMatrix::invert "
 
@@ -4492,28 +4550,33 @@ Solve linear system Ax = b for a dense matrix. ";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::solve "
 
-Solve linear system Ax = b for a sparse matrix using UMFPACK if
+Solve MTL4 linear system Ax = b for a sparse matrix using UMFPACK if
+installed. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::solve "
+
+Solve uBLAS linear system Ax = b for a sparse matrix using UMFPACK if
 installed. ";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::factorize "
 
 LU-factor sparse matrix A if UMFPACK is installed. ";
 
-%feature("docstring")  dolfin::UmfpackLUSolver::factorized_solve "
+%feature("docstring")  dolfin::UmfpackLUSolver::factorizedSolve "
 
 Solve factorized system (UMFPACK). ";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::solve "
 
-Solve linear system Ax = b for a Krylov matrix. ";
-
-%feature("docstring")  dolfin::UmfpackLUSolver::solveInPlaceUBlas "
-
-Solve linear system Ax = b in place (A is dense). ";
+Solve linear system Ax = b for a Krylov matrix FIXME: This function
+should be moved to uBlasKrylovMatrix ";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::invert "
 
 Compute the inverse of A (A is dense or sparse). ";
+
+
+// File: classdolfin_1_1UmfpackLUSolver_1_1Umfpack.xml
 
 
 // File: classdolfin_1_1UndirectedClique.xml
@@ -5175,6 +5238,9 @@ domains. ";
 // File: Progress_8h.xml
 
 
+// File: Table_8h.xml
+
+
 // File: init_8h.xml
 
 
@@ -5334,53 +5400,53 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_61b770f0937adfd483bee94c54785c28.xml
+// File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
 
 
-// File: dir_9a0a383802c047a642ba8b9e9648764f.xml
+// File: dir_c2d8b013fd04ed882f8d87b68325caba.xml
 
 
-// File: dir_21f317d844c2695f111e378e352a1260.xml
+// File: dir_1890b655131c1abe796835d1d7e57599.xml
 
 
-// File: dir_d3a4ed116c4f150a9ffd6b3aea53093d.xml
+// File: dir_fa7665f4f771f6b9bd3285cc3526e10d.xml
 
 
-// File: dir_c21a82147204075d697450081c18391d.xml
+// File: dir_7ae9b525fa735889416df9a88318a409.xml
 
 
-// File: dir_66fb7a450ac8a3129d111ef92fc14081.xml
+// File: dir_4c8349339c79835b7014fb341fef0206.xml
 
 
-// File: dir_7a3f6a15d062466e32e5a1f100373fe2.xml
+// File: dir_4d7e92e23f6ea876d470371aa3d29376.xml
 
 
-// File: dir_b3a5b05a749b7e34549750a0df22e430.xml
+// File: dir_3c2ad13ee8805033db44e75511328743.xml
 
 
-// File: dir_ddf6f5040ef421343e41733dbe0f726e.xml
+// File: dir_837f57fa7b99817fc9c065cd33a24294.xml
 
 
-// File: dir_9b0d9390340a10f04dc743d2d285fa48.xml
+// File: dir_2e3d752c0dc6db1308f89f3ade9719f6.xml
 
 
-// File: dir_493c292554ac78639f1633e2e8cf04dc.xml
+// File: dir_40fb3cedb271a8bfe5ce264c8f153c9b.xml
 
 
-// File: dir_ba133e61784fe7e267132621babbd280.xml
+// File: dir_4051ad071076088e8c66a6e80c9a9988.xml
 
 
-// File: dir_3bfb0a40a7cbfe474becb977b602aaed.xml
+// File: dir_cfbe19ce0dad3eee24aad31a4afa5d0e.xml
 
 
-// File: dir_3134c96b8fd6f75bdef848738080f2d3.xml
+// File: dir_c5290f3dab994c0c9dba61554566fc4f.xml
 
 
-// File: dir_fe60f2cd4177c0c410d87a20848af90b.xml
+// File: dir_f52db9cf4adc49528fc87123266f9c76.xml
 
 
-// File: dir_3ba855bc0d2f956d8a6cb00c441d502c.xml
+// File: dir_913f640bc454e255461704ebdcb6a817.xml
 
 
-// File: dir_571ad6a86b7e8eddef0b4d1e5a683d92.xml
+// File: dir_a66f8f551e7465104f1dbcd89b910c46.xml
 
