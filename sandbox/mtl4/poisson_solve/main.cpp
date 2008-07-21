@@ -17,6 +17,10 @@ int main()
 
   Table table;
 
+  // Linear solver
+  //KrylovSolver solver;
+  LUSolver solver;
+  
   // Assemble and solve using uBLAS
   cout << "uBLAS ------------------------------------------------------" << endl;
   Assembler ass_ublas(mesh);
@@ -27,8 +31,7 @@ int main()
   ass_ublas.assemble(A_ublas, a); 
   ass_ublas.assemble(b_ublas, L); 
   bc.apply(A_ublas, b_ublas, a);
-  UmfpackLUSolver lu_ublas;
-  lu_ublas.solve(A_ublas, x_ublas, b_ublas);
+  solver.solve(A_ublas, x_ublas, b_ublas);
   table("uBLAS", "solve") =  toc();
 
   x_ublas.disp();
@@ -44,9 +47,7 @@ int main()
   ass_mtl4.assemble(A_mtl4, a, false); 
   ass_mtl4.assemble(b_mtl4, L, false);
   bc.apply(A_mtl4, b_mtl4, a);
-  //ITLKrylovSolver solver_itl;
-  UmfpackLUSolver solver_itl;
-  solver_itl.solve(A_mtl4, x_mtl4, b_mtl4);
+  solver.solve(A_mtl4, x_mtl4, b_mtl4);
   table("MTL4", "solve") =  toc();
 
 
