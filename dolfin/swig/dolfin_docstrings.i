@@ -112,9 +112,13 @@ Either a null pointer or an empty MeshFunction may be used to specify
 that the tensor should be assembled over the entire set of cells or
 facets. ";
 
-%feature("docstring")  dolfin::Assembler::assemble_system "";
+%feature("docstring")  dolfin::Assembler::assemble_system "
 
-%feature("docstring")  dolfin::Assembler::applyTraces "";
+FIXME: Kent, please document this function. ";
+
+%feature("docstring")  dolfin::Assembler::applyTraces "
+
+FIXME: Kent, please document this function. ";
 
 
 // File: classdolfin_1_1AssemblyFactory.xml
@@ -1349,6 +1353,11 @@ Set given rows to identity matrix. ";
 
 Matrix-vector product, y = Ax. ";
 
+%feature("docstring")  dolfin::GenericMatrix::data "
+
+Return pointers to underlying compresssed storage data FIXME: Document
+what data each of the three pointers points to. ";
+
 %feature("docstring")  dolfin::GenericMatrix::getitem "
 
 Get value of given entry. ";
@@ -1588,6 +1597,14 @@ Return minimum value of vector. ";
 %feature("docstring")  dolfin::GenericVector::max "
 
 Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::GenericVector::data "
+
+Return pointer to underlying data (const version). ";
+
+%feature("docstring")  dolfin::GenericVector::data "
+
+Return pointer to underlying data. ";
 
 %feature("docstring")  dolfin::GenericVector::getitem "
 
@@ -4339,6 +4356,10 @@ Set given rows to identity matrix. ";
 
 Matrix-vector product, y = Ax. ";
 
+%feature("docstring")  dolfin::uBlasMatrix::data "
+
+Return pointers to underlying compresssed storage data. ";
+
 %feature("docstring")  dolfin::uBlasMatrix::factory "
 
 Return linear algebra backend factory. ";
@@ -4374,6 +4395,11 @@ Compress matrix (eliminate all non-zeros from a sparse matrix). ";
 %feature("docstring")  dolfin::uBlasMatrix::init "
 
 Initialize zero tensor using sparsity pattern. ";
+
+%feature("docstring")  dolfin::uBlasMatrix::data "
+
+Return pointers to underlying compresssed storage data FIXME: Document
+what data each of the three pointers points to. ";
 
 
 // File: classdolfin_1_1uBlasPreconditioner.xml
@@ -4512,6 +4538,14 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::uBlasVector::data "
+
+Return pointer to underlying data (const version). ";
+
+%feature("docstring")  dolfin::uBlasVector::data "
+
+Return pointer to underlying data. ";
+
 %feature("docstring")  dolfin::uBlasVector::factory "
 
 Return linear algebra backend factory. ";
@@ -4546,15 +4580,6 @@ Destructor. ";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::solve "
 
-Solve linear system Ax = b for a dense matrix. ";
-
-%feature("docstring")  dolfin::UmfpackLUSolver::solve "
-
-Solve MTL4 linear system Ax = b for a sparse matrix using UMFPACK if
-installed. ";
-
-%feature("docstring")  dolfin::UmfpackLUSolver::solve "
-
 Solve uBLAS linear system Ax = b for a sparse matrix using UMFPACK if
 installed. ";
 
@@ -4570,10 +4595,6 @@ Solve factorized system (UMFPACK). ";
 
 Solve linear system Ax = b for a Krylov matrix FIXME: This function
 should be moved to uBlasKrylovMatrix ";
-
-%feature("docstring")  dolfin::UmfpackLUSolver::invert "
-
-Compute the inverse of A (A is dense or sparse). ";
 
 
 // File: classdolfin_1_1UmfpackLUSolver_1_1Umfpack.xml
@@ -4914,9 +4935,9 @@ End task (decrease indentation level). ";
 
 Print summary of timings and tasks, clearing stored timings. ";
 
-%feature("docstring")  dolfin::timings "
+%feature("docstring")  dolfin::timing "
 
-Return summary of timings. ";
+Return timing (average) for given task. ";
 
 %feature("docstring")  dolfin::__debug "";
 
