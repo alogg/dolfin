@@ -121,116 +121,6 @@ FIXME: Kent, please document this function. ";
 FIXME: Kent, please document this function. ";
 
 
-// File: classdolfin_1_1AssemblyFactory.xml
-%feature("docstring") dolfin::AssemblyFactory "";
-
-%feature("docstring")  dolfin::AssemblyFactory::~AssemblyFactory "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::AssemblyFactory::createMatrix "
-
-Create empty matrix. ";
-
-%feature("docstring")  dolfin::AssemblyFactory::createVector "
-
-Create empty vector. ";
-
-%feature("docstring")  dolfin::AssemblyFactory::createPattern "
-
-Create empty sparsity pattern. ";
-
-
-// File: classdolfin_1_1AssemblyMatrix.xml
-%feature("docstring") dolfin::AssemblyMatrix "";
-
-%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
-
-Create empty matrix. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
-
-Create M x N matrix. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::AssemblyMatrix "
-
-Copy constructor. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::~AssemblyMatrix "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::init "
-
---- Implementation of the GenericTensor interface ---
-
-Initialize zero tensor using sparsity pattern ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::copy "
-
-Return copy of tensor. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::size "
-
-Return size of given dimension. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::zero "
-
-Set all entries to zero and keep any sparse structure. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::apply "
-
-Finalize assembly of tensor. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::disp "
-
-Display tensor. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::init "
-
-Initialize M x N matrix. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::get "
-
-Get block of values. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::set "
-
-Set block of values. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::add "
-
-Add block of values. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::getrow "
-
-Get non-zero values of given row. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::setrow "
-
-Set values for given row. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::zero "
-
-Set given rows to zero. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::ident "
-
-Set given rows to identity matrix. ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::mult "";
-
-%feature("docstring")  dolfin::AssemblyMatrix::factory "
-
---- Specialized matrix functions ---
-
-Return linear algebra backend factory ";
-
-%feature("docstring")  dolfin::AssemblyMatrix::init "
-
-Initialize zero tensor of given rank and dimensions. ";
-
-
 // File: classdolfin_1_1AvgMeshSize.xml
 %feature("docstring") dolfin::AvgMeshSize "
 
@@ -2247,6 +2137,10 @@ Set given rows to identity matrix. ";
 
 Matrix-vector product, y = Ax. ";
 
+%feature("docstring")  dolfin::Matrix::data "
+
+Return pointers to underlying compressed storage data. ";
+
 %feature("docstring")  dolfin::Matrix::factory "
 
 Return linear algebra backend factory. ";
@@ -3923,6 +3817,10 @@ Insert non-zero entries. ";
 
 Insert non-zero entry for parallel matrices. ";
 
+%feature("docstring")  dolfin::SparsityPattern::sort "
+
+Sort entries for each row. ";
+
 %feature("docstring")  dolfin::SparsityPattern::size "
 
 Return global size. ";
@@ -3963,6 +3861,123 @@ Return number of local rows for process_number. ";
 
 // File: classstd_1_1vector.xml
 %feature("docstring") std::vector "";
+
+
+// File: classdolfin_1_1STLFactory.xml
+%feature("docstring") dolfin::STLFactory "";
+
+%feature("docstring")  dolfin::STLFactory::~STLFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::STLFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::STLFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::STLFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
+// File: classdolfin_1_1STLMatrix.xml
+%feature("docstring") dolfin::STLMatrix "
+
+Simple implementation of a GenericMatrix for experimenting with new
+assembly. Not sure this will be used later but it might be useful.
+
+C++ includes: STLMatrix.h ";
+
+%feature("docstring")  dolfin::STLMatrix::STLMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::STLMatrix "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::STLMatrix "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::STLMatrix::~STLMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::STLMatrix::init "
+
+--- Implementation of the GenericTensor interface ---
+
+Initialize zero tensor using sparsity pattern ";
+
+%feature("docstring")  dolfin::STLMatrix::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::STLMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::STLMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::STLMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::STLMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::STLMatrix::init "
+
+Initialize M x N matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::get "
+
+Get block of values. ";
+
+%feature("docstring")  dolfin::STLMatrix::set "
+
+Set block of values. ";
+
+%feature("docstring")  dolfin::STLMatrix::add "
+
+Add block of values. ";
+
+%feature("docstring")  dolfin::STLMatrix::getrow "
+
+Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::STLMatrix::setrow "
+
+Set values for given row. ";
+
+%feature("docstring")  dolfin::STLMatrix::zero "
+
+Set given rows to zero. ";
+
+%feature("docstring")  dolfin::STLMatrix::ident "
+
+Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::mult "
+
+Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::STLMatrix::factory "
+
+--- Specialized matrix functions ---
+
+Return linear algebra backend factory ";
+
+%feature("docstring")  dolfin::STLMatrix::init "
+
+Initialize zero tensor of given rank and dimensions. ";
 
 
 // File: classdolfin_1_1SubDomain.xml
@@ -4084,9 +4099,13 @@ Get value of table entry. ";
 
 Set value of table entry. ";
 
+%feature("docstring")  dolfin::Table::title "
+
+Return table title. ";
+
 %feature("docstring")  dolfin::Table::disp "
 
-Display table. ";
+Display table, rounding small numbers to zero. ";
 
 
 // File: classdolfin_1_1TableEntry.xml
@@ -4591,11 +4610,6 @@ LU-factor sparse matrix A if UMFPACK is installed. ";
 
 Solve factorized system (UMFPACK). ";
 
-%feature("docstring")  dolfin::UmfpackLUSolver::solve "
-
-Solve linear system Ax = b for a Krylov matrix FIXME: This function
-should be moved to uBlasKrylovMatrix ";
-
 
 // File: classdolfin_1_1UmfpackLUSolver_1_1Umfpack.xml
 
@@ -4789,6 +4803,14 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::Vector::data "
+
+Return pointer to underlying data (const version). ";
+
+%feature("docstring")  dolfin::Vector::data "
+
+Return pointer to underlying data. ";
+
 %feature("docstring")  dolfin::Vector::factory "
 
 Return linear algebra backend factory. ";
@@ -4853,7 +4875,10 @@ C++ includes: Vertex.h ";
 // File: namespacedolfin.xml
 %feature("docstring")  dolfin::tic "
 
-Start timing. ";
+Start timing.
+
+Timing functions measure CPU time as determined by clock(), the
+precision of which seems to be 0.01 seconds. ";
 
 %feature("docstring")  dolfin::toc "
 
@@ -4933,11 +4958,13 @@ End task (decrease indentation level). ";
 
 %feature("docstring")  dolfin::summary "
 
-Print summary of timings and tasks, clearing stored timings. ";
+Print summary of timings and tasks, optionally clearing stored
+timings. ";
 
 %feature("docstring")  dolfin::timing "
 
-Return timing (average) for given task. ";
+Return timing (average) for given task, optionally clearing timing for
+task. ";
 
 %feature("docstring")  dolfin::__debug "";
 
@@ -5121,12 +5148,6 @@ domains. ";
 // File: File_8h.xml
 
 
-// File: AssemblyFactory_8h.xml
-
-
-// File: AssemblyMatrix_8h.xml
-
-
 // File: DefaultFactory_8h.xml
 
 
@@ -5215,6 +5236,12 @@ domains. ";
 
 
 // File: SparsityPattern_8h.xml
+
+
+// File: STLFactory_8h.xml
+
+
+// File: STLMatrix_8h.xml
 
 
 // File: uBlasDenseMatrix_8h.xml
