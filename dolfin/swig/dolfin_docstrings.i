@@ -1169,6 +1169,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
 
+Initialize zero tensor with given dimensions. ";
+
+%feature("docstring")  dolfin::GenericMatrix::init "
+
 Initialize zero tensor using sparsity pattern. ";
 
 %feature("docstring")  dolfin::GenericMatrix::copy "
@@ -1322,6 +1326,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::GenericTensor::init "
 
+Initialize zero tensor with given dimensions. ";
+
+%feature("docstring")  dolfin::GenericTensor::init "
+
 Initialize zero tensor using sparsity pattern. ";
 
 %feature("docstring")  dolfin::GenericTensor::copy "
@@ -1395,6 +1403,10 @@ C++ includes: GenericVector.h ";
 %feature("docstring")  dolfin::GenericVector::~GenericVector "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::GenericVector::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::GenericVector::init "
 
@@ -1919,7 +1931,7 @@ Create empty vector. ";
 
 %feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
 
-Create empty sparsity pattern. ";
+Create empty sparsity pattern (returning zero if not used/needed). ";
 
 
 // File: classdolfin_1_1LinearPDE.xml
@@ -3659,6 +3671,10 @@ Create zero scalar. ";
 %feature("docstring")  dolfin::Scalar::~Scalar "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Scalar::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::Scalar::init "
 
