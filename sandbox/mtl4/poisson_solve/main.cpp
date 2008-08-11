@@ -6,7 +6,7 @@ using namespace dolfin;
 int main()
 {
   // Create mesh and forms
-  UnitSquare mesh(4, 4);
+  UnitSquare mesh(5, 5);
   DomainBoundary boundary;
   Function g(mesh, 0.0);
   DirichletBC bc(g, mesh, boundary); 
