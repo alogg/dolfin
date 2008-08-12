@@ -5074,6 +5074,12 @@ Assemble tensor from given (UFC) form, mesh, coefficients and sub
 domains. ";
 
 
+// File: ALE_8h.xml
+
+
+// File: ALEType_8h.xml
+
+
 // File: Array_8h.xml
 
 
@@ -5317,12 +5323,6 @@ domains. ";
 // File: Legendre_8h.xml
 
 
-// File: ALE_8h.xml
-
-
-// File: ALEType_8h.xml
-
-
 // File: BoundaryMesh_8h.xml
 
 
@@ -5462,6 +5462,9 @@ domains. ";
 
 
 // File: RadauQuadrature_8h.xml
+
+
+// File: dir_c6877e302946623398b3c0b2c4ca5af9.xml
 
 
 // File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
