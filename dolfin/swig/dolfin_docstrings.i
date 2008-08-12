@@ -1169,6 +1169,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
 
+Initialize zero tensor with given dimensions. ";
+
+%feature("docstring")  dolfin::GenericMatrix::init "
+
 Initialize zero tensor using sparsity pattern. ";
 
 %feature("docstring")  dolfin::GenericMatrix::copy "
@@ -1322,6 +1326,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::GenericTensor::init "
 
+Initialize zero tensor with given dimensions. ";
+
+%feature("docstring")  dolfin::GenericTensor::init "
+
 Initialize zero tensor using sparsity pattern. ";
 
 %feature("docstring")  dolfin::GenericTensor::copy "
@@ -1395,6 +1403,10 @@ C++ includes: GenericVector.h ";
 %feature("docstring")  dolfin::GenericVector::~GenericVector "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::GenericVector::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::GenericVector::init "
 
@@ -1919,7 +1931,7 @@ Create empty vector. ";
 
 %feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
 
-Create empty sparsity pattern. ";
+Create empty sparsity pattern (returning zero if not used/needed). ";
 
 
 // File: classdolfin_1_1LinearPDE.xml
@@ -3662,6 +3674,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Scalar::init "
 
+Initialize zero tensor with given dimensions. ";
+
+%feature("docstring")  dolfin::Scalar::init "
+
 Initialize zero tensor using sparsity pattern. ";
 
 %feature("docstring")  dolfin::Scalar::copy "
@@ -5058,6 +5074,12 @@ Assemble tensor from given (UFC) form, mesh, coefficients and sub
 domains. ";
 
 
+// File: ALE_8h.xml
+
+
+// File: ALEType_8h.xml
+
+
 // File: Array_8h.xml
 
 
@@ -5301,12 +5323,6 @@ domains. ";
 // File: Legendre_8h.xml
 
 
-// File: ALE_8h.xml
-
-
-// File: ALEType_8h.xml
-
-
 // File: BoundaryMesh_8h.xml
 
 
@@ -5446,6 +5462,9 @@ domains. ";
 
 
 // File: RadauQuadrature_8h.xml
+
+
+// File: dir_c6877e302946623398b3c0b2c4ca5af9.xml
 
 
 // File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
