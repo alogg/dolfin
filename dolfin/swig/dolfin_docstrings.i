@@ -114,11 +114,7 @@ facets. ";
 
 %feature("docstring")  dolfin::Assembler::assemble_system "
 
-FIXME: Kent, please document this function. ";
-
-%feature("docstring")  dolfin::Assembler::applyTraces "
-
-FIXME: Kent, please document this function. ";
+Assemble linear system Ax = b and enforce Dirichlet conditions. ";
 
 
 // File: classdolfin_1_1AvgMeshSize.xml
@@ -1303,6 +1299,11 @@ Return global size. ";
 dolfin::GenericSparsityPattern::numNonZeroPerRow "
 
 Return array with number of non-zeroes per row. ";
+
+%feature("docstring")
+dolfin::GenericSparsityPattern::numNonZeroPerRowMax "
+
+Return maximum number of non-zeroes for a row. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::numNonZero "
 
@@ -3850,6 +3851,10 @@ Return array with number of non-zeroes per row. ";
 Return array with number of non-zeroes per row diagonal and
 offdiagonal for process_number. ";
 
+%feature("docstring")  dolfin::SparsityPattern::numNonZeroPerRowMax "
+
+Return maximum number of non-zeroes for a row. ";
+
 %feature("docstring")  dolfin::SparsityPattern::numNonZero "
 
 Return total number of non-zeroes. ";
@@ -5464,56 +5469,56 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_c6877e302946623398b3c0b2c4ca5af9.xml
+// File: dir_147e49b1d1feb55ad5712ebc48d3f476.xml
 
 
-// File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
+// File: dir_f67caee761b31debf79b427d824fcb86.xml
 
 
-// File: dir_c2d8b013fd04ed882f8d87b68325caba.xml
+// File: dir_9ca999a4982cfbe36c101ade6238b5da.xml
 
 
-// File: dir_1890b655131c1abe796835d1d7e57599.xml
+// File: dir_fa068acbfb6c36bda2d6730b64e3cfe1.xml
 
 
-// File: dir_fa7665f4f771f6b9bd3285cc3526e10d.xml
+// File: dir_9a33837534d83c442431167511ae46d6.xml
 
 
-// File: dir_7ae9b525fa735889416df9a88318a409.xml
+// File: dir_accb03781b2e35ea4e8928b49729892c.xml
 
 
-// File: dir_4c8349339c79835b7014fb341fef0206.xml
+// File: dir_1a6e74077839256c67ab657c06defcd7.xml
 
 
-// File: dir_4d7e92e23f6ea876d470371aa3d29376.xml
+// File: dir_e00413835d21b5fe861937c41db99920.xml
 
 
-// File: dir_3c2ad13ee8805033db44e75511328743.xml
+// File: dir_f9e15eca777b9217c1c220575deedbfa.xml
 
 
-// File: dir_837f57fa7b99817fc9c065cd33a24294.xml
+// File: dir_cfbcd3974f3b8738f9d87ca2595722a7.xml
 
 
-// File: dir_2e3d752c0dc6db1308f89f3ade9719f6.xml
+// File: dir_047eb08f999213c504d6b46b91bb4229.xml
 
 
-// File: dir_40fb3cedb271a8bfe5ce264c8f153c9b.xml
+// File: dir_a39976d8888834ee35220e9c60a28f1f.xml
 
 
-// File: dir_4051ad071076088e8c66a6e80c9a9988.xml
+// File: dir_c5af44ff6548e8ed37682ea8b29fc09c.xml
 
 
-// File: dir_cfbe19ce0dad3eee24aad31a4afa5d0e.xml
+// File: dir_34b6f3902ef71ca2a21708496ecf8cde.xml
 
 
-// File: dir_c5290f3dab994c0c9dba61554566fc4f.xml
+// File: dir_42ac68ee965aa9f5530cab172041eaec.xml
 
 
-// File: dir_f52db9cf4adc49528fc87123266f9c76.xml
+// File: dir_2163e1ee893c5593a86de00f721262f1.xml
 
 
-// File: dir_913f640bc454e255461704ebdcb6a817.xml
+// File: dir_65d48c4810b0dbf4a742ced695d22dca.xml
 
 
-// File: dir_a66f8f551e7465104f1dbcd89b910c46.xml
+// File: dir_e91b514dd4feb42e21d8fcbf7ad79712.xml
 
