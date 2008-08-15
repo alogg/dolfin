@@ -1,4 +1,4 @@
-// Copyright (C) 2006-2008 Dag Lindbo and Garth N. Wells.
+// Copyright (C) 2008 Dag Lindbo and Garth N. Wells.
 // Licensed under the GNU LGPL Version 2.1.
 //
 // First added:  2008-08-15
