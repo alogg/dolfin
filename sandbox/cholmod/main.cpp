@@ -33,9 +33,7 @@ int main()
   };
 
   // Create mesh
-  UnitSquare mesh(32, 32);
-
-  dolfin_set("linear algebra backend", "MTL4");
+  UnitSquare mesh(512, 512);
 
   // Create functions
   Source f(mesh);
@@ -50,6 +48,7 @@ int main()
   PoissonLinearForm L(f);
 
   // Linear system
+  dolfin_set("linear algebra backend", "uBLAS");
   Matrix A;
   Vector b, x;
 
@@ -60,14 +59,21 @@ int main()
 		  b, L.form(), L.coefficients(), L.dofMaps(),  
 		  mesh, bc, 0, 0, 0, true);
 
-  // A.disp();
+  Table table("Direct linear solver time");
 
-  // Solve
-  CholmodCholeskySolver cs;
+  // CHOLMOD solver
+  CholmodCholeskySolver csolver;
   tic();
-  cs.solve(A,x,b);
-  //solve(A,x,b);
-  message("solve time: %f", toc());
+  csolver.solve(A, x, b);
+  table("CholmodCholeskySolver", "solve time") =  toc();
+
+  // UMFPACK solver
+  UmfpackLUSolver usolver;
+  tic();
+  usolver.solve(A, x, b);
+  table("UmfpackLUSolver", "solve time") =  toc();
+
+  table.disp();
 
   Function u(mesh, x, a);
 

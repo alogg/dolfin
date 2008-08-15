@@ -61,8 +61,7 @@ namespace dolfin
       void clear();
 
       // Initialise with matrix
-      void init(long int* Ap, long int* Ai, double* Ax, 
-		uint M, uint nz);
+      void init(long int* Ap, long int* Ai, double* Ax, uint M, uint nz);
 
       // Factorize
       void factorize();

@@ -5,10 +5,10 @@
 // Last changed: 2008-08-15
 
 #include <dolfin/log/dolfin_log.h>
-#include "CholmodCholeskySolver.h"
 #include <dolfin/la/GenericMatrix.h>
 #include <dolfin/la/GenericVector.h>
 #include <dolfin/la/KrylovSolver.h>
+#include "CholmodCholeskySolver.h"
 
 using namespace dolfin;
 
@@ -127,21 +127,19 @@ void CholmodCholeskySolver::Cholmod::clear()
 {
 
   if(A_chol)
-    {
-      cholmod_l_free(1, sizeof(cholmod_sparse), A_chol, &c);
-      A_chol = 0;
-    }
+  {
+    cholmod_l_free(1, sizeof(cholmod_sparse), A_chol, &c);
+    A_chol = 0;
+  }
   if(L_chol)
-    {
-      cholmod_l_free_factor(&L_chol, &c);
-      L_chol = 0;
-    }
+  {
+    cholmod_l_free_factor(&L_chol, &c);
+    L_chol = 0;
+  }
 }
 //-----------------------------------------------------------------------------
-void CholmodCholeskySolver::Cholmod::init(UF_long* Ap, 
-					  UF_long* Ai, 
-					  double* Ax, 
-					  uint M, uint nz)
+void CholmodCholeskySolver::Cholmod::init(UF_long* Ap, UF_long* Ai, double* Ax, 
+					                                uint M, uint nz)
 {  
   if(factorized)
     warning("CholeskySolver already contains a factorized matrix! Clearing and starting over.");
