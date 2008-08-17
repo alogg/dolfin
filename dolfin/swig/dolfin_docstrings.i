@@ -1562,27 +1562,17 @@ Copy constructor. ";
 
 Create graph from given file. ";
 
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from mesh. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from mesh. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from mesh. ";
-
 %feature("docstring")  dolfin::Graph::~Graph "
 
 Destructor. ";
 
+%feature("docstring")  dolfin::Graph::init "
+
+Initialise graph data structures. ";
+
 %feature("docstring")  dolfin::Graph::numVertices "
 
-Assignment.
-
-Return number of vertices ";
+Return number of vertices. ";
 
 %feature("docstring")  dolfin::Graph::numEdges "
 
@@ -1635,6 +1625,14 @@ Display graph data. ";
 %feature("docstring")  dolfin::Graph::clear "
 
 Clear graph data. ";
+
+
+// File: classdolfin_1_1GraphBuilder.xml
+%feature("docstring") dolfin::GraphBuilder "
+
+This class builds a Graph corresponding to various objects.
+
+C++ includes: GraphBuilder.h ";
 
 
 // File: classdolfin_1_1GraphEditor.xml
@@ -5163,6 +5161,9 @@ domains. ";
 // File: Graph_8h.xml
 
 
+// File: GraphBuilder_8h.xml
+
+
 // File: GraphEditor_8h.xml
 
 
@@ -5469,56 +5470,56 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_147e49b1d1feb55ad5712ebc48d3f476.xml
+// File: dir_ad9738884365327a3d1dacb465a14c1b.xml
 
 
-// File: dir_f67caee761b31debf79b427d824fcb86.xml
+// File: dir_0441557d04277bc76c05d07778f036c0.xml
 
 
-// File: dir_9ca999a4982cfbe36c101ade6238b5da.xml
+// File: dir_32d6de538413c6c0fe95fb9506d3a9b7.xml
 
 
-// File: dir_fa068acbfb6c36bda2d6730b64e3cfe1.xml
+// File: dir_a3317f7b72a0883e638b6b7e1be3df87.xml
 
 
-// File: dir_9a33837534d83c442431167511ae46d6.xml
+// File: dir_b2bcfd8899b62a6ef14952d8d1520495.xml
 
 
-// File: dir_accb03781b2e35ea4e8928b49729892c.xml
+// File: dir_f732eb0b90d84a4192b521f12596efb2.xml
 
 
-// File: dir_1a6e74077839256c67ab657c06defcd7.xml
+// File: dir_e72f82c53aeebd55dbd0c41936b3053d.xml
 
 
-// File: dir_e00413835d21b5fe861937c41db99920.xml
+// File: dir_470655835176b5a5d1c7574f89a9a7ce.xml
 
 
-// File: dir_f9e15eca777b9217c1c220575deedbfa.xml
+// File: dir_a270a6676fd692bc2889c9a35672a6ff.xml
 
 
-// File: dir_cfbcd3974f3b8738f9d87ca2595722a7.xml
+// File: dir_46a107767b4e300dcbd1c30c3132efeb.xml
 
 
-// File: dir_047eb08f999213c504d6b46b91bb4229.xml
+// File: dir_462a5b01c27aa6a919d73274086b99ed.xml
 
 
-// File: dir_a39976d8888834ee35220e9c60a28f1f.xml
+// File: dir_603061b33a52897ebfdf8523a96febb3.xml
 
 
-// File: dir_c5af44ff6548e8ed37682ea8b29fc09c.xml
+// File: dir_31efdc4b318ea66be722f5ddab67eb72.xml
 
 
-// File: dir_34b6f3902ef71ca2a21708496ecf8cde.xml
+// File: dir_cdd1099205237d05e4805011d632cfcc.xml
 
 
-// File: dir_42ac68ee965aa9f5530cab172041eaec.xml
+// File: dir_e7eab747088580258a2cfdd522084ad7.xml
 
 
-// File: dir_2163e1ee893c5593a86de00f721262f1.xml
+// File: dir_fdd6ba9f6fd9152cec93637a59dc08e6.xml
 
 
-// File: dir_65d48c4810b0dbf4a742ced695d22dca.xml
+// File: dir_d8401a710fa803e40f76eaa0c0b6e20c.xml
 
 
-// File: dir_e91b514dd4feb42e21d8fcbf7ad79712.xml
+// File: dir_f6561bcafc796cb958f0327b19f87cbb.xml
 
