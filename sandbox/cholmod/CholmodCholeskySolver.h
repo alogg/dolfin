@@ -48,7 +48,8 @@ namespace dolfin
     virtual uint factorizedSolve(GenericVector& x, const GenericVector& b);
 
   private:
-    
+
+#ifdef HAS_UMFPACK
     // Data for Cholesky factorization of sparse ublas matrix (cholmod only)
     class Cholmod
     {
@@ -57,29 +58,46 @@ namespace dolfin
       Cholmod();
       ~Cholmod();
 
-      // Clear data
+      /// Clear data
       void clear();
 
-      // Initialise with matrix
+      /// Initialise with matrix
       void init(long int* Ap, long int* Ai, double* Ax, uint M, uint nz);
 
-      // Factorize
+      /// Factorize
       void factorize();
 
-      // Factorized solve
+      /// Factorized solve
       void factorizedSolve(double*x, const double* b);
-
-      /// Check status flag returned by an CHOLMOD function
-      void checkStatus(long int status, std::string function) const;
-
-      // CHOLMOD data
-      cholmod_sparse *A_chol;
-      cholmod_factor *L_chol;
-      cholmod_common c;
-
+      
       uint N;
       bool factorized;
+
+    private:
+
+      /// compute residual: b-Ax
+      cholmod_dense* residual(cholmod_dense* x, cholmod_dense* b);
+      
+      /// compute residual norm
+      double residual_norm(cholmod_dense* r, cholmod_dense* r, 
+			   cholmod_dense* b);
+
+      /// perform one refinement
+      void refine_once(cholmod_dense* x, cholmod_dense* r);
+
+      /// Check status flag returned by an CHOLMOD function
+      void checkStatus(std::string function);
+
+      // CHOLMOD data
+      cholmod_sparse* A_chol;
+      cholmod_factor* L_chol;
+      cholmod_common c;
+
     };
+#else
+    // Dummy
+    class Cholmod{};
+#endif
 
     Cholmod cholmod;
   };
