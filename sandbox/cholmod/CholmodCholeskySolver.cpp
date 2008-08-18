@@ -24,7 +24,7 @@ CholmodCholeskySolver::~CholmodCholeskySolver()
 }
 //-----------------------------------------------------------------------------
 //=============================================================================
-#ifdef HAS_UMFPACK
+#ifdef HAS_CHOLMOD
 dolfin::uint CholmodCholeskySolver::solve(const GenericMatrix& A,
 					  GenericVector& x, 
 					  const GenericVector& b)
@@ -110,7 +110,7 @@ dolfin::uint CholmodCholeskySolver::factorizedSolve(GenericVector& x, const Gene
 
 //==============================================================================
 // CholmodCholeskySolver::Cholmod implementation
-#ifdef HAS_UMFPACK
+#ifdef HAS_HAS_CHOLMOD
 //==============================================================================
 
 CholmodCholeskySolver::Cholmod::Cholmod() : 
@@ -297,4 +297,5 @@ void CholmodCholeskySolver::Cholmod::checkStatus(std::string function)
   }
 }
 //-----------------------------------------------------------------------------
-#endif // HAS_UMFPACK
+#endif
+
