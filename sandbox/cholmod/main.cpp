@@ -1,7 +1,6 @@
 
 #include <dolfin.h>
 #include "Poisson.h"
-#include "CholmodCholeskySolver.h"
   
 using namespace dolfin;
 

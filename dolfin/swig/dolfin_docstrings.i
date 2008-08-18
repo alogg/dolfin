@@ -1540,7 +1540,7 @@ Example graph: 0 -- 1 | \\\\ | | \\\\ | 2 -- 3
 
 Stored as:
 
-edges = [123030312] vertices = [03579]
+edges = [1 2 3 0 3 0 3 0 1 2] vertices = [0 3 5 7 10]
 
 Note that the last integer of vertices does not represent a vertex,
 but is there to support edge iteration as described above.
@@ -1553,6 +1553,10 @@ C++ includes: Graph.h ";
 %feature("docstring")  dolfin::Graph::Graph "
 
 Create empty graph. ";
+
+%feature("docstring")  dolfin::Graph::Graph "
+
+Create graph of mesh. ";
 
 %feature("docstring")  dolfin::Graph::Graph "
 
@@ -1630,7 +1634,8 @@ Clear graph data. ";
 // File: classdolfin_1_1GraphBuilder.xml
 %feature("docstring") dolfin::GraphBuilder "
 
-This class builds a Graph corresponding to various objects.
+This class builds a Graph corresponding for various objects ( Mesh,
+matrix sparsity pattern, etc)
 
 C++ includes: GraphBuilder.h ";
 

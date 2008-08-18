@@ -110,7 +110,7 @@ dolfin::uint CholmodCholeskySolver::factorizedSolve(GenericVector& x, const Gene
 
 //==============================================================================
 // CholmodCholeskySolver::Cholmod implementation
-#ifdef HAS_HAS_CHOLMOD
+#ifdef HAS_CHOLMOD
 //==============================================================================
 
 CholmodCholeskySolver::Cholmod::Cholmod() : 
