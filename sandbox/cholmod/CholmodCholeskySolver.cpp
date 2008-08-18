@@ -131,15 +131,15 @@ CholmodCholeskySolver::Cholmod::~Cholmod()
 void CholmodCholeskySolver::Cholmod::clear()
 {
   if(A_chol)
-    {
-      cholmod_l_free(1, sizeof(cholmod_sparse), A_chol, &c);
-      A_chol = 0;
-    }
+  {
+    cholmod_l_free(1, sizeof(cholmod_sparse), A_chol, &c);
+    A_chol = 0;
+  }
   if(L_chol)
-    {
-      cholmod_l_free_factor(&L_chol, &c);
-      L_chol = 0;
-    }
+  {
+    cholmod_l_free_factor(&L_chol, &c);
+    L_chol = 0;
+  }
 }
 //-----------------------------------------------------------------------------
 void CholmodCholeskySolver::Cholmod::init(UF_long* Ap, UF_long* Ai, double* Ax, 
@@ -209,14 +209,14 @@ void CholmodCholeskySolver::Cholmod::factorizedSolve(double*x, const double* b)
   
   // iterative refinement
   if(residn > 1e-14)
-    {
-      refine_once(x_chol, r_chol);
+  {
+    refine_once(x_chol, r_chol);
 
-      cholmod_l_free_dense(&r_chol, &c);
+    cholmod_l_free_dense(&r_chol, &c);
 
-      r_chol = residual(x_chol, b_chol);
-      residn = residual_norm(r_chol, x_chol,b_chol);
-    }
+    r_chol = residual(x_chol, b_chol);
+    residn = residual_norm(r_chol, x_chol,b_chol);
+  }
 
   // solution vector
   // FIXME: Cholmod allocates its own solution vector.
@@ -271,9 +271,9 @@ void CholmodCholeskySolver::Cholmod::refine_once(cholmod_dense* x,
   double* rx = (double*) r_iter->x;
 
   for(uint i=0; i<N; i++)
-    {
-      xx[i] = xx[i] + rx[i];
-    }
+  {
+    xx[i] = xx[i] + rx[i];
+  }
 
   cholmod_l_free_dense(&r_iter, &c);
 }
@@ -283,18 +283,18 @@ void CholmodCholeskySolver::Cholmod::checkStatus(std::string function)
   UF_long status = c.status;
 
   if( status < 0)
-    {
-      cout << "\nCHOLMOD Warning: problem related to call to " << function
-	   << ".\nFull CHOLMOD common dump:" << endl;
+  {
+    cout << "\nCHOLMOD Warning: problem related to call to " << function
+	 << ".\nFull CHOLMOD common dump:" << endl;
 
-      cholmod_l_print_common(NULL, &c);
-    }
+    cholmod_l_print_common(NULL, &c);
+  }
   else if(status > 0)
-    {
-      cout << "\nCHOLMOD Fatal error: problem related to call to " << function
-	   << ".\nFull CHOLMOD common dump:" << endl;
-      cholmod_l_print_common(NULL, &c);
-    }
+  {
+    cout << "\nCHOLMOD Fatal error: problem related to call to " << function
+	 << ".\nFull CHOLMOD common dump:" << endl;
+    cholmod_l_print_common(NULL, &c);
+  }
 }
 //-----------------------------------------------------------------------------
 #endif // HAS_UMFPACK
