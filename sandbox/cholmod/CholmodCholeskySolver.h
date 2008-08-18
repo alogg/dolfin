@@ -11,7 +11,7 @@
 
 extern "C" 
 {
-#ifdef HAS_UMFPACK
+#ifdef HAS_CHOLMOD
 #include <cholmod.h>
 #endif
 }
@@ -49,7 +49,7 @@ namespace dolfin
 
   private:
 
-#ifdef HAS_UMFPACK
+#ifdef HAS_CHOLMOD
     // Data for Cholesky factorization of sparse ublas matrix (cholmod only)
     class Cholmod
     {
@@ -75,14 +75,14 @@ namespace dolfin
 
     private:
 
-      /// compute residual: b-Ax
+      /// Compute residual: b-Ax
       cholmod_dense* residual(cholmod_dense* x, cholmod_dense* b);
       
-      /// compute residual norm
+      /// Compute residual norm
       double residual_norm(cholmod_dense* r, cholmod_dense* r, 
 			   cholmod_dense* b);
 
-      /// perform one refinement
+      /// Perform one refinement
       void refine_once(cholmod_dense* x, cholmod_dense* r);
 
       /// Check status flag returned by an CHOLMOD function
