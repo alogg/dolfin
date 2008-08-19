@@ -10,7 +10,7 @@
 #define __ASSEMBLY_FACTORY_H
 
 #include "AssemblyMatrix.h"
-#include "uBlasVector.h"
+#include "uBLASVector.h"
 #include "SparsityPattern.h"
 #include "LinearAlgebraFactory.h"
 
@@ -30,8 +30,8 @@ namespace dolfin
     { return new AssemblyMatrix(); }
 
     /// Create empty vector
-    uBlasVector* createVector() const
-    { return new uBlasVector(); }
+    uBLASVector* createVector() const
+    { return new uBLASVector(); }
 
     /// Create empty sparsity pattern 
     SparsityPattern* createPattern() const
