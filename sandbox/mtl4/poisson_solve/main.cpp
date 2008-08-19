@@ -24,8 +24,8 @@ int main()
   // Assemble and solve using uBLAS
   cout << "uBLAS ------------------------------------------------------" << endl;
   Assembler ass_ublas(mesh);
-  uBlasMatrix<ublas_sparse_matrix> A_ublas;
-  uBlasVector b_ublas, x_ublas;
+  uBLASMatrix<ublas_sparse_matrix> A_ublas;
+  uBLASVector b_ublas, x_ublas;
 
   tic(); 
   ass_ublas.assemble(A_ublas, a); 
