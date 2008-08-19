@@ -95,8 +95,8 @@ class \texttt{PETScVector}.
 
 If \dolfin{} has been compiled without support for PETSc, then the
 sparse matrix is represented as a uBLAS sparse matrix. Alternatively,
-the class \texttt{uBlasSparseMatrix} may be used, together with the
-corresponding class \texttt{uBlasVector}.
+the class \texttt{uBLASSparseMatrix} may be used, together with the
+corresponding class \texttt{uBLASVector}.
 
 \subsection{Dense matrices}
 \index{dense matrix}
@@ -108,8 +108,8 @@ accessing individual elements
 is more efficient with a dense matrix representation.
 
 A \texttt{DenseMatrix} is represented as uBLAS dense matrix and
-alternatively the class \texttt{uBlasDenseMatrix} may be used,
-together with the corresponding class \texttt{uBlasVector}.
+alternatively the class \texttt{uBLASDenseMatrix} may be used,
+together with the corresponding class \texttt{uBLASVector}.
 
 \subsection{The common interface}
 \index{\texttt{GenericMatrix}}
@@ -170,7 +170,7 @@ KrylovSolver solver(gmres, ilu);
 solver.solve(A, x, b);
 \end{code}
 
-For uBLAS matrices and vectors, the class \texttt{uBlasKrylovSolver}
+For uBLAS matrices and vectors, the class \texttt{uBLASKrylovSolver}
 may be used and for PETSc matrices and vectors, the class
 \texttt{PETScKrylovSolver} may be used.
 
@@ -237,9 +237,9 @@ size of the linear system, the right-hand side, and a method
 implementing the multiplication of the matrix with any given vector.
 
 Such a ``virtual matrix'' may be defined by implementing the
-interface defined by either the class \texttt{uBlasKrylovMatrix} of
+interface defined by either the class \texttt{uBLASKrylovMatrix} of
 \texttt{PETScKrylovMatrix}. The matrix may then be used together with
-either the class \texttt{uBlasKrylovSolver} or \texttt{PETScKrylovSolver}.
+either the class \texttt{uBLASKrylovSolver} or \texttt{PETScKrylovSolver}.
 
 \subsection{Direct methods}
 \index{\texttt{LU}}
@@ -262,7 +262,7 @@ LUSolver solver;
 solver.solve(A, x, b);
 \end{code}
 
-For uBLAS matrices and vectors, the class \texttt{uBlasLUSolver} may
+For uBLAS matrices and vectors, the class \texttt{uBLASLUSolver} may
 be used and for PETSc matrices and vectors, the class
 \texttt{PETScLUSolver} may be used.
 
@@ -322,8 +322,8 @@ The design and implementation unify mathematical notation via operator
 overloading and efficient code generation via expression templates.
 
 \dolfin{} wrappers for uBLAS linear algebra is provided through the
-classes \texttt{uBlasSparseMatrix}, \texttt{uBlasDenseMatrix} and
-\texttt{uBlasVector}. These classes are implemented by subclassing the
+classes \texttt{uBLASSparseMatrix}, \texttt{uBLASDenseMatrix} and
+\texttt{uBLASVector}. These classes are implemented by subclassing the
 corresponding uBLAS classes, which means that all standard
 \texttt{uBLAS} operations are supported for these classes. For
 advanced usage not covered by the common \dolfin{} interface specified
