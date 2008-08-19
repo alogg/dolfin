@@ -25,7 +25,7 @@ int main(int args, char* argv[])
 
   cout << "Assembling uBLAS" << endl; 
   {
-    uBlasSparseMatrix A;
+    uBLASSparseMatrix A;
     tic(); 
     assembler.assemble(A, a); 
     table("uBLAS", "assembly") = toc();

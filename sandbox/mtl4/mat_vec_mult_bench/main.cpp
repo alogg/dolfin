@@ -51,11 +51,11 @@ int main(int args, char* argv[])
   
   ass_ublas.assemble(A_ublas, a); 
 
-  uBlasSparseMatrix& AA = A_ublas.down_cast<uBlasSparseMatrix>();
+  uBLASSparseMatrix& AA = A_ublas.down_cast<uBLASSparseMatrix>();
   ublas_sparse_matrix& mat_ublas = AA.mat();
 
-  uBlasVector vec1_ublas(NN);
-  uBlasVector vec2_ublas(NN);
+  uBLASVector vec1_ublas(NN);
+  uBLASVector vec2_ublas(NN);
 
   ublas_vector& x1_ublas = vec1_ublas.vec();
   ublas_vector& x2_ublas = vec2_ublas.vec();
