@@ -312,6 +312,42 @@ Compute error estimate (modulo stability factor). ";
 Display method data. ";
 
 
+// File: classdolfin_1_1CholmodCholeskySolver.xml
+%feature("docstring") dolfin::CholmodCholeskySolver "
+
+This class implements the direct solution (Cholesky factorization) of
+linear systems of the form Ax = b. Sparse matrices are solved using
+CHOLMODhttp://www.cise.ufl.edu/research/sparse/cholmod/ is installed.
+
+C++ includes: CholmodCholeskySolver.h ";
+
+%feature("docstring")
+dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::CholmodCholeskySolver::~CholmodCholeskySolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::CholmodCholeskySolver::solve "
+
+Solve linear system Ax = b for a sparse matrix using CHOLMOD. ";
+
+%feature("docstring")  dolfin::CholmodCholeskySolver::factorize "
+
+Cholesky-factor sparse matrix A if CHOLMOD is installed. ";
+
+%feature("docstring")  dolfin::CholmodCholeskySolver::factorizedSolve
+"
+
+Solve factorized system (CHOLMOD). ";
+
+
+// File: classdolfin_1_1CholmodCholeskySolver_1_1Cholmod.xml
+
+
 // File: classdolfin_1_1ComplexODE.xml
 %feature("docstring") dolfin::ComplexODE "
 
@@ -5181,6 +5217,9 @@ domains. ";
 // File: File_8h.xml
 
 
+// File: CholmodCholeskySolver_8h.xml
+
+
 // File: DefaultFactory_8h.xml
 
 
@@ -5475,56 +5514,56 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_ad9738884365327a3d1dacb465a14c1b.xml
+// File: dir_c6877e302946623398b3c0b2c4ca5af9.xml
 
 
-// File: dir_0441557d04277bc76c05d07778f036c0.xml
+// File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
 
 
-// File: dir_32d6de538413c6c0fe95fb9506d3a9b7.xml
+// File: dir_c2d8b013fd04ed882f8d87b68325caba.xml
 
 
-// File: dir_a3317f7b72a0883e638b6b7e1be3df87.xml
+// File: dir_1890b655131c1abe796835d1d7e57599.xml
 
 
-// File: dir_b2bcfd8899b62a6ef14952d8d1520495.xml
+// File: dir_fa7665f4f771f6b9bd3285cc3526e10d.xml
 
 
-// File: dir_f732eb0b90d84a4192b521f12596efb2.xml
+// File: dir_7ae9b525fa735889416df9a88318a409.xml
 
 
-// File: dir_e72f82c53aeebd55dbd0c41936b3053d.xml
+// File: dir_4c8349339c79835b7014fb341fef0206.xml
 
 
-// File: dir_470655835176b5a5d1c7574f89a9a7ce.xml
+// File: dir_4d7e92e23f6ea876d470371aa3d29376.xml
 
 
-// File: dir_a270a6676fd692bc2889c9a35672a6ff.xml
+// File: dir_3c2ad13ee8805033db44e75511328743.xml
 
 
-// File: dir_46a107767b4e300dcbd1c30c3132efeb.xml
+// File: dir_837f57fa7b99817fc9c065cd33a24294.xml
 
 
-// File: dir_462a5b01c27aa6a919d73274086b99ed.xml
+// File: dir_2e3d752c0dc6db1308f89f3ade9719f6.xml
 
 
-// File: dir_603061b33a52897ebfdf8523a96febb3.xml
+// File: dir_40fb3cedb271a8bfe5ce264c8f153c9b.xml
 
 
-// File: dir_31efdc4b318ea66be722f5ddab67eb72.xml
+// File: dir_4051ad071076088e8c66a6e80c9a9988.xml
 
 
-// File: dir_cdd1099205237d05e4805011d632cfcc.xml
+// File: dir_cfbe19ce0dad3eee24aad31a4afa5d0e.xml
 
 
-// File: dir_e7eab747088580258a2cfdd522084ad7.xml
+// File: dir_c5290f3dab994c0c9dba61554566fc4f.xml
 
 
-// File: dir_fdd6ba9f6fd9152cec93637a59dc08e6.xml
+// File: dir_f52db9cf4adc49528fc87123266f9c76.xml
 
 
-// File: dir_d8401a710fa803e40f76eaa0c0b6e20c.xml
+// File: dir_913f640bc454e255461704ebdcb6a817.xml
 
 
-// File: dir_f6561bcafc796cb958f0327b19f87cbb.xml
+// File: dir_a66f8f551e7465104f1dbcd89b910c46.xml
 
