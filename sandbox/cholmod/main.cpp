@@ -46,17 +46,12 @@ int main()
   PoissonBilinearForm a;
   PoissonLinearForm L(f);
 
-  // Linear system
+  // Assembly linear system
   dolfin_set("linear algebra backend", "uBLAS");
   Matrix A;
   Vector b, x;
 
-  a.updateDofMaps(mesh);
-  L.updateDofMaps(mesh);
-
-  assemble_system(A, a.form(), a.coefficients(), a.dofMaps(), 
-		  b, L.form(), L.coefficients(), L.dofMaps(),  
-		  mesh, bc, 0, 0, 0, true);
+  assemble(A, a, b, L, bc, mesh);
 
   Table table("Direct linear solver time");
 
@@ -74,9 +69,8 @@ int main()
 
   table.disp();
 
-  Function u(mesh, x, a);
-
   // Save solution to file
+  //Function u(mesh, x, a);
   //File file("poisson.pvd");
   //file << u;
 
