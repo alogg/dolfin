@@ -4,7 +4,6 @@ __author__ = "Evan Lezar (evanlezar@gmail.com)"
 __date__ = "2008-08-21"
 __copyright__ = "Copyright (C) 2008 Evan Lezar"
 
-
 from dolfin import *
 import numpy as N
 

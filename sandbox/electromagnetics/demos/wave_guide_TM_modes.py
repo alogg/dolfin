@@ -7,7 +7,6 @@ For more information regarding waveguides see
 http://www.ee.bilkent.edu.tr/~microwave/programs/magnetic/rect/info.htm
 
 """
-
 __author__ = "Evan Lezar evanlezar@gmail.com"
 __date__ = "2008-08-22"
 __copyright__ = "Copyright (C) 2008 Evan Lezar"
