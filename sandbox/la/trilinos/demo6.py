@@ -114,7 +114,7 @@ class Source(Function):
 
 
 
-mesh = UnitSquare(40,40)
+mesh = UnitSquare(80,80)
 #mesh = Mesh("../../../data/meshes/dolfin-2.xml.gz")
 #sub_domains = MeshFunction("uint", mesh, "../../../demo/pde/stokes/taylor-hood/subdomains.xml.gz")
 
