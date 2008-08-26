@@ -144,6 +144,96 @@ Constructor. ";
 Return average cell size. ";
 
 
+// File: classdolfin_1_1BlockMatrix.xml
+%feature("docstring") dolfin::BlockMatrix "";
+
+%feature("docstring")  dolfin::BlockMatrix::BlockMatrix "";
+
+%feature("docstring")  dolfin::BlockMatrix::~BlockMatrix "";
+
+%feature("docstring")  dolfin::BlockMatrix::mat "
+
+Return Matrix reference number (i,j). ";
+
+%feature("docstring")  dolfin::BlockMatrix::mat "";
+
+%feature("docstring")  dolfin::BlockMatrix::set "";
+
+%feature("docstring")  dolfin::BlockMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::BlockMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::BlockMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::BlockMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::BlockMatrix::mult "
+
+Matrix-vector product, y = Ax. ";
+
+
+// File: classdolfin_1_1BlockVector.xml
+%feature("docstring") dolfin::BlockVector "";
+
+%feature("docstring")  dolfin::BlockVector::BlockVector "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::BlockVector::~BlockVector "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::BlockVector::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::BlockVector::vec "
+
+Return Vector reference number i (const version). ";
+
+%feature("docstring")  dolfin::BlockVector::vec "
+
+Return Vector reference number i. ";
+
+%feature("docstring")  dolfin::BlockVector::set "";
+
+%feature("docstring")  dolfin::BlockVector::axpy "
+
+Add multiple of given vector (AXPY operation). ";
+
+%feature("docstring")  dolfin::BlockVector::inner "
+
+Return inner product with given vector. ";
+
+%feature("docstring")  dolfin::BlockVector::norm "
+
+Return norm of vector. ";
+
+%feature("docstring")  dolfin::BlockVector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::BlockVector::max "
+
+Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::BlockVector::size "
+
+Number of vectors. ";
+
+%feature("docstring")  dolfin::BlockVector::disp "
+
+Display vectors. ";
+
+
 // File: classdolfin_1_1BoundaryCondition.xml
 %feature("docstring") dolfin::BoundaryCondition "
 
@@ -592,6 +682,14 @@ mesh. ";
 %feature("docstring")  dolfin::DirichletBC::~DirichletBC "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to linear system. ";
+
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
@@ -1196,6 +1294,18 @@ C++ includes: GaussQuadrature.h ";
 %feature("docstring")  dolfin::GaussQuadrature::disp "
 
 Display quadrature data. ";
+
+
+// File: classdolfin_1_1GenericLinearSolver.xml
+%feature("docstring") dolfin::GenericLinearSolver "
+
+This class provides a general solver for linear systems Ax = b.
+
+C++ includes: GenericLinearSolver.h ";
+
+%feature("docstring")  dolfin::GenericLinearSolver::solve "
+
+Solve linear system Ax = b. ";
 
 
 // File: classdolfin_1_1GenericMatrix.xml
@@ -3075,8 +3185,8 @@ algebra backend ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 
-Create nonlinear solver specified linear solver and linear algebra
-backend determined by A ";
+Create nonlinear solver using provided linear solver and linear
+algebra backend determined by factory ";
 
 %feature("docstring")  dolfin::NewtonSolver::~NewtonSolver "
 
@@ -4332,6 +4442,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 
+Solve linear system Ax = b and return number of iterations. ";
+
+%feature("docstring")  dolfin::uBLASKrylovSolver::solve "
+
 Solve linear system Ax = b and return number of iterations (dense
 matrix). ";
 
@@ -5237,6 +5351,12 @@ domains. ";
 // File: File_8h.xml
 
 
+// File: BlockMatrix_8h.xml
+
+
+// File: BlockVector_8h.xml
+
+
 // File: CholmodCholeskySolver_8h.xml
 
 
@@ -5253,6 +5373,9 @@ domains. ";
 
 
 // File: EpetraVector_8h.xml
+
+
+// File: GenericLinearSolver_8h.xml
 
 
 // File: GenericMatrix_8h.xml
