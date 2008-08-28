@@ -707,6 +707,14 @@ Apply boundary condition to linear system for a nonlinear problem. ";
 
 Apply boundary condition to linear system for a nonlinear problem. ";
 
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to linear system for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to linear system for a nonlinear problem. ";
+
 %feature("docstring")  dolfin::DirichletBC::zero "
 
 Make row associated with boundary conditions zero, useful for non-
@@ -5438,7 +5446,7 @@ domains. ";
 // File: SingularSolver_8h.xml
 
 
-// File: SLEPcEigenvalueSolver_8h.xml
+// File: SLEPcEigenSolver_8h.xml
 
 
 // File: solve_8h.xml
@@ -5648,56 +5656,56 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_c6877e302946623398b3c0b2c4ca5af9.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml
 
 
-// File: dir_6799dcb52c303ad49889452a39db8d5c.xml
+// File: dir_c2d8b013fd04ed882f8d87b68325caba.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_1890b655131c1abe796835d1d7e57599.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_fa7665f4f771f6b9bd3285cc3526e10d.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_7ae9b525fa735889416df9a88318a409.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_4c8349339c79835b7014fb341fef0206.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_4d7e92e23f6ea876d470371aa3d29376.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_3c2ad13ee8805033db44e75511328743.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_837f57fa7b99817fc9c065cd33a24294.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_2e3d752c0dc6db1308f89f3ade9719f6.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_40fb3cedb271a8bfe5ce264c8f153c9b.xml
 
 
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
+// File: dir_4051ad071076088e8c66a6e80c9a9988.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_cfbe19ce0dad3eee24aad31a4afa5d0e.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_c5290f3dab994c0c9dba61554566fc4f.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_f52db9cf4adc49528fc87123266f9c76.xml
 
 
-// File: dir_93ffba64816f2c254620e0973dfb8c35.xml
+// File: dir_913f640bc454e255461704ebdcb6a817.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_a66f8f551e7465104f1dbcd89b910c46.xml
 
