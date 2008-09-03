@@ -6,7 +6,7 @@ using namespace dolfin;
 int main()
 {
   // Create mesh and forms
-  UnitSquare mesh(4, 4);
+  UnitSquare mesh(128, 128);
   DomainBoundary boundary;
   Function g(mesh, 0.0);
   DirichletBC bc(g, mesh, boundary); 
@@ -18,14 +18,14 @@ int main()
   Table table;
 
   // Linear solver
-  //KrylovSolver solver;
-  LUSolver solver;
+  KrylovSolver solver(bicgstab, ilu);
+  //LUSolver solver;
   
   // Assemble and solve using uBLAS
   cout << "uBLAS ------------------------------------------------------" << endl;
   Assembler ass_ublas(mesh);
-  uBlasMatrix<ublas_sparse_matrix> A_ublas;
-  uBlasVector b_ublas, x_ublas;
+  uBLASMatrix<ublas_sparse_matrix> A_ublas;
+  uBLASVector b_ublas, x_ublas;
 
   tic(); 
   ass_ublas.assemble(A_ublas, a); 
@@ -34,7 +34,7 @@ int main()
   solver.solve(A_ublas, x_ublas, b_ublas);
   table("uBLAS", "solve") =  toc();
 
-  x_ublas.disp();
+  //x_ublas.disp();
 
 
   // Assemble and solve using MTL4
@@ -55,7 +55,7 @@ int main()
   //u.init(mesh, x_mtl4, a, 1);
   //File file("test.pvd");
   //file << u;
-  x_mtl4.disp();
+  //x_mtl4.disp();
 
   table.disp();
 
