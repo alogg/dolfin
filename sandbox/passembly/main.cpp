@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
   // Read in mesh from XML file in parallel
   Mesh mesh("unitsquare.xml.gz");
-  plot(mesh);
+  dolfin::cout << mesh << dolfin::endl;
 
   return 0;
 }
