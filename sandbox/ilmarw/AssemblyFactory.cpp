@@ -12,18 +12,18 @@
 using namespace dolfin;
 
 //-----------------------------------------------------------------------------
-SparsityPattern* AssemblyFactory::createPattern() const 
+SparsityPattern* AssemblyFactory::create_pattern() const 
 {
   return new SparsityPattern(); 
 }
 //-----------------------------------------------------------------------------
-AssemblyMatrix* AssemblyFactory::createMatrix() const 
+AssemblyMatrix* AssemblyFactory::create_matrix() const 
 { 
   AssemblyMatrix* pm = new AssemblyMatrix();
   return pm;
 }
 //-----------------------------------------------------------------------------
-AssemblyVector* AssemblyFactory:: createVector() const 
+AssemblyVector* AssemblyFactory:: create_vector() const 
 { 
   return new AssemblyVector(); 
 }

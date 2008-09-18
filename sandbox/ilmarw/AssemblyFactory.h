@@ -26,15 +26,15 @@ namespace dolfin
     virtual ~AssemblyFactory() {}
 
     /// Create empty matrix
-    AssemblyMatrix* createMatrix() const
+    AssemblyMatrix* create_matrix() const
     { return new AssemblyMatrix(); }
 
     /// Create empty vector
-    uBLASVector* createVector() const
+    uBLASVector* create_vector() const
     { return new uBLASVector(); }
 
     /// Create empty sparsity pattern 
-    SparsityPattern* createPattern() const
+    SparsityPattern* create_pattern() const
     { return new SparsityPattern(); }
 
     /// Return singleton instance
