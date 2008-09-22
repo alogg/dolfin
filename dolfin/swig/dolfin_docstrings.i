@@ -548,11 +548,11 @@ Constructor. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::DefaultFactory::createMatrix "
+%feature("docstring")  dolfin::DefaultFactory::create_matrix "
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::DefaultFactory::createVector "
+%feature("docstring")  dolfin::DefaultFactory::create_vector "
 
 Create empty vector. ";
 
@@ -2086,11 +2086,11 @@ dolfin::LinearAlgebraFactory::~LinearAlgebraFactory "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::createMatrix "
+%feature("docstring")  dolfin::LinearAlgebraFactory::create_matrix "
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::createVector "
+%feature("docstring")  dolfin::LinearAlgebraFactory::create_vector "
 
 Create empty vector. ";
 
@@ -4055,11 +4055,11 @@ Return number of local rows for process_number. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::STLFactory::createMatrix "
+%feature("docstring")  dolfin::STLFactory::create_matrix "
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::STLFactory::createVector "
+%feature("docstring")  dolfin::STLFactory::create_vector "
 
 Create empty vector. ";
 
@@ -4378,7 +4378,7 @@ Stop timer. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBLASFactory::createMatrix "
+%feature("docstring")  dolfin::uBLASFactory::create_matrix "
 
 Create empty matrix. ";
 
@@ -4386,7 +4386,7 @@ Create empty matrix. ";
 
 Create empty sparsity pattern. ";
 
-%feature("docstring")  dolfin::uBLASFactory::createVector "
+%feature("docstring")  dolfin::uBLASFactory::create_vector "
 
 Create empty vector. ";
 
