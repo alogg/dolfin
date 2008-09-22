@@ -6,11 +6,14 @@ using namespace dolfin;
 
 int main()
 {
-  UnitSquare mesh(10, 10);
-  mesh.disp();
+  Table table;
 
-  StiffnessMatrix A(mesh);
-  A.disp();
+  table("uBLAS",  "Assemble") = 0.010;
+  table("uBLAS",  "Solve")    = 0.020;
+  table("PETSc",  "Assemble") = 0.011;
+  table("PETSc",  "Solve")    = 0.019;
+  table("Epetra", "Assemble") = 0.012;
+  table("Epetra", "Solve")    = 0.018;
 
-  return 0;
+  table.disp();
 }

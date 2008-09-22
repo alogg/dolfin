@@ -102,8 +102,10 @@ def precondMinRes(B, A, x, b, tolerance=1.0E-05, relativeconv=False, maxit=500, 
     """
 
     rit = rit_
-
-    r = b - A*x
+    print type(A)
+    print type(x)
+    d = A*x 
+    r = b - d 
     s = B*r
     rho = inner(r,s)
 

@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
   fA.init(meshA, xA, *M, 0);
 
   int NA = meshA.numVertices();
-  int d = meshA.topology().dim();
 
   // Generate some values for fA
   real* arr = new real[NA];

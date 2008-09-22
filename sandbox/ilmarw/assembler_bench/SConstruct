@@ -1,0 +1,18 @@
+import os, commands
+
+# Get compiler from pkg-config
+compiler = commands.getoutput('pkg-config --variable=compiler dolfin')
+
+# Create a SCons Environment based on the main os environment
+env = Environment(ENV=os.environ, CXX=compiler)
+
+# Get compiler flags from pkg-config
+env.ParseConfig('pkg-config --cflags --libs dolfin')
+
+Export('env')
+
+SConscript(['Elasticity_3D/SConscript',
+            'ICNS_3D_Momentum/SConscript',
+            'Laplace_2D/SConscript',
+            'Stokes_2D_Stab/SConscript',
+            'Stokes_2D_TH/SConscript'])

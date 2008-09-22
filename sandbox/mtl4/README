@@ -1,0 +1,49 @@
+Here are some notes on the experimental MTL4 backend for DOLFIN
+
+*** Install ***
+
+MTL4 Homepage:
+http://www.osl.iu.edu/research/mtl/mtl4/
+
+Contains a very nice tutorial section (and a doxygen ref which is pretty hard 
+to make use of...) Note in particular the insertion scheme. 
+
+Get MTL4 from SVN:
+svn co https://svn.osl.iu.edu/tlc/trunk/mtl4/trunk mtl4
+
+MTL4 is header only, so there is no installation. Make sure to update the 
+includes in MTL_Matrix.h and MTL_Vector.h accordingly
+
+*** Benchmarks ***
+
+Most benchmarks programs expect one or two command line arguments. MTL4 
+responds well to O3 optimization!
+
+The krylov benchmark is not complete. Look in the directory to find an example 
+of ITL solver are used with MTL objects.
+
+*** What the hell is DirectAssembler??? ***
+
+It is the ordinary dolfin asembler class, with one exception: Instead of being 
+dynamically bound to a LA backend at runtime by factories and subclassing 
+GenericTensor, it is compile-time generic by using templates for the tensor 
+type. This makes it easier to experiment with the MTL_Matrix class. I have not 
+been able to isolate it to test if there could be a performance benefit to this 
+assembler.
+
+*** The full backend ***
+
+The full backend code sits in ./conventional_backend but is not up to speed 
+with the header-only version of MTL_Matrix. As the light-weight (MTL_Matrix.h) 
+implementation matures, the full backend can be updated and deployed.
+
+*** Initialization ***
+
+This simple MTL_Matrix backend needs the size of the matrix as constructor 
+arguments. The inserter works best when it is given an average number of 
+nonzeros per row. For the assembly benchmarks I found these (45 for ICNS_3D and
+5 for Poisson) by inspecting the matrix after a trial run. This could be 
+improved, but I find it reasonalble to give this number manually if the extra 
+performance really matters. There are some notes about this on the MTL homepage
+
+/Dag
