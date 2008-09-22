@@ -3,6 +3,17 @@
 
 // File: index.xml
 
+// File: classdolfin_1_1ALE.xml
+%feature("docstring") dolfin::ALE "
+
+This class provides functionality useful for implementation of ALE
+(Arbitrary Lagrangian-Eulerian) methods, in particular moving the
+boundary vertices of a mesh and then interpolating the new coordinates
+for the interior vertices accordingly.
+
+C++ includes: ALE.h ";
+
+
 // File: classdolfin_1_1Array.xml
 %feature("docstring") dolfin::Array "
 
@@ -69,11 +80,23 @@ Assemble tensor from given variational form. ";
 
 %feature("docstring")  dolfin::Assembler::assemble "
 
+Assemble system (A, b) and apply Dirichlet boundary condition from
+given variational forms ";
+
+%feature("docstring")  dolfin::Assembler::assemble "
+
+Assemble system (A, b) and apply Dirichlet boundary conditions from
+given variational forms ";
+
+%feature("docstring")  dolfin::Assembler::assemble "
+
 Assemble tensor from given variational form over a sub domain. ";
 
 %feature("docstring")  dolfin::Assembler::assemble "
 
-Assemble tensor from given variational form over sub domains. ";
+Assemble tensor from given variational form over a sub domain.
+
+Assemble tensor from given variational form over sub domains ";
 
 %feature("docstring")  dolfin::Assembler::assemble "
 
@@ -99,21 +122,116 @@ Either a null pointer or an empty MeshFunction may be used to specify
 that the tensor should be assembled over the entire set of cells or
 facets. ";
 
+%feature("docstring")  dolfin::Assembler::assemble_system "
+
+Assemble linear system Ax = b and enforce Dirichlet conditions. ";
+
 
 // File: classdolfin_1_1AvgMeshSize.xml
 %feature("docstring") dolfin::AvgMeshSize "
 
-This function represents the average of the local mesh size on a given
-mesh.
+This Function represents the average of the local cell size (average
+of cell sharing a facet) on a given mesh.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "";
+%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::AvgMeshSize::eval "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Return average cell size. ";
+
+
+// File: classdolfin_1_1BlockMatrix.xml
+%feature("docstring") dolfin::BlockMatrix "";
+
+%feature("docstring")  dolfin::BlockMatrix::BlockMatrix "";
+
+%feature("docstring")  dolfin::BlockMatrix::~BlockMatrix "";
+
+%feature("docstring")  dolfin::BlockMatrix::mat "
+
+Return Matrix reference number (i,j). ";
+
+%feature("docstring")  dolfin::BlockMatrix::mat "";
+
+%feature("docstring")  dolfin::BlockMatrix::set "";
+
+%feature("docstring")  dolfin::BlockMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::BlockMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::BlockMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::BlockMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::BlockMatrix::mult "
+
+Matrix-vector product, y = Ax. ";
+
+
+// File: classdolfin_1_1BlockVector.xml
+%feature("docstring") dolfin::BlockVector "";
+
+%feature("docstring")  dolfin::BlockVector::BlockVector "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::BlockVector::~BlockVector "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::BlockVector::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::BlockVector::vec "
+
+Return Vector reference number i (const version). ";
+
+%feature("docstring")  dolfin::BlockVector::vec "
+
+Return Vector reference number i. ";
+
+%feature("docstring")  dolfin::BlockVector::set "";
+
+%feature("docstring")  dolfin::BlockVector::axpy "
+
+Add multiple of given vector (AXPY operation). ";
+
+%feature("docstring")  dolfin::BlockVector::inner "
+
+Return inner product with given vector. ";
+
+%feature("docstring")  dolfin::BlockVector::norm "
+
+Return norm of vector. ";
+
+%feature("docstring")  dolfin::BlockVector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::BlockVector::max "
+
+Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::BlockVector::size "
+
+Number of vectors. ";
+
+%feature("docstring")  dolfin::BlockVector::disp "
+
+Display vectors. ";
 
 
 // File: classdolfin_1_1BoundaryCondition.xml
@@ -166,25 +284,26 @@ Create an empty boundary mesh. ";
 
 Create boundary mesh from given mesh. ";
 
-%feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
-
-Create boundary mesh from given mesh and compute a pair of mappings
-from the vertices and cells of the boundary to the corresponding mesh
-entities in the original mesh ";
-
 %feature("docstring")  dolfin::BoundaryMesh::~BoundaryMesh "
 
 Destructor. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::init "
 
-Initialize boundary mesh from given mesh. ";
+Initialize boundary mesh. ";
 
-%feature("docstring")  dolfin::BoundaryMesh::init "
 
-Initialize boundary mesh from given mesh, including a pair of mappings
-from the vertices and cells of the boundary to the corresponding mesh
-entities in the original mesh ";
+// File: classdolfin_1_1Box.xml
+%feature("docstring") dolfin::Box "
+
+Tetrahedral mesh of the 3D rectangular prism (a,b) x (c,d) x (e,f).
+Given the number of cells (nx, ny, nz) in each direction, the total
+number of tetrahedra will be 6*nx*ny*nz and the total number of
+vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+
+C++ includes: Box.h ";
+
+%feature("docstring")  dolfin::Box::Box "";
 
 
 // File: classdolfin_1_1Cell.xml
@@ -226,6 +345,14 @@ Compute midpoint of cell. ";
 
 Compute component i of normal of given facet with respect to the cell.
 ";
+
+%feature("docstring")  dolfin::Cell::normal "
+
+Compute normal of given facet with respect to the cell. ";
+
+%feature("docstring")  dolfin::Cell::facetArea "
+
+Compute the area/length of given facet with respect to the cell. ";
 
 
 // File: classdolfin_1_1CellIterator.xml
@@ -283,6 +410,42 @@ Compute error estimate (modulo stability factor). ";
 %feature("docstring")  dolfin::cGqMethod::disp "
 
 Display method data. ";
+
+
+// File: classdolfin_1_1CholmodCholeskySolver.xml
+%feature("docstring") dolfin::CholmodCholeskySolver "
+
+This class implements the direct solution (Cholesky factorization) of
+linear systems of the form Ax = b. Sparse matrices are solved using
+CHOLMODhttp://www.cise.ufl.edu/research/sparse/cholmod/ is installed.
+
+C++ includes: CholmodCholeskySolver.h ";
+
+%feature("docstring")
+dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::CholmodCholeskySolver::~CholmodCholeskySolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::CholmodCholeskySolver::solve "
+
+Solve linear system Ax = b for a sparse matrix using CHOLMOD. ";
+
+%feature("docstring")  dolfin::CholmodCholeskySolver::factorize "
+
+Cholesky-factor sparse matrix A if CHOLMOD is installed. ";
+
+%feature("docstring")  dolfin::CholmodCholeskySolver::factorizedSolve
+"
+
+Solve factorized system (CHOLMOD). ";
+
+
+// File: classdolfin_1_1CholmodCholeskySolver_1_1Cholmod.xml
 
 
 // File: classdolfin_1_1ComplexODE.xml
@@ -374,6 +537,30 @@ Return time step for real-valued ODE. ";
 Update for real-valued ODE. ";
 
 
+// File: classdolfin_1_1DefaultFactory.xml
+%feature("docstring") dolfin::DefaultFactory "";
+
+%feature("docstring")  dolfin::DefaultFactory::DefaultFactory "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DefaultFactory::~DefaultFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::DefaultFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
 // File: classdolfin_1_1dGqMethod.xml
 %feature("docstring") dolfin::dGqMethod "
 
@@ -442,9 +629,23 @@ u = g on G,
 where u is the solution to be computed, g is a function and G is a sub
 domain of the mesh.
 
-A DirichletBC is specified by a Function, a Mesh, a MeshFunction<uint>
-over the facets of the mesh and an integer sub_domain specifying the
-sub domain on which the boundary condition is to be applied.
+A DirichletBC is specified by the Function g, the Mesh, and boundary
+indicators on (a subset of) the mesh boundary.
+
+The boundary indicators may be specified in a number of different
+ways.
+
+The simplest approach is to specify the boundary by a SubDomain
+object, using the inside() function to specify on which facets the
+boundary conditions should be applied.
+
+Alternatively, the boundary may be specified by a MeshFunction
+labeling all mesh facets together with a number that specifies which
+facets should be included in the boundary.
+
+The third option is to attach the boundary information to the mesh.
+This is handled automatically when exporting a mesh from for example
+VMTK.
 
 For mixed systems (vector-valued and mixed elements), an optional set
 of parameters may be used to specify for which sub system the boundary
@@ -462,6 +663,10 @@ Create boundary condition for sub domain specified by index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
+Create boundary condition for boundary data included in the mesh. ";
+
+%feature("docstring")  dolfin::DirichletBC::DirichletBC "
+
 Create sub system boundary condition for sub domain. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
@@ -471,8 +676,8 @@ index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Simple creation of boundary condition with given value on the entire
-boundary. ";
+Create sub system boundary condition for boundary data included in the
+mesh. ";
 
 %feature("docstring")  dolfin::DirichletBC::~DirichletBC "
 
@@ -484,6 +689,14 @@ Apply boundary condition to linear system. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
+Apply boundary condition to a vector. ";
+
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to linear system. ";
+
+%feature("docstring")  dolfin::DirichletBC::apply "
+
 Apply boundary condition to linear system. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
@@ -494,6 +707,14 @@ Apply boundary condition to linear system for a nonlinear problem. ";
 
 Apply boundary condition to linear system for a nonlinear problem. ";
 
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to linear system for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::DirichletBC::apply "
+
+Apply boundary condition to linear system for a nonlinear problem. ";
+
 %feature("docstring")  dolfin::DirichletBC::zero "
 
 Make row associated with boundary conditions zero, useful for non-
@@ -503,6 +724,14 @@ diagonal matrices in a block matrix. ";
 
 Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
+
+%feature("docstring")  dolfin::DirichletBC::setSubSystem "
+
+Set (or update) value for sub system. ";
+
+%feature("docstring")  dolfin::DirichletBC::getBC "
+
+Get Dirichlet values and indicators. ";
 
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
@@ -652,6 +881,28 @@ Build parallel dof maps. ";
 %feature("docstring")  dolfin::DofMapSet::parallel "";
 
 
+// File: classdolfin_1_1DomainBoundary.xml
+%feature("docstring") dolfin::DomainBoundary "
+
+This class provides a SubDomain which picks out the boundary of a
+mesh, and provides a convenient way to specify boundary conditions on
+the entire boundary of a mesh.
+
+C++ includes: DomainBoundary.h ";
+
+%feature("docstring")  dolfin::DomainBoundary::DomainBoundary "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DomainBoundary::~DomainBoundary "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DomainBoundary::inside "
+
+Return true for points on the boundary. ";
+
+
 // File: classdolfin_1_1Edge.xml
 %feature("docstring") dolfin::Edge "
 
@@ -774,6 +1025,21 @@ Constructor. ";
 Destructor. ";
 
 
+// File: classdolfin_1_1FacetArea.xml
+%feature("docstring") dolfin::FacetArea "
+
+This function represents the area/length of a cell facet.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::FacetArea::FacetArea "";
+
+%feature("docstring")  dolfin::FacetArea::eval "
+
+Evaluate function at given point (overload for scalar user-defined
+function). ";
+
+
 // File: classdolfin_1_1FacetIterator.xml
 %feature("docstring") dolfin::FacetIterator "
 
@@ -789,7 +1055,7 @@ C++ includes: Facet.h ";
 // File: classdolfin_1_1FacetNormal.xml
 %feature("docstring") dolfin::FacetNormal "
 
-This function represents the outward unit normal on mesh facets. Note
+This Function represents the outward unit normal on cell facets. Note
 that it is only nonzero on cell facets (not on cells).
 
 C++ includes: SpecialFunctions.h ";
@@ -800,6 +1066,14 @@ C++ includes: SpecialFunctions.h ";
 
 Evaluate function at given point (overload for scalar user-defined
 function). ";
+
+%feature("docstring")  dolfin::FacetNormal::rank "
+
+Return the rank of the value space. ";
+
+%feature("docstring")  dolfin::FacetNormal::dim "
+
+Return the dimension of the value space for axis i. ";
 
 
 // File: classdolfin_1_1File.xml
@@ -890,11 +1164,27 @@ Create user-defined function (evaluation operator must be overloaded).
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant function from given value. ";
+Create constant scalar function from given value. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant function from given value.
+Create constant vector function from given size and value. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create constant vector function from given size and values. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create constant tensor function from given shape and values. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create function from given ufc::function. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create function from given GenericFunction.
 
 Create discrete function for argument function i of form ";
 
@@ -941,6 +1231,10 @@ Return the dimension of the value space for axis i. ";
 %feature("docstring")  dolfin::Function::mesh "
 
 Return the mesh. ";
+
+%feature("docstring")  dolfin::Function::signature "
+
+Return the signature of a DiscreteFunction. ";
 
 %feature("docstring")  dolfin::Function::vector "
 
@@ -1010,6 +1304,18 @@ C++ includes: GaussQuadrature.h ";
 Display quadrature data. ";
 
 
+// File: classdolfin_1_1GenericLinearSolver.xml
+%feature("docstring") dolfin::GenericLinearSolver "
+
+This class provides a general solver for linear systems Ax = b.
+
+C++ includes: GenericLinearSolver.h ";
+
+%feature("docstring")  dolfin::GenericLinearSolver::solve "
+
+Solve linear system Ax = b. ";
+
+
 // File: classdolfin_1_1GenericMatrix.xml
 %feature("docstring") dolfin::GenericMatrix "
 
@@ -1020,6 +1326,10 @@ C++ includes: GenericMatrix.h ";
 %feature("docstring")  dolfin::GenericMatrix::~GenericMatrix "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::GenericMatrix::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
 
@@ -1081,6 +1391,10 @@ Add block of values. ";
 
 Get non-zero values of given row. ";
 
+%feature("docstring")  dolfin::GenericMatrix::setrow "
+
+Set values for given row. ";
+
 %feature("docstring")  dolfin::GenericMatrix::zero "
 
 Set given rows to zero. ";
@@ -1092,6 +1406,11 @@ Set given rows to identity matrix. ";
 %feature("docstring")  dolfin::GenericMatrix::mult "
 
 Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::GenericMatrix::data "
+
+Return pointers to underlying compresssed storage data FIXME: Document
+what data each of the three pointers points to. ";
 
 %feature("docstring")  dolfin::GenericMatrix::getitem "
 
@@ -1145,6 +1464,11 @@ dolfin::GenericSparsityPattern::numNonZeroPerRow "
 
 Return array with number of non-zeroes per row. ";
 
+%feature("docstring")
+dolfin::GenericSparsityPattern::numNonZeroPerRowMax "
+
+Return maximum number of non-zeroes for a row. ";
+
 %feature("docstring")  dolfin::GenericSparsityPattern::numNonZero "
 
 Return total number of non-zeroes. ";
@@ -1164,6 +1488,10 @@ C++ includes: GenericTensor.h ";
 %feature("docstring")  dolfin::GenericTensor::~GenericTensor "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::GenericTensor::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::GenericTensor::init "
 
@@ -1240,6 +1568,10 @@ C++ includes: GenericVector.h ";
 %feature("docstring")  dolfin::GenericVector::~GenericVector "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::GenericVector::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::GenericVector::init "
 
@@ -1325,6 +1657,22 @@ Return inner product with given vector. ";
 
 Return norm of vector. ";
 
+%feature("docstring")  dolfin::GenericVector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::GenericVector::max "
+
+Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::GenericVector::data "
+
+Return pointer to underlying data (const version). ";
+
+%feature("docstring")  dolfin::GenericVector::data "
+
+Return pointer to underlying data. ";
+
 %feature("docstring")  dolfin::GenericVector::getitem "
 
 Get value of given entry. ";
@@ -1332,15 +1680,6 @@ Get value of given entry. ";
 %feature("docstring")  dolfin::GenericVector::setitem "
 
 Set given entry to value. ";
-
-
-// File: classdolfin_1_1GMRES.xml
-%feature("docstring") dolfin::GMRES "
-
-This class provides methods for solving a linear system with the GMRES
-method, with an optional preconditioner.
-
-C++ includes: GMRES.h ";
 
 
 // File: classdolfin_1_1Graph.xml
@@ -1365,7 +1704,7 @@ Example graph: 0 -- 1 | \\\\ | | \\\\ | 2 -- 3
 
 Stored as:
 
-edges = [123030312] vertices = [03579]
+edges = [1 2 3 0 3 0 3 0 1 2] vertices = [0 3 5 7 10]
 
 Note that the last integer of vertices does not represent a vertex,
 but is there to support edge iteration as described above.
@@ -1381,33 +1720,27 @@ Create empty graph. ";
 
 %feature("docstring")  dolfin::Graph::Graph "
 
+Create graph of mesh. ";
+
+%feature("docstring")  dolfin::Graph::Graph "
+
 Copy constructor. ";
 
 %feature("docstring")  dolfin::Graph::Graph "
 
 Create graph from given file. ";
 
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from mesh. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from mesh. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from mesh. ";
-
 %feature("docstring")  dolfin::Graph::~Graph "
 
 Destructor. ";
 
+%feature("docstring")  dolfin::Graph::init "
+
+Initialise graph data structures. ";
+
 %feature("docstring")  dolfin::Graph::numVertices "
 
-Assignment.
-
-Return number of vertices ";
+Return number of vertices. ";
 
 %feature("docstring")  dolfin::Graph::numEdges "
 
@@ -1416,10 +1749,6 @@ Return number of edges. ";
 %feature("docstring")  dolfin::Graph::numEdges "
 
 Return number of edges incident to vertex u. ";
-
-%feature("docstring")  dolfin::Graph::numArches "
-
-Return number of arches (outgoing edges). ";
 
 %feature("docstring")  dolfin::Graph::adjacent "
 
@@ -1462,6 +1791,15 @@ Display graph data. ";
 Clear graph data. ";
 
 
+// File: classdolfin_1_1GraphBuilder.xml
+%feature("docstring") dolfin::GraphBuilder "
+
+This class builds a Graph corresponding for various objects ( Mesh,
+matrix sparsity pattern, etc)
+
+C++ includes: GraphBuilder.h ";
+
+
 // File: classdolfin_1_1GraphEditor.xml
 %feature("docstring") dolfin::GraphEditor "
 
@@ -1495,7 +1833,8 @@ Specify number of edges. ";
 
 %feature("docstring")  dolfin::GraphEditor::addVertex "
 
-Add vertex v. ";
+Add vertex u with num_edges = number of outgoing edges. For undirected
+graphs, edge must \"belong\" to a vertex and not be counted twice. ";
 
 %feature("docstring")  dolfin::GraphEditor::addEdge "
 
@@ -1597,20 +1936,36 @@ Compute which cells are intersected by a polygon (defined by points).
 ";
 
 
+// File: classdolfin_1_1InvFacetArea.xml
+%feature("docstring") dolfin::InvFacetArea "
+
+This function represents the inverse area/length of a cell facet.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "";
+
+%feature("docstring")  dolfin::InvFacetArea::eval "
+
+Evaluate function at given point (overload for scalar user-defined
+function). ";
+
+
 // File: classdolfin_1_1InvMeshSize.xml
 %feature("docstring") dolfin::InvMeshSize "
 
-This function represents the inverse of the local mesh size on a given
+This Function represents the inverse of the local cell size on a given
 mesh.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "";
+%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::InvMeshSize::eval "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Return inverse of cell size. ";
 
 
 // File: classdolfin_1_1KrylovSolver.xml
@@ -1621,13 +1976,13 @@ Krylov solver type is defined in default_type.h.
 
 C++ includes: KrylovSolver.h ";
 
-%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "";
+%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "
 
-%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "";
+Create Krylov solver. ";
 
-%feature("docstring")  dolfin::KrylovSolver::KrylovSolver "";
+%feature("docstring")  dolfin::KrylovSolver::~KrylovSolver "
 
-%feature("docstring")  dolfin::KrylovSolver::~KrylovSolver "";
+Destructor. ";
 
 %feature("docstring")  dolfin::KrylovSolver::solve "
 
@@ -1735,13 +2090,13 @@ Destructor. ";
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
-
-Create empty sparsity pattern. ";
-
 %feature("docstring")  dolfin::LinearAlgebraFactory::createVector "
 
 Create empty vector. ";
+
+%feature("docstring")  dolfin::LinearAlgebraFactory::createPattern "
+
+Create empty sparsity pattern (returning zero if not used/needed). ";
 
 
 // File: classdolfin_1_1LinearPDE.xml
@@ -1788,14 +2143,15 @@ Solve PDE system and extract sub functions. ";
 // File: classdolfin_1_1LinearSolver.xml
 %feature("docstring") dolfin::LinearSolver "
 
-This class defines the interfaces for default linear solvers for
-systems of the form Ax = b.
+This class provides a general solver for linear systems Ax = b.
+Available methods are defined in SolverType.h and available
+preconditioners are defined in PreconditionerType.h.
 
 C++ includes: LinearSolver.h ";
 
 %feature("docstring")  dolfin::LinearSolver::LinearSolver "
 
-Constructor. ";
+Create linear solver. ";
 
 %feature("docstring")  dolfin::LinearSolver::~LinearSolver "
 
@@ -1858,15 +2214,6 @@ Display quadrature data. ";
 %feature("docstring")  dolfin::LogStream::disp "";
 
 
-// File: classdolfin_1_1LU.xml
-%feature("docstring") dolfin::LU "
-
-This class provides methods for solving a linear system by LU
-factorization.
-
-C++ includes: LU.h ";
-
-
 // File: classdolfin_1_1LUSolver.xml
 %feature("docstring") dolfin::LUSolver "";
 
@@ -1877,6 +2224,10 @@ LU solver for the built-in LA backends. ";
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
 %feature("docstring")  dolfin::LUSolver::solve "";
+
+%feature("docstring")  dolfin::LUSolver::factorize "";
+
+%feature("docstring")  dolfin::LUSolver::factorized_solve "";
 
 
 // File: classdolfin_1_1Matrix.xml
@@ -1947,6 +2298,10 @@ Add block of values. ";
 
 Get non-zero values of given row. ";
 
+%feature("docstring")  dolfin::Matrix::setrow "
+
+Set values for given row. ";
+
 %feature("docstring")  dolfin::Matrix::zero "
 
 Set given rows to zero. ";
@@ -1958,6 +2313,10 @@ Set given rows to identity matrix. ";
 %feature("docstring")  dolfin::Matrix::mult "
 
 Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::Matrix::data "
+
+Return pointers to underlying compressed storage data. ";
 
 %feature("docstring")  dolfin::Matrix::factory "
 
@@ -2071,19 +2430,23 @@ Return number of entities of given topological dimension. ";
 
 %feature("docstring")  dolfin::Mesh::topology "
 
-Return mesh topology. ";
+Return mesh topology (non-const version). ";
 
 %feature("docstring")  dolfin::Mesh::topology "
 
-Return mesh topology. ";
+Return mesh topology (const version). ";
 
 %feature("docstring")  dolfin::Mesh::geometry "
 
-Return mesh geometry. ";
+Return mesh geometry (non-const version). ";
 
 %feature("docstring")  dolfin::Mesh::geometry "
 
-Return mesh geometry. ";
+Return mesh geometry (const version). ";
+
+%feature("docstring")  dolfin::Mesh::data "
+
+Return mesh data. ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
@@ -2106,10 +2469,18 @@ Compute connectivity between given pair of dimensions. ";
 
 Compute all entities and connectivity. ";
 
+%feature("docstring")  dolfin::Mesh::clear "
+
+Clear all mesh data. ";
+
 %feature("docstring")  dolfin::Mesh::order "
 
 Order all mesh entities (not needed if \"mesh order entities\" is
 set). ";
+
+%feature("docstring")  dolfin::Mesh::ordered "
+
+Return true iff topology is ordered according to the UFC numbering. ";
 
 %feature("docstring")  dolfin::Mesh::refine "
 
@@ -2126,6 +2497,10 @@ Coarsen mesh uniformly. ";
 %feature("docstring")  dolfin::Mesh::coarsen "
 
 Coarsen mesh according to cells marked for coarsening. ";
+
+%feature("docstring")  dolfin::Mesh::move "
+
+Move coordinates of mesh according to new boundary coordinates. ";
 
 %feature("docstring")  dolfin::Mesh::smooth "
 
@@ -2213,6 +2588,52 @@ Set all connections for given entity. ";
 Set all connections for all entities. ";
 
 %feature("docstring")  dolfin::MeshConnectivity::disp "
+
+Display data. ";
+
+
+// File: classdolfin_1_1MeshData.xml
+%feature("docstring") dolfin::MeshData "
+
+The class MeshData is a container for auxiliary mesh data, represented
+either as MeshFunctions over topological mesh entities or Arrays. Each
+dataset is identified by a unique user-specified string.
+
+Currently, only uint-valued data is supported.
+
+C++ includes: MeshData.h ";
+
+%feature("docstring")  dolfin::MeshData::MeshData "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::MeshData::~MeshData "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::MeshData::clear "
+
+Clear all data. ";
+
+%feature("docstring")  dolfin::MeshData::createMeshFunction "
+
+Create MeshFunction with given name (uninitialized). ";
+
+%feature("docstring")  dolfin::MeshData::createArray "
+
+Create Array with given name and size. ";
+
+%feature("docstring")  dolfin::MeshData::meshFunction "
+
+Return MeshFunction with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::array "
+
+Return Array with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::disp "
 
 Display data. ";
 
@@ -2559,16 +2980,25 @@ Display data. ";
 // File: classdolfin_1_1MeshSize.xml
 %feature("docstring") dolfin::MeshSize "
 
-This function represents the local mesh size on a given mesh.
+This Function represents the local mesh size on a given mesh.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::MeshSize::MeshSize "";
+%feature("docstring")  dolfin::MeshSize::MeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::MeshSize::eval "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Return cell size. ";
+
+%feature("docstring")  dolfin::MeshSize::min "
+
+Compute minimal cell diameter. ";
+
+%feature("docstring")  dolfin::MeshSize::max "
+
+Compute maximal cell diameter. ";
 
 
 // File: classdolfin_1_1MeshTopology.xml
@@ -2758,12 +3188,13 @@ C++ includes: NewtonSolver.h ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 
-Initialise nonlinear solver and choose LU solver. ";
+Create nonlinear solver with default linear solver and default linear
+algebra backend ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 
-Initialise nonlinear solver and choose Krylov solver and
-preconditioner. ";
+Create nonlinear solver using provided linear solver and linear
+algebra backend determined by factory ";
 
 %feature("docstring")  dolfin::NewtonSolver::~NewtonSolver "
 
@@ -2948,6 +3379,10 @@ Update ODE, return false to stop (optional). ";
 
 Save sample (optional). ";
 
+%feature("docstring")  dolfin::ODE::time "
+
+Return real time (might be flipped backwards for dual). ";
+
 %feature("docstring")  dolfin::ODE::sparse "
 
 Automatically detect sparsity (optional). ";
@@ -2967,6 +3402,45 @@ Return end time (final time T). ";
 %feature("docstring")  dolfin::ODE::solve "
 
 Solve ODE. ";
+
+
+// File: classdolfin_1_1ODESolution.xml
+%feature("docstring") dolfin::ODESolution "";
+
+%feature("docstring")  dolfin::ODESolution::ODESolution "
+
+Create solution data for given ODE. ";
+
+%feature("docstring")  dolfin::ODESolution::~ODESolution "";
+
+%feature("docstring")  dolfin::ODESolution::eval "
+
+Evaluate (interpolate) value og solution at given time. ";
+
+%feature("docstring")  dolfin::ODESolution::printVector "
+
+for testing ";
+
+
+// File: classdolfin_1_1OutflowFacet.xml
+%feature("docstring") dolfin::OutflowFacet "
+
+This function determines if the current facet is an outflow facet with
+respect to the current cell. It accepts as argument the mesh and a
+form M = dot(n, v)*ds, a functional, defined on the normal vector to
+the facet and velocity vector integrated over the exterior of the
+cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::OutflowFacet::OutflowFacet "";
+
+%feature("docstring")  dolfin::OutflowFacet::~OutflowFacet "";
+
+%feature("docstring")  dolfin::OutflowFacet::eval "
+
+Evaluate scalar function at given point (overload for scalar user-
+defined function). ";
 
 
 // File: classdolfin_1_1Parameter.xml
@@ -3202,6 +3676,10 @@ C++ includes: Point.h ";
 
 Create a point at (x, y, z). ";
 
+%feature("docstring")  dolfin::Point::Point "
+
+Copy constructor. ";
+
 %feature("docstring")  dolfin::Point::~Point "
 
 Destructor. ";
@@ -3328,6 +3806,21 @@ C++ includes: RadauQuadrature.h ";
 Display quadrature data. ";
 
 
+// File: classdolfin_1_1Rectangle.xml
+%feature("docstring") dolfin::Rectangle "
+
+Triangular mesh of the 2D rectangle (a,b) x (c,d). Given the number of
+cells (nx, ny) in each direction, the total number of triangles will
+be 2*nx*ny and the total number of vertices will be (nx + 1)*(ny + 1).
+The Type is an enumerater taking values in {left, right or crisscross}
+indicating the direction of the diagonals for left/right or both ==
+crisscross. The default is right.
+
+C++ includes: Rectangle.h ";
+
+%feature("docstring")  dolfin::Rectangle::Rectangle "";
+
+
 // File: classdolfin_1_1Scalar.xml
 %feature("docstring") dolfin::Scalar "
 
@@ -3343,6 +3836,10 @@ Create zero scalar. ";
 %feature("docstring")  dolfin::Scalar::~Scalar "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Scalar::init "
+
+Initialize zero tensor with given dimensions. ";
 
 %feature("docstring")  dolfin::Scalar::init "
 
@@ -3413,6 +3910,47 @@ Constructor. ";
 Destructor. ";
 
 
+// File: classdolfin_1_1SingularSolver.xml
+%feature("docstring") dolfin::SingularSolver "
+
+This class provides a linear solver for singular linear systems Ax = b
+where A has a one-dimensional null-space (kernel). This may happen for
+example when solving Poisson's equation with pure Neumann boundary
+conditions.
+
+The solver attempts to create an extended non-singular system by
+adding the constraint [1, 1, 1, ...]^T x = 0.
+
+If an optional mass matrix M is supplied, the solver attempts to
+create an extended non-singular system by adding the constraint m^T x
+= 0 where m is the lumped mass matrix. This corresponds to setting the
+average (integral) of the finite element function with coefficients x
+to zero.
+
+The solver makes not attempt to check that the null-space is indeed
+one-dimensional. It is also assumed that the system Ax = b retains its
+sparsity pattern between calls to solve().
+
+C++ includes: SingularSolver.h ";
+
+%feature("docstring")  dolfin::SingularSolver::SingularSolver "
+
+Create linear solver. ";
+
+%feature("docstring")  dolfin::SingularSolver::~SingularSolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::SingularSolver::solve "
+
+Solve linear system Ax = b. ";
+
+%feature("docstring")  dolfin::SingularSolver::solve "
+
+Solve linear system Ax = b using mass matrix M for setting constraint.
+";
+
+
 // File: classdolfin_1_1SparsityPattern.xml
 %feature("docstring") dolfin::SparsityPattern "
 
@@ -3424,7 +3962,15 @@ C++ includes: SparsityPattern.h ";
 
 %feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
 
-Constructor. ";
+Create empty sparsity pattern. ";
+
+%feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
+
+Create sparsity pattern for matrix of given dimensions. ";
+
+%feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
+
+Create sparsity pattern for vector of given dimension. ";
 
 %feature("docstring")  dolfin::SparsityPattern::~SparsityPattern "
 
@@ -3442,11 +3988,19 @@ rows and columns. ";
 
 %feature("docstring")  dolfin::SparsityPattern::insert "
 
-Insert non-zero entry. ";
+Insert non-zero entries. ";
+
+%feature("docstring")  dolfin::SparsityPattern::insert "
+
+Insert non-zero entries. ";
 
 %feature("docstring")  dolfin::SparsityPattern::pinsert "
 
 Insert non-zero entry for parallel matrices. ";
+
+%feature("docstring")  dolfin::SparsityPattern::sort "
+
+Sort entries for each row. ";
 
 %feature("docstring")  dolfin::SparsityPattern::size "
 
@@ -3460,6 +4014,10 @@ Return array with number of non-zeroes per row. ";
 
 Return array with number of non-zeroes per row diagonal and
 offdiagonal for process_number. ";
+
+%feature("docstring")  dolfin::SparsityPattern::numNonZeroPerRowMax "
+
+Return maximum number of non-zeroes for a row. ";
 
 %feature("docstring")  dolfin::SparsityPattern::numNonZero "
 
@@ -3488,6 +4046,123 @@ Return number of local rows for process_number. ";
 
 // File: classstd_1_1vector.xml
 %feature("docstring") std::vector "";
+
+
+// File: classdolfin_1_1STLFactory.xml
+%feature("docstring") dolfin::STLFactory "";
+
+%feature("docstring")  dolfin::STLFactory::~STLFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::STLFactory::createMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::STLFactory::createVector "
+
+Create empty vector. ";
+
+%feature("docstring")  dolfin::STLFactory::createPattern "
+
+Create empty sparsity pattern. ";
+
+
+// File: classdolfin_1_1STLMatrix.xml
+%feature("docstring") dolfin::STLMatrix "
+
+Simple implementation of a GenericMatrix for experimenting with new
+assembly. Not sure this will be used later but it might be useful.
+
+C++ includes: STLMatrix.h ";
+
+%feature("docstring")  dolfin::STLMatrix::STLMatrix "
+
+Create empty matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::STLMatrix "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::STLMatrix "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::STLMatrix::~STLMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::STLMatrix::init "
+
+--- Implementation of the GenericTensor interface ---
+
+Initialize zero tensor using sparsity pattern ";
+
+%feature("docstring")  dolfin::STLMatrix::copy "
+
+Return copy of tensor. ";
+
+%feature("docstring")  dolfin::STLMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::STLMatrix::zero "
+
+Set all entries to zero and keep any sparse structure. ";
+
+%feature("docstring")  dolfin::STLMatrix::apply "
+
+Finalize assembly of tensor. ";
+
+%feature("docstring")  dolfin::STLMatrix::disp "
+
+Display tensor. ";
+
+%feature("docstring")  dolfin::STLMatrix::init "
+
+Initialize M x N matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::get "
+
+Get block of values. ";
+
+%feature("docstring")  dolfin::STLMatrix::set "
+
+Set block of values. ";
+
+%feature("docstring")  dolfin::STLMatrix::add "
+
+Add block of values. ";
+
+%feature("docstring")  dolfin::STLMatrix::getrow "
+
+Get non-zero values of given row. ";
+
+%feature("docstring")  dolfin::STLMatrix::setrow "
+
+Set values for given row. ";
+
+%feature("docstring")  dolfin::STLMatrix::zero "
+
+Set given rows to zero. ";
+
+%feature("docstring")  dolfin::STLMatrix::ident "
+
+Set given rows to identity matrix. ";
+
+%feature("docstring")  dolfin::STLMatrix::mult "
+
+Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::STLMatrix::factory "
+
+--- Specialized matrix functions ---
+
+Return linear algebra backend factory ";
+
+%feature("docstring")  dolfin::STLMatrix::init "
+
+Initialize zero tensor of given rank and dimensions. ";
 
 
 // File: classdolfin_1_1SubDomain.xml
@@ -3576,6 +4251,64 @@ Extract sub finite element of given finite element. ";
 Return array which defines sub system. ";
 
 
+// File: classdolfin_1_1Table.xml
+%feature("docstring") dolfin::Table "
+
+This class provides storage and pretty-printing for tables. Example
+usage:
+
+Table table(\"Timings\");
+
+table(\"uBLAS\", \"Assemble\") = 0.010; table(\"uBLAS\", \"Solve\") =
+0.020; table(\"PETSc\", \"Assemble\") = 0.011; table(\"PETSc\",
+\"Solve\") = 0.019; table(\"Epetra\", \"Assemble\") = 0.012;
+table(\"Epetra\", \"Solve\") = 0.018;
+
+table.disp();
+
+C++ includes: Table.h ";
+
+%feature("docstring")  dolfin::Table::Table "
+
+Create empty table. ";
+
+%feature("docstring")  dolfin::Table::~Table "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Table::get "
+
+Get value of table entry. ";
+
+%feature("docstring")  dolfin::Table::set "
+
+Set value of table entry. ";
+
+%feature("docstring")  dolfin::Table::title "
+
+Return table title. ";
+
+%feature("docstring")  dolfin::Table::disp "
+
+Display table, rounding small numbers to zero. ";
+
+
+// File: classdolfin_1_1TableEntry.xml
+%feature("docstring") dolfin::TableEntry "
+
+This class represents an entry in a Table.
+
+C++ includes: Table.h ";
+
+%feature("docstring")  dolfin::TableEntry::TableEntry "
+
+Create table entry. ";
+
+%feature("docstring")  dolfin::TableEntry::~TableEntry "
+
+Destructor. ";
+
+
 // File: classdolfin_1_1TimeDependent.xml
 %feature("docstring") dolfin::TimeDependent "
 
@@ -3602,143 +4335,141 @@ Associate object with time t. ";
 Return the current time t. ";
 
 
-// File: classdolfin_1_1uBlasFactory.xml
-%feature("docstring") dolfin::uBlasFactory "";
+// File: classdolfin_1_1Timer.xml
+%feature("docstring") dolfin::Timer "
 
-%feature("docstring")  dolfin::uBlasFactory::~uBlasFactory "
+A timer can be used for timing tasks. The basic usage is
+
+Timer timer(\"Assembling over cells\");
+
+The timer is started at construction and timing ends when the timer is
+destroyed (goes out of scope). It is also possible to start and stop a
+timer explicitly by
+
+timer.start(); timer.stop();
+
+Timings are stored globally and a summary may be printed by calling
+
+summary();
+
+C++ includes: Timer.h ";
+
+%feature("docstring")  dolfin::Timer::Timer "
+
+Create timer. ";
+
+%feature("docstring")  dolfin::Timer::~Timer "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasFactory::createMatrix "
+%feature("docstring")  dolfin::Timer::start "
+
+Start timer. ";
+
+%feature("docstring")  dolfin::Timer::stop "
+
+Stop timer. ";
+
+
+// File: classdolfin_1_1uBLASFactory.xml
+%feature("docstring") dolfin::uBLASFactory "";
+
+%feature("docstring")  dolfin::uBLASFactory::~uBLASFactory "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::uBLASFactory::createMatrix "
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::uBlasFactory::createPattern "
+%feature("docstring")  dolfin::uBLASFactory::createPattern "
 
 Create empty sparsity pattern. ";
 
-%feature("docstring")  dolfin::uBlasFactory::createVector "
+%feature("docstring")  dolfin::uBLASFactory::createVector "
 
 Create empty vector. ";
 
 
-// File: classdolfin_1_1uBlasILUPreconditioner.xml
-%feature("docstring") dolfin::uBlasILUPreconditioner "
+// File: classdolfin_1_1uBLASILUPreconditioner.xml
+%feature("docstring") dolfin::uBLASILUPreconditioner "
 
 This class implements an incomplete LU factorization (ILU)
-preconditioner for the uBlas Krylov solver.
+preconditioner for the uBLAS Krylov solver.
 
-C++ includes: uBlasILUPreconditioner.h ";
+C++ includes: uBLASILUPreconditioner.h ";
 
 %feature("docstring")
-dolfin::uBlasILUPreconditioner::uBlasILUPreconditioner "
+dolfin::uBLASILUPreconditioner::uBLASILUPreconditioner "
 
 Constructor. ";
 
 %feature("docstring")
-dolfin::uBlasILUPreconditioner::uBlasILUPreconditioner "
+dolfin::uBLASILUPreconditioner::uBLASILUPreconditioner "
 
 Constructor. ";
 
 %feature("docstring")
-dolfin::uBlasILUPreconditioner::~uBlasILUPreconditioner "
+dolfin::uBLASILUPreconditioner::~uBLASILUPreconditioner "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasILUPreconditioner::solve "
+%feature("docstring")  dolfin::uBLASILUPreconditioner::solve "
 
 Solve linear system Ax = b approximately. ";
 
 
-// File: classdolfin_1_1uBlasKrylovSolver.xml
-%feature("docstring") dolfin::uBlasKrylovSolver "
+// File: classdolfin_1_1uBLASKrylovSolver.xml
+%feature("docstring") dolfin::uBLASKrylovSolver "
 
 This class implements Krylov methods for linear systems of the form Ax
-= b using uBlas data types.
+= b using uBLAS data types.
 
-C++ includes: uBlasKrylovSolver.h ";
+C++ includes: uBLASKrylovSolver.h ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::uBlasKrylovSolver "
+%feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
 Create Krylov solver for a particular method and preconditioner. ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::uBlasKrylovSolver "
+%feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
 Create Krylov solver for a particular preconditioner (set by name). ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::uBlasKrylovSolver "
+%feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
-Create Krylov solver for a particular uBlasPreconditioner. ";
+Create Krylov solver for a particular uBLASPreconditioner. ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::uBlasKrylovSolver "
+%feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
-Create Krylov solver for a particular method and uBlasPreconditioner.
+Create Krylov solver for a particular method and uBLASPreconditioner.
 ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::~uBlasKrylovSolver "
+%feature("docstring")  dolfin::uBLASKrylovSolver::~uBLASKrylovSolver "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::solve "
+%feature("docstring")  dolfin::uBLASKrylovSolver::solve "
+
+Solve linear system Ax = b and return number of iterations. ";
+
+%feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 
 Solve linear system Ax = b and return number of iterations (dense
 matrix). ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::solve "
+%feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 
 Solve linear system Ax = b and return number of iterations (sparse
 matrix). ";
 
-%feature("docstring")  dolfin::uBlasKrylovSolver::solve "
+%feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 
 Solve linear system Ax = b and return number of iterations (virtual
 matrix). ";
 
 
-// File: classdolfin_1_1uBlasLUSolver.xml
-%feature("docstring") dolfin::uBlasLUSolver "
-
-This class implements the direct solution ( LU factorization) of
-linear systems of the form Ax = b using uBlas data types. Dense
-matrices are solved using uBlas LU factorisation, and sparse matrices
-are solved using UMFPACK
-(http://www.cise.ufl.edu/research/sparse/umfpack/) is installed.
-Matrices can also be inverted.
-
-C++ includes: uBlasLUSolver.h ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::uBlasLUSolver "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::~uBlasLUSolver "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solve "
-
-Solve linear system Ax = b for a dense matrix. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solve "
-
-Solve linear system Ax = b for a sparse matrix using UMFPACK if
-installed. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solve "
-
-Solve linear system Ax = b for a Krylov matrix. ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::solveInPlaceUBlas "
-
-Solve linear system Ax = b in place (A is dense). ";
-
-%feature("docstring")  dolfin::uBlasLUSolver::invert "
-
-Compute the inverse of A (A is dense or sparse). ";
-
-
-// File: classdolfin_1_1uBlasMatrix.xml
-%feature("docstring") dolfin::uBlasMatrix "
+// File: classdolfin_1_1uBLASMatrix.xml
+%feature("docstring") dolfin::uBLASMatrix "
 
 This class provides a simple matrix class based on uBLAS. It is a
 simple wrapper for a uBLAS matrix implementing the GenericMatrix
@@ -3751,154 +4482,171 @@ documented athttp://www.boost.org/libs/numeric/ublas/doc/index.htm.
 Developer note: specialised member functions must be inlined to avoid
 link errors.
 
-C++ includes: uBlasMatrix.h ";
+C++ includes: uBLASMatrix.h ";
 
-%feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
+%feature("docstring")  dolfin::uBLASMatrix::uBLASMatrix "
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
+%feature("docstring")  dolfin::uBLASMatrix::uBLASMatrix "
 
 Create M x N matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
+%feature("docstring")  dolfin::uBLASMatrix::uBLASMatrix "
 
 Copy constructor. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::uBlasMatrix "
+%feature("docstring")  dolfin::uBLASMatrix::uBLASMatrix "
 
 Create matrix from given uBLAS matrix expression. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::~uBlasMatrix "
+%feature("docstring")  dolfin::uBLASMatrix::~uBLASMatrix "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::init "
+%feature("docstring")  dolfin::uBLASMatrix::init "
 
 Initialize zero tensor using sparsity pattern. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::copy "
+%feature("docstring")  dolfin::uBLASMatrix::copy "
 
 Return copy of tensor. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::size "
+%feature("docstring")  dolfin::uBLASMatrix::size "
 
 Return size of given dimension. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::zero "
+%feature("docstring")  dolfin::uBLASMatrix::zero "
 
 Set all entries to zero and keep any sparse structure. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::apply "
+%feature("docstring")  dolfin::uBLASMatrix::apply "
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::disp "
+%feature("docstring")  dolfin::uBLASMatrix::disp "
 
 Display tensor. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::init "
+%feature("docstring")  dolfin::uBLASMatrix::init "
 
 Initialize M x N matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::get "
+%feature("docstring")  dolfin::uBLASMatrix::get "
 
 Get block of values. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::set "
+%feature("docstring")  dolfin::uBLASMatrix::set "
 
 Set block of values. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::add "
+%feature("docstring")  dolfin::uBLASMatrix::add "
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::getrow "
+%feature("docstring")  dolfin::uBLASMatrix::getrow "
 
 Get non-zero values of given row. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::zero "
+%feature("docstring")  dolfin::uBLASMatrix::setrow "
+
+Set values for given row. ";
+
+%feature("docstring")  dolfin::uBLASMatrix::zero "
 
 Set given rows to zero. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::ident "
+%feature("docstring")  dolfin::uBLASMatrix::ident "
 
 Set given rows to identity matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::mult "
+%feature("docstring")  dolfin::uBLASMatrix::mult "
 
 Matrix-vector product, y = Ax. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::factory "
+%feature("docstring")  dolfin::uBLASMatrix::data "
+
+Return pointers to underlying compresssed storage data. ";
+
+%feature("docstring")  dolfin::uBLASMatrix::factory "
 
 Return linear algebra backend factory. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::mat "
+%feature("docstring")  dolfin::uBLASMatrix::mat "
 
 Return reference to uBLAS matrix (const version). ";
 
-%feature("docstring")  dolfin::uBlasMatrix::mat "
+%feature("docstring")  dolfin::uBLASMatrix::mat "
 
 Return reference to uBLAS matrix (non-const version). ";
 
-%feature("docstring")  dolfin::uBlasMatrix::solve "
+%feature("docstring")  dolfin::uBLASMatrix::solve "
 
-Solve Ax = b out-of-place (A is not destroyed). ";
+Solve Ax = b out-of-place using uBLAS (A is not destroyed). ";
 
-%feature("docstring")  dolfin::uBlasMatrix::invert "
+%feature("docstring")  dolfin::uBLASMatrix::solveInPlace "
+
+Solve Ax = b in-place using uBLAS(A is destroyed). ";
+
+%feature("docstring")  dolfin::uBLASMatrix::invert "
 
 Compute inverse of matrix. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::lump "
+%feature("docstring")  dolfin::uBLASMatrix::lump "
 
 Lump matrix into vector m. ";
 
-%feature("docstring")  dolfin::uBlasMatrix::compress "
+%feature("docstring")  dolfin::uBLASMatrix::compress "
 
 Compress matrix (eliminate all non-zeros from a sparse matrix). ";
 
-%feature("docstring")  dolfin::uBlasMatrix::init "
+%feature("docstring")  dolfin::uBLASMatrix::init "
 
 Initialize zero tensor using sparsity pattern. ";
 
+%feature("docstring")  dolfin::uBLASMatrix::data "
 
-// File: classdolfin_1_1uBlasPreconditioner.xml
-%feature("docstring") dolfin::uBlasPreconditioner "
+Return pointers to underlying compresssed storage data FIXME: Document
+what data each of the three pointers points to. ";
 
-This class specifies the interface for preconditioners for the uBlas
+
+// File: classdolfin_1_1uBLASPreconditioner.xml
+%feature("docstring") dolfin::uBLASPreconditioner "
+
+This class specifies the interface for preconditioners for the uBLAS
 Krylov solver.
 
-C++ includes: uBlasPreconditioner.h ";
+C++ includes: uBLASPreconditioner.h ";
 
 %feature("docstring")
-dolfin::uBlasPreconditioner::uBlasPreconditioner "
+dolfin::uBLASPreconditioner::uBLASPreconditioner "
 
 Constructor. ";
 
 %feature("docstring")
-dolfin::uBlasPreconditioner::~uBlasPreconditioner "
+dolfin::uBLASPreconditioner::~uBLASPreconditioner "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasPreconditioner::init "
+%feature("docstring")  dolfin::uBLASPreconditioner::init "
 
 Initialise preconditioner (dense matrix). ";
 
-%feature("docstring")  dolfin::uBlasPreconditioner::init "
+%feature("docstring")  dolfin::uBLASPreconditioner::init "
 
 Initialise preconditioner (dense matrix). ";
 
-%feature("docstring")  dolfin::uBlasPreconditioner::init "
+%feature("docstring")  dolfin::uBLASPreconditioner::init "
 
 Initialise preconditioner (virtual matrix). ";
 
-%feature("docstring")  dolfin::uBlasPreconditioner::solve "
+%feature("docstring")  dolfin::uBLASPreconditioner::solve "
 
 Solve linear system (M^-1)Ax = y. ";
 
 
-// File: classdolfin_1_1uBlasVector.xml
-%feature("docstring") dolfin::uBlasVector "
+// File: classdolfin_1_1uBLASVector.xml
+%feature("docstring") dolfin::uBLASVector "
 
 This class provides a simple vector class based on uBLAS. It is a
 simple wrapper for a uBLAS vector implementing the GenericVector
@@ -3908,99 +4656,151 @@ The interface is intentionally simple. For advanced usage, access the
 underlying uBLAS vector and use the standard uBLAS interface which is
 documented athttp://www.boost.org/libs/numeric/ublas/doc/index.htm.
 
-C++ includes: uBlasVector.h ";
+C++ includes: uBLASVector.h ";
 
-%feature("docstring")  dolfin::uBlasVector::uBlasVector "
+%feature("docstring")  dolfin::uBLASVector::uBLASVector "
 
 Create empty vector. ";
 
-%feature("docstring")  dolfin::uBlasVector::uBlasVector "
+%feature("docstring")  dolfin::uBLASVector::uBLASVector "
 
 Create vector of size N. ";
 
-%feature("docstring")  dolfin::uBlasVector::uBlasVector "
+%feature("docstring")  dolfin::uBLASVector::uBLASVector "
 
 Copy constructor. ";
 
-%feature("docstring")  dolfin::uBlasVector::uBlasVector "
+%feature("docstring")  dolfin::uBLASVector::uBLASVector "
 
 Create vector from given uBLAS vector expression. ";
 
-%feature("docstring")  dolfin::uBlasVector::~uBlasVector "
+%feature("docstring")  dolfin::uBLASVector::~uBLASVector "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::uBlasVector::copy "
+%feature("docstring")  dolfin::uBLASVector::copy "
 
 Create copy of tensor. ";
 
-%feature("docstring")  dolfin::uBlasVector::zero "
+%feature("docstring")  dolfin::uBLASVector::zero "
 
 Set all entries to zero and keep any sparse structure. ";
 
-%feature("docstring")  dolfin::uBlasVector::apply "
+%feature("docstring")  dolfin::uBLASVector::apply "
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::uBlasVector::disp "
+%feature("docstring")  dolfin::uBLASVector::disp "
 
 Display tensor. ";
 
-%feature("docstring")  dolfin::uBlasVector::init "
+%feature("docstring")  dolfin::uBLASVector::init "
 
 Initialize vector of size N. ";
 
-%feature("docstring")  dolfin::uBlasVector::size "
+%feature("docstring")  dolfin::uBLASVector::size "
 
 Return size of vector. ";
 
-%feature("docstring")  dolfin::uBlasVector::get "
+%feature("docstring")  dolfin::uBLASVector::get "
 
 Get block of values. ";
 
-%feature("docstring")  dolfin::uBlasVector::set "
+%feature("docstring")  dolfin::uBLASVector::set "
 
 Set block of values. ";
 
-%feature("docstring")  dolfin::uBlasVector::add "
+%feature("docstring")  dolfin::uBLASVector::add "
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::uBlasVector::get "
+%feature("docstring")  dolfin::uBLASVector::get "
 
 Get all values. ";
 
-%feature("docstring")  dolfin::uBlasVector::set "
+%feature("docstring")  dolfin::uBLASVector::set "
 
 Set all values. ";
 
-%feature("docstring")  dolfin::uBlasVector::add "
+%feature("docstring")  dolfin::uBLASVector::add "
 
 Add values to each entry. ";
 
-%feature("docstring")  dolfin::uBlasVector::axpy "
+%feature("docstring")  dolfin::uBLASVector::axpy "
 
 Add multiple of given vector (AXPY operation). ";
 
-%feature("docstring")  dolfin::uBlasVector::inner "
+%feature("docstring")  dolfin::uBLASVector::inner "
 
 Return inner product with given vector. ";
 
-%feature("docstring")  dolfin::uBlasVector::norm "
+%feature("docstring")  dolfin::uBLASVector::norm "
 
 Compute norm of vector. ";
 
-%feature("docstring")  dolfin::uBlasVector::factory "
+%feature("docstring")  dolfin::uBLASVector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::uBLASVector::max "
+
+Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::uBLASVector::data "
+
+Return pointer to underlying data (const version). ";
+
+%feature("docstring")  dolfin::uBLASVector::data "
+
+Return pointer to underlying data. ";
+
+%feature("docstring")  dolfin::uBLASVector::factory "
 
 Return linear algebra backend factory. ";
 
-%feature("docstring")  dolfin::uBlasVector::vec "
+%feature("docstring")  dolfin::uBLASVector::vec "
 
 Return reference to uBLAS vector (const version). ";
 
-%feature("docstring")  dolfin::uBlasVector::vec "
+%feature("docstring")  dolfin::uBLASVector::vec "
 
 Return reference to uBLAS vector (non-const version). ";
+
+
+// File: classdolfin_1_1UmfpackLUSolver.xml
+%feature("docstring") dolfin::UmfpackLUSolver "
+
+This class implements the direct solution (LU factorization) of linear
+systems of the form Ax = b using uBLAS data types. Dense matrices are
+solved using uBLAS LU factorisation, and sparse matrices are solved
+using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) is
+installed. Matrices can also be inverted.
+
+C++ includes: UmfpackLUSolver.h ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::UmfpackLUSolver "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::~UmfpackLUSolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::solve "
+
+Solve uBLAS linear system Ax = b for a sparse matrix using UMFPACK if
+installed. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::factorize "
+
+LU-factor sparse matrix A if UMFPACK is installed. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::factorizedSolve "
+
+Solve factorized system (UMFPACK). ";
+
+
+// File: classdolfin_1_1UmfpackLUSolver_1_1Umfpack.xml
 
 
 // File: classdolfin_1_1UndirectedClique.xml
@@ -4013,6 +4813,21 @@ is given by ((num_vertices - 1) * num_vertices) / 2
 C++ includes: UndirectedClique.h ";
 
 %feature("docstring")  dolfin::UndirectedClique::UndirectedClique "";
+
+
+// File: classdolfin_1_1UnitCircle.xml
+%feature("docstring") dolfin::UnitCircle "
+
+Triangular mesh of the 2D unit circle. Given the number of cells (nx,
+ny) in each direction, the total number of triangles will be 2*nx*ny
+and the total number of vertices will be (nx + 1)*(ny + 1). The Type
+is an enumerater taking values in {left, right or crisscross}
+indicating the direction of the diagonals for left/right or both ==
+crisscross. The default is right.
+
+C++ includes: UnitCircle.h ";
+
+%feature("docstring")  dolfin::UnitCircle::UnitCircle "";
 
 
 // File: classdolfin_1_1UnitCube.xml
@@ -4038,6 +4853,20 @@ and the total number of vertices will be (nx + 1).
 C++ includes: UnitInterval.h ";
 
 %feature("docstring")  dolfin::UnitInterval::UnitInterval "";
+
+
+// File: classdolfin_1_1UnitSphere.xml
+%feature("docstring") dolfin::UnitSphere "
+
+Triangular mesh of the 3D unit sphere.
+
+Given the number of cells (nx, ny, nz) in each direction, the total
+number of tetrahedra will be 6*nx*ny*nz and the total number of
+vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+
+C++ includes: UnitSphere.h ";
+
+%feature("docstring")  dolfin::UnitSphere::UnitSphere "";
 
 
 // File: classdolfin_1_1UnitSquare.xml
@@ -4155,6 +4984,22 @@ Return inner product with given vector. ";
 
 Return norm of vector. ";
 
+%feature("docstring")  dolfin::Vector::min "
+
+Return minimum value of vector. ";
+
+%feature("docstring")  dolfin::Vector::max "
+
+Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::Vector::data "
+
+Return pointer to underlying data (const version). ";
+
+%feature("docstring")  dolfin::Vector::data "
+
+Return pointer to underlying data. ";
+
 %feature("docstring")  dolfin::Vector::factory "
 
 Return linear algebra backend factory. ";
@@ -4219,7 +5064,10 @@ C++ includes: Vertex.h ";
 // File: namespacedolfin.xml
 %feature("docstring")  dolfin::tic "
 
-Start timing. ";
+Start timing.
+
+Timing functions measure CPU time as determined by clock(), the
+precision of which seems to be 0.01 seconds. ";
 
 %feature("docstring")  dolfin::toc "
 
@@ -4297,21 +5145,31 @@ Begin task (increase indentation level). ";
 
 End task (decrease indentation level). ";
 
+%feature("docstring")  dolfin::summary "
+
+Print summary of timings and tasks, optionally clearing stored
+timings. ";
+
+%feature("docstring")  dolfin::timing "
+
+Return timing (average) for given task, optionally clearing timing for
+task. ";
+
 %feature("docstring")  dolfin::__debug "";
 
 %feature("docstring")  dolfin::__dolfin_assert "";
 
 %feature("docstring")  dolfin::solve "
 
-Solve linear system Ax = b.
-
-Solve linear system Ax = b using a direct method ( LU factorization).
-Note that iterative methods (preconditioned Krylov methods including
-GMRES) are also available through the KrylovSolver interface. ";
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::residual "
 
 Compute residual ||Ax - b||. ";
+
+%feature("docstring")  dolfin::normalize "
+
+Normalize vector according to given normalization type. ";
 
 %feature("docstring")  dolfin::projectL2 "
 
@@ -4356,6 +5214,16 @@ structures. ";
 
 %feature("docstring")  dolfin::assemble "
 
+Assemble system (A, b) and apply Dirichlet boundary condition from
+given variational forms ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble system (A, b) and apply Dirichlet boundary conditions from
+given variational forms ";
+
+%feature("docstring")  dolfin::assemble "
+
 Assemble tensor from given variational form and mesh over a sub
 domain. ";
 
@@ -4383,6 +5251,20 @@ Assemble scalar from given variational form and mesh over sub domains.
 Assemble tensor from given (UFC) form, mesh, coefficients and sub
 domains. ";
 
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble tensor from given (UFC) form, mesh, coefficients and sub
+domains. ";
+
+
+// File: namespaceufc.xml
+
+
+// File: ALE_8h.xml
+
+
+// File: ALEType_8h.xml
+
 
 // File: Array_8h.xml
 
@@ -4397,6 +5279,9 @@ domains. ";
 
 
 // File: TimeDependent_8h.xml
+
+
+// File: Timer_8h.xml
 
 
 // File: timing_8h.xml
@@ -4459,6 +5344,9 @@ domains. ";
 // File: Graph_8h.xml
 
 
+// File: GraphBuilder_8h.xml
+
+
 // File: GraphEditor_8h.xml
 
 
@@ -4471,7 +5359,19 @@ domains. ";
 // File: File_8h.xml
 
 
-// File: default__la__types_8h.xml
+// File: BlockMatrix_8h.xml
+
+
+// File: BlockVector_8h.xml
+
+
+// File: CholmodCholeskySolver_8h.xml
+
+
+// File: DefaultFactory_8h.xml
+
+
+// File: enums__la_8h.xml
 
 
 // File: EpetraFactory_8h.xml
@@ -4481,6 +5381,9 @@ domains. ";
 
 
 // File: EpetraVector_8h.xml
+
+
+// File: GenericLinearSolver_8h.xml
 
 
 // File: GenericMatrix_8h.xml
@@ -4495,12 +5398,6 @@ domains. ";
 // File: GenericVector_8h.xml
 
 
-// File: GMRES_8h.xml
-
-
-// File: KrylovMethod_8h.xml
-
-
 // File: KrylovSolver_8h.xml
 
 
@@ -4510,13 +5407,19 @@ domains. ";
 // File: LinearSolver_8h.xml
 
 
-// File: LU_8h.xml
-
-
 // File: LUSolver_8h.xml
 
 
 // File: Matrix_8h.xml
+
+
+// File: MTL4Factory_8h.xml
+
+
+// File: MTL4Matrix_8h.xml
+
+
+// File: MTL4Vector_8h.xml
 
 
 // File: PETScFactory_8h.xml
@@ -4537,13 +5440,13 @@ domains. ";
 // File: PETScVector_8h.xml
 
 
-// File: Preconditioner_8h.xml
-
-
 // File: Scalar_8h.xml
 
 
-// File: SLEPcEigenvalueSolver_8h.xml
+// File: SingularSolver_8h.xml
+
+
+// File: SLEPcEigenSolver_8h.xml
 
 
 // File: solve_8h.xml
@@ -4552,34 +5455,37 @@ domains. ";
 // File: SparsityPattern_8h.xml
 
 
-// File: uBlasDenseMatrix_8h.xml
+// File: STLFactory_8h.xml
 
 
-// File: uBlasFactory_8h.xml
+// File: STLMatrix_8h.xml
 
 
-// File: uBlasILUPreconditioner_8h.xml
+// File: uBLASDenseMatrix_8h.xml
 
 
-// File: uBlasKrylovSolver_8h.xml
+// File: uBLASFactory_8h.xml
 
 
-// File: uBlasLUSolver_8h.xml
+// File: uBLASILUPreconditioner_8h.xml
 
 
-// File: uBlasMatrix_8h.xml
+// File: uBLASKrylovSolver_8h.xml
 
 
-// File: uBlasPreconditioner_8h.xml
+// File: uBLASMatrix_8h.xml
 
 
-// File: uBlasVector_8h.xml
+// File: uBLASPreconditioner_8h.xml
+
+
+// File: uBLASVector_8h.xml
+
+
+// File: UmfpackLUSolver_8h.xml
 
 
 // File: Vector_8h.xml
-
-
-// File: VectorNormType_8h.xml
 
 
 // File: Event_8h.xml
@@ -4592,6 +5498,9 @@ domains. ";
 
 
 // File: Progress_8h.xml
+
+
+// File: Table_8h.xml
 
 
 // File: init_8h.xml
@@ -4609,7 +5518,13 @@ domains. ";
 // File: BoundaryMesh_8h.xml
 
 
+// File: Box_8h.xml
+
+
 // File: Cell_8h.xml
+
+
+// File: DomainBoundary_8h.xml
 
 
 // File: Edge_8h.xml
@@ -4628,6 +5543,9 @@ domains. ";
 
 
 // File: MeshConnectivity_8h.xml
+
+
+// File: MeshData_8h.xml
 
 
 // File: MeshEditor_8h.xml
@@ -4654,13 +5572,22 @@ domains. ";
 // File: Point_8h.xml
 
 
+// File: Rectangle_8h.xml
+
+
 // File: SubDomain_8h.xml
+
+
+// File: UnitCircle_8h.xml
 
 
 // File: UnitCube_8h.xml
 
 
 // File: UnitInterval_8h.xml
+
+
+// File: UnitSphere_8h.xml
 
 
 // File: UnitSquare_8h.xml
@@ -4696,6 +5623,9 @@ domains. ";
 // File: ODE_8h.xml
 
 
+// File: ODESolution_8h.xml
+
+
 // File: Parameter_8h.xml
 
 
@@ -4724,6 +5654,9 @@ domains. ";
 
 
 // File: RadauQuadrature_8h.xml
+
+
+// File: dir_c6877e302946623398b3c0b2c4ca5af9.xml
 
 
 // File: dir_293bcaf04d4ecbfb69c98d86ebc5275e.xml

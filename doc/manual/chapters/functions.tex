@@ -170,3 +170,74 @@ and has no meaning otherwise. For example, it is not possible to write the
 
 \devnote{Write about predefined special functions like
 \texttt{MeshSize} and \texttt{FacetNormal}.}
+
+\subsection{Simple definition of functions in Python}
+
+\devnote{This is a verbatim copy from the mailing list. It should be
+edited for the manual.}
+
+\footnotesize
+\begin{verbatim}
+On Wed, Jun 04, 2008 at 12:44:17PM +0200, Martin Sandve Alnaes wrote:
+2008/6/3 Anders Logg <logg@simula.no>:
+On Tue, Jun 03, 2008 at 11:23:41PM +0200, Martin Sandve Alnaes wrote:
+>> It's easy with some helper functions I have, I can show you tomorrow.
+>> It only depends on dolfin::Function (i.e. dolfin.cpp_Function) and Instant.
+>
+> ok, nice. Maybe we can add the helper functions to assemble.py.
+
+Now you can do things like this:
+
+A = assemble(..., coefficients=[myfunction, 1.23, "sin(x[0])"])
+
+1.23 is wrapped in a cpp_Function (i.e. a constant Function), and
+the string is compiled as a C++ dolfin::Function like "v[0] = ...;".
+
+If you want more control over the implementation
+(i.e. temporary variables in eval for efficiency, if-checks, etc.)
+you can also do this:
+
+code = """
+class F: dolfin::Function {
+ ...
+};
+class G: dolfin::Function {
+ ...
+};
+"""
+
+f, g = compile_functions(code, mesh)
+
+
+Or, if you just want to precompile but don't need anything too fancy:
+
+expressions = ["sin(x[0])",
+                         ("a*x[1]", "b*x[0]")]
+f, g = compile_functions(expressions, mesh)
+assert f.rank() == 0
+assert g.rank() == 1
+g.a = 1.23
+g.b = 3.21
+
+Note that:
+- a tuple is interpreted as a vector expression
+
+- a tuple of tuples is interpreted as a matrix expression
+
+- variables like a and b in the strings above are detected
+  automatically, but this requires all builtin names to be
+  registered in the variable dolfin.compile_functions._builtins,
+  which currently contains some common mathematical
+  functions like sqrt, pow, exp, sin, pi etc.
+
+- variables are initialized to 0.0, so use compile_functions if
+  you need control over variable values.
+
+- assemble also accepts tuples like in compile_functions
+
+- assemble only calls on instant once independently of
+  the number of string expressions, to reduce compilation time
+
+- Error checks are not extensive!
+\end{verbatim}
+\normalsize

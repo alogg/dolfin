@@ -1,0 +1,11 @@
+# Copyright (C) 2005-2007 Anders Logg.
+# Licensed under the GNU LGPL Version 2.1.
+
+element = FiniteElement("Lagrange", "triangle", 1)
+
+v = TestFunction(element)
+u = TrialFunction(element)
+f = Function(element)
+
+a = dot(grad(v), grad(u))*dx
+L = v*f*dx
