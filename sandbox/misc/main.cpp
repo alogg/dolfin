@@ -1,19 +1,14 @@
 // Place for random tests
 
 #include <dolfin.h>
+#include "Poisson.h"
 
 using namespace dolfin;
 
 int main()
 {
-  Table table;
+  std::tr1::shared_ptr<Vector> x(new Vector);
 
-  table("uBLAS",  "Assemble") = 0.010;
-  table("uBLAS",  "Solve")    = 0.020;
-  table("PETSc",  "Assemble") = 0.011;
-  table("PETSc",  "Solve")    = 0.019;
-  table("Epetra", "Assemble") = 0.012;
-  table("Epetra", "Solve")    = 0.018;
+  std::cout << "Testing " << x << std::endl; 
 
-  table.disp();
 }
