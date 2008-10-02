@@ -61,15 +61,15 @@ namespace dolfin
     }
 
     /// Add block of values
-    void add(const real* block, 
+    void add(const double* block, 
 	     uint m, const uint* rows, 
 	     uint n, const uint* cols)
     {
       if(!ins)
      	ins = new mtl::matrix::
-     	  inserter<MTL4_sparse_matrix, mtl::update_plus<real> >(A, nnz_row);
+     	  inserter<MTL4_sparse_matrix, mtl::update_plus<double> >(A, nnz_row);
 
-      real val;
+      double val;
       for (uint i = 0; i < m; i++)
      	for (uint j = 0; j < n; j++)
      	  {
@@ -80,13 +80,13 @@ namespace dolfin
     }
 
     /// Add block of values
-    void add_II(const real* block, 
+    void add_II(const double* block, 
 		uint m, const uint* rows, 
 		uint n, const uint* cols)
     {
       if(!ins)
     	ins = new mtl::matrix::
-    	  inserter<MTL4_sparse_matrix, mtl::update_plus<real> >(A, nnz_row);
+    	  inserter<MTL4_sparse_matrix, mtl::update_plus<double> >(A, nnz_row);
 
       error("Funcion add_II needs to be debugged.");
       //mtl::dense_vector<const uint> row(m,rows);
@@ -102,14 +102,14 @@ namespace dolfin
     {
       if(!ins)
 	ins = new mtl::matrix::
-	  inserter<MTL4_sparse_matrix, mtl::update_plus<real> >(A, nnz_row);
+	  inserter<MTL4_sparse_matrix, mtl::update_plus<double> >(A, nnz_row);
 
       (*ins) << mtl::element_matrix(block, rows, cols);
     }
 
     /// Add block of values
     inline 
-    void add(const real* block, const uint* num_rows, 
+    void add(const double* block, const uint* num_rows, 
 	     const uint * const * rows)
     { 
       add(block, num_rows[0], rows[0], num_rows[1], rows[1]);
@@ -132,7 +132,7 @@ namespace dolfin
   private:
 
     MTL4_sparse_matrix A;
-    mtl::matrix::inserter<MTL4_sparse_matrix, mtl::update_plus<real> >* ins;
+    mtl::matrix::inserter<MTL4_sparse_matrix, mtl::update_plus<double> >* ins;
     uint nnz_row;
   };
 }

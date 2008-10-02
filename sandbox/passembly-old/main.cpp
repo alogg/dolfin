@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
   tic();
   MatAssemblyBegin(A, MAT_FINAL_ASSEMBLY);
   MatAssemblyEnd(A, MAT_FINAL_ASSEMBLY);
-  real time2 = toc();
+  double time2 = toc();
   cout << "Finished finalise assembly " << this_process << "  " << time2 << endl;
 
   // View matrix
@@ -142,7 +142,7 @@ int main(int argc, char* argv[])
   Matrix B;
   Assembler assembler;
   assembler.assemble(B, a, mesh);
-  real time1 = toc();
+  double time1 = toc();
   cout << "Standard assemble time " << time1 << endl;
 */
 
@@ -173,7 +173,7 @@ int main(int argc, char* argv[])
   MatZeroRowsIS(A, is, one);
   ISDestroy(is);
 
-  real bc_values[3] = {0, 0, 0};
+  double bc_values[3] = {0, 0, 0};
   VecSetValues(b, nrows, rows, bc_values, INSERT_VALUES);
   VecAssemblyBegin(b);
   VecAssemblyEnd(b);

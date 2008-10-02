@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
   int NA = meshA.numVertices();
 
   // Generate some values for fA
-  real* arr = new real[NA];
+  double* arr = new double[NA];
   for (VertexIterator v(meshA); !v.end(); ++v)
   {
     int id = v->index();

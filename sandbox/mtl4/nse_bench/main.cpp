@@ -15,7 +15,7 @@ int main(int args, char* argv[])
 
   // Create mesh and forms
   UnitCube mesh(N, N, N);
-  Array<real> f_array(0.0, 0.0, 1.0);
+  Array<double> f_array(0.0, 0.0, 1.0);
   Function f_vec(mesh, f_array);
   Function f_scalar(mesh, 1.0);
   NSEMomentum3DBilinearForm a(f_vec, f_scalar, f_scalar, f_scalar, f_scalar);
@@ -27,18 +27,18 @@ int main(int args, char* argv[])
 
   tic(); 
   ass_ublas.assemble(A_ublas, a); 
-  real ublas_assembly = toc();
+  double ublas_assembly = toc();
   cout << "Assembly time: " << ublas_assembly << endl;
 
   tic(); 
   ass_ublas.assemble(A_ublas, a, false); 
-  real ublas_reassembly = toc();
+  double ublas_reassembly = toc();
   cout << "Re-assembly time: " << ublas_reassembly << endl;
 
   Vector b_ublas;
   tic(); 
   ass_ublas.assemble(b_ublas, L); 
-  real ublas_vector_assembly = toc();
+  double ublas_vector_assembly = toc();
 
   printf("MTL4 with specified number of nonzeros----------------------\n");
   Assembler ass_mtl4(mesh); 
@@ -46,12 +46,12 @@ int main(int args, char* argv[])
 
   tic(); 
   ass_mtl4.assemble(A_mtl4, a, false); 
-  real mtl4_assembly_spec = toc();
+  double mtl4_assembly_spec = toc();
   cout << "Assembly time: " << mtl4_assembly_spec << endl;
 
   tic(); 
   ass_mtl4.assemble(A_mtl4, a, false); 
-  real mtl4_reassembly_spec = toc();
+  double mtl4_reassembly_spec = toc();
   cout << "Re-assembly time: " << mtl4_reassembly_spec << endl;
 
   printf("MTL4 without specified numer of nonzeros---------------------\n");
@@ -60,18 +60,18 @@ int main(int args, char* argv[])
 
   tic(); 
   ass_mtl4b.assemble(A_mtl4b, a, false); 
-  real mtl4_assembly = toc();
+  double mtl4_assembly = toc();
   cout << "Assembly time: " << mtl4_assembly << endl;
 
   tic(); 
   ass_mtl4b.assemble(A_mtl4b, a, false); 
-  real mtl4_reassembly = toc();
+  double mtl4_reassembly = toc();
   cout << "Re-assembly time: " << mtl4_reassembly << endl;
 
   MTL4Vector b_mtl4b(A_ublas.size(0));
   tic();
   ass_mtl4b.assemble(b_mtl4b, L, false);
-  real mtl4_vector_assembly = toc();
+  double mtl4_vector_assembly = toc();
   cout << "Vector assembly time: " << mtl4_vector_assembly << endl;
 
   cout << "-------------------------------------" << endl;

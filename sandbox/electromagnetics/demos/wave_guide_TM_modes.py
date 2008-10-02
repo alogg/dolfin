@@ -63,8 +63,8 @@ A = N.dot(N.linalg.inv(T.array()), S.array())
 # U is a vector of eigenvalues and V is a matrix of corresponding eigenvectors
 (U, V) = N.linalg.eig(A)
 
-# the result should have real eigenvalues but due to rounding errors, some of the resultant eigenvalues are very small complex values.
-# only consider the real part
+# the result should have double eigenvalues but due to rounding errors, some of the resultant eigenvalues are very small complex values.
+# only consider the double part
 U = U.real
 
 # Now, the system contains a number of zero eigenvalues (near zero due to rounding) which are eigenvalues corresponding to the null-space

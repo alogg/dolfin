@@ -468,7 +468,7 @@ This class is a wrapper for a standard real-valued ODE, and provides
 an interface that automatically translates the given complex-valued
 ODE of size n to a standard real-valued ODE of size N = 2n.
 
-The real and imaginary parts of the solution are stored in the
+The double and imaginary parts of the solution are stored in the
 following order in the solution vector u(t):
 
 u = (Re z0, Im z0, Re z1, Im z1, ..., Re z_n-1, Im z_n-1).
@@ -1370,7 +1370,7 @@ defined function). ";
 // File: classdolfin_1_1GaussianQuadrature.xml
 %feature("docstring") dolfin::GaussianQuadrature "
 
-Gaussian-type quadrature rule on the real line, including Gauss,
+Gaussian-type quadrature rule on the double line, including Gauss,
 Radau, and Lobatto quadrature.
 
 Points and weights are computed to be exact within a tolerance of
@@ -3533,7 +3533,7 @@ Save sample (optional). ";
 
 %feature("docstring")  dolfin::ODE::time "
 
-Return real time (might be flipped backwards for dual). ";
+Return double time (might be flipped backwards for dual). ";
 
 %feature("docstring")  dolfin::ODE::sparse "
 

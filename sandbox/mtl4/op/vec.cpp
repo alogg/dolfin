@@ -35,7 +35,7 @@ int main(int args, char* argv[])
 
   cout << x.size() << endl;
 
-  real val[9];
+  double val[9];
   x.get(val);
 
   for(int i=0; i<9; i++) cout << val[i] << " ";
@@ -48,14 +48,14 @@ int main(int args, char* argv[])
   x.add(val);
   x.disp();
 
-  real vval[2];
+  double vval[2];
   dolfin::uint cols[2] = {0, 2};
   x.get(vval, 2, cols);
 
   for(int i=0; i<2; i++) cout << vval[i] << " ";
   cout << endl;
 
-  real dot = x.inner(x);
+  double dot = x.inner(x);
   cout << dot << endl;
 
   y = 3.14;
