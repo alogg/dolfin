@@ -28,7 +28,7 @@ public:
 
   RationalRationalCES(unsigned int m, unsigned int n) : Economy(m, n)
   {
-    b = new real[m];
+    b = new double[m];
     for (unsigned int i = 0; i < m; i++)
       b[i] = 0.0;
     
@@ -179,7 +179,7 @@ public:
   }
   
   // Vector of exponents
-  real* b;
+  double* b;
   
 };
 
@@ -191,7 +191,7 @@ public:
 
   PolynomialRationalCES(unsigned int m, unsigned int n) : Economy(m, n)
   {
-    b = new real[m];
+    b = new double[m];
     for (unsigned int i = 0; i < m; i++)
       b[i] = 0.0;
 
@@ -210,7 +210,7 @@ public:
     y[0] = zsum - 1.0;
     
     // Precompute scalar products
-    real bsum = 0.0;
+    double bsum = 0.0;
     for (unsigned int i = 0; i < m; i++)
     {
       tmp0[i] = dot(w[i], z);
@@ -236,7 +236,7 @@ public:
       const complex tmp = pow(z[j], bsum) * product;
       for (unsigned int i = 0; i < m; i++)
       {
-	const real di = bsum - b[i];
+	const double di = bsum - b[i];
 	sum += a[i][j] * tmp0[i] * pow(z[j], di) * product / tmp1[i];
 	sum -= w[i][j] * tmp;
       }
@@ -252,7 +252,7 @@ public:
     y[0] = xsum;
 
     // Precompute scalar products
-    real bsum = 0.0;
+    double bsum = 0.0;
     for (unsigned int i = 0; i < m; i++)
     {
       tmp0[i] = dot(w[i], z);
@@ -283,7 +283,7 @@ public:
       complex sum = 0.0;
       for (unsigned int i = 0; i < m; i++)
       {
-	const real di = bsum - b[i];
+	const double di = bsum - b[i];
 	
 	// First term
 	sum += a[i][j]*(tmp2[i]*pow(z[j], di) + tmp0[i]*di*pow(z[j], di-1.0)*x[j]) *
@@ -315,7 +315,7 @@ public:
   }
   
   // Vector of exponents
-  real* b;
+  double* b;
 
 };
 
@@ -388,7 +388,7 @@ public:
   void JF(const complex z[], const complex x[], complex y[])
   {
     // First equation: normalization
-    const complex xsum = static_cast<real>(alpha) * bdot(x, z, alpha - 1);
+    const complex xsum = static_cast<double>(alpha) * bdot(x, z, alpha - 1);
     y[0] = xsum;
 
     // Precompute scalar products
@@ -410,7 +410,7 @@ public:
     // Precompute sum of all terms
     complex rsum = 0.0;
     for (unsigned int r = 0; r < m; r++)
-      rsum += static_cast<real>(alpha - beta[r]) * tmp3[r] * product / tmp1[r];
+      rsum += static_cast<double>(alpha - beta[r]) * tmp3[r] * product / tmp1[r];
 
     // Add terms of Jacobian
     for (unsigned int j = 1; j < n; j++)
@@ -419,19 +419,19 @@ public:
       for (unsigned int i = 0; i < m; i++)
       {
 	// First term and second terms
-	sum += a[i][j]*(static_cast<real>(alpha)*tmp2[i]*pow(z[j], bsum - beta[i]) + 
-			tmp0[i]*static_cast<real>(bsum - beta[i])*
+	sum += a[i][j]*(static_cast<double>(alpha)*tmp2[i]*pow(z[j], bsum - beta[i]) + 
+			tmp0[i]*static_cast<double>(bsum - beta[i])*
 			pow(z[j], bsum - beta[i] - 1)*x[j]) * product / tmp1[i];
 
 	// Third term
 	complex tmp = 0.0;
 	for (unsigned int r = 0; r < m; r++)
 	  if ( r != i )
-	    tmp += static_cast<real>(alpha - beta[r]) * tmp3[r] * product / (tmp1[r] * tmp1[i]);
+	    tmp += static_cast<double>(alpha - beta[r]) * tmp3[r] * product / (tmp1[r] * tmp1[i]);
 	sum += a[i][j] * tmp0[i] * pow(z[j], bsum - beta[i]) * tmp;
 
 	// Forth term
-	sum -= w[i][j] * static_cast<real>(bsum) * pow(z[j], bsum - 1) * x[j] * product;
+	sum -= w[i][j] * static_cast<double>(bsum) * pow(z[j], bsum - 1) * x[j] * product;
 
 	// Fifth term
 	sum -= w[i][j] * pow(z[j], bsum) * rsum;
@@ -471,7 +471,7 @@ public:
     // Precompute scalar products
     for (unsigned int i = 0; i < m; i++)
     {
-      const real bi = static_cast<real>(beta[i]) / static_cast<real>(alpha);
+      const double bi = static_cast<double>(beta[i]) / static_cast<double>(alpha);
       tmp0[i] = dot(w[i], z) / bdot(a[i], z, 1.0 - bi);
     }    
 
@@ -479,7 +479,7 @@ public:
     complex sum = 0.0;
     for (unsigned int i = 0; i < m; i++)
     {
-      const real bi = static_cast<real>(beta[i]) / static_cast<real>(alpha);
+      const double bi = static_cast<double>(beta[i]) / static_cast<double>(alpha);
       sum += a[i][0] * tmp0[i] / pow(z[0], bi) - w[i][0];
     }
     if ( std::abs(sum) < tol )
@@ -491,13 +491,13 @@ public:
     }
 
     // Check remaining equations
-    real maxsum = 0.0;
+    double maxsum = 0.0;
     for (unsigned int j = 1; j < n; j++)
     {
       complex sum = 0.0;
       for (unsigned int i = 0; i < m; i++)
       {
-	const real bi = static_cast<real>(beta[i]) / static_cast<real>(alpha);
+	const double bi = static_cast<double>(beta[i]) / static_cast<double>(alpha);
 	sum += a[i][j] * tmp0[i] / pow(z[j], bi) - w[i][j];
       }
       maxsum = std::max(maxsum, std::abs(sum));
@@ -513,16 +513,16 @@ public:
     // Check if solution is real-valued
     if ( real_valued )
     {
-      bool all_real = true;
+      bool all_double = true;
       for (unsigned int j = 0; j < n; j++)
       {
 	if ( std::abs(z[j].imag()) > tol )
 	{
-	  all_real = false;
+	  all_double = false;
 	  break;
 	}
       }
-      if ( all_real )
+      if ( all_double )
 	message("  - Real-valued:    ok");
       else
       {

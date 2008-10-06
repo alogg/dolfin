@@ -20,7 +20,7 @@ public:
   
   Source3D(Mesh& mesh) : Function(mesh) {}
 
-  real eval(const real* x) const
+  double eval(const double* x) const
   {
     return 3.0*DOLFIN_PI*DOLFIN_PI*sin(DOLFIN_PI*x[0])*sin(DOLFIN_PI*x[1])*sin(DOLFIN_PI*x[2]);
   }

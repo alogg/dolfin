@@ -43,10 +43,10 @@ The following code demonstrates how to access the size and the
 elements of a matrix and a vector:
 \begin{code}
 A(5, 5) = 1.0;
-real a = A(4, 3);
+double a = A(4, 3);
 
 x(3) = 2.0;
-real b = x(5);
+double b = x(5);
 
 unsigned int M = A.size(0);
 unsigned int N = A.size(1);
@@ -57,7 +57,7 @@ N = x.size();
 In addition, \dolfin{} provides optimized functions for setting the
 values of a set of entries in a matrix or vector:
 \begin{code}
-real block[] = {2, 4, 6};
+double block[] = {2, 4, 6};
 int rows[] = {0, 1, 2};
 int cols[] = {0, 1, 2};
   
@@ -67,7 +67,7 @@ Alternatively, the set of values given by the array \texttt{block} can
 be added to the entries given by the arrays \texttt{rows} and
 \texttt{cols}:
 \begin{code}
-real block[] = {2, 4, 6};
+double block[] = {2, 4, 6};
 int rows[] = {0, 1, 2};
 int cols[] = {0, 1, 2};
   
@@ -287,13 +287,13 @@ the following code demonstrates how to compute the first eigenpair:
 SLEPcEigenvalueSolver esolver; 
 esolver.solve(A);
 
-real lr, lc;
+double lr, lc;
 PETScVector xr, xc;
 esolver.getEigenpair(lr, lc, xr, xc, 0);
 \end{code} 
 %
-The real and complex components of the eigenvalue are returned in \texttt{lr}
-and \texttt{lc}, respectively, and the real and complex parts of the eigenvector
+The double and complex components of the eigenvalue are returned in \texttt{lr}
+and \texttt{lc}, respectively, and the double and complex parts of the eigenvector
 are returned in \texttt{xr} and \texttt{xc}, respectively.
 
 For the generalized eigenvalue problem
@@ -305,7 +305,7 @@ the following code demonstrates how to compute the third eigenpair:
 PETScEigenvalueSolver esolver; 
 esolver.solve(A, B);
 
-real lr, lc;
+double lr, lc;
 PETScVector xr, xc;
 esolver.getEigenpair(lr, lc, xr, xc, 2);
 \end{code} 

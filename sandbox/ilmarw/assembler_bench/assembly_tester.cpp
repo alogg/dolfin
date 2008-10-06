@@ -23,10 +23,10 @@ void dolfin::assembly_tester(Mesh& mesh, Form& a, std::string name, int n_reasm)
     
     tic();
     ass.assemble(A,a);
-    real t = toc();
+    double t = toc();
     
     Array<uint> cols;
-    Array<real> vals; 
+    Array<double> vals; 
     uint nnz = 0;
     for (uint i = 0; i < A.size(0); ++i){
       A.getrow(i, cols, vals);
