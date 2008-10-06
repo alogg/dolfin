@@ -738,7 +738,8 @@ Get Dirichlet values and indicators. ";
 
 %feature("docstring")  dolfin::DirichletBC::is_compatible "
 
-Check if given function is compatible with boundary condition. ";
+Check if given function is compatible with boundary condition
+(checking only vertex values). ";
 
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
@@ -1178,6 +1179,47 @@ Create a file with given name and type (format). ";
 Destructor. ";
 
 
+// File: classdolfin_1_1FiniteElement.xml
+%feature("docstring") dolfin::FiniteElement "
+
+This is a wrapper for a UFC finite element (ufc::finite_element).
+
+C++ includes: FiniteElement.h ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create FiniteElement. Object owns ufc::finite_element. ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create FiniteElement. Object may share ufc::finite_element. ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create FiniteElement from a signature. ";
+
+%feature("docstring")  dolfin::FiniteElement::signature "";
+
+%feature("docstring")  dolfin::FiniteElement::value_rank "";
+
+%feature("docstring")  dolfin::FiniteElement::value_dimension "";
+
+%feature("docstring")  dolfin::FiniteElement::num_sub_elements "";
+
+%feature("docstring")  dolfin::FiniteElement::space_dimension "";
+
+%feature("docstring")
+dolfin::FiniteElement::interpolate_vertex_values "";
+
+%feature("docstring")  dolfin::FiniteElement::evaluate_basis "";
+
+%feature("docstring")  dolfin::FiniteElement::evaluate_dof "";
+
+%feature("docstring")  dolfin::FiniteElement::create_sub_element "";
+
+%feature("docstring")  dolfin::FiniteElement::ufc_element "";
+
+
 // File: classdolfin_1_1Form.xml
 %feature("docstring") dolfin::Form "
 
@@ -1349,7 +1391,15 @@ Interpolate function to vertices of mesh. ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
-Interpolate function to finite element space on cell. ";
+Interpolate function to given local finite element space. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to given global finite element space. ";
+
+%feature("docstring")  dolfin::Function::update "
+
+Make current cell and facet available to user-defined function. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
@@ -1485,6 +1535,10 @@ Set block of values. ";
 %feature("docstring")  dolfin::GenericMatrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::GenericMatrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
 
 %feature("docstring")  dolfin::GenericMatrix::getrow "
 
@@ -2392,6 +2446,10 @@ Set block of values. ";
 %feature("docstring")  dolfin::Matrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::Matrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
 
 %feature("docstring")  dolfin::Matrix::getrow "
 
@@ -3557,21 +3615,35 @@ Solve ODE. ";
 
 
 // File: classdolfin_1_1ODESolution.xml
-%feature("docstring") dolfin::ODESolution "";
+%feature("docstring") dolfin::ODESolution "
+
+ODESolution stores the samples from the ODE solver, primarily to be
+able to solve the dual problem. To be able to evaluate the solution in
+an arbitrary point, ODESolution makes a simple linear interpolation
+between the the closest samples. A number of interpolated values is
+cached, since the ODE solver repeatedly requests evaluation of the
+same t.
+
+The samples are stored in memory if possible, otherwise stored in a
+temporary file and fetched from disk in blocks when needed.
+
+C++ includes: ODESolution.h ";
 
 %feature("docstring")  dolfin::ODESolution::ODESolution "
 
 Create solution data for given ODE. ";
 
-%feature("docstring")  dolfin::ODESolution::~ODESolution "";
+%feature("docstring")  dolfin::ODESolution::~ODESolution "
+
+Destructor. ";
 
 %feature("docstring")  dolfin::ODESolution::eval "
 
-Evaluate (interpolate) value og solution at given time. ";
+Evaluate (interpolate) value of solution at given time. ";
 
-%feature("docstring")  dolfin::ODESolution::printVector "
+%feature("docstring")  dolfin::ODESolution::add_sample "";
 
-for testing ";
+%feature("docstring")  dolfin::ODESolution::flush "";
 
 
 // File: classdolfin_1_1OutflowFacet.xml
@@ -4290,6 +4362,10 @@ Set block of values. ";
 
 Add block of values. ";
 
+%feature("docstring")  dolfin::STLMatrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
+
 %feature("docstring")  dolfin::STLMatrix::getrow "
 
 Get non-zero values of given row. ";
@@ -4715,6 +4791,10 @@ Set block of values. ";
 %feature("docstring")  dolfin::uBLASMatrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::uBLASMatrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
 
 %feature("docstring")  dolfin::uBLASMatrix::getrow "
 
@@ -5486,6 +5566,9 @@ domains. ";
 
 
 // File: DofMapSet_8h.xml
+
+
+// File: FiniteElement_8h.xml
 
 
 // File: Form_8h.xml
