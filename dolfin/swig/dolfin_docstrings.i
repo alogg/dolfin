@@ -391,15 +391,7 @@ Evaluate solution at given point. ";
 
 %feature("docstring")  dolfin::cGqMethod::ueval "
 
-Evaluate solution at given point. ";
-
-%feature("docstring")  dolfin::cGqMethod::ueval "
-
 Evaluate solution at given node (inline optimized). ";
-
-%feature("docstring")  dolfin::cGqMethod::residual "
-
-Compute residual at right end-point. ";
 
 %feature("docstring")  dolfin::cGqMethod::residual "
 
@@ -582,15 +574,7 @@ Evaluate solution at given point. ";
 
 %feature("docstring")  dolfin::dGqMethod::ueval "
 
-Evaluate solution at given point. ";
-
-%feature("docstring")  dolfin::dGqMethod::ueval "
-
 Evaluate solution at given node (inline optimized). ";
-
-%feature("docstring")  dolfin::dGqMethod::residual "
-
-Compute residual at right end-point. ";
 
 %feature("docstring")  dolfin::dGqMethod::residual "
 
@@ -1188,11 +1172,17 @@ C++ includes: FiniteElement.h ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create FiniteElement. Object owns ufc::finite_element. ";
+Create finite element from UFC finite element pointer. ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create FiniteElement. Object may share ufc::finite_element. ";
+Create finite element from UFC finite element. ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create finite element from UFC finite element.
+
+Create finite element from UFC finite element (data may be shared) ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
@@ -2005,58 +1995,6 @@ Close graph, finish editing. ";
 This class provides a set of functions to partition a Graph.
 
 C++ includes: GraphPartition.h ";
-
-
-// File: classdolfin_1_1Homotopy.xml
-%feature("docstring") dolfin::Homotopy "";
-
-%feature("docstring")  dolfin::Homotopy::Homotopy "
-
-Create homotopy for system of given size. ";
-
-%feature("docstring")  dolfin::Homotopy::~Homotopy "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::Homotopy::solve "
-
-Solve homotopy. ";
-
-%feature("docstring")  dolfin::Homotopy::solutions "
-
-Return array of solutions found. ";
-
-%feature("docstring")  dolfin::Homotopy::z0 "
-
-Return initial value (solution of G(z) = 0), optional. ";
-
-%feature("docstring")  dolfin::Homotopy::F "
-
-Compute y = F(z). ";
-
-%feature("docstring")  dolfin::Homotopy::JF "
-
-Compute y = F'(z) x. ";
-
-%feature("docstring")  dolfin::Homotopy::G "
-
-Compute y = G(z), optional. ";
-
-%feature("docstring")  dolfin::Homotopy::JG "
-
-Compute y = G'(z) x, optional. ";
-
-%feature("docstring")  dolfin::Homotopy::modify "
-
-Modify or substitute found solution (optional). ";
-
-%feature("docstring")  dolfin::Homotopy::verify "
-
-Check if found solution is correct (optional). ";
-
-%feature("docstring")  dolfin::Homotopy::degree "
-
-Return degree of polynomial F_i(z). ";
 
 
 // File: classdolfin_1_1IntersectionDetector.xml
@@ -3339,15 +3277,7 @@ Evaluate solution at given point. ";
 
 %feature("docstring")  dolfin::Method::ueval "
 
-Evaluate solution at given point. ";
-
-%feature("docstring")  dolfin::Method::ueval "
-
 Evaluate solution at given node. ";
-
-%feature("docstring")  dolfin::Method::residual "
-
-Compute residual at right end-point. ";
 
 %feature("docstring")  dolfin::Method::residual "
 
@@ -3565,8 +3495,8 @@ Compute product y = Jx for Jacobian J (optional). ";
 
 %feature("docstring")  dolfin::ODE::JT "
 
-Compute product y = tranpose(J)x for Jacobian J (optional) Used when
-computing error estimate only ";
+Compute product y = tranpose(J)x for Jacobian J (optional, for dual
+problem). ";
 
 %feature("docstring")  dolfin::ODE::dfdu "
 
@@ -3596,10 +3526,6 @@ Return double time (might be flipped backwards for dual). ";
 %feature("docstring")  dolfin::ODE::sparse "
 
 Automatically detect sparsity (optional). ";
-
-%feature("docstring")  dolfin::ODE::sparse "
-
-Compute sparsity from given matrix (optional). ";
 
 %feature("docstring")  dolfin::ODE::size "
 
@@ -5869,9 +5795,6 @@ domains. ";
 
 
 // File: dGqMethod_8h.xml
-
-
-// File: Homotopy_8h.xml
 
 
 // File: Method_8h.xml
