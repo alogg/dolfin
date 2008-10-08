@@ -126,7 +126,7 @@ public:
     
   Source(Mesh& mesh) : Function(mesh) {}
 
-  real eval(const real* x) const
+  double eval(const double* x) const
   {
     return x[0]*x[1]*sin(x[2] / DOLFIN_PI);
   }
@@ -154,7 +154,7 @@ public:
 
   MeshSize(Mesh& mesh) : Function(mesh) {}
 
-  real eval(const real* x) const
+  double eval(const double* x) const
   {
     return cell().diameter();
   }

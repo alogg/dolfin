@@ -391,15 +391,7 @@ Evaluate solution at given point. ";
 
 %feature("docstring")  dolfin::cGqMethod::ueval "
 
-Evaluate solution at given point. ";
-
-%feature("docstring")  dolfin::cGqMethod::ueval "
-
 Evaluate solution at given node (inline optimized). ";
-
-%feature("docstring")  dolfin::cGqMethod::residual "
-
-Compute residual at right end-point. ";
 
 %feature("docstring")  dolfin::cGqMethod::residual "
 
@@ -468,7 +460,7 @@ This class is a wrapper for a standard real-valued ODE, and provides
 an interface that automatically translates the given complex-valued
 ODE of size n to a standard real-valued ODE of size N = 2n.
 
-The real and imaginary parts of the solution are stored in the
+The double and imaginary parts of the solution are stored in the
 following order in the solution vector u(t):
 
 u = (Re z0, Im z0, Re z1, Im z1, ..., Re z_n-1, Im z_n-1).
@@ -582,15 +574,7 @@ Evaluate solution at given point. ";
 
 %feature("docstring")  dolfin::dGqMethod::ueval "
 
-Evaluate solution at given point. ";
-
-%feature("docstring")  dolfin::dGqMethod::ueval "
-
 Evaluate solution at given node (inline optimized). ";
-
-%feature("docstring")  dolfin::dGqMethod::residual "
-
-Compute residual at right end-point. ";
 
 %feature("docstring")  dolfin::dGqMethod::residual "
 
@@ -738,7 +722,8 @@ Get Dirichlet values and indicators. ";
 
 %feature("docstring")  dolfin::DirichletBC::is_compatible "
 
-Check if given function is compatible with boundary condition. ";
+Check if given function is compatible with boundary condition
+(checking only vertex values). ";
 
 %feature("docstring")  dolfin::DirichletBC::mesh "
 
@@ -1178,6 +1163,53 @@ Create a file with given name and type (format). ";
 Destructor. ";
 
 
+// File: classdolfin_1_1FiniteElement.xml
+%feature("docstring") dolfin::FiniteElement "
+
+This is a wrapper for a UFC finite element (ufc::finite_element).
+
+C++ includes: FiniteElement.h ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create finite element from UFC finite element pointer. ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create finite element from UFC finite element. ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create finite element from UFC finite element.
+
+Create finite element from UFC finite element (data may be shared) ";
+
+%feature("docstring")  dolfin::FiniteElement::FiniteElement "
+
+Create FiniteElement from a signature. ";
+
+%feature("docstring")  dolfin::FiniteElement::signature "";
+
+%feature("docstring")  dolfin::FiniteElement::value_rank "";
+
+%feature("docstring")  dolfin::FiniteElement::value_dimension "";
+
+%feature("docstring")  dolfin::FiniteElement::num_sub_elements "";
+
+%feature("docstring")  dolfin::FiniteElement::space_dimension "";
+
+%feature("docstring")
+dolfin::FiniteElement::interpolate_vertex_values "";
+
+%feature("docstring")  dolfin::FiniteElement::evaluate_basis "";
+
+%feature("docstring")  dolfin::FiniteElement::evaluate_dof "";
+
+%feature("docstring")  dolfin::FiniteElement::create_sub_element "";
+
+%feature("docstring")  dolfin::FiniteElement::ufc_element "";
+
+
 // File: classdolfin_1_1Form.xml
 %feature("docstring") dolfin::Form "
 
@@ -1349,7 +1381,15 @@ Interpolate function to vertices of mesh. ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
-Interpolate function to finite element space on cell. ";
+Interpolate function to given local finite element space. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to given global finite element space. ";
+
+%feature("docstring")  dolfin::Function::update "
+
+Make current cell and facet available to user-defined function. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
@@ -1370,7 +1410,7 @@ defined function). ";
 // File: classdolfin_1_1GaussianQuadrature.xml
 %feature("docstring") dolfin::GaussianQuadrature "
 
-Gaussian-type quadrature rule on the real line, including Gauss,
+Gaussian-type quadrature rule on the double line, including Gauss,
 Radau, and Lobatto quadrature.
 
 Points and weights are computed to be exact within a tolerance of
@@ -1485,6 +1525,10 @@ Set block of values. ";
 %feature("docstring")  dolfin::GenericMatrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::GenericMatrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
 
 %feature("docstring")  dolfin::GenericMatrix::getrow "
 
@@ -1953,58 +1997,6 @@ This class provides a set of functions to partition a Graph.
 C++ includes: GraphPartition.h ";
 
 
-// File: classdolfin_1_1Homotopy.xml
-%feature("docstring") dolfin::Homotopy "";
-
-%feature("docstring")  dolfin::Homotopy::Homotopy "
-
-Create homotopy for system of given size. ";
-
-%feature("docstring")  dolfin::Homotopy::~Homotopy "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::Homotopy::solve "
-
-Solve homotopy. ";
-
-%feature("docstring")  dolfin::Homotopy::solutions "
-
-Return array of solutions found. ";
-
-%feature("docstring")  dolfin::Homotopy::z0 "
-
-Return initial value (solution of G(z) = 0), optional. ";
-
-%feature("docstring")  dolfin::Homotopy::F "
-
-Compute y = F(z). ";
-
-%feature("docstring")  dolfin::Homotopy::JF "
-
-Compute y = F'(z) x. ";
-
-%feature("docstring")  dolfin::Homotopy::G "
-
-Compute y = G(z), optional. ";
-
-%feature("docstring")  dolfin::Homotopy::JG "
-
-Compute y = G'(z) x, optional. ";
-
-%feature("docstring")  dolfin::Homotopy::modify "
-
-Modify or substitute found solution (optional). ";
-
-%feature("docstring")  dolfin::Homotopy::verify "
-
-Check if found solution is correct (optional). ";
-
-%feature("docstring")  dolfin::Homotopy::degree "
-
-Return degree of polynomial F_i(z). ";
-
-
 // File: classdolfin_1_1IntersectionDetector.xml
 %feature("docstring") dolfin::IntersectionDetector "";
 
@@ -2392,6 +2384,10 @@ Set block of values. ";
 %feature("docstring")  dolfin::Matrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::Matrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
 
 %feature("docstring")  dolfin::Matrix::getrow "
 
@@ -3281,15 +3277,7 @@ Evaluate solution at given point. ";
 
 %feature("docstring")  dolfin::Method::ueval "
 
-Evaluate solution at given point. ";
-
-%feature("docstring")  dolfin::Method::ueval "
-
 Evaluate solution at given node. ";
-
-%feature("docstring")  dolfin::Method::residual "
-
-Compute residual at right end-point. ";
 
 %feature("docstring")  dolfin::Method::residual "
 
@@ -3507,8 +3495,8 @@ Compute product y = Jx for Jacobian J (optional). ";
 
 %feature("docstring")  dolfin::ODE::JT "
 
-Compute product y = tranpose(J)x for Jacobian J (optional) Used when
-computing error estimate only ";
+Compute product y = tranpose(J)x for Jacobian J (optional, for dual
+problem). ";
 
 %feature("docstring")  dolfin::ODE::dfdu "
 
@@ -3533,15 +3521,11 @@ Save sample (optional). ";
 
 %feature("docstring")  dolfin::ODE::time "
 
-Return real time (might be flipped backwards for dual). ";
+Return double time (might be flipped backwards for dual). ";
 
 %feature("docstring")  dolfin::ODE::sparse "
 
 Automatically detect sparsity (optional). ";
-
-%feature("docstring")  dolfin::ODE::sparse "
-
-Compute sparsity from given matrix (optional). ";
 
 %feature("docstring")  dolfin::ODE::size "
 
@@ -3557,21 +3541,35 @@ Solve ODE. ";
 
 
 // File: classdolfin_1_1ODESolution.xml
-%feature("docstring") dolfin::ODESolution "";
+%feature("docstring") dolfin::ODESolution "
+
+ODESolution stores the samples from the ODE solver, primarily to be
+able to solve the dual problem. To be able to evaluate the solution in
+an arbitrary point, ODESolution makes a simple linear interpolation
+between the the closest samples. A number of interpolated values is
+cached, since the ODE solver repeatedly requests evaluation of the
+same t.
+
+The samples are stored in memory if possible, otherwise stored in a
+temporary file and fetched from disk in blocks when needed.
+
+C++ includes: ODESolution.h ";
 
 %feature("docstring")  dolfin::ODESolution::ODESolution "
 
 Create solution data for given ODE. ";
 
-%feature("docstring")  dolfin::ODESolution::~ODESolution "";
+%feature("docstring")  dolfin::ODESolution::~ODESolution "
+
+Destructor. ";
 
 %feature("docstring")  dolfin::ODESolution::eval "
 
-Evaluate (interpolate) value og solution at given time. ";
+Evaluate (interpolate) value of solution at given time. ";
 
-%feature("docstring")  dolfin::ODESolution::printVector "
+%feature("docstring")  dolfin::ODESolution::add_sample "";
 
-for testing ";
+%feature("docstring")  dolfin::ODESolution::flush "";
 
 
 // File: classdolfin_1_1OutflowFacet.xml
@@ -4290,6 +4288,10 @@ Set block of values. ";
 
 Add block of values. ";
 
+%feature("docstring")  dolfin::STLMatrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
+
 %feature("docstring")  dolfin::STLMatrix::getrow "
 
 Get non-zero values of given row. ";
@@ -4715,6 +4717,10 @@ Set block of values. ";
 %feature("docstring")  dolfin::uBLASMatrix::add "
 
 Add block of values. ";
+
+%feature("docstring")  dolfin::uBLASMatrix::axpy "
+
+Add multiple of given matrix (AXPY operation). ";
 
 %feature("docstring")  dolfin::uBLASMatrix::getrow "
 
@@ -5488,6 +5494,9 @@ domains. ";
 // File: DofMapSet_8h.xml
 
 
+// File: FiniteElement_8h.xml
+
+
 // File: Form_8h.xml
 
 
@@ -5786,9 +5795,6 @@ domains. ";
 
 
 // File: dGqMethod_8h.xml
-
-
-// File: Homotopy_8h.xml
 
 
 // File: Method_8h.xml

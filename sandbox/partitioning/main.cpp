@@ -17,7 +17,7 @@ void partition(Mesh& mesh, int num_part, int max_cells, char* filename,
     Graph graph(mesh);
     parts.init(mesh, mesh.topology().dim());
 
-    real time = 0;
+    double time = 0;
     int runs = 0;
 
     std::cout << "\nPartitioning mesh with " << num_cells << " cells" << std::endl;
@@ -29,7 +29,7 @@ void partition(Mesh& mesh, int num_part, int max_cells, char* filename,
       runs++;
     }
     while(time < 1);
-    real runtime = time/runs;
+    double runtime = time/runs;
     int edgecut = GraphPartition::edgecut(graph, num_part, parts.values());
 
     resultfile << num_cells << " " << runtime << " " << edgecut << std::endl;

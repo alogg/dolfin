@@ -41,7 +41,7 @@ int main(int args, char* argv[])
   A.mult(x, y);
   y.disp();
 
-  real block[] = {10, 20, 30, 40};
+  double block[] = {10, 20, 30, 40};
   dolfin::uint rows[] = {1, 4};
   dolfin::uint cols[] = {0, 2};
 
@@ -61,7 +61,7 @@ int main(int args, char* argv[])
   C->apply();
   C->disp();
 
-  Array<real> val;
+  Array<double> val;
   Array<dolfin::uint> col;
   A.getrow(4,col,val);
 

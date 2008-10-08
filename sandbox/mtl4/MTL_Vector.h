@@ -51,7 +51,7 @@ namespace dolfin
     void apply(){}
 
     inline
-    void add(const real* block, uint m, const uint* rows)
+    void add(const double* block, uint m, const uint* rows)
     {
       for (uint i = 0; i < m; i++)
 	v[ rows[i] ] += block[i];
@@ -59,7 +59,7 @@ namespace dolfin
 
     /// Add block of values
     inline 
-    void add(const real* block, const uint* num_rows, 
+    void add(const double* block, const uint* num_rows, 
 	     const uint * const * rows)
     { 
       add(block, num_rows[0], rows[0]);
