@@ -801,10 +801,6 @@ Tabulate the local-to-global mapping of dofs on a ufc cell. ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "";
 
-%feature("docstring")  dolfin::DofMap::extractDofMap "
-
-Extract sub dof map. ";
-
 %feature("docstring")  dolfin::DofMap::mesh "
 
 Return mesh associated with map. ";
@@ -816,6 +812,14 @@ Build parallel dof map. ";
 %feature("docstring")  dolfin::DofMap::getMap "
 
 Return renumbering (used for testing). ";
+
+%feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
+
+Extract sub dofmap and offset for sub system. ";
+
+%feature("docstring")  dolfin::DofMap::offset "
+
+Return offset into parent's vector of coefficients. ";
 
 %feature("docstring")  dolfin::DofMap::disp "
 
@@ -1208,6 +1212,10 @@ dolfin::FiniteElement::interpolate_vertex_values "";
 %feature("docstring")  dolfin::FiniteElement::create_sub_element "";
 
 %feature("docstring")  dolfin::FiniteElement::ufc_element "";
+
+%feature("docstring")  dolfin::FiniteElement::extract_sub_element "
+
+Extract sub finite element for sub system. ";
 
 
 // File: classdolfin_1_1Form.xml
@@ -2010,21 +2018,37 @@ dolfin::IntersectionDetector::~IntersectionDetector "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::IntersectionDetector::overlap "
+%feature("docstring")  dolfin::IntersectionDetector::intersection "
 
 Compute cells overlapping point. ";
 
-%feature("docstring")  dolfin::IntersectionDetector::overlap "
+%feature("docstring")  dolfin::IntersectionDetector::intersection "
 
 Compute cells overlapping line defined by points. ";
 
-%feature("docstring")  dolfin::IntersectionDetector::overlap "
+%feature("docstring")  dolfin::IntersectionDetector::intersection "
 
 Compute cells overlapping cell. ";
 
-%feature("docstring")  dolfin::IntersectionDetector::overlap "
+%feature("docstring")  dolfin::IntersectionDetector::intersection "
 
 Compute overlap with curve defined by points. ";
+
+%feature("docstring")  dolfin::IntersectionDetector::intersection "
+
+Compute overlap with mesh. ";
+
+
+// File: classdolfin_1_1Interval.xml
+%feature("docstring") dolfin::Interval "
+
+Interval mesh of the 1D line (a,b). Given the number of cells (nx) in
+the axial direction, the total number of intervals will be nx and the
+total number of vertices will be (nx + 1).
+
+C++ includes: Interval.h ";
+
+%feature("docstring")  dolfin::Interval::Interval "";
 
 
 // File: classdolfin_1_1InvFacetArea.xml
@@ -2601,6 +2625,26 @@ Move coordinates of mesh according to new boundary coordinates. ";
 %feature("docstring")  dolfin::Mesh::smooth "
 
 Smooth mesh using Lagrangian mesh smoothing. ";
+
+%feature("docstring")  dolfin::Mesh::intersection "
+
+Compute cells intersecting point. ";
+
+%feature("docstring")  dolfin::Mesh::intersection "
+
+Compute cells overlapping line defined by points. ";
+
+%feature("docstring")  dolfin::Mesh::intersection "
+
+Compute cells overlapping cell. ";
+
+%feature("docstring")  dolfin::Mesh::intersection "
+
+Compute intersection with curve defined by points. ";
+
+%feature("docstring")  dolfin::Mesh::intersection "
+
+Compute intersection with mesh. ";
 
 %feature("docstring")  dolfin::Mesh::partition "
 
@@ -3521,7 +3565,7 @@ Save sample (optional). ";
 
 %feature("docstring")  dolfin::ODE::time "
 
-Return double time (might be flipped backwards for dual). ";
+Return real time (might be flipped backwards for dual). ";
 
 %feature("docstring")  dolfin::ODE::sparse "
 
@@ -4407,10 +4451,6 @@ Copy constructor. ";
 %feature("docstring")  dolfin::SubSystem::depth "
 
 Return number of levels for nested sub system. ";
-
-%feature("docstring")  dolfin::SubSystem::extractFiniteElement "
-
-Extract sub finite element of given finite element. ";
 
 %feature("docstring")  dolfin::SubSystem::array "
 
@@ -5722,6 +5762,9 @@ domains. ";
 // File: IntersectionDetector_8h.xml
 
 
+// File: Interval_8h.xml
+
+
 // File: Mesh_8h.xml
 
 
@@ -5836,56 +5879,56 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_58320a6bee734c3bb6d36183c618bb09.xml
+// File: dir_5ca7b3a157d4a7142baa1050dad97570.xml
 
 
-// File: dir_227a775ba5d95bfcf3e85ed973812fac.xml
+// File: dir_e91ae7897a3e5914b80f3a548313baaa.xml
 
 
-// File: dir_187f3fc9cfd6b0610eb4b1e093db23fa.xml
+// File: dir_e198130c0dff2e86403a40b7106d07a8.xml
 
 
-// File: dir_90934d781c0da6edfbab578a937f610b.xml
+// File: dir_02446b738472c61a01da7873a171f1a3.xml
 
 
-// File: dir_9c0d0547e6b9f173eb8c8d2a4b9512bb.xml
+// File: dir_0f7effc6ed1f15cf7076f0d3ff9a05b6.xml
 
 
-// File: dir_d0a5335d7670987266b54a1776ce2d43.xml
+// File: dir_5990817941c09335862b42e4f1143c34.xml
 
 
-// File: dir_d9ee26b68e49300e50cb9f2e72d1a451.xml
+// File: dir_2e1a011405e4c1654e8033a336f4a512.xml
 
 
-// File: dir_e268708822640923db0bcb1dd75608ad.xml
+// File: dir_e70927cb8ed3b1969accd8bb815561d7.xml
 
 
-// File: dir_a0f91cf1a617114eebdae070a1bb4bc9.xml
+// File: dir_cda1a7f0f2cc2e6837b6894e89b331c3.xml
 
 
-// File: dir_d2d5c0a57403dba66fba0bf3c12aa367.xml
+// File: dir_a215e42d32fd67e6060ed72f7e9c2942.xml
 
 
-// File: dir_77c7a12cc8929b40d8c88c5abcd79a3f.xml
+// File: dir_dacd94c6226558c9fe43c1be6e205623.xml
 
 
-// File: dir_301e97d33edcf82036597d5b43314b9a.xml
+// File: dir_47c2b6d073f32fd034b30bb1ac788ec2.xml
 
 
-// File: dir_db1d9d22381c6c52aea4a708f0fc34c1.xml
+// File: dir_bca407f219e317f49e6543aded458b7f.xml
 
 
-// File: dir_99cfd81db79fd9e090870c834a345872.xml
+// File: dir_6763d21378730374b96d5293fa96b2ac.xml
 
 
-// File: dir_24165f6be95a1e85538bdd342b6068ef.xml
+// File: dir_e46fd323f15fa7213ed5a178fa899b8e.xml
 
 
-// File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
+// File: dir_ff47fa55ef0d9efa8e02643a68f86247.xml
 
 
-// File: dir_181c150be9c9c4eec0f2fcf3af955efd.xml
+// File: dir_319b6df07809d0a0672174a39e4d6e6d.xml
 
 
-// File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
+// File: dir_9de0f03833b00726d2ae5f618b169146.xml
 
