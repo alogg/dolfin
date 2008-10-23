@@ -1368,11 +1368,16 @@ public:
 
 #include <dolfin/fem/Form.h>
 
+namespace dolfin
+{
+  class FunctionSpace;
+}
+
 class Poisson2DBilinearForm : public dolfin::Form
 {
 public:
 
-  Poisson2DBilinearForm() : dolfin::Form()
+  Poisson2DBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(V0, V1)
   {
     // Do nothing
   }
