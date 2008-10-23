@@ -2071,7 +2071,7 @@ public:
     A[11] = 0;
     A[12] = 0.0416666666666666*G0_;
     A[13] = 0.0416666666666666*G0_;
-    A[14] = 0.0833333333333331*G0_;
+    A[14] = 0.0833333333333332*G0_;
     A[15] = 0;
     A[16] = 0;
     A[17] = 0;
@@ -2092,7 +2092,7 @@ public:
     A[32] = 0;
     A[33] = 0.0416666666666666*G0_;
     A[34] = 0.0416666666666666*G0_;
-    A[35] = 0.0833333333333331*G0_;
+    A[35] = 0.0833333333333332*G0_;
   }
 
 };
@@ -4274,10 +4274,10 @@ public:
     // Number of operations to compute tensor = 30
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
     A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333331*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
     A[3] = 0.0833333333333332*G0_3 + 0.0416666666666666*G0_4 + 0.0416666666666666*G0_5;
     A[4] = 0.0416666666666666*G0_3 + 0.0833333333333332*G0_4 + 0.0416666666666666*G0_5;
-    A[5] = 0.0416666666666666*G0_3 + 0.0416666666666666*G0_4 + 0.0833333333333331*G0_5;
+    A[5] = 0.0416666666666666*G0_3 + 0.0416666666666666*G0_4 + 0.0833333333333332*G0_5;
   }
 
 };
@@ -4416,9 +4416,9 @@ public:
   ffc_L2proj_15BilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V1);
+    _function_spaces.push_back(_V1);
 
     _ufc_form = new UFC_ffc_L2proj_15BilinearForm();
 
@@ -4427,8 +4427,8 @@ public:
 
   ffc_L2proj_15BilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
-    function_spaces.push_back(V1);
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
 
     _ufc_form = new UFC_ffc_L2proj_15BilinearForm();
 
@@ -4444,10 +4444,10 @@ public:
   ffc_L2proj_15LinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
 
     std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    coefficients.push_back(_v0);
+    _coefficients.push_back(_v0);
 
     _ufc_form = new UFC_ffc_L2proj_15LinearForm();
 
@@ -4456,9 +4456,9 @@ public:
 
   ffc_L2proj_15LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
+    _function_spaces.push_back(V0);
 
-    coefficients.push_back(v0);
+    _coefficients.push_back(v0);
 
     _ufc_form = new UFC_ffc_L2proj_15LinearForm();
 

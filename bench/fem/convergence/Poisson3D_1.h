@@ -3285,9 +3285,9 @@ public:
   Poisson3D_1BilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V1);
+    _function_spaces.push_back(_V1);
 
     _ufc_form = new UFC_Poisson3D_1BilinearForm();
 
@@ -3296,8 +3296,8 @@ public:
 
   Poisson3D_1BilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
-    function_spaces.push_back(V1);
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
 
     _ufc_form = new UFC_Poisson3D_1BilinearForm();
 
@@ -3313,10 +3313,10 @@ public:
   Poisson3D_1LinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
 
     std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    coefficients.push_back(_v0);
+    _coefficients.push_back(_v0);
 
     _ufc_form = new UFC_Poisson3D_1LinearForm();
 
@@ -3325,9 +3325,9 @@ public:
 
   Poisson3D_1LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
+    _function_spaces.push_back(V0);
 
-    coefficients.push_back(v0);
+    _coefficients.push_back(v0);
 
     _ufc_form = new UFC_Poisson3D_1LinearForm();
 

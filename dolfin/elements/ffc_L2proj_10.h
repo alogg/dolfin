@@ -703,7 +703,7 @@ public:
     A[5] = 0.0416666666666666*G0_;
     A[6] = 0.0416666666666666*G0_;
     A[7] = 0.0416666666666666*G0_;
-    A[8] = 0.0833333333333331*G0_;
+    A[8] = 0.0833333333333332*G0_;
   }
 
 };
@@ -1517,7 +1517,7 @@ public:
     // Number of operations to compute tensor = 15
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
     A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333331*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
   }
 
 };
@@ -1656,9 +1656,9 @@ public:
   ffc_L2proj_10BilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V1);
+    _function_spaces.push_back(_V1);
 
     _ufc_form = new UFC_ffc_L2proj_10BilinearForm();
 
@@ -1667,8 +1667,8 @@ public:
 
   ffc_L2proj_10BilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
-    function_spaces.push_back(V1);
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
 
     _ufc_form = new UFC_ffc_L2proj_10BilinearForm();
 
@@ -1684,10 +1684,10 @@ public:
   ffc_L2proj_10LinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
 
     std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    coefficients.push_back(_v0);
+    _coefficients.push_back(_v0);
 
     _ufc_form = new UFC_ffc_L2proj_10LinearForm();
 
@@ -1696,9 +1696,9 @@ public:
 
   ffc_L2proj_10LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
+    _function_spaces.push_back(V0);
 
-    coefficients.push_back(v0);
+    _coefficients.push_back(v0);
 
     _ufc_form = new UFC_ffc_L2proj_10LinearForm();
 

@@ -2579,9 +2579,9 @@ public:
   DragFunctional(dolfin::Function& v0, dolfin::Function& v1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    coefficients.push_back(_v0);
+    _coefficients.push_back(_v0);
     std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    coefficients.push_back(_v1);
+    _coefficients.push_back(_v1);
 
     _ufc_form = new UFC_DragFunctional();
 
@@ -2590,8 +2590,8 @@ public:
 
   DragFunctional(std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1) : dolfin::Form()
   {
-    coefficients.push_back(v0);
-    coefficients.push_back(v1);
+    _coefficients.push_back(v0);
+    _coefficients.push_back(v1);
 
     _ufc_form = new UFC_DragFunctional();
 

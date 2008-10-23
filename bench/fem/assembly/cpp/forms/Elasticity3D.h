@@ -7188,9 +7188,9 @@ public:
   Elasticity3DBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V0);
+    _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
-    function_spaces.push_back(_V1);
+    _function_spaces.push_back(_V1);
 
     _ufc_form = new UFC_Elasticity3DBilinearForm();
 
@@ -7199,8 +7199,8 @@ public:
 
   Elasticity3DBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
-    function_spaces.push_back(V0);
-    function_spaces.push_back(V1);
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
 
     _ufc_form = new UFC_Elasticity3DBilinearForm();
 

@@ -660,7 +660,7 @@ public:
     
     // Compute element tensor
     // Number of operations to compute tensor = 17
-    A[0] = 0.0833333333333332*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0416666666666666*G0_0_2 + 0.0416666666666666*G0_1_0 + 0.0833333333333332*G0_1_1 + 0.0416666666666666*G0_1_2 + 0.0416666666666666*G0_2_0 + 0.0416666666666666*G0_2_1 + 0.0833333333333331*G0_2_2;
+    A[0] = 0.0833333333333332*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0416666666666666*G0_0_2 + 0.0416666666666666*G0_1_0 + 0.0833333333333332*G0_1_1 + 0.0416666666666666*G0_1_2 + 0.0416666666666666*G0_2_0 + 0.0416666666666666*G0_2_1 + 0.0833333333333332*G0_2_2;
   }
 
 };
@@ -781,7 +781,7 @@ public:
   SimpleFunctional(dolfin::Function& v0) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    coefficients.push_back(_v0);
+    _coefficients.push_back(_v0);
 
     _ufc_form = new UFC_SimpleFunctional();
 
@@ -790,7 +790,7 @@ public:
 
   SimpleFunctional(std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
   {
-    coefficients.push_back(v0);
+    _coefficients.push_back(v0);
 
     _ufc_form = new UFC_SimpleFunctional();
 
