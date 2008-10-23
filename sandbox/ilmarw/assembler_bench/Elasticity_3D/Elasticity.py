@@ -38,4 +38,4 @@ def sigma(v):
 a = dot(grad(v), sigma(u))*dx
 L = dot(v, f)*dx
 
-compile([a, L, M, element], "Elasticity", "tensor", "dolfin", {'quadrature_points=': False, 'blas': False, 'precision=': '15', 'optimize': False})
+compile([a, L, M, element], "Elasticity", {'language': 'dolfin', 'blas': False, 'form_postfix': True, 'precision': '15', 'cpp optimize': False, 'split_implementation': False, 'quadrature_points': False, 'output_dir': '.', 'representation': 'tensor', 'cache_dir': None, 'optimize': False})

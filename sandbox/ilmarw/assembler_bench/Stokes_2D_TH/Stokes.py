@@ -29,4 +29,4 @@ f = Function(P2)
 a = (dot(grad(v), grad(u)) - div(v)*p + q*div(u))*dx
 L = dot(v, f)*dx
 
-compile([a, L, M, element], "Stokes", "tensor", "dolfin", {'quadrature_points=': False, 'blas': False, 'precision=': '15', 'optimize': False})
+compile([a, L, M, element], "Stokes", {'language': 'dolfin', 'blas': False, 'form_postfix': True, 'precision': '15', 'cpp optimize': False, 'split_implementation': False, 'quadrature_points': False, 'output_dir': '.', 'representation': 'tensor', 'cache_dir': None, 'optimize': False})
