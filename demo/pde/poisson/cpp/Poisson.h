@@ -3388,6 +3388,7 @@ public:
 
 namespace dolfin
 {
+  // Forward declarations
   class FunctionSpace;
   class Function;
   class Mesh;
@@ -3512,6 +3513,7 @@ class PoissonBilinearForm : public dolfin::Form
 {
 public:
 
+  // Constructor
   PoissonBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
@@ -3521,9 +3523,10 @@ public:
 
     _ufc_form = new UFC_PoissonBilinearForm();
 
-    check();
+
   }
 
+  // Constructor
   PoissonBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
@@ -3531,8 +3534,11 @@ public:
 
     _ufc_form = new UFC_PoissonBilinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~PoissonBilinearForm() {}
 
 };
 
@@ -3540,14 +3546,23 @@ class PoissonLinearFormCoefficient0 : public dolfin::Coefficient
 {
 public:
 
+  // Constructor
   PoissonLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
+  // Destructor  
   ~PoissonLinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const PoissonLinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
 
   /// Create function space for coefficient
   const dolfin::FunctionSpace* create_function_space() const
   {
-    return new PoissonLinearFormCoefficientSpace0(mesh);
+    return new PoissonLinearFormCoefficientSpace0(form.mesh());
   }
   
   /// Return coefficient number
@@ -3568,14 +3583,23 @@ class PoissonLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
 
+  // Constructor
   PoissonLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
+  // Destructor  
   ~PoissonLinearFormCoefficient1() {}
+
+  // Attach function to coefficient
+  const PoissonLinearFormCoefficient1& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
 
   /// Create function space for coefficient
   const dolfin::FunctionSpace* create_function_space() const
   {
-    return new PoissonLinearFormCoefficientSpace1(mesh);
+    return new PoissonLinearFormCoefficientSpace1(form.mesh());
   }
   
   /// Return coefficient number
@@ -3596,33 +3620,37 @@ class PoissonLinearForm : public dolfin::Form
 {
 public:
 
-  PoissonLinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0, dolfin::Function& v1) : dolfin::Form(), f(*this), g(*this)
+  // Constructor
+  PoissonLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this), g(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
-    std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v1);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_PoissonLinearForm();
 
-    check();
+
   }
 
-  PoissonLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1) : dolfin::Form(), f(*this), g(*this)
+  // Constructor
+  PoissonLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this), g(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(v0);
-    _coefficients.push_back(v1);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_PoissonLinearForm();
 
-    check();
+
   }
 
+  // Destructor
+  ~PoissonLinearForm() {}
+
+  //Coefficients
   PoissonLinearFormCoefficient0 f;
   PoissonLinearFormCoefficient1 g;
 
