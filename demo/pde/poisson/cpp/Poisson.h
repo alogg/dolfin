@@ -3171,7 +3171,7 @@ public:
     // Number of operations to compute tensor = 15
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
     A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333331*G0_2;
   }
 
 };
@@ -3252,8 +3252,8 @@ public:
       break;
     case 2:
       // Number of operations to compute tensor = 6
-      A[0] = 0.333333333333333*G0_0 + 0.166666666666666*G0_1;
-      A[1] = 0.166666666666666*G0_0 + 0.333333333333333*G0_1;
+      A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
+      A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
       A[2] = 0;
       break;
     }
@@ -3386,16 +3386,12 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  // Forward declarations
-  class FunctionSpace;
-  class Function;
-  class Mesh;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
 #include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
 
 class PoissonBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
 {

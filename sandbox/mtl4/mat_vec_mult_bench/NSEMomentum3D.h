@@ -29767,107 +29767,853 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class NSEMomentum3DBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormCoefficientSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_6()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormCoefficientSpace2 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_6()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormCoefficientSpace3 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_7()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_7()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormCoefficientSpace4 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DBilinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_8()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_8()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace2 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace3 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_4()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_4()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace4 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_6()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace5 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace5(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_6()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace6 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace6(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_7()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_7()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DLinearFormCoefficientSpace7 : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DLinearFormCoefficientSpace7(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_8()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_8()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DTestSpace : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DTestSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DTrialSpace : public dolfin::FunctionSpace
+{
+public:
+
+  NSEMomentum3DTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_NSEMomentum3DLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_NSEMomentum3DLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class NSEMomentum3DBilinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DBilinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DBilinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DBilinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "um";
+  }
+  
+};
+
+class NSEMomentum3DBilinearFormCoefficient1 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DBilinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DBilinearFormCoefficient1() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DBilinearFormCoefficient1& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DBilinearFormCoefficientSpace1(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 1;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "u0";
+  }
+  
+};
+
+class NSEMomentum3DBilinearFormCoefficient2 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DBilinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DBilinearFormCoefficient2() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DBilinearFormCoefficient2& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DBilinearFormCoefficientSpace2(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 2;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "f";
+  }
+  
+};
+
+class NSEMomentum3DBilinearFormCoefficient3 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DBilinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DBilinearFormCoefficient3() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DBilinearFormCoefficient3& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DBilinearFormCoefficientSpace3(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 3;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "p";
+  }
+  
+};
+
+class NSEMomentum3DBilinearFormCoefficient4 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DBilinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DBilinearFormCoefficient4() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DBilinearFormCoefficient4& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DBilinearFormCoefficientSpace4(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 4;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "delta1";
+  }
+  
+};
 
 class NSEMomentum3DBilinearForm : public dolfin::Form
 {
 public:
 
-  NSEMomentum3DBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1, dolfin::Function& v0, dolfin::Function& v1, dolfin::Function& v2, dolfin::Function& v3, dolfin::Function& v4) : dolfin::Form()
+  // Constructor
+  NSEMomentum3DBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), um(*this), u0(*this), f(*this), p(*this), delta1(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
-    std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v1);
-    std::tr1::shared_ptr<dolfin::Function> _v2(&v2, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v2);
-    std::tr1::shared_ptr<dolfin::Function> _v3(&v3, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v3);
-    std::tr1::shared_ptr<dolfin::Function> _v4(&v4, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v4);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NSEMomentum3DBilinearForm();
 
-    check();
+
   }
 
-  NSEMomentum3DBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1, std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1, std::tr1::shared_ptr<dolfin::Function> v2, std::tr1::shared_ptr<dolfin::Function> v3, std::tr1::shared_ptr<dolfin::Function> v4) : dolfin::Form()
+  // Constructor
+  NSEMomentum3DBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), um(*this), u0(*this), f(*this), p(*this), delta1(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(v0);
-    _coefficients.push_back(v1);
-    _coefficients.push_back(v2);
-    _coefficients.push_back(v3);
-    _coefficients.push_back(v4);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NSEMomentum3DBilinearForm();
 
-    check();
+
   }
 
+  // Destructor
+  ~NSEMomentum3DBilinearForm() {}
+
+  //Coefficients
+  NSEMomentum3DBilinearFormCoefficient0 um;
+  NSEMomentum3DBilinearFormCoefficient1 u0;
+  NSEMomentum3DBilinearFormCoefficient2 f;
+  NSEMomentum3DBilinearFormCoefficient3 p;
+  NSEMomentum3DBilinearFormCoefficient4 delta1;
+
+};
+
+class NSEMomentum3DLinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "um";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient1 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient1() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient1& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace1(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 1;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "u0";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient2 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient2() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient2& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace2(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 2;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "f";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient3 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient3() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient3& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace3(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 3;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "p";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient4 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient4() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient4& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace4(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 4;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "delta1";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient5 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient5(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient5() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient5& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace5(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 5;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "delta2";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient6 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient6(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient6() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient6& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace6(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 6;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "k";
+  }
+  
+};
+
+class NSEMomentum3DLinearFormCoefficient7 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  NSEMomentum3DLinearFormCoefficient7(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~NSEMomentum3DLinearFormCoefficient7() {}
+
+  // Attach function to coefficient
+  const NSEMomentum3DLinearFormCoefficient7& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new NSEMomentum3DLinearFormCoefficientSpace7(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 7;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "nu";
+  }
+  
 };
 
 class NSEMomentum3DLinearForm : public dolfin::Form
 {
 public:
 
-  NSEMomentum3DLinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0, dolfin::Function& v1, dolfin::Function& v2, dolfin::Function& v3, dolfin::Function& v4, dolfin::Function& v5, dolfin::Function& v6, dolfin::Function& v7) : dolfin::Form()
+  // Constructor
+  NSEMomentum3DLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), um(*this), u0(*this), f(*this), p(*this), delta1(*this), delta2(*this), k(*this), nu(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
-    std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v1);
-    std::tr1::shared_ptr<dolfin::Function> _v2(&v2, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v2);
-    std::tr1::shared_ptr<dolfin::Function> _v3(&v3, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v3);
-    std::tr1::shared_ptr<dolfin::Function> _v4(&v4, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v4);
-    std::tr1::shared_ptr<dolfin::Function> _v5(&v5, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v5);
-    std::tr1::shared_ptr<dolfin::Function> _v6(&v6, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v6);
-    std::tr1::shared_ptr<dolfin::Function> _v7(&v7, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v7);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NSEMomentum3DLinearForm();
 
-    check();
+
   }
 
-  NSEMomentum3DLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1, std::tr1::shared_ptr<dolfin::Function> v2, std::tr1::shared_ptr<dolfin::Function> v3, std::tr1::shared_ptr<dolfin::Function> v4, std::tr1::shared_ptr<dolfin::Function> v5, std::tr1::shared_ptr<dolfin::Function> v6, std::tr1::shared_ptr<dolfin::Function> v7) : dolfin::Form()
+  // Constructor
+  NSEMomentum3DLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), um(*this), u0(*this), f(*this), p(*this), delta1(*this), delta2(*this), k(*this), nu(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(v0);
-    _coefficients.push_back(v1);
-    _coefficients.push_back(v2);
-    _coefficients.push_back(v3);
-    _coefficients.push_back(v4);
-    _coefficients.push_back(v5);
-    _coefficients.push_back(v6);
-    _coefficients.push_back(v7);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NSEMomentum3DLinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~NSEMomentum3DLinearForm() {}
+
+  //Coefficients
+  NSEMomentum3DLinearFormCoefficient0 um;
+  NSEMomentum3DLinearFormCoefficient1 u0;
+  NSEMomentum3DLinearFormCoefficient2 f;
+  NSEMomentum3DLinearFormCoefficient3 p;
+  NSEMomentum3DLinearFormCoefficient4 delta1;
+  NSEMomentum3DLinearFormCoefficient5 delta2;
+  NSEMomentum3DLinearFormCoefficient6 k;
+  NSEMomentum3DLinearFormCoefficient7 nu;
 
 };
 

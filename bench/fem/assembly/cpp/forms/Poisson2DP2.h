@@ -129,8 +129,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -286,8 +286,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -297,7 +297,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -599,8 +599,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -756,8 +756,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -767,7 +767,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -1359,18 +1359,18 @@ public:
     // Compute element tensor
     // Number of operations to compute tensor = 98
     A[0] = 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0 + 0.499999999999999*G0_1_1;
-    A[1] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_1_0;
-    A[2] = 0.166666666666666*G0_0_1 + 0.166666666666667*G0_1_1;
+    A[1] = 0.166666666666667*G0_0_0 + 0.166666666666667*G0_1_0;
+    A[2] = 0.166666666666666*G0_0_1 + 0.166666666666666*G0_1_1;
     A[3] = 0;
     A[4] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_1;
     A[5] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_1_0;
-    A[6] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1;
+    A[6] = 0.166666666666667*G0_0_0 + 0.166666666666667*G0_0_1;
     A[7] = 0.499999999999999*G0_0_0;
     A[8] = -0.166666666666666*G0_0_1;
     A[9] = 0.666666666666665*G0_0_1;
     A[10] = 0;
-    A[11] = -0.666666666666665*G0_0_0 - 0.666666666666665*G0_0_1;
-    A[12] = 0.166666666666667*G0_1_0 + 0.166666666666667*G0_1_1;
+    A[11] = -0.666666666666666*G0_0_0 - 0.666666666666665*G0_0_1;
+    A[12] = 0.166666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
     A[13] = -0.166666666666666*G0_1_0;
     A[14] = 0.499999999999999*G0_1_1;
     A[15] = 0.666666666666665*G0_1_0;
@@ -1380,20 +1380,20 @@ public:
     A[19] = 0.666666666666665*G0_1_0;
     A[20] = 0.666666666666665*G0_0_1;
     A[21] = 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1;
-    A[22] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0;
-    A[23] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
-    A[24] = -0.666666666666666*G0_1_0 - 0.666666666666665*G0_1_1;
+    A[22] = -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[23] = -0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[24] = -0.666666666666665*G0_1_0 - 0.666666666666665*G0_1_1;
     A[25] = 0;
     A[26] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_1;
-    A[27] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[27] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0;
     A[28] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
-    A[29] = 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[29] = 0.666666666666665*G0_0_1 + 0.666666666666666*G0_1_0;
     A[30] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_0_1;
-    A[31] = -0.666666666666665*G0_0_0 - 0.666666666666665*G0_1_0;
+    A[31] = -0.666666666666666*G0_0_0 - 0.666666666666665*G0_1_0;
     A[32] = 0;
-    A[33] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
-    A[34] = 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0;
-    A[35] = 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[33] = -0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[34] = 0.666666666666666*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[35] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
   }
 
 };
@@ -1517,18 +1517,88 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class Poisson2DP2BilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  Poisson2DP2BilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP2BilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP2BilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class Poisson2DP2BilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  Poisson2DP2BilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP2BilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP2BilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class Poisson2DP2TestSpace : public dolfin::FunctionSpace
+{
+public:
+
+  Poisson2DP2TestSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP2BilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP2BilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class Poisson2DP2TrialSpace : public dolfin::FunctionSpace
+{
+public:
+
+  Poisson2DP2TrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP2BilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP2BilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class Poisson2DP2FunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  Poisson2DP2FunctionSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP2BilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP2BilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
 
 class Poisson2DP2BilinearForm : public dolfin::Form
 {
 public:
 
+  // Constructor
   Poisson2DP2BilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
@@ -1538,9 +1608,10 @@ public:
 
     _ufc_form = new UFC_Poisson2DP2BilinearForm();
 
-    check();
+
   }
 
+  // Constructor
   Poisson2DP2BilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
@@ -1548,8 +1619,11 @@ public:
 
     _ufc_form = new UFC_Poisson2DP2BilinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~Poisson2DP2BilinearForm() {}
 
 };
 

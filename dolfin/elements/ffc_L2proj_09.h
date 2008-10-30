@@ -1603,18 +1603,116 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class ffc_L2proj_09BilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09BilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_09BilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09BilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_09LinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09LinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_09LinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09LinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_09TestSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09TestSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_09TrialSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09TrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_09FunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_09FunctionSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_09LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_09LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
 
 class ffc_L2proj_09BilinearForm : public dolfin::Form
 {
 public:
 
+  // Constructor
   ffc_L2proj_09BilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
@@ -1624,9 +1722,10 @@ public:
 
     _ufc_form = new UFC_ffc_L2proj_09BilinearForm();
 
-    check();
+
   }
 
+  // Constructor
   ffc_L2proj_09BilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
@@ -1634,38 +1733,85 @@ public:
 
     _ufc_form = new UFC_ffc_L2proj_09BilinearForm();
 
-    check();
+
   }
 
+  // Destructor
+  ~ffc_L2proj_09BilinearForm() {}
+
+};
+
+class ffc_L2proj_09LinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ffc_L2proj_09LinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ffc_L2proj_09LinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const ffc_L2proj_09LinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ffc_L2proj_09LinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "w0";
+  }
+  
 };
 
 class ffc_L2proj_09LinearForm : public dolfin::Form
 {
 public:
 
-  ffc_L2proj_09LinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0) : dolfin::Form()
+  // Constructor
+  ffc_L2proj_09LinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ffc_L2proj_09LinearForm();
 
-    check();
+
   }
 
-  ffc_L2proj_09LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
+  // Constructor
+  ffc_L2proj_09LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ffc_L2proj_09LinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~ffc_L2proj_09LinearForm() {}
+
+  //Coefficients
+  ffc_L2proj_09LinearFormCoefficient0 w0;
 
 };
 

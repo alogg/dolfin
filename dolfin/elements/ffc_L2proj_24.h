@@ -805,12 +805,12 @@ public:
     A[2] = 0.0833333333333332*G0_0_0 + 0.0833333333333332*G0_1_0 - 0.0833333333333332*G0_1_1;
     A[3] = 0.0833333333333332*G0_0_0 - 0.125*G0_0_1 - 0.166666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
     A[4] = -0.166666666666666*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0416666666666666*G0_1_1;
-    A[5] = 0.333333333333333*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.249999999999999*G0_1_0 + 0.0416666666666666*G0_1_1;
+    A[5] = 0.333333333333333*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.25*G0_1_0 + 0.0416666666666666*G0_1_1;
     A[6] = -0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1 + 0.0416666666666666*G0_1_0 - 0.166666666666666*G0_1_1;
     A[7] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.0833333333333332*G0_1_0 + 0.333333333333333*G0_1_1;
     A[8] = -0.0416666666666666*G0_0_0 - 0.0416666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
     A[9] = -0.0416666666666666*G0_0_0 + 0.25*G0_0_1 + 0.0833333333333332*G0_1_0 - 0.333333333333333*G0_1_1;
-    A[10] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.0833333333333331*G0_1_1;
+    A[10] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.0833333333333332*G0_1_1;
     A[11] = -0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1 + 0.125*G0_1_0 - 0.0833333333333332*G0_1_1;
     A[12] = 0.0833333333333332*G0_0_0 + 0.0833333333333332*G0_0_1 - 0.0833333333333332*G0_1_1;
     A[13] = -0.0416666666666666*G0_0_0 - 0.0416666666666666*G0_0_1 + 0.166666666666666*G0_1_1;
@@ -818,19 +818,19 @@ public:
     A[15] = -0.125*G0_0_0 + 0.125*G0_0_1 - 0.166666666666666*G0_1_1;
     A[16] = -0.0416666666666666*G0_0_0 - 0.0416666666666666*G0_0_1 - 0.208333333333333*G0_1_0 - 0.0416666666666666*G0_1_1;
     A[17] = 0.0833333333333332*G0_0_0 + 0.0833333333333332*G0_0_1 + 0.0416666666666666*G0_1_0 - 0.0416666666666666*G0_1_1;
-    A[18] = 0.0833333333333332*G0_0_0 - 0.166666666666666*G0_0_1 - 0.125*G0_1_0 + 0.166666666666666*G0_1_1;
+    A[18] = 0.0833333333333331*G0_0_0 - 0.166666666666666*G0_0_1 - 0.125*G0_1_0 + 0.166666666666666*G0_1_1;
     A[19] = -0.0416666666666666*G0_0_0 + 0.0833333333333332*G0_0_1 + 0.25*G0_1_0 - 0.333333333333333*G0_1_1;
     A[20] = -0.125*G0_0_0 + 0.125*G0_1_0 - 0.166666666666666*G0_1_1;
     A[21] = 0.25*G0_0_0 - 0.25*G0_0_1 - 0.25*G0_1_0 + 0.333333333333333*G0_1_1;
-    A[22] = -0.0416666666666666*G0_0_0 + 0.0833333333333333*G0_0_1 + 0.0416666666666666*G0_1_0 + 0.0833333333333331*G0_1_1;
+    A[22] = -0.0416666666666666*G0_0_0 + 0.0833333333333332*G0_0_1 + 0.0416666666666666*G0_1_0 + 0.0833333333333332*G0_1_1;
     A[23] = 0.0833333333333332*G0_0_0 - 0.166666666666666*G0_0_1 - 0.0833333333333332*G0_1_0 + 0.0833333333333332*G0_1_1;
     A[24] = -0.166666666666666*G0_0_0 + 0.0416666666666666*G0_1_0 + 0.0416666666666666*G0_1_1;
     A[25] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_1_0 - 0.0833333333333331*G0_1_1;
     A[26] = -0.0416666666666666*G0_0_0 - 0.208333333333333*G0_0_1 - 0.0416666666666666*G0_1_0 - 0.0416666666666666*G0_1_1;
-    A[27] = -0.0416666666666666*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0833333333333333*G0_1_0 + 0.0833333333333331*G0_1_1;
+    A[27] = -0.0416666666666666*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0833333333333332*G0_1_0 + 0.0833333333333331*G0_1_1;
     A[28] = 0.0833333333333332*G0_0_0 + 0.25*G0_1_1;
     A[29] = -0.166666666666666*G0_0_0 + 0.125*G0_1_0 - 0.125*G0_1_1;
-    A[30] = 0.333333333333333*G0_0_0 - 0.249999999999999*G0_0_1 - 0.0833333333333332*G0_1_0 + 0.0416666666666666*G0_1_1;
+    A[30] = 0.333333333333333*G0_0_0 - 0.25*G0_0_1 - 0.0833333333333332*G0_1_0 + 0.0416666666666666*G0_1_1;
     A[31] = -0.166666666666666*G0_0_0 + 0.125*G0_0_1 + 0.166666666666666*G0_1_0 - 0.0833333333333332*G0_1_1;
     A[32] = 0.0833333333333332*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0833333333333332*G0_1_0 - 0.0416666666666666*G0_1_1;
     A[33] = 0.0833333333333332*G0_0_0 - 0.0833333333333332*G0_0_1 - 0.166666666666666*G0_1_0 + 0.0833333333333332*G0_1_1;
@@ -1773,12 +1773,12 @@ public:
     
     // Compute element tensor
     // Number of operations to compute tensor = 250
-    A[0] = 0.333333333333333*G0_0_0_0 - 0.0833333333333332*G0_0_0_1 - 0.0833333333333332*G0_0_1_0 + 0.0833333333333332*G0_0_1_1 - 0.166666666666666*G0_1_0_0 + 0.0416666666666666*G0_1_0_1 + 0.166666666666666*G0_1_1_0 - 0.166666666666666*G0_1_1_1 + 0.0833333333333332*G0_2_0_0 + 0.0833333333333332*G0_2_1_0 - 0.0833333333333332*G0_2_1_1 + 0.0833333333333332*G0_3_0_0 - 0.125*G0_3_0_1 - 0.166666666666666*G0_3_1_0 + 0.166666666666666*G0_3_1_1 - 0.166666666666666*G0_4_0_0 + 0.0416666666666666*G0_4_0_1 + 0.0416666666666666*G0_4_1_1 + 0.333333333333333*G0_5_0_0 - 0.0833333333333332*G0_5_0_1 - 0.249999999999999*G0_5_1_0 + 0.0416666666666666*G0_5_1_1;
-    A[1] = -0.166666666666666*G0_0_0_0 + 0.166666666666666*G0_0_0_1 + 0.0416666666666666*G0_0_1_0 - 0.166666666666666*G0_0_1_1 + 0.0833333333333332*G0_1_0_0 - 0.0833333333333332*G0_1_0_1 - 0.0833333333333332*G0_1_1_0 + 0.333333333333333*G0_1_1_1 - 0.0416666666666666*G0_2_0_0 - 0.0416666666666666*G0_2_1_0 + 0.166666666666666*G0_2_1_1 - 0.0416666666666666*G0_3_0_0 + 0.25*G0_3_0_1 + 0.0833333333333332*G0_3_1_0 - 0.333333333333333*G0_3_1_1 + 0.0833333333333332*G0_4_0_0 - 0.0833333333333332*G0_4_0_1 - 0.0833333333333331*G0_4_1_1 - 0.166666666666666*G0_5_0_0 + 0.166666666666666*G0_5_0_1 + 0.125*G0_5_1_0 - 0.0833333333333332*G0_5_1_1;
+    A[0] = 0.333333333333333*G0_0_0_0 - 0.0833333333333332*G0_0_0_1 - 0.0833333333333332*G0_0_1_0 + 0.0833333333333332*G0_0_1_1 - 0.166666666666666*G0_1_0_0 + 0.0416666666666666*G0_1_0_1 + 0.166666666666666*G0_1_1_0 - 0.166666666666666*G0_1_1_1 + 0.0833333333333332*G0_2_0_0 + 0.0833333333333332*G0_2_1_0 - 0.0833333333333332*G0_2_1_1 + 0.0833333333333332*G0_3_0_0 - 0.125*G0_3_0_1 - 0.166666666666666*G0_3_1_0 + 0.166666666666666*G0_3_1_1 - 0.166666666666666*G0_4_0_0 + 0.0416666666666666*G0_4_0_1 + 0.0416666666666666*G0_4_1_1 + 0.333333333333333*G0_5_0_0 - 0.0833333333333332*G0_5_0_1 - 0.25*G0_5_1_0 + 0.0416666666666666*G0_5_1_1;
+    A[1] = -0.166666666666666*G0_0_0_0 + 0.166666666666666*G0_0_0_1 + 0.0416666666666666*G0_0_1_0 - 0.166666666666666*G0_0_1_1 + 0.0833333333333332*G0_1_0_0 - 0.0833333333333332*G0_1_0_1 - 0.0833333333333332*G0_1_1_0 + 0.333333333333333*G0_1_1_1 - 0.0416666666666666*G0_2_0_0 - 0.0416666666666666*G0_2_1_0 + 0.166666666666666*G0_2_1_1 - 0.0416666666666666*G0_3_0_0 + 0.25*G0_3_0_1 + 0.0833333333333332*G0_3_1_0 - 0.333333333333333*G0_3_1_1 + 0.0833333333333332*G0_4_0_0 - 0.0833333333333332*G0_4_0_1 - 0.0833333333333332*G0_4_1_1 - 0.166666666666666*G0_5_0_0 + 0.166666666666666*G0_5_0_1 + 0.125*G0_5_1_0 - 0.0833333333333332*G0_5_1_1;
     A[2] = 0.0833333333333332*G0_0_0_0 + 0.0833333333333332*G0_0_0_1 - 0.0833333333333332*G0_0_1_1 - 0.0416666666666666*G0_1_0_0 - 0.0416666666666666*G0_1_0_1 + 0.166666666666666*G0_1_1_1 + 0.25*G0_2_0_0 + 0.0833333333333332*G0_2_1_1 - 0.125*G0_3_0_0 + 0.125*G0_3_0_1 - 0.166666666666666*G0_3_1_1 - 0.0416666666666666*G0_4_0_0 - 0.0416666666666666*G0_4_0_1 - 0.208333333333333*G0_4_1_0 - 0.0416666666666666*G0_4_1_1 + 0.0833333333333332*G0_5_0_0 + 0.0833333333333332*G0_5_0_1 + 0.0416666666666666*G0_5_1_0 - 0.0416666666666666*G0_5_1_1;
-    A[3] = 0.0833333333333332*G0_0_0_0 - 0.166666666666666*G0_0_0_1 - 0.125*G0_0_1_0 + 0.166666666666666*G0_0_1_1 - 0.0416666666666666*G0_1_0_0 + 0.0833333333333332*G0_1_0_1 + 0.25*G0_1_1_0 - 0.333333333333333*G0_1_1_1 - 0.125*G0_2_0_0 + 0.125*G0_2_1_0 - 0.166666666666666*G0_2_1_1 + 0.25*G0_3_0_0 - 0.25*G0_3_0_1 - 0.25*G0_3_1_0 + 0.333333333333333*G0_3_1_1 - 0.0416666666666666*G0_4_0_0 + 0.0833333333333333*G0_4_0_1 + 0.0416666666666666*G0_4_1_0 + 0.0833333333333331*G0_4_1_1 + 0.0833333333333332*G0_5_0_0 - 0.166666666666666*G0_5_0_1 - 0.0833333333333332*G0_5_1_0 + 0.0833333333333332*G0_5_1_1;
-    A[4] = -0.166666666666666*G0_0_0_0 + 0.0416666666666666*G0_0_1_0 + 0.0416666666666666*G0_0_1_1 + 0.0833333333333332*G0_1_0_0 - 0.0833333333333332*G0_1_1_0 - 0.0833333333333331*G0_1_1_1 - 0.0416666666666666*G0_2_0_0 - 0.208333333333333*G0_2_0_1 - 0.0416666666666666*G0_2_1_0 - 0.0416666666666666*G0_2_1_1 - 0.0416666666666666*G0_3_0_0 + 0.0416666666666666*G0_3_0_1 + 0.0833333333333333*G0_3_1_0 + 0.0833333333333331*G0_3_1_1 + 0.0833333333333332*G0_4_0_0 + 0.25*G0_4_1_1 - 0.166666666666666*G0_5_0_0 + 0.125*G0_5_1_0 - 0.125*G0_5_1_1;
-    A[5] = 0.333333333333333*G0_0_0_0 - 0.249999999999999*G0_0_0_1 - 0.0833333333333332*G0_0_1_0 + 0.0416666666666666*G0_0_1_1 - 0.166666666666666*G0_1_0_0 + 0.125*G0_1_0_1 + 0.166666666666666*G0_1_1_0 - 0.0833333333333332*G0_1_1_1 + 0.0833333333333332*G0_2_0_0 + 0.0416666666666666*G0_2_0_1 + 0.0833333333333332*G0_2_1_0 - 0.0416666666666666*G0_2_1_1 + 0.0833333333333332*G0_3_0_0 - 0.0833333333333332*G0_3_0_1 - 0.166666666666666*G0_3_1_0 + 0.0833333333333332*G0_3_1_1 - 0.166666666666666*G0_4_0_0 + 0.125*G0_4_0_1 - 0.125*G0_4_1_1 + 0.333333333333333*G0_5_0_0 - 0.25*G0_5_0_1 - 0.25*G0_5_1_0 + 0.25*G0_5_1_1;
+    A[3] = 0.0833333333333331*G0_0_0_0 - 0.166666666666666*G0_0_0_1 - 0.125*G0_0_1_0 + 0.166666666666666*G0_0_1_1 - 0.0416666666666666*G0_1_0_0 + 0.0833333333333332*G0_1_0_1 + 0.25*G0_1_1_0 - 0.333333333333333*G0_1_1_1 - 0.125*G0_2_0_0 + 0.125*G0_2_1_0 - 0.166666666666666*G0_2_1_1 + 0.25*G0_3_0_0 - 0.25*G0_3_0_1 - 0.25*G0_3_1_0 + 0.333333333333333*G0_3_1_1 - 0.0416666666666666*G0_4_0_0 + 0.0833333333333332*G0_4_0_1 + 0.0416666666666666*G0_4_1_0 + 0.0833333333333332*G0_4_1_1 + 0.0833333333333332*G0_5_0_0 - 0.166666666666666*G0_5_0_1 - 0.0833333333333332*G0_5_1_0 + 0.0833333333333332*G0_5_1_1;
+    A[4] = -0.166666666666666*G0_0_0_0 + 0.0416666666666666*G0_0_1_0 + 0.0416666666666666*G0_0_1_1 + 0.0833333333333332*G0_1_0_0 - 0.0833333333333332*G0_1_1_0 - 0.0833333333333331*G0_1_1_1 - 0.0416666666666666*G0_2_0_0 - 0.208333333333333*G0_2_0_1 - 0.0416666666666666*G0_2_1_0 - 0.0416666666666666*G0_2_1_1 - 0.0416666666666666*G0_3_0_0 + 0.0416666666666666*G0_3_0_1 + 0.0833333333333332*G0_3_1_0 + 0.0833333333333331*G0_3_1_1 + 0.0833333333333332*G0_4_0_0 + 0.25*G0_4_1_1 - 0.166666666666666*G0_5_0_0 + 0.125*G0_5_1_0 - 0.125*G0_5_1_1;
+    A[5] = 0.333333333333333*G0_0_0_0 - 0.25*G0_0_0_1 - 0.0833333333333332*G0_0_1_0 + 0.0416666666666666*G0_0_1_1 - 0.166666666666666*G0_1_0_0 + 0.125*G0_1_0_1 + 0.166666666666666*G0_1_1_0 - 0.0833333333333332*G0_1_1_1 + 0.0833333333333332*G0_2_0_0 + 0.0416666666666666*G0_2_0_1 + 0.0833333333333332*G0_2_1_0 - 0.0416666666666666*G0_2_1_1 + 0.0833333333333332*G0_3_0_0 - 0.0833333333333332*G0_3_0_1 - 0.166666666666666*G0_3_1_0 + 0.0833333333333332*G0_3_1_1 - 0.166666666666666*G0_4_0_0 + 0.125*G0_4_0_1 - 0.125*G0_4_1_1 + 0.333333333333333*G0_5_0_0 - 0.25*G0_5_0_1 - 0.25*G0_5_1_0 + 0.25*G0_5_1_1;
   }
 
 };
@@ -1902,18 +1902,116 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class ffc_L2proj_24BilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24BilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_24BilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24BilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_24LinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24LinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_24LinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24LinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_24TestSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24TestSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_24TrialSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24TrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ffc_L2proj_24FunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ffc_L2proj_24FunctionSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
 
 class ffc_L2proj_24BilinearForm : public dolfin::Form
 {
 public:
 
+  // Constructor
   ffc_L2proj_24BilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
@@ -1923,9 +2021,10 @@ public:
 
     _ufc_form = new UFC_ffc_L2proj_24BilinearForm();
 
-    check();
+
   }
 
+  // Constructor
   ffc_L2proj_24BilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
@@ -1933,38 +2032,85 @@ public:
 
     _ufc_form = new UFC_ffc_L2proj_24BilinearForm();
 
-    check();
+
   }
 
+  // Destructor
+  ~ffc_L2proj_24BilinearForm() {}
+
+};
+
+class ffc_L2proj_24LinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ffc_L2proj_24LinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ffc_L2proj_24LinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const ffc_L2proj_24LinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ffc_L2proj_24LinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "w0";
+  }
+  
 };
 
 class ffc_L2proj_24LinearForm : public dolfin::Form
 {
 public:
 
-  ffc_L2proj_24LinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0) : dolfin::Form()
+  // Constructor
+  ffc_L2proj_24LinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ffc_L2proj_24LinearForm();
 
-    check();
+
   }
 
-  ffc_L2proj_24LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
+  // Constructor
+  ffc_L2proj_24LinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ffc_L2proj_24LinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~ffc_L2proj_24LinearForm() {}
+
+  //Coefficients
+  ffc_L2proj_24LinearFormCoefficient0 w0;
 
 };
 

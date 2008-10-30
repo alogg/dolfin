@@ -971,8 +971,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1128,8 +1128,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1139,7 +1139,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -1441,8 +1441,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1598,8 +1598,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1609,7 +1609,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -1914,8 +1914,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1966,8 +1966,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -2127,8 +2127,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -2138,7 +2138,7 @@ public:
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {4.89897948556635, 0, 0, 0, 0, 0},
+      {4.89897948556636, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
       {0, 9.48683298050514, 0, 0, 0, 0},
       {4, 0, 7.07106781186548, 0, 0, 0},
@@ -2273,8 +2273,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -2284,7 +2284,7 @@ public:
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {4.89897948556635, 0, 0, 0, 0, 0},
+      {4.89897948556636, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
       {0, 9.48683298050514, 0, 0, 0, 0},
       {4, 0, 7.07106781186548, 0, 0, 0},
@@ -3474,7 +3474,7 @@ public:
     A[5] = 0.0416666666666666*G0_ - 0.000208333333333333*G1_0_1_0 + 0.000416666666666666*G1_1_1_0 - 0.000208333333333333*G1_2_1_0 + 0.00166666666666666*G1_3_1_0 + 0.000833333333333332*G1_4_1_0 + 0.00166666666666666*G1_5_1_0 - 0.000208333333333333*G1_6_1_1 + 0.000416666666666666*G1_7_1_1 - 0.000208333333333333*G1_8_1_1 + 0.00166666666666666*G1_9_1_1 + 0.000833333333333332*G1_10_1_1 + 0.00166666666666666*G1_11_1_1 + 6.25e-05*G2_0_1;
     A[6] = 0.0416666666666666*G0_ + 0.000208333333333333*G1_0_0_0 + 0.000208333333333333*G1_0_1_0 + 0.000208333333333333*G1_1_0_0 + 0.000208333333333333*G1_1_1_0 - 0.000416666666666666*G1_2_0_0 - 0.000416666666666666*G1_2_1_0 - 0.00166666666666666*G1_3_0_0 - 0.00166666666666666*G1_3_1_0 - 0.00166666666666666*G1_4_0_0 - 0.00166666666666666*G1_4_1_0 - 0.000833333333333332*G1_5_0_0 - 0.000833333333333332*G1_5_1_0 + 0.000208333333333333*G1_6_0_1 + 0.000208333333333333*G1_6_1_1 + 0.000208333333333333*G1_7_0_1 + 0.000208333333333333*G1_7_1_1 - 0.000416666666666666*G1_8_0_1 - 0.000416666666666666*G1_8_1_1 - 0.00166666666666666*G1_9_0_1 - 0.00166666666666666*G1_9_1_1 - 0.00166666666666666*G1_10_0_1 - 0.00166666666666666*G1_10_1_1 - 0.000833333333333332*G1_11_0_1 - 0.000833333333333332*G1_11_1_1 - 6.25e-05*G2_1_0 - 6.24999999999999e-05*G2_1_1;
     A[7] = 0.0416666666666666*G0_ - 0.000208333333333333*G1_0_0_0 - 0.000208333333333333*G1_1_0_0 + 0.000416666666666666*G1_2_0_0 + 0.00166666666666666*G1_3_0_0 + 0.00166666666666666*G1_4_0_0 + 0.000833333333333332*G1_5_0_0 - 0.000208333333333333*G1_6_0_1 - 0.000208333333333333*G1_7_0_1 + 0.000416666666666666*G1_8_0_1 + 0.00166666666666666*G1_9_0_1 + 0.00166666666666666*G1_10_0_1 + 0.000833333333333332*G1_11_0_1 + 6.25e-05*G2_1_0;
-    A[8] = 0.0833333333333332*G0_ - 0.000208333333333333*G1_0_1_0 - 0.000208333333333333*G1_1_1_0 + 0.000416666666666666*G1_2_1_0 + 0.00166666666666666*G1_3_1_0 + 0.00166666666666666*G1_4_1_0 + 0.000833333333333332*G1_5_1_0 - 0.000208333333333333*G1_6_1_1 - 0.000208333333333333*G1_7_1_1 + 0.000416666666666666*G1_8_1_1 + 0.00166666666666666*G1_9_1_1 + 0.00166666666666666*G1_10_1_1 + 0.000833333333333332*G1_11_1_1 + 6.24999999999999e-05*G2_1_1;
+    A[8] = 0.0833333333333331*G0_ - 0.000208333333333333*G1_0_1_0 - 0.000208333333333333*G1_1_1_0 + 0.000416666666666666*G1_2_1_0 + 0.00166666666666666*G1_3_1_0 + 0.00166666666666666*G1_4_1_0 + 0.000833333333333332*G1_5_1_0 - 0.000208333333333333*G1_6_1_1 - 0.000208333333333333*G1_7_1_1 + 0.000416666666666666*G1_8_1_1 + 0.00166666666666666*G1_9_1_1 + 0.00166666666666666*G1_10_1_1 + 0.000833333333333332*G1_11_1_1 + 6.24999999999999e-05*G2_1_1;
   }
 
 };
@@ -4561,8 +4561,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -4718,8 +4718,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -4729,7 +4729,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -5031,8 +5031,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -5188,8 +5188,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -5199,7 +5199,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -5504,8 +5504,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -5556,8 +5556,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -5717,8 +5717,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -5728,7 +5728,7 @@ public:
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {4.89897948556635, 0, 0, 0, 0, 0},
+      {4.89897948556636, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
       {0, 9.48683298050514, 0, 0, 0, 0},
       {4, 0, 7.07106781186548, 0, 0, 0},
@@ -5863,8 +5863,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -5874,7 +5874,7 @@ public:
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {4.89897948556635, 0, 0, 0, 0, 0},
+      {4.89897948556636, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
       {0, 9.48683298050514, 0, 0, 0, 0},
       {4, 0, 7.07106781186548, 0, 0, 0},
@@ -7686,7 +7686,7 @@ public:
     // Number of operations to compute tensor = 353
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2 + 0.000416666666666666*G1_0_0_0_0 + 0.000416666666666666*G1_0_0_1_0 - 0.000416666666666666*G1_0_1_0_0 - 0.000416666666666666*G1_0_2_1_0 - 0.000208333333333333*G1_1_0_0_0 - 0.000208333333333333*G1_1_0_1_0 + 0.000208333333333333*G1_1_1_0_0 + 0.000208333333333333*G1_1_2_1_0 - 0.000208333333333333*G1_2_0_0_0 - 0.000208333333333333*G1_2_0_1_0 + 0.000208333333333333*G1_2_1_0_0 + 0.000208333333333333*G1_2_2_1_0 + 0.000833333333333332*G1_3_0_0_0 + 0.000833333333333332*G1_3_0_1_0 - 0.000833333333333332*G1_3_1_0_0 - 0.000833333333333332*G1_3_2_1_0 + 0.00166666666666666*G1_4_0_0_0 + 0.00166666666666666*G1_4_0_1_0 - 0.00166666666666666*G1_4_1_0_0 - 0.00166666666666666*G1_4_2_1_0 + 0.00166666666666666*G1_5_0_0_0 + 0.00166666666666666*G1_5_0_1_0 - 0.00166666666666666*G1_5_1_0_0 - 0.00166666666666666*G1_5_2_1_0 + 0.000416666666666666*G1_6_0_0_1 + 0.000416666666666666*G1_6_0_1_1 - 0.000416666666666666*G1_6_1_0_1 - 0.000416666666666666*G1_6_2_1_1 - 0.000208333333333333*G1_7_0_0_1 - 0.000208333333333333*G1_7_0_1_1 + 0.000208333333333333*G1_7_1_0_1 + 0.000208333333333333*G1_7_2_1_1 - 0.000208333333333333*G1_8_0_0_1 - 0.000208333333333333*G1_8_0_1_1 + 0.000208333333333333*G1_8_1_0_1 + 0.000208333333333333*G1_8_2_1_1 + 0.000833333333333332*G1_9_0_0_1 + 0.000833333333333332*G1_9_0_1_1 - 0.000833333333333332*G1_9_1_0_1 - 0.000833333333333332*G1_9_2_1_1 + 0.00166666666666666*G1_10_0_0_1 + 0.00166666666666666*G1_10_0_1_1 - 0.00166666666666666*G1_10_1_0_1 - 0.00166666666666666*G1_10_2_1_1 + 0.00166666666666666*G1_11_0_0_1 + 0.00166666666666666*G1_11_0_1_1 - 0.00166666666666666*G1_11_1_0_1 - 0.00166666666666666*G1_11_2_1_1 - 6.25e-05*G2_0_0_0 - 6.25e-05*G2_0_0_1 + 6.25e-05*G2_0_1_0 + 6.25e-05*G2_0_2_1 - 6.25e-05*G2_1_0_0 - 6.24999999999999e-05*G2_1_0_1 + 6.25e-05*G2_1_1_0 + 6.24999999999999e-05*G2_1_2_1 + 0.00416666666666666*G3_0 + 0.00208333333333333*G3_1 + 0.00208333333333333*G3_2;
     A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2 - 0.000208333333333333*G1_0_0_0_0 - 0.000208333333333333*G1_0_0_1_0 + 0.000208333333333333*G1_0_1_0_0 + 0.000208333333333333*G1_0_2_1_0 + 0.000416666666666666*G1_1_0_0_0 + 0.000416666666666666*G1_1_0_1_0 - 0.000416666666666666*G1_1_1_0_0 - 0.000416666666666666*G1_1_2_1_0 - 0.000208333333333333*G1_2_0_0_0 - 0.000208333333333333*G1_2_0_1_0 + 0.000208333333333333*G1_2_1_0_0 + 0.000208333333333333*G1_2_2_1_0 + 0.00166666666666666*G1_3_0_0_0 + 0.00166666666666666*G1_3_0_1_0 - 0.00166666666666666*G1_3_1_0_0 - 0.00166666666666666*G1_3_2_1_0 + 0.000833333333333332*G1_4_0_0_0 + 0.000833333333333332*G1_4_0_1_0 - 0.000833333333333332*G1_4_1_0_0 - 0.000833333333333332*G1_4_2_1_0 + 0.00166666666666666*G1_5_0_0_0 + 0.00166666666666666*G1_5_0_1_0 - 0.00166666666666666*G1_5_1_0_0 - 0.00166666666666666*G1_5_2_1_0 - 0.000208333333333333*G1_6_0_0_1 - 0.000208333333333333*G1_6_0_1_1 + 0.000208333333333333*G1_6_1_0_1 + 0.000208333333333333*G1_6_2_1_1 + 0.000416666666666666*G1_7_0_0_1 + 0.000416666666666666*G1_7_0_1_1 - 0.000416666666666666*G1_7_1_0_1 - 0.000416666666666666*G1_7_2_1_1 - 0.000208333333333333*G1_8_0_0_1 - 0.000208333333333333*G1_8_0_1_1 + 0.000208333333333333*G1_8_1_0_1 + 0.000208333333333333*G1_8_2_1_1 + 0.00166666666666666*G1_9_0_0_1 + 0.00166666666666666*G1_9_0_1_1 - 0.00166666666666666*G1_9_1_0_1 - 0.00166666666666666*G1_9_2_1_1 + 0.000833333333333332*G1_10_0_0_1 + 0.000833333333333332*G1_10_0_1_1 - 0.000833333333333332*G1_10_1_0_1 - 0.000833333333333332*G1_10_2_1_1 + 0.00166666666666666*G1_11_0_0_1 + 0.00166666666666666*G1_11_0_1_1 - 0.00166666666666666*G1_11_1_0_1 - 0.00166666666666666*G1_11_2_1_1 + 6.25e-05*G2_0_0_0 + 6.25e-05*G2_0_0_1 - 6.25e-05*G2_0_1_0 - 6.25e-05*G2_0_2_1 + 0.00208333333333333*G3_0 + 0.00416666666666666*G3_1 + 0.00208333333333333*G3_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2 - 0.000208333333333333*G1_0_0_0_0 - 0.000208333333333333*G1_0_0_1_0 + 0.000208333333333333*G1_0_1_0_0 + 0.000208333333333333*G1_0_2_1_0 - 0.000208333333333333*G1_1_0_0_0 - 0.000208333333333333*G1_1_0_1_0 + 0.000208333333333333*G1_1_1_0_0 + 0.000208333333333333*G1_1_2_1_0 + 0.000416666666666666*G1_2_0_0_0 + 0.000416666666666666*G1_2_0_1_0 - 0.000416666666666666*G1_2_1_0_0 - 0.000416666666666666*G1_2_2_1_0 + 0.00166666666666666*G1_3_0_0_0 + 0.00166666666666666*G1_3_0_1_0 - 0.00166666666666666*G1_3_1_0_0 - 0.00166666666666666*G1_3_2_1_0 + 0.00166666666666666*G1_4_0_0_0 + 0.00166666666666666*G1_4_0_1_0 - 0.00166666666666666*G1_4_1_0_0 - 0.00166666666666666*G1_4_2_1_0 + 0.000833333333333332*G1_5_0_0_0 + 0.000833333333333331*G1_5_0_1_0 - 0.000833333333333332*G1_5_1_0_0 - 0.000833333333333331*G1_5_2_1_0 - 0.000208333333333333*G1_6_0_0_1 - 0.000208333333333333*G1_6_0_1_1 + 0.000208333333333333*G1_6_1_0_1 + 0.000208333333333333*G1_6_2_1_1 - 0.000208333333333333*G1_7_0_0_1 - 0.000208333333333333*G1_7_0_1_1 + 0.000208333333333333*G1_7_1_0_1 + 0.000208333333333333*G1_7_2_1_1 + 0.000416666666666666*G1_8_0_0_1 + 0.000416666666666666*G1_8_0_1_1 - 0.000416666666666666*G1_8_1_0_1 - 0.000416666666666666*G1_8_2_1_1 + 0.00166666666666666*G1_9_0_0_1 + 0.00166666666666666*G1_9_0_1_1 - 0.00166666666666666*G1_9_1_0_1 - 0.00166666666666666*G1_9_2_1_1 + 0.00166666666666666*G1_10_0_0_1 + 0.00166666666666666*G1_10_0_1_1 - 0.00166666666666666*G1_10_1_0_1 - 0.00166666666666666*G1_10_2_1_1 + 0.000833333333333332*G1_11_0_0_1 + 0.000833333333333331*G1_11_0_1_1 - 0.000833333333333332*G1_11_1_0_1 - 0.000833333333333331*G1_11_2_1_1 + 6.25e-05*G2_1_0_0 + 6.24999999999999e-05*G2_1_0_1 - 6.25e-05*G2_1_1_0 - 6.24999999999999e-05*G2_1_2_1 + 0.00208333333333333*G3_0 + 0.00208333333333333*G3_1 + 0.00416666666666666*G3_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333331*G0_2 - 0.000208333333333333*G1_0_0_0_0 - 0.000208333333333333*G1_0_0_1_0 + 0.000208333333333333*G1_0_1_0_0 + 0.000208333333333333*G1_0_2_1_0 - 0.000208333333333333*G1_1_0_0_0 - 0.000208333333333333*G1_1_0_1_0 + 0.000208333333333333*G1_1_1_0_0 + 0.000208333333333333*G1_1_2_1_0 + 0.000416666666666666*G1_2_0_0_0 + 0.000416666666666666*G1_2_0_1_0 - 0.000416666666666666*G1_2_1_0_0 - 0.000416666666666666*G1_2_2_1_0 + 0.00166666666666666*G1_3_0_0_0 + 0.00166666666666666*G1_3_0_1_0 - 0.00166666666666666*G1_3_1_0_0 - 0.00166666666666666*G1_3_2_1_0 + 0.00166666666666666*G1_4_0_0_0 + 0.00166666666666666*G1_4_0_1_0 - 0.00166666666666666*G1_4_1_0_0 - 0.00166666666666666*G1_4_2_1_0 + 0.000833333333333332*G1_5_0_0_0 + 0.000833333333333332*G1_5_0_1_0 - 0.000833333333333332*G1_5_1_0_0 - 0.000833333333333332*G1_5_2_1_0 - 0.000208333333333333*G1_6_0_0_1 - 0.000208333333333333*G1_6_0_1_1 + 0.000208333333333333*G1_6_1_0_1 + 0.000208333333333333*G1_6_2_1_1 - 0.000208333333333333*G1_7_0_0_1 - 0.000208333333333333*G1_7_0_1_1 + 0.000208333333333333*G1_7_1_0_1 + 0.000208333333333333*G1_7_2_1_1 + 0.000416666666666666*G1_8_0_0_1 + 0.000416666666666666*G1_8_0_1_1 - 0.000416666666666666*G1_8_1_0_1 - 0.000416666666666666*G1_8_2_1_1 + 0.00166666666666666*G1_9_0_0_1 + 0.00166666666666666*G1_9_0_1_1 - 0.00166666666666666*G1_9_1_0_1 - 0.00166666666666666*G1_9_2_1_1 + 0.00166666666666666*G1_10_0_0_1 + 0.00166666666666666*G1_10_0_1_1 - 0.00166666666666666*G1_10_1_0_1 - 0.00166666666666666*G1_10_2_1_1 + 0.000833333333333332*G1_11_0_0_1 + 0.000833333333333332*G1_11_0_1_1 - 0.000833333333333332*G1_11_1_0_1 - 0.000833333333333332*G1_11_2_1_1 + 6.25e-05*G2_1_0_0 + 6.24999999999999e-05*G2_1_0_1 - 6.25e-05*G2_1_1_0 - 6.24999999999999e-05*G2_1_2_1 + 0.00208333333333333*G3_0 + 0.00208333333333333*G3_1 + 0.00416666666666666*G3_2;
   }
 
 };
@@ -7822,80 +7822,367 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class ConvectionDiffusionBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_2()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionLinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionLinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_2()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionLinearFormCoefficientSpace2 : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionLinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionTestSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionTestSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionTrialSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionDiffusionTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionDiffusionBilinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ConvectionDiffusionBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ConvectionDiffusionBilinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const ConvectionDiffusionBilinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ConvectionDiffusionBilinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "u0";
+  }
+  
+};
 
 class ConvectionDiffusionBilinearForm : public dolfin::Form
 {
 public:
 
-  ConvectionDiffusionBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1, dolfin::Function& v0) : dolfin::Form()
+  // Constructor
+  ConvectionDiffusionBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), u0(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionBilinearForm();
 
-    check();
+
   }
 
-  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
+  // Constructor
+  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), u0(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionBilinearForm();
 
-    check();
+
   }
 
+  // Destructor
+  ~ConvectionDiffusionBilinearForm() {}
+
+  //Coefficients
+  ConvectionDiffusionBilinearFormCoefficient0 u0;
+
+};
+
+class ConvectionDiffusionLinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ConvectionDiffusionLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ConvectionDiffusionLinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const ConvectionDiffusionLinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ConvectionDiffusionLinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "u0";
+  }
+  
+};
+
+class ConvectionDiffusionLinearFormCoefficient1 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ConvectionDiffusionLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ConvectionDiffusionLinearFormCoefficient1() {}
+
+  // Attach function to coefficient
+  const ConvectionDiffusionLinearFormCoefficient1& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ConvectionDiffusionLinearFormCoefficientSpace1(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 1;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "b";
+  }
+  
+};
+
+class ConvectionDiffusionLinearFormCoefficient2 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ConvectionDiffusionLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ConvectionDiffusionLinearFormCoefficient2() {}
+
+  // Attach function to coefficient
+  const ConvectionDiffusionLinearFormCoefficient2& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ConvectionDiffusionLinearFormCoefficientSpace2(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 2;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "f";
+  }
+  
 };
 
 class ConvectionDiffusionLinearForm : public dolfin::Form
 {
 public:
 
-  ConvectionDiffusionLinearForm(dolfin::FunctionSpace& V0, dolfin::Function& v0, dolfin::Function& v1, dolfin::Function& v2) : dolfin::Form()
+  // Constructor
+  ConvectionDiffusionLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
-    std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v1);
-    std::tr1::shared_ptr<dolfin::Function> _v2(&v2, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v2);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionLinearForm();
 
-    check();
+
   }
 
-  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1, std::tr1::shared_ptr<dolfin::Function> v2) : dolfin::Form()
+  // Constructor
+  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(v0);
-    _coefficients.push_back(v1);
-    _coefficients.push_back(v2);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionLinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~ConvectionDiffusionLinearForm() {}
+
+  //Coefficients
+  ConvectionDiffusionLinearFormCoefficient0 u0;
+  ConvectionDiffusionLinearFormCoefficient1 b;
+  ConvectionDiffusionLinearFormCoefficient2 f;
 
 };
 

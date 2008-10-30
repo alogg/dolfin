@@ -7717,8 +7717,8 @@ public:
     A[57] = -0.166666666666667*G2_0_1 - 0.166666666666667*G2_1_1;
     A[58] = 0.166666666666667*G2_0_1;
     A[59] = 0.166666666666667*G2_1_1;
-    A[60] = 0.0166666666666666*G3_0_0_0_0 + 0.0166666666666666*G3_0_0_0_1 + 0.0166666666666666*G3_0_0_1_0 + 0.0166666666666666*G3_0_0_1_1 + 0.00833333333333332*G3_0_1_0_0 + 0.00833333333333332*G3_0_1_0_1 + 0.00833333333333332*G3_0_1_1_0 + 0.00833333333333332*G3_0_1_1_1 + 0.00833333333333332*G3_0_2_0_0 + 0.00833333333333332*G3_0_2_0_1 + 0.00833333333333332*G3_0_2_1_0 + 0.00833333333333332*G3_0_2_1_1 + 0.00833333333333332*G3_1_0_0_0 + 0.00833333333333332*G3_1_0_0_1 + 0.00833333333333332*G3_1_0_1_0 + 0.00833333333333332*G3_1_0_1_1 + 0.0166666666666666*G3_1_1_0_0 + 0.0166666666666666*G3_1_1_0_1 + 0.0166666666666666*G3_1_1_1_0 + 0.0166666666666666*G3_1_1_1_1 + 0.00833333333333332*G3_1_2_0_0 + 0.00833333333333332*G3_1_2_0_1 + 0.00833333333333332*G3_1_2_1_0 + 0.00833333333333332*G3_1_2_1_1 + 0.00833333333333332*G3_2_0_0_0 + 0.00833333333333332*G3_2_0_0_1 + 0.00833333333333332*G3_2_0_1_0 + 0.00833333333333332*G3_2_0_1_1 + 0.00833333333333332*G3_2_1_0_0 + 0.00833333333333332*G3_2_1_0_1 + 0.00833333333333332*G3_2_1_1_0 + 0.00833333333333332*G3_2_1_1_1 + 0.0166666666666666*G3_2_2_0_0 + 0.0166666666666666*G3_2_2_0_1 + 0.0166666666666666*G3_2_2_1_0 + 0.0166666666666666*G3_2_2_1_1;
-    A[61] = -0.0166666666666666*G3_0_0_0_0 - 0.0166666666666666*G3_0_0_1_0 - 0.00833333333333332*G3_0_1_0_0 - 0.00833333333333332*G3_0_1_1_0 - 0.00833333333333332*G3_0_2_0_0 - 0.00833333333333332*G3_0_2_1_0 - 0.00833333333333332*G3_1_0_0_0 - 0.00833333333333332*G3_1_0_1_0 - 0.0166666666666666*G3_1_1_0_0 - 0.0166666666666666*G3_1_1_1_0 - 0.00833333333333332*G3_1_2_0_0 - 0.00833333333333332*G3_1_2_1_0 - 0.00833333333333332*G3_2_0_0_0 - 0.00833333333333332*G3_2_0_1_0 - 0.00833333333333332*G3_2_1_0_0 - 0.00833333333333332*G3_2_1_1_0 - 0.0166666666666666*G3_2_2_0_0 - 0.0166666666666666*G3_2_2_1_0;
+    A[60] = 0.0166666666666666*G3_0_0_0_0 + 0.0166666666666666*G3_0_0_0_1 + 0.0166666666666666*G3_0_0_1_0 + 0.0166666666666666*G3_0_0_1_1 + 0.00833333333333333*G3_0_1_0_0 + 0.00833333333333332*G3_0_1_0_1 + 0.00833333333333332*G3_0_1_1_0 + 0.00833333333333332*G3_0_1_1_1 + 0.00833333333333332*G3_0_2_0_0 + 0.00833333333333332*G3_0_2_0_1 + 0.00833333333333332*G3_0_2_1_0 + 0.00833333333333332*G3_0_2_1_1 + 0.00833333333333333*G3_1_0_0_0 + 0.00833333333333332*G3_1_0_0_1 + 0.00833333333333332*G3_1_0_1_0 + 0.00833333333333332*G3_1_0_1_1 + 0.0166666666666666*G3_1_1_0_0 + 0.0166666666666666*G3_1_1_0_1 + 0.0166666666666666*G3_1_1_1_0 + 0.0166666666666666*G3_1_1_1_1 + 0.00833333333333332*G3_1_2_0_0 + 0.00833333333333332*G3_1_2_0_1 + 0.00833333333333332*G3_1_2_1_0 + 0.00833333333333332*G3_1_2_1_1 + 0.00833333333333332*G3_2_0_0_0 + 0.00833333333333332*G3_2_0_0_1 + 0.00833333333333332*G3_2_0_1_0 + 0.00833333333333332*G3_2_0_1_1 + 0.00833333333333332*G3_2_1_0_0 + 0.00833333333333332*G3_2_1_0_1 + 0.00833333333333332*G3_2_1_1_0 + 0.00833333333333332*G3_2_1_1_1 + 0.0166666666666666*G3_2_2_0_0 + 0.0166666666666666*G3_2_2_0_1 + 0.0166666666666666*G3_2_2_1_0 + 0.0166666666666666*G3_2_2_1_1;
+    A[61] = -0.0166666666666666*G3_0_0_0_0 - 0.0166666666666666*G3_0_0_1_0 - 0.00833333333333333*G3_0_1_0_0 - 0.00833333333333332*G3_0_1_1_0 - 0.00833333333333332*G3_0_2_0_0 - 0.00833333333333332*G3_0_2_1_0 - 0.00833333333333333*G3_1_0_0_0 - 0.00833333333333332*G3_1_0_1_0 - 0.0166666666666666*G3_1_1_0_0 - 0.0166666666666666*G3_1_1_1_0 - 0.00833333333333332*G3_1_2_0_0 - 0.00833333333333332*G3_1_2_1_0 - 0.00833333333333332*G3_2_0_0_0 - 0.00833333333333332*G3_2_0_1_0 - 0.00833333333333332*G3_2_1_0_0 - 0.00833333333333332*G3_2_1_1_0 - 0.0166666666666666*G3_2_2_0_0 - 0.0166666666666666*G3_2_2_1_0;
     A[62] = -0.0166666666666666*G3_0_0_0_1 - 0.0166666666666666*G3_0_0_1_1 - 0.00833333333333332*G3_0_1_0_1 - 0.00833333333333332*G3_0_1_1_1 - 0.00833333333333332*G3_0_2_0_1 - 0.00833333333333332*G3_0_2_1_1 - 0.00833333333333332*G3_1_0_0_1 - 0.00833333333333332*G3_1_0_1_1 - 0.0166666666666666*G3_1_1_0_1 - 0.0166666666666666*G3_1_1_1_1 - 0.00833333333333332*G3_1_2_0_1 - 0.00833333333333332*G3_1_2_1_1 - 0.00833333333333332*G3_2_0_0_1 - 0.00833333333333332*G3_2_0_1_1 - 0.00833333333333332*G3_2_1_0_1 - 0.00833333333333332*G3_2_1_1_1 - 0.0166666666666666*G3_2_2_0_1 - 0.0166666666666666*G3_2_2_1_1;
     A[63] = -0.166666666666667*G2_0_0 - 0.166666666666667*G2_1_0;
     A[64] = 0.166666666666667*G2_0_0;
@@ -7726,8 +7726,8 @@ public:
     A[66] = -0.166666666666667*G2_0_1 - 0.166666666666667*G2_1_1;
     A[67] = 0.166666666666667*G2_0_1;
     A[68] = 0.166666666666667*G2_1_1;
-    A[69] = -0.0166666666666666*G3_0_0_0_0 - 0.0166666666666666*G3_0_0_0_1 - 0.00833333333333332*G3_0_1_0_0 - 0.00833333333333332*G3_0_1_0_1 - 0.00833333333333332*G3_0_2_0_0 - 0.00833333333333332*G3_0_2_0_1 - 0.00833333333333332*G3_1_0_0_0 - 0.00833333333333332*G3_1_0_0_1 - 0.0166666666666666*G3_1_1_0_0 - 0.0166666666666666*G3_1_1_0_1 - 0.00833333333333332*G3_1_2_0_0 - 0.00833333333333332*G3_1_2_0_1 - 0.00833333333333332*G3_2_0_0_0 - 0.00833333333333332*G3_2_0_0_1 - 0.00833333333333332*G3_2_1_0_0 - 0.00833333333333332*G3_2_1_0_1 - 0.0166666666666666*G3_2_2_0_0 - 0.0166666666666666*G3_2_2_0_1;
-    A[70] = 0.0166666666666666*G3_0_0_0_0 + 0.00833333333333332*G3_0_1_0_0 + 0.00833333333333332*G3_0_2_0_0 + 0.00833333333333332*G3_1_0_0_0 + 0.0166666666666666*G3_1_1_0_0 + 0.00833333333333332*G3_1_2_0_0 + 0.00833333333333332*G3_2_0_0_0 + 0.00833333333333332*G3_2_1_0_0 + 0.0166666666666666*G3_2_2_0_0;
+    A[69] = -0.0166666666666666*G3_0_0_0_0 - 0.0166666666666666*G3_0_0_0_1 - 0.00833333333333333*G3_0_1_0_0 - 0.00833333333333332*G3_0_1_0_1 - 0.00833333333333332*G3_0_2_0_0 - 0.00833333333333332*G3_0_2_0_1 - 0.00833333333333333*G3_1_0_0_0 - 0.00833333333333332*G3_1_0_0_1 - 0.0166666666666666*G3_1_1_0_0 - 0.0166666666666666*G3_1_1_0_1 - 0.00833333333333332*G3_1_2_0_0 - 0.00833333333333332*G3_1_2_0_1 - 0.00833333333333332*G3_2_0_0_0 - 0.00833333333333332*G3_2_0_0_1 - 0.00833333333333332*G3_2_1_0_0 - 0.00833333333333332*G3_2_1_0_1 - 0.0166666666666666*G3_2_2_0_0 - 0.0166666666666666*G3_2_2_0_1;
+    A[70] = 0.0166666666666666*G3_0_0_0_0 + 0.00833333333333333*G3_0_1_0_0 + 0.00833333333333332*G3_0_2_0_0 + 0.00833333333333333*G3_1_0_0_0 + 0.0166666666666666*G3_1_1_0_0 + 0.00833333333333332*G3_1_2_0_0 + 0.00833333333333332*G3_2_0_0_0 + 0.00833333333333332*G3_2_1_0_0 + 0.0166666666666666*G3_2_2_0_0;
     A[71] = 0.0166666666666666*G3_0_0_0_1 + 0.00833333333333332*G3_0_1_0_1 + 0.00833333333333332*G3_0_2_0_1 + 0.00833333333333332*G3_1_0_0_1 + 0.0166666666666666*G3_1_1_0_1 + 0.00833333333333332*G3_1_2_0_1 + 0.00833333333333332*G3_2_0_0_1 + 0.00833333333333332*G3_2_1_0_1 + 0.0166666666666666*G3_2_2_0_1;
     A[72] = -0.166666666666667*G2_0_0 - 0.166666666666667*G2_1_0;
     A[73] = 0.166666666666667*G2_0_0;
@@ -7867,44 +7867,157 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class StabStokes2DBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  StabStokes2DBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_StabStokes2DBilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_StabStokes2DBilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class StabStokes2DBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  StabStokes2DBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_StabStokes2DBilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_StabStokes2DBilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class StabStokes2DBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  StabStokes2DBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_StabStokes2DBilinearForm_finite_element_2()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_StabStokes2DBilinearForm_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class StabStokes2DTestSpace : public dolfin::FunctionSpace
+{
+public:
+
+  StabStokes2DTestSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_StabStokes2DBilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_StabStokes2DBilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class StabStokes2DTrialSpace : public dolfin::FunctionSpace
+{
+public:
+
+  StabStokes2DTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_StabStokes2DBilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_StabStokes2DBilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class StabStokes2DBilinearFormCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  StabStokes2DBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~StabStokes2DBilinearFormCoefficient0() {}
+
+  // Attach function to coefficient
+  const StabStokes2DBilinearFormCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new StabStokes2DBilinearFormCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "h";
+  }
+  
+};
 
 class StabStokes2DBilinearForm : public dolfin::Form
 {
 public:
 
-  StabStokes2DBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1, dolfin::Function& v0) : dolfin::Form()
+  // Constructor
+  StabStokes2DBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), h(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_StabStokes2DBilinearForm();
 
-    check();
+
   }
 
-  StabStokes2DBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1, std::tr1::shared_ptr<dolfin::Function> v0) : dolfin::Form()
+  // Constructor
+  StabStokes2DBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), h(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(v0);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_StabStokes2DBilinearForm();
 
-    check();
+
   }
+
+  // Destructor
+  ~StabStokes2DBilinearForm() {}
+
+  //Coefficients
+  StabStokes2DBilinearFormCoefficient0 h;
 
 };
 

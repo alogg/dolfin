@@ -2479,7 +2479,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w0_a0[0, 1, 2]w1_a1[0, 1] | va0[0, 1, 2]*va1[0, 1][1]*ds(0)";
+    return "w0_a0[0, 1, 2]facet normal_a1[0, 1] | va0[0, 1, 2]*va1[0, 1][1]*ds(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2564,39 +2564,147 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class LiftFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  LiftFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_0()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class LiftFunctionalCoefficientSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  LiftFunctionalCoefficientSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class LiftFunctionalCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  LiftFunctionalCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~LiftFunctionalCoefficient0() {}
+
+  // Attach function to coefficient
+  const LiftFunctionalCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new LiftFunctionalCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "p";
+  }
+  
+};
+
+class LiftFunctionalCoefficient1 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  LiftFunctionalCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~LiftFunctionalCoefficient1() {}
+
+  // Attach function to coefficient
+  const LiftFunctionalCoefficient1& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new LiftFunctionalCoefficientSpace1(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 1;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "n";
+  }
+  
+};
 
 class LiftFunctional : public dolfin::Form
 {
 public:
 
-  LiftFunctional(dolfin::Function& v0, dolfin::Function& v1) : dolfin::Form()
+  // Constructor
+  LiftFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
-    std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v1);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_LiftFunctional();
 
-    check();
+
   }
 
-  LiftFunctional(std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1) : dolfin::Form()
+  // Constructor
+  LiftFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    _coefficients.push_back(v0);
-    _coefficients.push_back(v1);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_LiftFunctional();
 
-    check();
+
   }
+
+  // Destructor
+  ~LiftFunctional() {}
+
+  //Coefficients
+  LiftFunctionalCoefficient0 p;
+  LiftFunctionalCoefficient1 n;
 
 };
 

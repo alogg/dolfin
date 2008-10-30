@@ -2479,7 +2479,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "-w0_a0[0, 1, 2]w1_a1[0, 1] | va0[0, 1, 2]*va1[0, 1][0]*ds(0)";
+    return "-w0_a0[0, 1, 2]facet normal_a1[0, 1] | va0[0, 1, 2]*va1[0, 1][0]*ds(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2564,39 +2564,147 @@ public:
 
 // DOLFIN wrappers
 
-namespace dolfin
-{
-  class FunctionSpace;
-  class Function;
-}
-
 #include <dolfin/fem/Form.h>
+#include <dolfin/fem/FiniteElement.h>
+#include <dolfin/fem/DofMap.h>
+#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/FunctionSpace.h>
+
+class DragFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
+{
+public:
+
+  DragFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_DragFunctional_finite_element_0()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_DragFunctional_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class DragFunctionalCoefficientSpace1 : public dolfin::FunctionSpace
+{
+public:
+
+  DragFunctionalCoefficientSpace1(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_DragFunctional_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_DragFunctional_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class DragFunctionalCoefficient0 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  DragFunctionalCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~DragFunctionalCoefficient0() {}
+
+  // Attach function to coefficient
+  const DragFunctionalCoefficient0& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new DragFunctionalCoefficientSpace0(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 0;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "p";
+  }
+  
+};
+
+class DragFunctionalCoefficient1 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  DragFunctionalCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~DragFunctionalCoefficient1() {}
+
+  // Attach function to coefficient
+  const DragFunctionalCoefficient1& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new DragFunctionalCoefficientSpace1(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 1;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "n";
+  }
+  
+};
 
 class DragFunctional : public dolfin::Form
 {
 public:
 
-  DragFunctional(dolfin::Function& v0, dolfin::Function& v1) : dolfin::Form()
+  // Constructor
+  DragFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    std::tr1::shared_ptr<dolfin::Function> _v0(&v0, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v0);
-    std::tr1::shared_ptr<dolfin::Function> _v1(&v1, dolfin::NoDeleter<dolfin::Function>());
-    _coefficients.push_back(_v1);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_DragFunctional();
 
-    check();
+
   }
 
-  DragFunctional(std::tr1::shared_ptr<dolfin::Function> v0, std::tr1::shared_ptr<dolfin::Function> v1) : dolfin::Form()
+  // Constructor
+  DragFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    _coefficients.push_back(v0);
-    _coefficients.push_back(v1);
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
 
     _ufc_form = new UFC_DragFunctional();
 
-    check();
+
   }
+
+  // Destructor
+  ~DragFunctional() {}
+
+  //Coefficients
+  DragFunctionalCoefficient0 p;
+  DragFunctionalCoefficient1 n;
 
 };
 
