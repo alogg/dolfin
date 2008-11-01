@@ -3566,11 +3566,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class ConvectionMatrix3DBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class ConvectionMatrix3DBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionMatrix3DBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  ConvectionMatrix3DBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
@@ -3580,11 +3580,11 @@ public:
 
 };
 
-class ConvectionMatrix3DBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+class ConvectionMatrix3DBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionMatrix3DBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+  ConvectionMatrix3DBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
@@ -3655,6 +3655,20 @@ class ConvectionMatrix3DTrialSpace : public dolfin::FunctionSpace
 public:
 
   ConvectionMatrix3DTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ConvectionMatrix3DFunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ConvectionMatrix3DFunctionSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))

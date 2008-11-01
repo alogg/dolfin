@@ -660,7 +660,7 @@ public:
     
     // Compute element tensor
     // Number of operations to compute tensor = 17
-    A[0] = 0.0833333333333332*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0416666666666666*G0_0_2 + 0.0416666666666666*G0_1_0 + 0.0833333333333332*G0_1_1 + 0.0416666666666666*G0_1_2 + 0.0416666666666666*G0_2_0 + 0.0416666666666666*G0_2_1 + 0.0833333333333331*G0_2_2;
+    A[0] = 0.0833333333333332*G0_0_0 + 0.0416666666666666*G0_0_1 + 0.0416666666666666*G0_0_2 + 0.0416666666666666*G0_1_0 + 0.0833333333333332*G0_1_1 + 0.0416666666666666*G0_1_2 + 0.0416666666666666*G0_2_0 + 0.0416666666666666*G0_2_1 + 0.0833333333333332*G0_2_2;
   }
 
 };
@@ -787,11 +787,11 @@ public:
 
 };
 
-class SimpleFunctionSpace : public dolfin::FunctionSpace
+class SimpleCoefficientSpace : public dolfin::FunctionSpace
 {
 public:
 
-  SimpleFunctionSpace(const dolfin::Mesh& mesh)
+  SimpleCoefficientSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_SimpleFunctional_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_SimpleFunctional_dof_map_0()), mesh)))

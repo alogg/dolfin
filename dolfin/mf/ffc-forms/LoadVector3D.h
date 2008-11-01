@@ -1549,11 +1549,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class LoadVector3DLinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class LoadVector3DLinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  LoadVector3DLinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  LoadVector3DLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LoadVector3DLinearForm_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LoadVector3DLinearForm_dof_map_0()), mesh)))
@@ -1596,6 +1596,34 @@ class LoadVector3DTrialSpace : public dolfin::FunctionSpace
 public:
 
   LoadVector3DTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LoadVector3DLinearForm_finite_element_0()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LoadVector3DLinearForm_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class LoadVector3DCoefficientSpace : public dolfin::FunctionSpace
+{
+public:
+
+  LoadVector3DCoefficientSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LoadVector3DLinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LoadVector3DLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class LoadVector3DFunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  LoadVector3DFunctionSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LoadVector3DLinearForm_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LoadVector3DLinearForm_dof_map_0()), mesh)))

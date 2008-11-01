@@ -1359,12 +1359,12 @@ public:
     // Compute element tensor
     // Number of operations to compute tensor = 98
     A[0] = 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0 + 0.499999999999999*G0_1_1;
-    A[1] = 0.166666666666667*G0_0_0 + 0.166666666666667*G0_1_0;
+    A[1] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_1_0;
     A[2] = 0.166666666666666*G0_0_1 + 0.166666666666666*G0_1_1;
     A[3] = 0;
     A[4] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_1;
     A[5] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_1_0;
-    A[6] = 0.166666666666667*G0_0_0 + 0.166666666666667*G0_0_1;
+    A[6] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1;
     A[7] = 0.499999999999999*G0_0_0;
     A[8] = -0.166666666666666*G0_0_1;
     A[9] = 0.666666666666665*G0_0_1;
@@ -1373,26 +1373,26 @@ public:
     A[12] = 0.166666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
     A[13] = -0.166666666666666*G0_1_0;
     A[14] = 0.499999999999999*G0_1_1;
-    A[15] = 0.666666666666665*G0_1_0;
-    A[16] = -0.666666666666665*G0_1_0 - 0.666666666666666*G0_1_1;
+    A[15] = 0.666666666666666*G0_1_0;
+    A[16] = -0.666666666666665*G0_1_0 - 0.666666666666665*G0_1_1;
     A[17] = 0;
     A[18] = 0;
     A[19] = 0.666666666666665*G0_1_0;
-    A[20] = 0.666666666666665*G0_0_1;
+    A[20] = 0.666666666666666*G0_0_1;
     A[21] = 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1;
-    A[22] = -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0;
-    A[23] = -0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[22] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[23] = -0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
     A[24] = -0.666666666666665*G0_1_0 - 0.666666666666665*G0_1_1;
     A[25] = 0;
     A[26] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_1;
-    A[27] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0;
-    A[28] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
-    A[29] = 0.666666666666665*G0_0_1 + 0.666666666666666*G0_1_0;
-    A[30] = -0.666666666666666*G0_0_0 - 0.666666666666666*G0_0_1;
-    A[31] = -0.666666666666666*G0_0_0 - 0.666666666666665*G0_1_0;
+    A[27] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[28] = 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[29] = 0.666666666666666*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[30] = -0.666666666666665*G0_0_0 - 0.666666666666666*G0_0_1;
+    A[31] = -0.666666666666665*G0_0_0 - 0.666666666666665*G0_1_0;
     A[32] = 0;
-    A[33] = -0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
-    A[34] = 0.666666666666666*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[33] = -0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[34] = 0.666666666666665*G0_0_1 + 0.666666666666666*G0_1_0;
     A[35] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
   }
 
@@ -2869,7 +2869,7 @@ public:
     // Number of operations to compute tensor = 42
     A[0] = 0.0166666666666666*G0_0 - 0.00277777777777777*G0_1 - 0.00277777777777778*G0_2 - 0.0111111111111111*G0_3;
     A[1] = -0.00277777777777777*G0_0 + 0.0166666666666666*G0_1 - 0.00277777777777777*G0_2 - 0.0111111111111111*G0_4;
-    A[2] = -0.00277777777777778*G0_0 - 0.00277777777777778*G0_1 + 0.0166666666666666*G0_2 - 0.0111111111111111*G0_5;
+    A[2] = -0.00277777777777778*G0_0 - 0.00277777777777777*G0_1 + 0.0166666666666666*G0_2 - 0.0111111111111111*G0_5;
     A[3] = -0.0111111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444444*G0_4 + 0.0444444444444444*G0_5;
     A[4] = -0.0111111111111111*G0_1 + 0.0444444444444444*G0_3 + 0.0888888888888888*G0_4 + 0.0444444444444444*G0_5;
     A[5] = -0.0111111111111111*G0_2 + 0.0444444444444444*G0_3 + 0.0444444444444444*G0_4 + 0.0888888888888888*G0_5;
@@ -3003,11 +3003,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class Poisson2D_2BilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class Poisson2D_2BilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  Poisson2D_2BilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  Poisson2D_2BilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_2LinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_2LinearForm_dof_map_1()), mesh)))
@@ -3017,11 +3017,11 @@ public:
 
 };
 
-class Poisson2D_2BilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+class Poisson2D_2BilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  Poisson2D_2BilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+  Poisson2D_2BilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_2LinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_2LinearForm_dof_map_1()), mesh)))
@@ -3031,11 +3031,11 @@ public:
 
 };
 
-class Poisson2D_2LinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class Poisson2D_2LinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  Poisson2D_2LinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  Poisson2D_2LinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_2LinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_2LinearForm_dof_map_1()), mesh)))
@@ -3078,6 +3078,20 @@ class Poisson2D_2TrialSpace : public dolfin::FunctionSpace
 public:
 
   Poisson2D_2TrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_2LinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_2LinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class Poisson2D_2CoefficientSpace : public dolfin::FunctionSpace
+{
+public:
+
+  Poisson2D_2CoefficientSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_2LinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_2LinearForm_dof_map_1()), mesh)))

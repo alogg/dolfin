@@ -4140,11 +4140,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class VectorPoissonBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class VectorPoissonBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  VectorPoissonBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  VectorPoissonBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_VectorPoissonBilinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_VectorPoissonBilinearForm_dof_map_1()), mesh)))
@@ -4154,11 +4154,11 @@ public:
 
 };
 
-class VectorPoissonBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+class VectorPoissonBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  VectorPoissonBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+  VectorPoissonBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_VectorPoissonBilinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_VectorPoissonBilinearForm_dof_map_1()), mesh)))

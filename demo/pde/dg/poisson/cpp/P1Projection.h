@@ -1235,7 +1235,7 @@ public:
     A[5] = 0.0416666666666666*G0_;
     A[6] = 0.0416666666666666*G0_;
     A[7] = 0.0416666666666666*G0_;
-    A[8] = 0.0833333333333331*G0_;
+    A[8] = 0.0833333333333332*G0_;
   }
 
 };
@@ -2578,7 +2578,7 @@ public:
     // Number of operations to compute tensor = 15
     A[0] = 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
     A[1] = 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333331*G0_2;
+    A[2] = 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
   }
 
 };
@@ -2709,11 +2709,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class P1ProjectionBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class P1ProjectionBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  P1ProjectionBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  P1ProjectionBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_P1ProjectionLinearForm_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_P1ProjectionLinearForm_dof_map_0()), mesh)))
@@ -2723,11 +2723,11 @@ public:
 
 };
 
-class P1ProjectionBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+class P1ProjectionBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  P1ProjectionBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+  P1ProjectionBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_P1ProjectionLinearForm_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_P1ProjectionLinearForm_dof_map_0()), mesh)))
@@ -2737,11 +2737,11 @@ public:
 
 };
 
-class P1ProjectionLinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class P1ProjectionLinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  P1ProjectionLinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  P1ProjectionLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_P1ProjectionLinearForm_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_P1ProjectionLinearForm_dof_map_0()), mesh)))
@@ -2784,6 +2784,34 @@ class P1ProjectionTrialSpace : public dolfin::FunctionSpace
 public:
 
   P1ProjectionTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_P1ProjectionLinearForm_finite_element_0()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_P1ProjectionLinearForm_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class P1ProjectionCoefficientSpace : public dolfin::FunctionSpace
+{
+public:
+
+  P1ProjectionCoefficientSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_P1ProjectionLinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_P1ProjectionLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class P1ProjectionFunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  P1ProjectionFunctionSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_P1ProjectionLinearForm_finite_element_0()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_P1ProjectionLinearForm_dof_map_0()), mesh)))

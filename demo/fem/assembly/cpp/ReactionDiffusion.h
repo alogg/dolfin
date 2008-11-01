@@ -3278,11 +3278,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class ReactionDiffusionBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class ReactionDiffusionBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ReactionDiffusionBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  ReactionDiffusionBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
@@ -3292,11 +3292,11 @@ public:
 
 };
 
-class ReactionDiffusionBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+class ReactionDiffusionBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  ReactionDiffusionBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+  ReactionDiffusionBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
@@ -3306,11 +3306,11 @@ public:
 
 };
 
-class ReactionDiffusionLinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class ReactionDiffusionLinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ReactionDiffusionLinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  ReactionDiffusionLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
@@ -3353,6 +3353,20 @@ class ReactionDiffusionTrialSpace : public dolfin::FunctionSpace
 public:
 
   ReactionDiffusionTrialSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ReactionDiffusionCoefficientSpace : public dolfin::FunctionSpace
+{
+public:
+
+  ReactionDiffusionCoefficientSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))

@@ -5681,11 +5681,11 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class PoissonBilinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class PoissonBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  PoissonBilinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  PoissonBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
@@ -5695,11 +5695,11 @@ public:
 
 };
 
-class PoissonBilinearFormArgumentSpace1 : public dolfin::FunctionSpace
+class PoissonBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  PoissonBilinearFormArgumentSpace1(const dolfin::Mesh& mesh)
+  PoissonBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
@@ -5737,11 +5737,11 @@ public:
 
 };
 
-class PoissonLinearFormArgumentSpace0 : public dolfin::FunctionSpace
+class PoissonLinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  PoissonLinearFormArgumentSpace0(const dolfin::Mesh& mesh)
+  PoissonLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
                             std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
@@ -5793,6 +5793,20 @@ public:
 
 };
 
+class PoissonFunctionSpace : public dolfin::FunctionSpace
+{
+public:
+
+  PoissonFunctionSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
 class PoissonBilinearFormCoefficient0 : public dolfin::Coefficient
 {
 public:
@@ -5825,7 +5839,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "f";
+    return "n";
   }
   
 };
@@ -5862,7 +5876,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "n";
+    return "h";
   }
   
 };
@@ -5872,7 +5886,7 @@ class PoissonBilinearForm : public dolfin::Form
 public:
 
   // Constructor
-  PoissonBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), f(*this), n(*this)
+  PoissonBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), n(*this), h(*this)
   {
     std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -5888,7 +5902,7 @@ public:
   }
 
   // Constructor
-  PoissonBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), f(*this), n(*this)
+  PoissonBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), n(*this), h(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -5905,8 +5919,8 @@ public:
   ~PoissonBilinearForm() {}
 
   //Coefficients
-  PoissonBilinearFormCoefficient0 f;
-  PoissonBilinearFormCoefficient1 n;
+  PoissonBilinearFormCoefficient0 n;
+  PoissonBilinearFormCoefficient1 h;
 
 };
 
