@@ -79,6 +79,10 @@ C++ includes: SpecialFunctions.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "
+
+Constructor. ";
+
 %feature("docstring")  dolfin::AvgMeshSize::eval "
 
 Return average cell size. ";
@@ -179,25 +183,34 @@ C++ includes: BoundaryCondition.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::BoundaryCondition::BoundaryCondition "
+
+Constructor. ";
+
 %feature("docstring")  dolfin::BoundaryCondition::~BoundaryCondition "
 
 Destructor. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a matrix. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system for a nonlinear problem. ";
+Apply boundary condition to a linear system. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system for a nonlinear problem. ";
+Apply boundary condition to a vector for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::BoundaryCondition::apply "
+
+Apply boundary condition to a linear system for a nonlinear problem.
+";
 
 
 // File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
@@ -472,6 +485,29 @@ Return time step for real-valued ODE. ";
 Update for real-valued ODE. ";
 
 
+// File: classdolfin_1_1Constant.xml
+%feature("docstring") dolfin::Constant "
+
+This class implements the functionality for functions that take a
+single constant value.
+
+C++ includes: Constant.h ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Copy constructor.
+
+Create constant scalar function from given value ";
+
+%feature("docstring")  dolfin::Constant::~Constant "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Constant::eval "
+
+Evaluate function at given point. ";
+
+
 // File: classdolfin_1_1DefaultFactory.xml
 %feature("docstring") dolfin::DefaultFactory "";
 
@@ -556,8 +592,8 @@ u = g on G,
 where u is the solution to be computed, g is a function and G is a sub
 domain of the mesh.
 
-A DirichletBC is specified by the Function g, the Mesh, and boundary
-indicators on (a subset of) the mesh boundary.
+A DirichletBC is specified by the Function g, the FunctionSpace (trial
+space) and boundary indicators on (a subset of) the mesh boundary.
 
 The boundary indicators may be specified in a number of different
 ways.
@@ -612,7 +648,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a matrix. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
@@ -620,43 +656,23 @@ Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a linear system. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a vector for a nonlinear problem. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system for a nonlinear problem. ";
-
-%feature("docstring")  dolfin::DirichletBC::apply "
-
-Apply boundary condition to linear system for a nonlinear problem. ";
-
-%feature("docstring")  dolfin::DirichletBC::apply "
-
-Apply boundary condition to linear system for a nonlinear problem. ";
-
-%feature("docstring")  dolfin::DirichletBC::apply "
-
-Apply boundary condition to linear system for a nonlinear problem. ";
+Apply boundary condition to a linear system for a nonlinear problem.
+";
 
 %feature("docstring")  dolfin::DirichletBC::zero "
 
 Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
 
-%feature("docstring")  dolfin::DirichletBC::zero "
-
-Make row associated with boundary conditions zero, useful for non-
-diagonal matrices in a block matrix. ";
-
-%feature("docstring")  dolfin::DirichletBC::setSubSystem "
-
-Set (or update) value for sub system. ";
-
-%feature("docstring")  dolfin::DirichletBC::getBC "
+%feature("docstring")  dolfin::DirichletBC::get_bc "
 
 Get Dirichlet values and indicators. ";
 
@@ -664,10 +680,6 @@ Get Dirichlet values and indicators. ";
 
 Check if given function is compatible with boundary condition
 (checking only vertex values). ";
-
-%feature("docstring")  dolfin::DirichletBC::mesh "
-
-Return mesh. ";
 
 
 // File: classdolfin_1_1DofMap.xml
@@ -740,10 +752,6 @@ Tabulate local-local facet dofs. ";
 Tabulate the local-to-global mapping of dofs on a ufc cell. ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "";
-
-%feature("docstring")  dolfin::DofMap::mesh "
-
-Return mesh associated with map. ";
 
 %feature("docstring")  dolfin::DofMap::build "
 
@@ -982,7 +990,13 @@ This function represents the area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::FacetArea::FacetArea "";
+%feature("docstring")  dolfin::FacetArea::FacetArea "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::FacetArea::FacetArea "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::FacetArea::eval "
 
@@ -1009,7 +1023,13 @@ that it is only nonzero on cell facets (not on cells).
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::FacetNormal::FacetNormal "";
+%feature("docstring")  dolfin::FacetNormal::FacetNormal "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::FacetNormal::FacetNormal "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::FacetNormal::eval "
 
@@ -1136,6 +1156,10 @@ Return coefficient functions. ";
 
 Return UFC form. ";
 
+%feature("docstring")  dolfin::Form::check "
+
+Check function spaces and coefficients. ";
+
 
 // File: classdolfin_1_1Function.xml
 %feature("docstring") dolfin::Function "
@@ -1152,7 +1176,8 @@ C++ includes: Function.h ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create an empty function. ";
+Create function (and let DOLFIN figure out the correct function
+space). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1232,16 +1257,16 @@ Evaluate function (needed for ufc::function interface). ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
-Interpolate function to given function space. ";
-
-%feature("docstring")  dolfin::Function::interpolate "
-
 Interpolate function to local function space on cell. ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
-Interpolate function to local function space on cell (with check on
-function space). ";
+Interpolate function to local function space on cell with check on
+function space. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to given function space. ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
@@ -1949,7 +1974,13 @@ This function represents the inverse area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "";
+%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::InvFacetArea::eval "
 
@@ -1963,6 +1994,10 @@ This Function represents the inverse of the local cell size on a given
 mesh.
 
 C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
 
@@ -2544,10 +2579,6 @@ Partition mesh into num_processes partitions. ";
 
 Partition mesh into num_partitions partitions. ";
 
-%feature("docstring")  dolfin::Mesh::partitionGeom "
-
-Partition mesh into num_partitions partitions (geometric). ";
-
 %feature("docstring")  dolfin::Mesh::distribute "";
 
 %feature("docstring")  dolfin::Mesh::disp "
@@ -3057,6 +3088,10 @@ C++ includes: SpecialFunctions.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::MeshSize::MeshSize "
+
+Constructor. ";
+
 %feature("docstring")  dolfin::MeshSize::eval "
 
 Return cell size. ";
@@ -3481,27 +3516,6 @@ Evaluate (interpolate) value of solution at given time. ";
 %feature("docstring")  dolfin::ODESolution::flush "";
 
 
-// File: classdolfin_1_1OutflowFacet.xml
-%feature("docstring") dolfin::OutflowFacet "
-
-This function determines if the current facet is an outflow facet with
-respect to the current cell. It accepts as argument the mesh and a
-form M = dot(n, v)*ds, a functional, defined on the normal vector to
-the facet and velocity vector integrated over the exterior of the
-cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::OutflowFacet::OutflowFacet "";
-
-%feature("docstring")  dolfin::OutflowFacet::~OutflowFacet "";
-
-%feature("docstring")  dolfin::OutflowFacet::eval "
-
-Evaluate function at point x (overload for scalar user-defined
-function). ";
-
-
 // File: classdolfin_1_1Parameter.xml
 %feature("docstring") dolfin::Parameter "
 
@@ -3636,21 +3650,24 @@ Destructor. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a matrix. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system for a nonlinear problem (not
-implemented). ";
+Apply boundary condition to a linear system. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system for a nonlinear problem (not
-implemented). ";
+Apply boundary condition to a vector for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::PeriodicBC::apply "
+
+Apply boundary condition to a linear system for a nonlinear problem.
+";
 
 
 // File: classdolfin_1_1PETScObject.xml
@@ -4219,6 +4236,29 @@ periodic boundary conditions). ";
 %feature("docstring")  dolfin::SubDomain::mark "
 
 Set sub domain markers for given sub domain. ";
+
+
+// File: classdolfin_1_1SubFunction.xml
+%feature("docstring") dolfin::SubFunction "
+
+This class represents a sub function (view) of a function. It's
+purpose is to enable expressions like
+
+Function w; Function u = w[0]; Function p = w[1];
+
+without needing to create and destroy temporaries. No data is created
+until a SubFunction is assigned to a Function, at which point the data
+is copied.
+
+C++ includes: SubFunction.h ";
+
+%feature("docstring")  dolfin::SubFunction::SubFunction "
+
+Create sub function. ";
+
+%feature("docstring")  dolfin::SubFunction::~SubFunction "
+
+Destructor. ";
 
 
 // File: classdolfin_1_1SubMatrix.xml
@@ -5291,6 +5331,9 @@ Seed random number generator. ";
 // File: SubSystem_8h.xml
 
 
+// File: Constant_8h.xml
+
+
 // File: Function_8h.xml
 
 
@@ -5301,6 +5344,9 @@ Seed random number generator. ";
 
 
 // File: SpecialFunctions_8h.xml
+
+
+// File: SubFunction_8h.xml
 
 
 // File: DirectedClique_8h.xml
@@ -5624,56 +5670,56 @@ Seed random number generator. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_58320a6bee734c3bb6d36183c618bb09.xml
+// File: dir_c96f1beec191e5bbc581b1ef08b0245d.xml
 
 
-// File: dir_227a775ba5d95bfcf3e85ed973812fac.xml
+// File: dir_cbb5b5a0f7d9dc5a107baac7fe4066ea.xml
 
 
-// File: dir_187f3fc9cfd6b0610eb4b1e093db23fa.xml
+// File: dir_5ac5579b61f87917549cd1affb01b4c6.xml
 
 
-// File: dir_90934d781c0da6edfbab578a937f610b.xml
+// File: dir_5bc1c6e5193893c3a68bcb9dd55e04c7.xml
 
 
-// File: dir_9c0d0547e6b9f173eb8c8d2a4b9512bb.xml
+// File: dir_657ed66ab6c06553e71bf526f544236e.xml
 
 
-// File: dir_d0a5335d7670987266b54a1776ce2d43.xml
+// File: dir_cb088bc42bb5fc2b1bd76cdab45e364a.xml
 
 
-// File: dir_d9ee26b68e49300e50cb9f2e72d1a451.xml
+// File: dir_d9d9d93c567b1fe63a25c62004ade1c8.xml
 
 
-// File: dir_e268708822640923db0bcb1dd75608ad.xml
+// File: dir_d4c995445b184cd38a139065b1b5f78a.xml
 
 
-// File: dir_a0f91cf1a617114eebdae070a1bb4bc9.xml
+// File: dir_86aeddb61ccec733980cc5f0b311c767.xml
 
 
-// File: dir_d2d5c0a57403dba66fba0bf3c12aa367.xml
+// File: dir_fe3d84bd2bc4864ec834a2cc98f921bc.xml
 
 
-// File: dir_77c7a12cc8929b40d8c88c5abcd79a3f.xml
+// File: dir_bbe1fa63fe05fdeafc54f47cd3d6a509.xml
 
 
-// File: dir_301e97d33edcf82036597d5b43314b9a.xml
+// File: dir_dca1a3aef5861218a3ebef36f2000819.xml
 
 
-// File: dir_db1d9d22381c6c52aea4a708f0fc34c1.xml
+// File: dir_7277eff79778000bc4e06f75382a0518.xml
 
 
-// File: dir_99cfd81db79fd9e090870c834a345872.xml
+// File: dir_60d38a7a740e12079fdb64ea336d56fc.xml
 
 
-// File: dir_24165f6be95a1e85538bdd342b6068ef.xml
+// File: dir_37df3d8d765be0ea6640b6840e5d9913.xml
 
 
-// File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
+// File: dir_83a15da89db544fc93a930e7c3650662.xml
 
 
-// File: dir_181c150be9c9c4eec0f2fcf3af955efd.xml
+// File: dir_7c88e54d079dc56616a66eb0b2c0a2d1.xml
 
 
-// File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
+// File: dir_5e02aa66068026b6c6ecc55f7297750c.xml
 
