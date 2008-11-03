@@ -183,10 +183,6 @@ C++ includes: BoundaryCondition.h ";
 
 Constructor. ";
 
-%feature("docstring")  dolfin::BoundaryCondition::BoundaryCondition "
-
-Constructor. ";
-
 %feature("docstring")  dolfin::BoundaryCondition::~BoundaryCondition "
 
 Destructor. ";
@@ -610,10 +606,6 @@ The third option is to attach the boundary information to the mesh.
 This is handled automatically when exporting a mesh from for example
 VMTK.
 
-For mixed systems (vector-valued and mixed elements), an optional set
-of parameters may be used to specify for which sub system the boundary
-condition should be specified.
-
 C++ includes: DirichletBC.h ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
@@ -627,20 +619,6 @@ Create boundary condition for sub domain specified by index. ";
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
 Create boundary condition for boundary data included in the mesh. ";
-
-%feature("docstring")  dolfin::DirichletBC::DirichletBC "
-
-Create sub system boundary condition for sub domain. ";
-
-%feature("docstring")  dolfin::DirichletBC::DirichletBC "
-
-Create sub system boundary condition for sub domain specified by
-index. ";
-
-%feature("docstring")  dolfin::DirichletBC::DirichletBC "
-
-Create sub system boundary condition for boundary data included in the
-mesh. ";
 
 %feature("docstring")  dolfin::DirichletBC::~DirichletBC "
 
@@ -763,7 +741,7 @@ Return renumbering (used for testing). ";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
 
-Extract sub dofmap and offset for sub system. ";
+Extract sub dofmap and offset for component. ";
 
 %feature("docstring")  dolfin::DofMap::offset "
 
@@ -1110,7 +1088,7 @@ dolfin::FiniteElement::interpolate_vertex_values "";
 
 %feature("docstring")  dolfin::FiniteElement::extract_sub_element "
 
-Extract sub finite element for sub system. ";
+Extract sub finite element for component. ";
 
 
 // File: classdolfin_1_1Form.xml
@@ -1203,6 +1181,10 @@ Copy constructor. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::Function::has_function_space "
+
+Test for the function space. ";
+
 %feature("docstring")  dolfin::Function::function_space "
 
 Return the function space. ";
@@ -1235,16 +1217,6 @@ Evaluate function at point x (overload for user-defined function). ";
 
 Evaluate function at point x and time t (overload for user-defined
 function). ";
-
-%feature("docstring")  dolfin::Function::eval "
-
-Evaluate function at point x (overload for scalar user-defined
-function). ";
-
-%feature("docstring")  dolfin::Function::eval "
-
-Evaluate function at point x and time t (overload for scalar user-
-defined function). ";
 
 %feature("docstring")  dolfin::Function::eval "
 
@@ -1325,7 +1297,7 @@ Interpolate function v in function space to vertices of mesh. ";
 
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
 
-Extract sub finite element for sub system. ";
+Extract sub space for component. ";
 
 
 // File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
@@ -3640,10 +3612,6 @@ C++ includes: PeriodicBC.h ";
 
 Create periodic boundary condition for sub domain. ";
 
-%feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
-
-Create sub system boundary condition for sub domain. ";
-
 %feature("docstring")  dolfin::PeriodicBC::~PeriodicBC "
 
 Destructor. ";
@@ -4254,7 +4222,7 @@ C++ includes: SubFunction.h ";
 
 %feature("docstring")  dolfin::SubFunction::SubFunction "
 
-Create sub function. ";
+Create sub function for given component. ";
 
 %feature("docstring")  dolfin::SubFunction::~SubFunction "
 
@@ -4269,45 +4237,32 @@ Destructor. ";
 %feature("docstring")  dolfin::SubMatrix::~SubMatrix "";
 
 
-// File: classdolfin_1_1SubSystem.xml
-%feature("docstring") dolfin::SubSystem "
+// File: classdolfin_1_1SubSpace.xml
+%feature("docstring") dolfin::SubSpace "
 
-This class represents a sub system that may be specified as a
-recursively nested sub system of some given system.
+This class represents a subspace (component) of a function space.
 
-The sub system is specified by an array of indices. For example, the
-array [3, 0, 2] specifies sub system 2 of sub system 0 of sub system
-3.
+The subspace is specified by an array of indices. For example, the
+array [3, 0, 2] specifies subspace 2 of subspace 0 of subspace 3.
 
-C++ includes: SubSystem.h ";
+A typical example is the function space W = V x P for Stokes. Here, V
+= W[0] is the subspace for the velocity component and P = W[1] is the
+subspace for the pressure component. Furthermore, W[0][0] = V[0] is
+the first component of the velocity space etc.
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
+C++ includes: SubSpace.h ";
 
-Create empty sub system (no sub systems). ";
+%feature("docstring")  dolfin::SubSpace::SubSpace "
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
+Create subspace for given component (one level). ";
 
-Create given sub system (one level). ";
+%feature("docstring")  dolfin::SubSpace::SubSpace "
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
+Create subspace for given component (two levels). ";
 
-Create given sub sub system (two levels). ";
+%feature("docstring")  dolfin::SubSpace::SubSpace "
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
-
-Create sub system for given array (n levels). ";
-
-%feature("docstring")  dolfin::SubSystem::SubSystem "
-
-Copy constructor. ";
-
-%feature("docstring")  dolfin::SubSystem::depth "
-
-Return number of levels for nested sub system. ";
-
-%feature("docstring")  dolfin::SubSystem::array "
-
-Return array which defines sub system. ";
+Create subspace for given component (n levels). ";
 
 
 // File: classdolfin_1_1SubVector.xml
@@ -5328,9 +5283,6 @@ Seed random number generator. ";
 // File: PeriodicBC_8h.xml
 
 
-// File: SubSystem_8h.xml
-
-
 // File: Constant_8h.xml
 
 
@@ -5347,6 +5299,9 @@ Seed random number generator. ";
 
 
 // File: SubFunction_8h.xml
+
+
+// File: SubSpace_8h.xml
 
 
 // File: DirectedClique_8h.xml
@@ -5670,56 +5625,56 @@ Seed random number generator. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_c96f1beec191e5bbc581b1ef08b0245d.xml
+// File: dir_7de87060646e1ce33bfc169038118a9b.xml
 
 
-// File: dir_cbb5b5a0f7d9dc5a107baac7fe4066ea.xml
+// File: dir_5a96cee4080d0c52a3a5139495530d05.xml
 
 
-// File: dir_5ac5579b61f87917549cd1affb01b4c6.xml
+// File: dir_a53bdbd8da76f45911ef7596e42fda92.xml
 
 
-// File: dir_5bc1c6e5193893c3a68bcb9dd55e04c7.xml
+// File: dir_8539ed2c058735f98d8bd1b8ffe209fd.xml
 
 
-// File: dir_657ed66ab6c06553e71bf526f544236e.xml
+// File: dir_cd3f4ae0f6db2addb7aee6d00ebc5588.xml
 
 
-// File: dir_cb088bc42bb5fc2b1bd76cdab45e364a.xml
+// File: dir_182d08be833b6456d229261bc443259a.xml
 
 
-// File: dir_d9d9d93c567b1fe63a25c62004ade1c8.xml
+// File: dir_e0277154136c0b3f6d09475924be3484.xml
 
 
-// File: dir_d4c995445b184cd38a139065b1b5f78a.xml
+// File: dir_17fb9cb52f7d27ad3f5ebd71ce30dc92.xml
 
 
-// File: dir_86aeddb61ccec733980cc5f0b311c767.xml
+// File: dir_d6cf41b4d56b97176ffbfb58c84c5267.xml
 
 
-// File: dir_fe3d84bd2bc4864ec834a2cc98f921bc.xml
+// File: dir_a46ed855c4a8d795520feccccca32127.xml
 
 
-// File: dir_bbe1fa63fe05fdeafc54f47cd3d6a509.xml
+// File: dir_bab2a9382d9c3a72283368a65988969f.xml
 
 
-// File: dir_dca1a3aef5861218a3ebef36f2000819.xml
+// File: dir_9b0b0ade51e8bb33e88138e2d87c108f.xml
 
 
-// File: dir_7277eff79778000bc4e06f75382a0518.xml
+// File: dir_de6050cec6bdb54a861c3617cabe77f9.xml
 
 
-// File: dir_60d38a7a740e12079fdb64ea336d56fc.xml
+// File: dir_f9b0d7a0910dedd06ec4f448cd9666cf.xml
 
 
-// File: dir_37df3d8d765be0ea6640b6840e5d9913.xml
+// File: dir_baa9b343c1a480299f54f96baaaafdf8.xml
 
 
-// File: dir_83a15da89db544fc93a930e7c3650662.xml
+// File: dir_2195a25756c4df46b7c542fd6ce7ba3a.xml
 
 
-// File: dir_7c88e54d079dc56616a66eb0b2c0a2d1.xml
+// File: dir_b6e3c9611b54635c0493c6f085e66a98.xml
 
 
-// File: dir_5e02aa66068026b6c6ecc55f7297750c.xml
+// File: dir_ce6901e8047e8559e77d780991cdb0e9.xml
 
