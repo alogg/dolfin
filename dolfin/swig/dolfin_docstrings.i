@@ -85,7 +85,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::AvgMeshSize::eval "
 
-Return average cell size. ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1BlockMatrix.xml
@@ -501,7 +501,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Constant::eval "
 
-Evaluate function at given point. ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1DefaultFactory.xml
@@ -978,7 +978,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::FacetArea::eval "
 
-Evaluate function at point x (overload for user-defined function). ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1FacetIterator.xml
@@ -1011,7 +1011,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::FacetNormal::eval "
 
-Evaluate function at point x (overload for user-defined function). ";
+Function evaluation. ";
 
 %feature("docstring")  dolfin::FacetNormal::rank "";
 
@@ -1064,6 +1064,10 @@ Create finite element from UFC finite element (data may be shared) ";
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
 Create FiniteElement from a signature. ";
+
+%feature("docstring")  dolfin::FiniteElement::~FiniteElement "
+
+Destructor. ";
 
 %feature("docstring")  dolfin::FiniteElement::signature "";
 
@@ -1181,17 +1185,9 @@ Copy constructor. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Function::has_function_space "
-
-Test for the function space. ";
-
 %feature("docstring")  dolfin::Function::function_space "
 
 Return the function space. ";
-
-%feature("docstring")  dolfin::Function::element "
-
-Return the finite element. ";
 
 %feature("docstring")  dolfin::Function::vector "
 
@@ -1201,9 +1197,9 @@ Return the vector of expansion coefficients (non-const version). ";
 
 Return the vector of expansion coefficients (const version). ";
 
-%feature("docstring")  dolfin::Function::time "
+%feature("docstring")  dolfin::Function::has_function_space "
 
-Return the current time. ";
+Test for the function space. ";
 
 %feature("docstring")  dolfin::Function::in "
 
@@ -1211,21 +1207,7 @@ Check if function is a member of the given function space. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
-Evaluate function at point x (overload for user-defined function). ";
-
-%feature("docstring")  dolfin::Function::eval "
-
-Evaluate function at point x and time t (overload for user-defined
-function). ";
-
-%feature("docstring")  dolfin::Function::eval "
-
-Evaluate function at given point (used for subclassing through SWIG
-interface). ";
-
-%feature("docstring")  dolfin::Function::evaluate "
-
-Evaluate function (needed for ufc::function interface). ";
+Function evaluation (overload for user-defined function). ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
@@ -1956,7 +1938,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::InvFacetArea::eval "
 
-Evaluate function at point x (overload for user-defined function). ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1InvMeshSize.xml
@@ -1977,7 +1959,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::InvMeshSize::eval "
 
-Return inverse of cell size. ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1KrylovSolver.xml
@@ -2461,13 +2443,11 @@ Return mesh geometry (const version). ";
 
 Return mesh data. ";
 
-%feature("docstring")  dolfin::Mesh::data "
-
-Return mesh data (const version). ";
-
 %feature("docstring")  dolfin::Mesh::type "
 
-Return mesh cell type. ";
+Return mesh data (const version).
+
+Return mesh cell type ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
@@ -3066,7 +3046,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::MeshSize::eval "
 
-Return cell size. ";
+Function evaluation. ";
 
 %feature("docstring")  dolfin::MeshSize::min "
 
