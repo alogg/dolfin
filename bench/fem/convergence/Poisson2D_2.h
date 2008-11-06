@@ -3180,7 +3180,6 @@ public:
   }
   
 };
-
 class Poisson2D_2LinearForm : public dolfin::Form
 {
 public:

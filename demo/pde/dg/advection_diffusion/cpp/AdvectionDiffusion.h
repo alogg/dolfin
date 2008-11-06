@@ -9903,7 +9903,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionBilinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -9940,7 +9939,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionBilinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -9977,7 +9975,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionBilinearFormCoefficient3 : public dolfin::Coefficient
 {
 public:
@@ -10014,7 +10011,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionBilinearFormCoefficient4 : public dolfin::Coefficient
 {
 public:
@@ -10051,7 +10047,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionBilinearFormCoefficient5 : public dolfin::Coefficient
 {
 public:
@@ -10088,7 +10083,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionBilinearForm : public dolfin::Form
 {
 public:
@@ -10224,7 +10218,6 @@ public:
   }
   
 };
-
 class AdvectionDiffusionLinearForm : public dolfin::Form
 {
 public:

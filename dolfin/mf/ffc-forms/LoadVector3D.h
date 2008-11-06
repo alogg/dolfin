@@ -1669,7 +1669,6 @@ public:
   }
   
 };
-
 class LoadVector3DLinearForm : public dolfin::Form
 {
 public:

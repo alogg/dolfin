@@ -2434,7 +2434,6 @@ public:
   }
   
 };
-
 class StiffnessMatrix3DBilinearForm : public dolfin::Form
 {
 public:

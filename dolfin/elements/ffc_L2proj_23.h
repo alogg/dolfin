@@ -7729,7 +7729,6 @@ public:
   }
   
 };
-
 class ffc_L2proj_23LinearForm : public dolfin::Form
 {
 public:

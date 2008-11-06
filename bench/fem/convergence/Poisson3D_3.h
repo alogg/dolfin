@@ -5454,7 +5454,6 @@ public:
   }
   
 };
-
 class Poisson3D_3LinearForm : public dolfin::Form
 {
 public:

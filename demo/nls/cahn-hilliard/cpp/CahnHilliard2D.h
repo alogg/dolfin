@@ -16902,7 +16902,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DBilinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -16939,7 +16938,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DBilinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -16976,7 +16974,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DBilinearFormCoefficient3 : public dolfin::Coefficient
 {
 public:
@@ -17013,7 +17010,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DBilinearFormCoefficient4 : public dolfin::Coefficient
 {
 public:
@@ -17050,7 +17046,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DBilinearForm : public dolfin::Form
 {
 public:
@@ -17179,7 +17174,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -17216,7 +17210,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DLinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -17253,7 +17246,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DLinearFormCoefficient3 : public dolfin::Coefficient
 {
 public:
@@ -17290,7 +17282,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DLinearFormCoefficient4 : public dolfin::Coefficient
 {
 public:
@@ -17327,7 +17318,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DLinearFormCoefficient5 : public dolfin::Coefficient
 {
 public:
@@ -17364,7 +17354,6 @@ public:
   }
   
 };
-
 class CahnHilliard2DLinearForm : public dolfin::Form
 {
 public:

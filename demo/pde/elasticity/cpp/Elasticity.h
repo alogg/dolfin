@@ -15485,7 +15485,6 @@ public:
   }
   
 };
-
 class ElasticityBilinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -15522,7 +15521,6 @@ public:
   }
   
 };
-
 class ElasticityBilinearForm : public dolfin::Form
 {
 public:
@@ -15630,7 +15628,6 @@ public:
   }
   
 };
-
 class ElasticityLinearForm : public dolfin::Form
 {
 public:

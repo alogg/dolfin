@@ -14558,7 +14558,6 @@ public:
   }
   
 };
-
 class StokesLinearForm : public dolfin::Form
 {
 public:

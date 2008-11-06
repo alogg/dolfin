@@ -12760,7 +12760,6 @@ public:
   }
   
 };
-
 class NSEMomentum3DBilinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -12797,7 +12796,6 @@ public:
   }
   
 };
-
 class NSEMomentum3DBilinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -12834,7 +12832,6 @@ public:
   }
   
 };
-
 class NSEMomentum3DBilinearFormCoefficient3 : public dolfin::Coefficient
 {
 public:
@@ -12871,7 +12868,6 @@ public:
   }
   
 };
-
 class NSEMomentum3DBilinearFormCoefficient4 : public dolfin::Coefficient
 {
 public:
@@ -12908,7 +12904,6 @@ public:
   }
   
 };
-
 class NSEMomentum3DBilinearForm : public dolfin::Form
 {
 public:

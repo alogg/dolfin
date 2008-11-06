@@ -4243,7 +4243,6 @@ public:
   }
   
 };
-
 class NonlinearPoissonBilinearForm : public dolfin::Form
 {
 public:
@@ -4344,7 +4343,6 @@ public:
   }
   
 };
-
 class NonlinearPoissonLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -4381,7 +4379,6 @@ public:
   }
   
 };
-
 class NonlinearPoissonLinearForm : public dolfin::Form
 {
 public:

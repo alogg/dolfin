@@ -1440,7 +1440,6 @@ public:
   }
   
 };
-
 class LoadVector2DLinearForm : public dolfin::Form
 {
 public:

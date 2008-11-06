@@ -2520,7 +2520,6 @@ public:
   }
   
 };
-
 class PoissonLinearForm : public dolfin::Form
 {
 public:

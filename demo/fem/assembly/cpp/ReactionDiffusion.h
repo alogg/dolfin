@@ -3455,7 +3455,6 @@ public:
   }
   
 };
-
 class ReactionDiffusionLinearForm : public dolfin::Form
 {
 public:

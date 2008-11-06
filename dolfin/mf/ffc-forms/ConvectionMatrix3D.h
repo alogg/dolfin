@@ -3714,7 +3714,6 @@ public:
   }
   
 };
-
 class ConvectionMatrix3DBilinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -3751,7 +3750,6 @@ public:
   }
   
 };
-
 class ConvectionMatrix3DBilinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -3788,7 +3786,6 @@ public:
   }
   
 };
-
 class ConvectionMatrix3DBilinearForm : public dolfin::Form
 {
 public:

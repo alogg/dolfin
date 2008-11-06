@@ -7337,7 +7337,6 @@ public:
   }
   
 };
-
 class MixedPoissonLinearForm : public dolfin::Form
 {
 public:

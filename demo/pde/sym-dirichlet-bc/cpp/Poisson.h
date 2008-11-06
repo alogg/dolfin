@@ -3584,7 +3584,6 @@ public:
   }
   
 };
-
 class PoissonLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -3621,7 +3620,6 @@ public:
   }
   
 };
-
 class PoissonLinearForm : public dolfin::Form
 {
 public:

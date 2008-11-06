@@ -8005,7 +8005,6 @@ public:
   }
   
 };
-
 class ConvectionDiffusionBilinearForm : public dolfin::Form
 {
 public:
@@ -8106,7 +8105,6 @@ public:
   }
   
 };
-
 class ConvectionDiffusionLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -8143,7 +8141,6 @@ public:
   }
   
 };
-
 class ConvectionDiffusionLinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -8180,7 +8177,6 @@ public:
   }
   
 };
-
 class ConvectionDiffusionLinearForm : public dolfin::Form
 {
 public:

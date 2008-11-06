@@ -2056,7 +2056,6 @@ public:
   }
   
 };
-
 class StiffnessMatrix2DBilinearForm : public dolfin::Form
 {
 public:

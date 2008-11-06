@@ -8008,7 +8008,6 @@ public:
   }
   
 };
-
 class StabStokes2DBilinearForm : public dolfin::Form
 {
 public:

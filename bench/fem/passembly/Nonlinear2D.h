@@ -8335,7 +8335,6 @@ public:
   }
   
 };
-
 class Nonlinear2DBilinearForm : public dolfin::Form
 {
 public:

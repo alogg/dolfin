@@ -7130,7 +7130,6 @@ public:
   }
   
 };
-
 class P1ProjectionLinearForm : public dolfin::Form
 {
 public:

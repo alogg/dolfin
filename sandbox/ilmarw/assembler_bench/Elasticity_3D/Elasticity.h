@@ -14224,7 +14224,6 @@ public:
   }
   
 };
-
 class ElasticityLinearForm : public dolfin::Form
 {
 public:

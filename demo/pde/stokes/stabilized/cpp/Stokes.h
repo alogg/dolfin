@@ -14363,7 +14363,6 @@ public:
   }
   
 };
-
 class StokesBilinearForm : public dolfin::Form
 {
 public:
@@ -14464,7 +14463,6 @@ public:
   }
   
 };
-
 class StokesLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -14501,7 +14499,6 @@ public:
   }
   
 };
-
 class StokesLinearForm : public dolfin::Form
 {
 public:

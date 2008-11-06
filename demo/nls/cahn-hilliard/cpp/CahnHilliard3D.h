@@ -20434,7 +20434,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DBilinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -20471,7 +20470,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DBilinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -20508,7 +20506,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DBilinearFormCoefficient3 : public dolfin::Coefficient
 {
 public:
@@ -20545,7 +20542,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DBilinearFormCoefficient4 : public dolfin::Coefficient
 {
 public:
@@ -20582,7 +20578,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DBilinearForm : public dolfin::Form
 {
 public:
@@ -20711,7 +20706,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
@@ -20748,7 +20742,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DLinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
@@ -20785,7 +20778,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DLinearFormCoefficient3 : public dolfin::Coefficient
 {
 public:
@@ -20822,7 +20814,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DLinearFormCoefficient4 : public dolfin::Coefficient
 {
 public:
@@ -20859,7 +20850,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DLinearFormCoefficient5 : public dolfin::Coefficient
 {
 public:
@@ -20896,7 +20886,6 @@ public:
   }
   
 };
-
 class CahnHilliard3DLinearForm : public dolfin::Form
 {
 public:

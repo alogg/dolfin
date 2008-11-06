@@ -837,12 +837,11 @@ public:
   }
   
 };
-
 class SimpleFunctional : public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
+  // Create form
   SimpleFunctional() : dolfin::Form(), U(*this)
   {
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
@@ -850,25 +849,7 @@ public:
     _ufc_form = new UFC_SimpleFunctional();
   }
 
-  // Create form on given function space(s) (shared data)
-  SimpleFunctional() : dolfin::Form(), U(*this)
-  {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = new UFC_SimpleFunctional();
-  }
-
-  // Create form on given function space(s) with given coefficient(s)
-  SimpleFunctional(dolfin::Function& w0) : dolfin::Form(), U(*this)
-  {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->U = w0;
-
-    _ufc_form = new UFC_SimpleFunctional();
-  }
-
-  // Create form on given function space(s) with given coefficient(s) (shared data)
+  // Create form with given coefficient(s)
   SimpleFunctional(dolfin::Function& w0) : dolfin::Form(), U(*this)
   {
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));

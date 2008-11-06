@@ -2896,7 +2896,6 @@ public:
   }
   
 };
-
 class PoissonP1LinearForm : public dolfin::Form
 {
 public:
