@@ -10093,48 +10093,92 @@ class AdvectionDiffusionBilinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  AdvectionDiffusionBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  // Create form on given function space(s)
+  AdvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
-
-
   }
 
-  // Constructor
-  AdvectionDiffusionBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  // Create form on given function space(s) (shared data)
+  AdvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  AdvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V1);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->b = w0;
+    this->n = w1;
+    this->h = w2;
+    this->of = w3;
+    this->kappa = w4;
+    this->alpha = w5;
+
+    _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  AdvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  {
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->b = w0;
+    this->n = w1;
+    this->h = w2;
+    this->of = w3;
+    this->kappa = w4;
+    this->alpha = w5;
+
+    _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
   }
 
   // Destructor
   ~AdvectionDiffusionBilinearForm() {}
 
-  //Coefficients
+  // Coefficients
   AdvectionDiffusionBilinearFormCoefficient0 b;
   AdvectionDiffusionBilinearFormCoefficient1 n;
   AdvectionDiffusionBilinearFormCoefficient2 h;
@@ -10185,35 +10229,56 @@ class AdvectionDiffusionLinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  AdvectionDiffusionLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
+  // Create form on given function space(s)
+  AdvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_AdvectionDiffusionLinearForm();
-
-
   }
 
-  // Constructor
-  AdvectionDiffusionLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
+  // Create form on given function space(s) (shared data)
+  AdvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_AdvectionDiffusionLinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  AdvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->f = w0;
+
+    _ufc_form = new UFC_AdvectionDiffusionLinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  AdvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  {
+    _function_spaces.push_back(V0);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->f = w0;
+
+    _ufc_form = new UFC_AdvectionDiffusionLinearForm();
   }
 
   // Destructor
   ~AdvectionDiffusionLinearForm() {}
 
-  //Coefficients
+  // Coefficients
   AdvectionDiffusionLinearFormCoefficient0 f;
 
 };

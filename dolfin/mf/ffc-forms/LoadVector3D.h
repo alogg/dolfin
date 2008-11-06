@@ -1674,35 +1674,56 @@ class LoadVector3DLinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  LoadVector3DLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), c(*this)
+  // Create form on given function space(s)
+  LoadVector3DLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), c(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_LoadVector3DLinearForm();
-
-
   }
 
-  // Constructor
-  LoadVector3DLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), c(*this)
+  // Create form on given function space(s) (shared data)
+  LoadVector3DLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), c(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_LoadVector3DLinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  LoadVector3DLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), c(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->c = w0;
+
+    _ufc_form = new UFC_LoadVector3DLinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  LoadVector3DLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), c(*this)
+  {
+    _function_spaces.push_back(V0);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->c = w0;
+
+    _ufc_form = new UFC_LoadVector3DLinearForm();
   }
 
   // Destructor
   ~LoadVector3DLinearForm() {}
 
-  //Coefficients
+  // Coefficients
   LoadVector3DLinearFormCoefficient0 c;
 
 };

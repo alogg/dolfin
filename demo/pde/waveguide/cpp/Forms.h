@@ -4575,28 +4575,24 @@ class Forms_0 : public dolfin::Form
 {
 public:
 
-  // Constructor
-  Forms_0(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
+  // Create form on given function space(s)
+  Forms_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
     _ufc_form = new UFC_Forms_0();
-
-
   }
 
-  // Constructor
-  Forms_0(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
+  // Create form on given function space(s) (shared data)
+  Forms_0(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
     _ufc_form = new UFC_Forms_0();
-
-
   }
 
   // Destructor
@@ -4608,28 +4604,24 @@ class Forms_1 : public dolfin::Form
 {
 public:
 
-  // Constructor
-  Forms_1(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form()
+  // Create form on given function space(s)
+  Forms_1(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
     _ufc_form = new UFC_Forms_1();
-
-
   }
 
-  // Constructor
-  Forms_1(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form()
+  // Create form on given function space(s) (shared data)
+  Forms_1(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
     _ufc_form = new UFC_Forms_1();
-
-
   }
 
   // Destructor

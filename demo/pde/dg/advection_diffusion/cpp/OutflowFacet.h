@@ -4306,32 +4306,52 @@ class OutflowFacetFunctional : public dolfin::Form
 {
 public:
 
-  // Constructor
+  // Create form on given function space(s)
   OutflowFacetFunctional() : dolfin::Form(), velocity(*this), n(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_OutflowFacetFunctional();
-
-
   }
 
-  // Constructor
+  // Create form on given function space(s) (shared data)
   OutflowFacetFunctional() : dolfin::Form(), velocity(*this), n(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_OutflowFacetFunctional();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  OutflowFacetFunctional(dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), velocity(*this), n(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
+    this->velocity = w0;
+    this->n = w1;
+
+    _ufc_form = new UFC_OutflowFacetFunctional();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  OutflowFacetFunctional(dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), velocity(*this), n(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->velocity = w0;
+    this->n = w1;
+
+    _ufc_form = new UFC_OutflowFacetFunctional();
   }
 
   // Destructor
   ~OutflowFacetFunctional() {}
 
-  //Coefficients
+  // Coefficients
   OutflowFacetFunctionalCoefficient0 velocity;
   OutflowFacetFunctionalCoefficient1 n;
 

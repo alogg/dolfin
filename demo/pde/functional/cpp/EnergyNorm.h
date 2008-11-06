@@ -1005,30 +1005,46 @@ class EnergyNormFunctional : public dolfin::Form
 {
 public:
 
-  // Constructor
+  // Create form on given function space(s)
   EnergyNormFunctional() : dolfin::Form(), v(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_EnergyNormFunctional();
-
-
   }
 
-  // Constructor
+  // Create form on given function space(s) (shared data)
   EnergyNormFunctional() : dolfin::Form(), v(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_EnergyNormFunctional();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  EnergyNormFunctional(dolfin::Function& w0) : dolfin::Form(), v(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
+    this->v = w0;
+
+    _ufc_form = new UFC_EnergyNormFunctional();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  EnergyNormFunctional(dolfin::Function& w0) : dolfin::Form(), v(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->v = w0;
+
+    _ufc_form = new UFC_EnergyNormFunctional();
   }
 
   // Destructor
   ~EnergyNormFunctional() {}
 
-  //Coefficients
+  // Coefficients
   EnergyNormFunctionalCoefficient0 v;
 
 };

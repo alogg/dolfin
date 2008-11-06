@@ -8010,38 +8010,62 @@ class ConvectionDiffusionBilinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  ConvectionDiffusionBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), b(*this)
+  // Create form on given function space(s)
+  ConvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), b(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionBilinearForm();
-
-
   }
 
-  // Constructor
-  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), b(*this)
+  // Create form on given function space(s) (shared data)
+  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), b(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionBilinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  ConvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), b(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V1);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->b = w0;
+
+    _ufc_form = new UFC_ConvectionDiffusionBilinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), b(*this)
+  {
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->b = w0;
+
+    _ufc_form = new UFC_ConvectionDiffusionBilinearForm();
   }
 
   // Destructor
   ~ConvectionDiffusionBilinearForm() {}
 
-  //Coefficients
+  // Coefficients
   ConvectionDiffusionBilinearFormCoefficient0 b;
 
 };
@@ -8161,39 +8185,68 @@ class ConvectionDiffusionLinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  ConvectionDiffusionLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  // Create form on given function space(s)
+  ConvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionLinearForm();
-
-
   }
 
-  // Constructor
-  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  // Create form on given function space(s) (shared data)
+  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_ConvectionDiffusionLinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  ConvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->u0 = w0;
+    this->b = w1;
+    this->f = w2;
+
+    _ufc_form = new UFC_ConvectionDiffusionLinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  {
+    _function_spaces.push_back(V0);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->u0 = w0;
+    this->b = w1;
+    this->f = w2;
+
+    _ufc_form = new UFC_ConvectionDiffusionLinearForm();
   }
 
   // Destructor
   ~ConvectionDiffusionLinearForm() {}
 
-  //Coefficients
+  // Coefficients
   ConvectionDiffusionLinearFormCoefficient0 u0;
   ConvectionDiffusionLinearFormCoefficient1 b;
   ConvectionDiffusionLinearFormCoefficient2 f;

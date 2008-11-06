@@ -14368,38 +14368,62 @@ class StokesBilinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  StokesBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), h(*this)
+  // Create form on given function space(s)
+  StokesBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), h(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_StokesBilinearForm();
-
-
   }
 
-  // Constructor
-  StokesBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), h(*this)
+  // Create form on given function space(s) (shared data)
+  StokesBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), h(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_StokesBilinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  StokesBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), h(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V1);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->h = w0;
+
+    _ufc_form = new UFC_StokesBilinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  StokesBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), h(*this)
+  {
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->h = w0;
+
+    _ufc_form = new UFC_StokesBilinearForm();
   }
 
   // Destructor
   ~StokesBilinearForm() {}
 
-  //Coefficients
+  // Coefficients
   StokesBilinearFormCoefficient0 h;
 
 };
@@ -14482,37 +14506,62 @@ class StokesLinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  StokesLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this), h(*this)
+  // Create form on given function space(s)
+  StokesLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this), h(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_StokesLinearForm();
-
-
   }
 
-  // Constructor
-  StokesLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this), h(*this)
+  // Create form on given function space(s) (shared data)
+  StokesLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this), h(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_StokesLinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  StokesLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), h(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->f = w0;
+    this->h = w1;
+
+    _ufc_form = new UFC_StokesLinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  StokesLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), h(*this)
+  {
+    _function_spaces.push_back(V0);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->f = w0;
+    this->h = w1;
+
+    _ufc_form = new UFC_StokesLinearForm();
   }
 
   // Destructor
   ~StokesLinearForm() {}
 
-  //Coefficients
+  // Coefficients
   StokesLinearFormCoefficient0 f;
   StokesLinearFormCoefficient1 h;
 

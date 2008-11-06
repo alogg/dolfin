@@ -842,30 +842,46 @@ class SimpleFunctional : public dolfin::Form
 {
 public:
 
-  // Constructor
+  // Create form on given function space(s)
   SimpleFunctional() : dolfin::Form(), U(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_SimpleFunctional();
-
-
   }
 
-  // Constructor
+  // Create form on given function space(s) (shared data)
   SimpleFunctional() : dolfin::Form(), U(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_SimpleFunctional();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  SimpleFunctional(dolfin::Function& w0) : dolfin::Form(), U(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
+    this->U = w0;
+
+    _ufc_form = new UFC_SimpleFunctional();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  SimpleFunctional(dolfin::Function& w0) : dolfin::Form(), U(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->U = w0;
+
+    _ufc_form = new UFC_SimpleFunctional();
   }
 
   // Destructor
   ~SimpleFunctional() {}
 
-  //Coefficients
+  // Coefficients
   SimpleFunctionalCoefficient0 U;
 
 };

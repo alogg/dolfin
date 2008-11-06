@@ -4248,38 +4248,62 @@ class NonlinearPoissonBilinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  NonlinearPoissonBilinearForm(dolfin::FunctionSpace& V0, dolfin::FunctionSpace& V1) : dolfin::Form(), u0(*this)
+  // Create form on given function space(s)
+  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), u0(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NonlinearPoissonBilinearForm();
-
-
   }
 
-  // Constructor
-  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0, std::tr1::shared_ptr<dolfin::FunctionSpace> V1) : dolfin::Form(), u0(*this)
+  // Create form on given function space(s) (shared data)
+  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), u0(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NonlinearPoissonBilinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), u0(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V1);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->u0 = w0;
+
+    _ufc_form = new UFC_NonlinearPoissonBilinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), u0(*this)
+  {
+    _function_spaces.push_back(V0);
+    _function_spaces.push_back(V1);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->u0 = w0;
+
+    _ufc_form = new UFC_NonlinearPoissonBilinearForm();
   }
 
   // Destructor
   ~NonlinearPoissonBilinearForm() {}
 
-  //Coefficients
+  // Coefficients
   NonlinearPoissonBilinearFormCoefficient0 u0;
 
 };
@@ -4362,37 +4386,62 @@ class NonlinearPoissonLinearForm : public dolfin::Form
 {
 public:
 
-  // Constructor
-  NonlinearPoissonLinearForm(dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), f(*this)
+  // Create form on given function space(s)
+  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), f(*this)
   {
-    std::tr1::shared_ptr<dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<dolfin::FunctionSpace>());
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NonlinearPoissonLinearForm();
-
-
   }
 
-  // Constructor
-  NonlinearPoissonLinearForm(std::tr1::shared_ptr<dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), f(*this)
+  // Create form on given function space(s) (shared data)
+  NonlinearPoissonLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), f(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_NonlinearPoissonLinearForm();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), u0(*this), f(*this)
+  {
+    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    _function_spaces.push_back(_V0);
 
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->u0 = w0;
+    this->f = w1;
+
+    _ufc_form = new UFC_NonlinearPoissonLinearForm();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  NonlinearPoissonLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), u0(*this), f(*this)
+  {
+    _function_spaces.push_back(V0);
+
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->u0 = w0;
+    this->f = w1;
+
+    _ufc_form = new UFC_NonlinearPoissonLinearForm();
   }
 
   // Destructor
   ~NonlinearPoissonLinearForm() {}
 
-  //Coefficients
+  // Coefficients
   NonlinearPoissonLinearFormCoefficient0 u0;
   NonlinearPoissonLinearFormCoefficient1 f;
 

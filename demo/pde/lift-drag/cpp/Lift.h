@@ -2677,32 +2677,52 @@ class LiftFunctional : public dolfin::Form
 {
 public:
 
-  // Constructor
+  // Create form on given function space(s)
   LiftFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_LiftFunctional();
-
-
   }
 
-  // Constructor
+  // Create form on given function space(s) (shared data)
   LiftFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<dolfin::Function>(static_cast<dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     _ufc_form = new UFC_LiftFunctional();
+  }
 
+  // Create form on given function space(s) with given coefficient(s)
+  LiftFunctional(dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), p(*this), n(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
+    this->p = w0;
+    this->n = w1;
+
+    _ufc_form = new UFC_LiftFunctional();
+  }
+
+  // Create form on given function space(s) with given coefficient(s) (shared data)
+  LiftFunctional(dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), p(*this), n(*this)
+  {
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+
+    this->p = w0;
+    this->n = w1;
+
+    _ufc_form = new UFC_LiftFunctional();
   }
 
   // Destructor
   ~LiftFunctional() {}
 
-  //Coefficients
+  // Coefficients
   LiftFunctionalCoefficient0 p;
   LiftFunctionalCoefficient1 n;
 
