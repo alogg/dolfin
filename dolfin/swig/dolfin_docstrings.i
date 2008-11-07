@@ -504,6 +504,61 @@ Destructor. ";
 Function evaluation. ";
 
 
+// File: classdolfin_1_1cpp__DiscreteFunction.xml
+%feature("docstring") dolfin::cpp_DiscreteFunction "
+
+This function is used for the python interface. By inherit from this
+function instead of cpp_Function we avoid unnecessary calls through
+the swig created director class, when we deals with discrete functions
+in PyDOLFIN
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")
+dolfin::cpp_DiscreteFunction::cpp_DiscreteFunction "";
+
+%feature("docstring")
+dolfin::cpp_DiscreteFunction::cpp_DiscreteFunction "";
+
+
+// File: classdolfin_1_1Data.xml
+%feature("docstring") dolfin::Data "
+
+This class holds data for function evaluation, including the
+coordinates x, the time t, and auxiliary data that a function may
+depend on.
+
+C++ includes: Data.h ";
+
+%feature("docstring")  dolfin::Data::Data "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::Data::Data "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::Data::~Data "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Data::cell "
+
+Return current cell (if available). ";
+
+%feature("docstring")  dolfin::Data::facet "
+
+Return current facet (if available). ";
+
+%feature("docstring")  dolfin::Data::normal "
+
+Return current facet normal (if available). ";
+
+%feature("docstring")  dolfin::Data::on_facet "
+
+Check if we are on a facet. ";
+
+
 // File: classdolfin_1_1DefaultFactory.xml
 %feature("docstring") dolfin::DefaultFactory "";
 
@@ -1112,7 +1167,8 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Form::rank "
 
-Return rank of form (bilinear form = 2, linear form = 1, etc). ";
+Return rank of form (bilinear form = 2, linear form = 1, functional =
+0, etc). ";
 
 %feature("docstring")  dolfin::Form::mesh "
 
@@ -1124,7 +1180,7 @@ Return function space for given argument. ";
 
 %feature("docstring")  dolfin::Form::function_spaces "
 
-Return function spaces. ";
+Return function spaces for arguments. ";
 
 %feature("docstring")  dolfin::Form::coefficient "
 
@@ -1186,6 +1242,10 @@ Copy constructor. ";
 Destructor. ";
 
 %feature("docstring")  dolfin::Function::function_space "
+
+Return the function space. ";
+
+%feature("docstring")  dolfin::Function::function_space_ptr "
 
 Return the function space. ";
 
@@ -3468,6 +3528,26 @@ Evaluate (interpolate) value of solution at given time. ";
 %feature("docstring")  dolfin::ODESolution::flush "";
 
 
+// File: classdolfin_1_1OutflowFacet.xml
+%feature("docstring") dolfin::OutflowFacet "
+
+This function determines if the current facet is an outflow facet with
+respect to the current cell. It accepts as argument the mesh and a
+form M = dot(n, v)*ds, a functional, defined on the normal vector to
+the facet and velocity vector integrated over the exterior of the
+cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::OutflowFacet::OutflowFacet "";
+
+%feature("docstring")  dolfin::OutflowFacet::~OutflowFacet "";
+
+%feature("docstring")  dolfin::OutflowFacet::eval "
+
+Function evaluation (overload for user-defined function). ";
+
+
 // File: classdolfin_1_1Parameter.xml
 %feature("docstring") dolfin::Parameter "
 
@@ -5266,6 +5346,9 @@ Seed random number generator. ";
 // File: Constant_8h.xml
 
 
+// File: Data_8h.xml
+
+
 // File: Function_8h.xml
 
 
@@ -5605,56 +5688,56 @@ Seed random number generator. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_7de87060646e1ce33bfc169038118a9b.xml
+// File: dir_c96f1beec191e5bbc581b1ef08b0245d.xml
 
 
-// File: dir_5a96cee4080d0c52a3a5139495530d05.xml
+// File: dir_cbb5b5a0f7d9dc5a107baac7fe4066ea.xml
 
 
-// File: dir_a53bdbd8da76f45911ef7596e42fda92.xml
+// File: dir_5ac5579b61f87917549cd1affb01b4c6.xml
 
 
-// File: dir_8539ed2c058735f98d8bd1b8ffe209fd.xml
+// File: dir_5bc1c6e5193893c3a68bcb9dd55e04c7.xml
 
 
-// File: dir_cd3f4ae0f6db2addb7aee6d00ebc5588.xml
+// File: dir_657ed66ab6c06553e71bf526f544236e.xml
 
 
-// File: dir_182d08be833b6456d229261bc443259a.xml
+// File: dir_cb088bc42bb5fc2b1bd76cdab45e364a.xml
 
 
-// File: dir_e0277154136c0b3f6d09475924be3484.xml
+// File: dir_d9d9d93c567b1fe63a25c62004ade1c8.xml
 
 
-// File: dir_17fb9cb52f7d27ad3f5ebd71ce30dc92.xml
+// File: dir_d4c995445b184cd38a139065b1b5f78a.xml
 
 
-// File: dir_d6cf41b4d56b97176ffbfb58c84c5267.xml
+// File: dir_86aeddb61ccec733980cc5f0b311c767.xml
 
 
-// File: dir_a46ed855c4a8d795520feccccca32127.xml
+// File: dir_fe3d84bd2bc4864ec834a2cc98f921bc.xml
 
 
-// File: dir_bab2a9382d9c3a72283368a65988969f.xml
+// File: dir_bbe1fa63fe05fdeafc54f47cd3d6a509.xml
 
 
-// File: dir_9b0b0ade51e8bb33e88138e2d87c108f.xml
+// File: dir_dca1a3aef5861218a3ebef36f2000819.xml
 
 
-// File: dir_de6050cec6bdb54a861c3617cabe77f9.xml
+// File: dir_7277eff79778000bc4e06f75382a0518.xml
 
 
-// File: dir_f9b0d7a0910dedd06ec4f448cd9666cf.xml
+// File: dir_60d38a7a740e12079fdb64ea336d56fc.xml
 
 
-// File: dir_baa9b343c1a480299f54f96baaaafdf8.xml
+// File: dir_37df3d8d765be0ea6640b6840e5d9913.xml
 
 
-// File: dir_2195a25756c4df46b7c542fd6ce7ba3a.xml
+// File: dir_83a15da89db544fc93a930e7c3650662.xml
 
 
-// File: dir_b6e3c9611b54635c0493c6f085e66a98.xml
+// File: dir_7c88e54d079dc56616a66eb0b2c0a2d1.xml
 
 
-// File: dir_ce6901e8047e8559e77d780991cdb0e9.xml
+// File: dir_5e02aa66068026b6c6ecc55f7297750c.xml
 
