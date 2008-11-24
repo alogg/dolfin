@@ -64,6 +64,15 @@ Destructor. ";
 This class provides automated assembly of linear systems, or more
 generally, assembly of a sparse tensor from a given variational form.
 
+The MeshFunction arguments can be used to specify assembly over
+subdomains of the mesh cells, exterior facets or interior facets.
+Either a null pointer or an empty MeshFunction may be used to specify
+that the tensor should be assembled over the entire set of cells or
+facets.
+
+Note that the assemble_system() functions apply boundary conditions
+symmetrically.
+
 C++ includes: Assembler.h ";
 
 
@@ -297,6 +306,14 @@ Compute normal of given facet with respect to the cell. ";
 
 Compute the area/length of given facet with respect to the cell. ";
 
+%feature("docstring")  dolfin::Cell::order "
+
+Order entities locally. ";
+
+%feature("docstring")  dolfin::Cell::ordered "
+
+Check if entities are ordered. ";
+
 %feature("docstring")  dolfin::Cell::intersects "
 
 Check for intersection with point. ";
@@ -491,9 +508,23 @@ C++ includes: Constant.h ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Copy constructor.
+Create constant scalar function with given value. ";
 
-Create constant scalar function from given value ";
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant vector function with given size and value. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant vector function with given size and values. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant tensor function with given shape and values. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Copy constructor. ";
 
 %feature("docstring")  dolfin::Constant::~Constant "
 
@@ -891,7 +922,7 @@ Add cell (tetrahedron) with given vertices. ";
 
 %feature("docstring")  dolfin::DynamicMeshEditor::close "
 
-Close mesh, finish editing. ";
+Close mesh, finish editing, and order entities locally. ";
 
 
 // File: classdolfin_1_1Edge.xml
@@ -1104,17 +1135,11 @@ C++ includes: FiniteElement.h ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create finite element from UFC finite element pointer. ";
-
-%feature("docstring")  dolfin::FiniteElement::FiniteElement "
-
 Create finite element from UFC finite element. ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create finite element from UFC finite element.
-
-Create finite element from UFC finite element (data may be shared) ";
+Create finite element from UFC finite element (data may be shared). ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
@@ -1141,9 +1166,13 @@ dolfin::FiniteElement::interpolate_vertex_values "";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_dof "";
 
-%feature("docstring")  dolfin::FiniteElement::create_sub_element "";
+%feature("docstring")  dolfin::FiniteElement::create_sub_element "
 
-%feature("docstring")  dolfin::FiniteElement::ufc_element "";
+Create sub element. ";
+
+%feature("docstring")  dolfin::FiniteElement::ufc_element "
+
+Return ufc::finite_element. ";
 
 %feature("docstring")  dolfin::FiniteElement::extract_sub_element "
 
@@ -1160,6 +1189,14 @@ C++ includes: Form.h ";
 %feature("docstring")  dolfin::Form::Form "
 
 Constructor. ";
+
+%feature("docstring")  dolfin::Form::Form "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::Form::Form "
+
+Constructor used in the python interface. ";
 
 %feature("docstring")  dolfin::Form::~Form "
 
@@ -1267,7 +1304,13 @@ Check if function is a member of the given function space. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
-Function evaluation (overload for user-defined function). ";
+Function evaluation (overload for user-defined function, simple
+version). ";
+
+%feature("docstring")  dolfin::Function::eval "
+
+Function evaluation (overload for user-defined function, alternate
+version). ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
@@ -2501,13 +2544,15 @@ Return mesh geometry (const version). ";
 
 %feature("docstring")  dolfin::Mesh::data "
 
-Return mesh data. ";
+Return mesh data (non-const version). ";
+
+%feature("docstring")  dolfin::Mesh::data "
+
+Return mesh data (const version). ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
-Return mesh data (const version).
-
-Return mesh cell type ";
+Return mesh cell type. ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
@@ -2812,7 +2857,7 @@ Add cell (tetrahedron) with given vertices. ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
 
-Close mesh, finish editing. ";
+Close mesh, finish editing, and order entities locally. ";
 
 
 // File: classdolfin_1_1MeshEntity.xml
@@ -3545,7 +3590,8 @@ C++ includes: SpecialFunctions.h ";
 
 %feature("docstring")  dolfin::OutflowFacet::eval "
 
-Function evaluation (overload for user-defined function). ";
+Function evaluation (overload for user-defined function, alternate
+version). ";
 
 
 // File: classdolfin_1_1Parameter.xml
@@ -5276,6 +5322,43 @@ Return a random number, uniformly distributed between [0.0, 1.0). ";
 
 Seed random number generator. ";
 
+%feature("docstring")  dolfin::assemble "
+
+Assemble tensor. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble tensor on sub domain. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble tensor on sub domains. ";
+
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) and apply Dirichlet boundary condition. ";
+
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) and apply Dirichlet boundary conditions. ";
+
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) on sub domains and apply Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble scalar. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble scalar on sub domain. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble scalar on sub domains. ";
+
 
 // File: namespaceufc.xml
 
@@ -5317,6 +5400,9 @@ Seed random number generator. ";
 
 
 // File: ProjectionLibrary_8h.xml
+
+
+// File: assemble_8h.xml
 
 
 // File: Assembler_8h.xml
