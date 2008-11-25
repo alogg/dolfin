@@ -2681,7 +2681,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_LiftFunctional();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
   }
 
   // Create form with given coefficient(s)
@@ -2693,7 +2693,7 @@ public:
     this->p = w0;
     this->n = w1;
 
-    _ufc_form = new UFC_LiftFunctional();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
   }
 
   // Destructor

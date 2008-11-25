@@ -7077,7 +7077,7 @@ public:
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _ufc_form = new UFC_P1ProjectionBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_P1ProjectionBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -7086,7 +7086,7 @@ public:
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _ufc_form = new UFC_P1ProjectionBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_P1ProjectionBilinearForm());
   }
 
   // Destructor
@@ -7142,7 +7142,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_P1ProjectionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_P1ProjectionLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -7152,7 +7152,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_P1ProjectionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_P1ProjectionLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -7165,7 +7165,7 @@ public:
 
     this->f = w0;
 
-    _ufc_form = new UFC_P1ProjectionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_P1ProjectionLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -7177,7 +7177,7 @@ public:
 
     this->f = w0;
 
-    _ufc_form = new UFC_P1ProjectionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_P1ProjectionLinearForm());
   }
 
   // Destructor

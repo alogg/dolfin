@@ -4310,7 +4310,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_OutflowFacetFunctional();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_OutflowFacetFunctional());
   }
 
   // Create form with given coefficient(s)
@@ -4322,7 +4322,7 @@ public:
     this->velocity = w0;
     this->n = w1;
 
-    _ufc_form = new UFC_OutflowFacetFunctional();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_OutflowFacetFunctional());
   }
 
   // Destructor

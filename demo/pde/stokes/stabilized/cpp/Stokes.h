@@ -14377,7 +14377,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_StokesBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -14388,7 +14388,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_StokesBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -14403,7 +14403,7 @@ public:
 
     this->h = w0;
 
-    _ufc_form = new UFC_StokesBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -14416,7 +14416,7 @@ public:
 
     this->h = w0;
 
-    _ufc_form = new UFC_StokesBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
   }
 
   // Destructor
@@ -14512,7 +14512,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_StokesLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -14523,7 +14523,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_StokesLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -14538,7 +14538,7 @@ public:
     this->f = w0;
     this->h = w1;
 
-    _ufc_form = new UFC_StokesLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -14552,7 +14552,7 @@ public:
     this->f = w0;
     this->h = w1;
 
-    _ufc_form = new UFC_StokesLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
   }
 
   // Destructor

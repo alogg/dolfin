@@ -7262,7 +7262,7 @@ public:
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _ufc_form = new UFC_Elasticity3DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_Elasticity3DBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -7271,7 +7271,7 @@ public:
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _ufc_form = new UFC_Elasticity3DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_Elasticity3DBilinearForm());
   }
 
   // Destructor

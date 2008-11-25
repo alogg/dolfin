@@ -15536,7 +15536,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_ElasticityBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -15548,7 +15548,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_ElasticityBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -15565,7 +15565,7 @@ public:
     this->mu = w0;
     this->lmbda = w1;
 
-    _ufc_form = new UFC_ElasticityBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -15580,7 +15580,7 @@ public:
     this->mu = w0;
     this->lmbda = w1;
 
-    _ufc_form = new UFC_ElasticityBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Destructor
@@ -15640,7 +15640,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_ElasticityLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -15650,7 +15650,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_ElasticityLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -15663,7 +15663,7 @@ public:
 
     this->f = w0;
 
-    _ufc_form = new UFC_ElasticityLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -15675,7 +15675,7 @@ public:
 
     this->f = w0;
 
-    _ufc_form = new UFC_ElasticityLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Destructor

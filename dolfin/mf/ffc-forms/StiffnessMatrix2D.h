@@ -2070,7 +2070,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_StiffnessMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix2DBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -2081,7 +2081,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_StiffnessMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix2DBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -2096,7 +2096,7 @@ public:
 
     this->c = w0;
 
-    _ufc_form = new UFC_StiffnessMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix2DBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -2109,7 +2109,7 @@ public:
 
     this->c = w0;
 
-    _ufc_form = new UFC_StiffnessMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix2DBilinearForm());
   }
 
   // Destructor

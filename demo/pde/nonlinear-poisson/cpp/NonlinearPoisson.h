@@ -4257,7 +4257,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_NonlinearPoissonBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -4268,7 +4268,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_NonlinearPoissonBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -4283,7 +4283,7 @@ public:
 
     this->U0 = w0;
 
-    _ufc_form = new UFC_NonlinearPoissonBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -4296,7 +4296,7 @@ public:
 
     this->U0 = w0;
 
-    _ufc_form = new UFC_NonlinearPoissonBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
   }
 
   // Destructor
@@ -4392,7 +4392,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_NonlinearPoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -4403,7 +4403,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_NonlinearPoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -4418,7 +4418,7 @@ public:
     this->U0 = w0;
     this->f = w1;
 
-    _ufc_form = new UFC_NonlinearPoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -4432,7 +4432,7 @@ public:
     this->U0 = w0;
     this->f = w1;
 
-    _ufc_form = new UFC_NonlinearPoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
   }
 
   // Destructor

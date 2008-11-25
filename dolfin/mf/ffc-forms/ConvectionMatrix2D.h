@@ -2652,7 +2652,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_ConvectionMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix2DBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -2664,7 +2664,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_ConvectionMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix2DBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -2681,7 +2681,7 @@ public:
     this->cx = w0;
     this->cy = w1;
 
-    _ufc_form = new UFC_ConvectionMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix2DBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -2696,7 +2696,7 @@ public:
     this->cx = w0;
     this->cy = w1;
 
-    _ufc_form = new UFC_ConvectionMatrix2DBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix2DBilinearForm());
   }
 
   // Destructor

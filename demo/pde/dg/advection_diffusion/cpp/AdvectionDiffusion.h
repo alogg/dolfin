@@ -10102,7 +10102,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -10118,7 +10118,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -10143,7 +10143,7 @@ public:
     this->kappa = w4;
     this->alpha = w5;
 
-    _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -10166,7 +10166,7 @@ public:
     this->kappa = w4;
     this->alpha = w5;
 
-    _ufc_form = new UFC_AdvectionDiffusionBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Destructor
@@ -10230,7 +10230,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_AdvectionDiffusionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -10240,7 +10240,7 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_AdvectionDiffusionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -10253,7 +10253,7 @@ public:
 
     this->f = w0;
 
-    _ufc_form = new UFC_AdvectionDiffusionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -10265,7 +10265,7 @@ public:
 
     this->f = w0;
 
-    _ufc_form = new UFC_AdvectionDiffusionLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Destructor

@@ -60,4 +60,4 @@ a = G_a + SD_a
 L = G_L + SD_L
 
 
-compile([a, L, M, element], "NSEMomentum3D", options={'language': 'dolfin', 'blas': False, 'form_postfix': True, 'precision': '15', 'cpp optimize': False, 'split_implementation': False, 'quadrature_points': False, 'output_dir': '.', 'representation': 'tensor', 'cache_dir': None, 'optimize': False}, global_variables=globals())
+compile([a, L, M, element], "NSEMomentum3D", options={'language': 'dolfin', 'blas': False, 'form_postfix': True, 'precision': '15', 'cache_dir': None, 'cpp optimize': False, 'split_implementation': False, 'quadrature_points': False, 'output_dir': '.', 'representation': 'tensor', 'shared_ptr': False, 'optimize': False}, global_variables=globals())

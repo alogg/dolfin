@@ -1047,10 +1047,10 @@ public:
     
     // Compute element tensor
     // Number of operations to compute tensor = 4
-    A[0] = 0.999999999999999*G0_0_0;
-    A[1] = -0.999999999999999*G0_0_0;
-    A[2] = -0.999999999999999*G0_0_0;
-    A[3] = 0.999999999999999*G0_0_0;
+    A[0] = 1*G0_0_0;
+    A[1] = -1*G0_0_0;
+    A[2] = -1*G0_0_0;
+    A[3] = 1*G0_0_0;
   }
 
 };
@@ -3046,7 +3046,7 @@ public:
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _ufc_form = new UFC_PoissonBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_PoissonBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -3055,7 +3055,7 @@ public:
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _ufc_form = new UFC_PoissonBilinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_PoissonBilinearForm());
   }
 
   // Destructor
@@ -3148,7 +3148,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_PoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
@@ -3159,7 +3159,7 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = new UFC_PoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
@@ -3174,7 +3174,7 @@ public:
     this->f = w0;
     this->g = w1;
 
-    _ufc_form = new UFC_PoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
@@ -3188,7 +3188,7 @@ public:
     this->f = w0;
     this->g = w1;
 
-    _ufc_form = new UFC_PoissonLinearForm();
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
   }
 
   // Destructor
