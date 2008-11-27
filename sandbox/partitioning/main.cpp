@@ -5,7 +5,7 @@
 using namespace dolfin;
 
 void partition(Mesh& mesh, int num_part, int max_cells, char* filename,
-               void (partFunc(Graph&, int, int*)), char* plotname)
+               void (partFunc(Graph&, int, int*)), const char* plotname)
 {
   MeshFunction<dolfin::uint> parts;
   int num_cells = mesh.numCells();
@@ -59,6 +59,7 @@ int main(int argc, char* argv[])
   char* outfilename = argv[5];
 
   Mesh mesh(infilename);
+  mesh.order();
   if(strcmp(partitioner, "metis1") == 0)
   {
     std::cout << "Using Metis Kway to partition mesh into " << num_part << " partitions " << std::endl;
