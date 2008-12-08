@@ -13,5 +13,9 @@ int main(int argc, char* argv[])
   LocalMeshData data;
   file >> data;
 
+  // Partition mesh
+  Mesh mesh;
+  MeshPartitioning::partition(mesh, data);
+
   return 0;
 }
