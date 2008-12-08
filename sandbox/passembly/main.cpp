@@ -9,8 +9,9 @@ using namespace dolfin;
 int main(int argc, char* argv[])
 {
   // Read in mesh from XML file in parallel
-  Mesh mesh("unitsquare.xml.gz");
-  dolfin::cout << mesh << dolfin::endl;
+  File file("unitsquare.xml.gz");
+  LocalMeshData data;
+  file >> data;
 
   return 0;
 }
