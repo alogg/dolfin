@@ -538,10 +538,10 @@ Function evaluation. ";
 // File: classdolfin_1_1cpp__DiscreteFunction.xml
 %feature("docstring") dolfin::cpp_DiscreteFunction "
 
-This function is used for the python interface. By inherit from this
-function instead of cpp_Function we avoid unnecessary calls through
-the swig created director class, when we deals with discrete functions
-in PyDOLFIN
+This function is used for the Python interface. By inheriting from
+this function instead of cpp_Function, we avoid unnecessary calls
+through the SWIG created director class, when dealing with discrete
+functions in PyDOLFIN.
 
 C++ includes: SpecialFunctions.h ";
 
@@ -1192,10 +1192,6 @@ Constructor. ";
 
 %feature("docstring")  dolfin::Form::Form "
 
-Constructor. ";
-
-%feature("docstring")  dolfin::Form::Form "
-
 Constructor used in the python interface. ";
 
 %feature("docstring")  dolfin::Form::~Form "
@@ -1301,6 +1297,10 @@ Test for the function space. ";
 %feature("docstring")  dolfin::Function::in "
 
 Check if function is a member of the given function space. ";
+
+%feature("docstring")  dolfin::Function::geometric_dimension "
+
+Return geometric dimension. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
@@ -3987,26 +3987,6 @@ Return a factory for the default linear algebra backend. ";
 Get value. ";
 
 
-// File: classdolfin_1_1simple__array.xml
-%feature("docstring") dolfin::simple_array "
-
-The array class is a minimal wrapper for an array that knows its own
-size. It is not yet another array class; it is only intended to be
-used to pass data through the SWIG generated interface. Note that
-users of this class are always responsible for allocating and
-deallocating data.
-
-C++ includes: simple_array.h ";
-
-%feature("docstring")  dolfin::simple_array::simple_array "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::simple_array::simple_array "
-
-Destructor. ";
-
-
 // File: classdolfin_1_1SingularSolver.xml
 %feature("docstring") dolfin::SingularSolver "
 
@@ -4285,22 +4265,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::SubDomain::inside "
 
-Return true for points inside the sub domain (used for subclassing
-through SWIG interface). ";
-
-%feature("docstring")  dolfin::SubDomain::inside "
-
-Return true for points inside the sub domain (used for subclassing
-through SWIG interface). ";
-
-%feature("docstring")  dolfin::SubDomain::inside "
-
-Return true for points inside the sub domain. ";
-
-%feature("docstring")  dolfin::SubDomain::map "
-
-Map coordinate x in domain H to coordinate y in domain G (used for
-subclassing through SWIG interface). ";
+Return true for points inside the subdomain. ";
 
 %feature("docstring")  dolfin::SubDomain::map "
 
@@ -4309,7 +4274,11 @@ periodic boundary conditions). ";
 
 %feature("docstring")  dolfin::SubDomain::mark "
 
-Set sub domain markers for given sub domain. ";
+Set sub domain markers for given subdomain. ";
+
+%feature("docstring")  dolfin::SubDomain::geometric_dimension "
+
+Return geometric dimension. ";
 
 
 // File: classdolfin_1_1SubFunction.xml
@@ -5378,9 +5347,6 @@ Assemble scalar on sub domains. ";
 // File: List_8h.xml
 
 
-// File: simple__array_8h.xml
-
-
 // File: TimeDependent_8h.xml
 
 
@@ -5774,56 +5740,56 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_c96f1beec191e5bbc581b1ef08b0245d.xml
+// File: dir_58320a6bee734c3bb6d36183c618bb09.xml
 
 
-// File: dir_cbb5b5a0f7d9dc5a107baac7fe4066ea.xml
+// File: dir_227a775ba5d95bfcf3e85ed973812fac.xml
 
 
-// File: dir_5ac5579b61f87917549cd1affb01b4c6.xml
+// File: dir_187f3fc9cfd6b0610eb4b1e093db23fa.xml
 
 
-// File: dir_5bc1c6e5193893c3a68bcb9dd55e04c7.xml
+// File: dir_90934d781c0da6edfbab578a937f610b.xml
 
 
-// File: dir_657ed66ab6c06553e71bf526f544236e.xml
+// File: dir_9c0d0547e6b9f173eb8c8d2a4b9512bb.xml
 
 
-// File: dir_cb088bc42bb5fc2b1bd76cdab45e364a.xml
+// File: dir_d0a5335d7670987266b54a1776ce2d43.xml
 
 
-// File: dir_d9d9d93c567b1fe63a25c62004ade1c8.xml
+// File: dir_d9ee26b68e49300e50cb9f2e72d1a451.xml
 
 
-// File: dir_d4c995445b184cd38a139065b1b5f78a.xml
+// File: dir_e268708822640923db0bcb1dd75608ad.xml
 
 
-// File: dir_86aeddb61ccec733980cc5f0b311c767.xml
+// File: dir_a0f91cf1a617114eebdae070a1bb4bc9.xml
 
 
-// File: dir_fe3d84bd2bc4864ec834a2cc98f921bc.xml
+// File: dir_d2d5c0a57403dba66fba0bf3c12aa367.xml
 
 
-// File: dir_bbe1fa63fe05fdeafc54f47cd3d6a509.xml
+// File: dir_77c7a12cc8929b40d8c88c5abcd79a3f.xml
 
 
-// File: dir_dca1a3aef5861218a3ebef36f2000819.xml
+// File: dir_301e97d33edcf82036597d5b43314b9a.xml
 
 
-// File: dir_7277eff79778000bc4e06f75382a0518.xml
+// File: dir_db1d9d22381c6c52aea4a708f0fc34c1.xml
 
 
-// File: dir_60d38a7a740e12079fdb64ea336d56fc.xml
+// File: dir_99cfd81db79fd9e090870c834a345872.xml
 
 
-// File: dir_37df3d8d765be0ea6640b6840e5d9913.xml
+// File: dir_24165f6be95a1e85538bdd342b6068ef.xml
 
 
-// File: dir_83a15da89db544fc93a930e7c3650662.xml
+// File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
 
 
-// File: dir_7c88e54d079dc56616a66eb0b2c0a2d1.xml
+// File: dir_181c150be9c9c4eec0f2fcf3af955efd.xml
 
 
-// File: dir_5e02aa66068026b6c6ecc55f7297750c.xml
+// File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
 
