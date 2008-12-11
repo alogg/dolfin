@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return the cell shape
@@ -567,7 +567,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return the cell shape
@@ -1101,7 +1101,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 3 on a triangle, Lagrange finite element of degree 3 on a triangle]";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 3), FiniteElement('Lagrange', 'triangle', 3)])";
   }
 
   /// Return the cell shape
@@ -1919,7 +1919,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return the cell shape
@@ -2453,7 +2453,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return the cell shape
@@ -2987,7 +2987,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 3 on a triangle, Lagrange finite element of degree 3 on a triangle]";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 3), FiniteElement('Lagrange', 'triangle', 3)])";
   }
 
   /// Return the cell shape
@@ -3805,7 +3805,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return the cell shape
@@ -4339,7 +4339,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 3 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return the cell shape
@@ -4873,7 +4873,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Lagrange finite element of degree 3 on a triangle, Lagrange finite element of degree 3 on a triangle]";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 3), FiniteElement('Lagrange', 'triangle', 3)])";
   }
 
   /// Return the cell shape
@@ -5696,7 +5696,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5887,7 +5887,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6078,7 +6078,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 3 on a triangle, Lagrange finite element of degree 3 on a triangle]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 3), FiniteElement('Lagrange', 'triangle', 3)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6323,7 +6323,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6514,7 +6514,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6705,7 +6705,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 3 on a triangle, Lagrange finite element of degree 3 on a triangle]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 3), FiniteElement('Lagrange', 'triangle', 3)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6950,7 +6950,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7141,7 +7141,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 3 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7332,7 +7332,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 3 on a triangle, Lagrange finite element of degree 3 on a triangle]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 3), FiniteElement('Lagrange', 'triangle', 3)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed

@@ -14,7 +14,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_0_0::~UFC_CahnHilliard3DBilinearFo
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_0_0::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -537,7 +537,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_0_1::~UFC_CahnHilliard3DBilinearFo
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_0_1::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -1060,7 +1060,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_0::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_0::signature() const
 {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return the cell shape
@@ -1797,7 +1797,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_1_0::~UFC_CahnHilliard3DBilinearFo
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_1_0::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -2320,7 +2320,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_1_1::~UFC_CahnHilliard3DBilinearFo
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_1_1::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -2843,7 +2843,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_1::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_1::signature() const
 {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return the cell shape
@@ -3580,7 +3580,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_2_0::~UFC_CahnHilliard3DBilinearFo
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_2_0::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -4103,7 +4103,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_2_1::~UFC_CahnHilliard3DBilinearFo
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_2_1::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -4626,7 +4626,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_2::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_2::signature() const
 {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return the cell shape
@@ -5363,7 +5363,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_3::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_3::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -5825,7 +5825,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_4::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_4::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -6287,7 +6287,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_5::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_5::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -6749,7 +6749,7 @@ UFC_CahnHilliard3DBilinearForm_finite_element_6::~UFC_CahnHilliard3DBilinearForm
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DBilinearForm_finite_element_6::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -7210,7 +7210,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_0_0::~UFC_CahnHilliard3DBilinearForm_dof_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_0_0::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7378,7 +7378,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_0_1::~UFC_CahnHilliard3DBilinearForm_dof_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_0_1::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7546,7 +7546,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_0::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_0::signature() const
 {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7752,7 +7752,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_1_0::~UFC_CahnHilliard3DBilinearForm_dof_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_1_0::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7920,7 +7920,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_1_1::~UFC_CahnHilliard3DBilinearForm_dof_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_1_1::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8088,7 +8088,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_1::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_1::signature() const
 {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8294,7 +8294,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_2_0::~UFC_CahnHilliard3DBilinearForm_dof_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_2_0::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8462,7 +8462,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_2_1::~UFC_CahnHilliard3DBilinearForm_dof_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_2_1::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8630,7 +8630,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_2::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_2::signature() const
 {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8836,7 +8836,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_3::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_3::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8984,7 +8984,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_4::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_4::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9132,7 +9132,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_5::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_5::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9280,7 +9280,7 @@ UFC_CahnHilliard3DBilinearForm_dof_map_6::~UFC_CahnHilliard3DBilinearForm_dof_ma
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DBilinearForm_dof_map_6::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9748,7 +9748,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_0_0::~UFC_CahnHilliard3DLinearForm_f
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_0_0::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -10271,7 +10271,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_0_1::~UFC_CahnHilliard3DLinearForm_f
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_0_1::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -10794,7 +10794,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_0::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_0::signature() const
 {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return the cell shape
@@ -11531,7 +11531,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_1_0::~UFC_CahnHilliard3DLinearForm_f
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_1_0::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -12054,7 +12054,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_1_1::~UFC_CahnHilliard3DLinearForm_f
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_1_1::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -12577,7 +12577,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_1::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_1::signature() const
 {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return the cell shape
@@ -13314,7 +13314,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_2_0::~UFC_CahnHilliard3DLinearForm_f
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_2_0::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -13837,7 +13837,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_2_1::~UFC_CahnHilliard3DLinearForm_f
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_2_1::signature() const
 {
-    return "Lagrange finite element of degree 1 on a tetrahedron";
+    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return the cell shape
@@ -14360,7 +14360,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_2::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_2::signature() const
 {
-    return "Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return the cell shape
@@ -15097,7 +15097,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_3::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_3::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -15559,7 +15559,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_4::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_4::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -16021,7 +16021,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_5::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_5::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -16483,7 +16483,7 @@ UFC_CahnHilliard3DLinearForm_finite_element_6::~UFC_CahnHilliard3DLinearForm_fin
 /// Return a string identifying the finite element
 const char* UFC_CahnHilliard3DLinearForm_finite_element_6::signature() const
 {
-    return "Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return the cell shape
@@ -16944,7 +16944,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_0_0::~UFC_CahnHilliard3DLinearForm_dof_map_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_0_0::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17112,7 +17112,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_0_1::~UFC_CahnHilliard3DLinearForm_dof_map_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_0_1::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17280,7 +17280,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_0::~UFC_CahnHilliard3DLinearForm_dof_map_0(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_0::signature() const
 {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17486,7 +17486,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_1_0::~UFC_CahnHilliard3DLinearForm_dof_map_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_1_0::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17654,7 +17654,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_1_1::~UFC_CahnHilliard3DLinearForm_dof_map_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_1_1::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17822,7 +17822,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_1::~UFC_CahnHilliard3DLinearForm_dof_map_1(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_1::signature() const
 {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18028,7 +18028,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_2_0::~UFC_CahnHilliard3DLinearForm_dof_map_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_2_0::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18196,7 +18196,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_2_1::~UFC_CahnHilliard3DLinearForm_dof_map_
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_2_1::signature() const
 {
-    return "FFC dof map for Lagrange finite element of degree 1 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18364,7 +18364,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_2::~UFC_CahnHilliard3DLinearForm_dof_map_2(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_2::signature() const
 {
-    return "FFC dof map for Mixed finite element: [Lagrange finite element of degree 1 on a tetrahedron, Lagrange finite element of degree 1 on a tetrahedron]";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18570,7 +18570,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_3::~UFC_CahnHilliard3DLinearForm_dof_map_3(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_3::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18718,7 +18718,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_4::~UFC_CahnHilliard3DLinearForm_dof_map_4(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_4::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18866,7 +18866,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_5::~UFC_CahnHilliard3DLinearForm_dof_map_5(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_5::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -19014,7 +19014,7 @@ UFC_CahnHilliard3DLinearForm_dof_map_6::~UFC_CahnHilliard3DLinearForm_dof_map_6(
 /// Return a string identifying the dof map
 const char* UFC_CahnHilliard3DLinearForm_dof_map_6::signature() const
 {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a tetrahedron";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed

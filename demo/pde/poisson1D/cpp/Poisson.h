@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a interval";
+    return "FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return the cell shape
@@ -379,7 +379,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a interval";
+    return "FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return the cell shape
@@ -730,7 +730,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a interval";
+    return "FFC dof map for FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -878,7 +878,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a interval";
+    return "FFC dof map for FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1193,7 +1193,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a interval";
+    return "FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return the cell shape
@@ -1539,7 +1539,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a interval";
+    return "FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return the cell shape
@@ -1885,7 +1885,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a interval";
+    return "FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return the cell shape
@@ -2236,7 +2236,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a interval";
+    return "FFC dof map for FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2384,7 +2384,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a interval";
+    return "FFC dof map for FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2532,7 +2532,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a interval";
+    return "FFC dof map for FiniteElement('Lagrange', 'interval', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed

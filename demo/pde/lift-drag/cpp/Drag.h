@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Lagrange finite element of degree 1 on a triangle";
+    return "FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return the cell shape
@@ -454,7 +454,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 0 on a triangle";
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
   }
 
   /// Return the cell shape
@@ -841,7 +841,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 0 on a triangle";
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
   }
 
   /// Return the cell shape
@@ -1228,7 +1228,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Mixed finite element: [Discontinuous Lagrange finite element of degree 0 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
+    return "MixedElement([FiniteElement('Discontinuous Lagrange', 'triangle', 0), FiniteElement('Discontinuous Lagrange', 'triangle', 0)])";
   }
 
   /// Return the cell shape
@@ -1757,7 +1757,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1919,7 +1919,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a triangle";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2072,7 +2072,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 0 on a triangle";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2225,7 +2225,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Mixed finite element: [Discontinuous Lagrange finite element of degree 0 on a triangle, Discontinuous Lagrange finite element of degree 0 on a triangle]";
+    return "FFC dof map for MixedElement([FiniteElement('Discontinuous Lagrange', 'triangle', 0), FiniteElement('Discontinuous Lagrange', 'triangle', 0)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed

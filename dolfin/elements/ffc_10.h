@@ -29,7 +29,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 1)";
   }
 
   /// Return the cell shape
@@ -455,7 +455,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for Discontinuous Lagrange finite element of degree 1 on a triangle";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
