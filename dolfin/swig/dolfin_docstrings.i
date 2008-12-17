@@ -535,23 +535,6 @@ Destructor. ";
 Function evaluation. ";
 
 
-// File: classdolfin_1_1cpp__DiscreteFunction.xml
-%feature("docstring") dolfin::cpp_DiscreteFunction "
-
-This function is used for the Python interface. By inheriting from
-this function instead of cpp_Function, we avoid unnecessary calls
-through the SWIG created director class, when dealing with discrete
-functions in PyDOLFIN.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")
-dolfin::cpp_DiscreteFunction::cpp_DiscreteFunction "";
-
-%feature("docstring")
-dolfin::cpp_DiscreteFunction::cpp_DiscreteFunction "";
-
-
 // File: classdolfin_1_1Data.xml
 %feature("docstring") dolfin::Data "
 
@@ -744,6 +727,23 @@ Get Dirichlet values and indicators. ";
 
 Check if given function is compatible with boundary condition
 (checking only vertex values). ";
+
+
+// File: classdolfin_1_1DiscreteFunction.xml
+%feature("docstring") dolfin::DiscreteFunction "
+
+This function is used for the Python interface. By inheriting from
+this function instead of dolfin::Function, we avoid unnecessary calls
+through the SWIG created director class, when dealing with discrete
+functions in PyDOLFIN.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
 
 // File: classdolfin_1_1DofMap.xml
@@ -1192,6 +1192,10 @@ Constructor. ";
 
 %feature("docstring")  dolfin::Form::Form "
 
+Constructor. ";
+
+%feature("docstring")  dolfin::Form::Form "
+
 Constructor used in the python interface. ";
 
 %feature("docstring")  dolfin::Form::~Form "
@@ -1367,6 +1371,10 @@ Return finite element. ";
 %feature("docstring")  dolfin::FunctionSpace::dofmap "
 
 Return dofmap. ";
+
+%feature("docstring")  dolfin::FunctionSpace::dim "
+
+Return dimension of function space. ";
 
 %feature("docstring")  dolfin::FunctionSpace::eval "
 
@@ -2301,6 +2309,36 @@ C++ includes: LobattoQuadrature.h ";
 Display quadrature data. ";
 
 
+// File: classdolfin_1_1LocalMeshData.xml
+%feature("docstring") dolfin::LocalMeshData "
+
+This class stores mesh data on a local processor corresponding to a
+portion of a (larger) global mesh.
+
+Note that the data stored in this class does typically not correspond
+to a topologically connected mesh; it merely stores a list of vertex
+coordinates, a list of cell-vertex mappings and a list of global
+vertex numbers for the locally stored vertices.
+
+It is typically used for parsing meshes in parallel from mesh XML
+files. After local mesh data has been parsed on each processor, a
+subsequent repartitioning takes place: first a geometric partitioning
+of the vertices followed by a redistribution of vertex and cell data,
+and then a topological partitioning again followed by redistribution
+of vertex and cell data, at that point corresponding to topologically
+connected meshes instead of local mesh data.
+
+C++ includes: LocalMeshData.h ";
+
+%feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::LocalMeshData::~LocalMeshData "
+
+Destructor. ";
+
+
 // File: classdolfin_1_1LogStream.xml
 %feature("docstring") dolfin::LogStream "";
 
@@ -2627,16 +2665,6 @@ Compute intersection with curve defined by points. ";
 %feature("docstring")  dolfin::Mesh::intersection "
 
 Compute intersection with mesh. ";
-
-%feature("docstring")  dolfin::Mesh::partition "
-
-Partition mesh into num_processes partitions. ";
-
-%feature("docstring")  dolfin::Mesh::partition "
-
-Partition mesh into num_partitions partitions. ";
-
-%feature("docstring")  dolfin::Mesh::distribute "";
 
 %feature("docstring")  dolfin::Mesh::disp "
 
@@ -3132,6 +3160,17 @@ Set higher order mesh coordinates. ";
 %feature("docstring")  dolfin::MeshGeometry::disp "
 
 Display data. ";
+
+
+// File: classdolfin_1_1MeshPartitioning.xml
+%feature("docstring") dolfin::MeshPartitioning "
+
+This class partitions and distributes a mesh based on partitioned
+local mesh data. Note that the local mesh data will also be
+repartitioned and redistributed during the computation of the mesh
+partitioning.
+
+C++ includes: MeshPartitioning.h ";
 
 
 // File: classdolfin_1_1MeshSize.xml
@@ -5626,6 +5665,9 @@ Assemble scalar on sub domains. ";
 // File: Interval_8h.xml
 
 
+// File: LocalMeshData_8h.xml
+
+
 // File: Mesh_8h.xml
 
 
@@ -5648,6 +5690,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: MeshGeometry_8h.xml
+
+
+// File: MeshPartitioning_8h.xml
 
 
 // File: MeshTopology_8h.xml
@@ -5740,56 +5785,56 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_58320a6bee734c3bb6d36183c618bb09.xml
+// File: dir_8c29fe334417fd0897402d8dba528cf7.xml
 
 
-// File: dir_227a775ba5d95bfcf3e85ed973812fac.xml
+// File: dir_ba6ab9cf243b737535beeccffb0eb57d.xml
 
 
-// File: dir_187f3fc9cfd6b0610eb4b1e093db23fa.xml
+// File: dir_e4483ca509775f30f41ecde4db08b031.xml
 
 
-// File: dir_90934d781c0da6edfbab578a937f610b.xml
+// File: dir_14cd8491b33390baa18af1030ff2bbf2.xml
 
 
-// File: dir_9c0d0547e6b9f173eb8c8d2a4b9512bb.xml
+// File: dir_d21d339befb4135b3b9cbfab98dcfc14.xml
 
 
-// File: dir_d0a5335d7670987266b54a1776ce2d43.xml
+// File: dir_065ee77fc81bc08a726011dc61ef2406.xml
 
 
-// File: dir_d9ee26b68e49300e50cb9f2e72d1a451.xml
+// File: dir_df15bbb20d1e9ff2dc5e33d37b2ddeaf.xml
 
 
-// File: dir_e268708822640923db0bcb1dd75608ad.xml
+// File: dir_e1f9e1055038997f9d00c0df2329dbc3.xml
 
 
-// File: dir_a0f91cf1a617114eebdae070a1bb4bc9.xml
+// File: dir_a5d138cfcac34a818cae05dcdea5729e.xml
 
 
-// File: dir_d2d5c0a57403dba66fba0bf3c12aa367.xml
+// File: dir_a2d02faa68553afd01b9652128f06e19.xml
 
 
-// File: dir_77c7a12cc8929b40d8c88c5abcd79a3f.xml
+// File: dir_393a91ed57eeba1673d5458d05754feb.xml
 
 
-// File: dir_301e97d33edcf82036597d5b43314b9a.xml
+// File: dir_ba8f3378f5f7101bf9c7aa9e5385ad62.xml
 
 
-// File: dir_db1d9d22381c6c52aea4a708f0fc34c1.xml
+// File: dir_c82472d360a2ec2dc7e612f6ba899038.xml
 
 
-// File: dir_99cfd81db79fd9e090870c834a345872.xml
+// File: dir_28f2e0438b16cdc61106a7bc0e786f6c.xml
 
 
-// File: dir_24165f6be95a1e85538bdd342b6068ef.xml
+// File: dir_e5d25210cd428347788cdb457426928f.xml
 
 
-// File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
+// File: dir_28464f1e399ed81c54b9c1358e4b186f.xml
 
 
-// File: dir_181c150be9c9c4eec0f2fcf3af955efd.xml
+// File: dir_e0f9649d59618adae5c2e8229613a8b6.xml
 
 
-// File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
+// File: dir_44fb1ced3f0e7e83cb474cfa4514c4a3.xml
 

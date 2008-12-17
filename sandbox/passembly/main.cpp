@@ -1,6 +1,4 @@
 // This file is used for testing parallel assembly
-//
-// To run this demo, make sure to build DOLFIN with the flag customCxxFlags=-DHAS_PARMETIS=1
 
 #include <dolfin.h>
 #include <dolfin/main/MPI.h>
@@ -17,12 +15,11 @@ int main(int argc, char* argv[])
   // Partition mesh
   Mesh mesh;
   MeshPartitioning::partition(mesh, data);
-
-  dolfin::uint process_number = dolfin::MPI::process_number();
-  char c[100];
-  sprintf(c, "mesh_part_%d.xml.gz", process_number);
-  File outfile(c);
-
+  
+  // Store partition to file
+  char filename[100];
+  sprintf(filename, "mesh_part_%d.xml.gz", dolfin::MPI::process_number());
+  File outfile(filename);
   outfile << mesh;
 
   return 0;
