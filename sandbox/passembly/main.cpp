@@ -8,19 +8,13 @@ using namespace dolfin;
 int main(int argc, char* argv[])
 {
   // Read in mesh from XML file in parallel
-  File file("unitsquare.xml.gz");
-  LocalMeshData data;
-  file >> data;
-
-  // Partition mesh
-  Mesh mesh;
-  MeshPartitioning::partition(mesh, data);
+  Mesh mesh("unitsquare.xml.gz");
   
   // Store partition to file
   char filename[100];
   sprintf(filename, "mesh_part_%d.xml.gz", dolfin::MPI::process_number());
-  File outfile(filename);
-  outfile << mesh;
+  File file(filename);
+  file << mesh;
 
   return 0;
 }
