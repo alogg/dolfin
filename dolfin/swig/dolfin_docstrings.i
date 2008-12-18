@@ -104,11 +104,17 @@ Function evaluation. ";
 
 %feature("docstring")  dolfin::BlockMatrix::~BlockMatrix "";
 
-%feature("docstring")  dolfin::BlockMatrix::set "";
+%feature("docstring")  dolfin::BlockMatrix::set "
 
-%feature("docstring")  dolfin::BlockMatrix::getc "";
+Set block. ";
 
-%feature("docstring")  dolfin::BlockMatrix::get "";
+%feature("docstring")  dolfin::BlockMatrix::get "
+
+Get block (const version). ";
+
+%feature("docstring")  dolfin::BlockMatrix::get "
+
+Get block. ";
 
 %feature("docstring")  dolfin::BlockMatrix::size "
 
@@ -146,9 +152,13 @@ Destructor. ";
 
 Return copy of tensor. ";
 
-%feature("docstring")  dolfin::BlockVector::set "";
+%feature("docstring")  dolfin::BlockVector::set "
 
-%feature("docstring")  dolfin::BlockVector::getc "";
+Set function. ";
+
+%feature("docstring")  dolfin::BlockVector::get "
+
+Get functions (const and non-const). ";
 
 %feature("docstring")  dolfin::BlockVector::get "";
 
@@ -679,11 +689,11 @@ C++ includes: DirichletBC.h ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Create boundary condition for sub domain. ";
+Create boundary condition for subdomain. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Create boundary condition for sub domain specified by index. ";
+Create boundary condition for subdomain specified by index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
@@ -738,6 +748,8 @@ through the SWIG created director class, when dealing with discrete
 functions in PyDOLFIN.
 
 C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
 %feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
@@ -1192,11 +1204,11 @@ Constructor. ";
 
 %feature("docstring")  dolfin::Form::Form "
 
-Constructor. ";
+Create form of given rank with given number of coefficients. ";
 
 %feature("docstring")  dolfin::Form::Form "
 
-Constructor used in the python interface. ";
+Create form from given Constructor used in the python interface. ";
 
 %feature("docstring")  dolfin::Form::~Form "
 
@@ -1226,6 +1238,14 @@ Return function for given coefficient. ";
 %feature("docstring")  dolfin::Form::coefficients "
 
 Return coefficient functions. ";
+
+%feature("docstring")  dolfin::Form::coefficient_number "
+
+Return the number of the coefficient with this name. ";
+
+%feature("docstring")  dolfin::Form::coefficient_name "
+
+Return the name of the coefficient with this number. ";
 
 %feature("docstring")  dolfin::Form::ufc_form "
 
@@ -3350,6 +3370,14 @@ Compute error estimate (modulo stability factor). ";
 %feature("docstring")  dolfin::Method::disp "
 
 Display method data. ";
+
+
+// File: classdolfin_1_1MPI.xml
+%feature("docstring") dolfin::MPI "
+
+This class provides utility functions for easy communcation with MPI.
+
+C++ includes: MPI.h ";
 
 
 // File: classdolfin_1_1MPIMeshCommunicator.xml
@@ -5626,6 +5654,9 @@ Assemble scalar on sub domains. ";
 // File: init_8h.xml
 
 
+// File: MPI_8h.xml
+
+
 // File: basic_8h.xml
 
 
@@ -5785,56 +5816,56 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_8c29fe334417fd0897402d8dba528cf7.xml
+// File: dir_58320a6bee734c3bb6d36183c618bb09.xml
 
 
-// File: dir_ba6ab9cf243b737535beeccffb0eb57d.xml
+// File: dir_227a775ba5d95bfcf3e85ed973812fac.xml
 
 
-// File: dir_e4483ca509775f30f41ecde4db08b031.xml
+// File: dir_187f3fc9cfd6b0610eb4b1e093db23fa.xml
 
 
-// File: dir_14cd8491b33390baa18af1030ff2bbf2.xml
+// File: dir_90934d781c0da6edfbab578a937f610b.xml
 
 
-// File: dir_d21d339befb4135b3b9cbfab98dcfc14.xml
+// File: dir_9c0d0547e6b9f173eb8c8d2a4b9512bb.xml
 
 
-// File: dir_065ee77fc81bc08a726011dc61ef2406.xml
+// File: dir_d0a5335d7670987266b54a1776ce2d43.xml
 
 
-// File: dir_df15bbb20d1e9ff2dc5e33d37b2ddeaf.xml
+// File: dir_d9ee26b68e49300e50cb9f2e72d1a451.xml
 
 
-// File: dir_e1f9e1055038997f9d00c0df2329dbc3.xml
+// File: dir_e268708822640923db0bcb1dd75608ad.xml
 
 
-// File: dir_a5d138cfcac34a818cae05dcdea5729e.xml
+// File: dir_a0f91cf1a617114eebdae070a1bb4bc9.xml
 
 
-// File: dir_a2d02faa68553afd01b9652128f06e19.xml
+// File: dir_d2d5c0a57403dba66fba0bf3c12aa367.xml
 
 
-// File: dir_393a91ed57eeba1673d5458d05754feb.xml
+// File: dir_77c7a12cc8929b40d8c88c5abcd79a3f.xml
 
 
-// File: dir_ba8f3378f5f7101bf9c7aa9e5385ad62.xml
+// File: dir_301e97d33edcf82036597d5b43314b9a.xml
 
 
-// File: dir_c82472d360a2ec2dc7e612f6ba899038.xml
+// File: dir_db1d9d22381c6c52aea4a708f0fc34c1.xml
 
 
-// File: dir_28f2e0438b16cdc61106a7bc0e786f6c.xml
+// File: dir_99cfd81db79fd9e090870c834a345872.xml
 
 
-// File: dir_e5d25210cd428347788cdb457426928f.xml
+// File: dir_24165f6be95a1e85538bdd342b6068ef.xml
 
 
-// File: dir_28464f1e399ed81c54b9c1358e4b186f.xml
+// File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
 
 
-// File: dir_e0f9649d59618adae5c2e8229613a8b6.xml
+// File: dir_181c150be9c9c4eec0f2fcf3af955efd.xml
 
 
-// File: dir_44fb1ced3f0e7e83cb474cfa4514c4a3.xml
+// File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
 
