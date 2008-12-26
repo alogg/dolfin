@@ -799,6 +799,11 @@ Destructor. ";
 
 Return a string identifying the dof map. ";
 
+%feature("docstring")  dolfin::DofMap::needs_mesh_entities "
+
+Return true iff mesh entities of topological dimension d are needed.
+";
+
 %feature("docstring")  dolfin::DofMap::global_dimension "
 
 Return the dimension of the global finite element function space. ";
@@ -822,10 +827,6 @@ Tabulate the local-to-global mapping of dofs on a cell. ";
 %feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
 
 Tabulate local-local facet dofs. ";
-
-%feature("docstring")  dolfin::DofMap::tabulate_dofs "
-
-Tabulate the local-to-global mapping of dofs on a ufc cell. ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "";
 
@@ -1336,6 +1337,10 @@ version). ";
 Function evaluation (overload for user-defined function, alternate
 version). ";
 
+%feature("docstring")  dolfin::Function::eval "
+
+Evaluate function v at given point in given cell. ";
+
 %feature("docstring")  dolfin::Function::interpolate "
 
 Interpolate function to local function space on cell. ";
@@ -1399,6 +1404,10 @@ Return dimension of function space. ";
 %feature("docstring")  dolfin::FunctionSpace::eval "
 
 Evaluate function v in function space at given point. ";
+
+%feature("docstring")  dolfin::FunctionSpace::eval "
+
+Evaluate function v in function space at given point in given cell. ";
 
 %feature("docstring")  dolfin::FunctionSpace::interpolate "
 
@@ -2091,6 +2100,27 @@ Constructor. ";
 %feature("docstring")  dolfin::InvMeshSize::eval "
 
 Function evaluation. ";
+
+
+// File: classdolfin_1_1IsOutflowFacet.xml
+%feature("docstring") dolfin::IsOutflowFacet "
+
+This function determines if the current facet is an outflow facet with
+respect to the current cell. It accepts as argument the mesh and a
+form M = dot(n, v)*ds, a functional, defined on the normal vector to
+the facet and velocity vector integrated over the exterior of the
+cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::IsOutflowFacet::IsOutflowFacet "";
+
+%feature("docstring")  dolfin::IsOutflowFacet::~IsOutflowFacet "";
+
+%feature("docstring")  dolfin::IsOutflowFacet::eval "
+
+Function evaluation (overload for user-defined function, alternate
+version). ";
 
 
 // File: classdolfin_1_1KrylovSolver.xml
@@ -3640,27 +3670,6 @@ Evaluate (interpolate) value of solution at given time. ";
 %feature("docstring")  dolfin::ODESolution::flush "";
 
 
-// File: classdolfin_1_1OutflowFacet.xml
-%feature("docstring") dolfin::OutflowFacet "
-
-This function determines if the current facet is an outflow facet with
-respect to the current cell. It accepts as argument the mesh and a
-form M = dot(n, v)*ds, a functional, defined on the normal vector to
-the facet and velocity vector integrated over the exterior of the
-cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::OutflowFacet::OutflowFacet "";
-
-%feature("docstring")  dolfin::OutflowFacet::~OutflowFacet "";
-
-%feature("docstring")  dolfin::OutflowFacet::eval "
-
-Function evaluation (overload for user-defined function, alternate
-version). ";
-
-
 // File: classdolfin_1_1Parameter.xml
 %feature("docstring") dolfin::Parameter "
 
@@ -3859,6 +3868,10 @@ Return y-coordinate. ";
 %feature("docstring")  dolfin::Point::z "
 
 Return z-coordinate. ";
+
+%feature("docstring")  dolfin::Point::coordinates "
+
+Return coordinate array. ";
 
 %feature("docstring")  dolfin::Point::distance "
 
@@ -5067,6 +5080,74 @@ C++ includes: UnitSquare.h ";
 %feature("docstring")  dolfin::Variable::label "";
 
 
+// File: classdolfin_1_1VariationalProblem.xml
+%feature("docstring") dolfin::VariationalProblem "
+
+This class represents a (system of) partial differential equation(s)
+in variational form: Find u in V such that
+
+F_u(v) = 0 for all v in V'.
+
+The variational problem is defined in terms of a bilinear form a(v, u)
+and a linear for L(v).
+
+For a linear variational problem, F_u(v) = a(v, u) - L(v), the forms
+should correspond to the canonical formulation
+
+a(v, u) = L(v) for all v in V'.
+
+For a nonlinear variational problem, the forms should be given by
+
+a(v, u) = F_u'(v) u = F_u'(v, u), L(v) = F(v),
+
+that is, a(v, u) should be the Frechet derivative of F_u with respect
+to u, and L = F.
+
+C++ includes: VariationalProblem.h ";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with natural boundary conditions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with a single Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with a list of Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::~VariationalProblem
+"
+
+Destructor. ";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+
+Solve variational problem. ";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+
+Solve variational problem and extract sub functions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+
+Solve variational problem and extract sub functions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::matrix "
+
+Return system matrix. ";
+
+%feature("docstring")  dolfin::VariationalProblem::vector "
+
+Return system vector. ";
+
+
 // File: classdolfin_1_1Vector.xml
 %feature("docstring") dolfin::Vector "
 
@@ -5456,10 +5537,10 @@ Assemble scalar on sub domains. ";
 // File: Form_8h.xml
 
 
-// File: pAssembler_8h.xml
-
-
 // File: PeriodicBC_8h.xml
+
+
+// File: VariationalProblem_8h.xml
 
 
 // File: Constant_8h.xml
