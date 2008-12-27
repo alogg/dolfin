@@ -3824,107 +3824,107 @@ public:
     
     // Number of operations to compute element tensor = 882
     // Compute coefficients
-    const double c1_0_0_0 = w[1][0];
-    const double c1_0_0_1 = w[1][1];
-    const double c1_0_0_2 = w[1][2];
-    const double c0_1_0_0 = w[0][0];
-    const double c0_1_0_1 = w[0][1];
-    const double c0_1_0_2 = w[0][2];
-    const double c0_1_1_0 = w[0][0];
-    const double c0_1_1_1 = w[0][1];
-    const double c0_1_1_2 = w[0][2];
-    const double c0_1_2_0 = w[0][0];
-    const double c0_1_2_1 = w[0][1];
-    const double c0_1_2_2 = w[0][2];
-    const double c0_2_0_0 = w[0][0];
-    const double c0_2_0_1 = w[0][1];
-    const double c0_2_0_2 = w[0][2];
+    const double c0_0_0_0 = w[0][0];
+    const double c0_0_0_1 = w[0][1];
+    const double c0_0_0_2 = w[0][2];
+    const double c1_1_0_0 = w[1][0];
+    const double c1_1_0_1 = w[1][1];
+    const double c1_1_0_2 = w[1][2];
+    const double c1_1_1_0 = w[1][0];
+    const double c1_1_1_1 = w[1][1];
+    const double c1_1_1_2 = w[1][2];
+    const double c1_1_2_0 = w[1][0];
+    const double c1_1_2_1 = w[1][1];
+    const double c1_1_2_2 = w[1][2];
+    const double c1_2_0_0 = w[1][0];
+    const double c1_2_0_1 = w[1][1];
+    const double c1_2_0_2 = w[1][2];
     
     // Compute geometry tensors
     // Number of operations to compute decalrations = 547
-    const double G0_0 = det*c1_0_0_0;
-    const double G0_1 = det*c1_0_0_1;
-    const double G0_2 = det*c1_0_0_2;
-    const double G1_0_0_0_0_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_0_0_0_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_0_0_1_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_0_0_2_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_0_1_0_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_0_1_0_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_0_1_1_0 = det*c0_1_0_0*c0_1_1_0*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_0_1_2_1 = det*c0_1_0_0*c0_1_1_0*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_1_0_0_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_1_0_0_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_1_0_1_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_1_0_2_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_1_1_0_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_1_1_0_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_1_1_1_0 = det*c0_1_0_0*c0_1_1_1*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_1_1_2_1 = det*c0_1_0_0*c0_1_1_1*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_2_0_0_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_2_0_0_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_2_0_1_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_0_2_0_2_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_0_2_1_0_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_2_1_0_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_0_2_1_1_0 = det*c0_1_0_0*c0_1_1_2*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_0_2_1_2_1 = det*c0_1_0_0*c0_1_1_2*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_0_0_0_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_0_0_0_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_0_0_1_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_0_0_2_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_0_1_0_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_0_1_0_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_0_1_1_0 = det*c0_1_0_1*c0_1_1_0*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_0_1_2_1 = det*c0_1_0_1*c0_1_1_0*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_1_0_0_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_1_0_0_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_1_0_1_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_1_0_2_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_1_1_0_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_1_1_0_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_1_1_1_0 = det*c0_1_0_1*c0_1_1_1*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_1_1_2_1 = det*c0_1_0_1*c0_1_1_1*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_2_0_0_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_2_0_0_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_2_0_1_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_1_2_0_2_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_1_2_1_0_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_2_1_0_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_1_2_1_1_0 = det*c0_1_0_1*c0_1_1_2*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_1_2_1_2_1 = det*c0_1_0_1*c0_1_1_2*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_0_0_0_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_0_0_0_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_0_0_1_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_0_0_2_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_0_1_0_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_0_1_0_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_0_1_1_0 = det*c0_1_0_2*c0_1_1_0*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_0_1_2_1 = det*c0_1_0_2*c0_1_1_0*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_1_0_0_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_1_0_0_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_1_0_1_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_1_0_2_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_1_1_0_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_1_1_0_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_1_1_1_0 = det*c0_1_0_2*c0_1_1_1*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_1_1_2_1 = det*c0_1_0_2*c0_1_1_1*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_2_0_0_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_2_0_0_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_2_0_1_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1_2_2_0_2_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1_2_2_1_0_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_2_1_0_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_2_2_1_1_0 = det*c0_1_0_2*c0_1_1_2*c0_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G1_2_2_1_2_1 = det*c0_1_0_2*c0_1_1_2*c0_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_0_0_0 = det*c0_2_0_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_0_1 = det*c0_2_0_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_0_1_0 = det*c0_2_0_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_2_1 = det*c0_2_0_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_1_0_0 = det*c0_2_0_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_1_0_1 = det*c0_2_0_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G2_1_1_0 = det*c0_2_0_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_1_2_1 = det*c0_2_0_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0_0 = det*c0_0_0_0;
+    const double G0_1 = det*c0_0_0_1;
+    const double G0_2 = det*c0_0_0_2;
+    const double G1_0_0_0_0_0 = det*c1_1_0_0*c1_1_1_0*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_0_0_0_1 = det*c1_1_0_0*c1_1_1_0*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_0_1_0 = det*c1_1_0_0*c1_1_1_0*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_0_0_2_1 = det*c1_1_0_0*c1_1_1_0*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_0_1_0_0 = det*c1_1_0_0*c1_1_1_0*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_0_1_0_1 = det*c1_1_0_0*c1_1_1_0*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_0_1_1_0 = det*c1_1_0_0*c1_1_1_0*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_0_1_2_1 = det*c1_1_0_0*c1_1_1_0*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_0_0_0 = det*c1_1_0_0*c1_1_1_1*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_1_0_0_1 = det*c1_1_0_0*c1_1_1_1*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_1_0_1_0 = det*c1_1_0_0*c1_1_1_1*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_1_0_2_1 = det*c1_1_0_0*c1_1_1_1*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_1_1_0_0 = det*c1_1_0_0*c1_1_1_1*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_1_1_0_1 = det*c1_1_0_0*c1_1_1_1*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_1_1_1_0 = det*c1_1_0_0*c1_1_1_1*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_1_1_2_1 = det*c1_1_0_0*c1_1_1_1*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_2_0_0_0 = det*c1_1_0_0*c1_1_1_2*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_2_0_0_1 = det*c1_1_0_0*c1_1_1_2*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_2_0_1_0 = det*c1_1_0_0*c1_1_1_2*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_0_2_0_2_1 = det*c1_1_0_0*c1_1_1_2*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_0_2_1_0_0 = det*c1_1_0_0*c1_1_1_2*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_2_1_0_1 = det*c1_1_0_0*c1_1_1_2*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_0_2_1_1_0 = det*c1_1_0_0*c1_1_1_2*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_0_2_1_2_1 = det*c1_1_0_0*c1_1_1_2*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_0_0_0_0 = det*c1_1_0_1*c1_1_1_0*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_0_0_1 = det*c1_1_0_1*c1_1_1_0*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_0_1_0 = det*c1_1_0_1*c1_1_1_0*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_0_0_2_1 = det*c1_1_0_1*c1_1_1_0*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_0_1_0_0 = det*c1_1_0_1*c1_1_1_0*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_0_1_0_1 = det*c1_1_0_1*c1_1_1_0*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_0_1_1_0 = det*c1_1_0_1*c1_1_1_0*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_0_1_2_1 = det*c1_1_0_1*c1_1_1_0*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_1_0_0_0 = det*c1_1_0_1*c1_1_1_1*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_1_0_0_1 = det*c1_1_0_1*c1_1_1_1*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_1_0_1_0 = det*c1_1_0_1*c1_1_1_1*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_1_0_2_1 = det*c1_1_0_1*c1_1_1_1*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_1_1_0_0 = det*c1_1_0_1*c1_1_1_1*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_1_1_0_1 = det*c1_1_0_1*c1_1_1_1*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_1_1_1_0 = det*c1_1_0_1*c1_1_1_1*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_1_1_2_1 = det*c1_1_0_1*c1_1_1_1*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_2_0_0_0 = det*c1_1_0_1*c1_1_1_2*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_2_0_0_1 = det*c1_1_0_1*c1_1_1_2*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_2_0_1_0 = det*c1_1_0_1*c1_1_1_2*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_1_2_0_2_1 = det*c1_1_0_1*c1_1_1_2*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_1_2_1_0_0 = det*c1_1_0_1*c1_1_1_2*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_2_1_0_1 = det*c1_1_0_1*c1_1_1_2*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_1_2_1_1_0 = det*c1_1_0_1*c1_1_1_2*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_1_2_1_2_1 = det*c1_1_0_1*c1_1_1_2*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_0_0_0_0 = det*c1_1_0_2*c1_1_1_0*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_0_0_0_1 = det*c1_1_0_2*c1_1_1_0*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_0_0_1_0 = det*c1_1_0_2*c1_1_1_0*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_0_0_2_1 = det*c1_1_0_2*c1_1_1_0*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_0_1_0_0 = det*c1_1_0_2*c1_1_1_0*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_0_1_0_1 = det*c1_1_0_2*c1_1_1_0*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_0_1_1_0 = det*c1_1_0_2*c1_1_1_0*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_0_1_2_1 = det*c1_1_0_2*c1_1_1_0*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_1_0_0_0 = det*c1_1_0_2*c1_1_1_1*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_1_0_0_1 = det*c1_1_0_2*c1_1_1_1*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_1_0_1_0 = det*c1_1_0_2*c1_1_1_1*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_1_0_2_1 = det*c1_1_0_2*c1_1_1_1*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_1_1_0_0 = det*c1_1_0_2*c1_1_1_1*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_1_0_1 = det*c1_1_0_2*c1_1_1_1*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_1_1_1_0 = det*c1_1_0_2*c1_1_1_1*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_1_1_2_1 = det*c1_1_0_2*c1_1_1_1*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_2_0_0_0 = det*c1_1_0_2*c1_1_1_2*c1_1_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_2_0_0_1 = det*c1_1_0_2*c1_1_1_2*c1_1_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_2_0_1_0 = det*c1_1_0_2*c1_1_1_2*c1_1_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G1_2_2_0_2_1 = det*c1_1_0_2*c1_1_1_2*c1_1_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G1_2_2_1_0_0 = det*c1_1_0_2*c1_1_1_2*c1_1_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_2_1_0_1 = det*c1_1_0_2*c1_1_1_2*c1_1_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_2_2_1_1_0 = det*c1_1_0_2*c1_1_1_2*c1_1_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G1_2_2_1_2_1 = det*c1_1_0_2*c1_1_1_2*c1_1_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_0_0_0 = det*c1_2_0_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_0_1 = det*c1_2_0_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_0_1_0 = det*c1_2_0_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_2_1 = det*c1_2_0_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_1_0_0 = det*c1_2_0_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_1_0_1 = det*c1_2_0_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2_1_1_0 = det*c1_2_0_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_1_2_1 = det*c1_2_0_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
     // Number of operations to compute tensor = 335
@@ -3969,7 +3969,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "w1_a0[0, 1, 2] | vi0[0, 1, 2]*va0[0, 1, 2]*dX(0) + -w0_a0[0, 1, 2]w0_a1[0, 1, 2]w0_a3[0, 1, 2](dXa2[0, 1]/dxb0[0, 1])(dXa4[0, 1]/dxb0[0, 1]) | ((d/dXa2[0, 1])vi0[0, 1, 2])*va0[0, 1, 2]*va1[0, 1, 2]*((d/dXa4[0, 1])va3[0, 1, 2])*dX(0) + -w0_a1[0, 1, 2](dXa0[0, 1]/dxb0[0, 1])(dXa2[0, 1]/dxb0[0, 1]) | ((d/dXa0[0, 1])vi0[0, 1, 2])*((d/dXa2[0, 1])va1[0, 1, 2])*dX(0)";
+    return "w0_a0[0, 1, 2] | vi0[0, 1, 2]*va0[0, 1, 2]*dX(0) + -w1_a0[0, 1, 2]w1_a1[0, 1, 2]w1_a3[0, 1, 2](dXa2[0, 1]/dxb0[0, 1])(dXa4[0, 1]/dxb0[0, 1]) | ((d/dXa2[0, 1])vi0[0, 1, 2])*va0[0, 1, 2]*va1[0, 1, 2]*((d/dXa4[0, 1])va3[0, 1, 2])*dX(0) + -w1_a1[0, 1, 2](dXa0[0, 1]/dxb0[0, 1])(dXa2[0, 1]/dxb0[0, 1]) | ((d/dXa0[0, 1])vi0[0, 1, 2])*((d/dXa2[0, 1])va1[0, 1, 2])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4239,7 +4239,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "U0";
+    return "U";
   }
   
 };
@@ -4248,7 +4248,7 @@ class NonlinearPoissonBilinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), U0(*this)
+  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), U(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4261,7 +4261,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), U0(*this)
+  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), U(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -4272,7 +4272,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), U0(*this)
+  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), U(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4281,20 +4281,20 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    this->U0 = w0;
+    this->U = w0;
 
     _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), U0(*this)
+  NonlinearPoissonBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), U(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    this->U0 = w0;
+    this->U = w0;
 
     _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
   }
@@ -4303,7 +4303,7 @@ public:
   ~NonlinearPoissonBilinearForm() {}
 
   // Coefficients
-  NonlinearPoissonBilinearFormCoefficient0 U0;
+  NonlinearPoissonBilinearFormCoefficient0 U;
 
 };
 
@@ -4339,7 +4339,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "U0";
+    return "f";
   }
   
 };
@@ -4375,7 +4375,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "f";
+    return "U";
   }
   
 };
@@ -4384,7 +4384,7 @@ class NonlinearPoissonLinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), U0(*this), f(*this)
+  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this), U(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4396,7 +4396,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  NonlinearPoissonLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), U0(*this), f(*this)
+  NonlinearPoissonLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this), U(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -4407,7 +4407,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), U0(*this), f(*this)
+  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), U(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4415,22 +4415,22 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    this->U0 = w0;
-    this->f = w1;
+    this->f = w0;
+    this->U = w1;
 
     _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  NonlinearPoissonLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), U0(*this), f(*this)
+  NonlinearPoissonLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), U(*this)
   {
     _function_spaces.push_back(V0);
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    this->U0 = w0;
-    this->f = w1;
+    this->f = w0;
+    this->U = w1;
 
     _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
   }
@@ -4439,8 +4439,8 @@ public:
   ~NonlinearPoissonLinearForm() {}
 
   // Coefficients
-  NonlinearPoissonLinearFormCoefficient0 U0;
-  NonlinearPoissonLinearFormCoefficient1 f;
+  NonlinearPoissonLinearFormCoefficient0 f;
+  NonlinearPoissonLinearFormCoefficient1 U;
 
 };
 
