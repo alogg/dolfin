@@ -4,8 +4,8 @@
 // Warning: This code was generated with the option '-l dolfin'
 // and contains DOLFIN-specific wrappers that depend on DOLFIN.
 
-#ifndef __CONVECTIONDIFFUSION_H
-#define __CONVECTIONDIFFUSION_H
+#ifndef __ADVECTIONDIFFUSION_H
+#define __ADVECTIONDIFFUSION_H
 
 #include <cmath>
 #include <stdexcept>
@@ -14,18 +14,18 @@
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionBilinearForm_finite_element_0: public ufc::finite_element
+class UFC_AdvectionDiffusionBilinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_finite_element_0() : ufc::finite_element()
+  UFC_AdvectionDiffusionBilinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_finite_element_0()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_finite_element_0();
+    return new UFC_AdvectionDiffusionBilinearForm_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionBilinearForm_finite_element_1: public ufc::finite_element
+class UFC_AdvectionDiffusionBilinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_finite_element_1() : ufc::finite_element()
+  UFC_AdvectionDiffusionBilinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_finite_element_1()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -849,25 +849,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_finite_element_1();
+    return new UFC_AdvectionDiffusionBilinearForm_finite_element_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionBilinearForm_finite_element_2_0: public ufc::finite_element
+class UFC_AdvectionDiffusionBilinearForm_finite_element_2_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_finite_element_2_0() : ufc::finite_element()
+  UFC_AdvectionDiffusionBilinearForm_finite_element_2_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_finite_element_2_0()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_finite_element_2_0()
   {
     // Do nothing
   }
@@ -1319,25 +1319,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_finite_element_2_0();
+    return new UFC_AdvectionDiffusionBilinearForm_finite_element_2_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionBilinearForm_finite_element_2_1: public ufc::finite_element
+class UFC_AdvectionDiffusionBilinearForm_finite_element_2_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_finite_element_2_1() : ufc::finite_element()
+  UFC_AdvectionDiffusionBilinearForm_finite_element_2_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_finite_element_2_1()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_finite_element_2_1()
   {
     // Do nothing
   }
@@ -1789,25 +1789,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_finite_element_2_1();
+    return new UFC_AdvectionDiffusionBilinearForm_finite_element_2_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionBilinearForm_finite_element_2: public ufc::finite_element
+class UFC_AdvectionDiffusionBilinearForm_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_finite_element_2() : ufc::finite_element()
+  UFC_AdvectionDiffusionBilinearForm_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_finite_element_2()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_finite_element_2()
   {
     // Do nothing
   }
@@ -2473,10 +2473,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionBilinearForm_finite_element_2_0();
+      return new UFC_AdvectionDiffusionBilinearForm_finite_element_2_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionBilinearForm_finite_element_2_1();
+      return new UFC_AdvectionDiffusionBilinearForm_finite_element_2_1();
       break;
     }
     return 0;
@@ -2487,7 +2487,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionBilinearForm_dof_map_0: public ufc::dof_map
+class UFC_AdvectionDiffusionBilinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2496,13 +2496,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_dof_map_0() : ufc::dof_map()
+  UFC_AdvectionDiffusionBilinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_dof_map_0()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -2641,7 +2641,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_dof_map_0();
+    return new UFC_AdvectionDiffusionBilinearForm_dof_map_0();
   }
 
 };
@@ -2649,7 +2649,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionBilinearForm_dof_map_1: public ufc::dof_map
+class UFC_AdvectionDiffusionBilinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -2658,13 +2658,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_dof_map_1() : ufc::dof_map()
+  UFC_AdvectionDiffusionBilinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_dof_map_1()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -2803,7 +2803,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_dof_map_1();
+    return new UFC_AdvectionDiffusionBilinearForm_dof_map_1();
   }
 
 };
@@ -2811,7 +2811,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionBilinearForm_dof_map_2_0: public ufc::dof_map
+class UFC_AdvectionDiffusionBilinearForm_dof_map_2_0: public ufc::dof_map
 {
 private:
 
@@ -2820,13 +2820,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_dof_map_2_0() : ufc::dof_map()
+  UFC_AdvectionDiffusionBilinearForm_dof_map_2_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_dof_map_2_0()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_dof_map_2_0()
   {
     // Do nothing
   }
@@ -2978,7 +2978,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_dof_map_2_0();
+    return new UFC_AdvectionDiffusionBilinearForm_dof_map_2_0();
   }
 
 };
@@ -2986,7 +2986,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionBilinearForm_dof_map_2_1: public ufc::dof_map
+class UFC_AdvectionDiffusionBilinearForm_dof_map_2_1: public ufc::dof_map
 {
 private:
 
@@ -2995,13 +2995,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_dof_map_2_1() : ufc::dof_map()
+  UFC_AdvectionDiffusionBilinearForm_dof_map_2_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_dof_map_2_1()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_dof_map_2_1()
   {
     // Do nothing
   }
@@ -3153,7 +3153,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_dof_map_2_1();
+    return new UFC_AdvectionDiffusionBilinearForm_dof_map_2_1();
   }
 
 };
@@ -3161,7 +3161,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionBilinearForm_dof_map_2: public ufc::dof_map
+class UFC_AdvectionDiffusionBilinearForm_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -3170,13 +3170,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_dof_map_2() : ufc::dof_map()
+  UFC_AdvectionDiffusionBilinearForm_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_dof_map_2()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_dof_map_2()
   {
     // Do nothing
   }
@@ -3360,10 +3360,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionBilinearForm_dof_map_2_0();
+      return new UFC_AdvectionDiffusionBilinearForm_dof_map_2_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionBilinearForm_dof_map_2_1();
+      return new UFC_AdvectionDiffusionBilinearForm_dof_map_2_1();
       break;
     }
     return 0;
@@ -3375,18 +3375,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ConvectionDiffusionBilinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_AdvectionDiffusionBilinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_AdvectionDiffusionBilinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm_cell_integral_0()
+  virtual ~UFC_AdvectionDiffusionBilinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -3494,18 +3494,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ConvectionDiffusionBilinearForm: public ufc::form
+class UFC_AdvectionDiffusionBilinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionBilinearForm() : ufc::form()
+  UFC_AdvectionDiffusionBilinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionBilinearForm()
+  virtual ~UFC_AdvectionDiffusionBilinearForm()
   {
     // Do nothing
   }
@@ -3552,13 +3552,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionBilinearForm_finite_element_0();
+      return new UFC_AdvectionDiffusionBilinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionBilinearForm_finite_element_1();
+      return new UFC_AdvectionDiffusionBilinearForm_finite_element_1();
       break;
     case 2:
-      return new UFC_ConvectionDiffusionBilinearForm_finite_element_2();
+      return new UFC_AdvectionDiffusionBilinearForm_finite_element_2();
       break;
     }
     return 0;
@@ -3570,13 +3570,13 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionBilinearForm_dof_map_0();
+      return new UFC_AdvectionDiffusionBilinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionBilinearForm_dof_map_1();
+      return new UFC_AdvectionDiffusionBilinearForm_dof_map_1();
       break;
     case 2:
-      return new UFC_ConvectionDiffusionBilinearForm_dof_map_2();
+      return new UFC_AdvectionDiffusionBilinearForm_dof_map_2();
       break;
     }
     return 0;
@@ -3585,7 +3585,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionBilinearForm_cell_integral_0();
+    return new UFC_AdvectionDiffusionBilinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -3604,18 +3604,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionLinearForm_finite_element_0: public ufc::finite_element
+class UFC_AdvectionDiffusionLinearForm_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_finite_element_0() : ufc::finite_element()
+  UFC_AdvectionDiffusionLinearForm_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_finite_element_0()
+  virtual ~UFC_AdvectionDiffusionLinearForm_finite_element_0()
   {
     // Do nothing
   }
@@ -4018,25 +4018,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_finite_element_0();
+    return new UFC_AdvectionDiffusionLinearForm_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionLinearForm_finite_element_1: public ufc::finite_element
+class UFC_AdvectionDiffusionLinearForm_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_finite_element_1() : ufc::finite_element()
+  UFC_AdvectionDiffusionLinearForm_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_finite_element_1()
+  virtual ~UFC_AdvectionDiffusionLinearForm_finite_element_1()
   {
     // Do nothing
   }
@@ -4439,25 +4439,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_finite_element_1();
+    return new UFC_AdvectionDiffusionLinearForm_finite_element_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionLinearForm_finite_element_2_0: public ufc::finite_element
+class UFC_AdvectionDiffusionLinearForm_finite_element_2_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_finite_element_2_0() : ufc::finite_element()
+  UFC_AdvectionDiffusionLinearForm_finite_element_2_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_finite_element_2_0()
+  virtual ~UFC_AdvectionDiffusionLinearForm_finite_element_2_0()
   {
     // Do nothing
   }
@@ -4909,25 +4909,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_finite_element_2_0();
+    return new UFC_AdvectionDiffusionLinearForm_finite_element_2_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionLinearForm_finite_element_2_1: public ufc::finite_element
+class UFC_AdvectionDiffusionLinearForm_finite_element_2_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_finite_element_2_1() : ufc::finite_element()
+  UFC_AdvectionDiffusionLinearForm_finite_element_2_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_finite_element_2_1()
+  virtual ~UFC_AdvectionDiffusionLinearForm_finite_element_2_1()
   {
     // Do nothing
   }
@@ -5379,25 +5379,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_finite_element_2_1();
+    return new UFC_AdvectionDiffusionLinearForm_finite_element_2_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionLinearForm_finite_element_2: public ufc::finite_element
+class UFC_AdvectionDiffusionLinearForm_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_finite_element_2() : ufc::finite_element()
+  UFC_AdvectionDiffusionLinearForm_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_finite_element_2()
+  virtual ~UFC_AdvectionDiffusionLinearForm_finite_element_2()
   {
     // Do nothing
   }
@@ -6063,10 +6063,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionLinearForm_finite_element_2_0();
+      return new UFC_AdvectionDiffusionLinearForm_finite_element_2_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionLinearForm_finite_element_2_1();
+      return new UFC_AdvectionDiffusionLinearForm_finite_element_2_1();
       break;
     }
     return 0;
@@ -6076,18 +6076,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ConvectionDiffusionLinearForm_finite_element_3: public ufc::finite_element
+class UFC_AdvectionDiffusionLinearForm_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_finite_element_3() : ufc::finite_element()
+  UFC_AdvectionDiffusionLinearForm_finite_element_3() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_finite_element_3()
+  virtual ~UFC_AdvectionDiffusionLinearForm_finite_element_3()
   {
     // Do nothing
   }
@@ -6490,7 +6490,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_finite_element_3();
+    return new UFC_AdvectionDiffusionLinearForm_finite_element_3();
   }
 
 };
@@ -6498,7 +6498,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionLinearForm_dof_map_0: public ufc::dof_map
+class UFC_AdvectionDiffusionLinearForm_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -6507,13 +6507,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_dof_map_0() : ufc::dof_map()
+  UFC_AdvectionDiffusionLinearForm_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_dof_map_0()
+  virtual ~UFC_AdvectionDiffusionLinearForm_dof_map_0()
   {
     // Do nothing
   }
@@ -6652,7 +6652,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_dof_map_0();
+    return new UFC_AdvectionDiffusionLinearForm_dof_map_0();
   }
 
 };
@@ -6660,7 +6660,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionLinearForm_dof_map_1: public ufc::dof_map
+class UFC_AdvectionDiffusionLinearForm_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -6669,13 +6669,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_dof_map_1() : ufc::dof_map()
+  UFC_AdvectionDiffusionLinearForm_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_dof_map_1()
+  virtual ~UFC_AdvectionDiffusionLinearForm_dof_map_1()
   {
     // Do nothing
   }
@@ -6814,7 +6814,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_dof_map_1();
+    return new UFC_AdvectionDiffusionLinearForm_dof_map_1();
   }
 
 };
@@ -6822,7 +6822,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionLinearForm_dof_map_2_0: public ufc::dof_map
+class UFC_AdvectionDiffusionLinearForm_dof_map_2_0: public ufc::dof_map
 {
 private:
 
@@ -6831,13 +6831,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_dof_map_2_0() : ufc::dof_map()
+  UFC_AdvectionDiffusionLinearForm_dof_map_2_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_dof_map_2_0()
+  virtual ~UFC_AdvectionDiffusionLinearForm_dof_map_2_0()
   {
     // Do nothing
   }
@@ -6989,7 +6989,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_dof_map_2_0();
+    return new UFC_AdvectionDiffusionLinearForm_dof_map_2_0();
   }
 
 };
@@ -6997,7 +6997,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionLinearForm_dof_map_2_1: public ufc::dof_map
+class UFC_AdvectionDiffusionLinearForm_dof_map_2_1: public ufc::dof_map
 {
 private:
 
@@ -7006,13 +7006,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_dof_map_2_1() : ufc::dof_map()
+  UFC_AdvectionDiffusionLinearForm_dof_map_2_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_dof_map_2_1()
+  virtual ~UFC_AdvectionDiffusionLinearForm_dof_map_2_1()
   {
     // Do nothing
   }
@@ -7164,7 +7164,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_dof_map_2_1();
+    return new UFC_AdvectionDiffusionLinearForm_dof_map_2_1();
   }
 
 };
@@ -7172,7 +7172,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionLinearForm_dof_map_2: public ufc::dof_map
+class UFC_AdvectionDiffusionLinearForm_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -7181,13 +7181,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_dof_map_2() : ufc::dof_map()
+  UFC_AdvectionDiffusionLinearForm_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_dof_map_2()
+  virtual ~UFC_AdvectionDiffusionLinearForm_dof_map_2()
   {
     // Do nothing
   }
@@ -7371,10 +7371,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionLinearForm_dof_map_2_0();
+      return new UFC_AdvectionDiffusionLinearForm_dof_map_2_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionLinearForm_dof_map_2_1();
+      return new UFC_AdvectionDiffusionLinearForm_dof_map_2_1();
       break;
     }
     return 0;
@@ -7385,7 +7385,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ConvectionDiffusionLinearForm_dof_map_3: public ufc::dof_map
+class UFC_AdvectionDiffusionLinearForm_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -7394,13 +7394,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_dof_map_3() : ufc::dof_map()
+  UFC_AdvectionDiffusionLinearForm_dof_map_3() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_dof_map_3()
+  virtual ~UFC_AdvectionDiffusionLinearForm_dof_map_3()
   {
     // Do nothing
   }
@@ -7539,7 +7539,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_dof_map_3();
+    return new UFC_AdvectionDiffusionLinearForm_dof_map_3();
   }
 
 };
@@ -7548,18 +7548,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ConvectionDiffusionLinearForm_cell_integral_0: public ufc::cell_integral
+class UFC_AdvectionDiffusionLinearForm_cell_integral_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm_cell_integral_0() : ufc::cell_integral()
+  UFC_AdvectionDiffusionLinearForm_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm_cell_integral_0()
+  virtual ~UFC_AdvectionDiffusionLinearForm_cell_integral_0()
   {
     // Do nothing
   }
@@ -7706,18 +7706,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ConvectionDiffusionLinearForm: public ufc::form
+class UFC_AdvectionDiffusionLinearForm: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ConvectionDiffusionLinearForm() : ufc::form()
+  UFC_AdvectionDiffusionLinearForm() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ConvectionDiffusionLinearForm()
+  virtual ~UFC_AdvectionDiffusionLinearForm()
   {
     // Do nothing
   }
@@ -7764,16 +7764,16 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionLinearForm_finite_element_0();
+      return new UFC_AdvectionDiffusionLinearForm_finite_element_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionLinearForm_finite_element_1();
+      return new UFC_AdvectionDiffusionLinearForm_finite_element_1();
       break;
     case 2:
-      return new UFC_ConvectionDiffusionLinearForm_finite_element_2();
+      return new UFC_AdvectionDiffusionLinearForm_finite_element_2();
       break;
     case 3:
-      return new UFC_ConvectionDiffusionLinearForm_finite_element_3();
+      return new UFC_AdvectionDiffusionLinearForm_finite_element_3();
       break;
     }
     return 0;
@@ -7785,16 +7785,16 @@ public:
     switch ( i )
     {
     case 0:
-      return new UFC_ConvectionDiffusionLinearForm_dof_map_0();
+      return new UFC_AdvectionDiffusionLinearForm_dof_map_0();
       break;
     case 1:
-      return new UFC_ConvectionDiffusionLinearForm_dof_map_1();
+      return new UFC_AdvectionDiffusionLinearForm_dof_map_1();
       break;
     case 2:
-      return new UFC_ConvectionDiffusionLinearForm_dof_map_2();
+      return new UFC_AdvectionDiffusionLinearForm_dof_map_2();
       break;
     case 3:
-      return new UFC_ConvectionDiffusionLinearForm_dof_map_3();
+      return new UFC_AdvectionDiffusionLinearForm_dof_map_3();
       break;
     }
     return 0;
@@ -7803,7 +7803,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ConvectionDiffusionLinearForm_cell_integral_0();
+    return new UFC_AdvectionDiffusionLinearForm_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -7829,158 +7829,158 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-class ConvectionDiffusionBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class AdvectionDiffusionBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
+  AdvectionDiffusionBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
+class AdvectionDiffusionBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
+  AdvectionDiffusionBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+class AdvectionDiffusionBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+  AdvectionDiffusionBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_2()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_2()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_2()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionLinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class AdvectionDiffusionLinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
+  AdvectionDiffusionLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+class AdvectionDiffusionLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
+  AdvectionDiffusionLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
+class AdvectionDiffusionLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
+  AdvectionDiffusionLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_2()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_2()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_2()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionLinearFormCoefficientSpace2 : public dolfin::FunctionSpace
+class AdvectionDiffusionLinearFormCoefficientSpace2 : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionLinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
+  AdvectionDiffusionLinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionTestSpace : public dolfin::FunctionSpace
+class AdvectionDiffusionTestSpace : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionTestSpace(const dolfin::Mesh& mesh)
+  AdvectionDiffusionTestSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionTrialSpace : public dolfin::FunctionSpace
+class AdvectionDiffusionTrialSpace : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionTrialSpace(const dolfin::Mesh& mesh)
+  AdvectionDiffusionTrialSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionFunctionSpace : public dolfin::FunctionSpace
+class AdvectionDiffusionFunctionSpace : public dolfin::FunctionSpace
 {
 public:
 
-  ConvectionDiffusionFunctionSpace(const dolfin::Mesh& mesh)
+  AdvectionDiffusionFunctionSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionDiffusionLinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionDiffusionLinearForm_dof_map_3()), mesh)))
+                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_AdvectionDiffusionLinearForm_finite_element_3()))),
+                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_AdvectionDiffusionLinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
 };
 
-class ConvectionDiffusionBilinearFormCoefficient0 : public dolfin::Coefficient
+class AdvectionDiffusionBilinearFormCoefficient0 : public dolfin::Coefficient
 {
 public:
 
   // Constructor
-  ConvectionDiffusionBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  AdvectionDiffusionBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
   // Destructor  
-  ~ConvectionDiffusionBilinearFormCoefficient0() {}
+  ~AdvectionDiffusionBilinearFormCoefficient0() {}
 
   // Attach function to coefficient
-  const ConvectionDiffusionBilinearFormCoefficient0& operator= (dolfin::Function& v)
+  const AdvectionDiffusionBilinearFormCoefficient0& operator= (dolfin::Function& v)
   {
     attach(v);
     return *this;
@@ -7989,7 +7989,7 @@ public:
   /// Create function space for coefficient
   const dolfin::FunctionSpace* create_function_space() const
   {
-    return new ConvectionDiffusionBilinearFormCoefficientSpace0(form.mesh());
+    return new AdvectionDiffusionBilinearFormCoefficientSpace0(form.mesh());
   }
   
   /// Return coefficient number
@@ -8005,12 +8005,12 @@ public:
   }
   
 };
-class ConvectionDiffusionBilinearForm : public dolfin::Form
+class AdvectionDiffusionBilinearForm : public dolfin::Form
 {
 public:
 
   // Create form on given function space(s)
-  ConvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), b(*this)
+  AdvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), b(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -8019,22 +8019,22 @@ public:
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionBilinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), b(*this)
+  AdvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), b(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionBilinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  ConvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), b(*this)
+  AdvectionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), b(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -8045,11 +8045,11 @@ public:
 
     this->b = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionBilinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ConvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), b(*this)
+  AdvectionDiffusionBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), b(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -8058,29 +8058,29 @@ public:
 
     this->b = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionBilinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionBilinearForm());
   }
 
   // Destructor
-  ~ConvectionDiffusionBilinearForm() {}
+  ~AdvectionDiffusionBilinearForm() {}
 
   // Coefficients
-  ConvectionDiffusionBilinearFormCoefficient0 b;
+  AdvectionDiffusionBilinearFormCoefficient0 b;
 
 };
 
-class ConvectionDiffusionLinearFormCoefficient0 : public dolfin::Coefficient
+class AdvectionDiffusionLinearFormCoefficient0 : public dolfin::Coefficient
 {
 public:
 
   // Constructor
-  ConvectionDiffusionLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  AdvectionDiffusionLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
   // Destructor  
-  ~ConvectionDiffusionLinearFormCoefficient0() {}
+  ~AdvectionDiffusionLinearFormCoefficient0() {}
 
   // Attach function to coefficient
-  const ConvectionDiffusionLinearFormCoefficient0& operator= (dolfin::Function& v)
+  const AdvectionDiffusionLinearFormCoefficient0& operator= (dolfin::Function& v)
   {
     attach(v);
     return *this;
@@ -8089,7 +8089,7 @@ public:
   /// Create function space for coefficient
   const dolfin::FunctionSpace* create_function_space() const
   {
-    return new ConvectionDiffusionLinearFormCoefficientSpace0(form.mesh());
+    return new AdvectionDiffusionLinearFormCoefficientSpace0(form.mesh());
   }
   
   /// Return coefficient number
@@ -8105,18 +8105,18 @@ public:
   }
   
 };
-class ConvectionDiffusionLinearFormCoefficient1 : public dolfin::Coefficient
+class AdvectionDiffusionLinearFormCoefficient1 : public dolfin::Coefficient
 {
 public:
 
   // Constructor
-  ConvectionDiffusionLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  AdvectionDiffusionLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
   // Destructor  
-  ~ConvectionDiffusionLinearFormCoefficient1() {}
+  ~AdvectionDiffusionLinearFormCoefficient1() {}
 
   // Attach function to coefficient
-  const ConvectionDiffusionLinearFormCoefficient1& operator= (dolfin::Function& v)
+  const AdvectionDiffusionLinearFormCoefficient1& operator= (dolfin::Function& v)
   {
     attach(v);
     return *this;
@@ -8125,7 +8125,7 @@ public:
   /// Create function space for coefficient
   const dolfin::FunctionSpace* create_function_space() const
   {
-    return new ConvectionDiffusionLinearFormCoefficientSpace1(form.mesh());
+    return new AdvectionDiffusionLinearFormCoefficientSpace1(form.mesh());
   }
   
   /// Return coefficient number
@@ -8141,18 +8141,18 @@ public:
   }
   
 };
-class ConvectionDiffusionLinearFormCoefficient2 : public dolfin::Coefficient
+class AdvectionDiffusionLinearFormCoefficient2 : public dolfin::Coefficient
 {
 public:
 
   // Constructor
-  ConvectionDiffusionLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  AdvectionDiffusionLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
   // Destructor  
-  ~ConvectionDiffusionLinearFormCoefficient2() {}
+  ~AdvectionDiffusionLinearFormCoefficient2() {}
 
   // Attach function to coefficient
-  const ConvectionDiffusionLinearFormCoefficient2& operator= (dolfin::Function& v)
+  const AdvectionDiffusionLinearFormCoefficient2& operator= (dolfin::Function& v)
   {
     attach(v);
     return *this;
@@ -8161,7 +8161,7 @@ public:
   /// Create function space for coefficient
   const dolfin::FunctionSpace* create_function_space() const
   {
-    return new ConvectionDiffusionLinearFormCoefficientSpace2(form.mesh());
+    return new AdvectionDiffusionLinearFormCoefficientSpace2(form.mesh());
   }
   
   /// Return coefficient number
@@ -8177,12 +8177,12 @@ public:
   }
   
 };
-class ConvectionDiffusionLinearForm : public dolfin::Form
+class AdvectionDiffusionLinearForm : public dolfin::Form
 {
 public:
 
   // Create form on given function space(s)
-  ConvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  AdvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -8191,11 +8191,11 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionLinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  AdvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -8203,11 +8203,11 @@ public:
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionLinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  ConvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  AdvectionDiffusionLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -8220,11 +8220,11 @@ public:
     this->b = w1;
     this->f = w2;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionLinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ConvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), u0(*this), b(*this), f(*this)
+  AdvectionDiffusionLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), u0(*this), b(*this), f(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -8236,16 +8236,16 @@ public:
     this->b = w1;
     this->f = w2;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionDiffusionLinearForm());
+    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_AdvectionDiffusionLinearForm());
   }
 
   // Destructor
-  ~ConvectionDiffusionLinearForm() {}
+  ~AdvectionDiffusionLinearForm() {}
 
   // Coefficients
-  ConvectionDiffusionLinearFormCoefficient0 u0;
-  ConvectionDiffusionLinearFormCoefficient1 b;
-  ConvectionDiffusionLinearFormCoefficient2 f;
+  AdvectionDiffusionLinearFormCoefficient0 u0;
+  AdvectionDiffusionLinearFormCoefficient1 b;
+  AdvectionDiffusionLinearFormCoefficient2 f;
 
 };
 
