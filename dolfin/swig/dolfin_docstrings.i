@@ -2254,47 +2254,6 @@ Create empty vector. ";
 Create empty sparsity pattern (returning zero if not used/needed). ";
 
 
-// File: classdolfin_1_1LinearPDE.xml
-%feature("docstring") dolfin::LinearPDE "
-
-A LinearPDE represents a (system of) linear partial differential
-equation(s) in variational form: Find u in V such that
-
-a(v, u) = L(v) for all v in V',
-
-where a is a bilinear form and L is a linear form.
-
-C++ includes: LinearPDE.h ";
-
-%feature("docstring")  dolfin::LinearPDE::LinearPDE "
-
-Define a linear PDE with natural boundary conditions. ";
-
-%feature("docstring")  dolfin::LinearPDE::LinearPDE "
-
-Define a linear PDE with a single Dirichlet boundary condition. ";
-
-%feature("docstring")  dolfin::LinearPDE::LinearPDE "
-
-Define a linear PDE with a set of Dirichlet boundary conditions. ";
-
-%feature("docstring")  dolfin::LinearPDE::~LinearPDE "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::LinearPDE::solve "
-
-Solve PDE system. ";
-
-%feature("docstring")  dolfin::LinearPDE::solve "
-
-Solve PDE system and extract sub functions. ";
-
-%feature("docstring")  dolfin::LinearPDE::solve "
-
-Solve PDE system and extract sub functions. ";
-
-
 // File: classdolfin_1_1LinearSolver.xml
 %feature("docstring") dolfin::LinearSolver "
 
@@ -3460,43 +3419,6 @@ Jacobian dF/dx ";
 Return Newton iteration number. ";
 
 
-// File: classdolfin_1_1NonlinearPDE.xml
-%feature("docstring") dolfin::NonlinearPDE "
-
-This class provides automated solution of nonlinear PDEs.
-
-C++ includes: NonlinearPDE.h ";
-
-%feature("docstring")  dolfin::NonlinearPDE::NonlinearPDE "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::NonlinearPDE "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::~NonlinearPDE "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::update "
-
-Function called before Jacobian matrix and RHS vector are formed.
-Users can supply this function to perform updates. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::F "
-
-Compute F(u). ";
-
-%feature("docstring")  dolfin::NonlinearPDE::J "
-
-Compute Jacobian of F(u). ";
-
-%feature("docstring")  dolfin::NonlinearPDE::solve "
-
-Solve PDE. ";
-
-
 // File: classdolfin_1_1NonlinearProblem.xml
 %feature("docstring") dolfin::NonlinearProblem "
 
@@ -3507,23 +3429,19 @@ C++ includes: NonlinearProblem.h ";
 
 %feature("docstring")  dolfin::NonlinearProblem::NonlinearProblem "
 
-Create nonlinear problem. ";
+Constructor. ";
 
 %feature("docstring")  dolfin::NonlinearProblem::~NonlinearProblem "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::NonlinearProblem::form "
-
-User-defined function to compute F(u) its Jacobian. ";
-
 %feature("docstring")  dolfin::NonlinearProblem::F "
 
-User-defined function to compute F(u). ";
+Compute F at current point x. ";
 
 %feature("docstring")  dolfin::NonlinearProblem::J "
 
-User-defined function to compute Jacobian matrix. ";
+Compute J = F' at current point x. ";
 
 
 // File: classdolfin_1_1ODE.xml
@@ -5139,13 +5057,17 @@ Solve variational problem and extract sub functions. ";
 
 Solve variational problem and extract sub functions. ";
 
-%feature("docstring")  dolfin::VariationalProblem::matrix "
+%feature("docstring")  dolfin::VariationalProblem::F "
 
-Return system matrix. ";
+Compute F at current point x. ";
 
-%feature("docstring")  dolfin::VariationalProblem::vector "
+%feature("docstring")  dolfin::VariationalProblem::J "
 
-Return system vector. ";
+Compute J = F' at current point x. ";
+
+%feature("docstring")  dolfin::VariationalProblem::update "
+
+Optional callback called before calls to F() and J(). ";
 
 
 // File: classdolfin_1_1Vector.xml
@@ -5876,12 +5798,6 @@ Assemble scalar on sub domains. ";
 // File: Parametrized_8h.xml
 
 
-// File: LinearPDE_8h.xml
-
-
-// File: NonlinearPDE_8h.xml
-
-
 // File: GaussianQuadrature_8h.xml
 
 
@@ -5943,9 +5859,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
-
-
-// File: dir_181c150be9c9c4eec0f2fcf3af955efd.xml
 
 
 // File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
