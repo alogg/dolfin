@@ -2780,6 +2780,10 @@ Clear all data. ";
 
 Create MeshFunction with given name (uninitialized). ";
 
+%feature("docstring")  dolfin::MeshData::createMeshFunction "
+
+Create MeshFunction with given name and dimension. ";
+
 %feature("docstring")  dolfin::MeshData::createArray "
 
 Create Array with given name and size. ";
@@ -5813,53 +5817,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_58320a6bee734c3bb6d36183c618bb09.xml
+// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
 
 
-// File: dir_227a775ba5d95bfcf3e85ed973812fac.xml
+// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
 
 
-// File: dir_187f3fc9cfd6b0610eb4b1e093db23fa.xml
+// File: dir_6799dcb52c303ad49889452a39db8d5c.xml
 
 
-// File: dir_90934d781c0da6edfbab578a937f610b.xml
+// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
 
 
-// File: dir_9c0d0547e6b9f173eb8c8d2a4b9512bb.xml
+// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
 
 
-// File: dir_d0a5335d7670987266b54a1776ce2d43.xml
+// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
 
 
-// File: dir_d9ee26b68e49300e50cb9f2e72d1a451.xml
+// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
 
 
-// File: dir_e268708822640923db0bcb1dd75608ad.xml
+// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
 
 
-// File: dir_a0f91cf1a617114eebdae070a1bb4bc9.xml
+// File: dir_29c16e73653a7fc876ded90673bae460.xml
 
 
-// File: dir_d2d5c0a57403dba66fba0bf3c12aa367.xml
+// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
 
 
-// File: dir_77c7a12cc8929b40d8c88c5abcd79a3f.xml
+// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
 
 
-// File: dir_301e97d33edcf82036597d5b43314b9a.xml
+// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
 
 
-// File: dir_db1d9d22381c6c52aea4a708f0fc34c1.xml
+// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
 
 
-// File: dir_99cfd81db79fd9e090870c834a345872.xml
+// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
 
 
-// File: dir_24165f6be95a1e85538bdd342b6068ef.xml
+// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
 
 
-// File: dir_44c2aa39e991eb63f381baf55413ae9d.xml
+// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
 
 
-// File: dir_162c98bf06a0c9d0ccc4e9517c57d1cb.xml
+// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
 
