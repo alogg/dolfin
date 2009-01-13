@@ -27,4 +27,4 @@ g = Function(element)
 a = dot(grad(v), grad(u))*dx
 L = v*f*dx
 
-compile([a, L, M, element], "PoissonP2", options={'language': 'dolfin', 'blas': False, 'form_postfix': True, 'precision': '15', 'cache_dir': None, 'cpp optimize': False, 'split_implementation': False, 'quadrature_points': False, 'output_dir': '.', 'representation': 'tensor', 'shared_ptr': False, 'optimize': False}, global_variables=globals())
+compile([a, L, M, element], "PoissonP2", options={'language': 'dolfin', 'blas': False, 'form_postfix': True, 'precision': '15', 'cache_dir': None, 'cpp optimize': False, 'split_implementation': False, 'quadrature_points': False, 'output_dir': '.', 'representation': 'tensor', 'shared_ptr': True, 'optimize': False}, global_variables=globals())

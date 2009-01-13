@@ -769,11 +769,11 @@ C++ includes: DofMap.h ";
 
 %feature("docstring")  dolfin::DofMap::DofMap "
 
-Create dof map on mesh. ";
+Create dof map on mesh (may share ufc::dof_map). ";
 
 %feature("docstring")  dolfin::DofMap::DofMap "
 
-Create dof map on mesh (may share ufc::dof_map). ";
+Create dof map on mesh. ";
 
 %feature("docstring")  dolfin::DofMap::DofMap "
 
@@ -833,6 +833,10 @@ Tabulate local-local facet dofs. ";
 %feature("docstring")  dolfin::DofMap::build "
 
 Build parallel dof map. ";
+
+%feature("docstring")  dolfin::DofMap::build "
+
+Build dof map on subdomain. ";
 
 %feature("docstring")  dolfin::DofMap::getMap "
 
@@ -1148,11 +1152,11 @@ C++ includes: FiniteElement.h ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create finite element from UFC finite element. ";
+Create finite element from UFC finite element (data may be shared). ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create finite element from UFC finite element (data may be shared). ";
+Create finite element from UFC finite element. ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
@@ -1281,7 +1285,16 @@ Create function on given function space. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
+Create function on given function space with a given vector. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
 Create function on given function space (shared data). ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create function on given function space with a given vector (shared
+data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1420,6 +1433,12 @@ Interpolate function v in function space to vertices of mesh. ";
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
 
 Extract sub space for component. ";
+
+%feature("docstring")  dolfin::FunctionSpace::attach "";
+
+%feature("docstring")  dolfin::FunctionSpace::restriction "";
+
+%feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
 
 
 // File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
@@ -2637,7 +2656,7 @@ Refine mesh uniformly. ";
 
 %feature("docstring")  dolfin::Mesh::refine "
 
-Refine mesh according to cells marked for refinement. ";
+Refine mesh according to cells marked for refinement,. ";
 
 %feature("docstring")  dolfin::Mesh::coarsen "
 
@@ -5025,6 +5044,12 @@ a(v, u) = F_u'(v) u = F_u'(v, u), L(v) = F(v),
 that is, a(v, u) should be the Frechet derivative of F_u with respect
 to u, and L = F.
 
+Parameters:
+-----------
+
+\"linear solvers\": \"direct\" or \"iterative\" (default: \"direct\")
+\"symmetric\": true or false (default: false)
+
 C++ includes: VariationalProblem.h ";
 
 %feature("docstring")  dolfin::VariationalProblem::VariationalProblem
@@ -5817,53 +5842,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_6799dcb52c303ad49889452a39db8d5c.xml
+// File: dir_a2c34637c1a406722dc8079c9250ce33.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 
