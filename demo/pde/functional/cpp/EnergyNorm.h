@@ -941,9 +941,9 @@ class EnergyNormFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
 public:
 
   EnergyNormFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_EnergyNormFunctional_finite_element_0()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_EnergyNormFunctional_dof_map_0()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_EnergyNormFunctional_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_EnergyNormFunctional_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -955,9 +955,9 @@ class EnergyNormCoefficientSpace : public dolfin::FunctionSpace
 public:
 
   EnergyNormCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_EnergyNormFunctional_finite_element_0()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_EnergyNormFunctional_dof_map_0()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_EnergyNormFunctional_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_EnergyNormFunctional_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -1007,19 +1007,19 @@ public:
   // Create form
   EnergyNormFunctional() : dolfin::Form(), v(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_EnergyNormFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_EnergyNormFunctional());
   }
 
   // Create form with given coefficient(s)
   EnergyNormFunctional(dolfin::Function& w0) : dolfin::Form(), v(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->v = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_EnergyNormFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_EnergyNormFunctional());
   }
 
   // Destructor
