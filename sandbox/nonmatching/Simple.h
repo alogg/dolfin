@@ -778,9 +778,9 @@ class SimpleFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
 public:
 
   SimpleFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_SimpleFunctional_finite_element_0()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_SimpleFunctional_dof_map_0()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_SimpleFunctional_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_SimpleFunctional_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -792,9 +792,9 @@ class SimpleCoefficientSpace : public dolfin::FunctionSpace
 public:
 
   SimpleCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_SimpleFunctional_finite_element_0()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_SimpleFunctional_dof_map_0()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_SimpleFunctional_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_SimpleFunctional_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -844,19 +844,19 @@ public:
   // Create form
   SimpleFunctional() : dolfin::Form(), U(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_SimpleFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_SimpleFunctional());
   }
 
   // Create form with given coefficient(s)
   SimpleFunctional(dolfin::Function& w0) : dolfin::Form(), U(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->U = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_SimpleFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_SimpleFunctional());
   }
 
   // Destructor

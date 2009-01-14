@@ -2576,9 +2576,9 @@ class LiftFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
 public:
 
   LiftFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_0()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_0()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -2590,9 +2590,9 @@ class LiftFunctionalCoefficientSpace1 : public dolfin::FunctionSpace
 public:
 
   LiftFunctionalCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -2678,22 +2678,22 @@ public:
   // Create form
   LiftFunctional() : dolfin::Form(), p(*this), n(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
   }
 
   // Create form with given coefficient(s)
   LiftFunctional(dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), p(*this), n(*this)
   {
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->p = w0;
     this->n = w1;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
   }
 
   // Destructor

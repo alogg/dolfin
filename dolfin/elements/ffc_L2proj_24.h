@@ -1914,9 +1914,9 @@ class ffc_L2proj_24BilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24BilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -1928,9 +1928,9 @@ class ffc_L2proj_24BilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24BilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -1942,9 +1942,9 @@ class ffc_L2proj_24LinearFormFunctionSpace0 : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24LinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -1956,9 +1956,9 @@ class ffc_L2proj_24LinearFormCoefficientSpace0 : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24LinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -1970,9 +1970,9 @@ class ffc_L2proj_24TestSpace : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24TestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -1984,9 +1984,9 @@ class ffc_L2proj_24TrialSpace : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24TrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -1998,9 +1998,9 @@ class ffc_L2proj_24CoefficientSpace : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24CoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -2012,9 +2012,9 @@ class ffc_L2proj_24FunctionSpace : public dolfin::FunctionSpace
 public:
 
   ffc_L2proj_24FunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ffc_L2proj_24LinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ffc_L2proj_24LinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -2028,21 +2028,21 @@ public:
   // Create form on given function space(s)
   ffc_L2proj_24BilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24BilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24BilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ffc_L2proj_24BilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
+  ffc_L2proj_24BilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24BilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24BilinearForm());
   }
 
   // Destructor
@@ -2093,47 +2093,47 @@ public:
   // Create form on given function space(s)
   ffc_L2proj_24LinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ffc_L2proj_24LinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this)
+  ffc_L2proj_24LinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
   ffc_L2proj_24LinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), w0(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->w0 = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ffc_L2proj_24LinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), w0(*this)
+  ffc_L2proj_24LinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), w0(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->w0 = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ffc_L2proj_24LinearForm());
   }
 
   // Destructor

@@ -3571,9 +3571,9 @@ class ConvectionMatrix3DBilinearFormFunctionSpace0 : public dolfin::FunctionSpac
 public:
 
   ConvectionMatrix3DBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3585,9 +3585,9 @@ class ConvectionMatrix3DBilinearFormFunctionSpace1 : public dolfin::FunctionSpac
 public:
 
   ConvectionMatrix3DBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3599,9 +3599,9 @@ class ConvectionMatrix3DBilinearFormCoefficientSpace0 : public dolfin::FunctionS
 public:
 
   ConvectionMatrix3DBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_2()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_2()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -3613,9 +3613,9 @@ class ConvectionMatrix3DBilinearFormCoefficientSpace1 : public dolfin::FunctionS
 public:
 
   ConvectionMatrix3DBilinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_3()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_3()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
@@ -3627,9 +3627,9 @@ class ConvectionMatrix3DBilinearFormCoefficientSpace2 : public dolfin::FunctionS
 public:
 
   ConvectionMatrix3DBilinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_4()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_4()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_4()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_4()), mesh)))
   {
     // Do nothing
   }
@@ -3641,9 +3641,9 @@ class ConvectionMatrix3DTestSpace : public dolfin::FunctionSpace
 public:
 
   ConvectionMatrix3DTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3655,9 +3655,9 @@ class ConvectionMatrix3DTrialSpace : public dolfin::FunctionSpace
 public:
 
   ConvectionMatrix3DTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3669,9 +3669,9 @@ class ConvectionMatrix3DFunctionSpace : public dolfin::FunctionSpace
 public:
 
   ConvectionMatrix3DFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ConvectionMatrix3DBilinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ConvectionMatrix3DBilinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3793,65 +3793,65 @@ public:
   // Create form on given function space(s)
   ConvectionMatrix3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), cx(*this), cy(*this), cz(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ConvectionMatrix3DBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), cx(*this), cy(*this), cz(*this)
+  ConvectionMatrix3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), cx(*this), cy(*this), cz(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
   ConvectionMatrix3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), cx(*this), cy(*this), cz(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->cx = w0;
     this->cy = w1;
     this->cz = w2;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ConvectionMatrix3DBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), cx(*this), cy(*this), cz(*this)
+  ConvectionMatrix3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2) : dolfin::Form(), cx(*this), cy(*this), cz(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->cx = w0;
     this->cy = w1;
     this->cz = w2;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ConvectionMatrix3DBilinearForm());
   }
 
   // Destructor

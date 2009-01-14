@@ -15328,9 +15328,9 @@ class ElasticityBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 public:
 
   ElasticityBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15342,9 +15342,9 @@ class ElasticityBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
 public:
 
   ElasticityBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15356,9 +15356,9 @@ class ElasticityBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
 public:
 
   ElasticityBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityBilinearForm_finite_element_2()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityBilinearForm_dof_map_2()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityBilinearForm_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityBilinearForm_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -15370,9 +15370,9 @@ class ElasticityBilinearFormCoefficientSpace1 : public dolfin::FunctionSpace
 public:
 
   ElasticityBilinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityBilinearForm_finite_element_3()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityBilinearForm_dof_map_3()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityBilinearForm_finite_element_3()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityBilinearForm_dof_map_3()), mesh)))
   {
     // Do nothing
   }
@@ -15384,9 +15384,9 @@ class ElasticityLinearFormFunctionSpace0 : public dolfin::FunctionSpace
 public:
 
   ElasticityLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15398,9 +15398,9 @@ class ElasticityLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
 public:
 
   ElasticityLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15412,9 +15412,9 @@ class ElasticityTestSpace : public dolfin::FunctionSpace
 public:
 
   ElasticityTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15426,9 +15426,9 @@ class ElasticityTrialSpace : public dolfin::FunctionSpace
 public:
 
   ElasticityTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15440,9 +15440,9 @@ class ElasticityFunctionSpace : public dolfin::FunctionSpace
 public:
 
   ElasticityFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(std::tr1::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            std::tr1::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(std::tr1::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
-                            std::tr1::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(std::tr1::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElasticityLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElasticityLinearForm_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -15528,59 +15528,59 @@ public:
   // Create form on given function space(s)
   ElasticityBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), mu(*this), lmbda(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ElasticityBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), mu(*this), lmbda(*this)
+  ElasticityBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), mu(*this), lmbda(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
   ElasticityBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), mu(*this), lmbda(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->mu = w0;
     this->lmbda = w1;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ElasticityBilinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, std::tr1::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), mu(*this), lmbda(*this)
+  ElasticityBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), mu(*this), lmbda(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->mu = w0;
     this->lmbda = w1;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityBilinearForm());
   }
 
   // Destructor
@@ -15635,47 +15635,47 @@ public:
   // Create form on given function space(s)
   ElasticityLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Create form on given function space(s) (shared data)
-  ElasticityLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
+  ElasticityLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s)
   ElasticityLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
   {
-    std::tr1::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
+    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->f = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ElasticityLinearForm(std::tr1::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  ElasticityLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
   {
     _function_spaces.push_back(V0);
 
-    _coefficients.push_back(std::tr1::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->f = w0;
 
-    _ufc_form = std::tr1::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElasticityLinearForm());
   }
 
   // Destructor
