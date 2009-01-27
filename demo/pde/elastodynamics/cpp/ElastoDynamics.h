@@ -5589,6 +5589,780 @@ public:
 
 };
 
+/// This class defines the interface for a finite element.
+
+class UFC_ElastoDynamicsBilinearForm_finite_element_9: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsBilinearForm_finite_element_9() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_9()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 1;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[1][1] = \
+    {{0}};
+    
+    const static double dmats1[1][1] = \
+    {{0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsBilinearForm_finite_element_9();
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_ElastoDynamicsBilinearForm_finite_element_10: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsBilinearForm_finite_element_10() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_10()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 1;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[1][1] = \
+    {{0}};
+    
+    const static double dmats1[1][1] = \
+    {{0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsBilinearForm_finite_element_10();
+  }
+
+};
+
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
@@ -7682,6 +8456,312 @@ public:
 
 };
 
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_ElastoDynamicsBilinearForm_dof_map_9: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsBilinearForm_dof_map_9() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_9()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return false;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return true;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[2];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 1;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[2][0];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      
+      break;
+    case 1:
+      
+      break;
+    case 2:
+      
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
+    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsBilinearForm_dof_map_9();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_ElastoDynamicsBilinearForm_dof_map_10: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsBilinearForm_dof_map_10() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_10()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return false;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return true;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[2];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 1;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[2][0];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      
+      break;
+    case 1:
+      
+      break;
+    case 2:
+      
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
+    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsBilinearForm_dof_map_10();
+  }
+
+};
+
 /// This class defines the interface for the tabulation of the cell
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
@@ -7728,71 +8808,80 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Number of operations to compute element tensor = 697
+    // Number of operations to compute element tensor = 706
     // Compute coefficients
     const double c0_0_0_0 = w[0][0];
-    const double c3_0_1_0 = w[3][0];
-    const double c5_0_2_0 = (1.0/w[5][0]);
-    const double c6_0_3_0 = (1.0/w[6][0]);
-    const double c6_0_4_0 = (1.0/w[6][0]);
-    const double c0_1_0_0 = w[0][0];
-    const double c5_1_1_0 = (1.0/w[5][0]);
-    const double c6_1_2_0 = (1.0/w[6][0]);
+    const double c4_0_1_0 = w[4][0];
+    const double c6_0_2_0 = (1.0/w[6][0]);
+    const double c8_0_3_0 = (1.0/w[8][0]);
+    const double c8_0_4_0 = (1.0/w[8][0]);
+    const double c1_1_0_0 = w[1][0];
+    const double c5_1_1_0 = w[5][0];
+    const double c7_1_2_0 = w[7][0];
     const double c6_1_3_0 = (1.0/w[6][0]);
-    const double c4_2_0_0 = w[4][0];
-    const double c2_2_1_0 = w[2][0];
-    const double c4_3_0_0 = w[4][0];
-    const double c2_3_1_0 = w[2][0];
-    const double c4_4_0_0 = w[4][0];
-    const double c1_4_1_0 = w[1][0];
-    const double c2_5_0_0 = w[2][0];
-    const double c2_6_0_0 = w[2][0];
-    const double c1_7_0_0 = w[1][0];
+    const double c8_1_4_0 = (1.0/w[8][0]);
+    const double c0_2_0_0 = w[0][0];
+    const double c6_2_1_0 = (1.0/w[6][0]);
+    const double c8_2_2_0 = (1.0/w[8][0]);
+    const double c8_2_3_0 = (1.0/w[8][0]);
+    const double c1_3_0_0 = w[1][0];
+    const double c7_3_1_0 = w[7][0];
+    const double c6_3_2_0 = (1.0/w[6][0]);
+    const double c8_3_3_0 = (1.0/w[8][0]);
+    const double c5_4_0_0 = w[5][0];
+    const double c3_4_1_0 = w[3][0];
+    const double c5_5_0_0 = w[5][0];
+    const double c3_5_1_0 = w[3][0];
+    const double c5_6_0_0 = w[5][0];
+    const double c2_6_1_0 = w[2][0];
+    const double c3_7_0_0 = w[3][0];
+    const double c3_8_0_0 = w[3][0];
+    const double c2_9_0_0 = w[2][0];
     
     // Compute geometry tensors
-    // Number of operations to compute decalrations = 277
-    const double G0_0_0_0_0_0 = det*c0_0_0_0*c3_0_1_0*c5_0_2_0*c6_0_3_0*c6_0_4_0;
-    const double G1_0_0_0_0 = det*c0_1_0_0*c5_1_1_0*c6_1_2_0*c6_1_3_0;
-    const double G2_0_0_0_0 = det*c4_2_0_0*c2_2_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G2_0_0_0_1 = det*c4_2_0_0*c2_2_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2_0_0_1_0 = det*c4_2_0_0*c2_2_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G2_0_0_1_1 = det*c4_2_0_0*c2_2_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G3_0_0_0_0_0_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_00*Jinv_00 + c4_4_0_0*c1_4_1_0*Jinv_00*Jinv_00);
-    const double G3_0_0_0_0_0_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_00*Jinv_01 + c4_4_0_0*c1_4_1_0*Jinv_01*Jinv_00);
-    const double G3_0_0_0_0_1_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_01*Jinv_00 + c4_4_0_0*c1_4_1_0*Jinv_00*Jinv_01);
-    const double G3_0_0_0_0_1_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_01*Jinv_01 + c4_4_0_0*c1_4_1_0*Jinv_01*Jinv_01);
-    const double G3_0_0_0_1_0_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_00*Jinv_10 + c4_4_0_0*c1_4_1_0*Jinv_00*Jinv_10);
-    const double G3_0_0_0_1_0_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_00*Jinv_11 + c4_4_0_0*c1_4_1_0*Jinv_01*Jinv_10);
-    const double G3_0_0_0_1_1_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_01*Jinv_10 + c4_4_0_0*c1_4_1_0*Jinv_00*Jinv_11);
-    const double G3_0_0_0_1_1_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_01*Jinv_11 + c4_4_0_0*c1_4_1_0*Jinv_01*Jinv_11);
-    const double G3_0_0_1_0_0_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_10*Jinv_00 + c4_4_0_0*c1_4_1_0*Jinv_10*Jinv_00);
-    const double G3_0_0_1_0_0_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_10*Jinv_01 + c4_4_0_0*c1_4_1_0*Jinv_11*Jinv_00);
-    const double G3_0_0_1_0_1_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_11*Jinv_00 + c4_4_0_0*c1_4_1_0*Jinv_10*Jinv_01);
-    const double G3_0_0_1_0_1_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_11*Jinv_01 + c4_4_0_0*c1_4_1_0*Jinv_11*Jinv_01);
-    const double G3_0_0_1_1_0_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_10*Jinv_10 + c4_4_0_0*c1_4_1_0*Jinv_10*Jinv_10);
-    const double G3_0_0_1_1_0_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_10*Jinv_11 + c4_4_0_0*c1_4_1_0*Jinv_11*Jinv_10);
-    const double G3_0_0_1_1_1_0 = det*(c4_3_0_0*c2_3_1_0*Jinv_11*Jinv_10 + c4_4_0_0*c1_4_1_0*Jinv_10*Jinv_11);
-    const double G3_0_0_1_1_1_1 = det*(c4_3_0_0*c2_3_1_0*Jinv_11*Jinv_11 + c4_4_0_0*c1_4_1_0*Jinv_11*Jinv_11);
-    const double G4_0_0_0 = det*c2_5_0_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G4_0_0_1 = det*c2_5_0_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G4_0_1_0 = det*c2_5_0_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G4_0_1_1 = det*c2_5_0_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G5_0_0_0_0_0 = det*(c2_6_0_0*Jinv_00*Jinv_00 + c1_7_0_0*Jinv_00*Jinv_00);
-    const double G5_0_0_0_0_1 = det*(c2_6_0_0*Jinv_00*Jinv_01 + c1_7_0_0*Jinv_01*Jinv_00);
-    const double G5_0_0_0_1_0 = det*(c2_6_0_0*Jinv_01*Jinv_00 + c1_7_0_0*Jinv_00*Jinv_01);
-    const double G5_0_0_0_1_1 = det*(c2_6_0_0*Jinv_01*Jinv_01 + c1_7_0_0*Jinv_01*Jinv_01);
-    const double G5_0_0_1_0_0 = det*(c2_6_0_0*Jinv_00*Jinv_10 + c1_7_0_0*Jinv_00*Jinv_10);
-    const double G5_0_0_1_0_1 = det*(c2_6_0_0*Jinv_00*Jinv_11 + c1_7_0_0*Jinv_01*Jinv_10);
-    const double G5_0_0_1_1_0 = det*(c2_6_0_0*Jinv_01*Jinv_10 + c1_7_0_0*Jinv_00*Jinv_11);
-    const double G5_0_0_1_1_1 = det*(c2_6_0_0*Jinv_01*Jinv_11 + c1_7_0_0*Jinv_01*Jinv_11);
-    const double G5_0_1_0_0_0 = det*(c2_6_0_0*Jinv_10*Jinv_00 + c1_7_0_0*Jinv_10*Jinv_00);
-    const double G5_0_1_0_0_1 = det*(c2_6_0_0*Jinv_10*Jinv_01 + c1_7_0_0*Jinv_11*Jinv_00);
-    const double G5_0_1_0_1_0 = det*(c2_6_0_0*Jinv_11*Jinv_00 + c1_7_0_0*Jinv_10*Jinv_01);
-    const double G5_0_1_0_1_1 = det*(c2_6_0_0*Jinv_11*Jinv_01 + c1_7_0_0*Jinv_11*Jinv_01);
-    const double G5_0_1_1_0_0 = det*(c2_6_0_0*Jinv_10*Jinv_10 + c1_7_0_0*Jinv_10*Jinv_10);
-    const double G5_0_1_1_0_1 = det*(c2_6_0_0*Jinv_10*Jinv_11 + c1_7_0_0*Jinv_11*Jinv_10);
-    const double G5_0_1_1_1_0 = det*(c2_6_0_0*Jinv_11*Jinv_10 + c1_7_0_0*Jinv_10*Jinv_11);
-    const double G5_0_1_1_1_1 = det*(c2_6_0_0*Jinv_11*Jinv_11 + c1_7_0_0*Jinv_11*Jinv_11);
+    // Number of operations to compute decalrations = 286
+    const double G0_0_0_0_0_0 = det*(c0_0_0_0*c4_0_1_0*c6_0_2_0*c8_0_3_0*c8_0_4_0 + c1_1_0_0*c5_1_1_0*c7_1_2_0*c6_1_3_0*c8_1_4_0);
+    const double G1_0_0_0_0 = det*(c0_2_0_0*c6_2_1_0*c8_2_2_0*c8_2_3_0 + c1_3_0_0*c7_3_1_0*c6_3_2_0*c8_3_3_0);
+    const double G2_0_0_0_0 = det*c5_4_0_0*c3_4_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G2_0_0_0_1 = det*c5_4_0_0*c3_4_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2_0_0_1_0 = det*c5_4_0_0*c3_4_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G2_0_0_1_1 = det*c5_4_0_0*c3_4_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G3_0_0_0_0_0_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_00*Jinv_00 + c5_6_0_0*c2_6_1_0*Jinv_00*Jinv_00);
+    const double G3_0_0_0_0_0_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_00*Jinv_01 + c5_6_0_0*c2_6_1_0*Jinv_01*Jinv_00);
+    const double G3_0_0_0_0_1_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_01*Jinv_00 + c5_6_0_0*c2_6_1_0*Jinv_00*Jinv_01);
+    const double G3_0_0_0_0_1_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_01*Jinv_01 + c5_6_0_0*c2_6_1_0*Jinv_01*Jinv_01);
+    const double G3_0_0_0_1_0_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_00*Jinv_10 + c5_6_0_0*c2_6_1_0*Jinv_00*Jinv_10);
+    const double G3_0_0_0_1_0_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_00*Jinv_11 + c5_6_0_0*c2_6_1_0*Jinv_01*Jinv_10);
+    const double G3_0_0_0_1_1_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_01*Jinv_10 + c5_6_0_0*c2_6_1_0*Jinv_00*Jinv_11);
+    const double G3_0_0_0_1_1_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_01*Jinv_11 + c5_6_0_0*c2_6_1_0*Jinv_01*Jinv_11);
+    const double G3_0_0_1_0_0_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_10*Jinv_00 + c5_6_0_0*c2_6_1_0*Jinv_10*Jinv_00);
+    const double G3_0_0_1_0_0_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_10*Jinv_01 + c5_6_0_0*c2_6_1_0*Jinv_11*Jinv_00);
+    const double G3_0_0_1_0_1_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_11*Jinv_00 + c5_6_0_0*c2_6_1_0*Jinv_10*Jinv_01);
+    const double G3_0_0_1_0_1_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_11*Jinv_01 + c5_6_0_0*c2_6_1_0*Jinv_11*Jinv_01);
+    const double G3_0_0_1_1_0_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_10*Jinv_10 + c5_6_0_0*c2_6_1_0*Jinv_10*Jinv_10);
+    const double G3_0_0_1_1_0_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_10*Jinv_11 + c5_6_0_0*c2_6_1_0*Jinv_11*Jinv_10);
+    const double G3_0_0_1_1_1_0 = det*(c5_5_0_0*c3_5_1_0*Jinv_11*Jinv_10 + c5_6_0_0*c2_6_1_0*Jinv_10*Jinv_11);
+    const double G3_0_0_1_1_1_1 = det*(c5_5_0_0*c3_5_1_0*Jinv_11*Jinv_11 + c5_6_0_0*c2_6_1_0*Jinv_11*Jinv_11);
+    const double G4_0_0_0 = det*c3_7_0_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G4_0_0_1 = det*c3_7_0_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G4_0_1_0 = det*c3_7_0_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G4_0_1_1 = det*c3_7_0_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G5_0_0_0_0_0 = det*(c3_8_0_0*Jinv_00*Jinv_00 + c2_9_0_0*Jinv_00*Jinv_00);
+    const double G5_0_0_0_0_1 = det*(c3_8_0_0*Jinv_00*Jinv_01 + c2_9_0_0*Jinv_01*Jinv_00);
+    const double G5_0_0_0_1_0 = det*(c3_8_0_0*Jinv_01*Jinv_00 + c2_9_0_0*Jinv_00*Jinv_01);
+    const double G5_0_0_0_1_1 = det*(c3_8_0_0*Jinv_01*Jinv_01 + c2_9_0_0*Jinv_01*Jinv_01);
+    const double G5_0_0_1_0_0 = det*(c3_8_0_0*Jinv_00*Jinv_10 + c2_9_0_0*Jinv_00*Jinv_10);
+    const double G5_0_0_1_0_1 = det*(c3_8_0_0*Jinv_00*Jinv_11 + c2_9_0_0*Jinv_01*Jinv_10);
+    const double G5_0_0_1_1_0 = det*(c3_8_0_0*Jinv_01*Jinv_10 + c2_9_0_0*Jinv_00*Jinv_11);
+    const double G5_0_0_1_1_1 = det*(c3_8_0_0*Jinv_01*Jinv_11 + c2_9_0_0*Jinv_01*Jinv_11);
+    const double G5_0_1_0_0_0 = det*(c3_8_0_0*Jinv_10*Jinv_00 + c2_9_0_0*Jinv_10*Jinv_00);
+    const double G5_0_1_0_0_1 = det*(c3_8_0_0*Jinv_10*Jinv_01 + c2_9_0_0*Jinv_11*Jinv_00);
+    const double G5_0_1_0_1_0 = det*(c3_8_0_0*Jinv_11*Jinv_00 + c2_9_0_0*Jinv_10*Jinv_01);
+    const double G5_0_1_0_1_1 = det*(c3_8_0_0*Jinv_11*Jinv_01 + c2_9_0_0*Jinv_11*Jinv_01);
+    const double G5_0_1_1_0_0 = det*(c3_8_0_0*Jinv_10*Jinv_10 + c2_9_0_0*Jinv_10*Jinv_10);
+    const double G5_0_1_1_0_1 = det*(c3_8_0_0*Jinv_10*Jinv_11 + c2_9_0_0*Jinv_11*Jinv_10);
+    const double G5_0_1_1_1_0 = det*(c3_8_0_0*Jinv_11*Jinv_10 + c2_9_0_0*Jinv_10*Jinv_11);
+    const double G5_0_1_1_1_1 = det*(c3_8_0_0*Jinv_11*Jinv_11 + c2_9_0_0*Jinv_11*Jinv_11);
     
     // Compute element tensor
     // Number of operations to compute tensor = 420
@@ -7870,7 +8959,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "-w0_a0[0]w3_a1[0]([inv]w5_a2[0])([inv]w6_a3[0])([inv]w6_a4[0]) | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w0_a0[0]([inv]w5_a1[0])([inv]w6_a2[0])([inv]w6_a3[0]) | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w4_a0[0]w2_a1[0](dXa2[0, 1]/dxb0[0, 1])(dXa3[0, 1]/dxb0[0, 1]) | va0[0]*((d/dXa2[0, 1])vi0[0, 1, 2, 3, 4, 5][b0[0, 1]])*va1[0]*((d/dXa3[0, 1])vi1[0, 1, 2, 3, 4, 5][b0[0, 1]])*dX(0) + -w4_a0[0]w2_a1[0](dXa2[0, 1]/dxa4[0, 1])(dXa3[0, 1]/dxa5[0, 1]) | va0[0]*((d/dXa2[0, 1])vi0[0, 1, 2, 3, 4, 5][a5[0, 1]])*va1[0]*((d/dXa3[0, 1])vi1[0, 1, 2, 3, 4, 5][a4[0, 1]])*dX(0) + -w4_a0[0]w1_a1[0](dXa2[0, 1]/dxa5[0, 1])(dXa3[0, 1]/dxa4[0, 1]) | va0[0]*((d/dXa2[0, 1])vi0[0, 1, 2, 3, 4, 5][a5[0, 1]])*va1[0]*((d/dXa3[0, 1])vi1[0, 1, 2, 3, 4, 5][a4[0, 1]])*dX(0) + w2_a0[0](dXa1[0, 1]/dxb0[0, 1])(dXa2[0, 1]/dxb0[0, 1]) | ((d/dXa1[0, 1])vi0[0, 1, 2, 3, 4, 5][b0[0, 1]])*va0[0]*((d/dXa2[0, 1])vi1[0, 1, 2, 3, 4, 5][b0[0, 1]])*dX(0) + w2_a0[0](dXa1[0, 1]/dxa3[0, 1])(dXa2[0, 1]/dxa4[0, 1]) | ((d/dXa1[0, 1])vi0[0, 1, 2, 3, 4, 5][a4[0, 1]])*va0[0]*((d/dXa2[0, 1])vi1[0, 1, 2, 3, 4, 5][a3[0, 1]])*dX(0) + w1_a0[0](dXa1[0, 1]/dxa4[0, 1])(dXa2[0, 1]/dxa3[0, 1]) | ((d/dXa1[0, 1])vi0[0, 1, 2, 3, 4, 5][a4[0, 1]])*va0[0]*((d/dXa2[0, 1])vi1[0, 1, 2, 3, 4, 5][a3[0, 1]])*dX(0)";
+    return "-w0_a0[0]w4_a1[0]([inv]w6_a2[0])([inv]w8_a3[0])([inv]w8_a4[0]) | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w0_a0[0]([inv]w6_a1[0])([inv]w8_a2[0])([inv]w8_a3[0]) | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w1_a0[0]w5_a1[0]w7_a2[0]([inv]w6_a3[0])([inv]w8_a4[0]) | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w1_a0[0]w7_a1[0]([inv]w6_a2[0])([inv]w8_a3[0]) | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w5_a0[0]w3_a1[0](dXa2[0, 1]/dxb0[0, 1])(dXa3[0, 1]/dxb0[0, 1]) | va0[0]*((d/dXa2[0, 1])vi0[0, 1, 2, 3, 4, 5][b0[0, 1]])*va1[0]*((d/dXa3[0, 1])vi1[0, 1, 2, 3, 4, 5][b0[0, 1]])*dX(0) + -w5_a0[0]w3_a1[0](dXa2[0, 1]/dxa4[0, 1])(dXa3[0, 1]/dxa5[0, 1]) | va0[0]*((d/dXa2[0, 1])vi0[0, 1, 2, 3, 4, 5][a5[0, 1]])*va1[0]*((d/dXa3[0, 1])vi1[0, 1, 2, 3, 4, 5][a4[0, 1]])*dX(0) + -w5_a0[0]w2_a1[0](dXa2[0, 1]/dxa5[0, 1])(dXa3[0, 1]/dxa4[0, 1]) | va0[0]*((d/dXa2[0, 1])vi0[0, 1, 2, 3, 4, 5][a5[0, 1]])*va1[0]*((d/dXa3[0, 1])vi1[0, 1, 2, 3, 4, 5][a4[0, 1]])*dX(0) + w3_a0[0](dXa1[0, 1]/dxb0[0, 1])(dXa2[0, 1]/dxb0[0, 1]) | ((d/dXa1[0, 1])vi0[0, 1, 2, 3, 4, 5][b0[0, 1]])*va0[0]*((d/dXa2[0, 1])vi1[0, 1, 2, 3, 4, 5][b0[0, 1]])*dX(0) + w3_a0[0](dXa1[0, 1]/dxa3[0, 1])(dXa2[0, 1]/dxa4[0, 1]) | ((d/dXa1[0, 1])vi0[0, 1, 2, 3, 4, 5][a4[0, 1]])*va0[0]*((d/dXa2[0, 1])vi1[0, 1, 2, 3, 4, 5][a3[0, 1]])*dX(0) + w2_a0[0](dXa1[0, 1]/dxa4[0, 1])(dXa2[0, 1]/dxa3[0, 1]) | ((d/dXa1[0, 1])vi0[0, 1, 2, 3, 4, 5][a4[0, 1]])*va0[0]*((d/dXa2[0, 1])vi1[0, 1, 2, 3, 4, 5][a3[0, 1]])*dX(0)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7882,7 +8971,7 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 7;
+    return 9;
   }
 
   /// Return the number of cell integrals
@@ -7935,6 +9024,12 @@ public:
     case 8:
       return new UFC_ElastoDynamicsBilinearForm_finite_element_8();
       break;
+    case 9:
+      return new UFC_ElastoDynamicsBilinearForm_finite_element_9();
+      break;
+    case 10:
+      return new UFC_ElastoDynamicsBilinearForm_finite_element_10();
+      break;
     }
     return 0;
   }
@@ -7970,6 +9065,12 @@ public:
       break;
     case 8:
       return new UFC_ElastoDynamicsBilinearForm_dof_map_8();
+      break;
+    case 9:
+      return new UFC_ElastoDynamicsBilinearForm_dof_map_9();
+      break;
+    case 10:
+      return new UFC_ElastoDynamicsBilinearForm_dof_map_10();
       break;
     }
     return 0;
@@ -20606,6 +21707,780 @@ public:
 
 };
 
+/// This class defines the interface for a finite element.
+
+class UFC_ElastoDynamicsLinearForm_finite_element_14: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsLinearForm_finite_element_14() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_14()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 1;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[1][1] = \
+    {{0}};
+    
+    const static double dmats1[1][1] = \
+    {{0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsLinearForm_finite_element_14();
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class UFC_ElastoDynamicsLinearForm_finite_element_15: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsLinearForm_finite_element_15() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_15()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::triangle;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 1;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Reset values
+    *values = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Extract relevant coefficients
+    const double coeff0_0 = coefficients0[dof][0];
+    
+    // Compute value(s)
+    *values = coeff0_0*basisvalue0;
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * element_coordinates = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
+    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
+    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
+    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
+      
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Get coordinates and map to the reference (UFC) element
+    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
+                element_coordinates[0][0]*element_coordinates[2][1] +\
+                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
+    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
+                element_coordinates[1][0]*element_coordinates[0][1] -\
+                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
+    
+    // Map coordinates to the reference square
+    if (std::abs(y - 1.0) < 1e-14)
+      x = -1.0;
+    else
+      x = 2.0 *x/(1.0 - y) - 1.0;
+    y = 2.0*y - 1.0;
+    
+    // Compute number of derivatives
+    unsigned int num_derivatives = 1;
+    
+    for (unsigned int j = 0; j < n; j++)
+      num_derivatives *= 2;
+    
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      combinations[j] = new unsigned int [n];
+      for (unsigned int k = 0; k < n; k++)
+        combinations[j][k] = 0;
+    }
+        
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 1)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+        
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values
+    for (unsigned int j = 0; j < 1*num_derivatives; j++)
+      values[j] = 0;
+    
+    // Map degree of freedom to element degree of freedom
+    const unsigned int dof = i;
+    
+    // Generate scalings
+    const double scalings_y_0 = 1;
+    
+    // Compute psitilde_a
+    const double psitilde_a_0 = 1;
+    
+    // Compute psitilde_bs
+    const double psitilde_bs_0_0 = 1;
+    
+    // Compute basisvalues
+    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
+    
+    // Table(s) of coefficients
+    const static double coefficients0[1][1] = \
+    {{1.41421356237309}};
+    
+    // Interesting (new) part
+    // Tables of derivatives of the polynomial base (transpose)
+    const static double dmats0[1][1] = \
+    {{0}};
+    
+    const static double dmats1[1][1] = \
+    {{0}};
+    
+    // Compute reference derivatives
+    // Declare pointer to array of derivatives on FIAT element
+    double *derivatives = new double [num_derivatives];
+    
+    // Declare coefficients
+    double coeff0_0 = 0;
+    
+    // Declare new coefficients
+    double new_coeff0_0 = 0;
+    
+    // Loop possible derivatives
+    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
+    {
+      // Get values from coefficients array
+      new_coeff0_0 = coefficients0[dof][0];
+    
+      // Loop derivative order
+      for (unsigned int j = 0; j < n; j++)
+      {
+        // Update old coefficients
+        coeff0_0 = new_coeff0_0;
+    
+        if(combinations[deriv_num][j] == 0)
+        {
+          new_coeff0_0 = coeff0_0*dmats0[0][0];
+        }
+        if(combinations[deriv_num][j] == 1)
+        {
+          new_coeff0_0 = coeff0_0*dmats1[0][0];
+        }
+    
+      }
+      // Compute derivatives on reference element as dot product of coefficients and basisvalues
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
+    }
+    
+    // Transform derivatives back to physical element
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        values[row] += transform[row][col]*derivatives[col];
+      }
+    }
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      delete [] combinations[row];
+      delete [] transform[row];
+    }
+    
+    delete [] combinations;
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // The reference points, direction and weights:
+    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    const static double W[1][1] = {{1}};
+    const static double D[1][1][1] = {{{1}}};
+    
+    const double * const * x = c.coordinates;
+    double result = 0.0;
+    // Iterate over the points:
+    // Evaluate basis functions for affine mapping
+    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
+    const double w1 = X[i][0][0];
+    const double w2 = X[i][0][1];
+    
+    // Compute affine mapping y = F(X)
+    double y[2];
+    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
+    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
+    
+    // Evaluate function at physical points
+    double values[1];
+    f.evaluate(values, y, c);
+    
+    // Map function values using appropriate mapping
+    // Affine map: Do nothing
+    
+    // Note that we do not map the weights (yet).
+    
+    // Take directional components
+    for(int k = 0; k < 1; k++)
+      result += values[k]*D[i][0][k];
+    // Multiply by weights 
+    result *= W[i][0];
+    
+    return result;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate at vertices and use affine mapping
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 1;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsLinearForm_finite_element_15();
+  }
+
+};
+
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
@@ -25215,6 +27090,312 @@ public:
 
 };
 
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_ElastoDynamicsLinearForm_dof_map_14: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsLinearForm_dof_map_14() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_14()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return false;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return true;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[2];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 1;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[2][0];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      
+      break;
+    case 1:
+      
+      break;
+    case 2:
+      
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
+    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsLinearForm_dof_map_14();
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class UFC_ElastoDynamicsLinearForm_dof_map_15: public ufc::dof_map
+{
+private:
+
+  unsigned int __global_dimension;
+
+public:
+
+  /// Constructor
+  UFC_ElastoDynamicsLinearForm_dof_map_15() : ufc::dof_map()
+  {
+    __global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_15()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch ( d )
+    {
+    case 0:
+      return false;
+      break;
+    case 1:
+      return false;
+      break;
+    case 2:
+      return true;
+      break;
+    }
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    __global_dimension = m.num_entities[2];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return __global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space
+  virtual unsigned int local_dimension() const
+  {
+    return 1;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[2][0];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch ( facet )
+    {
+    case 0:
+      
+      break;
+    case 1:
+      
+      break;
+    case 2:
+      
+      break;
+    }
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
+    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 1;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return new UFC_ElastoDynamicsLinearForm_dof_map_15();
+  }
+
+};
+
 /// This class defines the interface for the tabulation of the cell
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
@@ -25261,204 +27442,313 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Number of operations to compute element tensor = 1070
+    // Number of operations to compute element tensor = 1454
     // Compute coefficients
     const double c6_0_0_0 = w[6][0];
-    const double c9_0_1_0 = w[9][0];
-    const double c11_0_2_0 = (1.0/w[11][0]);
-    const double c12_0_3_0 = (1.0/w[12][0]);
-    const double c12_0_4_0 = (1.0/w[12][0]);
+    const double c10_0_1_0 = w[10][0];
+    const double c12_0_2_0 = (1.0/w[12][0]);
+    const double c14_0_3_0 = (1.0/w[14][0]);
+    const double c14_0_4_0 = (1.0/w[14][0]);
     const double c0_0_5_0 = w[0][0];
     const double c0_0_5_1 = w[0][1];
     const double c0_0_5_2 = w[0][2];
     const double c0_0_5_3 = w[0][3];
     const double c0_0_5_4 = w[0][4];
     const double c0_0_5_5 = w[0][5];
-    const double c6_1_0_0 = w[6][0];
-    const double c11_1_1_0 = (1.0/w[11][0]);
-    const double c12_1_2_0 = (1.0/w[12][0]);
+    const double c7_1_0_0 = w[7][0];
+    const double c11_1_1_0 = w[11][0];
+    const double c13_1_2_0 = w[13][0];
     const double c12_1_3_0 = (1.0/w[12][0]);
-    const double c0_1_4_0 = w[0][0];
-    const double c0_1_4_1 = w[0][1];
-    const double c0_1_4_2 = w[0][2];
-    const double c0_1_4_3 = w[0][3];
-    const double c0_1_4_4 = w[0][4];
-    const double c0_1_4_5 = w[0][5];
+    const double c14_1_4_0 = (1.0/w[14][0]);
+    const double c0_1_5_0 = w[0][0];
+    const double c0_1_5_1 = w[0][1];
+    const double c0_1_5_2 = w[0][2];
+    const double c0_1_5_3 = w[0][3];
+    const double c0_1_5_4 = w[0][4];
+    const double c0_1_5_5 = w[0][5];
     const double c6_2_0_0 = w[6][0];
-    const double c9_2_1_0 = w[9][0];
-    const double c11_2_2_0 = (1.0/w[11][0]);
-    const double c12_2_3_0 = (1.0/w[12][0]);
-    const double c1_2_4_0 = w[1][0];
-    const double c1_2_4_1 = w[1][1];
-    const double c1_2_4_2 = w[1][2];
-    const double c1_2_4_3 = w[1][3];
-    const double c1_2_4_4 = w[1][4];
-    const double c1_2_4_5 = w[1][5];
-    const double c6_3_0_0 = w[6][0];
-    const double c11_3_1_0 = (1.0/w[11][0]);
+    const double c12_2_1_0 = (1.0/w[12][0]);
+    const double c14_2_2_0 = (1.0/w[14][0]);
+    const double c14_2_3_0 = (1.0/w[14][0]);
+    const double c0_2_4_0 = w[0][0];
+    const double c0_2_4_1 = w[0][1];
+    const double c0_2_4_2 = w[0][2];
+    const double c0_2_4_3 = w[0][3];
+    const double c0_2_4_4 = w[0][4];
+    const double c0_2_4_5 = w[0][5];
+    const double c7_3_0_0 = w[7][0];
+    const double c13_3_1_0 = w[13][0];
     const double c12_3_2_0 = (1.0/w[12][0]);
-    const double c1_3_3_0 = w[1][0];
-    const double c1_3_3_1 = w[1][1];
-    const double c1_3_3_2 = w[1][2];
-    const double c1_3_3_3 = w[1][3];
-    const double c1_3_3_4 = w[1][4];
-    const double c1_3_3_5 = w[1][5];
+    const double c14_3_3_0 = (1.0/w[14][0]);
+    const double c0_3_4_0 = w[0][0];
+    const double c0_3_4_1 = w[0][1];
+    const double c0_3_4_2 = w[0][2];
+    const double c0_3_4_3 = w[0][3];
+    const double c0_3_4_4 = w[0][4];
+    const double c0_3_4_5 = w[0][5];
     const double c6_4_0_0 = w[6][0];
-    const double c9_4_1_0 = w[9][0];
-    const double c11_4_2_0 = (1.0/w[11][0]);
-    const double c2_4_3_0 = w[2][0];
-    const double c2_4_3_1 = w[2][1];
-    const double c2_4_3_2 = w[2][2];
-    const double c2_4_3_3 = w[2][3];
-    const double c2_4_3_4 = w[2][4];
-    const double c2_4_3_5 = w[2][5];
-    const double c6_5_0_0 = w[6][0];
-    const double c11_5_1_0 = (1.0/w[11][0]);
-    const double c2_5_2_0 = w[2][0];
-    const double c2_5_2_1 = w[2][1];
-    const double c2_5_2_2 = w[2][2];
-    const double c2_5_2_3 = w[2][3];
-    const double c2_5_2_4 = w[2][4];
-    const double c2_5_2_5 = w[2][5];
-    const double c6_6_0_0 = w[6][0];
-    const double c11_6_1_0 = w[11][0];
-    const double c11_6_2_0 = (1.0/w[11][0]);
-    const double c2_6_3_0 = w[2][0];
-    const double c2_6_3_1 = w[2][1];
-    const double c2_6_3_2 = w[2][2];
-    const double c2_6_3_3 = w[2][3];
-    const double c2_6_3_4 = w[2][4];
-    const double c2_6_3_5 = w[2][5];
-    const double c10_7_0_0 = w[10][0];
-    const double c8_7_1_0 = w[8][0];
-    const double c0_7_2_0 = w[0][0];
-    const double c0_7_2_1 = w[0][1];
-    const double c0_7_2_2 = w[0][2];
-    const double c0_7_2_3 = w[0][3];
-    const double c0_7_2_4 = w[0][4];
-    const double c0_7_2_5 = w[0][5];
-    const double c10_8_0_0 = w[10][0];
-    const double c8_8_1_0 = w[8][0];
-    const double c0_8_2_0 = w[0][0];
-    const double c0_8_2_1 = w[0][1];
-    const double c0_8_2_2 = w[0][2];
-    const double c0_8_2_3 = w[0][3];
-    const double c0_8_2_4 = w[0][4];
-    const double c0_8_2_5 = w[0][5];
-    const double c10_9_0_0 = w[10][0];
-    const double c7_9_1_0 = w[7][0];
-    const double c0_9_2_0 = w[0][0];
-    const double c0_9_2_1 = w[0][1];
-    const double c0_9_2_2 = w[0][2];
-    const double c0_9_2_3 = w[0][3];
-    const double c0_9_2_4 = w[0][4];
-    const double c0_9_2_5 = w[0][5];
-    const double c4_10_0_0 = w[4][0];
-    const double c4_10_0_1 = w[4][1];
+    const double c10_4_1_0 = w[10][0];
+    const double c12_4_2_0 = (1.0/w[12][0]);
+    const double c14_4_3_0 = (1.0/w[14][0]);
+    const double c1_4_4_0 = w[1][0];
+    const double c1_4_4_1 = w[1][1];
+    const double c1_4_4_2 = w[1][2];
+    const double c1_4_4_3 = w[1][3];
+    const double c1_4_4_4 = w[1][4];
+    const double c1_4_4_5 = w[1][5];
+    const double c7_5_0_0 = w[7][0];
+    const double c11_5_1_0 = w[11][0];
+    const double c13_5_2_0 = w[13][0];
+    const double c12_5_3_0 = (1.0/w[12][0]);
+    const double c1_5_4_0 = w[1][0];
+    const double c1_5_4_1 = w[1][1];
+    const double c1_5_4_2 = w[1][2];
+    const double c1_5_4_3 = w[1][3];
+    const double c1_5_4_4 = w[1][4];
+    const double c1_5_4_5 = w[1][5];
+    const double c7_6_0_0 = w[7][0];
+    const double c12_6_1_0 = w[12][0];
+    const double c14_6_2_0 = w[14][0];
+    const double c12_6_3_0 = (1.0/w[12][0]);
+    const double c2_6_4_0 = w[2][0];
+    const double c2_6_4_1 = w[2][1];
+    const double c2_6_4_2 = w[2][2];
+    const double c2_6_4_3 = w[2][3];
+    const double c2_6_4_4 = w[2][4];
+    const double c2_6_4_5 = w[2][5];
+    const double c6_7_0_0 = w[6][0];
+    const double c12_7_1_0 = (1.0/w[12][0]);
+    const double c14_7_2_0 = (1.0/w[14][0]);
+    const double c1_7_3_0 = w[1][0];
+    const double c1_7_3_1 = w[1][1];
+    const double c1_7_3_2 = w[1][2];
+    const double c1_7_3_3 = w[1][3];
+    const double c1_7_3_4 = w[1][4];
+    const double c1_7_3_5 = w[1][5];
+    const double c7_8_0_0 = w[7][0];
+    const double c13_8_1_0 = w[13][0];
+    const double c12_8_2_0 = (1.0/w[12][0]);
+    const double c1_8_3_0 = w[1][0];
+    const double c1_8_3_1 = w[1][1];
+    const double c1_8_3_2 = w[1][2];
+    const double c1_8_3_3 = w[1][3];
+    const double c1_8_3_4 = w[1][4];
+    const double c1_8_3_5 = w[1][5];
+    const double c6_9_0_0 = w[6][0];
+    const double c10_9_1_0 = w[10][0];
+    const double c12_9_2_0 = (1.0/w[12][0]);
+    const double c2_9_3_0 = w[2][0];
+    const double c2_9_3_1 = w[2][1];
+    const double c2_9_3_2 = w[2][2];
+    const double c2_9_3_3 = w[2][3];
+    const double c2_9_3_4 = w[2][4];
+    const double c2_9_3_5 = w[2][5];
+    const double c6_10_0_0 = w[6][0];
+    const double c12_10_1_0 = (1.0/w[12][0]);
+    const double c2_10_2_0 = w[2][0];
+    const double c2_10_2_1 = w[2][1];
+    const double c2_10_2_2 = w[2][2];
+    const double c2_10_2_3 = w[2][3];
+    const double c2_10_2_4 = w[2][4];
+    const double c2_10_2_5 = w[2][5];
+    const double c6_11_0_0 = w[6][0];
+    const double c12_11_1_0 = w[12][0];
+    const double c12_11_2_0 = (1.0/w[12][0]);
+    const double c2_11_3_0 = w[2][0];
+    const double c2_11_3_1 = w[2][1];
+    const double c2_11_3_2 = w[2][2];
+    const double c2_11_3_3 = w[2][3];
+    const double c2_11_3_4 = w[2][4];
+    const double c2_11_3_5 = w[2][5];
+    const double c7_12_0_0 = w[7][0];
+    const double c12_12_1_0 = w[12][0];
+    const double c12_12_2_0 = (1.0/w[12][0]);
+    const double c1_12_3_0 = w[1][0];
+    const double c1_12_3_1 = w[1][1];
+    const double c1_12_3_2 = w[1][2];
+    const double c1_12_3_3 = w[1][3];
+    const double c1_12_3_4 = w[1][4];
+    const double c1_12_3_5 = w[1][5];
+    const double c7_13_0_0 = w[7][0];
+    const double c13_13_1_0 = w[13][0];
+    const double c11_13_2_0 = w[11][0];
+    const double c14_13_3_0 = w[14][0];
+    const double c12_13_4_0 = (1.0/w[12][0]);
+    const double c2_13_5_0 = w[2][0];
+    const double c2_13_5_1 = w[2][1];
+    const double c2_13_5_2 = w[2][2];
+    const double c2_13_5_3 = w[2][3];
+    const double c2_13_5_4 = w[2][4];
+    const double c2_13_5_5 = w[2][5];
+    const double c7_14_0_0 = w[7][0];
+    const double c13_14_1_0 = w[13][0];
+    const double c14_14_2_0 = w[14][0];
+    const double c12_14_3_0 = (1.0/w[12][0]);
+    const double c2_14_4_0 = w[2][0];
+    const double c2_14_4_1 = w[2][1];
+    const double c2_14_4_2 = w[2][2];
+    const double c2_14_4_3 = w[2][3];
+    const double c2_14_4_4 = w[2][4];
+    const double c2_14_4_5 = w[2][5];
+    const double c7_15_0_0 = w[7][0];
+    const double c12_15_1_0 = w[12][0];
+    const double c11_15_2_0 = w[11][0];
+    const double c14_15_3_0 = w[14][0];
+    const double c12_15_4_0 = (1.0/w[12][0]);
+    const double c2_15_5_0 = w[2][0];
+    const double c2_15_5_1 = w[2][1];
+    const double c2_15_5_2 = w[2][2];
+    const double c2_15_5_3 = w[2][3];
+    const double c2_15_5_4 = w[2][4];
+    const double c2_15_5_5 = w[2][5];
+    const double c11_16_0_0 = w[11][0];
+    const double c9_16_1_0 = w[9][0];
+    const double c0_16_2_0 = w[0][0];
+    const double c0_16_2_1 = w[0][1];
+    const double c0_16_2_2 = w[0][2];
+    const double c0_16_2_3 = w[0][3];
+    const double c0_16_2_4 = w[0][4];
+    const double c0_16_2_5 = w[0][5];
+    const double c11_17_0_0 = w[11][0];
+    const double c9_17_1_0 = w[9][0];
+    const double c0_17_2_0 = w[0][0];
+    const double c0_17_2_1 = w[0][1];
+    const double c0_17_2_2 = w[0][2];
+    const double c0_17_2_3 = w[0][3];
+    const double c0_17_2_4 = w[0][4];
+    const double c0_17_2_5 = w[0][5];
+    const double c11_18_0_0 = w[11][0];
+    const double c8_18_1_0 = w[8][0];
+    const double c0_18_2_0 = w[0][0];
+    const double c0_18_2_1 = w[0][1];
+    const double c0_18_2_2 = w[0][2];
+    const double c0_18_2_3 = w[0][3];
+    const double c0_18_2_4 = w[0][4];
+    const double c0_18_2_5 = w[0][5];
+    const double c4_19_0_0 = w[4][0];
+    const double c4_19_0_1 = w[4][1];
     
     // Compute geometry tensors
-    // Number of operations to compute decalrations = 620
-    const double G0_0_0_0_0_0_0 = det*c6_0_0_0*c9_0_1_0*c11_0_2_0*c12_0_3_0*c12_0_4_0*c0_0_5_0;
-    const double G0_0_0_0_0_0_1 = det*c6_0_0_0*c9_0_1_0*c11_0_2_0*c12_0_3_0*c12_0_4_0*c0_0_5_1;
-    const double G0_0_0_0_0_0_2 = det*c6_0_0_0*c9_0_1_0*c11_0_2_0*c12_0_3_0*c12_0_4_0*c0_0_5_2;
-    const double G0_0_0_0_0_0_3 = det*c6_0_0_0*c9_0_1_0*c11_0_2_0*c12_0_3_0*c12_0_4_0*c0_0_5_3;
-    const double G0_0_0_0_0_0_4 = det*c6_0_0_0*c9_0_1_0*c11_0_2_0*c12_0_3_0*c12_0_4_0*c0_0_5_4;
-    const double G0_0_0_0_0_0_5 = det*c6_0_0_0*c9_0_1_0*c11_0_2_0*c12_0_3_0*c12_0_4_0*c0_0_5_5;
-    const double G1_0_0_0_0_0 = det*c6_1_0_0*c11_1_1_0*c12_1_2_0*c12_1_3_0*c0_1_4_0;
-    const double G1_0_0_0_0_1 = det*c6_1_0_0*c11_1_1_0*c12_1_2_0*c12_1_3_0*c0_1_4_1;
-    const double G1_0_0_0_0_2 = det*c6_1_0_0*c11_1_1_0*c12_1_2_0*c12_1_3_0*c0_1_4_2;
-    const double G1_0_0_0_0_3 = det*c6_1_0_0*c11_1_1_0*c12_1_2_0*c12_1_3_0*c0_1_4_3;
-    const double G1_0_0_0_0_4 = det*c6_1_0_0*c11_1_1_0*c12_1_2_0*c12_1_3_0*c0_1_4_4;
-    const double G1_0_0_0_0_5 = det*c6_1_0_0*c11_1_1_0*c12_1_2_0*c12_1_3_0*c0_1_4_5;
-    const double G2_0_0_0_0_0 = det*c6_2_0_0*c9_2_1_0*c11_2_2_0*c12_2_3_0*c1_2_4_0;
-    const double G2_0_0_0_0_1 = det*c6_2_0_0*c9_2_1_0*c11_2_2_0*c12_2_3_0*c1_2_4_1;
-    const double G2_0_0_0_0_2 = det*c6_2_0_0*c9_2_1_0*c11_2_2_0*c12_2_3_0*c1_2_4_2;
-    const double G2_0_0_0_0_3 = det*c6_2_0_0*c9_2_1_0*c11_2_2_0*c12_2_3_0*c1_2_4_3;
-    const double G2_0_0_0_0_4 = det*c6_2_0_0*c9_2_1_0*c11_2_2_0*c12_2_3_0*c1_2_4_4;
-    const double G2_0_0_0_0_5 = det*c6_2_0_0*c9_2_1_0*c11_2_2_0*c12_2_3_0*c1_2_4_5;
-    const double G3_0_0_0_0 = det*c6_3_0_0*c11_3_1_0*c12_3_2_0*c1_3_3_0;
-    const double G3_0_0_0_1 = det*c6_3_0_0*c11_3_1_0*c12_3_2_0*c1_3_3_1;
-    const double G3_0_0_0_2 = det*c6_3_0_0*c11_3_1_0*c12_3_2_0*c1_3_3_2;
-    const double G3_0_0_0_3 = det*c6_3_0_0*c11_3_1_0*c12_3_2_0*c1_3_3_3;
-    const double G3_0_0_0_4 = det*c6_3_0_0*c11_3_1_0*c12_3_2_0*c1_3_3_4;
-    const double G3_0_0_0_5 = det*c6_3_0_0*c11_3_1_0*c12_3_2_0*c1_3_3_5;
-    const double G4_0_0_0_0 = det*c6_4_0_0*c9_4_1_0*c11_4_2_0*c2_4_3_0;
-    const double G4_0_0_0_1 = det*c6_4_0_0*c9_4_1_0*c11_4_2_0*c2_4_3_1;
-    const double G4_0_0_0_2 = det*c6_4_0_0*c9_4_1_0*c11_4_2_0*c2_4_3_2;
-    const double G4_0_0_0_3 = det*c6_4_0_0*c9_4_1_0*c11_4_2_0*c2_4_3_3;
-    const double G4_0_0_0_4 = det*c6_4_0_0*c9_4_1_0*c11_4_2_0*c2_4_3_4;
-    const double G4_0_0_0_5 = det*c6_4_0_0*c9_4_1_0*c11_4_2_0*c2_4_3_5;
-    const double G5_0_0_0 = det*c6_5_0_0*c11_5_1_0*c2_5_2_0;
-    const double G5_0_0_1 = det*c6_5_0_0*c11_5_1_0*c2_5_2_1;
-    const double G5_0_0_2 = det*c6_5_0_0*c11_5_1_0*c2_5_2_2;
-    const double G5_0_0_3 = det*c6_5_0_0*c11_5_1_0*c2_5_2_3;
-    const double G5_0_0_4 = det*c6_5_0_0*c11_5_1_0*c2_5_2_4;
-    const double G5_0_0_5 = det*c6_5_0_0*c11_5_1_0*c2_5_2_5;
-    const double G6_0_0_0_0 = det*c6_6_0_0*c11_6_1_0*c11_6_2_0*c2_6_3_0;
-    const double G6_0_0_0_1 = det*c6_6_0_0*c11_6_1_0*c11_6_2_0*c2_6_3_1;
-    const double G6_0_0_0_2 = det*c6_6_0_0*c11_6_1_0*c11_6_2_0*c2_6_3_2;
-    const double G6_0_0_0_3 = det*c6_6_0_0*c11_6_1_0*c11_6_2_0*c2_6_3_3;
-    const double G6_0_0_0_4 = det*c6_6_0_0*c11_6_1_0*c11_6_2_0*c2_6_3_4;
-    const double G6_0_0_0_5 = det*c6_6_0_0*c11_6_1_0*c11_6_2_0*c2_6_3_5;
-    const double G7_0_0_0_0_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G7_0_0_0_0_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G7_0_0_0_1_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G7_0_0_0_1_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G7_0_0_1_0_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G7_0_0_1_1_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G7_0_0_2_0_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G7_0_0_2_1_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G7_0_0_3_0_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_3*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G7_0_0_3_0_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_3*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G7_0_0_3_1_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_3*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G7_0_0_3_1_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_3*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G7_0_0_4_0_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_4*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G7_0_0_4_1_0 = det*c10_7_0_0*c8_7_1_0*c0_7_2_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G7_0_0_5_0_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G7_0_0_5_1_1 = det*c10_7_0_0*c8_7_1_0*c0_7_2_5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G8_0_0_0_0_0_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_00*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_00*Jinv_00);
-    const double G8_0_0_0_0_0_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_00*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_01*Jinv_00);
-    const double G8_0_0_0_0_1_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_00*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_00*Jinv_10);
-    const double G8_0_0_0_0_1_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_00*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_01*Jinv_10);
-    const double G8_0_0_0_1_0_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_10*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_10*Jinv_00);
-    const double G8_0_0_0_1_0_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_10*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_11*Jinv_00);
-    const double G8_0_0_0_1_1_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_10*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_10*Jinv_10);
-    const double G8_0_0_0_1_1_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_0*Jinv_10*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_0*Jinv_11*Jinv_10);
-    const double G8_0_0_1_0_0_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_1*Jinv_00*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_1*Jinv_00*Jinv_00);
-    const double G8_0_0_1_0_0_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_1*Jinv_00*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_1*Jinv_01*Jinv_00);
-    const double G8_0_0_1_1_0_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_1*Jinv_10*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_1*Jinv_10*Jinv_00);
-    const double G8_0_0_1_1_0_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_1*Jinv_10*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_1*Jinv_11*Jinv_00);
-    const double G8_0_0_2_0_1_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_2*Jinv_00*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_2*Jinv_00*Jinv_10);
-    const double G8_0_0_2_0_1_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_2*Jinv_00*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_2*Jinv_01*Jinv_10);
-    const double G8_0_0_2_1_1_0_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_2*Jinv_10*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_2*Jinv_10*Jinv_10);
-    const double G8_0_0_2_1_1_0_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_2*Jinv_10*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_2*Jinv_11*Jinv_10);
-    const double G8_0_0_3_0_0_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_01*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_00*Jinv_01);
-    const double G8_0_0_3_0_0_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_01*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_01*Jinv_01);
-    const double G8_0_0_3_0_1_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_01*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_00*Jinv_11);
-    const double G8_0_0_3_0_1_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_01*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_01*Jinv_11);
-    const double G8_0_0_3_1_0_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_11*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_10*Jinv_01);
-    const double G8_0_0_3_1_0_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_11*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_11*Jinv_01);
-    const double G8_0_0_3_1_1_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_11*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_10*Jinv_11);
-    const double G8_0_0_3_1_1_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_3*Jinv_11*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_3*Jinv_11*Jinv_11);
-    const double G8_0_0_4_0_0_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_4*Jinv_01*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_4*Jinv_00*Jinv_01);
-    const double G8_0_0_4_0_0_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_4*Jinv_01*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_4*Jinv_01*Jinv_01);
-    const double G8_0_0_4_1_0_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_4*Jinv_11*Jinv_00 + c10_9_0_0*c7_9_1_0*c0_9_2_4*Jinv_10*Jinv_01);
-    const double G8_0_0_4_1_0_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_4*Jinv_11*Jinv_01 + c10_9_0_0*c7_9_1_0*c0_9_2_4*Jinv_11*Jinv_01);
-    const double G8_0_0_5_0_1_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_5*Jinv_01*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_5*Jinv_00*Jinv_11);
-    const double G8_0_0_5_0_1_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_5*Jinv_01*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_5*Jinv_01*Jinv_11);
-    const double G8_0_0_5_1_1_1_0 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_5*Jinv_11*Jinv_10 + c10_9_0_0*c7_9_1_0*c0_9_2_5*Jinv_10*Jinv_11);
-    const double G8_0_0_5_1_1_1_1 = det*(c10_8_0_0*c8_8_1_0*c0_8_2_5*Jinv_11*Jinv_11 + c10_9_0_0*c7_9_1_0*c0_9_2_5*Jinv_11*Jinv_11);
-    const double G9_0 = det*c4_10_0_0;
-    const double G9_1 = det*c4_10_0_1;
+    // Number of operations to compute decalrations = 896
+    const double G0_0_0_0_0_0_0 = det*(c6_0_0_0*c10_0_1_0*c12_0_2_0*c14_0_3_0*c14_0_4_0*c0_0_5_0 + c7_1_0_0*c11_1_1_0*c13_1_2_0*c12_1_3_0*c14_1_4_0*c0_1_5_0);
+    const double G0_0_0_0_0_0_1 = det*(c6_0_0_0*c10_0_1_0*c12_0_2_0*c14_0_3_0*c14_0_4_0*c0_0_5_1 + c7_1_0_0*c11_1_1_0*c13_1_2_0*c12_1_3_0*c14_1_4_0*c0_1_5_1);
+    const double G0_0_0_0_0_0_2 = det*(c6_0_0_0*c10_0_1_0*c12_0_2_0*c14_0_3_0*c14_0_4_0*c0_0_5_2 + c7_1_0_0*c11_1_1_0*c13_1_2_0*c12_1_3_0*c14_1_4_0*c0_1_5_2);
+    const double G0_0_0_0_0_0_3 = det*(c6_0_0_0*c10_0_1_0*c12_0_2_0*c14_0_3_0*c14_0_4_0*c0_0_5_3 + c7_1_0_0*c11_1_1_0*c13_1_2_0*c12_1_3_0*c14_1_4_0*c0_1_5_3);
+    const double G0_0_0_0_0_0_4 = det*(c6_0_0_0*c10_0_1_0*c12_0_2_0*c14_0_3_0*c14_0_4_0*c0_0_5_4 + c7_1_0_0*c11_1_1_0*c13_1_2_0*c12_1_3_0*c14_1_4_0*c0_1_5_4);
+    const double G0_0_0_0_0_0_5 = det*(c6_0_0_0*c10_0_1_0*c12_0_2_0*c14_0_3_0*c14_0_4_0*c0_0_5_5 + c7_1_0_0*c11_1_1_0*c13_1_2_0*c12_1_3_0*c14_1_4_0*c0_1_5_5);
+    const double G1_0_0_0_0_0 = det*(c6_2_0_0*c12_2_1_0*c14_2_2_0*c14_2_3_0*c0_2_4_0 + c7_3_0_0*c13_3_1_0*c12_3_2_0*c14_3_3_0*c0_3_4_0);
+    const double G1_0_0_0_0_1 = det*(c6_2_0_0*c12_2_1_0*c14_2_2_0*c14_2_3_0*c0_2_4_1 + c7_3_0_0*c13_3_1_0*c12_3_2_0*c14_3_3_0*c0_3_4_1);
+    const double G1_0_0_0_0_2 = det*(c6_2_0_0*c12_2_1_0*c14_2_2_0*c14_2_3_0*c0_2_4_2 + c7_3_0_0*c13_3_1_0*c12_3_2_0*c14_3_3_0*c0_3_4_2);
+    const double G1_0_0_0_0_3 = det*(c6_2_0_0*c12_2_1_0*c14_2_2_0*c14_2_3_0*c0_2_4_3 + c7_3_0_0*c13_3_1_0*c12_3_2_0*c14_3_3_0*c0_3_4_3);
+    const double G1_0_0_0_0_4 = det*(c6_2_0_0*c12_2_1_0*c14_2_2_0*c14_2_3_0*c0_2_4_4 + c7_3_0_0*c13_3_1_0*c12_3_2_0*c14_3_3_0*c0_3_4_4);
+    const double G1_0_0_0_0_5 = det*(c6_2_0_0*c12_2_1_0*c14_2_2_0*c14_2_3_0*c0_2_4_5 + c7_3_0_0*c13_3_1_0*c12_3_2_0*c14_3_3_0*c0_3_4_5);
+    const double G2_0_0_0_0_0 = det*(c6_4_0_0*c10_4_1_0*c12_4_2_0*c14_4_3_0*c1_4_4_0 + c7_5_0_0*c11_5_1_0*c13_5_2_0*c12_5_3_0*c1_5_4_0 + c7_6_0_0*c12_6_1_0*c14_6_2_0*c12_6_3_0*c2_6_4_0);
+    const double G2_0_0_0_0_1 = det*(c6_4_0_0*c10_4_1_0*c12_4_2_0*c14_4_3_0*c1_4_4_1 + c7_5_0_0*c11_5_1_0*c13_5_2_0*c12_5_3_0*c1_5_4_1 + c7_6_0_0*c12_6_1_0*c14_6_2_0*c12_6_3_0*c2_6_4_1);
+    const double G2_0_0_0_0_2 = det*(c6_4_0_0*c10_4_1_0*c12_4_2_0*c14_4_3_0*c1_4_4_2 + c7_5_0_0*c11_5_1_0*c13_5_2_0*c12_5_3_0*c1_5_4_2 + c7_6_0_0*c12_6_1_0*c14_6_2_0*c12_6_3_0*c2_6_4_2);
+    const double G2_0_0_0_0_3 = det*(c6_4_0_0*c10_4_1_0*c12_4_2_0*c14_4_3_0*c1_4_4_3 + c7_5_0_0*c11_5_1_0*c13_5_2_0*c12_5_3_0*c1_5_4_3 + c7_6_0_0*c12_6_1_0*c14_6_2_0*c12_6_3_0*c2_6_4_3);
+    const double G2_0_0_0_0_4 = det*(c6_4_0_0*c10_4_1_0*c12_4_2_0*c14_4_3_0*c1_4_4_4 + c7_5_0_0*c11_5_1_0*c13_5_2_0*c12_5_3_0*c1_5_4_4 + c7_6_0_0*c12_6_1_0*c14_6_2_0*c12_6_3_0*c2_6_4_4);
+    const double G2_0_0_0_0_5 = det*(c6_4_0_0*c10_4_1_0*c12_4_2_0*c14_4_3_0*c1_4_4_5 + c7_5_0_0*c11_5_1_0*c13_5_2_0*c12_5_3_0*c1_5_4_5 + c7_6_0_0*c12_6_1_0*c14_6_2_0*c12_6_3_0*c2_6_4_5);
+    const double G3_0_0_0_0 = det*(c6_7_0_0*c12_7_1_0*c14_7_2_0*c1_7_3_0 + c7_8_0_0*c13_8_1_0*c12_8_2_0*c1_8_3_0);
+    const double G3_0_0_0_1 = det*(c6_7_0_0*c12_7_1_0*c14_7_2_0*c1_7_3_1 + c7_8_0_0*c13_8_1_0*c12_8_2_0*c1_8_3_1);
+    const double G3_0_0_0_2 = det*(c6_7_0_0*c12_7_1_0*c14_7_2_0*c1_7_3_2 + c7_8_0_0*c13_8_1_0*c12_8_2_0*c1_8_3_2);
+    const double G3_0_0_0_3 = det*(c6_7_0_0*c12_7_1_0*c14_7_2_0*c1_7_3_3 + c7_8_0_0*c13_8_1_0*c12_8_2_0*c1_8_3_3);
+    const double G3_0_0_0_4 = det*(c6_7_0_0*c12_7_1_0*c14_7_2_0*c1_7_3_4 + c7_8_0_0*c13_8_1_0*c12_8_2_0*c1_8_3_4);
+    const double G3_0_0_0_5 = det*(c6_7_0_0*c12_7_1_0*c14_7_2_0*c1_7_3_5 + c7_8_0_0*c13_8_1_0*c12_8_2_0*c1_8_3_5);
+    const double G4_0_0_0_0 = det*c6_9_0_0*c10_9_1_0*c12_9_2_0*c2_9_3_0;
+    const double G4_0_0_0_1 = det*c6_9_0_0*c10_9_1_0*c12_9_2_0*c2_9_3_1;
+    const double G4_0_0_0_2 = det*c6_9_0_0*c10_9_1_0*c12_9_2_0*c2_9_3_2;
+    const double G4_0_0_0_3 = det*c6_9_0_0*c10_9_1_0*c12_9_2_0*c2_9_3_3;
+    const double G4_0_0_0_4 = det*c6_9_0_0*c10_9_1_0*c12_9_2_0*c2_9_3_4;
+    const double G4_0_0_0_5 = det*c6_9_0_0*c10_9_1_0*c12_9_2_0*c2_9_3_5;
+    const double G5_0_0_0 = det*c6_10_0_0*c12_10_1_0*c2_10_2_0;
+    const double G5_0_0_1 = det*c6_10_0_0*c12_10_1_0*c2_10_2_1;
+    const double G5_0_0_2 = det*c6_10_0_0*c12_10_1_0*c2_10_2_2;
+    const double G5_0_0_3 = det*c6_10_0_0*c12_10_1_0*c2_10_2_3;
+    const double G5_0_0_4 = det*c6_10_0_0*c12_10_1_0*c2_10_2_4;
+    const double G5_0_0_5 = det*c6_10_0_0*c12_10_1_0*c2_10_2_5;
+    const double G6_0_0_0_0 = det*(c6_11_0_0*c12_11_1_0*c12_11_2_0*c2_11_3_0 + c7_12_0_0*c12_12_1_0*c12_12_2_0*c1_12_3_0);
+    const double G6_0_0_0_1 = det*(c6_11_0_0*c12_11_1_0*c12_11_2_0*c2_11_3_1 + c7_12_0_0*c12_12_1_0*c12_12_2_0*c1_12_3_1);
+    const double G6_0_0_0_2 = det*(c6_11_0_0*c12_11_1_0*c12_11_2_0*c2_11_3_2 + c7_12_0_0*c12_12_1_0*c12_12_2_0*c1_12_3_2);
+    const double G6_0_0_0_3 = det*(c6_11_0_0*c12_11_1_0*c12_11_2_0*c2_11_3_3 + c7_12_0_0*c12_12_1_0*c12_12_2_0*c1_12_3_3);
+    const double G6_0_0_0_4 = det*(c6_11_0_0*c12_11_1_0*c12_11_2_0*c2_11_3_4 + c7_12_0_0*c12_12_1_0*c12_12_2_0*c1_12_3_4);
+    const double G6_0_0_0_5 = det*(c6_11_0_0*c12_11_1_0*c12_11_2_0*c2_11_3_5 + c7_12_0_0*c12_12_1_0*c12_12_2_0*c1_12_3_5);
+    const double G7_0_0_0_0_0_0 = det*c7_13_0_0*c13_13_1_0*c11_13_2_0*c14_13_3_0*c12_13_4_0*c2_13_5_0;
+    const double G7_0_0_0_0_0_1 = det*c7_13_0_0*c13_13_1_0*c11_13_2_0*c14_13_3_0*c12_13_4_0*c2_13_5_1;
+    const double G7_0_0_0_0_0_2 = det*c7_13_0_0*c13_13_1_0*c11_13_2_0*c14_13_3_0*c12_13_4_0*c2_13_5_2;
+    const double G7_0_0_0_0_0_3 = det*c7_13_0_0*c13_13_1_0*c11_13_2_0*c14_13_3_0*c12_13_4_0*c2_13_5_3;
+    const double G7_0_0_0_0_0_4 = det*c7_13_0_0*c13_13_1_0*c11_13_2_0*c14_13_3_0*c12_13_4_0*c2_13_5_4;
+    const double G7_0_0_0_0_0_5 = det*c7_13_0_0*c13_13_1_0*c11_13_2_0*c14_13_3_0*c12_13_4_0*c2_13_5_5;
+    const double G8_0_0_0_0_0 = det*c7_14_0_0*c13_14_1_0*c14_14_2_0*c12_14_3_0*c2_14_4_0;
+    const double G8_0_0_0_0_1 = det*c7_14_0_0*c13_14_1_0*c14_14_2_0*c12_14_3_0*c2_14_4_1;
+    const double G8_0_0_0_0_2 = det*c7_14_0_0*c13_14_1_0*c14_14_2_0*c12_14_3_0*c2_14_4_2;
+    const double G8_0_0_0_0_3 = det*c7_14_0_0*c13_14_1_0*c14_14_2_0*c12_14_3_0*c2_14_4_3;
+    const double G8_0_0_0_0_4 = det*c7_14_0_0*c13_14_1_0*c14_14_2_0*c12_14_3_0*c2_14_4_4;
+    const double G8_0_0_0_0_5 = det*c7_14_0_0*c13_14_1_0*c14_14_2_0*c12_14_3_0*c2_14_4_5;
+    const double G9_0_0_0_0_0_0 = det*c7_15_0_0*c12_15_1_0*c11_15_2_0*c14_15_3_0*c12_15_4_0*c2_15_5_0;
+    const double G9_0_0_0_0_0_1 = det*c7_15_0_0*c12_15_1_0*c11_15_2_0*c14_15_3_0*c12_15_4_0*c2_15_5_1;
+    const double G9_0_0_0_0_0_2 = det*c7_15_0_0*c12_15_1_0*c11_15_2_0*c14_15_3_0*c12_15_4_0*c2_15_5_2;
+    const double G9_0_0_0_0_0_3 = det*c7_15_0_0*c12_15_1_0*c11_15_2_0*c14_15_3_0*c12_15_4_0*c2_15_5_3;
+    const double G9_0_0_0_0_0_4 = det*c7_15_0_0*c12_15_1_0*c11_15_2_0*c14_15_3_0*c12_15_4_0*c2_15_5_4;
+    const double G9_0_0_0_0_0_5 = det*c7_15_0_0*c12_15_1_0*c11_15_2_0*c14_15_3_0*c12_15_4_0*c2_15_5_5;
+    const double G10_0_0_0_0_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G10_0_0_0_0_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G10_0_0_0_1_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G10_0_0_0_1_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G10_0_0_1_0_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G10_0_0_1_1_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G10_0_0_2_0_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G10_0_0_2_1_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G10_0_0_3_0_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_3*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G10_0_0_3_0_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_3*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G10_0_0_3_1_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_3*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G10_0_0_3_1_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_3*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G10_0_0_4_0_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_4*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G10_0_0_4_1_0 = det*c11_16_0_0*c9_16_1_0*c0_16_2_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G10_0_0_5_0_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G10_0_0_5_1_1 = det*c11_16_0_0*c9_16_1_0*c0_16_2_5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G11_0_0_0_0_0_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_00*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_00*Jinv_00);
+    const double G11_0_0_0_0_0_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_00*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_01*Jinv_00);
+    const double G11_0_0_0_0_1_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_00*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_00*Jinv_10);
+    const double G11_0_0_0_0_1_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_00*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_01*Jinv_10);
+    const double G11_0_0_0_1_0_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_10*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_10*Jinv_00);
+    const double G11_0_0_0_1_0_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_10*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_11*Jinv_00);
+    const double G11_0_0_0_1_1_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_10*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_10*Jinv_10);
+    const double G11_0_0_0_1_1_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_0*Jinv_10*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_0*Jinv_11*Jinv_10);
+    const double G11_0_0_1_0_0_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_1*Jinv_00*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_1*Jinv_00*Jinv_00);
+    const double G11_0_0_1_0_0_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_1*Jinv_00*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_1*Jinv_01*Jinv_00);
+    const double G11_0_0_1_1_0_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_1*Jinv_10*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_1*Jinv_10*Jinv_00);
+    const double G11_0_0_1_1_0_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_1*Jinv_10*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_1*Jinv_11*Jinv_00);
+    const double G11_0_0_2_0_1_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_2*Jinv_00*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_2*Jinv_00*Jinv_10);
+    const double G11_0_0_2_0_1_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_2*Jinv_00*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_2*Jinv_01*Jinv_10);
+    const double G11_0_0_2_1_1_0_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_2*Jinv_10*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_2*Jinv_10*Jinv_10);
+    const double G11_0_0_2_1_1_0_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_2*Jinv_10*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_2*Jinv_11*Jinv_10);
+    const double G11_0_0_3_0_0_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_01*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_00*Jinv_01);
+    const double G11_0_0_3_0_0_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_01*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_01*Jinv_01);
+    const double G11_0_0_3_0_1_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_01*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_00*Jinv_11);
+    const double G11_0_0_3_0_1_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_01*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_01*Jinv_11);
+    const double G11_0_0_3_1_0_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_11*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_10*Jinv_01);
+    const double G11_0_0_3_1_0_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_11*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_11*Jinv_01);
+    const double G11_0_0_3_1_1_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_11*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_10*Jinv_11);
+    const double G11_0_0_3_1_1_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_3*Jinv_11*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_3*Jinv_11*Jinv_11);
+    const double G11_0_0_4_0_0_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_4*Jinv_01*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_4*Jinv_00*Jinv_01);
+    const double G11_0_0_4_0_0_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_4*Jinv_01*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_4*Jinv_01*Jinv_01);
+    const double G11_0_0_4_1_0_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_4*Jinv_11*Jinv_00 + c11_18_0_0*c8_18_1_0*c0_18_2_4*Jinv_10*Jinv_01);
+    const double G11_0_0_4_1_0_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_4*Jinv_11*Jinv_01 + c11_18_0_0*c8_18_1_0*c0_18_2_4*Jinv_11*Jinv_01);
+    const double G11_0_0_5_0_1_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_5*Jinv_01*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_5*Jinv_00*Jinv_11);
+    const double G11_0_0_5_0_1_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_5*Jinv_01*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_5*Jinv_01*Jinv_11);
+    const double G11_0_0_5_1_1_1_0 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_5*Jinv_11*Jinv_10 + c11_18_0_0*c8_18_1_0*c0_18_2_5*Jinv_10*Jinv_11);
+    const double G11_0_0_5_1_1_1_1 = det*(c11_17_0_0*c9_17_1_0*c0_17_2_5*Jinv_11*Jinv_11 + c11_18_0_0*c8_18_1_0*c0_18_2_5*Jinv_11*Jinv_11);
+    const double G12_0 = det*c4_19_0_0;
+    const double G12_1 = det*c4_19_0_1;
     
     // Compute element tensor
-    // Number of operations to compute tensor = 450
-    A[0] = -0.0833333333333332*G0_0_0_0_0_0_0 - 0.0416666666666666*G0_0_0_0_0_0_1 - 0.0416666666666666*G0_0_0_0_0_0_2 + 0.0833333333333332*G1_0_0_0_0_0 + 0.0416666666666666*G1_0_0_0_0_1 + 0.0416666666666666*G1_0_0_0_0_2 - 0.0833333333333332*G2_0_0_0_0_0 - 0.0416666666666666*G2_0_0_0_0_1 - 0.0416666666666666*G2_0_0_0_0_2 + 0.0833333333333332*G3_0_0_0_0 + 0.0416666666666666*G3_0_0_0_1 + 0.0416666666666666*G3_0_0_0_2 - 0.0416666666666666*G4_0_0_0_0 - 0.0208333333333333*G4_0_0_0_1 - 0.0208333333333333*G4_0_0_0_2 + 0.0416666666666666*G5_0_0_0 + 0.0208333333333333*G5_0_0_1 + 0.0208333333333333*G5_0_0_2 - 0.0833333333333332*G6_0_0_0_0 - 0.0416666666666666*G6_0_0_0_1 - 0.0416666666666666*G6_0_0_0_2 - 0.5*G7_0_0_0_0_0 - 0.5*G7_0_0_0_0_1 - 0.5*G7_0_0_0_1_0 - 0.5*G7_0_0_0_1_1 + 0.5*G7_0_0_1_0_0 + 0.5*G7_0_0_1_1_0 + 0.5*G7_0_0_2_0_1 + 0.5*G7_0_0_2_1_1 - 0.5*G8_0_0_0_0_0_0_0 - 0.5*G8_0_0_0_0_1_0_0 - 0.5*G8_0_0_0_1_0_0_0 - 0.5*G8_0_0_0_1_1_0_0 + 0.5*G8_0_0_1_0_0_0_0 + 0.5*G8_0_0_1_1_0_0_0 + 0.5*G8_0_0_2_0_1_0_0 + 0.5*G8_0_0_2_1_1_0_0 - 0.5*G8_0_0_3_0_0_1_0 - 0.5*G8_0_0_3_0_1_1_0 - 0.5*G8_0_0_3_1_0_1_0 - 0.5*G8_0_0_3_1_1_1_0 + 0.5*G8_0_0_4_0_0_1_0 + 0.5*G8_0_0_4_1_0_1_0 + 0.5*G8_0_0_5_0_1_1_0 + 0.5*G8_0_0_5_1_1_1_0 + 0.166666666666667*G9_0;
-    A[1] = -0.0416666666666666*G0_0_0_0_0_0_0 - 0.0833333333333332*G0_0_0_0_0_0_1 - 0.0416666666666666*G0_0_0_0_0_0_2 + 0.0416666666666666*G1_0_0_0_0_0 + 0.0833333333333332*G1_0_0_0_0_1 + 0.0416666666666666*G1_0_0_0_0_2 - 0.0416666666666666*G2_0_0_0_0_0 - 0.0833333333333332*G2_0_0_0_0_1 - 0.0416666666666666*G2_0_0_0_0_2 + 0.0416666666666666*G3_0_0_0_0 + 0.0833333333333332*G3_0_0_0_1 + 0.0416666666666666*G3_0_0_0_2 - 0.0208333333333333*G4_0_0_0_0 - 0.0416666666666666*G4_0_0_0_1 - 0.0208333333333333*G4_0_0_0_2 + 0.0208333333333333*G5_0_0_0 + 0.0416666666666666*G5_0_0_1 + 0.0208333333333333*G5_0_0_2 - 0.0416666666666666*G6_0_0_0_0 - 0.0833333333333332*G6_0_0_0_1 - 0.0416666666666666*G6_0_0_0_2 + 0.5*G7_0_0_0_0_0 + 0.5*G7_0_0_0_0_1 - 0.5*G7_0_0_1_0_0 - 0.5*G7_0_0_2_0_1 + 0.5*G8_0_0_0_0_0_0_0 + 0.5*G8_0_0_0_0_1_0_0 - 0.5*G8_0_0_1_0_0_0_0 - 0.5*G8_0_0_2_0_1_0_0 + 0.5*G8_0_0_3_0_0_1_0 + 0.5*G8_0_0_3_0_1_1_0 - 0.5*G8_0_0_4_0_0_1_0 - 0.5*G8_0_0_5_0_1_1_0 + 0.166666666666667*G9_0;
-    A[2] = -0.0416666666666666*G0_0_0_0_0_0_0 - 0.0416666666666666*G0_0_0_0_0_0_1 - 0.0833333333333332*G0_0_0_0_0_0_2 + 0.0416666666666666*G1_0_0_0_0_0 + 0.0416666666666666*G1_0_0_0_0_1 + 0.0833333333333332*G1_0_0_0_0_2 - 0.0416666666666666*G2_0_0_0_0_0 - 0.0416666666666666*G2_0_0_0_0_1 - 0.0833333333333332*G2_0_0_0_0_2 + 0.0416666666666666*G3_0_0_0_0 + 0.0416666666666666*G3_0_0_0_1 + 0.0833333333333332*G3_0_0_0_2 - 0.0208333333333333*G4_0_0_0_0 - 0.0208333333333333*G4_0_0_0_1 - 0.0416666666666666*G4_0_0_0_2 + 0.0208333333333333*G5_0_0_0 + 0.0208333333333333*G5_0_0_1 + 0.0416666666666666*G5_0_0_2 - 0.0416666666666666*G6_0_0_0_0 - 0.0416666666666666*G6_0_0_0_1 - 0.0833333333333332*G6_0_0_0_2 + 0.5*G7_0_0_0_1_0 + 0.5*G7_0_0_0_1_1 - 0.5*G7_0_0_1_1_0 - 0.5*G7_0_0_2_1_1 + 0.5*G8_0_0_0_1_0_0_0 + 0.5*G8_0_0_0_1_1_0_0 - 0.5*G8_0_0_1_1_0_0_0 - 0.5*G8_0_0_2_1_1_0_0 + 0.5*G8_0_0_3_1_0_1_0 + 0.5*G8_0_0_3_1_1_1_0 - 0.5*G8_0_0_4_1_0_1_0 - 0.5*G8_0_0_5_1_1_1_0 + 0.166666666666667*G9_0;
-    A[3] = -0.0833333333333332*G0_0_0_0_0_0_3 - 0.0416666666666666*G0_0_0_0_0_0_4 - 0.0416666666666666*G0_0_0_0_0_0_5 + 0.0833333333333332*G1_0_0_0_0_3 + 0.0416666666666666*G1_0_0_0_0_4 + 0.0416666666666666*G1_0_0_0_0_5 - 0.0833333333333332*G2_0_0_0_0_3 - 0.0416666666666666*G2_0_0_0_0_4 - 0.0416666666666666*G2_0_0_0_0_5 + 0.0833333333333332*G3_0_0_0_3 + 0.0416666666666666*G3_0_0_0_4 + 0.0416666666666666*G3_0_0_0_5 - 0.0416666666666666*G4_0_0_0_3 - 0.0208333333333333*G4_0_0_0_4 - 0.0208333333333333*G4_0_0_0_5 + 0.0416666666666666*G5_0_0_3 + 0.0208333333333333*G5_0_0_4 + 0.0208333333333333*G5_0_0_5 - 0.0833333333333332*G6_0_0_0_3 - 0.0416666666666666*G6_0_0_0_4 - 0.0416666666666666*G6_0_0_0_5 - 0.5*G7_0_0_3_0_0 - 0.5*G7_0_0_3_0_1 - 0.5*G7_0_0_3_1_0 - 0.5*G7_0_0_3_1_1 + 0.5*G7_0_0_4_0_0 + 0.5*G7_0_0_4_1_0 + 0.5*G7_0_0_5_0_1 + 0.5*G7_0_0_5_1_1 - 0.5*G8_0_0_0_0_0_0_1 - 0.5*G8_0_0_0_0_1_0_1 - 0.5*G8_0_0_0_1_0_0_1 - 0.5*G8_0_0_0_1_1_0_1 + 0.5*G8_0_0_1_0_0_0_1 + 0.5*G8_0_0_1_1_0_0_1 + 0.5*G8_0_0_2_0_1_0_1 + 0.5*G8_0_0_2_1_1_0_1 - 0.5*G8_0_0_3_0_0_1_1 - 0.5*G8_0_0_3_0_1_1_1 - 0.5*G8_0_0_3_1_0_1_1 - 0.5*G8_0_0_3_1_1_1_1 + 0.5*G8_0_0_4_0_0_1_1 + 0.5*G8_0_0_4_1_0_1_1 + 0.5*G8_0_0_5_0_1_1_1 + 0.5*G8_0_0_5_1_1_1_1 + 0.166666666666667*G9_1;
-    A[4] = -0.0416666666666666*G0_0_0_0_0_0_3 - 0.0833333333333332*G0_0_0_0_0_0_4 - 0.0416666666666666*G0_0_0_0_0_0_5 + 0.0416666666666666*G1_0_0_0_0_3 + 0.0833333333333332*G1_0_0_0_0_4 + 0.0416666666666666*G1_0_0_0_0_5 - 0.0416666666666666*G2_0_0_0_0_3 - 0.0833333333333332*G2_0_0_0_0_4 - 0.0416666666666666*G2_0_0_0_0_5 + 0.0416666666666666*G3_0_0_0_3 + 0.0833333333333332*G3_0_0_0_4 + 0.0416666666666666*G3_0_0_0_5 - 0.0208333333333333*G4_0_0_0_3 - 0.0416666666666666*G4_0_0_0_4 - 0.0208333333333333*G4_0_0_0_5 + 0.0208333333333333*G5_0_0_3 + 0.0416666666666666*G5_0_0_4 + 0.0208333333333333*G5_0_0_5 - 0.0416666666666666*G6_0_0_0_3 - 0.0833333333333332*G6_0_0_0_4 - 0.0416666666666666*G6_0_0_0_5 + 0.5*G7_0_0_3_0_0 + 0.5*G7_0_0_3_0_1 - 0.5*G7_0_0_4_0_0 - 0.5*G7_0_0_5_0_1 + 0.5*G8_0_0_0_0_0_0_1 + 0.5*G8_0_0_0_0_1_0_1 - 0.5*G8_0_0_1_0_0_0_1 - 0.5*G8_0_0_2_0_1_0_1 + 0.5*G8_0_0_3_0_0_1_1 + 0.5*G8_0_0_3_0_1_1_1 - 0.5*G8_0_0_4_0_0_1_1 - 0.5*G8_0_0_5_0_1_1_1 + 0.166666666666667*G9_1;
-    A[5] = -0.0416666666666666*G0_0_0_0_0_0_3 - 0.0416666666666666*G0_0_0_0_0_0_4 - 0.0833333333333332*G0_0_0_0_0_0_5 + 0.0416666666666666*G1_0_0_0_0_3 + 0.0416666666666666*G1_0_0_0_0_4 + 0.0833333333333332*G1_0_0_0_0_5 - 0.0416666666666666*G2_0_0_0_0_3 - 0.0416666666666666*G2_0_0_0_0_4 - 0.0833333333333332*G2_0_0_0_0_5 + 0.0416666666666666*G3_0_0_0_3 + 0.0416666666666666*G3_0_0_0_4 + 0.0833333333333332*G3_0_0_0_5 - 0.0208333333333333*G4_0_0_0_3 - 0.0208333333333333*G4_0_0_0_4 - 0.0416666666666666*G4_0_0_0_5 + 0.0208333333333333*G5_0_0_3 + 0.0208333333333333*G5_0_0_4 + 0.0416666666666666*G5_0_0_5 - 0.0416666666666666*G6_0_0_0_3 - 0.0416666666666666*G6_0_0_0_4 - 0.0833333333333332*G6_0_0_0_5 + 0.5*G7_0_0_3_1_0 + 0.5*G7_0_0_3_1_1 - 0.5*G7_0_0_4_1_0 - 0.5*G7_0_0_5_1_1 + 0.5*G8_0_0_0_1_0_0_1 + 0.5*G8_0_0_0_1_1_0_1 - 0.5*G8_0_0_1_1_0_0_1 - 0.5*G8_0_0_2_1_1_0_1 + 0.5*G8_0_0_3_1_0_1_1 + 0.5*G8_0_0_3_1_1_1_1 - 0.5*G8_0_0_4_1_0_1_1 - 0.5*G8_0_0_5_1_1_1_1 + 0.166666666666667*G9_1;
+    // Number of operations to compute tensor = 558
+    A[0] = -0.0833333333333332*G0_0_0_0_0_0_0 - 0.0416666666666666*G0_0_0_0_0_0_1 - 0.0416666666666666*G0_0_0_0_0_0_2 + 0.0833333333333332*G1_0_0_0_0_0 + 0.0416666666666666*G1_0_0_0_0_1 + 0.0416666666666666*G1_0_0_0_0_2 - 0.0833333333333332*G2_0_0_0_0_0 - 0.0416666666666666*G2_0_0_0_0_1 - 0.0416666666666666*G2_0_0_0_0_2 + 0.0833333333333332*G3_0_0_0_0 + 0.0416666666666666*G3_0_0_0_1 + 0.0416666666666666*G3_0_0_0_2 - 0.0416666666666666*G4_0_0_0_0 - 0.0208333333333333*G4_0_0_0_1 - 0.0208333333333333*G4_0_0_0_2 + 0.0416666666666666*G5_0_0_0 + 0.0208333333333333*G5_0_0_1 + 0.0208333333333333*G5_0_0_2 - 0.0833333333333332*G6_0_0_0_0 - 0.0416666666666666*G6_0_0_0_1 - 0.0416666666666666*G6_0_0_0_2 - 0.0416666666666666*G7_0_0_0_0_0_0 - 0.0208333333333333*G7_0_0_0_0_0_1 - 0.0208333333333333*G7_0_0_0_0_0_2 + 0.0416666666666666*G8_0_0_0_0_0 + 0.0208333333333333*G8_0_0_0_0_1 + 0.0208333333333333*G8_0_0_0_0_2 + 0.0833333333333332*G9_0_0_0_0_0_0 + 0.0416666666666666*G9_0_0_0_0_0_1 + 0.0416666666666666*G9_0_0_0_0_0_2 - 0.5*G10_0_0_0_0_0 - 0.5*G10_0_0_0_0_1 - 0.5*G10_0_0_0_1_0 - 0.5*G10_0_0_0_1_1 + 0.5*G10_0_0_1_0_0 + 0.5*G10_0_0_1_1_0 + 0.5*G10_0_0_2_0_1 + 0.5*G10_0_0_2_1_1 - 0.5*G11_0_0_0_0_0_0_0 - 0.5*G11_0_0_0_0_1_0_0 - 0.5*G11_0_0_0_1_0_0_0 - 0.5*G11_0_0_0_1_1_0_0 + 0.5*G11_0_0_1_0_0_0_0 + 0.5*G11_0_0_1_1_0_0_0 + 0.5*G11_0_0_2_0_1_0_0 + 0.5*G11_0_0_2_1_1_0_0 - 0.5*G11_0_0_3_0_0_1_0 - 0.5*G11_0_0_3_0_1_1_0 - 0.5*G11_0_0_3_1_0_1_0 - 0.5*G11_0_0_3_1_1_1_0 + 0.5*G11_0_0_4_0_0_1_0 + 0.5*G11_0_0_4_1_0_1_0 + 0.5*G11_0_0_5_0_1_1_0 + 0.5*G11_0_0_5_1_1_1_0 + 0.166666666666667*G12_0;
+    A[1] = -0.0416666666666666*G0_0_0_0_0_0_0 - 0.0833333333333332*G0_0_0_0_0_0_1 - 0.0416666666666666*G0_0_0_0_0_0_2 + 0.0416666666666666*G1_0_0_0_0_0 + 0.0833333333333332*G1_0_0_0_0_1 + 0.0416666666666666*G1_0_0_0_0_2 - 0.0416666666666666*G2_0_0_0_0_0 - 0.0833333333333332*G2_0_0_0_0_1 - 0.0416666666666666*G2_0_0_0_0_2 + 0.0416666666666666*G3_0_0_0_0 + 0.0833333333333332*G3_0_0_0_1 + 0.0416666666666666*G3_0_0_0_2 - 0.0208333333333333*G4_0_0_0_0 - 0.0416666666666666*G4_0_0_0_1 - 0.0208333333333333*G4_0_0_0_2 + 0.0208333333333333*G5_0_0_0 + 0.0416666666666666*G5_0_0_1 + 0.0208333333333333*G5_0_0_2 - 0.0416666666666666*G6_0_0_0_0 - 0.0833333333333332*G6_0_0_0_1 - 0.0416666666666666*G6_0_0_0_2 - 0.0208333333333333*G7_0_0_0_0_0_0 - 0.0416666666666666*G7_0_0_0_0_0_1 - 0.0208333333333333*G7_0_0_0_0_0_2 + 0.0208333333333333*G8_0_0_0_0_0 + 0.0416666666666666*G8_0_0_0_0_1 + 0.0208333333333333*G8_0_0_0_0_2 + 0.0416666666666666*G9_0_0_0_0_0_0 + 0.0833333333333332*G9_0_0_0_0_0_1 + 0.0416666666666666*G9_0_0_0_0_0_2 + 0.5*G10_0_0_0_0_0 + 0.5*G10_0_0_0_0_1 - 0.5*G10_0_0_1_0_0 - 0.5*G10_0_0_2_0_1 + 0.5*G11_0_0_0_0_0_0_0 + 0.5*G11_0_0_0_0_1_0_0 - 0.5*G11_0_0_1_0_0_0_0 - 0.5*G11_0_0_2_0_1_0_0 + 0.5*G11_0_0_3_0_0_1_0 + 0.5*G11_0_0_3_0_1_1_0 - 0.5*G11_0_0_4_0_0_1_0 - 0.5*G11_0_0_5_0_1_1_0 + 0.166666666666667*G12_0;
+    A[2] = -0.0416666666666666*G0_0_0_0_0_0_0 - 0.0416666666666666*G0_0_0_0_0_0_1 - 0.0833333333333332*G0_0_0_0_0_0_2 + 0.0416666666666666*G1_0_0_0_0_0 + 0.0416666666666666*G1_0_0_0_0_1 + 0.0833333333333332*G1_0_0_0_0_2 - 0.0416666666666666*G2_0_0_0_0_0 - 0.0416666666666666*G2_0_0_0_0_1 - 0.0833333333333332*G2_0_0_0_0_2 + 0.0416666666666666*G3_0_0_0_0 + 0.0416666666666666*G3_0_0_0_1 + 0.0833333333333332*G3_0_0_0_2 - 0.0208333333333333*G4_0_0_0_0 - 0.0208333333333333*G4_0_0_0_1 - 0.0416666666666666*G4_0_0_0_2 + 0.0208333333333333*G5_0_0_0 + 0.0208333333333333*G5_0_0_1 + 0.0416666666666666*G5_0_0_2 - 0.0416666666666666*G6_0_0_0_0 - 0.0416666666666666*G6_0_0_0_1 - 0.0833333333333332*G6_0_0_0_2 - 0.0208333333333333*G7_0_0_0_0_0_0 - 0.0208333333333333*G7_0_0_0_0_0_1 - 0.0416666666666666*G7_0_0_0_0_0_2 + 0.0208333333333333*G8_0_0_0_0_0 + 0.0208333333333333*G8_0_0_0_0_1 + 0.0416666666666666*G8_0_0_0_0_2 + 0.0416666666666666*G9_0_0_0_0_0_0 + 0.0416666666666666*G9_0_0_0_0_0_1 + 0.0833333333333332*G9_0_0_0_0_0_2 + 0.5*G10_0_0_0_1_0 + 0.5*G10_0_0_0_1_1 - 0.5*G10_0_0_1_1_0 - 0.5*G10_0_0_2_1_1 + 0.5*G11_0_0_0_1_0_0_0 + 0.5*G11_0_0_0_1_1_0_0 - 0.5*G11_0_0_1_1_0_0_0 - 0.5*G11_0_0_2_1_1_0_0 + 0.5*G11_0_0_3_1_0_1_0 + 0.5*G11_0_0_3_1_1_1_0 - 0.5*G11_0_0_4_1_0_1_0 - 0.5*G11_0_0_5_1_1_1_0 + 0.166666666666667*G12_0;
+    A[3] = -0.0833333333333332*G0_0_0_0_0_0_3 - 0.0416666666666666*G0_0_0_0_0_0_4 - 0.0416666666666666*G0_0_0_0_0_0_5 + 0.0833333333333332*G1_0_0_0_0_3 + 0.0416666666666666*G1_0_0_0_0_4 + 0.0416666666666666*G1_0_0_0_0_5 - 0.0833333333333332*G2_0_0_0_0_3 - 0.0416666666666666*G2_0_0_0_0_4 - 0.0416666666666666*G2_0_0_0_0_5 + 0.0833333333333332*G3_0_0_0_3 + 0.0416666666666666*G3_0_0_0_4 + 0.0416666666666666*G3_0_0_0_5 - 0.0416666666666666*G4_0_0_0_3 - 0.0208333333333333*G4_0_0_0_4 - 0.0208333333333333*G4_0_0_0_5 + 0.0416666666666666*G5_0_0_3 + 0.0208333333333333*G5_0_0_4 + 0.0208333333333333*G5_0_0_5 - 0.0833333333333332*G6_0_0_0_3 - 0.0416666666666666*G6_0_0_0_4 - 0.0416666666666666*G6_0_0_0_5 - 0.0416666666666666*G7_0_0_0_0_0_3 - 0.0208333333333333*G7_0_0_0_0_0_4 - 0.0208333333333333*G7_0_0_0_0_0_5 + 0.0416666666666666*G8_0_0_0_0_3 + 0.0208333333333333*G8_0_0_0_0_4 + 0.0208333333333333*G8_0_0_0_0_5 + 0.0833333333333332*G9_0_0_0_0_0_3 + 0.0416666666666666*G9_0_0_0_0_0_4 + 0.0416666666666666*G9_0_0_0_0_0_5 - 0.5*G10_0_0_3_0_0 - 0.5*G10_0_0_3_0_1 - 0.5*G10_0_0_3_1_0 - 0.5*G10_0_0_3_1_1 + 0.5*G10_0_0_4_0_0 + 0.5*G10_0_0_4_1_0 + 0.5*G10_0_0_5_0_1 + 0.5*G10_0_0_5_1_1 - 0.5*G11_0_0_0_0_0_0_1 - 0.5*G11_0_0_0_0_1_0_1 - 0.5*G11_0_0_0_1_0_0_1 - 0.5*G11_0_0_0_1_1_0_1 + 0.5*G11_0_0_1_0_0_0_1 + 0.5*G11_0_0_1_1_0_0_1 + 0.5*G11_0_0_2_0_1_0_1 + 0.5*G11_0_0_2_1_1_0_1 - 0.5*G11_0_0_3_0_0_1_1 - 0.5*G11_0_0_3_0_1_1_1 - 0.5*G11_0_0_3_1_0_1_1 - 0.5*G11_0_0_3_1_1_1_1 + 0.5*G11_0_0_4_0_0_1_1 + 0.5*G11_0_0_4_1_0_1_1 + 0.5*G11_0_0_5_0_1_1_1 + 0.5*G11_0_0_5_1_1_1_1 + 0.166666666666667*G12_1;
+    A[4] = -0.0416666666666666*G0_0_0_0_0_0_3 - 0.0833333333333332*G0_0_0_0_0_0_4 - 0.0416666666666666*G0_0_0_0_0_0_5 + 0.0416666666666666*G1_0_0_0_0_3 + 0.0833333333333332*G1_0_0_0_0_4 + 0.0416666666666666*G1_0_0_0_0_5 - 0.0416666666666666*G2_0_0_0_0_3 - 0.0833333333333332*G2_0_0_0_0_4 - 0.0416666666666666*G2_0_0_0_0_5 + 0.0416666666666666*G3_0_0_0_3 + 0.0833333333333332*G3_0_0_0_4 + 0.0416666666666666*G3_0_0_0_5 - 0.0208333333333333*G4_0_0_0_3 - 0.0416666666666666*G4_0_0_0_4 - 0.0208333333333333*G4_0_0_0_5 + 0.0208333333333333*G5_0_0_3 + 0.0416666666666666*G5_0_0_4 + 0.0208333333333333*G5_0_0_5 - 0.0416666666666666*G6_0_0_0_3 - 0.0833333333333332*G6_0_0_0_4 - 0.0416666666666666*G6_0_0_0_5 - 0.0208333333333333*G7_0_0_0_0_0_3 - 0.0416666666666666*G7_0_0_0_0_0_4 - 0.0208333333333333*G7_0_0_0_0_0_5 + 0.0208333333333333*G8_0_0_0_0_3 + 0.0416666666666666*G8_0_0_0_0_4 + 0.0208333333333333*G8_0_0_0_0_5 + 0.0416666666666666*G9_0_0_0_0_0_3 + 0.0833333333333332*G9_0_0_0_0_0_4 + 0.0416666666666666*G9_0_0_0_0_0_5 + 0.5*G10_0_0_3_0_0 + 0.5*G10_0_0_3_0_1 - 0.5*G10_0_0_4_0_0 - 0.5*G10_0_0_5_0_1 + 0.5*G11_0_0_0_0_0_0_1 + 0.5*G11_0_0_0_0_1_0_1 - 0.5*G11_0_0_1_0_0_0_1 - 0.5*G11_0_0_2_0_1_0_1 + 0.5*G11_0_0_3_0_0_1_1 + 0.5*G11_0_0_3_0_1_1_1 - 0.5*G11_0_0_4_0_0_1_1 - 0.5*G11_0_0_5_0_1_1_1 + 0.166666666666667*G12_1;
+    A[5] = -0.0416666666666666*G0_0_0_0_0_0_3 - 0.0416666666666666*G0_0_0_0_0_0_4 - 0.0833333333333332*G0_0_0_0_0_0_5 + 0.0416666666666666*G1_0_0_0_0_3 + 0.0416666666666666*G1_0_0_0_0_4 + 0.0833333333333332*G1_0_0_0_0_5 - 0.0416666666666666*G2_0_0_0_0_3 - 0.0416666666666666*G2_0_0_0_0_4 - 0.0833333333333332*G2_0_0_0_0_5 + 0.0416666666666666*G3_0_0_0_3 + 0.0416666666666666*G3_0_0_0_4 + 0.0833333333333332*G3_0_0_0_5 - 0.0208333333333333*G4_0_0_0_3 - 0.0208333333333333*G4_0_0_0_4 - 0.0416666666666666*G4_0_0_0_5 + 0.0208333333333333*G5_0_0_3 + 0.0208333333333333*G5_0_0_4 + 0.0416666666666666*G5_0_0_5 - 0.0416666666666666*G6_0_0_0_3 - 0.0416666666666666*G6_0_0_0_4 - 0.0833333333333332*G6_0_0_0_5 - 0.0208333333333333*G7_0_0_0_0_0_3 - 0.0208333333333333*G7_0_0_0_0_0_4 - 0.0416666666666666*G7_0_0_0_0_0_5 + 0.0208333333333333*G8_0_0_0_0_3 + 0.0208333333333333*G8_0_0_0_0_4 + 0.0416666666666666*G8_0_0_0_0_5 + 0.0416666666666666*G9_0_0_0_0_0_3 + 0.0416666666666666*G9_0_0_0_0_0_4 + 0.0833333333333332*G9_0_0_0_0_0_5 + 0.5*G10_0_0_3_1_0 + 0.5*G10_0_0_3_1_1 - 0.5*G10_0_0_4_1_0 - 0.5*G10_0_0_5_1_1 + 0.5*G11_0_0_0_1_0_0_1 + 0.5*G11_0_0_0_1_1_0_1 - 0.5*G11_0_0_1_1_0_0_1 - 0.5*G11_0_0_2_1_1_0_1 + 0.5*G11_0_0_3_1_0_1_1 + 0.5*G11_0_0_3_1_1_1_1 - 0.5*G11_0_0_4_1_0_1_1 - 0.5*G11_0_0_5_1_1_1_1 + 0.166666666666667*G12_1;
   }
 
 };
@@ -25623,7 +27913,7 @@ public:
     
     // Number of operations to compute element tensor = 74
     // Compute coefficients
-    const double c10_0_0_0 = w[10][0];
+    const double c11_0_0_0 = w[11][0];
     const double c5_0_1_0 = w[5][0];
     const double c5_0_1_1 = w[5][1];
     const double c5_0_1_2 = w[5][2];
@@ -25636,7 +27926,7 @@ public:
     const double c5_1_0_3 = w[5][3];
     const double c5_1_0_4 = w[5][4];
     const double c5_1_0_5 = w[5][5];
-    const double c10_2_0_0 = w[10][0];
+    const double c11_2_0_0 = w[11][0];
     const double c3_2_1_0 = w[3][0];
     const double c3_2_1_1 = w[3][1];
     const double c3_2_1_2 = w[3][2];
@@ -25646,24 +27936,24 @@ public:
     
     // Compute geometry tensors
     // Number of operations to compute decalrations = 30
-    const double G0_0_0 = det*c10_0_0_0*c5_0_1_0;
-    const double G0_0_1 = det*c10_0_0_0*c5_0_1_1;
-    const double G0_0_2 = det*c10_0_0_0*c5_0_1_2;
-    const double G0_0_3 = det*c10_0_0_0*c5_0_1_3;
-    const double G0_0_4 = det*c10_0_0_0*c5_0_1_4;
-    const double G0_0_5 = det*c10_0_0_0*c5_0_1_5;
+    const double G0_0_0 = det*c11_0_0_0*c5_0_1_0;
+    const double G0_0_1 = det*c11_0_0_0*c5_0_1_1;
+    const double G0_0_2 = det*c11_0_0_0*c5_0_1_2;
+    const double G0_0_3 = det*c11_0_0_0*c5_0_1_3;
+    const double G0_0_4 = det*c11_0_0_0*c5_0_1_4;
+    const double G0_0_5 = det*c11_0_0_0*c5_0_1_5;
     const double G1_0 = det*c5_1_0_0;
     const double G1_1 = det*c5_1_0_1;
     const double G1_2 = det*c5_1_0_2;
     const double G1_3 = det*c5_1_0_3;
     const double G1_4 = det*c5_1_0_4;
     const double G1_5 = det*c5_1_0_5;
-    const double G2_0_0 = det*c10_2_0_0*c3_2_1_0;
-    const double G2_0_1 = det*c10_2_0_0*c3_2_1_1;
-    const double G2_0_2 = det*c10_2_0_0*c3_2_1_2;
-    const double G2_0_3 = det*c10_2_0_0*c3_2_1_3;
-    const double G2_0_4 = det*c10_2_0_0*c3_2_1_4;
-    const double G2_0_5 = det*c10_2_0_0*c3_2_1_5;
+    const double G2_0_0 = det*c11_2_0_0*c3_2_1_0;
+    const double G2_0_1 = det*c11_2_0_0*c3_2_1_1;
+    const double G2_0_2 = det*c11_2_0_0*c3_2_1_2;
+    const double G2_0_3 = det*c11_2_0_0*c3_2_1_3;
+    const double G2_0_4 = det*c11_2_0_0*c3_2_1_4;
+    const double G2_0_5 = det*c11_2_0_0*c3_2_1_5;
     
     // Compute element tensor for all facets
     switch ( facet )
@@ -25734,7 +28024,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "-w6_a0[0]w9_a1[0]([inv]w11_a2[0])([inv]w12_a3[0])([inv]w12_a4[0])w0_a5[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va5[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w6_a0[0]([inv]w11_a1[0])([inv]w12_a2[0])([inv]w12_a3[0])w0_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w6_a0[0]w9_a1[0]([inv]w11_a2[0])([inv]w12_a3[0])w1_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w6_a0[0]([inv]w11_a1[0])([inv]w12_a2[0])w1_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -0.5w6_a0[0]w9_a1[0]([inv]w11_a2[0])w2_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + 0.5w6_a0[0]([inv]w11_a1[0])w2_a2[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va2[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w6_a0[0]w11_a1[0]([inv]w11_a2[0])w2_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w10_a0[0]w8_a1[0]w0_a2[0, 1, 2, 3, 4, 5](dXa3[0, 1]/dxb0[0, 1])(dXa4[0, 1]/dxb0[0, 1]) | va0[0]*((d/dXa3[0, 1])vi0[0, 1, 2, 3, 4, 5][b0[0, 1]])*va1[0]*((d/dXa4[0, 1])va2[0, 1, 2, 3, 4, 5][b0[0, 1]])*dX(0) + -w10_a0[0]w8_a1[0]w0_a2[0, 1, 2, 3, 4, 5](dXa3[0, 1]/dxa5[0, 1])(dXa4[0, 1]/dxa6[0, 1]) | va0[0]*((d/dXa3[0, 1])vi0[0, 1, 2, 3, 4, 5][a6[0, 1]])*va1[0]*((d/dXa4[0, 1])va2[0, 1, 2, 3, 4, 5][a5[0, 1]])*dX(0) + -w10_a0[0]w7_a1[0]w0_a2[0, 1, 2, 3, 4, 5](dXa3[0, 1]/dxa6[0, 1])(dXa4[0, 1]/dxa5[0, 1]) | va0[0]*((d/dXa3[0, 1])vi0[0, 1, 2, 3, 4, 5][a6[0, 1]])*va1[0]*((d/dXa4[0, 1])va2[0, 1, 2, 3, 4, 5][a5[0, 1]])*dX(0) + w4_a0[0, 1] | vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va0[0, 1][b0[0, 1]]*dX(0) + -w10_a0[0]w5_a1[0, 1, 2, 3, 4, 5] | va0[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va1[0, 1, 2, 3, 4, 5][b0[0, 1]]*ds(3) + w5_a0[0, 1, 2, 3, 4, 5] | vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va0[0, 1, 2, 3, 4, 5][b0[0, 1]]*ds(3) + w10_a0[0]w3_a1[0, 1, 2, 3, 4, 5] | va0[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va1[0, 1, 2, 3, 4, 5][b0[0, 1]]*ds(3)";
+    return "-w6_a0[0]w10_a1[0]([inv]w12_a2[0])([inv]w14_a3[0])([inv]w14_a4[0])w0_a5[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va5[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w6_a0[0]([inv]w12_a1[0])([inv]w14_a2[0])([inv]w14_a3[0])w0_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w6_a0[0]w10_a1[0]([inv]w12_a2[0])([inv]w14_a3[0])w1_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w6_a0[0]([inv]w12_a1[0])([inv]w14_a2[0])w1_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -0.5w6_a0[0]w10_a1[0]([inv]w12_a2[0])w2_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + 0.5w6_a0[0]([inv]w12_a1[0])w2_a2[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va2[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w6_a0[0]w12_a1[0]([inv]w12_a2[0])w2_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w7_a0[0]w11_a1[0]w13_a2[0]([inv]w12_a3[0])([inv]w14_a4[0])w0_a5[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va5[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w7_a0[0]w13_a1[0]([inv]w12_a2[0])([inv]w14_a3[0])w0_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w7_a0[0]w11_a1[0]w13_a2[0]([inv]w12_a3[0])w1_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w7_a0[0]w13_a1[0]([inv]w12_a2[0])w1_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w7_a0[0]w12_a1[0]([inv]w12_a2[0])w1_a3[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va3[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -0.5w7_a0[0]w13_a1[0]w11_a2[0]w14_a3[0]([inv]w12_a4[0])w2_a5[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va5[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + 0.5w7_a0[0]w13_a1[0]w14_a2[0]([inv]w12_a3[0])w2_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + w7_a0[0]w12_a1[0]w11_a2[0]w14_a3[0]([inv]w12_a4[0])w2_a5[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*va4[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va5[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w7_a0[0]w12_a1[0]w14_a2[0]([inv]w12_a3[0])w2_a4[0, 1, 2, 3, 4, 5] | va0[0]*va1[0]*va2[0]*va3[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va4[0, 1, 2, 3, 4, 5][b0[0, 1]]*dX(0) + -w11_a0[0]w9_a1[0]w0_a2[0, 1, 2, 3, 4, 5](dXa3[0, 1]/dxb0[0, 1])(dXa4[0, 1]/dxb0[0, 1]) | va0[0]*((d/dXa3[0, 1])vi0[0, 1, 2, 3, 4, 5][b0[0, 1]])*va1[0]*((d/dXa4[0, 1])va2[0, 1, 2, 3, 4, 5][b0[0, 1]])*dX(0) + -w11_a0[0]w9_a1[0]w0_a2[0, 1, 2, 3, 4, 5](dXa3[0, 1]/dxa5[0, 1])(dXa4[0, 1]/dxa6[0, 1]) | va0[0]*((d/dXa3[0, 1])vi0[0, 1, 2, 3, 4, 5][a6[0, 1]])*va1[0]*((d/dXa4[0, 1])va2[0, 1, 2, 3, 4, 5][a5[0, 1]])*dX(0) + -w11_a0[0]w8_a1[0]w0_a2[0, 1, 2, 3, 4, 5](dXa3[0, 1]/dxa6[0, 1])(dXa4[0, 1]/dxa5[0, 1]) | va0[0]*((d/dXa3[0, 1])vi0[0, 1, 2, 3, 4, 5][a6[0, 1]])*va1[0]*((d/dXa4[0, 1])va2[0, 1, 2, 3, 4, 5][a5[0, 1]])*dX(0) + w4_a0[0, 1] | vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va0[0, 1][b0[0, 1]]*dX(0) + -w11_a0[0]w5_a1[0, 1, 2, 3, 4, 5] | va0[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va1[0, 1, 2, 3, 4, 5][b0[0, 1]]*ds(3) + w5_a0[0, 1, 2, 3, 4, 5] | vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va0[0, 1, 2, 3, 4, 5][b0[0, 1]]*ds(3) + w11_a0[0]w3_a1[0, 1, 2, 3, 4, 5] | va0[0]*vi0[0, 1, 2, 3, 4, 5][b0[0, 1]]*va1[0, 1, 2, 3, 4, 5][b0[0, 1]]*ds(3)";
   }
 
   /// Return the rank of the global tensor (r)
@@ -25746,7 +28036,7 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 13;
+    return 15;
   }
 
   /// Return the number of cell integrals
@@ -25814,6 +28104,12 @@ public:
     case 13:
       return new UFC_ElastoDynamicsLinearForm_finite_element_13();
       break;
+    case 14:
+      return new UFC_ElastoDynamicsLinearForm_finite_element_14();
+      break;
+    case 15:
+      return new UFC_ElastoDynamicsLinearForm_finite_element_15();
+      break;
     }
     return 0;
   }
@@ -25864,6 +28160,12 @@ public:
       break;
     case 13:
       return new UFC_ElastoDynamicsLinearForm_dof_map_13();
+      break;
+    case 14:
+      return new UFC_ElastoDynamicsLinearForm_dof_map_14();
+      break;
+    case 15:
+      return new UFC_ElastoDynamicsLinearForm_dof_map_15();
       break;
     }
     return 0;
@@ -25947,8 +28249,8 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -25961,8 +28263,8 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -25975,8 +28277,8 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -25989,8 +28291,8 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26003,8 +28305,8 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26017,8 +28319,8 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace5(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26031,8 +28333,36 @@ public:
 
   ElastoDynamicsBilinearFormCoefficientSpace6(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ElastoDynamicsBilinearFormCoefficientSpace7 : public dolfin::FunctionSpace
+{
+public:
+
+  ElastoDynamicsBilinearFormCoefficientSpace7(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ElastoDynamicsBilinearFormCoefficientSpace8 : public dolfin::FunctionSpace
+{
+public:
+
+  ElastoDynamicsBilinearFormCoefficientSpace8(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26143,8 +28473,8 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace6(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26157,8 +28487,8 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace7(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26171,8 +28501,8 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace8(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26185,8 +28515,8 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace9(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26199,8 +28529,8 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace10(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26213,8 +28543,8 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace11(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26227,8 +28557,36 @@ public:
 
   ElastoDynamicsLinearFormCoefficientSpace12(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_13()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_13()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ElastoDynamicsLinearFormCoefficientSpace13 : public dolfin::FunctionSpace
+{
+public:
+
+  ElastoDynamicsLinearFormCoefficientSpace13(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
+  {
+    // Do nothing
+  }
+
+};
+
+class ElastoDynamicsLinearFormCoefficientSpace14 : public dolfin::FunctionSpace
+{
+public:
+
+  ElastoDynamicsLinearFormCoefficientSpace14(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
   {
     // Do nothing
   }
@@ -26345,7 +28703,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "lmbda";
+    return "eta";
   }
   
 };
@@ -26381,7 +28739,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "mu";
+    return "lmbda";
   }
   
 };
@@ -26417,7 +28775,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "alpha_m";
+    return "mu";
   }
   
 };
@@ -26453,7 +28811,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "alpha_f";
+    return "alpha_m";
   }
   
 };
@@ -26489,7 +28847,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "beta";
+    return "alpha_f";
   }
   
 };
@@ -26525,6 +28883,78 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
+    return "beta";
+  }
+  
+};
+class ElastoDynamicsBilinearFormCoefficient7 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ElastoDynamicsBilinearFormCoefficient7(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ElastoDynamicsBilinearFormCoefficient7() {}
+
+  // Attach function to coefficient
+  const ElastoDynamicsBilinearFormCoefficient7& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ElastoDynamicsBilinearFormCoefficientSpace7(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 7;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "gamma";
+  }
+  
+};
+class ElastoDynamicsBilinearFormCoefficient8 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ElastoDynamicsBilinearFormCoefficient8(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ElastoDynamicsBilinearFormCoefficient8() {}
+
+  // Attach function to coefficient
+  const ElastoDynamicsBilinearFormCoefficient8& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ElastoDynamicsBilinearFormCoefficientSpace8(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 8;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
     return "dt";
   }
   
@@ -26534,13 +28964,15 @@ class ElastoDynamicsBilinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  ElastoDynamicsBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V1);
 
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
@@ -26553,11 +28985,13 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  ElastoDynamicsBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
 
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
@@ -26570,7 +29004,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  ElastoDynamicsBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6) : dolfin::Form(), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -26584,20 +29018,24 @@ public:
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->rho = w0;
-    this->lmbda = w1;
-    this->mu = w2;
-    this->alpha_m = w3;
-    this->alpha_f = w4;
-    this->beta = w5;
-    this->dt = w6;
+    this->eta = w1;
+    this->lmbda = w2;
+    this->mu = w3;
+    this->alpha_m = w4;
+    this->alpha_f = w5;
+    this->beta = w6;
+    this->gamma = w7;
+    this->dt = w8;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsBilinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ElastoDynamicsBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6) : dolfin::Form(), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -26609,14 +29047,18 @@ public:
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->rho = w0;
-    this->lmbda = w1;
-    this->mu = w2;
-    this->alpha_m = w3;
-    this->alpha_f = w4;
-    this->beta = w5;
-    this->dt = w6;
+    this->eta = w1;
+    this->lmbda = w2;
+    this->mu = w3;
+    this->alpha_m = w4;
+    this->alpha_f = w5;
+    this->beta = w6;
+    this->gamma = w7;
+    this->dt = w8;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsBilinearForm());
   }
@@ -26626,12 +29068,14 @@ public:
 
   // Coefficients
   ElastoDynamicsBilinearFormCoefficient0 rho;
-  ElastoDynamicsBilinearFormCoefficient1 lmbda;
-  ElastoDynamicsBilinearFormCoefficient2 mu;
-  ElastoDynamicsBilinearFormCoefficient3 alpha_m;
-  ElastoDynamicsBilinearFormCoefficient4 alpha_f;
-  ElastoDynamicsBilinearFormCoefficient5 beta;
-  ElastoDynamicsBilinearFormCoefficient6 dt;
+  ElastoDynamicsBilinearFormCoefficient1 eta;
+  ElastoDynamicsBilinearFormCoefficient2 lmbda;
+  ElastoDynamicsBilinearFormCoefficient3 mu;
+  ElastoDynamicsBilinearFormCoefficient4 alpha_m;
+  ElastoDynamicsBilinearFormCoefficient5 alpha_f;
+  ElastoDynamicsBilinearFormCoefficient6 beta;
+  ElastoDynamicsBilinearFormCoefficient7 gamma;
+  ElastoDynamicsBilinearFormCoefficient8 dt;
 
 };
 
@@ -26919,7 +29363,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "lmbda";
+    return "eta";
   }
   
 };
@@ -26955,7 +29399,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "mu";
+    return "lmbda";
   }
   
 };
@@ -26991,7 +29435,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "alpha_m";
+    return "mu";
   }
   
 };
@@ -27027,7 +29471,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "alpha_f";
+    return "alpha_m";
   }
   
 };
@@ -27063,7 +29507,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "beta";
+    return "alpha_f";
   }
   
 };
@@ -27099,6 +29543,78 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
+    return "beta";
+  }
+  
+};
+class ElastoDynamicsLinearFormCoefficient13 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ElastoDynamicsLinearFormCoefficient13(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ElastoDynamicsLinearFormCoefficient13() {}
+
+  // Attach function to coefficient
+  const ElastoDynamicsLinearFormCoefficient13& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ElastoDynamicsLinearFormCoefficientSpace13(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 13;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
+    return "gamma";
+  }
+  
+};
+class ElastoDynamicsLinearFormCoefficient14 : public dolfin::Coefficient
+{
+public:
+
+  // Constructor
+  ElastoDynamicsLinearFormCoefficient14(dolfin::Form& form) : dolfin::Coefficient(form) {}
+
+  // Destructor  
+  ~ElastoDynamicsLinearFormCoefficient14() {}
+
+  // Attach function to coefficient
+  const ElastoDynamicsLinearFormCoefficient14& operator= (dolfin::Function& v)
+  {
+    attach(v);
+    return *this;
+  }
+
+  /// Create function space for coefficient
+  const dolfin::FunctionSpace* create_function_space() const
+  {
+    return new ElastoDynamicsLinearFormCoefficientSpace14(form.mesh());
+  }
+  
+  /// Return coefficient number
+  dolfin::uint number() const
+  {
+    return 14;
+  }
+  
+  /// Return coefficient name
+  virtual std::string name() const
+  {
     return "dt";
   }
   
@@ -27108,11 +29624,13 @@ class ElastoDynamicsLinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  ElastoDynamicsLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
@@ -27131,10 +29649,12 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  ElastoDynamicsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     _function_spaces.push_back(V0);
 
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
@@ -27153,7 +29673,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  ElastoDynamicsLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8, dolfin::Function& w9, dolfin::Function& w10, dolfin::Function& w11, dolfin::Function& w12) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8, dolfin::Function& w9, dolfin::Function& w10, dolfin::Function& w11, dolfin::Function& w12, dolfin::Function& w13, dolfin::Function& w14) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -27171,6 +29691,8 @@ public:
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->u0 = w0;
     this->v0 = w1;
@@ -27179,18 +29701,20 @@ public:
     this->f = w4;
     this->p = w5;
     this->rho = w6;
-    this->lmbda = w7;
-    this->mu = w8;
-    this->alpha_m = w9;
-    this->alpha_f = w10;
-    this->beta = w11;
-    this->dt = w12;
+    this->eta = w7;
+    this->lmbda = w8;
+    this->mu = w9;
+    this->alpha_m = w10;
+    this->alpha_f = w11;
+    this->beta = w12;
+    this->gamma = w13;
+    this->dt = w14;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  ElastoDynamicsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8, dolfin::Function& w9, dolfin::Function& w10, dolfin::Function& w11, dolfin::Function& w12) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), dt(*this)
+  ElastoDynamicsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8, dolfin::Function& w9, dolfin::Function& w10, dolfin::Function& w11, dolfin::Function& w12, dolfin::Function& w13, dolfin::Function& w14) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -27207,6 +29731,8 @@ public:
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
     this->u0 = w0;
     this->v0 = w1;
@@ -27215,12 +29741,14 @@ public:
     this->f = w4;
     this->p = w5;
     this->rho = w6;
-    this->lmbda = w7;
-    this->mu = w8;
-    this->alpha_m = w9;
-    this->alpha_f = w10;
-    this->beta = w11;
-    this->dt = w12;
+    this->eta = w7;
+    this->lmbda = w8;
+    this->mu = w9;
+    this->alpha_m = w10;
+    this->alpha_f = w11;
+    this->beta = w12;
+    this->gamma = w13;
+    this->dt = w14;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsLinearForm());
   }
@@ -27236,12 +29764,14 @@ public:
   ElastoDynamicsLinearFormCoefficient4 f;
   ElastoDynamicsLinearFormCoefficient5 p;
   ElastoDynamicsLinearFormCoefficient6 rho;
-  ElastoDynamicsLinearFormCoefficient7 lmbda;
-  ElastoDynamicsLinearFormCoefficient8 mu;
-  ElastoDynamicsLinearFormCoefficient9 alpha_m;
-  ElastoDynamicsLinearFormCoefficient10 alpha_f;
-  ElastoDynamicsLinearFormCoefficient11 beta;
-  ElastoDynamicsLinearFormCoefficient12 dt;
+  ElastoDynamicsLinearFormCoefficient7 eta;
+  ElastoDynamicsLinearFormCoefficient8 lmbda;
+  ElastoDynamicsLinearFormCoefficient9 mu;
+  ElastoDynamicsLinearFormCoefficient10 alpha_m;
+  ElastoDynamicsLinearFormCoefficient11 alpha_f;
+  ElastoDynamicsLinearFormCoefficient12 beta;
+  ElastoDynamicsLinearFormCoefficient13 gamma;
+  ElastoDynamicsLinearFormCoefficient14 dt;
 
 };
 
