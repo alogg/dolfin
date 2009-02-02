@@ -1,8 +1,7 @@
 // This file is used for testing parallel assembly
-//
-// To run this demo, make sure to build DOLFIN with the flag customCxxFlags=-DHAS_PARMETIS=1
 
 #include <dolfin.h>
+#include <dolfin/main/MPI.h>
 
 using namespace dolfin;
 
@@ -10,7 +9,12 @@ int main(int argc, char* argv[])
 {
   // Read in mesh from XML file in parallel
   Mesh mesh("unitsquare.xml.gz");
-  dolfin::cout << mesh << dolfin::endl;
+  
+  // Store partition to file
+  char filename[100];
+  sprintf(filename, "mesh_part_%d.xml.gz", dolfin::MPI::process_number());
+  File file(filename);
+  file << mesh;
 
   return 0;
 }

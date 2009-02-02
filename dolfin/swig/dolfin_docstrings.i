@@ -64,67 +64,16 @@ Destructor. ";
 This class provides automated assembly of linear systems, or more
 generally, assembly of a sparse tensor from a given variational form.
 
-C++ includes: Assembler.h ";
-
-%feature("docstring")  dolfin::Assembler::Assembler "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::Assembler::~Assembler "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble tensor from given variational form. ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble system (A, b) and apply Dirichlet boundary condition from
-given variational forms ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble system (A, b) and apply Dirichlet boundary conditions from
-given variational forms ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble tensor from given variational form over a sub domain. ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble tensor from given variational form over a sub domain.
-
-Assemble tensor from given variational form over sub domains ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble scalar from given variational form. ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble scalar from given variational form over a sub domain. ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble scalar from given variational form over sub domains. ";
-
-%feature("docstring")  dolfin::Assembler::assemble "
-
-Assemble tensor from given (UFC) form, coefficients and sub domains.
-This is the main assembly function in DOLFIN. All other assembly
-functions end up calling this function.
-
 The MeshFunction arguments can be used to specify assembly over
-subdomains of the mesh cells, exterior facets and interior facets.
+subdomains of the mesh cells, exterior facets or interior facets.
 Either a null pointer or an empty MeshFunction may be used to specify
 that the tensor should be assembled over the entire set of cells or
-facets. ";
+facets.
 
-%feature("docstring")  dolfin::Assembler::assemble_system "
+Note that the assemble_system() functions apply boundary conditions
+symmetrically.
 
-Assemble linear system Ax = b and enforce Dirichlet conditions. ";
+C++ includes: Assembler.h ";
 
 
 // File: classdolfin_1_1AvgMeshSize.xml
@@ -139,9 +88,13 @@ C++ includes: SpecialFunctions.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "
+
+Constructor. ";
+
 %feature("docstring")  dolfin::AvgMeshSize::eval "
 
-Return average cell size. ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1BlockMatrix.xml
@@ -151,11 +104,17 @@ Return average cell size. ";
 
 %feature("docstring")  dolfin::BlockMatrix::~BlockMatrix "";
 
-%feature("docstring")  dolfin::BlockMatrix::set "";
+%feature("docstring")  dolfin::BlockMatrix::set "
 
-%feature("docstring")  dolfin::BlockMatrix::getc "";
+Set block. ";
 
-%feature("docstring")  dolfin::BlockMatrix::get "";
+%feature("docstring")  dolfin::BlockMatrix::get "
+
+Get block (const version). ";
+
+%feature("docstring")  dolfin::BlockMatrix::get "
+
+Get block. ";
 
 %feature("docstring")  dolfin::BlockMatrix::size "
 
@@ -193,9 +152,13 @@ Destructor. ";
 
 Return copy of tensor. ";
 
-%feature("docstring")  dolfin::BlockVector::set "";
+%feature("docstring")  dolfin::BlockVector::set "
 
-%feature("docstring")  dolfin::BlockVector::getc "";
+Set function. ";
+
+%feature("docstring")  dolfin::BlockVector::get "
+
+Get functions (const and non-const). ";
 
 %feature("docstring")  dolfin::BlockVector::get "";
 
@@ -245,19 +208,24 @@ Destructor. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a matrix. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system for a nonlinear problem. ";
+Apply boundary condition to a linear system. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 
-Apply boundary condition to linear system for a nonlinear problem. ";
+Apply boundary condition to a vector for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::BoundaryCondition::apply "
+
+Apply boundary condition to a linear system for a nonlinear problem.
+";
 
 
 // File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
@@ -347,6 +315,14 @@ Compute normal of given facet with respect to the cell. ";
 %feature("docstring")  dolfin::Cell::facetArea "
 
 Compute the area/length of given facet with respect to the cell. ";
+
+%feature("docstring")  dolfin::Cell::order "
+
+Order entities locally. ";
+
+%feature("docstring")  dolfin::Cell::ordered "
+
+Check if entities are ordered. ";
 
 %feature("docstring")  dolfin::Cell::intersects "
 
@@ -532,6 +508,81 @@ Return time step for real-valued ODE. ";
 Update for real-valued ODE. ";
 
 
+// File: classdolfin_1_1Constant.xml
+%feature("docstring") dolfin::Constant "
+
+This class implements the functionality for functions that take a
+single constant value.
+
+C++ includes: Constant.h ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant scalar function with given value. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant vector function with given size and value. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant vector function with given size and values. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create constant tensor function with given shape and values. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::Constant::~Constant "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Constant::eval "
+
+Function evaluation. ";
+
+
+// File: classdolfin_1_1Data.xml
+%feature("docstring") dolfin::Data "
+
+This class holds data for function evaluation, including the
+coordinates x, the time t, and auxiliary data that a function may
+depend on.
+
+C++ includes: Data.h ";
+
+%feature("docstring")  dolfin::Data::Data "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::Data::Data "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::Data::~Data "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Data::cell "
+
+Return current cell (if available). ";
+
+%feature("docstring")  dolfin::Data::facet "
+
+Return current facet (if available). ";
+
+%feature("docstring")  dolfin::Data::normal "
+
+Return current facet normal (if available). ";
+
+%feature("docstring")  dolfin::Data::on_facet "
+
+Check if we are on a facet. ";
+
+
 // File: classdolfin_1_1DefaultFactory.xml
 %feature("docstring") dolfin::DefaultFactory "";
 
@@ -616,8 +667,8 @@ u = g on G,
 where u is the solution to be computed, g is a function and G is a sub
 domain of the mesh.
 
-A DirichletBC is specified by the Function g, the Mesh, and boundary
-indicators on (a subset of) the mesh boundary.
+A DirichletBC is specified by the Function g, the FunctionSpace (trial
+space) and boundary indicators on (a subset of) the mesh boundary.
 
 The boundary indicators may be specified in a number of different
 ways.
@@ -634,37 +685,19 @@ The third option is to attach the boundary information to the mesh.
 This is handled automatically when exporting a mesh from for example
 VMTK.
 
-For mixed systems (vector-valued and mixed elements), an optional set
-of parameters may be used to specify for which sub system the boundary
-condition should be specified.
-
 C++ includes: DirichletBC.h ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Create boundary condition for sub domain. ";
+Create boundary condition for subdomain. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
-Create boundary condition for sub domain specified by index. ";
+Create boundary condition for subdomain specified by index. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
 Create boundary condition for boundary data included in the mesh. ";
-
-%feature("docstring")  dolfin::DirichletBC::DirichletBC "
-
-Create sub system boundary condition for sub domain. ";
-
-%feature("docstring")  dolfin::DirichletBC::DirichletBC "
-
-Create sub system boundary condition for sub domain specified by
-index. ";
-
-%feature("docstring")  dolfin::DirichletBC::DirichletBC "
-
-Create sub system boundary condition for boundary data included in the
-mesh. ";
 
 %feature("docstring")  dolfin::DirichletBC::~DirichletBC "
 
@@ -672,7 +705,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a matrix. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
@@ -680,43 +713,23 @@ Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a linear system. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a vector for a nonlinear problem. ";
 
 %feature("docstring")  dolfin::DirichletBC::apply "
 
-Apply boundary condition to linear system for a nonlinear problem. ";
-
-%feature("docstring")  dolfin::DirichletBC::apply "
-
-Apply boundary condition to linear system for a nonlinear problem. ";
-
-%feature("docstring")  dolfin::DirichletBC::apply "
-
-Apply boundary condition to linear system for a nonlinear problem. ";
-
-%feature("docstring")  dolfin::DirichletBC::apply "
-
-Apply boundary condition to linear system for a nonlinear problem. ";
+Apply boundary condition to a linear system for a nonlinear problem.
+";
 
 %feature("docstring")  dolfin::DirichletBC::zero "
 
 Make row associated with boundary conditions zero, useful for non-
 diagonal matrices in a block matrix. ";
 
-%feature("docstring")  dolfin::DirichletBC::zero "
-
-Make row associated with boundary conditions zero, useful for non-
-diagonal matrices in a block matrix. ";
-
-%feature("docstring")  dolfin::DirichletBC::setSubSystem "
-
-Set (or update) value for sub system. ";
-
-%feature("docstring")  dolfin::DirichletBC::getBC "
+%feature("docstring")  dolfin::DirichletBC::get_bc "
 
 Get Dirichlet values and indicators. ";
 
@@ -725,9 +738,24 @@ Get Dirichlet values and indicators. ";
 Check if given function is compatible with boundary condition
 (checking only vertex values). ";
 
-%feature("docstring")  dolfin::DirichletBC::mesh "
 
-Return mesh. ";
+// File: classdolfin_1_1DiscreteFunction.xml
+%feature("docstring") dolfin::DiscreteFunction "
+
+This function is used for the Python interface. By inheriting from
+this function instead of dolfin::Function, we avoid unnecessary calls
+through the SWIG created director class, when dealing with discrete
+functions in PyDOLFIN.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
 
 // File: classdolfin_1_1DofMap.xml
@@ -741,11 +769,11 @@ C++ includes: DofMap.h ";
 
 %feature("docstring")  dolfin::DofMap::DofMap "
 
-Create dof map on mesh. ";
+Create dof map on mesh (may share ufc::dof_map). ";
 
 %feature("docstring")  dolfin::DofMap::DofMap "
 
-Create dof map on mesh (may share ufc::dof_map). ";
+Create dof map on mesh. ";
 
 %feature("docstring")  dolfin::DofMap::DofMap "
 
@@ -771,6 +799,11 @@ Destructor. ";
 
 Return a string identifying the dof map. ";
 
+%feature("docstring")  dolfin::DofMap::needs_mesh_entities "
+
+Return true iff mesh entities of topological dimension d are needed.
+";
+
 %feature("docstring")  dolfin::DofMap::global_dimension "
 
 Return the dimension of the global finite element function space. ";
@@ -795,19 +828,15 @@ Tabulate the local-to-global mapping of dofs on a cell. ";
 
 Tabulate local-local facet dofs. ";
 
-%feature("docstring")  dolfin::DofMap::tabulate_dofs "
-
-Tabulate the local-to-global mapping of dofs on a ufc cell. ";
-
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "";
-
-%feature("docstring")  dolfin::DofMap::mesh "
-
-Return mesh associated with map. ";
 
 %feature("docstring")  dolfin::DofMap::build "
 
 Build parallel dof map. ";
+
+%feature("docstring")  dolfin::DofMap::build "
+
+Build dof map on subdomain. ";
 
 %feature("docstring")  dolfin::DofMap::getMap "
 
@@ -815,7 +844,7 @@ Return renumbering (used for testing). ";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
 
-Extract sub dofmap and offset for sub system. ";
+Extract sub dofmap and offset for component. ";
 
 %feature("docstring")  dolfin::DofMap::offset "
 
@@ -824,65 +853,6 @@ Return offset into parent's vector of coefficients. ";
 %feature("docstring")  dolfin::DofMap::disp "
 
 Display mapping. ";
-
-
-// File: classdolfin_1_1DofMapSet.xml
-%feature("docstring") dolfin::DofMapSet "
-
-This class provides storage and caching of (precomputed) dof maps and
-enables reuse of already computed dof maps with equal signatures.
-
-C++ includes: DofMapSet.h ";
-
-%feature("docstring")  dolfin::DofMapSet::DofMapSet "
-
-Create empty set of dof maps. ";
-
-%feature("docstring")  dolfin::DofMapSet::DofMapSet "
-
-Create set of dof maps. ";
-
-%feature("docstring")  dolfin::DofMapSet::DofMapSet "
-
-Create set of dof maps (parallel). ";
-
-%feature("docstring")  dolfin::DofMapSet::DofMapSet "
-
-Create set of dof maps. ";
-
-%feature("docstring")  dolfin::DofMapSet::DofMapSet "
-
-Create set of dof maps (parallel). ";
-
-%feature("docstring")  dolfin::DofMapSet::~DofMapSet "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::DofMapSet::update "
-
-Update set of dof maps for given form. ";
-
-%feature("docstring")  dolfin::DofMapSet::update "
-
-Update set of dof maps for given form (parallel). ";
-
-%feature("docstring")  dolfin::DofMapSet::update "
-
-Update set of dof maps for given form. ";
-
-%feature("docstring")  dolfin::DofMapSet::update "
-
-Update set of dof maps for given form (parallel). ";
-
-%feature("docstring")  dolfin::DofMapSet::size "
-
-Return number of dof maps. ";
-
-%feature("docstring")  dolfin::DofMapSet::build "
-
-Build parallel dof maps. ";
-
-%feature("docstring")  dolfin::DofMapSet::parallel "";
 
 
 // File: classdolfin_1_1DomainBoundary.xml
@@ -969,7 +939,7 @@ Add cell (tetrahedron) with given vertices. ";
 
 %feature("docstring")  dolfin::DynamicMeshEditor::close "
 
-Close mesh, finish editing. ";
+Close mesh, finish editing, and order entities locally. ";
 
 
 // File: classdolfin_1_1Edge.xml
@@ -1101,12 +1071,17 @@ This function represents the area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::FacetArea::FacetArea "";
+%feature("docstring")  dolfin::FacetArea::FacetArea "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::FacetArea::FacetArea "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::FacetArea::eval "
 
-Evaluate function at given point (overload for scalar user-defined
-function). ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1FacetIterator.xml
@@ -1129,20 +1104,21 @@ that it is only nonzero on cell facets (not on cells).
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::FacetNormal::FacetNormal "";
+%feature("docstring")  dolfin::FacetNormal::FacetNormal "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::FacetNormal::FacetNormal "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::FacetNormal::eval "
 
-Evaluate function at given point (overload for scalar user-defined
-function). ";
+Function evaluation. ";
 
-%feature("docstring")  dolfin::FacetNormal::rank "
+%feature("docstring")  dolfin::FacetNormal::rank "";
 
-Return the rank of the value space. ";
-
-%feature("docstring")  dolfin::FacetNormal::dim "
-
-Return the dimension of the value space for axis i. ";
+%feature("docstring")  dolfin::FacetNormal::dim "";
 
 
 // File: classdolfin_1_1File.xml
@@ -1176,7 +1152,7 @@ C++ includes: FiniteElement.h ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create finite element from UFC finite element pointer. ";
+Create finite element from UFC finite element (data may be shared). ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
@@ -1184,13 +1160,11 @@ Create finite element from UFC finite element. ";
 
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
-Create finite element from UFC finite element.
-
-Create finite element from UFC finite element (data may be shared) ";
-
-%feature("docstring")  dolfin::FiniteElement::FiniteElement "
-
 Create FiniteElement from a signature. ";
+
+%feature("docstring")  dolfin::FiniteElement::~FiniteElement "
+
+Destructor. ";
 
 %feature("docstring")  dolfin::FiniteElement::signature "";
 
@@ -1209,13 +1183,17 @@ dolfin::FiniteElement::interpolate_vertex_values "";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_dof "";
 
-%feature("docstring")  dolfin::FiniteElement::create_sub_element "";
+%feature("docstring")  dolfin::FiniteElement::create_sub_element "
 
-%feature("docstring")  dolfin::FiniteElement::ufc_element "";
+Create sub element. ";
+
+%feature("docstring")  dolfin::FiniteElement::ufc_element "
+
+Return ufc::finite_element. ";
 
 %feature("docstring")  dolfin::FiniteElement::extract_sub_element "
 
-Extract sub finite element for sub system. ";
+Extract sub finite element for component. ";
 
 
 // File: classdolfin_1_1Form.xml
@@ -1229,111 +1207,102 @@ C++ includes: Form.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::Form::Form "
+
+Create form of given rank with given number of coefficients. ";
+
+%feature("docstring")  dolfin::Form::Form "
+
+Create form from given Constructor used in the python interface. ";
+
 %feature("docstring")  dolfin::Form::~Form "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Form::form "
+%feature("docstring")  dolfin::Form::rank "
 
-Return UFC form. ";
+Return rank of form (bilinear form = 2, linear form = 1, functional =
+0, etc). ";
+
+%feature("docstring")  dolfin::Form::mesh "
+
+Return mesh. ";
+
+%feature("docstring")  dolfin::Form::function_space "
+
+Return function space for given argument. ";
+
+%feature("docstring")  dolfin::Form::function_spaces "
+
+Return function spaces for arguments. ";
+
+%feature("docstring")  dolfin::Form::coefficient "
+
+Return function for given coefficient. ";
 
 %feature("docstring")  dolfin::Form::coefficients "
 
-Return array of coefficients. ";
+Return coefficient functions. ";
 
-%feature("docstring")  dolfin::Form::updateDofMaps "
+%feature("docstring")  dolfin::Form::coefficient_number "
 
-Create degree of freedom maps. ";
+Return the number of the coefficient with this name. ";
 
-%feature("docstring")  dolfin::Form::updateFiniteElements "
+%feature("docstring")  dolfin::Form::coefficient_name "
 
-Create finite elements. ";
+Return the name of the coefficient with this number. ";
 
-%feature("docstring")  dolfin::Form::updateDofMaps "
+%feature("docstring")  dolfin::Form::ufc_form "
 
-Create degree of freedom maps. ";
+Return UFC form. ";
 
-%feature("docstring")  dolfin::Form::setDofMaps "
+%feature("docstring")  dolfin::Form::check "
 
-Set degree of freedom maps (not owned). ";
-
-%feature("docstring")  dolfin::Form::dofMaps "
-
-Return DofMapSet. ";
-
-%feature("docstring")  dolfin::Form::finite_element "
-
-Return FiniteElement. ";
+Check function spaces and coefficients. ";
 
 
 // File: classdolfin_1_1Function.xml
 %feature("docstring") dolfin::Function "
 
-This class represents a function that can be evaluated on a mesh. The
-actual representation of the function can vary, but the typical
-representation is in terms of a mesh, a vector of degrees of freedom,
-a finite element and a dof map that determines the distribution of
-degrees of freedom on the mesh.
+This class represents a function u_h in a finite element function
+space V_h, given by
 
-It is also possible to have user-defined functions, either by
-overloading the eval function of this class or by giving a function
-(pointer) that returns the value of the function.
+u_h = sum_i U_i phi_i
+
+where {phi_i}_i is a basis for V_h, and U is a vector of expansion
+coefficients for u_h.
 
 C++ includes: Function.h ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create empty function (read data from file). ";
+Create function (and let DOLFIN figure out the correct function
+space). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create user-defined function (evaluation operator must be overloaded).
-";
+Create function on given function space. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant scalar function from given value. ";
+Create function on given function space with a given vector. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant vector function from given size and value. ";
+Create function on given function space (shared data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant vector function from given size and values. ";
+Create function on given function space with a given vector (shared
+data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create constant tensor function from given shape and values. ";
+Create function from file. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create function from given ufc::function. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create discrete function for argument function i of form. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create discrete function for argument function i of form. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create discrete function for argument function i of form (data may be
-shared). ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create discrete function from sub function. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create function from data file. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create discrete function based on signatures. ";
+Create function from sub function. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1343,76 +1312,136 @@ Copy constructor. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Function::init "
+%feature("docstring")  dolfin::Function::function_space "
 
-Create discrete function for argument function i of form. ";
+Return the function space. ";
 
-%feature("docstring")  dolfin::Function::init "
+%feature("docstring")  dolfin::Function::function_space_ptr "
 
-Create discrete function for argument function i of form. ";
-
-%feature("docstring")  dolfin::Function::type "
-
-Return the type of function. ";
-
-%feature("docstring")  dolfin::Function::rank "
-
-Return the rank of the value space. ";
-
-%feature("docstring")  dolfin::Function::dim "
-
-Return the dimension of the value space for axis i. ";
-
-%feature("docstring")  dolfin::Function::mesh "
-
-Return the mesh. ";
-
-%feature("docstring")  dolfin::Function::dofMap "
-
-Return the DofMap. ";
-
-%feature("docstring")  dolfin::Function::signature "
-
-Return the signature of a DiscreteFunction. ";
+Return the function space. ";
 
 %feature("docstring")  dolfin::Function::vector "
 
-Return the vector associated with a DiscreteFunction. ";
+Return the vector of expansion coefficients (non-const version). ";
 
-%feature("docstring")  dolfin::Function::numSubFunctions "
+%feature("docstring")  dolfin::Function::vector "
 
-Return the number of sub functions (only for discrete functions). ";
+Return the vector of expansion coefficients (const version). ";
+
+%feature("docstring")  dolfin::Function::has_function_space "
+
+Test for the function space. ";
+
+%feature("docstring")  dolfin::Function::in "
+
+Check if function is a member of the given function space. ";
+
+%feature("docstring")  dolfin::Function::geometric_dimension "
+
+Return geometric dimension. ";
+
+%feature("docstring")  dolfin::Function::eval "
+
+Function evaluation (overload for user-defined function, simple
+version). ";
+
+%feature("docstring")  dolfin::Function::eval "
+
+Function evaluation (overload for user-defined function, alternate
+version). ";
+
+%feature("docstring")  dolfin::Function::eval "
+
+Evaluate function v at given point in given cell. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to local function space on cell. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to local function space on cell with check on
+function space. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to given function space. ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
 Interpolate function to vertices of mesh. ";
 
-%feature("docstring")  dolfin::Function::interpolate "
 
-Interpolate function to given local finite element space. ";
+// File: classdolfin_1_1FunctionSpace.xml
+%feature("docstring") dolfin::FunctionSpace "
 
-%feature("docstring")  dolfin::Function::interpolate "
+This class represents a finite element function space defined by a
+mesh, a finite element, and a local-to-global mapping of the degrees
+of freedom (dofmap).
 
-Interpolate function to given global finite element space. ";
+C++ includes: FunctionSpace.h ";
 
-%feature("docstring")  dolfin::Function::update "
+%feature("docstring")  dolfin::FunctionSpace::FunctionSpace "
 
-Make current cell and facet available to user-defined function. ";
+Create function space for given mesh, element and dofmap. ";
 
-%feature("docstring")  dolfin::Function::eval "
+%feature("docstring")  dolfin::FunctionSpace::FunctionSpace "
 
-Evaluate function at given point (used for subclassing through SWIG
-interface). ";
+Create function space for given mesh, element and dofmap (shared
+data). ";
 
-%feature("docstring")  dolfin::Function::eval "
+%feature("docstring")  dolfin::FunctionSpace::FunctionSpace "
 
-Evaluate function at given point (overload for scalar user-defined
-function). ";
+Copy constructor. ";
 
-%feature("docstring")  dolfin::Function::eval "
+%feature("docstring")  dolfin::FunctionSpace::~FunctionSpace "
 
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
+Destructor. ";
+
+%feature("docstring")  dolfin::FunctionSpace::mesh "
+
+Return mesh. ";
+
+%feature("docstring")  dolfin::FunctionSpace::element "
+
+Return finite element. ";
+
+%feature("docstring")  dolfin::FunctionSpace::dofmap "
+
+Return dofmap. ";
+
+%feature("docstring")  dolfin::FunctionSpace::dim "
+
+Return dimension of function space. ";
+
+%feature("docstring")  dolfin::FunctionSpace::eval "
+
+Evaluate function v in function space at given point. ";
+
+%feature("docstring")  dolfin::FunctionSpace::eval "
+
+Evaluate function v in function space at given point in given cell. ";
+
+%feature("docstring")  dolfin::FunctionSpace::interpolate "
+
+Interpolate function v to function space. ";
+
+%feature("docstring")  dolfin::FunctionSpace::interpolate "
+
+Interpolate function v in function space to vertices of mesh. ";
+
+%feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
+
+Extract sub space for component. ";
+
+%feature("docstring")  dolfin::FunctionSpace::attach "";
+
+%feature("docstring")  dolfin::FunctionSpace::restriction "";
+
+%feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
+
+
+// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2058,12 +2087,17 @@ This function represents the inverse area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "";
+%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::InvFacetArea::eval "
 
-Evaluate function at given point (overload for scalar user-defined
-function). ";
+Function evaluation. ";
 
 
 // File: classdolfin_1_1InvMeshSize.xml
@@ -2078,9 +2112,34 @@ C++ includes: SpecialFunctions.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
+
+Constructor. ";
+
 %feature("docstring")  dolfin::InvMeshSize::eval "
 
-Return inverse of cell size. ";
+Function evaluation. ";
+
+
+// File: classdolfin_1_1IsOutflowFacet.xml
+%feature("docstring") dolfin::IsOutflowFacet "
+
+This function determines if the current facet is an outflow facet with
+respect to the current cell. It accepts as argument the mesh and a
+form M = dot(n, v)*ds, a functional, defined on the normal vector to
+the facet and velocity vector integrated over the exterior of the
+cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::IsOutflowFacet::IsOutflowFacet "";
+
+%feature("docstring")  dolfin::IsOutflowFacet::~IsOutflowFacet "";
+
+%feature("docstring")  dolfin::IsOutflowFacet::eval "
+
+Function evaluation (overload for user-defined function, alternate
+version). ";
 
 
 // File: classdolfin_1_1KrylovSolver.xml
@@ -2214,47 +2273,6 @@ Create empty vector. ";
 Create empty sparsity pattern (returning zero if not used/needed). ";
 
 
-// File: classdolfin_1_1LinearPDE.xml
-%feature("docstring") dolfin::LinearPDE "
-
-A LinearPDE represents a (system of) linear partial differential
-equation(s) in variational form: Find u in V such that
-
-a(v, u) = L(v) for all v in V',
-
-where a is a bilinear form and L is a linear form.
-
-C++ includes: LinearPDE.h ";
-
-%feature("docstring")  dolfin::LinearPDE::LinearPDE "
-
-Define a linear PDE with natural boundary conditions. ";
-
-%feature("docstring")  dolfin::LinearPDE::LinearPDE "
-
-Define a linear PDE with a single Dirichlet boundary condition. ";
-
-%feature("docstring")  dolfin::LinearPDE::LinearPDE "
-
-Define a linear PDE with a set of Dirichlet boundary conditions. ";
-
-%feature("docstring")  dolfin::LinearPDE::~LinearPDE "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::LinearPDE::solve "
-
-Solve PDE system. ";
-
-%feature("docstring")  dolfin::LinearPDE::solve "
-
-Solve PDE system and extract sub functions. ";
-
-%feature("docstring")  dolfin::LinearPDE::solve "
-
-Solve PDE system and extract sub functions. ";
-
-
 // File: classdolfin_1_1LinearSolver.xml
 %feature("docstring") dolfin::LinearSolver "
 
@@ -2317,6 +2335,36 @@ C++ includes: LobattoQuadrature.h ";
 %feature("docstring")  dolfin::LobattoQuadrature::disp "
 
 Display quadrature data. ";
+
+
+// File: classdolfin_1_1LocalMeshData.xml
+%feature("docstring") dolfin::LocalMeshData "
+
+This class stores mesh data on a local processor corresponding to a
+portion of a (larger) global mesh.
+
+Note that the data stored in this class does typically not correspond
+to a topologically connected mesh; it merely stores a list of vertex
+coordinates, a list of cell-vertex mappings and a list of global
+vertex numbers for the locally stored vertices.
+
+It is typically used for parsing meshes in parallel from mesh XML
+files. After local mesh data has been parsed on each processor, a
+subsequent repartitioning takes place: first a geometric partitioning
+of the vertices followed by a redistribution of vertex and cell data,
+and then a topological partitioning again followed by redistribution
+of vertex and cell data, at that point corresponding to topologically
+connected meshes instead of local mesh data.
+
+C++ includes: LocalMeshData.h ";
+
+%feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::LocalMeshData::~LocalMeshData "
+
+Destructor. ";
 
 
 // File: classdolfin_1_1LogStream.xml
@@ -2540,10 +2588,6 @@ Return coordinates of all vertices. ";
 
 Return connectivity for all cells. ";
 
-%feature("docstring")  dolfin::Mesh::cells "
-
-Return connectivity for all cells. ";
-
 %feature("docstring")  dolfin::Mesh::size "
 
 Return number of entities of given topological dimension. ";
@@ -2566,7 +2610,11 @@ Return mesh geometry (const version). ";
 
 %feature("docstring")  dolfin::Mesh::data "
 
-Return mesh data. ";
+Return mesh data (non-const version). ";
+
+%feature("docstring")  dolfin::Mesh::data "
+
+Return mesh data (const version). ";
 
 %feature("docstring")  dolfin::Mesh::type "
 
@@ -2608,7 +2656,7 @@ Refine mesh uniformly. ";
 
 %feature("docstring")  dolfin::Mesh::refine "
 
-Refine mesh according to cells marked for refinement. ";
+Refine mesh according to cells marked for refinement,. ";
 
 %feature("docstring")  dolfin::Mesh::coarsen "
 
@@ -2645,20 +2693,6 @@ Compute intersection with curve defined by points. ";
 %feature("docstring")  dolfin::Mesh::intersection "
 
 Compute intersection with mesh. ";
-
-%feature("docstring")  dolfin::Mesh::partition "
-
-Partition mesh into num_processes partitions. ";
-
-%feature("docstring")  dolfin::Mesh::partition "
-
-Partition mesh into num_partitions partitions. ";
-
-%feature("docstring")  dolfin::Mesh::partitionGeom "
-
-Partition mesh into num_partitions partitions (geometric). ";
-
-%feature("docstring")  dolfin::Mesh::distribute "";
 
 %feature("docstring")  dolfin::Mesh::disp "
 
@@ -2764,6 +2798,10 @@ Clear all data. ";
 %feature("docstring")  dolfin::MeshData::createMeshFunction "
 
 Create MeshFunction with given name (uninitialized). ";
+
+%feature("docstring")  dolfin::MeshData::createMeshFunction "
+
+Create MeshFunction with given name and dimension. ";
 
 %feature("docstring")  dolfin::MeshData::createArray "
 
@@ -2879,7 +2917,7 @@ Add cell (tetrahedron) with given vertices. ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
 
-Close mesh, finish editing. ";
+Close mesh, finish editing, and order entities locally. ";
 
 
 // File: classdolfin_1_1MeshEntity.xml
@@ -2902,10 +2940,6 @@ Destructor. ";
 
 Return mesh associated with mesh entity. ";
 
-%feature("docstring")  dolfin::MeshEntity::mesh "
-
-Return mesh associated with mesh entity. ";
-
 %feature("docstring")  dolfin::MeshEntity::dim "
 
 Return topological dimension. ";
@@ -2918,11 +2952,6 @@ Return index of mesh entity. ";
 
 Return number of incident mesh entities of given topological
 dimension. ";
-
-%feature("docstring")  dolfin::MeshEntity::entities "
-
-Return array of indices for incident mesh entitites of given
-topological dimension. ";
 
 %feature("docstring")  dolfin::MeshEntity::entities "
 
@@ -3165,6 +3194,17 @@ Set higher order mesh coordinates. ";
 Display data. ";
 
 
+// File: classdolfin_1_1MeshPartitioning.xml
+%feature("docstring") dolfin::MeshPartitioning "
+
+This class partitions and distributes a mesh based on partitioned
+local mesh data. Note that the local mesh data will also be
+repartitioned and redistributed during the computation of the mesh
+partitioning.
+
+C++ includes: MeshPartitioning.h ";
+
+
 // File: classdolfin_1_1MeshSize.xml
 %feature("docstring") dolfin::MeshSize "
 
@@ -3176,9 +3216,13 @@ C++ includes: SpecialFunctions.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::MeshSize::MeshSize "
+
+Constructor. ";
+
 %feature("docstring")  dolfin::MeshSize::eval "
 
-Return cell size. ";
+Function evaluation. ";
 
 %feature("docstring")  dolfin::MeshSize::min "
 
@@ -3340,6 +3384,14 @@ Compute error estimate (modulo stability factor). ";
 Display method data. ";
 
 
+// File: classdolfin_1_1MPI.xml
+%feature("docstring") dolfin::MPI "
+
+This class provides utility functions for easy communcation with MPI.
+
+C++ includes: MPI.h ";
+
+
 // File: classdolfin_1_1MPIMeshCommunicator.xml
 %feature("docstring") dolfin::MPIMeshCommunicator "
 
@@ -3390,43 +3442,6 @@ Jacobian dF/dx ";
 Return Newton iteration number. ";
 
 
-// File: classdolfin_1_1NonlinearPDE.xml
-%feature("docstring") dolfin::NonlinearPDE "
-
-This class provides automated solution of nonlinear PDEs.
-
-C++ includes: NonlinearPDE.h ";
-
-%feature("docstring")  dolfin::NonlinearPDE::NonlinearPDE "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::NonlinearPDE "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::~NonlinearPDE "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::update "
-
-Function called before Jacobian matrix and RHS vector are formed.
-Users can supply this function to perform updates. ";
-
-%feature("docstring")  dolfin::NonlinearPDE::F "
-
-Compute F(u). ";
-
-%feature("docstring")  dolfin::NonlinearPDE::J "
-
-Compute Jacobian of F(u). ";
-
-%feature("docstring")  dolfin::NonlinearPDE::solve "
-
-Solve PDE. ";
-
-
 // File: classdolfin_1_1NonlinearProblem.xml
 %feature("docstring") dolfin::NonlinearProblem "
 
@@ -3437,39 +3452,19 @@ C++ includes: NonlinearProblem.h ";
 
 %feature("docstring")  dolfin::NonlinearProblem::NonlinearProblem "
 
-Create nonlinear problem. ";
+Constructor. ";
 
 %feature("docstring")  dolfin::NonlinearProblem::~NonlinearProblem "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::NonlinearProblem::form "
-
-User-defined function to compute F(u) its Jacobian. ";
-
 %feature("docstring")  dolfin::NonlinearProblem::F "
 
-User-defined function to compute F(u). ";
+Compute F at current point x. ";
 
 %feature("docstring")  dolfin::NonlinearProblem::J "
 
-User-defined function to compute Jacobian matrix. ";
-
-
-// File: classdolfin_1_1NonMatchingFunction.xml
-%feature("docstring") dolfin::NonMatchingFunction "
-
-Represent discrete function fA as pointwise user-defined function.
-
-C++ includes: ProjectL2.h ";
-
-%feature("docstring")
-dolfin::NonMatchingFunction::NonMatchingFunction "";
-
-%feature("docstring")  dolfin::NonMatchingFunction::eval "
-
-Evaluate function at given point (overload for scalar user-defined
-function). ";
+Compute J = F' at current point x. ";
 
 
 // File: classdolfin_1_1ODE.xml
@@ -3616,27 +3611,6 @@ Evaluate (interpolate) value of solution at given time. ";
 %feature("docstring")  dolfin::ODESolution::flush "";
 
 
-// File: classdolfin_1_1OutflowFacet.xml
-%feature("docstring") dolfin::OutflowFacet "
-
-This function determines if the current facet is an outflow facet with
-respect to the current cell. It accepts as argument the mesh and a
-form M = dot(n, v)*ds, a functional, defined on the normal vector to
-the facet and velocity vector integrated over the exterior of the
-cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::OutflowFacet::OutflowFacet "";
-
-%feature("docstring")  dolfin::OutflowFacet::~OutflowFacet "";
-
-%feature("docstring")  dolfin::OutflowFacet::eval "
-
-Evaluate scalar function at given point (overload for scalar user-
-defined function). ";
-
-
 // File: classdolfin_1_1Parameter.xml
 %feature("docstring") dolfin::Parameter "
 
@@ -3736,63 +3710,6 @@ Check if parameter with given key has been defined locally. ";
 Callback for changes in parameter values. ";
 
 
-// File: classdolfin_1_1pAssembler.xml
-%feature("docstring") dolfin::pAssembler "
-
-This class provides automated assembly of linear systems, or more
-generally, assembly of a sparse tensor from a given variational form.
-
-C++ includes: pAssembler.h ";
-
-%feature("docstring")  dolfin::pAssembler::pAssembler "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::pAssembler::pAssembler "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::pAssembler::~pAssembler "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble tensor from given variational form. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble tensor from given variational form over a sub domain. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble tensor from given variational form over sub domains. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble scalar from given variational form. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble scalar from given variational form over a sub domain. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble scalar from given variational form over sub domains. ";
-
-%feature("docstring")  dolfin::pAssembler::assemble "
-
-Assemble tensor from given (UFC) form, coefficients and sub domains.
-This is the main assembly function in DOLFIN. All other assembly
-functions end up calling this function.
-
-The MeshFunction arguments can be used to specify assembly over
-subdomains of the mesh cells, exterior facets and interior facets.
-Either a null pointer or an empty MeshFunction may be used to specify
-that the tensor should be assembled over the entire set of cells or
-facets. ";
-
-
 // File: classdolfin_1_1PeriodicBC.xml
 %feature("docstring") dolfin::PeriodicBC "
 
@@ -3818,31 +3735,30 @@ C++ includes: PeriodicBC.h ";
 
 Create periodic boundary condition for sub domain. ";
 
-%feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
-
-Create sub system boundary condition for sub domain. ";
-
 %feature("docstring")  dolfin::PeriodicBC::~PeriodicBC "
 
 Destructor. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a matrix. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system. ";
+Apply boundary condition to a vector. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system for a nonlinear problem (not
-implemented). ";
+Apply boundary condition to a linear system. ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
 
-Apply boundary condition to linear system for a nonlinear problem (not
-implemented). ";
+Apply boundary condition to a vector for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::PeriodicBC::apply "
+
+Apply boundary condition to a linear system for a nonlinear problem.
+";
 
 
 // File: classdolfin_1_1PETScObject.xml
@@ -3893,6 +3809,10 @@ Return y-coordinate. ";
 %feature("docstring")  dolfin::Point::z "
 
 Return z-coordinate. ";
+
+%feature("docstring")  dolfin::Point::coordinates "
+
+Return coordinate array. ";
 
 %feature("docstring")  dolfin::Point::distance "
 
@@ -4086,26 +4006,6 @@ Return a factory for the default linear algebra backend. ";
 %feature("docstring")  dolfin::Scalar::getval "
 
 Get value. ";
-
-
-// File: classdolfin_1_1simple__array.xml
-%feature("docstring") dolfin::simple_array "
-
-The array class is a minimal wrapper for an array that knows its own
-size. It is not yet another array class; it is only intended to be
-used to pass data through the SWIG generated interface. Note that
-users of this class are always responsible for allocating and
-deallocating data.
-
-C++ includes: simple_array.h ";
-
-%feature("docstring")  dolfin::simple_array::simple_array "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::simple_array::simple_array "
-
-Destructor. ";
 
 
 // File: classdolfin_1_1SingularSolver.xml
@@ -4386,17 +4286,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::SubDomain::inside "
 
-Return true for points inside the sub domain (used for subclassing
-through SWIG interface). ";
-
-%feature("docstring")  dolfin::SubDomain::inside "
-
-Return true for points inside the sub domain. ";
-
-%feature("docstring")  dolfin::SubDomain::map "
-
-Map coordinate x in domain H to coordinate y in domain G (used for
-subclassing through SWIG interface). ";
+Return true for points inside the subdomain. ";
 
 %feature("docstring")  dolfin::SubDomain::map "
 
@@ -4405,7 +4295,34 @@ periodic boundary conditions). ";
 
 %feature("docstring")  dolfin::SubDomain::mark "
 
-Set sub domain markers for given sub domain. ";
+Set sub domain markers for given subdomain. ";
+
+%feature("docstring")  dolfin::SubDomain::geometric_dimension "
+
+Return geometric dimension. ";
+
+
+// File: classdolfin_1_1SubFunction.xml
+%feature("docstring") dolfin::SubFunction "
+
+This class represents a sub function (view) of a function. It's
+purpose is to enable expressions like
+
+Function w; Function u = w[0]; Function p = w[1];
+
+without needing to create and destroy temporaries. No data is created
+until a SubFunction is assigned to a Function, at which point the data
+is copied.
+
+C++ includes: SubFunction.h ";
+
+%feature("docstring")  dolfin::SubFunction::SubFunction "
+
+Create sub function for given component. ";
+
+%feature("docstring")  dolfin::SubFunction::~SubFunction "
+
+Destructor. ";
 
 
 // File: classdolfin_1_1SubMatrix.xml
@@ -4416,45 +4333,32 @@ Set sub domain markers for given sub domain. ";
 %feature("docstring")  dolfin::SubMatrix::~SubMatrix "";
 
 
-// File: classdolfin_1_1SubSystem.xml
-%feature("docstring") dolfin::SubSystem "
+// File: classdolfin_1_1SubSpace.xml
+%feature("docstring") dolfin::SubSpace "
 
-This class represents a sub system that may be specified as a
-recursively nested sub system of some given system.
+This class represents a subspace (component) of a function space.
 
-The sub system is specified by an array of indices. For example, the
-array [3, 0, 2] specifies sub system 2 of sub system 0 of sub system
-3.
+The subspace is specified by an array of indices. For example, the
+array [3, 0, 2] specifies subspace 2 of subspace 0 of subspace 3.
 
-C++ includes: SubSystem.h ";
+A typical example is the function space W = V x P for Stokes. Here, V
+= W[0] is the subspace for the velocity component and P = W[1] is the
+subspace for the pressure component. Furthermore, W[0][0] = V[0] is
+the first component of the velocity space etc.
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
+C++ includes: SubSpace.h ";
 
-Create empty sub system (no sub systems). ";
+%feature("docstring")  dolfin::SubSpace::SubSpace "
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
+Create subspace for given component (one level). ";
 
-Create given sub system (one level). ";
+%feature("docstring")  dolfin::SubSpace::SubSpace "
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
+Create subspace for given component (two levels). ";
 
-Create given sub sub system (two levels). ";
+%feature("docstring")  dolfin::SubSpace::SubSpace "
 
-%feature("docstring")  dolfin::SubSystem::SubSystem "
-
-Create sub system for given array (n levels). ";
-
-%feature("docstring")  dolfin::SubSystem::SubSystem "
-
-Copy constructor. ";
-
-%feature("docstring")  dolfin::SubSystem::depth "
-
-Return number of levels for nested sub system. ";
-
-%feature("docstring")  dolfin::SubSystem::array "
-
-Return array which defines sub system. ";
+Create subspace for given component (n levels). ";
 
 
 // File: classdolfin_1_1SubVector.xml
@@ -5117,6 +5021,84 @@ C++ includes: UnitSquare.h ";
 %feature("docstring")  dolfin::Variable::label "";
 
 
+// File: classdolfin_1_1VariationalProblem.xml
+%feature("docstring") dolfin::VariationalProblem "
+
+This class represents a (system of) partial differential equation(s)
+in variational form: Find u in V such that
+
+F_u(v) = 0 for all v in V'.
+
+The variational problem is defined in terms of a bilinear form a(v, u)
+and a linear for L(v).
+
+For a linear variational problem, F_u(v) = a(v, u) - L(v), the forms
+should correspond to the canonical formulation
+
+a(v, u) = L(v) for all v in V'.
+
+For a nonlinear variational problem, the forms should be given by
+
+a(v, u) = F_u'(v) u = F_u'(v, u), L(v) = F(v),
+
+that is, a(v, u) should be the Frechet derivative of F_u with respect
+to u, and L = F.
+
+Parameters:
+-----------
+
+\"linear solvers\": \"direct\" or \"iterative\" (default: \"direct\")
+\"symmetric\": true or false (default: false)
+
+C++ includes: VariationalProblem.h ";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with natural boundary conditions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with a single Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with a list of Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::~VariationalProblem
+"
+
+Destructor. ";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+
+Solve variational problem. ";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+
+Solve variational problem and extract sub functions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+
+Solve variational problem and extract sub functions. ";
+
+%feature("docstring")  dolfin::VariationalProblem::F "
+
+Compute F at current point x. ";
+
+%feature("docstring")  dolfin::VariationalProblem::J "
+
+Compute J = F' at current point x. ";
+
+%feature("docstring")  dolfin::VariationalProblem::update "
+
+Optional callback called before calls to F() and J(). ";
+
+
 // File: classdolfin_1_1Vector.xml
 %feature("docstring") dolfin::Vector "
 
@@ -5259,11 +5241,9 @@ Return vertex coordinates as a 3D point value. ";
 
 %feature("docstring")  dolfin::Vertex::x "
 
-Return array of vertex coordinates. ";
+Return array of vertex coordinates.
 
-%feature("docstring")  dolfin::Vertex::x "
-
-Return array of vertex coordinates. ";
+Return array of vertex coordinates (const version) ";
 
 
 // File: classdolfin_1_1VertexIterator.xml
@@ -5388,15 +5368,6 @@ Compute residual ||Ax - b||. ";
 
 Normalize vector according to given normalization type. ";
 
-%feature("docstring")  dolfin::projectL2 "
-
-Compute L2 projection fB of fA on FEM space element. ";
-
-%feature("docstring")  dolfin::projectL2NonMatching "
-
-Compute L2 projection fB of fA (discrete function) on FEM space
-element. ";
-
 %feature("docstring")  dolfin::dolfin_init "
 
 Initialize DOLFIN (and PETSc) with command-line arguments. This should
@@ -5421,57 +5392,40 @@ Seed random number generator. ";
 
 %feature("docstring")  dolfin::assemble "
 
-Assemble tensor from given variational form and mesh.
-
-These functions provide automated assembly of linear systems, or more
-generally, assembly of a sparse tensor from a given variational form.
-If you need to assemble a system more than once, consider using the
-Assembler class, which may improve performance by reuse of data
-structures. ";
+Assemble tensor. ";
 
 %feature("docstring")  dolfin::assemble "
 
-Assemble system (A, b) and apply Dirichlet boundary condition from
-given variational forms ";
+Assemble tensor on sub domain. ";
 
 %feature("docstring")  dolfin::assemble "
 
-Assemble system (A, b) and apply Dirichlet boundary conditions from
-given variational forms ";
-
-%feature("docstring")  dolfin::assemble "
-
-Assemble tensor from given variational form and mesh over a sub
-domain. ";
-
-%feature("docstring")  dolfin::assemble "
-
-Assemble tensor from given variational form and mesh over sub domains.
-";
-
-%feature("docstring")  dolfin::assemble "
-
-Assemble scalar from given variational form and mesh. ";
-
-%feature("docstring")  dolfin::assemble "
-
-Assemble scalar from given variational form and mesh over a sub
-domain. ";
-
-%feature("docstring")  dolfin::assemble "
-
-Assemble scalar from given variational form and mesh over sub domains.
-";
-
-%feature("docstring")  dolfin::assemble "
-
-Assemble tensor from given (UFC) form, mesh, coefficients and sub
-domains. ";
+Assemble tensor on sub domains. ";
 
 %feature("docstring")  dolfin::assemble_system "
 
-Assemble tensor from given (UFC) form, mesh, coefficients and sub
-domains. ";
+Assemble system (A, b) and apply Dirichlet boundary condition. ";
+
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) and apply Dirichlet boundary conditions. ";
+
+%feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) on sub domains and apply Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble scalar. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble scalar on sub domain. ";
+
+%feature("docstring")  dolfin::assemble "
+
+Assemble scalar on sub domains. ";
 
 
 // File: namespaceufc.xml
@@ -5490,9 +5444,6 @@ domains. ";
 
 
 // File: List_8h.xml
-
-
-// File: simple__array_8h.xml
 
 
 // File: TimeDependent_8h.xml
@@ -5531,31 +5482,40 @@ domains. ";
 // File: DofMap_8h.xml
 
 
-// File: DofMapSet_8h.xml
-
-
 // File: FiniteElement_8h.xml
 
 
 // File: Form_8h.xml
 
 
-// File: pAssembler_8h.xml
-
-
 // File: PeriodicBC_8h.xml
 
 
-// File: SubSystem_8h.xml
+// File: VariationalProblem_8h.xml
+
+
+// File: Constant_8h.xml
+
+
+// File: Data_8h.xml
 
 
 // File: Function_8h.xml
+
+
+// File: FunctionSpace_8h.xml
 
 
 // File: ProjectL2_8h.xml
 
 
 // File: SpecialFunctions_8h.xml
+
+
+// File: SubFunction_8h.xml
+
+
+// File: SubSpace_8h.xml
 
 
 // File: DirectedClique_8h.xml
@@ -5726,6 +5686,9 @@ domains. ";
 // File: init_8h.xml
 
 
+// File: MPI_8h.xml
+
+
 // File: basic_8h.xml
 
 
@@ -5765,6 +5728,9 @@ domains. ";
 // File: Interval_8h.xml
 
 
+// File: LocalMeshData_8h.xml
+
+
 // File: Mesh_8h.xml
 
 
@@ -5787,6 +5753,9 @@ domains. ";
 
 
 // File: MeshGeometry_8h.xml
+
+
+// File: MeshPartitioning_8h.xml
 
 
 // File: MeshTopology_8h.xml
@@ -5858,12 +5827,6 @@ domains. ";
 // File: Parametrized_8h.xml
 
 
-// File: LinearPDE_8h.xml
-
-
-// File: NonlinearPDE_8h.xml
-
-
 // File: GaussianQuadrature_8h.xml
 
 
@@ -5879,56 +5842,53 @@ domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_5ca7b3a157d4a7142baa1050dad97570.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_e91ae7897a3e5914b80f3a548313baaa.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_e198130c0dff2e86403a40b7106d07a8.xml
+// File: dir_a2c34637c1a406722dc8079c9250ce33.xml
 
 
-// File: dir_02446b738472c61a01da7873a171f1a3.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_0f7effc6ed1f15cf7076f0d3ff9a05b6.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_5990817941c09335862b42e4f1143c34.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_2e1a011405e4c1654e8033a336f4a512.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_e70927cb8ed3b1969accd8bb815561d7.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_cda1a7f0f2cc2e6837b6894e89b331c3.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_a215e42d32fd67e6060ed72f7e9c2942.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_dacd94c6226558c9fe43c1be6e205623.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_47c2b6d073f32fd034b30bb1ac788ec2.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_bca407f219e317f49e6543aded458b7f.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_6763d21378730374b96d5293fa96b2ac.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_e46fd323f15fa7213ed5a178fa899b8e.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_ff47fa55ef0d9efa8e02643a68f86247.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_319b6df07809d0a0672174a39e4d6e6d.xml
-
-
-// File: dir_9de0f03833b00726d2ae5f618b169146.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 

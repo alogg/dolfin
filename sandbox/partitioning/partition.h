@@ -4,7 +4,7 @@
 #include <parmetis.h>
 extern "C"
 {
-  #include <metis.h>
+  #include <metis/metis.h>
   #include <scotch.h>
 }
 using namespace dolfin;
@@ -22,9 +22,9 @@ void metisKwayPartitioning(Graph& graph, int num_part, idxtype* vtx_part)
   //idxtype* xadj = reinterpret_cast<idxtype*>(graph.offsets() + 1);
 
   // Copying values instead (time to copy << time to partitioning)
-  idxtype* adjncy = new idxtype[graph.numArches()];
+  idxtype* adjncy = new idxtype[graph.numEdges()];
   idxtype* xadj = new idxtype[graph.numVertices() + 1];
-  for(unsigned int i=0; i<graph.numArches(); ++i)
+  for(unsigned int i=0; i<graph.numEdges(); ++i)
     adjncy[i] = graph.connectivity()[i];
   for(unsigned int i=0; i<=graph.numVertices(); ++i)
     xadj[i] = graph.offsets()[i];
@@ -46,9 +46,9 @@ void metisRecursivePartitioning(Graph& graph, int num_part, int* vtx_part)
   //idxtype* xadj = reinterpret_cast<idxtype*>(graph.offsets() + 1);
 
   // Copying values instead (time to copy << time to partitioning)
-  idxtype* adjncy = new idxtype[graph.numArches()];
+  idxtype* adjncy = new idxtype[graph.numEdges()];
   idxtype* xadj = new idxtype[graph.numVertices() + 1];
-  for(unsigned int i=0; i<graph.numArches(); ++i)
+  for(unsigned int i=0; i<graph.numEdges(); ++i)
     adjncy[i] = graph.connectivity()[i];
   for(unsigned int i=0; i<=graph.numVertices(); ++i)
     xadj[i] = graph.offsets()[i];
@@ -66,7 +66,7 @@ void scotchPartitioning(Graph& graph, int num_part, int* vtx_part)
     std::cerr << "Error in SCOTCH_graphInit. Exiting" << std::endl;
     exit(1);
   }
-  if (SCOTCH_graphBuild (&grafdat, 0, static_cast<int>(graph.numVertices()), reinterpret_cast<int*>(graph.offsets()), NULL, NULL, NULL, static_cast<int>(graph.numArches()), reinterpret_cast<int*>(graph.connectivity()), NULL) != 0) {
+  if (SCOTCH_graphBuild (&grafdat, 0, static_cast<int>(graph.numVertices()), reinterpret_cast<int*>(graph.offsets()), NULL, NULL, NULL, static_cast<int>(graph.numEdges()), reinterpret_cast<int*>(graph.connectivity()), NULL) != 0) {
     std::cerr << "Error in SCOTCH_graphBuild. Exiting" << std::endl;
     exit(1);
   }

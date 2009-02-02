@@ -24,14 +24,12 @@ that you have downloaded release x.y.z of \dolfin{}:
 \begin{code}
 # tar zxfv dolfin-x.y.z.tar.gz
 # cd dolfin-x.y.z
-# ./configure
-# make
-# sudo make install
+# sudo scons install
 \end{code}
 
 Since \dolfin{} depends on a number of other packages, you may also
 need to download and install those packages before you can compile
-\dolfin{}.  (See Appendix~\ref{app:installation} for detailed
+\dolfin{}. (See Appendix~\ref{app:installation} for detailed
 instructions.)
 
 %------------------------------------------------------------------------------
@@ -40,28 +38,22 @@ instructions.)
 
 Let's say that we want to solve Poisson's equation on the unit square
 $\Omega = (0,1) \times (0,1)$ with homogeneous Dirichlet boundary
-conditions on the boundary $\Gamma_0 = \{(x, y) \in \partial \Omega : x = 0\}$,
-the Neumann boundary condition $\partial_n u = g$ 
-with $g(x, y) = 25 \sin(5\pi y)$
-on the boundary $\Gamma_1 = \{(x, y) \in \partial \Omega : x = 1\}$,
-homogeneous Neumann boundary conditions on the remaining part of the boundary
-and right-hand side given by $f(x, y) = 500 \exp(-((x-0.5)^2 +
-(y-0.5)^2)/0.02)$:
+conditions on the boundary $\Gamma = \{(x, y) \in \partial \Omega : x = 0 \mbox{ or } x = 1\}$,
+homogeneous Neumann boundary conditions $\partial_n u = 0$ on the remaining part of the boundary,
+and right-hand side given by $f(x, y) = 500 \exp(-((x-0.5)^2 + (y-0.5)^2)/0.02)$:
 \begin{eqnarray} \label{eq:poisson,quickstart}
   - \Delta u(x, y) &=& f(x, y), \quad
   x \in \Omega = (0,1) \times (0,1), \\
   u(x, y) &=& 0, \quad
-  (x, y) \in \Gamma_0 = \{(x, y) \in \partial \Omega : x = 0\}, \\
-  \partial_n u(x, y) &=& 1, \quad
-  (x, y) \in \Gamma_1 = \{(x, y) \in \partial \Omega : x = 1\}, \\
+  (x, y) \in \Gamma = \{(x, y) \in \partial \Omega : x = 0 \mbox{ or } x = 1\}, \\
   \partial_n u(x, y) &=& 0, \quad
-  (x, y) \in \partial \Omega \setminus (\Gamma_0 \cup \Gamma_1).
+  (x, y) \in \partial \Omega \setminus \Gamma.
 \end{eqnarray}
 
 % FIXME: Explain this better
 
 To solve a partial differential equation with \dolfin{}, it must first
-be rewritten in \emph{variational form}.  The (discrete) variational
+be written in \emph{variational form}.  The (discrete) variational
 formulation of Poisson's equation reads: Find $u_h \in V_h$ such that
 \begin{equation} \label{eq:varform}
   a(v, u_h) = L(v) \quad \forall v\in \hat{V}_h, 
@@ -74,28 +66,26 @@ with $(\hat{V}_h, V_h)$ a pair of suitable discrete function spaces
 \end{equation}
 and the linear form $L : \hat{V}_h \rightarrow \R$ is given by
 \begin{equation}
-  L(v) = \int_{\Omega} v f \dx + \int_{\partial \Omega} v g \ds,
+  L(v) = \int_{\Omega} v f \dx.
 \end{equation}
-where $g = \partial_n u$ is the Neumann boundary condition.
 
 \subsection{Setting up the variational formulation}
 \index{ffc}
 
 The variational formulation (\ref{eq:varform}) must be given to
-\dolfin{} as a pair of bilinear and linear forms $(a, L)$ using the
-form compiler \ffc{}. This is done by entering the definition of
+\dolfin{} as a pair of bilinear and linear forms $(a, L)$ using a
+form compiler like \ffc{}. This is done by entering the definition of
 the forms in a text file with extension \texttt{.form},
-e.g. \texttt{Poisson.form}, as follows:
+e.g., \texttt{Poisson.form}, as follows:
 \begin{code}
 element = FiniteElement("Lagrange", "triangle", 1)
 
 v = TestFunction(element)
 u = TrialFunction(element)
 f = Function(element)
-g = Function(element)
 
 a = dot(grad(v), grad(u))*dx
-L = v*f*dx + v*g*ds
+L = v*f*dx
 \end{code}
 
 The example is given here for piecewise linear finite elements in two
@@ -112,12 +102,12 @@ in C++ for inclusion in your \dolfin{} program.
 
 \subsection{Writing the solver}
 
-Having compiled the variational formulation (\ref{eq:varform})
-with \ffc{}, it is now easy to implement a solver for Poisson's
+Having compiled the variational formulation (\ref{eq:varform}) with
+\ffc{}, it is now easy to implement a solver for Poisson's
 equation. We first discuss the implementation line by line and then
 present the complete program. The source code for this example is
-available in the directory \texttt{src/demo/pde/poisson/} of the \dolfin{}
-source tree.
+available in the directory \texttt{demo/pde/poisson/cpp/} of the
+\dolfin{} source tree.\footnote{A corresponding Python demo is available in \texttt{demo/pde/poisson/python/}}
 
 At the beginning of our C++ program, which we write in a text file
 named \texttt{main.cpp}, we must first include the header file
@@ -140,6 +130,8 @@ in this simple example we just write our program inside the
 \texttt{main} function:
 
 \begin{code}
+// Include headers and define classes here
+
 int main()
 {
   // Write your program here
@@ -150,49 +142,19 @@ int main()
 We now proceed to specify the right-hand side $f$ of
 (\ref{eq:poisson,quickstart}). This is done by defining a new subclass
 of \texttt{Function} (which we here name \texttt{Source}) and
-overloading the \texttt{eval()} function to return the value $f(x, y)
+by overloading the \texttt{eval()} function to return the value $f(x, y)
 = 500 \exp(-((x-0.5)^2 + (y-0.5)^2)/0.02)$:
 \begin{code}
 class Source : public Function
 {
-public:
-    
-  Source(Mesh& mesh) : Function(mesh) {}
-
-  double eval(const double* x) const
+  void eval(double* values, const double* x) const
   {
     double dx = x[0] - 0.5;
     double dy = x[1] - 0.5;
-    return 500.0*exp(-(dx*dx + dy*dy)/0.02);
+    values[0] = 500.0*exp(-(dx*dx + dy*dy) / 0.02);
   }
-
 };
 \end{code}
-
-The function $g$ for the Neumann boundary condition is specified
-similarly:
-\begin{code}
-class Flux : public Function
-{
-public:
-
-  Flux(Mesh& mesh) : Function(mesh) {}
-
-  double eval(const double* x) const
-  {
-    if (x[0] > DOLFIN_EPS)
-      return 25.0*sin(5.0*DOLFIN_PI*x[1]);
-    else
-      return 0.0;
-  }
-
-};
-\end{code}
-
-Note that we here extend $g$ to the entire boundary by setting $g = 0$
-on $\Omega \setminus \Gamma_1$. It is also possible to define $g$ only
-on $\Gamma_1$ and specify an integral over the boundary subset
-$\Gamma_1$ in the form file.
 
 To define the Dirichlet boundary condition, we define a
 \texttt{SubDomain} for the Dirichlet boundary:
@@ -201,7 +163,7 @@ class DirichletBoundary : public SubDomain
 {
   bool inside(const double* x, bool on_boundary) const
   {
-    return x[0] < DOLFIN_EPS && on_boundary;
+    return x[0] < DOLFIN_EPS or x[0] > 1.0 - DOLFIN_EPS;
   }
 };
 \end{code}
@@ -218,46 +180,45 @@ triangles), we can just type
 UnitSquare mesh(32, 32);
 \end{code}
 
-We may now instantiate the right-hand side function \texttt{f} and the
-Neumann boundary condition \texttt{g} as follows:
+Next, we instantiate a finite element function space on the mesh as follows:
 \begin{code}
-Source f(mesh);
-Flux g(mesh);
+PoissonFunctionSpace V(mesh);
 \end{code}
+Here, we make use of the code generated by the form compiler (the
+class \texttt{PoissonFunctionSpace}).
 
 Next, we define the Dirichlet boundary condition by specifying the
 value that the solution should take and the subset of the boundary
 where it should be applied:
 \begin{code}
-Function u0(mesh, 0.0);
+Constant u0(0.0);
 DirichletBoundary boundary;
-DirichletBC bc(u0, mesh, boundary);
+DirichletBC bc(V, u0, boundary);
 \end{code}
 Note the difference in how Dirichlet and Neumann boundary conditions
-are applied. The Dirichlet condition is applied here strongly (but it
-can also be applied weakly) using the \texttt{DirichletBC} class,
-while the Neumann boundary condition is defined as part of the
+are applied. Dirichlet conditions are here applied strongly (but may
+also be applied weakly) using the \texttt{DirichletBC} class,
+while Neumann boundary conditions are defined as part of the
 variational problem. (It is a \emph{natural} boundary condition for
 this variational formulation of Poisson's equation.)
 
 Next, we initialize the pair of bilinear and linear forms that we have
-previously compiled with \ffc{} and define a \texttt{LinearPDE} as the
-variational problem defined by the two forms and the Dirichlet
-boundary condition:
+previously compiled with \ffc{}. We also instantiate the right-hand
+side function and attach it to the linear form:
 \begin{code}
-PoissonBilinearForm a;
-PoissonLinearForm L(f, g);
-LinearPDE pde(a, L, mesh, bc);
+PoissonBilinearForm a(V, V);
+PoissonLinearForm L(V);
+Source f;
+L.f = f;
 \end{code}
-Note that the right-hand side~\texttt{f} and the Neumann boundary
-condition~\texttt{g} need to be given as arguments to the constructor
-of the linear form, since the linear form depends on these two
-functions.
 
-We may now solve the PDE and obtain the solution as a \texttt{Function}:
+To solve the variational problem, we use the class
+\texttt{VariationalProblem}, which automatically assembles and solves
+the corresponding linear system:
 \begin{code}
+VariationalProblem problem(a, L, bc);
 Function u;
-pde.solve(u);
+problem.solve(u);
 \end{code}
 
 To plot the solution, one may simply type
@@ -279,81 +240,57 @@ file << u;
 The complete program for Poisson's equation now looks as follows:
 \small
 \begin{code}
-
 #include <dolfin.h>
 #include "Poisson.h"
-  
+
 using namespace dolfin;
+
+// Source term
+class Source : public Function
+{
+  void eval(double* values, const double* x) const
+  {
+    double dx = x[0] - 0.5;
+    double dy = x[1] - 0.5;
+    values[0] = 500.0*exp(-(dx*dx + dy*dy) / 0.02);
+  }
+};
+
+// Sub domain for Dirichlet boundary condition
+class DirichletBoundary : public SubDomain
+{
+  bool inside(const double* x, bool on_boundary) const
+  {
+    return x[0] < DOLFIN_EPS or x[0] > 1.0 - DOLFIN_EPS;
+  }
+};
 
 int main()
 {
-  // Source term
-  class Source : public Function
-  {
-  public:
-    
-    Source(Mesh& mesh) : Function(mesh) {}
-
-    double eval(const double* x) const
-    {
-      double dx = x[0] - 0.5;
-      double dy = x[1] - 0.5;
-      return 500.0*exp(-(dx*dx + dy*dy)/0.02);
-    }
-
-  };
-
-  // Neumann boundary condition
-  class Flux : public Function
-  {
-  public:
-
-    Flux(Mesh& mesh) : Function(mesh) {}
-
-    double eval(const double* x) const
-    {
-      if (x[0] > DOLFIN_EPS)
-        return 25.0*sin(5.0*DOLFIN_PI*x[1]);
-      else
-        return 0.0;
-    }
-
-  };
-
-  // Sub domain for Dirichlet boundary condition
-  class DirichletBoundary : public SubDomain
-  {
-    bool inside(const double* x, bool on_boundary) const
-    {
-      return x[0] < DOLFIN_EPS && on_boundary;
-    }
-  };
-
-  // Create mesh
+  // Create mesh and function space
   UnitSquare mesh(32, 32);
+  PoissonFunctionSpace V(mesh);
 
-  // Create functions
-  Source f(mesh);
-  Flux g(mesh);
-
-  // Create boundary condition
-  Function u0(mesh, 0.0);
+  // Define boundary condition
+  Constant u0(0.0);
   DirichletBoundary boundary;
-  DirichletBC bc(u0, mesh, boundary);
-  
-  // Define PDE
-  PoissonBilinearForm a;
-  PoissonLinearForm L(f, g);
-  LinearPDE pde(a, L, mesh, bc);
+  DirichletBC bc(V, u0, boundary);
 
-  // Solve PDE
+  // Define variational problem
+  PoissonBilinearForm a(V, V);
+  PoissonLinearForm L(V);
+  Source f;
+  L.f = f;
+
+  // Compute solution
+  VariationalProblem problem(a, L, bc);
   Function u;
-  pde.solve(u);
+  problem.solve(u);
 
   // Plot solution
   plot(u);
 
-  // Save solution to file
+  // Save solution in VTK format
   File file("poisson.pvd");
   file << u;
 
@@ -365,41 +302,35 @@ int main()
 \subsection{Compiling the program}
 
 The easiest way to compile the program is to create a
-\texttt{Makefile} that tells the standard Unix command \texttt{make}
-how to build the program. The following example shows how to write a
-\texttt{Makefile} for the above example:
+\texttt{SConstruct} file that tells \texttt{scons} how to build the
+program.  The following example shows how to write a
+\texttt{SConstruct} file for the above example:
 \footnotesize
 \begin{code}
-CFLAGS  = `pkg-config --cflags dolfin`
-LIBS    = `pkg-config --libs dolfin`
-CXX     = `pkg-config --variable=compiler dolfin`
+import os, commands
 
-DEST    = demo
-OBJECTS = main.o
+# Get compiler from pkg-config
+compiler = commands.getoutput('pkg-config --variable=compiler dolfin')
 
-all: $(DEST)
+# Create a SCons Environment based on the main os environment
+env = Environment(ENV=os.environ, CXX=compiler)
 
-install:
+# Get compiler flags from pkg-config
+env.ParseConfig('pkg-config --cflags --libs dolfin')
 
-clean:
-	-rm -f *.o core *.core $(OBJECTS) $(DEST)
-
-$(DEST): $(OBJECTS)
-	 $(CXX) -o $@ $(OBJECTS) $(CFLAGS) $(LIBS)
-
-.cpp.o:
-	$(CXX) $(CFLAGS) -c $<
+# Program name
+env.Program('demo', 'main.cpp')
 \end{code}
 \normalsize
 
-With the \texttt{Makefile} in place, we just need to type
-\texttt{make} to compile the program, generating the executable as the
+With this file in place, we just need to type
+\texttt{scons} to compile the program, generating the executable as the
 file \texttt{demo}. Note that this requires \texttt{pkg-config} to be
-able to find the file \texttt{dolfin.pc}. (That file is generated by
-the \texttt{configure} script, during the configuration of
+able to find the file \texttt{dolfin.pc}. That file is generated by
+the \texttt{configure} script during the configuration of
 \dolfin{}. If \texttt{pkg-config} fails to find it, you need to add
 the directory containing it to the environment variable
-\texttt{PKG\_CONFIG\_PATH}.)
+\texttt{PKG\_CONFIG\_PATH}.
 
 \subsection{Running the program}
 
@@ -414,18 +345,13 @@ The solution may be visualized either by the built-in \texttt{plot()}
 command or by calling an external application. The built-in plotting
 requires the installation of both PyDOLFIN and Viper. In this
 example, we chose to save the solution in VTK format, which can be
-imported into for example ParaView or MayaVi. The solution may also be
-visualized by running the script \texttt{plot.py} available in the
-Poisson demo directory:
-\begin{code}
-python plot.py
-\end{code}
-This script also requires the installation of PyDOLFIN and Viper.
+imported into for example ParaView or MayaVi.
 
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=10cm]{eps/poisson.eps}
-    \caption{The solution of Poisson's equation (\ref{eq:poisson,quickstart})
-      visualized in MayaVi.}
+    \caption{The solution of Poisson's equation
+      (\ref{eq:poisson,quickstart}) visualized using the \texttt{plot()}
+      command (Viper).}
   \end{center}
 \end{figure}
