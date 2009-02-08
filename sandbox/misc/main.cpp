@@ -62,8 +62,8 @@ int main()
     }
 
     // get new random point (comment out to really blow up)
-    p[0] = uni();
-    p[1] = uni();
+    //p[0] = uni();
+    //p[1] = uni();
 
     // clear cells array (cells  grows with every test otherwise, not sure if this generates a memory leak)
     cells.clear(); 
