@@ -836,7 +836,8 @@ Build parallel dof map. ";
 
 %feature("docstring")  dolfin::DofMap::build "
 
-Build dof map on subdomain. ";
+Build dof map on only a subdomain of the mesh (meshfunction contains
+booleans for each cell). ";
 
 %feature("docstring")  dolfin::DofMap::getMap "
 
@@ -1863,6 +1864,18 @@ Get value of given entry. ";
 Set given entry to value. ";
 
 
+// File: classdolfin_1_1GMPObject.xml
+%feature("docstring") dolfin::GMPObject "
+
+This class calls SubSystemsManger to initialise PETSc.
+
+All PETSc objects must be derived from this class.
+
+C++ includes: GMPObject.h ";
+
+%feature("docstring")  dolfin::GMPObject::GMPObject "";
+
+
 // File: classdolfin_1_1Graph.xml
 %feature("docstring") dolfin::Graph "
 
@@ -2066,6 +2079,11 @@ Compute overlap with curve defined by points. ";
 %feature("docstring")  dolfin::IntersectionDetector::intersection "
 
 Compute overlap with mesh. ";
+
+%feature("docstring")  dolfin::IntersectionDetector::new_intersection
+"
+
+Compute overlap with mesh (test version). ";
 
 
 // File: classdolfin_1_1Interval.xml
@@ -2825,6 +2843,18 @@ available). ";
 
 Return Map with given name (returning zero if data is not available).
 ";
+
+%feature("docstring")  dolfin::MeshData::eraseMeshFunction "
+
+Erase MeshFunction with given name. ";
+
+%feature("docstring")  dolfin::MeshData::eraseArray "
+
+Erase Array with given name. ";
+
+%feature("docstring")  dolfin::MeshData::eraseMapping "
+
+Erase Mapping with given name. ";
 
 %feature("docstring")  dolfin::MeshData::disp "
 
@@ -5069,6 +5099,12 @@ conditions. ";
 Define variational problem with a list of Dirichlet boundary
 conditions. ";
 
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem
+"
+
+Define variational problem with a list of Dirichlet boundary
+conditions and subdomains ";
+
 %feature("docstring")  dolfin::VariationalProblem::~VariationalProblem
 "
 
@@ -5293,6 +5329,10 @@ Set special key/value pair. ";
 %feature("docstring")  dolfin::dolfin_add "
 
 Add parameter. ";
+
+%feature("docstring")  dolfin::dolfin_changed "
+
+Check if parameter has been changed from default value. ";
 
 %feature("docstring")  dolfin::message "
 
@@ -5807,6 +5847,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: dGqMethod_8h.xml
+
+
+// File: GMPObject_8h.xml
 
 
 // File: Method_8h.xml
