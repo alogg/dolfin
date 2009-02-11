@@ -258,10 +258,10 @@ Initialize boundary mesh. ";
 // File: classdolfin_1_1Box.xml
 %feature("docstring") dolfin::Box "
 
-Tetrahedral mesh of the 3D rectangular prism (a,b) x (c,d) x (e,f).
-Given the number of cells (nx, ny, nz) in each direction, the total
-number of tetrahedra will be 6*nx*ny*nz and the total number of
-vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+Tetrahedral mesh of the 3D rectangular prism (x0, y0) x (x1, y1) x
+(x2, y2). Given the number of cells (nx, ny, nz) in each direction,
+the total number of tetrahedra will be 6*nx*ny*nz and the total number
+of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
 
 C++ includes: Box.h ";
 
@@ -828,7 +828,9 @@ Tabulate the local-to-global mapping of dofs on a cell. ";
 
 Tabulate local-local facet dofs. ";
 
-%feature("docstring")  dolfin::DofMap::tabulate_coordinates "";
+%feature("docstring")  dolfin::DofMap::tabulate_coordinates "
+
+Tabulate the coordinates of all dofs on a cell. ";
 
 %feature("docstring")  dolfin::DofMap::build "
 
@@ -1867,9 +1869,7 @@ Set given entry to value. ";
 // File: classdolfin_1_1GMPObject.xml
 %feature("docstring") dolfin::GMPObject "
 
-This class calls SubSystemsManger to initialise PETSc.
-
-All PETSc objects must be derived from this class.
+This class calls SubSystemsManger to initialise GMP.
 
 C++ includes: GMPObject.h ";
 
@@ -3131,6 +3131,10 @@ Set value at given entity. ";
 
 Set value at given entity. ";
 
+%feature("docstring")  dolfin::MeshFunction::set_all "
+
+Set all values to given value. ";
+
 %feature("docstring")  dolfin::MeshFunction::disp "
 
 Display mesh function data. ";
@@ -3500,9 +3504,9 @@ Compute J = F' at current point x. ";
 // File: classdolfin_1_1ODE.xml
 %feature("docstring") dolfin::ODE "
 
-A ODE represents an initial value problem of the form
+An ODE represents an initial value problem of the form
 
-u'(t) = f(u(t),t) on (0,T],
+u'(t) = f(u(t), t) on [0, T],
 
 u(0) = u0,
 
@@ -3529,6 +3533,21 @@ u(0) = u0,
 
 by setting the option \"implicit\" to true and defining the function
 M().
+
+Two different solve() functions are provided, one to solve the ODE on
+the time interval [0, T], including the solution of a dual problem for
+error control:
+
+ode.solve();
+
+Alternatively, a time interval may be given in which case the solution
+will be computed in a single sweep over the given time interval
+without solution of dual problems:
+
+ode.solve(t0, t1);
+
+This mode allows the state to be specified and retrieved in between
+intervals by calling set_state() and get_state().
 
 C++ includes: ODE.h ";
 
@@ -3588,25 +3607,97 @@ Update ODE, return false to stop (optional). ";
 
 Save sample (optional). ";
 
-%feature("docstring")  dolfin::ODE::time "
-
-Return real time (might be flipped backwards for dual). ";
-
-%feature("docstring")  dolfin::ODE::sparse "
-
-Automatically detect sparsity (optional). ";
-
 %feature("docstring")  dolfin::ODE::size "
 
 Return number of components N. ";
+
+%feature("docstring")  dolfin::ODE::time "
+
+Return current time. ";
+
+%feature("docstring")  dolfin::ODE::time "
+
+Return real time (might be flipped backwards for dual). ";
 
 %feature("docstring")  dolfin::ODE::endtime "
 
 Return end time (final time T). ";
 
+%feature("docstring")  dolfin::ODE::sparse "
+
+Automatically detect sparsity (optional). ";
+
 %feature("docstring")  dolfin::ODE::solve "
 
-Solve ODE. ";
+Solve ODE on [0, T]. ";
+
+%feature("docstring")  dolfin::ODE::solve "
+
+Solve ODE on [0, T]. ";
+
+%feature("docstring")  dolfin::ODE::solve "
+
+Solve ODE on [t0, t1]. ";
+
+%feature("docstring")  dolfin::ODE::set_state "
+
+Set state for ODE (only available during interval stepping). ";
+
+%feature("docstring")  dolfin::ODE::get_state "
+
+Get state for ODE (only available during interval stepping). ";
+
+
+// File: classdolfin_1_1ODECollection.xml
+%feature("docstring") dolfin::ODECollection "
+
+An ODECollection represents a collection of initial value problems of
+the form
+
+u'(t) = f(u(t), t) on (0, T],
+
+u(0) = u0,
+
+where u(t) is a vector of length N.
+
+Each ODE is governed by the same equation but a separate state is
+maintained for each ODE. Using ODECollection is recommended when
+solving a large number of ODEs and the overhead of instantiating a
+large number of ODE objects should be avoided.
+
+C++ includes: ODECollection.h ";
+
+%feature("docstring")  dolfin::ODECollection::ODECollection "
+
+Create a collection of ODEs. ";
+
+%feature("docstring")  dolfin::ODECollection::~ODECollection "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::ODECollection::solve "
+
+Solve ODE collection on [t0, t1]. ";
+
+%feature("docstring")  dolfin::ODECollection::set_state "
+
+Set state for given ODE system. ";
+
+%feature("docstring")  dolfin::ODECollection::set_state "
+
+Set states for all ODE systems. ";
+
+%feature("docstring")  dolfin::ODECollection::get_state "
+
+Get state for given ODE system. ";
+
+%feature("docstring")  dolfin::ODECollection::get_state "
+
+Get states for all ODE systems. ";
+
+%feature("docstring")  dolfin::ODECollection::update "
+
+Optional user-defined update, called between solves. ";
 
 
 // File: classdolfin_1_1ODESolution.xml
@@ -3957,9 +4048,11 @@ Display quadrature data. ";
 // File: classdolfin_1_1Rectangle.xml
 %feature("docstring") dolfin::Rectangle "
 
-Triangular mesh of the 2D rectangle (a,b) x (c,d). Given the number of
-cells (nx, ny) in each direction, the total number of triangles will
-be 2*nx*ny and the total number of vertices will be (nx + 1)*(ny + 1).
+Triangular mesh of the 2D rectangle (x0, y0) x (x1, y1). Given the
+number of cells (nx, ny) in each direction, the total number of
+triangles will be 2*nx*ny and the total number of vertices will be (nx
++ 1)*(ny + 1).
+
 The Type is an enumerater taking values in {left, right or crisscross}
 indicating the direction of the diagonals for left/right or both ==
 crisscross. The default is right.
@@ -4361,6 +4454,28 @@ Destructor. ";
 %feature("docstring")  dolfin::SubMatrix::SubMatrix "";
 
 %feature("docstring")  dolfin::SubMatrix::~SubMatrix "";
+
+
+// File: classdolfin_1_1SubMesh.xml
+%feature("docstring") dolfin::SubMesh "
+
+A SubMesh is a mesh defined as a subset of a given mesh. It provides a
+convenient way to create matching meshes for multiphysics applications
+by creating meshes for subdomains as subsets of a single global mesh.
+
+C++ includes: SubMesh.h ";
+
+%feature("docstring")  dolfin::SubMesh::SubMesh "
+
+Create subset of given mesh marked by sub domain. ";
+
+%feature("docstring")  dolfin::SubMesh::SubMesh "
+
+Create subset of given mesh marked by mesh function. ";
+
+%feature("docstring")  dolfin::SubMesh::~SubMesh "
+
+Destructor. ";
 
 
 // File: classdolfin_1_1SubSpace.xml
@@ -5813,6 +5928,9 @@ Assemble scalar on sub domains. ";
 // File: SubDomain_8h.xml
 
 
+// File: SubMesh_8h.xml
+
+
 // File: UnitCircle_8h.xml
 
 
@@ -5858,6 +5976,9 @@ Assemble scalar on sub domains. ";
 // File: ODE_8h.xml
 
 
+// File: ODECollection_8h.xml
+
+
 // File: ODESolution_8h.xml
 
 
@@ -5885,53 +6006,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
+// File: dir_2690030bf34a9b99f807bca468dfcd7b.xml
 
 
-// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
+// File: dir_940b5712f02a32830bd12fef2b864834.xml
 
 
-// File: dir_a2c34637c1a406722dc8079c9250ce33.xml
+// File: dir_d249ad0834ca29035103b2e0953968d4.xml
 
 
-// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
+// File: dir_a2009e25a76ddcb8af4e90e07234c160.xml
 
 
-// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
+// File: dir_e5f3e76321d365387794b4e0b13b0542.xml
 
 
-// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
+// File: dir_ca99c1511dbde8f29c0b7e09bd4ef636.xml
 
 
-// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
+// File: dir_7f2cd72ded43e94e89a058e502ce4739.xml
 
 
-// File: dir_ca8276e2506a0601691073651d5c3550.xml
+// File: dir_d56fb550318565201b42c14e1b398d4c.xml
 
 
-// File: dir_608877851688f7299a0e613e9ab9e93f.xml
+// File: dir_48ccb52a0d43781ee1cb898ea130791d.xml
 
 
-// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
+// File: dir_884a9690f759434f746aeff048cf4c43.xml
 
 
-// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
+// File: dir_2a5436c73f464b956b7fda1ec5cce6c8.xml
 
 
-// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
+// File: dir_1a116b7a4e740dde874fff34af30f777.xml
 
 
-// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
+// File: dir_50e9b7f120d1277c8db717afa436970d.xml
 
 
-// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
+// File: dir_58933b45517fd2b17aaaf5971e3e2257.xml
 
 
-// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
+// File: dir_33a250896bf0d81f6f57ec5ffd696de6.xml
 
 
-// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
+// File: dir_3c9bd9864e1331ff444a56784d2e8be1.xml
 
 
-// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
+// File: dir_2ba36b65388de8b05f7bdef010c8127d.xml
 
