@@ -9,10 +9,11 @@ int main(int argc, char* argv[])
 {
   // Read in mesh from XML file in parallel
   Mesh mesh("unitsquare.xml.gz");
+  mesh.order();
   
   // Store partition to file
   char filename[100];
-  sprintf(filename, "mesh_part_%d.xml.gz", dolfin::MPI::process_number());
+  sprintf(filename, "mesh_part_%d.xml", dolfin::MPI::process_number());
   File file(filename);
   file << mesh;
 
