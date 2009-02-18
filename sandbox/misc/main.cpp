@@ -20,6 +20,25 @@ public:
   }
 };
 
+class FunctionContainer
+{
+public:
+  FunctionContainer(const FunctionSpace& V)
+  {
+    Function g(V);
+    g.vector();
+    _f = g;
+  };
+	
+  const Function& get_function()
+  {
+    return _f;
+  };
+protected:
+  Function _f;
+};
+
+
 int main()
 {  
   UnitSquare mesh(2, 2);
@@ -34,4 +53,16 @@ int main()
   message("Interpolating to the function vector");
   f.interpolate(f.vector(), f.function_space());
   f.vector().disp();
+  
+  message("Interpolating using initialising by an external function");
+  MyFunction f_(f);
+  f.interpolate(f_.vector(), f.function_space());
+  f.vector().disp();
+  
+  message("Returning Function by reference");
+  FunctionContainer fc(V);
+  const Function& f2 = fc.get_function();
+
+  message("dim = %d", f2.function_space().dim());
 }
+
