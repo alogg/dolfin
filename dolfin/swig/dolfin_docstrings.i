@@ -1325,15 +1325,21 @@ Return the function space. ";
 
 %feature("docstring")  dolfin::Function::vector "
 
-Return the vector of expansion coefficients (non-const version). ";
+Return the vector of expansion coefficients, automatically initialized
+to zero if coefficients have not been computed (non-const version) ";
 
 %feature("docstring")  dolfin::Function::vector "
 
-Return the vector of expansion coefficients (const version). ";
+Return the vector of expansion coefficients, automatically initialized
+to zero if coefficients have not been computed (const version) ";
 
 %feature("docstring")  dolfin::Function::has_function_space "
 
-Test for the function space. ";
+Check if function has a function space. ";
+
+%feature("docstring")  dolfin::Function::has_vector "
+
+Check if function has a vector of expansion coefficients. ";
 
 %feature("docstring")  dolfin::Function::in "
 
@@ -1369,6 +1375,11 @@ function space. ";
 %feature("docstring")  dolfin::Function::interpolate "
 
 Interpolate function to given function space. ";
+
+%feature("docstring")  dolfin::Function::interpolate "
+
+Interpolate function to its function space (if not already a discrete
+function). ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
@@ -2688,6 +2699,10 @@ Coarsen mesh according to cells marked for coarsening. ";
 
 Move coordinates of mesh according to new boundary coordinates. ";
 
+%feature("docstring")  dolfin::Mesh::move "
+
+Move coordinates of mesh according to displacement function. ";
+
 %feature("docstring")  dolfin::Mesh::smooth "
 
 Smooth mesh using Lagrangian mesh smoothing. ";
@@ -2813,19 +2828,19 @@ Destructor. ";
 
 Clear all data. ";
 
-%feature("docstring")  dolfin::MeshData::createMeshFunction "
+%feature("docstring")  dolfin::MeshData::create_mesh_function "
 
 Create MeshFunction with given name (uninitialized). ";
 
-%feature("docstring")  dolfin::MeshData::createMeshFunction "
+%feature("docstring")  dolfin::MeshData::create_mesh_function "
 
 Create MeshFunction with given name and dimension. ";
 
-%feature("docstring")  dolfin::MeshData::createArray "
+%feature("docstring")  dolfin::MeshData::create_array "
 
 Create Array with given name and size. ";
 
-%feature("docstring")  dolfin::MeshData::createMapping "
+%feature("docstring")  dolfin::MeshData::create_mapping "
 
 Create map with given name and size. ";
 
@@ -2834,7 +2849,7 @@ Create map with given name and size. ";
 Return Array with given name (returning zero if data is not
 available). ";
 
-%feature("docstring")  dolfin::MeshData::meshFunction "
+%feature("docstring")  dolfin::MeshData::mesh_function "
 
 Return MeshFunction with given name (returning zero if data is not
 available). ";
@@ -2844,15 +2859,15 @@ available). ";
 Return Map with given name (returning zero if data is not available).
 ";
 
-%feature("docstring")  dolfin::MeshData::eraseMeshFunction "
+%feature("docstring")  dolfin::MeshData::erase_mesh_function "
 
 Erase MeshFunction with given name. ";
 
-%feature("docstring")  dolfin::MeshData::eraseArray "
+%feature("docstring")  dolfin::MeshData::erase_array "
 
 Erase Array with given name. ";
 
-%feature("docstring")  dolfin::MeshData::eraseMapping "
+%feature("docstring")  dolfin::MeshData::erase_mapping "
 
 Erase Mapping with given name. ";
 
@@ -3713,6 +3728,9 @@ same t.
 The samples are stored in memory if possible, otherwise stored in a
 temporary file and fetched from disk in blocks when needed.
 
+Since GMP at the moment doesn't support saving operands on disk, this
+class uses double for all variables.
+
 C++ includes: ODESolution.h ";
 
 %feature("docstring")  dolfin::ODESolution::ODESolution "
@@ -3979,14 +3997,6 @@ Create progress bar with an unknown number of steps. ";
 %feature("docstring")  dolfin::Progress::~Progress "
 
 Destructor. ";
-
-
-// File: classdolfin_1_1ProjectionLibrary.xml
-%feature("docstring") dolfin::ProjectionLibrary "
-
-Library of pregenerated L2 projections.
-
-C++ includes: ProjectionLibrary.h ";
 
 
 // File: classdolfin_1_1Quadrature.xml
@@ -5619,9 +5629,6 @@ Assemble scalar on sub domains. ";
 // File: ElementLibrary_8h.xml
 
 
-// File: ProjectionLibrary_8h.xml
-
-
 // File: assemble_8h.xml
 
 
@@ -6006,53 +6013,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_2690030bf34a9b99f807bca468dfcd7b.xml
+// File: dir_520e1c523beb2655cfd6ad4155800dde.xml
 
 
-// File: dir_940b5712f02a32830bd12fef2b864834.xml
+// File: dir_d5a92c999ccff796bfa51504aa928321.xml
 
 
-// File: dir_d249ad0834ca29035103b2e0953968d4.xml
+// File: dir_11feba050d0a307345a6fdcd1a928af0.xml
 
 
-// File: dir_a2009e25a76ddcb8af4e90e07234c160.xml
+// File: dir_1abfca38a7c4d8bb4ee7e99eafd6485b.xml
 
 
-// File: dir_e5f3e76321d365387794b4e0b13b0542.xml
+// File: dir_5327b0510c10d7b4dd9f0b612477a1ef.xml
 
 
-// File: dir_ca99c1511dbde8f29c0b7e09bd4ef636.xml
+// File: dir_d27f1c0e8d9c6270bee5115851a4b6f7.xml
 
 
-// File: dir_7f2cd72ded43e94e89a058e502ce4739.xml
+// File: dir_8e5fab2f90fb0b857781faad098510f0.xml
 
 
-// File: dir_d56fb550318565201b42c14e1b398d4c.xml
+// File: dir_368a391bb7aa8ad026dea6966bf6c28c.xml
 
 
-// File: dir_48ccb52a0d43781ee1cb898ea130791d.xml
+// File: dir_0525f680b537662e7b81e043415d367c.xml
 
 
-// File: dir_884a9690f759434f746aeff048cf4c43.xml
+// File: dir_281c59896c5da95b4afeb12601195946.xml
 
 
-// File: dir_2a5436c73f464b956b7fda1ec5cce6c8.xml
+// File: dir_50b06b2dc6dbd98017a10fb96637acdb.xml
 
 
-// File: dir_1a116b7a4e740dde874fff34af30f777.xml
+// File: dir_4aa40cb41cc949a7b00a9cb4febaf51d.xml
 
 
-// File: dir_50e9b7f120d1277c8db717afa436970d.xml
+// File: dir_793e1a504761aafb0c461c22ea2bc586.xml
 
 
-// File: dir_58933b45517fd2b17aaaf5971e3e2257.xml
+// File: dir_8b2aeb22ca53d6b66819e2089cbc1b7f.xml
 
 
-// File: dir_33a250896bf0d81f6f57ec5ffd696de6.xml
+// File: dir_b62a608aca485949f516d164fab0cac4.xml
 
 
-// File: dir_3c9bd9864e1331ff444a56784d2e8be1.xml
+// File: dir_5c709e2754c7db03346617716be611dd.xml
 
 
-// File: dir_2ba36b65388de8b05f7bdef010c8127d.xml
+// File: dir_3e70d3f457aa19788809ffad5c9ead9b.xml
 
