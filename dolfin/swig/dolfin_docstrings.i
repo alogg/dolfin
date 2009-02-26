@@ -14,50 +14,6 @@ for the interior vertices accordingly.
 C++ includes: ALE.h ";
 
 
-// File: classdolfin_1_1Array.xml
-%feature("docstring") dolfin::Array "
-
-Array is a container that provides O(1) access time to elements and
-O(1) memory overhead.
-
-It is a wrapper for std::vector, so see the STL manual for further
-details:http://www.sgi.com/tech/stl/
-
-C++ includes: Array.h ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Create empty array. ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Create array of given size. ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Create array containing two elements. ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Create array containing three elements. ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Create array containing four elements. ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Create array containing five elements. ";
-
-%feature("docstring")  dolfin::Array::Array "
-
-Copy constructor. ";
-
-%feature("docstring")  dolfin::Array::~Array "
-
-Destructor. ";
-
-
 // File: classdolfin_1_1Assembler.xml
 %feature("docstring") dolfin::Assembler "
 
@@ -2809,7 +2765,7 @@ Display data. ";
 %feature("docstring") dolfin::MeshData "
 
 The class MeshData is a container for auxiliary mesh data, represented
-either as MeshFunctions over topological mesh entities or Arrays. Each
+either as MeshFunctions over topological mesh entities or arrays. Each
 dataset is identified by a unique user-specified string.
 
 Currently, only uint-valued data is supported.
@@ -2838,26 +2794,35 @@ Create MeshFunction with given name and dimension. ";
 
 %feature("docstring")  dolfin::MeshData::create_array "
 
-Create Array with given name and size. ";
+Create array (vector) with given name and size. ";
 
 %feature("docstring")  dolfin::MeshData::create_mapping "
 
-Create map with given name and size. ";
+Create mapping from uint to uint with given name. ";
 
-%feature("docstring")  dolfin::MeshData::array "
+%feature("docstring")  dolfin::MeshData::create_vector_mapping "
 
-Return Array with given name (returning zero if data is not
-available). ";
+Create mapping from uint to vector of uint with given name. ";
 
 %feature("docstring")  dolfin::MeshData::mesh_function "
 
 Return MeshFunction with given name (returning zero if data is not
 available). ";
 
+%feature("docstring")  dolfin::MeshData::array "
+
+Return array with given name (returning zero if data is not
+available). ";
+
 %feature("docstring")  dolfin::MeshData::mapping "
 
-Return Map with given name (returning zero if data is not available).
-";
+Return mapping with given name (returning zero if data is not
+available). ";
+
+%feature("docstring")  dolfin::MeshData::vector_mapping "
+
+Return vector mapping with given name (returning zero if data is not
+available). ";
 
 %feature("docstring")  dolfin::MeshData::erase_mesh_function "
 
@@ -2865,11 +2830,15 @@ Erase MeshFunction with given name. ";
 
 %feature("docstring")  dolfin::MeshData::erase_array "
 
-Erase Array with given name. ";
+Erase array with given name. ";
 
 %feature("docstring")  dolfin::MeshData::erase_mapping "
 
-Erase Mapping with given name. ";
+Erase mapping with given name. ";
+
+%feature("docstring")  dolfin::MeshData::erase_vector_mapping "
+
+Erase vector mapping with given name. ";
 
 %feature("docstring")  dolfin::MeshData::disp "
 
@@ -3087,6 +3056,10 @@ Create mesh function on given mesh of given dimension. ";
 %feature("docstring")  dolfin::MeshFunction::MeshFunction "
 
 Create function from data file. ";
+
+%feature("docstring")  dolfin::MeshFunction::MeshFunction "
+
+Copy constructor. ";
 
 %feature("docstring")  dolfin::MeshFunction::~MeshFunction "
 
@@ -4273,10 +4246,6 @@ Return array with row range for process_number. ";
 %feature("docstring")  dolfin::SparsityPattern::numLocalRows "
 
 Return number of local rows for process_number. ";
-
-
-// File: classstd_1_1vector.xml
-%feature("docstring") std::vector "";
 
 
 // File: classdolfin_1_1STLFactory.xml
@@ -5602,9 +5571,6 @@ Assemble scalar on sub domains. ";
 // File: ALEType_8h.xml
 
 
-// File: Array_8h.xml
-
-
 // File: constants_8h.xml
 
 
@@ -6013,53 +5979,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_520e1c523beb2655cfd6ad4155800dde.xml
+// File: dir_2690030bf34a9b99f807bca468dfcd7b.xml
 
 
-// File: dir_d5a92c999ccff796bfa51504aa928321.xml
+// File: dir_940b5712f02a32830bd12fef2b864834.xml
 
 
-// File: dir_11feba050d0a307345a6fdcd1a928af0.xml
+// File: dir_d249ad0834ca29035103b2e0953968d4.xml
 
 
-// File: dir_1abfca38a7c4d8bb4ee7e99eafd6485b.xml
+// File: dir_a2009e25a76ddcb8af4e90e07234c160.xml
 
 
-// File: dir_5327b0510c10d7b4dd9f0b612477a1ef.xml
+// File: dir_e5f3e76321d365387794b4e0b13b0542.xml
 
 
-// File: dir_d27f1c0e8d9c6270bee5115851a4b6f7.xml
+// File: dir_ca99c1511dbde8f29c0b7e09bd4ef636.xml
 
 
-// File: dir_8e5fab2f90fb0b857781faad098510f0.xml
+// File: dir_7f2cd72ded43e94e89a058e502ce4739.xml
 
 
-// File: dir_368a391bb7aa8ad026dea6966bf6c28c.xml
+// File: dir_d56fb550318565201b42c14e1b398d4c.xml
 
 
-// File: dir_0525f680b537662e7b81e043415d367c.xml
+// File: dir_48ccb52a0d43781ee1cb898ea130791d.xml
 
 
-// File: dir_281c59896c5da95b4afeb12601195946.xml
+// File: dir_884a9690f759434f746aeff048cf4c43.xml
 
 
-// File: dir_50b06b2dc6dbd98017a10fb96637acdb.xml
+// File: dir_2a5436c73f464b956b7fda1ec5cce6c8.xml
 
 
-// File: dir_4aa40cb41cc949a7b00a9cb4febaf51d.xml
+// File: dir_1a116b7a4e740dde874fff34af30f777.xml
 
 
-// File: dir_793e1a504761aafb0c461c22ea2bc586.xml
+// File: dir_50e9b7f120d1277c8db717afa436970d.xml
 
 
-// File: dir_8b2aeb22ca53d6b66819e2089cbc1b7f.xml
+// File: dir_58933b45517fd2b17aaaf5971e3e2257.xml
 
 
-// File: dir_b62a608aca485949f516d164fab0cac4.xml
+// File: dir_33a250896bf0d81f6f57ec5ffd696de6.xml
 
 
-// File: dir_5c709e2754c7db03346617716be611dd.xml
+// File: dir_3c9bd9864e1331ff444a56784d2e8be1.xml
 
 
-// File: dir_3e70d3f457aa19788809ffad5c9ead9b.xml
+// File: dir_2ba36b65388de8b05f7bdef010c8127d.xml
 
