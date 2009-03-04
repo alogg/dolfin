@@ -305,6 +305,102 @@ C++ includes: Cell.h ";
 %feature("docstring")  dolfin::CellIterator::CellIterator "";
 
 
+// File: classdolfin_1_1CellType.xml
+%feature("docstring") dolfin::CellType "
+
+This class provides a common interface for different cell types. Each
+cell type implements mesh functionality that is specific to a certain
+type of cell.
+
+C++ includes: CellType.h ";
+
+%feature("docstring")  dolfin::CellType::CellType "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::CellType::~CellType "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::CellType::cellType "
+
+Return type of cell. ";
+
+%feature("docstring")  dolfin::CellType::facetType "
+
+Return type of cell for facets. ";
+
+%feature("docstring")  dolfin::CellType::dim "
+
+Return topological dimension of cell. ";
+
+%feature("docstring")  dolfin::CellType::numEntities "
+
+Return number of entitites of given topological dimension. ";
+
+%feature("docstring")  dolfin::CellType::numVertices "
+
+Return number of vertices for entity of given topological dimension.
+";
+
+%feature("docstring")  dolfin::CellType::orientation "
+
+Return orientation of the cell. ";
+
+%feature("docstring")  dolfin::CellType::createEntities "
+
+Create entities e of given topological dimension from vertices v. ";
+
+%feature("docstring")  dolfin::CellType::refineCell "
+
+Refine cell uniformly. ";
+
+%feature("docstring")  dolfin::CellType::volume "
+
+Compute (generalized) volume of mesh entity. ";
+
+%feature("docstring")  dolfin::CellType::diameter "
+
+Compute diameter of mesh entity. ";
+
+%feature("docstring")  dolfin::CellType::normal "
+
+Compute component i of normal of given facet with respect to the cell.
+";
+
+%feature("docstring")  dolfin::CellType::normal "
+
+Compute of given facet with respect to the cell. ";
+
+%feature("docstring")  dolfin::CellType::facetArea "
+
+Compute the area/length of given facet with respect to the cell. ";
+
+%feature("docstring")  dolfin::CellType::order "
+
+Order entities locally. ";
+
+%feature("docstring")  dolfin::CellType::ordered "
+
+Check if entities are ordered. ";
+
+%feature("docstring")  dolfin::CellType::intersects "
+
+Check for intersection with point. ";
+
+%feature("docstring")  dolfin::CellType::intersects "
+
+Check for intersection with line defined by points. ";
+
+%feature("docstring")  dolfin::CellType::intersects "
+
+Check for intersection with cell. ";
+
+%feature("docstring")  dolfin::CellType::description "
+
+Return description of cell type. ";
+
+
 // File: classdolfin_1_1cGqMethod.xml
 %feature("docstring") dolfin::cGqMethod "
 
@@ -5835,6 +5931,9 @@ Assemble scalar on sub domains. ";
 // File: Cell_8h.xml
 
 
+// File: CellType_8h.xml
+
+
 // File: DomainBoundary_8h.xml
 
 
@@ -5979,53 +6078,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_2690030bf34a9b99f807bca468dfcd7b.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_940b5712f02a32830bd12fef2b864834.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_d249ad0834ca29035103b2e0953968d4.xml
+// File: dir_a2c34637c1a406722dc8079c9250ce33.xml
 
 
-// File: dir_a2009e25a76ddcb8af4e90e07234c160.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_e5f3e76321d365387794b4e0b13b0542.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_ca99c1511dbde8f29c0b7e09bd4ef636.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_7f2cd72ded43e94e89a058e502ce4739.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_d56fb550318565201b42c14e1b398d4c.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_48ccb52a0d43781ee1cb898ea130791d.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_884a9690f759434f746aeff048cf4c43.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_2a5436c73f464b956b7fda1ec5cce6c8.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_1a116b7a4e740dde874fff34af30f777.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_50e9b7f120d1277c8db717afa436970d.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_58933b45517fd2b17aaaf5971e3e2257.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_33a250896bf0d81f6f57ec5ffd696de6.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_3c9bd9864e1331ff444a56784d2e8be1.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_2ba36b65388de8b05f7bdef010c8127d.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 
