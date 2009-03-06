@@ -30,6 +30,30 @@ template<typename M> void test2(M& map, const char* filename)
     std::cout << (*iter).first << ": " << (*iter).second << std::endl;
 }
 
+template<typename M> void test3(M& map, const char* filename)
+{
+  dolfin::File outfile(filename, true);
+  outfile << map;
+
+  map.clear();
+  dolfin::File infile(filename, true);
+  infile >> map;
+
+  typedef typename M::iterator It;
+
+  std::cout << "File content:" << std::endl;
+  for (It iter = map.begin(); iter != map.end(); ++iter)
+  {
+    std::cout << "Key: " << (*iter).first << ", values: ";
+    const dolfin::uint size = (*iter).second.size();
+      for (dolfin::uint i = 0; i < size; ++i)
+        std::cout << (*iter).second[i] << " ";
+    std::cout << std::endl;
+  }
+
+
+}
+
 
 int main()
 {
@@ -43,7 +67,7 @@ int main()
   }
 
   {
-    std::vector<uint> x;
+    std::vector<dolfin::uint> x;
     x.push_back(1);
     x.push_back(2);
     x.push_back(3);
@@ -67,7 +91,7 @@ int main()
   }
 
   {
-    std::map<dolfin::uint, uint> map;
+    std::map<dolfin::uint, dolfin::uint> map;
     map[0] = 1;
     map[1] = 3;
     map[2] = 7;
@@ -82,20 +106,38 @@ int main()
     test2(map, "double_map.xml");
   }
 
+  {
+    std::map<dolfin::uint, std::vector<int> > array_map;
+    array_map[0].push_back(-10);
+    array_map[0].push_back(-5);
+    array_map[0].push_back(5);
+    array_map[1].push_back(-11);
+    array_map[1].push_back(-6);
+    array_map[1].push_back(6);
+    test3(array_map, "int_array_map.xml");
+  }
 
-  /*
-  std::map<dolfin::uint, std::vector<int> > iam;
-  iam[0].push_back(-10);
-  iam[0].push_back(-5);
-  iam[0].push_back(5);
+  {
+    std::map<dolfin::uint, std::vector<dolfin::uint> > array_map;
+    array_map[0].push_back(1);
+    array_map[0].push_back(2);
+    array_map[0].push_back(3);
+    array_map[1].push_back(11);
+    array_map[1].push_back(6);
+    array_map[1].push_back(16);
+    test3(array_map, "uint_array_map.xml");
+  }
 
-
-  std::cout << iam[0][0] << std::endl;
-  std::cout << iam[0][1] << std::endl;
-  std::cout << iam[1][0] << std::endl;
-  std::cout << iam[1][1] << std::endl;
-  std::cout << iam[1][2] << std::endl;
-  */
+  {
+    std::map<dolfin::uint, std::vector<double> > array_map;
+    array_map[0].push_back(1.1);
+    array_map[0].push_back(2.2);
+    array_map[0].push_back(3.3);
+    array_map[1].push_back(4.3);
+    array_map[1].push_back(5.5);
+    array_map[1].push_back(10.01);
+    test3(array_map, "double_array_map.xml");
+  }
 
   return 0;
 }

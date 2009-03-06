@@ -1,16 +1,16 @@
 <map key_type="uint" value_type="array">
   <map_entry key="0">
-    <array type="int" size="2">
+    <array type="int" size="3">
       <element index="0" value="-10"/>
-      <element index="1" value="2"/>
+      <element index="1" value="-5"/>
+      <element index="2" value="5"/>
     </array>
   </map_entry>
   <map_entry key="1">
     <array type="int" size="3">
-      <element index="0" value="0"/>
-      <element index="1" value="12"/>
-      <element index="2" value="20"/>
+      <element index="0" value="-11"/>
+      <element index="1" value="-6"/>
+      <element index="2" value="6"/>
     </array>
   </map_entry>
 </map>
-
