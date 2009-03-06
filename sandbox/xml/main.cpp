@@ -139,5 +139,19 @@ int main()
     test3(array_map, "double_array_map.xml");
   }
 
+  {
+    dolfin::UnitSquare mesh(5,5);
+    dolfin::File f("mesh.xml", true);
+    f << mesh;
+  }
+
+  {
+    dolfin::Mesh mesh;
+    dolfin::File f("mesh.xml", true);
+    f >> mesh;
+    dolfin::File f2("mesh_copy.xml", true);
+    f2 << mesh;
+  }
+
   return 0;
 }
