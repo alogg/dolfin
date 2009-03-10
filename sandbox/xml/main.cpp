@@ -160,6 +160,12 @@ int main()
       (*arr)[i] = i+2;
     dolfin::File fb("bmesh.xml", true);
     fb << bmesh;
+
+    dolfin::Mesh bmesh_copy;
+    dolfin::File fb2("bmesh.xml", true);
+    fb2 >> bmesh_copy;
+    dolfin::File fb3("bmesh_copy.xml", true);
+    fb3 << bmesh_copy;
   }
 
   return 0;
