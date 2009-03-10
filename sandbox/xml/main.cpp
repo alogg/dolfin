@@ -151,6 +151,15 @@ int main()
     f >> mesh;
     dolfin::File f2("mesh_copy.xml", true);
     f2 << mesh;
+
+    dolfin::BoundaryMesh bmesh(mesh);
+    dolfin::uint size = bmesh.numVertices();
+    bmesh.data().create_array("spam", size);
+    std::vector<dolfin::uint>* arr = bmesh.data().array("spam");
+    for (dolfin::uint i = 0; i < size; ++i)
+      (*arr)[i] = i+2;
+    dolfin::File fb("bmesh.xml", true);
+    fb << bmesh;
   }
 
   return 0;
