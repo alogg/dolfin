@@ -164,7 +164,9 @@ int main()
     dolfin::Mesh bmesh_copy;
     dolfin::File fb2("bmesh.xml", true);
     fb2 >> bmesh_copy;
-    dolfin::File fb3("bmesh_copy.xml", true);
+
+    // Write file to standard error :)
+    dolfin::File fb3(std::cerr);
     fb3 << bmesh_copy;
   }
 
