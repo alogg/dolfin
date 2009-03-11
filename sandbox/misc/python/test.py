@@ -9,11 +9,6 @@ def test1():
     u0 = Function(V, "sin(x[0])")
     u1 = Function(V)
 
-    # One of these needed
-    #u0 = interpolate(u0, V)
-    #u0 = project(u0, V)
-    #u0.interpolate()
-
     # Time stepping
     for i in range(10):
 
@@ -22,8 +17,8 @@ def test1():
         # Solve for u1
         u1.vector()
 
-        # Assign u0 = u1 (requires interpolation/projection)
-        u0.assign(u0)
+        # Assign u0 = u1 (works fine)
+        u0.assign(u1)
 
 def test2():
     "Test time-stepping with time-dependent coefficient expression."
@@ -51,6 +46,5 @@ def test2():
         #w0 = interpolate(w1, V)
         #w0 = project(w1, V)
 
-#test1()
+test1()
 test2()
-
