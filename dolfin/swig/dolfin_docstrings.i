@@ -634,6 +634,10 @@ Return current facet normal (if available). ";
 
 Check if we are on a facet. ";
 
+%feature("docstring")  dolfin::Data::geometric_dimension "
+
+Return geometric dimension of cell. ";
+
 
 // File: classdolfin_1_1DefaultFactory.xml
 %feature("docstring") dolfin::DefaultFactory "";
@@ -808,6 +812,10 @@ C++ includes: SpecialFunctions.h ";
 %feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
 %feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+
+%feature("docstring")  dolfin::DiscreteFunction::~DiscreteFunction "";
 
 
 // File: classdolfin_1_1DofMap.xml
@@ -1193,6 +1201,10 @@ Create a file with given name. ";
 
 Create a file with given name and type (format). ";
 
+%feature("docstring")  dolfin::File::File "
+
+Create a outfile object writing to stream. ";
+
 %feature("docstring")  dolfin::File::~File "
 
 Destructor. ";
@@ -1340,11 +1352,11 @@ Create function on given function space. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create function on given function space with a given vector. ";
+Create function on given function space (shared data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create function on given function space (shared data). ";
+Create function on given function space with a given vector. ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1353,7 +1365,15 @@ data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create function from file. ";
+Create function from vector of dofs stored to file. ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create function from vector of dofs stored to file (shared data). ";
+
+%feature("docstring")  dolfin::Function::Function "
+
+Create function from file (don't use, will be removed). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -2753,6 +2773,11 @@ Move coordinates of mesh according to new boundary coordinates. ";
 
 %feature("docstring")  dolfin::Mesh::move "
 
+Move coordinates of mesh according to adjacent mesh with common global
+vertices. ";
+
+%feature("docstring")  dolfin::Mesh::move "
+
 Move coordinates of mesh according to displacement function. ";
 
 %feature("docstring")  dolfin::Mesh::smooth "
@@ -2855,6 +2880,26 @@ Set all connections for all entities. ";
 %feature("docstring")  dolfin::MeshConnectivity::disp "
 
 Display data. ";
+
+
+// File: classdolfin_1_1MeshCoordinates.xml
+%feature("docstring") dolfin::MeshCoordinates "
+
+This Function represents the mesh coordinates on a given mesh.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::MeshCoordinates::MeshCoordinates "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::MeshCoordinates::MeshCoordinates "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::MeshCoordinates::eval "
+
+Function evaluation. ";
 
 
 // File: classdolfin_1_1MeshData.xml
@@ -6078,53 +6123,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
+// File: dir_45ce1382d4e53b0b5edcf516e5ecafcf.xml
 
 
-// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
+// File: dir_5e8757b46b1aceda9afa1b26de732bd2.xml
 
 
-// File: dir_a2c34637c1a406722dc8079c9250ce33.xml
+// File: dir_56324e2575091c414dfb7481807b719f.xml
 
 
-// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
+// File: dir_1a3a6caedb87a1ab098d0bc0b51545c8.xml
 
 
-// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
+// File: dir_239397e89769da4329b355d672683521.xml
 
 
-// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
+// File: dir_73f167e78766a372d6fcc201832c5e80.xml
 
 
-// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
+// File: dir_9f1cd3e55cdc5bb75869c6c587f1a041.xml
 
 
-// File: dir_ca8276e2506a0601691073651d5c3550.xml
+// File: dir_5712efd6887dc09642df94817b0bf687.xml
 
 
-// File: dir_608877851688f7299a0e613e9ab9e93f.xml
+// File: dir_bb2c17bab512e6e586df99bbd15d90bc.xml
 
 
-// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
+// File: dir_798fa310f8e206d67d3cf5b7f7a7e6f1.xml
 
 
-// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
+// File: dir_372d5a455140faeb7a58df484b344501.xml
 
 
-// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
+// File: dir_b7c7b5c73ec53dffccbf0a7085b476a3.xml
 
 
-// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
+// File: dir_cc4c339b9a2465fd3b12e2b47597240e.xml
 
 
-// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
+// File: dir_030213acbfd519a326574db3b14a3d1a.xml
 
 
-// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
+// File: dir_18670f5a312157a52e64a428384c2aa1.xml
 
 
-// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
+// File: dir_957f0fda322e00a3ae1cad622726342d.xml
 
 
-// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
+// File: dir_c9ee7adea9a593b62b2f0ade5bc805cd.xml
 
