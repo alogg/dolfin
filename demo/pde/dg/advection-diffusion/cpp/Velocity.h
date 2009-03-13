@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <ufc.h>
-    
+
 /// This class defines the interface for a finite element.
 
 class UFC_Velocity_finite_element_0_0: public ufc::finite_element
@@ -2214,18 +2214,18 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/FunctionSpace.h>
 
-    class VelocityFunctionSpace : public dolfin::FunctionSpace
-    {
-    public:
+class VelocityFunctionSpace : public dolfin::FunctionSpace
+{
+public:
 
-      VelocityFunctionSpace(const dolfin::Mesh& mesh)
-        : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                                boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Velocity_finite_element_0()))),
-                                boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Velocity_dof_map_0()), mesh)))
-      {
-        // Do nothing
-      }
+  VelocityFunctionSpace(const dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Velocity_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Velocity_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
 
-    };
-    
+};
+
 #endif
