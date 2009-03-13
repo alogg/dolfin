@@ -843,14 +843,6 @@ Create dof map on mesh (parallel). ";
 
 Create dof map on mesh (may share ufc::dof_map) (parallel). ";
 
-%feature("docstring")  dolfin::DofMap::DofMap "
-
-Create dof map on mesh. ";
-
-%feature("docstring")  dolfin::DofMap::DofMap "
-
-Create dof map on mesh (parallel). ";
-
 %feature("docstring")  dolfin::DofMap::~DofMap "
 
 Destructor. ";
@@ -1045,14 +1037,6 @@ C++ includes: Edge.h ";
 %feature("docstring")  dolfin::EdgeIterator::EdgeIterator "";
 
 
-// File: classdolfin_1_1ElementLibrary.xml
-%feature("docstring") dolfin::ElementLibrary "
-
-Library of pregenerated finite elements and dof maps.
-
-C++ includes: ElementLibrary.h ";
-
-
 // File: classdolfin_1_1Event.xml
 %feature("docstring") dolfin::Event "
 
@@ -1224,10 +1208,6 @@ Create finite element from UFC finite element (data may be shared). ";
 %feature("docstring")  dolfin::FiniteElement::FiniteElement "
 
 Create finite element from UFC finite element. ";
-
-%feature("docstring")  dolfin::FiniteElement::FiniteElement "
-
-Create FiniteElement from a signature. ";
 
 %feature("docstring")  dolfin::FiniteElement::~FiniteElement "
 
@@ -2226,10 +2206,9 @@ Function evaluation. ";
 %feature("docstring") dolfin::IsOutflowFacet "
 
 This function determines if the current facet is an outflow facet with
-respect to the current cell. It accepts as argument the mesh and a
-form M = dot(n, v)*ds, a functional, defined on the normal vector to
-the facet and velocity vector integrated over the exterior of the
-cell. The function returns 1.0 if the dot product > 0, 0.0 otherwise.
+respect to the current cell. It accepts as argument a FunctionSpace
+and a velocity function. The function returns 1.0 if the dot product >
+0, 0.0 otherwise.
 
 C++ includes: SpecialFunctions.h ";
 
@@ -4634,6 +4613,29 @@ Create subspace for given component (n levels). ";
 %feature("docstring")  dolfin::SubVector::~SubVector "";
 
 
+// File: classdolfin_1_1SUPGStabilizer.xml
+%feature("docstring") dolfin::SUPGStabilizer "
+
+Streamline Upwind Petrov Galerkin stabilizing function Given the
+advective field a, this function computes the stabilizing factor
+
+s = h*tau*a/(2*|a|)
+
+where h is the local size of the mesh, tau the local stabilizing
+factor calculated from the local Peclet number, a the advective field.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::SUPGStabilizer::SUPGStabilizer "";
+
+%feature("docstring")  dolfin::SUPGStabilizer::~SUPGStabilizer "";
+
+%feature("docstring")  dolfin::SUPGStabilizer::eval "
+
+Function evaluation (overload for user-defined function, alternate
+version). ";
+
+
 // File: classdolfin_1_1Table.xml
 %feature("docstring") dolfin::Table "
 
@@ -5733,9 +5735,6 @@ Assemble scalar on sub domains. ";
 // File: Variable_8h.xml
 
 
-// File: ElementLibrary_8h.xml
-
-
 // File: assemble_8h.xml
 
 
@@ -5773,9 +5772,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: FunctionSpace_8h.xml
-
-
-// File: ProjectL2_8h.xml
 
 
 // File: SpecialFunctions_8h.xml
@@ -6123,53 +6119,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_45ce1382d4e53b0b5edcf516e5ecafcf.xml
+// File: dir_830d9a2a852cfb8db664d97bddb9b567.xml
 
 
-// File: dir_5e8757b46b1aceda9afa1b26de732bd2.xml
+// File: dir_2f7683faa0908dc651b118bce974ed9c.xml
 
 
-// File: dir_56324e2575091c414dfb7481807b719f.xml
+// File: dir_e022299c4f082f99de729bf207a40de8.xml
 
 
-// File: dir_1a3a6caedb87a1ab098d0bc0b51545c8.xml
+// File: dir_b4542075e2e7e43d8dc6b3f41cb402e4.xml
 
 
-// File: dir_239397e89769da4329b355d672683521.xml
+// File: dir_53299c98db70e74324a1f600e7ad0633.xml
 
 
-// File: dir_73f167e78766a372d6fcc201832c5e80.xml
+// File: dir_9ddb35f5c496bc20d4ea70cfa1225981.xml
 
 
-// File: dir_9f1cd3e55cdc5bb75869c6c587f1a041.xml
+// File: dir_d9733cadc30116f83f2623b401e3ac82.xml
 
 
-// File: dir_5712efd6887dc09642df94817b0bf687.xml
+// File: dir_3aef963f4c4af62c7cec3e029f4a40f4.xml
 
 
-// File: dir_bb2c17bab512e6e586df99bbd15d90bc.xml
+// File: dir_976cfddaefb5287b7cb367ab4f55fd0c.xml
 
 
-// File: dir_798fa310f8e206d67d3cf5b7f7a7e6f1.xml
+// File: dir_9382d5b7add9cfc6e80f0a68556905a1.xml
 
 
-// File: dir_372d5a455140faeb7a58df484b344501.xml
+// File: dir_96ae2990915e64a7e1599a8189c88804.xml
 
 
-// File: dir_b7c7b5c73ec53dffccbf0a7085b476a3.xml
+// File: dir_9050852e1cf07003e6a34f978ca5ec37.xml
 
 
-// File: dir_cc4c339b9a2465fd3b12e2b47597240e.xml
+// File: dir_df98459c20ab6e0fa767214c89b44c79.xml
 
 
-// File: dir_030213acbfd519a326574db3b14a3d1a.xml
+// File: dir_cccf359e9b394f2ce8aa1149ae33e7d5.xml
 
 
-// File: dir_18670f5a312157a52e64a428384c2aa1.xml
+// File: dir_f558c95326c5f0828e7961fbf495037c.xml
 
 
-// File: dir_957f0fda322e00a3ae1cad622726342d.xml
-
-
-// File: dir_c9ee7adea9a593b62b2f0ade5bc805cd.xml
+// File: dir_abc19d7c319531068e68c6c02d6b2317.xml
 
