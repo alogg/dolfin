@@ -1438,6 +1438,25 @@ function). ";
 Interpolate function to vertices of mesh. ";
 
 
+// File: classdolfin_1_1FunctionPlotData.xml
+%feature("docstring") dolfin::FunctionPlotData "
+
+This class is used for communicating plot data for functions to and
+from (XML) files. It is used by DOLFIN for plotting Function objects.
+The data is stored as a mesh and a vector of interpolated vertex
+values.
+
+C++ includes: FunctionPlotData.h ";
+
+%feature("docstring")  dolfin::FunctionPlotData::FunctionPlotData "
+
+Create plot data for given function. ";
+
+%feature("docstring")  dolfin::FunctionPlotData::~FunctionPlotData "
+
+Destructor. ";
+
+
 // File: classdolfin_1_1FunctionSpace.xml
 %feature("docstring") dolfin::FunctionSpace "
 
@@ -6104,6 +6123,9 @@ Assemble scalar on sub domains. ";
 // File: Parametrized_8h.xml
 
 
+// File: FunctionPlotData_8h.xml
+
+
 // File: GaussianQuadrature_8h.xml
 
 
@@ -6119,50 +6141,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_830d9a2a852cfb8db664d97bddb9b567.xml
+// File: dir_45ce1382d4e53b0b5edcf516e5ecafcf.xml
 
 
-// File: dir_2f7683faa0908dc651b118bce974ed9c.xml
+// File: dir_5e8757b46b1aceda9afa1b26de732bd2.xml
 
 
-// File: dir_e022299c4f082f99de729bf207a40de8.xml
+// File: dir_1a3a6caedb87a1ab098d0bc0b51545c8.xml
 
 
-// File: dir_b4542075e2e7e43d8dc6b3f41cb402e4.xml
+// File: dir_239397e89769da4329b355d672683521.xml
 
 
-// File: dir_53299c98db70e74324a1f600e7ad0633.xml
+// File: dir_73f167e78766a372d6fcc201832c5e80.xml
 
 
-// File: dir_9ddb35f5c496bc20d4ea70cfa1225981.xml
+// File: dir_9f1cd3e55cdc5bb75869c6c587f1a041.xml
 
 
-// File: dir_d9733cadc30116f83f2623b401e3ac82.xml
+// File: dir_5712efd6887dc09642df94817b0bf687.xml
 
 
-// File: dir_3aef963f4c4af62c7cec3e029f4a40f4.xml
+// File: dir_bb2c17bab512e6e586df99bbd15d90bc.xml
 
 
-// File: dir_976cfddaefb5287b7cb367ab4f55fd0c.xml
+// File: dir_798fa310f8e206d67d3cf5b7f7a7e6f1.xml
 
 
-// File: dir_9382d5b7add9cfc6e80f0a68556905a1.xml
+// File: dir_372d5a455140faeb7a58df484b344501.xml
 
 
-// File: dir_96ae2990915e64a7e1599a8189c88804.xml
+// File: dir_b7c7b5c73ec53dffccbf0a7085b476a3.xml
 
 
-// File: dir_9050852e1cf07003e6a34f978ca5ec37.xml
+// File: dir_cc4c339b9a2465fd3b12e2b47597240e.xml
 
 
-// File: dir_df98459c20ab6e0fa767214c89b44c79.xml
+// File: dir_030213acbfd519a326574db3b14a3d1a.xml
 
 
-// File: dir_cccf359e9b394f2ce8aa1149ae33e7d5.xml
+// File: dir_18670f5a312157a52e64a428384c2aa1.xml
 
 
-// File: dir_f558c95326c5f0828e7961fbf495037c.xml
+// File: dir_957f0fda322e00a3ae1cad622726342d.xml
 
 
-// File: dir_abc19d7c319531068e68c6c02d6b2317.xml
+// File: dir_fc79a49820af2b9b9dbc990738b998fb.xml
+
+
+// File: dir_c9ee7adea9a593b62b2f0ade5bc805cd.xml
 
