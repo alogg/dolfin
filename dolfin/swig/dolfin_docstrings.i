@@ -1193,6 +1193,10 @@ Create a outfile object writing to stream. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::File::set_new_xml_style "
+
+Set new style for xml parsing system. ";
+
 
 // File: classdolfin_1_1FiniteElement.xml
 %feature("docstring") dolfin::FiniteElement "
@@ -1451,6 +1455,10 @@ C++ includes: FunctionPlotData.h ";
 %feature("docstring")  dolfin::FunctionPlotData::FunctionPlotData "
 
 Create plot data for given function. ";
+
+%feature("docstring")  dolfin::FunctionPlotData::FunctionPlotData "
+
+Create empty data to be read from file. ";
 
 %feature("docstring")  dolfin::FunctionPlotData::~FunctionPlotData "
 
@@ -1825,11 +1833,7 @@ Return concrete instance / unwrap (non-const version). ";
 
 
 // File: classdolfin_1_1GenericVector.xml
-%feature("docstring") dolfin::GenericVector "
-
-This class defines a common interface for vectors.
-
-C++ includes: GenericVector.h ";
+%feature("docstring") dolfin::GenericVector "";
 
 %feature("docstring")  dolfin::GenericVector::~GenericVector "
 
