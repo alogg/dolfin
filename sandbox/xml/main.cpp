@@ -170,5 +170,19 @@ int main()
     fb3 << bmesh_copy;
   }
 
+  {
+    dolfin::Vector vec;
+    dolfin::File file("vector.xml", true);
+    file >> vec;
+  }
+
+  {
+
+    dolfin::FunctionPlotData data;
+    dolfin::File f("dolfin_plot_data.xml", true);
+    f >> data;
+
+  }
+
   return 0;
 }
