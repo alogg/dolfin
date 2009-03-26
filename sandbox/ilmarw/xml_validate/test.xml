@@ -1,0 +1,33 @@
+<data>
+  <data_entry name="foo">
+    <array type="uint" size="3076">
+      <element index="0" value="2"/>
+      <element index="1" value="3"/>
+      <element index="2" value="6"/>
+    </array>
+  </data_entry>
+  <data_entry name="bar">
+     <map key_type="uint" value_type="uint">
+      <map_entry key="...">
+        <uint value="..."/>
+      </map_entry>
+      <map_entry key="...">
+        <uint value="..."/>
+      </map_entry>
+      <map_entry key="...">
+        <uint value="..."/>
+      </map_entry>
+     </map>
+  </data_entry>
+  <data_entry name="foobar">
+    <map key_type="uint" size="3076">
+      <map_entry key="...">
+        <array type="uint" size="3076">
+          <element index="0" value="2"/>
+          <element index="1" value="3"/>
+          <element index="2" value="6"/>
+        </array>
+      </map_entry>
+    </map>
+  </data_entry>
+</data>
