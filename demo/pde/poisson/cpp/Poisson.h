@@ -886,7 +886,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -965,7 +965,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -1048,7 +1048,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -1127,7 +1127,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -1203,6 +1203,10 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
+    // Number of operations to compute geometry tensor:     16
+    // Number of operations to compute tensor contraction:  23
+    // Total number of operations to compute cell tensor:   39
+    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -1224,16 +1228,13 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Number of operations to compute element tensor = 39
-    // Compute geometry tensors
-    // Number of operations to compute declarations = 16
+    // Compute geometry tensor
     const double G0_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     const double G0_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
     const double G0_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
     const double G0_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor
-    // Number of operations to compute tensor = 23
     A[0] += 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1;
     A[1] += -0.5*G0_0_0 - 0.5*G0_1_0;
     A[2] += -0.5*G0_0_1 - 0.5*G0_1_1;
@@ -1363,7 +1364,7 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_PoissonBilinearForm_finite_element_0();
@@ -1378,7 +1379,7 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_PoissonBilinearForm_dof_map_0();
@@ -2284,7 +2285,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -2363,7 +2364,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -2446,7 +2447,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -2525,7 +2526,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -2601,6 +2602,10 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
+    // Number of operations to compute geometry tensor:     3
+    // Number of operations to compute tensor contraction:  15
+    // Total number of operations to compute cell tensor:   18
+    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -2618,15 +2623,12 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Number of operations to compute element tensor = 18
-    // Compute geometry tensors
-    // Number of operations to compute declarations = 3
+    // Compute geometry tensor
     const double G0_0 = det*w[0][0];
     const double G0_1 = det*w[0][1];
     const double G0_2 = det*w[0][2];
     
     // Compute element tensor
-    // Number of operations to compute tensor = 15
     A[0] += 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
     A[1] += 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
     A[2] += 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
@@ -2708,7 +2710,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, {'ffc_representation': 'tensor', 'quadrature_order': 1}))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, {'ffc_representation': 'tensor', 'quadrature_order': 2}))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2744,7 +2746,7 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_PoissonLinearForm_finite_element_0();
@@ -2759,7 +2761,7 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_PoissonLinearForm_dof_map_0();

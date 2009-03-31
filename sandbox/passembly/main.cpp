@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
   // Store partition to file
   char filename[100];
   sprintf(filename, "mesh_part_%d.xml", dolfin::MPI::process_number());
-  File file(filename);
+  File file(filename, true);
   file << mesh;
 
   return 0;
