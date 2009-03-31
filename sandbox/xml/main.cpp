@@ -171,9 +171,19 @@ int main()
   }
 
   {
-    dolfin::Vector vec;
+    dolfin::Vector vec(4);
+    double arr[4];
+    arr[0] = 0.1;
+    arr[1] = 0.2;
+    arr[2] = 0.3;
+    arr[3] = 0.4;
+    vec.set(arr);
     dolfin::File file("vector.xml", true);
-    file >> vec;
+    file << vec;
+
+    dolfin::Vector vec_copy;
+    dolfin::File file2("vector.xml", true);
+    file >> vec_copy;
   }
 
   {
