@@ -13,6 +13,7 @@
 #include <dolfin.h>
 #include "Elasticity.h"
 #include "ElasticityUFL.h"
+#include "ElasticityUFLOpt.h"
 
 using namespace dolfin;
 
@@ -30,21 +31,18 @@ int main()
   Constant mu(E / (2*(1 + nu)));
   Constant lambda(E*nu / ((1 + nu)*(1 - 2*nu)));
 
-  // Create right-hand side
-  Constant f(3, 0.0);
-
   // Set up forms
   ElasticityBilinearForm a(V, V);
   a.mu = mu; a.lmbda = lambda;
-  ElasticityLinearForm L(V);
-  L.f = f;
 
   ElasticityUFLBilinearForm a_ufl(V_ufl, V_ufl);
   a_ufl.mu = mu; a_ufl.lmbda = lambda;
-  ElasticityLinearForm L_ufl(V_ufl);
-  L_ufl.f = f;
 
-  Matrix A, A_ufl;
+  ElasticityUFLOptBilinearForm a_ufl_opt(V_ufl, V_ufl);
+  a_ufl_opt.mu = mu; a_ufl_opt.lmbda = lambda;
+
+  Matrix A, A_ufl, A_ufl_opt;
+
   tic();
   assemble(A, a);
   double time0 = toc();
@@ -53,7 +51,11 @@ int main()
   assemble(A_ufl, a_ufl);
   double time1 = toc();
 
-  cout << "Assembly timings (old FFC, new UFL) " << time0 << "  " << time1 << endl;
+  tic();
+  assemble(A_ufl_opt, a_ufl_opt);
+  double time2 = toc();
+
+  cout << "Assembly timings (old FFC, new UFL, opt UFL) " << time0 << "  " << time1 << "  " << time2 << endl;
 
   return 0;
 }
