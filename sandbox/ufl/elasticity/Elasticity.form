@@ -26,4 +26,4 @@ def sigma(v):
     return 2*mult(mu, epsilon(v)) + mult(lmbda, mult(trace(epsilon(v)), Identity(len(v))))
 
 a = dot(epsilon(v), sigma(u))*dx
-L = dot(v, f)*dx
+
