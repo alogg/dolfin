@@ -5,4 +5,4 @@ xmllint --noout --relaxng relaxng.rng test.rng
 xmllint --noout --relaxng test.rng test.xml
 
 # Upload schema to fenics.org:
-scp test.rng fenics@fenics.org:www.fenics.org/pub/misc/dolfin.rng
+scp dolfin.rng fenics@fenics.org:www.fenics.org/pub/misc/

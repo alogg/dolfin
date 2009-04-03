@@ -8,11 +8,6 @@
         <ref name="arrayref"/>
         <ref name="vectorref"/>
       </choice>
-      <zeroOrMore>
-        <element name="data">
-          
-        </element>
-      </zeroOrMore>
     </element>
   </start>
   
@@ -62,6 +57,9 @@
         -->
       <ref name="verticesref"/>
       <ref name="cellsref"/>
+      <zeroOrMore>
+        <ref name="dataref"/>
+      </zeroOrMore>
     </element>
   </define>
   
@@ -259,4 +257,64 @@
      </element>
    </define>
    
+   <!-- data -->
+   <define name="dataref">
+     <element name="data">
+       <oneOrMore>
+         <ref name="data_entryref"/>
+       </oneOrMore>
+     </element>
+   </define>
+
+   <!-- data_entry -->
+   <define name="data_entryref">
+     <element name="data_entry">
+       <attribute name="name"/>
+       <!--
+        <choice>
+           <value>cell map</value>
+           <value>vertex map</value>
+         </choice>
+       </attribute>
+         -->
+       <choice>
+         <ref name="meshfunctionref"/>
+         <ref name="arrayref"/>
+       </choice>
+     </element>
+   </define>
+   
+   <!-- meshfunction -->
+   <define name="meshfunctionref">
+     <element name="meshfunction">
+       <attribute name="type">
+         <ref name="decimalref"/>
+       </attribute>
+       <attribute name="dim">
+         <data type="integer">
+           <param name="minInclusive">0</param>
+           <param name="maxInclusive">3</param>
+         </data>
+       </attribute>
+       <attribute name="size">
+         <data type="nonNegativeInteger"/>
+       </attribute>
+       <oneOrMore>
+         <ref name="entityref"/>
+       </oneOrMore>
+     </element>
+   </define>
+   
+   <!-- entity -->
+   <define name="entityref">
+     <element name="entity">
+       <attribute name="index">
+         <data type="nonNegativeInteger"/>
+       </attribute>
+       <attribute name="value">
+         <data type="decimal"/>
+       </attribute>
+     </element>
+   </define>
+
 </grammar>
