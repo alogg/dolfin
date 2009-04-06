@@ -1,13 +1,15 @@
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
     <element name="dolfin">
-      <choice>
-        <ref name="function_plot_dataref"/>
-        <ref name="meshref"/>
-        <ref name="mapref"/>
-        <ref name="arrayref"/>
-        <ref name="vectorref"/>
-      </choice>
+      <oneOrMore>
+        <choice>
+          <ref name="function_plot_dataref"/>
+          <ref name="meshref"/>
+          <ref name="mapref"/>
+          <ref name="arrayref"/>
+          <ref name="vectorref"/>
+        </choice>
+      </oneOrMore>
     </element>
   </start>
   
