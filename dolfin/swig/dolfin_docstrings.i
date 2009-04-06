@@ -4827,6 +4827,39 @@ Destructor. ";
 Solve linear system Ax = b approximately. ";
 
 
+// File: classdolfin_1_1uBLASKrylovMatrix.xml
+%feature("docstring") dolfin::uBLASKrylovMatrix "
+
+This class provides an interface for matrices that define linear
+systems for the uBLASKrylovSolver. This interface is implemented by
+the classes uBLASSparseMatrix and DenseMatrix. Users may also overload
+the mult() function to specify a linear system only in terms of its
+action.
+
+C++ includes: uBLASKrylovMatrix.h ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::uBLASKrylovMatrix "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::~uBLASKrylovMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::size "
+
+Return number of rows (dim = 0) or columns (dim = 1). ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::mult "
+
+Compute product y = Ax. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::solve "
+
+Solve linear system Ax = b for a Krylov matrix using uBLAS and dense
+matrices. ";
+
+
 // File: classdolfin_1_1uBLASKrylovSolver.xml
 %feature("docstring") dolfin::uBLASKrylovSolver "
 
@@ -5893,6 +5926,9 @@ Assemble scalar on sub domains. ";
 // File: PETScFactory_8h.xml
 
 
+// File: PETScKrylovMatrix_8h.xml
+
+
 // File: PETScKrylovSolver_8h.xml
 
 
@@ -5939,6 +5975,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: uBLASILUPreconditioner_8h.xml
+
+
+// File: uBLASKrylovMatrix_8h.xml
 
 
 // File: uBLASKrylovSolver_8h.xml

@@ -27,4 +27,4 @@ def sigma(v):
     return 2*mu*epsilon(v) + lmbda*tr(epsilon(v))*I
 
 a = inner(epsilon(v), sigma(u))*dx
-L = inner(v, f)*dx
+
