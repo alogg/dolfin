@@ -42,7 +42,7 @@ class DirichletBoundary : public SubDomain
   }
 };
 
-int _main1()
+int test2D()
 {
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
@@ -63,7 +63,7 @@ int _main1()
   return 0;
 }
 
-int _main2()
+int test3D()
 {
   Mesh mesh("unitcube.xml.gz");
   Poisson3DFunctionSpace V(mesh);
@@ -83,5 +83,5 @@ int _main2()
 
 int main()
 {
-  return _main2();
+  return test2D();
 }
