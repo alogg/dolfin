@@ -2,15 +2,19 @@
 
 import sys
 
-if not len(sys.argv) == 2:
-    print "Usage: plot_partitions n"
+if not len(sys.argv) == 3:
+    print "Usage: plot_partitions basename n"
     sys.exit(1)
-num_partitions = int(sys.argv[1])
+base = sys.argv[1]
+num_partitions = int(sys.argv[2])
 
 from dolfin import *
 
 for i in range(num_partitions):
-    mesh = Mesh("mesh_part_%d.xml.gz" % i)
+    mesh = Mesh()
+    f = File("%s_part_%d.xml" % (base,i))
+    f.set_new_xml_style()
+    f >> mesh
     plot(mesh, title="Partition %d" % i)
 
 interactive()
