@@ -1,0 +1,322 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="dolfin">
+      <oneOrMore>
+        <choice>
+          <ref name="function_plot_dataref"/>
+          <ref name="meshref"/>
+          <ref name="mapref"/>
+          <ref name="arrayref"/>
+          <ref name="vectorref"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </start>
+  
+  <!-- int -->
+  <define name="intref">
+    <choice>
+      <value>uint</value>
+      <value>int</value>
+      <value>long</value>
+    </choice>
+  </define>
+
+  <!-- double -->
+  <define name="doubleref">
+    <choice>
+      <value>double</value>
+    </choice>
+  </define>
+
+  <!-- decimal -->
+  <define name="decimalref">
+    <choice>
+      <value>double</value>
+      <value>uint</value>
+      <value>int</value>
+    </choice>
+  </define>
+
+  <!-- mesh -->
+  <define name="meshref">
+    <element name="mesh">
+      <attribute name="celltype">
+        <choice> 
+          <value>interval</value>
+          <value>triangle</value>
+          <value>tetrahedron</value>
+        </choice>     
+      </attribute>
+      <attribute name="dim">
+        <data type="nonNegativeInteger">
+          <param name="minInclusive">1</param>
+          <param name="maxInclusive">3</param>
+        </data>
+      </attribute>
+      <!--
+          cells, data, coordinates 
+        -->
+      <ref name="verticesref"/>
+      <ref name="cellsref"/>
+      <zeroOrMore>
+        <ref name="dataref"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  
+  <!-- array -->
+  <define name="arrayref">
+    <element name="array">
+      <attribute name="type">
+        <ref name="decimalref"/>
+      </attribute>
+      <attribute name="size">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+      <oneOrMore>
+        <element name="element">
+          <attribute name="index">
+            <data type="nonNegativeInteger"/>
+          </attribute>
+          <attribute name="value">
+            <data type="decimal"/>
+          </attribute>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+
+  <!-- vector -->
+  <define name="vectorref">
+    <element name="vector">
+      <ref name="arrayref"/>
+    </element>
+  </define>
+
+  <!-- vertices -->
+  <define name="verticesref">
+    <element name="vertices"> 
+      <attribute name="size">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+      <oneOrMore>
+        <element name="vertex">
+          <attribute name="index">
+            <data type="nonNegativeInteger"/>
+          </attribute>
+          <attribute name="x">
+            <data type="decimal"/>
+          </attribute>
+          <optional>
+            <attribute name="y">
+              <data type="decimal"/>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="z">
+              <data type="decimal"/>
+            </attribute>
+          </optional>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+
+  <!-- cells -->
+  <define name="cellsref">
+    <element name="cells"> 
+      <attribute name="size">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+      <choice>
+        <ref name="intervalref"/>
+        <ref name="triangleref"/>
+        <ref name="tetrahedronref"/>
+      </choice>
+    </element>
+  </define> 
+  
+  <!-- interval -->
+  <define name="intervalref">
+     <oneOrMore>
+       <element name="interval">
+         <attribute name="index">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v0">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v1">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+       </element>
+     </oneOrMore>
+   </define>
+
+  <!-- triangle -->
+   <define name="triangleref">
+     <oneOrMore>
+       <element name="triangle">
+         <attribute name="index">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v0">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v1">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v2">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+       </element>
+     </oneOrMore>
+   </define>  
+   
+   <!-- tetrahedron -->
+   <define name="tetrahedronref">
+     <oneOrMore>
+       <element name="tetrahedron">
+         <attribute name="index">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v0">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v1">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v2">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+         <attribute name="v3">
+           <data type="nonNegativeInteger"/>
+         </attribute>
+       </element>
+     </oneOrMore>
+   </define>  
+
+   <!-- function_plot_data -->
+   <define name="function_plot_dataref">
+     <element name="function_plot_data">
+       <attribute name="rank">
+         <data type="integer"/>
+       </attribute>
+       <oneOrMore>
+         <ref name="meshref"/>
+         <ref name="vectorref"/>
+       </oneOrMore>
+     </element>
+   </define>
+
+   <!-- map -->
+   <define name="mapref">
+     <element name="map">
+       <attribute name="key_type">
+         <ref name="intref"/>
+       </attribute>
+       <attribute name="value_type">
+         <choice>
+           <value>array</value>
+           <value>double</value>
+           <value>int</value>
+           <value>uint</value>
+         </choice>
+       </attribute>
+       <oneOrMore>
+         <ref name="map_entryref"/>
+       </oneOrMore>
+     </element>
+   </define>
+   
+   <!-- map_entry -->
+   <define name="map_entryref">
+     <element name="map_entry">
+       <attribute name="key">
+         <data type="nonNegativeInteger"/>
+       </attribute>
+       <oneOrMore>
+         <choice>
+           <ref name="arrayref"/>
+           <element name="double">
+             <attribute name="value">
+               <data type="decimal"/>
+             </attribute>
+           </element>
+           <element name="int">
+             <attribute name="value">
+               <data type="integer"/>
+             </attribute>
+           </element>
+           <element name="uint">
+             <attribute name="value">
+               <data type="integer"/>
+             </attribute>
+           </element>
+         </choice>
+       </oneOrMore>
+     </element>
+   </define>
+   
+   <!-- data -->
+   <define name="dataref">
+     <element name="data">
+       <oneOrMore>
+         <ref name="data_entryref"/>
+       </oneOrMore>
+     </element>
+   </define>
+
+   <!-- data_entry -->
+   <define name="data_entryref">
+     <element name="data_entry">
+       <attribute name="name"/>
+       <!--
+        <choice>
+           <value>cell map</value>
+           <value>vertex map</value>
+         </choice>
+       </attribute>
+         -->
+       <choice>
+         <ref name="meshfunctionref"/>
+         <ref name="arrayref"/>
+       </choice>
+     </element>
+   </define>
+   
+   <!-- meshfunction -->
+   <define name="meshfunctionref">
+     <element name="meshfunction">
+       <attribute name="type">
+         <ref name="decimalref"/>
+       </attribute>
+       <attribute name="dim">
+         <data type="integer">
+           <param name="minInclusive">0</param>
+           <param name="maxInclusive">3</param>
+         </data>
+       </attribute>
+       <attribute name="size">
+         <data type="nonNegativeInteger"/>
+       </attribute>
+       <oneOrMore>
+         <ref name="entityref"/>
+       </oneOrMore>
+     </element>
+   </define>
+   
+   <!-- entity -->
+   <define name="entityref">
+     <element name="entity">
+       <attribute name="index">
+         <data type="nonNegativeInteger"/>
+       </attribute>
+       <attribute name="value">
+         <data type="decimal"/>
+       </attribute>
+     </element>
+   </define>
+
+</grammar>

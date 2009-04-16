@@ -1,0 +1,77 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="data">
+      <oneOrMore>
+        <element name="data_entry">
+          <attribute name="name">
+            <text/>
+          </attribute>
+          <choice>
+            <ref name="arrays"/>
+            <element name="map">
+              <attribute name="key_type">
+                <ref name="ints"/>
+              </attribute>
+              <choice>
+                <attribute name="value_type">
+                  <choice>
+                    <value>uint</value>
+                    <value>array</value>
+                  </choice>
+                </attribute>
+                <attribute name="size">
+                  <data type="nonNegativeInteger"/>
+                </attribute>
+              </choice>
+              <oneOrMore>
+                <element name="map_entry">
+                  <attribute name="key">
+                    <text/>
+                  </attribute>
+                  <choice>
+                    <ref name="arrays"/>
+                    <element name="uint">
+                      <attribute name="value">
+                        <text/>
+                      </attribute>
+                    </element>
+                  </choice>
+                </element>
+              </oneOrMore>
+            </element>
+          </choice>
+        </element>
+      </oneOrMore>
+    </element>
+  </start>
+
+  <define name="ints">
+    <choice>
+      <value>uint</value>
+      <value>int</value>
+      <value>long</value>
+    </choice>
+  </define>
+
+  <define name="arrays">
+    <element name="array">
+      <attribute name="type">
+        <ref name="ints"/>
+      </attribute>
+      <attribute name="size">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+      <oneOrMore>     
+        <element name="element">
+          <attribute name="index">
+            <data type="nonNegativeInteger"/>
+          </attribute>
+          <attribute name="value">
+            <data type="nonNegativeInteger"/>    
+          </attribute>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+
+</grammar>
