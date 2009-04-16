@@ -18,6 +18,7 @@
 
 #include <dolfin.h>
 #include "Poisson.h"
+#include "Poisson3D.h"
 
 using namespace dolfin;
 
@@ -41,7 +42,7 @@ class DirichletBoundary : public SubDomain
   }
 };
 
-int main()
+int _main1()
 {
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
@@ -63,4 +64,21 @@ int main()
   file << mesh;
 
   return 0;
+}
+
+int _main2()
+{
+  Mesh mesh("unitcube.xml.gz");
+  Poisson3DFunctionSpace V(mesh);
+  Poisson3DBilinearForm a(V, V);
+  UFC ufc(a);
+  UFC_Poisson3DBilinearForm_dof_map_0 ufc_dof_map;
+  DofMap dofmap(ufc_dof_map, mesh);
+  dofmap.build(ufc, mesh);
+  return 0;
+}
+
+int main()
+{
+  return _main2();
 }
