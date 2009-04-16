@@ -55,11 +55,8 @@ int _main1()
   DofMap dofmap(ufc_dof_map, mesh);
   dofmap.build(ufc, mesh);
 
-
-
-
   char filename[100];
-  sprintf(filename, "mesh_part_%d.xml", dolfin::MPI::process_number());
+  sprintf(filename, "unitsquare_part_%d.xml", dolfin::MPI::process_number());
   File file(filename, true);
   file << mesh;
 
@@ -75,6 +72,12 @@ int _main2()
   UFC_Poisson3DBilinearForm_dof_map_0 ufc_dof_map;
   DofMap dofmap(ufc_dof_map, mesh);
   dofmap.build(ufc, mesh);
+
+  char filename[100];
+  sprintf(filename, "unitcube_part_%d.xml", dolfin::MPI::process_number());
+  File file(filename, true);
+  file << mesh;
+
   return 0;
 }
 
