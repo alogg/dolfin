@@ -18,6 +18,7 @@
 
 #include <dolfin.h>
 #include "Poisson.h"
+#include "PoissonDG.h"
 #include "Poisson3D.h"
 
 using namespace dolfin;
@@ -42,7 +43,7 @@ class DirichletBoundary : public SubDomain
   }
 };
 
-int test2D()
+int test2DLagrange()
 {
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
@@ -52,6 +53,27 @@ int test2D()
   UFC ufc(a);
   
   UFC_PoissonBilinearForm_dof_map_0 ufc_dof_map;
+  DofMap dofmap(ufc_dof_map, mesh);
+  dofmap.build(ufc, mesh);
+
+  char filename[100];
+  sprintf(filename, "unitsquare_part_%d.xml", dolfin::MPI::process_number());
+  File file(filename, true);
+  file << mesh;
+
+  return 0;
+}
+
+int test2DDG()
+{
+  // Create mesh and function space
+  Mesh mesh("unitsquare.xml.gz");
+  PoissonDGFunctionSpace V(mesh);
+
+  PoissonDGBilinearForm a(V, V);
+  UFC ufc(a);
+  
+  UFC_PoissonDGBilinearForm_dof_map_0 ufc_dof_map;
   DofMap dofmap(ufc_dof_map, mesh);
   dofmap.build(ufc, mesh);
 
@@ -83,5 +105,5 @@ int test3D()
 
 int main()
 {
-  return test2D();
+  return test2DLagrange();
 }
