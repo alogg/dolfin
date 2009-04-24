@@ -7600,60 +7600,54 @@ public:
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
     
     
-    const static double FE0_C1_D01[4][9] = \
-    {{0, 0, 0, -1, 0, 1, 0, 0, 0},
-    {0, 0, 0, -1, 0, 1, 0, 0, 0},
-    {0, 0, 0, -1, 0, 1, 0, 0, 0},
-    {0, 0, 0, -1, 0, 1, 0, 0, 0}};
-    
-    const static double FE0_C2_D10[4][9] = \
-    {{0, 0, 0, 0, 0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0, 0, -1, 1, 0}};
-    
-    const static double FE0_C1_D10[4][9] = \
-    {{0, 0, 0, -1, 1, 0, 0, 0, 0},
-    {0, 0, 0, -1, 1, 0, 0, 0, 0},
-    {0, 0, 0, -1, 1, 0, 0, 0, 0},
-    {0, 0, 0, -1, 1, 0, 0, 0, 0}};
-    
-    const static double FE0_C0_D10[4][9] = \
-    {{-1, 1, 0, 0, 0, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0, 0, 0, 0}};
-    
-    const static double FE0_C0_D01[4][9] = \
-    {{-1, 0, 1, 0, 0, 0, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0, 0, 0, 0}};
-    
-    const static double FE0_C2_D01[4][9] = \
-    {{0, 0, 0, 0, 0, 0, -1, 0, 1},
-    {0, 0, 0, 0, 0, 0, -1, 0, 1},
-    {0, 0, 0, 0, 0, 0, -1, 0, 1},
-    {0, 0, 0, 0, 0, 0, -1, 0, 1}};
+    const static double FE0_C1_D01[4][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {3, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {6, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {3, 4};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {6, 8};
     
     const static double FE1[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    // Array of non-zero columns
+    static const unsigned int nzc6[3] = {6, 7, 8};
     
-    const static double FE0_C2[4][9] = \
-    {{0, 0, 0, 0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0, 0, 0, 0, 0, 0, 0.280019915499074, 0.0750311102226081, 0.644948974278318},
-    {0, 0, 0, 0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0, 0, 0, 0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    // Number of operations to compute geometry constants: 42
+    const double G0 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1 = det*(0.2*Jinv_00*Jinv_10 + 0.2*Jinv_01*Jinv_11);
+    const double G2 = det*(0.2*Jinv_00*Jinv_00 + 0.2*Jinv_01*Jinv_01);
+    const double G3 =  - Jinv_11*det;
+    const double G4 = Jinv_11*det;
+    const double G5 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G6 = Jinv_00*det;
+    const double G7 = Jinv_10*det;
+    const double G8 =  - Jinv_10*det;
+    const double G9 =  - Jinv_00*det;
+    const double G10 =  - Jinv_01*det;
+    const double G11 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G12 = det*(0.2*Jinv_10*Jinv_10 + 0.2*Jinv_11*Jinv_11);
+    const double G13 = Jinv_01*det;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 23352
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 1298
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 23352
+    // Number of operations to compute element tensor for following IP loop = 1256
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -7666,13 +7660,111 @@ public:
         F0 += FE1[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 5832
-      for (unsigned int j = 0; j < 9; j++)
+      // Number of operations to compute ip constants: 20
+      // Number of operations: 1
+      const double Gip0 = W4[ip]*G0;
+      
+      // Number of operations: 3
+      const double Gip1 = F0*F0*W4[ip]*G1;
+      
+      // Number of operations: 3
+      const double Gip2 = F0*F0*W4[ip]*G2;
+      
+      // Number of operations: 1
+      const double Gip3 = W4[ip]*G3;
+      
+      // Number of operations: 1
+      const double Gip4 = W4[ip]*G4;
+      
+      // Number of operations: 1
+      const double Gip5 = W4[ip]*G5;
+      
+      // Number of operations: 1
+      const double Gip6 = W4[ip]*G6;
+      
+      // Number of operations: 1
+      const double Gip7 = W4[ip]*G7;
+      
+      // Number of operations: 1
+      const double Gip8 = W4[ip]*G8;
+      
+      // Number of operations: 1
+      const double Gip9 = W4[ip]*G9;
+      
+      // Number of operations: 1
+      const double Gip10 = W4[ip]*G10;
+      
+      // Number of operations: 1
+      const double Gip11 = W4[ip]*G11;
+      
+      // Number of operations: 3
+      const double Gip12 = F0*F0*W4[ip]*G12;
+      
+      // Number of operations: 1
+      const double Gip13 = W4[ip]*G13;
+      
+      
+      // Number of operations for primary indices = 72
+      for (unsigned int j = 0; j < 3; j++)
       {
-        for (unsigned int k = 0; k < 9; k++)
+        for (unsigned int k = 0; k < 2; k++)
         {
-          // Number of operations to compute entry = 72
-          A[j*9 + k] += (((Jinv_00*FE0_C2_D10[ip][j] + Jinv_10*FE0_C2_D01[ip][j])*(Jinv_00*FE0_C2_D10[ip][k] + Jinv_10*FE0_C2_D01[ip][k]) + (Jinv_01*FE0_C2_D10[ip][j] + Jinv_11*FE0_C2_D01[ip][j])*(Jinv_01*FE0_C2_D10[ip][k] + Jinv_11*FE0_C2_D01[ip][k]))*F0*0.2*F0 + (FE0_C2[ip][j]*((Jinv_00*FE0_C0_D10[ip][k] + Jinv_10*FE0_C0_D01[ip][k]) + (Jinv_01*FE0_C1_D10[ip][k] + Jinv_11*FE0_C1_D01[ip][k])) + (FE0_C2[ip][k]*((Jinv_00*FE0_C0_D10[ip][j] + Jinv_10*FE0_C0_D01[ip][j]) + (Jinv_01*FE0_C1_D10[ip][j] + Jinv_11*FE0_C1_D01[ip][j]))*-1 + (((Jinv_00*FE0_C0_D10[ip][j] + Jinv_10*FE0_C0_D01[ip][j])*(Jinv_00*FE0_C0_D10[ip][k] + Jinv_10*FE0_C0_D01[ip][k]) + (Jinv_01*FE0_C0_D10[ip][j] + Jinv_11*FE0_C0_D01[ip][j])*(Jinv_01*FE0_C0_D10[ip][k] + Jinv_11*FE0_C0_D01[ip][k])) + ((Jinv_00*FE0_C1_D10[ip][j] + Jinv_10*FE0_C1_D01[ip][j])*(Jinv_00*FE0_C1_D10[ip][k] + Jinv_10*FE0_C1_D01[ip][k]) + (Jinv_01*FE0_C1_D10[ip][j] + Jinv_11*FE0_C1_D01[ip][j])*(Jinv_01*FE0_C1_D10[ip][k] + Jinv_11*FE0_C1_D01[ip][k]))))))*W4[ip]*det;
+          // Number of operations to compute entry = 3
+          A[nzc6[j]*9 + nzc0[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip4;
+          // Number of operations to compute entry = 3
+          A[nzc6[j]*9 + nzc3[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip6;
+          // Number of operations to compute entry = 3
+          A[nzc6[j]*9 + nzc4[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip7;
+          // Number of operations to compute entry = 3
+          A[nzc6[j]*9 + nzc2[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip13;
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 144
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        for (unsigned int k = 0; k < 2; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*9 + nzc0[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip0;
+          // Number of operations to compute entry = 3
+          A[nzc5[j]*9 + nzc1[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip1;
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*9 + nzc1[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip2;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*9 + nzc2[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          // Number of operations to compute entry = 3
+          A[nzc3[j]*9 + nzc4[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*9 + nzc0[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*9 + nzc2[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip11;
+          // Number of operations to compute entry = 3
+          A[nzc4[j]*9 + nzc3[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          // Number of operations to compute entry = 3
+          A[nzc5[j]*9 + nzc5[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip12;
+          // Number of operations to compute entry = 3
+          A[nzc4[j]*9 + nzc4[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip0;
+          // Number of operations to compute entry = 3
+          A[nzc3[j]*9 + nzc3[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip11;
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*9 + nzc5[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip1;
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 72
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        for (unsigned int k = 0; k < 3; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip3;
+          // Number of operations to compute entry = 3
+          A[nzc4[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip8;
+          // Number of operations to compute entry = 3
+          A[nzc3[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip9;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip10;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -13977,54 +14069,42 @@ public:
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
     
     
-    const static double FE1_C0[4][9] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0, 0, 0, 0},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318, 0, 0, 0, 0, 0, 0},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0, 0, 0, 0},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0, 0, 0, 0}};
-    
-    const static double FE1_C1[4][9] = \
-    {{0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0},
-    {0, 0, 0, 0.280019915499074, 0.0750311102226081, 0.644948974278318, 0, 0, 0},
-    {0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0},
-    {0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0}};
-    
-    const static double FE1_C2_D10[4][9] = \
-    {{0, 0, 0, 0, 0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0, 0, -1, 1, 0},
-    {0, 0, 0, 0, 0, 0, -1, 1, 0}};
-    
-    const static double FE2[4][3] = \
+    const static double FE1_C0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[3] = {0, 1, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc1[3] = {3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc9[3] = {3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc10[3] = {0, 1, 2};
     
-    const static double FE1_C2_D01[4][9] = \
-    {{0, 0, 0, 0, 0, 0, -1, 0, 1},
-    {0, 0, 0, 0, 0, 0, -1, 0, 1},
-    {0, 0, 0, 0, 0, 0, -1, 0, 1},
-    {0, 0, 0, 0, 0, 0, -1, 0, 1}};
+    const static double FE1_C1_D10[4][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {6, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {6, 8};
     
-    const static double FE0_C1[4][6] = \
-    {{0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0, 0, 0, 0.280019915499074, 0.0750311102226081, 0.644948974278318},
-    {0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318}};
-    
-    const static double FE0_C0[4][6] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318, 0, 0, 0},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0}};
+    // Number of operations to compute geometry constants: 8
+    const double G0 = 0.2*Jinv_00*det;
+    const double G1 = 0.2*Jinv_01*det;
+    const double G2 = 0.2*Jinv_10*det;
+    const double G3 = 0.2*Jinv_11*det;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 840
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 224
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 840
+    // Number of operations to compute element tensor for following IP loop = 216
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -14033,24 +14113,44 @@ public:
       double F1 = 0;
       double F2 = 0;
       
-      // Total number of operations to compute function values = 6
+      // Total number of operations to compute function values = 18
       for (unsigned int r = 0; r < 3; r++)
       {
-        F1 += FE2[ip][r]*w[1][r];
+        F0 += FE1_C0[ip][r]*w[0][nzc10[r]];
+        F1 += FE1_C0[ip][r]*w[1][r];
+        F2 += FE1_C0[ip][r]*w[0][nzc9[r]];
       }// end loop over 'r'
       
-      // Total number of operations to compute function values = 24
-      for (unsigned int r = 0; r < 6; r++)
-      {
-        F0 += FE0_C0[ip][r]*w[0][r];
-        F2 += FE0_C1[ip][r]*w[0][r];
-      }// end loop over 'r'
+      // Number of operations to compute ip constants: 16
+      // Number of operations: 2
+      const double Gip0 = F2*W4[ip]*det;
       
-      // Number of operations for primary indices = 180
-      for (unsigned int j = 0; j < 9; j++)
+      // Number of operations: 6
+      const double Gip1 = F1*F1*W4[ip]*(F0*G0 + F2*G1);
+      
+      // Number of operations: 6
+      const double Gip2 = F1*F1*W4[ip]*(F0*G2 + F2*G3);
+      
+      // Number of operations: 2
+      const double Gip3 = F0*W4[ip]*det;
+      
+      
+      // Number of operations for primary indices = 12
+      for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 20
-        A[j] += ((FE1_C0[ip][j] + (Jinv_00*FE1_C2_D10[ip][j] + Jinv_10*FE1_C2_D01[ip][j])*F1*0.2*F1)*F0 + (FE1_C1[ip][j] + (Jinv_01*FE1_C2_D10[ip][j] + Jinv_11*FE1_C2_D01[ip][j])*F1*0.2*F1)*F2)*W4[ip]*det;
+        // Number of operations to compute entry = 2
+        A[nzc1[j]] += FE1_C0[ip][j]*Gip0;
+        // Number of operations to compute entry = 2
+        A[nzc0[j]] += FE1_C0[ip][j]*Gip3;
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 8
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry = 2
+        A[nzc4[j]] += FE1_C1_D10[ip][j]*Gip1;
+        // Number of operations to compute entry = 2
+        A[nzc5[j]] += FE1_C1_D10[ip][j]*Gip2;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
