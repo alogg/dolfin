@@ -105,5 +105,7 @@ int test3D()
 
 int main()
 {
-  return test2DLagrange();
+  //return test2DLagrange();
+  //return test2DDG();
+  return test3D();
 }
