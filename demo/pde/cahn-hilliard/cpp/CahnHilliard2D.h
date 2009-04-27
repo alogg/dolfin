@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <ufc.h>
-    
+
 /// This class defines the interface for a finite element.
 
 class UFC_CahnHilliard2DBilinearForm_finite_element_0_0: public ufc::finite_element
@@ -56,7 +56,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -130,7 +130,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -204,7 +204,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -278,7 +278,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -352,7 +352,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -426,7 +426,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -500,7 +500,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -574,7 +574,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -648,7 +648,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -722,7 +722,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -796,7 +796,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -870,7 +870,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -944,7 +944,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2005,10 +2005,10 @@ public:
 
   /// Return the number of cell integrals
   virtual unsigned int num_cell_integrals() const;
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const;
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const;
 
@@ -2073,7 +2073,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2147,7 +2147,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2221,7 +2221,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2295,7 +2295,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2369,7 +2369,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2443,7 +2443,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2517,7 +2517,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2591,7 +2591,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2665,7 +2665,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2739,7 +2739,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2813,7 +2813,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2887,7 +2887,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2961,7 +2961,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-  
+
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -4022,10 +4022,10 @@ public:
 
   /// Return the number of cell integrals
   virtual unsigned int num_cell_integrals() const;
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const;
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const;
 
@@ -4300,7 +4300,7 @@ public:
   // Constructor
   CahnHilliard2DBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DBilinearFormCoefficient0() {}
 
   // Attach function to coefficient
@@ -4315,19 +4315,19 @@ public:
   {
     return new CahnHilliard2DBilinearFormCoefficientSpace0(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 0;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "w0";
   }
-  
+
 };
 class CahnHilliard2DBilinearFormCoefficient1 : public dolfin::Coefficient
 {
@@ -4336,7 +4336,7 @@ public:
   // Constructor
   CahnHilliard2DBilinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DBilinearFormCoefficient1() {}
 
   // Attach function to coefficient
@@ -4351,19 +4351,19 @@ public:
   {
     return new CahnHilliard2DBilinearFormCoefficientSpace1(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 1;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "lmbda";
   }
-  
+
 };
 class CahnHilliard2DBilinearFormCoefficient2 : public dolfin::Coefficient
 {
@@ -4372,7 +4372,7 @@ public:
   // Constructor
   CahnHilliard2DBilinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DBilinearFormCoefficient2() {}
 
   // Attach function to coefficient
@@ -4387,19 +4387,19 @@ public:
   {
     return new CahnHilliard2DBilinearFormCoefficientSpace2(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 2;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "mu_factor";
   }
-  
+
 };
 class CahnHilliard2DBilinearFormCoefficient3 : public dolfin::Coefficient
 {
@@ -4408,7 +4408,7 @@ public:
   // Constructor
   CahnHilliard2DBilinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DBilinearFormCoefficient3() {}
 
   // Attach function to coefficient
@@ -4423,19 +4423,19 @@ public:
   {
     return new CahnHilliard2DBilinearFormCoefficientSpace3(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 3;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "dt";
   }
-  
+
 };
 class CahnHilliard2DBilinearFormCoefficient4 : public dolfin::Coefficient
 {
@@ -4444,7 +4444,7 @@ public:
   // Constructor
   CahnHilliard2DBilinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DBilinearFormCoefficient4() {}
 
   // Attach function to coefficient
@@ -4459,19 +4459,19 @@ public:
   {
     return new CahnHilliard2DBilinearFormCoefficientSpace4(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 4;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "theta";
   }
-  
+
 };
 class CahnHilliard2DBilinearForm : public dolfin::Form
 {
@@ -4572,7 +4572,7 @@ public:
   // Constructor
   CahnHilliard2DLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DLinearFormCoefficient0() {}
 
   // Attach function to coefficient
@@ -4587,19 +4587,19 @@ public:
   {
     return new CahnHilliard2DLinearFormCoefficientSpace0(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 0;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "w0";
   }
-  
+
 };
 class CahnHilliard2DLinearFormCoefficient1 : public dolfin::Coefficient
 {
@@ -4608,7 +4608,7 @@ public:
   // Constructor
   CahnHilliard2DLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DLinearFormCoefficient1() {}
 
   // Attach function to coefficient
@@ -4623,19 +4623,19 @@ public:
   {
     return new CahnHilliard2DLinearFormCoefficientSpace1(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 1;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "w1";
   }
-  
+
 };
 class CahnHilliard2DLinearFormCoefficient2 : public dolfin::Coefficient
 {
@@ -4644,7 +4644,7 @@ public:
   // Constructor
   CahnHilliard2DLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DLinearFormCoefficient2() {}
 
   // Attach function to coefficient
@@ -4659,19 +4659,19 @@ public:
   {
     return new CahnHilliard2DLinearFormCoefficientSpace2(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 2;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "lmbda";
   }
-  
+
 };
 class CahnHilliard2DLinearFormCoefficient3 : public dolfin::Coefficient
 {
@@ -4680,7 +4680,7 @@ public:
   // Constructor
   CahnHilliard2DLinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DLinearFormCoefficient3() {}
 
   // Attach function to coefficient
@@ -4695,19 +4695,19 @@ public:
   {
     return new CahnHilliard2DLinearFormCoefficientSpace3(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 3;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "mu_factor";
   }
-  
+
 };
 class CahnHilliard2DLinearFormCoefficient4 : public dolfin::Coefficient
 {
@@ -4716,7 +4716,7 @@ public:
   // Constructor
   CahnHilliard2DLinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DLinearFormCoefficient4() {}
 
   // Attach function to coefficient
@@ -4731,19 +4731,19 @@ public:
   {
     return new CahnHilliard2DLinearFormCoefficientSpace4(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 4;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "dt";
   }
-  
+
 };
 class CahnHilliard2DLinearFormCoefficient5 : public dolfin::Coefficient
 {
@@ -4752,7 +4752,7 @@ public:
   // Constructor
   CahnHilliard2DLinearFormCoefficient5(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor  
+  // Destructor
   ~CahnHilliard2DLinearFormCoefficient5() {}
 
   // Attach function to coefficient
@@ -4767,19 +4767,19 @@ public:
   {
     return new CahnHilliard2DLinearFormCoefficientSpace5(form.mesh());
   }
-  
+
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 5;
   }
-  
+
   /// Return coefficient name
   virtual std::string name() const
   {
     return "theta";
   }
-  
+
 };
 class CahnHilliard2DLinearForm : public dolfin::Form
 {
