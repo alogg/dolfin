@@ -6983,7 +6983,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "dBdt";
+    return "d_bdt";
   }
   
 };
@@ -6992,7 +6992,7 @@ class EddyCurrentsLinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  EddyCurrentsLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), dBdt(*this)
+  EddyCurrentsLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), d_bdt(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -7003,7 +7003,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  EddyCurrentsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), dBdt(*this)
+  EddyCurrentsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), d_bdt(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -7013,26 +7013,26 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  EddyCurrentsLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), dBdt(*this)
+  EddyCurrentsLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), d_bdt(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
 
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    this->dBdt = w0;
+    this->d_bdt = w0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_EddyCurrentsLinearForm());
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  EddyCurrentsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), dBdt(*this)
+  EddyCurrentsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), d_bdt(*this)
   {
     _function_spaces.push_back(V0);
 
     _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
 
-    this->dBdt = w0;
+    this->d_bdt = w0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_EddyCurrentsLinearForm());
   }
@@ -7041,7 +7041,7 @@ public:
   ~EddyCurrentsLinearForm() {}
 
   // Coefficients
-  EddyCurrentsLinearFormCoefficient0 dBdt;
+  EddyCurrentsLinearFormCoefficient0 d_bdt;
 
 };
 

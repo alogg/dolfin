@@ -4397,7 +4397,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "muFactor";
+    return "mu_factor";
   }
   
 };
@@ -4478,7 +4478,7 @@ class CahnHilliard2DBilinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  CahnHilliard2DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4495,7 +4495,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  CahnHilliard2DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -4510,7 +4510,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  CahnHilliard2DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4525,7 +4525,7 @@ public:
 
     this->w0 = w0;
     this->lmbda = w1;
-    this->muFactor = w2;
+    this->mu_factor = w2;
     this->dt = w3;
     this->theta = w4;
 
@@ -4533,7 +4533,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  CahnHilliard2DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -4546,7 +4546,7 @@ public:
 
     this->w0 = w0;
     this->lmbda = w1;
-    this->muFactor = w2;
+    this->mu_factor = w2;
     this->dt = w3;
     this->theta = w4;
 
@@ -4559,7 +4559,7 @@ public:
   // Coefficients
   CahnHilliard2DBilinearFormCoefficient0 w0;
   CahnHilliard2DBilinearFormCoefficient1 lmbda;
-  CahnHilliard2DBilinearFormCoefficient2 muFactor;
+  CahnHilliard2DBilinearFormCoefficient2 mu_factor;
   CahnHilliard2DBilinearFormCoefficient3 dt;
   CahnHilliard2DBilinearFormCoefficient4 theta;
 
@@ -4705,7 +4705,7 @@ public:
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "muFactor";
+    return "mu_factor";
   }
   
 };
@@ -4786,7 +4786,7 @@ class CahnHilliard2DLinearForm : public dolfin::Form
 public:
 
   // Create form on given function space(s)
-  CahnHilliard2DLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4802,7 +4802,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  CahnHilliard2DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -4817,7 +4817,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  CahnHilliard2DLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4832,7 +4832,7 @@ public:
     this->w0 = w0;
     this->w1 = w1;
     this->lmbda = w2;
-    this->muFactor = w3;
+    this->mu_factor = w3;
     this->dt = w4;
     this->theta = w5;
 
@@ -4840,7 +4840,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  CahnHilliard2DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  CahnHilliard2DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -4854,7 +4854,7 @@ public:
     this->w0 = w0;
     this->w1 = w1;
     this->lmbda = w2;
-    this->muFactor = w3;
+    this->mu_factor = w3;
     this->dt = w4;
     this->theta = w5;
 
@@ -4868,7 +4868,7 @@ public:
   CahnHilliard2DLinearFormCoefficient0 w0;
   CahnHilliard2DLinearFormCoefficient1 w1;
   CahnHilliard2DLinearFormCoefficient2 lmbda;
-  CahnHilliard2DLinearFormCoefficient3 muFactor;
+  CahnHilliard2DLinearFormCoefficient3 mu_factor;
   CahnHilliard2DLinearFormCoefficient4 dt;
   CahnHilliard2DLinearFormCoefficient5 theta;
 
