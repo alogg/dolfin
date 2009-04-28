@@ -50,7 +50,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis(unsigned 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -61,43 +61,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis(unsigned 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -108,53 +108,53 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis(unsigned 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -176,7 +176,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -187,43 +187,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -234,24 +234,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -269,21 +269,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -293,48 +293,48 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -342,35 +342,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -379,7 +379,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -388,7 +388,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -410,12 +410,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -426,14 +426,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -456,7 +456,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_dof(unsigned 
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -465,28 +465,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_0_0::evaluate_dof(unsigned 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -573,7 +573,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis(unsigned 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -584,43 +584,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis(unsigned 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -631,53 +631,53 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis(unsigned 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -699,7 +699,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -710,43 +710,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -757,24 +757,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -792,21 +792,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -816,48 +816,48 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -865,35 +865,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -902,7 +902,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -911,7 +911,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -933,12 +933,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -949,14 +949,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -979,7 +979,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_dof(unsigned 
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -988,28 +988,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_0_1::evaluate_dof(unsigned 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -1096,7 +1096,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -1107,43 +1107,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -1154,109 +1154,109 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     values[0] = 0;
     values[1] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
 }
 
 /// Evaluate all basis functions at given point in cell
@@ -1276,7 +1276,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -1287,43 +1287,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -1334,24 +1334,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1369,21 +1369,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -1393,50 +1393,50 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -1444,35 +1444,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -1481,7 +1481,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -1490,7 +1490,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -1512,12 +1512,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -1528,57 +1528,57 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -1586,35 +1586,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -1623,7 +1623,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -1632,7 +1632,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -1654,12 +1654,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -1670,18 +1670,18 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_basis_derivatives
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -1702,7 +1702,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_dof(unsigned in
     const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -1711,28 +1711,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_0::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[2];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -1833,7 +1833,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis(unsigned 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -1844,43 +1844,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis(unsigned 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -1891,53 +1891,53 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis(unsigned 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -1959,7 +1959,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -1970,43 +1970,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -2017,24 +2017,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2052,21 +2052,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -2076,48 +2076,48 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -2125,35 +2125,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -2162,7 +2162,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -2171,7 +2171,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -2193,12 +2193,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -2209,14 +2209,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -2239,7 +2239,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_dof(unsigned 
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -2248,28 +2248,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_1_0::evaluate_dof(unsigned 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -2356,7 +2356,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis(unsigned 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -2367,43 +2367,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis(unsigned 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -2414,53 +2414,53 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis(unsigned 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -2482,7 +2482,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -2493,43 +2493,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -2540,24 +2540,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2575,21 +2575,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -2599,48 +2599,48 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -2648,35 +2648,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -2685,7 +2685,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -2694,7 +2694,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -2716,12 +2716,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -2732,14 +2732,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -2762,7 +2762,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_dof(unsigned 
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -2771,28 +2771,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_1_1::evaluate_dof(unsigned 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -2879,7 +2879,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -2890,43 +2890,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -2937,109 +2937,109 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     values[0] = 0;
     values[1] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
 }
 
 /// Evaluate all basis functions at given point in cell
@@ -3059,7 +3059,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -3070,43 +3070,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -3117,24 +3117,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -3152,21 +3152,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -3176,50 +3176,50 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -3227,35 +3227,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -3264,7 +3264,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -3273,7 +3273,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -3295,12 +3295,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -3311,57 +3311,57 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -3369,35 +3369,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -3406,7 +3406,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -3415,7 +3415,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -3437,12 +3437,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -3453,18 +3453,18 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_basis_derivatives
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -3485,7 +3485,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_dof(unsigned in
     const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -3494,28 +3494,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_1::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[2];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -3616,7 +3616,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis(unsigned 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -3627,43 +3627,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis(unsigned 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -3674,53 +3674,53 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis(unsigned 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -3742,7 +3742,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -3753,43 +3753,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -3800,24 +3800,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -3835,21 +3835,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -3859,48 +3859,48 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -3908,35 +3908,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -3945,7 +3945,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -3954,7 +3954,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -3976,12 +3976,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -3992,14 +3992,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -4022,7 +4022,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_dof(unsigned 
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -4031,28 +4031,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_2_0::evaluate_dof(unsigned 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -4139,7 +4139,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis(unsigned 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -4150,43 +4150,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis(unsigned 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -4197,53 +4197,53 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis(unsigned 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -4265,7 +4265,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -4276,43 +4276,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -4323,24 +4323,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -4358,21 +4358,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -4382,48 +4382,48 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -4431,35 +4431,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -4468,7 +4468,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -4477,7 +4477,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -4499,12 +4499,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -4515,14 +4515,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -4545,7 +4545,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_dof(unsigned 
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -4554,28 +4554,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_2_1::evaluate_dof(unsigned 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -4662,7 +4662,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -4673,43 +4673,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -4720,109 +4720,109 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     values[0] = 0;
     values[1] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
 }
 
 /// Evaluate all basis functions at given point in cell
@@ -4842,7 +4842,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -4853,43 +4853,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -4900,24 +4900,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -4935,21 +4935,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -4959,50 +4959,50 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -5010,35 +5010,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -5047,7 +5047,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -5056,7 +5056,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -5078,12 +5078,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -5094,57 +5094,57 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -5152,35 +5152,35 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -5189,7 +5189,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -5198,7 +5198,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -5220,12 +5220,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -5236,18 +5236,18 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_basis_derivatives
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -5268,7 +5268,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_dof(unsigned in
     const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -5277,28 +5277,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_2::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[2];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -5399,7 +5399,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -5410,43 +5410,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -5457,36 +5457,36 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -5508,7 +5508,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -5519,43 +5519,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -5566,24 +5566,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -5601,21 +5601,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -5625,67 +5625,67 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -5698,12 +5698,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -5714,14 +5714,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -5744,7 +5744,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_dof(unsigned in
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -5753,28 +5753,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_3::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -5861,7 +5861,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -5872,43 +5872,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -5919,36 +5919,36 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -5970,7 +5970,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -5981,43 +5981,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -6028,24 +6028,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -6063,21 +6063,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -6087,67 +6087,67 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -6160,12 +6160,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -6176,14 +6176,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -6206,7 +6206,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_dof(unsigned in
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -6215,28 +6215,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_4::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -6323,7 +6323,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -6334,43 +6334,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -6381,36 +6381,36 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -6432,7 +6432,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -6443,43 +6443,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -6490,24 +6490,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -6525,21 +6525,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -6549,67 +6549,67 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -6622,12 +6622,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -6638,14 +6638,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -6668,7 +6668,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_dof(unsigned in
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -6677,28 +6677,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_5::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -6785,7 +6785,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -6796,43 +6796,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -6843,36 +6843,36 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -6894,7 +6894,7 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -6905,43 +6905,43 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -6952,24 +6952,24 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -6987,21 +6987,21 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -7011,67 +7011,67 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -7084,12 +7084,12 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -7100,14 +7100,14 @@ void UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -7130,7 +7130,7 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_dof(unsigned in
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -7139,28 +7139,28 @@ double UFC_CahnHilliard3DBilinearForm_finite_element_6::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -7261,8 +7261,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::max_local_dimension() const
 {
     return 4;
 }
@@ -7429,8 +7435,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::max_local_dimension() const
 {
     return 4;
 }
@@ -7597,8 +7609,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::max_local_dimension() const
 {
     return 8;
 }
@@ -7803,8 +7821,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::max_local_dimension() const
 {
     return 4;
 }
@@ -7971,8 +7995,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::max_local_dimension() const
 {
     return 4;
 }
@@ -8139,8 +8169,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::max_local_dimension() const
 {
     return 8;
 }
@@ -8345,8 +8381,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::max_local_dimension() const
 {
     return 4;
 }
@@ -8513,8 +8555,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::max_local_dimension() const
 {
     return 4;
 }
@@ -8681,8 +8729,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::max_local_dimension() const
 {
     return 8;
 }
@@ -8887,8 +8941,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::max_local_dimension() const
 {
     return 1;
 }
@@ -8926,16 +8986,16 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_3::tabulate_facet_dofs(unsigned int*
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -9035,8 +9095,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::max_local_dimension() const
 {
     return 1;
 }
@@ -9074,16 +9140,16 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_4::tabulate_facet_dofs(unsigned int*
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -9183,8 +9249,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::max_local_dimension() const
 {
     return 1;
 }
@@ -9222,16 +9294,16 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_5::tabulate_facet_dofs(unsigned int*
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -9331,8 +9403,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::max_local_dimension() const
 {
     return 1;
 }
@@ -9370,16 +9448,16 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_6::tabulate_facet_dofs(unsigned int*
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -9433,7 +9511,7 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
 {
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
     const double J_01 = x[2][0] - x[0][0];
@@ -9444,23 +9522,23 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
     const double J_20 = x[1][2] - x[0][2];
     const double J_21 = x[2][2] - x[0][2];
     const double J_22 = x[3][2] - x[0][2];
-
+      
     // Compute sub determinants
     const double d_00 = J_11*J_22 - J_12*J_21;
     const double d_01 = J_12*J_20 - J_10*J_22;
     const double d_02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d_10 = J_02*J_21 - J_01*J_22;
     const double d_11 = J_00*J_22 - J_02*J_20;
     const double d_12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d_20 = J_01*J_12 - J_02*J_11;
     const double d_21 = J_02*J_10 - J_00*J_12;
     const double d_22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-
+      
     // Compute inverse of Jacobian
     const double Jinv_00 = d_00 / detJ;
     const double Jinv_01 = d_10 / detJ;
@@ -9471,15 +9549,15 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
     const double Jinv_20 = d_02 / detJ;
     const double Jinv_21 = d_12 / detJ;
     const double Jinv_22 = d_22 / detJ;
-
+    
     // Set scale factor
     const double det = std::abs(detJ);
-
-
+    
+    
     // Array of quadrature weights
     const static double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
-
-
+    
+    
     const static double FE0_C1_D001[27][2] = \
     {{-1, 1},
     {-1, 1},
@@ -9520,17 +9598,17 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
     static const unsigned int nzc4[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc5[2] = {0, 3};
-
+    
     const static double FE0_C1[27][4] = \
     {{0.749664528221693, 0.0952198798417149, 0.0821215678634426, 0.0729940240731498},
     {0.528074388273447, 0.0670742417520586, 0.0578476039361428, 0.347003766038352},
     {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
     {0.485731727037113, 0.0616960186091465, 0.379578230280591, 0.0729940240731498},
-    {0.342156357895961, 0.0434595556538025, 0.267380320411885, 0.347003766038352},
-    {0.154572667042115, 0.0196333029354845, 0.120791820133903, 0.705002209888498},
+    {0.342156357895961, 0.0434595556538024, 0.267380320411885, 0.347003766038352},
+    {0.154572667042115, 0.0196333029354846, 0.120791820133903, 0.705002209888498},
     {0.174656645238399, 0.0221843026408197, 0.730165028047632, 0.0729940240731498},
     {0.123030632529655, 0.0156269392579017, 0.514338662174092, 0.347003766038352},
-    {0.0555803583920822, 0.00705963113955485, 0.232357800579865, 0.705002209888498},
+    {0.0555803583920822, 0.00705963113955482, 0.232357800579865, 0.705002209888498},
     {0.422442204031704, 0.422442204031704, 0.0821215678634426, 0.0729940240731498},
     {0.297574315012753, 0.297574315012753, 0.0578476039361428, 0.347003766038352},
     {0.134432268912383, 0.134432268912383, 0.0261332522867349, 0.705002209888498},
@@ -9539,7 +9617,7 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
     {0.0871029849887995, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
     {0.0984204739396093, 0.0984204739396094, 0.730165028047632, 0.0729940240731498},
     {0.0693287858937781, 0.0693287858937782, 0.514338662174092, 0.347003766038352},
-    {0.0313199947658185, 0.0313199947658186, 0.232357800579865, 0.705002209888498},
+    {0.0313199947658185, 0.0313199947658185, 0.232357800579865, 0.705002209888498},
     {0.0952198798417148, 0.749664528221693, 0.0821215678634426, 0.0729940240731498},
     {0.0670742417520584, 0.528074388273447, 0.0578476039361428, 0.347003766038352},
     {0.0303014811742757, 0.238563056650491, 0.0261332522867349, 0.705002209888498},
@@ -9553,7 +9631,7 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
     static const unsigned int nzc6[4] = {4, 5, 6, 7};
     // Array of non-zero columns
     static const unsigned int nzc7[4] = {0, 1, 2, 3};
-
+    
     // Number of operations to compute geometry constants: 104
     const double G0 =  - det*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
     const double G1 =  - 2*det*w[2][0];
@@ -9570,69 +9648,69 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
     const double G12 =  - det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
     const double G13 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
     const double G14 =  - det*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-
+    
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
     // Total number of operations to compute element tensor: 10526
-
+    
     // Loop quadrature points for integral
     // Number of operations to compute element tensor for following IP loop = 10422
     for (unsigned int ip = 0; ip < 27; ip++)
     {
-
+      
       // Function declarations
       double F0 = 0;
-
+      
       // Total number of operations to compute function values = 8
       for (unsigned int r = 0; r < 4; r++)
       {
         F0 += FE0_C1[ip][r]*w[0][nzc6[r]];
       }// end loop over 'r'
-
+      
       // Number of operations to compute ip constants: 18
       // Number of operations: 1
       const double Gip0 = W27[ip]*G0;
-
+      
       // Number of operations: 5
       const double Gip1 = W27[ip]*(G1 + F0*(G2 + F0*G3));
-
+      
       // Number of operations: 1
       const double Gip2 = W27[ip]*G4;
-
+      
       // Number of operations: 1
       const double Gip3 = W27[ip]*G5;
-
+      
       // Number of operations: 1
       const double Gip4 = W27[ip]*G6;
-
+      
       // Number of operations: 1
       const double Gip5 = W27[ip]*G7;
-
+      
       // Number of operations: 1
       const double Gip6 = W27[ip]*G8;
-
+      
       // Number of operations: 1
       const double Gip7 = W27[ip]*G9;
-
+      
       // Number of operations: 1
       const double Gip8 = W27[ip]*G10;
-
+      
       // Number of operations: 1
       const double Gip9 = W27[ip]*G11;
-
+      
       // Number of operations: 1
       const double Gip10 = W27[ip]*G12;
-
+      
       // Number of operations: 1
       const double Gip11 = W27[ip]*det;
-
+      
       // Number of operations: 1
       const double Gip12 = W27[ip]*G13;
-
+      
       // Number of operations: 1
       const double Gip13 = W27[ip]*G14;
-
-
+      
+      
       // Number of operations for primary indices = 216
       for (unsigned int j = 0; j < 2; j++)
       {
@@ -9676,7 +9754,7 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
           A[nzc5[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip13;
         }// end loop over 'k'
       }// end loop over 'j'
-
+      
       // Number of operations for primary indices = 144
       for (unsigned int j = 0; j < 4; j++)
       {
@@ -9775,7 +9853,7 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0::tabulate_tensor(double* A,
     A[61] = 0;
     A[62] = 0;
     A[63] = 0;
-
+    
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
 }
@@ -9815,13 +9893,13 @@ unsigned int UFC_CahnHilliard3DBilinearForm::num_cell_integrals() const
 {
     return 1;
 }
-
+  
 /// Return the number of exterior facet integrals
 unsigned int UFC_CahnHilliard3DBilinearForm::num_exterior_facet_integrals() const
 {
     return 0;
 }
-
+  
 /// Return the number of interior facet integrals
 unsigned int UFC_CahnHilliard3DBilinearForm::num_interior_facet_integrals() const
 {
@@ -9957,7 +10035,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -9968,43 +10046,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -10015,53 +10093,53 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -10083,7 +10161,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -10094,43 +10172,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -10141,24 +10219,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -10176,21 +10254,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -10200,48 +10278,48 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -10249,35 +10327,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -10286,7 +10364,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -10295,7 +10373,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -10317,12 +10395,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -10333,14 +10411,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -10363,7 +10441,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_dof(unsigned in
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -10372,28 +10450,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_0_0::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -10480,7 +10558,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -10491,43 +10569,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -10538,53 +10616,53 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -10606,7 +10684,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -10617,43 +10695,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -10664,24 +10742,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -10699,21 +10777,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -10723,48 +10801,48 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -10772,35 +10850,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -10809,7 +10887,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -10818,7 +10896,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -10840,12 +10918,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -10856,14 +10934,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -10886,7 +10964,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_dof(unsigned in
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -10895,28 +10973,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_0_1::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -11003,7 +11081,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -11014,43 +11092,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -11061,109 +11139,109 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     values[0] = 0;
     values[1] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
 }
 
 /// Evaluate all basis functions at given point in cell
@@ -11183,7 +11261,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -11194,43 +11272,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -11241,24 +11319,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -11276,21 +11354,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -11300,50 +11378,50 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -11351,35 +11429,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -11388,7 +11466,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -11397,7 +11475,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -11419,12 +11497,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -11435,57 +11513,57 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -11493,35 +11571,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -11530,7 +11608,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -11539,7 +11617,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -11561,12 +11639,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -11577,18 +11655,18 @@ void UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_basis_derivatives(u
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -11609,7 +11687,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_dof(unsigned int 
     const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -11618,28 +11696,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_0::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[2];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -11740,7 +11818,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -11751,43 +11829,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -11798,53 +11876,53 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -11866,7 +11944,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -11877,43 +11955,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -11924,24 +12002,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -11959,21 +12037,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -11983,48 +12061,48 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -12032,35 +12110,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -12069,7 +12147,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -12078,7 +12156,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -12100,12 +12178,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -12116,14 +12194,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -12146,7 +12224,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_dof(unsigned in
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -12155,28 +12233,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_1_0::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -12263,7 +12341,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -12274,43 +12352,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -12321,53 +12399,53 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -12389,7 +12467,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -12400,43 +12478,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -12447,24 +12525,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -12482,21 +12560,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -12506,48 +12584,48 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -12555,35 +12633,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -12592,7 +12670,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -12601,7 +12679,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -12623,12 +12701,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -12639,14 +12717,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -12669,7 +12747,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_dof(unsigned in
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -12678,28 +12756,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_1_1::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -12786,7 +12864,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -12797,43 +12875,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -12844,109 +12922,109 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     values[0] = 0;
     values[1] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
 }
 
 /// Evaluate all basis functions at given point in cell
@@ -12966,7 +13044,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -12977,43 +13055,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -13024,24 +13102,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -13059,21 +13137,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -13083,50 +13161,50 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -13134,35 +13212,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -13171,7 +13249,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -13180,7 +13258,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -13202,12 +13280,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -13218,57 +13296,57 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -13276,35 +13354,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -13313,7 +13391,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -13322,7 +13400,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -13344,12 +13422,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -13360,18 +13438,18 @@ void UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_basis_derivatives(u
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -13392,7 +13470,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_dof(unsigned int 
     const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -13401,28 +13479,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_1::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[2];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -13523,7 +13601,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -13534,43 +13612,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -13581,53 +13659,53 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -13649,7 +13727,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -13660,43 +13738,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -13707,24 +13785,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -13742,21 +13820,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -13766,48 +13844,48 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -13815,35 +13893,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -13852,7 +13930,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -13861,7 +13939,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -13883,12 +13961,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -13899,14 +13977,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -13929,7 +14007,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_dof(unsigned in
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -13938,28 +14016,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_2_0::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -14046,7 +14124,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis(unsigned in
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -14057,43 +14135,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -14104,53 +14182,53 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis(unsigned in
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
     const double coeff0_3 = coefficients0[dof][3];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
 }
@@ -14172,7 +14250,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -14183,43 +14261,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -14230,24 +14308,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -14265,21 +14343,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -14289,48 +14367,48 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
     const double scalings_z_0 = 1;
     const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
     const double psitilde_bs_1_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
     const double psitilde_cs_00_1 = 2*z + 1;
     const double psitilde_cs_01_0 = 1;
     const double psitilde_cs_10_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
     const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[4][4] = \
@@ -14338,35 +14416,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
-
+    
     const static double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
     {5.16397779494322, 0, 0, 0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
     double coeff0_3 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
     double new_coeff0_3 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
@@ -14375,7 +14453,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
       new_coeff0_3 = coefficients0[dof][3];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
@@ -14384,7 +14462,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
         coeff0_3 = new_coeff0_3;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -14406,12 +14484,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
           new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
           new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -14422,14 +14500,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_basis_derivatives
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -14452,7 +14530,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_dof(unsigned in
     const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[4][1] = {{1}, {1}, {1}, {1}};
     const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -14461,28 +14539,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_2_1::evaluate_dof(unsigned in
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -14569,7 +14647,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -14580,43 +14658,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -14627,109 +14705,109 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     values[0] = 0;
     values[1] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
       const double coeff0_3 =   coefficients0[dof][3];
-
+    
       // Compute value(s)
       values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3;
     }
-
+    
 }
 
 /// Evaluate all basis functions at given point in cell
@@ -14749,7 +14827,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -14760,43 +14838,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -14807,24 +14885,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -14842,21 +14920,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -14866,50 +14944,50 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
-
+    
     if (0 <= i && i <= 3)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -14917,35 +14995,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -14954,7 +15032,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -14963,7 +15041,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -14985,12 +15063,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -15001,57 +15079,57 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
     if (4 <= i && i <= 7)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i - 4;
-
+    
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
       const double scalings_z_0 = 1;
       const double scalings_z_1 = scalings_z_0*(0.5 - 0.5*z);
-
+    
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
-
+    
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
       const double psitilde_bs_1_0 = 1;
-
+    
       // Compute psitilde_cs
       const double psitilde_cs_00_0 = 1;
       const double psitilde_cs_00_1 = 2*z + 1;
       const double psitilde_cs_01_0 = 1;
       const double psitilde_cs_10_0 = 1;
-
+    
       // Compute basisvalues
       const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
       const double basisvalue1 = 2.73861278752583*psitilde_a_1*scalings_y_1*psitilde_bs_1_0*scalings_z_1*psitilde_cs_10_0;
       const double basisvalue2 = 1.58113883008419*psitilde_a_0*scalings_y_0*psitilde_bs_0_1*scalings_z_1*psitilde_cs_01_0;
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
-
+    
       // Table(s) of coefficients
       const static double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
       {0.288675134594813, 0, 0, 0.223606797749979}};
-
+    
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[4][4] =   \
@@ -15059,35 +15137,35 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
-
+    
       const static double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
       {5.16397779494322, 0, 0, 0}};
-
+    
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
       double *derivatives = new double [num_derivatives];
-
+    
       // Declare coefficients
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
       double coeff0_3 = 0;
-
+    
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
       double new_coeff0_3 = 0;
-
+    
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
       {
@@ -15096,7 +15174,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
         new_coeff0_3 = coefficients0[dof][3];
-
+    
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
         {
@@ -15105,7 +15183,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
           coeff0_3 = new_coeff0_3;
-
+    
           if(combinations[deriv_num][j] == 0)
           {
             new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0];
@@ -15127,12 +15205,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
             new_coeff0_2 = coeff0_0*dmats2[0][2] + coeff0_1*dmats2[1][2] + coeff0_2*dmats2[2][2] + coeff0_3*dmats2[3][2];
             new_coeff0_3 = coeff0_0*dmats2[0][3] + coeff0_1*dmats2[1][3] + coeff0_2*dmats2[2][3] + coeff0_3*dmats2[3][3];
           }
-
+    
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
         derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3;
       }
-
+    
       // Transform derivatives back to physical element
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
@@ -15143,18 +15221,18 @@ void UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_basis_derivatives(u
       }
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+    
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int row = 0; row < num_derivatives; row++)
       {
         delete [] combinations[row];
         delete [] transform[row];
       }
-
+    
       delete [] combinations;
       delete [] transform;
     }
-
+    
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -15175,7 +15253,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_dof(unsigned int 
     const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
     const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
     const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -15184,28 +15262,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_2::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[2];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -15306,7 +15384,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -15317,43 +15395,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -15364,36 +15442,36 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -15415,7 +15493,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -15426,43 +15504,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -15473,24 +15551,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -15508,21 +15586,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -15532,67 +15610,67 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -15605,12 +15683,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -15621,14 +15699,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_basis_derivatives(u
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -15651,7 +15729,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_dof(unsigned int 
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -15660,28 +15738,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_3::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -15768,7 +15846,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -15779,43 +15857,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -15826,36 +15904,36 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -15877,7 +15955,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -15888,43 +15966,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -15935,24 +16013,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -15970,21 +16048,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -15994,67 +16072,67 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -16067,12 +16145,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -16083,14 +16161,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_basis_derivatives(u
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -16113,7 +16191,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_dof(unsigned int 
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -16122,28 +16200,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_4::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -16230,7 +16308,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -16241,43 +16319,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -16288,36 +16366,36 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -16339,7 +16417,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -16350,43 +16428,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -16397,24 +16475,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -16432,21 +16510,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -16456,67 +16534,67 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -16529,12 +16607,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -16545,14 +16623,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_basis_derivatives(u
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -16575,7 +16653,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_dof(unsigned int 
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -16584,28 +16662,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_5::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -16692,7 +16770,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis(unsigned int 
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -16703,43 +16781,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -16750,36 +16828,36 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis(unsigned int 
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Reset values
     *values = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
-
+    
     // Compute value(s)
     *values = coeff0_0*basisvalue0;
 }
@@ -16801,7 +16879,7 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
 {
     // Extract vertex coordinates
     const double * const * element_coordinates = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
@@ -16812,43 +16890,43 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-
+      
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
     const double d02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d10 = J_02*J_21 - J_01*J_22;
     const double d11 = J_00*J_22 - J_02*J_20;
     const double d12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
-
+    
     // Compute inverse of Jacobian
-
+    
     // Compute constants
     const double C0 = d00*(element_coordinates[0][0] - element_coordinates[2][0] - element_coordinates[3][0]) \
                     + d10*(element_coordinates[0][1] - element_coordinates[2][1] - element_coordinates[3][1]) \
                     + d20*(element_coordinates[0][2] - element_coordinates[2][2] - element_coordinates[3][2]);
-
+    
     const double C1 = d01*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[3][0]) \
                     + d11*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[3][1]) \
                     + d21*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[3][2]);
-
+    
     const double C2 = d02*(element_coordinates[0][0] - element_coordinates[1][0] - element_coordinates[2][0]) \
                     + d12*(element_coordinates[0][1] - element_coordinates[1][1] - element_coordinates[2][1]) \
                     + d22*(element_coordinates[0][2] - element_coordinates[1][2] - element_coordinates[2][2]);
-
+    
     // Get coordinates and map to the UFC reference element
     double x = (C0 + d00*coordinates[0] + d10*coordinates[1] + d20*coordinates[2]) / detJ;
     double y = (C1 + d01*coordinates[0] + d11*coordinates[1] + d21*coordinates[2]) / detJ;
     double z = (C2 + d02*coordinates[0] + d12*coordinates[1] + d22*coordinates[2]) / detJ;
-
+    
     // Map coordinates to the reference cube
     if (std::abs(y + z - 1.0) < 1e-14)
       x = 1.0;
@@ -16859,24 +16937,24 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
     else
       y = 2.0 * y/(1.0 - z) - 1.0;
     z = 2.0 * z - 1.0;
-
+    
     // Compute number of derivatives
     unsigned int num_derivatives = 1;
-
+    
     for (unsigned int j = 0; j < n; j++)
       num_derivatives *= 3;
-
-
+    
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-
+        
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -16894,21 +16972,21 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[3][3] ={{d00 / detJ, d10 / detJ, d20 / detJ}, {d01 / detJ, d11 / detJ, d21 / detJ}, {d02 / detJ, d12 / detJ, d22 / detJ}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+        
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -16918,67 +16996,67 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values
     for (unsigned int j = 0; j < 1*num_derivatives; j++)
       values[j] = 0;
-
+    
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
-
+    
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_z_0 = 1;
-
+    
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
-
+    
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
-
+    
     // Compute psitilde_cs
     const double psitilde_cs_00_0 = 1;
-
+    
     // Compute basisvalues
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
-
+    
     // Table(s) of coefficients
     const static double coefficients0[1][1] = \
     {{1.15470053837925}};
-
+    
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[1][1] = \
     {{0}};
-
+    
     const static double dmats1[1][1] = \
     {{0}};
-
+    
     const static double dmats2[1][1] = \
     {{0}};
-
+    
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
     double *derivatives = new double [num_derivatives];
-
+    
     // Declare coefficients
     double coeff0_0 = 0;
-
+    
     // Declare new coefficients
     double new_coeff0_0 = 0;
-
+    
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
     {
       // Get values from coefficients array
       new_coeff0_0 = coefficients0[dof][0];
-
+    
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
       {
         // Update old coefficients
         coeff0_0 = new_coeff0_0;
-
+    
         if(combinations[deriv_num][j] == 0)
         {
           new_coeff0_0 = coeff0_0*dmats0[0][0];
@@ -16991,12 +17069,12 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
         {
           new_coeff0_0 = coeff0_0*dmats2[0][0];
         }
-
+    
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
       derivatives[deriv_num] = new_coeff0_0*basisvalue0;
     }
-
+    
     // Transform derivatives back to physical element
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -17007,14 +17085,14 @@ void UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_basis_derivatives(u
     }
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
-
+    
     // Delete pointer to array of combinations of derivatives and transform
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
       delete [] combinations[row];
       delete [] transform[row];
     }
-
+    
     delete [] combinations;
     delete [] transform;
 }
@@ -17037,7 +17115,7 @@ double UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_dof(unsigned int 
     const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
     const static double W[1][1] = {{1}};
     const static double D[1][1][1] = {{{1}}};
-
+    
     const double * const * x = c.coordinates;
     double result = 0.0;
     // Iterate over the points:
@@ -17046,28 +17124,28 @@ double UFC_CahnHilliard3DLinearForm_finite_element_6::evaluate_dof(unsigned int 
     const double w1 = X[i][0][0];
     const double w2 = X[i][0][1];
     const double w3 = X[i][0][2];
-
+    
     // Compute affine mapping y = F(X)
     double y[3];
     y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0] + w3*x[3][0];
     y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1] + w3*x[3][1];
     y[2] = w0*x[0][2] + w1*x[1][2] + w2*x[2][2] + w3*x[3][2];
-
+    
     // Evaluate function at physical points
     double values[1];
     f.evaluate(values, y, c);
-
+    
     // Map function values using appropriate mapping
     // Affine map: Do nothing
-
+    
     // Note that we do not map the weights (yet).
-
+    
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights
+    // Multiply by weights 
     result *= W[i][0];
-
+    
     return result;
 }
 
@@ -17168,8 +17246,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::max_local_dimension() const
 {
     return 4;
 }
@@ -17336,8 +17420,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::max_local_dimension() const
 {
     return 4;
 }
@@ -17504,8 +17594,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::max_local_dimension() const
 {
     return 8;
 }
@@ -17710,8 +17806,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::max_local_dimension() const
 {
     return 4;
 }
@@ -17878,8 +17980,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::max_local_dimension() const
 {
     return 4;
 }
@@ -18046,8 +18154,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::max_local_dimension() const
 {
     return 8;
 }
@@ -18252,8 +18366,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::max_local_dimension() const
 {
     return 4;
 }
@@ -18420,8 +18540,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::max_local_dimension() const
 {
     return 4;
 }
@@ -18588,8 +18714,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::max_local_dimension() const
 {
     return 8;
 }
@@ -18794,8 +18926,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::max_local_dimension() const
 {
     return 1;
 }
@@ -18833,16 +18971,16 @@ void UFC_CahnHilliard3DLinearForm_dof_map_3::tabulate_facet_dofs(unsigned int* d
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -18942,8 +19080,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::max_local_dimension() const
 {
     return 1;
 }
@@ -18981,16 +19125,16 @@ void UFC_CahnHilliard3DLinearForm_dof_map_4::tabulate_facet_dofs(unsigned int* d
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -19090,8 +19234,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::max_local_dimension() const
 {
     return 1;
 }
@@ -19129,16 +19279,16 @@ void UFC_CahnHilliard3DLinearForm_dof_map_5::tabulate_facet_dofs(unsigned int* d
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -19238,8 +19388,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::max_local_dimension() const
 {
     return 1;
 }
@@ -19277,16 +19433,16 @@ void UFC_CahnHilliard3DLinearForm_dof_map_6::tabulate_facet_dofs(unsigned int* d
     switch (facet)
     {
     case 0:
-
+      
       break;
     case 1:
-
+      
       break;
     case 2:
-
+      
       break;
     case 3:
-
+      
       break;
     }
 }
@@ -19340,7 +19496,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
 {
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
     const double J_01 = x[2][0] - x[0][0];
@@ -19351,23 +19507,23 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
     const double J_20 = x[1][2] - x[0][2];
     const double J_21 = x[2][2] - x[0][2];
     const double J_22 = x[3][2] - x[0][2];
-
+      
     // Compute sub determinants
     const double d_00 = J_11*J_22 - J_12*J_21;
     const double d_01 = J_12*J_20 - J_10*J_22;
     const double d_02 = J_10*J_21 - J_11*J_20;
-
+    
     const double d_10 = J_02*J_21 - J_01*J_22;
     const double d_11 = J_00*J_22 - J_02*J_20;
     const double d_12 = J_01*J_20 - J_00*J_21;
-
+    
     const double d_20 = J_01*J_12 - J_02*J_11;
     const double d_21 = J_02*J_10 - J_00*J_12;
     const double d_22 = J_00*J_11 - J_01*J_10;
-
+      
     // Compute determinant of Jacobian
     double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-
+      
     // Compute inverse of Jacobian
     const double Jinv_00 = d_00 / detJ;
     const double Jinv_01 = d_10 / detJ;
@@ -19378,15 +19534,15 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
     const double Jinv_20 = d_02 / detJ;
     const double Jinv_21 = d_12 / detJ;
     const double Jinv_22 = d_22 / detJ;
-
+    
     // Set scale factor
     const double det = std::abs(detJ);
-
-
+    
+    
     // Array of quadrature weights
     const static double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
-
-
+    
+    
     const static double FE0_C1_D001[27][2] = \
     {{-1, 1},
     {-1, 1},
@@ -19427,17 +19583,17 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
     static const unsigned int nzc4[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc5[2] = {0, 3};
-
+    
     const static double FE0_C1[27][4] = \
     {{0.749664528221693, 0.0952198798417149, 0.0821215678634426, 0.0729940240731498},
     {0.528074388273447, 0.0670742417520586, 0.0578476039361428, 0.347003766038352},
     {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
     {0.485731727037113, 0.0616960186091465, 0.379578230280591, 0.0729940240731498},
-    {0.342156357895961, 0.0434595556538025, 0.267380320411885, 0.347003766038352},
-    {0.154572667042115, 0.0196333029354845, 0.120791820133903, 0.705002209888498},
+    {0.342156357895961, 0.0434595556538024, 0.267380320411885, 0.347003766038352},
+    {0.154572667042115, 0.0196333029354846, 0.120791820133903, 0.705002209888498},
     {0.174656645238399, 0.0221843026408197, 0.730165028047632, 0.0729940240731498},
     {0.123030632529655, 0.0156269392579017, 0.514338662174092, 0.347003766038352},
-    {0.0555803583920822, 0.00705963113955485, 0.232357800579865, 0.705002209888498},
+    {0.0555803583920822, 0.00705963113955482, 0.232357800579865, 0.705002209888498},
     {0.422442204031704, 0.422442204031704, 0.0821215678634426, 0.0729940240731498},
     {0.297574315012753, 0.297574315012753, 0.0578476039361428, 0.347003766038352},
     {0.134432268912383, 0.134432268912383, 0.0261332522867349, 0.705002209888498},
@@ -19446,7 +19602,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
     {0.0871029849887995, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
     {0.0984204739396093, 0.0984204739396094, 0.730165028047632, 0.0729940240731498},
     {0.0693287858937781, 0.0693287858937782, 0.514338662174092, 0.347003766038352},
-    {0.0313199947658185, 0.0313199947658186, 0.232357800579865, 0.705002209888498},
+    {0.0313199947658185, 0.0313199947658185, 0.232357800579865, 0.705002209888498},
     {0.0952198798417148, 0.749664528221693, 0.0821215678634426, 0.0729940240731498},
     {0.0670742417520584, 0.528074388273447, 0.0578476039361428, 0.347003766038352},
     {0.0303014811742757, 0.238563056650491, 0.0261332522867349, 0.705002209888498},
@@ -19460,7 +19616,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
     static const unsigned int nzc6[4] = {4, 5, 6, 7};
     // Array of non-zero columns
     static const unsigned int nzc7[4] = {0, 1, 2, 3};
-
+    
     // Number of operations to compute geometry constants: 189
     const double G0 = det*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22 - w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
     const double G1 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12 - w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
@@ -19484,16 +19640,16 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
     const double G19 = det*w[4][0]*w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
     const double G20 =  - det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
     const double G21 =  - det;
-
+    
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
     // Total number of operations to compute element tensor: 4671
-
+    
     // Loop quadrature points for integral
     // Number of operations to compute element tensor for following IP loop = 4482
     for (unsigned int ip = 0; ip < 27; ip++)
     {
-
+      
       // Function declarations
       double F0 = 0;
       double F1 = 0;
@@ -19507,7 +19663,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
       double F9 = 0;
       double F10 = 0;
       double F11 = 0;
-
+      
       // Total number of operations to compute function values = 36
       for (unsigned int r = 0; r < 2; r++)
       {
@@ -19521,7 +19677,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
         F9 += FE0_C1_D001[ip][r]*w[0][nzc1[r]];
         F10 += FE0_C1_D001[ip][r]*w[0][nzc0[r]];
       }// end loop over 'r'
-
+      
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 4; r++)
       {
@@ -19529,33 +19685,33 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
         F7 += FE0_C1[ip][r]*w[1][nzc6[r]];
         F11 += FE0_C1[ip][r]*w[0][nzc7[r]];
       }// end loop over 'r'
-
+      
       // Number of operations to compute ip constants: 66
       // Number of operations: 12
       const double Gip0 = W27[ip]*(F0*G5 + F1*G2 + F2*G4 + F3*G3 + F4*G1 + F5*G0);
-
+      
       // Number of operations: 6
       const double Gip1 = W27[ip]*(F10*G6 + F8*G8 + F9*G7);
-
+      
       // Number of operations: 12
       const double Gip2 = W27[ip]*(F0*G12 + F1*G5 + F2*G11 + F3*G10 + F4*G3 + F5*G9);
-
+      
       // Number of operations: 6
       const double Gip3 = W27[ip]*(F10*G13 + F8*G14 + F9*G6);
-
+      
       // Number of operations: 8
       const double Gip4 = W27[ip]*(F11*det + F6*(G17 + F6*(G16 + F6*G15)));
-
+      
       // Number of operations: 12
       const double Gip5 = W27[ip]*(F0*G11 + F1*G4 + F2*G19 + F3*G9 + F4*G0 + F5*G18);
-
+      
       // Number of operations: 6
       const double Gip6 = W27[ip]*(F10*G14 + F8*G20 + F9*G8);
-
+      
       // Number of operations: 4
       const double Gip7 = W27[ip]*(F6*det + F7*G21);
-
-
+      
+      
       // Number of operations for primary indices = 24
       for (unsigned int j = 0; j < 2; j++)
       {
@@ -19572,7 +19728,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
         // Number of operations to compute entry = 2
         A[nzc3[j]] += FE0_C1_D001[ip][j]*Gip6;
       }// end loop over 'j'
-
+      
       // Number of operations for primary indices = 16
       for (unsigned int j = 0; j < 4; j++)
       {
@@ -19610,7 +19766,7 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0::tabulate_tensor(double* A,
     A[5] = 0;
     A[6] = 0;
     A[7] = 0;
-
+    
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
 }
@@ -19650,13 +19806,13 @@ unsigned int UFC_CahnHilliard3DLinearForm::num_cell_integrals() const
 {
     return 1;
 }
-
+  
 /// Return the number of exterior facet integrals
 unsigned int UFC_CahnHilliard3DLinearForm::num_exterior_facet_integrals() const
 {
     return 0;
 }
-
+  
 /// Return the number of interior facet integrals
 unsigned int UFC_CahnHilliard3DLinearForm::num_interior_facet_integrals() const
 {

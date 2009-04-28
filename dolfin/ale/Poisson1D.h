@@ -782,8 +782,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 2;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 2;
   }
@@ -930,8 +936,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 2;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 2;
   }

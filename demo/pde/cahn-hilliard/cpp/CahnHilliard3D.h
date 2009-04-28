@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <ufc.h>
-
+    
 /// This class defines the interface for a finite element.
 
 class UFC_CahnHilliard3DBilinearForm_finite_element_0_0: public ufc::finite_element
@@ -56,7 +56,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -130,7 +130,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -204,7 +204,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -278,7 +278,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -352,7 +352,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -426,7 +426,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -500,7 +500,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -574,7 +574,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -648,7 +648,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -722,7 +722,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -796,7 +796,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -870,7 +870,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -944,7 +944,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -1010,8 +1010,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1083,8 +1086,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1156,8 +1162,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1229,8 +1238,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1302,8 +1314,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1375,8 +1390,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1448,8 +1466,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1521,8 +1542,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1594,8 +1618,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1667,8 +1694,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1740,8 +1770,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1813,8 +1846,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -1886,8 +1922,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -2005,10 +2044,10 @@ public:
 
   /// Return the number of cell integrals
   virtual unsigned int num_cell_integrals() const;
-
+  
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const;
-
+  
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const;
 
@@ -2073,7 +2112,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2147,7 +2186,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2221,7 +2260,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2295,7 +2334,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2369,7 +2408,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2443,7 +2482,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2517,7 +2556,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2591,7 +2630,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2665,7 +2704,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2739,7 +2778,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2813,7 +2852,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2887,7 +2926,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -2961,7 +3000,7 @@ public:
                                           double* values,
                                           const double* coordinates,
                                           const ufc::cell& c) const;
-
+  
   /// Evaluate order n derivatives of all basis functions at given point in cell
   virtual void evaluate_basis_derivatives_all(unsigned int n,
                                               double* values,
@@ -3027,8 +3066,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3100,8 +3142,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3173,8 +3218,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3246,8 +3294,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3319,8 +3370,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3392,8 +3446,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3465,8 +3522,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3538,8 +3598,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3611,8 +3674,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3684,8 +3750,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3757,8 +3826,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3830,8 +3902,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -3903,8 +3978,11 @@ public:
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const;
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const;
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const;
 
   // Return the geometric dimension of the coordinates this dof map provides
   virtual unsigned int geometric_dimension() const;
@@ -4022,10 +4100,10 @@ public:
 
   /// Return the number of cell integrals
   virtual unsigned int num_cell_integrals() const;
-
+  
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const;
-
+  
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const;
 
@@ -4300,7 +4378,7 @@ public:
   // Constructor
   CahnHilliard3DBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DBilinearFormCoefficient0() {}
 
   // Attach function to coefficient
@@ -4315,19 +4393,19 @@ public:
   {
     return new CahnHilliard3DBilinearFormCoefficientSpace0(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 0;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "w0";
   }
-
+  
 };
 class CahnHilliard3DBilinearFormCoefficient1 : public dolfin::Coefficient
 {
@@ -4336,7 +4414,7 @@ public:
   // Constructor
   CahnHilliard3DBilinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DBilinearFormCoefficient1() {}
 
   // Attach function to coefficient
@@ -4351,19 +4429,19 @@ public:
   {
     return new CahnHilliard3DBilinearFormCoefficientSpace1(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 1;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "lmbda";
   }
-
+  
 };
 class CahnHilliard3DBilinearFormCoefficient2 : public dolfin::Coefficient
 {
@@ -4372,7 +4450,7 @@ public:
   // Constructor
   CahnHilliard3DBilinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DBilinearFormCoefficient2() {}
 
   // Attach function to coefficient
@@ -4387,19 +4465,19 @@ public:
   {
     return new CahnHilliard3DBilinearFormCoefficientSpace2(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 2;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "mu_factor";
+    return "muFactor";
   }
-
+  
 };
 class CahnHilliard3DBilinearFormCoefficient3 : public dolfin::Coefficient
 {
@@ -4408,7 +4486,7 @@ public:
   // Constructor
   CahnHilliard3DBilinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DBilinearFormCoefficient3() {}
 
   // Attach function to coefficient
@@ -4423,19 +4501,19 @@ public:
   {
     return new CahnHilliard3DBilinearFormCoefficientSpace3(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 3;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "dt";
   }
-
+  
 };
 class CahnHilliard3DBilinearFormCoefficient4 : public dolfin::Coefficient
 {
@@ -4444,7 +4522,7 @@ public:
   // Constructor
   CahnHilliard3DBilinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DBilinearFormCoefficient4() {}
 
   // Attach function to coefficient
@@ -4459,26 +4537,26 @@ public:
   {
     return new CahnHilliard3DBilinearFormCoefficientSpace4(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 4;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "theta";
   }
-
+  
 };
 class CahnHilliard3DBilinearForm : public dolfin::Form
 {
 public:
 
   // Create form on given function space(s)
-  CahnHilliard3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4495,7 +4573,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  CahnHilliard3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -4510,7 +4588,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  CahnHilliard3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4525,7 +4603,7 @@ public:
 
     this->w0 = w0;
     this->lmbda = w1;
-    this->mu_factor = w2;
+    this->muFactor = w2;
     this->dt = w3;
     this->theta = w4;
 
@@ -4533,7 +4611,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  CahnHilliard3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
     _function_spaces.push_back(V1);
@@ -4546,7 +4624,7 @@ public:
 
     this->w0 = w0;
     this->lmbda = w1;
-    this->mu_factor = w2;
+    this->muFactor = w2;
     this->dt = w3;
     this->theta = w4;
 
@@ -4559,7 +4637,7 @@ public:
   // Coefficients
   CahnHilliard3DBilinearFormCoefficient0 w0;
   CahnHilliard3DBilinearFormCoefficient1 lmbda;
-  CahnHilliard3DBilinearFormCoefficient2 mu_factor;
+  CahnHilliard3DBilinearFormCoefficient2 muFactor;
   CahnHilliard3DBilinearFormCoefficient3 dt;
   CahnHilliard3DBilinearFormCoefficient4 theta;
 
@@ -4572,7 +4650,7 @@ public:
   // Constructor
   CahnHilliard3DLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DLinearFormCoefficient0() {}
 
   // Attach function to coefficient
@@ -4587,19 +4665,19 @@ public:
   {
     return new CahnHilliard3DLinearFormCoefficientSpace0(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 0;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "w0";
   }
-
+  
 };
 class CahnHilliard3DLinearFormCoefficient1 : public dolfin::Coefficient
 {
@@ -4608,7 +4686,7 @@ public:
   // Constructor
   CahnHilliard3DLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DLinearFormCoefficient1() {}
 
   // Attach function to coefficient
@@ -4623,19 +4701,19 @@ public:
   {
     return new CahnHilliard3DLinearFormCoefficientSpace1(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 1;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "w1";
   }
-
+  
 };
 class CahnHilliard3DLinearFormCoefficient2 : public dolfin::Coefficient
 {
@@ -4644,7 +4722,7 @@ public:
   // Constructor
   CahnHilliard3DLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DLinearFormCoefficient2() {}
 
   // Attach function to coefficient
@@ -4659,19 +4737,19 @@ public:
   {
     return new CahnHilliard3DLinearFormCoefficientSpace2(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 2;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "lmbda";
   }
-
+  
 };
 class CahnHilliard3DLinearFormCoefficient3 : public dolfin::Coefficient
 {
@@ -4680,7 +4758,7 @@ public:
   // Constructor
   CahnHilliard3DLinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DLinearFormCoefficient3() {}
 
   // Attach function to coefficient
@@ -4695,19 +4773,19 @@ public:
   {
     return new CahnHilliard3DLinearFormCoefficientSpace3(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 3;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
-    return "mu_factor";
+    return "muFactor";
   }
-
+  
 };
 class CahnHilliard3DLinearFormCoefficient4 : public dolfin::Coefficient
 {
@@ -4716,7 +4794,7 @@ public:
   // Constructor
   CahnHilliard3DLinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DLinearFormCoefficient4() {}
 
   // Attach function to coefficient
@@ -4731,19 +4809,19 @@ public:
   {
     return new CahnHilliard3DLinearFormCoefficientSpace4(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 4;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "dt";
   }
-
+  
 };
 class CahnHilliard3DLinearFormCoefficient5 : public dolfin::Coefficient
 {
@@ -4752,7 +4830,7 @@ public:
   // Constructor
   CahnHilliard3DLinearFormCoefficient5(dolfin::Form& form) : dolfin::Coefficient(form) {}
 
-  // Destructor
+  // Destructor  
   ~CahnHilliard3DLinearFormCoefficient5() {}
 
   // Attach function to coefficient
@@ -4767,26 +4845,26 @@ public:
   {
     return new CahnHilliard3DLinearFormCoefficientSpace5(form.mesh());
   }
-
+  
   /// Return coefficient number
   dolfin::uint number() const
   {
     return 5;
   }
-
+  
   /// Return coefficient name
   virtual std::string name() const
   {
     return "theta";
   }
-
+  
 };
 class CahnHilliard3DLinearForm : public dolfin::Form
 {
 public:
 
   // Create form on given function space(s)
-  CahnHilliard3DLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4802,7 +4880,7 @@ public:
   }
 
   // Create form on given function space(s) (shared data)
-  CahnHilliard3DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -4817,7 +4895,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s)
-  CahnHilliard3DLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
     _function_spaces.push_back(_V0);
@@ -4832,7 +4910,7 @@ public:
     this->w0 = w0;
     this->w1 = w1;
     this->lmbda = w2;
-    this->mu_factor = w3;
+    this->muFactor = w3;
     this->dt = w4;
     this->theta = w5;
 
@@ -4840,7 +4918,7 @@ public:
   }
 
   // Create form on given function space(s) with given coefficient(s) (shared data)
-  CahnHilliard3DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), mu_factor(*this), dt(*this), theta(*this)
+  CahnHilliard3DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces.push_back(V0);
 
@@ -4854,7 +4932,7 @@ public:
     this->w0 = w0;
     this->w1 = w1;
     this->lmbda = w2;
-    this->mu_factor = w3;
+    this->muFactor = w3;
     this->dt = w4;
     this->theta = w5;
 
@@ -4868,7 +4946,7 @@ public:
   CahnHilliard3DLinearFormCoefficient0 w0;
   CahnHilliard3DLinearFormCoefficient1 w1;
   CahnHilliard3DLinearFormCoefficient2 lmbda;
-  CahnHilliard3DLinearFormCoefficient3 mu_factor;
+  CahnHilliard3DLinearFormCoefficient3 muFactor;
   CahnHilliard3DLinearFormCoefficient4 dt;
   CahnHilliard3DLinearFormCoefficient5 theta;
 
