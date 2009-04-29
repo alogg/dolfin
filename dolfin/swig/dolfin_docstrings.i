@@ -862,11 +862,18 @@ Return the dimension of the global finite element function space. ";
 
 %feature("docstring")  dolfin::DofMap::local_dimension "
 
-Return the dimension of the local finite element function space. ";
+Return the dimension of the local finite element function space on a
+cell. ";
 
 %feature("docstring")  dolfin::DofMap::macro_local_dimension "
 
-Return the dimension of the local finite element function space. ";
+Return the dimension of the local finite element function space on a
+cell. ";
+
+%feature("docstring")  dolfin::DofMap::max_local_dimension "
+
+Return the maximum dimension of the local finite element function
+space. ";
 
 %feature("docstring")  dolfin::DofMap::num_facet_dofs "
 
@@ -3480,7 +3487,7 @@ that couples the meshes together.
 
 The following mesh data is created:
 
-1. \"global entity indices 0\" ( MeshFunction<uint>)
+1. \"global entity indices 0\" (MeshFunction<uint>)
 
 This maps each local vertex to its global index.
 
@@ -3491,7 +3498,7 @@ vertex.
 
 After partitioning, the function number_entities() may be called to
 create global indices for all entities of a given topological
-dimension. These are stored as mesh data ( MeshFunction<uint>) named
+dimension. These are stored as mesh data (MeshFunction<uint>) named
 
 \"global entity indices 1\" \"global entity indices 2\" etc
 
@@ -5842,6 +5849,8 @@ Compute residual ||Ax - b||. ";
 
 Normalize vector according to given normalization type. ";
 
+%feature("docstring")  dolfin::print_container "";
+
 %feature("docstring")  dolfin::dolfin_init "
 
 Initialize DOLFIN (and PETSc) with command-line arguments. This should
@@ -5885,6 +5894,19 @@ Assemble system (A, b) and apply Dirichlet boundary condition. ";
 Assemble system (A, b) and apply Dirichlet boundary conditions. ";
 
 %feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) on sub domains and apply Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::assemble_system_new "
+
+Assemble system (A, b) and apply Dirichlet boundary condition. ";
+
+%feature("docstring")  dolfin::assemble_system_new "
+
+Assemble system (A, b) and apply Dirichlet boundary conditions. ";
+
+%feature("docstring")  dolfin::assemble_system_new "
 
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
 conditions. ";
@@ -6331,53 +6353,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_2690030bf34a9b99f807bca468dfcd7b.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_940b5712f02a32830bd12fef2b864834.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_a2009e25a76ddcb8af4e90e07234c160.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_e5f3e76321d365387794b4e0b13b0542.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_ca99c1511dbde8f29c0b7e09bd4ef636.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_7f2cd72ded43e94e89a058e502ce4739.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_d56fb550318565201b42c14e1b398d4c.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_48ccb52a0d43781ee1cb898ea130791d.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_884a9690f759434f746aeff048cf4c43.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_2a5436c73f464b956b7fda1ec5cce6c8.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_1a116b7a4e740dde874fff34af30f777.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_50e9b7f120d1277c8db717afa436970d.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_58933b45517fd2b17aaaf5971e3e2257.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_33a250896bf0d81f6f57ec5ffd696de6.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_3c9bd9864e1331ff444a56784d2e8be1.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_d31df20aafc77f2e8ec476252582d7f3.xml
+// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
 
 
-// File: dir_2ba36b65388de8b05f7bdef010c8127d.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 
