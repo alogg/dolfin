@@ -1,4 +1,5 @@
 #include "CahnHilliard3D.h"
+
 /// Constructor
 UFC_CahnHilliard3DBilinearForm_finite_element_0_0::UFC_CahnHilliard3DBilinearForm_finite_element_0_0() : ufc::finite_element()
 {
@@ -1769,7 +1770,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm_finite_element_0::num_sub_elements()
 /// Create a new finite element for sub element i (for a mixed element)
 ufc::finite_element* UFC_CahnHilliard3DBilinearForm_finite_element_0::create_sub_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_finite_element_0_0();
@@ -3552,7 +3553,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm_finite_element_1::num_sub_elements()
 /// Create a new finite element for sub element i (for a mixed element)
 ufc::finite_element* UFC_CahnHilliard3DBilinearForm_finite_element_1::create_sub_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_finite_element_1_0();
@@ -5335,7 +5336,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm_finite_element_2::num_sub_elements()
 /// Create a new finite element for sub element i (for a mixed element)
 ufc::finite_element* UFC_CahnHilliard3DBilinearForm_finite_element_2::create_sub_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_finite_element_2_0();
@@ -7216,7 +7217,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_0_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_0_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -7260,8 +7261,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_0::max_local_dimension() const
 {
     return 4;
 }
@@ -7299,7 +7306,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_0_0::tabulate_dofs(unsigned int* dof
 void UFC_CahnHilliard3DBilinearForm_dof_map_0_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -7384,7 +7391,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_0_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_0_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -7428,8 +7435,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0_1::max_local_dimension() const
 {
     return 4;
 }
@@ -7467,7 +7480,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_0_1::tabulate_dofs(unsigned int* dof
 void UFC_CahnHilliard3DBilinearForm_dof_map_0_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -7552,7 +7565,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -7596,8 +7609,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::max_local_dimension() const
 {
     return 8;
 }
@@ -7640,7 +7659,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_0::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -7724,7 +7743,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_0::num_sub_dof_maps() const
 /// Create a new dof_map for sub dof map i (for a mixed element)
 ufc::dof_map* UFC_CahnHilliard3DBilinearForm_dof_map_0::create_sub_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_dof_map_0_0();
@@ -7758,7 +7777,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_1_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_1_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -7802,8 +7821,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_0::max_local_dimension() const
 {
     return 4;
 }
@@ -7841,7 +7866,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_1_0::tabulate_dofs(unsigned int* dof
 void UFC_CahnHilliard3DBilinearForm_dof_map_1_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -7926,7 +7951,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_1_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_1_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -7970,8 +7995,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1_1::max_local_dimension() const
 {
     return 4;
 }
@@ -8009,7 +8040,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_1_1::tabulate_dofs(unsigned int* dof
 void UFC_CahnHilliard3DBilinearForm_dof_map_1_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -8094,7 +8125,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -8138,8 +8169,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::max_local_dimension() const
 {
     return 8;
 }
@@ -8182,7 +8219,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_1::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -8266,7 +8303,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_1::num_sub_dof_maps() const
 /// Create a new dof_map for sub dof map i (for a mixed element)
 ufc::dof_map* UFC_CahnHilliard3DBilinearForm_dof_map_1::create_sub_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_dof_map_1_0();
@@ -8300,7 +8337,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_2_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_2_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -8344,8 +8381,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_0::max_local_dimension() const
 {
     return 4;
 }
@@ -8383,7 +8426,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_2_0::tabulate_dofs(unsigned int* dof
 void UFC_CahnHilliard3DBilinearForm_dof_map_2_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -8468,7 +8511,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_2_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_2_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -8512,8 +8555,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::global_dimension() cons
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2_1::max_local_dimension() const
 {
     return 4;
 }
@@ -8551,7 +8600,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_2_1::tabulate_dofs(unsigned int* dof
 void UFC_CahnHilliard3DBilinearForm_dof_map_2_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -8636,7 +8685,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_2::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_2::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -8680,8 +8729,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::max_local_dimension() const
 {
     return 8;
 }
@@ -8724,7 +8779,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_2::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -8808,7 +8863,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_2::num_sub_dof_maps() const
 /// Create a new dof_map for sub dof map i (for a mixed element)
 ufc::dof_map* UFC_CahnHilliard3DBilinearForm_dof_map_2::create_sub_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_dof_map_2_0();
@@ -8842,7 +8897,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_3::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_3::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -8886,8 +8941,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_3::max_local_dimension() const
 {
     return 1;
 }
@@ -8922,7 +8983,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_3::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_3::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -8990,7 +9051,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_4::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_4::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -9034,8 +9095,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_4::max_local_dimension() const
 {
     return 1;
 }
@@ -9070,7 +9137,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_4::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_4::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -9138,7 +9205,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_5::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_5::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -9182,8 +9249,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_5::max_local_dimension() const
 {
     return 1;
 }
@@ -9218,7 +9291,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_5::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_5::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -9286,7 +9359,7 @@ const char* UFC_CahnHilliard3DBilinearForm_dof_map_6::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DBilinearForm_dof_map_6::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -9330,8 +9403,14 @@ unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DBilinearForm_dof_map_6::max_local_dimension() const
 {
     return 1;
 }
@@ -9366,7 +9445,7 @@ void UFC_CahnHilliard3DBilinearForm_dof_map_6::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DBilinearForm_dof_map_6::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -9414,19 +9493,19 @@ ufc::dof_map* UFC_CahnHilliard3DBilinearForm_dof_map_6::create_sub_dof_map(unsig
 
 
 /// Constructor
-UFC_CahnHilliard3DBilinearForm_cell_integral_0::UFC_CahnHilliard3DBilinearForm_cell_integral_0() : ufc::cell_integral()
+UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard3DBilinearForm_cell_integral_0::~UFC_CahnHilliard3DBilinearForm_cell_integral_0()
+UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::~UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void UFC_CahnHilliard3DBilinearForm_cell_integral_0::tabulate_tensor(double* A,
+void UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -9474,136 +9553,309 @@ void UFC_CahnHilliard3DBilinearForm_cell_integral_0::tabulate_tensor(double* A,
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Number of operations to compute element tensor = 1009
-    // Compute coefficients
-    const double c3_2_0_0 = w[3][0];
-    const double c4_2_1_0 = w[4][0];
-    const double c2_3_0_0 = w[2][0];
-    const double c0_3_1_4 = w[0][4];
-    const double c0_3_1_5 = w[0][5];
-    const double c0_3_1_6 = w[0][6];
-    const double c0_3_1_7 = w[0][7];
-    const double c0_3_2_4 = w[0][4];
-    const double c0_3_2_5 = w[0][5];
-    const double c0_3_2_6 = w[0][6];
-    const double c0_3_2_7 = w[0][7];
-    const double c2_4_0_0 = w[2][0];
-    const double c0_4_1_4 = w[0][4];
-    const double c0_4_1_5 = w[0][5];
-    const double c0_4_1_6 = w[0][6];
-    const double c0_4_1_7 = w[0][7];
-    const double c2_5_0_0 = w[2][0];
-    const double c1_6_0_0 = w[1][0];
     
-    // Compute geometry tensors
-    // Number of operations to compute decalrations = 193
-    const double G0_ = det;
-    const double G2_0_0_0_0 = det*c3_2_0_0*c4_2_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G2_0_0_0_1 = det*c3_2_0_0*c4_2_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G2_0_0_0_2 = det*c3_2_0_0*c4_2_1_0*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G2_0_0_1_0 = det*c3_2_0_0*c4_2_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G2_0_0_1_1 = det*c3_2_0_0*c4_2_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G2_0_0_1_2 = det*c3_2_0_0*c4_2_1_0*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G2_0_0_2_0 = det*c3_2_0_0*c4_2_1_0*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G2_0_0_2_1 = det*c3_2_0_0*c4_2_1_0*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G2_0_0_2_2 = det*c3_2_0_0*c4_2_1_0*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G3_0_4_4 = det*c2_3_0_0*c0_3_1_4*c0_3_2_4;
-    const double G3_0_4_5 = det*c2_3_0_0*c0_3_1_4*c0_3_2_5;
-    const double G3_0_4_6 = det*c2_3_0_0*c0_3_1_4*c0_3_2_6;
-    const double G3_0_4_7 = det*c2_3_0_0*c0_3_1_4*c0_3_2_7;
-    const double G3_0_5_4 = det*c2_3_0_0*c0_3_1_5*c0_3_2_4;
-    const double G3_0_5_5 = det*c2_3_0_0*c0_3_1_5*c0_3_2_5;
-    const double G3_0_5_6 = det*c2_3_0_0*c0_3_1_5*c0_3_2_6;
-    const double G3_0_5_7 = det*c2_3_0_0*c0_3_1_5*c0_3_2_7;
-    const double G3_0_6_4 = det*c2_3_0_0*c0_3_1_6*c0_3_2_4;
-    const double G3_0_6_5 = det*c2_3_0_0*c0_3_1_6*c0_3_2_5;
-    const double G3_0_6_6 = det*c2_3_0_0*c0_3_1_6*c0_3_2_6;
-    const double G3_0_6_7 = det*c2_3_0_0*c0_3_1_6*c0_3_2_7;
-    const double G3_0_7_4 = det*c2_3_0_0*c0_3_1_7*c0_3_2_4;
-    const double G3_0_7_5 = det*c2_3_0_0*c0_3_1_7*c0_3_2_5;
-    const double G3_0_7_6 = det*c2_3_0_0*c0_3_1_7*c0_3_2_6;
-    const double G3_0_7_7 = det*c2_3_0_0*c0_3_1_7*c0_3_2_7;
-    const double G4_0_4 = det*c2_4_0_0*c0_4_1_4;
-    const double G4_0_5 = det*c2_4_0_0*c0_4_1_5;
-    const double G4_0_6 = det*c2_4_0_0*c0_4_1_6;
-    const double G4_0_7 = det*c2_4_0_0*c0_4_1_7;
-    const double G5_0 = det*c2_5_0_0;
-    const double G6_0_0_0 = det*c1_6_0_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G6_0_0_1 = det*c1_6_0_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G6_0_0_2 = det*c1_6_0_0*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G6_0_1_0 = det*c1_6_0_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G6_0_1_1 = det*c1_6_0_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G6_0_1_2 = det*c1_6_0_0*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G6_0_2_0 = det*c1_6_0_0*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G6_0_2_1 = det*c1_6_0_0*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G6_0_2_2 = det*c1_6_0_0*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    // Array of quadrature weights
+    const static double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
     
-    // Compute element tensor
-    // Number of operations to compute tensor = 816
-    A[0] = 0.0166666666666666*G0_;
-    A[1] = 0.00833333333333331*G0_;
-    A[2] = 0.00833333333333331*G0_;
-    A[3] = 0.00833333333333331*G0_;
-    A[4] = -0.0571428571428571*G3_0_4_4 - 0.0142857142857143*G3_0_4_5 - 0.0142857142857143*G3_0_4_6 - 0.0142857142857143*G3_0_4_7 - 0.0142857142857143*G3_0_5_4 - 0.00952380952380951*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.0142857142857143*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.00952380952380951*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.0142857142857143*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.00952380952380952*G3_0_7_7 + 0.0999999999999997*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0333333333333332*G5_0 - 0.166666666666666*G6_0_0_0 - 0.166666666666666*G6_0_0_1 - 0.166666666666666*G6_0_0_2 - 0.166666666666666*G6_0_1_0 - 0.166666666666666*G6_0_1_1 - 0.166666666666666*G6_0_1_2 - 0.166666666666666*G6_0_2_0 - 0.166666666666666*G6_0_2_1 - 0.166666666666666*G6_0_2_2;
-    A[5] = -0.0142857142857143*G3_0_4_4 - 0.00952380952380951*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00952380952380951*G3_0_5_4 - 0.0142857142857143*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.00476190476190476*G3_0_6_6 - 0.00238095238095238*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00238095238095238*G3_0_7_6 - 0.00476190476190476*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0166666666666666*G4_0_6 + 0.0166666666666666*G4_0_7 - 0.0166666666666666*G5_0 + 0.166666666666666*G6_0_0_0 + 0.166666666666666*G6_0_1_0 + 0.166666666666666*G6_0_2_0;
-    A[6] = -0.0142857142857143*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00952380952380951*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.00476190476190476*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00238095238095238*G3_0_5_7 - 0.00952380952380951*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.0142857142857143*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00238095238095238*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.00476190476190476*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0166666666666666*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0166666666666666*G4_0_7 - 0.0166666666666666*G5_0 + 0.166666666666666*G6_0_0_1 + 0.166666666666666*G6_0_1_1 + 0.166666666666666*G6_0_2_1;
-    A[7] = -0.0142857142857143*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00952380952380952*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.00476190476190476*G3_0_5_5 - 0.00238095238095238*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00238095238095238*G3_0_6_5 - 0.00476190476190476*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00952380952380952*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.0142857142857143*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0166666666666666*G4_0_5 + 0.0166666666666666*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0166666666666666*G5_0 + 0.166666666666666*G6_0_0_2 + 0.166666666666666*G6_0_1_2 + 0.166666666666666*G6_0_2_2;
-    A[8] = 0.00833333333333331*G0_;
-    A[9] = 0.0166666666666666*G0_;
-    A[10] = 0.00833333333333331*G0_;
-    A[11] = 0.00833333333333331*G0_;
-    A[12] = -0.0142857142857143*G3_0_4_4 - 0.00952380952380951*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00952380952380951*G3_0_5_4 - 0.0142857142857143*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.00476190476190476*G3_0_6_6 - 0.00238095238095238*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00238095238095238*G3_0_7_6 - 0.00476190476190476*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0166666666666666*G4_0_6 + 0.0166666666666666*G4_0_7 - 0.0166666666666666*G5_0 + 0.166666666666666*G6_0_0_0 + 0.166666666666666*G6_0_0_1 + 0.166666666666666*G6_0_0_2;
-    A[13] = -0.00952380952380951*G3_0_4_4 - 0.0142857142857143*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.0142857142857143*G3_0_5_4 - 0.0571428571428571*G3_0_5_5 - 0.0142857142857143*G3_0_5_6 - 0.0142857142857143*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.0142857142857143*G3_0_6_5 - 0.00952380952380952*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.0142857142857143*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.00952380952380952*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0999999999999997*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0333333333333332*G5_0 - 0.166666666666666*G6_0_0_0;
-    A[14] = -0.00476190476190476*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00238095238095238*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.0142857142857143*G3_0_5_5 - 0.00952380952380952*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00952380952380952*G3_0_6_5 - 0.0142857142857143*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00238095238095238*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.00476190476190476*G3_0_7_7 + 0.0166666666666666*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0166666666666666*G4_0_7 - 0.0166666666666666*G5_0 - 0.166666666666666*G6_0_0_1;
-    A[15] = -0.00476190476190476*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00238095238095238*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.0142857142857143*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00952380952380952*G3_0_5_7 - 0.00238095238095238*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.00476190476190476*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00952380952380952*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.0142857142857143*G3_0_7_7 + 0.0166666666666666*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0166666666666666*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0166666666666666*G5_0 - 0.166666666666666*G6_0_0_2;
-    A[16] = 0.00833333333333331*G0_;
-    A[17] = 0.00833333333333331*G0_;
-    A[18] = 0.0166666666666666*G0_;
-    A[19] = 0.00833333333333331*G0_;
-    A[20] = -0.0142857142857143*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00952380952380951*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.00476190476190476*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00238095238095238*G3_0_5_7 - 0.00952380952380951*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.0142857142857143*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00238095238095238*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.00476190476190476*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0166666666666666*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0166666666666666*G4_0_7 - 0.0166666666666666*G5_0 + 0.166666666666666*G6_0_1_0 + 0.166666666666666*G6_0_1_1 + 0.166666666666666*G6_0_1_2;
-    A[21] = -0.00476190476190476*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00238095238095238*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.0142857142857143*G3_0_5_5 - 0.00952380952380952*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00952380952380952*G3_0_6_5 - 0.0142857142857143*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00238095238095238*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.00476190476190476*G3_0_7_7 + 0.0166666666666666*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0166666666666666*G4_0_7 - 0.0166666666666666*G5_0 - 0.166666666666666*G6_0_1_0;
-    A[22] = -0.00952380952380951*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.0142857142857143*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.00952380952380952*G3_0_5_5 - 0.0142857142857143*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.0142857142857143*G3_0_6_4 - 0.0142857142857143*G3_0_6_5 - 0.0571428571428571*G3_0_6_6 - 0.0142857142857143*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.0142857142857143*G3_0_7_6 - 0.00952380952380951*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0999999999999997*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0333333333333332*G5_0 - 0.166666666666666*G6_0_1_1;
-    A[23] = -0.00476190476190476*G3_0_4_4 - 0.00238095238095238*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00238095238095238*G3_0_5_4 - 0.00476190476190476*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.0142857142857143*G3_0_6_6 - 0.00952380952380951*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00952380952380951*G3_0_7_6 - 0.0142857142857143*G3_0_7_7 + 0.0166666666666666*G4_0_4 + 0.0166666666666666*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0166666666666666*G5_0 - 0.166666666666666*G6_0_1_2;
-    A[24] = 0.00833333333333331*G0_;
-    A[25] = 0.00833333333333331*G0_;
-    A[26] = 0.00833333333333331*G0_;
-    A[27] = 0.0166666666666666*G0_;
-    A[28] = -0.0142857142857143*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00952380952380952*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.00476190476190476*G3_0_5_5 - 0.00238095238095238*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00238095238095238*G3_0_6_5 - 0.00476190476190476*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00952380952380952*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.0142857142857143*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0166666666666666*G4_0_5 + 0.0166666666666666*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0166666666666666*G5_0 + 0.166666666666666*G6_0_2_0 + 0.166666666666666*G6_0_2_1 + 0.166666666666666*G6_0_2_2;
-    A[29] = -0.00476190476190476*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00238095238095238*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.0142857142857143*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00952380952380952*G3_0_5_7 - 0.00238095238095238*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.00476190476190476*G3_0_6_6 - 0.00476190476190476*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00952380952380952*G3_0_7_5 - 0.00476190476190476*G3_0_7_6 - 0.0142857142857143*G3_0_7_7 + 0.0166666666666666*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0166666666666666*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0166666666666666*G5_0 - 0.166666666666666*G6_0_2_0;
-    A[30] = -0.00476190476190476*G3_0_4_4 - 0.00238095238095238*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.00476190476190476*G3_0_4_7 - 0.00238095238095238*G3_0_5_4 - 0.00476190476190476*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.00476190476190476*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.0142857142857143*G3_0_6_6 - 0.00952380952380951*G3_0_6_7 - 0.00476190476190476*G3_0_7_4 - 0.00476190476190476*G3_0_7_5 - 0.00952380952380951*G3_0_7_6 - 0.0142857142857143*G3_0_7_7 + 0.0166666666666666*G4_0_4 + 0.0166666666666666*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0333333333333332*G4_0_7 - 0.0166666666666666*G5_0 - 0.166666666666666*G6_0_2_1;
-    A[31] = -0.00952380952380952*G3_0_4_4 - 0.00476190476190476*G3_0_4_5 - 0.00476190476190476*G3_0_4_6 - 0.0142857142857143*G3_0_4_7 - 0.00476190476190476*G3_0_5_4 - 0.00952380952380952*G3_0_5_5 - 0.00476190476190476*G3_0_5_6 - 0.0142857142857143*G3_0_5_7 - 0.00476190476190476*G3_0_6_4 - 0.00476190476190476*G3_0_6_5 - 0.00952380952380951*G3_0_6_6 - 0.0142857142857143*G3_0_6_7 - 0.0142857142857143*G3_0_7_4 - 0.0142857142857143*G3_0_7_5 - 0.0142857142857143*G3_0_7_6 - 0.0571428571428571*G3_0_7_7 + 0.0333333333333332*G4_0_4 + 0.0333333333333332*G4_0_5 + 0.0333333333333332*G4_0_6 + 0.0999999999999997*G4_0_7 - 0.0333333333333332*G5_0 - 0.166666666666666*G6_0_2_2;
-    A[32] = 0.166666666666666*G2_0_0_0_0 + 0.166666666666666*G2_0_0_0_1 + 0.166666666666666*G2_0_0_0_2 + 0.166666666666666*G2_0_0_1_0 + 0.166666666666666*G2_0_0_1_1 + 0.166666666666666*G2_0_0_1_2 + 0.166666666666666*G2_0_0_2_0 + 0.166666666666666*G2_0_0_2_1 + 0.166666666666666*G2_0_0_2_2;
-    A[33] = -0.166666666666666*G2_0_0_0_0 - 0.166666666666666*G2_0_0_1_0 - 0.166666666666666*G2_0_0_2_0;
-    A[34] = -0.166666666666666*G2_0_0_0_1 - 0.166666666666666*G2_0_0_1_1 - 0.166666666666666*G2_0_0_2_1;
-    A[35] = -0.166666666666666*G2_0_0_0_2 - 0.166666666666666*G2_0_0_1_2 - 0.166666666666666*G2_0_0_2_2;
-    A[36] = 0.0166666666666666*G0_;
-    A[37] = 0.00833333333333331*G0_;
-    A[38] = 0.00833333333333331*G0_;
-    A[39] = 0.00833333333333331*G0_;
-    A[40] = -0.166666666666666*G2_0_0_0_0 - 0.166666666666666*G2_0_0_0_1 - 0.166666666666666*G2_0_0_0_2;
-    A[41] = 0.166666666666666*G2_0_0_0_0;
-    A[42] = 0.166666666666666*G2_0_0_0_1;
-    A[43] = 0.166666666666666*G2_0_0_0_2;
-    A[44] = 0.00833333333333331*G0_;
-    A[45] = 0.0166666666666666*G0_;
-    A[46] = 0.00833333333333331*G0_;
-    A[47] = 0.00833333333333331*G0_;
-    A[48] = -0.166666666666666*G2_0_0_1_0 - 0.166666666666666*G2_0_0_1_1 - 0.166666666666666*G2_0_0_1_2;
-    A[49] = 0.166666666666666*G2_0_0_1_0;
-    A[50] = 0.166666666666666*G2_0_0_1_1;
-    A[51] = 0.166666666666666*G2_0_0_1_2;
-    A[52] = 0.00833333333333331*G0_;
-    A[53] = 0.00833333333333331*G0_;
-    A[54] = 0.0166666666666666*G0_;
-    A[55] = 0.00833333333333331*G0_;
-    A[56] = -0.166666666666666*G2_0_0_2_0 - 0.166666666666666*G2_0_0_2_1 - 0.166666666666666*G2_0_0_2_2;
-    A[57] = 0.166666666666666*G2_0_0_2_0;
-    A[58] = 0.166666666666666*G2_0_0_2_1;
-    A[59] = 0.166666666666666*G2_0_0_2_2;
-    A[60] = 0.00833333333333331*G0_;
-    A[61] = 0.00833333333333331*G0_;
-    A[62] = 0.00833333333333331*G0_;
-    A[63] = 0.0166666666666666*G0_;
+    
+    const static double FE0_C1_D001[27][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {4, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {4, 6};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {0, 3};
+    
+    const static double FE0_C1[27][4] = \
+    {{0.749664528221693, 0.0952198798417149, 0.0821215678634426, 0.0729940240731498},
+    {0.528074388273447, 0.0670742417520586, 0.0578476039361428, 0.347003766038352},
+    {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
+    {0.485731727037113, 0.0616960186091465, 0.379578230280591, 0.0729940240731498},
+    {0.342156357895961, 0.0434595556538024, 0.267380320411885, 0.347003766038352},
+    {0.154572667042115, 0.0196333029354846, 0.120791820133903, 0.705002209888498},
+    {0.174656645238399, 0.0221843026408197, 0.730165028047632, 0.0729940240731498},
+    {0.123030632529655, 0.0156269392579017, 0.514338662174092, 0.347003766038352},
+    {0.0555803583920822, 0.00705963113955482, 0.232357800579865, 0.705002209888498},
+    {0.422442204031704, 0.422442204031704, 0.0821215678634426, 0.0729940240731498},
+    {0.297574315012753, 0.297574315012753, 0.0578476039361428, 0.347003766038352},
+    {0.134432268912383, 0.134432268912383, 0.0261332522867349, 0.705002209888498},
+    {0.27371387282313, 0.27371387282313, 0.379578230280591, 0.0729940240731498},
+    {0.192807956774882, 0.192807956774882, 0.267380320411885, 0.347003766038352},
+    {0.0871029849887995, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
+    {0.0984204739396093, 0.0984204739396094, 0.730165028047632, 0.0729940240731498},
+    {0.0693287858937781, 0.0693287858937782, 0.514338662174092, 0.347003766038352},
+    {0.0313199947658185, 0.0313199947658185, 0.232357800579865, 0.705002209888498},
+    {0.0952198798417148, 0.749664528221693, 0.0821215678634426, 0.0729940240731498},
+    {0.0670742417520584, 0.528074388273447, 0.0578476039361428, 0.347003766038352},
+    {0.0303014811742757, 0.238563056650491, 0.0261332522867349, 0.705002209888498},
+    {0.0616960186091464, 0.485731727037113, 0.379578230280591, 0.0729940240731498},
+    {0.0434595556538024, 0.342156357895961, 0.267380320411885, 0.347003766038352},
+    {0.0196333029354845, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.0221843026408197, 0.174656645238399, 0.730165028047632, 0.0729940240731498},
+    {0.0156269392579016, 0.123030632529655, 0.514338662174092, 0.347003766038352},
+    {0.00705963113955483, 0.0555803583920822, 0.232357800579865, 0.705002209888498}};
+    // Array of non-zero columns
+    static const unsigned int nzc6[4] = {4, 5, 6, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc7[4] = {0, 1, 2, 3};
+    
+    // Number of operations to compute geometry constants: 104
+    const double G0 =  - det*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G1 =  - 2*det*w[2][0];
+    const double G2 = 12*det*w[2][0];
+    const double G3 =  - 12*det*w[2][0];
+    const double G4 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G5 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G6 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G7 =  - det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G8 = det*w[3][0]*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G9 =  - det*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G10 =  - det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G11 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G12 =  - det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G13 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G14 =  - det*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 10526
+    
+    // Loop quadrature points for integral
+    // Number of operations to compute element tensor for following IP loop = 10422
+    for (unsigned int ip = 0; ip < 27; ip++)
+    {
+      
+      // Function declarations
+      double F0 = 0;
+      
+      // Total number of operations to compute function values = 8
+      for (unsigned int r = 0; r < 4; r++)
+      {
+        F0 += FE0_C1[ip][r]*w[0][nzc6[r]];
+      }// end loop over 'r'
+      
+      // Number of operations to compute ip constants: 18
+      // Number of operations: 1
+      const double Gip0 = W27[ip]*G0;
+      
+      // Number of operations: 5
+      const double Gip1 = W27[ip]*(G1 + F0*(G2 + F0*G3));
+      
+      // Number of operations: 1
+      const double Gip2 = W27[ip]*G4;
+      
+      // Number of operations: 1
+      const double Gip3 = W27[ip]*G5;
+      
+      // Number of operations: 1
+      const double Gip4 = W27[ip]*G6;
+      
+      // Number of operations: 1
+      const double Gip5 = W27[ip]*G7;
+      
+      // Number of operations: 1
+      const double Gip6 = W27[ip]*G8;
+      
+      // Number of operations: 1
+      const double Gip7 = W27[ip]*G9;
+      
+      // Number of operations: 1
+      const double Gip8 = W27[ip]*G10;
+      
+      // Number of operations: 1
+      const double Gip9 = W27[ip]*G11;
+      
+      // Number of operations: 1
+      const double Gip10 = W27[ip]*G12;
+      
+      // Number of operations: 1
+      const double Gip11 = W27[ip]*det;
+      
+      // Number of operations: 1
+      const double Gip12 = W27[ip]*G13;
+      
+      // Number of operations: 1
+      const double Gip13 = W27[ip]*G14;
+      
+      
+      // Number of operations for primary indices = 216
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        for (unsigned int k = 0; k < 2; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[nzc3[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip0;
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*8 + nzc4[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip2;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*8 + nzc4[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip3;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*8 + nzc3[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip4;
+          // Number of operations to compute entry = 3
+          A[nzc4[j]*8 + nzc2[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip5;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*8 + nzc5[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip6;
+          // Number of operations to compute entry = 3
+          A[nzc5[j]*8 + nzc1[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip7;
+          // Number of operations to compute entry = 3
+          A[nzc4[j]*8 + nzc1[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip8;
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*8 + nzc5[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip3;
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*8 + nzc3[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip9;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*8 + nzc5[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip4;
+          // Number of operations to compute entry = 3
+          A[nzc4[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip7;
+          // Number of operations to compute entry = 3
+          A[nzc3[j]*8 + nzc2[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip10;
+          // Number of operations to compute entry = 3
+          A[nzc5[j]*8 + nzc2[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip0;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*8 + nzc4[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip9;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*8 + nzc3[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip12;
+          // Number of operations to compute entry = 3
+          A[nzc3[j]*8 + nzc1[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip5;
+          // Number of operations to compute entry = 3
+          A[nzc5[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip13;
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 144
+      for (unsigned int j = 0; j < 4; j++)
+      {
+        for (unsigned int k = 0; k < 4; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[nzc7[j]*8 + nzc6[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip1;
+          // Number of operations to compute entry = 3
+          A[nzc7[j]*8 + nzc7[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip11;
+          // Number of operations to compute entry = 3
+          A[nzc6[j]*8 + nzc6[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip11;
+        }// end loop over 'k'
+      }// end loop over 'j'
+    }// end loop over 'ip'
+}
+
+/// Constructor
+UFC_CahnHilliard3DBilinearForm_cell_integral_0::UFC_CahnHilliard3DBilinearForm_cell_integral_0() : ufc::cell_integral()
+{
+    // Do nothing
+}
+
+/// Destructor
+UFC_CahnHilliard3DBilinearForm_cell_integral_0::~UFC_CahnHilliard3DBilinearForm_cell_integral_0()
+{
+    // Do nothing
+}
+
+/// Tabulate the tensor for the contribution from a local cell
+void UFC_CahnHilliard3DBilinearForm_cell_integral_0::tabulate_tensor(double* A,
+                                    const double * const * w,
+                                    const ufc::cell& c) const
+{
+    // Reset values of the element tensor block
+    A[0] = 0;
+    A[1] = 0;
+    A[2] = 0;
+    A[3] = 0;
+    A[4] = 0;
+    A[5] = 0;
+    A[6] = 0;
+    A[7] = 0;
+    A[8] = 0;
+    A[9] = 0;
+    A[10] = 0;
+    A[11] = 0;
+    A[12] = 0;
+    A[13] = 0;
+    A[14] = 0;
+    A[15] = 0;
+    A[16] = 0;
+    A[17] = 0;
+    A[18] = 0;
+    A[19] = 0;
+    A[20] = 0;
+    A[21] = 0;
+    A[22] = 0;
+    A[23] = 0;
+    A[24] = 0;
+    A[25] = 0;
+    A[26] = 0;
+    A[27] = 0;
+    A[28] = 0;
+    A[29] = 0;
+    A[30] = 0;
+    A[31] = 0;
+    A[32] = 0;
+    A[33] = 0;
+    A[34] = 0;
+    A[35] = 0;
+    A[36] = 0;
+    A[37] = 0;
+    A[38] = 0;
+    A[39] = 0;
+    A[40] = 0;
+    A[41] = 0;
+    A[42] = 0;
+    A[43] = 0;
+    A[44] = 0;
+    A[45] = 0;
+    A[46] = 0;
+    A[47] = 0;
+    A[48] = 0;
+    A[49] = 0;
+    A[50] = 0;
+    A[51] = 0;
+    A[52] = 0;
+    A[53] = 0;
+    A[54] = 0;
+    A[55] = 0;
+    A[56] = 0;
+    A[57] = 0;
+    A[58] = 0;
+    A[59] = 0;
+    A[60] = 0;
+    A[61] = 0;
+    A[62] = 0;
+    A[63] = 0;
+    
+    // Add all contributions to element tensor
+    integral_0_quadrature.tabulate_tensor(A, w, c);
 }
 
 /// Constructor
@@ -9621,7 +9873,7 @@ UFC_CahnHilliard3DBilinearForm::~UFC_CahnHilliard3DBilinearForm()
 /// Return a string identifying the form
 const char* UFC_CahnHilliard3DBilinearForm::signature() const
 {
-    return " | vi0[0, 1, 2, 3, 4, 5, 6, 7][b0[0, 1]]*vi1[0, 1, 2, 3, 4, 5, 6, 7][b0[0, 1]]*dX(0) + w3_a0[0]w4_a1[0](dXa2[0, 1, 2]/dxb0[0, 1, 2])(dXa3[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa2[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*((d/dXa3[0, 1, 2])va1[0])*vi1[0, 1, 2, 3, 4, 5, 6, 7][0]*dX(0) + w3_a0[0]w4_a1[0](dXa2[0, 1, 2]/dxb0[0, 1, 2])(dXa3[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa2[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*va1[0]*((d/dXa3[0, 1, 2])vi1[0, 1, 2, 3, 4, 5, 6, 7][0])*dX(0) + -12.0w2_a0[0]w0_a1[0, 1, 2, 3, 4, 5, 6, 7]w0_a2[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][0]*va0[0]*va1[0, 1, 2, 3, 4, 5, 6, 7][1]*va2[0, 1, 2, 3, 4, 5, 6, 7][1]*vi1[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + 12.0w2_a0[0]w0_a1[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][0]*va0[0]*va1[0, 1, 2, 3, 4, 5, 6, 7][1]*vi1[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + -2.0w2_a0[0] | vi0[0, 1, 2, 3, 4, 5, 6, 7][0]*va0[0]*vi1[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + -w1_a0[0](dXa1[0, 1, 2]/dxb0[0, 1, 2])(dXa2[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa1[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][0])*((d/dXa2[0, 1, 2])vi1[0, 1, 2, 3, 4, 5, 6, 7][1])*dX(0)";
+    return "Form([Integral(Sum(Sum(Product(Constant(Cell('tetrahedron', 1), 3), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Product(Constant(Cell('tetrahedron', 1), 4), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(0),), {}))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3}))), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('tetrahedron', 1), 1), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(4),), {Index(4): 3}))), MultiIndex((Index(4),), {Index(4): 3})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(Constant(Cell('tetrahedron', 1), 2), Sum(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(FloatValue(2.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Product(FloatValue(8.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(FloatValue(2.0, (), (), {}), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
@@ -9657,7 +9909,7 @@ unsigned int UFC_CahnHilliard3DBilinearForm::num_interior_facet_integrals() cons
 /// Create a new finite element for argument function i
 ufc::finite_element* UFC_CahnHilliard3DBilinearForm::create_finite_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_finite_element_0();
@@ -9687,7 +9939,7 @@ ufc::finite_element* UFC_CahnHilliard3DBilinearForm::create_finite_element(unsig
 /// Create a new dof map for argument function i
 ufc::dof_map* UFC_CahnHilliard3DBilinearForm::create_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DBilinearForm_dof_map_0();
@@ -11503,7 +11755,7 @@ unsigned int UFC_CahnHilliard3DLinearForm_finite_element_0::num_sub_elements() c
 /// Create a new finite element for sub element i (for a mixed element)
 ufc::finite_element* UFC_CahnHilliard3DLinearForm_finite_element_0::create_sub_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_finite_element_0_0();
@@ -13286,7 +13538,7 @@ unsigned int UFC_CahnHilliard3DLinearForm_finite_element_1::num_sub_elements() c
 /// Create a new finite element for sub element i (for a mixed element)
 ufc::finite_element* UFC_CahnHilliard3DLinearForm_finite_element_1::create_sub_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_finite_element_1_0();
@@ -15069,7 +15321,7 @@ unsigned int UFC_CahnHilliard3DLinearForm_finite_element_2::num_sub_elements() c
 /// Create a new finite element for sub element i (for a mixed element)
 ufc::finite_element* UFC_CahnHilliard3DLinearForm_finite_element_2::create_sub_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_finite_element_2_0();
@@ -16950,7 +17202,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_0_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_0_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -16994,8 +17246,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_0::max_local_dimension() const
 {
     return 4;
 }
@@ -17033,7 +17291,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_0_0::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_0_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -17118,7 +17376,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_0_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_0_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -17162,8 +17420,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0_1::max_local_dimension() const
 {
     return 4;
 }
@@ -17201,7 +17465,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_0_1::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_0_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -17286,7 +17550,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -17330,8 +17594,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::max_local_dimension() const
 {
     return 8;
 }
@@ -17374,7 +17644,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_0::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -17458,7 +17728,7 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_0::num_sub_dof_maps() const
 /// Create a new dof_map for sub dof map i (for a mixed element)
 ufc::dof_map* UFC_CahnHilliard3DLinearForm_dof_map_0::create_sub_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_dof_map_0_0();
@@ -17492,7 +17762,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_1_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_1_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -17536,8 +17806,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_0::max_local_dimension() const
 {
     return 4;
 }
@@ -17575,7 +17851,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_1_0::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_1_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -17660,7 +17936,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_1_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_1_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -17704,8 +17980,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1_1::max_local_dimension() const
 {
     return 4;
 }
@@ -17743,7 +18025,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_1_1::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_1_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -17828,7 +18110,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -17872,8 +18154,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::max_local_dimension() const
 {
     return 8;
 }
@@ -17916,7 +18204,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_1::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -18000,7 +18288,7 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_1::num_sub_dof_maps() const
 /// Create a new dof_map for sub dof map i (for a mixed element)
 ufc::dof_map* UFC_CahnHilliard3DLinearForm_dof_map_1::create_sub_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_dof_map_1_0();
@@ -18034,7 +18322,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_2_0::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_2_0::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -18078,8 +18366,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_0::max_local_dimension() const
 {
     return 4;
 }
@@ -18117,7 +18411,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_2_0::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_2_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -18202,7 +18496,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_2_1::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_2_1::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -18246,8 +18540,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::local_dimension(const ufc::cell& c) const
+{
+    return 4;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2_1::max_local_dimension() const
 {
     return 4;
 }
@@ -18285,7 +18585,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_2_1::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_2_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -18370,7 +18670,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_2::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_2::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return true;
@@ -18414,8 +18714,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::local_dimension(const ufc::cell& c) const
+{
+    return 8;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::max_local_dimension() const
 {
     return 8;
 }
@@ -18458,7 +18764,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_2::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       dofs[0] = 1;
@@ -18542,7 +18848,7 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_2::num_sub_dof_maps() const
 /// Create a new dof_map for sub dof map i (for a mixed element)
 ufc::dof_map* UFC_CahnHilliard3DLinearForm_dof_map_2::create_sub_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_dof_map_2_0();
@@ -18576,7 +18882,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_3::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_3::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -18620,8 +18926,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_3::max_local_dimension() const
 {
     return 1;
 }
@@ -18656,7 +18968,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_3::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_3::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -18724,7 +19036,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_4::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_4::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -18768,8 +19080,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_4::max_local_dimension() const
 {
     return 1;
 }
@@ -18804,7 +19122,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_4::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_4::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -18872,7 +19190,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_5::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_5::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -18916,8 +19234,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_5::max_local_dimension() const
 {
     return 1;
 }
@@ -18952,7 +19276,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_5::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_5::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -19020,7 +19344,7 @@ const char* UFC_CahnHilliard3DLinearForm_dof_map_6::signature() const
 /// Return true iff mesh entities of topological dimension d are needed
 bool UFC_CahnHilliard3DLinearForm_dof_map_6::needs_mesh_entities(unsigned int d) const
 {
-    switch ( d )
+    switch (d)
     {
     case 0:
       return false;
@@ -19064,8 +19388,14 @@ unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::global_dimension() const
     return __global_dimension;
 }
 
-/// Return the dimension of the local finite element function space
-unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::local_dimension() const
+/// Return the dimension of the local finite element function space for a cell
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::local_dimension(const ufc::cell& c) const
+{
+    return 1;
+}
+
+/// Return the maximum dimension of the local finite element function space
+unsigned int UFC_CahnHilliard3DLinearForm_dof_map_6::max_local_dimension() const
 {
     return 1;
 }
@@ -19100,7 +19430,7 @@ void UFC_CahnHilliard3DLinearForm_dof_map_6::tabulate_dofs(unsigned int* dofs,
 void UFC_CahnHilliard3DLinearForm_dof_map_6::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch ( facet )
+    switch (facet)
     {
     case 0:
       
@@ -19148,19 +19478,19 @@ ufc::dof_map* UFC_CahnHilliard3DLinearForm_dof_map_6::create_sub_dof_map(unsigne
 
 
 /// Constructor
-UFC_CahnHilliard3DLinearForm_cell_integral_0::UFC_CahnHilliard3DLinearForm_cell_integral_0() : ufc::cell_integral()
+UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard3DLinearForm_cell_integral_0::~UFC_CahnHilliard3DLinearForm_cell_integral_0()
+UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::~UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void UFC_CahnHilliard3DLinearForm_cell_integral_0::tabulate_tensor(double* A,
+void UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -19208,251 +19538,237 @@ void UFC_CahnHilliard3DLinearForm_cell_integral_0::tabulate_tensor(double* A,
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Number of operations to compute element tensor = 1984
-    // Compute coefficients
-    const double c0_0_0_0 = w[0][0];
-    const double c0_0_0_1 = w[0][1];
-    const double c0_0_0_2 = w[0][2];
-    const double c0_0_0_3 = w[0][3];
-    const double c0_0_0_4 = w[0][4];
-    const double c0_0_0_5 = w[0][5];
-    const double c0_0_0_6 = w[0][6];
-    const double c0_0_0_7 = w[0][7];
-    const double c1_1_0_4 = w[1][4];
-    const double c1_1_0_5 = w[1][5];
-    const double c1_1_0_6 = w[1][6];
-    const double c1_1_0_7 = w[1][7];
-    const double c4_3_0_0 = w[4][0];
-    const double c5_3_1_0 = w[5][0];
-    const double c1_3_2_0 = w[1][0];
-    const double c1_3_2_1 = w[1][1];
-    const double c1_3_2_2 = w[1][2];
-    const double c1_3_2_3 = w[1][3];
-    const double c4_4_0_0 = w[4][0];
-    const double c1_4_1_0 = w[1][0];
-    const double c1_4_1_1 = w[1][1];
-    const double c1_4_1_2 = w[1][2];
-    const double c1_4_1_3 = w[1][3];
-    const double c4_6_0_0 = w[4][0];
-    const double c5_6_1_0 = w[5][0];
-    const double c0_6_2_0 = w[0][0];
-    const double c0_6_2_1 = w[0][1];
-    const double c0_6_2_2 = w[0][2];
-    const double c0_6_2_3 = w[0][3];
-    const double c3_7_0_0 = w[3][0];
-    const double c0_7_1_4 = w[0][4];
-    const double c0_7_1_5 = w[0][5];
-    const double c0_7_1_6 = w[0][6];
-    const double c0_7_1_7 = w[0][7];
-    const double c0_7_2_4 = w[0][4];
-    const double c0_7_2_5 = w[0][5];
-    const double c0_7_2_6 = w[0][6];
-    const double c0_7_2_7 = w[0][7];
-    const double c0_7_3_4 = w[0][4];
-    const double c0_7_3_5 = w[0][5];
-    const double c0_7_3_6 = w[0][6];
-    const double c0_7_3_7 = w[0][7];
-    const double c3_8_0_0 = w[3][0];
-    const double c0_8_1_4 = w[0][4];
-    const double c0_8_1_5 = w[0][5];
-    const double c0_8_1_6 = w[0][6];
-    const double c0_8_1_7 = w[0][7];
-    const double c0_8_2_4 = w[0][4];
-    const double c0_8_2_5 = w[0][5];
-    const double c0_8_2_6 = w[0][6];
-    const double c0_8_2_7 = w[0][7];
-    const double c3_9_0_0 = w[3][0];
-    const double c0_9_1_4 = w[0][4];
-    const double c0_9_1_5 = w[0][5];
-    const double c0_9_1_6 = w[0][6];
-    const double c0_9_1_7 = w[0][7];
-    const double c2_10_0_0 = w[2][0];
-    const double c0_10_1_4 = w[0][4];
-    const double c0_10_1_5 = w[0][5];
-    const double c0_10_1_6 = w[0][6];
-    const double c0_10_1_7 = w[0][7];
     
-    // Compute geometry tensors
-    // Number of operations to compute decalrations = 936
-    const double G0_0 = det*c0_0_0_0;
-    const double G0_1 = det*c0_0_0_1;
-    const double G0_2 = det*c0_0_0_2;
-    const double G0_3 = det*c0_0_0_3;
-    const double G0_4 = det*c0_0_0_4;
-    const double G0_5 = det*c0_0_0_5;
-    const double G0_6 = det*c0_0_0_6;
-    const double G0_7 = det*c0_0_0_7;
-    const double G1_4 = det*c1_1_0_4;
-    const double G1_5 = det*c1_1_0_5;
-    const double G1_6 = det*c1_1_0_6;
-    const double G1_7 = det*c1_1_0_7;
-    const double G3_0_0_0_0_0 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G3_0_0_0_0_1 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G3_0_0_0_0_2 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G3_0_0_0_1_0 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G3_0_0_0_1_1 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G3_0_0_0_1_2 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G3_0_0_0_2_0 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G3_0_0_0_2_1 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G3_0_0_0_2_2 = det*c4_3_0_0*c5_3_1_0*c1_3_2_0*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G3_0_0_1_0_0 = det*c4_3_0_0*c5_3_1_0*c1_3_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G3_0_0_1_1_0 = det*c4_3_0_0*c5_3_1_0*c1_3_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G3_0_0_1_2_0 = det*c4_3_0_0*c5_3_1_0*c1_3_2_1*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G3_0_0_2_0_1 = det*c4_3_0_0*c5_3_1_0*c1_3_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G3_0_0_2_1_1 = det*c4_3_0_0*c5_3_1_0*c1_3_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G3_0_0_2_2_1 = det*c4_3_0_0*c5_3_1_0*c1_3_2_2*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G3_0_0_3_0_2 = det*c4_3_0_0*c5_3_1_0*c1_3_2_3*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G3_0_0_3_1_2 = det*c4_3_0_0*c5_3_1_0*c1_3_2_3*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G3_0_0_3_2_2 = det*c4_3_0_0*c5_3_1_0*c1_3_2_3*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G4_0_0_0_0 = det*c4_4_0_0*c1_4_1_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G4_0_0_0_1 = det*c4_4_0_0*c1_4_1_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G4_0_0_0_2 = det*c4_4_0_0*c1_4_1_0*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G4_0_0_1_0 = det*c4_4_0_0*c1_4_1_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G4_0_0_1_1 = det*c4_4_0_0*c1_4_1_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G4_0_0_1_2 = det*c4_4_0_0*c1_4_1_0*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G4_0_0_2_0 = det*c4_4_0_0*c1_4_1_0*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G4_0_0_2_1 = det*c4_4_0_0*c1_4_1_0*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G4_0_0_2_2 = det*c4_4_0_0*c1_4_1_0*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G4_0_1_0_0 = det*c4_4_0_0*c1_4_1_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G4_0_1_1_0 = det*c4_4_0_0*c1_4_1_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G4_0_1_2_0 = det*c4_4_0_0*c1_4_1_1*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G4_0_2_0_1 = det*c4_4_0_0*c1_4_1_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G4_0_2_1_1 = det*c4_4_0_0*c1_4_1_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G4_0_2_2_1 = det*c4_4_0_0*c1_4_1_2*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G4_0_3_0_2 = det*c4_4_0_0*c1_4_1_3*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G4_0_3_1_2 = det*c4_4_0_0*c1_4_1_3*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G4_0_3_2_2 = det*c4_4_0_0*c1_4_1_3*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G6_0_0_0_0_0 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G6_0_0_0_0_1 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G6_0_0_0_0_2 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G6_0_0_0_1_0 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G6_0_0_0_1_1 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G6_0_0_0_1_2 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G6_0_0_0_2_0 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G6_0_0_0_2_1 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G6_0_0_0_2_2 = det*c4_6_0_0*c5_6_1_0*c0_6_2_0*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G6_0_0_1_0_0 = det*c4_6_0_0*c5_6_1_0*c0_6_2_1*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G6_0_0_1_1_0 = det*c4_6_0_0*c5_6_1_0*c0_6_2_1*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G6_0_0_1_2_0 = det*c4_6_0_0*c5_6_1_0*c0_6_2_1*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G6_0_0_2_0_1 = det*c4_6_0_0*c5_6_1_0*c0_6_2_2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G6_0_0_2_1_1 = det*c4_6_0_0*c5_6_1_0*c0_6_2_2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G6_0_0_2_2_1 = det*c4_6_0_0*c5_6_1_0*c0_6_2_2*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G6_0_0_3_0_2 = det*c4_6_0_0*c5_6_1_0*c0_6_2_3*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G6_0_0_3_1_2 = det*c4_6_0_0*c5_6_1_0*c0_6_2_3*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G6_0_0_3_2_2 = det*c4_6_0_0*c5_6_1_0*c0_6_2_3*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G7_0_4_4_4 = det*c3_7_0_0*c0_7_1_4*c0_7_2_4*c0_7_3_4;
-    const double G7_0_4_4_5 = det*c3_7_0_0*c0_7_1_4*c0_7_2_4*c0_7_3_5;
-    const double G7_0_4_4_6 = det*c3_7_0_0*c0_7_1_4*c0_7_2_4*c0_7_3_6;
-    const double G7_0_4_4_7 = det*c3_7_0_0*c0_7_1_4*c0_7_2_4*c0_7_3_7;
-    const double G7_0_4_5_4 = det*c3_7_0_0*c0_7_1_4*c0_7_2_5*c0_7_3_4;
-    const double G7_0_4_5_5 = det*c3_7_0_0*c0_7_1_4*c0_7_2_5*c0_7_3_5;
-    const double G7_0_4_5_6 = det*c3_7_0_0*c0_7_1_4*c0_7_2_5*c0_7_3_6;
-    const double G7_0_4_5_7 = det*c3_7_0_0*c0_7_1_4*c0_7_2_5*c0_7_3_7;
-    const double G7_0_4_6_4 = det*c3_7_0_0*c0_7_1_4*c0_7_2_6*c0_7_3_4;
-    const double G7_0_4_6_5 = det*c3_7_0_0*c0_7_1_4*c0_7_2_6*c0_7_3_5;
-    const double G7_0_4_6_6 = det*c3_7_0_0*c0_7_1_4*c0_7_2_6*c0_7_3_6;
-    const double G7_0_4_6_7 = det*c3_7_0_0*c0_7_1_4*c0_7_2_6*c0_7_3_7;
-    const double G7_0_4_7_4 = det*c3_7_0_0*c0_7_1_4*c0_7_2_7*c0_7_3_4;
-    const double G7_0_4_7_5 = det*c3_7_0_0*c0_7_1_4*c0_7_2_7*c0_7_3_5;
-    const double G7_0_4_7_6 = det*c3_7_0_0*c0_7_1_4*c0_7_2_7*c0_7_3_6;
-    const double G7_0_4_7_7 = det*c3_7_0_0*c0_7_1_4*c0_7_2_7*c0_7_3_7;
-    const double G7_0_5_4_4 = det*c3_7_0_0*c0_7_1_5*c0_7_2_4*c0_7_3_4;
-    const double G7_0_5_4_5 = det*c3_7_0_0*c0_7_1_5*c0_7_2_4*c0_7_3_5;
-    const double G7_0_5_4_6 = det*c3_7_0_0*c0_7_1_5*c0_7_2_4*c0_7_3_6;
-    const double G7_0_5_4_7 = det*c3_7_0_0*c0_7_1_5*c0_7_2_4*c0_7_3_7;
-    const double G7_0_5_5_4 = det*c3_7_0_0*c0_7_1_5*c0_7_2_5*c0_7_3_4;
-    const double G7_0_5_5_5 = det*c3_7_0_0*c0_7_1_5*c0_7_2_5*c0_7_3_5;
-    const double G7_0_5_5_6 = det*c3_7_0_0*c0_7_1_5*c0_7_2_5*c0_7_3_6;
-    const double G7_0_5_5_7 = det*c3_7_0_0*c0_7_1_5*c0_7_2_5*c0_7_3_7;
-    const double G7_0_5_6_4 = det*c3_7_0_0*c0_7_1_5*c0_7_2_6*c0_7_3_4;
-    const double G7_0_5_6_5 = det*c3_7_0_0*c0_7_1_5*c0_7_2_6*c0_7_3_5;
-    const double G7_0_5_6_6 = det*c3_7_0_0*c0_7_1_5*c0_7_2_6*c0_7_3_6;
-    const double G7_0_5_6_7 = det*c3_7_0_0*c0_7_1_5*c0_7_2_6*c0_7_3_7;
-    const double G7_0_5_7_4 = det*c3_7_0_0*c0_7_1_5*c0_7_2_7*c0_7_3_4;
-    const double G7_0_5_7_5 = det*c3_7_0_0*c0_7_1_5*c0_7_2_7*c0_7_3_5;
-    const double G7_0_5_7_6 = det*c3_7_0_0*c0_7_1_5*c0_7_2_7*c0_7_3_6;
-    const double G7_0_5_7_7 = det*c3_7_0_0*c0_7_1_5*c0_7_2_7*c0_7_3_7;
-    const double G7_0_6_4_4 = det*c3_7_0_0*c0_7_1_6*c0_7_2_4*c0_7_3_4;
-    const double G7_0_6_4_5 = det*c3_7_0_0*c0_7_1_6*c0_7_2_4*c0_7_3_5;
-    const double G7_0_6_4_6 = det*c3_7_0_0*c0_7_1_6*c0_7_2_4*c0_7_3_6;
-    const double G7_0_6_4_7 = det*c3_7_0_0*c0_7_1_6*c0_7_2_4*c0_7_3_7;
-    const double G7_0_6_5_4 = det*c3_7_0_0*c0_7_1_6*c0_7_2_5*c0_7_3_4;
-    const double G7_0_6_5_5 = det*c3_7_0_0*c0_7_1_6*c0_7_2_5*c0_7_3_5;
-    const double G7_0_6_5_6 = det*c3_7_0_0*c0_7_1_6*c0_7_2_5*c0_7_3_6;
-    const double G7_0_6_5_7 = det*c3_7_0_0*c0_7_1_6*c0_7_2_5*c0_7_3_7;
-    const double G7_0_6_6_4 = det*c3_7_0_0*c0_7_1_6*c0_7_2_6*c0_7_3_4;
-    const double G7_0_6_6_5 = det*c3_7_0_0*c0_7_1_6*c0_7_2_6*c0_7_3_5;
-    const double G7_0_6_6_6 = det*c3_7_0_0*c0_7_1_6*c0_7_2_6*c0_7_3_6;
-    const double G7_0_6_6_7 = det*c3_7_0_0*c0_7_1_6*c0_7_2_6*c0_7_3_7;
-    const double G7_0_6_7_4 = det*c3_7_0_0*c0_7_1_6*c0_7_2_7*c0_7_3_4;
-    const double G7_0_6_7_5 = det*c3_7_0_0*c0_7_1_6*c0_7_2_7*c0_7_3_5;
-    const double G7_0_6_7_6 = det*c3_7_0_0*c0_7_1_6*c0_7_2_7*c0_7_3_6;
-    const double G7_0_6_7_7 = det*c3_7_0_0*c0_7_1_6*c0_7_2_7*c0_7_3_7;
-    const double G7_0_7_4_4 = det*c3_7_0_0*c0_7_1_7*c0_7_2_4*c0_7_3_4;
-    const double G7_0_7_4_5 = det*c3_7_0_0*c0_7_1_7*c0_7_2_4*c0_7_3_5;
-    const double G7_0_7_4_6 = det*c3_7_0_0*c0_7_1_7*c0_7_2_4*c0_7_3_6;
-    const double G7_0_7_4_7 = det*c3_7_0_0*c0_7_1_7*c0_7_2_4*c0_7_3_7;
-    const double G7_0_7_5_4 = det*c3_7_0_0*c0_7_1_7*c0_7_2_5*c0_7_3_4;
-    const double G7_0_7_5_5 = det*c3_7_0_0*c0_7_1_7*c0_7_2_5*c0_7_3_5;
-    const double G7_0_7_5_6 = det*c3_7_0_0*c0_7_1_7*c0_7_2_5*c0_7_3_6;
-    const double G7_0_7_5_7 = det*c3_7_0_0*c0_7_1_7*c0_7_2_5*c0_7_3_7;
-    const double G7_0_7_6_4 = det*c3_7_0_0*c0_7_1_7*c0_7_2_6*c0_7_3_4;
-    const double G7_0_7_6_5 = det*c3_7_0_0*c0_7_1_7*c0_7_2_6*c0_7_3_5;
-    const double G7_0_7_6_6 = det*c3_7_0_0*c0_7_1_7*c0_7_2_6*c0_7_3_6;
-    const double G7_0_7_6_7 = det*c3_7_0_0*c0_7_1_7*c0_7_2_6*c0_7_3_7;
-    const double G7_0_7_7_4 = det*c3_7_0_0*c0_7_1_7*c0_7_2_7*c0_7_3_4;
-    const double G7_0_7_7_5 = det*c3_7_0_0*c0_7_1_7*c0_7_2_7*c0_7_3_5;
-    const double G7_0_7_7_6 = det*c3_7_0_0*c0_7_1_7*c0_7_2_7*c0_7_3_6;
-    const double G7_0_7_7_7 = det*c3_7_0_0*c0_7_1_7*c0_7_2_7*c0_7_3_7;
-    const double G8_0_4_4 = det*c3_8_0_0*c0_8_1_4*c0_8_2_4;
-    const double G8_0_4_5 = det*c3_8_0_0*c0_8_1_4*c0_8_2_5;
-    const double G8_0_4_6 = det*c3_8_0_0*c0_8_1_4*c0_8_2_6;
-    const double G8_0_4_7 = det*c3_8_0_0*c0_8_1_4*c0_8_2_7;
-    const double G8_0_5_4 = det*c3_8_0_0*c0_8_1_5*c0_8_2_4;
-    const double G8_0_5_5 = det*c3_8_0_0*c0_8_1_5*c0_8_2_5;
-    const double G8_0_5_6 = det*c3_8_0_0*c0_8_1_5*c0_8_2_6;
-    const double G8_0_5_7 = det*c3_8_0_0*c0_8_1_5*c0_8_2_7;
-    const double G8_0_6_4 = det*c3_8_0_0*c0_8_1_6*c0_8_2_4;
-    const double G8_0_6_5 = det*c3_8_0_0*c0_8_1_6*c0_8_2_5;
-    const double G8_0_6_6 = det*c3_8_0_0*c0_8_1_6*c0_8_2_6;
-    const double G8_0_6_7 = det*c3_8_0_0*c0_8_1_6*c0_8_2_7;
-    const double G8_0_7_4 = det*c3_8_0_0*c0_8_1_7*c0_8_2_4;
-    const double G8_0_7_5 = det*c3_8_0_0*c0_8_1_7*c0_8_2_5;
-    const double G8_0_7_6 = det*c3_8_0_0*c0_8_1_7*c0_8_2_6;
-    const double G8_0_7_7 = det*c3_8_0_0*c0_8_1_7*c0_8_2_7;
-    const double G9_0_4 = det*c3_9_0_0*c0_9_1_4;
-    const double G9_0_5 = det*c3_9_0_0*c0_9_1_5;
-    const double G9_0_6 = det*c3_9_0_0*c0_9_1_6;
-    const double G9_0_7 = det*c3_9_0_0*c0_9_1_7;
-    const double G10_0_4_0_0 = det*c2_10_0_0*c0_10_1_4*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G10_0_4_0_1 = det*c2_10_0_0*c0_10_1_4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G10_0_4_0_2 = det*c2_10_0_0*c0_10_1_4*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G10_0_4_1_0 = det*c2_10_0_0*c0_10_1_4*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G10_0_4_1_1 = det*c2_10_0_0*c0_10_1_4*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G10_0_4_1_2 = det*c2_10_0_0*c0_10_1_4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G10_0_4_2_0 = det*c2_10_0_0*c0_10_1_4*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G10_0_4_2_1 = det*c2_10_0_0*c0_10_1_4*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G10_0_4_2_2 = det*c2_10_0_0*c0_10_1_4*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G10_0_5_0_0 = det*c2_10_0_0*c0_10_1_5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G10_0_5_1_0 = det*c2_10_0_0*c0_10_1_5*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01 + Jinv_12*Jinv_02);
-    const double G10_0_5_2_0 = det*c2_10_0_0*c0_10_1_5*(Jinv_20*Jinv_00 + Jinv_21*Jinv_01 + Jinv_22*Jinv_02);
-    const double G10_0_6_0_1 = det*c2_10_0_0*c0_10_1_6*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G10_0_6_1_1 = det*c2_10_0_0*c0_10_1_6*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G10_0_6_2_1 = det*c2_10_0_0*c0_10_1_6*(Jinv_20*Jinv_10 + Jinv_21*Jinv_11 + Jinv_22*Jinv_12);
-    const double G10_0_7_0_2 = det*c2_10_0_0*c0_10_1_7*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G10_0_7_1_2 = det*c2_10_0_0*c0_10_1_7*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G10_0_7_2_2 = det*c2_10_0_0*c0_10_1_7*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    // Array of quadrature weights
+    const static double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
     
-    // Compute element tensor
-    // Number of operations to compute tensor = 1048
-    A[0] = 0.0166666666666666*G0_0 + 0.00833333333333331*G0_1 + 0.00833333333333331*G0_2 + 0.00833333333333331*G0_3 - 0.019047619047619*G7_0_4_4_4 - 0.00476190476190475*G7_0_4_4_5 - 0.00476190476190476*G7_0_4_4_6 - 0.00476190476190476*G7_0_4_4_7 - 0.00476190476190475*G7_0_4_5_4 - 0.00317460317460317*G7_0_4_5_5 - 0.00158730158730159*G7_0_4_5_6 - 0.00158730158730159*G7_0_4_5_7 - 0.00476190476190476*G7_0_4_6_4 - 0.00158730158730159*G7_0_4_6_5 - 0.00317460317460317*G7_0_4_6_6 - 0.00158730158730159*G7_0_4_6_7 - 0.00476190476190476*G7_0_4_7_4 - 0.00158730158730159*G7_0_4_7_5 - 0.00158730158730159*G7_0_4_7_6 - 0.00317460317460317*G7_0_4_7_7 - 0.00476190476190475*G7_0_5_4_4 - 0.00317460317460317*G7_0_5_4_5 - 0.00158730158730159*G7_0_5_4_6 - 0.00158730158730159*G7_0_5_4_7 - 0.00317460317460317*G7_0_5_5_4 - 0.00476190476190476*G7_0_5_5_5 - 0.00158730158730159*G7_0_5_5_6 - 0.00158730158730159*G7_0_5_5_7 - 0.00158730158730159*G7_0_5_6_4 - 0.00158730158730159*G7_0_5_6_5 - 0.00158730158730159*G7_0_5_6_6 - 0.000793650793650793*G7_0_5_6_7 - 0.00158730158730159*G7_0_5_7_4 - 0.00158730158730159*G7_0_5_7_5 - 0.000793650793650793*G7_0_5_7_6 - 0.00158730158730159*G7_0_5_7_7 - 0.00476190476190476*G7_0_6_4_4 - 0.00158730158730159*G7_0_6_4_5 - 0.00317460317460317*G7_0_6_4_6 - 0.00158730158730159*G7_0_6_4_7 - 0.00158730158730159*G7_0_6_5_4 - 0.00158730158730159*G7_0_6_5_5 - 0.00158730158730159*G7_0_6_5_6 - 0.000793650793650793*G7_0_6_5_7 - 0.00317460317460317*G7_0_6_6_4 - 0.00158730158730159*G7_0_6_6_5 - 0.00476190476190476*G7_0_6_6_6 - 0.00158730158730159*G7_0_6_6_7 - 0.00158730158730159*G7_0_6_7_4 - 0.000793650793650793*G7_0_6_7_5 - 0.00158730158730159*G7_0_6_7_6 - 0.00158730158730159*G7_0_6_7_7 - 0.00476190476190476*G7_0_7_4_4 - 0.00158730158730159*G7_0_7_4_5 - 0.00158730158730159*G7_0_7_4_6 - 0.00317460317460317*G7_0_7_4_7 - 0.00158730158730159*G7_0_7_5_4 - 0.00158730158730159*G7_0_7_5_5 - 0.000793650793650793*G7_0_7_5_6 - 0.00158730158730159*G7_0_7_5_7 - 0.00158730158730159*G7_0_7_6_4 - 0.000793650793650793*G7_0_7_6_5 - 0.00158730158730159*G7_0_7_6_6 - 0.00158730158730159*G7_0_7_6_7 - 0.00317460317460317*G7_0_7_7_4 - 0.00158730158730159*G7_0_7_7_5 - 0.00158730158730159*G7_0_7_7_6 - 0.00476190476190476*G7_0_7_7_7 + 0.0499999999999998*G8_0_4_4 + 0.0166666666666666*G8_0_4_5 + 0.0166666666666666*G8_0_4_6 + 0.0166666666666666*G8_0_4_7 + 0.0166666666666666*G8_0_5_4 + 0.0166666666666666*G8_0_5_5 + 0.00833333333333331*G8_0_5_6 + 0.00833333333333331*G8_0_5_7 + 0.0166666666666666*G8_0_6_4 + 0.00833333333333331*G8_0_6_5 + 0.0166666666666666*G8_0_6_6 + 0.00833333333333331*G8_0_6_7 + 0.0166666666666666*G8_0_7_4 + 0.00833333333333331*G8_0_7_5 + 0.00833333333333331*G8_0_7_6 + 0.0166666666666666*G8_0_7_7 - 0.0333333333333332*G9_0_4 - 0.0166666666666666*G9_0_5 - 0.0166666666666666*G9_0_6 - 0.0166666666666666*G9_0_7 - 0.166666666666666*G10_0_4_0_0 - 0.166666666666666*G10_0_4_0_1 - 0.166666666666666*G10_0_4_0_2 - 0.166666666666666*G10_0_4_1_0 - 0.166666666666666*G10_0_4_1_1 - 0.166666666666666*G10_0_4_1_2 - 0.166666666666666*G10_0_4_2_0 - 0.166666666666666*G10_0_4_2_1 - 0.166666666666666*G10_0_4_2_2 + 0.166666666666666*G10_0_5_0_0 + 0.166666666666666*G10_0_5_1_0 + 0.166666666666666*G10_0_5_2_0 + 0.166666666666666*G10_0_6_0_1 + 0.166666666666666*G10_0_6_1_1 + 0.166666666666666*G10_0_6_2_1 + 0.166666666666666*G10_0_7_0_2 + 0.166666666666666*G10_0_7_1_2 + 0.166666666666666*G10_0_7_2_2;
-    A[1] = 0.00833333333333331*G0_0 + 0.0166666666666666*G0_1 + 0.00833333333333331*G0_2 + 0.00833333333333331*G0_3 - 0.00476190476190475*G7_0_4_4_4 - 0.00317460317460317*G7_0_4_4_5 - 0.00158730158730159*G7_0_4_4_6 - 0.00158730158730159*G7_0_4_4_7 - 0.00317460317460317*G7_0_4_5_4 - 0.00476190476190476*G7_0_4_5_5 - 0.00158730158730159*G7_0_4_5_6 - 0.00158730158730159*G7_0_4_5_7 - 0.00158730158730159*G7_0_4_6_4 - 0.00158730158730159*G7_0_4_6_5 - 0.00158730158730159*G7_0_4_6_6 - 0.000793650793650793*G7_0_4_6_7 - 0.00158730158730159*G7_0_4_7_4 - 0.00158730158730159*G7_0_4_7_5 - 0.000793650793650793*G7_0_4_7_6 - 0.00158730158730159*G7_0_4_7_7 - 0.00317460317460317*G7_0_5_4_4 - 0.00476190476190476*G7_0_5_4_5 - 0.00158730158730159*G7_0_5_4_6 - 0.00158730158730159*G7_0_5_4_7 - 0.00476190476190476*G7_0_5_5_4 - 0.019047619047619*G7_0_5_5_5 - 0.00476190476190476*G7_0_5_5_6 - 0.00476190476190476*G7_0_5_5_7 - 0.00158730158730159*G7_0_5_6_4 - 0.00476190476190476*G7_0_5_6_5 - 0.00317460317460317*G7_0_5_6_6 - 0.00158730158730159*G7_0_5_6_7 - 0.00158730158730159*G7_0_5_7_4 - 0.00476190476190476*G7_0_5_7_5 - 0.00158730158730159*G7_0_5_7_6 - 0.00317460317460317*G7_0_5_7_7 - 0.00158730158730159*G7_0_6_4_4 - 0.00158730158730159*G7_0_6_4_5 - 0.00158730158730159*G7_0_6_4_6 - 0.000793650793650793*G7_0_6_4_7 - 0.00158730158730159*G7_0_6_5_4 - 0.00476190476190476*G7_0_6_5_5 - 0.00317460317460317*G7_0_6_5_6 - 0.00158730158730159*G7_0_6_5_7 - 0.00158730158730159*G7_0_6_6_4 - 0.00317460317460317*G7_0_6_6_5 - 0.00476190476190476*G7_0_6_6_6 - 0.00158730158730159*G7_0_6_6_7 - 0.000793650793650793*G7_0_6_7_4 - 0.00158730158730159*G7_0_6_7_5 - 0.00158730158730159*G7_0_6_7_6 - 0.00158730158730159*G7_0_6_7_7 - 0.00158730158730159*G7_0_7_4_4 - 0.00158730158730159*G7_0_7_4_5 - 0.000793650793650793*G7_0_7_4_6 - 0.00158730158730159*G7_0_7_4_7 - 0.00158730158730159*G7_0_7_5_4 - 0.00476190476190476*G7_0_7_5_5 - 0.00158730158730159*G7_0_7_5_6 - 0.00317460317460317*G7_0_7_5_7 - 0.000793650793650793*G7_0_7_6_4 - 0.00158730158730159*G7_0_7_6_5 - 0.00158730158730159*G7_0_7_6_6 - 0.00158730158730159*G7_0_7_6_7 - 0.00158730158730159*G7_0_7_7_4 - 0.00317460317460317*G7_0_7_7_5 - 0.00158730158730159*G7_0_7_7_6 - 0.00476190476190476*G7_0_7_7_7 + 0.0166666666666666*G8_0_4_4 + 0.0166666666666666*G8_0_4_5 + 0.00833333333333331*G8_0_4_6 + 0.00833333333333331*G8_0_4_7 + 0.0166666666666666*G8_0_5_4 + 0.0499999999999999*G8_0_5_5 + 0.0166666666666666*G8_0_5_6 + 0.0166666666666666*G8_0_5_7 + 0.00833333333333331*G8_0_6_4 + 0.0166666666666666*G8_0_6_5 + 0.0166666666666666*G8_0_6_6 + 0.00833333333333331*G8_0_6_7 + 0.00833333333333331*G8_0_7_4 + 0.0166666666666666*G8_0_7_5 + 0.00833333333333331*G8_0_7_6 + 0.0166666666666666*G8_0_7_7 - 0.0166666666666666*G9_0_4 - 0.0333333333333332*G9_0_5 - 0.0166666666666666*G9_0_6 - 0.0166666666666666*G9_0_7 + 0.166666666666666*G10_0_4_0_0 + 0.166666666666666*G10_0_4_0_1 + 0.166666666666666*G10_0_4_0_2 - 0.166666666666666*G10_0_5_0_0 - 0.166666666666666*G10_0_6_0_1 - 0.166666666666666*G10_0_7_0_2;
-    A[2] = 0.00833333333333331*G0_0 + 0.00833333333333331*G0_1 + 0.0166666666666666*G0_2 + 0.00833333333333331*G0_3 - 0.00476190476190476*G7_0_4_4_4 - 0.00158730158730159*G7_0_4_4_5 - 0.00317460317460317*G7_0_4_4_6 - 0.00158730158730159*G7_0_4_4_7 - 0.00158730158730159*G7_0_4_5_4 - 0.00158730158730159*G7_0_4_5_5 - 0.00158730158730159*G7_0_4_5_6 - 0.000793650793650793*G7_0_4_5_7 - 0.00317460317460317*G7_0_4_6_4 - 0.00158730158730159*G7_0_4_6_5 - 0.00476190476190476*G7_0_4_6_6 - 0.00158730158730159*G7_0_4_6_7 - 0.00158730158730159*G7_0_4_7_4 - 0.000793650793650793*G7_0_4_7_5 - 0.00158730158730159*G7_0_4_7_6 - 0.00158730158730159*G7_0_4_7_7 - 0.00158730158730159*G7_0_5_4_4 - 0.00158730158730159*G7_0_5_4_5 - 0.00158730158730159*G7_0_5_4_6 - 0.000793650793650793*G7_0_5_4_7 - 0.00158730158730159*G7_0_5_5_4 - 0.00476190476190476*G7_0_5_5_5 - 0.00317460317460317*G7_0_5_5_6 - 0.00158730158730159*G7_0_5_5_7 - 0.00158730158730159*G7_0_5_6_4 - 0.00317460317460317*G7_0_5_6_5 - 0.00476190476190476*G7_0_5_6_6 - 0.00158730158730159*G7_0_5_6_7 - 0.000793650793650793*G7_0_5_7_4 - 0.00158730158730159*G7_0_5_7_5 - 0.00158730158730159*G7_0_5_7_6 - 0.00158730158730159*G7_0_5_7_7 - 0.00317460317460317*G7_0_6_4_4 - 0.00158730158730159*G7_0_6_4_5 - 0.00476190476190476*G7_0_6_4_6 - 0.00158730158730159*G7_0_6_4_7 - 0.00158730158730159*G7_0_6_5_4 - 0.00317460317460317*G7_0_6_5_5 - 0.00476190476190476*G7_0_6_5_6 - 0.00158730158730159*G7_0_6_5_7 - 0.00476190476190476*G7_0_6_6_4 - 0.00476190476190476*G7_0_6_6_5 - 0.019047619047619*G7_0_6_6_6 - 0.00476190476190476*G7_0_6_6_7 - 0.00158730158730159*G7_0_6_7_4 - 0.00158730158730159*G7_0_6_7_5 - 0.00476190476190476*G7_0_6_7_6 - 0.00317460317460317*G7_0_6_7_7 - 0.00158730158730159*G7_0_7_4_4 - 0.000793650793650793*G7_0_7_4_5 - 0.00158730158730159*G7_0_7_4_6 - 0.00158730158730159*G7_0_7_4_7 - 0.000793650793650793*G7_0_7_5_4 - 0.00158730158730159*G7_0_7_5_5 - 0.00158730158730159*G7_0_7_5_6 - 0.00158730158730159*G7_0_7_5_7 - 0.00158730158730159*G7_0_7_6_4 - 0.00158730158730159*G7_0_7_6_5 - 0.00476190476190476*G7_0_7_6_6 - 0.00317460317460317*G7_0_7_6_7 - 0.00158730158730159*G7_0_7_7_4 - 0.00158730158730159*G7_0_7_7_5 - 0.00317460317460317*G7_0_7_7_6 - 0.00476190476190476*G7_0_7_7_7 + 0.0166666666666666*G8_0_4_4 + 0.00833333333333331*G8_0_4_5 + 0.0166666666666666*G8_0_4_6 + 0.00833333333333331*G8_0_4_7 + 0.00833333333333331*G8_0_5_4 + 0.0166666666666666*G8_0_5_5 + 0.0166666666666666*G8_0_5_6 + 0.00833333333333331*G8_0_5_7 + 0.0166666666666666*G8_0_6_4 + 0.0166666666666666*G8_0_6_5 + 0.0499999999999998*G8_0_6_6 + 0.0166666666666666*G8_0_6_7 + 0.00833333333333331*G8_0_7_4 + 0.00833333333333331*G8_0_7_5 + 0.0166666666666666*G8_0_7_6 + 0.0166666666666666*G8_0_7_7 - 0.0166666666666666*G9_0_4 - 0.0166666666666666*G9_0_5 - 0.0333333333333332*G9_0_6 - 0.0166666666666666*G9_0_7 + 0.166666666666666*G10_0_4_1_0 + 0.166666666666666*G10_0_4_1_1 + 0.166666666666666*G10_0_4_1_2 - 0.166666666666666*G10_0_5_1_0 - 0.166666666666666*G10_0_6_1_1 - 0.166666666666666*G10_0_7_1_2;
-    A[3] = 0.00833333333333331*G0_0 + 0.00833333333333331*G0_1 + 0.00833333333333331*G0_2 + 0.0166666666666666*G0_3 - 0.00476190476190476*G7_0_4_4_4 - 0.00158730158730159*G7_0_4_4_5 - 0.00158730158730159*G7_0_4_4_6 - 0.00317460317460317*G7_0_4_4_7 - 0.00158730158730159*G7_0_4_5_4 - 0.00158730158730159*G7_0_4_5_5 - 0.000793650793650793*G7_0_4_5_6 - 0.00158730158730159*G7_0_4_5_7 - 0.00158730158730159*G7_0_4_6_4 - 0.000793650793650793*G7_0_4_6_5 - 0.00158730158730159*G7_0_4_6_6 - 0.00158730158730159*G7_0_4_6_7 - 0.00317460317460317*G7_0_4_7_4 - 0.00158730158730159*G7_0_4_7_5 - 0.00158730158730159*G7_0_4_7_6 - 0.00476190476190476*G7_0_4_7_7 - 0.00158730158730159*G7_0_5_4_4 - 0.00158730158730159*G7_0_5_4_5 - 0.000793650793650793*G7_0_5_4_6 - 0.00158730158730159*G7_0_5_4_7 - 0.00158730158730159*G7_0_5_5_4 - 0.00476190476190476*G7_0_5_5_5 - 0.00158730158730159*G7_0_5_5_6 - 0.00317460317460317*G7_0_5_5_7 - 0.000793650793650793*G7_0_5_6_4 - 0.00158730158730159*G7_0_5_6_5 - 0.00158730158730159*G7_0_5_6_6 - 0.00158730158730159*G7_0_5_6_7 - 0.00158730158730159*G7_0_5_7_4 - 0.00317460317460317*G7_0_5_7_5 - 0.00158730158730159*G7_0_5_7_6 - 0.00476190476190476*G7_0_5_7_7 - 0.00158730158730159*G7_0_6_4_4 - 0.000793650793650793*G7_0_6_4_5 - 0.00158730158730159*G7_0_6_4_6 - 0.00158730158730159*G7_0_6_4_7 - 0.000793650793650793*G7_0_6_5_4 - 0.00158730158730159*G7_0_6_5_5 - 0.00158730158730159*G7_0_6_5_6 - 0.00158730158730159*G7_0_6_5_7 - 0.00158730158730159*G7_0_6_6_4 - 0.00158730158730159*G7_0_6_6_5 - 0.00476190476190476*G7_0_6_6_6 - 0.00317460317460317*G7_0_6_6_7 - 0.00158730158730159*G7_0_6_7_4 - 0.00158730158730159*G7_0_6_7_5 - 0.00317460317460317*G7_0_6_7_6 - 0.00476190476190476*G7_0_6_7_7 - 0.00317460317460317*G7_0_7_4_4 - 0.00158730158730159*G7_0_7_4_5 - 0.00158730158730159*G7_0_7_4_6 - 0.00476190476190476*G7_0_7_4_7 - 0.00158730158730159*G7_0_7_5_4 - 0.00317460317460317*G7_0_7_5_5 - 0.00158730158730159*G7_0_7_5_6 - 0.00476190476190476*G7_0_7_5_7 - 0.00158730158730159*G7_0_7_6_4 - 0.00158730158730159*G7_0_7_6_5 - 0.00317460317460317*G7_0_7_6_6 - 0.00476190476190476*G7_0_7_6_7 - 0.00476190476190476*G7_0_7_7_4 - 0.00476190476190476*G7_0_7_7_5 - 0.00476190476190476*G7_0_7_7_6 - 0.019047619047619*G7_0_7_7_7 + 0.0166666666666666*G8_0_4_4 + 0.00833333333333331*G8_0_4_5 + 0.00833333333333331*G8_0_4_6 + 0.0166666666666666*G8_0_4_7 + 0.00833333333333331*G8_0_5_4 + 0.0166666666666666*G8_0_5_5 + 0.00833333333333331*G8_0_5_6 + 0.0166666666666666*G8_0_5_7 + 0.00833333333333331*G8_0_6_4 + 0.00833333333333331*G8_0_6_5 + 0.0166666666666666*G8_0_6_6 + 0.0166666666666666*G8_0_6_7 + 0.0166666666666666*G8_0_7_4 + 0.0166666666666666*G8_0_7_5 + 0.0166666666666666*G8_0_7_6 + 0.0499999999999999*G8_0_7_7 - 0.0166666666666666*G9_0_4 - 0.0166666666666666*G9_0_5 - 0.0166666666666666*G9_0_6 - 0.0333333333333332*G9_0_7 + 0.166666666666666*G10_0_4_2_0 + 0.166666666666666*G10_0_4_2_1 + 0.166666666666666*G10_0_4_2_2 - 0.166666666666666*G10_0_5_2_0 - 0.166666666666666*G10_0_6_2_1 - 0.166666666666666*G10_0_7_2_2;
-    A[4] = 0.0166666666666666*G0_4 + 0.00833333333333331*G0_5 + 0.00833333333333331*G0_6 + 0.00833333333333331*G0_7 - 0.0166666666666666*G1_4 - 0.00833333333333331*G1_5 - 0.00833333333333331*G1_6 - 0.00833333333333331*G1_7 - 0.166666666666666*G3_0_0_0_0_0 - 0.166666666666666*G3_0_0_0_0_1 - 0.166666666666666*G3_0_0_0_0_2 - 0.166666666666666*G3_0_0_0_1_0 - 0.166666666666666*G3_0_0_0_1_1 - 0.166666666666666*G3_0_0_0_1_2 - 0.166666666666666*G3_0_0_0_2_0 - 0.166666666666666*G3_0_0_0_2_1 - 0.166666666666666*G3_0_0_0_2_2 + 0.166666666666666*G3_0_0_1_0_0 + 0.166666666666666*G3_0_0_1_1_0 + 0.166666666666666*G3_0_0_1_2_0 + 0.166666666666666*G3_0_0_2_0_1 + 0.166666666666666*G3_0_0_2_1_1 + 0.166666666666666*G3_0_0_2_2_1 + 0.166666666666666*G3_0_0_3_0_2 + 0.166666666666666*G3_0_0_3_1_2 + 0.166666666666666*G3_0_0_3_2_2 + 0.166666666666666*G4_0_0_0_0 + 0.166666666666666*G4_0_0_0_1 + 0.166666666666666*G4_0_0_0_2 + 0.166666666666666*G4_0_0_1_0 + 0.166666666666666*G4_0_0_1_1 + 0.166666666666666*G4_0_0_1_2 + 0.166666666666666*G4_0_0_2_0 + 0.166666666666666*G4_0_0_2_1 + 0.166666666666666*G4_0_0_2_2 - 0.166666666666666*G4_0_1_0_0 - 0.166666666666666*G4_0_1_1_0 - 0.166666666666666*G4_0_1_2_0 - 0.166666666666666*G4_0_2_0_1 - 0.166666666666666*G4_0_2_1_1 - 0.166666666666666*G4_0_2_2_1 - 0.166666666666666*G4_0_3_0_2 - 0.166666666666666*G4_0_3_1_2 - 0.166666666666666*G4_0_3_2_2 + 0.166666666666666*G6_0_0_0_0_0 + 0.166666666666666*G6_0_0_0_0_1 + 0.166666666666666*G6_0_0_0_0_2 + 0.166666666666666*G6_0_0_0_1_0 + 0.166666666666666*G6_0_0_0_1_1 + 0.166666666666666*G6_0_0_0_1_2 + 0.166666666666666*G6_0_0_0_2_0 + 0.166666666666666*G6_0_0_0_2_1 + 0.166666666666666*G6_0_0_0_2_2 - 0.166666666666666*G6_0_0_1_0_0 - 0.166666666666666*G6_0_0_1_1_0 - 0.166666666666666*G6_0_0_1_2_0 - 0.166666666666666*G6_0_0_2_0_1 - 0.166666666666666*G6_0_0_2_1_1 - 0.166666666666666*G6_0_0_2_2_1 - 0.166666666666666*G6_0_0_3_0_2 - 0.166666666666666*G6_0_0_3_1_2 - 0.166666666666666*G6_0_0_3_2_2;
-    A[5] = 0.00833333333333331*G0_4 + 0.0166666666666666*G0_5 + 0.00833333333333331*G0_6 + 0.00833333333333331*G0_7 - 0.00833333333333331*G1_4 - 0.0166666666666666*G1_5 - 0.00833333333333331*G1_6 - 0.00833333333333331*G1_7 + 0.166666666666666*G3_0_0_0_0_0 + 0.166666666666666*G3_0_0_0_0_1 + 0.166666666666666*G3_0_0_0_0_2 - 0.166666666666666*G3_0_0_1_0_0 - 0.166666666666666*G3_0_0_2_0_1 - 0.166666666666666*G3_0_0_3_0_2 - 0.166666666666666*G4_0_0_0_0 - 0.166666666666666*G4_0_0_0_1 - 0.166666666666666*G4_0_0_0_2 + 0.166666666666666*G4_0_1_0_0 + 0.166666666666666*G4_0_2_0_1 + 0.166666666666666*G4_0_3_0_2 - 0.166666666666666*G6_0_0_0_0_0 - 0.166666666666666*G6_0_0_0_0_1 - 0.166666666666666*G6_0_0_0_0_2 + 0.166666666666666*G6_0_0_1_0_0 + 0.166666666666666*G6_0_0_2_0_1 + 0.166666666666666*G6_0_0_3_0_2;
-    A[6] = 0.00833333333333331*G0_4 + 0.00833333333333331*G0_5 + 0.0166666666666666*G0_6 + 0.00833333333333331*G0_7 - 0.00833333333333331*G1_4 - 0.00833333333333331*G1_5 - 0.0166666666666666*G1_6 - 0.00833333333333331*G1_7 + 0.166666666666666*G3_0_0_0_1_0 + 0.166666666666666*G3_0_0_0_1_1 + 0.166666666666666*G3_0_0_0_1_2 - 0.166666666666666*G3_0_0_1_1_0 - 0.166666666666666*G3_0_0_2_1_1 - 0.166666666666666*G3_0_0_3_1_2 - 0.166666666666666*G4_0_0_1_0 - 0.166666666666666*G4_0_0_1_1 - 0.166666666666666*G4_0_0_1_2 + 0.166666666666666*G4_0_1_1_0 + 0.166666666666666*G4_0_2_1_1 + 0.166666666666666*G4_0_3_1_2 - 0.166666666666666*G6_0_0_0_1_0 - 0.166666666666666*G6_0_0_0_1_1 - 0.166666666666666*G6_0_0_0_1_2 + 0.166666666666666*G6_0_0_1_1_0 + 0.166666666666666*G6_0_0_2_1_1 + 0.166666666666666*G6_0_0_3_1_2;
-    A[7] = 0.00833333333333331*G0_4 + 0.00833333333333331*G0_5 + 0.00833333333333331*G0_6 + 0.0166666666666666*G0_7 - 0.00833333333333331*G1_4 - 0.00833333333333331*G1_5 - 0.00833333333333331*G1_6 - 0.0166666666666666*G1_7 + 0.166666666666666*G3_0_0_0_2_0 + 0.166666666666666*G3_0_0_0_2_1 + 0.166666666666666*G3_0_0_0_2_2 - 0.166666666666666*G3_0_0_1_2_0 - 0.166666666666666*G3_0_0_2_2_1 - 0.166666666666666*G3_0_0_3_2_2 - 0.166666666666666*G4_0_0_2_0 - 0.166666666666666*G4_0_0_2_1 - 0.166666666666666*G4_0_0_2_2 + 0.166666666666666*G4_0_1_2_0 + 0.166666666666666*G4_0_2_2_1 + 0.166666666666666*G4_0_3_2_2 - 0.166666666666666*G6_0_0_0_2_0 - 0.166666666666666*G6_0_0_0_2_1 - 0.166666666666666*G6_0_0_0_2_2 + 0.166666666666666*G6_0_0_1_2_0 + 0.166666666666666*G6_0_0_2_2_1 + 0.166666666666666*G6_0_0_3_2_2;
+    
+    const static double FE0_C1_D001[27][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {4, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {4, 6};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {0, 3};
+    
+    const static double FE0_C1[27][4] = \
+    {{0.749664528221693, 0.0952198798417149, 0.0821215678634426, 0.0729940240731498},
+    {0.528074388273447, 0.0670742417520586, 0.0578476039361428, 0.347003766038352},
+    {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
+    {0.485731727037113, 0.0616960186091465, 0.379578230280591, 0.0729940240731498},
+    {0.342156357895961, 0.0434595556538024, 0.267380320411885, 0.347003766038352},
+    {0.154572667042115, 0.0196333029354846, 0.120791820133903, 0.705002209888498},
+    {0.174656645238399, 0.0221843026408197, 0.730165028047632, 0.0729940240731498},
+    {0.123030632529655, 0.0156269392579017, 0.514338662174092, 0.347003766038352},
+    {0.0555803583920822, 0.00705963113955482, 0.232357800579865, 0.705002209888498},
+    {0.422442204031704, 0.422442204031704, 0.0821215678634426, 0.0729940240731498},
+    {0.297574315012753, 0.297574315012753, 0.0578476039361428, 0.347003766038352},
+    {0.134432268912383, 0.134432268912383, 0.0261332522867349, 0.705002209888498},
+    {0.27371387282313, 0.27371387282313, 0.379578230280591, 0.0729940240731498},
+    {0.192807956774882, 0.192807956774882, 0.267380320411885, 0.347003766038352},
+    {0.0871029849887995, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
+    {0.0984204739396093, 0.0984204739396094, 0.730165028047632, 0.0729940240731498},
+    {0.0693287858937781, 0.0693287858937782, 0.514338662174092, 0.347003766038352},
+    {0.0313199947658185, 0.0313199947658185, 0.232357800579865, 0.705002209888498},
+    {0.0952198798417148, 0.749664528221693, 0.0821215678634426, 0.0729940240731498},
+    {0.0670742417520584, 0.528074388273447, 0.0578476039361428, 0.347003766038352},
+    {0.0303014811742757, 0.238563056650491, 0.0261332522867349, 0.705002209888498},
+    {0.0616960186091464, 0.485731727037113, 0.379578230280591, 0.0729940240731498},
+    {0.0434595556538024, 0.342156357895961, 0.267380320411885, 0.347003766038352},
+    {0.0196333029354845, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.0221843026408197, 0.174656645238399, 0.730165028047632, 0.0729940240731498},
+    {0.0156269392579016, 0.123030632529655, 0.514338662174092, 0.347003766038352},
+    {0.00705963113955483, 0.0555803583920822, 0.232357800579865, 0.705002209888498}};
+    // Array of non-zero columns
+    static const unsigned int nzc6[4] = {4, 5, 6, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc7[4] = {0, 1, 2, 3};
+    
+    // Number of operations to compute geometry constants: 189
+    const double G0 = det*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22 - w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G1 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12 - w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G2 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G3 = det*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12 - w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G4 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G5 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G6 =  - det*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G7 =  - det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G8 =  - det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G9 = det*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22 - w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G10 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02 - w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G11 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G12 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G13 =  - det*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G14 =  - det*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G15 =  - 4*det*w[3][0];
+    const double G16 = 6*det*w[3][0];
+    const double G17 =  - 2*det*w[3][0];
+    const double G18 = det*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22 - w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G19 = det*w[4][0]*w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G20 =  - det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G21 =  - det;
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 4671
+    
+    // Loop quadrature points for integral
+    // Number of operations to compute element tensor for following IP loop = 4482
+    for (unsigned int ip = 0; ip < 27; ip++)
+    {
+      
+      // Function declarations
+      double F0 = 0;
+      double F1 = 0;
+      double F2 = 0;
+      double F3 = 0;
+      double F4 = 0;
+      double F5 = 0;
+      double F6 = 0;
+      double F7 = 0;
+      double F8 = 0;
+      double F9 = 0;
+      double F10 = 0;
+      double F11 = 0;
+      
+      // Total number of operations to compute function values = 36
+      for (unsigned int r = 0; r < 2; r++)
+      {
+        F0 += FE0_C1_D001[ip][r]*w[0][nzc3[r]];
+        F1 += FE0_C1_D001[ip][r]*w[0][nzc4[r]];
+        F2 += FE0_C1_D001[ip][r]*w[0][nzc5[r]];
+        F3 += FE0_C1_D001[ip][r]*w[1][nzc3[r]];
+        F4 += FE0_C1_D001[ip][r]*w[1][nzc4[r]];
+        F5 += FE0_C1_D001[ip][r]*w[1][nzc5[r]];
+        F8 += FE0_C1_D001[ip][r]*w[0][nzc2[r]];
+        F9 += FE0_C1_D001[ip][r]*w[0][nzc1[r]];
+        F10 += FE0_C1_D001[ip][r]*w[0][nzc0[r]];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 24
+      for (unsigned int r = 0; r < 4; r++)
+      {
+        F6 += FE0_C1[ip][r]*w[0][nzc6[r]];
+        F7 += FE0_C1[ip][r]*w[1][nzc6[r]];
+        F11 += FE0_C1[ip][r]*w[0][nzc7[r]];
+      }// end loop over 'r'
+      
+      // Number of operations to compute ip constants: 66
+      // Number of operations: 12
+      const double Gip0 = W27[ip]*(F0*G5 + F1*G2 + F2*G4 + F3*G3 + F4*G1 + F5*G0);
+      
+      // Number of operations: 6
+      const double Gip1 = W27[ip]*(F10*G6 + F8*G8 + F9*G7);
+      
+      // Number of operations: 12
+      const double Gip2 = W27[ip]*(F0*G12 + F1*G5 + F2*G11 + F3*G10 + F4*G3 + F5*G9);
+      
+      // Number of operations: 6
+      const double Gip3 = W27[ip]*(F10*G13 + F8*G14 + F9*G6);
+      
+      // Number of operations: 8
+      const double Gip4 = W27[ip]*(F11*det + F6*(G17 + F6*(G16 + F6*G15)));
+      
+      // Number of operations: 12
+      const double Gip5 = W27[ip]*(F0*G11 + F1*G4 + F2*G19 + F3*G9 + F4*G0 + F5*G18);
+      
+      // Number of operations: 6
+      const double Gip6 = W27[ip]*(F10*G14 + F8*G20 + F9*G8);
+      
+      // Number of operations: 4
+      const double Gip7 = W27[ip]*(F6*det + F7*G21);
+      
+      
+      // Number of operations for primary indices = 24
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry = 2
+        A[nzc1[j]] += FE0_C1_D001[ip][j]*Gip0;
+        // Number of operations to compute entry = 2
+        A[nzc4[j]] += FE0_C1_D001[ip][j]*Gip1;
+        // Number of operations to compute entry = 2
+        A[nzc2[j]] += FE0_C1_D001[ip][j]*Gip2;
+        // Number of operations to compute entry = 2
+        A[nzc5[j]] += FE0_C1_D001[ip][j]*Gip3;
+        // Number of operations to compute entry = 2
+        A[nzc0[j]] += FE0_C1_D001[ip][j]*Gip5;
+        // Number of operations to compute entry = 2
+        A[nzc3[j]] += FE0_C1_D001[ip][j]*Gip6;
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 16
+      for (unsigned int j = 0; j < 4; j++)
+      {
+        // Number of operations to compute entry = 2
+        A[nzc7[j]] += FE0_C1[ip][j]*Gip4;
+        // Number of operations to compute entry = 2
+        A[nzc6[j]] += FE0_C1[ip][j]*Gip7;
+      }// end loop over 'j'
+    }// end loop over 'ip'
+}
+
+/// Constructor
+UFC_CahnHilliard3DLinearForm_cell_integral_0::UFC_CahnHilliard3DLinearForm_cell_integral_0() : ufc::cell_integral()
+{
+    // Do nothing
+}
+
+/// Destructor
+UFC_CahnHilliard3DLinearForm_cell_integral_0::~UFC_CahnHilliard3DLinearForm_cell_integral_0()
+{
+    // Do nothing
+}
+
+/// Tabulate the tensor for the contribution from a local cell
+void UFC_CahnHilliard3DLinearForm_cell_integral_0::tabulate_tensor(double* A,
+                                    const double * const * w,
+                                    const ufc::cell& c) const
+{
+    // Reset values of the element tensor block
+    A[0] = 0;
+    A[1] = 0;
+    A[2] = 0;
+    A[3] = 0;
+    A[4] = 0;
+    A[5] = 0;
+    A[6] = 0;
+    A[7] = 0;
+    
+    // Add all contributions to element tensor
+    integral_0_quadrature.tabulate_tensor(A, w, c);
 }
 
 /// Constructor
@@ -19470,7 +19786,7 @@ UFC_CahnHilliard3DLinearForm::~UFC_CahnHilliard3DLinearForm()
 /// Return a string identifying the form
 const char* UFC_CahnHilliard3DLinearForm::signature() const
 {
-    return "w0_a0[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][b0[0, 1]]*va0[0, 1, 2, 3, 4, 5, 6, 7][b0[0, 1]]*dX(0) + -w1_a0[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][1]*va0[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + -w4_a0[0]w5_a1[0]w1_a2[0, 1, 2, 3, 4, 5, 6, 7](dXa3[0, 1, 2]/dxb0[0, 1, 2])(dXa4[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa3[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*((d/dXa4[0, 1, 2])va1[0])*va2[0, 1, 2, 3, 4, 5, 6, 7][0]*dX(0) + -w4_a0[0]w5_a1[0]w1_a2[0, 1, 2, 3, 4, 5, 6, 7](dXa3[0, 1, 2]/dxb0[0, 1, 2])(dXa4[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa3[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*va1[0]*((d/dXa4[0, 1, 2])va2[0, 1, 2, 3, 4, 5, 6, 7][0])*dX(0) + w4_a0[0]w1_a1[0, 1, 2, 3, 4, 5, 6, 7](dXa2[0, 1, 2]/dxb0[0, 1, 2])(dXa3[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa2[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*((d/dXa3[0, 1, 2])va1[0, 1, 2, 3, 4, 5, 6, 7][0])*dX(0) + w4_a0[0]w5_a1[0]w0_a2[0, 1, 2, 3, 4, 5, 6, 7](dXa3[0, 1, 2]/dxb0[0, 1, 2])(dXa4[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa3[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*((d/dXa4[0, 1, 2])va1[0])*va2[0, 1, 2, 3, 4, 5, 6, 7][0]*dX(0) + w4_a0[0]w5_a1[0]w0_a2[0, 1, 2, 3, 4, 5, 6, 7](dXa3[0, 1, 2]/dxb0[0, 1, 2])(dXa4[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa3[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][1])*va1[0]*((d/dXa4[0, 1, 2])va2[0, 1, 2, 3, 4, 5, 6, 7][0])*dX(0) + -4.0w3_a0[0]w0_a1[0, 1, 2, 3, 4, 5, 6, 7]w0_a2[0, 1, 2, 3, 4, 5, 6, 7]w0_a3[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][0]*va0[0]*va1[0, 1, 2, 3, 4, 5, 6, 7][1]*va2[0, 1, 2, 3, 4, 5, 6, 7][1]*va3[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + 6.0w3_a0[0]w0_a1[0, 1, 2, 3, 4, 5, 6, 7]w0_a2[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][0]*va0[0]*va1[0, 1, 2, 3, 4, 5, 6, 7][1]*va2[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + -2.0w3_a0[0]w0_a1[0, 1, 2, 3, 4, 5, 6, 7] | vi0[0, 1, 2, 3, 4, 5, 6, 7][0]*va0[0]*va1[0, 1, 2, 3, 4, 5, 6, 7][1]*dX(0) + -w2_a0[0]w0_a1[0, 1, 2, 3, 4, 5, 6, 7](dXa2[0, 1, 2]/dxb0[0, 1, 2])(dXa3[0, 1, 2]/dxb0[0, 1, 2]) | va0[0]*((d/dXa2[0, 1, 2])vi0[0, 1, 2, 3, 4, 5, 6, 7][0])*((d/dXa3[0, 1, 2])va1[0, 1, 2, 3, 4, 5, 6, 7][1])*dX(0)";
+    return "Form([Integral(Sum(Sum(Product(Constant(Cell('tetrahedron', 1), 4), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Sum(Product(Constant(Cell('tetrahedron', 1), 5), Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(0),), {}))), Product(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(0),), {})), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Constant(Cell('tetrahedron', 1), 5))))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3}))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('tetrahedron', 1), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(4),), {Index(4): 3}))), MultiIndex((Index(4),), {Index(4): 3})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(Constant(Cell('tetrahedron', 1), 3), Sum(Product(IntValue(-1, (), (), {}), Product(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
@@ -19506,7 +19822,7 @@ unsigned int UFC_CahnHilliard3DLinearForm::num_interior_facet_integrals() const
 /// Create a new finite element for argument function i
 ufc::finite_element* UFC_CahnHilliard3DLinearForm::create_finite_element(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_finite_element_0();
@@ -19536,7 +19852,7 @@ ufc::finite_element* UFC_CahnHilliard3DLinearForm::create_finite_element(unsigne
 /// Create a new dof map for argument function i
 ufc::dof_map* UFC_CahnHilliard3DLinearForm::create_dof_map(unsigned int i) const
 {
-    switch ( i )
+    switch (i)
     {
     case 0:
       return new UFC_CahnHilliard3DLinearForm_dof_map_0();

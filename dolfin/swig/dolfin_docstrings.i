@@ -268,7 +268,7 @@ Compute component i of normal of given facet with respect to the cell.
 
 Compute normal of given facet with respect to the cell. ";
 
-%feature("docstring")  dolfin::Cell::facetArea "
+%feature("docstring")  dolfin::Cell::facet_area "
 
 Compute the area/length of given facet with respect to the cell. ";
 
@@ -322,11 +322,11 @@ Constructor. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::CellType::cellType "
+%feature("docstring")  dolfin::CellType::cell_type "
 
 Return type of cell. ";
 
-%feature("docstring")  dolfin::CellType::facetType "
+%feature("docstring")  dolfin::CellType::facet_type "
 
 Return type of cell for facets. ";
 
@@ -334,11 +334,11 @@ Return type of cell for facets. ";
 
 Return topological dimension of cell. ";
 
-%feature("docstring")  dolfin::CellType::numEntities "
+%feature("docstring")  dolfin::CellType::num_entities "
 
 Return number of entitites of given topological dimension. ";
 
-%feature("docstring")  dolfin::CellType::numVertices "
+%feature("docstring")  dolfin::CellType::num_vertices "
 
 Return number of vertices for entity of given topological dimension.
 ";
@@ -347,11 +347,11 @@ Return number of vertices for entity of given topological dimension.
 
 Return orientation of the cell. ";
 
-%feature("docstring")  dolfin::CellType::createEntities "
+%feature("docstring")  dolfin::CellType::create_entities "
 
 Create entities e of given topological dimension from vertices v. ";
 
-%feature("docstring")  dolfin::CellType::refineCell "
+%feature("docstring")  dolfin::CellType::refine_cell "
 
 Refine cell uniformly. ";
 
@@ -372,7 +372,7 @@ Compute component i of normal of given facet with respect to the cell.
 
 Compute of given facet with respect to the cell. ";
 
-%feature("docstring")  dolfin::CellType::facetArea "
+%feature("docstring")  dolfin::CellType::facet_area "
 
 Compute the area/length of given facet with respect to the cell. ";
 
@@ -465,7 +465,7 @@ Solve linear system Ax = b for a sparse matrix using CHOLMOD. ";
 
 Cholesky-factor sparse matrix A if CHOLMOD is installed. ";
 
-%feature("docstring")  dolfin::CholmodCholeskySolver::factorizedSolve
+%feature("docstring")  dolfin::CholmodCholeskySolver::factorized_solve
 "
 
 Solve factorized system (CHOLMOD). ";
@@ -893,7 +893,7 @@ Build parallel dof map. ";
 Build dof map on only a subdomain of the mesh (meshfunction contains
 booleans for each cell). ";
 
-%feature("docstring")  dolfin::DofMap::getMap "
+%feature("docstring")  dolfin::DofMap::get_map "
 
 Return renumbering (used for testing). ";
 
@@ -960,35 +960,35 @@ Open mesh of given cell type, topological and geometrical dimension.
 Open mesh of given cell type, topological and geometrical dimension.
 ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given point p. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given coordinate x. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y). ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y, z). ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell with given vertices. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell (interval) with given vertices. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell (triangle) with given vertices. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell (tetrahedron) with given vertices. ";
 
@@ -1035,6 +1035,64 @@ C++ includes: Edge.h ";
 %feature("docstring")  dolfin::EdgeIterator::EdgeIterator "";
 
 %feature("docstring")  dolfin::EdgeIterator::EdgeIterator "";
+
+
+// File: classdolfin_1_1EqualityBC.xml
+%feature("docstring") dolfin::EqualityBC "
+
+This class specifies the interface for setting equality boundary
+conditions for partial differential equations,
+
+u(x) = u(y), for all x and y on G,
+
+where G is subdomain of the mesh.
+
+The sub domain G may be specified in two different ways. Both of them
+produce a set of unknowns (dofs) with should be equal.
+
+The simplest approach is to specify a SubDomain object, using the
+inside() function to specify on which facets the boundary condition
+should be applied.
+
+Alternatively, the boundary may be specified by the boundary
+indicators included in the mesh.
+
+Current implementation assume that the problem is scalar, so in case
+of mixed systems (vector-valued and mixed elements) all compoments
+will be set equal.
+
+C++ includes: EqualityBC.h ";
+
+%feature("docstring")  dolfin::EqualityBC::EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::~EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a matrix. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a vector. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a linear system. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a vector for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a linear system for a nonlinear problem.
+";
+
+%feature("docstring")  dolfin::EqualityBC::init_from_sub_domain "";
+
+%feature("docstring")  dolfin::EqualityBC::init_from_mesh "";
 
 
 // File: classdolfin_1_1Event.xml
@@ -1196,6 +1254,10 @@ Destructor. ";
 %feature("docstring")  dolfin::File::set_new_xml_style "
 
 Set new style for xml parsing system. ";
+
+%feature("docstring")  dolfin::File::validate_xml "
+
+Validation function for XML. ";
 
 
 // File: classdolfin_1_1FiniteElement.xml
@@ -1935,6 +1997,10 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::GenericVector::sum "
+
+Return sum of vector. ";
+
 %feature("docstring")  dolfin::GenericVector::data "
 
 Return pointer to underlying data (const version). ";
@@ -2018,15 +2084,15 @@ Destructor. ";
 
 Initialise graph data structures. ";
 
-%feature("docstring")  dolfin::Graph::numVertices "
+%feature("docstring")  dolfin::Graph::num_vertices "
 
 Return number of vertices. ";
 
-%feature("docstring")  dolfin::Graph::numEdges "
+%feature("docstring")  dolfin::Graph::num_edges "
 
 Return number of edges. ";
 
-%feature("docstring")  dolfin::Graph::numEdges "
+%feature("docstring")  dolfin::Graph::num_edges "
 
 Return number of edges incident to vertex u. ";
 
@@ -2034,11 +2100,11 @@ Return number of edges incident to vertex u. ";
 
 Check if vertex u is adjacent to vertex v. ";
 
-%feature("docstring")  dolfin::Graph::edgeWeights "
+%feature("docstring")  dolfin::Graph::edge_weights "
 
 Return edge weights. ";
 
-%feature("docstring")  dolfin::Graph::vertexWeights "
+%feature("docstring")  dolfin::Graph::vertex_weights "
 
 Return vertex weights. ";
 
@@ -2103,20 +2169,20 @@ Open graph of given type. ";
 
 Open graph of given type. ";
 
-%feature("docstring")  dolfin::GraphEditor::initVertices "
+%feature("docstring")  dolfin::GraphEditor::init_vertices "
 
 Specify number of vertices. ";
 
-%feature("docstring")  dolfin::GraphEditor::initEdges "
+%feature("docstring")  dolfin::GraphEditor::init_edges "
 
 Specify number of edges. ";
 
-%feature("docstring")  dolfin::GraphEditor::addVertex "
+%feature("docstring")  dolfin::GraphEditor::add_vertex "
 
 Add vertex u with num_edges = number of outgoing edges. For undirected
 graphs, edge must \"belong\" to a vertex and not be counted twice. ";
 
-%feature("docstring")  dolfin::GraphEditor::addEdge "
+%feature("docstring")  dolfin::GraphEditor::add_edge "
 
 Add edge from vertex u to vertex v. ";
 
@@ -2659,23 +2725,23 @@ Create mesh from data file. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Mesh::numVertices "
+%feature("docstring")  dolfin::Mesh::num_vertices "
 
 Return number of vertices. ";
 
-%feature("docstring")  dolfin::Mesh::numEdges "
+%feature("docstring")  dolfin::Mesh::num_edges "
 
 Return number of edges. ";
 
-%feature("docstring")  dolfin::Mesh::numFaces "
+%feature("docstring")  dolfin::Mesh::num_faces "
 
 Return number of faces. ";
 
-%feature("docstring")  dolfin::Mesh::numFacets "
+%feature("docstring")  dolfin::Mesh::num_facets "
 
 Return number of facets. ";
 
-%feature("docstring")  dolfin::Mesh::numCells "
+%feature("docstring")  dolfin::Mesh::num_cells "
 
 Return number of cells. ";
 
@@ -3013,64 +3079,77 @@ Open mesh of given cell type, topological and geometrical dimension.
 Open mesh of given cell type, topological and geometrical dimension.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::initVertices "
+%feature("docstring")  dolfin::MeshEditor::init_vertices "
 
 Specify number of vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::initCells "
+%feature("docstring")  dolfin::MeshEditor::initHigherOrderVertices "
+
+Specify number of vertices. ";
+
+%feature("docstring")  dolfin::MeshEditor::init_cells "
 
 Specify number of cells. ";
 
-%feature("docstring")  dolfin::MeshEditor::setMeshCoordFEsignature "
+%feature("docstring")  dolfin::MeshEditor::initHigherOrderCells "
 
-Set the finite element signature for the type of parametric mapping
-used for the local elements in the mesh ";
-
-%feature("docstring")  dolfin::MeshEditor::setMeshCoordDofMapsignature
-"
-
-Set the dofmap signature for the type of parametric mapping used for
-the local elements in the mesh ";
-
-%feature("docstring")  dolfin::MeshEditor::setMeshCoordinates "
-
-Set higher order mesh coordinates. ";
+Specify number of cells. ";
 
 %feature("docstring")  dolfin::MeshEditor::setAffineCellIndicator "
 
 Set boolean indicator inside MeshGeometry. ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given point p. ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given coordinate x. ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y). ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y, z). ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given point p. ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given coordinate x. ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given coordinate (x, y). ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given coordinate (x, y, z). ";
+
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell with given vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell (interval) with given vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell (triangle) with given vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell (tetrahedron) with given vertices. ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderCellData "
+
+Add higher order cell data (assume P2 triangle for now). ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
 
@@ -3105,7 +3184,7 @@ Return topological dimension. ";
 
 Return index of mesh entity. ";
 
-%feature("docstring")  dolfin::MeshEntity::numEntities "
+%feature("docstring")  dolfin::MeshEntity::num_entities "
 
 Return number of incident mesh entities of given topological
 dimension. ";
@@ -3318,13 +3397,25 @@ Return array of values for all coordinates. ";
 
 Return array of values for all coordinates. ";
 
+%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
+
+Return array of values for all higher order coordinates. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
+
+Return array of values for all higher order coordinates. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
+
+Return array of values for all higher order cell data. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
+
+Return array of values for all higher order cell data. ";
+
 %feature("docstring")  dolfin::MeshGeometry::point "
 
 Return coordinate n as a 3D point value. ";
-
-%feature("docstring")  dolfin::MeshGeometry::mesh_coord_function "
-
-Return pointer to Function for higher order mesh coordinates. ";
 
 %feature("docstring")  dolfin::MeshGeometry::affine_cell_bool "
 
@@ -3338,6 +3429,17 @@ Clear all data. ";
 
 Initialize coordinate list to given dimension and size. ";
 
+%feature("docstring")  dolfin::MeshGeometry::init_HigherOrderVertices
+"
+
+Initialize higher order coordinate list to given dimension and size.
+";
+
+%feature("docstring")  dolfin::MeshGeometry::init_HigherOrderCells "
+
+Initialize higher order cell data list to given number of cells and
+dofs. ";
+
 %feature("docstring")  dolfin::MeshGeometry::initAffineIndicator "
 
 Initialize the affine indicator array. ";
@@ -3350,9 +3452,15 @@ set affine indicator at index i ";
 
 Set value of coordinate n in direction i. ";
 
-%feature("docstring")  dolfin::MeshGeometry::setMeshCoordinates "
+%feature("docstring")
+dolfin::MeshGeometry::set_higher_order_coordinates "
 
-Set higher order mesh coordinates. ";
+Set value of higher order coordinate N in direction i. ";
+
+%feature("docstring")
+dolfin::MeshGeometry::set_higher_order_cell_data "
+
+Set higher order cell data for cell # N in direction i. ";
 
 %feature("docstring")  dolfin::MeshGeometry::disp "
 
@@ -3366,6 +3474,26 @@ This class partitions and distributes a mesh based on partitioned
 local mesh data. Note that the local mesh data will also be
 repartitioned and redistributed during the computation of the mesh
 partitioning.
+
+After partitioning, each process has a local mesh and set of mesh data
+that couples the meshes together.
+
+The following mesh data is created:
+
+1. \"global entity indices 0\" ( MeshFunction<uint>)
+
+This maps each local vertex to its global index.
+
+2. \"overlap\" (std::map<uint, std::vector<uint> >)
+
+This maps each shared vertex to a list of the processes sharing the
+vertex.
+
+After partitioning, the function number_entities() may be called to
+create global indices for all entities of a given topological
+dimension. These are stored as mesh data ( MeshFunction<uint>) named
+
+\"global entity indices 1\" \"global entity indices 2\" etc
 
 C++ includes: MeshPartitioning.h ";
 
@@ -3602,7 +3730,7 @@ Destructor. ";
 Solve abstract nonlinear problem F(x) = 0 for given vector F and
 Jacobian dF/dx ";
 
-%feature("docstring")  dolfin::NewtonSolver::getIteration "
+%feature("docstring")  dolfin::NewtonSolver::get_iteration "
 
 Return Newton iteration number. ";
 
@@ -3960,7 +4088,7 @@ Get value of parameter with given key (local or nonlocal). ";
 
 Check if parameter with given key has been defined locally. ";
 
-%feature("docstring")  dolfin::Parametrized::readParameters "
+%feature("docstring")  dolfin::Parametrized::read_parameters "
 
 Callback for changes in parameter values. ";
 
@@ -4382,7 +4510,7 @@ Display sparsity pattern. ";
 
 Finalize sparsity pattern (needed by most parallel la backends). ";
 
-%feature("docstring")  dolfin::SparsityPattern::processRange "
+%feature("docstring")  dolfin::SparsityPattern::process_range "
 
 Return array with row range for process_number. ";
 
@@ -5193,6 +5321,10 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::uBLASVector::sum "
+
+Return sum of values of vector. ";
+
 %feature("docstring")  dolfin::uBLASVector::data "
 
 Return pointer to underlying data (const version). ";
@@ -5242,7 +5374,7 @@ installed. ";
 
 LU-factor sparse matrix A if UMFPACK is installed. ";
 
-%feature("docstring")  dolfin::UmfpackLUSolver::factorizedSolve "
+%feature("docstring")  dolfin::UmfpackLUSolver::factorized_solve "
 
 Solve factorized system (UMFPACK). ";
 
@@ -5427,6 +5559,11 @@ Compute J = F' at current point x. ";
 
 Optional callback called before calls to F() and J(). ";
 
+%feature("docstring")  dolfin::VariationalProblem::newton_solver "
+
+Return Newton solver (only useful when solving a nonlinear problem).
+";
+
 
 // File: classdolfin_1_1Vector.xml
 %feature("docstring") dolfin::Vector "
@@ -5519,6 +5656,10 @@ Return minimum value of vector. ";
 %feature("docstring")  dolfin::Vector::max "
 
 Return maximum value of vector. ";
+
+%feature("docstring")  dolfin::Vector::sum "
+
+Return sum of values of vector. ";
 
 %feature("docstring")  dolfin::Vector::data "
 
@@ -5804,6 +5945,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: DofMap_8h.xml
+
+
+// File: EqualityBC_8h.xml
 
 
 // File: FiniteElement_8h.xml
@@ -6187,53 +6331,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
+// File: dir_2690030bf34a9b99f807bca468dfcd7b.xml
 
 
-// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
+// File: dir_940b5712f02a32830bd12fef2b864834.xml
 
 
-// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
+// File: dir_a2009e25a76ddcb8af4e90e07234c160.xml
 
 
-// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
+// File: dir_e5f3e76321d365387794b4e0b13b0542.xml
 
 
-// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
+// File: dir_ca99c1511dbde8f29c0b7e09bd4ef636.xml
 
 
-// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
+// File: dir_7f2cd72ded43e94e89a058e502ce4739.xml
 
 
-// File: dir_ca8276e2506a0601691073651d5c3550.xml
+// File: dir_d56fb550318565201b42c14e1b398d4c.xml
 
 
-// File: dir_608877851688f7299a0e613e9ab9e93f.xml
+// File: dir_48ccb52a0d43781ee1cb898ea130791d.xml
 
 
-// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
+// File: dir_884a9690f759434f746aeff048cf4c43.xml
 
 
-// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
+// File: dir_2a5436c73f464b956b7fda1ec5cce6c8.xml
 
 
-// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
+// File: dir_1a116b7a4e740dde874fff34af30f777.xml
 
 
-// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
+// File: dir_50e9b7f120d1277c8db717afa436970d.xml
 
 
-// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
+// File: dir_58933b45517fd2b17aaaf5971e3e2257.xml
 
 
-// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
+// File: dir_33a250896bf0d81f6f57ec5ffd696de6.xml
 
 
-// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
+// File: dir_3c9bd9864e1331ff444a56784d2e8be1.xml
 
 
-// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
+// File: dir_d31df20aafc77f2e8ec476252582d7f3.xml
 
 
-// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
+// File: dir_2ba36b65388de8b05f7bdef010c8127d.xml
 
