@@ -5,30 +5,41 @@ using namespace dolfin;
 
 int main (int argc, char* argv[])
 {
-  // Create parameter database
-  Parameters parameters("my parameters");
+  // Application parameter database
+  Parameters application_parameters("application parameters");
 
-  // Define parameters
-  parameters.add("max iterations", 100);
-  parameters.add("tolerance", 1e-16);
-  parameters.add("relative tolerance", 1e-16, 1e-16, 1.0);
+  // Set application parameters
+  application_parameters.add("foo", 1.0);
+  application_parameters.add("bar", 100);
 
+  // Solver parameter database
+  Parameters solver_parameters("solver parameters");
+
+  // Set solver parameters
+  solver_parameters.add("max iterations", 100);
+  solver_parameters.add("tolerance", 1e-16);
+  solver_parameters.add("relative tolerance", 1e-16, 1e-16, 1.0);
+  
   // Set range
-  parameters["max iterations"].set_range(0, 1000);
+  solver_parameters("max iterations").set_range(0, 1000);  
 
   // Set values
-  parameters["max iterations"] = 500;
-  parameters["relative tolerance"] = 0.1;
+  solver_parameters("max iterations") = 500;
+  solver_parameters("relative tolerance") = 0.1;
+
+  // Set solver parameters as nested parameters of application parameters
+  application_parameters.add(solver_parameters);
 
   // Access values
-  int maxiter = parameters["max iterations"];
-  double tol = parameters["tolerance"];
+  double foo = application_parameters("foo");
+  int bar = application_parameters("bar");
+  double tol = application_parameters["solver parameters"]("tolerance");
   
   // Silly hack to prevent warning from GCC about unused variables
-  maxiter++; tol += 1.0;
+  foo += 1; bar += 1; tol += 1;
 
   // Print parameters
-  parameters.print();
+  application_parameters.print();
 
   return 0;
 } 
