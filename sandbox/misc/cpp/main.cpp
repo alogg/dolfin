@@ -18,16 +18,17 @@ int main (int argc, char* argv[])
 
   // Set values
   parameters["max iterations"] = 500;
-  parameters["tolerance"] = 5.0;
+  parameters["relative tolerance"] = 0.1;
 
   // Access values
   int maxiter = parameters["max iterations"];
   double tol = parameters["tolerance"];
-  cout << "maxiter = " << maxiter << endl;
-  cout << "tol = " << tol << endl;
+  
+  // Silly hack to prevent warning from GCC about unused variables
+  maxiter++; tol += 1.0;
 
-  // Print info
-  parameters.info();
+  // Print parameters
+  parameters.print();
 
   return 0;
 } 
