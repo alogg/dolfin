@@ -1,24 +1,33 @@
 #include <dolfin.h>
+#include <dolfin/parameter/Parameters.h>
 
 using namespace dolfin;
 
-int main (int argc, char **argv) {
+int main (int argc, char* argv[])
+{
+  // Create parameter database
+  Parameters parameters("my parameters");
 
-   UnitCube mesh(10, 10, 10);
+  // Define parameters
+  parameters.add("max iterations", 100);
+  parameters.add("tolerance", 1e-16);
+  parameters.add("relative tolerance", 1e-16, 1e-16, 1.0);
 
-   FiniteElement fe("FiniteElement('Lagrange', 'tetrahedron', 1)");
-   DofMap dofmap("FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)", mesh);
+  // Set range
+  parameters["max iterations"].set_range(0, 1000);
 
-   FunctionSpace V(mesh, fe, dofmap);
-   Function j( V );
+  // Set values
+  parameters["max iterations"] = 500;
+  parameters["tolerance"] = 5.0;
 
-   j.vector() = 1.0;
+  // Access values
+  int maxiter = parameters["max iterations"];
+  double tol = parameters["tolerance"];
+  cout << "maxiter = " << maxiter << endl;
+  cout << "tol = " << tol << endl;
 
-   Point point(0.5, 0.5, 0.5);
-   double x[3];
+  // Print info
+  parameters.info();
 
-   j.eval(x, point.coordinates());
-   std::cout << x[0] << std::endl;
-
-   return 0;
+  return 0;
 } 
