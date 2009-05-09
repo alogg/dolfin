@@ -1,19 +1,18 @@
 #include <dolfin.h>
-#include <dolfin/parameter/Parameters.h>
 
 using namespace dolfin;
 
 int main (int argc, char* argv[])
 {
   // Application parameter database
-  Parameters application_parameters("application parameters");
+  NewParameters application_parameters("application parameters");
 
   // Set application parameters
   application_parameters.add("foo", 1.0);
   application_parameters.add("bar", 100);
 
   // Solver parameter database
-  Parameters solver_parameters("solver parameters");
+  NewParameters solver_parameters("solver parameters");
 
   // Set solver parameters
   solver_parameters.add("max iterations", 100);
