@@ -38,7 +38,7 @@ int main (int argc, char* argv[])
   foo += 1; bar += 1; tol += 1;
 
   // Print parameters
-  application_parameters.print();
+  info(application_parameters);
 
   return 0;
 } 
