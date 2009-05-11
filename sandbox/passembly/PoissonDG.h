@@ -927,8 +927,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 3;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 3;
   }
@@ -1086,8 +1092,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 3;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 3;
   }
@@ -1220,40 +1232,32 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
+    const static double W1 = 0.5;
     
     
-    const static double FE0_D10[4][3] = \
-    {{-1, 1, 0},
-    {-1, 1, 0},
-    {-1, 1, 0},
-    {-1, 1, 0}};
+    const static double FE0_D10[1][3] = \
+    {{-1, 1, 0}};
     
-    const static double FE0_D01[4][3] = \
-    {{-1, 0, 1},
-    {-1, 0, 1},
-    {-1, 0, 1},
-    {-1, 0, 1}};
+    const static double FE0_D01[1][3] = \
+    {{-1, 0, 1}};
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 648
+    // Total number of operations to compute element tensor: 162
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 648
-    for (unsigned int ip = 0; ip < 4; ip++)
+    // Number of operations to compute element tensor for following IP loop = 162
+    // Only 1 integration point, omitting IP loop.
+    
+    // Number of operations for primary indices = 162
+    for (unsigned int j = 0; j < 3; j++)
     {
-      
-      // Number of operations for primary indices = 162
-      for (unsigned int j = 0; j < 3; j++)
+      for (unsigned int k = 0; k < 3; k++)
       {
-        for (unsigned int k = 0; k < 3; k++)
-        {
-          // Number of operations to compute entry = 18
-          A[j*3 + k] += ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k]) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k]))*W4[ip]*det;
-        }// end loop over 'k'
-      }// end loop over 'j'
-    }// end loop over 'ip'
+        // Number of operations to compute entry = 18
+        A[j*3 + k] += ((Jinv_00*FE0_D10[0][j] + Jinv_10*FE0_D01[0][j])*(Jinv_00*FE0_D10[0][k] + Jinv_10*FE0_D01[0][k]) + (Jinv_01*FE0_D10[0][j] + Jinv_11*FE0_D01[0][j])*(Jinv_01*FE0_D10[0][k] + Jinv_11*FE0_D01[0][k]))*W1*det;
+      }// end loop over 'k'
+    }// end loop over 'j'
   }
 
 };
@@ -1338,7 +1342,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),))), MultiIndex((Index(0),))), MultiIndex((Index(1),))), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(2),))), MultiIndex((Index(2),))), MultiIndex((Index(1),)))), MultiIndex((Index(1),))), Measure('cell', 0, {'ffc_representation': 'quadrature', 'quadrature_order': 2}))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2336,8 +2340,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 3;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 3;
   }
@@ -2495,8 +2505,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 3;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 3;
   }
@@ -2737,7 +2753,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, {'ffc_representation': 'quadrature', 'quadrature_order': 2}))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
