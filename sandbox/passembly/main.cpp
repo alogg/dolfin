@@ -49,12 +49,8 @@ int test2DLagrange()
   Mesh mesh("unitsquare.xml.gz");
   PoissonFunctionSpace V(mesh);
 
-  PoissonBilinearForm a(V, V);
-  UFC ufc(a);
-  
   UFC_PoissonBilinearForm_dof_map_0 ufc_dof_map;
   DofMap dofmap(ufc_dof_map, mesh);
-  dofmap.build(ufc, mesh);
 
   char filename[100];
   sprintf(filename, "unitsquare_part_%d.xml", dolfin::MPI::process_number());
@@ -75,7 +71,6 @@ int test2DDG()
   
   UFC_PoissonDGBilinearForm_dof_map_0 ufc_dof_map;
   DofMap dofmap(ufc_dof_map, mesh);
-  dofmap.build(ufc, mesh);
 
   char filename[100];
   sprintf(filename, "unitsquare_part_%d.xml", dolfin::MPI::process_number());
@@ -90,10 +85,9 @@ int test3D()
   Mesh mesh("unitcube.xml.gz");
   Poisson3DFunctionSpace V(mesh);
   Poisson3DBilinearForm a(V, V);
-  UFC ufc(a);
+
   UFC_Poisson3DBilinearForm_dof_map_0 ufc_dof_map;
   DofMap dofmap(ufc_dof_map, mesh);
-  dofmap.build(ufc, mesh);
 
   char filename[100];
   sprintf(filename, "unitcube_part_%d.xml", dolfin::MPI::process_number());

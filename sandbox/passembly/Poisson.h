@@ -1025,8 +1025,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 6;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 6;
   }
@@ -1200,8 +1206,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 6;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 6;
   }
@@ -1350,38 +1362,28 @@ public:
     
     
     // Array of quadrature weights
-    const static double W9[9] = {0.0558144204830443, 0.063678085099885, 0.0193963833059595, 0.0893030727728709, 0.101884936159816, 0.0310342132895351, 0.0558144204830443, 0.063678085099885, 0.0193963833059595};
+    const static double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
     
     
-    const static double FE0_D10[9][6] = \
-    {{-2.23477754271068, -0.589129380761496, 0, 0.354351838050815, -0.354351838050815, 2.82390692347217},
-    {-1.0959162708804, -0.733783728643342, 0, 1.63786745776294, -1.63786745776294, 1.82969999952375},
-    {0.24636237619171, -0.904275470851678, 0, 3.15063784704339, -3.15063784704339, 0.657913094659967},
-    {-0.822824080974592, 0.822824080974592, 0, 0.354351838050816, -0.354351838050816, 0},
-    {-0.181066271118531, 0.181066271118531, 0, 1.63786745776294, -1.63786745776294, 0},
-    {0.575318923521694, -0.575318923521695, 0, 3.15063784704339, -3.15063784704339, 0},
-    {0.589129380761495, 2.23477754271068, 0, 0.354351838050816, -0.354351838050816, -2.82390692347217},
-    {0.733783728643342, 1.0959162708804, 0, 1.63786745776294, -1.63786745776294, -1.82969999952375},
-    {0.904275470851678, -0.246362376191711, 0, 3.15063784704339, -3.15063784704339, -0.657913094659967}};
+    const static double FE0_D10[4][6] = \
+    {{-1.66556098405881, -0.285765086945535, 0, 0.620204102886728, -0.620204102886728, 1.95132607100434},
+    {-0.120079661996297, -0.699875559109568, 0, 2.57979589711327, -2.57979589711327, 0.819955221105864},
+    {0.285765086945534, 1.66556098405881, 0, 0.620204102886729, -0.620204102886729, -1.95132607100434},
+    {0.699875559109568, 0.120079661996296, 0, 2.57979589711327, -2.57979589711327, -0.819955221105865}};
     
-    const static double FE0_D01[9][6] = \
-    {{-2.23477754271068, 0, -0.645648161949184, 0.410870619238505, 2.88042570465986, -0.410870619238505},
-    {-1.0959162708804, 0, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356659},
-    {0.24636237619171, 0, 2.15063784704339, 0.0957245291483235, -2.3970002232351, -0.0957245291483229},
-    {-0.822824080974591, 0, -0.645648161949184, 1.82282408097459, 1.46847224292378, -1.82282408097459},
-    {-0.18106627111853, 0, 0.637867457762939, 1.18106627111853, -0.456801186644408, -1.18106627111853},
-    {0.575318923521694, 0, 2.15063784704339, 0.424681076478306, -2.72595677056508, -0.424681076478306},
-    {0.589129380761495, 0, -0.645648161949184, 3.23477754271068, 0.0565187811876892, -3.23477754271068},
-    {0.733783728643342, 0, 0.637867457762939, 2.0959162708804, -1.37165118640628, -2.0959162708804},
-    {0.904275470851678, 0, 2.15063784704339, 0.753637623808289, -3.05491331789507, -0.753637623808289}};
+    const static double FE0_D01[4][6] = \
+    {{-1.66556098405881, 0, -0.379795897113271, 0.714234913054465, 2.04535688117208, -0.714234913054465},
+    {-0.120079661996297, 0, 1.57979589711327, 0.300124440890433, -1.45971623511697, -0.300124440890433},
+    {0.285765086945534, 0, -0.379795897113271, 2.6655609840588, 0.0940308101677372, -2.66556098405881},
+    {0.699875559109568, 0, 1.57979589711327, 1.1200796619963, -2.27967145622284, -1.1200796619963}};
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 5832
+    // Total number of operations to compute element tensor: 2592
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 5832
-    for (unsigned int ip = 0; ip < 9; ip++)
+    // Number of operations to compute element tensor for following IP loop = 2592
+    for (unsigned int ip = 0; ip < 4; ip++)
     {
       
       // Number of operations for primary indices = 648
@@ -1390,7 +1392,7 @@ public:
         for (unsigned int k = 0; k < 6; k++)
         {
           // Number of operations to compute entry = 18
-          A[j*6 + k] += ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k]) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k]))*W9[ip]*det;
+          A[j*6 + k] += ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k]) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k]))*W4[ip]*det;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -1505,7 +1507,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0), MultiIndex((Index(0),))), MultiIndex((Index(0),))), MultiIndex((Index(1),))), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 1), MultiIndex((Index(2),))), MultiIndex((Index(2),))), MultiIndex((Index(1),)))), MultiIndex((Index(1),))), Measure('cell', 0, {'ffc_representation': 'quadrature', 'quadrature_order': 4}))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2601,8 +2603,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 6;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 6;
   }
@@ -2776,8 +2784,14 @@ public:
     return __global_dimension;
   }
 
-  /// Return the dimension of the local finite element function space
-  virtual unsigned int local_dimension() const
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 6;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
   {
     return 6;
   }
@@ -3042,7 +3056,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0)), Measure('cell', 0, {'ffc_representation': 'quadrature', 'quadrature_order': 4}))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
