@@ -10,6 +10,7 @@ int main (int argc, char* argv[])
   // Set application parameters
   application_parameters.add("foo", 1.0);
   application_parameters.add("bar", 100);
+  application_parameters.add("pc", "amg");
 
   // Solver parameter database
   NewParameters solver_parameters("solver parameters");
