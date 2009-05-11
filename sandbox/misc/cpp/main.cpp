@@ -29,8 +29,8 @@ int main (int argc, char* argv[])
   // Set solver parameters as nested parameters of application parameters
   application_parameters.add(solver_parameters);
 
-  // Read command-line options
-  application_parameters.read(argc, argv);
+  // Parse command-line options
+  application_parameters.parse(argc, argv);
 
   // Access values
   double foo = application_parameters("foo");
