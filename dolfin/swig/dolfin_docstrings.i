@@ -2333,6 +2333,10 @@ Destructor. ";
 
 Solve linear system Ax = b. ";
 
+%feature("docstring")  dolfin::KrylovSolver::default_parameters "
+
+Return default parameters. ";
+
 
 // File: classdolfin_1_1Lagrange.xml
 %feature("docstring") dolfin::Lagrange "
@@ -3506,7 +3510,7 @@ that couples the meshes together.
 
 The following mesh data is created:
 
-1. \"global entity indices 0\" ( MeshFunction<uint>)
+1. \"global entity indices 0\" (MeshFunction<uint>)
 
 This maps each local vertex to its global index.
 
@@ -3517,7 +3521,7 @@ vertex.
 
 After partitioning, the function number_entities() may be called to
 create global indices for all entities of a given topological
-dimension. These are stored as mesh data ( MeshFunction<uint>) named
+dimension. These are stored as mesh data (MeshFunction<uint>) named
 
 \"global entity indices 1\" \"global entity indices 2\" etc
 
@@ -3730,6 +3734,244 @@ dolfin::MPIMeshCommunicator::~MPIMeshCommunicator "
 Destructor. ";
 
 
+// File: classdolfin_1_1NewDoubleParameter.xml
+%feature("docstring") dolfin::NewDoubleParameter "
+
+Parameter with value type double.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::NewDoubleParameter
+"
+
+Create int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::~NewDoubleParameter
+"
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::str "
+
+Return short string description. ";
+
+
+// File: classdolfin_1_1NewIntParameter.xml
+%feature("docstring") dolfin::NewIntParameter "
+
+Parameter with value type int.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewIntParameter::NewIntParameter "
+
+Create int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewIntParameter::~NewIntParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewIntParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::NewIntParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewIntParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewIntParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewIntParameter::str "
+
+Return short string description. ";
+
+
+// File: classdolfin_1_1NewParameter.xml
+%feature("docstring") dolfin::NewParameter "
+
+Base class for parameters.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewParameter::NewParameter "
+
+Create parameter for given key. ";
+
+%feature("docstring")  dolfin::NewParameter::~NewParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewParameter::key "
+
+Return parameter key. ";
+
+%feature("docstring")  dolfin::NewParameter::description "
+
+Return parameter description. ";
+
+%feature("docstring")  dolfin::NewParameter::access_count "
+
+Return access count (number of times parameter has been accessed). ";
+
+%feature("docstring")  dolfin::NewParameter::change_count "
+
+Return change count (number of times parameter has been changed). ";
+
+%feature("docstring")  dolfin::NewParameter::set_range "
+
+Set range for int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameter::set_range "
+
+Set range for double-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameter::set_range "
+
+Set range for string-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewParameter::str "
+
+Return short string description. ";
+
+
+// File: classdolfin_1_1NewParameters.xml
+%feature("docstring") dolfin::NewParameters "
+
+This class stores a database of parameters. Each parameter is
+identified by a unique string (the key) and a value of some given
+value type.
+
+C++ includes: NewParameters.h ";
+
+%feature("docstring")  dolfin::NewParameters::NewParameters "
+
+Create empty parameter database. ";
+
+%feature("docstring")  dolfin::NewParameters::~NewParameters "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewParameters::NewParameters "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::NewParameters::key "
+
+Return database key. ";
+
+%feature("docstring")  dolfin::NewParameters::clear "
+
+Clear database. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add int-valued parameter with given range. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add double-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add double-valued parameter with given range. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add string-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add string-valued parameter with given range. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add nested parameter database. ";
+
+%feature("docstring")  dolfin::NewParameters::parse "
+
+Parse parameters from command-line. ";
+
+%feature("docstring")  dolfin::NewParameters::str "
+
+Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1NewStringParameter.xml
+%feature("docstring") dolfin::NewStringParameter "
+
+Parameter with value type string.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewStringParameter::NewStringParameter
+"
+
+Create string-valued parameter. ";
+
+%feature("docstring")  dolfin::NewStringParameter::~NewStringParameter
+"
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewStringParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::NewStringParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewStringParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewStringParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewStringParameter::str "
+
+Return short string description. ";
+
+
 // File: classdolfin_1_1NewtonSolver.xml
 %feature("docstring") dolfin::NewtonSolver "
 
@@ -3932,6 +4174,10 @@ Set state for ODE (only available during interval stepping). ";
 
 Get state for ODE (only available during interval stepping). ";
 
+%feature("docstring")  dolfin::ODE::default_parameters "
+
+Return default parameters. ";
+
 
 // File: classdolfin_1_1ODECollection.xml
 %feature("docstring") dolfin::ODECollection "
@@ -4024,7 +4270,7 @@ Evaluate (interpolate) value of solution at given time. ";
 %feature("docstring") dolfin::Parameter "
 
 This class represents a parameter of some given type. Supported value
-types are real, int, bool, and string.
+types are double, int, bool, and string.
 
 C++ includes: Parameter.h ";
 
@@ -4038,7 +4284,7 @@ Create int-valued parameter. ";
 
 %feature("docstring")  dolfin::Parameter::Parameter "
 
-Create real-valued parameter. ";
+Create double-valued parameter. ";
 
 %feature("docstring")  dolfin::Parameter::Parameter "
 
@@ -4059,6 +4305,22 @@ Copy constructor. ";
 %feature("docstring")  dolfin::Parameter::~Parameter "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set int-valued range. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set uint-valued range. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set double-valued range. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set string-valued range (list of values). ";
 
 %feature("docstring")  dolfin::Parameter::type "
 
@@ -4826,7 +5088,7 @@ table(\"uBLAS\", \"Assemble\") = 0.010; table(\"uBLAS\", \"Solve\") =
 \"Solve\") = 0.019; table(\"Epetra\", \"Assemble\") = 0.012;
 table(\"Epetra\", \"Solve\") = 0.018;
 
-table.disp();
+info(table);
 
 C++ includes: Table.h ";
 
@@ -4838,21 +5100,33 @@ Create empty table. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Table::get "
+%feature("docstring")  dolfin::Table::set "
 
-Get value of table entry. ";
+Set value of table entry. ";
 
 %feature("docstring")  dolfin::Table::set "
 
 Set value of table entry. ";
 
+%feature("docstring")  dolfin::Table::set "
+
+Set value of table entry. ";
+
+%feature("docstring")  dolfin::Table::set "
+
+Set value of table entry. ";
+
+%feature("docstring")  dolfin::Table::get "
+
+Get value of table entry. ";
+
 %feature("docstring")  dolfin::Table::title "
 
 Return table title. ";
 
-%feature("docstring")  dolfin::Table::disp "
+%feature("docstring")  dolfin::Table::str "
 
-Display table, rounding small numbers to zero. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1TableEntry.xml
@@ -5483,19 +5757,43 @@ C++ includes: UnitSquare.h ";
 
 
 // File: classdolfin_1_1Variable.xml
-%feature("docstring") dolfin::Variable "";
+%feature("docstring") dolfin::Variable "
 
-%feature("docstring")  dolfin::Variable::Variable "";
+Common base class for DOLFIN variables.
 
-%feature("docstring")  dolfin::Variable::Variable "";
+C++ includes: Variable.h ";
 
-%feature("docstring")  dolfin::Variable::Variable "";
+%feature("docstring")  dolfin::Variable::Variable "
 
-%feature("docstring")  dolfin::Variable::rename "";
+Create unnamed variable. ";
 
-%feature("docstring")  dolfin::Variable::name "";
+%feature("docstring")  dolfin::Variable::Variable "
 
-%feature("docstring")  dolfin::Variable::label "";
+Create variable with given name and label. ";
+
+%feature("docstring")  dolfin::Variable::~Variable "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Variable::rename "
+
+Rename variable. ";
+
+%feature("docstring")  dolfin::Variable::name "
+
+Return name. ";
+
+%feature("docstring")  dolfin::Variable::label "
+
+Return label (description). ";
+
+%feature("docstring")  dolfin::Variable::str "
+
+Return informal string representation (pretty-print). ";
+
+%feature("docstring")  dolfin::Variable::default_parameters "
+
+Return default parameters. ";
 
 
 // File: classdolfin_1_1VariationalProblem.xml
@@ -5816,11 +6114,23 @@ printed. ";
 
 %feature("docstring")  dolfin::info "
 
-Print message. ";
+Print message at given debug level. ";
 
-%feature("docstring")  dolfin::stream_info "
+%feature("docstring")  dolfin::info "
 
-Print message. ";
+Print variable (using output of str() method). ";
+
+%feature("docstring")  dolfin::info "
+
+Print variable (using output of str() method). ";
+
+%feature("docstring")  dolfin::info_stream "
+
+Print message to stream. ";
+
+%feature("docstring")  dolfin::info_underline "
+
+Print underlined message. ";
 
 %feature("docstring")  dolfin::warning "
 
@@ -5841,6 +6151,10 @@ Begin task (increase indentation level). ";
 %feature("docstring")  dolfin::end "
 
 End task (decrease indentation level). ";
+
+%feature("docstring")  dolfin::indent "
+
+Indent string. ";
 
 %feature("docstring")  dolfin::summary "
 
@@ -6344,6 +6658,12 @@ Assemble scalar on sub domains. ";
 // File: ODESolution_8h.xml
 
 
+// File: NewParameter_8h.xml
+
+
+// File: NewParameters_8h.xml
+
+
 // File: Parameter_8h.xml
 
 
@@ -6371,53 +6691,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
+// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 
