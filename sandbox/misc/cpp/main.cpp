@@ -44,5 +44,11 @@ int main (int argc, char* argv[])
   // Print parameters
   info(application_parameters);
 
+  // Test parameters for Krylov solver
+  KrylovSolver solver;
+  solver.parameters("relative tolerance") = 1e-20;
+  info("");
+  info(solver.parameters);
+
   return 0;
-} 
+}
