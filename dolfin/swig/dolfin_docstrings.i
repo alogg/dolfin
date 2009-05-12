@@ -3933,6 +3933,14 @@ Parse parameters from command-line. ";
 
 Return informal string representation (pretty-print). ";
 
+%feature("docstring")  dolfin::NewParameters::parameter_keys "
+
+Return a vector of keys to the parameters. ";
+
+%feature("docstring")  dolfin::NewParameters::database_keys "
+
+Return a vector of keys to the database. ";
+
 
 // File: classdolfin_1_1NewStringParameter.xml
 %feature("docstring") dolfin::NewStringParameter "
@@ -6049,25 +6057,6 @@ C++ includes: Vertex.h ";
 
 
 // File: namespacedolfin.xml
-%feature("docstring")  dolfin::tic "
-
-Start timing.
-
-Timing functions measure CPU time as determined by clock(), the
-precision of which seems to be 0.01 seconds. ";
-
-%feature("docstring")  dolfin::toc "
-
-Return elapsed CPU time. ";
-
-%feature("docstring")  dolfin::tocd "
-
-Return and display elapsed CPU time. ";
-
-%feature("docstring")  dolfin::time "
-
-Return current CPU time used by process. ";
-
 %feature("docstring")  dolfin::dolfin_get "
 
 Get value of parameter with given key. ";
@@ -6087,6 +6076,25 @@ Add parameter. ";
 %feature("docstring")  dolfin::dolfin_changed "
 
 Check if parameter has been changed from default value. ";
+
+%feature("docstring")  dolfin::tic "
+
+Start timing.
+
+Timing functions measure CPU time as determined by clock(), the
+precision of which seems to be 0.01 seconds. ";
+
+%feature("docstring")  dolfin::toc "
+
+Return elapsed CPU time. ";
+
+%feature("docstring")  dolfin::tocd "
+
+Return and display elapsed CPU time. ";
+
+%feature("docstring")  dolfin::time "
+
+Return current CPU time used by process. ";
 
 %feature("docstring")  dolfin::info "
 
