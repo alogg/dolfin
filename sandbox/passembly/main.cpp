@@ -18,8 +18,6 @@
 
 #include <dolfin.h>
 #include "Poisson.h"
-#include "PoissonDG.h"
-#include "Poisson3D.h"
 
 using namespace dolfin;
 
@@ -43,63 +41,34 @@ class DirichletBoundary : public SubDomain
   }
 };
 
-int test2DLagrange()
+int main()
 {
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
   PoissonFunctionSpace V(mesh);
 
-  UFC_PoissonBilinearForm_dof_map_0 ufc_dof_map;
-  DofMap dofmap(ufc_dof_map, mesh);
+  // Define boundary condition
+  Constant u0(0.0);
+  DirichletBoundary boundary;
+  DirichletBC bc(V, u0, boundary);
 
-  char filename[100];
-  sprintf(filename, "unitsquare_part_%d.xml", dolfin::MPI::process_number());
-  File file(filename, true);
-  file << mesh;
+  // Define variational problem
+  PoissonBilinearForm a(V, V);
+  PoissonLinearForm L(V);
+  Source f;
+  L.f = f;
 
-  return 0;
-}
+  // Compute solution
+  VariationalProblem problem(a, L, bc);
+  Function u;
+  problem.solve(u);
 
-int test2DDG()
-{
-  // Create mesh and function space
-  Mesh mesh("unitsquare.xml.gz");
-  PoissonDGFunctionSpace V(mesh);
+  // Plot solution
+  plot(u);
 
-  PoissonDGBilinearForm a(V, V);
-  UFC ufc(a);
-  
-  UFC_PoissonDGBilinearForm_dof_map_0 ufc_dof_map;
-  DofMap dofmap(ufc_dof_map, mesh);
-
-  char filename[100];
-  sprintf(filename, "unitsquare_part_%d.xml", dolfin::MPI::process_number());
-  File file(filename, true);
-  file << mesh;
+  // Save solution in VTK format
+  File file("poisson.pvd");
+  file << u;
 
   return 0;
-}
-
-int test3D()
-{
-  Mesh mesh("unitcube.xml.gz");
-  Poisson3DFunctionSpace V(mesh);
-  Poisson3DBilinearForm a(V, V);
-
-  UFC_Poisson3DBilinearForm_dof_map_0 ufc_dof_map;
-  DofMap dofmap(ufc_dof_map, mesh);
-
-  char filename[100];
-  sprintf(filename, "unitcube_part_%d.xml", dolfin::MPI::process_number());
-  File file(filename, true);
-  file << mesh;
-
-  return 0;
-}
-
-int main()
-{
-  //return test2DLagrange();
-  //return test2DDG();
-  return test3D();
 }
