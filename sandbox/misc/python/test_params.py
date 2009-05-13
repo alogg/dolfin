@@ -30,7 +30,7 @@ solver_parameters["relative_tolerance"] = 0.1
 application_parameters.add(solver_parameters)
 
 # Parse command-line options
-application_parameters._parse(sys.argv)
+application_parameters.parse()
 
 # Access values
 foo = application_parameters["foo"]
