@@ -187,11 +187,9 @@ int main()
   }
 
   {
-
     dolfin::FunctionPlotData data;
     dolfin::File f("dolfin_plot_data.xml", true);
     f >> data;
-
   }
 
   return 0;

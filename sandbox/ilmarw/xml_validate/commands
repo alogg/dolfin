@@ -1,0 +1,8 @@
+# Validates the schema itself:
+xmllint --noout --relaxng relaxng.rng test.rng
+
+# Validates test.xml:
+xmllint --noout --relaxng test.rng test.xml
+
+# Upload schema to fenics.org:
+scp dolfin.rng fenics@fenics.org:www.fenics.org/pub/misc/

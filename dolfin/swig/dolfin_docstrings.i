@@ -268,7 +268,7 @@ Compute component i of normal of given facet with respect to the cell.
 
 Compute normal of given facet with respect to the cell. ";
 
-%feature("docstring")  dolfin::Cell::facetArea "
+%feature("docstring")  dolfin::Cell::facet_area "
 
 Compute the area/length of given facet with respect to the cell. ";
 
@@ -322,11 +322,11 @@ Constructor. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::CellType::cellType "
+%feature("docstring")  dolfin::CellType::cell_type "
 
 Return type of cell. ";
 
-%feature("docstring")  dolfin::CellType::facetType "
+%feature("docstring")  dolfin::CellType::facet_type "
 
 Return type of cell for facets. ";
 
@@ -334,11 +334,11 @@ Return type of cell for facets. ";
 
 Return topological dimension of cell. ";
 
-%feature("docstring")  dolfin::CellType::numEntities "
+%feature("docstring")  dolfin::CellType::num_entities "
 
 Return number of entitites of given topological dimension. ";
 
-%feature("docstring")  dolfin::CellType::numVertices "
+%feature("docstring")  dolfin::CellType::num_vertices "
 
 Return number of vertices for entity of given topological dimension.
 ";
@@ -347,11 +347,11 @@ Return number of vertices for entity of given topological dimension.
 
 Return orientation of the cell. ";
 
-%feature("docstring")  dolfin::CellType::createEntities "
+%feature("docstring")  dolfin::CellType::create_entities "
 
 Create entities e of given topological dimension from vertices v. ";
 
-%feature("docstring")  dolfin::CellType::refineCell "
+%feature("docstring")  dolfin::CellType::refine_cell "
 
 Refine cell uniformly. ";
 
@@ -372,7 +372,7 @@ Compute component i of normal of given facet with respect to the cell.
 
 Compute of given facet with respect to the cell. ";
 
-%feature("docstring")  dolfin::CellType::facetArea "
+%feature("docstring")  dolfin::CellType::facet_area "
 
 Compute the area/length of given facet with respect to the cell. ";
 
@@ -465,7 +465,7 @@ Solve linear system Ax = b for a sparse matrix using CHOLMOD. ";
 
 Cholesky-factor sparse matrix A if CHOLMOD is installed. ";
 
-%feature("docstring")  dolfin::CholmodCholeskySolver::factorizedSolve
+%feature("docstring")  dolfin::CholmodCholeskySolver::factorized_solve
 "
 
 Solve factorized system (CHOLMOD). ";
@@ -862,11 +862,13 @@ Return the dimension of the global finite element function space. ";
 
 %feature("docstring")  dolfin::DofMap::local_dimension "
 
-Return the dimension of the local finite element function space. ";
+Return the dimension of the local finite element function space on a
+cell. ";
 
-%feature("docstring")  dolfin::DofMap::macro_local_dimension "
+%feature("docstring")  dolfin::DofMap::max_local_dimension "
 
-Return the dimension of the local finite element function space. ";
+Return the maximum dimension of the local finite element function
+space. ";
 
 %feature("docstring")  dolfin::DofMap::num_facet_dofs "
 
@@ -893,7 +895,7 @@ Build parallel dof map. ";
 Build dof map on only a subdomain of the mesh (meshfunction contains
 booleans for each cell). ";
 
-%feature("docstring")  dolfin::DofMap::getMap "
+%feature("docstring")  dolfin::DofMap::get_map "
 
 Return renumbering (used for testing). ";
 
@@ -960,35 +962,35 @@ Open mesh of given cell type, topological and geometrical dimension.
 Open mesh of given cell type, topological and geometrical dimension.
 ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given point p. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given coordinate x. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y). ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addVertex "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y, z). ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell with given vertices. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell (interval) with given vertices. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell (triangle) with given vertices. ";
 
-%feature("docstring")  dolfin::DynamicMeshEditor::addCell "
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 
 Add cell (tetrahedron) with given vertices. ";
 
@@ -1035,6 +1037,64 @@ C++ includes: Edge.h ";
 %feature("docstring")  dolfin::EdgeIterator::EdgeIterator "";
 
 %feature("docstring")  dolfin::EdgeIterator::EdgeIterator "";
+
+
+// File: classdolfin_1_1EqualityBC.xml
+%feature("docstring") dolfin::EqualityBC "
+
+This class specifies the interface for setting equality boundary
+conditions for partial differential equations,
+
+u(x) = u(y), for all x and y on G,
+
+where G is subdomain of the mesh.
+
+The sub domain G may be specified in two different ways. Both of them
+produce a set of unknowns (dofs) with should be equal.
+
+The simplest approach is to specify a SubDomain object, using the
+inside() function to specify on which facets the boundary condition
+should be applied.
+
+Alternatively, the boundary may be specified by the boundary
+indicators included in the mesh.
+
+Current implementation assume that the problem is scalar, so in case
+of mixed systems (vector-valued and mixed elements) all compoments
+will be set equal.
+
+C++ includes: EqualityBC.h ";
+
+%feature("docstring")  dolfin::EqualityBC::EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::~EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a matrix. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a vector. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a linear system. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a vector for a nonlinear problem. ";
+
+%feature("docstring")  dolfin::EqualityBC::apply "
+
+Apply boundary condition to a linear system for a nonlinear problem.
+";
+
+%feature("docstring")  dolfin::EqualityBC::init_from_sub_domain "";
+
+%feature("docstring")  dolfin::EqualityBC::init_from_mesh "";
 
 
 // File: classdolfin_1_1Event.xml
@@ -1196,6 +1256,10 @@ Destructor. ";
 %feature("docstring")  dolfin::File::set_new_xml_style "
 
 Set new style for xml parsing system. ";
+
+%feature("docstring")  dolfin::File::validate_xml "
+
+Validation function for XML. ";
 
 
 // File: classdolfin_1_1FiniteElement.xml
@@ -1935,6 +1999,10 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::GenericVector::sum "
+
+Return sum of vector. ";
+
 %feature("docstring")  dolfin::GenericVector::data "
 
 Return pointer to underlying data (const version). ";
@@ -2018,15 +2086,15 @@ Destructor. ";
 
 Initialise graph data structures. ";
 
-%feature("docstring")  dolfin::Graph::numVertices "
+%feature("docstring")  dolfin::Graph::num_vertices "
 
 Return number of vertices. ";
 
-%feature("docstring")  dolfin::Graph::numEdges "
+%feature("docstring")  dolfin::Graph::num_edges "
 
 Return number of edges. ";
 
-%feature("docstring")  dolfin::Graph::numEdges "
+%feature("docstring")  dolfin::Graph::num_edges "
 
 Return number of edges incident to vertex u. ";
 
@@ -2034,11 +2102,11 @@ Return number of edges incident to vertex u. ";
 
 Check if vertex u is adjacent to vertex v. ";
 
-%feature("docstring")  dolfin::Graph::edgeWeights "
+%feature("docstring")  dolfin::Graph::edge_weights "
 
 Return edge weights. ";
 
-%feature("docstring")  dolfin::Graph::vertexWeights "
+%feature("docstring")  dolfin::Graph::vertex_weights "
 
 Return vertex weights. ";
 
@@ -2103,20 +2171,20 @@ Open graph of given type. ";
 
 Open graph of given type. ";
 
-%feature("docstring")  dolfin::GraphEditor::initVertices "
+%feature("docstring")  dolfin::GraphEditor::init_vertices "
 
 Specify number of vertices. ";
 
-%feature("docstring")  dolfin::GraphEditor::initEdges "
+%feature("docstring")  dolfin::GraphEditor::init_edges "
 
 Specify number of edges. ";
 
-%feature("docstring")  dolfin::GraphEditor::addVertex "
+%feature("docstring")  dolfin::GraphEditor::add_vertex "
 
 Add vertex u with num_edges = number of outgoing edges. For undirected
 graphs, edge must \"belong\" to a vertex and not be counted twice. ";
 
-%feature("docstring")  dolfin::GraphEditor::addEdge "
+%feature("docstring")  dolfin::GraphEditor::add_edge "
 
 Add edge from vertex u to vertex v. ";
 
@@ -2264,6 +2332,10 @@ Destructor. ";
 %feature("docstring")  dolfin::KrylovSolver::solve "
 
 Solve linear system Ax = b. ";
+
+%feature("docstring")  dolfin::KrylovSolver::default_parameters "
+
+Return default parameters. ";
 
 
 // File: classdolfin_1_1Lagrange.xml
@@ -2659,23 +2731,23 @@ Create mesh from data file. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Mesh::numVertices "
+%feature("docstring")  dolfin::Mesh::num_vertices "
 
 Return number of vertices. ";
 
-%feature("docstring")  dolfin::Mesh::numEdges "
+%feature("docstring")  dolfin::Mesh::num_edges "
 
 Return number of edges. ";
 
-%feature("docstring")  dolfin::Mesh::numFaces "
+%feature("docstring")  dolfin::Mesh::num_faces "
 
 Return number of faces. ";
 
-%feature("docstring")  dolfin::Mesh::numFacets "
+%feature("docstring")  dolfin::Mesh::num_facets "
 
 Return number of facets. ";
 
-%feature("docstring")  dolfin::Mesh::numCells "
+%feature("docstring")  dolfin::Mesh::num_cells "
 
 Return number of cells. ";
 
@@ -3013,64 +3085,77 @@ Open mesh of given cell type, topological and geometrical dimension.
 Open mesh of given cell type, topological and geometrical dimension.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::initVertices "
+%feature("docstring")  dolfin::MeshEditor::init_vertices "
 
 Specify number of vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::initCells "
+%feature("docstring")  dolfin::MeshEditor::initHigherOrderVertices "
+
+Specify number of vertices. ";
+
+%feature("docstring")  dolfin::MeshEditor::init_cells "
 
 Specify number of cells. ";
 
-%feature("docstring")  dolfin::MeshEditor::setMeshCoordFEsignature "
+%feature("docstring")  dolfin::MeshEditor::initHigherOrderCells "
 
-Set the finite element signature for the type of parametric mapping
-used for the local elements in the mesh ";
-
-%feature("docstring")  dolfin::MeshEditor::setMeshCoordDofMapsignature
-"
-
-Set the dofmap signature for the type of parametric mapping used for
-the local elements in the mesh ";
-
-%feature("docstring")  dolfin::MeshEditor::setMeshCoordinates "
-
-Set higher order mesh coordinates. ";
+Specify number of cells. ";
 
 %feature("docstring")  dolfin::MeshEditor::setAffineCellIndicator "
 
 Set boolean indicator inside MeshGeometry. ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given point p. ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given coordinate x. ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y). ";
 
-%feature("docstring")  dolfin::MeshEditor::addVertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
 
 Add vertex v at given coordinate (x, y, z). ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given point p. ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given coordinate x. ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given coordinate (x, y). ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderVertex "
+
+Add vertex v at given coordinate (x, y, z). ";
+
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell with given vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell (interval) with given vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell (triangle) with given vertices. ";
 
-%feature("docstring")  dolfin::MeshEditor::addCell "
+%feature("docstring")  dolfin::MeshEditor::add_cell "
 
 Add cell (tetrahedron) with given vertices. ";
+
+%feature("docstring")  dolfin::MeshEditor::addHigherOrderCellData "
+
+Add higher order cell data (assume P2 triangle for now). ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
 
@@ -3105,7 +3190,7 @@ Return topological dimension. ";
 
 Return index of mesh entity. ";
 
-%feature("docstring")  dolfin::MeshEntity::numEntities "
+%feature("docstring")  dolfin::MeshEntity::num_entities "
 
 Return number of incident mesh entities of given topological
 dimension. ";
@@ -3318,13 +3403,49 @@ Return array of values for all coordinates. ";
 
 Return array of values for all coordinates. ";
 
+%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
+
+Return array of values for higher order coordinate n. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
+
+Return array of values for higher order coordinate n. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
+
+Return array of values for all higher order coordinates. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
+
+Return array of values for all higher order coordinates. ";
+
+%feature("docstring")
+dolfin::MeshGeometry::num_higher_order_vertices_per_cell "
+
+Return number of vertices used (per cell) to represent the higher
+order geometry. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_cell "
+
+Return array of higher order vertex indices for a specific higher
+order cell. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_cell "
+
+Return array of higher order vertex indices for a specific higher
+order cell. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
+
+Return array of values for all higher order cell data. ";
+
+%feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
+
+Return array of values for all higher order cell data. ";
+
 %feature("docstring")  dolfin::MeshGeometry::point "
 
 Return coordinate n as a 3D point value. ";
-
-%feature("docstring")  dolfin::MeshGeometry::mesh_coord_function "
-
-Return pointer to Function for higher order mesh coordinates. ";
 
 %feature("docstring")  dolfin::MeshGeometry::affine_cell_bool "
 
@@ -3338,6 +3459,17 @@ Clear all data. ";
 
 Initialize coordinate list to given dimension and size. ";
 
+%feature("docstring")  dolfin::MeshGeometry::init_HigherOrderVertices
+"
+
+Initialize higher order coordinate list to given dimension and size.
+";
+
+%feature("docstring")  dolfin::MeshGeometry::init_HigherOrderCells "
+
+Initialize higher order cell data list to given number of cells and
+dofs. ";
+
 %feature("docstring")  dolfin::MeshGeometry::initAffineIndicator "
 
 Initialize the affine indicator array. ";
@@ -3350,9 +3482,15 @@ set affine indicator at index i ";
 
 Set value of coordinate n in direction i. ";
 
-%feature("docstring")  dolfin::MeshGeometry::setMeshCoordinates "
+%feature("docstring")
+dolfin::MeshGeometry::set_higher_order_coordinates "
 
-Set higher order mesh coordinates. ";
+Set value of higher order coordinate N in direction i. ";
+
+%feature("docstring")
+dolfin::MeshGeometry::set_higher_order_cell_data "
+
+Set higher order cell data for cell # N in direction i. ";
 
 %feature("docstring")  dolfin::MeshGeometry::disp "
 
@@ -3366,6 +3504,26 @@ This class partitions and distributes a mesh based on partitioned
 local mesh data. Note that the local mesh data will also be
 repartitioned and redistributed during the computation of the mesh
 partitioning.
+
+After partitioning, each process has a local mesh and set of mesh data
+that couples the meshes together.
+
+The following mesh data is created:
+
+1. \"global entity indices 0\" (MeshFunction<uint>)
+
+This maps each local vertex to its global index.
+
+2. \"overlap\" (std::map<uint, std::vector<uint> >)
+
+This maps each shared vertex to a list of the processes sharing the
+vertex.
+
+After partitioning, the function number_entities() may be called to
+create global indices for all entities of a given topological
+dimension. These are stored as mesh data (MeshFunction<uint>) named
+
+\"global entity indices 1\" \"global entity indices 2\" etc
 
 C++ includes: MeshPartitioning.h ";
 
@@ -3576,6 +3734,252 @@ dolfin::MPIMeshCommunicator::~MPIMeshCommunicator "
 Destructor. ";
 
 
+// File: classdolfin_1_1NewDoubleParameter.xml
+%feature("docstring") dolfin::NewDoubleParameter "
+
+Parameter with value type double.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::NewDoubleParameter
+"
+
+Create int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::~NewDoubleParameter
+"
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewDoubleParameter::str "
+
+Return short string description. ";
+
+
+// File: classdolfin_1_1NewIntParameter.xml
+%feature("docstring") dolfin::NewIntParameter "
+
+Parameter with value type int.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewIntParameter::NewIntParameter "
+
+Create int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewIntParameter::~NewIntParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewIntParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::NewIntParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewIntParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewIntParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewIntParameter::str "
+
+Return short string description. ";
+
+
+// File: classdolfin_1_1NewParameter.xml
+%feature("docstring") dolfin::NewParameter "
+
+Base class for parameters.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewParameter::NewParameter "
+
+Create parameter for given key. ";
+
+%feature("docstring")  dolfin::NewParameter::~NewParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewParameter::key "
+
+Return parameter key. ";
+
+%feature("docstring")  dolfin::NewParameter::description "
+
+Return parameter description. ";
+
+%feature("docstring")  dolfin::NewParameter::access_count "
+
+Return access count (number of times parameter has been accessed). ";
+
+%feature("docstring")  dolfin::NewParameter::change_count "
+
+Return change count (number of times parameter has been changed). ";
+
+%feature("docstring")  dolfin::NewParameter::set_range "
+
+Set range for int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameter::set_range "
+
+Set range for double-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameter::set_range "
+
+Set range for string-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewParameter::str "
+
+Return short string description. ";
+
+
+// File: classdolfin_1_1NewParameters.xml
+%feature("docstring") dolfin::NewParameters "
+
+This class stores a database of parameters. Each parameter is
+identified by a unique string (the key) and a value of some given
+value type.
+
+C++ includes: NewParameters.h ";
+
+%feature("docstring")  dolfin::NewParameters::NewParameters "
+
+Create empty parameter database. ";
+
+%feature("docstring")  dolfin::NewParameters::~NewParameters "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewParameters::NewParameters "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::NewParameters::key "
+
+Return database key. ";
+
+%feature("docstring")  dolfin::NewParameters::clear "
+
+Clear database. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add int-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add int-valued parameter with given range. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add double-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add double-valued parameter with given range. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add string-valued parameter. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add string-valued parameter with given range. ";
+
+%feature("docstring")  dolfin::NewParameters::add "
+
+Add nested parameter database. ";
+
+%feature("docstring")  dolfin::NewParameters::parse "
+
+Parse parameters from command-line. ";
+
+%feature("docstring")  dolfin::NewParameters::str "
+
+Return informal string representation (pretty-print). ";
+
+%feature("docstring")  dolfin::NewParameters::parameter_keys "
+
+Return a vector of keys to the parameters. ";
+
+%feature("docstring")  dolfin::NewParameters::database_keys "
+
+Return a vector of keys to the database. ";
+
+
+// File: classdolfin_1_1NewStringParameter.xml
+%feature("docstring") dolfin::NewStringParameter "
+
+Parameter with value type string.
+
+C++ includes: NewParameter.h ";
+
+%feature("docstring")  dolfin::NewStringParameter::NewStringParameter
+"
+
+Create string-valued parameter. ";
+
+%feature("docstring")  dolfin::NewStringParameter::~NewStringParameter
+"
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewStringParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::NewStringParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::NewStringParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::NewStringParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::NewStringParameter::str "
+
+Return short string description. ";
+
+
 // File: classdolfin_1_1NewtonSolver.xml
 %feature("docstring") dolfin::NewtonSolver "
 
@@ -3602,7 +4006,7 @@ Destructor. ";
 Solve abstract nonlinear problem F(x) = 0 for given vector F and
 Jacobian dF/dx ";
 
-%feature("docstring")  dolfin::NewtonSolver::getIteration "
+%feature("docstring")  dolfin::NewtonSolver::get_iteration "
 
 Return Newton iteration number. ";
 
@@ -3778,6 +4182,10 @@ Set state for ODE (only available during interval stepping). ";
 
 Get state for ODE (only available during interval stepping). ";
 
+%feature("docstring")  dolfin::ODE::default_parameters "
+
+Return default parameters. ";
+
 
 // File: classdolfin_1_1ODECollection.xml
 %feature("docstring") dolfin::ODECollection "
@@ -3870,7 +4278,7 @@ Evaluate (interpolate) value of solution at given time. ";
 %feature("docstring") dolfin::Parameter "
 
 This class represents a parameter of some given type. Supported value
-types are real, int, bool, and string.
+types are double, int, bool, and string.
 
 C++ includes: Parameter.h ";
 
@@ -3884,7 +4292,7 @@ Create int-valued parameter. ";
 
 %feature("docstring")  dolfin::Parameter::Parameter "
 
-Create real-valued parameter. ";
+Create double-valued parameter. ";
 
 %feature("docstring")  dolfin::Parameter::Parameter "
 
@@ -3905,6 +4313,22 @@ Copy constructor. ";
 %feature("docstring")  dolfin::Parameter::~Parameter "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set int-valued range. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set uint-valued range. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set double-valued range. ";
+
+%feature("docstring")  dolfin::Parameter::set_range "
+
+Set string-valued range (list of values). ";
 
 %feature("docstring")  dolfin::Parameter::type "
 
@@ -3960,7 +4384,7 @@ Get value of parameter with given key (local or nonlocal). ";
 
 Check if parameter with given key has been defined locally. ";
 
-%feature("docstring")  dolfin::Parametrized::readParameters "
+%feature("docstring")  dolfin::Parametrized::read_parameters "
 
 Callback for changes in parameter values. ";
 
@@ -4382,7 +4806,7 @@ Display sparsity pattern. ";
 
 Finalize sparsity pattern (needed by most parallel la backends). ";
 
-%feature("docstring")  dolfin::SparsityPattern::processRange "
+%feature("docstring")  dolfin::SparsityPattern::process_range "
 
 Return array with row range for process_number. ";
 
@@ -4672,7 +5096,7 @@ table(\"uBLAS\", \"Assemble\") = 0.010; table(\"uBLAS\", \"Solve\") =
 \"Solve\") = 0.019; table(\"Epetra\", \"Assemble\") = 0.012;
 table(\"Epetra\", \"Solve\") = 0.018;
 
-table.disp();
+info(table);
 
 C++ includes: Table.h ";
 
@@ -4684,21 +5108,33 @@ Create empty table. ";
 
 Destructor. ";
 
-%feature("docstring")  dolfin::Table::get "
+%feature("docstring")  dolfin::Table::set "
 
-Get value of table entry. ";
+Set value of table entry. ";
 
 %feature("docstring")  dolfin::Table::set "
 
 Set value of table entry. ";
 
+%feature("docstring")  dolfin::Table::set "
+
+Set value of table entry. ";
+
+%feature("docstring")  dolfin::Table::set "
+
+Set value of table entry. ";
+
+%feature("docstring")  dolfin::Table::get "
+
+Get value of table entry. ";
+
 %feature("docstring")  dolfin::Table::title "
 
 Return table title. ";
 
-%feature("docstring")  dolfin::Table::disp "
+%feature("docstring")  dolfin::Table::str "
 
-Display table, rounding small numbers to zero. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1TableEntry.xml
@@ -4827,6 +5263,39 @@ Destructor. ";
 Solve linear system Ax = b approximately. ";
 
 
+// File: classdolfin_1_1uBLASKrylovMatrix.xml
+%feature("docstring") dolfin::uBLASKrylovMatrix "
+
+This class provides an interface for matrices that define linear
+systems for the uBLASKrylovSolver. This interface is implemented by
+the classes uBLASSparseMatrix and DenseMatrix. Users may also overload
+the mult() function to specify a linear system only in terms of its
+action.
+
+C++ includes: uBLASKrylovMatrix.h ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::uBLASKrylovMatrix "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::~uBLASKrylovMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::size "
+
+Return number of rows (dim = 0) or columns (dim = 1). ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::mult "
+
+Compute product y = Ax. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::solve "
+
+Solve linear system Ax = b for a Krylov matrix using uBLAS and dense
+matrices. ";
+
+
 // File: classdolfin_1_1uBLASKrylovSolver.xml
 %feature("docstring") dolfin::uBLASKrylovSolver "
 
@@ -4838,10 +5307,6 @@ C++ includes: uBLASKrylovSolver.h ";
 %feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
 Create Krylov solver for a particular method and preconditioner. ";
-
-%feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
-
-Create Krylov solver for a particular preconditioner (set by name). ";
 
 %feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
@@ -5160,6 +5625,10 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::uBLASVector::sum "
+
+Return sum of values of vector. ";
+
 %feature("docstring")  dolfin::uBLASVector::data "
 
 Return pointer to underlying data (const version). ";
@@ -5209,7 +5678,7 @@ installed. ";
 
 LU-factor sparse matrix A if UMFPACK is installed. ";
 
-%feature("docstring")  dolfin::UmfpackLUSolver::factorizedSolve "
+%feature("docstring")  dolfin::UmfpackLUSolver::factorized_solve "
 
 Solve factorized system (UMFPACK). ";
 
@@ -5296,19 +5765,43 @@ C++ includes: UnitSquare.h ";
 
 
 // File: classdolfin_1_1Variable.xml
-%feature("docstring") dolfin::Variable "";
+%feature("docstring") dolfin::Variable "
 
-%feature("docstring")  dolfin::Variable::Variable "";
+Common base class for DOLFIN variables.
 
-%feature("docstring")  dolfin::Variable::Variable "";
+C++ includes: Variable.h ";
 
-%feature("docstring")  dolfin::Variable::Variable "";
+%feature("docstring")  dolfin::Variable::Variable "
 
-%feature("docstring")  dolfin::Variable::rename "";
+Create unnamed variable. ";
 
-%feature("docstring")  dolfin::Variable::name "";
+%feature("docstring")  dolfin::Variable::Variable "
 
-%feature("docstring")  dolfin::Variable::label "";
+Create variable with given name and label. ";
+
+%feature("docstring")  dolfin::Variable::~Variable "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Variable::rename "
+
+Rename variable. ";
+
+%feature("docstring")  dolfin::Variable::name "
+
+Return name. ";
+
+%feature("docstring")  dolfin::Variable::label "
+
+Return label (description). ";
+
+%feature("docstring")  dolfin::Variable::str "
+
+Return informal string representation (pretty-print). ";
+
+%feature("docstring")  dolfin::Variable::default_parameters "
+
+Return default parameters. ";
 
 
 // File: classdolfin_1_1VariationalProblem.xml
@@ -5393,6 +5886,11 @@ Compute J = F' at current point x. ";
 %feature("docstring")  dolfin::VariationalProblem::update "
 
 Optional callback called before calls to F() and J(). ";
+
+%feature("docstring")  dolfin::VariationalProblem::newton_solver "
+
+Return Newton solver (only useful when solving a nonlinear problem).
+";
 
 
 // File: classdolfin_1_1Vector.xml
@@ -5487,6 +5985,10 @@ Return minimum value of vector. ";
 
 Return maximum value of vector. ";
 
+%feature("docstring")  dolfin::Vector::sum "
+
+Return sum of values of vector. ";
+
 %feature("docstring")  dolfin::Vector::data "
 
 Return pointer to underlying data (const version). ";
@@ -5555,25 +6057,6 @@ C++ includes: Vertex.h ";
 
 
 // File: namespacedolfin.xml
-%feature("docstring")  dolfin::tic "
-
-Start timing.
-
-Timing functions measure CPU time as determined by clock(), the
-precision of which seems to be 0.01 seconds. ";
-
-%feature("docstring")  dolfin::toc "
-
-Return elapsed CPU time. ";
-
-%feature("docstring")  dolfin::tocd "
-
-Return and display elapsed CPU time. ";
-
-%feature("docstring")  dolfin::time "
-
-Return current CPU time used by process. ";
-
 %feature("docstring")  dolfin::dolfin_get "
 
 Get value of parameter with given key. ";
@@ -5594,7 +6077,26 @@ Add parameter. ";
 
 Check if parameter has been changed from default value. ";
 
-%feature("docstring")  dolfin::message "
+%feature("docstring")  dolfin::tic "
+
+Start timing.
+
+Timing functions measure CPU time as determined by clock(), the
+precision of which seems to be 0.01 seconds. ";
+
+%feature("docstring")  dolfin::toc "
+
+Return elapsed CPU time. ";
+
+%feature("docstring")  dolfin::tocd "
+
+Return and display elapsed CPU time. ";
+
+%feature("docstring")  dolfin::time "
+
+Return current CPU time used by process. ";
+
+%feature("docstring")  dolfin::info "
 
 Print message.
 
@@ -5618,9 +6120,25 @@ where destination is one of \"terminal\" (default) or \"silent\".
 Setting the output destination to \"silent\" means no messages will be
 printed. ";
 
-%feature("docstring")  dolfin::message "
+%feature("docstring")  dolfin::info "
 
-Print message. ";
+Print message at given debug level. ";
+
+%feature("docstring")  dolfin::info "
+
+Print variable (using output of str() method). ";
+
+%feature("docstring")  dolfin::info "
+
+Print variable (using output of str() method). ";
+
+%feature("docstring")  dolfin::info_stream "
+
+Print message to stream. ";
+
+%feature("docstring")  dolfin::info_underline "
+
+Print underlined message. ";
 
 %feature("docstring")  dolfin::warning "
 
@@ -5641,6 +6159,10 @@ Begin task (increase indentation level). ";
 %feature("docstring")  dolfin::end "
 
 End task (decrease indentation level). ";
+
+%feature("docstring")  dolfin::indent "
+
+Indent string. ";
 
 %feature("docstring")  dolfin::summary "
 
@@ -5667,6 +6189,10 @@ Compute residual ||Ax - b||. ";
 %feature("docstring")  dolfin::normalize "
 
 Normalize vector according to given normalization type. ";
+
+%feature("docstring")  dolfin::print_container "";
+
+%feature("docstring")  dolfin::print_vec_map "";
 
 %feature("docstring")  dolfin::dolfin_init "
 
@@ -5711,6 +6237,19 @@ Assemble system (A, b) and apply Dirichlet boundary condition. ";
 Assemble system (A, b) and apply Dirichlet boundary conditions. ";
 
 %feature("docstring")  dolfin::assemble_system "
+
+Assemble system (A, b) on sub domains and apply Dirichlet boundary
+conditions. ";
+
+%feature("docstring")  dolfin::assemble_system_new "
+
+Assemble system (A, b) and apply Dirichlet boundary condition. ";
+
+%feature("docstring")  dolfin::assemble_system_new "
+
+Assemble system (A, b) and apply Dirichlet boundary conditions. ";
+
+%feature("docstring")  dolfin::assemble_system_new "
 
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
 conditions. ";
@@ -5771,6 +6310,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: DofMap_8h.xml
+
+
+// File: EqualityBC_8h.xml
 
 
 // File: FiniteElement_8h.xml
@@ -5839,9 +6381,6 @@ Assemble scalar on sub domains. ";
 // File: DefaultFactory_8h.xml
 
 
-// File: enums__la_8h.xml
-
-
 // File: EpetraFactory_8h.xml
 
 
@@ -5893,6 +6432,9 @@ Assemble scalar on sub domains. ";
 // File: PETScFactory_8h.xml
 
 
+// File: PETScKrylovMatrix_8h.xml
+
+
 // File: PETScKrylovSolver_8h.xml
 
 
@@ -5939,6 +6481,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: uBLASILUPreconditioner_8h.xml
+
+
+// File: uBLASKrylovMatrix_8h.xml
 
 
 // File: uBLASKrylovSolver_8h.xml
@@ -6119,6 +6664,12 @@ Assemble scalar on sub domains. ";
 
 
 // File: ODESolution_8h.xml
+
+
+// File: NewParameter_8h.xml
+
+
+// File: NewParameters_8h.xml
 
 
 // File: Parameter_8h.xml
