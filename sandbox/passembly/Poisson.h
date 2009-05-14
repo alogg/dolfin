@@ -3152,6 +3152,14 @@ class PoissonBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
 {
 public:
 
+  PoissonBilinearFormFunctionSpace0(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
   PoissonBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
@@ -3174,6 +3182,14 @@ public:
     // Do nothing
   }
 
+  PoissonBilinearFormFunctionSpace1(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
 };
 
 class PoissonLinearFormFunctionSpace0 : public dolfin::FunctionSpace
@@ -3182,6 +3198,14 @@ public:
 
   PoissonLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  PoissonLinearFormFunctionSpace0(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
   {
@@ -3202,6 +3226,14 @@ public:
     // Do nothing
   }
 
+  PoissonLinearFormCoefficientSpace0(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
 };
 
 class PoissonTestSpace : public dolfin::FunctionSpace
@@ -3210,6 +3242,14 @@ public:
 
   PoissonTestSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  PoissonTestSpace(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
   {
@@ -3230,6 +3270,14 @@ public:
     // Do nothing
   }
 
+  PoissonTrialSpace(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
 };
 
 class PoissonCoefficientSpace : public dolfin::FunctionSpace
@@ -3244,6 +3292,14 @@ public:
     // Do nothing
   }
 
+  PoissonCoefficientSpace(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
 };
 
 class PoissonFunctionSpace : public dolfin::FunctionSpace
@@ -3252,6 +3308,15 @@ public:
 
   PoissonFunctionSpace(const dolfin::Mesh& mesh)
     : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+
+  PoissonFunctionSpace(dolfin::Mesh& mesh)
+    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
   {
