@@ -3452,23 +3452,25 @@ public:
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
     
     
-    const static double FE1_C0[4][12] = \
-    {{0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654, 0, 0, 0, 0, 0, 0},
-    {-0.123197609346857, -0.0637717752201338, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457, 0, 0, 0, 0, 0, 0},
-    {-0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654, 0, 0, 0, 0, 0, 0},
-    {-0.0637717752201337, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457, 0, 0, 0, 0, 0, 0}};
+    const static double FE1_C0[4][6] = \
+    {{0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654},
+    {-0.123197609346857, -0.0637717752201338, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457},
+    {-0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654},
+    {-0.0637717752201337, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[6] = {0, 1, 2, 3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc3[6] = {6, 7, 8, 9, 10, 11};
     
-    const static double FE0_D10[4][3] = \
-    {{-1, 1, 0},
-    {-1, 1, 0},
-    {-1, 1, 0},
-    {-1, 1, 0}};
-    
-    const static double FE0_D01[4][3] = \
-    {{-1, 0, 1},
-    {-1, 0, 1},
-    {-1, 0, 1},
-    {-1, 0, 1}};
+    const static double FE0_D10[4][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 2};
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
@@ -3476,18 +3478,21 @@ public:
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
-    const static double FE1_C1[4][12] = \
-    {{0, 0, 0, 0, 0, 0, 0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654},
-    {0, 0, 0, 0, 0, 0, -0.123197609346857, -0.0637717752201338, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457},
-    {0, 0, 0, 0, 0, 0, -0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654},
-    {0, 0, 0, 0, 0, 0, -0.0637717752201337, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457}};
+    // Number of operations to compute geometry constants: 26
+    const double G0 = 0.025*Jinv_10*det;
+    const double G1 = 0.025*Jinv_11*det;
+    const double G2 = det*(0.000125*Jinv_00*Jinv_10 + 0.000125*Jinv_01*Jinv_11);
+    const double G3 = det*(0.000125*Jinv_10*Jinv_10 + 0.000125*Jinv_11*Jinv_11);
+    const double G4 = det*(0.000125*Jinv_00*Jinv_00 + 0.000125*Jinv_01*Jinv_01);
+    const double G5 = 0.025*Jinv_00*det;
+    const double G6 = 0.025*Jinv_01*det;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 1380
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 614
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 1380
+    // Number of operations to compute element tensor for following IP loop = 588
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -3495,20 +3500,68 @@ public:
       double F0 = 0;
       double F1 = 0;
       
-      // Total number of operations to compute function values = 48
-      for (unsigned int r = 0; r < 12; r++)
+      // Total number of operations to compute function values = 24
+      for (unsigned int r = 0; r < 6; r++)
       {
-        F0 += FE1_C0[ip][r]*w[0][r];
-        F1 += FE1_C1[ip][r]*w[0][r];
+        F0 += FE1_C0[ip][r]*w[0][nzc1[r]];
+        F1 += FE1_C0[ip][r]*w[0][nzc3[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 297
+      // Number of operations to compute ip constants: 12
+      // Number of operations: 1
+      const double Gip0 = W4[ip]*det;
+      
+      // Number of operations: 4
+      const double Gip1 = W4[ip]*(F0*G0 + F1*G1);
+      
+      // Number of operations: 1
+      const double Gip2 = W4[ip]*G2;
+      
+      // Number of operations: 1
+      const double Gip3 = W4[ip]*G3;
+      
+      // Number of operations: 1
+      const double Gip4 = W4[ip]*G4;
+      
+      // Number of operations: 4
+      const double Gip5 = W4[ip]*(F0*G5 + F1*G6);
+      
+      
+      // Number of operations for primary indices = 27
       for (unsigned int j = 0; j < 3; j++)
       {
         for (unsigned int k = 0; k < 3; k++)
         {
-          // Number of operations to compute entry = 33
-          A[j*3 + k] += (FE0[ip][j]*FE0[ip][k] + (FE0[ip][j]*((Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k])*F0 + (Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k])*F1) + ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k]) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k]))*0.005)*0.025)*W4[ip]*det;
+          // Number of operations to compute entry = 3
+          A[j*3 + k] += FE0[ip][j]*FE0[ip][k]*Gip0;
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 36
+      for (unsigned int j = 0; j < 3; j++)
+      {
+        for (unsigned int k = 0; k < 2; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[j*3 + nzc2[k]] += FE0[ip][j]*FE0_D10[ip][k]*Gip1;
+          // Number of operations to compute entry = 3
+          A[j*3 + nzc0[k]] += FE0[ip][j]*FE0_D10[ip][k]*Gip5;
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 48
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        for (unsigned int k = 0; k < 2; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*3 + nzc2[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip2;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*3 + nzc2[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip3;
+          // Number of operations to compute entry = 3
+          A[nzc2[j]*3 + nzc0[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip2;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*3 + nzc0[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip4;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -7714,23 +7767,25 @@ public:
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
     
     
-    const static double FE1_C0[4][12] = \
-    {{0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654, 0, 0, 0, 0, 0, 0},
-    {-0.123197609346857, -0.0637717752201337, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457, 0, 0, 0, 0, 0, 0},
-    {-0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654, 0, 0, 0, 0, 0, 0},
-    {-0.0637717752201338, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457, 0, 0, 0, 0, 0, 0}};
+    const static double FE1_C0[4][6] = \
+    {{0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654},
+    {-0.123197609346857, -0.0637717752201337, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457},
+    {-0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654},
+    {-0.0637717752201338, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[6] = {0, 1, 2, 3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc3[6] = {6, 7, 8, 9, 10, 11};
     
-    const static double FE0_D10[4][3] = \
-    {{-1, 1, 0},
-    {-1, 1, 0},
-    {-1, 1, 0},
-    {-1, 1, 0}};
-    
-    const static double FE0_D01[4][3] = \
-    {{-1, 0, 1},
-    {-1, 0, 1},
-    {-1, 0, 1},
-    {-1, 0, 1}};
+    const static double FE0_D10[4][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 2};
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
@@ -7738,18 +7793,22 @@ public:
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
-    const static double FE1_C1[4][12] = \
-    {{0, 0, 0, 0, 0, 0, 0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654},
-    {0, 0, 0, 0, 0, 0, -0.123197609346857, -0.0637717752201337, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457},
-    {0, 0, 0, 0, 0, 0, -0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654},
-    {0, 0, 0, 0, 0, 0, -0.0637717752201338, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457}};
+    // Number of operations to compute geometry constants: 34
+    const double G0 = 0.05*det;
+    const double G1 =  - 0.025*Jinv_00*det;
+    const double G2 =  - 0.025*Jinv_01*det;
+    const double G3 =  - 0.025*Jinv_10*det;
+    const double G4 =  - 0.025*Jinv_11*det;
+    const double G5 =  - det*(0.000125*Jinv_00*Jinv_00 + 0.000125*Jinv_01*Jinv_01);
+    const double G6 =  - det*(0.000125*Jinv_00*Jinv_10 + 0.000125*Jinv_01*Jinv_11);
+    const double G7 =  - det*(0.000125*Jinv_10*Jinv_10 + 0.000125*Jinv_11*Jinv_11);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 732
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 354
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 732
+    // Number of operations to compute element tensor for following IP loop = 320
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -7761,27 +7820,52 @@ public:
       double F4 = 0;
       double F5 = 0;
       
-      // Total number of operations to compute function values = 24
+      // Total number of operations to compute function values = 8
+      for (unsigned int r = 0; r < 2; r++)
+      {
+        F3 += FE0_D10[ip][r]*w[0][nzc0[r]];
+        F4 += FE0_D10[ip][r]*w[0][nzc2[r]];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 12
       for (unsigned int r = 0; r < 3; r++)
       {
         F0 += FE0[ip][r]*w[2][r];
         F1 += FE0[ip][r]*w[0][r];
-        F3 += FE0_D10[ip][r]*w[0][r];
-        F4 += FE0_D01[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Total number of operations to compute function values = 48
-      for (unsigned int r = 0; r < 12; r++)
+      // Total number of operations to compute function values = 24
+      for (unsigned int r = 0; r < 6; r++)
       {
-        F2 += FE1_C0[ip][r]*w[1][r];
-        F5 += FE1_C1[ip][r]*w[1][r];
+        F2 += FE1_C0[ip][r]*w[1][nzc1[r]];
+        F5 += FE1_C0[ip][r]*w[1][nzc3[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 111
+      // Number of operations to compute ip constants: 22
+      // Number of operations: 14
+      const double Gip0 = W4[ip]*(F0*G0 + F1*det + F2*(F3*G1 + F4*G3) + F5*(F3*G2 + F4*G4));
+      
+      // Number of operations: 4
+      const double Gip1 = W4[ip]*(F3*G5 + F4*G6);
+      
+      // Number of operations: 4
+      const double Gip2 = W4[ip]*(F3*G6 + F4*G7);
+      
+      
+      // Number of operations for primary indices = 6
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 37
-        A[j] += (FE0[ip][j]*0.05*F0 + (FE0[ip][j]*F1 + (FE0[ip][j]*(F2*(Jinv_00*F3 + Jinv_10*F4) + F5*(Jinv_01*F3 + Jinv_11*F4)) + ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*F3 + Jinv_10*F4) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*F3 + Jinv_11*F4))*0.005)*0.025*-1))*W4[ip]*det;
+        // Number of operations to compute entry = 2
+        A[j] += FE0[ip][j]*Gip0;
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 8
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry = 2
+        A[nzc0[j]] += FE0_D10[ip][j]*Gip1;
+        // Number of operations to compute entry = 2
+        A[nzc2[j]] += FE0_D10[ip][j]*Gip2;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -8807,6 +8891,7 @@ public:
 // Class typedefs
 typedef Form_0 BilinearForm;
 typedef Form_1 LinearForm;
+typedef Form_0::TestSpace FunctionSpace;
 
 } // namespace AdvectionDiffusion
 

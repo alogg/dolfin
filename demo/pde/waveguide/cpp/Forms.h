@@ -5070,7 +5070,7 @@ public:
 };
 
 // Class typedefs
-typedef Form_0_FunctionSpace_0 FunctionSpace;
+typedef Form_0::TestSpace FunctionSpace;
 
 } // namespace Forms
 

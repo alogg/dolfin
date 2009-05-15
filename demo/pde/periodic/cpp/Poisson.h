@@ -3408,7 +3408,7 @@ public:
 // Class typedefs
 typedef Form_0 BilinearForm;
 typedef Form_1 LinearForm;
-typedef Form_0_FunctionSpace_0 FunctionSpace;
+typedef Form_0::TestSpace FunctionSpace;
 
 } // namespace Poisson
 
