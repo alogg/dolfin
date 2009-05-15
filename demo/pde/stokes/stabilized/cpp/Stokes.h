@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_0_0_0: public ufc::finite_element
+class stokes_0_finite_element_0_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_0_0_0() : ufc::finite_element()
+  stokes_0_finite_element_0_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_0_0_0()
+  virtual ~stokes_0_finite_element_0_0_0()
   {
     // Do nothing
   }
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_0_0_0();
+    return new stokes_0_finite_element_0_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_0_0_1: public ufc::finite_element
+class stokes_0_finite_element_0_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_0_0_1() : ufc::finite_element()
+  stokes_0_finite_element_0_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_0_0_1()
+  virtual ~stokes_0_finite_element_0_0_1()
   {
     // Do nothing
   }
@@ -849,25 +849,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_0_0_1();
+    return new stokes_0_finite_element_0_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_0_0: public ufc::finite_element
+class stokes_0_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_0_0() : ufc::finite_element()
+  stokes_0_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_0_0()
+  virtual ~stokes_0_finite_element_0_0()
   {
     // Do nothing
   }
@@ -1432,13 +1432,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_finite_element_0_0_0();
+      return new stokes_0_finite_element_0_0_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_finite_element_0_0_1();
+      return new stokes_0_finite_element_0_0_1();
       break;
     }
     return 0;
@@ -1448,18 +1448,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_0_1: public ufc::finite_element
+class stokes_0_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_0_1() : ufc::finite_element()
+  stokes_0_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_0_1()
+  virtual ~stokes_0_finite_element_0_1()
   {
     // Do nothing
   }
@@ -1862,25 +1862,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_0_1();
+    return new stokes_0_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_0: public ufc::finite_element
+class stokes_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_0() : ufc::finite_element()
+  stokes_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_0()
+  virtual ~stokes_0_finite_element_0()
   {
     // Do nothing
   }
@@ -2599,13 +2599,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_finite_element_0_0();
+      return new stokes_0_finite_element_0_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_finite_element_0_1();
+      return new stokes_0_finite_element_0_1();
       break;
     }
     return 0;
@@ -2615,18 +2615,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_1_0_0: public ufc::finite_element
+class stokes_0_finite_element_1_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_1_0_0() : ufc::finite_element()
+  stokes_0_finite_element_1_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_1_0_0()
+  virtual ~stokes_0_finite_element_1_0_0()
   {
     // Do nothing
   }
@@ -3029,25 +3029,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_1_0_0();
+    return new stokes_0_finite_element_1_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_1_0_1: public ufc::finite_element
+class stokes_0_finite_element_1_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_1_0_1() : ufc::finite_element()
+  stokes_0_finite_element_1_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_1_0_1()
+  virtual ~stokes_0_finite_element_1_0_1()
   {
     // Do nothing
   }
@@ -3450,25 +3450,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_1_0_1();
+    return new stokes_0_finite_element_1_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_1_0: public ufc::finite_element
+class stokes_0_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_1_0() : ufc::finite_element()
+  stokes_0_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_1_0()
+  virtual ~stokes_0_finite_element_1_0()
   {
     // Do nothing
   }
@@ -4033,13 +4033,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_finite_element_1_0_0();
+      return new stokes_0_finite_element_1_0_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_finite_element_1_0_1();
+      return new stokes_0_finite_element_1_0_1();
       break;
     }
     return 0;
@@ -4049,18 +4049,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_1_1: public ufc::finite_element
+class stokes_0_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_1_1() : ufc::finite_element()
+  stokes_0_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_1_1()
+  virtual ~stokes_0_finite_element_1_1()
   {
     // Do nothing
   }
@@ -4463,25 +4463,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_1_1();
+    return new stokes_0_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_1: public ufc::finite_element
+class stokes_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_1() : ufc::finite_element()
+  stokes_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_1()
+  virtual ~stokes_0_finite_element_1()
   {
     // Do nothing
   }
@@ -5200,13 +5200,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_finite_element_1_0();
+      return new stokes_0_finite_element_1_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_finite_element_1_1();
+      return new stokes_0_finite_element_1_1();
       break;
     }
     return 0;
@@ -5216,18 +5216,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesBilinearForm_finite_element_2: public ufc::finite_element
+class stokes_0_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_finite_element_2() : ufc::finite_element()
+  stokes_0_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_finite_element_2()
+  virtual ~stokes_0_finite_element_2()
   {
     // Do nothing
   }
@@ -5630,7 +5630,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_finite_element_2();
+    return new stokes_0_finite_element_2();
   }
 
 };
@@ -5638,7 +5638,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_0_0_0: public ufc::dof_map
+class stokes_0_dof_map_0_0_0: public ufc::dof_map
 {
 private:
 
@@ -5647,13 +5647,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_0_0_0() : ufc::dof_map()
+  stokes_0_dof_map_0_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_0_0_0()
+  virtual ~stokes_0_dof_map_0_0_0()
   {
     // Do nothing
   }
@@ -5667,7 +5667,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5752,7 +5752,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5798,7 +5798,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_0_0_0();
+    return new stokes_0_dof_map_0_0_0();
   }
 
 };
@@ -5806,7 +5806,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_0_0_1: public ufc::dof_map
+class stokes_0_dof_map_0_0_1: public ufc::dof_map
 {
 private:
 
@@ -5815,13 +5815,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_0_0_1() : ufc::dof_map()
+  stokes_0_dof_map_0_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_0_0_1()
+  virtual ~stokes_0_dof_map_0_0_1()
   {
     // Do nothing
   }
@@ -5835,7 +5835,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5920,7 +5920,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5966,7 +5966,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_0_0_1();
+    return new stokes_0_dof_map_0_0_1();
   }
 
 };
@@ -5974,7 +5974,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_0_0: public ufc::dof_map
+class stokes_0_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -5983,13 +5983,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_0_0() : ufc::dof_map()
+  stokes_0_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_0_0()
+  virtual ~stokes_0_dof_map_0_0()
   {
     // Do nothing
   }
@@ -6003,7 +6003,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6092,7 +6092,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6150,13 +6150,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_dof_map_0_0_0();
+      return new stokes_0_dof_map_0_0_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_dof_map_0_0_1();
+      return new stokes_0_dof_map_0_0_1();
       break;
     }
     return 0;
@@ -6167,7 +6167,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_0_1: public ufc::dof_map
+class stokes_0_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -6176,13 +6176,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_0_1() : ufc::dof_map()
+  stokes_0_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_0_1()
+  virtual ~stokes_0_dof_map_0_1()
   {
     // Do nothing
   }
@@ -6196,7 +6196,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6281,7 +6281,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6327,7 +6327,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_0_1();
+    return new stokes_0_dof_map_0_1();
   }
 
 };
@@ -6335,7 +6335,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_0: public ufc::dof_map
+class stokes_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -6344,13 +6344,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_0() : ufc::dof_map()
+  stokes_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_0()
+  virtual ~stokes_0_dof_map_0()
   {
     // Do nothing
   }
@@ -6364,7 +6364,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6457,7 +6457,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6527,13 +6527,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_dof_map_0_0();
+      return new stokes_0_dof_map_0_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_dof_map_0_1();
+      return new stokes_0_dof_map_0_1();
       break;
     }
     return 0;
@@ -6544,7 +6544,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_1_0_0: public ufc::dof_map
+class stokes_0_dof_map_1_0_0: public ufc::dof_map
 {
 private:
 
@@ -6553,13 +6553,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_1_0_0() : ufc::dof_map()
+  stokes_0_dof_map_1_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_1_0_0()
+  virtual ~stokes_0_dof_map_1_0_0()
   {
     // Do nothing
   }
@@ -6573,7 +6573,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6658,7 +6658,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6704,7 +6704,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_1_0_0();
+    return new stokes_0_dof_map_1_0_0();
   }
 
 };
@@ -6712,7 +6712,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_1_0_1: public ufc::dof_map
+class stokes_0_dof_map_1_0_1: public ufc::dof_map
 {
 private:
 
@@ -6721,13 +6721,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_1_0_1() : ufc::dof_map()
+  stokes_0_dof_map_1_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_1_0_1()
+  virtual ~stokes_0_dof_map_1_0_1()
   {
     // Do nothing
   }
@@ -6741,7 +6741,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6826,7 +6826,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6872,7 +6872,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_1_0_1();
+    return new stokes_0_dof_map_1_0_1();
   }
 
 };
@@ -6880,7 +6880,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_1_0: public ufc::dof_map
+class stokes_0_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -6889,13 +6889,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_1_0() : ufc::dof_map()
+  stokes_0_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_1_0()
+  virtual ~stokes_0_dof_map_1_0()
   {
     // Do nothing
   }
@@ -6909,7 +6909,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6998,7 +6998,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7056,13 +7056,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_dof_map_1_0_0();
+      return new stokes_0_dof_map_1_0_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_dof_map_1_0_1();
+      return new stokes_0_dof_map_1_0_1();
       break;
     }
     return 0;
@@ -7073,7 +7073,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_1_1: public ufc::dof_map
+class stokes_0_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -7082,13 +7082,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_1_1() : ufc::dof_map()
+  stokes_0_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_1_1()
+  virtual ~stokes_0_dof_map_1_1()
   {
     // Do nothing
   }
@@ -7102,7 +7102,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7187,7 +7187,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7233,7 +7233,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_1_1();
+    return new stokes_0_dof_map_1_1();
   }
 
 };
@@ -7241,7 +7241,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_1: public ufc::dof_map
+class stokes_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -7250,13 +7250,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_1() : ufc::dof_map()
+  stokes_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_1()
+  virtual ~stokes_0_dof_map_1()
   {
     // Do nothing
   }
@@ -7270,7 +7270,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7363,7 +7363,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7433,13 +7433,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_dof_map_1_0();
+      return new stokes_0_dof_map_1_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_dof_map_1_1();
+      return new stokes_0_dof_map_1_1();
       break;
     }
     return 0;
@@ -7450,7 +7450,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesBilinearForm_dof_map_2: public ufc::dof_map
+class stokes_0_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -7459,13 +7459,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_dof_map_2() : ufc::dof_map()
+  stokes_0_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_dof_map_2()
+  virtual ~stokes_0_dof_map_2()
   {
     // Do nothing
   }
@@ -7479,7 +7479,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7564,7 +7564,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7610,7 +7610,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_dof_map_2();
+    return new stokes_0_dof_map_2();
   }
 
 };
@@ -7619,18 +7619,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_StokesBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class stokes_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  stokes_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_cell_integral_0_quadrature()
+  virtual ~stokes_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -7686,7 +7686,7 @@ public:
     
     const static double FE1[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     // Array of non-zero columns
@@ -7842,22 +7842,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_StokesBilinearForm_cell_integral_0: public ufc::cell_integral
+class stokes_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_StokesBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  stokes_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm_cell_integral_0() : ufc::cell_integral()
+  stokes_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm_cell_integral_0()
+  virtual ~stokes_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -7971,18 +7971,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_StokesBilinearForm: public ufc::form
+class stokes_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_StokesBilinearForm() : ufc::form()
+  stokes_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesBilinearForm()
+  virtual ~stokes_form_0()
   {
     // Do nothing
   }
@@ -8026,16 +8026,16 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_finite_element_0();
+      return new stokes_0_finite_element_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_finite_element_1();
+      return new stokes_0_finite_element_1();
       break;
     case 2:
-      return new UFC_StokesBilinearForm_finite_element_2();
+      return new stokes_0_finite_element_2();
       break;
     }
     return 0;
@@ -8044,16 +8044,16 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesBilinearForm_dof_map_0();
+      return new stokes_0_dof_map_0();
       break;
     case 1:
-      return new UFC_StokesBilinearForm_dof_map_1();
+      return new stokes_0_dof_map_1();
       break;
     case 2:
-      return new UFC_StokesBilinearForm_dof_map_2();
+      return new stokes_0_dof_map_2();
       break;
     }
     return 0;
@@ -8062,7 +8062,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_StokesBilinearForm_cell_integral_0();
+    return new stokes_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -8081,18 +8081,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_0_0_0: public ufc::finite_element
+class stokes_1_finite_element_0_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_0_0_0() : ufc::finite_element()
+  stokes_1_finite_element_0_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_0_0_0()
+  virtual ~stokes_1_finite_element_0_0_0()
   {
     // Do nothing
   }
@@ -8495,25 +8495,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_finite_element_0_0_0();
+    return new stokes_1_finite_element_0_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_0_0_1: public ufc::finite_element
+class stokes_1_finite_element_0_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_0_0_1() : ufc::finite_element()
+  stokes_1_finite_element_0_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_0_0_1()
+  virtual ~stokes_1_finite_element_0_0_1()
   {
     // Do nothing
   }
@@ -8916,25 +8916,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_finite_element_0_0_1();
+    return new stokes_1_finite_element_0_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_0_0: public ufc::finite_element
+class stokes_1_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_0_0() : ufc::finite_element()
+  stokes_1_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_0_0()
+  virtual ~stokes_1_finite_element_0_0()
   {
     // Do nothing
   }
@@ -9499,13 +9499,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_finite_element_0_0_0();
+      return new stokes_1_finite_element_0_0_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_finite_element_0_0_1();
+      return new stokes_1_finite_element_0_0_1();
       break;
     }
     return 0;
@@ -9515,18 +9515,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_0_1: public ufc::finite_element
+class stokes_1_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_0_1() : ufc::finite_element()
+  stokes_1_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_0_1()
+  virtual ~stokes_1_finite_element_0_1()
   {
     // Do nothing
   }
@@ -9929,25 +9929,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_finite_element_0_1();
+    return new stokes_1_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_0: public ufc::finite_element
+class stokes_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_0() : ufc::finite_element()
+  stokes_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_0()
+  virtual ~stokes_1_finite_element_0()
   {
     // Do nothing
   }
@@ -10666,13 +10666,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_finite_element_0_0();
+      return new stokes_1_finite_element_0_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_finite_element_0_1();
+      return new stokes_1_finite_element_0_1();
       break;
     }
     return 0;
@@ -10682,18 +10682,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_1_0: public ufc::finite_element
+class stokes_1_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_1_0() : ufc::finite_element()
+  stokes_1_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_1_0()
+  virtual ~stokes_1_finite_element_1_0()
   {
     // Do nothing
   }
@@ -11096,25 +11096,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_finite_element_1_0();
+    return new stokes_1_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_1_1: public ufc::finite_element
+class stokes_1_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_1_1() : ufc::finite_element()
+  stokes_1_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_1_1()
+  virtual ~stokes_1_finite_element_1_1()
   {
     // Do nothing
   }
@@ -11517,25 +11517,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_finite_element_1_1();
+    return new stokes_1_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_1: public ufc::finite_element
+class stokes_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_1() : ufc::finite_element()
+  stokes_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_1()
+  virtual ~stokes_1_finite_element_1()
   {
     // Do nothing
   }
@@ -12100,13 +12100,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_finite_element_1_0();
+      return new stokes_1_finite_element_1_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_finite_element_1_1();
+      return new stokes_1_finite_element_1_1();
       break;
     }
     return 0;
@@ -12116,18 +12116,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_StokesLinearForm_finite_element_2: public ufc::finite_element
+class stokes_1_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_finite_element_2() : ufc::finite_element()
+  stokes_1_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_finite_element_2()
+  virtual ~stokes_1_finite_element_2()
   {
     // Do nothing
   }
@@ -12530,7 +12530,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_finite_element_2();
+    return new stokes_1_finite_element_2();
   }
 
 };
@@ -12538,7 +12538,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_0_0_0: public ufc::dof_map
+class stokes_1_dof_map_0_0_0: public ufc::dof_map
 {
 private:
 
@@ -12547,13 +12547,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_0_0_0() : ufc::dof_map()
+  stokes_1_dof_map_0_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_0_0_0()
+  virtual ~stokes_1_dof_map_0_0_0()
   {
     // Do nothing
   }
@@ -12567,7 +12567,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -12652,7 +12652,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -12698,7 +12698,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_dof_map_0_0_0();
+    return new stokes_1_dof_map_0_0_0();
   }
 
 };
@@ -12706,7 +12706,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_0_0_1: public ufc::dof_map
+class stokes_1_dof_map_0_0_1: public ufc::dof_map
 {
 private:
 
@@ -12715,13 +12715,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_0_0_1() : ufc::dof_map()
+  stokes_1_dof_map_0_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_0_0_1()
+  virtual ~stokes_1_dof_map_0_0_1()
   {
     // Do nothing
   }
@@ -12735,7 +12735,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -12820,7 +12820,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -12866,7 +12866,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_dof_map_0_0_1();
+    return new stokes_1_dof_map_0_0_1();
   }
 
 };
@@ -12874,7 +12874,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_0_0: public ufc::dof_map
+class stokes_1_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -12883,13 +12883,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_0_0() : ufc::dof_map()
+  stokes_1_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_0_0()
+  virtual ~stokes_1_dof_map_0_0()
   {
     // Do nothing
   }
@@ -12903,7 +12903,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -12992,7 +12992,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -13050,13 +13050,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_dof_map_0_0_0();
+      return new stokes_1_dof_map_0_0_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_dof_map_0_0_1();
+      return new stokes_1_dof_map_0_0_1();
       break;
     }
     return 0;
@@ -13067,7 +13067,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_0_1: public ufc::dof_map
+class stokes_1_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -13076,13 +13076,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_0_1() : ufc::dof_map()
+  stokes_1_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_0_1()
+  virtual ~stokes_1_dof_map_0_1()
   {
     // Do nothing
   }
@@ -13096,7 +13096,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -13181,7 +13181,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -13227,7 +13227,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_dof_map_0_1();
+    return new stokes_1_dof_map_0_1();
   }
 
 };
@@ -13235,7 +13235,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_0: public ufc::dof_map
+class stokes_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -13244,13 +13244,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_0() : ufc::dof_map()
+  stokes_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_0()
+  virtual ~stokes_1_dof_map_0()
   {
     // Do nothing
   }
@@ -13264,7 +13264,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -13357,7 +13357,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -13427,13 +13427,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_dof_map_0_0();
+      return new stokes_1_dof_map_0_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_dof_map_0_1();
+      return new stokes_1_dof_map_0_1();
       break;
     }
     return 0;
@@ -13444,7 +13444,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_1_0: public ufc::dof_map
+class stokes_1_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -13453,13 +13453,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_1_0() : ufc::dof_map()
+  stokes_1_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_1_0()
+  virtual ~stokes_1_dof_map_1_0()
   {
     // Do nothing
   }
@@ -13473,7 +13473,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -13558,7 +13558,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -13604,7 +13604,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_dof_map_1_0();
+    return new stokes_1_dof_map_1_0();
   }
 
 };
@@ -13612,7 +13612,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_1_1: public ufc::dof_map
+class stokes_1_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -13621,13 +13621,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_1_1() : ufc::dof_map()
+  stokes_1_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_1_1()
+  virtual ~stokes_1_dof_map_1_1()
   {
     // Do nothing
   }
@@ -13641,7 +13641,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -13726,7 +13726,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -13772,7 +13772,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_dof_map_1_1();
+    return new stokes_1_dof_map_1_1();
   }
 
 };
@@ -13780,7 +13780,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_1: public ufc::dof_map
+class stokes_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -13789,13 +13789,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_1() : ufc::dof_map()
+  stokes_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_1()
+  virtual ~stokes_1_dof_map_1()
   {
     // Do nothing
   }
@@ -13809,7 +13809,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -13898,7 +13898,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -13956,13 +13956,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_dof_map_1_0();
+      return new stokes_1_dof_map_1_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_dof_map_1_1();
+      return new stokes_1_dof_map_1_1();
       break;
     }
     return 0;
@@ -13973,7 +13973,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StokesLinearForm_dof_map_2: public ufc::dof_map
+class stokes_1_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -13982,13 +13982,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_dof_map_2() : ufc::dof_map()
+  stokes_1_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_dof_map_2()
+  virtual ~stokes_1_dof_map_2()
   {
     // Do nothing
   }
@@ -14002,7 +14002,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14087,7 +14087,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14133,7 +14133,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_dof_map_2();
+    return new stokes_1_dof_map_2();
   }
 
 };
@@ -14142,18 +14142,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_StokesLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class stokes_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  stokes_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_cell_integral_0_quadrature()
+  virtual ~stokes_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -14191,7 +14191,7 @@ public:
     
     const static double FE1_C0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     // Array of non-zero columns
@@ -14281,22 +14281,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_StokesLinearForm_cell_integral_0: public ufc::cell_integral
+class stokes_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_StokesLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  stokes_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_StokesLinearForm_cell_integral_0() : ufc::cell_integral()
+  stokes_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm_cell_integral_0()
+  virtual ~stokes_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -14338,18 +14338,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_StokesLinearForm: public ufc::form
+class stokes_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_StokesLinearForm() : ufc::form()
+  stokes_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StokesLinearForm()
+  virtual ~stokes_form_1()
   {
     // Do nothing
   }
@@ -14393,16 +14393,16 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_finite_element_0();
+      return new stokes_1_finite_element_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_finite_element_1();
+      return new stokes_1_finite_element_1();
       break;
     case 2:
-      return new UFC_StokesLinearForm_finite_element_2();
+      return new stokes_1_finite_element_2();
       break;
     }
     return 0;
@@ -14411,16 +14411,16 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StokesLinearForm_dof_map_0();
+      return new stokes_1_dof_map_0();
       break;
     case 1:
-      return new UFC_StokesLinearForm_dof_map_1();
+      return new stokes_1_dof_map_1();
       break;
     case 2:
-      return new UFC_StokesLinearForm_dof_map_2();
+      return new stokes_1_dof_map_2();
       break;
     }
     return 0;
@@ -14429,7 +14429,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_StokesLinearForm_cell_integral_0();
+    return new stokes_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -14448,374 +14448,755 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class StokesBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace Stokes
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  StokesBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_0()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class StokesBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  StokesBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_0()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class StokesBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  StokesBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesLinearFormFunctionSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  StokesLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  StokesLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  StokesLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesTestSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StokesTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StokesTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StokesFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StokesLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StokesLinearForm_dof_map_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StokesBilinearFormCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  StokesBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~StokesBilinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const StokesBilinearFormCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new StokesBilinearFormCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    f("f"), h("h")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 2;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "f";
+    case 1: return "h";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference f;
+  CoefficientReference h;
+};
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_f()
+  {
   }
   
-  /// Return coefficient number
+};
+
+class CoefficientSpace_h: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_h(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_h(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_h(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_h(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_h()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_h Form_0_FunctionSpace_2;
+
+class Form_0_Coefficient_h: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_h(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_h()
+  {}
+
+  const Form_0_Coefficient_h& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_h& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "h";
   }
-  
-};
-class StokesBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  StokesBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), h(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  StokesBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), h(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s)
-  StokesBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), h(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->h = w0;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  StokesBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), h(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->h = w0;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesBilinearForm());
-  }
-
-  // Destructor
-  ~StokesBilinearForm() {}
-
-  // Coefficients
-  StokesBilinearFormCoefficient0 h;
 
 };
 
-class StokesLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  StokesLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~StokesLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const StokesLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 1), h(*this)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 1), h(*this)
   {
-    return new StokesLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _h):
+    dolfin::Form(2, 1), h(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _ph = dolfin::reference_to_no_delete_pointer(_h);
+
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _ph):
+    dolfin::Form(2, 1), h(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 1), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 1), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _h):
+    dolfin::Form(2, 1), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _ph = dolfin::reference_to_no_delete_pointer(_h);
+
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _ph):
+    dolfin::Form(2, 1), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    h = coefficients.h.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "h") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "h";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_h;
+
+  // Coefficients
+  Form_0_Coefficient_h h;
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokes_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stokes_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+typedef CoefficientSpace_h Form_1_FunctionSpace_2;
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
+
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class StokesLinearFormCoefficient1 : public dolfin::Coefficient
+
+class Form_1_Coefficient_h: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  StokesLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_h(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_h()
+  {}
 
-  // Destructor  
-  ~StokesLinearFormCoefficient1() {}
-
-  // Attach function to coefficient
-  const StokesLinearFormCoefficient1& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_h& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_h& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new StokesLinearFormCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "h";
   }
-  
+
 };
-class StokesLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  StokesLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this), h(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 2), f(*this), h(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  StokesLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this), h(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 2), f(*this), h(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  StokesLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), h(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f, dolfin::Function & _h):
+    dolfin::Form(1, 2), f(*this), h(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
-    this->h = w1;
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+    boost::shared_ptr<dolfin::Function> _ph = dolfin::reference_to_no_delete_pointer(_h);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
+    f = _pf;
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  StokesLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), h(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _ph):
+    dolfin::Form(1, 2), f(*this), h(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
-    this->h = w1;
+    f = _pf;
+    h = _ph;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StokesLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 2), f(*this), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 2), f(*this), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f, dolfin::Function & _h):
+    dolfin::Form(1, 2), f(*this), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+    boost::shared_ptr<dolfin::Function> _ph = dolfin::reference_to_no_delete_pointer(_h);
+
+    f = _pf;
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _ph):
+    dolfin::Form(1, 2), f(*this), h(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    f = _pf;
+    h = _ph;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokes_form_1());
   }
 
   // Destructor
-  ~StokesLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    f = coefficients.f.function_pointer();
+    h = coefficients.h.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "f") return 0;
+    else if(name == "h") return 1;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "f";
+      case 1: return "h";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_h;
 
   // Coefficients
-  StokesLinearFormCoefficient0 f;
-  StokesLinearFormCoefficient1 h;
-
+  Form_1_Coefficient_f f;
+  Form_1_Coefficient_h h;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+
+} // namespace Stokes
 
 #endif

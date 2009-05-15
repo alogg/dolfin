@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_LiftFunctional_finite_element_0: public ufc::finite_element
+class lift_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_LiftFunctional_finite_element_0() : ufc::finite_element()
+  lift_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_finite_element_0()
+  virtual ~lift_0_finite_element_0()
   {
     // Do nothing
   }
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_LiftFunctional_finite_element_0();
+    return new lift_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_LiftFunctional_finite_element_1_0: public ufc::finite_element
+class lift_0_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_LiftFunctional_finite_element_1_0() : ufc::finite_element()
+  lift_0_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_finite_element_1_0()
+  virtual ~lift_0_finite_element_1_0()
   {
     // Do nothing
   }
@@ -815,25 +815,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_LiftFunctional_finite_element_1_0();
+    return new lift_0_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_LiftFunctional_finite_element_1_1: public ufc::finite_element
+class lift_0_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_LiftFunctional_finite_element_1_1() : ufc::finite_element()
+  lift_0_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_finite_element_1_1()
+  virtual ~lift_0_finite_element_1_1()
   {
     // Do nothing
   }
@@ -1202,25 +1202,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_LiftFunctional_finite_element_1_1();
+    return new lift_0_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_LiftFunctional_finite_element_1: public ufc::finite_element
+class lift_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_LiftFunctional_finite_element_1() : ufc::finite_element()
+  lift_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_finite_element_1()
+  virtual ~lift_0_finite_element_1()
   {
     // Do nothing
   }
@@ -1717,13 +1717,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_LiftFunctional_finite_element_1_0();
+      return new lift_0_finite_element_1_0();
       break;
     case 1:
-      return new UFC_LiftFunctional_finite_element_1_1();
+      return new lift_0_finite_element_1_1();
       break;
     }
     return 0;
@@ -1734,7 +1734,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_LiftFunctional_dof_map_0: public ufc::dof_map
+class lift_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -1743,13 +1743,13 @@ private:
 public:
 
   /// Constructor
-  UFC_LiftFunctional_dof_map_0() : ufc::dof_map()
+  lift_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_dof_map_0()
+  virtual ~lift_0_dof_map_0()
   {
     // Do nothing
   }
@@ -1763,7 +1763,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1848,7 +1848,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1894,7 +1894,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_LiftFunctional_dof_map_0();
+    return new lift_0_dof_map_0();
   }
 
 };
@@ -1902,7 +1902,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_LiftFunctional_dof_map_1_0: public ufc::dof_map
+class lift_0_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -1911,13 +1911,13 @@ private:
 public:
 
   /// Constructor
-  UFC_LiftFunctional_dof_map_1_0() : ufc::dof_map()
+  lift_0_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_dof_map_1_0()
+  virtual ~lift_0_dof_map_1_0()
   {
     // Do nothing
   }
@@ -1931,7 +1931,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -2014,7 +2014,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -2053,7 +2053,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_LiftFunctional_dof_map_1_0();
+    return new lift_0_dof_map_1_0();
   }
 
 };
@@ -2061,7 +2061,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_LiftFunctional_dof_map_1_1: public ufc::dof_map
+class lift_0_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -2070,13 +2070,13 @@ private:
 public:
 
   /// Constructor
-  UFC_LiftFunctional_dof_map_1_1() : ufc::dof_map()
+  lift_0_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_dof_map_1_1()
+  virtual ~lift_0_dof_map_1_1()
   {
     // Do nothing
   }
@@ -2090,7 +2090,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -2173,7 +2173,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -2212,7 +2212,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_LiftFunctional_dof_map_1_1();
+    return new lift_0_dof_map_1_1();
   }
 
 };
@@ -2220,7 +2220,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_LiftFunctional_dof_map_1: public ufc::dof_map
+class lift_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -2229,13 +2229,13 @@ private:
 public:
 
   /// Constructor
-  UFC_LiftFunctional_dof_map_1() : ufc::dof_map()
+  lift_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_dof_map_1()
+  virtual ~lift_0_dof_map_1()
   {
     // Do nothing
   }
@@ -2249,7 +2249,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -2334,7 +2334,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -2375,13 +2375,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_LiftFunctional_dof_map_1_0();
+      return new lift_0_dof_map_1_0();
       break;
     case 1:
-      return new UFC_LiftFunctional_dof_map_1_1();
+      return new lift_0_dof_map_1_1();
       break;
     }
     return 0;
@@ -2393,18 +2393,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_LiftFunctional_exterior_facet_integral_0_quadrature: public ufc::exterior_facet_integral
+class lift_0_exterior_facet_integral_0_quadrature: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  UFC_LiftFunctional_exterior_facet_integral_0_quadrature() : ufc::exterior_facet_integral()
+  lift_0_exterior_facet_integral_0_quadrature() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_exterior_facet_integral_0_quadrature()
+  virtual ~lift_0_exterior_facet_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -2548,22 +2548,22 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_LiftFunctional_exterior_facet_integral_0: public ufc::exterior_facet_integral
+class lift_0_exterior_facet_integral_0: public ufc::exterior_facet_integral
 {
 private:
 
-  UFC_LiftFunctional_exterior_facet_integral_0_quadrature integral_0_quadrature;
+  lift_0_exterior_facet_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_LiftFunctional_exterior_facet_integral_0() : ufc::exterior_facet_integral()
+  lift_0_exterior_facet_integral_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional_exterior_facet_integral_0()
+  virtual ~lift_0_exterior_facet_integral_0()
   {
     // Do nothing
   }
@@ -2598,18 +2598,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_LiftFunctional: public ufc::form
+class lift_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_LiftFunctional() : ufc::form()
+  lift_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_LiftFunctional()
+  virtual ~lift_form_0()
   {
     // Do nothing
   }
@@ -2653,13 +2653,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_LiftFunctional_finite_element_0();
+      return new lift_0_finite_element_0();
       break;
     case 1:
-      return new UFC_LiftFunctional_finite_element_1();
+      return new lift_0_finite_element_1();
       break;
     }
     return 0;
@@ -2668,13 +2668,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_LiftFunctional_dof_map_0();
+      return new lift_0_dof_map_0();
       break;
     case 1:
-      return new UFC_LiftFunctional_dof_map_1();
+      return new lift_0_dof_map_1();
       break;
     }
     return 0;
@@ -2689,7 +2689,7 @@ public:
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
   {
-    return new UFC_LiftFunctional_exterior_facet_integral_0();
+    return new lift_0_exterior_facet_integral_0();
   }
 
   /// Create a new interior facet integral on sub domain i
@@ -2702,145 +2702,364 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class LiftFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
+namespace Lift
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  LiftFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_0()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class LiftFunctionalCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  LiftFunctionalCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_LiftFunctional_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_LiftFunctional_dof_map_1()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class LiftFunctionalCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  LiftFunctionalCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~LiftFunctionalCoefficient0() {}
-
-  // Attach function to coefficient
-  const LiftFunctionalCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new LiftFunctionalCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    n("n"), p("p")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 2;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "n";
+    case 1: return "p";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference n;
+  CoefficientReference p;
+};
+
+class CoefficientSpace_n: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_n(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_n(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_n(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_n(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_n()
+  {
   }
   
-  /// Return coefficient number
+};
+
+class CoefficientSpace_p: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_p(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_p(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_p()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_p Form_0_FunctionSpace_0;
+
+typedef CoefficientSpace_n Form_0_FunctionSpace_1;
+
+class Form_0_Coefficient_p: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_p(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_p()
+  {}
+
+  const Form_0_Coefficient_p& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_p& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_0(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "p";
   }
-  
+
 };
-class LiftFunctionalCoefficient1 : public dolfin::Coefficient
+
+class Form_0_Coefficient_n: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  LiftFunctionalCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_n(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_n()
+  {}
 
-  // Destructor  
-  ~LiftFunctionalCoefficient1() {}
-
-  // Attach function to coefficient
-  const LiftFunctionalCoefficient1& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_n& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_n& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new LiftFunctionalCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "n";
   }
-  
+
 };
-class LiftFunctional : public dolfin::Form
+
+class Form_0: public dolfin::Form
 {
 public:
 
-  // Create form
-  LiftFunctional() : dolfin::Form(), p(*this), n(*this)
+  // Constructor
+  Form_0():
+    dolfin::Form(0, 2), p(*this), n(*this)
   {
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
   }
 
-  // Create form with given coefficient(s)
-  LiftFunctional(dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), p(*this), n(*this)
+  // Constructor
+  Form_0(const CoefficientSet & coefficients):
+    dolfin::Form(0, 2), p(*this), n(*this)
   {
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    update_coefficients(coefficients);
 
-    this->p = w0;
-    this->n = w1;
+    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
+  }
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_LiftFunctional());
+  // Constructor
+  Form_0(dolfin::Function & _p, dolfin::Function & _n):
+    dolfin::Form(0, 2), p(*this), n(*this)
+  {
+    boost::shared_ptr<dolfin::Function> _pp = dolfin::reference_to_no_delete_pointer(_p);
+    boost::shared_ptr<dolfin::Function> _pn = dolfin::reference_to_no_delete_pointer(_n);
+
+    p = _pp;
+    n = _pn;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<dolfin::Function> _pp, boost::shared_ptr<dolfin::Function> _pn):
+    dolfin::Form(0, 2), p(*this), n(*this)
+  {
+    p = _pp;
+    n = _pn;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
   }
 
   // Destructor
-  ~LiftFunctional() {}
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    p = coefficients.p.function_pointer();
+    n = coefficients.n.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "p") return 0;
+    else if(name == "n") return 1;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "p";
+      case 1: return "n";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 CoefficientSpace_p;
+  typedef Form_0_FunctionSpace_1 CoefficientSpace_n;
 
   // Coefficients
-  LiftFunctionalCoefficient0 p;
-  LiftFunctionalCoefficient1 n;
-
+  Form_0_Coefficient_p p;
+  Form_0_Coefficient_n n;
 };
+
+// Class typedefs
+typedef Form_0 Functional;
+
+} // namespace Lift
 
 #endif

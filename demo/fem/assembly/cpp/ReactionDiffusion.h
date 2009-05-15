@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_ReactionDiffusionBilinearForm_finite_element_0: public ufc::finite_element
+class reactiondiffusion_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm_finite_element_0() : ufc::finite_element()
+  reactiondiffusion_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm_finite_element_0()
+  virtual ~reactiondiffusion_0_finite_element_0()
   {
     // Do nothing
   }
@@ -537,25 +537,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionBilinearForm_finite_element_0();
+    return new reactiondiffusion_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ReactionDiffusionBilinearForm_finite_element_1: public ufc::finite_element
+class reactiondiffusion_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm_finite_element_1() : ufc::finite_element()
+  reactiondiffusion_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm_finite_element_1()
+  virtual ~reactiondiffusion_0_finite_element_1()
   {
     // Do nothing
   }
@@ -1067,7 +1067,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionBilinearForm_finite_element_1();
+    return new reactiondiffusion_0_finite_element_1();
   }
 
 };
@@ -1075,7 +1075,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ReactionDiffusionBilinearForm_dof_map_0: public ufc::dof_map
+class reactiondiffusion_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -1084,13 +1084,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm_dof_map_0() : ufc::dof_map()
+  reactiondiffusion_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm_dof_map_0()
+  virtual ~reactiondiffusion_0_dof_map_0()
   {
     // Do nothing
   }
@@ -1104,7 +1104,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1193,7 +1193,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1253,7 +1253,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionBilinearForm_dof_map_0();
+    return new reactiondiffusion_0_dof_map_0();
   }
 
 };
@@ -1261,7 +1261,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ReactionDiffusionBilinearForm_dof_map_1: public ufc::dof_map
+class reactiondiffusion_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1270,13 +1270,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm_dof_map_1() : ufc::dof_map()
+  reactiondiffusion_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm_dof_map_1()
+  virtual ~reactiondiffusion_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1290,7 +1290,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1379,7 +1379,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1439,7 +1439,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionBilinearForm_dof_map_1();
+    return new reactiondiffusion_0_dof_map_1();
   }
 
 };
@@ -1448,18 +1448,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ReactionDiffusionBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class reactiondiffusion_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  reactiondiffusion_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm_cell_integral_0_quadrature()
+  virtual ~reactiondiffusion_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1540,8 +1540,8 @@ public:
     {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
     {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
     {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
-    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.0813956670146703, 0.303772764814707, 0.0706797241593969, 0.544151844011225},
+    {0.0658386870600444, 0.245713325211713, 0.565933165072801, 0.122514822655441},
     {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
     
     // Number of operations to compute geometry constants: 36
@@ -1628,22 +1628,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ReactionDiffusionBilinearForm_cell_integral_0: public ufc::cell_integral
+class reactiondiffusion_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_ReactionDiffusionBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  reactiondiffusion_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm_cell_integral_0() : ufc::cell_integral()
+  reactiondiffusion_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm_cell_integral_0()
+  virtual ~reactiondiffusion_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -1692,18 +1692,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ReactionDiffusionBilinearForm: public ufc::form
+class reactiondiffusion_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionBilinearForm() : ufc::form()
+  reactiondiffusion_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionBilinearForm()
+  virtual ~reactiondiffusion_form_0()
   {
     // Do nothing
   }
@@ -1747,13 +1747,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ReactionDiffusionBilinearForm_finite_element_0();
+      return new reactiondiffusion_0_finite_element_0();
       break;
     case 1:
-      return new UFC_ReactionDiffusionBilinearForm_finite_element_1();
+      return new reactiondiffusion_0_finite_element_1();
       break;
     }
     return 0;
@@ -1762,13 +1762,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ReactionDiffusionBilinearForm_dof_map_0();
+      return new reactiondiffusion_0_dof_map_0();
       break;
     case 1:
-      return new UFC_ReactionDiffusionBilinearForm_dof_map_1();
+      return new reactiondiffusion_0_dof_map_1();
       break;
     }
     return 0;
@@ -1777,7 +1777,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionBilinearForm_cell_integral_0();
+    return new reactiondiffusion_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -1796,18 +1796,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ReactionDiffusionLinearForm_finite_element_0: public ufc::finite_element
+class reactiondiffusion_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm_finite_element_0() : ufc::finite_element()
+  reactiondiffusion_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm_finite_element_0()
+  virtual ~reactiondiffusion_1_finite_element_0()
   {
     // Do nothing
   }
@@ -2319,25 +2319,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionLinearForm_finite_element_0();
+    return new reactiondiffusion_1_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ReactionDiffusionLinearForm_finite_element_1: public ufc::finite_element
+class reactiondiffusion_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm_finite_element_1() : ufc::finite_element()
+  reactiondiffusion_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm_finite_element_1()
+  virtual ~reactiondiffusion_1_finite_element_1()
   {
     // Do nothing
   }
@@ -2849,7 +2849,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionLinearForm_finite_element_1();
+    return new reactiondiffusion_1_finite_element_1();
   }
 
 };
@@ -2857,7 +2857,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ReactionDiffusionLinearForm_dof_map_0: public ufc::dof_map
+class reactiondiffusion_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2866,13 +2866,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm_dof_map_0() : ufc::dof_map()
+  reactiondiffusion_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm_dof_map_0()
+  virtual ~reactiondiffusion_1_dof_map_0()
   {
     // Do nothing
   }
@@ -2886,7 +2886,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -2975,7 +2975,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -3035,7 +3035,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionLinearForm_dof_map_0();
+    return new reactiondiffusion_1_dof_map_0();
   }
 
 };
@@ -3043,7 +3043,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ReactionDiffusionLinearForm_dof_map_1: public ufc::dof_map
+class reactiondiffusion_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -3052,13 +3052,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm_dof_map_1() : ufc::dof_map()
+  reactiondiffusion_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm_dof_map_1()
+  virtual ~reactiondiffusion_1_dof_map_1()
   {
     // Do nothing
   }
@@ -3072,7 +3072,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -3161,7 +3161,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -3221,7 +3221,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionLinearForm_dof_map_1();
+    return new reactiondiffusion_1_dof_map_1();
   }
 
 };
@@ -3230,18 +3230,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ReactionDiffusionLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class reactiondiffusion_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  reactiondiffusion_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm_cell_integral_0_quadrature()
+  virtual ~reactiondiffusion_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -3291,8 +3291,8 @@ public:
     {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
     {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
     {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
-    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.0813956670146703, 0.303772764814707, 0.0706797241593969, 0.544151844011225},
+    {0.0658386870600444, 0.245713325211713, 0.565933165072801, 0.122514822655441},
     {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
     
     // Compute element tensor using UFL quadrature representation
@@ -3333,22 +3333,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ReactionDiffusionLinearForm_cell_integral_0: public ufc::cell_integral
+class reactiondiffusion_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_ReactionDiffusionLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  reactiondiffusion_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm_cell_integral_0() : ufc::cell_integral()
+  reactiondiffusion_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm_cell_integral_0()
+  virtual ~reactiondiffusion_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -3385,18 +3385,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ReactionDiffusionLinearForm: public ufc::form
+class reactiondiffusion_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ReactionDiffusionLinearForm() : ufc::form()
+  reactiondiffusion_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ReactionDiffusionLinearForm()
+  virtual ~reactiondiffusion_form_1()
   {
     // Do nothing
   }
@@ -3440,13 +3440,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ReactionDiffusionLinearForm_finite_element_0();
+      return new reactiondiffusion_1_finite_element_0();
       break;
     case 1:
-      return new UFC_ReactionDiffusionLinearForm_finite_element_1();
+      return new reactiondiffusion_1_finite_element_1();
       break;
     }
     return 0;
@@ -3455,13 +3455,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ReactionDiffusionLinearForm_dof_map_0();
+      return new reactiondiffusion_1_dof_map_0();
       break;
     case 1:
-      return new UFC_ReactionDiffusionLinearForm_dof_map_1();
+      return new reactiondiffusion_1_dof_map_1();
       break;
     }
     return 0;
@@ -3470,7 +3470,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ReactionDiffusionLinearForm_cell_integral_0();
+    return new reactiondiffusion_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -3489,246 +3489,549 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class ReactionDiffusionBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace ReactionDiffusion
+{
+
+class CoefficientReference
+{
+public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
+
+  CoefficientReference& operator=(dolfin::Function & f)
+  {
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
+  }
+
+  std::string name() const
+  {
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
 {
 public:
 
-  ReactionDiffusionBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  CoefficientSet():
+    f("f")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 1;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "f";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference f;
+};
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class ReactionDiffusionBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  ReactionDiffusionBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_f()
+  {
+  }
+  
 };
 
-class ReactionDiffusionLinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  ReactionDiffusionLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class ReactionDiffusionLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  ReactionDiffusionLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
 };
 
-class ReactionDiffusionTestSpace : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  ReactionDiffusionTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class ReactionDiffusionTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  ReactionDiffusionTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
 };
 
-class ReactionDiffusionCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  ReactionDiffusionCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ReactionDiffusionFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  ReactionDiffusionFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ReactionDiffusionLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ReactionDiffusionLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ReactionDiffusionBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  ReactionDiffusionBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ReactionDiffusionBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  ReactionDiffusionBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ReactionDiffusionBilinearForm());
-  }
-
-  // Destructor
-  ~ReactionDiffusionBilinearForm() {}
-
-};
-
-class ReactionDiffusionLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  ReactionDiffusionLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~ReactionDiffusionLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const ReactionDiffusionLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 0)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
   {
-    return new ReactionDiffusionLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new reactiondiffusion_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new reactiondiffusion_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
+
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class ReactionDiffusionLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  ReactionDiffusionLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ReactionDiffusionLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  ReactionDiffusionLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ReactionDiffusionLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  ReactionDiffusionLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ReactionDiffusionLinearForm());
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  ReactionDiffusionLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ReactionDiffusionLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new reactiondiffusion_form_1());
   }
 
   // Destructor
-  ~ReactionDiffusionLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    f = coefficients.f.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "f") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "f";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
 
   // Coefficients
-  ReactionDiffusionLinearFormCoefficient0 f;
-
+  Form_1_Coefficient_f f;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+typedef Form_0_FunctionSpace_0 FunctionSpace;
+
+} // namespace ReactionDiffusion
 
 #endif

@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_0_0: public ufc::finite_element
+class elastodynamics_0_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_0_0() : ufc::finite_element()
+  elastodynamics_0_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_0_0()
+  virtual ~elastodynamics_0_finite_element_0_0()
   {
     // Do nothing
   }
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_0_0();
+    return new elastodynamics_0_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_0_1: public ufc::finite_element
+class elastodynamics_0_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_0_1() : ufc::finite_element()
+  elastodynamics_0_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_0_1()
+  virtual ~elastodynamics_0_finite_element_0_1()
   {
     // Do nothing
   }
@@ -849,25 +849,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_0_1();
+    return new elastodynamics_0_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_0: public ufc::finite_element
+class elastodynamics_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_0() : ufc::finite_element()
+  elastodynamics_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_0()
+  virtual ~elastodynamics_0_finite_element_0()
   {
     // Do nothing
   }
@@ -1432,13 +1432,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_0_0();
+      return new elastodynamics_0_finite_element_0_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_0_1();
+      return new elastodynamics_0_finite_element_0_1();
       break;
     }
     return 0;
@@ -1448,18 +1448,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_1_0: public ufc::finite_element
+class elastodynamics_0_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_1_0() : ufc::finite_element()
+  elastodynamics_0_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_1_0()
+  virtual ~elastodynamics_0_finite_element_1_0()
   {
     // Do nothing
   }
@@ -1862,25 +1862,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_1_0();
+    return new elastodynamics_0_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_1_1: public ufc::finite_element
+class elastodynamics_0_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_1_1() : ufc::finite_element()
+  elastodynamics_0_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_1_1()
+  virtual ~elastodynamics_0_finite_element_1_1()
   {
     // Do nothing
   }
@@ -2283,25 +2283,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_1_1();
+    return new elastodynamics_0_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_1: public ufc::finite_element
+class elastodynamics_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_1() : ufc::finite_element()
+  elastodynamics_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_1()
+  virtual ~elastodynamics_0_finite_element_1()
   {
     // Do nothing
   }
@@ -2866,13 +2866,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_1_0();
+      return new elastodynamics_0_finite_element_1_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_1_1();
+      return new elastodynamics_0_finite_element_1_1();
       break;
     }
     return 0;
@@ -2882,18 +2882,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_2: public ufc::finite_element
+class elastodynamics_0_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_2() : ufc::finite_element()
+  elastodynamics_0_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_2()
+  virtual ~elastodynamics_0_finite_element_2()
   {
     // Do nothing
   }
@@ -3262,25 +3262,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_2();
+    return new elastodynamics_0_finite_element_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_3: public ufc::finite_element
+class elastodynamics_0_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_3() : ufc::finite_element()
+  elastodynamics_0_finite_element_3() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_3()
+  virtual ~elastodynamics_0_finite_element_3()
   {
     // Do nothing
   }
@@ -3649,25 +3649,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_3();
+    return new elastodynamics_0_finite_element_3();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_4: public ufc::finite_element
+class elastodynamics_0_finite_element_4: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_4() : ufc::finite_element()
+  elastodynamics_0_finite_element_4() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_4()
+  virtual ~elastodynamics_0_finite_element_4()
   {
     // Do nothing
   }
@@ -4036,25 +4036,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_4();
+    return new elastodynamics_0_finite_element_4();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_5: public ufc::finite_element
+class elastodynamics_0_finite_element_5: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_5() : ufc::finite_element()
+  elastodynamics_0_finite_element_5() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_5()
+  virtual ~elastodynamics_0_finite_element_5()
   {
     // Do nothing
   }
@@ -4423,25 +4423,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_5();
+    return new elastodynamics_0_finite_element_5();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_6: public ufc::finite_element
+class elastodynamics_0_finite_element_6: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_6() : ufc::finite_element()
+  elastodynamics_0_finite_element_6() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_6()
+  virtual ~elastodynamics_0_finite_element_6()
   {
     // Do nothing
   }
@@ -4810,25 +4810,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_6();
+    return new elastodynamics_0_finite_element_6();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_7: public ufc::finite_element
+class elastodynamics_0_finite_element_7: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_7() : ufc::finite_element()
+  elastodynamics_0_finite_element_7() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_7()
+  virtual ~elastodynamics_0_finite_element_7()
   {
     // Do nothing
   }
@@ -5197,25 +5197,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_7();
+    return new elastodynamics_0_finite_element_7();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_8: public ufc::finite_element
+class elastodynamics_0_finite_element_8: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_8() : ufc::finite_element()
+  elastodynamics_0_finite_element_8() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_8()
+  virtual ~elastodynamics_0_finite_element_8()
   {
     // Do nothing
   }
@@ -5584,25 +5584,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_8();
+    return new elastodynamics_0_finite_element_8();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_9: public ufc::finite_element
+class elastodynamics_0_finite_element_9: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_9() : ufc::finite_element()
+  elastodynamics_0_finite_element_9() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_9()
+  virtual ~elastodynamics_0_finite_element_9()
   {
     // Do nothing
   }
@@ -5971,25 +5971,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_9();
+    return new elastodynamics_0_finite_element_9();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsBilinearForm_finite_element_10: public ufc::finite_element
+class elastodynamics_0_finite_element_10: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_finite_element_10() : ufc::finite_element()
+  elastodynamics_0_finite_element_10() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_finite_element_10()
+  virtual ~elastodynamics_0_finite_element_10()
   {
     // Do nothing
   }
@@ -6358,7 +6358,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_finite_element_10();
+    return new elastodynamics_0_finite_element_10();
   }
 
 };
@@ -6366,7 +6366,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_0_0: public ufc::dof_map
+class elastodynamics_0_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -6375,13 +6375,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_0_0() : ufc::dof_map()
+  elastodynamics_0_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_0_0()
+  virtual ~elastodynamics_0_dof_map_0_0()
   {
     // Do nothing
   }
@@ -6395,7 +6395,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6480,7 +6480,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6526,7 +6526,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_0_0();
+    return new elastodynamics_0_dof_map_0_0();
   }
 
 };
@@ -6534,7 +6534,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_0_1: public ufc::dof_map
+class elastodynamics_0_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -6543,13 +6543,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_0_1() : ufc::dof_map()
+  elastodynamics_0_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_0_1()
+  virtual ~elastodynamics_0_dof_map_0_1()
   {
     // Do nothing
   }
@@ -6563,7 +6563,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6648,7 +6648,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6694,7 +6694,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_0_1();
+    return new elastodynamics_0_dof_map_0_1();
   }
 
 };
@@ -6702,7 +6702,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_0: public ufc::dof_map
+class elastodynamics_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -6711,13 +6711,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_0() : ufc::dof_map()
+  elastodynamics_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_0()
+  virtual ~elastodynamics_0_dof_map_0()
   {
     // Do nothing
   }
@@ -6731,7 +6731,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6820,7 +6820,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6878,13 +6878,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_0_0();
+      return new elastodynamics_0_dof_map_0_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_0_1();
+      return new elastodynamics_0_dof_map_0_1();
       break;
     }
     return 0;
@@ -6895,7 +6895,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_1_0: public ufc::dof_map
+class elastodynamics_0_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -6904,13 +6904,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_1_0() : ufc::dof_map()
+  elastodynamics_0_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_1_0()
+  virtual ~elastodynamics_0_dof_map_1_0()
   {
     // Do nothing
   }
@@ -6924,7 +6924,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7009,7 +7009,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7055,7 +7055,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_1_0();
+    return new elastodynamics_0_dof_map_1_0();
   }
 
 };
@@ -7063,7 +7063,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_1_1: public ufc::dof_map
+class elastodynamics_0_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -7072,13 +7072,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_1_1() : ufc::dof_map()
+  elastodynamics_0_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_1_1()
+  virtual ~elastodynamics_0_dof_map_1_1()
   {
     // Do nothing
   }
@@ -7092,7 +7092,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7177,7 +7177,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7223,7 +7223,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_1_1();
+    return new elastodynamics_0_dof_map_1_1();
   }
 
 };
@@ -7231,7 +7231,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_1: public ufc::dof_map
+class elastodynamics_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -7240,13 +7240,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_1() : ufc::dof_map()
+  elastodynamics_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_1()
+  virtual ~elastodynamics_0_dof_map_1()
   {
     // Do nothing
   }
@@ -7260,7 +7260,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7349,7 +7349,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7407,13 +7407,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_1_0();
+      return new elastodynamics_0_dof_map_1_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_1_1();
+      return new elastodynamics_0_dof_map_1_1();
       break;
     }
     return 0;
@@ -7424,7 +7424,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_2: public ufc::dof_map
+class elastodynamics_0_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -7433,13 +7433,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_2() : ufc::dof_map()
+  elastodynamics_0_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_2()
+  virtual ~elastodynamics_0_dof_map_2()
   {
     // Do nothing
   }
@@ -7453,7 +7453,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7536,7 +7536,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7575,7 +7575,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_2();
+    return new elastodynamics_0_dof_map_2();
   }
 
 };
@@ -7583,7 +7583,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_3: public ufc::dof_map
+class elastodynamics_0_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -7592,13 +7592,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_3() : ufc::dof_map()
+  elastodynamics_0_dof_map_3() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_3()
+  virtual ~elastodynamics_0_dof_map_3()
   {
     // Do nothing
   }
@@ -7612,7 +7612,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7695,7 +7695,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7734,7 +7734,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_3();
+    return new elastodynamics_0_dof_map_3();
   }
 
 };
@@ -7742,7 +7742,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_4: public ufc::dof_map
+class elastodynamics_0_dof_map_4: public ufc::dof_map
 {
 private:
 
@@ -7751,13 +7751,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_4() : ufc::dof_map()
+  elastodynamics_0_dof_map_4() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_4()
+  virtual ~elastodynamics_0_dof_map_4()
   {
     // Do nothing
   }
@@ -7771,7 +7771,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7854,7 +7854,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7893,7 +7893,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_4();
+    return new elastodynamics_0_dof_map_4();
   }
 
 };
@@ -7901,7 +7901,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_5: public ufc::dof_map
+class elastodynamics_0_dof_map_5: public ufc::dof_map
 {
 private:
 
@@ -7910,13 +7910,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_5() : ufc::dof_map()
+  elastodynamics_0_dof_map_5() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_5()
+  virtual ~elastodynamics_0_dof_map_5()
   {
     // Do nothing
   }
@@ -7930,7 +7930,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -8013,7 +8013,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -8052,7 +8052,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_5();
+    return new elastodynamics_0_dof_map_5();
   }
 
 };
@@ -8060,7 +8060,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_6: public ufc::dof_map
+class elastodynamics_0_dof_map_6: public ufc::dof_map
 {
 private:
 
@@ -8069,13 +8069,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_6() : ufc::dof_map()
+  elastodynamics_0_dof_map_6() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_6()
+  virtual ~elastodynamics_0_dof_map_6()
   {
     // Do nothing
   }
@@ -8089,7 +8089,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -8172,7 +8172,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -8211,7 +8211,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_6();
+    return new elastodynamics_0_dof_map_6();
   }
 
 };
@@ -8219,7 +8219,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_7: public ufc::dof_map
+class elastodynamics_0_dof_map_7: public ufc::dof_map
 {
 private:
 
@@ -8228,13 +8228,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_7() : ufc::dof_map()
+  elastodynamics_0_dof_map_7() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_7()
+  virtual ~elastodynamics_0_dof_map_7()
   {
     // Do nothing
   }
@@ -8248,7 +8248,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -8331,7 +8331,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -8370,7 +8370,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_7();
+    return new elastodynamics_0_dof_map_7();
   }
 
 };
@@ -8378,7 +8378,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_8: public ufc::dof_map
+class elastodynamics_0_dof_map_8: public ufc::dof_map
 {
 private:
 
@@ -8387,13 +8387,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_8() : ufc::dof_map()
+  elastodynamics_0_dof_map_8() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_8()
+  virtual ~elastodynamics_0_dof_map_8()
   {
     // Do nothing
   }
@@ -8407,7 +8407,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -8490,7 +8490,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -8529,7 +8529,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_8();
+    return new elastodynamics_0_dof_map_8();
   }
 
 };
@@ -8537,7 +8537,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_9: public ufc::dof_map
+class elastodynamics_0_dof_map_9: public ufc::dof_map
 {
 private:
 
@@ -8546,13 +8546,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_9() : ufc::dof_map()
+  elastodynamics_0_dof_map_9() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_9()
+  virtual ~elastodynamics_0_dof_map_9()
   {
     // Do nothing
   }
@@ -8566,7 +8566,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -8649,7 +8649,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -8688,7 +8688,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_9();
+    return new elastodynamics_0_dof_map_9();
   }
 
 };
@@ -8696,7 +8696,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsBilinearForm_dof_map_10: public ufc::dof_map
+class elastodynamics_0_dof_map_10: public ufc::dof_map
 {
 private:
 
@@ -8705,13 +8705,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_dof_map_10() : ufc::dof_map()
+  elastodynamics_0_dof_map_10() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_dof_map_10()
+  virtual ~elastodynamics_0_dof_map_10()
   {
     // Do nothing
   }
@@ -8725,7 +8725,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -8808,7 +8808,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -8847,7 +8847,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_dof_map_10();
+    return new elastodynamics_0_dof_map_10();
   }
 
 };
@@ -8856,18 +8856,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ElastoDynamicsBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class elastodynamics_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  elastodynamics_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_cell_integral_0_quadrature()
+  virtual ~elastodynamics_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -8919,7 +8919,7 @@ public:
     
     const static double FE0_C1[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     // Array of non-zero columns
@@ -9044,22 +9044,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ElastoDynamicsBilinearForm_cell_integral_0: public ufc::cell_integral
+class elastodynamics_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_ElastoDynamicsBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  elastodynamics_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm_cell_integral_0() : ufc::cell_integral()
+  elastodynamics_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm_cell_integral_0()
+  virtual ~elastodynamics_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -9128,18 +9128,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ElastoDynamicsBilinearForm: public ufc::form
+class elastodynamics_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsBilinearForm() : ufc::form()
+  elastodynamics_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsBilinearForm()
+  virtual ~elastodynamics_form_0()
   {
     // Do nothing
   }
@@ -9183,40 +9183,40 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_0();
+      return new elastodynamics_0_finite_element_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_1();
+      return new elastodynamics_0_finite_element_1();
       break;
     case 2:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_2();
+      return new elastodynamics_0_finite_element_2();
       break;
     case 3:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_3();
+      return new elastodynamics_0_finite_element_3();
       break;
     case 4:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_4();
+      return new elastodynamics_0_finite_element_4();
       break;
     case 5:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_5();
+      return new elastodynamics_0_finite_element_5();
       break;
     case 6:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_6();
+      return new elastodynamics_0_finite_element_6();
       break;
     case 7:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_7();
+      return new elastodynamics_0_finite_element_7();
       break;
     case 8:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_8();
+      return new elastodynamics_0_finite_element_8();
       break;
     case 9:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_9();
+      return new elastodynamics_0_finite_element_9();
       break;
     case 10:
-      return new UFC_ElastoDynamicsBilinearForm_finite_element_10();
+      return new elastodynamics_0_finite_element_10();
       break;
     }
     return 0;
@@ -9225,40 +9225,40 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_0();
+      return new elastodynamics_0_dof_map_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_1();
+      return new elastodynamics_0_dof_map_1();
       break;
     case 2:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_2();
+      return new elastodynamics_0_dof_map_2();
       break;
     case 3:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_3();
+      return new elastodynamics_0_dof_map_3();
       break;
     case 4:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_4();
+      return new elastodynamics_0_dof_map_4();
       break;
     case 5:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_5();
+      return new elastodynamics_0_dof_map_5();
       break;
     case 6:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_6();
+      return new elastodynamics_0_dof_map_6();
       break;
     case 7:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_7();
+      return new elastodynamics_0_dof_map_7();
       break;
     case 8:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_8();
+      return new elastodynamics_0_dof_map_8();
       break;
     case 9:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_9();
+      return new elastodynamics_0_dof_map_9();
       break;
     case 10:
-      return new UFC_ElastoDynamicsBilinearForm_dof_map_10();
+      return new elastodynamics_0_dof_map_10();
       break;
     }
     return 0;
@@ -9267,7 +9267,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsBilinearForm_cell_integral_0();
+    return new elastodynamics_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -9286,18 +9286,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_0_0: public ufc::finite_element
+class elastodynamics_1_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_0_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_0_0()
+  virtual ~elastodynamics_1_finite_element_0_0()
   {
     // Do nothing
   }
@@ -9700,25 +9700,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_0_0();
+    return new elastodynamics_1_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_0_1: public ufc::finite_element
+class elastodynamics_1_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_0_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_0_1()
+  virtual ~elastodynamics_1_finite_element_0_1()
   {
     // Do nothing
   }
@@ -10121,25 +10121,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_0_1();
+    return new elastodynamics_1_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_0: public ufc::finite_element
+class elastodynamics_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_0()
+  virtual ~elastodynamics_1_finite_element_0()
   {
     // Do nothing
   }
@@ -10704,13 +10704,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_0_0();
+      return new elastodynamics_1_finite_element_0_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_0_1();
+      return new elastodynamics_1_finite_element_0_1();
       break;
     }
     return 0;
@@ -10720,18 +10720,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_1_0: public ufc::finite_element
+class elastodynamics_1_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_1_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_1_0()
+  virtual ~elastodynamics_1_finite_element_1_0()
   {
     // Do nothing
   }
@@ -11134,25 +11134,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_1_0();
+    return new elastodynamics_1_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_1_1: public ufc::finite_element
+class elastodynamics_1_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_1_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_1_1()
+  virtual ~elastodynamics_1_finite_element_1_1()
   {
     // Do nothing
   }
@@ -11555,25 +11555,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_1_1();
+    return new elastodynamics_1_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_1: public ufc::finite_element
+class elastodynamics_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_1()
+  virtual ~elastodynamics_1_finite_element_1()
   {
     // Do nothing
   }
@@ -12138,13 +12138,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_1_0();
+      return new elastodynamics_1_finite_element_1_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_1_1();
+      return new elastodynamics_1_finite_element_1_1();
       break;
     }
     return 0;
@@ -12154,18 +12154,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_2_0: public ufc::finite_element
+class elastodynamics_1_finite_element_2_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_2_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_2_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_2_0()
+  virtual ~elastodynamics_1_finite_element_2_0()
   {
     // Do nothing
   }
@@ -12568,25 +12568,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_2_0();
+    return new elastodynamics_1_finite_element_2_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_2_1: public ufc::finite_element
+class elastodynamics_1_finite_element_2_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_2_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_2_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_2_1()
+  virtual ~elastodynamics_1_finite_element_2_1()
   {
     // Do nothing
   }
@@ -12989,25 +12989,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_2_1();
+    return new elastodynamics_1_finite_element_2_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_2: public ufc::finite_element
+class elastodynamics_1_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_2() : ufc::finite_element()
+  elastodynamics_1_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_2()
+  virtual ~elastodynamics_1_finite_element_2()
   {
     // Do nothing
   }
@@ -13572,13 +13572,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_2_0();
+      return new elastodynamics_1_finite_element_2_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_2_1();
+      return new elastodynamics_1_finite_element_2_1();
       break;
     }
     return 0;
@@ -13588,18 +13588,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_3_0: public ufc::finite_element
+class elastodynamics_1_finite_element_3_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_3_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_3_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_3_0()
+  virtual ~elastodynamics_1_finite_element_3_0()
   {
     // Do nothing
   }
@@ -14002,25 +14002,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_3_0();
+    return new elastodynamics_1_finite_element_3_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_3_1: public ufc::finite_element
+class elastodynamics_1_finite_element_3_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_3_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_3_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_3_1()
+  virtual ~elastodynamics_1_finite_element_3_1()
   {
     // Do nothing
   }
@@ -14423,25 +14423,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_3_1();
+    return new elastodynamics_1_finite_element_3_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_3: public ufc::finite_element
+class elastodynamics_1_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_3() : ufc::finite_element()
+  elastodynamics_1_finite_element_3() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_3()
+  virtual ~elastodynamics_1_finite_element_3()
   {
     // Do nothing
   }
@@ -15006,13 +15006,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_3_0();
+      return new elastodynamics_1_finite_element_3_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_3_1();
+      return new elastodynamics_1_finite_element_3_1();
       break;
     }
     return 0;
@@ -15022,18 +15022,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_4_0: public ufc::finite_element
+class elastodynamics_1_finite_element_4_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_4_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_4_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_4_0()
+  virtual ~elastodynamics_1_finite_element_4_0()
   {
     // Do nothing
   }
@@ -15436,25 +15436,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_4_0();
+    return new elastodynamics_1_finite_element_4_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_4_1: public ufc::finite_element
+class elastodynamics_1_finite_element_4_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_4_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_4_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_4_1()
+  virtual ~elastodynamics_1_finite_element_4_1()
   {
     // Do nothing
   }
@@ -15857,25 +15857,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_4_1();
+    return new elastodynamics_1_finite_element_4_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_4: public ufc::finite_element
+class elastodynamics_1_finite_element_4: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_4() : ufc::finite_element()
+  elastodynamics_1_finite_element_4() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_4()
+  virtual ~elastodynamics_1_finite_element_4()
   {
     // Do nothing
   }
@@ -16440,13 +16440,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_4_0();
+      return new elastodynamics_1_finite_element_4_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_4_1();
+      return new elastodynamics_1_finite_element_4_1();
       break;
     }
     return 0;
@@ -16456,18 +16456,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_5_0: public ufc::finite_element
+class elastodynamics_1_finite_element_5_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_5_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_5_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_5_0()
+  virtual ~elastodynamics_1_finite_element_5_0()
   {
     // Do nothing
   }
@@ -16836,25 +16836,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_5_0();
+    return new elastodynamics_1_finite_element_5_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_5_1: public ufc::finite_element
+class elastodynamics_1_finite_element_5_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_5_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_5_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_5_1()
+  virtual ~elastodynamics_1_finite_element_5_1()
   {
     // Do nothing
   }
@@ -17223,25 +17223,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_5_1();
+    return new elastodynamics_1_finite_element_5_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_5: public ufc::finite_element
+class elastodynamics_1_finite_element_5: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_5() : ufc::finite_element()
+  elastodynamics_1_finite_element_5() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_5()
+  virtual ~elastodynamics_1_finite_element_5()
   {
     // Do nothing
   }
@@ -17738,13 +17738,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_5_0();
+      return new elastodynamics_1_finite_element_5_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_5_1();
+      return new elastodynamics_1_finite_element_5_1();
       break;
     }
     return 0;
@@ -17754,18 +17754,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_6_0: public ufc::finite_element
+class elastodynamics_1_finite_element_6_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_6_0() : ufc::finite_element()
+  elastodynamics_1_finite_element_6_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_6_0()
+  virtual ~elastodynamics_1_finite_element_6_0()
   {
     // Do nothing
   }
@@ -18168,25 +18168,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_6_0();
+    return new elastodynamics_1_finite_element_6_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_6_1: public ufc::finite_element
+class elastodynamics_1_finite_element_6_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_6_1() : ufc::finite_element()
+  elastodynamics_1_finite_element_6_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_6_1()
+  virtual ~elastodynamics_1_finite_element_6_1()
   {
     // Do nothing
   }
@@ -18589,25 +18589,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_6_1();
+    return new elastodynamics_1_finite_element_6_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_6: public ufc::finite_element
+class elastodynamics_1_finite_element_6: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_6() : ufc::finite_element()
+  elastodynamics_1_finite_element_6() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_6()
+  virtual ~elastodynamics_1_finite_element_6()
   {
     // Do nothing
   }
@@ -19172,13 +19172,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_6_0();
+      return new elastodynamics_1_finite_element_6_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_6_1();
+      return new elastodynamics_1_finite_element_6_1();
       break;
     }
     return 0;
@@ -19188,18 +19188,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_7: public ufc::finite_element
+class elastodynamics_1_finite_element_7: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_7() : ufc::finite_element()
+  elastodynamics_1_finite_element_7() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_7()
+  virtual ~elastodynamics_1_finite_element_7()
   {
     // Do nothing
   }
@@ -19568,25 +19568,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_7();
+    return new elastodynamics_1_finite_element_7();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_8: public ufc::finite_element
+class elastodynamics_1_finite_element_8: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_8() : ufc::finite_element()
+  elastodynamics_1_finite_element_8() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_8()
+  virtual ~elastodynamics_1_finite_element_8()
   {
     // Do nothing
   }
@@ -19955,25 +19955,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_8();
+    return new elastodynamics_1_finite_element_8();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_9: public ufc::finite_element
+class elastodynamics_1_finite_element_9: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_9() : ufc::finite_element()
+  elastodynamics_1_finite_element_9() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_9()
+  virtual ~elastodynamics_1_finite_element_9()
   {
     // Do nothing
   }
@@ -20342,25 +20342,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_9();
+    return new elastodynamics_1_finite_element_9();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_10: public ufc::finite_element
+class elastodynamics_1_finite_element_10: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_10() : ufc::finite_element()
+  elastodynamics_1_finite_element_10() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_10()
+  virtual ~elastodynamics_1_finite_element_10()
   {
     // Do nothing
   }
@@ -20729,25 +20729,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_10();
+    return new elastodynamics_1_finite_element_10();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_11: public ufc::finite_element
+class elastodynamics_1_finite_element_11: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_11() : ufc::finite_element()
+  elastodynamics_1_finite_element_11() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_11()
+  virtual ~elastodynamics_1_finite_element_11()
   {
     // Do nothing
   }
@@ -21116,25 +21116,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_11();
+    return new elastodynamics_1_finite_element_11();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_12: public ufc::finite_element
+class elastodynamics_1_finite_element_12: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_12() : ufc::finite_element()
+  elastodynamics_1_finite_element_12() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_12()
+  virtual ~elastodynamics_1_finite_element_12()
   {
     // Do nothing
   }
@@ -21503,25 +21503,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_12();
+    return new elastodynamics_1_finite_element_12();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_13: public ufc::finite_element
+class elastodynamics_1_finite_element_13: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_13() : ufc::finite_element()
+  elastodynamics_1_finite_element_13() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_13()
+  virtual ~elastodynamics_1_finite_element_13()
   {
     // Do nothing
   }
@@ -21890,25 +21890,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_13();
+    return new elastodynamics_1_finite_element_13();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_14: public ufc::finite_element
+class elastodynamics_1_finite_element_14: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_14() : ufc::finite_element()
+  elastodynamics_1_finite_element_14() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_14()
+  virtual ~elastodynamics_1_finite_element_14()
   {
     // Do nothing
   }
@@ -22277,25 +22277,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_14();
+    return new elastodynamics_1_finite_element_14();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_ElastoDynamicsLinearForm_finite_element_15: public ufc::finite_element
+class elastodynamics_1_finite_element_15: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_finite_element_15() : ufc::finite_element()
+  elastodynamics_1_finite_element_15() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_finite_element_15()
+  virtual ~elastodynamics_1_finite_element_15()
   {
     // Do nothing
   }
@@ -22664,7 +22664,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_finite_element_15();
+    return new elastodynamics_1_finite_element_15();
   }
 
 };
@@ -22672,7 +22672,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_0_0: public ufc::dof_map
+class elastodynamics_1_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -22681,13 +22681,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_0_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_0_0()
+  virtual ~elastodynamics_1_dof_map_0_0()
   {
     // Do nothing
   }
@@ -22701,7 +22701,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -22786,7 +22786,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -22832,7 +22832,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_0_0();
+    return new elastodynamics_1_dof_map_0_0();
   }
 
 };
@@ -22840,7 +22840,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_0_1: public ufc::dof_map
+class elastodynamics_1_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -22849,13 +22849,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_0_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_0_1()
+  virtual ~elastodynamics_1_dof_map_0_1()
   {
     // Do nothing
   }
@@ -22869,7 +22869,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -22954,7 +22954,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -23000,7 +23000,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_0_1();
+    return new elastodynamics_1_dof_map_0_1();
   }
 
 };
@@ -23008,7 +23008,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_0: public ufc::dof_map
+class elastodynamics_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -23017,13 +23017,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_0()
+  virtual ~elastodynamics_1_dof_map_0()
   {
     // Do nothing
   }
@@ -23037,7 +23037,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -23126,7 +23126,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -23184,13 +23184,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_0_0();
+      return new elastodynamics_1_dof_map_0_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_0_1();
+      return new elastodynamics_1_dof_map_0_1();
       break;
     }
     return 0;
@@ -23201,7 +23201,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_1_0: public ufc::dof_map
+class elastodynamics_1_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -23210,13 +23210,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_1_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_1_0()
+  virtual ~elastodynamics_1_dof_map_1_0()
   {
     // Do nothing
   }
@@ -23230,7 +23230,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -23315,7 +23315,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -23361,7 +23361,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_1_0();
+    return new elastodynamics_1_dof_map_1_0();
   }
 
 };
@@ -23369,7 +23369,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_1_1: public ufc::dof_map
+class elastodynamics_1_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -23378,13 +23378,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_1_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_1_1()
+  virtual ~elastodynamics_1_dof_map_1_1()
   {
     // Do nothing
   }
@@ -23398,7 +23398,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -23483,7 +23483,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -23529,7 +23529,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_1_1();
+    return new elastodynamics_1_dof_map_1_1();
   }
 
 };
@@ -23537,7 +23537,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_1: public ufc::dof_map
+class elastodynamics_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -23546,13 +23546,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_1()
+  virtual ~elastodynamics_1_dof_map_1()
   {
     // Do nothing
   }
@@ -23566,7 +23566,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -23655,7 +23655,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -23713,13 +23713,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_1_0();
+      return new elastodynamics_1_dof_map_1_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_1_1();
+      return new elastodynamics_1_dof_map_1_1();
       break;
     }
     return 0;
@@ -23730,7 +23730,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_2_0: public ufc::dof_map
+class elastodynamics_1_dof_map_2_0: public ufc::dof_map
 {
 private:
 
@@ -23739,13 +23739,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_2_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_2_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_2_0()
+  virtual ~elastodynamics_1_dof_map_2_0()
   {
     // Do nothing
   }
@@ -23759,7 +23759,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -23844,7 +23844,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -23890,7 +23890,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_2_0();
+    return new elastodynamics_1_dof_map_2_0();
   }
 
 };
@@ -23898,7 +23898,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_2_1: public ufc::dof_map
+class elastodynamics_1_dof_map_2_1: public ufc::dof_map
 {
 private:
 
@@ -23907,13 +23907,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_2_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_2_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_2_1()
+  virtual ~elastodynamics_1_dof_map_2_1()
   {
     // Do nothing
   }
@@ -23927,7 +23927,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -24012,7 +24012,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -24058,7 +24058,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_2_1();
+    return new elastodynamics_1_dof_map_2_1();
   }
 
 };
@@ -24066,7 +24066,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_2: public ufc::dof_map
+class elastodynamics_1_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -24075,13 +24075,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_2() : ufc::dof_map()
+  elastodynamics_1_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_2()
+  virtual ~elastodynamics_1_dof_map_2()
   {
     // Do nothing
   }
@@ -24095,7 +24095,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -24184,7 +24184,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -24242,13 +24242,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_2_0();
+      return new elastodynamics_1_dof_map_2_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_2_1();
+      return new elastodynamics_1_dof_map_2_1();
       break;
     }
     return 0;
@@ -24259,7 +24259,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_3_0: public ufc::dof_map
+class elastodynamics_1_dof_map_3_0: public ufc::dof_map
 {
 private:
 
@@ -24268,13 +24268,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_3_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_3_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_3_0()
+  virtual ~elastodynamics_1_dof_map_3_0()
   {
     // Do nothing
   }
@@ -24288,7 +24288,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -24373,7 +24373,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -24419,7 +24419,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_3_0();
+    return new elastodynamics_1_dof_map_3_0();
   }
 
 };
@@ -24427,7 +24427,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_3_1: public ufc::dof_map
+class elastodynamics_1_dof_map_3_1: public ufc::dof_map
 {
 private:
 
@@ -24436,13 +24436,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_3_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_3_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_3_1()
+  virtual ~elastodynamics_1_dof_map_3_1()
   {
     // Do nothing
   }
@@ -24456,7 +24456,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -24541,7 +24541,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -24587,7 +24587,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_3_1();
+    return new elastodynamics_1_dof_map_3_1();
   }
 
 };
@@ -24595,7 +24595,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_3: public ufc::dof_map
+class elastodynamics_1_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -24604,13 +24604,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_3() : ufc::dof_map()
+  elastodynamics_1_dof_map_3() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_3()
+  virtual ~elastodynamics_1_dof_map_3()
   {
     // Do nothing
   }
@@ -24624,7 +24624,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -24713,7 +24713,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -24771,13 +24771,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_3_0();
+      return new elastodynamics_1_dof_map_3_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_3_1();
+      return new elastodynamics_1_dof_map_3_1();
       break;
     }
     return 0;
@@ -24788,7 +24788,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_4_0: public ufc::dof_map
+class elastodynamics_1_dof_map_4_0: public ufc::dof_map
 {
 private:
 
@@ -24797,13 +24797,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_4_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_4_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_4_0()
+  virtual ~elastodynamics_1_dof_map_4_0()
   {
     // Do nothing
   }
@@ -24817,7 +24817,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -24902,7 +24902,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -24948,7 +24948,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_4_0();
+    return new elastodynamics_1_dof_map_4_0();
   }
 
 };
@@ -24956,7 +24956,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_4_1: public ufc::dof_map
+class elastodynamics_1_dof_map_4_1: public ufc::dof_map
 {
 private:
 
@@ -24965,13 +24965,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_4_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_4_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_4_1()
+  virtual ~elastodynamics_1_dof_map_4_1()
   {
     // Do nothing
   }
@@ -24985,7 +24985,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -25070,7 +25070,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -25116,7 +25116,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_4_1();
+    return new elastodynamics_1_dof_map_4_1();
   }
 
 };
@@ -25124,7 +25124,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_4: public ufc::dof_map
+class elastodynamics_1_dof_map_4: public ufc::dof_map
 {
 private:
 
@@ -25133,13 +25133,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_4() : ufc::dof_map()
+  elastodynamics_1_dof_map_4() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_4()
+  virtual ~elastodynamics_1_dof_map_4()
   {
     // Do nothing
   }
@@ -25153,7 +25153,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -25242,7 +25242,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -25300,13 +25300,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_4_0();
+      return new elastodynamics_1_dof_map_4_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_4_1();
+      return new elastodynamics_1_dof_map_4_1();
       break;
     }
     return 0;
@@ -25317,7 +25317,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_5_0: public ufc::dof_map
+class elastodynamics_1_dof_map_5_0: public ufc::dof_map
 {
 private:
 
@@ -25326,13 +25326,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_5_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_5_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_5_0()
+  virtual ~elastodynamics_1_dof_map_5_0()
   {
     // Do nothing
   }
@@ -25346,7 +25346,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -25429,7 +25429,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -25468,7 +25468,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_5_0();
+    return new elastodynamics_1_dof_map_5_0();
   }
 
 };
@@ -25476,7 +25476,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_5_1: public ufc::dof_map
+class elastodynamics_1_dof_map_5_1: public ufc::dof_map
 {
 private:
 
@@ -25485,13 +25485,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_5_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_5_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_5_1()
+  virtual ~elastodynamics_1_dof_map_5_1()
   {
     // Do nothing
   }
@@ -25505,7 +25505,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -25588,7 +25588,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -25627,7 +25627,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_5_1();
+    return new elastodynamics_1_dof_map_5_1();
   }
 
 };
@@ -25635,7 +25635,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_5: public ufc::dof_map
+class elastodynamics_1_dof_map_5: public ufc::dof_map
 {
 private:
 
@@ -25644,13 +25644,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_5() : ufc::dof_map()
+  elastodynamics_1_dof_map_5() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_5()
+  virtual ~elastodynamics_1_dof_map_5()
   {
     // Do nothing
   }
@@ -25664,7 +25664,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -25749,7 +25749,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -25790,13 +25790,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_5_0();
+      return new elastodynamics_1_dof_map_5_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_5_1();
+      return new elastodynamics_1_dof_map_5_1();
       break;
     }
     return 0;
@@ -25807,7 +25807,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_6_0: public ufc::dof_map
+class elastodynamics_1_dof_map_6_0: public ufc::dof_map
 {
 private:
 
@@ -25816,13 +25816,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_6_0() : ufc::dof_map()
+  elastodynamics_1_dof_map_6_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_6_0()
+  virtual ~elastodynamics_1_dof_map_6_0()
   {
     // Do nothing
   }
@@ -25836,7 +25836,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -25921,7 +25921,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -25967,7 +25967,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_6_0();
+    return new elastodynamics_1_dof_map_6_0();
   }
 
 };
@@ -25975,7 +25975,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_6_1: public ufc::dof_map
+class elastodynamics_1_dof_map_6_1: public ufc::dof_map
 {
 private:
 
@@ -25984,13 +25984,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_6_1() : ufc::dof_map()
+  elastodynamics_1_dof_map_6_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_6_1()
+  virtual ~elastodynamics_1_dof_map_6_1()
   {
     // Do nothing
   }
@@ -26004,7 +26004,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -26089,7 +26089,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -26135,7 +26135,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_6_1();
+    return new elastodynamics_1_dof_map_6_1();
   }
 
 };
@@ -26143,7 +26143,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_6: public ufc::dof_map
+class elastodynamics_1_dof_map_6: public ufc::dof_map
 {
 private:
 
@@ -26152,13 +26152,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_6() : ufc::dof_map()
+  elastodynamics_1_dof_map_6() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_6()
+  virtual ~elastodynamics_1_dof_map_6()
   {
     // Do nothing
   }
@@ -26172,7 +26172,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -26261,7 +26261,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -26319,13 +26319,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_6_0();
+      return new elastodynamics_1_dof_map_6_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_6_1();
+      return new elastodynamics_1_dof_map_6_1();
       break;
     }
     return 0;
@@ -26336,7 +26336,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_7: public ufc::dof_map
+class elastodynamics_1_dof_map_7: public ufc::dof_map
 {
 private:
 
@@ -26345,13 +26345,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_7() : ufc::dof_map()
+  elastodynamics_1_dof_map_7() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_7()
+  virtual ~elastodynamics_1_dof_map_7()
   {
     // Do nothing
   }
@@ -26365,7 +26365,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -26448,7 +26448,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -26487,7 +26487,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_7();
+    return new elastodynamics_1_dof_map_7();
   }
 
 };
@@ -26495,7 +26495,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_8: public ufc::dof_map
+class elastodynamics_1_dof_map_8: public ufc::dof_map
 {
 private:
 
@@ -26504,13 +26504,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_8() : ufc::dof_map()
+  elastodynamics_1_dof_map_8() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_8()
+  virtual ~elastodynamics_1_dof_map_8()
   {
     // Do nothing
   }
@@ -26524,7 +26524,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -26607,7 +26607,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -26646,7 +26646,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_8();
+    return new elastodynamics_1_dof_map_8();
   }
 
 };
@@ -26654,7 +26654,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_9: public ufc::dof_map
+class elastodynamics_1_dof_map_9: public ufc::dof_map
 {
 private:
 
@@ -26663,13 +26663,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_9() : ufc::dof_map()
+  elastodynamics_1_dof_map_9() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_9()
+  virtual ~elastodynamics_1_dof_map_9()
   {
     // Do nothing
   }
@@ -26683,7 +26683,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -26766,7 +26766,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -26805,7 +26805,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_9();
+    return new elastodynamics_1_dof_map_9();
   }
 
 };
@@ -26813,7 +26813,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_10: public ufc::dof_map
+class elastodynamics_1_dof_map_10: public ufc::dof_map
 {
 private:
 
@@ -26822,13 +26822,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_10() : ufc::dof_map()
+  elastodynamics_1_dof_map_10() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_10()
+  virtual ~elastodynamics_1_dof_map_10()
   {
     // Do nothing
   }
@@ -26842,7 +26842,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -26925,7 +26925,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -26964,7 +26964,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_10();
+    return new elastodynamics_1_dof_map_10();
   }
 
 };
@@ -26972,7 +26972,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_11: public ufc::dof_map
+class elastodynamics_1_dof_map_11: public ufc::dof_map
 {
 private:
 
@@ -26981,13 +26981,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_11() : ufc::dof_map()
+  elastodynamics_1_dof_map_11() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_11()
+  virtual ~elastodynamics_1_dof_map_11()
   {
     // Do nothing
   }
@@ -27001,7 +27001,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -27084,7 +27084,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -27123,7 +27123,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_11();
+    return new elastodynamics_1_dof_map_11();
   }
 
 };
@@ -27131,7 +27131,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_12: public ufc::dof_map
+class elastodynamics_1_dof_map_12: public ufc::dof_map
 {
 private:
 
@@ -27140,13 +27140,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_12() : ufc::dof_map()
+  elastodynamics_1_dof_map_12() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_12()
+  virtual ~elastodynamics_1_dof_map_12()
   {
     // Do nothing
   }
@@ -27160,7 +27160,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -27243,7 +27243,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -27282,7 +27282,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_12();
+    return new elastodynamics_1_dof_map_12();
   }
 
 };
@@ -27290,7 +27290,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_13: public ufc::dof_map
+class elastodynamics_1_dof_map_13: public ufc::dof_map
 {
 private:
 
@@ -27299,13 +27299,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_13() : ufc::dof_map()
+  elastodynamics_1_dof_map_13() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_13()
+  virtual ~elastodynamics_1_dof_map_13()
   {
     // Do nothing
   }
@@ -27319,7 +27319,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -27402,7 +27402,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -27441,7 +27441,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_13();
+    return new elastodynamics_1_dof_map_13();
   }
 
 };
@@ -27449,7 +27449,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_14: public ufc::dof_map
+class elastodynamics_1_dof_map_14: public ufc::dof_map
 {
 private:
 
@@ -27458,13 +27458,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_14() : ufc::dof_map()
+  elastodynamics_1_dof_map_14() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_14()
+  virtual ~elastodynamics_1_dof_map_14()
   {
     // Do nothing
   }
@@ -27478,7 +27478,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -27561,7 +27561,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -27600,7 +27600,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_14();
+    return new elastodynamics_1_dof_map_14();
   }
 
 };
@@ -27608,7 +27608,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_ElastoDynamicsLinearForm_dof_map_15: public ufc::dof_map
+class elastodynamics_1_dof_map_15: public ufc::dof_map
 {
 private:
 
@@ -27617,13 +27617,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_dof_map_15() : ufc::dof_map()
+  elastodynamics_1_dof_map_15() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_dof_map_15()
+  virtual ~elastodynamics_1_dof_map_15()
   {
     // Do nothing
   }
@@ -27637,7 +27637,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -27720,7 +27720,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -27759,7 +27759,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_dof_map_15();
+    return new elastodynamics_1_dof_map_15();
   }
 
 };
@@ -27768,18 +27768,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ElastoDynamicsLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class elastodynamics_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  elastodynamics_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_cell_integral_0_quadrature()
+  virtual ~elastodynamics_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -27831,7 +27831,7 @@ public:
     
     const static double FE0_C1[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     // Array of non-zero columns
@@ -27947,22 +27947,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_ElastoDynamicsLinearForm_cell_integral_0: public ufc::cell_integral
+class elastodynamics_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_ElastoDynamicsLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  elastodynamics_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_cell_integral_0() : ufc::cell_integral()
+  elastodynamics_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_cell_integral_0()
+  virtual ~elastodynamics_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -27990,7 +27990,7 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_ElastoDynamicsLinearForm_exterior_facet_integral_0: public ufc::exterior_facet_integral
+class elastodynamics_1_exterior_facet_integral_0: public ufc::exterior_facet_integral
 {
 private:
 
@@ -27998,13 +27998,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_exterior_facet_integral_0() : ufc::exterior_facet_integral()
+  elastodynamics_1_exterior_facet_integral_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_exterior_facet_integral_0()
+  virtual ~elastodynamics_1_exterior_facet_integral_0()
   {
     // Do nothing
   }
@@ -28032,7 +28032,7 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_ElastoDynamicsLinearForm_exterior_facet_integral_1: public ufc::exterior_facet_integral
+class elastodynamics_1_exterior_facet_integral_1: public ufc::exterior_facet_integral
 {
 private:
 
@@ -28040,13 +28040,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_exterior_facet_integral_1() : ufc::exterior_facet_integral()
+  elastodynamics_1_exterior_facet_integral_1() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_exterior_facet_integral_1()
+  virtual ~elastodynamics_1_exterior_facet_integral_1()
   {
     // Do nothing
   }
@@ -28074,7 +28074,7 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_ElastoDynamicsLinearForm_exterior_facet_integral_2: public ufc::exterior_facet_integral
+class elastodynamics_1_exterior_facet_integral_2: public ufc::exterior_facet_integral
 {
 private:
 
@@ -28082,13 +28082,13 @@ private:
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_exterior_facet_integral_2() : ufc::exterior_facet_integral()
+  elastodynamics_1_exterior_facet_integral_2() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_exterior_facet_integral_2()
+  virtual ~elastodynamics_1_exterior_facet_integral_2()
   {
     // Do nothing
   }
@@ -28116,18 +28116,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3_quadrature: public ufc::exterior_facet_integral
+class elastodynamics_1_exterior_facet_integral_3_quadrature: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3_quadrature() : ufc::exterior_facet_integral()
+  elastodynamics_1_exterior_facet_integral_3_quadrature() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3_quadrature()
+  virtual ~elastodynamics_1_exterior_facet_integral_3_quadrature()
   {
     // Do nothing
   }
@@ -28327,22 +28327,22 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3: public ufc::exterior_facet_integral
+class elastodynamics_1_exterior_facet_integral_3: public ufc::exterior_facet_integral
 {
 private:
 
-  UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3_quadrature integral_3_quadrature;
+  elastodynamics_1_exterior_facet_integral_3_quadrature integral_3_quadrature;
 
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3() : ufc::exterior_facet_integral()
+  elastodynamics_1_exterior_facet_integral_3() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3()
+  virtual ~elastodynamics_1_exterior_facet_integral_3()
   {
     // Do nothing
   }
@@ -28382,18 +28382,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_ElastoDynamicsLinearForm: public ufc::form
+class elastodynamics_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_ElastoDynamicsLinearForm() : ufc::form()
+  elastodynamics_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_ElastoDynamicsLinearForm()
+  virtual ~elastodynamics_form_1()
   {
     // Do nothing
   }
@@ -28437,55 +28437,55 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_0();
+      return new elastodynamics_1_finite_element_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_1();
+      return new elastodynamics_1_finite_element_1();
       break;
     case 2:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_2();
+      return new elastodynamics_1_finite_element_2();
       break;
     case 3:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_3();
+      return new elastodynamics_1_finite_element_3();
       break;
     case 4:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_4();
+      return new elastodynamics_1_finite_element_4();
       break;
     case 5:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_5();
+      return new elastodynamics_1_finite_element_5();
       break;
     case 6:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_6();
+      return new elastodynamics_1_finite_element_6();
       break;
     case 7:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_7();
+      return new elastodynamics_1_finite_element_7();
       break;
     case 8:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_8();
+      return new elastodynamics_1_finite_element_8();
       break;
     case 9:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_9();
+      return new elastodynamics_1_finite_element_9();
       break;
     case 10:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_10();
+      return new elastodynamics_1_finite_element_10();
       break;
     case 11:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_11();
+      return new elastodynamics_1_finite_element_11();
       break;
     case 12:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_12();
+      return new elastodynamics_1_finite_element_12();
       break;
     case 13:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_13();
+      return new elastodynamics_1_finite_element_13();
       break;
     case 14:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_14();
+      return new elastodynamics_1_finite_element_14();
       break;
     case 15:
-      return new UFC_ElastoDynamicsLinearForm_finite_element_15();
+      return new elastodynamics_1_finite_element_15();
       break;
     }
     return 0;
@@ -28494,55 +28494,55 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_0();
+      return new elastodynamics_1_dof_map_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_1();
+      return new elastodynamics_1_dof_map_1();
       break;
     case 2:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_2();
+      return new elastodynamics_1_dof_map_2();
       break;
     case 3:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_3();
+      return new elastodynamics_1_dof_map_3();
       break;
     case 4:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_4();
+      return new elastodynamics_1_dof_map_4();
       break;
     case 5:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_5();
+      return new elastodynamics_1_dof_map_5();
       break;
     case 6:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_6();
+      return new elastodynamics_1_dof_map_6();
       break;
     case 7:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_7();
+      return new elastodynamics_1_dof_map_7();
       break;
     case 8:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_8();
+      return new elastodynamics_1_dof_map_8();
       break;
     case 9:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_9();
+      return new elastodynamics_1_dof_map_9();
       break;
     case 10:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_10();
+      return new elastodynamics_1_dof_map_10();
       break;
     case 11:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_11();
+      return new elastodynamics_1_dof_map_11();
       break;
     case 12:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_12();
+      return new elastodynamics_1_dof_map_12();
       break;
     case 13:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_13();
+      return new elastodynamics_1_dof_map_13();
       break;
     case 14:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_14();
+      return new elastodynamics_1_dof_map_14();
       break;
     case 15:
-      return new UFC_ElastoDynamicsLinearForm_dof_map_15();
+      return new elastodynamics_1_dof_map_15();
       break;
     }
     return 0;
@@ -28551,25 +28551,25 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_ElastoDynamicsLinearForm_cell_integral_0();
+    return new elastodynamics_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_ElastoDynamicsLinearForm_exterior_facet_integral_0();
+      return new elastodynamics_1_exterior_facet_integral_0();
       break;
     case 1:
-      return new UFC_ElastoDynamicsLinearForm_exterior_facet_integral_1();
+      return new elastodynamics_1_exterior_facet_integral_1();
       break;
     case 2:
-      return new UFC_ElastoDynamicsLinearForm_exterior_facet_integral_2();
+      return new elastodynamics_1_exterior_facet_integral_2();
       break;
     case 3:
-      return new UFC_ElastoDynamicsLinearForm_exterior_facet_integral_3();
+      return new elastodynamics_1_exterior_facet_integral_3();
       break;
     }
     return 0;
@@ -28585,1571 +28585,2479 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class ElastoDynamicsBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace ElastoDynamics
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  ElastoDynamicsBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class ElastoDynamicsBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace2 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace3 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace4 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace5 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace5(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace6 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace6(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace7 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace7(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficientSpace8 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsBilinearFormCoefficientSpace8(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormFunctionSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace2 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace3 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace4 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_5()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace5 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace5(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace6 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace6(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace7 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace7(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace8 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace8(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace9 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace9(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace10 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace10(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace11 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace11(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace12 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace12(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace13 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace13(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsLinearFormCoefficientSpace14 : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsLinearFormCoefficientSpace14(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_15()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_15()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsTestSpace : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  ElastoDynamicsFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_ElastoDynamicsLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_ElastoDynamicsLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class ElastoDynamicsBilinearFormCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    a0("a0"), alpha_f("alpha_f"), alpha_m("alpha_m"), beta("beta"), dt("dt"), eta("eta"), f("f"), gamma("gamma"), lmbda("lmbda"), mu("mu"), p("p"), p0("p0"), rho("rho"), u0("u0"), v0("v0")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 15;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "a0";
+    case 1: return "alpha_f";
+    case 2: return "alpha_m";
+    case 3: return "beta";
+    case 4: return "dt";
+    case 5: return "eta";
+    case 6: return "f";
+    case 7: return "gamma";
+    case 8: return "lmbda";
+    case 9: return "mu";
+    case 10: return "p";
+    case 11: return "p0";
+    case 12: return "rho";
+    case 13: return "u0";
+    case 14: return "v0";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference a0;
+  CoefficientReference alpha_f;
+  CoefficientReference alpha_m;
+  CoefficientReference beta;
+  CoefficientReference dt;
+  CoefficientReference eta;
+  CoefficientReference f;
+  CoefficientReference gamma;
+  CoefficientReference lmbda;
+  CoefficientReference mu;
+  CoefficientReference p;
+  CoefficientReference p0;
+  CoefficientReference rho;
+  CoefficientReference u0;
+  CoefficientReference v0;
+};
+
+class CoefficientSpace_a0: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_a0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_3()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_a0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_a0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_3()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_3()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_a0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_3()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_3()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_a0()
+  {
   }
   
-  /// Return coefficient number
+};
+
+class CoefficientSpace_alpha_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_alpha_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_12()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_12()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_alpha_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_12()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_alpha_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_12()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_12()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_alpha_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_12()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_12()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_alpha_f()
+  {
+  }
+  
+};
+
+class CoefficientSpace_alpha_m: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_alpha_m(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_11()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_11()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_alpha_m(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_11()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_11()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_alpha_m(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_11()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_11()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_alpha_m(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_11()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_11()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_alpha_m()
+  {
+  }
+  
+};
+
+class CoefficientSpace_beta: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_beta(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_13()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_13()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_beta(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_13()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_13()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_beta(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_13()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_13()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_beta(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_13()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_13()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_beta()
+  {
+  }
+  
+};
+
+class CoefficientSpace_dt: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_dt(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_15()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_15()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_dt(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_15()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_15()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_dt(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_15()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_15()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_dt(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_15()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_15()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_dt()
+  {
+  }
+  
+};
+
+class CoefficientSpace_eta: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_eta(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_8()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_8()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_eta(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_8()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_eta(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_8()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_8()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_eta(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_8()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_8()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_eta()
+  {
+  }
+  
+};
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_5()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_5()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_5()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_5()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_5()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_5()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_f()
+  {
+  }
+  
+};
+
+class CoefficientSpace_gamma: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_gamma(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_14()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_14()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_gamma(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_14()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_14()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_gamma(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_14()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_14()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_gamma(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_14()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_14()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_gamma()
+  {
+  }
+  
+};
+
+class CoefficientSpace_lmbda: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_lmbda(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_9()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_9()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_lmbda(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_9()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_9()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_9()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_9()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_9()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_lmbda()
+  {
+  }
+  
+};
+
+class CoefficientSpace_mu: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_mu(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_10()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_10()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_mu(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_10()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_10()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_mu(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_10()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_10()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_mu(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_10()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_10()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_mu()
+  {
+  }
+  
+};
+
+class CoefficientSpace_p: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_p(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_p(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_6()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_6()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_6()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_6()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_6()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_p()
+  {
+  }
+  
+};
+
+class CoefficientSpace_p0: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_p0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_4()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_4()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_p0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_4()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_4()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_p0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_4()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_4()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_p0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_4()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_4()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_p0()
+  {
+  }
+  
+};
+
+class CoefficientSpace_rho: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_rho(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_7()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_7()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_rho(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_7()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_7()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_rho(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_7()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_7()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_rho(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_7()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_7()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_rho()
+  {
+  }
+  
+};
+
+class CoefficientSpace_u0: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_u0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_u0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_u0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_u0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_u0()
+  {
+  }
+  
+};
+
+class CoefficientSpace_v0: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_v0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_v0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_v0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_v0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_v0()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_rho Form_0_FunctionSpace_2;
+
+typedef CoefficientSpace_eta Form_0_FunctionSpace_3;
+
+typedef CoefficientSpace_lmbda Form_0_FunctionSpace_4;
+
+typedef CoefficientSpace_mu Form_0_FunctionSpace_5;
+
+typedef CoefficientSpace_alpha_m Form_0_FunctionSpace_6;
+
+typedef CoefficientSpace_alpha_f Form_0_FunctionSpace_7;
+
+typedef CoefficientSpace_beta Form_0_FunctionSpace_8;
+
+typedef CoefficientSpace_gamma Form_0_FunctionSpace_9;
+
+typedef CoefficientSpace_dt Form_0_FunctionSpace_10;
+
+class Form_0_Coefficient_rho: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_rho(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_rho()
+  {}
+
+  const Form_0_Coefficient_rho& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_rho& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "rho";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient1 : public dolfin::Coefficient
+
+class Form_0_Coefficient_eta: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_eta(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_eta()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient1() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient1& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_eta& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_eta& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_3(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "eta";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient2 : public dolfin::Coefficient
+
+class Form_0_Coefficient_lmbda: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_lmbda(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_lmbda()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient2() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient2& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_lmbda& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace2(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_4(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 2;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "lmbda";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient3 : public dolfin::Coefficient
+
+class Form_0_Coefficient_mu: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_mu(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_mu()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient3() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient3& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_mu& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_mu& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace3(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_5(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 3;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "mu";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient4 : public dolfin::Coefficient
+
+class Form_0_Coefficient_alpha_m: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_alpha_m(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_alpha_m()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient4() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient4& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_alpha_m& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_alpha_m& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace4(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_6(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 4;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "alpha_m";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient5 : public dolfin::Coefficient
+
+class Form_0_Coefficient_alpha_f: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient5(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_alpha_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_alpha_f()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient5() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient5& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_alpha_f& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_alpha_f& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace5(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_7(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 5;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "alpha_f";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient6 : public dolfin::Coefficient
+
+class Form_0_Coefficient_beta: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient6(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_beta(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_beta()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient6() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient6& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_beta& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_beta& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace6(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_8(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 6;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "beta";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient7 : public dolfin::Coefficient
+
+class Form_0_Coefficient_gamma: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient7(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_gamma(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_gamma()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient7() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient7& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_gamma& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_gamma& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace7(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_9(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 7;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "gamma";
   }
-  
+
 };
-class ElastoDynamicsBilinearFormCoefficient8 : public dolfin::Coefficient
+
+class Form_0_Coefficient_dt: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsBilinearFormCoefficient8(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_dt(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_dt()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsBilinearFormCoefficient8() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsBilinearFormCoefficient8& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_dt& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_dt& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsBilinearFormCoefficientSpace8(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_10(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 8;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "dt";
   }
-  
-};
-class ElastoDynamicsBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  ElastoDynamicsBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  ElastoDynamicsBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s)
-  ElastoDynamicsBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->rho = w0;
-    this->eta = w1;
-    this->lmbda = w2;
-    this->mu = w3;
-    this->alpha_m = w4;
-    this->alpha_f = w5;
-    this->beta = w6;
-    this->gamma = w7;
-    this->dt = w8;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  ElastoDynamicsBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8) : dolfin::Form(), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->rho = w0;
-    this->eta = w1;
-    this->lmbda = w2;
-    this->mu = w3;
-    this->alpha_m = w4;
-    this->alpha_f = w5;
-    this->beta = w6;
-    this->gamma = w7;
-    this->dt = w8;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsBilinearForm());
-  }
-
-  // Destructor
-  ~ElastoDynamicsBilinearForm() {}
-
-  // Coefficients
-  ElastoDynamicsBilinearFormCoefficient0 rho;
-  ElastoDynamicsBilinearFormCoefficient1 eta;
-  ElastoDynamicsBilinearFormCoefficient2 lmbda;
-  ElastoDynamicsBilinearFormCoefficient3 mu;
-  ElastoDynamicsBilinearFormCoefficient4 alpha_m;
-  ElastoDynamicsBilinearFormCoefficient5 alpha_f;
-  ElastoDynamicsBilinearFormCoefficient6 beta;
-  ElastoDynamicsBilinearFormCoefficient7 gamma;
-  ElastoDynamicsBilinearFormCoefficient8 dt;
 
 };
 
-class ElastoDynamicsLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  ElastoDynamicsLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
+    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
+    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
+    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
+    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
+    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
+    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
+    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
+    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
+    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
+    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
+    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    rho = coefficients.rho.function_pointer();
+    eta = coefficients.eta.function_pointer();
+    lmbda = coefficients.lmbda.function_pointer();
+    mu = coefficients.mu.function_pointer();
+    alpha_m = coefficients.alpha_m.function_pointer();
+    alpha_f = coefficients.alpha_f.function_pointer();
+    beta = coefficients.beta.function_pointer();
+    gamma = coefficients.gamma.function_pointer();
+    dt = coefficients.dt.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "rho") return 0;
+    else if(name == "eta") return 1;
+    else if(name == "lmbda") return 2;
+    else if(name == "mu") return 3;
+    else if(name == "alpha_m") return 4;
+    else if(name == "alpha_f") return 5;
+    else if(name == "beta") return 6;
+    else if(name == "gamma") return 7;
+    else if(name == "dt") return 8;
+    dolfin::error("Invalid coefficient.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "rho";
+      case 1: return "eta";
+      case 2: return "lmbda";
+      case 3: return "mu";
+      case 4: return "alpha_m";
+      case 5: return "alpha_f";
+      case 6: return "beta";
+      case 7: return "gamma";
+      case 8: return "dt";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_rho;
+  typedef Form_0_FunctionSpace_3 CoefficientSpace_eta;
+  typedef Form_0_FunctionSpace_4 CoefficientSpace_lmbda;
+  typedef Form_0_FunctionSpace_5 CoefficientSpace_mu;
+  typedef Form_0_FunctionSpace_6 CoefficientSpace_alpha_m;
+  typedef Form_0_FunctionSpace_7 CoefficientSpace_alpha_f;
+  typedef Form_0_FunctionSpace_8 CoefficientSpace_beta;
+  typedef Form_0_FunctionSpace_9 CoefficientSpace_gamma;
+  typedef Form_0_FunctionSpace_10 CoefficientSpace_dt;
+
+  // Coefficients
+  Form_0_Coefficient_rho rho;
+  Form_0_Coefficient_eta eta;
+  Form_0_Coefficient_lmbda lmbda;
+  Form_0_Coefficient_mu mu;
+  Form_0_Coefficient_alpha_m alpha_m;
+  Form_0_Coefficient_alpha_f alpha_f;
+  Form_0_Coefficient_beta beta;
+  Form_0_Coefficient_gamma gamma;
+  Form_0_Coefficient_dt dt;
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_u0 Form_1_FunctionSpace_1;
+
+typedef CoefficientSpace_v0 Form_1_FunctionSpace_2;
+
+typedef CoefficientSpace_a0 Form_1_FunctionSpace_3;
+
+typedef CoefficientSpace_p0 Form_1_FunctionSpace_4;
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_5;
+
+typedef CoefficientSpace_p Form_1_FunctionSpace_6;
+
+typedef CoefficientSpace_rho Form_1_FunctionSpace_7;
+
+typedef CoefficientSpace_eta Form_1_FunctionSpace_8;
+
+typedef CoefficientSpace_lmbda Form_1_FunctionSpace_9;
+
+typedef CoefficientSpace_mu Form_1_FunctionSpace_10;
+
+typedef CoefficientSpace_alpha_m Form_1_FunctionSpace_11;
+
+typedef CoefficientSpace_alpha_f Form_1_FunctionSpace_12;
+
+typedef CoefficientSpace_beta Form_1_FunctionSpace_13;
+
+typedef CoefficientSpace_gamma Form_1_FunctionSpace_14;
+
+typedef CoefficientSpace_dt Form_1_FunctionSpace_15;
+
+class Form_1_Coefficient_u0: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_u0(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_u0()
+  {}
+
+  const Form_1_Coefficient_u0& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_u0& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "u0";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient1 : public dolfin::Coefficient
+
+class Form_1_Coefficient_v0: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_v0(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_v0()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient1() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient1& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_v0& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_v0& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "v0";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient2 : public dolfin::Coefficient
+
+class Form_1_Coefficient_a0: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_a0(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_a0()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient2() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient2& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_a0& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_a0& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace2(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_3(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 2;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "a0";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient3 : public dolfin::Coefficient
+
+class Form_1_Coefficient_p0: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_p0(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_p0()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient3() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient3& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_p0& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_p0& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace3(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_4(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 3;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "p0";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient4 : public dolfin::Coefficient
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient4() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient4& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace4(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_5(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 4;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient5 : public dolfin::Coefficient
+
+class Form_1_Coefficient_p: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient5(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_p(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_p()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient5() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient5& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_p& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_p& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace5(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_6(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 5;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "p";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient6 : public dolfin::Coefficient
+
+class Form_1_Coefficient_rho: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient6(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_rho(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_rho()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient6() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient6& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_rho& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_rho& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace6(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_7(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 6;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "rho";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient7 : public dolfin::Coefficient
+
+class Form_1_Coefficient_eta: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient7(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_eta(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_eta()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient7() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient7& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_eta& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_eta& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace7(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_8(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 7;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "eta";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient8 : public dolfin::Coefficient
+
+class Form_1_Coefficient_lmbda: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient8(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_lmbda(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_lmbda()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient8() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient8& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_lmbda& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace8(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_9(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 8;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "lmbda";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient9 : public dolfin::Coefficient
+
+class Form_1_Coefficient_mu: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient9(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_mu(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_mu()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient9() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient9& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_mu& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_mu& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace9(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_10(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 9;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "mu";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient10 : public dolfin::Coefficient
+
+class Form_1_Coefficient_alpha_m: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient10(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_alpha_m(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_alpha_m()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient10() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient10& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_alpha_m& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_alpha_m& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace10(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_11(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 10;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "alpha_m";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient11 : public dolfin::Coefficient
+
+class Form_1_Coefficient_alpha_f: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient11(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_alpha_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_alpha_f()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient11() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient11& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_alpha_f& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_alpha_f& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace11(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_12(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 11;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "alpha_f";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient12 : public dolfin::Coefficient
+
+class Form_1_Coefficient_beta: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient12(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_beta(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_beta()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient12() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient12& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_beta& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_beta& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace12(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_13(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 12;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "beta";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient13 : public dolfin::Coefficient
+
+class Form_1_Coefficient_gamma: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient13(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_gamma(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_gamma()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient13() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient13& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_gamma& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_gamma& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace13(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_14(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 13;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "gamma";
   }
-  
+
 };
-class ElastoDynamicsLinearFormCoefficient14 : public dolfin::Coefficient
+
+class Form_1_Coefficient_dt: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  ElastoDynamicsLinearFormCoefficient14(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_dt(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_dt()
+  {}
 
-  // Destructor  
-  ~ElastoDynamicsLinearFormCoefficient14() {}
-
-  // Attach function to coefficient
-  const ElastoDynamicsLinearFormCoefficient14& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_dt& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_dt& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new ElastoDynamicsLinearFormCoefficientSpace14(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_15(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 14;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "dt";
   }
-  
+
 };
-class ElastoDynamicsLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  ElastoDynamicsLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  ElastoDynamicsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  ElastoDynamicsLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8, dolfin::Function& w9, dolfin::Function& w10, dolfin::Function& w11, dolfin::Function& w12, dolfin::Function& w13, dolfin::Function& w14) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _u0, dolfin::Function & _v0, dolfin::Function & _a0, dolfin::Function & _p0, dolfin::Function & _f, dolfin::Function & _p, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->u0 = w0;
-    this->v0 = w1;
-    this->a0 = w2;
-    this->p0 = w3;
-    this->f = w4;
-    this->p = w5;
-    this->rho = w6;
-    this->eta = w7;
-    this->lmbda = w8;
-    this->mu = w9;
-    this->alpha_m = w10;
-    this->alpha_f = w11;
-    this->beta = w12;
-    this->gamma = w13;
-    this->dt = w14;
+    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
+    boost::shared_ptr<dolfin::Function> _pv0 = dolfin::reference_to_no_delete_pointer(_v0);
+    boost::shared_ptr<dolfin::Function> _pa0 = dolfin::reference_to_no_delete_pointer(_a0);
+    boost::shared_ptr<dolfin::Function> _pp0 = dolfin::reference_to_no_delete_pointer(_p0);
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+    boost::shared_ptr<dolfin::Function> _pp = dolfin::reference_to_no_delete_pointer(_p);
+    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
+    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
+    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
+    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
+    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
+    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsLinearForm());
+    u0 = _pu0;
+    v0 = _pv0;
+    a0 = _pa0;
+    p0 = _pp0;
+    f = _pf;
+    p = _pp;
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  ElastoDynamicsLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5, dolfin::Function& w6, dolfin::Function& w7, dolfin::Function& w8, dolfin::Function& w9, dolfin::Function& w10, dolfin::Function& w11, dolfin::Function& w12, dolfin::Function& w13, dolfin::Function& w14) : dolfin::Form(), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pu0, boost::shared_ptr<dolfin::Function> _pv0, boost::shared_ptr<dolfin::Function> _pa0, boost::shared_ptr<dolfin::Function> _pp0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pp, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->u0 = w0;
-    this->v0 = w1;
-    this->a0 = w2;
-    this->p0 = w3;
-    this->f = w4;
-    this->p = w5;
-    this->rho = w6;
-    this->eta = w7;
-    this->lmbda = w8;
-    this->mu = w9;
-    this->alpha_m = w10;
-    this->alpha_f = w11;
-    this->beta = w12;
-    this->gamma = w13;
-    this->dt = w14;
+    u0 = _pu0;
+    v0 = _pv0;
+    a0 = _pa0;
+    p0 = _pp0;
+    f = _pf;
+    p = _pp;
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_ElastoDynamicsLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _u0, dolfin::Function & _v0, dolfin::Function & _a0, dolfin::Function & _p0, dolfin::Function & _f, dolfin::Function & _p, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
+    boost::shared_ptr<dolfin::Function> _pv0 = dolfin::reference_to_no_delete_pointer(_v0);
+    boost::shared_ptr<dolfin::Function> _pa0 = dolfin::reference_to_no_delete_pointer(_a0);
+    boost::shared_ptr<dolfin::Function> _pp0 = dolfin::reference_to_no_delete_pointer(_p0);
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+    boost::shared_ptr<dolfin::Function> _pp = dolfin::reference_to_no_delete_pointer(_p);
+    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
+    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
+    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
+    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
+    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
+    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+
+    u0 = _pu0;
+    v0 = _pv0;
+    a0 = _pa0;
+    p0 = _pp0;
+    f = _pf;
+    p = _pp;
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pu0, boost::shared_ptr<dolfin::Function> _pv0, boost::shared_ptr<dolfin::Function> _pa0, boost::shared_ptr<dolfin::Function> _pp0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pp, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
+    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    u0 = _pu0;
+    v0 = _pv0;
+    a0 = _pa0;
+    p0 = _pp0;
+    f = _pf;
+    p = _pp;
+    rho = _prho;
+    eta = _peta;
+    lmbda = _plmbda;
+    mu = _pmu;
+    alpha_m = _palpha_m;
+    alpha_f = _palpha_f;
+    beta = _pbeta;
+    gamma = _pgamma;
+    dt = _pdt;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
   // Destructor
-  ~ElastoDynamicsLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    u0 = coefficients.u0.function_pointer();
+    v0 = coefficients.v0.function_pointer();
+    a0 = coefficients.a0.function_pointer();
+    p0 = coefficients.p0.function_pointer();
+    f = coefficients.f.function_pointer();
+    p = coefficients.p.function_pointer();
+    rho = coefficients.rho.function_pointer();
+    eta = coefficients.eta.function_pointer();
+    lmbda = coefficients.lmbda.function_pointer();
+    mu = coefficients.mu.function_pointer();
+    alpha_m = coefficients.alpha_m.function_pointer();
+    alpha_f = coefficients.alpha_f.function_pointer();
+    beta = coefficients.beta.function_pointer();
+    gamma = coefficients.gamma.function_pointer();
+    dt = coefficients.dt.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "u0") return 0;
+    else if(name == "v0") return 1;
+    else if(name == "a0") return 2;
+    else if(name == "p0") return 3;
+    else if(name == "f") return 4;
+    else if(name == "p") return 5;
+    else if(name == "rho") return 6;
+    else if(name == "eta") return 7;
+    else if(name == "lmbda") return 8;
+    else if(name == "mu") return 9;
+    else if(name == "alpha_m") return 10;
+    else if(name == "alpha_f") return 11;
+    else if(name == "beta") return 12;
+    else if(name == "gamma") return 13;
+    else if(name == "dt") return 14;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "u0";
+      case 1: return "v0";
+      case 2: return "a0";
+      case 3: return "p0";
+      case 4: return "f";
+      case 5: return "p";
+      case 6: return "rho";
+      case 7: return "eta";
+      case 8: return "lmbda";
+      case 9: return "mu";
+      case 10: return "alpha_m";
+      case 11: return "alpha_f";
+      case 12: return "beta";
+      case 13: return "gamma";
+      case 14: return "dt";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_u0;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_v0;
+  typedef Form_1_FunctionSpace_3 CoefficientSpace_a0;
+  typedef Form_1_FunctionSpace_4 CoefficientSpace_p0;
+  typedef Form_1_FunctionSpace_5 CoefficientSpace_f;
+  typedef Form_1_FunctionSpace_6 CoefficientSpace_p;
+  typedef Form_1_FunctionSpace_7 CoefficientSpace_rho;
+  typedef Form_1_FunctionSpace_8 CoefficientSpace_eta;
+  typedef Form_1_FunctionSpace_9 CoefficientSpace_lmbda;
+  typedef Form_1_FunctionSpace_10 CoefficientSpace_mu;
+  typedef Form_1_FunctionSpace_11 CoefficientSpace_alpha_m;
+  typedef Form_1_FunctionSpace_12 CoefficientSpace_alpha_f;
+  typedef Form_1_FunctionSpace_13 CoefficientSpace_beta;
+  typedef Form_1_FunctionSpace_14 CoefficientSpace_gamma;
+  typedef Form_1_FunctionSpace_15 CoefficientSpace_dt;
 
   // Coefficients
-  ElastoDynamicsLinearFormCoefficient0 u0;
-  ElastoDynamicsLinearFormCoefficient1 v0;
-  ElastoDynamicsLinearFormCoefficient2 a0;
-  ElastoDynamicsLinearFormCoefficient3 p0;
-  ElastoDynamicsLinearFormCoefficient4 f;
-  ElastoDynamicsLinearFormCoefficient5 p;
-  ElastoDynamicsLinearFormCoefficient6 rho;
-  ElastoDynamicsLinearFormCoefficient7 eta;
-  ElastoDynamicsLinearFormCoefficient8 lmbda;
-  ElastoDynamicsLinearFormCoefficient9 mu;
-  ElastoDynamicsLinearFormCoefficient10 alpha_m;
-  ElastoDynamicsLinearFormCoefficient11 alpha_f;
-  ElastoDynamicsLinearFormCoefficient12 beta;
-  ElastoDynamicsLinearFormCoefficient13 gamma;
-  ElastoDynamicsLinearFormCoefficient14 dt;
-
+  Form_1_Coefficient_u0 u0;
+  Form_1_Coefficient_v0 v0;
+  Form_1_Coefficient_a0 a0;
+  Form_1_Coefficient_p0 p0;
+  Form_1_Coefficient_f f;
+  Form_1_Coefficient_p p;
+  Form_1_Coefficient_rho rho;
+  Form_1_Coefficient_eta eta;
+  Form_1_Coefficient_lmbda lmbda;
+  Form_1_Coefficient_mu mu;
+  Form_1_Coefficient_alpha_m alpha_m;
+  Form_1_Coefficient_alpha_f alpha_f;
+  Form_1_Coefficient_beta beta;
+  Form_1_Coefficient_gamma gamma;
+  Form_1_Coefficient_dt dt;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+
+} // namespace ElastoDynamics
 
 #endif

@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_EnergyNormFunctional_finite_element_0: public ufc::finite_element
+class energynorm_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_EnergyNormFunctional_finite_element_0() : ufc::finite_element()
+  energynorm_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_EnergyNormFunctional_finite_element_0()
+  virtual ~energynorm_0_finite_element_0()
   {
     // Do nothing
   }
@@ -129,8 +129,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -286,8 +286,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -297,7 +297,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -477,7 +477,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_EnergyNormFunctional_finite_element_0();
+    return new energynorm_0_finite_element_0();
   }
 
 };
@@ -485,7 +485,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_EnergyNormFunctional_dof_map_0: public ufc::dof_map
+class energynorm_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -494,13 +494,13 @@ private:
 public:
 
   /// Constructor
-  UFC_EnergyNormFunctional_dof_map_0() : ufc::dof_map()
+  energynorm_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_EnergyNormFunctional_dof_map_0()
+  virtual ~energynorm_0_dof_map_0()
   {
     // Do nothing
   }
@@ -514,7 +514,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -603,7 +603,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -658,7 +658,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_EnergyNormFunctional_dof_map_0();
+    return new energynorm_0_dof_map_0();
   }
 
 };
@@ -667,18 +667,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_EnergyNormFunctional_cell_integral_0_quadrature: public ufc::cell_integral
+class energynorm_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_EnergyNormFunctional_cell_integral_0_quadrature() : ufc::cell_integral()
+  energynorm_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_EnergyNormFunctional_cell_integral_0_quadrature()
+  virtual ~energynorm_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -717,12 +717,12 @@ public:
     const static double FE0_D10[9][5] = \
     {{-2.23477754271068, -0.589129380761495, 0.354351838050816, -0.354351838050816, 2.82390692347217},
     {-1.0959162708804, -0.733783728643342, 1.63786745776294, -1.63786745776294, 1.82969999952375},
-    {0.246362376191712, -0.904275470851677, 3.15063784704339, -3.15063784704339, 0.657913094659966},
+    {0.246362376191711, -0.904275470851678, 3.15063784704339, -3.15063784704339, 0.657913094659967},
     {-0.822824080974592, 0.822824080974592, 0.354351838050816, -0.354351838050816, 0},
-    {-0.181066271118531, 0.181066271118531, 1.63786745776294, -1.63786745776294, 0},
-    {0.575318923521695, -0.575318923521694, 3.15063784704339, -3.15063784704339, 0},
-    {0.589129380761496, 2.23477754271068, 0.354351838050816, -0.354351838050816, -2.82390692347218},
-    {0.733783728643342, 1.0959162708804, 1.63786745776294, -1.63786745776294, -1.82969999952374},
+    {-0.181066271118531, 0.18106627111853, 1.63786745776294, -1.63786745776294, 0},
+    {0.575318923521694, -0.575318923521695, 3.15063784704339, -3.15063784704339, 0},
+    {0.589129380761495, 2.23477754271068, 0.354351838050817, -0.354351838050817, -2.82390692347217},
+    {0.733783728643342, 1.0959162708804, 1.63786745776294, -1.63786745776294, -1.82969999952375},
     {0.904275470851678, -0.246362376191711, 3.15063784704339, -3.15063784704339, -0.657913094659967}};
     // Array of non-zero columns
     static const unsigned int nzc0[5] = {0, 1, 3, 4, 5};
@@ -730,26 +730,26 @@ public:
     const static double FE0_D01[9][5] = \
     {{-2.23477754271068, -0.645648161949184, 0.410870619238505, 2.88042570465986, -0.410870619238505},
     {-1.0959162708804, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356658},
-    {0.246362376191712, 2.15063784704339, 0.0957245291483225, -2.3970002232351, -0.0957245291483224},
+    {0.24636237619171, 2.15063784704339, 0.0957245291483226, -2.3970002232351, -0.0957245291483227},
     {-0.822824080974592, -0.645648161949184, 1.82282408097459, 1.46847224292378, -1.82282408097459},
     {-0.181066271118531, 0.637867457762939, 1.18106627111853, -0.456801186644408, -1.18106627111853},
-    {0.575318923521695, 2.15063784704339, 0.424681076478306, -2.72595677056508, -0.424681076478306},
-    {0.589129380761496, -0.645648161949184, 3.23477754271068, 0.0565187811876886, -3.23477754271068},
-    {0.733783728643342, 0.637867457762939, 2.0959162708804, -1.37165118640628, -2.0959162708804},
+    {0.575318923521694, 2.15063784704339, 0.424681076478306, -2.72595677056508, -0.424681076478306},
+    {0.589129380761495, -0.645648161949184, 3.23477754271068, 0.0565187811876892, -3.23477754271068},
+    {0.733783728643343, 0.637867457762939, 2.0959162708804, -1.37165118640628, -2.0959162708804},
     {0.904275470851678, 2.15063784704339, 0.753637623808289, -3.05491331789507, -0.753637623808289}};
     // Array of non-zero columns
     static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
     
     const static double FE0[9][6] = \
-    {{0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087},
-    {0.0251290590975512, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383},
-    {-0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062782, 0.593609805131561, 0.0180354016718772},
-    {-0.0403700664710398, -0.0403700664710397, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217},
+    {{0.499278833175498, -0.0816158215904472, -0.0728923063714551, 0.0363981897820602, 0.286562341986258, 0.332268763018086},
+    {0.0251290590975513, -0.0576951799472843, -0.0741406382908807, 0.109006741895514, 0.858208263567716, 0.139491753677383},
+    {-0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062781, 0.593609805131561, 0.0180354016718772},
+    {-0.0403700664710397, -0.0403700664710398, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217},
     {-0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458},
     {-0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932},
-    {-0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018086},
-    {-0.0576951799472843, 0.0251290590975512, -0.0741406382908806, 0.858208263567716, 0.109006741895515, 0.139491753677383},
-    {-0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773}};
+    {-0.0816158215904472, 0.499278833175497, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018086},
+    {-0.0576951799472842, 0.025129059097551, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383},
+    {-0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062783, 0.0180354016718773}};
     
     // Number of operations to compute geometry constants: 14
     const double G0 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
@@ -800,22 +800,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_EnergyNormFunctional_cell_integral_0: public ufc::cell_integral
+class energynorm_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_EnergyNormFunctional_cell_integral_0_quadrature integral_0_quadrature;
+  energynorm_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_EnergyNormFunctional_cell_integral_0() : ufc::cell_integral()
+  energynorm_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_EnergyNormFunctional_cell_integral_0()
+  virtual ~energynorm_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -849,18 +849,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_EnergyNormFunctional: public ufc::form
+class energynorm_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_EnergyNormFunctional() : ufc::form()
+  energynorm_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_EnergyNormFunctional()
+  virtual ~energynorm_form_0()
   {
     // Do nothing
   }
@@ -904,19 +904,19 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    return new UFC_EnergyNormFunctional_finite_element_0();
+    return new energynorm_0_finite_element_0();
   }
   
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    return new UFC_EnergyNormFunctional_dof_map_0();
+    return new energynorm_0_dof_map_0();
   }
 
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_EnergyNormFunctional_cell_integral_0();
+    return new energynorm_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -935,105 +935,268 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class EnergyNormFunctionalCoefficientSpace0 : public dolfin::FunctionSpace
+namespace EnergyNorm
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  EnergyNormFunctionalCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_EnergyNormFunctional_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_EnergyNormFunctional_dof_map_0()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class EnergyNormCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  EnergyNormCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_EnergyNormFunctional_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_EnergyNormFunctional_dof_map_0()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class EnergyNormFunctionalCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  EnergyNormFunctionalCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~EnergyNormFunctionalCoefficient0() {}
-
-  // Attach function to coefficient
-  const EnergyNormFunctionalCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new EnergyNormFunctionalCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    v("v")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 1;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "v";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference v;
+};
+
+class CoefficientSpace_v: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_v(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_v(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_v(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_v(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_v()
+  {
   }
   
-  /// Return coefficient number
+};
+
+typedef CoefficientSpace_v Form_0_FunctionSpace_0;
+
+class Form_0_Coefficient_v: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_v(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_v()
+  {}
+
+  const Form_0_Coefficient_v& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_v& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_0(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "v";
   }
-  
+
 };
-class EnergyNormFunctional : public dolfin::Form
+
+class Form_0: public dolfin::Form
 {
 public:
 
-  // Create form
-  EnergyNormFunctional() : dolfin::Form(), v(*this)
+  // Constructor
+  Form_0():
+    dolfin::Form(0, 1), v(*this)
   {
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_EnergyNormFunctional());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
   }
 
-  // Create form with given coefficient(s)
-  EnergyNormFunctional(dolfin::Function& w0) : dolfin::Form(), v(*this)
+  // Constructor
+  Form_0(const CoefficientSet & coefficients):
+    dolfin::Form(0, 1), v(*this)
   {
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    update_coefficients(coefficients);
 
-    this->v = w0;
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
+  }
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_EnergyNormFunctional());
+  // Constructor
+  Form_0(dolfin::Function & _v):
+    dolfin::Form(0, 1), v(*this)
+  {
+    boost::shared_ptr<dolfin::Function> _pv = dolfin::reference_to_no_delete_pointer(_v);
+
+    v = _pv;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<dolfin::Function> _pv):
+    dolfin::Form(0, 1), v(*this)
+  {
+    v = _pv;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
   }
 
   // Destructor
-  ~EnergyNormFunctional() {}
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    v = coefficients.v.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "v") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "v";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 CoefficientSpace_v;
 
   // Coefficients
-  EnergyNormFunctionalCoefficient0 v;
-
+  Form_0_Coefficient_v v;
 };
+
+// Class typedefs
+typedef Form_0 Functional;
+typedef Form_0_FunctionSpace_0 FunctionSpace;
+
+} // namespace EnergyNorm
 
 #endif

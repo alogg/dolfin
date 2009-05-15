@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_StiffnessMatrix3DBilinearForm_finite_element_0: public ufc::finite_element
+class stiffnessmatrix3d_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_finite_element_0() : ufc::finite_element()
+  stiffnessmatrix3d_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_finite_element_0()
+  virtual ~stiffnessmatrix3d_0_finite_element_0()
   {
     // Do nothing
   }
@@ -537,25 +537,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_finite_element_0();
+    return new stiffnessmatrix3d_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StiffnessMatrix3DBilinearForm_finite_element_1: public ufc::finite_element
+class stiffnessmatrix3d_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_finite_element_1() : ufc::finite_element()
+  stiffnessmatrix3d_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_finite_element_1()
+  virtual ~stiffnessmatrix3d_0_finite_element_1()
   {
     // Do nothing
   }
@@ -1067,25 +1067,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_finite_element_1();
+    return new stiffnessmatrix3d_0_finite_element_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_StiffnessMatrix3DBilinearForm_finite_element_2: public ufc::finite_element
+class stiffnessmatrix3d_0_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_finite_element_2() : ufc::finite_element()
+  stiffnessmatrix3d_0_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_finite_element_2()
+  virtual ~stiffnessmatrix3d_0_finite_element_2()
   {
     // Do nothing
   }
@@ -1536,7 +1536,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_finite_element_2();
+    return new stiffnessmatrix3d_0_finite_element_2();
   }
 
 };
@@ -1544,7 +1544,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StiffnessMatrix3DBilinearForm_dof_map_0: public ufc::dof_map
+class stiffnessmatrix3d_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -1553,13 +1553,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_dof_map_0() : ufc::dof_map()
+  stiffnessmatrix3d_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_dof_map_0()
+  virtual ~stiffnessmatrix3d_0_dof_map_0()
   {
     // Do nothing
   }
@@ -1573,7 +1573,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1662,7 +1662,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1722,7 +1722,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_dof_map_0();
+    return new stiffnessmatrix3d_0_dof_map_0();
   }
 
 };
@@ -1730,7 +1730,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StiffnessMatrix3DBilinearForm_dof_map_1: public ufc::dof_map
+class stiffnessmatrix3d_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1739,13 +1739,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_dof_map_1() : ufc::dof_map()
+  stiffnessmatrix3d_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_dof_map_1()
+  virtual ~stiffnessmatrix3d_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1759,7 +1759,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1848,7 +1848,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1908,7 +1908,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_dof_map_1();
+    return new stiffnessmatrix3d_0_dof_map_1();
   }
 
 };
@@ -1916,7 +1916,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_StiffnessMatrix3DBilinearForm_dof_map_2: public ufc::dof_map
+class stiffnessmatrix3d_0_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -1925,13 +1925,13 @@ private:
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_dof_map_2() : ufc::dof_map()
+  stiffnessmatrix3d_0_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_dof_map_2()
+  virtual ~stiffnessmatrix3d_0_dof_map_2()
   {
     // Do nothing
   }
@@ -1945,7 +1945,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -2031,7 +2031,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -2074,7 +2074,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_dof_map_2();
+    return new stiffnessmatrix3d_0_dof_map_2();
   }
 
 };
@@ -2083,18 +2083,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_StiffnessMatrix3DBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class stiffnessmatrix3d_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  stiffnessmatrix3d_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_cell_integral_0_quadrature()
+  virtual ~stiffnessmatrix3d_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -2211,22 +2211,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_StiffnessMatrix3DBilinearForm_cell_integral_0: public ufc::cell_integral
+class stiffnessmatrix3d_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_StiffnessMatrix3DBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  stiffnessmatrix3d_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm_cell_integral_0() : ufc::cell_integral()
+  stiffnessmatrix3d_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm_cell_integral_0()
+  virtual ~stiffnessmatrix3d_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -2275,18 +2275,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_StiffnessMatrix3DBilinearForm: public ufc::form
+class stiffnessmatrix3d_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_StiffnessMatrix3DBilinearForm() : ufc::form()
+  stiffnessmatrix3d_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_StiffnessMatrix3DBilinearForm()
+  virtual ~stiffnessmatrix3d_form_0()
   {
     // Do nothing
   }
@@ -2330,16 +2330,16 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StiffnessMatrix3DBilinearForm_finite_element_0();
+      return new stiffnessmatrix3d_0_finite_element_0();
       break;
     case 1:
-      return new UFC_StiffnessMatrix3DBilinearForm_finite_element_1();
+      return new stiffnessmatrix3d_0_finite_element_1();
       break;
     case 2:
-      return new UFC_StiffnessMatrix3DBilinearForm_finite_element_2();
+      return new stiffnessmatrix3d_0_finite_element_2();
       break;
     }
     return 0;
@@ -2348,16 +2348,16 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_StiffnessMatrix3DBilinearForm_dof_map_0();
+      return new stiffnessmatrix3d_0_dof_map_0();
       break;
     case 1:
-      return new UFC_StiffnessMatrix3DBilinearForm_dof_map_1();
+      return new stiffnessmatrix3d_0_dof_map_1();
       break;
     case 2:
-      return new UFC_StiffnessMatrix3DBilinearForm_dof_map_2();
+      return new stiffnessmatrix3d_0_dof_map_2();
       break;
     }
     return 0;
@@ -2366,7 +2366,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_StiffnessMatrix3DBilinearForm_cell_integral_0();
+    return new stiffnessmatrix3d_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -2385,209 +2385,431 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class StiffnessMatrix3DBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace StiffnessMatrix3D
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  StiffnessMatrix3DBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_1()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class StiffnessMatrix3DBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  StiffnessMatrix3DBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_1()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class StiffnessMatrix3DBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  StiffnessMatrix3DBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StiffnessMatrix3DTestSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StiffnessMatrix3DTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StiffnessMatrix3DTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StiffnessMatrix3DTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StiffnessMatrix3DCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StiffnessMatrix3DCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StiffnessMatrix3DFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  StiffnessMatrix3DFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_StiffnessMatrix3DBilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_StiffnessMatrix3DBilinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class StiffnessMatrix3DBilinearFormCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  StiffnessMatrix3DBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~StiffnessMatrix3DBilinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const StiffnessMatrix3DBilinearFormCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new StiffnessMatrix3DBilinearFormCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    c("c")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 1;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "c";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference c;
+};
+
+class CoefficientSpace_c: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_c(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_c(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_c(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_c(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_c()
+  {
   }
   
-  /// Return coefficient number
+};
+
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_c Form_0_FunctionSpace_2;
+
+class Form_0_Coefficient_c: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_c(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_c()
+  {}
+
+  const Form_0_Coefficient_c& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_c& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "c";
   }
-  
+
 };
-class StiffnessMatrix3DBilinearForm : public dolfin::Form
+
+class Form_0: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  StiffnessMatrix3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), c(*this)
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 1), c(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix3DBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
   }
 
-  // Create form on given function space(s) (shared data)
-  StiffnessMatrix3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), c(*this)
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 1), c(*this)
   {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix3DBilinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  StiffnessMatrix3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), c(*this)
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _c):
+    dolfin::Form(2, 1), c(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
 
-    this->c = w0;
+    boost::shared_ptr<dolfin::Function> _pc = dolfin::reference_to_no_delete_pointer(_c);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix3DBilinearForm());
+    c = _pc;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  StiffnessMatrix3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), c(*this)
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pc):
+    dolfin::Form(2, 1), c(*this)
   {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
 
-    this->c = w0;
+    c = _pc;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_StiffnessMatrix3DBilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 1), c(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 1), c(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _c):
+    dolfin::Form(2, 1), c(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _pc = dolfin::reference_to_no_delete_pointer(_c);
+
+    c = _pc;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pc):
+    dolfin::Form(2, 1), c(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    c = _pc;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stiffnessmatrix3d_form_0());
   }
 
   // Destructor
-  ~StiffnessMatrix3DBilinearForm() {}
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    c = coefficients.c.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "c") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "c";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_c;
 
   // Coefficients
-  StiffnessMatrix3DBilinearFormCoefficient0 c;
-
+  Form_0_Coefficient_c c;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+
+} // namespace StiffnessMatrix3D
 
 #endif

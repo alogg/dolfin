@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_NonlinearPoissonBilinearForm_finite_element_0: public ufc::finite_element
+class nonlinearpoisson_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_finite_element_0() : ufc::finite_element()
+  nonlinearpoisson_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_finite_element_0()
+  virtual ~nonlinearpoisson_0_finite_element_0()
   {
     // Do nothing
   }
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_finite_element_0();
+    return new nonlinearpoisson_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_NonlinearPoissonBilinearForm_finite_element_1: public ufc::finite_element
+class nonlinearpoisson_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_finite_element_1() : ufc::finite_element()
+  nonlinearpoisson_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_finite_element_1()
+  virtual ~nonlinearpoisson_0_finite_element_1()
   {
     // Do nothing
   }
@@ -849,25 +849,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_finite_element_1();
+    return new nonlinearpoisson_0_finite_element_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_NonlinearPoissonBilinearForm_finite_element_2: public ufc::finite_element
+class nonlinearpoisson_0_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_finite_element_2() : ufc::finite_element()
+  nonlinearpoisson_0_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_finite_element_2()
+  virtual ~nonlinearpoisson_0_finite_element_2()
   {
     // Do nothing
   }
@@ -1270,7 +1270,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_finite_element_2();
+    return new nonlinearpoisson_0_finite_element_2();
   }
 
 };
@@ -1278,7 +1278,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_NonlinearPoissonBilinearForm_dof_map_0: public ufc::dof_map
+class nonlinearpoisson_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -1287,13 +1287,13 @@ private:
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_dof_map_0() : ufc::dof_map()
+  nonlinearpoisson_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_dof_map_0()
+  virtual ~nonlinearpoisson_0_dof_map_0()
   {
     // Do nothing
   }
@@ -1307,7 +1307,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1392,7 +1392,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1438,7 +1438,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_dof_map_0();
+    return new nonlinearpoisson_0_dof_map_0();
   }
 
 };
@@ -1446,7 +1446,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_NonlinearPoissonBilinearForm_dof_map_1: public ufc::dof_map
+class nonlinearpoisson_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1455,13 +1455,13 @@ private:
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_dof_map_1() : ufc::dof_map()
+  nonlinearpoisson_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_dof_map_1()
+  virtual ~nonlinearpoisson_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1475,7 +1475,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1560,7 +1560,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1606,7 +1606,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_dof_map_1();
+    return new nonlinearpoisson_0_dof_map_1();
   }
 
 };
@@ -1614,7 +1614,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_NonlinearPoissonBilinearForm_dof_map_2: public ufc::dof_map
+class nonlinearpoisson_0_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -1623,13 +1623,13 @@ private:
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_dof_map_2() : ufc::dof_map()
+  nonlinearpoisson_0_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_dof_map_2()
+  virtual ~nonlinearpoisson_0_dof_map_2()
   {
     // Do nothing
   }
@@ -1643,7 +1643,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1728,7 +1728,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1774,7 +1774,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_dof_map_2();
+    return new nonlinearpoisson_0_dof_map_2();
   }
 
 };
@@ -1783,18 +1783,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_NonlinearPoissonBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class nonlinearpoisson_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  nonlinearpoisson_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_cell_integral_0_quadrature()
+  virtual ~nonlinearpoisson_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1842,7 +1842,7 @@ public:
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
@@ -1934,22 +1934,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_NonlinearPoissonBilinearForm_cell_integral_0: public ufc::cell_integral
+class nonlinearpoisson_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_NonlinearPoissonBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  nonlinearpoisson_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm_cell_integral_0() : ufc::cell_integral()
+  nonlinearpoisson_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm_cell_integral_0()
+  virtual ~nonlinearpoisson_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -1991,18 +1991,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_NonlinearPoissonBilinearForm: public ufc::form
+class nonlinearpoisson_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonBilinearForm() : ufc::form()
+  nonlinearpoisson_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonBilinearForm()
+  virtual ~nonlinearpoisson_form_0()
   {
     // Do nothing
   }
@@ -2046,16 +2046,16 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_NonlinearPoissonBilinearForm_finite_element_0();
+      return new nonlinearpoisson_0_finite_element_0();
       break;
     case 1:
-      return new UFC_NonlinearPoissonBilinearForm_finite_element_1();
+      return new nonlinearpoisson_0_finite_element_1();
       break;
     case 2:
-      return new UFC_NonlinearPoissonBilinearForm_finite_element_2();
+      return new nonlinearpoisson_0_finite_element_2();
       break;
     }
     return 0;
@@ -2064,16 +2064,16 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_NonlinearPoissonBilinearForm_dof_map_0();
+      return new nonlinearpoisson_0_dof_map_0();
       break;
     case 1:
-      return new UFC_NonlinearPoissonBilinearForm_dof_map_1();
+      return new nonlinearpoisson_0_dof_map_1();
       break;
     case 2:
-      return new UFC_NonlinearPoissonBilinearForm_dof_map_2();
+      return new nonlinearpoisson_0_dof_map_2();
       break;
     }
     return 0;
@@ -2082,7 +2082,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonBilinearForm_cell_integral_0();
+    return new nonlinearpoisson_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -2101,18 +2101,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_NonlinearPoissonLinearForm_finite_element_0: public ufc::finite_element
+class nonlinearpoisson_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_finite_element_0() : ufc::finite_element()
+  nonlinearpoisson_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_finite_element_0()
+  virtual ~nonlinearpoisson_1_finite_element_0()
   {
     // Do nothing
   }
@@ -2515,25 +2515,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_finite_element_0();
+    return new nonlinearpoisson_1_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_NonlinearPoissonLinearForm_finite_element_1: public ufc::finite_element
+class nonlinearpoisson_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_finite_element_1() : ufc::finite_element()
+  nonlinearpoisson_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_finite_element_1()
+  virtual ~nonlinearpoisson_1_finite_element_1()
   {
     // Do nothing
   }
@@ -2936,25 +2936,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_finite_element_1();
+    return new nonlinearpoisson_1_finite_element_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_NonlinearPoissonLinearForm_finite_element_2: public ufc::finite_element
+class nonlinearpoisson_1_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_finite_element_2() : ufc::finite_element()
+  nonlinearpoisson_1_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_finite_element_2()
+  virtual ~nonlinearpoisson_1_finite_element_2()
   {
     // Do nothing
   }
@@ -3357,7 +3357,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_finite_element_2();
+    return new nonlinearpoisson_1_finite_element_2();
   }
 
 };
@@ -3365,7 +3365,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_NonlinearPoissonLinearForm_dof_map_0: public ufc::dof_map
+class nonlinearpoisson_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -3374,13 +3374,13 @@ private:
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_dof_map_0() : ufc::dof_map()
+  nonlinearpoisson_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_dof_map_0()
+  virtual ~nonlinearpoisson_1_dof_map_0()
   {
     // Do nothing
   }
@@ -3394,7 +3394,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -3479,7 +3479,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -3525,7 +3525,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_dof_map_0();
+    return new nonlinearpoisson_1_dof_map_0();
   }
 
 };
@@ -3533,7 +3533,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_NonlinearPoissonLinearForm_dof_map_1: public ufc::dof_map
+class nonlinearpoisson_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -3542,13 +3542,13 @@ private:
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_dof_map_1() : ufc::dof_map()
+  nonlinearpoisson_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_dof_map_1()
+  virtual ~nonlinearpoisson_1_dof_map_1()
   {
     // Do nothing
   }
@@ -3562,7 +3562,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -3647,7 +3647,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -3693,7 +3693,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_dof_map_1();
+    return new nonlinearpoisson_1_dof_map_1();
   }
 
 };
@@ -3701,7 +3701,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_NonlinearPoissonLinearForm_dof_map_2: public ufc::dof_map
+class nonlinearpoisson_1_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -3710,13 +3710,13 @@ private:
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_dof_map_2() : ufc::dof_map()
+  nonlinearpoisson_1_dof_map_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_dof_map_2()
+  virtual ~nonlinearpoisson_1_dof_map_2()
   {
     // Do nothing
   }
@@ -3730,7 +3730,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -3815,7 +3815,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -3861,7 +3861,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_dof_map_2();
+    return new nonlinearpoisson_1_dof_map_2();
   }
 
 };
@@ -3870,18 +3870,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_NonlinearPoissonLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class nonlinearpoisson_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  nonlinearpoisson_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_cell_integral_0_quadrature()
+  virtual ~nonlinearpoisson_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -3929,7 +3929,7 @@ public:
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
@@ -4003,22 +4003,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_NonlinearPoissonLinearForm_cell_integral_0: public ufc::cell_integral
+class nonlinearpoisson_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_NonlinearPoissonLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  nonlinearpoisson_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm_cell_integral_0() : ufc::cell_integral()
+  nonlinearpoisson_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm_cell_integral_0()
+  virtual ~nonlinearpoisson_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -4054,18 +4054,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_NonlinearPoissonLinearForm: public ufc::form
+class nonlinearpoisson_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_NonlinearPoissonLinearForm() : ufc::form()
+  nonlinearpoisson_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_NonlinearPoissonLinearForm()
+  virtual ~nonlinearpoisson_form_1()
   {
     // Do nothing
   }
@@ -4109,16 +4109,16 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_NonlinearPoissonLinearForm_finite_element_0();
+      return new nonlinearpoisson_1_finite_element_0();
       break;
     case 1:
-      return new UFC_NonlinearPoissonLinearForm_finite_element_1();
+      return new nonlinearpoisson_1_finite_element_1();
       break;
     case 2:
-      return new UFC_NonlinearPoissonLinearForm_finite_element_2();
+      return new nonlinearpoisson_1_finite_element_2();
       break;
     }
     return 0;
@@ -4127,16 +4127,16 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_NonlinearPoissonLinearForm_dof_map_0();
+      return new nonlinearpoisson_1_dof_map_0();
       break;
     case 1:
-      return new UFC_NonlinearPoissonLinearForm_dof_map_1();
+      return new nonlinearpoisson_1_dof_map_1();
       break;
     case 2:
-      return new UFC_NonlinearPoissonLinearForm_dof_map_2();
+      return new nonlinearpoisson_1_dof_map_2();
       break;
     }
     return 0;
@@ -4145,7 +4145,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_NonlinearPoissonLinearForm_cell_integral_0();
+    return new nonlinearpoisson_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -4164,388 +4164,756 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class NonlinearPoissonBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace NonlinearPoisson
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  NonlinearPoissonBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class NonlinearPoissonBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonLinearFormFunctionSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonTestSpace : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  NonlinearPoissonFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_NonlinearPoissonLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_NonlinearPoissonLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class NonlinearPoissonBilinearFormCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  NonlinearPoissonBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~NonlinearPoissonBilinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const NonlinearPoissonBilinearFormCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new NonlinearPoissonBilinearFormCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    U("U"), f("f")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 2;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "U";
+    case 1: return "f";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference U;
+  CoefficientReference f;
+};
+
+class CoefficientSpace_U: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_U(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_U(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_U(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_U(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_U()
+  {
   }
   
-  /// Return coefficient number
+};
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_f()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_U Form_0_FunctionSpace_2;
+
+class Form_0_Coefficient_U: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_U(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_U()
+  {}
+
+  const Form_0_Coefficient_U& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_U& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "U";
   }
-  
-};
-class NonlinearPoissonBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), U(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  NonlinearPoissonBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), U(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s)
-  NonlinearPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0) : dolfin::Form(), U(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->U = w0;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  NonlinearPoissonBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0) : dolfin::Form(), U(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->U = w0;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonBilinearForm());
-  }
-
-  // Destructor
-  ~NonlinearPoissonBilinearForm() {}
-
-  // Coefficients
-  NonlinearPoissonBilinearFormCoefficient0 U;
 
 };
 
-class NonlinearPoissonLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  NonlinearPoissonLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~NonlinearPoissonLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const NonlinearPoissonLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 1), U(*this)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 1), U(*this)
   {
-    return new NonlinearPoissonLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _U):
+    dolfin::Form(2, 1), U(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pU):
+    dolfin::Form(2, 1), U(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 1), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 1), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _U):
+    dolfin::Form(2, 1), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pU):
+    dolfin::Form(2, 1), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    U = coefficients.U.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "U") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "U";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_U;
+
+  // Coefficients
+  Form_0_Coefficient_U U;
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+typedef CoefficientSpace_U Form_1_FunctionSpace_2;
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
+
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class NonlinearPoissonLinearFormCoefficient1 : public dolfin::Coefficient
+
+class Form_1_Coefficient_U: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  NonlinearPoissonLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_U(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_U()
+  {}
 
-  // Destructor  
-  ~NonlinearPoissonLinearFormCoefficient1() {}
-
-  // Attach function to coefficient
-  const NonlinearPoissonLinearFormCoefficient1& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_U& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_U& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new NonlinearPoissonLinearFormCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "U";
   }
-  
+
 };
-class NonlinearPoissonLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this), U(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 2), f(*this), U(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  NonlinearPoissonLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this), U(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 2), f(*this), U(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  NonlinearPoissonLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), U(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f, dolfin::Function & _U):
+    dolfin::Form(1, 2), f(*this), U(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
-    this->U = w1;
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
+    f = _pf;
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  NonlinearPoissonLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1) : dolfin::Form(), f(*this), U(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pU):
+    dolfin::Form(1, 2), f(*this), U(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
-    this->U = w1;
+    f = _pf;
+    U = _pU;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_NonlinearPoissonLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 2), f(*this), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 2), f(*this), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f, dolfin::Function & _U):
+    dolfin::Form(1, 2), f(*this), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+
+    f = _pf;
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pU):
+    dolfin::Form(1, 2), f(*this), U(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    f = _pf;
+    U = _pU;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Destructor
-  ~NonlinearPoissonLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    f = coefficients.f.function_pointer();
+    U = coefficients.U.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "f") return 0;
+    else if(name == "U") return 1;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "f";
+      case 1: return "U";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_U;
 
   // Coefficients
-  NonlinearPoissonLinearFormCoefficient0 f;
-  NonlinearPoissonLinearFormCoefficient1 U;
-
+  Form_1_Coefficient_f f;
+  Form_1_Coefficient_U U;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+typedef Form_0_FunctionSpace_0 FunctionSpace;
+
+} // namespace NonlinearPoisson
 
 #endif

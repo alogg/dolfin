@@ -1,49 +1,49 @@
 #include "CahnHilliard2D.h"
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_0_0::UFC_CahnHilliard2DBilinearForm_finite_element_0_0() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_0_0::cahnhilliard2d_0_finite_element_0_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_0_0::~UFC_CahnHilliard2DBilinearForm_finite_element_0_0()
+cahnhilliard2d_0_finite_element_0_0::~cahnhilliard2d_0_finite_element_0_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_0_0::signature() const
+const char* cahnhilliard2d_0_finite_element_0_0::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_0_0::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_0_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_0::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_0_0::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_0::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_0_0::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_0_0::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_0_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -117,7 +117,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis(unsigned 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_0_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -125,7 +125,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis_all(doubl
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -333,7 +333,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_0_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -342,7 +342,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_basis_derivativ
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_0_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -383,7 +383,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_dof(unsigned 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_0_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -391,7 +391,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::evaluate_dofs(double* va
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_0_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -402,62 +402,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_0::interpolate_vertex_value
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_0::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_0_0::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_0_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_0_0::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_0_0();
+    return new cahnhilliard2d_0_finite_element_0_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_0_1::UFC_CahnHilliard2DBilinearForm_finite_element_0_1() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_0_1::cahnhilliard2d_0_finite_element_0_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_0_1::~UFC_CahnHilliard2DBilinearForm_finite_element_0_1()
+cahnhilliard2d_0_finite_element_0_1::~cahnhilliard2d_0_finite_element_0_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_0_1::signature() const
+const char* cahnhilliard2d_0_finite_element_0_1::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_0_1::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_0_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_1::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_0_1::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_1::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_0_1::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_0_1::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_0_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -531,7 +531,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis(unsigned 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_0_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -539,7 +539,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis_all(doubl
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -747,7 +747,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_0_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -756,7 +756,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_basis_derivativ
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_0_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -797,7 +797,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_dof(unsigned 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_0_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -805,7 +805,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::evaluate_dofs(double* va
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_0_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -816,62 +816,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0_1::interpolate_vertex_value
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0_1::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_0_1::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_0_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_0_1::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_0_1();
+    return new cahnhilliard2d_0_finite_element_0_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_0::UFC_CahnHilliard2DBilinearForm_finite_element_0() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_0::cahnhilliard2d_0_finite_element_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_0::~UFC_CahnHilliard2DBilinearForm_finite_element_0()
+cahnhilliard2d_0_finite_element_0::~cahnhilliard2d_0_finite_element_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_0::signature() const
+const char* cahnhilliard2d_0_finite_element_0::signature() const
 {
     return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_0::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_0::space_dimension() const
 {
     return 6;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_0::value_rank() const
 {
     return 1;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_0::value_dimension(unsigned int i) const
 {
     return 2;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -988,7 +988,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -996,7 +996,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -1319,7 +1319,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -1328,7 +1328,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -1369,7 +1369,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -1377,7 +1377,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -1392,21 +1392,21 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_0::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_0::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_0::num_sub_elements() const
 {
     return 2;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_0::create_sub_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_0_0();
+      return new cahnhilliard2d_0_finite_element_0_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_0_1();
+      return new cahnhilliard2d_0_finite_element_0_1();
       break;
     }
     return 0;
@@ -1414,49 +1414,49 @@ ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_0::create_sub
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_1_0::UFC_CahnHilliard2DBilinearForm_finite_element_1_0() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_1_0::cahnhilliard2d_0_finite_element_1_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_1_0::~UFC_CahnHilliard2DBilinearForm_finite_element_1_0()
+cahnhilliard2d_0_finite_element_1_0::~cahnhilliard2d_0_finite_element_1_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_1_0::signature() const
+const char* cahnhilliard2d_0_finite_element_1_0::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_1_0::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_1_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_0::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_1_0::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_0::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_1_0::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_1_0::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_1_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -1530,7 +1530,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis(unsigned 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_1_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -1538,7 +1538,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis_all(doubl
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -1746,7 +1746,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_1_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -1755,7 +1755,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_basis_derivativ
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_1_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -1796,7 +1796,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_dof(unsigned 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_1_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -1804,7 +1804,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::evaluate_dofs(double* va
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_1_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -1815,62 +1815,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_0::interpolate_vertex_value
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_0::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_1_0::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_1_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_1_0::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_1_0();
+    return new cahnhilliard2d_0_finite_element_1_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_1_1::UFC_CahnHilliard2DBilinearForm_finite_element_1_1() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_1_1::cahnhilliard2d_0_finite_element_1_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_1_1::~UFC_CahnHilliard2DBilinearForm_finite_element_1_1()
+cahnhilliard2d_0_finite_element_1_1::~cahnhilliard2d_0_finite_element_1_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_1_1::signature() const
+const char* cahnhilliard2d_0_finite_element_1_1::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_1_1::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_1_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_1::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_1_1::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_1::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_1_1::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_1_1::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_1_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -1944,7 +1944,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis(unsigned 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_1_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -1952,7 +1952,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis_all(doubl
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -2160,7 +2160,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_1_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -2169,7 +2169,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_basis_derivativ
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_1_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -2210,7 +2210,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_dof(unsigned 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_1_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -2218,7 +2218,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::evaluate_dofs(double* va
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_1_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -2229,62 +2229,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1_1::interpolate_vertex_value
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1_1::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_1_1::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_1_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_1_1::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_1_1();
+    return new cahnhilliard2d_0_finite_element_1_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_1::UFC_CahnHilliard2DBilinearForm_finite_element_1() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_1::cahnhilliard2d_0_finite_element_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_1::~UFC_CahnHilliard2DBilinearForm_finite_element_1()
+cahnhilliard2d_0_finite_element_1::~cahnhilliard2d_0_finite_element_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_1::signature() const
+const char* cahnhilliard2d_0_finite_element_1::signature() const
 {
     return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_1::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_1::space_dimension() const
 {
     return 6;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_1::value_rank() const
 {
     return 1;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_1::value_dimension(unsigned int i) const
 {
     return 2;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -2401,7 +2401,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -2409,7 +2409,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -2732,7 +2732,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -2741,7 +2741,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -2782,7 +2782,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -2790,7 +2790,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -2805,21 +2805,21 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_1::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_1::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_1::num_sub_elements() const
 {
     return 2;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_1::create_sub_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_1_0();
+      return new cahnhilliard2d_0_finite_element_1_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_1_1();
+      return new cahnhilliard2d_0_finite_element_1_1();
       break;
     }
     return 0;
@@ -2827,49 +2827,49 @@ ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_1::create_sub
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_2_0::UFC_CahnHilliard2DBilinearForm_finite_element_2_0() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_2_0::cahnhilliard2d_0_finite_element_2_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_2_0::~UFC_CahnHilliard2DBilinearForm_finite_element_2_0()
+cahnhilliard2d_0_finite_element_2_0::~cahnhilliard2d_0_finite_element_2_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_2_0::signature() const
+const char* cahnhilliard2d_0_finite_element_2_0::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_2_0::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_2_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_0::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_2_0::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_0::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_2_0::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_2_0::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_2_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -2943,7 +2943,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis(unsigned 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_2_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -2951,7 +2951,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis_all(doubl
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -3159,7 +3159,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_2_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -3168,7 +3168,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_basis_derivativ
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_2_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -3209,7 +3209,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_dof(unsigned 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_2_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -3217,7 +3217,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::evaluate_dofs(double* va
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_2_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -3228,62 +3228,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_0::interpolate_vertex_value
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_0::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_2_0::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_2_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_2_0::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_2_0();
+    return new cahnhilliard2d_0_finite_element_2_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_2_1::UFC_CahnHilliard2DBilinearForm_finite_element_2_1() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_2_1::cahnhilliard2d_0_finite_element_2_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_2_1::~UFC_CahnHilliard2DBilinearForm_finite_element_2_1()
+cahnhilliard2d_0_finite_element_2_1::~cahnhilliard2d_0_finite_element_2_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_2_1::signature() const
+const char* cahnhilliard2d_0_finite_element_2_1::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_2_1::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_2_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_1::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_2_1::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_1::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_2_1::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_2_1::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_2_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -3357,7 +3357,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis(unsigned 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_2_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -3365,7 +3365,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis_all(doubl
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -3573,7 +3573,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_2_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -3582,7 +3582,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_basis_derivativ
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_2_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -3623,7 +3623,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_dof(unsigned 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_2_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -3631,7 +3631,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::evaluate_dofs(double* va
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_2_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -3642,62 +3642,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2_1::interpolate_vertex_value
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2_1::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_2_1::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_2_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_2_1::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_2_1();
+    return new cahnhilliard2d_0_finite_element_2_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_2::UFC_CahnHilliard2DBilinearForm_finite_element_2() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_2::cahnhilliard2d_0_finite_element_2() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_2::~UFC_CahnHilliard2DBilinearForm_finite_element_2()
+cahnhilliard2d_0_finite_element_2::~cahnhilliard2d_0_finite_element_2()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_2::signature() const
+const char* cahnhilliard2d_0_finite_element_2::signature() const
 {
     return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_2::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_2::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_2::space_dimension() const
 {
     return 6;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_2::value_rank() const
 {
     return 1;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_2::value_dimension(unsigned int i) const
 {
     return 2;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_2::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -3814,7 +3814,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_2::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -3822,7 +3822,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_2::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -4145,7 +4145,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_2::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -4154,7 +4154,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_2::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -4195,7 +4195,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_2::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -4203,7 +4203,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_2::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_2::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -4218,21 +4218,21 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_2::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_2::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_2::num_sub_elements() const
 {
     return 2;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_2::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_2::create_sub_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_2_0();
+      return new cahnhilliard2d_0_finite_element_2_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_2_1();
+      return new cahnhilliard2d_0_finite_element_2_1();
       break;
     }
     return 0;
@@ -4240,49 +4240,49 @@ ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_2::create_sub
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_3::UFC_CahnHilliard2DBilinearForm_finite_element_3() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_3::cahnhilliard2d_0_finite_element_3() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_3::~UFC_CahnHilliard2DBilinearForm_finite_element_3()
+cahnhilliard2d_0_finite_element_3::~cahnhilliard2d_0_finite_element_3()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_3::signature() const
+const char* cahnhilliard2d_0_finite_element_3::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_3::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_3::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_3::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_3::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_3::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_3::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_3::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_3::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_3::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -4346,7 +4346,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_3::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -4354,7 +4354,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_3::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -4538,7 +4538,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_3::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -4547,7 +4547,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_3::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -4588,7 +4588,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_3::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -4596,7 +4596,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_3::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_3::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_3::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -4607,62 +4607,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_3::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_3::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_3::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_3::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_3::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_3();
+    return new cahnhilliard2d_0_finite_element_3();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_4::UFC_CahnHilliard2DBilinearForm_finite_element_4() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_4::cahnhilliard2d_0_finite_element_4() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_4::~UFC_CahnHilliard2DBilinearForm_finite_element_4()
+cahnhilliard2d_0_finite_element_4::~cahnhilliard2d_0_finite_element_4()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_4::signature() const
+const char* cahnhilliard2d_0_finite_element_4::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_4::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_4::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_4::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_4::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_4::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_4::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_4::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_4::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_4::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -4726,7 +4726,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_4::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -4734,7 +4734,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_4::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -4918,7 +4918,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_4::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -4927,7 +4927,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_4::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -4968,7 +4968,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_4::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -4976,7 +4976,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_4::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_4::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_4::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -4987,62 +4987,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_4::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_4::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_4::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_4::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_4::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_4();
+    return new cahnhilliard2d_0_finite_element_4();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_5::UFC_CahnHilliard2DBilinearForm_finite_element_5() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_5::cahnhilliard2d_0_finite_element_5() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_5::~UFC_CahnHilliard2DBilinearForm_finite_element_5()
+cahnhilliard2d_0_finite_element_5::~cahnhilliard2d_0_finite_element_5()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_5::signature() const
+const char* cahnhilliard2d_0_finite_element_5::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_5::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_5::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_5::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_5::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_5::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_5::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_5::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_5::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_5::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -5106,7 +5106,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_5::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -5114,7 +5114,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_5::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -5298,7 +5298,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_5::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -5307,7 +5307,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_5::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -5348,7 +5348,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_5::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -5356,7 +5356,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_5::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_5::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_5::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -5367,62 +5367,62 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_5::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_5::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_5::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_5::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_5::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_5();
+    return new cahnhilliard2d_0_finite_element_5();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_finite_element_6::UFC_CahnHilliard2DBilinearForm_finite_element_6() : ufc::finite_element()
+cahnhilliard2d_0_finite_element_6::cahnhilliard2d_0_finite_element_6() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_finite_element_6::~UFC_CahnHilliard2DBilinearForm_finite_element_6()
+cahnhilliard2d_0_finite_element_6::~cahnhilliard2d_0_finite_element_6()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DBilinearForm_finite_element_6::signature() const
+const char* cahnhilliard2d_0_finite_element_6::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DBilinearForm_finite_element_6::cell_shape() const
+ufc::shape cahnhilliard2d_0_finite_element_6::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_6::space_dimension() const
+unsigned int cahnhilliard2d_0_finite_element_6::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_6::value_rank() const
+unsigned int cahnhilliard2d_0_finite_element_6::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_6::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_0_finite_element_6::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis(unsigned int i,
+void cahnhilliard2d_0_finite_element_6::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -5486,7 +5486,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis_all(double* values,
+void cahnhilliard2d_0_finite_element_6::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -5494,7 +5494,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_0_finite_element_6::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -5678,7 +5678,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_0_finite_element_6::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -5687,7 +5687,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_dof(unsigned int i,
+double cahnhilliard2d_0_finite_element_6::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -5728,7 +5728,7 @@ double UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_dofs(double* values,
+void cahnhilliard2d_0_finite_element_6::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -5736,7 +5736,7 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_6::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DBilinearForm_finite_element_6::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_0_finite_element_6::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -5747,39 +5747,39 @@ void UFC_CahnHilliard2DBilinearForm_finite_element_6::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_finite_element_6::num_sub_elements() const
+unsigned int cahnhilliard2d_0_finite_element_6::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm_finite_element_6::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_0_finite_element_6::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_finite_element_6();
+    return new cahnhilliard2d_0_finite_element_6();
 }
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_0_0::UFC_CahnHilliard2DBilinearForm_dof_map_0_0() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_0_0::cahnhilliard2d_0_dof_map_0_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_0_0::~UFC_CahnHilliard2DBilinearForm_dof_map_0_0()
+cahnhilliard2d_0_dof_map_0_0::~cahnhilliard2d_0_dof_map_0_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_0_0::signature() const
+const char* cahnhilliard2d_0_dof_map_0_0::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_0_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_0_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5795,63 +5795,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_0_0::needs_mesh_entities(unsigned in
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_0_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_0_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_0_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_0_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_0_0::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0_0::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_0_0::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_0_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -5861,10 +5861,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_dofs(unsigned int* dof
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5882,14 +5882,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_facet_dofs(unsigned in
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_0_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -5902,40 +5902,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0_0::tabulate_coordinates(double** c
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_0_0::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_0_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_0_0::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_0_0();
+    return new cahnhilliard2d_0_dof_map_0_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_0_1::UFC_CahnHilliard2DBilinearForm_dof_map_0_1() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_0_1::cahnhilliard2d_0_dof_map_0_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_0_1::~UFC_CahnHilliard2DBilinearForm_dof_map_0_1()
+cahnhilliard2d_0_dof_map_0_1::~cahnhilliard2d_0_dof_map_0_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_0_1::signature() const
+const char* cahnhilliard2d_0_dof_map_0_1::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_0_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_0_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5951,63 +5951,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_0_1::needs_mesh_entities(unsigned in
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_0_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_0_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_0_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_0_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_0_1::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0_1::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_0_1::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_0_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -6017,10 +6017,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_dofs(unsigned int* dof
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6038,14 +6038,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_facet_dofs(unsigned in
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_0_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -6058,40 +6058,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0_1::tabulate_coordinates(double** c
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_0_1::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_0_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_0_1::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_0_1();
+    return new cahnhilliard2d_0_dof_map_0_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_0::UFC_CahnHilliard2DBilinearForm_dof_map_0() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_0::cahnhilliard2d_0_dof_map_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_0::~UFC_CahnHilliard2DBilinearForm_dof_map_0()
+cahnhilliard2d_0_dof_map_0::~cahnhilliard2d_0_dof_map_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_0::signature() const
+const char* cahnhilliard2d_0_dof_map_0::signature() const
 {
     return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6107,63 +6107,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_0::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = 2*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_0::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_0::local_dimension(const ufc::cell& c) const
 {
     return 6;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0::max_local_dimension() const
 {
     return 6;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_0::num_facet_dofs() const
 {
     return 4;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -6177,10 +6177,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6204,14 +6204,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -6230,21 +6230,21 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_0::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_0::num_sub_dof_maps() const
 {
     return 2;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_0::create_sub_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_0_0();
+      return new cahnhilliard2d_0_dof_map_0_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_0_1();
+      return new cahnhilliard2d_0_dof_map_0_1();
       break;
     }
     return 0;
@@ -6252,27 +6252,27 @@ ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_0::create_sub_dof_map(unsig
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_1_0::UFC_CahnHilliard2DBilinearForm_dof_map_1_0() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_1_0::cahnhilliard2d_0_dof_map_1_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_1_0::~UFC_CahnHilliard2DBilinearForm_dof_map_1_0()
+cahnhilliard2d_0_dof_map_1_0::~cahnhilliard2d_0_dof_map_1_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_1_0::signature() const
+const char* cahnhilliard2d_0_dof_map_1_0::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_1_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_1_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6288,63 +6288,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_1_0::needs_mesh_entities(unsigned in
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_1_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_1_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_1_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_1_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_1_0::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1_0::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_1_0::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_1_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -6354,10 +6354,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_dofs(unsigned int* dof
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6375,14 +6375,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_facet_dofs(unsigned in
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_1_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -6395,40 +6395,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1_0::tabulate_coordinates(double** c
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_1_0::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_1_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_1_0::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_1_0();
+    return new cahnhilliard2d_0_dof_map_1_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_1_1::UFC_CahnHilliard2DBilinearForm_dof_map_1_1() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_1_1::cahnhilliard2d_0_dof_map_1_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_1_1::~UFC_CahnHilliard2DBilinearForm_dof_map_1_1()
+cahnhilliard2d_0_dof_map_1_1::~cahnhilliard2d_0_dof_map_1_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_1_1::signature() const
+const char* cahnhilliard2d_0_dof_map_1_1::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_1_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_1_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6444,63 +6444,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_1_1::needs_mesh_entities(unsigned in
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_1_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_1_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_1_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_1_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_1_1::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1_1::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_1_1::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_1_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -6510,10 +6510,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_dofs(unsigned int* dof
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6531,14 +6531,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_facet_dofs(unsigned in
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_1_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -6551,40 +6551,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1_1::tabulate_coordinates(double** c
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_1_1::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_1_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_1_1::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_1_1();
+    return new cahnhilliard2d_0_dof_map_1_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_1::UFC_CahnHilliard2DBilinearForm_dof_map_1() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_1::cahnhilliard2d_0_dof_map_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_1::~UFC_CahnHilliard2DBilinearForm_dof_map_1()
+cahnhilliard2d_0_dof_map_1::~cahnhilliard2d_0_dof_map_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_1::signature() const
+const char* cahnhilliard2d_0_dof_map_1::signature() const
 {
     return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6600,63 +6600,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_1::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = 2*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_1::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_1::local_dimension(const ufc::cell& c) const
 {
     return 6;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1::max_local_dimension() const
 {
     return 6;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_1::num_facet_dofs() const
 {
     return 4;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -6670,10 +6670,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6697,14 +6697,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -6723,21 +6723,21 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_1::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_1::num_sub_dof_maps() const
 {
     return 2;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_1::create_sub_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_1_0();
+      return new cahnhilliard2d_0_dof_map_1_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_1_1();
+      return new cahnhilliard2d_0_dof_map_1_1();
       break;
     }
     return 0;
@@ -6745,27 +6745,27 @@ ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_1::create_sub_dof_map(unsig
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_2_0::UFC_CahnHilliard2DBilinearForm_dof_map_2_0() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_2_0::cahnhilliard2d_0_dof_map_2_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_2_0::~UFC_CahnHilliard2DBilinearForm_dof_map_2_0()
+cahnhilliard2d_0_dof_map_2_0::~cahnhilliard2d_0_dof_map_2_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_2_0::signature() const
+const char* cahnhilliard2d_0_dof_map_2_0::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_2_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_2_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6781,63 +6781,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_2_0::needs_mesh_entities(unsigned in
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_2_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_2_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_2_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_2_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_2_0::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2_0::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_2_0::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_2_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -6847,10 +6847,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_dofs(unsigned int* dof
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6868,14 +6868,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_facet_dofs(unsigned in
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_2_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -6888,40 +6888,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2_0::tabulate_coordinates(double** c
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_2_0::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_2_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_2_0::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_2_0();
+    return new cahnhilliard2d_0_dof_map_2_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_2_1::UFC_CahnHilliard2DBilinearForm_dof_map_2_1() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_2_1::cahnhilliard2d_0_dof_map_2_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_2_1::~UFC_CahnHilliard2DBilinearForm_dof_map_2_1()
+cahnhilliard2d_0_dof_map_2_1::~cahnhilliard2d_0_dof_map_2_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_2_1::signature() const
+const char* cahnhilliard2d_0_dof_map_2_1::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_2_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_2_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6937,63 +6937,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_2_1::needs_mesh_entities(unsigned in
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_2_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_2_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_2_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_2_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_2_1::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2_1::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_2_1::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_2_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -7003,10 +7003,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_dofs(unsigned int* dof
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7024,14 +7024,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_facet_dofs(unsigned in
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_2_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -7044,40 +7044,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2_1::tabulate_coordinates(double** c
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_2_1::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_2_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_2_1::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_2_1();
+    return new cahnhilliard2d_0_dof_map_2_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_2::UFC_CahnHilliard2DBilinearForm_dof_map_2() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_2::cahnhilliard2d_0_dof_map_2() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_2::~UFC_CahnHilliard2DBilinearForm_dof_map_2()
+cahnhilliard2d_0_dof_map_2::~cahnhilliard2d_0_dof_map_2()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_2::signature() const
+const char* cahnhilliard2d_0_dof_map_2::signature() const
 {
     return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_2::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_2::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -7093,63 +7093,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_2::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_2::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_2::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = 2*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_2::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_2::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_2::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_2::local_dimension(const ufc::cell& c) const
 {
     return 6;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2::max_local_dimension() const
 {
     return 6;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_2::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_2::num_facet_dofs() const
 {
     return 4;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_2::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -7163,10 +7163,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -7190,14 +7190,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_2::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_2::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -7216,21 +7216,21 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_2::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_2::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_2::num_sub_dof_maps() const
 {
     return 2;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_2::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_2::create_sub_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_2_0();
+      return new cahnhilliard2d_0_dof_map_2_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_2_1();
+      return new cahnhilliard2d_0_dof_map_2_1();
       break;
     }
     return 0;
@@ -7238,27 +7238,27 @@ ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_2::create_sub_dof_map(unsig
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_3::UFC_CahnHilliard2DBilinearForm_dof_map_3() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_3::cahnhilliard2d_0_dof_map_3() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_3::~UFC_CahnHilliard2DBilinearForm_dof_map_3()
+cahnhilliard2d_0_dof_map_3::~cahnhilliard2d_0_dof_map_3()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_3::signature() const
+const char* cahnhilliard2d_0_dof_map_3::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_3::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_3::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7274,63 +7274,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_3::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_3::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_3::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_3::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_3::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_3::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_3::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_3::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_3::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_3::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_3::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_3::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_3::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_3::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -7338,10 +7338,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_3::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7356,14 +7356,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_3::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_3::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -7372,40 +7372,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_3::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_3::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_3::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_3::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_3::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_3();
+    return new cahnhilliard2d_0_dof_map_3();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_4::UFC_CahnHilliard2DBilinearForm_dof_map_4() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_4::cahnhilliard2d_0_dof_map_4() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_4::~UFC_CahnHilliard2DBilinearForm_dof_map_4()
+cahnhilliard2d_0_dof_map_4::~cahnhilliard2d_0_dof_map_4()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_4::signature() const
+const char* cahnhilliard2d_0_dof_map_4::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_4::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_4::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7421,63 +7421,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_4::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_4::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_4::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_4::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_4::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_4::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_4::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_4::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_4::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_4::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_4::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_4::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_4::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_4::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -7485,10 +7485,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_4::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7503,14 +7503,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_4::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_4::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -7519,40 +7519,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_4::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_4::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_4::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_4::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_4::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_4();
+    return new cahnhilliard2d_0_dof_map_4();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_5::UFC_CahnHilliard2DBilinearForm_dof_map_5() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_5::cahnhilliard2d_0_dof_map_5() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_5::~UFC_CahnHilliard2DBilinearForm_dof_map_5()
+cahnhilliard2d_0_dof_map_5::~cahnhilliard2d_0_dof_map_5()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_5::signature() const
+const char* cahnhilliard2d_0_dof_map_5::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_5::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_5::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7568,63 +7568,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_5::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_5::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_5::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_5::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_5::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_5::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_5::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_5::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_5::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_5::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_5::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_5::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_5::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_5::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -7632,10 +7632,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_5::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7650,14 +7650,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_5::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_5::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -7666,40 +7666,40 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_5::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_5::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_5::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_5::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_5::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_5();
+    return new cahnhilliard2d_0_dof_map_5();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_dof_map_6::UFC_CahnHilliard2DBilinearForm_dof_map_6() : ufc::dof_map()
+cahnhilliard2d_0_dof_map_6::cahnhilliard2d_0_dof_map_6() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_dof_map_6::~UFC_CahnHilliard2DBilinearForm_dof_map_6()
+cahnhilliard2d_0_dof_map_6::~cahnhilliard2d_0_dof_map_6()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DBilinearForm_dof_map_6::signature() const
+const char* cahnhilliard2d_0_dof_map_6::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DBilinearForm_dof_map_6::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_0_dof_map_6::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7715,63 +7715,63 @@ bool UFC_CahnHilliard2DBilinearForm_dof_map_6::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DBilinearForm_dof_map_6::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_0_dof_map_6::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_6::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_0_dof_map_6::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DBilinearForm_dof_map_6::init_cell_finalize()
+void cahnhilliard2d_0_dof_map_6::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::global_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_6::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_0_dof_map_6::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::max_local_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_6::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::geometric_dimension() const
+unsigned int cahnhilliard2d_0_dof_map_6::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::num_facet_dofs() const
+unsigned int cahnhilliard2d_0_dof_map_6::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_0_dof_map_6::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_6::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -7779,10 +7779,10 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_6::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7797,14 +7797,14 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_0_dof_map_6::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_0_dof_map_6::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -7813,32 +7813,32 @@ void UFC_CahnHilliard2DBilinearForm_dof_map_6::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DBilinearForm_dof_map_6::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_0_dof_map_6::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm_dof_map_6::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_0_dof_map_6::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_dof_map_6();
+    return new cahnhilliard2d_0_dof_map_6();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_cell_integral_0_quadrature::UFC_CahnHilliard2DBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+cahnhilliard2d_0_cell_integral_0_quadrature::cahnhilliard2d_0_cell_integral_0_quadrature() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_cell_integral_0_quadrature::~UFC_CahnHilliard2DBilinearForm_cell_integral_0_quadrature()
+cahnhilliard2d_0_cell_integral_0_quadrature::~cahnhilliard2d_0_cell_integral_0_quadrature()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void UFC_CahnHilliard2DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(double* A,
+void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -7998,19 +7998,19 @@ void UFC_CahnHilliard2DBilinearForm_cell_integral_0_quadrature::tabulate_tensor(
 }
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm_cell_integral_0::UFC_CahnHilliard2DBilinearForm_cell_integral_0() : ufc::cell_integral()
+cahnhilliard2d_0_cell_integral_0::cahnhilliard2d_0_cell_integral_0() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm_cell_integral_0::~UFC_CahnHilliard2DBilinearForm_cell_integral_0()
+cahnhilliard2d_0_cell_integral_0::~cahnhilliard2d_0_cell_integral_0()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void UFC_CahnHilliard2DBilinearForm_cell_integral_0::tabulate_tensor(double* A,
+void cahnhilliard2d_0_cell_integral_0::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -8057,176 +8057,176 @@ void UFC_CahnHilliard2DBilinearForm_cell_integral_0::tabulate_tensor(double* A,
 }
 
 /// Constructor
-UFC_CahnHilliard2DBilinearForm::UFC_CahnHilliard2DBilinearForm() : ufc::form()
+cahnhilliard2d_form_0::cahnhilliard2d_form_0() : ufc::form()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DBilinearForm::~UFC_CahnHilliard2DBilinearForm()
+cahnhilliard2d_form_0::~cahnhilliard2d_form_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the form
-const char* UFC_CahnHilliard2DBilinearForm::signature() const
+const char* cahnhilliard2d_form_0::signature() const
 {
     return "Form([Integral(Sum(Sum(Product(Constant(Cell('triangle', 1), 3), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Product(Constant(Cell('triangle', 1), 4), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('triangle', 1), 1), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(Constant(Cell('triangle', 1), 2), Sum(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(FloatValue(2.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Product(FloatValue(8.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(FloatValue(2.0, (), (), {}), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
-unsigned int UFC_CahnHilliard2DBilinearForm::rank() const
+unsigned int cahnhilliard2d_form_0::rank() const
 {
     return 2;
 }
 
 /// Return the number of coefficients (n)
-unsigned int UFC_CahnHilliard2DBilinearForm::num_coefficients() const
+unsigned int cahnhilliard2d_form_0::num_coefficients() const
 {
     return 5;
 }
 
 /// Return the number of cell integrals
-unsigned int UFC_CahnHilliard2DBilinearForm::num_cell_integrals() const
+unsigned int cahnhilliard2d_form_0::num_cell_integrals() const
 {
     return 1;
 }
   
 /// Return the number of exterior facet integrals
-unsigned int UFC_CahnHilliard2DBilinearForm::num_exterior_facet_integrals() const
+unsigned int cahnhilliard2d_form_0::num_exterior_facet_integrals() const
 {
     return 0;
 }
   
 /// Return the number of interior facet integrals
-unsigned int UFC_CahnHilliard2DBilinearForm::num_interior_facet_integrals() const
+unsigned int cahnhilliard2d_form_0::num_interior_facet_integrals() const
 {
     return 0;
 }
 
 /// Create a new finite element for argument function i
-ufc::finite_element* UFC_CahnHilliard2DBilinearForm::create_finite_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_form_0::create_finite_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_0();
+      return new cahnhilliard2d_0_finite_element_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_1();
+      return new cahnhilliard2d_0_finite_element_1();
       break;
     case 2:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_2();
+      return new cahnhilliard2d_0_finite_element_2();
       break;
     case 3:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_3();
+      return new cahnhilliard2d_0_finite_element_3();
       break;
     case 4:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_4();
+      return new cahnhilliard2d_0_finite_element_4();
       break;
     case 5:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_5();
+      return new cahnhilliard2d_0_finite_element_5();
       break;
     case 6:
-      return new UFC_CahnHilliard2DBilinearForm_finite_element_6();
+      return new cahnhilliard2d_0_finite_element_6();
       break;
     }
     return 0;
 }
 
 /// Create a new dof map for argument function i
-ufc::dof_map* UFC_CahnHilliard2DBilinearForm::create_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_form_0::create_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_0();
+      return new cahnhilliard2d_0_dof_map_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_1();
+      return new cahnhilliard2d_0_dof_map_1();
       break;
     case 2:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_2();
+      return new cahnhilliard2d_0_dof_map_2();
       break;
     case 3:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_3();
+      return new cahnhilliard2d_0_dof_map_3();
       break;
     case 4:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_4();
+      return new cahnhilliard2d_0_dof_map_4();
       break;
     case 5:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_5();
+      return new cahnhilliard2d_0_dof_map_5();
       break;
     case 6:
-      return new UFC_CahnHilliard2DBilinearForm_dof_map_6();
+      return new cahnhilliard2d_0_dof_map_6();
       break;
     }
     return 0;
 }
 
 /// Create a new cell integral on sub domain i
-ufc::cell_integral* UFC_CahnHilliard2DBilinearForm::create_cell_integral(unsigned int i) const
+ufc::cell_integral* cahnhilliard2d_form_0::create_cell_integral(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DBilinearForm_cell_integral_0();
+    return new cahnhilliard2d_0_cell_integral_0();
 }
 
 /// Create a new exterior facet integral on sub domain i
-ufc::exterior_facet_integral* UFC_CahnHilliard2DBilinearForm::create_exterior_facet_integral(unsigned int i) const
+ufc::exterior_facet_integral* cahnhilliard2d_form_0::create_exterior_facet_integral(unsigned int i) const
 {
     return 0;
 }
 
 /// Create a new interior facet integral on sub domain i
-ufc::interior_facet_integral* UFC_CahnHilliard2DBilinearForm::create_interior_facet_integral(unsigned int i) const
+ufc::interior_facet_integral* cahnhilliard2d_form_0::create_interior_facet_integral(unsigned int i) const
 {
     return 0;
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_0_0::UFC_CahnHilliard2DLinearForm_finite_element_0_0() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_0_0::cahnhilliard2d_1_finite_element_0_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_0_0::~UFC_CahnHilliard2DLinearForm_finite_element_0_0()
+cahnhilliard2d_1_finite_element_0_0::~cahnhilliard2d_1_finite_element_0_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_0_0::signature() const
+const char* cahnhilliard2d_1_finite_element_0_0::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_0_0::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_0_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_0::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_0_0::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_0::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_0_0::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_0_0::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_0_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -8300,7 +8300,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_0_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -8308,7 +8308,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -8516,7 +8516,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_0_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -8525,7 +8525,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_0_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -8566,7 +8566,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_0_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -8574,7 +8574,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_0::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_0_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_0_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -8585,62 +8585,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_0::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_0::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_0_0::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_0_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_0_0::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_0_0();
+    return new cahnhilliard2d_1_finite_element_0_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_0_1::UFC_CahnHilliard2DLinearForm_finite_element_0_1() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_0_1::cahnhilliard2d_1_finite_element_0_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_0_1::~UFC_CahnHilliard2DLinearForm_finite_element_0_1()
+cahnhilliard2d_1_finite_element_0_1::~cahnhilliard2d_1_finite_element_0_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_0_1::signature() const
+const char* cahnhilliard2d_1_finite_element_0_1::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_0_1::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_0_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_1::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_0_1::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_1::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_0_1::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_0_1::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_0_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -8714,7 +8714,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_0_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -8722,7 +8722,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -8930,7 +8930,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_0_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -8939,7 +8939,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_0_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -8980,7 +8980,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_0_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -8988,7 +8988,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_1::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_0_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_0_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -8999,62 +8999,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0_1::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0_1::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_0_1::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_0_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_0_1::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_0_1();
+    return new cahnhilliard2d_1_finite_element_0_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_0::UFC_CahnHilliard2DLinearForm_finite_element_0() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_0::cahnhilliard2d_1_finite_element_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_0::~UFC_CahnHilliard2DLinearForm_finite_element_0()
+cahnhilliard2d_1_finite_element_0::~cahnhilliard2d_1_finite_element_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_0::signature() const
+const char* cahnhilliard2d_1_finite_element_0::signature() const
 {
     return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_0::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_0::space_dimension() const
 {
     return 6;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_0::value_rank() const
 {
     return 1;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_0::value_dimension(unsigned int i) const
 {
     return 2;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -9171,7 +9171,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -9179,7 +9179,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -9502,7 +9502,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -9511,7 +9511,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -9552,7 +9552,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -9560,7 +9560,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -9575,21 +9575,21 @@ void UFC_CahnHilliard2DLinearForm_finite_element_0::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_0::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_0::num_sub_elements() const
 {
     return 2;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_0::create_sub_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_0_0();
+      return new cahnhilliard2d_1_finite_element_0_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_0_1();
+      return new cahnhilliard2d_1_finite_element_0_1();
       break;
     }
     return 0;
@@ -9597,49 +9597,49 @@ ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_0::create_sub_e
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_1_0::UFC_CahnHilliard2DLinearForm_finite_element_1_0() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_1_0::cahnhilliard2d_1_finite_element_1_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_1_0::~UFC_CahnHilliard2DLinearForm_finite_element_1_0()
+cahnhilliard2d_1_finite_element_1_0::~cahnhilliard2d_1_finite_element_1_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_1_0::signature() const
+const char* cahnhilliard2d_1_finite_element_1_0::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_1_0::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_1_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_0::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_1_0::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_0::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_1_0::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_1_0::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_1_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -9713,7 +9713,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_1_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -9721,7 +9721,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -9929,7 +9929,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_1_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -9938,7 +9938,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_1_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -9979,7 +9979,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_1_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -9987,7 +9987,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_0::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_1_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_1_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -9998,62 +9998,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_0::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_0::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_1_0::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_1_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_1_0::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_1_0();
+    return new cahnhilliard2d_1_finite_element_1_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_1_1::UFC_CahnHilliard2DLinearForm_finite_element_1_1() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_1_1::cahnhilliard2d_1_finite_element_1_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_1_1::~UFC_CahnHilliard2DLinearForm_finite_element_1_1()
+cahnhilliard2d_1_finite_element_1_1::~cahnhilliard2d_1_finite_element_1_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_1_1::signature() const
+const char* cahnhilliard2d_1_finite_element_1_1::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_1_1::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_1_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_1::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_1_1::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_1::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_1_1::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_1_1::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_1_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -10127,7 +10127,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_1_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -10135,7 +10135,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -10343,7 +10343,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_1_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -10352,7 +10352,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_1_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -10393,7 +10393,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_1_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -10401,7 +10401,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_1::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_1_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_1_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -10412,62 +10412,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1_1::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1_1::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_1_1::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_1_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_1_1::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_1_1();
+    return new cahnhilliard2d_1_finite_element_1_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_1::UFC_CahnHilliard2DLinearForm_finite_element_1() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_1::cahnhilliard2d_1_finite_element_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_1::~UFC_CahnHilliard2DLinearForm_finite_element_1()
+cahnhilliard2d_1_finite_element_1::~cahnhilliard2d_1_finite_element_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_1::signature() const
+const char* cahnhilliard2d_1_finite_element_1::signature() const
 {
     return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_1::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_1::space_dimension() const
 {
     return 6;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_1::value_rank() const
 {
     return 1;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_1::value_dimension(unsigned int i) const
 {
     return 2;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -10584,7 +10584,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -10592,7 +10592,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -10915,7 +10915,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -10924,7 +10924,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -10965,7 +10965,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -10973,7 +10973,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -10988,21 +10988,21 @@ void UFC_CahnHilliard2DLinearForm_finite_element_1::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_1::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_1::num_sub_elements() const
 {
     return 2;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_1::create_sub_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_1_0();
+      return new cahnhilliard2d_1_finite_element_1_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_1_1();
+      return new cahnhilliard2d_1_finite_element_1_1();
       break;
     }
     return 0;
@@ -11010,49 +11010,49 @@ ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_1::create_sub_e
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_2_0::UFC_CahnHilliard2DLinearForm_finite_element_2_0() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_2_0::cahnhilliard2d_1_finite_element_2_0() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_2_0::~UFC_CahnHilliard2DLinearForm_finite_element_2_0()
+cahnhilliard2d_1_finite_element_2_0::~cahnhilliard2d_1_finite_element_2_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_2_0::signature() const
+const char* cahnhilliard2d_1_finite_element_2_0::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_2_0::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_2_0::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_0::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_2_0::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_0::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_2_0::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_0::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_2_0::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_2_0::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -11126,7 +11126,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_2_0::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -11134,7 +11134,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -11342,7 +11342,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_2_0::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -11351,7 +11351,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_2_0::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -11392,7 +11392,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_2_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -11400,7 +11400,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_0::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_2_0::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_2_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -11411,62 +11411,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_0::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_0::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_2_0::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_2_0::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_2_0::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_2_0();
+    return new cahnhilliard2d_1_finite_element_2_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_2_1::UFC_CahnHilliard2DLinearForm_finite_element_2_1() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_2_1::cahnhilliard2d_1_finite_element_2_1() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_2_1::~UFC_CahnHilliard2DLinearForm_finite_element_2_1()
+cahnhilliard2d_1_finite_element_2_1::~cahnhilliard2d_1_finite_element_2_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_2_1::signature() const
+const char* cahnhilliard2d_1_finite_element_2_1::signature() const
 {
     return "FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_2_1::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_2_1::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_1::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_2_1::space_dimension() const
 {
     return 3;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_1::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_2_1::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_1::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_2_1::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_2_1::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -11540,7 +11540,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis(unsigned in
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_2_1::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -11548,7 +11548,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis_all(double*
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -11756,7 +11756,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis_derivatives
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_2_1::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -11765,7 +11765,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_basis_derivatives
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_2_1::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -11806,7 +11806,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_dof(unsigned in
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_2_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -11814,7 +11814,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_1::evaluate_dofs(double* valu
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_2_1::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_2_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -11825,62 +11825,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2_1::interpolate_vertex_values(
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2_1::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_2_1::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_2_1::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_2_1::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_2_1();
+    return new cahnhilliard2d_1_finite_element_2_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_2::UFC_CahnHilliard2DLinearForm_finite_element_2() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_2::cahnhilliard2d_1_finite_element_2() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_2::~UFC_CahnHilliard2DLinearForm_finite_element_2()
+cahnhilliard2d_1_finite_element_2::~cahnhilliard2d_1_finite_element_2()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_2::signature() const
+const char* cahnhilliard2d_1_finite_element_2::signature() const
 {
     return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_2::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_2::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_2::space_dimension() const
 {
     return 6;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_2::value_rank() const
 {
     return 1;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_2::value_dimension(unsigned int i) const
 {
     return 2;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_2::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -11997,7 +11997,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_2::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -12005,7 +12005,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_2::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -12328,7 +12328,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_2::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -12337,7 +12337,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_2::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -12378,7 +12378,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_2::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -12386,7 +12386,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_2::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_2::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -12401,21 +12401,21 @@ void UFC_CahnHilliard2DLinearForm_finite_element_2::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_2::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_2::num_sub_elements() const
 {
     return 2;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_2::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_2::create_sub_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_2_0();
+      return new cahnhilliard2d_1_finite_element_2_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_2_1();
+      return new cahnhilliard2d_1_finite_element_2_1();
       break;
     }
     return 0;
@@ -12423,49 +12423,49 @@ ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_2::create_sub_e
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_3::UFC_CahnHilliard2DLinearForm_finite_element_3() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_3::cahnhilliard2d_1_finite_element_3() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_3::~UFC_CahnHilliard2DLinearForm_finite_element_3()
+cahnhilliard2d_1_finite_element_3::~cahnhilliard2d_1_finite_element_3()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_3::signature() const
+const char* cahnhilliard2d_1_finite_element_3::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_3::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_3::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_3::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_3::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_3::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_3::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_3::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_3::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_3::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -12529,7 +12529,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_3::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -12537,7 +12537,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_3::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -12721,7 +12721,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_3::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -12730,7 +12730,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_3::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -12771,7 +12771,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_3::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -12779,7 +12779,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_3::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_3::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_3::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -12790,62 +12790,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_3::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_3::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_3::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_3::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_3::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_3();
+    return new cahnhilliard2d_1_finite_element_3();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_4::UFC_CahnHilliard2DLinearForm_finite_element_4() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_4::cahnhilliard2d_1_finite_element_4() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_4::~UFC_CahnHilliard2DLinearForm_finite_element_4()
+cahnhilliard2d_1_finite_element_4::~cahnhilliard2d_1_finite_element_4()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_4::signature() const
+const char* cahnhilliard2d_1_finite_element_4::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_4::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_4::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_4::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_4::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_4::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_4::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_4::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_4::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_4::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -12909,7 +12909,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_4::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -12917,7 +12917,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_4::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -13101,7 +13101,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_4::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -13110,7 +13110,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_4::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -13151,7 +13151,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_4::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -13159,7 +13159,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_4::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_4::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_4::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -13170,62 +13170,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_4::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_4::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_4::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_4::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_4::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_4();
+    return new cahnhilliard2d_1_finite_element_4();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_5::UFC_CahnHilliard2DLinearForm_finite_element_5() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_5::cahnhilliard2d_1_finite_element_5() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_5::~UFC_CahnHilliard2DLinearForm_finite_element_5()
+cahnhilliard2d_1_finite_element_5::~cahnhilliard2d_1_finite_element_5()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_5::signature() const
+const char* cahnhilliard2d_1_finite_element_5::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_5::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_5::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_5::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_5::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_5::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_5::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_5::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_5::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_5::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -13289,7 +13289,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_5::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -13297,7 +13297,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_5::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -13481,7 +13481,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_5::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -13490,7 +13490,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_5::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -13531,7 +13531,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_5::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -13539,7 +13539,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_5::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_5::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_5::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -13550,62 +13550,62 @@ void UFC_CahnHilliard2DLinearForm_finite_element_5::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_5::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_5::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_5::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_5::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_5();
+    return new cahnhilliard2d_1_finite_element_5();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_finite_element_6::UFC_CahnHilliard2DLinearForm_finite_element_6() : ufc::finite_element()
+cahnhilliard2d_1_finite_element_6::cahnhilliard2d_1_finite_element_6() : ufc::finite_element()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_finite_element_6::~UFC_CahnHilliard2DLinearForm_finite_element_6()
+cahnhilliard2d_1_finite_element_6::~cahnhilliard2d_1_finite_element_6()
 {
     // Do nothing
 }
 
 /// Return a string identifying the finite element
-const char* UFC_CahnHilliard2DLinearForm_finite_element_6::signature() const
+const char* cahnhilliard2d_1_finite_element_6::signature() const
 {
     return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return the cell shape
-ufc::shape UFC_CahnHilliard2DLinearForm_finite_element_6::cell_shape() const
+ufc::shape cahnhilliard2d_1_finite_element_6::cell_shape() const
 {
     return ufc::triangle;
 }
 
 /// Return the dimension of the finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_6::space_dimension() const
+unsigned int cahnhilliard2d_1_finite_element_6::space_dimension() const
 {
     return 1;
 }
 
 /// Return the rank of the value space
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_6::value_rank() const
+unsigned int cahnhilliard2d_1_finite_element_6::value_rank() const
 {
     return 0;
 }
 
 /// Return the dimension of the value space for axis i
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_6::value_dimension(unsigned int i) const
+unsigned int cahnhilliard2d_1_finite_element_6::value_dimension(unsigned int i) const
 {
     return 1;
 }
 
 /// Evaluate basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis(unsigned int i,
+void cahnhilliard2d_1_finite_element_6::evaluate_basis(unsigned int i,
                                    double* values,
                                    const double* coordinates,
                                    const ufc::cell& c) const
@@ -13669,7 +13669,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis(unsigned int 
 }
 
 /// Evaluate all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis_all(double* values,
+void cahnhilliard2d_1_finite_element_6::evaluate_basis_all(double* values,
                                        const double* coordinates,
                                        const ufc::cell& c) const
 {
@@ -13677,7 +13677,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis_all(double* v
 }
 
 /// Evaluate order n derivatives of basis function i at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis_derivatives(unsigned int i,
+void cahnhilliard2d_1_finite_element_6::evaluate_basis_derivatives(unsigned int i,
                                                unsigned int n,
                                                double* values,
                                                const double* coordinates,
@@ -13861,7 +13861,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis_derivatives(u
 }
 
 /// Evaluate order n derivatives of all basis functions at given point in cell
-void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis_derivatives_all(unsigned int n,
+void cahnhilliard2d_1_finite_element_6::evaluate_basis_derivatives_all(unsigned int n,
                                                    double* values,
                                                    const double* coordinates,
                                                    const ufc::cell& c) const
@@ -13870,7 +13870,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_basis_derivatives_a
 }
 
 /// Evaluate linear functional for dof i on the function f
-double UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_dof(unsigned int i,
+double cahnhilliard2d_1_finite_element_6::evaluate_dof(unsigned int i,
                                    const ufc::function& f,
                                    const ufc::cell& c) const
 {
@@ -13911,7 +13911,7 @@ double UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_dof(unsigned int 
 }
 
 /// Evaluate linear functionals for all dofs on the function f
-void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_dofs(double* values,
+void cahnhilliard2d_1_finite_element_6::evaluate_dofs(double* values,
                                   const ufc::function& f,
                                   const ufc::cell& c) const
 {
@@ -13919,7 +13919,7 @@ void UFC_CahnHilliard2DLinearForm_finite_element_6::evaluate_dofs(double* values
 }
 
 /// Interpolate vertex values from dof values
-void UFC_CahnHilliard2DLinearForm_finite_element_6::interpolate_vertex_values(double* vertex_values,
+void cahnhilliard2d_1_finite_element_6::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
                                               const ufc::cell& c) const
 {
@@ -13930,39 +13930,39 @@ void UFC_CahnHilliard2DLinearForm_finite_element_6::interpolate_vertex_values(do
 }
 
 /// Return the number of sub elements (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_finite_element_6::num_sub_elements() const
+unsigned int cahnhilliard2d_1_finite_element_6::num_sub_elements() const
 {
     return 1;
 }
 
 /// Create a new finite element for sub element i (for a mixed element)
-ufc::finite_element* UFC_CahnHilliard2DLinearForm_finite_element_6::create_sub_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_1_finite_element_6::create_sub_element(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_finite_element_6();
+    return new cahnhilliard2d_1_finite_element_6();
 }
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_0_0::UFC_CahnHilliard2DLinearForm_dof_map_0_0() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_0_0::cahnhilliard2d_1_dof_map_0_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_0_0::~UFC_CahnHilliard2DLinearForm_dof_map_0_0()
+cahnhilliard2d_1_dof_map_0_0::~cahnhilliard2d_1_dof_map_0_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_0_0::signature() const
+const char* cahnhilliard2d_1_dof_map_0_0::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_0_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_0_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -13978,63 +13978,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_0_0::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_0_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_0_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_0_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_0_0::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_0_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_0_0::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0_0::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_0_0::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_0_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -14044,10 +14044,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14065,14 +14065,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_0_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -14085,40 +14085,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0_0::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_0_0::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_0_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_0_0::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_0_0();
+    return new cahnhilliard2d_1_dof_map_0_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_0_1::UFC_CahnHilliard2DLinearForm_dof_map_0_1() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_0_1::cahnhilliard2d_1_dof_map_0_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_0_1::~UFC_CahnHilliard2DLinearForm_dof_map_0_1()
+cahnhilliard2d_1_dof_map_0_1::~cahnhilliard2d_1_dof_map_0_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_0_1::signature() const
+const char* cahnhilliard2d_1_dof_map_0_1::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_0_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_0_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14134,63 +14134,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_0_1::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_0_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_0_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_0_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_0_1::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_0_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_0_1::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0_1::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_0_1::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_0_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -14200,10 +14200,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14221,14 +14221,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_0_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -14241,40 +14241,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0_1::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_0_1::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_0_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_0_1::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_0_1();
+    return new cahnhilliard2d_1_dof_map_0_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_0::UFC_CahnHilliard2DLinearForm_dof_map_0() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_0::cahnhilliard2d_1_dof_map_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_0::~UFC_CahnHilliard2DLinearForm_dof_map_0()
+cahnhilliard2d_1_dof_map_0::~cahnhilliard2d_1_dof_map_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_0::signature() const
+const char* cahnhilliard2d_1_dof_map_0::signature() const
 {
     return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14290,63 +14290,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_0::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = 2*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_0::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_0::local_dimension(const ufc::cell& c) const
 {
     return 6;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0::max_local_dimension() const
 {
     return 6;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_0::num_facet_dofs() const
 {
     return 4;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -14360,10 +14360,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14387,14 +14387,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -14413,21 +14413,21 @@ void UFC_CahnHilliard2DLinearForm_dof_map_0::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_0::num_sub_dof_maps() const
 {
     return 2;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_0::create_sub_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_0_0();
+      return new cahnhilliard2d_1_dof_map_0_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_0_1();
+      return new cahnhilliard2d_1_dof_map_0_1();
       break;
     }
     return 0;
@@ -14435,27 +14435,27 @@ ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_0::create_sub_dof_map(unsigne
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_1_0::UFC_CahnHilliard2DLinearForm_dof_map_1_0() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_1_0::cahnhilliard2d_1_dof_map_1_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_1_0::~UFC_CahnHilliard2DLinearForm_dof_map_1_0()
+cahnhilliard2d_1_dof_map_1_0::~cahnhilliard2d_1_dof_map_1_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_1_0::signature() const
+const char* cahnhilliard2d_1_dof_map_1_0::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_1_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_1_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14471,63 +14471,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_1_0::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_1_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_1_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_1_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_1_0::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_1_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_1_0::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1_0::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_1_0::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_1_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -14537,10 +14537,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14558,14 +14558,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_1_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -14578,40 +14578,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1_0::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_1_0::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_1_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_1_0::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_1_0();
+    return new cahnhilliard2d_1_dof_map_1_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_1_1::UFC_CahnHilliard2DLinearForm_dof_map_1_1() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_1_1::cahnhilliard2d_1_dof_map_1_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_1_1::~UFC_CahnHilliard2DLinearForm_dof_map_1_1()
+cahnhilliard2d_1_dof_map_1_1::~cahnhilliard2d_1_dof_map_1_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_1_1::signature() const
+const char* cahnhilliard2d_1_dof_map_1_1::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_1_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_1_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14627,63 +14627,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_1_1::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_1_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_1_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_1_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_1_1::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_1_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_1_1::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1_1::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_1_1::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_1_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -14693,10 +14693,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14714,14 +14714,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_1_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -14734,40 +14734,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1_1::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_1_1::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_1_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_1_1::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_1_1();
+    return new cahnhilliard2d_1_dof_map_1_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_1::UFC_CahnHilliard2DLinearForm_dof_map_1() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_1::cahnhilliard2d_1_dof_map_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_1::~UFC_CahnHilliard2DLinearForm_dof_map_1()
+cahnhilliard2d_1_dof_map_1::~cahnhilliard2d_1_dof_map_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_1::signature() const
+const char* cahnhilliard2d_1_dof_map_1::signature() const
 {
     return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14783,63 +14783,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_1::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = 2*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_1::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_1::local_dimension(const ufc::cell& c) const
 {
     return 6;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1::max_local_dimension() const
 {
     return 6;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_1::num_facet_dofs() const
 {
     return 4;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -14853,10 +14853,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -14880,14 +14880,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -14906,21 +14906,21 @@ void UFC_CahnHilliard2DLinearForm_dof_map_1::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_1::num_sub_dof_maps() const
 {
     return 2;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_1::create_sub_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_1_0();
+      return new cahnhilliard2d_1_dof_map_1_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_1_1();
+      return new cahnhilliard2d_1_dof_map_1_1();
       break;
     }
     return 0;
@@ -14928,27 +14928,27 @@ ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_1::create_sub_dof_map(unsigne
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_2_0::UFC_CahnHilliard2DLinearForm_dof_map_2_0() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_2_0::cahnhilliard2d_1_dof_map_2_0() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_2_0::~UFC_CahnHilliard2DLinearForm_dof_map_2_0()
+cahnhilliard2d_1_dof_map_2_0::~cahnhilliard2d_1_dof_map_2_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_2_0::signature() const
+const char* cahnhilliard2d_1_dof_map_2_0::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_2_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_2_0::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -14964,63 +14964,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_2_0::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_2_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_2_0::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2_0::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_2_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_2_0::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_2_0::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2_0::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_2_0::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2_0::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2_0::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_2_0::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_2_0::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15030,10 +15030,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -15051,14 +15051,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_2_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15071,40 +15071,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2_0::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_0::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_2_0::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_2_0::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_2_0::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_2_0();
+    return new cahnhilliard2d_1_dof_map_2_0();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_2_1::UFC_CahnHilliard2DLinearForm_dof_map_2_1() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_2_1::cahnhilliard2d_1_dof_map_2_1() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_2_1::~UFC_CahnHilliard2DLinearForm_dof_map_2_1()
+cahnhilliard2d_1_dof_map_2_1::~cahnhilliard2d_1_dof_map_2_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_2_1::signature() const
+const char* cahnhilliard2d_1_dof_map_2_1::signature() const
 {
     return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_2_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_2_1::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -15120,63 +15120,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_2_1::needs_mesh_entities(unsigned int 
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_2_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_2_1::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2_1::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_2_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_2_1::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_2_1::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2_1::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_2_1::local_dimension(const ufc::cell& c) const
 {
     return 3;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2_1::max_local_dimension() const
 {
     return 3;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2_1::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_2_1::num_facet_dofs() const
 {
     return 2;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_2_1::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15186,10 +15186,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -15207,14 +15207,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_facet_dofs(unsigned int*
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_2_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15227,40 +15227,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2_1::tabulate_coordinates(double** coo
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2_1::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_2_1::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_2_1::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_2_1::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_2_1();
+    return new cahnhilliard2d_1_dof_map_2_1();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_2::UFC_CahnHilliard2DLinearForm_dof_map_2() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_2::cahnhilliard2d_1_dof_map_2() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_2::~UFC_CahnHilliard2DLinearForm_dof_map_2()
+cahnhilliard2d_1_dof_map_2::~cahnhilliard2d_1_dof_map_2()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_2::signature() const
+const char* cahnhilliard2d_1_dof_map_2::signature() const
 {
     return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_2::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_2::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -15276,63 +15276,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_2::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_2::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_2::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = 2*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_2::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_2::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_2::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_2::local_dimension(const ufc::cell& c) const
 {
     return 6;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2::max_local_dimension() const
 {
     return 6;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_2::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_2::num_facet_dofs() const
 {
     return 4;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_2::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15346,10 +15346,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -15373,14 +15373,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_2::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_2::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15399,21 +15399,21 @@ void UFC_CahnHilliard2DLinearForm_dof_map_2::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_2::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_2::num_sub_dof_maps() const
 {
     return 2;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_2::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_2::create_sub_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_2_0();
+      return new cahnhilliard2d_1_dof_map_2_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_2_1();
+      return new cahnhilliard2d_1_dof_map_2_1();
       break;
     }
     return 0;
@@ -15421,27 +15421,27 @@ ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_2::create_sub_dof_map(unsigne
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_3::UFC_CahnHilliard2DLinearForm_dof_map_3() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_3::cahnhilliard2d_1_dof_map_3() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_3::~UFC_CahnHilliard2DLinearForm_dof_map_3()
+cahnhilliard2d_1_dof_map_3::~cahnhilliard2d_1_dof_map_3()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_3::signature() const
+const char* cahnhilliard2d_1_dof_map_3::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_3::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_3::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -15457,63 +15457,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_3::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_3::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_3::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_3::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_3::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_3::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_3::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_3::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_3::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_3::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_3::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_3::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_3::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_3::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15521,10 +15521,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_3::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -15539,14 +15539,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_3::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_3::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15555,40 +15555,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_3::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_3::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_3::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_3::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_3::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_3();
+    return new cahnhilliard2d_1_dof_map_3();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_4::UFC_CahnHilliard2DLinearForm_dof_map_4() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_4::cahnhilliard2d_1_dof_map_4() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_4::~UFC_CahnHilliard2DLinearForm_dof_map_4()
+cahnhilliard2d_1_dof_map_4::~cahnhilliard2d_1_dof_map_4()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_4::signature() const
+const char* cahnhilliard2d_1_dof_map_4::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_4::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_4::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -15604,63 +15604,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_4::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_4::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_4::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_4::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_4::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_4::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_4::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_4::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_4::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_4::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_4::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_4::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_4::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_4::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15668,10 +15668,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_4::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -15686,14 +15686,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_4::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_4::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15702,40 +15702,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_4::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_4::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_4::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_4::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_4::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_4();
+    return new cahnhilliard2d_1_dof_map_4();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_5::UFC_CahnHilliard2DLinearForm_dof_map_5() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_5::cahnhilliard2d_1_dof_map_5() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_5::~UFC_CahnHilliard2DLinearForm_dof_map_5()
+cahnhilliard2d_1_dof_map_5::~cahnhilliard2d_1_dof_map_5()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_5::signature() const
+const char* cahnhilliard2d_1_dof_map_5::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_5::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_5::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -15751,63 +15751,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_5::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_5::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_5::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_5::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_5::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_5::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_5::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_5::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_5::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_5::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_5::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_5::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_5::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_5::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15815,10 +15815,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_5::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -15833,14 +15833,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_5::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_5::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15849,40 +15849,40 @@ void UFC_CahnHilliard2DLinearForm_dof_map_5::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_5::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_5::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_5::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_5::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_5();
+    return new cahnhilliard2d_1_dof_map_5();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_dof_map_6::UFC_CahnHilliard2DLinearForm_dof_map_6() : ufc::dof_map()
+cahnhilliard2d_1_dof_map_6::cahnhilliard2d_1_dof_map_6() : ufc::dof_map()
 {
     __global_dimension = 0;
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_dof_map_6::~UFC_CahnHilliard2DLinearForm_dof_map_6()
+cahnhilliard2d_1_dof_map_6::~cahnhilliard2d_1_dof_map_6()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* UFC_CahnHilliard2DLinearForm_dof_map_6::signature() const
+const char* cahnhilliard2d_1_dof_map_6::signature() const
 {
     return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool UFC_CahnHilliard2DLinearForm_dof_map_6::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard2d_1_dof_map_6::needs_mesh_entities(unsigned int d) const
 {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -15898,63 +15898,63 @@ bool UFC_CahnHilliard2DLinearForm_dof_map_6::needs_mesh_entities(unsigned int d)
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool UFC_CahnHilliard2DLinearForm_dof_map_6::init_mesh(const ufc::mesh& m)
+bool cahnhilliard2d_1_dof_map_6::init_mesh(const ufc::mesh& m)
 {
     __global_dimension = m.num_entities[2];
     return false;
 }
 
 /// Initialize dof map for given cell
-void UFC_CahnHilliard2DLinearForm_dof_map_6::init_cell(const ufc::mesh& m,
+void cahnhilliard2d_1_dof_map_6::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void UFC_CahnHilliard2DLinearForm_dof_map_6::init_cell_finalize()
+void cahnhilliard2d_1_dof_map_6::init_cell_finalize()
 {
     // Do nothing
 }
 
 /// Return the dimension of the global finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::global_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_6::global_dimension() const
 {
     return __global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard2d_1_dof_map_6::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::max_local_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_6::max_local_dimension() const
 {
     return 1;
 }
 
 // Return the geometric dimension of the coordinates this dof map provides
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::geometric_dimension() const
+unsigned int cahnhilliard2d_1_dof_map_6::geometric_dimension() const
 {
     return 2;
 }
 
 /// Return the number of dofs on each cell facet
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::num_facet_dofs() const
+unsigned int cahnhilliard2d_1_dof_map_6::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard2d_1_dof_map_6::num_entity_dofs(unsigned int d) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_6::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -15962,10 +15962,10 @@ void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_6::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -15980,14 +15980,14 @@ void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_facet_dofs(unsigned int* d
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard2d_1_dof_map_6::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_coordinates(double** coordinates,
+void cahnhilliard2d_1_dof_map_6::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -15996,32 +15996,32 @@ void UFC_CahnHilliard2DLinearForm_dof_map_6::tabulate_coordinates(double** coord
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int UFC_CahnHilliard2DLinearForm_dof_map_6::num_sub_dof_maps() const
+unsigned int cahnhilliard2d_1_dof_map_6::num_sub_dof_maps() const
 {
     return 1;
 }
 
 /// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* UFC_CahnHilliard2DLinearForm_dof_map_6::create_sub_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_1_dof_map_6::create_sub_dof_map(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_dof_map_6();
+    return new cahnhilliard2d_1_dof_map_6();
 }
 
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_cell_integral_0_quadrature::UFC_CahnHilliard2DLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+cahnhilliard2d_1_cell_integral_0_quadrature::cahnhilliard2d_1_cell_integral_0_quadrature() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_cell_integral_0_quadrature::~UFC_CahnHilliard2DLinearForm_cell_integral_0_quadrature()
+cahnhilliard2d_1_cell_integral_0_quadrature::~cahnhilliard2d_1_cell_integral_0_quadrature()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void UFC_CahnHilliard2DLinearForm_cell_integral_0_quadrature::tabulate_tensor(double* A,
+void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -16184,19 +16184,19 @@ void UFC_CahnHilliard2DLinearForm_cell_integral_0_quadrature::tabulate_tensor(do
 }
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm_cell_integral_0::UFC_CahnHilliard2DLinearForm_cell_integral_0() : ufc::cell_integral()
+cahnhilliard2d_1_cell_integral_0::cahnhilliard2d_1_cell_integral_0() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm_cell_integral_0::~UFC_CahnHilliard2DLinearForm_cell_integral_0()
+cahnhilliard2d_1_cell_integral_0::~cahnhilliard2d_1_cell_integral_0()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void UFC_CahnHilliard2DLinearForm_cell_integral_0::tabulate_tensor(double* A,
+void cahnhilliard2d_1_cell_integral_0::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -16213,127 +16213,127 @@ void UFC_CahnHilliard2DLinearForm_cell_integral_0::tabulate_tensor(double* A,
 }
 
 /// Constructor
-UFC_CahnHilliard2DLinearForm::UFC_CahnHilliard2DLinearForm() : ufc::form()
+cahnhilliard2d_form_1::cahnhilliard2d_form_1() : ufc::form()
 {
     // Do nothing
 }
 
 /// Destructor
-UFC_CahnHilliard2DLinearForm::~UFC_CahnHilliard2DLinearForm()
+cahnhilliard2d_form_1::~cahnhilliard2d_form_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the form
-const char* UFC_CahnHilliard2DLinearForm::signature() const
+const char* cahnhilliard2d_form_1::signature() const
 {
     return "Form([Integral(Sum(Sum(Product(Constant(Cell('triangle', 1), 4), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Constant(Cell('triangle', 1), 5), Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {}))), Product(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {})), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Constant(Cell('triangle', 1), 5))))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('triangle', 1), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(Constant(Cell('triangle', 1), 3), Sum(Product(IntValue(-1, (), (), {}), Product(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
-unsigned int UFC_CahnHilliard2DLinearForm::rank() const
+unsigned int cahnhilliard2d_form_1::rank() const
 {
     return 1;
 }
 
 /// Return the number of coefficients (n)
-unsigned int UFC_CahnHilliard2DLinearForm::num_coefficients() const
+unsigned int cahnhilliard2d_form_1::num_coefficients() const
 {
     return 6;
 }
 
 /// Return the number of cell integrals
-unsigned int UFC_CahnHilliard2DLinearForm::num_cell_integrals() const
+unsigned int cahnhilliard2d_form_1::num_cell_integrals() const
 {
     return 1;
 }
   
 /// Return the number of exterior facet integrals
-unsigned int UFC_CahnHilliard2DLinearForm::num_exterior_facet_integrals() const
+unsigned int cahnhilliard2d_form_1::num_exterior_facet_integrals() const
 {
     return 0;
 }
   
 /// Return the number of interior facet integrals
-unsigned int UFC_CahnHilliard2DLinearForm::num_interior_facet_integrals() const
+unsigned int cahnhilliard2d_form_1::num_interior_facet_integrals() const
 {
     return 0;
 }
 
 /// Create a new finite element for argument function i
-ufc::finite_element* UFC_CahnHilliard2DLinearForm::create_finite_element(unsigned int i) const
+ufc::finite_element* cahnhilliard2d_form_1::create_finite_element(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_0();
+      return new cahnhilliard2d_1_finite_element_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_1();
+      return new cahnhilliard2d_1_finite_element_1();
       break;
     case 2:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_2();
+      return new cahnhilliard2d_1_finite_element_2();
       break;
     case 3:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_3();
+      return new cahnhilliard2d_1_finite_element_3();
       break;
     case 4:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_4();
+      return new cahnhilliard2d_1_finite_element_4();
       break;
     case 5:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_5();
+      return new cahnhilliard2d_1_finite_element_5();
       break;
     case 6:
-      return new UFC_CahnHilliard2DLinearForm_finite_element_6();
+      return new cahnhilliard2d_1_finite_element_6();
       break;
     }
     return 0;
 }
 
 /// Create a new dof map for argument function i
-ufc::dof_map* UFC_CahnHilliard2DLinearForm::create_dof_map(unsigned int i) const
+ufc::dof_map* cahnhilliard2d_form_1::create_dof_map(unsigned int i) const
 {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_0();
+      return new cahnhilliard2d_1_dof_map_0();
       break;
     case 1:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_1();
+      return new cahnhilliard2d_1_dof_map_1();
       break;
     case 2:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_2();
+      return new cahnhilliard2d_1_dof_map_2();
       break;
     case 3:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_3();
+      return new cahnhilliard2d_1_dof_map_3();
       break;
     case 4:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_4();
+      return new cahnhilliard2d_1_dof_map_4();
       break;
     case 5:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_5();
+      return new cahnhilliard2d_1_dof_map_5();
       break;
     case 6:
-      return new UFC_CahnHilliard2DLinearForm_dof_map_6();
+      return new cahnhilliard2d_1_dof_map_6();
       break;
     }
     return 0;
 }
 
 /// Create a new cell integral on sub domain i
-ufc::cell_integral* UFC_CahnHilliard2DLinearForm::create_cell_integral(unsigned int i) const
+ufc::cell_integral* cahnhilliard2d_form_1::create_cell_integral(unsigned int i) const
 {
-    return new UFC_CahnHilliard2DLinearForm_cell_integral_0();
+    return new cahnhilliard2d_1_cell_integral_0();
 }
 
 /// Create a new exterior facet integral on sub domain i
-ufc::exterior_facet_integral* UFC_CahnHilliard2DLinearForm::create_exterior_facet_integral(unsigned int i) const
+ufc::exterior_facet_integral* cahnhilliard2d_form_1::create_exterior_facet_integral(unsigned int i) const
 {
     return 0;
 }
 
 /// Create a new interior facet integral on sub domain i
-ufc::interior_facet_integral* UFC_CahnHilliard2DLinearForm::create_interior_facet_integral(unsigned int i) const
+ufc::interior_facet_integral* cahnhilliard2d_form_1::create_interior_facet_integral(unsigned int i) const
 {
     return 0;
 }

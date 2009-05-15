@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2DP3BilinearForm_finite_element_0: public ufc::finite_element
+class poisson2dp3_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm_finite_element_0() : ufc::finite_element()
+  poisson2dp3_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm_finite_element_0()
+  virtual ~poisson2dp3_0_finite_element_0()
   {
     // Do nothing
   }
@@ -139,15 +139,15 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[10][10] = \
-    {{0.0471404520791032, -0.0288675134594813, -0.0166666666666667, 0.0782460796435951, 0.0606091526731326, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524247},
-    {0.0471404520791031, 0.0288675134594813, -0.0166666666666666, 0.0782460796435952, -0.0606091526731326, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
-    {0.0471404520791032, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
+    {{0.0471404520791031, -0.0288675134594812, -0.0166666666666666, 0.0782460796435951, 0.0606091526731327, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791032, 0.0288675134594812, -0.0166666666666666, 0.0782460796435952, -0.0606091526731327, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791031, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
     {0.106066017177982, 0.259807621135332, -0.15, 0.117369119465393, 0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, -0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, 0.151522881682832, 0.0262445329583912, 0, 0, 0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.0909137290096989},
+    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, -0.151522881682832, 0.0262445329583912, 0, 0, -0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435952, 0.090913729009699, 0.0962299541807678, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
-    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435951, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384204, 0.0131222664791956, -0.0227284322524247},
+    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435951, 0.090913729009699, 0.0962299541807677, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
+    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435952, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384203, 0.0131222664791956, -0.0227284322524247},
     {0.636396103067893, 0, 0, -0.234738238930785, 0, -0.262445329583912, 0, -0.203289278153681, 0, 0.090913729009699}};
     
     // Extract relevant coefficients
@@ -314,15 +314,15 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[10][10] = \
-    {{0.0471404520791032, -0.0288675134594813, -0.0166666666666667, 0.0782460796435951, 0.0606091526731326, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524247},
-    {0.0471404520791031, 0.0288675134594813, -0.0166666666666666, 0.0782460796435952, -0.0606091526731326, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
-    {0.0471404520791032, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
+    {{0.0471404520791031, -0.0288675134594812, -0.0166666666666666, 0.0782460796435951, 0.0606091526731327, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791032, 0.0288675134594812, -0.0166666666666666, 0.0782460796435952, -0.0606091526731327, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791031, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
     {0.106066017177982, 0.259807621135332, -0.15, 0.117369119465393, 0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, -0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, 0.151522881682832, 0.0262445329583912, 0, 0, 0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.0909137290096989},
+    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, -0.151522881682832, 0.0262445329583912, 0, 0, -0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435952, 0.090913729009699, 0.0962299541807678, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
-    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435951, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384204, 0.0131222664791956, -0.0227284322524247},
+    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435951, 0.090913729009699, 0.0962299541807677, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
+    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435952, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384203, 0.0131222664791956, -0.0227284322524247},
     {0.636396103067893, 0, 0, -0.234738238930785, 0, -0.262445329583912, 0, -0.203289278153681, 0, 0.090913729009699}};
     
     // Interesting (new) part
@@ -332,9 +332,9 @@ public:
     {4.89897948556636, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4, 0, 7.07106781186547, 0, 0, 0, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.29150262212918, 0, -2.99332590941915, 13.6626010212795, 0, 0.611010092660781, 0, 0, 0, 0},
+    {5.29150262212918, 0, -2.99332590941915, 13.6626010212795, 0, 0.611010092660779, 0, 0, 0, 0},
     {0, 4.38178046004133, 0, 0, 12.5219806739988, 0, 0, 0, 0, 0},
     {3.46410161513775, 0, 7.83836717690617, 0, 0, 8.4, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
@@ -342,13 +342,13 @@ public:
     const static double dmats1[10][10] = \
     {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {2.44948974278318, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4.24264068711928, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.58198889747161, 4.74341649025257, -0.912870929175275, 0, 0, 0, 0, 0, 0, 0},
+    {4.24264068711929, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175276, 0, 0, 0, 0, 0, 0, 0},
     {2, 6.12372435695795, 3.53553390593274, 0, 0, 0, 0, 0, 0, 0},
     {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0, 0, 0, 0, 0},
-    {2.64575131106459, 5.18459255872629, -1.49666295470957, 6.83130051063973, -1.05830052442584, 0.305505046330391, 0, 0, 0, 0},
+    {2.64575131106459, 5.18459255872629, -1.49666295470958, 6.83130051063973, -1.05830052442584, 0.305505046330391, 0, 0, 0, 0},
     {2.23606797749979, 2.19089023002067, 2.5298221281347, 8.08290376865476, 6.26099033699941, -1.80739222823013, 0, 0, 0, 0},
-    {1.73205080756888, -5.09116882454314, 3.91918358845308, 0, 9.69948452238571, 4.2, 0, 0, 0, 0},
+    {1.73205080756888, -5.09116882454314, 3.91918358845309, 0, 9.69948452238571, 4.2, 0, 0, 0, 0},
     {5, 0, -2.82842712474619, 0, 0, 12.1243556529821, 0, 0, 0, 0}};
     
     // Compute reference derivatives
@@ -541,25 +541,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2DP3BilinearForm_finite_element_0();
+    return new poisson2dp3_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2DP3BilinearForm_finite_element_1: public ufc::finite_element
+class poisson2dp3_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm_finite_element_1() : ufc::finite_element()
+  poisson2dp3_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm_finite_element_1()
+  virtual ~poisson2dp3_0_finite_element_1()
   {
     // Do nothing
   }
@@ -673,15 +673,15 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[10][10] = \
-    {{0.0471404520791032, -0.0288675134594813, -0.0166666666666667, 0.0782460796435951, 0.0606091526731326, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524247},
-    {0.0471404520791031, 0.0288675134594813, -0.0166666666666666, 0.0782460796435952, -0.0606091526731326, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
-    {0.0471404520791032, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
+    {{0.0471404520791031, -0.0288675134594812, -0.0166666666666666, 0.0782460796435951, 0.0606091526731327, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791032, 0.0288675134594812, -0.0166666666666666, 0.0782460796435952, -0.0606091526731327, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791031, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
     {0.106066017177982, 0.259807621135332, -0.15, 0.117369119465393, 0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, -0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, 0.151522881682832, 0.0262445329583912, 0, 0, 0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.0909137290096989},
+    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, -0.151522881682832, 0.0262445329583912, 0, 0, -0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435952, 0.090913729009699, 0.0962299541807678, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
-    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435951, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384204, 0.0131222664791956, -0.0227284322524247},
+    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435951, 0.090913729009699, 0.0962299541807677, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
+    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435952, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384203, 0.0131222664791956, -0.0227284322524247},
     {0.636396103067893, 0, 0, -0.234738238930785, 0, -0.262445329583912, 0, -0.203289278153681, 0, 0.090913729009699}};
     
     // Extract relevant coefficients
@@ -848,15 +848,15 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[10][10] = \
-    {{0.0471404520791032, -0.0288675134594813, -0.0166666666666667, 0.0782460796435951, 0.0606091526731326, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524247},
-    {0.0471404520791031, 0.0288675134594813, -0.0166666666666666, 0.0782460796435952, -0.0606091526731326, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
-    {0.0471404520791032, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
+    {{0.0471404520791031, -0.0288675134594812, -0.0166666666666666, 0.0782460796435951, 0.0606091526731327, 0.0349927106111883, -0.0601337794302955, -0.0508223195384204, -0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791032, 0.0288675134594812, -0.0166666666666666, 0.0782460796435952, -0.0606091526731327, 0.0349927106111883, 0.0601337794302955, -0.0508223195384204, 0.0393667994375868, -0.0227284322524248},
+    {0.0471404520791031, 0, 0.0333333333333334, 0, 0, 0.104978131833565, 0, 0, 0, 0.0909137290096989},
     {0.106066017177982, 0.259807621135332, -0.15, 0.117369119465393, 0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, -0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, 0.151522881682832, 0.0262445329583912, 0, 0, 0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.0909137290096989},
+    {0.106066017177982, -0.259807621135332, -0.15, 0.117369119465393, -0.0606091526731326, -0.0787335988751736, 0, 0.101644639076841, 0.131222664791956, 0.090913729009699},
     {0.106066017177982, 0, 0.3, 0, -0.151522881682832, 0.0262445329583912, 0, 0, -0.131222664791956, -0.136370593514548},
-    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435952, 0.090913729009699, 0.0962299541807678, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
-    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435951, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384204, 0.0131222664791956, -0.0227284322524247},
+    {0.106066017177982, -0.259807621135332, -0.15, -0.0782460796435951, 0.090913729009699, 0.0962299541807677, 0.180401338290886, 0.0508223195384204, -0.0131222664791956, -0.0227284322524248},
+    {0.106066017177982, 0.259807621135332, -0.15, -0.0782460796435952, -0.090913729009699, 0.0962299541807677, -0.180401338290886, 0.0508223195384203, 0.0131222664791956, -0.0227284322524247},
     {0.636396103067893, 0, 0, -0.234738238930785, 0, -0.262445329583912, 0, -0.203289278153681, 0, 0.090913729009699}};
     
     // Interesting (new) part
@@ -866,9 +866,9 @@ public:
     {4.89897948556636, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4, 0, 7.07106781186547, 0, 0, 0, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {5.29150262212918, 0, -2.99332590941915, 13.6626010212795, 0, 0.611010092660781, 0, 0, 0, 0},
+    {5.29150262212918, 0, -2.99332590941915, 13.6626010212795, 0, 0.611010092660779, 0, 0, 0, 0},
     {0, 4.38178046004133, 0, 0, 12.5219806739988, 0, 0, 0, 0, 0},
     {3.46410161513775, 0, 7.83836717690617, 0, 0, 8.4, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
@@ -876,13 +876,13 @@ public:
     const static double dmats1[10][10] = \
     {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {2.44948974278318, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {4.24264068711928, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {2.58198889747161, 4.74341649025257, -0.912870929175275, 0, 0, 0, 0, 0, 0, 0},
+    {4.24264068711929, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175276, 0, 0, 0, 0, 0, 0, 0},
     {2, 6.12372435695795, 3.53553390593274, 0, 0, 0, 0, 0, 0, 0},
     {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0, 0, 0, 0, 0},
-    {2.64575131106459, 5.18459255872629, -1.49666295470957, 6.83130051063973, -1.05830052442584, 0.305505046330391, 0, 0, 0, 0},
+    {2.64575131106459, 5.18459255872629, -1.49666295470958, 6.83130051063973, -1.05830052442584, 0.305505046330391, 0, 0, 0, 0},
     {2.23606797749979, 2.19089023002067, 2.5298221281347, 8.08290376865476, 6.26099033699941, -1.80739222823013, 0, 0, 0, 0},
-    {1.73205080756888, -5.09116882454314, 3.91918358845308, 0, 9.69948452238571, 4.2, 0, 0, 0, 0},
+    {1.73205080756888, -5.09116882454314, 3.91918358845309, 0, 9.69948452238571, 4.2, 0, 0, 0, 0},
     {5, 0, -2.82842712474619, 0, 0, 12.1243556529821, 0, 0, 0, 0}};
     
     // Compute reference derivatives
@@ -1075,7 +1075,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2DP3BilinearForm_finite_element_1();
+    return new poisson2dp3_0_finite_element_1();
   }
 
 };
@@ -1083,7 +1083,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2DP3BilinearForm_dof_map_0: public ufc::dof_map
+class poisson2dp3_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -1092,13 +1092,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm_dof_map_0() : ufc::dof_map()
+  poisson2dp3_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm_dof_map_0()
+  virtual ~poisson2dp3_0_dof_map_0()
   {
     // Do nothing
   }
@@ -1112,7 +1112,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1206,7 +1206,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1272,7 +1272,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2DP3BilinearForm_dof_map_0();
+    return new poisson2dp3_0_dof_map_0();
   }
 
 };
@@ -1280,7 +1280,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2DP3BilinearForm_dof_map_1: public ufc::dof_map
+class poisson2dp3_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1289,13 +1289,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm_dof_map_1() : ufc::dof_map()
+  poisson2dp3_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm_dof_map_1()
+  virtual ~poisson2dp3_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1309,7 +1309,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1403,7 +1403,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1469,7 +1469,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2DP3BilinearForm_dof_map_1();
+    return new poisson2dp3_0_dof_map_1();
   }
 
 };
@@ -1478,18 +1478,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2DP3BilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class poisson2dp3_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  poisson2dp3_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm_cell_integral_0_quadrature()
+  virtual ~poisson2dp3_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1526,28 +1526,28 @@ public:
     
     
     const static double FE0_D10[9][9] = \
-    {{-2.55056975615985, 0.217978480942823, -0.152958036778261, -0.292700159103738, -1.53564999060007, 0.292700159103738, 3.4091097879806, -1.07651851276357, 1.68860802737833},
-    {0.00933175346175718, 0.460810882717711, -1.10680538218858, 0.420851136528209, -3.95030488909878, -0.420851136528209, 0.706498019232601, -1.17664065541207, 5.05711027128736},
-    {0.216460246177278, 0.792351247165588, -3.03552884295643, 4.83103269604492, -0.462398606714224, -4.83103269604492, -0.382666785386261, -0.626144707956605, 3.49792744967066},
-    {0.297836494227727, -0.297836494227727, 0.691345976910906, -0.292700159103738, -0.691345976910906, 0.292700159103738, -2.80351768796511, 2.80351768796511, 0},
-    {0.480437438363774, -0.480437438363775, 1.4217497534551, 0.420851136528209, -1.4217497534551, -0.420851136528209, -1.17696167165292, 1.17696167165292, 0},
-    {-0.196641279530277, 0.196641279530277, -1.2865651181211, 4.83103269604492, 1.28656511812111, -4.83103269604492, -0.152173701606464, 0.152173701606464, 0},
-    {-0.217978480942822, 2.55056975615985, 1.53564999060007, -0.292700159103738, 0.152958036778263, 0.292700159103737, 1.07651851276357, -3.4091097879806, -1.68860802737834},
-    {-0.460810882717711, -0.00933175346175675, 3.95030488909878, 0.420851136528209, 1.10680538218858, -0.420851136528209, 1.17664065541207, -0.706498019232601, -5.05711027128736},
-    {-0.792351247165588, -0.216460246177277, 0.462398606714224, 4.83103269604492, 3.03552884295644, -4.83103269604492, 0.626144707956604, 0.382666785386261, -3.49792744967066}};
+    {{-2.55056975615985, 0.217978480942823, -0.152958036778261, -0.292700159103738, -1.53564999060007, 0.292700159103739, 3.4091097879806, -1.07651851276357, 1.68860802737833},
+    {0.00933175346175733, 0.460810882717711, -1.10680538218858, 0.42085113652821, -3.95030488909878, -0.420851136528209, 0.706498019232601, -1.17664065541207, 5.05711027128736},
+    {0.216460246177278, 0.792351247165588, -3.03552884295643, 4.83103269604492, -0.462398606714227, -4.83103269604492, -0.382666785386264, -0.626144707956602, 3.49792744967066},
+    {0.297836494227726, -0.297836494227726, 0.691345976910905, -0.292700159103738, -0.691345976910906, 0.292700159103738, -2.80351768796511, 2.80351768796511, 0},
+    {0.480437438363775, -0.480437438363775, 1.4217497534551, 0.420851136528209, -1.4217497534551, -0.420851136528209, -1.17696167165292, 1.17696167165292, 0},
+    {-0.196641279530276, 0.196641279530276, -1.2865651181211, 4.83103269604492, 1.2865651181211, -4.83103269604492, -0.152173701606466, 0.152173701606465, 0},
+    {-0.217978480942822, 2.55056975615985, 1.53564999060007, -0.292700159103738, 0.152958036778264, 0.292700159103737, 1.07651851276357, -3.4091097879806, -1.68860802737834},
+    {-0.460810882717711, -0.00933175346175718, 3.95030488909878, 0.420851136528208, 1.10680538218858, -0.42085113652821, 1.17664065541207, -0.706498019232603, -5.05711027128736},
+    {-0.792351247165588, -0.216460246177278, 0.462398606714225, 4.83103269604491, 3.03552884295643, -4.83103269604492, 0.626144707956603, 0.382666785386261, -3.49792744967066}};
     // Array of non-zero columns
     static const unsigned int nzc0[9] = {0, 1, 3, 4, 5, 6, 7, 8, 9};
     
     const static double FE0_D01[9][9] = \
-    {{-2.55056975615985, 0.308654023089095, -0.319792072413858, -0.216541665614413, 3.65404450110929, -1.41212876803854, -1.78058470372877, 0.319792072413859, 1.99712636934318},
-    {0.00933175346175709, -0.421749753455098, -0.239695812006049, 0.436302202518483, -2.60173083782008, 3.01414883781342, -0.642076032046096, 0.239695812006049, 0.205773829527611},
-    {0.216460246177278, 2.2865651181211, -0.0999586575425473, 0.401248639675514, -0.831016526107176, -1.67200883819121, -0.0140488659933091, 0.0999586575425478, -0.387199773682206},
-    {0.297836494227726, 0.308654023089095, 0.75284059686869, -0.960685296378343, 0.0614946199577841, -0.667985137274605, -3.5563582848338, -0.752840596868688, 4.51704358121214},
-    {0.480437438363774, -0.421749753455097, -0.151737883355428, 1.93565108843006, -1.57348763681052, 1.51479995190185, -1.02522378829749, 0.151737883355428, -0.910427300132565},
-    {-0.196641279530276, 2.2865651181211, -0.325592509431628, 1.78013624876461, 0.960972608689476, -3.0508964472803, 0.173418807825166, 0.325592509431628, -1.95355505658978},
-    {-0.217978480942823, 0.308654023089095, 5.18969449170937, -1.70482892714227, -0.166834035635598, 0.0761584934893251, 1.39631058517743, -5.18969449170937, 0.308518341964845},
-    {-0.460810882717711, -0.421749753455098, 1.3485740512787, 3.43499997434163, 0.867109570182535, 0.015451065990274, 1.41633646741812, -1.3485740512787, -4.85133644175975},
-    {-0.792351247165588, 2.2865651181211, -0.368617919392952, 3.15902385785371, 2.93557018541388, -4.4297840563694, 0.726103365499154, 0.368617919392951, -3.88512722335286}};
+    {{-2.55056975615985, 0.308654023089094, -0.319792072413859, -0.216541665614413, 3.65404450110929, -1.41212876803854, -1.78058470372877, 0.319792072413859, 1.99712636934318},
+    {0.0093317534617576, -0.421749753455097, -0.23969581200605, 0.436302202518484, -2.60173083782008, 3.01414883781342, -0.642076032046096, 0.239695812006049, 0.205773829527613},
+    {0.216460246177278, 2.2865651181211, -0.0999586575425487, 0.401248639675516, -0.831016526107176, -1.67200883819121, -0.0140488659933101, 0.0999586575425487, -0.387199773682205},
+    {0.297836494227726, 0.308654023089095, 0.752840596868691, -0.960685296378344, 0.0614946199577846, -0.667985137274605, -3.5563582848338, -0.752840596868689, 4.51704358121214},
+    {0.480437438363775, -0.421749753455097, -0.151737883355427, 1.93565108843006, -1.57348763681052, 1.51479995190185, -1.02522378829749, 0.151737883355427, -0.910427300132567},
+    {-0.196641279530276, 2.2865651181211, -0.325592509431629, 1.78013624876461, 0.960972608689476, -3.0508964472803, 0.173418807825165, 0.325592509431629, -1.95355505658978},
+    {-0.217978480942823, 0.308654023089095, 5.18969449170937, -1.70482892714228, -0.166834035635597, 0.076158493489324, 1.39631058517743, -5.18969449170937, 0.308518341964846},
+    {-0.460810882717711, -0.421749753455098, 1.3485740512787, 3.43499997434163, 0.867109570182535, 0.0154510659902737, 1.41633646741812, -1.3485740512787, -4.85133644175975},
+    {-0.792351247165588, 2.2865651181211, -0.368617919392952, 3.15902385785371, 2.93557018541388, -4.4297840563694, 0.726103365499154, 0.368617919392952, -3.88512722335287}};
     // Array of non-zero columns
     static const unsigned int nzc1[9] = {0, 2, 3, 4, 5, 6, 7, 8, 9};
     
@@ -1600,22 +1600,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2DP3BilinearForm_cell_integral_0: public ufc::cell_integral
+class poisson2dp3_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_Poisson2DP3BilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  poisson2dp3_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm_cell_integral_0() : ufc::cell_integral()
+  poisson2dp3_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm_cell_integral_0()
+  virtual ~poisson2dp3_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -1748,18 +1748,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_Poisson2DP3BilinearForm: public ufc::form
+class poisson2dp3_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_Poisson2DP3BilinearForm() : ufc::form()
+  poisson2dp3_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2DP3BilinearForm()
+  virtual ~poisson2dp3_form_0()
   {
     // Do nothing
   }
@@ -1803,13 +1803,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Poisson2DP3BilinearForm_finite_element_0();
+      return new poisson2dp3_0_finite_element_0();
       break;
     case 1:
-      return new UFC_Poisson2DP3BilinearForm_finite_element_1();
+      return new poisson2dp3_0_finite_element_1();
       break;
     }
     return 0;
@@ -1818,13 +1818,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Poisson2DP3BilinearForm_dof_map_0();
+      return new poisson2dp3_0_dof_map_0();
       break;
     case 1:
-      return new UFC_Poisson2DP3BilinearForm_dof_map_1();
+      return new poisson2dp3_0_dof_map_1();
       break;
     }
     return 0;
@@ -1833,7 +1833,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_Poisson2DP3BilinearForm_cell_integral_0();
+    return new poisson2dp3_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -1852,110 +1852,279 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class Poisson2DP3BilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace Poisson2DP3
+{
+
+class CoefficientReference
+{
+public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
+
+  CoefficientReference& operator=(dolfin::Function & f)
+  {
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
+  }
+
+  std::string name() const
+  {
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
 {
 public:
 
-  Poisson2DP3BilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP3BilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP3BilinearForm_dof_map_1()), mesh)))
+  CoefficientSet()
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 0;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+
+};
+
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class Poisson2DP3BilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2DP3BilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP3BilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP3BilinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
 };
 
-class Poisson2DP3TestSpace : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  Poisson2DP3TestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP3BilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP3BilinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class Poisson2DP3TrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2DP3TrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP3BilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP3BilinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2dp3_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2dp3_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
 };
 
-class Poisson2DP3FunctionSpace : public dolfin::FunctionSpace
+class Form_0: public dolfin::Form
 {
 public:
 
-  Poisson2DP3FunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2DP3BilinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2DP3BilinearForm_dof_map_1()), mesh)))
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 0)
   {
-    // Do nothing
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2dp3_form_0());
   }
 
-};
-
-class Poisson2DP3BilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  Poisson2DP3BilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2DP3BilinearForm());
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2dp3_form_0());
   }
 
-  // Create form on given function space(s) (shared data)
-  Poisson2DP3BilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 0)
   {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2DP3BilinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2dp3_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2dp3_form_0());
   }
 
   // Destructor
-  ~Poisson2DP3BilinearForm() {}
+  ~Form_0()
+  {}
 
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_0_FunctionSpace_0 FunctionSpace;
+
+} // namespace Poisson2DP3
 
 #endif

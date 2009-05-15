@@ -14,15 +14,15 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_0_0: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_0_0();
+  cahnhilliard3d_0_finite_element_0_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_0_0();
+  virtual ~cahnhilliard3d_0_finite_element_0_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -88,15 +88,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_0_1: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_0_1();
+  cahnhilliard3d_0_finite_element_0_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_0_1();
+  virtual ~cahnhilliard3d_0_finite_element_0_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -162,15 +162,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_0: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_0();
+  cahnhilliard3d_0_finite_element_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_0();
+  virtual ~cahnhilliard3d_0_finite_element_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -236,15 +236,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_1_0: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_1_0();
+  cahnhilliard3d_0_finite_element_1_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_1_0();
+  virtual ~cahnhilliard3d_0_finite_element_1_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -310,15 +310,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_1_1: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_1_1();
+  cahnhilliard3d_0_finite_element_1_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_1_1();
+  virtual ~cahnhilliard3d_0_finite_element_1_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -384,15 +384,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_1: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_1();
+  cahnhilliard3d_0_finite_element_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_1();
+  virtual ~cahnhilliard3d_0_finite_element_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -458,15 +458,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_2_0: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_2_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_2_0();
+  cahnhilliard3d_0_finite_element_2_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_2_0();
+  virtual ~cahnhilliard3d_0_finite_element_2_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -532,15 +532,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_2_1: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_2_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_2_1();
+  cahnhilliard3d_0_finite_element_2_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_2_1();
+  virtual ~cahnhilliard3d_0_finite_element_2_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -606,15 +606,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_2: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_2();
+  cahnhilliard3d_0_finite_element_2();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_2();
+  virtual ~cahnhilliard3d_0_finite_element_2();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -680,15 +680,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_3: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_3();
+  cahnhilliard3d_0_finite_element_3();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_3();
+  virtual ~cahnhilliard3d_0_finite_element_3();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -754,15 +754,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_4: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_4: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_4();
+  cahnhilliard3d_0_finite_element_4();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_4();
+  virtual ~cahnhilliard3d_0_finite_element_4();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -828,15 +828,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_5: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_5: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_5();
+  cahnhilliard3d_0_finite_element_5();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_5();
+  virtual ~cahnhilliard3d_0_finite_element_5();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -902,15 +902,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DBilinearForm_finite_element_6: public ufc::finite_element
+class cahnhilliard3d_0_finite_element_6: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_finite_element_6();
+  cahnhilliard3d_0_finite_element_6();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_finite_element_6();
+  virtual ~cahnhilliard3d_0_finite_element_6();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -977,7 +977,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_0_0: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -986,10 +986,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_0_0();
+  cahnhilliard3d_0_dof_map_0_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_0_0();
+  virtual ~cahnhilliard3d_0_dof_map_0_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1053,7 +1053,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_0_1: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -1062,10 +1062,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_0_1();
+  cahnhilliard3d_0_dof_map_0_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_0_1();
+  virtual ~cahnhilliard3d_0_dof_map_0_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1129,7 +1129,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_0: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -1138,10 +1138,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_0();
+  cahnhilliard3d_0_dof_map_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_0();
+  virtual ~cahnhilliard3d_0_dof_map_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1205,7 +1205,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_1_0: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -1214,10 +1214,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_1_0();
+  cahnhilliard3d_0_dof_map_1_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_1_0();
+  virtual ~cahnhilliard3d_0_dof_map_1_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1281,7 +1281,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_1_1: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -1290,10 +1290,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_1_1();
+  cahnhilliard3d_0_dof_map_1_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_1_1();
+  virtual ~cahnhilliard3d_0_dof_map_1_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1357,7 +1357,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_1: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1366,10 +1366,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_1();
+  cahnhilliard3d_0_dof_map_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_1();
+  virtual ~cahnhilliard3d_0_dof_map_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1433,7 +1433,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_2_0: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_2_0: public ufc::dof_map
 {
 private:
 
@@ -1442,10 +1442,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_2_0();
+  cahnhilliard3d_0_dof_map_2_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_2_0();
+  virtual ~cahnhilliard3d_0_dof_map_2_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1509,7 +1509,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_2_1: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_2_1: public ufc::dof_map
 {
 private:
 
@@ -1518,10 +1518,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_2_1();
+  cahnhilliard3d_0_dof_map_2_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_2_1();
+  virtual ~cahnhilliard3d_0_dof_map_2_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1585,7 +1585,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_2: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -1594,10 +1594,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_2();
+  cahnhilliard3d_0_dof_map_2();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_2();
+  virtual ~cahnhilliard3d_0_dof_map_2();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1661,7 +1661,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_3: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -1670,10 +1670,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_3();
+  cahnhilliard3d_0_dof_map_3();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_3();
+  virtual ~cahnhilliard3d_0_dof_map_3();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1737,7 +1737,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_4: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_4: public ufc::dof_map
 {
 private:
 
@@ -1746,10 +1746,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_4();
+  cahnhilliard3d_0_dof_map_4();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_4();
+  virtual ~cahnhilliard3d_0_dof_map_4();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1813,7 +1813,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_5: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_5: public ufc::dof_map
 {
 private:
 
@@ -1822,10 +1822,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_5();
+  cahnhilliard3d_0_dof_map_5();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_5();
+  virtual ~cahnhilliard3d_0_dof_map_5();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1889,7 +1889,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DBilinearForm_dof_map_6: public ufc::dof_map
+class cahnhilliard3d_0_dof_map_6: public ufc::dof_map
 {
 private:
 
@@ -1898,10 +1898,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_dof_map_6();
+  cahnhilliard3d_0_dof_map_6();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_dof_map_6();
+  virtual ~cahnhilliard3d_0_dof_map_6();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -1966,15 +1966,15 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class cahnhilliard3d_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature();
+  cahnhilliard3d_0_cell_integral_0_quadrature();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature();
+  virtual ~cahnhilliard3d_0_cell_integral_0_quadrature();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -1987,19 +1987,19 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CahnHilliard3DBilinearForm_cell_integral_0: public ufc::cell_integral
+class cahnhilliard3d_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_CahnHilliard3DBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  cahnhilliard3d_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm_cell_integral_0();
+  cahnhilliard3d_0_cell_integral_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm_cell_integral_0();
+  virtual ~cahnhilliard3d_0_cell_integral_0();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -2023,15 +2023,15 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_CahnHilliard3DBilinearForm: public ufc::form
+class cahnhilliard3d_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DBilinearForm();
+  cahnhilliard3d_form_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DBilinearForm();
+  virtual ~cahnhilliard3d_form_0();
 
   /// Return a string identifying the form
   virtual const char* signature() const;
@@ -2070,15 +2070,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_0_0: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_0_0();
+  cahnhilliard3d_1_finite_element_0_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_0_0();
+  virtual ~cahnhilliard3d_1_finite_element_0_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2144,15 +2144,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_0_1: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_0_1();
+  cahnhilliard3d_1_finite_element_0_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_0_1();
+  virtual ~cahnhilliard3d_1_finite_element_0_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2218,15 +2218,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_0: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_0();
+  cahnhilliard3d_1_finite_element_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_0();
+  virtual ~cahnhilliard3d_1_finite_element_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2292,15 +2292,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_1_0: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_1_0();
+  cahnhilliard3d_1_finite_element_1_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_1_0();
+  virtual ~cahnhilliard3d_1_finite_element_1_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2366,15 +2366,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_1_1: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_1_1();
+  cahnhilliard3d_1_finite_element_1_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_1_1();
+  virtual ~cahnhilliard3d_1_finite_element_1_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2440,15 +2440,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_1: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_1();
+  cahnhilliard3d_1_finite_element_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_1();
+  virtual ~cahnhilliard3d_1_finite_element_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2514,15 +2514,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_2_0: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_2_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_2_0();
+  cahnhilliard3d_1_finite_element_2_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_2_0();
+  virtual ~cahnhilliard3d_1_finite_element_2_0();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2588,15 +2588,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_2_1: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_2_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_2_1();
+  cahnhilliard3d_1_finite_element_2_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_2_1();
+  virtual ~cahnhilliard3d_1_finite_element_2_1();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2662,15 +2662,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_2: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_2();
+  cahnhilliard3d_1_finite_element_2();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_2();
+  virtual ~cahnhilliard3d_1_finite_element_2();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2736,15 +2736,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_3: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_3();
+  cahnhilliard3d_1_finite_element_3();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_3();
+  virtual ~cahnhilliard3d_1_finite_element_3();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2810,15 +2810,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_4: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_4: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_4();
+  cahnhilliard3d_1_finite_element_4();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_4();
+  virtual ~cahnhilliard3d_1_finite_element_4();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2884,15 +2884,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_5: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_5: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_5();
+  cahnhilliard3d_1_finite_element_5();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_5();
+  virtual ~cahnhilliard3d_1_finite_element_5();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -2958,15 +2958,15 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CahnHilliard3DLinearForm_finite_element_6: public ufc::finite_element
+class cahnhilliard3d_1_finite_element_6: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_finite_element_6();
+  cahnhilliard3d_1_finite_element_6();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_finite_element_6();
+  virtual ~cahnhilliard3d_1_finite_element_6();
 
   /// Return a string identifying the finite element
   virtual const char* signature() const;
@@ -3033,7 +3033,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_0_0: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -3042,10 +3042,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_0_0();
+  cahnhilliard3d_1_dof_map_0_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_0_0();
+  virtual ~cahnhilliard3d_1_dof_map_0_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3109,7 +3109,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_0_1: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -3118,10 +3118,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_0_1();
+  cahnhilliard3d_1_dof_map_0_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_0_1();
+  virtual ~cahnhilliard3d_1_dof_map_0_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3185,7 +3185,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_0: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -3194,10 +3194,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_0();
+  cahnhilliard3d_1_dof_map_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_0();
+  virtual ~cahnhilliard3d_1_dof_map_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3261,7 +3261,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_1_0: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -3270,10 +3270,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_1_0();
+  cahnhilliard3d_1_dof_map_1_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_1_0();
+  virtual ~cahnhilliard3d_1_dof_map_1_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3337,7 +3337,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_1_1: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -3346,10 +3346,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_1_1();
+  cahnhilliard3d_1_dof_map_1_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_1_1();
+  virtual ~cahnhilliard3d_1_dof_map_1_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3413,7 +3413,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_1: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -3422,10 +3422,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_1();
+  cahnhilliard3d_1_dof_map_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_1();
+  virtual ~cahnhilliard3d_1_dof_map_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3489,7 +3489,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_2_0: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_2_0: public ufc::dof_map
 {
 private:
 
@@ -3498,10 +3498,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_2_0();
+  cahnhilliard3d_1_dof_map_2_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_2_0();
+  virtual ~cahnhilliard3d_1_dof_map_2_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3565,7 +3565,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_2_1: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_2_1: public ufc::dof_map
 {
 private:
 
@@ -3574,10 +3574,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_2_1();
+  cahnhilliard3d_1_dof_map_2_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_2_1();
+  virtual ~cahnhilliard3d_1_dof_map_2_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3641,7 +3641,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_2: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -3650,10 +3650,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_2();
+  cahnhilliard3d_1_dof_map_2();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_2();
+  virtual ~cahnhilliard3d_1_dof_map_2();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3717,7 +3717,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_3: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -3726,10 +3726,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_3();
+  cahnhilliard3d_1_dof_map_3();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_3();
+  virtual ~cahnhilliard3d_1_dof_map_3();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3793,7 +3793,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_4: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_4: public ufc::dof_map
 {
 private:
 
@@ -3802,10 +3802,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_4();
+  cahnhilliard3d_1_dof_map_4();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_4();
+  virtual ~cahnhilliard3d_1_dof_map_4();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3869,7 +3869,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_5: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_5: public ufc::dof_map
 {
 private:
 
@@ -3878,10 +3878,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_5();
+  cahnhilliard3d_1_dof_map_5();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_5();
+  virtual ~cahnhilliard3d_1_dof_map_5();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -3945,7 +3945,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CahnHilliard3DLinearForm_dof_map_6: public ufc::dof_map
+class cahnhilliard3d_1_dof_map_6: public ufc::dof_map
 {
 private:
 
@@ -3954,10 +3954,10 @@ private:
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_dof_map_6();
+  cahnhilliard3d_1_dof_map_6();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_dof_map_6();
+  virtual ~cahnhilliard3d_1_dof_map_6();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -4022,15 +4022,15 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class cahnhilliard3d_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature();
+  cahnhilliard3d_1_cell_integral_0_quadrature();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature();
+  virtual ~cahnhilliard3d_1_cell_integral_0_quadrature();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -4043,19 +4043,19 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CahnHilliard3DLinearForm_cell_integral_0: public ufc::cell_integral
+class cahnhilliard3d_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_CahnHilliard3DLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  cahnhilliard3d_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm_cell_integral_0();
+  cahnhilliard3d_1_cell_integral_0();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm_cell_integral_0();
+  virtual ~cahnhilliard3d_1_cell_integral_0();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -4079,15 +4079,15 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_CahnHilliard3DLinearForm: public ufc::form
+class cahnhilliard3d_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_CahnHilliard3DLinearForm();
+  cahnhilliard3d_form_1();
 
   /// Destructor
-  virtual ~UFC_CahnHilliard3DLinearForm();
+  virtual ~cahnhilliard3d_form_1();
 
   /// Return a string identifying the form
   virtual const char* signature() const;
@@ -4126,830 +4126,1367 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class CahnHilliard3DBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace CahnHilliard3D
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  CahnHilliard3DBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
   }
-
-};
-
-class CahnHilliard3DBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
   {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DBilinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DBilinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DBilinearFormCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DBilinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DBilinearFormCoefficientSpace2 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DBilinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DBilinearFormCoefficientSpace3 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DBilinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DBilinearFormCoefficientSpace4 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DBilinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormFunctionSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormCoefficientSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormCoefficientSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormCoefficientSpace2 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormCoefficientSpace2(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormCoefficientSpace3 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormCoefficientSpace3(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormCoefficientSpace4 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormCoefficientSpace4(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DLinearFormCoefficientSpace5 : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DLinearFormCoefficientSpace5(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_6()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DTestSpace : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  CahnHilliard3DFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CahnHilliard3DLinearForm_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CahnHilliard3DLinearForm_dof_map_2()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CahnHilliard3DBilinearFormCoefficient0 : public dolfin::Coefficient
-{
-public:
-
-  // Constructor
-  CahnHilliard3DBilinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~CahnHilliard3DBilinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DBilinearFormCoefficient0& operator= (dolfin::Function& v)
-  {
-    attach(v);
+    _function_pointer = f;
     return *this;
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  std::string name() const
   {
-    return new CahnHilliard3DBilinearFormCoefficientSpace0(form.mesh());
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
+{
+public:
+
+  CoefficientSet():
+    dt("dt"), lmbda("lmbda"), muFactor("muFactor"), theta("theta"), w0("w0"), w1("w1")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 6;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "dt";
+    case 1: return "lmbda";
+    case 2: return "muFactor";
+    case 3: return "theta";
+    case 4: return "w0";
+    case 5: return "w1";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference dt;
+  CoefficientReference lmbda;
+  CoefficientReference muFactor;
+  CoefficientReference theta;
+  CoefficientReference w0;
+  CoefficientReference w1;
+};
+
+class CoefficientSpace_dt: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_dt(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_5()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_dt(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_5()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_dt(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_5()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_5()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_dt(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_5()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_5()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_dt()
+  {
   }
   
-  /// Return coefficient number
+};
+
+class CoefficientSpace_lmbda: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_lmbda(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_3()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_lmbda(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_3()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_3()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_3()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_3()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_lmbda()
+  {
+  }
+  
+};
+
+class CoefficientSpace_muFactor: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_muFactor(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_4()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_4()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_muFactor(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_4()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_4()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_muFactor(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_4()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_4()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_muFactor(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_4()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_4()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_muFactor()
+  {
+  }
+  
+};
+
+class CoefficientSpace_theta: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_theta(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_theta(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_6()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_6()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_theta(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_6()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_6()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_theta(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_6()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_6()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_theta()
+  {
+  }
+  
+};
+
+class CoefficientSpace_w0: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_w0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_w0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_w0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_w0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_w0()
+  {
+  }
+  
+};
+
+class CoefficientSpace_w1: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_w1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_w1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_w1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_w1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_2()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_2()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_w1()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
+};
+
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_w0 Form_0_FunctionSpace_2;
+
+typedef CoefficientSpace_lmbda Form_0_FunctionSpace_3;
+
+typedef CoefficientSpace_muFactor Form_0_FunctionSpace_4;
+
+typedef CoefficientSpace_dt Form_0_FunctionSpace_5;
+
+typedef CoefficientSpace_theta Form_0_FunctionSpace_6;
+
+class Form_0_Coefficient_w0: public dolfin::Coefficient
+{
+public:
+
+  Form_0_Coefficient_w0(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_w0()
+  {}
+
+  const Form_0_Coefficient_w0& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_0_Coefficient_w0& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "w0";
   }
-  
+
 };
-class CahnHilliard3DBilinearFormCoefficient1 : public dolfin::Coefficient
+
+class Form_0_Coefficient_lmbda: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DBilinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_lmbda(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_lmbda()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DBilinearFormCoefficient1() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DBilinearFormCoefficient1& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_lmbda& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DBilinearFormCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_3(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "lmbda";
   }
-  
+
 };
-class CahnHilliard3DBilinearFormCoefficient2 : public dolfin::Coefficient
+
+class Form_0_Coefficient_muFactor: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DBilinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_muFactor(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_muFactor()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DBilinearFormCoefficient2() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DBilinearFormCoefficient2& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_muFactor& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_muFactor& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DBilinearFormCoefficientSpace2(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_4(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 2;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "muFactor";
   }
-  
+
 };
-class CahnHilliard3DBilinearFormCoefficient3 : public dolfin::Coefficient
+
+class Form_0_Coefficient_dt: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DBilinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_dt(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_dt()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DBilinearFormCoefficient3() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DBilinearFormCoefficient3& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_dt& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_dt& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DBilinearFormCoefficientSpace3(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_5(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 3;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "dt";
   }
-  
+
 };
-class CahnHilliard3DBilinearFormCoefficient4 : public dolfin::Coefficient
+
+class Form_0_Coefficient_theta: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DBilinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_0_Coefficient_theta(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_0_Coefficient_theta()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DBilinearFormCoefficient4() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DBilinearFormCoefficient4& operator= (dolfin::Function& v)
+  const Form_0_Coefficient_theta& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_0_Coefficient_theta& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DBilinearFormCoefficientSpace4(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_0_FunctionSpace_6(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 4;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "theta";
   }
-  
-};
-class CahnHilliard3DBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  CahnHilliard3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  CahnHilliard3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s)
-  CahnHilliard3DBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->w0 = w0;
-    this->lmbda = w1;
-    this->muFactor = w2;
-    this->dt = w3;
-    this->theta = w4;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DBilinearForm());
-  }
-
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  CahnHilliard3DBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4) : dolfin::Form(), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-
-    this->w0 = w0;
-    this->lmbda = w1;
-    this->muFactor = w2;
-    this->dt = w3;
-    this->theta = w4;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DBilinearForm());
-  }
-
-  // Destructor
-  ~CahnHilliard3DBilinearForm() {}
-
-  // Coefficients
-  CahnHilliard3DBilinearFormCoefficient0 w0;
-  CahnHilliard3DBilinearFormCoefficient1 lmbda;
-  CahnHilliard3DBilinearFormCoefficient2 muFactor;
-  CahnHilliard3DBilinearFormCoefficient3 dt;
-  CahnHilliard3DBilinearFormCoefficient4 theta;
 
 };
 
-class CahnHilliard3DLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  CahnHilliard3DLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~CahnHilliard3DLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
-    return new CahnHilliard3DLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _w0, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+    boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
+
+    w0 = _pw0;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    w0 = _pw0;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _w0, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+    boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
+
+    w0 = _pw0;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    w0 = _pw0;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    w0 = coefficients.w0.function_pointer();
+    lmbda = coefficients.lmbda.function_pointer();
+    muFactor = coefficients.muFactor.function_pointer();
+    dt = coefficients.dt.function_pointer();
+    theta = coefficients.theta.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "w0") return 0;
+    else if(name == "lmbda") return 1;
+    else if(name == "muFactor") return 2;
+    else if(name == "dt") return 3;
+    else if(name == "theta") return 4;
+    dolfin::error("Invalid coefficient.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "w0";
+      case 1: return "lmbda";
+      case 2: return "muFactor";
+      case 3: return "dt";
+      case 4: return "theta";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_w0;
+  typedef Form_0_FunctionSpace_3 CoefficientSpace_lmbda;
+  typedef Form_0_FunctionSpace_4 CoefficientSpace_muFactor;
+  typedef Form_0_FunctionSpace_5 CoefficientSpace_dt;
+  typedef Form_0_FunctionSpace_6 CoefficientSpace_theta;
+
+  // Coefficients
+  Form_0_Coefficient_w0 w0;
+  Form_0_Coefficient_lmbda lmbda;
+  Form_0_Coefficient_muFactor muFactor;
+  Form_0_Coefficient_dt dt;
+  Form_0_Coefficient_theta theta;
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard3d_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard3d_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_w0 Form_1_FunctionSpace_1;
+
+typedef CoefficientSpace_w1 Form_1_FunctionSpace_2;
+
+typedef CoefficientSpace_lmbda Form_1_FunctionSpace_3;
+
+typedef CoefficientSpace_muFactor Form_1_FunctionSpace_4;
+
+typedef CoefficientSpace_dt Form_1_FunctionSpace_5;
+
+typedef CoefficientSpace_theta Form_1_FunctionSpace_6;
+
+class Form_1_Coefficient_w0: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_w0(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_w0()
+  {}
+
+  const Form_1_Coefficient_w0& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_w0& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "w0";
   }
-  
+
 };
-class CahnHilliard3DLinearFormCoefficient1 : public dolfin::Coefficient
+
+class Form_1_Coefficient_w1: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DLinearFormCoefficient1(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_w1(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_w1()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DLinearFormCoefficient1() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DLinearFormCoefficient1& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_w1& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_w1& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DLinearFormCoefficientSpace1(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_2(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 1;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "w1";
   }
-  
+
 };
-class CahnHilliard3DLinearFormCoefficient2 : public dolfin::Coefficient
+
+class Form_1_Coefficient_lmbda: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DLinearFormCoefficient2(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_lmbda(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_lmbda()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DLinearFormCoefficient2() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DLinearFormCoefficient2& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_lmbda& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DLinearFormCoefficientSpace2(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_3(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 2;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "lmbda";
   }
-  
+
 };
-class CahnHilliard3DLinearFormCoefficient3 : public dolfin::Coefficient
+
+class Form_1_Coefficient_muFactor: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DLinearFormCoefficient3(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_muFactor(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_muFactor()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DLinearFormCoefficient3() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DLinearFormCoefficient3& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_muFactor& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_muFactor& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DLinearFormCoefficientSpace3(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_4(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 3;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "muFactor";
   }
-  
+
 };
-class CahnHilliard3DLinearFormCoefficient4 : public dolfin::Coefficient
+
+class Form_1_Coefficient_dt: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DLinearFormCoefficient4(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_dt(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_dt()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DLinearFormCoefficient4() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DLinearFormCoefficient4& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_dt& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_dt& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DLinearFormCoefficientSpace4(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_5(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 4;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "dt";
   }
-  
+
 };
-class CahnHilliard3DLinearFormCoefficient5 : public dolfin::Coefficient
+
+class Form_1_Coefficient_theta: public dolfin::Coefficient
 {
 public:
 
-  // Constructor
-  CahnHilliard3DLinearFormCoefficient5(dolfin::Form& form) : dolfin::Coefficient(form) {}
+  Form_1_Coefficient_theta(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_theta()
+  {}
 
-  // Destructor  
-  ~CahnHilliard3DLinearFormCoefficient5() {}
-
-  // Attach function to coefficient
-  const CahnHilliard3DLinearFormCoefficient5& operator= (dolfin::Function& v)
+  const Form_1_Coefficient_theta& operator=(dolfin::Function & f)
   {
-    attach(v);
+    attach(f);
     return *this;
   }
-
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  
+  const Form_1_Coefficient_theta& operator=(boost::shared_ptr<dolfin::Function> f)
   {
-    return new CahnHilliard3DLinearFormCoefficientSpace5(form.mesh());
+    attach(f);
+    return *this;
   }
   
-  /// Return coefficient number
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_6(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 5;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "theta";
   }
-  
+
 };
-class CahnHilliard3DLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  CahnHilliard3DLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  CahnHilliard3DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  CahnHilliard3DLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _w0, dolfin::Function & _w1, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->w0 = w0;
-    this->w1 = w1;
-    this->lmbda = w2;
-    this->muFactor = w3;
-    this->dt = w4;
-    this->theta = w5;
+    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
+    boost::shared_ptr<dolfin::Function> _pw1 = dolfin::reference_to_no_delete_pointer(_w1);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+    boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DLinearForm());
+    w0 = _pw0;
+    w1 = _pw1;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  CahnHilliard3DLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0, dolfin::Function& w1, dolfin::Function& w2, dolfin::Function& w3, dolfin::Function& w4, dolfin::Function& w5) : dolfin::Form(), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _pw1, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->w0 = w0;
-    this->w1 = w1;
-    this->lmbda = w2;
-    this->muFactor = w3;
-    this->dt = w4;
-    this->theta = w5;
+    w0 = _pw0;
+    w1 = _pw1;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CahnHilliard3DLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _w0, dolfin::Function & _w1, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
+    boost::shared_ptr<dolfin::Function> _pw1 = dolfin::reference_to_no_delete_pointer(_w1);
+    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
+    boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
+    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
+    boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
+
+    w0 = _pw0;
+    w1 = _pw1;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _pw1, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    w0 = _pw0;
+    w1 = _pw1;
+    lmbda = _plmbda;
+    muFactor = _pmuFactor;
+    dt = _pdt;
+    theta = _ptheta;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new cahnhilliard3d_form_1());
   }
 
   // Destructor
-  ~CahnHilliard3DLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    w0 = coefficients.w0.function_pointer();
+    w1 = coefficients.w1.function_pointer();
+    lmbda = coefficients.lmbda.function_pointer();
+    muFactor = coefficients.muFactor.function_pointer();
+    dt = coefficients.dt.function_pointer();
+    theta = coefficients.theta.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "w0") return 0;
+    else if(name == "w1") return 1;
+    else if(name == "lmbda") return 2;
+    else if(name == "muFactor") return 3;
+    else if(name == "dt") return 4;
+    else if(name == "theta") return 5;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "w0";
+      case 1: return "w1";
+      case 2: return "lmbda";
+      case 3: return "muFactor";
+      case 4: return "dt";
+      case 5: return "theta";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_w0;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_w1;
+  typedef Form_1_FunctionSpace_3 CoefficientSpace_lmbda;
+  typedef Form_1_FunctionSpace_4 CoefficientSpace_muFactor;
+  typedef Form_1_FunctionSpace_5 CoefficientSpace_dt;
+  typedef Form_1_FunctionSpace_6 CoefficientSpace_theta;
 
   // Coefficients
-  CahnHilliard3DLinearFormCoefficient0 w0;
-  CahnHilliard3DLinearFormCoefficient1 w1;
-  CahnHilliard3DLinearFormCoefficient2 lmbda;
-  CahnHilliard3DLinearFormCoefficient3 muFactor;
-  CahnHilliard3DLinearFormCoefficient4 dt;
-  CahnHilliard3DLinearFormCoefficient5 theta;
-
+  Form_1_Coefficient_w0 w0;
+  Form_1_Coefficient_w1 w1;
+  Form_1_Coefficient_lmbda lmbda;
+  Form_1_Coefficient_muFactor muFactor;
+  Form_1_Coefficient_dt dt;
+  Form_1_Coefficient_theta theta;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+
+} // namespace CahnHilliard3D
 
 #endif

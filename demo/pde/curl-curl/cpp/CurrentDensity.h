@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_0_0: public ufc::finite_element
+class currentdensity_0_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_0_0() : ufc::finite_element()
+  currentdensity_0_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_0_0()
+  virtual ~currentdensity_0_finite_element_0_0()
   {
     // Do nothing
   }
@@ -537,25 +537,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_finite_element_0_0();
+    return new currentdensity_0_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_0_1: public ufc::finite_element
+class currentdensity_0_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_0_1() : ufc::finite_element()
+  currentdensity_0_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_0_1()
+  virtual ~currentdensity_0_finite_element_0_1()
   {
     // Do nothing
   }
@@ -1067,25 +1067,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_finite_element_0_1();
+    return new currentdensity_0_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_0_2: public ufc::finite_element
+class currentdensity_0_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_0_2() : ufc::finite_element()
+  currentdensity_0_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_0_2()
+  virtual ~currentdensity_0_finite_element_0_2()
   {
     // Do nothing
   }
@@ -1597,25 +1597,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_finite_element_0_2();
+    return new currentdensity_0_finite_element_0_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_0: public ufc::finite_element
+class currentdensity_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_0() : ufc::finite_element()
+  currentdensity_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_0()
+  virtual ~currentdensity_0_finite_element_0()
   {
     // Do nothing
   }
@@ -2529,16 +2529,16 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityBilinearForm_finite_element_0_0();
+      return new currentdensity_0_finite_element_0_0();
       break;
     case 1:
-      return new UFC_CurrentDensityBilinearForm_finite_element_0_1();
+      return new currentdensity_0_finite_element_0_1();
       break;
     case 2:
-      return new UFC_CurrentDensityBilinearForm_finite_element_0_2();
+      return new currentdensity_0_finite_element_0_2();
       break;
     }
     return 0;
@@ -2548,18 +2548,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_1_0: public ufc::finite_element
+class currentdensity_0_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_1_0() : ufc::finite_element()
+  currentdensity_0_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_1_0()
+  virtual ~currentdensity_0_finite_element_1_0()
   {
     // Do nothing
   }
@@ -3071,25 +3071,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_finite_element_1_0();
+    return new currentdensity_0_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_1_1: public ufc::finite_element
+class currentdensity_0_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_1_1() : ufc::finite_element()
+  currentdensity_0_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_1_1()
+  virtual ~currentdensity_0_finite_element_1_1()
   {
     // Do nothing
   }
@@ -3601,25 +3601,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_finite_element_1_1();
+    return new currentdensity_0_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_1_2: public ufc::finite_element
+class currentdensity_0_finite_element_1_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_1_2() : ufc::finite_element()
+  currentdensity_0_finite_element_1_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_1_2()
+  virtual ~currentdensity_0_finite_element_1_2()
   {
     // Do nothing
   }
@@ -4131,25 +4131,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_finite_element_1_2();
+    return new currentdensity_0_finite_element_1_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityBilinearForm_finite_element_1: public ufc::finite_element
+class currentdensity_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_finite_element_1() : ufc::finite_element()
+  currentdensity_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_finite_element_1()
+  virtual ~currentdensity_0_finite_element_1()
   {
     // Do nothing
   }
@@ -5063,16 +5063,16 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityBilinearForm_finite_element_1_0();
+      return new currentdensity_0_finite_element_1_0();
       break;
     case 1:
-      return new UFC_CurrentDensityBilinearForm_finite_element_1_1();
+      return new currentdensity_0_finite_element_1_1();
       break;
     case 2:
-      return new UFC_CurrentDensityBilinearForm_finite_element_1_2();
+      return new currentdensity_0_finite_element_1_2();
       break;
     }
     return 0;
@@ -5083,7 +5083,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_0_0: public ufc::dof_map
+class currentdensity_0_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -5092,13 +5092,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_0_0() : ufc::dof_map()
+  currentdensity_0_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_0_0()
+  virtual ~currentdensity_0_dof_map_0_0()
   {
     // Do nothing
   }
@@ -5112,7 +5112,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5201,7 +5201,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5261,7 +5261,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_dof_map_0_0();
+    return new currentdensity_0_dof_map_0_0();
   }
 
 };
@@ -5269,7 +5269,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_0_1: public ufc::dof_map
+class currentdensity_0_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -5278,13 +5278,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_0_1() : ufc::dof_map()
+  currentdensity_0_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_0_1()
+  virtual ~currentdensity_0_dof_map_0_1()
   {
     // Do nothing
   }
@@ -5298,7 +5298,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5387,7 +5387,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5447,7 +5447,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_dof_map_0_1();
+    return new currentdensity_0_dof_map_0_1();
   }
 
 };
@@ -5455,7 +5455,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_0_2: public ufc::dof_map
+class currentdensity_0_dof_map_0_2: public ufc::dof_map
 {
 private:
 
@@ -5464,13 +5464,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_0_2() : ufc::dof_map()
+  currentdensity_0_dof_map_0_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_0_2()
+  virtual ~currentdensity_0_dof_map_0_2()
   {
     // Do nothing
   }
@@ -5484,7 +5484,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5573,7 +5573,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5633,7 +5633,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_dof_map_0_2();
+    return new currentdensity_0_dof_map_0_2();
   }
 
 };
@@ -5641,7 +5641,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_0: public ufc::dof_map
+class currentdensity_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -5650,13 +5650,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_0() : ufc::dof_map()
+  currentdensity_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_0()
+  virtual ~currentdensity_0_dof_map_0()
   {
     // Do nothing
   }
@@ -5670,7 +5670,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -5769,7 +5769,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -5877,16 +5877,16 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityBilinearForm_dof_map_0_0();
+      return new currentdensity_0_dof_map_0_0();
       break;
     case 1:
-      return new UFC_CurrentDensityBilinearForm_dof_map_0_1();
+      return new currentdensity_0_dof_map_0_1();
       break;
     case 2:
-      return new UFC_CurrentDensityBilinearForm_dof_map_0_2();
+      return new currentdensity_0_dof_map_0_2();
       break;
     }
     return 0;
@@ -5897,7 +5897,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_1_0: public ufc::dof_map
+class currentdensity_0_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -5906,13 +5906,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_1_0() : ufc::dof_map()
+  currentdensity_0_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_1_0()
+  virtual ~currentdensity_0_dof_map_1_0()
   {
     // Do nothing
   }
@@ -5926,7 +5926,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6015,7 +6015,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6075,7 +6075,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_dof_map_1_0();
+    return new currentdensity_0_dof_map_1_0();
   }
 
 };
@@ -6083,7 +6083,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_1_1: public ufc::dof_map
+class currentdensity_0_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -6092,13 +6092,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_1_1() : ufc::dof_map()
+  currentdensity_0_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_1_1()
+  virtual ~currentdensity_0_dof_map_1_1()
   {
     // Do nothing
   }
@@ -6112,7 +6112,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6201,7 +6201,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6261,7 +6261,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_dof_map_1_1();
+    return new currentdensity_0_dof_map_1_1();
   }
 
 };
@@ -6269,7 +6269,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_1_2: public ufc::dof_map
+class currentdensity_0_dof_map_1_2: public ufc::dof_map
 {
 private:
 
@@ -6278,13 +6278,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_1_2() : ufc::dof_map()
+  currentdensity_0_dof_map_1_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_1_2()
+  virtual ~currentdensity_0_dof_map_1_2()
   {
     // Do nothing
   }
@@ -6298,7 +6298,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6387,7 +6387,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6447,7 +6447,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_dof_map_1_2();
+    return new currentdensity_0_dof_map_1_2();
   }
 
 };
@@ -6455,7 +6455,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityBilinearForm_dof_map_1: public ufc::dof_map
+class currentdensity_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -6464,13 +6464,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_dof_map_1() : ufc::dof_map()
+  currentdensity_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_dof_map_1()
+  virtual ~currentdensity_0_dof_map_1()
   {
     // Do nothing
   }
@@ -6484,7 +6484,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -6583,7 +6583,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -6691,16 +6691,16 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityBilinearForm_dof_map_1_0();
+      return new currentdensity_0_dof_map_1_0();
       break;
     case 1:
-      return new UFC_CurrentDensityBilinearForm_dof_map_1_1();
+      return new currentdensity_0_dof_map_1_1();
       break;
     case 2:
-      return new UFC_CurrentDensityBilinearForm_dof_map_1_2();
+      return new currentdensity_0_dof_map_1_2();
       break;
     }
     return 0;
@@ -6712,18 +6712,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CurrentDensityBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class currentdensity_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  currentdensity_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_cell_integral_0_quadrature()
+  virtual ~currentdensity_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -6773,8 +6773,8 @@ public:
     {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
     {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
     {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
-    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.0813956670146703, 0.303772764814707, 0.0706797241593969, 0.544151844011225},
+    {0.0658386870600444, 0.245713325211713, 0.565933165072801, 0.122514822655441},
     {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
     // Array of non-zero columns
     static const unsigned int nzc0[4] = {8, 9, 10, 11};
@@ -6819,22 +6819,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CurrentDensityBilinearForm_cell_integral_0: public ufc::cell_integral
+class currentdensity_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_CurrentDensityBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  currentdensity_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm_cell_integral_0() : ufc::cell_integral()
+  currentdensity_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm_cell_integral_0()
+  virtual ~currentdensity_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -7011,18 +7011,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_CurrentDensityBilinearForm: public ufc::form
+class currentdensity_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityBilinearForm() : ufc::form()
+  currentdensity_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityBilinearForm()
+  virtual ~currentdensity_form_0()
   {
     // Do nothing
   }
@@ -7066,13 +7066,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityBilinearForm_finite_element_0();
+      return new currentdensity_0_finite_element_0();
       break;
     case 1:
-      return new UFC_CurrentDensityBilinearForm_finite_element_1();
+      return new currentdensity_0_finite_element_1();
       break;
     }
     return 0;
@@ -7081,13 +7081,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityBilinearForm_dof_map_0();
+      return new currentdensity_0_dof_map_0();
       break;
     case 1:
-      return new UFC_CurrentDensityBilinearForm_dof_map_1();
+      return new currentdensity_0_dof_map_1();
       break;
     }
     return 0;
@@ -7096,7 +7096,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_CurrentDensityBilinearForm_cell_integral_0();
+    return new currentdensity_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -7115,18 +7115,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityLinearForm_finite_element_0_0: public ufc::finite_element
+class currentdensity_1_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_finite_element_0_0() : ufc::finite_element()
+  currentdensity_1_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_finite_element_0_0()
+  virtual ~currentdensity_1_finite_element_0_0()
   {
     // Do nothing
   }
@@ -7638,25 +7638,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_finite_element_0_0();
+    return new currentdensity_1_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityLinearForm_finite_element_0_1: public ufc::finite_element
+class currentdensity_1_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_finite_element_0_1() : ufc::finite_element()
+  currentdensity_1_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_finite_element_0_1()
+  virtual ~currentdensity_1_finite_element_0_1()
   {
     // Do nothing
   }
@@ -8168,25 +8168,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_finite_element_0_1();
+    return new currentdensity_1_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityLinearForm_finite_element_0_2: public ufc::finite_element
+class currentdensity_1_finite_element_0_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_finite_element_0_2() : ufc::finite_element()
+  currentdensity_1_finite_element_0_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_finite_element_0_2()
+  virtual ~currentdensity_1_finite_element_0_2()
   {
     // Do nothing
   }
@@ -8698,25 +8698,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_finite_element_0_2();
+    return new currentdensity_1_finite_element_0_2();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityLinearForm_finite_element_0: public ufc::finite_element
+class currentdensity_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_finite_element_0() : ufc::finite_element()
+  currentdensity_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_finite_element_0()
+  virtual ~currentdensity_1_finite_element_0()
   {
     // Do nothing
   }
@@ -9630,16 +9630,16 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityLinearForm_finite_element_0_0();
+      return new currentdensity_1_finite_element_0_0();
       break;
     case 1:
-      return new UFC_CurrentDensityLinearForm_finite_element_0_1();
+      return new currentdensity_1_finite_element_0_1();
       break;
     case 2:
-      return new UFC_CurrentDensityLinearForm_finite_element_0_2();
+      return new currentdensity_1_finite_element_0_2();
       break;
     }
     return 0;
@@ -9649,18 +9649,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_CurrentDensityLinearForm_finite_element_1: public ufc::finite_element
+class currentdensity_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_finite_element_1() : ufc::finite_element()
+  currentdensity_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_finite_element_1()
+  virtual ~currentdensity_1_finite_element_1()
   {
     // Do nothing
   }
@@ -9812,7 +9812,7 @@ public:
     {-0.288675134594813, 0, 0, -0.223606797749979},
     {-0.288675134594813, 0, -0.210818510677892, 0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979},
-    {0.288675134594813, 0, 0.210818510677892, -0.0745355992499931},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.577350269189626, 0, -0.210818510677892, -0.149071198499986}};
     
     const static double coefficients1[6][4] = \
@@ -9828,7 +9828,7 @@ public:
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499931},
     {0, 0, 0, 0},
     {0.577350269189626, -0.182574185835055, -0.105409255338946, 0.149071198499986},
-    {0.288675134594813, 0, 0.210818510677892, -0.0745355992499931},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499931}};
     
     // Extract relevant coefficients
@@ -10039,7 +10039,7 @@ public:
     {-0.288675134594813, 0, 0, -0.223606797749979},
     {-0.288675134594813, 0, -0.210818510677892, 0.074535599249993},
     {0.288675134594813, 0, 0, 0.223606797749979},
-    {0.288675134594813, 0, 0.210818510677892, -0.0745355992499931},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.577350269189626, 0, -0.210818510677892, -0.149071198499986}};
     
     const static double coefficients1[6][4] = \
@@ -10055,7 +10055,7 @@ public:
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499931},
     {0, 0, 0, 0},
     {0.577350269189626, -0.182574185835055, -0.105409255338946, 0.149071198499986},
-    {0.288675134594813, 0, 0.210818510677892, -0.0745355992499931},
+    {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499931}};
     
     // Interesting (new) part
@@ -10375,7 +10375,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_finite_element_1();
+    return new currentdensity_1_finite_element_1();
   }
 
 };
@@ -10383,7 +10383,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityLinearForm_dof_map_0_0: public ufc::dof_map
+class currentdensity_1_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -10392,13 +10392,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_dof_map_0_0() : ufc::dof_map()
+  currentdensity_1_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_dof_map_0_0()
+  virtual ~currentdensity_1_dof_map_0_0()
   {
     // Do nothing
   }
@@ -10412,7 +10412,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -10501,7 +10501,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -10561,7 +10561,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_dof_map_0_0();
+    return new currentdensity_1_dof_map_0_0();
   }
 
 };
@@ -10569,7 +10569,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityLinearForm_dof_map_0_1: public ufc::dof_map
+class currentdensity_1_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -10578,13 +10578,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_dof_map_0_1() : ufc::dof_map()
+  currentdensity_1_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_dof_map_0_1()
+  virtual ~currentdensity_1_dof_map_0_1()
   {
     // Do nothing
   }
@@ -10598,7 +10598,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -10687,7 +10687,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -10747,7 +10747,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_dof_map_0_1();
+    return new currentdensity_1_dof_map_0_1();
   }
 
 };
@@ -10755,7 +10755,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityLinearForm_dof_map_0_2: public ufc::dof_map
+class currentdensity_1_dof_map_0_2: public ufc::dof_map
 {
 private:
 
@@ -10764,13 +10764,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_dof_map_0_2() : ufc::dof_map()
+  currentdensity_1_dof_map_0_2() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_dof_map_0_2()
+  virtual ~currentdensity_1_dof_map_0_2()
   {
     // Do nothing
   }
@@ -10784,7 +10784,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -10873,7 +10873,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -10933,7 +10933,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_dof_map_0_2();
+    return new currentdensity_1_dof_map_0_2();
   }
 
 };
@@ -10941,7 +10941,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityLinearForm_dof_map_0: public ufc::dof_map
+class currentdensity_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -10950,13 +10950,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_dof_map_0() : ufc::dof_map()
+  currentdensity_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_dof_map_0()
+  virtual ~currentdensity_1_dof_map_0()
   {
     // Do nothing
   }
@@ -10970,7 +10970,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -11069,7 +11069,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -11177,16 +11177,16 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityLinearForm_dof_map_0_0();
+      return new currentdensity_1_dof_map_0_0();
       break;
     case 1:
-      return new UFC_CurrentDensityLinearForm_dof_map_0_1();
+      return new currentdensity_1_dof_map_0_1();
       break;
     case 2:
-      return new UFC_CurrentDensityLinearForm_dof_map_0_2();
+      return new currentdensity_1_dof_map_0_2();
       break;
     }
     return 0;
@@ -11197,7 +11197,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_CurrentDensityLinearForm_dof_map_1: public ufc::dof_map
+class currentdensity_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -11206,13 +11206,13 @@ private:
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_dof_map_1() : ufc::dof_map()
+  currentdensity_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_dof_map_1()
+  virtual ~currentdensity_1_dof_map_1()
   {
     // Do nothing
   }
@@ -11226,7 +11226,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -11317,7 +11317,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -11383,7 +11383,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_dof_map_1();
+    return new currentdensity_1_dof_map_1();
   }
 
 };
@@ -11392,18 +11392,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CurrentDensityLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class currentdensity_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  currentdensity_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_cell_integral_0_quadrature()
+  virtual ~currentdensity_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -11472,7 +11472,7 @@ public:
     static const unsigned int nzc6[4] = {8, 9, 10, 11};
     
     const static double FE0_C1_D001[1][3] = \
-    {{-1, 1, -1}};
+    {{-1, 1, -0.999999999999999}};
     // Array of non-zero columns
     static const unsigned int nzc0[3] = {0, 3, 4};
     // Array of non-zero columns
@@ -11556,22 +11556,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_CurrentDensityLinearForm_cell_integral_0: public ufc::cell_integral
+class currentdensity_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_CurrentDensityLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  currentdensity_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm_cell_integral_0() : ufc::cell_integral()
+  currentdensity_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm_cell_integral_0()
+  virtual ~currentdensity_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -11616,18 +11616,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_CurrentDensityLinearForm: public ufc::form
+class currentdensity_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_CurrentDensityLinearForm() : ufc::form()
+  currentdensity_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_CurrentDensityLinearForm()
+  virtual ~currentdensity_form_1()
   {
     // Do nothing
   }
@@ -11671,13 +11671,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityLinearForm_finite_element_0();
+      return new currentdensity_1_finite_element_0();
       break;
     case 1:
-      return new UFC_CurrentDensityLinearForm_finite_element_1();
+      return new currentdensity_1_finite_element_1();
       break;
     }
     return 0;
@@ -11686,13 +11686,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_CurrentDensityLinearForm_dof_map_0();
+      return new currentdensity_1_dof_map_0();
       break;
     case 1:
-      return new UFC_CurrentDensityLinearForm_dof_map_1();
+      return new currentdensity_1_dof_map_1();
       break;
     }
     return 0;
@@ -11701,7 +11701,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_CurrentDensityLinearForm_cell_integral_0();
+    return new currentdensity_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -11720,246 +11720,548 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class CurrentDensityBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace CurrentDensity
+{
+
+class CoefficientReference
+{
+public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
+
+  CoefficientReference& operator=(dolfin::Function & f)
+  {
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
+  }
+
+  std::string name() const
+  {
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
 {
 public:
 
-  CurrentDensityBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_0()), mesh)))
+  CoefficientSet():
+    T("T")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 1;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "T";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference T;
+};
+
+class CoefficientSpace_T: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_T(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class CurrentDensityBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  CurrentDensityBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_0()), mesh)))
+  CoefficientSpace_T(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_T(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_T(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_T()
+  {
+  }
+  
 };
 
-class CurrentDensityLinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  CurrentDensityLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_0()), mesh)))
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class CurrentDensityLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  CurrentDensityLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
 };
 
-class CurrentDensityTestSpace : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  CurrentDensityTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_0()), mesh)))
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class CurrentDensityTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  CurrentDensityTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_0()), mesh)))
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
 };
 
-class CurrentDensityCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  CurrentDensityCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CurrentDensityFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  CurrentDensityFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_CurrentDensityLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_CurrentDensityLinearForm_dof_map_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class CurrentDensityBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  CurrentDensityBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CurrentDensityBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  CurrentDensityBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CurrentDensityBilinearForm());
-  }
-
-  // Destructor
-  ~CurrentDensityBilinearForm() {}
-
-};
-
-class CurrentDensityLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  CurrentDensityLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~CurrentDensityLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const CurrentDensityLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 0)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
   {
-    return new CurrentDensityLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new currentdensity_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new currentdensity_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_T Form_1_FunctionSpace_1;
+
+class Form_1_Coefficient_T: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_T(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_T()
+  {}
+
+  const Form_1_Coefficient_T& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_T& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "T";
   }
-  
+
 };
-class CurrentDensityLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  CurrentDensityLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), T(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 1), T(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CurrentDensityLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  CurrentDensityLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), T(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), T(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CurrentDensityLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  CurrentDensityLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), T(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _T):
+    dolfin::Form(1, 1), T(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->T = w0;
+    boost::shared_ptr<dolfin::Function> _pT = dolfin::reference_to_no_delete_pointer(_T);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CurrentDensityLinearForm());
+    T = _pT;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  CurrentDensityLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), T(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pT):
+    dolfin::Form(1, 1), T(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->T = w0;
+    T = _pT;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_CurrentDensityLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 1), T(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), T(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _T):
+    dolfin::Form(1, 1), T(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pT = dolfin::reference_to_no_delete_pointer(_T);
+
+    T = _pT;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pT):
+    dolfin::Form(1, 1), T(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    T = _pT;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new currentdensity_form_1());
   }
 
   // Destructor
-  ~CurrentDensityLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    T = coefficients.T.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "T") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "T";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_T;
 
   // Coefficients
-  CurrentDensityLinearFormCoefficient0 T;
-
+  Form_1_Coefficient_T T;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+
+} // namespace CurrentDensity
 
 #endif

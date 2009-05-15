@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2D_1BilinearForm_finite_element_0: public ufc::finite_element
+class poisson2d_1_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm_finite_element_0() : ufc::finite_element()
+  poisson2d_1_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm_finite_element_0()
+  virtual ~poisson2d_1_0_finite_element_0()
   {
     // Do nothing
   }
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2D_1BilinearForm_finite_element_0();
+    return new poisson2d_1_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2D_1BilinearForm_finite_element_1: public ufc::finite_element
+class poisson2d_1_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm_finite_element_1() : ufc::finite_element()
+  poisson2d_1_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm_finite_element_1()
+  virtual ~poisson2d_1_0_finite_element_1()
   {
     // Do nothing
   }
@@ -849,7 +849,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2D_1BilinearForm_finite_element_1();
+    return new poisson2d_1_0_finite_element_1();
   }
 
 };
@@ -857,7 +857,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2D_1BilinearForm_dof_map_0: public ufc::dof_map
+class poisson2d_1_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -866,13 +866,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm_dof_map_0() : ufc::dof_map()
+  poisson2d_1_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm_dof_map_0()
+  virtual ~poisson2d_1_0_dof_map_0()
   {
     // Do nothing
   }
@@ -886,7 +886,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -971,7 +971,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1017,7 +1017,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2D_1BilinearForm_dof_map_0();
+    return new poisson2d_1_0_dof_map_0();
   }
 
 };
@@ -1025,7 +1025,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2D_1BilinearForm_dof_map_1: public ufc::dof_map
+class poisson2d_1_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1034,13 +1034,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm_dof_map_1() : ufc::dof_map()
+  poisson2d_1_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm_dof_map_1()
+  virtual ~poisson2d_1_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1054,7 +1054,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1139,7 +1139,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1185,7 +1185,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2D_1BilinearForm_dof_map_1();
+    return new poisson2d_1_0_dof_map_1();
   }
 
 };
@@ -1194,18 +1194,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2D_1BilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class poisson2d_1_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  poisson2d_1_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm_cell_integral_0_quadrature()
+  virtual ~poisson2d_1_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1284,22 +1284,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2D_1BilinearForm_cell_integral_0: public ufc::cell_integral
+class poisson2d_1_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_Poisson2D_1BilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  poisson2d_1_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm_cell_integral_0() : ufc::cell_integral()
+  poisson2d_1_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm_cell_integral_0()
+  virtual ~poisson2d_1_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -1341,18 +1341,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_Poisson2D_1BilinearForm: public ufc::form
+class poisson2d_1_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1BilinearForm() : ufc::form()
+  poisson2d_1_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1BilinearForm()
+  virtual ~poisson2d_1_form_0()
   {
     // Do nothing
   }
@@ -1396,13 +1396,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Poisson2D_1BilinearForm_finite_element_0();
+      return new poisson2d_1_0_finite_element_0();
       break;
     case 1:
-      return new UFC_Poisson2D_1BilinearForm_finite_element_1();
+      return new poisson2d_1_0_finite_element_1();
       break;
     }
     return 0;
@@ -1411,13 +1411,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Poisson2D_1BilinearForm_dof_map_0();
+      return new poisson2d_1_0_dof_map_0();
       break;
     case 1:
-      return new UFC_Poisson2D_1BilinearForm_dof_map_1();
+      return new poisson2d_1_0_dof_map_1();
       break;
     }
     return 0;
@@ -1426,7 +1426,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_Poisson2D_1BilinearForm_cell_integral_0();
+    return new poisson2d_1_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -1445,18 +1445,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2D_1LinearForm_finite_element_0: public ufc::finite_element
+class poisson2d_1_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm_finite_element_0() : ufc::finite_element()
+  poisson2d_1_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm_finite_element_0()
+  virtual ~poisson2d_1_1_finite_element_0()
   {
     // Do nothing
   }
@@ -1859,25 +1859,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2D_1LinearForm_finite_element_0();
+    return new poisson2d_1_1_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Poisson2D_1LinearForm_finite_element_1: public ufc::finite_element
+class poisson2d_1_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm_finite_element_1() : ufc::finite_element()
+  poisson2d_1_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm_finite_element_1()
+  virtual ~poisson2d_1_1_finite_element_1()
   {
     // Do nothing
   }
@@ -2280,7 +2280,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Poisson2D_1LinearForm_finite_element_1();
+    return new poisson2d_1_1_finite_element_1();
   }
 
 };
@@ -2288,7 +2288,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2D_1LinearForm_dof_map_0: public ufc::dof_map
+class poisson2d_1_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2297,13 +2297,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm_dof_map_0() : ufc::dof_map()
+  poisson2d_1_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm_dof_map_0()
+  virtual ~poisson2d_1_1_dof_map_0()
   {
     // Do nothing
   }
@@ -2317,7 +2317,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -2402,7 +2402,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -2448,7 +2448,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2D_1LinearForm_dof_map_0();
+    return new poisson2d_1_1_dof_map_0();
   }
 
 };
@@ -2456,7 +2456,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Poisson2D_1LinearForm_dof_map_1: public ufc::dof_map
+class poisson2d_1_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -2465,13 +2465,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm_dof_map_1() : ufc::dof_map()
+  poisson2d_1_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm_dof_map_1()
+  virtual ~poisson2d_1_1_dof_map_1()
   {
     // Do nothing
   }
@@ -2485,7 +2485,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -2570,7 +2570,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -2616,7 +2616,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Poisson2D_1LinearForm_dof_map_1();
+    return new poisson2d_1_1_dof_map_1();
   }
 
 };
@@ -2625,18 +2625,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2D_1LinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class poisson2d_1_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  poisson2d_1_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm_cell_integral_0_quadrature()
+  virtual ~poisson2d_1_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -2670,7 +2670,7 @@ public:
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
@@ -2712,22 +2712,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_Poisson2D_1LinearForm_cell_integral_0: public ufc::cell_integral
+class poisson2d_1_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_Poisson2D_1LinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  poisson2d_1_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm_cell_integral_0() : ufc::cell_integral()
+  poisson2d_1_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm_cell_integral_0()
+  virtual ~poisson2d_1_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -2763,18 +2763,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_Poisson2D_1LinearForm: public ufc::form
+class poisson2d_1_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_Poisson2D_1LinearForm() : ufc::form()
+  poisson2d_1_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Poisson2D_1LinearForm()
+  virtual ~poisson2d_1_form_1()
   {
     // Do nothing
   }
@@ -2818,13 +2818,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Poisson2D_1LinearForm_finite_element_0();
+      return new poisson2d_1_1_finite_element_0();
       break;
     case 1:
-      return new UFC_Poisson2D_1LinearForm_finite_element_1();
+      return new poisson2d_1_1_finite_element_1();
       break;
     }
     return 0;
@@ -2833,13 +2833,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Poisson2D_1LinearForm_dof_map_0();
+      return new poisson2d_1_1_dof_map_0();
       break;
     case 1:
-      return new UFC_Poisson2D_1LinearForm_dof_map_1();
+      return new poisson2d_1_1_dof_map_1();
       break;
     }
     return 0;
@@ -2848,7 +2848,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_Poisson2D_1LinearForm_cell_integral_0();
+    return new poisson2d_1_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -2867,246 +2867,549 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class Poisson2D_1BilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace Poisson2D_1
+{
+
+class CoefficientReference
+{
+public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
+
+  CoefficientReference& operator=(dolfin::Function & f)
+  {
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
+  }
+
+  std::string name() const
+  {
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
 {
 public:
 
-  Poisson2D_1BilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
+  CoefficientSet():
+    f("f")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 1;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "f";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference f;
+};
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class Poisson2D_1BilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2D_1BilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_f()
+  {
+  }
+  
 };
 
-class Poisson2D_1LinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Poisson2D_1LinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class Poisson2D_1LinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2D_1LinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
 };
 
-class Poisson2D_1TestSpace : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  Poisson2D_1TestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class Poisson2D_1TrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2D_1TrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
 };
 
-class Poisson2D_1CoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2D_1CoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class Poisson2D_1FunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  Poisson2D_1FunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Poisson2D_1LinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Poisson2D_1LinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class Poisson2D_1BilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  Poisson2D_1BilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2D_1BilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  Poisson2D_1BilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2D_1BilinearForm());
-  }
-
-  // Destructor
-  ~Poisson2D_1BilinearForm() {}
-
-};
-
-class Poisson2D_1LinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  Poisson2D_1LinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~Poisson2D_1LinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const Poisson2D_1LinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 0)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
   {
-    return new Poisson2D_1LinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_1_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_1_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
+
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class Poisson2D_1LinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  Poisson2D_1LinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2D_1LinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  Poisson2D_1LinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2D_1LinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  Poisson2D_1LinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2D_1LinearForm());
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  Poisson2D_1LinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_Poisson2D_1LinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson2d_1_form_1());
   }
 
   // Destructor
-  ~Poisson2D_1LinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    f = coefficients.f.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "f") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "f";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
 
   // Coefficients
-  Poisson2D_1LinearFormCoefficient0 f;
-
+  Form_1_Coefficient_f f;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+typedef Form_0_FunctionSpace_0 FunctionSpace;
+
+} // namespace Poisson2D_1
 
 #endif

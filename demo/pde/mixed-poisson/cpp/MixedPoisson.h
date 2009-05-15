@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_0_0: public ufc::finite_element
+class mixedpoisson_0_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_0_0() : ufc::finite_element()
+  mixedpoisson_0_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_0_0()
+  virtual ~mixedpoisson_0_finite_element_0_0()
   {
     // Do nothing
   }
@@ -124,17 +124,17 @@ public:
     const static double coefficients0[6][3] = \
     {{0.942809041582063, 0.577350269189626, -0.333333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
+    {0.471404520791031, -0.577350269189626, -0.666666666666667},
     {0.471404520791032, 0.288675134594813, 0.833333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+    {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
     const static double coefficients1[6][3] = \
     {{-0.471404520791032, 0, -0.333333333333333},
     {0.942809041582063, 0, 0.666666666666667},
     {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582064, 0, -0.666666666666667},
-    {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+    {-0.942809041582063, 0, -0.666666666666667},
+    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
     {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
     // Extract relevant coefficients
@@ -285,17 +285,17 @@ public:
     const static double coefficients0[6][3] = \
     {{0.942809041582063, 0.577350269189626, -0.333333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
+    {0.471404520791031, -0.577350269189626, -0.666666666666667},
     {0.471404520791032, 0.288675134594813, 0.833333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+    {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
     const static double coefficients1[6][3] = \
     {{-0.471404520791032, 0, -0.333333333333333},
     {0.942809041582063, 0, 0.666666666666667},
     {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582064, 0, -0.666666666666667},
-    {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+    {-0.942809041582063, 0, -0.666666666666667},
+    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
     {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
     // Interesting (new) part
@@ -520,25 +520,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_finite_element_0_0();
+    return new mixedpoisson_0_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_0_1: public ufc::finite_element
+class mixedpoisson_0_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_0_1() : ufc::finite_element()
+  mixedpoisson_0_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_0_1()
+  virtual ~mixedpoisson_0_finite_element_0_1()
   {
     // Do nothing
   }
@@ -907,25 +907,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_finite_element_0_1();
+    return new mixedpoisson_0_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_0: public ufc::finite_element
+class mixedpoisson_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_0() : ufc::finite_element()
+  mixedpoisson_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_0()
+  virtual ~mixedpoisson_0_finite_element_0()
   {
     // Do nothing
   }
@@ -1027,17 +1027,17 @@ public:
       const static double coefficients0[6][3] =   \
       {{0.942809041582063, 0.577350269189626, -0.333333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
+      {0.471404520791031, -0.577350269189626, -0.666666666666667},
       {0.471404520791032, 0.288675134594813, 0.833333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
       const static double coefficients1[6][3] =   \
       {{-0.471404520791032, 0, -0.333333333333333},
       {0.942809041582063, 0, 0.666666666666667},
       {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582064, 0, -0.666666666666667},
-      {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+      {-0.942809041582063, 0, -0.666666666666667},
+      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
       {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
       // Extract relevant coefficients
@@ -1220,17 +1220,17 @@ public:
       const static double coefficients0[6][3] =   \
       {{0.942809041582063, 0.577350269189626, -0.333333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
+      {0.471404520791031, -0.577350269189626, -0.666666666666667},
       {0.471404520791032, 0.288675134594813, 0.833333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
       const static double coefficients1[6][3] =   \
       {{-0.471404520791032, 0, -0.333333333333333},
       {0.942809041582063, 0, 0.666666666666667},
       {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582064, 0, -0.666666666666667},
-      {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+      {-0.942809041582063, 0, -0.666666666666667},
+      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
       {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
       // Interesting (new) part
@@ -1555,13 +1555,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_finite_element_0_0();
+      return new mixedpoisson_0_finite_element_0_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_finite_element_0_1();
+      return new mixedpoisson_0_finite_element_0_1();
       break;
     }
     return 0;
@@ -1571,18 +1571,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_1_0: public ufc::finite_element
+class mixedpoisson_0_finite_element_1_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_1_0() : ufc::finite_element()
+  mixedpoisson_0_finite_element_1_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_1_0()
+  virtual ~mixedpoisson_0_finite_element_1_0()
   {
     // Do nothing
   }
@@ -1681,17 +1681,17 @@ public:
     const static double coefficients0[6][3] = \
     {{0.942809041582063, 0.577350269189626, -0.333333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
+    {0.471404520791031, -0.577350269189626, -0.666666666666667},
     {0.471404520791032, 0.288675134594813, 0.833333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+    {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
     const static double coefficients1[6][3] = \
     {{-0.471404520791032, 0, -0.333333333333333},
     {0.942809041582063, 0, 0.666666666666667},
     {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582064, 0, -0.666666666666667},
-    {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+    {-0.942809041582063, 0, -0.666666666666667},
+    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
     {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
     // Extract relevant coefficients
@@ -1842,17 +1842,17 @@ public:
     const static double coefficients0[6][3] = \
     {{0.942809041582063, 0.577350269189626, -0.333333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
+    {0.471404520791031, -0.577350269189626, -0.666666666666667},
     {0.471404520791032, 0.288675134594813, 0.833333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+    {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
     const static double coefficients1[6][3] = \
     {{-0.471404520791032, 0, -0.333333333333333},
     {0.942809041582063, 0, 0.666666666666667},
     {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582064, 0, -0.666666666666667},
-    {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+    {-0.942809041582063, 0, -0.666666666666667},
+    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
     {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
     // Interesting (new) part
@@ -2077,25 +2077,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_finite_element_1_0();
+    return new mixedpoisson_0_finite_element_1_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_1_1: public ufc::finite_element
+class mixedpoisson_0_finite_element_1_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_1_1() : ufc::finite_element()
+  mixedpoisson_0_finite_element_1_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_1_1()
+  virtual ~mixedpoisson_0_finite_element_1_1()
   {
     // Do nothing
   }
@@ -2464,25 +2464,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_finite_element_1_1();
+    return new mixedpoisson_0_finite_element_1_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonBilinearForm_finite_element_1: public ufc::finite_element
+class mixedpoisson_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_finite_element_1() : ufc::finite_element()
+  mixedpoisson_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_finite_element_1()
+  virtual ~mixedpoisson_0_finite_element_1()
   {
     // Do nothing
   }
@@ -2584,17 +2584,17 @@ public:
       const static double coefficients0[6][3] =   \
       {{0.942809041582063, 0.577350269189626, -0.333333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
+      {0.471404520791031, -0.577350269189626, -0.666666666666667},
       {0.471404520791032, 0.288675134594813, 0.833333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
       const static double coefficients1[6][3] =   \
       {{-0.471404520791032, 0, -0.333333333333333},
       {0.942809041582063, 0, 0.666666666666667},
       {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582064, 0, -0.666666666666667},
-      {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+      {-0.942809041582063, 0, -0.666666666666667},
+      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
       {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
       // Extract relevant coefficients
@@ -2777,17 +2777,17 @@ public:
       const static double coefficients0[6][3] =   \
       {{0.942809041582063, 0.577350269189626, -0.333333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
+      {0.471404520791031, -0.577350269189626, -0.666666666666667},
       {0.471404520791032, 0.288675134594813, 0.833333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
       const static double coefficients1[6][3] =   \
       {{-0.471404520791032, 0, -0.333333333333333},
       {0.942809041582063, 0, 0.666666666666667},
       {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582064, 0, -0.666666666666667},
-      {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+      {-0.942809041582063, 0, -0.666666666666667},
+      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
       {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
       // Interesting (new) part
@@ -3112,13 +3112,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_finite_element_1_0();
+      return new mixedpoisson_0_finite_element_1_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_finite_element_1_1();
+      return new mixedpoisson_0_finite_element_1_1();
       break;
     }
     return 0;
@@ -3129,7 +3129,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_0_0: public ufc::dof_map
+class mixedpoisson_0_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -3138,13 +3138,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_0_0() : ufc::dof_map()
+  mixedpoisson_0_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_0_0()
+  virtual ~mixedpoisson_0_dof_map_0_0()
   {
     // Do nothing
   }
@@ -3158,7 +3158,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -3246,7 +3246,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -3298,7 +3298,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_dof_map_0_0();
+    return new mixedpoisson_0_dof_map_0_0();
   }
 
 };
@@ -3306,7 +3306,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_0_1: public ufc::dof_map
+class mixedpoisson_0_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -3315,13 +3315,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_0_1() : ufc::dof_map()
+  mixedpoisson_0_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_0_1()
+  virtual ~mixedpoisson_0_dof_map_0_1()
   {
     // Do nothing
   }
@@ -3335,7 +3335,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -3418,7 +3418,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -3457,7 +3457,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_dof_map_0_1();
+    return new mixedpoisson_0_dof_map_0_1();
   }
 
 };
@@ -3465,7 +3465,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_0: public ufc::dof_map
+class mixedpoisson_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -3474,13 +3474,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_0() : ufc::dof_map()
+  mixedpoisson_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_0()
+  virtual ~mixedpoisson_0_dof_map_0()
   {
     // Do nothing
   }
@@ -3494,7 +3494,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -3584,7 +3584,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -3638,13 +3638,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_dof_map_0_0();
+      return new mixedpoisson_0_dof_map_0_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_dof_map_0_1();
+      return new mixedpoisson_0_dof_map_0_1();
       break;
     }
     return 0;
@@ -3655,7 +3655,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_1_0: public ufc::dof_map
+class mixedpoisson_0_dof_map_1_0: public ufc::dof_map
 {
 private:
 
@@ -3664,13 +3664,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_1_0() : ufc::dof_map()
+  mixedpoisson_0_dof_map_1_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_1_0()
+  virtual ~mixedpoisson_0_dof_map_1_0()
   {
     // Do nothing
   }
@@ -3684,7 +3684,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -3772,7 +3772,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -3824,7 +3824,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_dof_map_1_0();
+    return new mixedpoisson_0_dof_map_1_0();
   }
 
 };
@@ -3832,7 +3832,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_1_1: public ufc::dof_map
+class mixedpoisson_0_dof_map_1_1: public ufc::dof_map
 {
 private:
 
@@ -3841,13 +3841,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_1_1() : ufc::dof_map()
+  mixedpoisson_0_dof_map_1_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_1_1()
+  virtual ~mixedpoisson_0_dof_map_1_1()
   {
     // Do nothing
   }
@@ -3861,7 +3861,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -3944,7 +3944,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -3983,7 +3983,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_dof_map_1_1();
+    return new mixedpoisson_0_dof_map_1_1();
   }
 
 };
@@ -3991,7 +3991,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonBilinearForm_dof_map_1: public ufc::dof_map
+class mixedpoisson_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -4000,13 +4000,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_dof_map_1() : ufc::dof_map()
+  mixedpoisson_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_dof_map_1()
+  virtual ~mixedpoisson_0_dof_map_1()
   {
     // Do nothing
   }
@@ -4020,7 +4020,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -4110,7 +4110,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -4164,13 +4164,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_dof_map_1_0();
+      return new mixedpoisson_0_dof_map_1_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_dof_map_1_1();
+      return new mixedpoisson_0_dof_map_1_1();
       break;
     }
     return 0;
@@ -4182,18 +4182,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_MixedPoissonBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class mixedpoisson_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  mixedpoisson_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_cell_integral_0_quadrature()
+  virtual ~mixedpoisson_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -4231,7 +4231,7 @@ public:
     
     const static double FE0_C1_D01[4][6] = \
     {{-1, 2, 1, -2, 2, -1},
-    {-1, 2, 1, -2, 2, -1},
+    {-1, 2, 1, -2, 2, -0.999999999999999},
     {-1, 2, 1, -2, 2, -1},
     {-1, 2, 1, -2, 2, -1}};
     // Array of non-zero columns
@@ -4271,7 +4271,7 @@ public:
     
     const static double FE0_C0[4][6] = \
     {{0.357117456527233, -0.178558728263616, 1.17772946630772, -0.356288194571337, -0.178558728263617, 0.357117456527233},
-    {0.150062220445216, -0.0750311102226081, -0.0849091432801697, 1.00987803305756, -0.0750311102226083, 0.150062220445216},
+    {0.150062220445216, -0.0750311102226082, -0.0849091432801699, 1.00987803305756, -0.0750311102226081, 0.150062220445216},
     {1.3327804920294, -0.666390246014701, 0.202066430805551, 0.131543323179748, -0.666390246014702, 1.3327804920294},
     {0.560039830998148, -0.280019915499074, -0.494886753833102, 1.21486683833403, -0.280019915499074, 0.560039830998148}};
     // Array of non-zero columns
@@ -4394,22 +4394,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_MixedPoissonBilinearForm_cell_integral_0: public ufc::cell_integral
+class mixedpoisson_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_MixedPoissonBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  mixedpoisson_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm_cell_integral_0() : ufc::cell_integral()
+  mixedpoisson_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm_cell_integral_0()
+  virtual ~mixedpoisson_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -4491,18 +4491,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_MixedPoissonBilinearForm: public ufc::form
+class mixedpoisson_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonBilinearForm() : ufc::form()
+  mixedpoisson_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonBilinearForm()
+  virtual ~mixedpoisson_form_0()
   {
     // Do nothing
   }
@@ -4546,13 +4546,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_finite_element_0();
+      return new mixedpoisson_0_finite_element_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_finite_element_1();
+      return new mixedpoisson_0_finite_element_1();
       break;
     }
     return 0;
@@ -4561,13 +4561,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonBilinearForm_dof_map_0();
+      return new mixedpoisson_0_dof_map_0();
       break;
     case 1:
-      return new UFC_MixedPoissonBilinearForm_dof_map_1();
+      return new mixedpoisson_0_dof_map_1();
       break;
     }
     return 0;
@@ -4576,7 +4576,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_MixedPoissonBilinearForm_cell_integral_0();
+    return new mixedpoisson_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -4595,18 +4595,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonLinearForm_finite_element_0_0: public ufc::finite_element
+class mixedpoisson_1_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_0_0() : ufc::finite_element()
+  mixedpoisson_1_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_0_0()
+  virtual ~mixedpoisson_1_finite_element_0_0()
   {
     // Do nothing
   }
@@ -4705,17 +4705,17 @@ public:
     const static double coefficients0[6][3] = \
     {{0.942809041582063, 0.577350269189626, -0.333333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
+    {0.471404520791031, -0.577350269189626, -0.666666666666667},
     {0.471404520791032, 0.288675134594813, 0.833333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+    {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
     const static double coefficients1[6][3] = \
     {{-0.471404520791032, 0, -0.333333333333333},
     {0.942809041582063, 0, 0.666666666666667},
     {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582064, 0, -0.666666666666667},
-    {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+    {-0.942809041582063, 0, -0.666666666666667},
+    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
     {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
     // Extract relevant coefficients
@@ -4866,17 +4866,17 @@ public:
     const static double coefficients0[6][3] = \
     {{0.942809041582063, 0.577350269189626, -0.333333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.471404520791032, -0.577350269189626, -0.666666666666667},
+    {0.471404520791031, -0.577350269189626, -0.666666666666667},
     {0.471404520791032, 0.288675134594813, 0.833333333333333},
     {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-    {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+    {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
     const static double coefficients1[6][3] = \
     {{-0.471404520791032, 0, -0.333333333333333},
     {0.942809041582063, 0, 0.666666666666667},
     {0.471404520791032, 0, 0.333333333333333},
-    {-0.942809041582064, 0, -0.666666666666667},
-    {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+    {-0.942809041582063, 0, -0.666666666666667},
+    {-0.471404520791032, 0.866025403784439, 0.166666666666667},
     {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
     // Interesting (new) part
@@ -5101,25 +5101,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_finite_element_0_0();
+    return new mixedpoisson_1_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonLinearForm_finite_element_0_1: public ufc::finite_element
+class mixedpoisson_1_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_0_1() : ufc::finite_element()
+  mixedpoisson_1_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_0_1()
+  virtual ~mixedpoisson_1_finite_element_0_1()
   {
     // Do nothing
   }
@@ -5488,25 +5488,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_finite_element_0_1();
+    return new mixedpoisson_1_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonLinearForm_finite_element_0: public ufc::finite_element
+class mixedpoisson_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_0() : ufc::finite_element()
+  mixedpoisson_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_0()
+  virtual ~mixedpoisson_1_finite_element_0()
   {
     // Do nothing
   }
@@ -5608,17 +5608,17 @@ public:
       const static double coefficients0[6][3] =   \
       {{0.942809041582063, 0.577350269189626, -0.333333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
+      {0.471404520791031, -0.577350269189626, -0.666666666666667},
       {0.471404520791032, 0.288675134594813, 0.833333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
       const static double coefficients1[6][3] =   \
       {{-0.471404520791032, 0, -0.333333333333333},
       {0.942809041582063, 0, 0.666666666666667},
       {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582064, 0, -0.666666666666667},
-      {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+      {-0.942809041582063, 0, -0.666666666666667},
+      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
       {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
       // Extract relevant coefficients
@@ -5801,17 +5801,17 @@ public:
       const static double coefficients0[6][3] =   \
       {{0.942809041582063, 0.577350269189626, -0.333333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.471404520791032, -0.577350269189626, -0.666666666666667},
+      {0.471404520791031, -0.577350269189626, -0.666666666666667},
       {0.471404520791032, 0.288675134594813, 0.833333333333333},
       {-0.471404520791032, -0.288675134594813, 0.166666666666667},
-      {0.942809041582064, 0.577350269189626, -0.333333333333333}};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334}};
     
       const static double coefficients1[6][3] =   \
       {{-0.471404520791032, 0, -0.333333333333333},
       {0.942809041582063, 0, 0.666666666666667},
       {0.471404520791032, 0, 0.333333333333333},
-      {-0.942809041582064, 0, -0.666666666666667},
-      {-0.471404520791031, 0.866025403784439, 0.166666666666667},
+      {-0.942809041582063, 0, -0.666666666666667},
+      {-0.471404520791032, 0.866025403784439, 0.166666666666667},
       {-0.471404520791032, -0.866025403784439, 0.166666666666667}};
     
       // Interesting (new) part
@@ -6136,13 +6136,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonLinearForm_finite_element_0_0();
+      return new mixedpoisson_1_finite_element_0_0();
       break;
     case 1:
-      return new UFC_MixedPoissonLinearForm_finite_element_0_1();
+      return new mixedpoisson_1_finite_element_0_1();
       break;
     }
     return 0;
@@ -6152,18 +6152,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_MixedPoissonLinearForm_finite_element_1: public ufc::finite_element
+class mixedpoisson_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_finite_element_1() : ufc::finite_element()
+  mixedpoisson_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_finite_element_1()
+  virtual ~mixedpoisson_1_finite_element_1()
   {
     // Do nothing
   }
@@ -6532,7 +6532,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_finite_element_1();
+    return new mixedpoisson_1_finite_element_1();
   }
 
 };
@@ -6540,7 +6540,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonLinearForm_dof_map_0_0: public ufc::dof_map
+class mixedpoisson_1_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -6549,13 +6549,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_0_0() : ufc::dof_map()
+  mixedpoisson_1_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_0_0()
+  virtual ~mixedpoisson_1_dof_map_0_0()
   {
     // Do nothing
   }
@@ -6569,7 +6569,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -6657,7 +6657,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -6709,7 +6709,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_dof_map_0_0();
+    return new mixedpoisson_1_dof_map_0_0();
   }
 
 };
@@ -6717,7 +6717,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonLinearForm_dof_map_0_1: public ufc::dof_map
+class mixedpoisson_1_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -6726,13 +6726,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_0_1() : ufc::dof_map()
+  mixedpoisson_1_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_0_1()
+  virtual ~mixedpoisson_1_dof_map_0_1()
   {
     // Do nothing
   }
@@ -6746,7 +6746,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -6829,7 +6829,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -6868,7 +6868,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_dof_map_0_1();
+    return new mixedpoisson_1_dof_map_0_1();
   }
 
 };
@@ -6876,7 +6876,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonLinearForm_dof_map_0: public ufc::dof_map
+class mixedpoisson_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -6885,13 +6885,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_0() : ufc::dof_map()
+  mixedpoisson_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_0()
+  virtual ~mixedpoisson_1_dof_map_0()
   {
     // Do nothing
   }
@@ -6905,7 +6905,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -6995,7 +6995,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 0;
@@ -7049,13 +7049,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonLinearForm_dof_map_0_0();
+      return new mixedpoisson_1_dof_map_0_0();
       break;
     case 1:
-      return new UFC_MixedPoissonLinearForm_dof_map_0_1();
+      return new mixedpoisson_1_dof_map_0_1();
       break;
     }
     return 0;
@@ -7066,7 +7066,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_MixedPoissonLinearForm_dof_map_1: public ufc::dof_map
+class mixedpoisson_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -7075,13 +7075,13 @@ private:
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_dof_map_1() : ufc::dof_map()
+  mixedpoisson_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_dof_map_1()
+  virtual ~mixedpoisson_1_dof_map_1()
   {
     // Do nothing
   }
@@ -7095,7 +7095,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return false;
@@ -7178,7 +7178,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       
@@ -7217,7 +7217,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_dof_map_1();
+    return new mixedpoisson_1_dof_map_1();
   }
 
 };
@@ -7226,18 +7226,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_MixedPoissonLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class mixedpoisson_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  mixedpoisson_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_cell_integral_0_quadrature()
+  virtual ~mixedpoisson_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -7291,22 +7291,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_MixedPoissonLinearForm_cell_integral_0: public ufc::cell_integral
+class mixedpoisson_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_MixedPoissonLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  mixedpoisson_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm_cell_integral_0() : ufc::cell_integral()
+  mixedpoisson_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm_cell_integral_0()
+  virtual ~mixedpoisson_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -7346,18 +7346,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_MixedPoissonLinearForm: public ufc::form
+class mixedpoisson_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_MixedPoissonLinearForm() : ufc::form()
+  mixedpoisson_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_MixedPoissonLinearForm()
+  virtual ~mixedpoisson_form_1()
   {
     // Do nothing
   }
@@ -7401,13 +7401,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonLinearForm_finite_element_0();
+      return new mixedpoisson_1_finite_element_0();
       break;
     case 1:
-      return new UFC_MixedPoissonLinearForm_finite_element_1();
+      return new mixedpoisson_1_finite_element_1();
       break;
     }
     return 0;
@@ -7416,13 +7416,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_MixedPoissonLinearForm_dof_map_0();
+      return new mixedpoisson_1_dof_map_0();
       break;
     case 1:
-      return new UFC_MixedPoissonLinearForm_dof_map_1();
+      return new mixedpoisson_1_dof_map_1();
       break;
     }
     return 0;
@@ -7431,7 +7431,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_MixedPoissonLinearForm_cell_integral_0();
+    return new mixedpoisson_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -7450,246 +7450,548 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class MixedPoissonBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace MixedPoisson
+{
+
+class CoefficientReference
+{
+public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
+
+  CoefficientReference& operator=(dolfin::Function & f)
+  {
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
+  }
+
+  std::string name() const
+  {
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
 {
 public:
 
-  MixedPoissonBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_0()), mesh)))
+  CoefficientSet():
+    f("f")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
+  {
+    return 1;
+  }
+
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+    case 0: return "f";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference f;
+};
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class MixedPoissonBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
-{
-public:
-
-  MixedPoissonBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_0()), mesh)))
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~CoefficientSpace_f()
+  {
+  }
+  
 };
 
-class MixedPoissonLinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  MixedPoissonLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_0()), mesh)))
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class MixedPoissonLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
-{
-public:
-
-  MixedPoissonLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_0()
+  {
+  }
+  
 };
 
-class MixedPoissonTestSpace : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  MixedPoissonTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_0()), mesh)))
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
-};
-
-class MixedPoissonTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  MixedPoissonTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_0()), mesh)))
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
 
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_0_finite_element_1()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_0_dof_map_1()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_0_FunctionSpace_1()
+  {
+  }
+  
 };
 
-class MixedPoissonCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  MixedPoissonCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class MixedPoissonFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  MixedPoissonFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_MixedPoissonLinearForm_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_MixedPoissonLinearForm_dof_map_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class MixedPoissonBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  MixedPoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_MixedPoissonBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  MixedPoissonBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_MixedPoissonBilinearForm());
-  }
-
-  // Destructor
-  ~MixedPoissonBilinearForm() {}
-
-};
-
-class MixedPoissonLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  MixedPoissonLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~MixedPoissonLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const MixedPoissonLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 0)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
   {
-    return new MixedPoissonLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
+// 
+//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+//
+//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+//      dolfin::FunctionSpace(mesh,
+//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_1_finite_element_0()))),
+//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new mixedpoisson_1_dof_map_0()), mesh)))
+//  {
+//      // Do nothing
+//  }
+// 
+
+  virtual ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
+
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class MixedPoissonLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  MixedPoissonLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_MixedPoissonLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  MixedPoissonLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_MixedPoissonLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  MixedPoissonLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_MixedPoissonLinearForm());
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  MixedPoissonLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_MixedPoissonLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new mixedpoisson_form_1());
   }
 
   // Destructor
-  ~MixedPoissonLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    f = coefficients.f.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "f") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "f";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
 
   // Coefficients
-  MixedPoissonLinearFormCoefficient0 f;
-
+  Form_1_Coefficient_f f;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+
+} // namespace MixedPoisson
 
 #endif

@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_Velocity_finite_element_0_0: public ufc::finite_element
+class velocity_0_finite_element_0_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Velocity_finite_element_0_0() : ufc::finite_element()
+  velocity_0_finite_element_0_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Velocity_finite_element_0_0()
+  virtual ~velocity_0_finite_element_0_0()
   {
     // Do nothing
   }
@@ -129,8 +129,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -286,8 +286,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -297,7 +297,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -477,25 +477,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Velocity_finite_element_0_0();
+    return new velocity_0_finite_element_0_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Velocity_finite_element_0_1: public ufc::finite_element
+class velocity_0_finite_element_0_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Velocity_finite_element_0_1() : ufc::finite_element()
+  velocity_0_finite_element_0_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Velocity_finite_element_0_1()
+  virtual ~velocity_0_finite_element_0_1()
   {
     // Do nothing
   }
@@ -599,8 +599,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -756,8 +756,8 @@ public:
     
     // Table(s) of coefficients
     const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
     {0, 0, 0.2, 0, 0, 0.163299316185545},
     {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
     {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -767,7 +767,7 @@ public:
     // Tables of derivatives of the polynomial base (transpose)
     const static double dmats0[6][6] = \
     {{0, 0, 0, 0, 0, 0},
-    {4.89897948556635, 0, 0, 0, 0, 0},
+    {4.89897948556636, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 9.48683298050514, 0, 0, 0, 0},
     {4, 0, 7.07106781186548, 0, 0, 0},
@@ -947,25 +947,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_Velocity_finite_element_0_1();
+    return new velocity_0_finite_element_0_1();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_Velocity_finite_element_0: public ufc::finite_element
+class velocity_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_Velocity_finite_element_0() : ufc::finite_element()
+  velocity_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Velocity_finite_element_0()
+  virtual ~velocity_0_finite_element_0()
   {
     // Do nothing
   }
@@ -1072,8 +1072,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1124,8 +1124,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1285,8 +1285,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1296,7 +1296,7 @@ public:
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {4.89897948556635, 0, 0, 0, 0, 0},
+      {4.89897948556636, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
       {0, 9.48683298050514, 0, 0, 0, 0},
       {4, 0, 7.07106781186548, 0, 0, 0},
@@ -1431,8 +1431,8 @@ public:
     
       // Table(s) of coefficients
       const static double coefficients0[6][6] =   \
-      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
-      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
       {0, 0, 0.2, 0, 0, 0.163299316185545},
       {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
       {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
@@ -1442,7 +1442,7 @@ public:
       // Tables of derivatives of the polynomial base (transpose)
       const static double dmats0[6][6] =   \
       {{0, 0, 0, 0, 0, 0},
-      {4.89897948556635, 0, 0, 0, 0, 0},
+      {4.89897948556636, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0},
       {0, 9.48683298050514, 0, 0, 0, 0},
       {4, 0, 7.07106781186548, 0, 0, 0},
@@ -1628,13 +1628,13 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Velocity_finite_element_0_0();
+      return new velocity_0_finite_element_0_0();
       break;
     case 1:
-      return new UFC_Velocity_finite_element_0_1();
+      return new velocity_0_finite_element_0_1();
       break;
     }
     return 0;
@@ -1645,7 +1645,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Velocity_dof_map_0_0: public ufc::dof_map
+class velocity_0_dof_map_0_0: public ufc::dof_map
 {
 private:
 
@@ -1654,13 +1654,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Velocity_dof_map_0_0() : ufc::dof_map()
+  velocity_0_dof_map_0_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Velocity_dof_map_0_0()
+  virtual ~velocity_0_dof_map_0_0()
   {
     // Do nothing
   }
@@ -1674,7 +1674,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1763,7 +1763,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1818,7 +1818,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Velocity_dof_map_0_0();
+    return new velocity_0_dof_map_0_0();
   }
 
 };
@@ -1826,7 +1826,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Velocity_dof_map_0_1: public ufc::dof_map
+class velocity_0_dof_map_0_1: public ufc::dof_map
 {
 private:
 
@@ -1835,13 +1835,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Velocity_dof_map_0_1() : ufc::dof_map()
+  velocity_0_dof_map_0_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Velocity_dof_map_0_1()
+  virtual ~velocity_0_dof_map_0_1()
   {
     // Do nothing
   }
@@ -1855,7 +1855,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -1944,7 +1944,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -1999,7 +1999,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_Velocity_dof_map_0_1();
+    return new velocity_0_dof_map_0_1();
   }
 
 };
@@ -2007,7 +2007,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_Velocity_dof_map_0: public ufc::dof_map
+class velocity_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2016,13 +2016,13 @@ private:
 public:
 
   /// Constructor
-  UFC_Velocity_dof_map_0() : ufc::dof_map()
+  velocity_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_Velocity_dof_map_0()
+  virtual ~velocity_0_dof_map_0()
   {
     // Do nothing
   }
@@ -2036,7 +2036,7 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
@@ -2133,7 +2133,7 @@ public:
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
@@ -2209,13 +2209,13 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_Velocity_dof_map_0_0();
+      return new velocity_0_dof_map_0_0();
       break;
     case 1:
-      return new UFC_Velocity_dof_map_0_1();
+      return new velocity_0_dof_map_0_1();
       break;
     }
     return 0;
@@ -2238,18 +2238,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_Velocity: public ufc::form
+class velocity_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_Velocity() : ufc::form()
+  velocity_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_Velocity()
+  virtual ~velocity_form_0()
   {
     // Do nothing
   }
@@ -2324,25 +2324,153 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class VelocityFunctionSpace : public dolfin::FunctionSpace
+namespace Velocity
+{
+
+class CoefficientReference
+{
+public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
+
+  CoefficientReference& operator=(dolfin::Function & f)
+  {
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
+  }
+
+  std::string name() const
+  {
+    return _name;
+  }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
+
+};
+
+class CoefficientSet
 {
 public:
 
-  VelocityFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_Velocity_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_Velocity_dof_map_0()), mesh)))
+  CoefficientSet()
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
   {
-    // Do nothing
+    return 0;
   }
 
+  std::string name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
+  }
+
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+
 };
+
+class Form_0: public dolfin::Form
+{
+public:
+
+  // Constructor
+  Form_0():
+    dolfin::Form(0, 0)
+  {
+    _ufc_form = boost::shared_ptr<const ufc::form>(new velocity_form_0());
+  }
+
+  // Constructor
+  Form_0(const CoefficientSet & coefficients):
+    dolfin::Form(0, 0)
+  {
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new velocity_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+
+  // Coefficients
+};
+
+// Class typedefs
+typedef Form_0 Functional;
+typedef Form_0_FunctionSpace_0 FunctionSpace;
+
+} // namespace Velocity
 
 #endif
