@@ -3071,6 +3071,7 @@ public:
 
 // Class typedefs
 typedef Form_0 BilinearForm;
+typedef Form_0::TestSpace FunctionSpace;
 
 } // namespace ConvectionMatrix2D
 

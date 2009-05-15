@@ -1972,6 +1972,7 @@ public:
 
 // Class typedefs
 typedef Form_0 LinearForm;
+typedef Form_0::TestSpace FunctionSpace;
 
 } // namespace LoadVector3D
 

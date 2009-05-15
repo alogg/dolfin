@@ -1195,7 +1195,6 @@ public:
 
 // Class typedefs
 typedef Form_0 Functional;
-typedef Form_0_FunctionSpace_0 FunctionSpace;
 
 } // namespace EnergyNorm
 
