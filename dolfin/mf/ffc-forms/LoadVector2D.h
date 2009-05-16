@@ -1512,7 +1512,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_c()
+  ~CoefficientSpace_c()
   {
   }
   
@@ -1557,7 +1557,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_0()
+  ~Form_0_FunctionSpace_0()
   {
   }
   

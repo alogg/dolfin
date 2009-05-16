@@ -4271,7 +4271,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_dt()
+  ~CoefficientSpace_dt()
   {
   }
   
@@ -4316,7 +4316,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_lmbda()
+  ~CoefficientSpace_lmbda()
   {
   }
   
@@ -4361,7 +4361,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_muFactor()
+  ~CoefficientSpace_muFactor()
   {
   }
   
@@ -4406,7 +4406,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_theta()
+  ~CoefficientSpace_theta()
   {
   }
   
@@ -4451,7 +4451,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_w0()
+  ~CoefficientSpace_w0()
   {
   }
   
@@ -4496,7 +4496,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_w1()
+  ~CoefficientSpace_w1()
   {
   }
   
@@ -4541,7 +4541,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_0()
+  ~Form_0_FunctionSpace_0()
   {
   }
   
@@ -4586,7 +4586,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_1()
+  ~Form_0_FunctionSpace_1()
   {
   }
   
@@ -5034,7 +5034,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_1_FunctionSpace_0()
+  ~Form_1_FunctionSpace_0()
   {
   }
   

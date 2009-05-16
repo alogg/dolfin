@@ -11855,7 +11855,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_T()
+  ~CoefficientSpace_T()
   {
   }
   
@@ -11900,7 +11900,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_0()
+  ~Form_0_FunctionSpace_0()
   {
   }
   
@@ -11945,7 +11945,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_1()
+  ~Form_0_FunctionSpace_1()
   {
   }
   
@@ -12074,7 +12074,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_1_FunctionSpace_0()
+  ~Form_1_FunctionSpace_0()
   {
   }
   

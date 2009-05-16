@@ -3794,7 +3794,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_cx()
+  ~CoefficientSpace_cx()
   {
   }
   
@@ -3839,7 +3839,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_cy()
+  ~CoefficientSpace_cy()
   {
   }
   
@@ -3884,7 +3884,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_cz()
+  ~CoefficientSpace_cz()
   {
   }
   
@@ -3929,7 +3929,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_0()
+  ~Form_0_FunctionSpace_0()
   {
   }
   
@@ -3974,7 +3974,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_1()
+  ~Form_0_FunctionSpace_1()
   {
   }
   

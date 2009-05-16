@@ -2839,7 +2839,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_n()
+  ~CoefficientSpace_n()
   {
   }
   
@@ -2884,7 +2884,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_p()
+  ~CoefficientSpace_p()
   {
   }
   

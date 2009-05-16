@@ -2670,7 +2670,7 @@ public:
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
@@ -3002,7 +3002,7 @@ public:
 //  }
 // 
 
-  virtual ~CoefficientSpace_f()
+  ~CoefficientSpace_f()
   {
   }
   
@@ -3047,7 +3047,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_0()
+  ~Form_0_FunctionSpace_0()
   {
   }
   
@@ -3092,7 +3092,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_1()
+  ~Form_0_FunctionSpace_1()
   {
   }
   
@@ -3221,7 +3221,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_1_FunctionSpace_0()
+  ~Form_1_FunctionSpace_0()
   {
   }
   

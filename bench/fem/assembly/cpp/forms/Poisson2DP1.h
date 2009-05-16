@@ -1579,7 +1579,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_0()
+  ~Form_0_FunctionSpace_0()
   {
   }
   
@@ -1624,7 +1624,7 @@ public:
 //  }
 // 
 
-  virtual ~Form_0_FunctionSpace_1()
+  ~Form_0_FunctionSpace_1()
   {
   }
   
