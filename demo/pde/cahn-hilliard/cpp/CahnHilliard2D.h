@@ -4236,10 +4236,11 @@ class CoefficientSpace_dt: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_dt(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4247,29 +4248,27 @@ public:
   CoefficientSpace_dt(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_dt(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_5()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_dt(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_5()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_dt(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_dt(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_5()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_dt()
   {
@@ -4281,10 +4280,11 @@ class CoefficientSpace_lmbda: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_lmbda(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4292,29 +4292,27 @@ public:
   CoefficientSpace_lmbda(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_3()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_3()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_3()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_3()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_3()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_lmbda()
   {
@@ -4326,10 +4324,11 @@ class CoefficientSpace_muFactor: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_muFactor(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_4()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4337,29 +4336,27 @@ public:
   CoefficientSpace_muFactor(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_4()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_muFactor(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_4()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_muFactor(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_4()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_muFactor(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_4()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_muFactor(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_4()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_4()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_muFactor()
   {
@@ -4371,10 +4368,11 @@ class CoefficientSpace_theta: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_theta(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4382,29 +4380,27 @@ public:
   CoefficientSpace_theta(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_6()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_theta(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_6()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_theta(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_6()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_theta(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_theta(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_6()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_theta()
   {
@@ -4416,10 +4412,11 @@ class CoefficientSpace_w0: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_w0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4427,29 +4424,27 @@ public:
   CoefficientSpace_w0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_w0(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_w0(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_w0(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_w0(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_w0()
   {
@@ -4461,10 +4456,11 @@ class CoefficientSpace_w1: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_w1(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4472,29 +4468,27 @@ public:
   CoefficientSpace_w1(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_w1(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_w1(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_w1(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_w1(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_w1()
   {
@@ -4506,10 +4500,11 @@ class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
+
   Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4517,29 +4512,27 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~Form_0_FunctionSpace_0()
   {
@@ -4551,10 +4544,11 @@ class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
+
   Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -4562,29 +4556,27 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_1()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_1()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_0_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~Form_0_FunctionSpace_1()
   {
@@ -4999,10 +4991,11 @@ class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
+
   Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -5010,29 +5003,27 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~Form_1_FunctionSpace_0()
   {

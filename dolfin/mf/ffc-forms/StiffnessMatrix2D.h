@@ -2097,10 +2097,11 @@ class CoefficientSpace_c: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_c(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -2108,29 +2109,27 @@ public:
   CoefficientSpace_c(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_c(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_2()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_c(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_2()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_c(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_c(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_2()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_c()
   {
@@ -2142,10 +2141,11 @@ class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
+
   Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -2153,29 +2153,27 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~Form_0_FunctionSpace_0()
   {
@@ -2187,10 +2185,11 @@ class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
+
   Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -2198,29 +2197,27 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_1()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_1()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix2d_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix2d_0_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~Form_0_FunctionSpace_1()
   {

@@ -1035,10 +1035,11 @@ class CoefficientSpace_v: public dolfin::FunctionSpace
 {
 public:
 
+
   CoefficientSpace_v(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
@@ -1046,29 +1047,27 @@ public:
   CoefficientSpace_v(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-// Not using shared_ptr for mesh until DofMap::DofMap can take a shared_ptr.
-// 
-//  CoefficientSpace_v(boost::shared_ptr<dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-//
-//  CoefficientSpace_v(boost::shared_ptr<const dolfin::Mesh> mesh):
-//      dolfin::FunctionSpace(mesh,
-//                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
-//                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
-//  {
-//      // Do nothing
-//  }
-// 
+  CoefficientSpace_v(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_v(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new energynorm_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new energynorm_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+ 
 
   ~CoefficientSpace_v()
   {
