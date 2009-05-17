@@ -6849,6 +6849,7 @@ public:
 #include <string>
 
 // DOLFIN includes
+#include <dolfin/common/NoDeleter.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
