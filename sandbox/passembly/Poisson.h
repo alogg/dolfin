@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class UFC_PoissonBilinearForm_finite_element_0: public ufc::finite_element
+class poisson_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm_finite_element_0() : ufc::finite_element()
+  poisson_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm_finite_element_0()
+  virtual ~poisson_0_finite_element_0()
   {
     // Do nothing
   }
@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return the cell shape
@@ -45,7 +45,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -104,48 +104,34 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -261,55 +247,38 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {4.89897948556636, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0},
-    {0, 9.48683298050514, 0, 0, 0, 0},
-    {4, 0, 7.07106781186548, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0}};
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
     
-    const static double dmats1[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {2.44948974278318, 0, 0, 0, 0, 0},
-    {4.24264068711928, 0, 0, 0, 0, 0},
-    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
-    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
-    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -319,17 +288,11 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -338,9 +301,6 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -349,32 +309,23 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
     }
     
     // Transform derivatives back to physical element
@@ -414,9 +365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -477,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_PoissonBilinearForm_finite_element_0();
+    return new poisson_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_PoissonBilinearForm_finite_element_1: public ufc::finite_element
+class poisson_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm_finite_element_1() : ufc::finite_element()
+  poisson_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm_finite_element_1()
+  virtual ~poisson_0_finite_element_1()
   {
     // Do nothing
   }
@@ -503,7 +454,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return the cell shape
@@ -515,7 +466,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -574,48 +525,34 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -731,55 +668,38 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {4.89897948556636, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0},
-    {0, 9.48683298050514, 0, 0, 0, 0},
-    {4, 0, 7.07106781186548, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0}};
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
     
-    const static double dmats1[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {2.44948974278318, 0, 0, 0, 0, 0},
-    {4.24264068711928, 0, 0, 0, 0, 0},
-    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
-    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
-    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -789,17 +709,11 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -808,9 +722,6 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -819,32 +730,23 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
     }
     
     // Transform derivatives back to physical element
@@ -884,9 +786,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -947,7 +849,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_PoissonBilinearForm_finite_element_1();
+    return new poisson_0_finite_element_1();
   }
 
 };
@@ -955,7 +857,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_PoissonBilinearForm_dof_map_0: public ufc::dof_map
+class poisson_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -964,13 +866,13 @@ private:
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm_dof_map_0() : ufc::dof_map()
+  poisson_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm_dof_map_0()
+  virtual ~poisson_0_dof_map_0()
   {
     // Do nothing
   }
@@ -978,19 +880,19 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
@@ -1002,7 +904,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1028,13 +930,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1046,7 +948,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1063,32 +965,25 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
-    unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[1][0];
-    dofs[4] = offset + c.entity_indices[1][1];
-    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 5;
       break;
     }
   }
@@ -1111,12 +1006,6 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1128,7 +1017,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_PoissonBilinearForm_dof_map_0();
+    return new poisson_0_dof_map_0();
   }
 
 };
@@ -1136,7 +1025,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_PoissonBilinearForm_dof_map_1: public ufc::dof_map
+class poisson_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1145,13 +1034,13 @@ private:
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm_dof_map_1() : ufc::dof_map()
+  poisson_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm_dof_map_1()
+  virtual ~poisson_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1159,19 +1048,19 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
@@ -1183,7 +1072,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -1209,13 +1098,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -1227,7 +1116,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -1244,32 +1133,25 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
-    unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[1][0];
-    dofs[4] = offset + c.entity_indices[1][1];
-    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 5;
       break;
     }
   }
@@ -1292,12 +1174,6 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -1309,7 +1185,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_PoissonBilinearForm_dof_map_1();
+    return new poisson_0_dof_map_1();
   }
 
 };
@@ -1318,18 +1194,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_PoissonBilinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class poisson_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  poisson_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm_cell_integral_0_quadrature()
+  virtual ~poisson_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1362,40 +1238,32 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
+    const static double W1 = 0.5;
     
     
-    const static double FE0_D10[4][6] = \
-    {{-1.66556098405881, -0.285765086945535, 0, 0.620204102886728, -0.620204102886728, 1.95132607100434},
-    {-0.120079661996297, -0.699875559109568, 0, 2.57979589711327, -2.57979589711327, 0.819955221105864},
-    {0.285765086945534, 1.66556098405881, 0, 0.620204102886729, -0.620204102886729, -1.95132607100434},
-    {0.699875559109568, 0.120079661996296, 0, 2.57979589711327, -2.57979589711327, -0.819955221105865}};
+    const static double FE0_D10[1][3] = \
+    {{-1, 1, 0}};
     
-    const static double FE0_D01[4][6] = \
-    {{-1.66556098405881, 0, -0.379795897113271, 0.714234913054465, 2.04535688117208, -0.714234913054465},
-    {-0.120079661996297, 0, 1.57979589711327, 0.300124440890433, -1.45971623511697, -0.300124440890433},
-    {0.285765086945534, 0, -0.379795897113271, 2.6655609840588, 0.0940308101677372, -2.66556098405881},
-    {0.699875559109568, 0, 1.57979589711327, 1.1200796619963, -2.27967145622284, -1.1200796619963}};
+    const static double FE0_D01[1][3] = \
+    {{-1, 0, 1}};
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 2592
+    // Total number of operations to compute element tensor: 162
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 2592
-    for (unsigned int ip = 0; ip < 4; ip++)
+    // Number of operations to compute element tensor for following IP loop = 162
+    // Only 1 integration point, omitting IP loop.
+    
+    // Number of operations for primary indices = 162
+    for (unsigned int j = 0; j < 3; j++)
     {
-      
-      // Number of operations for primary indices = 648
-      for (unsigned int j = 0; j < 6; j++)
+      for (unsigned int k = 0; k < 3; k++)
       {
-        for (unsigned int k = 0; k < 6; k++)
-        {
-          // Number of operations to compute entry = 18
-          A[j*6 + k] += ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k]) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k]))*W4[ip]*det;
-        }// end loop over 'k'
-      }// end loop over 'j'
-    }// end loop over 'ip'
+        // Number of operations to compute entry = 18
+        A[j*3 + k] += ((Jinv_00*FE0_D10[0][j] + Jinv_10*FE0_D01[0][j])*(Jinv_00*FE0_D10[0][k] + Jinv_10*FE0_D01[0][k]) + (Jinv_01*FE0_D10[0][j] + Jinv_11*FE0_D01[0][j])*(Jinv_01*FE0_D10[0][k] + Jinv_11*FE0_D01[0][k]))*W1*det;
+      }// end loop over 'k'
+    }// end loop over 'j'
   }
 
 };
@@ -1404,22 +1272,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_PoissonBilinearForm_cell_integral_0: public ufc::cell_integral
+class poisson_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_PoissonBilinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  poisson_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm_cell_integral_0() : ufc::cell_integral()
+  poisson_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm_cell_integral_0()
+  virtual ~poisson_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -1439,33 +1307,6 @@ public:
     A[6] = 0;
     A[7] = 0;
     A[8] = 0;
-    A[9] = 0;
-    A[10] = 0;
-    A[11] = 0;
-    A[12] = 0;
-    A[13] = 0;
-    A[14] = 0;
-    A[15] = 0;
-    A[16] = 0;
-    A[17] = 0;
-    A[18] = 0;
-    A[19] = 0;
-    A[20] = 0;
-    A[21] = 0;
-    A[22] = 0;
-    A[23] = 0;
-    A[24] = 0;
-    A[25] = 0;
-    A[26] = 0;
-    A[27] = 0;
-    A[28] = 0;
-    A[29] = 0;
-    A[30] = 0;
-    A[31] = 0;
-    A[32] = 0;
-    A[33] = 0;
-    A[34] = 0;
-    A[35] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -1488,18 +1329,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_PoissonBilinearForm: public ufc::form
+class poisson_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_PoissonBilinearForm() : ufc::form()
+  poisson_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonBilinearForm()
+  virtual ~poisson_form_0()
   {
     // Do nothing
   }
@@ -1507,7 +1348,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1543,13 +1384,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_PoissonBilinearForm_finite_element_0();
+      return new poisson_0_finite_element_0();
       break;
     case 1:
-      return new UFC_PoissonBilinearForm_finite_element_1();
+      return new poisson_0_finite_element_1();
       break;
     }
     return 0;
@@ -1558,13 +1399,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_PoissonBilinearForm_dof_map_0();
+      return new poisson_0_dof_map_0();
       break;
     case 1:
-      return new UFC_PoissonBilinearForm_dof_map_1();
+      return new poisson_0_dof_map_1();
       break;
     }
     return 0;
@@ -1573,7 +1414,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_PoissonBilinearForm_cell_integral_0();
+    return new poisson_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -1592,18 +1433,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class UFC_PoissonLinearForm_finite_element_0: public ufc::finite_element
+class poisson_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm_finite_element_0() : ufc::finite_element()
+  poisson_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm_finite_element_0()
+  virtual ~poisson_1_finite_element_0()
   {
     // Do nothing
   }
@@ -1611,7 +1452,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return the cell shape
@@ -1623,7 +1464,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -1682,48 +1523,34 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -1839,55 +1666,38 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {4.89897948556636, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0},
-    {0, 9.48683298050514, 0, 0, 0, 0},
-    {4, 0, 7.07106781186548, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0}};
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
     
-    const static double dmats1[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {2.44948974278318, 0, 0, 0, 0, 0},
-    {4.24264068711928, 0, 0, 0, 0, 0},
-    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
-    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
-    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1897,17 +1707,11 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -1916,9 +1720,6 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -1927,32 +1728,23 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
     }
     
     // Transform derivatives back to physical element
@@ -1992,9 +1784,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2055,25 +1847,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_PoissonLinearForm_finite_element_0();
+    return new poisson_1_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class UFC_PoissonLinearForm_finite_element_1: public ufc::finite_element
+class poisson_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm_finite_element_1() : ufc::finite_element()
+  poisson_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm_finite_element_1()
+  virtual ~poisson_1_finite_element_1()
   {
     // Do nothing
   }
@@ -2081,7 +1873,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return the cell shape
@@ -2093,7 +1885,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the rank of the value space
@@ -2152,48 +1944,34 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
-    const double coeff0_3 = coefficients0[dof][3];
-    const double coeff0_4 = coefficients0[dof][4];
-    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -2309,55 +2087,38 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
-    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
-    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
-    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
-    const double psitilde_bs_1_1 = 2.5*y + 1.5;
-    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
-    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
-    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
-    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    const static double coefficients0[6][6] = \
-    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817},
-    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818},
-    {0, 0, 0.2, 0, 0, 0.163299316185545},
-    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
-    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
-    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
+    const static double coefficients0[3][3] = \
+    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0.288675134594813, -0.166666666666667},
+    {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {4.89897948556636, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0},
-    {0, 9.48683298050514, 0, 0, 0, 0},
-    {4, 0, 7.07106781186548, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0}};
+    const static double dmats0[3][3] = \
+    {{0, 0, 0},
+    {4.89897948556636, 0, 0},
+    {0, 0, 0}};
     
-    const static double dmats1[6][6] = \
-    {{0, 0, 0, 0, 0, 0},
-    {2.44948974278318, 0, 0, 0, 0, 0},
-    {4.24264068711928, 0, 0, 0, 0, 0},
-    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
-    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
-    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
+    const static double dmats1[3][3] = \
+    {{0, 0, 0},
+    {2.44948974278318, 0, 0},
+    {4.24264068711928, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2367,17 +2128,11 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
-    double coeff0_3 = 0;
-    double coeff0_4 = 0;
-    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
-    double new_coeff0_3 = 0;
-    double new_coeff0_4 = 0;
-    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -2386,9 +2141,6 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
-      new_coeff0_3 = coefficients0[dof][3];
-      new_coeff0_4 = coefficients0[dof][4];
-      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -2397,32 +2149,23 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
-        coeff0_3 = new_coeff0_3;
-        coeff0_4 = new_coeff0_4;
-        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
-          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
-          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
-          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
-          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
-          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
-          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
     }
     
     // Transform derivatives back to physical element
@@ -2462,9 +2205,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
+    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    const static double W[3][1] = {{1}, {1}, {1}};
+    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2525,7 +2268,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new UFC_PoissonLinearForm_finite_element_1();
+    return new poisson_1_finite_element_1();
   }
 
 };
@@ -2533,7 +2276,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_PoissonLinearForm_dof_map_0: public ufc::dof_map
+class poisson_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2542,13 +2285,13 @@ private:
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm_dof_map_0() : ufc::dof_map()
+  poisson_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm_dof_map_0()
+  virtual ~poisson_1_dof_map_0()
   {
     // Do nothing
   }
@@ -2556,19 +2299,19 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
@@ -2580,7 +2323,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -2606,13 +2349,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2624,7 +2367,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2641,32 +2384,25 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
-    unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[1][0];
-    dofs[4] = offset + c.entity_indices[1][1];
-    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 5;
       break;
     }
   }
@@ -2689,12 +2425,6 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2706,7 +2436,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_PoissonLinearForm_dof_map_0();
+    return new poisson_1_dof_map_0();
   }
 
 };
@@ -2714,7 +2444,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class UFC_PoissonLinearForm_dof_map_1: public ufc::dof_map
+class poisson_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -2723,13 +2453,13 @@ private:
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm_dof_map_1() : ufc::dof_map()
+  poisson_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm_dof_map_1()
+  virtual ~poisson_1_dof_map_1()
   {
     // Do nothing
   }
@@ -2737,19 +2467,19 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const
   {
-    switch (d)
+    switch ( d )
     {
     case 0:
       return true;
       break;
     case 1:
-      return true;
+      return false;
       break;
     case 2:
       return false;
@@ -2761,7 +2491,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0] + m.num_entities[1];
+    __global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -2787,13 +2517,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 3;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 3;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2805,7 +2535,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 3;
+    return 2;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2822,32 +2552,25 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
-    unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[1][0];
-    dofs[4] = offset + c.entity_indices[1][1];
-    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
   virtual void tabulate_facet_dofs(unsigned int* dofs,
                                    unsigned int facet) const
   {
-    switch (facet)
+    switch ( facet )
     {
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 5;
       break;
     }
   }
@@ -2870,12 +2593,6 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -2887,7 +2604,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new UFC_PoissonLinearForm_dof_map_1();
+    return new poisson_1_dof_map_1();
   }
 
 };
@@ -2896,18 +2613,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_PoissonLinearForm_cell_integral_0_quadrature: public ufc::cell_integral
+class poisson_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm_cell_integral_0_quadrature() : ufc::cell_integral()
+  poisson_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm_cell_integral_0_quadrature()
+  virtual ~poisson_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -2936,43 +2653,38 @@ public:
     
     
     // Array of quadrature weights
-    const static double W9[9] = {0.0558144204830443, 0.063678085099885, 0.0193963833059595, 0.0893030727728709, 0.101884936159816, 0.0310342132895351, 0.0558144204830443, 0.063678085099885, 0.0193963833059595};
+    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
     
     
-    const static double FE0[9][6] = \
-    {{0.499278833175498, -0.0816158215904472, -0.0728923063714551, 0.0363981897820603, 0.286562341986258, 0.332268763018087},
-    {0.0251290590975512, -0.0576951799472842, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383},
-    {-0.117413197449647, -0.022785734101997, 0.453155393641927, 0.0753983311062782, 0.593609805131561, 0.0180354016718772},
-    {-0.0403700664710398, -0.0403700664710398, -0.0728923063714551, 0.161480265884159, 0.161480265884159, 0.830671907545216},
-    {-0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458},
-    {-0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932},
-    {-0.0816158215904472, 0.499278833175498, -0.0728923063714551, 0.286562341986258, 0.0363981897820602, 0.332268763018087},
-    {-0.0576951799472843, 0.0251290590975511, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383},
-    {-0.0227857341019972, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062783, 0.0180354016718773}};
+    const static double FE0[4][3] = \
+    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
+    {0.178558728263616, 0.666390246014701, 0.155051025721682},
+    {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 324
+    // Total number of operations to compute element tensor: 72
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 324
-    for (unsigned int ip = 0; ip < 9; ip++)
+    // Number of operations to compute element tensor for following IP loop = 72
+    for (unsigned int ip = 0; ip < 4; ip++)
     {
       
       // Function declarations
       double F0 = 0;
       
-      // Total number of operations to compute function values = 12
-      for (unsigned int r = 0; r < 6; r++)
+      // Total number of operations to compute function values = 6
+      for (unsigned int r = 0; r < 3; r++)
       {
         F0 += FE0[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 24
-      for (unsigned int j = 0; j < 6; j++)
+      // Number of operations for primary indices = 12
+      for (unsigned int j = 0; j < 3; j++)
       {
         // Number of operations to compute entry = 4
-        A[j] += FE0[ip][j]*F0*W9[ip]*det;
+        A[j] += FE0[ip][j]*F0*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -2983,22 +2695,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class UFC_PoissonLinearForm_cell_integral_0: public ufc::cell_integral
+class poisson_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  UFC_PoissonLinearForm_cell_integral_0_quadrature integral_0_quadrature;
+  poisson_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm_cell_integral_0() : ufc::cell_integral()
+  poisson_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm_cell_integral_0()
+  virtual ~poisson_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -3012,9 +2724,6 @@ public:
     A[0] = 0;
     A[1] = 0;
     A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -3037,18 +2746,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class UFC_PoissonLinearForm: public ufc::form
+class poisson_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  UFC_PoissonLinearForm() : ufc::form()
+  poisson_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~UFC_PoissonLinearForm()
+  virtual ~poisson_form_1()
   {
     // Do nothing
   }
@@ -3056,7 +2765,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 2), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3092,13 +2801,13 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_PoissonLinearForm_finite_element_0();
+      return new poisson_1_finite_element_0();
       break;
     case 1:
-      return new UFC_PoissonLinearForm_finite_element_1();
+      return new poisson_1_finite_element_1();
       break;
     }
     return 0;
@@ -3107,13 +2816,13 @@ public:
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
-    switch (i)
+    switch ( i )
     {
     case 0:
-      return new UFC_PoissonLinearForm_dof_map_0();
+      return new poisson_1_dof_map_0();
       break;
     case 1:
-      return new UFC_PoissonLinearForm_dof_map_1();
+      return new poisson_1_dof_map_1();
       break;
     }
     return 0;
@@ -3122,7 +2831,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new UFC_PoissonLinearForm_cell_integral_0();
+    return new poisson_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -3141,311 +2850,546 @@ public:
 
 // DOLFIN wrappers
 
-#include <dolfin/fem/Form.h>
+// Standard library includes
+#include <string>
+
+// DOLFIN includes
+#include <dolfin/common/NoDeleter.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
-#include <dolfin/function/Coefficient.h>
-#include <dolfin/function/Function.h>
+#include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
+#include <dolfin/function/Function.h>
+#include <dolfin/function/Coefficient.h>
 
-class PoissonBilinearFormFunctionSpace0 : public dolfin::FunctionSpace
+namespace Poisson
+{
+
+class CoefficientReference
 {
 public:
+  
+  CoefficientReference(const std::string & name):
+    _name(name)
+  {}
+  
+  ~CoefficientReference()
+  {}
 
-  PoissonBilinearFormFunctionSpace0(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  CoefficientReference& operator=(dolfin::Function & f)
   {
-    // Do nothing
+    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
+    return *this;
+  }
+  
+  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
+  {
+    _function_pointer = f;
+    return *this;
   }
 
-  PoissonBilinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  std::string name() const
   {
-    // Do nothing
+    return _name;
   }
+
+  dolfin::Function & function() const
+  {
+    return *_function_pointer;
+  }
+
+  boost::shared_ptr<dolfin::Function> function_pointer() const
+  {
+    return _function_pointer;
+  }
+
+private:
+
+  boost::shared_ptr<dolfin::Function> _function_pointer;
+  std::string _name;
 
 };
 
-class PoissonBilinearFormFunctionSpace1 : public dolfin::FunctionSpace
+class CoefficientSet
 {
 public:
 
-  PoissonBilinearFormFunctionSpace1(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  CoefficientSet():
+    f("f")
+  {}
+  
+  ~CoefficientSet()
+  {}
+
+  dolfin::uint num_coefficients() const
   {
-    // Do nothing
+    return 1;
   }
 
-  PoissonBilinearFormFunctionSpace1(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  std::string name(dolfin::uint i) const
   {
-    // Do nothing
+    switch(i)
+    {
+    case 0: return "f";
+    default:
+        throw std::runtime_error("Invalid coefficient number.");
+    }
   }
 
+  void disp() const
+  {
+    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
+    {
+        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
+    }
+  }
+
+  CoefficientReference f;
 };
 
-class PoissonLinearFormFunctionSpace0 : public dolfin::FunctionSpace
+class CoefficientSpace_f: public dolfin::FunctionSpace
 {
 public:
 
-  PoissonLinearFormFunctionSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+
+  CoefficientSpace_f(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-  PoissonLinearFormFunctionSpace0(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  CoefficientSpace_f(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
+  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+ 
+
+  ~CoefficientSpace_f()
+  {
+  }
+  
 };
 
-class PoissonLinearFormCoefficientSpace0 : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  PoissonLinearFormCoefficientSpace0(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+
+  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-  PoissonLinearFormCoefficientSpace0(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
+  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+ 
+
+  ~Form_0_FunctionSpace_0()
+  {
+  }
+  
 };
 
-class PoissonTestSpace : public dolfin::FunctionSpace
+class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  PoissonTestSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+
+  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-  PoissonTestSpace(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
+  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
+  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+ 
+
+  ~Form_0_FunctionSpace_1()
+  {
+  }
+  
 };
 
-class PoissonTrialSpace : public dolfin::FunctionSpace
-{
-public:
-
-  PoissonTrialSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-  PoissonTrialSpace(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class PoissonCoefficientSpace : public dolfin::FunctionSpace
-{
-public:
-
-  PoissonCoefficientSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-  PoissonCoefficientSpace(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class PoissonFunctionSpace : public dolfin::FunctionSpace
-{
-public:
-
-  PoissonFunctionSpace(const dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<const dolfin::Mesh>(&mesh, dolfin::NoDeleter<const dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-
-  PoissonFunctionSpace(dolfin::Mesh& mesh)
-    : dolfin::FunctionSpace(boost::shared_ptr<dolfin::Mesh>(&mesh, dolfin::NoDeleter<dolfin::Mesh>()),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new UFC_PoissonLinearForm_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new UFC_PoissonLinearForm_dof_map_1()), mesh)))
-  {
-    // Do nothing
-  }
-
-};
-
-class PoissonBilinearForm : public dolfin::Form
-{
-public:
-
-  // Create form on given function space(s)
-  PoissonBilinearForm(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1) : dolfin::Form()
-  {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _V1(&V1, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_PoissonBilinearForm());
-  }
-
-  // Create form on given function space(s) (shared data)
-  PoissonBilinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1) : dolfin::Form()
-  {
-    _function_spaces.push_back(V0);
-    _function_spaces.push_back(V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_PoissonBilinearForm());
-  }
-
-  // Destructor
-  ~PoissonBilinearForm() {}
-
-};
-
-class PoissonLinearFormCoefficient0 : public dolfin::Coefficient
+class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  PoissonLinearFormCoefficient0(dolfin::Form& form) : dolfin::Coefficient(form) {}
-
-  // Destructor  
-  ~PoissonLinearFormCoefficient0() {}
-
-  // Attach function to coefficient
-  const PoissonLinearFormCoefficient0& operator= (dolfin::Function& v)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+    dolfin::Form(2, 0)
   {
-    attach(v);
-    return *this;
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
   }
 
-  /// Create function space for coefficient
-  const dolfin::FunctionSpace* create_function_space() const
+  // Constructor
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
   {
-    return new PoissonLinearFormCoefficientSpace0(form.mesh());
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = _pV0;
+    _function_spaces[1] = _pV1;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+  }
+
+  // Destructor
+  ~Form_0()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    dolfin::error("No coefficients.");
+    return 0;
   }
   
-  /// Return coefficient number
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    dolfin::error("No coefficients.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_0_FunctionSpace_0 TestSpace;
+  typedef Form_0_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
+};
+
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), mesh)))
+  {
+      // Do nothing
+  }
+ 
+
+  ~Form_1_FunctionSpace_0()
+  {
+  }
+  
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+class Form_1_Coefficient_f: public dolfin::Coefficient
+{
+public:
+
+  Form_1_Coefficient_f(dolfin::Form & form):
+    dolfin::Coefficient(form)
+  {}
+  
+  ~Form_1_Coefficient_f()
+  {}
+
+  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
+  {
+    attach(f);
+    return *this;
+  }
+  
+  const dolfin::FunctionSpace * create_function_space() const
+  {
+    return new Form_1_FunctionSpace_1(form.mesh());
+  }
+  
   dolfin::uint number() const
   {
     return 0;
   }
-  
-  /// Return coefficient name
-  virtual std::string name() const
+
+  std::string name() const
   {
     return "f";
   }
-  
+
 };
-class PoissonLinearForm : public dolfin::Form
+
+class Form_1: public dolfin::Form
 {
 public:
 
-  // Create form on given function space(s)
-  PoissonLinearForm(const dolfin::FunctionSpace& V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
-  // Create form on given function space(s) (shared data)
-  PoissonLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s)
-  PoissonLinearForm(const dolfin::FunctionSpace& V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _V0(&V0, dolfin::NoDeleter<const dolfin::FunctionSpace>());
-    _function_spaces.push_back(_V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
-  // Create form on given function space(s) with given coefficient(s) (shared data)
-  PoissonLinearForm(boost::shared_ptr<const dolfin::FunctionSpace> V0, dolfin::Function& w0) : dolfin::Form(), f(*this)
+  // Constructor
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
   {
-    _function_spaces.push_back(V0);
+    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
-    _coefficients.push_back(boost::shared_ptr<const dolfin::Function>(static_cast<const dolfin::Function*>(0)));
+    _function_spaces[0] = _pV0;
 
-    this->f = w0;
+    f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new UFC_PoissonLinearForm());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    update_coefficients(coefficients);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf):
+    dolfin::Form(1, 1), f(*this)
+  {
+    _function_spaces[0] = _pV0;
+
+    f = _pf;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
   // Destructor
-  ~PoissonLinearForm() {}
+  ~Form_1()
+  {}
+
+  void update_coefficients(const CoefficientSet & coefficients)
+  {
+    f = coefficients.f.function_pointer();
+  }
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string & name) const
+  {
+    if(name == "f") return 0;
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+  
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch(i)
+    {
+      case 0: return "f";
+    }
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
 
   // Coefficients
-  PoissonLinearFormCoefficient0 f;
-
+  Form_1_Coefficient_f f;
 };
+
+// Class typedefs
+typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
+typedef Form_0::TestSpace FunctionSpace;
+
+} // namespace Poisson
 
 #endif

@@ -45,7 +45,7 @@ int main()
 {
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
-  PoissonFunctionSpace V(mesh);
+  Poisson::FunctionSpace V(mesh);
 
   // Define boundary condition
   Constant u0(0.0);
@@ -53,8 +53,8 @@ int main()
   DirichletBC bc(V, u0, boundary);
 
   // Define variational problem
-  PoissonBilinearForm a(V, V);
-  PoissonLinearForm L(V);
+  Poisson::BilinearForm a(V, V);
+  Poisson::LinearForm L(V);
   Source f;
   L.f = f;
 
