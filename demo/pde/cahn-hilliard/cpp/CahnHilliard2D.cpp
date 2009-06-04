@@ -7906,12 +7906,12 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     const double G0 = 12*det*w[2][0];
     const double G1 =  - 12*det*w[2][0];
     const double G2 =  - 2*det*w[2][0];
-    const double G3 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G4 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G3 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G4 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     const double G5 =  - det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     const double G6 =  - det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G7 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G8 =  - det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G7 =  - det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G8 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -7932,17 +7932,17 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 12
+      // Number of operations: 1
+      const double Gip0 = W9[ip]*det;
+      
       // Number of operations: 5
-      const double Gip0 = W9[ip]*(G2 + F0*(G0 + F0*G1));
+      const double Gip1 = W9[ip]*(G2 + F0*(G0 + F0*G1));
       
       // Number of operations: 1
-      const double Gip1 = W9[ip]*G3;
+      const double Gip2 = W9[ip]*G3;
       
       // Number of operations: 1
-      const double Gip2 = W9[ip]*G4;
-      
-      // Number of operations: 1
-      const double Gip3 = W9[ip]*det;
+      const double Gip3 = W9[ip]*G4;
       
       // Number of operations: 1
       const double Gip4 = W9[ip]*G5;
@@ -7965,9 +7965,9 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
           // Number of operations to compute entry = 3
           A[nzc0[j]*6 + nzc3[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip0;
           // Number of operations to compute entry = 3
-          A[nzc3[j]*6 + nzc3[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip3;
+          A[nzc3[j]*6 + nzc3[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip1;
           // Number of operations to compute entry = 3
-          A[nzc0[j]*6 + nzc0[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip3;
+          A[nzc3[j]*6 + nzc0[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip0;
         }// end loop over 'k'
       }// end loop over 'j'
       
@@ -7977,21 +7977,21 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
         for (unsigned int k = 0; k < 2; k++)
         {
           // Number of operations to compute entry = 3
-          A[nzc1[j]*6 + nzc4[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip1;
+          A[nzc5[j]*6 + nzc4[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip2;
           // Number of operations to compute entry = 3
-          A[nzc2[j]*6 + nzc4[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip2;
+          A[nzc4[j]*6 + nzc4[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip3;
           // Number of operations to compute entry = 3
-          A[nzc4[j]*6 + nzc1[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip4;
+          A[nzc1[j]*6 + nzc1[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip4;
           // Number of operations to compute entry = 3
-          A[nzc5[j]*6 + nzc1[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip5;
+          A[nzc1[j]*6 + nzc2[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip5;
           // Number of operations to compute entry = 3
-          A[nzc2[j]*6 + nzc5[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip6;
+          A[nzc2[j]*6 + nzc1[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip5;
           // Number of operations to compute entry = 3
-          A[nzc5[j]*6 + nzc2[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip7;
+          A[nzc4[j]*6 + nzc5[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip2;
           // Number of operations to compute entry = 3
-          A[nzc4[j]*6 + nzc2[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip5;
+          A[nzc2[j]*6 + nzc2[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip6;
           // Number of operations to compute entry = 3
-          A[nzc1[j]*6 + nzc5[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip2;
+          A[nzc5[j]*6 + nzc5[k]] += FE1_C1_D01[ip][j]*FE1_C1_D01[ip][k]*Gip7;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -8071,7 +8071,7 @@ cahnhilliard2d_form_0::~cahnhilliard2d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard2d_form_0::signature() const
 {
-    return "Form([Integral(Sum(Sum(Product(Constant(Cell('triangle', 1), 3), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Product(Constant(Cell('triangle', 1), 4), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('triangle', 1), 1), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(Constant(Cell('triangle', 1), 2), Sum(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(FloatValue(2.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Product(FloatValue(8.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(FloatValue(2.0, (), (), {}), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Sum(Product(Constant(Cell('triangle', 1), 3), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Product(Constant(Cell('triangle', 1), 4), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('triangle', 1), 1), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(Constant(Cell('triangle', 1), 2), Sum(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(FloatValue(2.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(Product(IntValue(-1, (), (), {}), Product(Product(FloatValue(8.0, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(FloatValue(2.0, (), (), {}), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
@@ -16086,19 +16086,19 @@ void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     static const unsigned int nzc5[2] = {0, 1};
     
     // Number of operations to compute geometry constants: 72
-    const double G0 =  - det;
-    const double G1 = det*w[4][0]*(Jinv_00*Jinv_10*(1 - w[5][0]) + Jinv_01*Jinv_11*(1 - w[5][0]));
-    const double G2 = det*w[4][0]*(Jinv_00*(Jinv_00 - Jinv_00*w[5][0]) + Jinv_01*(Jinv_01 - Jinv_01*w[5][0]));
-    const double G3 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G4 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G5 =  - det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G6 =  - det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G7 =  - det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G8 =  - 2*det*w[3][0];
-    const double G9 = 6*det*w[3][0];
-    const double G10 =  - 4*det*w[3][0];
-    const double G11 = det*w[4][0]*(Jinv_10*(Jinv_10 - Jinv_10*w[5][0]) + Jinv_11*(Jinv_11 - Jinv_11*w[5][0]));
-    const double G12 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G0 =  - 2*det*w[3][0];
+    const double G1 = 6*det*w[3][0];
+    const double G2 =  - 4*det*w[3][0];
+    const double G3 =  - det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G4 =  - det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G5 = det*w[4][0]*(Jinv_00*Jinv_10*(1 - w[5][0]) + Jinv_01*Jinv_11*(1 - w[5][0]));
+    const double G6 = det*w[4][0]*(Jinv_00*(Jinv_00 - Jinv_00*w[5][0]) + Jinv_01*(Jinv_01 - Jinv_01*w[5][0]));
+    const double G7 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G8 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G9 = det*w[4][0]*(Jinv_10*(Jinv_10 - Jinv_10*w[5][0]) + Jinv_11*(Jinv_11 - Jinv_11*w[5][0]));
+    const double G10 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G11 =  - det;
+    const double G12 =  - det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -16140,23 +16140,23 @@ void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 36
-      // Number of operations: 4
-      const double Gip0 = W9[ip]*(F4*det + F5*G0);
-      
       // Number of operations: 8
-      const double Gip1 = W9[ip]*(F0*G4 + F1*G3 + F2*G2 + F3*G1);
+      const double Gip0 = W9[ip]*(F4*(G0 + F4*(G1 + F4*G2)) + F8*det);
       
       // Number of operations: 4
-      const double Gip2 = W9[ip]*(F6*G6 + F7*G5);
+      const double Gip1 = W9[ip]*(F6*G4 + F7*G3);
+      
+      // Number of operations: 8
+      const double Gip2 = W9[ip]*(F0*G8 + F1*G7 + F2*G6 + F3*G5);
+      
+      // Number of operations: 8
+      const double Gip3 = W9[ip]*(F0*G7 + F1*G10 + F2*G5 + F3*G9);
       
       // Number of operations: 4
-      const double Gip3 = W9[ip]*(F6*G5 + F7*G7);
+      const double Gip4 = W9[ip]*(F4*det + F5*G11);
       
-      // Number of operations: 8
-      const double Gip4 = W9[ip]*(F4*(G8 + F4*(G9 + F4*G10)) + F8*det);
-      
-      // Number of operations: 8
-      const double Gip5 = W9[ip]*(F0*G3 + F1*G12 + F2*G1 + F3*G11);
+      // Number of operations: 4
+      const double Gip5 = W9[ip]*(F6*G3 + F7*G12);
       
       
       // Number of operations for primary indices = 12
@@ -16227,7 +16227,7 @@ cahnhilliard2d_form_1::~cahnhilliard2d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard2d_form_1::signature() const
 {
-    return "Form([Integral(Sum(Sum(Product(Constant(Cell('triangle', 1), 4), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Constant(Cell('triangle', 1), 5), Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {}))), Product(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {})), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Constant(Cell('triangle', 1), 5))))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('triangle', 1), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(Constant(Cell('triangle', 1), 3), Sum(Product(IntValue(-1, (), (), {}), Product(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Sum(Product(Constant(Cell('triangle', 1), 4), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Constant(Cell('triangle', 1), 5), Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {}))), Product(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(0),), {})), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Constant(Cell('triangle', 1), 5))))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('triangle', 1), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(IntValue(-1, (), (), {}), Product(Indexed(BasisFunction(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(Constant(Cell('triangle', 1), 3), Sum(Product(IntValue(-1, (), (), {}), Product(Product(Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))), Product(Product(Product(IntValue(2, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Function(MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1), 1), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
