@@ -4191,7 +4191,7 @@ class CoefficientSet
 public:
 
   CoefficientSet():
-    dt("dt"), lmbda("lmbda"), muFactor("muFactor"), theta("theta"), w0("w0"), w1("w1")
+    dt("dt"), lmbda("lmbda"), muFactor("muFactor"), theta("theta"), u0("u0"), u1("u1")
   {}
   
   ~CoefficientSet()
@@ -4210,8 +4210,8 @@ public:
     case 1: return "lmbda";
     case 2: return "muFactor";
     case 3: return "theta";
-    case 4: return "w0";
-    case 5: return "w1";
+    case 4: return "u0";
+    case 5: return "u1";
     default:
         throw std::runtime_error("Invalid coefficient number.");
     }
@@ -4229,8 +4229,8 @@ public:
   CoefficientReference lmbda;
   CoefficientReference muFactor;
   CoefficientReference theta;
-  CoefficientReference w0;
-  CoefficientReference w1;
+  CoefficientReference u0;
+  CoefficientReference u1;
 };
 
 class CoefficientSpace_dt: public dolfin::FunctionSpace
@@ -4409,56 +4409,12 @@ public:
   
 };
 
-class CoefficientSpace_w0: public dolfin::FunctionSpace
+class CoefficientSpace_u0: public dolfin::FunctionSpace
 {
 public:
 
 
-  CoefficientSpace_w0(const dolfin::Mesh & mesh):
-      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_w0(dolfin::Mesh & mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_w0(boost::shared_ptr<dolfin::Mesh> mesh):
-      dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
-  {
-      // Do nothing
-  }
-
-  CoefficientSpace_w0(boost::shared_ptr<const dolfin::Mesh> mesh):
-      dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
-  {
-      // Do nothing
-  }
- 
-
-  ~CoefficientSpace_w0()
-  {
-  }
-  
-};
-
-class CoefficientSpace_w1: public dolfin::FunctionSpace
-{
-public:
-
-
-  CoefficientSpace_w1(const dolfin::Mesh & mesh):
+  CoefficientSpace_u0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -4466,7 +4422,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_w1(dolfin::Mesh & mesh):
+  CoefficientSpace_u0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -4474,7 +4430,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_w1(boost::shared_ptr<dolfin::Mesh> mesh):
+  CoefficientSpace_u0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
@@ -4482,7 +4438,7 @@ public:
       // Do nothing
   }
 
-  CoefficientSpace_w1(boost::shared_ptr<const dolfin::Mesh> mesh):
+  CoefficientSpace_u0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_2()), mesh)))
@@ -4491,7 +4447,51 @@ public:
   }
  
 
-  ~CoefficientSpace_w1()
+  ~CoefficientSpace_u0()
+  {
+  }
+  
+};
+
+class CoefficientSpace_u1: public dolfin::FunctionSpace
+{
+public:
+
+
+  CoefficientSpace_u1(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_u1(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_u1(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_u1(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_1_dof_map_1()), mesh)))
+  {
+      // Do nothing
+  }
+ 
+
+  ~CoefficientSpace_u1()
   {
   }
   
@@ -4585,7 +4585,7 @@ public:
   
 };
 
-typedef CoefficientSpace_w0 Form_0_FunctionSpace_2;
+typedef CoefficientSpace_u1 Form_0_FunctionSpace_2;
 
 typedef CoefficientSpace_lmbda Form_0_FunctionSpace_3;
 
@@ -4595,24 +4595,24 @@ typedef CoefficientSpace_dt Form_0_FunctionSpace_5;
 
 typedef CoefficientSpace_theta Form_0_FunctionSpace_6;
 
-class Form_0_Coefficient_w0: public dolfin::Coefficient
+class Form_0_Coefficient_u1: public dolfin::Coefficient
 {
 public:
 
-  Form_0_Coefficient_w0(dolfin::Form & form):
+  Form_0_Coefficient_u1(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_0_Coefficient_w0()
+  ~Form_0_Coefficient_u1()
   {}
 
-  const Form_0_Coefficient_w0& operator=(dolfin::Function & f)
+  const Form_0_Coefficient_u1& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_0_Coefficient_w0& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_0_Coefficient_u1& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -4630,7 +4630,7 @@ public:
 
   std::string name() const
   {
-    return "w0";
+    return "u1";
   }
 
 };
@@ -4801,7 +4801,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4814,7 +4814,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4828,8 +4828,8 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _w0, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _u1, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4837,13 +4837,13 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
+    boost::shared_ptr<dolfin::Function> _pu1 = dolfin::reference_to_no_delete_pointer(_u1);
     boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
     boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
     boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
     boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
 
-    w0 = _pw0;
+    u1 = _pu1;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -4853,8 +4853,8 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pu1, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4862,7 +4862,7 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    w0 = _pw0;
+    u1 = _pu1;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -4873,7 +4873,7 @@ public:
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
@@ -4883,7 +4883,7 @@ public:
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
@@ -4894,19 +4894,19 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _w0, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _u1, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
+    boost::shared_ptr<dolfin::Function> _pu1 = dolfin::reference_to_no_delete_pointer(_u1);
     boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
     boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
     boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
     boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
 
-    w0 = _pw0;
+    u1 = _pu1;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -4916,13 +4916,13 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
-    dolfin::Form(2, 5), w0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pu1, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(2, 5), u1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    w0 = _pw0;
+    u1 = _pu1;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -4937,7 +4937,7 @@ public:
 
   void update_coefficients(const CoefficientSet & coefficients)
   {
-    w0 = coefficients.w0.function_pointer();
+    u1 = coefficients.u1.function_pointer();
     lmbda = coefficients.lmbda.function_pointer();
     muFactor = coefficients.muFactor.function_pointer();
     dt = coefficients.dt.function_pointer();
@@ -4947,7 +4947,7 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string & name) const
   {
-    if(name == "w0") return 0;
+    if(name == "u1") return 0;
     else if(name == "lmbda") return 1;
     else if(name == "muFactor") return 2;
     else if(name == "dt") return 3;
@@ -4961,7 +4961,7 @@ public:
   {
     switch(i)
     {
-      case 0: return "w0";
+      case 0: return "u1";
       case 1: return "lmbda";
       case 2: return "muFactor";
       case 3: return "dt";
@@ -4974,14 +4974,14 @@ public:
   // Typedefs
   typedef Form_0_FunctionSpace_0 TestSpace;
   typedef Form_0_FunctionSpace_1 TrialSpace;
-  typedef Form_0_FunctionSpace_2 CoefficientSpace_w0;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_u1;
   typedef Form_0_FunctionSpace_3 CoefficientSpace_lmbda;
   typedef Form_0_FunctionSpace_4 CoefficientSpace_muFactor;
   typedef Form_0_FunctionSpace_5 CoefficientSpace_dt;
   typedef Form_0_FunctionSpace_6 CoefficientSpace_theta;
 
   // Coefficients
-  Form_0_Coefficient_w0 w0;
+  Form_0_Coefficient_u1 u1;
   Form_0_Coefficient_lmbda lmbda;
   Form_0_Coefficient_muFactor muFactor;
   Form_0_Coefficient_dt dt;
@@ -5032,9 +5032,9 @@ public:
   
 };
 
-typedef CoefficientSpace_w0 Form_1_FunctionSpace_1;
+typedef CoefficientSpace_u1 Form_1_FunctionSpace_1;
 
-typedef CoefficientSpace_w1 Form_1_FunctionSpace_2;
+typedef CoefficientSpace_u0 Form_1_FunctionSpace_2;
 
 typedef CoefficientSpace_lmbda Form_1_FunctionSpace_3;
 
@@ -5044,24 +5044,24 @@ typedef CoefficientSpace_dt Form_1_FunctionSpace_5;
 
 typedef CoefficientSpace_theta Form_1_FunctionSpace_6;
 
-class Form_1_Coefficient_w0: public dolfin::Coefficient
+class Form_1_Coefficient_u1: public dolfin::Coefficient
 {
 public:
 
-  Form_1_Coefficient_w0(dolfin::Form & form):
+  Form_1_Coefficient_u1(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_1_Coefficient_w0()
+  ~Form_1_Coefficient_u1()
   {}
 
-  const Form_1_Coefficient_w0& operator=(dolfin::Function & f)
+  const Form_1_Coefficient_u1& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_1_Coefficient_w0& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_1_Coefficient_u1& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -5079,29 +5079,29 @@ public:
 
   std::string name() const
   {
-    return "w0";
+    return "u1";
   }
 
 };
 
-class Form_1_Coefficient_w1: public dolfin::Coefficient
+class Form_1_Coefficient_u0: public dolfin::Coefficient
 {
 public:
 
-  Form_1_Coefficient_w1(dolfin::Form & form):
+  Form_1_Coefficient_u0(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_1_Coefficient_w1()
+  ~Form_1_Coefficient_u0()
   {}
 
-  const Form_1_Coefficient_w1& operator=(dolfin::Function & f)
+  const Form_1_Coefficient_u0& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_1_Coefficient_w1& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_1_Coefficient_u0& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -5119,7 +5119,7 @@ public:
 
   std::string name() const
   {
-    return "w1";
+    return "u0";
   }
 
 };
@@ -5290,7 +5290,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace & _V0):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
@@ -5301,7 +5301,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
@@ -5313,22 +5313,22 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _w0, dolfin::Function & _w1, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _u1, dolfin::Function & _u0, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
     _function_spaces[0] = _pV0;
 
-    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
-    boost::shared_ptr<dolfin::Function> _pw1 = dolfin::reference_to_no_delete_pointer(_w1);
+    boost::shared_ptr<dolfin::Function> _pu1 = dolfin::reference_to_no_delete_pointer(_u1);
+    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
     boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
     boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
     boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
     boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
 
-    w0 = _pw0;
-    w1 = _pw1;
+    u1 = _pu1;
+    u0 = _pu0;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -5338,15 +5338,15 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _pw1, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pu1, boost::shared_ptr<dolfin::Function> _pu0, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
     _function_spaces[0] = _pV0;
 
-    w0 = _pw0;
-    w1 = _pw1;
+    u1 = _pu1;
+    u0 = _pu0;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -5357,7 +5357,7 @@ public:
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
 
@@ -5366,7 +5366,7 @@ public:
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
 
@@ -5376,20 +5376,20 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _w0, dolfin::Function & _w1, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _u1, dolfin::Function & _u0, dolfin::Function & _lmbda, dolfin::Function & _muFactor, dolfin::Function & _dt, dolfin::Function & _theta):
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
 
-    boost::shared_ptr<dolfin::Function> _pw0 = dolfin::reference_to_no_delete_pointer(_w0);
-    boost::shared_ptr<dolfin::Function> _pw1 = dolfin::reference_to_no_delete_pointer(_w1);
+    boost::shared_ptr<dolfin::Function> _pu1 = dolfin::reference_to_no_delete_pointer(_u1);
+    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
     boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
     boost::shared_ptr<dolfin::Function> _pmuFactor = dolfin::reference_to_no_delete_pointer(_muFactor);
     boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
     boost::shared_ptr<dolfin::Function> _ptheta = dolfin::reference_to_no_delete_pointer(_theta);
 
-    w0 = _pw0;
-    w1 = _pw1;
+    u1 = _pu1;
+    u0 = _pu0;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -5399,13 +5399,13 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pw0, boost::shared_ptr<dolfin::Function> _pw1, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
-    dolfin::Form(1, 6), w0(*this), w1(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pu1, boost::shared_ptr<dolfin::Function> _pu0, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmuFactor, boost::shared_ptr<dolfin::Function> _pdt, boost::shared_ptr<dolfin::Function> _ptheta):
+    dolfin::Form(1, 6), u1(*this), u0(*this), lmbda(*this), muFactor(*this), dt(*this), theta(*this)
   {
     _function_spaces[0] = _pV0;
 
-    w0 = _pw0;
-    w1 = _pw1;
+    u1 = _pu1;
+    u0 = _pu0;
     lmbda = _plmbda;
     muFactor = _pmuFactor;
     dt = _pdt;
@@ -5420,8 +5420,8 @@ public:
 
   void update_coefficients(const CoefficientSet & coefficients)
   {
-    w0 = coefficients.w0.function_pointer();
-    w1 = coefficients.w1.function_pointer();
+    u1 = coefficients.u1.function_pointer();
+    u0 = coefficients.u0.function_pointer();
     lmbda = coefficients.lmbda.function_pointer();
     muFactor = coefficients.muFactor.function_pointer();
     dt = coefficients.dt.function_pointer();
@@ -5431,8 +5431,8 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string & name) const
   {
-    if(name == "w0") return 0;
-    else if(name == "w1") return 1;
+    if(name == "u1") return 0;
+    else if(name == "u0") return 1;
     else if(name == "lmbda") return 2;
     else if(name == "muFactor") return 3;
     else if(name == "dt") return 4;
@@ -5446,8 +5446,8 @@ public:
   {
     switch(i)
     {
-      case 0: return "w0";
-      case 1: return "w1";
+      case 0: return "u1";
+      case 1: return "u0";
       case 2: return "lmbda";
       case 3: return "muFactor";
       case 4: return "dt";
@@ -5459,16 +5459,16 @@ public:
 
   // Typedefs
   typedef Form_1_FunctionSpace_0 TestSpace;
-  typedef Form_1_FunctionSpace_1 CoefficientSpace_w0;
-  typedef Form_1_FunctionSpace_2 CoefficientSpace_w1;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_u1;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_u0;
   typedef Form_1_FunctionSpace_3 CoefficientSpace_lmbda;
   typedef Form_1_FunctionSpace_4 CoefficientSpace_muFactor;
   typedef Form_1_FunctionSpace_5 CoefficientSpace_dt;
   typedef Form_1_FunctionSpace_6 CoefficientSpace_theta;
 
   // Coefficients
-  Form_1_Coefficient_w0 w0;
-  Form_1_Coefficient_w1 w1;
+  Form_1_Coefficient_u1 u1;
+  Form_1_Coefficient_u0 u0;
   Form_1_Coefficient_lmbda lmbda;
   Form_1_Coefficient_muFactor muFactor;
   Form_1_Coefficient_dt dt;
