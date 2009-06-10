@@ -1241,39 +1241,27 @@ public:
     const static double W1 = 0.5;
     
     
-    const static double FE0_D10[1][2] = \
-    {{-1, 1}};
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 2};
+    const static double FE0_D10[1][3] = \
+    {{-1, 1, 0}};
     
-    // Number of operations to compute geometry constants: 15
-    const double G0 = W1*det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1 = W1*det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2 = W1*det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const static double FE0_D01[1][3] = \
+    {{-1, 0, 1}};
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 63
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Total number of operations to compute element tensor: 162
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 48
+    // Number of operations to compute element tensor for following IP loop = 162
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices = 48
-    for (unsigned int j = 0; j < 2; j++)
+    // Number of operations for primary indices = 162
+    for (unsigned int j = 0; j < 3; j++)
     {
-      for (unsigned int k = 0; k < 2; k++)
+      for (unsigned int k = 0; k < 3; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*3 + nzc1[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G0;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*3 + nzc1[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G1;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*3 + nzc0[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G2;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*3 + nzc0[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G1;
+        // Number of operations to compute entry = 18
+        A[j*3 + k] += ((Jinv_00*FE0_D10[0][j] + Jinv_10*FE0_D01[0][j])*(Jinv_00*FE0_D10[0][k] + Jinv_10*FE0_D01[0][k]) + (Jinv_01*FE0_D10[0][j] + Jinv_11*FE0_D01[0][j])*(Jinv_01*FE0_D10[0][k] + Jinv_11*FE0_D01[0][k]))*W1*det;
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -2665,21 +2653,21 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    const static double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
     
     
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 56
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Total number of operations to compute element tensor: 72
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 56
+    // Number of operations to compute element tensor for following IP loop = 72
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -2692,16 +2680,11 @@ public:
         F0 += FE0[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 2
-      // Number of operations: 2
-      const double Gip0 = F0*W4[ip]*det;
-      
-      
-      // Number of operations for primary indices = 6
+      // Number of operations for primary indices = 12
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 2
-        A[j] += FE0[ip][j]*Gip0;
+        // Number of operations to compute entry = 4
+        A[j] += FE0[ip][j]*F0*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
