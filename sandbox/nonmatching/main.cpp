@@ -1,5 +1,13 @@
 // Copyright (C) 2009 Garth N. Wells.
 // Licensed under the GNU LGPL Version 2.1.
+//
+// First added:  2009-06-17
+// Last changed: 
+
+//
+// This program demonstrates the interpolation of functions on non-matching 
+// meshes.
+//
 
 #include <dolfin.h>
 #include "P1.h"
@@ -24,7 +32,7 @@ class MyFunction : public Function
 int main()
 {
   UnitSquare mesh0(16, 16);
-  UnitCube mesh1(32, 32, 32);
+  UnitSquare mesh1(64, 64);
 
   P1::FunctionSpace V0(mesh0);
   P1::FunctionSpace V1(mesh1);
@@ -33,7 +41,7 @@ int main()
   my_function0.interpolate();
 
   Vector x; 
-  V1.interpolate(x, my_function0);
+  V1.interpolate(x, my_function0, "non-matching");
 
   Function my_function1(V1, x);
 
