@@ -37,18 +37,24 @@ int main()
   P1::FunctionSpace V0(mesh0);
   P1::FunctionSpace V1(mesh1);
 
-  MyFunction my_function0(V0);
-  my_function0.interpolate();
+  MyFunction f0(V0);
+  //f0.interpolate();
 
-  Vector x; 
-  V1.interpolate(x, my_function0, "non-matching");
+  Function f1(V1);
+  f1.interpolate(f0);
 
-  Function my_function1(V1, x);
-
+  //Vector x; 
+  //V1.interpolate(x, my_function0, "non-matching");
+  //Function my_function1(V1, x);
   //my_function1.interpolate(x, V1);
 
-  plot(my_function0);
-  plot(my_function1);
+  File file0("test_0_.pvd");
+  File file1("test_1_.pvd");
+  file0 << f0;
+  file1 << f1;
+
+  plot(f0);
+  plot(f1);
 
   return 0;
 }
