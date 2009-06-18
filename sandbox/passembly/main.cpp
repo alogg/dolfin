@@ -45,7 +45,10 @@ int main()
 {
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
+  info(mesh.data());
+
   Poisson::FunctionSpace V(mesh);
+  info(mesh.data());
 
   // Define boundary condition
   Constant u0(0.0);
