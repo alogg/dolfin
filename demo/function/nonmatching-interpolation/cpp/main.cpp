@@ -11,6 +11,7 @@
 
 #include <dolfin.h>
 #include "P1.h"
+#include "P3.h"
 
 using namespace dolfin;
 
@@ -22,37 +23,31 @@ class MyFunction : public Function
 
   void eval(double* values, const double* x) const
   {
-    double dx = x[0] - 0.5;
-    double dy = x[1] - 0.5;
-    values[0] = 500.0*exp(-(dx*dx + dy*dy) / 0.02);
+    values[0] = sin(10.0*x[0])*sin(10.0*x[1]);
   }
 };
 
 
 int main()
 {
+  // Create meshes
   UnitSquare mesh0(16, 16);
   UnitSquare mesh1(64, 64);
 
-  P1::FunctionSpace V0(mesh0);
+  // Create function spaces
+  P3::FunctionSpace V0(mesh0);
   P1::FunctionSpace V1(mesh1);
 
+  // Create function on P2 space
   MyFunction f0(V0);
-  //f0.interpolate();
 
+  // Create function on P1 space
   Function f1(V1);
+
+  // Interpolate P2 function (coarse mesh) on P1 function space (fine mesh) 
   f1.interpolate(f0);
 
-  //Vector x; 
-  //V1.interpolate(x, my_function0, "non-matching");
-  //Function my_function1(V1, x);
-  //my_function1.interpolate(x, V1);
-
-  File file0("test_0_.pvd");
-  File file1("test_1_.pvd");
-  file0 << f0;
-  file1 << f1;
-
+  // Plot results
   plot(f0);
   plot(f1);
 

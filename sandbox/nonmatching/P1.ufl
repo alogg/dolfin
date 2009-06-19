@@ -1,5 +1,0 @@
-# Copyright (C) 2009 Garth N. Wells.
-# Licensed under the GNU LGPL Version 2.1.
-
-element = FiniteElement("Lagrange", "triangle", 1)
-
