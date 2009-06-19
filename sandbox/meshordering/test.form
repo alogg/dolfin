@@ -1,8 +1,0 @@
-
-
-el = FiniteElement("Lagrange", "triangle", 1)
-
-v = TestFunction(el)
-f = Function(el)
-
-L = v*f*dx
