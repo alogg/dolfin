@@ -43,6 +43,9 @@ class DirichletBoundary : public SubDomain
 
 int main()
 {
+  // Avoid direct solver for now, seems to break
+  dolfin_set("linear solver", "iterative");
+
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
   info(mesh.data());
@@ -67,11 +70,11 @@ int main()
   problem.solve(u);
 
   // Plot solution
-  plot(u);
+  //plot(u);
 
   // Save solution in VTK format
-  File file("poisson.pvd");
-  file << u;
+  //File file("poisson.pvd");
+  //file << u;
 
   return 0;
 }
