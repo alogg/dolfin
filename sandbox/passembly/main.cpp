@@ -73,8 +73,8 @@ int main()
   //plot(u);
 
   // Save solution in VTK format
-  File file("poisson.pvd");
-  file << u;
+  File file("output.pvd");
+  file << mesh;
 
   return 0;
 }
