@@ -1235,13 +1235,15 @@ public:
     
     // Array of quadrature weights
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
+    // Value of basis functions at quadrature points.
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -1351,7 +1353,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2654,13 +2656,15 @@ public:
     
     // Array of quadrature weights
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
+    // Value of basis functions at quadrature points.
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -2770,7 +2774,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2920,7 +2924,7 @@ class CoefficientSet
 public:
 
   CoefficientSet():
-    u0("u0")
+    phi0("phi0")
   {}
   
   ~CoefficientSet()
@@ -2935,7 +2939,7 @@ public:
   {
     switch(i)
     {
-    case 0: return "u0";
+    case 0: return "phi0";
     default:
         throw std::runtime_error("Invalid coefficient number.");
     }
@@ -2949,15 +2953,15 @@ public:
     }
   }
 
-  CoefficientReference u0;
+  CoefficientReference phi0;
 };
 
-class CoefficientSpace_u0: public dolfin::FunctionSpace
+class CoefficientSpace_phi0: public dolfin::FunctionSpace
 {
 public:
 
 
-  CoefficientSpace_u0(const dolfin::Mesh & mesh):
+  CoefficientSpace_phi0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new projection_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new projection_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -2965,7 +2969,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_u0(dolfin::Mesh & mesh):
+  CoefficientSpace_phi0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new projection_1_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new projection_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -2973,7 +2977,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_u0(boost::shared_ptr<dolfin::Mesh> mesh):
+  CoefficientSpace_phi0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new projection_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new projection_1_dof_map_1()), mesh)))
@@ -2981,7 +2985,7 @@ public:
       // Do nothing
   }
 
-  CoefficientSpace_u0(boost::shared_ptr<const dolfin::Mesh> mesh):
+  CoefficientSpace_phi0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new projection_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new projection_1_dof_map_1()), mesh)))
@@ -2990,7 +2994,7 @@ public:
   }
  
 
-  ~CoefficientSpace_u0()
+  ~CoefficientSpace_phi0()
   {
   }
   
@@ -3212,26 +3216,26 @@ public:
   
 };
 
-typedef CoefficientSpace_u0 Form_1_FunctionSpace_1;
+typedef CoefficientSpace_phi0 Form_1_FunctionSpace_1;
 
-class Form_1_Coefficient_u0: public dolfin::Coefficient
+class Form_1_Coefficient_phi0: public dolfin::Coefficient
 {
 public:
 
-  Form_1_Coefficient_u0(dolfin::Form & form):
+  Form_1_Coefficient_phi0(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_1_Coefficient_u0()
+  ~Form_1_Coefficient_phi0()
   {}
 
-  const Form_1_Coefficient_u0& operator=(dolfin::Function & f)
+  const Form_1_Coefficient_phi0& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_1_Coefficient_u0& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_1_Coefficient_phi0& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -3249,7 +3253,7 @@ public:
 
   std::string name() const
   {
-    return "u0";
+    return "phi0";
   }
 
 };
@@ -3260,7 +3264,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace & _V0):
-    dolfin::Form(1, 1), u0(*this)
+    dolfin::Form(1, 1), phi0(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
@@ -3271,7 +3275,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 1), u0(*this)
+    dolfin::Form(1, 1), phi0(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
@@ -3283,36 +3287,36 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _u0):
-    dolfin::Form(1, 1), u0(*this)
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _phi0):
+    dolfin::Form(1, 1), phi0(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
     _function_spaces[0] = _pV0;
 
-    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
+    boost::shared_ptr<dolfin::Function> _pphi0 = dolfin::reference_to_no_delete_pointer(_phi0);
 
-    u0 = _pu0;
+    phi0 = _pphi0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new projection_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pu0):
-    dolfin::Form(1, 1), u0(*this)
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pphi0):
+    dolfin::Form(1, 1), phi0(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
     _function_spaces[0] = _pV0;
 
-    u0 = _pu0;
+    phi0 = _pphi0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new projection_form_1());
   }
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
-    dolfin::Form(1, 1), u0(*this)
+    dolfin::Form(1, 1), phi0(*this)
   {
     _function_spaces[0] = _pV0;
 
@@ -3321,7 +3325,7 @@ public:
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 1), u0(*this)
+    dolfin::Form(1, 1), phi0(*this)
   {
     _function_spaces[0] = _pV0;
 
@@ -3331,25 +3335,25 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _u0):
-    dolfin::Form(1, 1), u0(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _phi0):
+    dolfin::Form(1, 1), phi0(*this)
   {
     _function_spaces[0] = _pV0;
 
-    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
+    boost::shared_ptr<dolfin::Function> _pphi0 = dolfin::reference_to_no_delete_pointer(_phi0);
 
-    u0 = _pu0;
+    phi0 = _pphi0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new projection_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pu0):
-    dolfin::Form(1, 1), u0(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pphi0):
+    dolfin::Form(1, 1), phi0(*this)
   {
     _function_spaces[0] = _pV0;
 
-    u0 = _pu0;
+    phi0 = _pphi0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new projection_form_1());
   }
@@ -3360,13 +3364,13 @@ public:
 
   void update_coefficients(const CoefficientSet & coefficients)
   {
-    u0 = coefficients.u0.function_pointer();
+    phi0 = coefficients.phi0.function_pointer();
   }
 
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string & name) const
   {
-    if(name == "u0") return 0;
+    if(name == "phi0") return 0;
     dolfin::error("Invalid coefficient.");
     return 0;
   }
@@ -3376,7 +3380,7 @@ public:
   {
     switch(i)
     {
-      case 0: return "u0";
+      case 0: return "phi0";
     }
     dolfin::error("Invalid coefficient.");
     return "unnamed";
@@ -3384,10 +3388,10 @@ public:
 
   // Typedefs
   typedef Form_1_FunctionSpace_0 TestSpace;
-  typedef Form_1_FunctionSpace_1 CoefficientSpace_u0;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_phi0;
 
   // Coefficients
-  Form_1_Coefficient_u0 u0;
+  Form_1_Coefficient_phi0 phi0;
 };
 
 // Class typedefs
