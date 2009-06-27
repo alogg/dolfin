@@ -4943,393 +4943,6 @@ public:
 
 };
 
-/// This class defines the interface for a finite element.
-
-class advectiondiffusion_0_finite_element_7: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  advectiondiffusion_0_finite_element_7() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~advectiondiffusion_0_finite_element_7()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 1;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 0;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    return 1;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Reset values
-    *values = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
-    
-    // Extract relevant coefficients
-    const double coeff0_0 = coefficients0[dof][0];
-    
-    // Compute value(s)
-    *values = coeff0_0*basisvalue0;
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis() is not yet implemented.");
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * element_coordinates = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = element_coordinates[1][0] - element_coordinates[0][0];
-    const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
-    const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
-    const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    
-    // Get coordinates and map to the reference (UFC) element
-    double x = (element_coordinates[0][1]*element_coordinates[2][0] -\
-                element_coordinates[0][0]*element_coordinates[2][1] +\
-                J_11*coordinates[0] - J_01*coordinates[1]) / detJ;
-    double y = (element_coordinates[1][1]*element_coordinates[0][0] -\
-                element_coordinates[1][0]*element_coordinates[0][1] -\
-                J_10*coordinates[0] + J_00*coordinates[1]) / detJ;
-    
-    // Map coordinates to the reference square
-    if (std::abs(y - 1.0) < 1e-14)
-      x = -1.0;
-    else
-      x = 2.0 *x/(1.0 - y) - 1.0;
-    y = 2.0*y - 1.0;
-    
-    // Compute number of derivatives
-    unsigned int num_derivatives = 1;
-    
-    for (unsigned int j = 0; j < n; j++)
-      num_derivatives *= 2;
-    
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      combinations[j] = new unsigned int [n];
-      for (unsigned int k = 0; k < n; k++)
-        combinations[j][k] = 0;
-    }
-        
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] =  {{J_11 / detJ, -J_01 / detJ}, {-J_10 / detJ, J_00 / detJ}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-        
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values
-    for (unsigned int j = 0; j < 1*num_derivatives; j++)
-      values[j] = 0;
-    
-    // Map degree of freedom to element degree of freedom
-    const unsigned int dof = i;
-    
-    // Generate scalings
-    const double scalings_y_0 = 1;
-    
-    // Compute psitilde_a
-    const double psitilde_a_0 = 1;
-    
-    // Compute psitilde_bs
-    const double psitilde_bs_0_0 = 1;
-    
-    // Compute basisvalues
-    const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
-    
-    // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
-    {{1.41421356237309}};
-    
-    // Interesting (new) part
-    // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
-    {{0}};
-    
-    const static double dmats1[1][1] = \
-    {{0}};
-    
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
-    
-    // Declare coefficients
-    double coeff0_0 = 0;
-    
-    // Declare new coefficients
-    double new_coeff0_0 = 0;
-    
-    // Loop possible derivatives
-    for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
-    {
-      // Get values from coefficients array
-      new_coeff0_0 = coefficients0[dof][0];
-    
-      // Loop derivative order
-      for (unsigned int j = 0; j < n; j++)
-      {
-        // Update old coefficients
-        coeff0_0 = new_coeff0_0;
-    
-        if(combinations[deriv_num][j] == 0)
-        {
-          new_coeff0_0 = coeff0_0*dmats0[0][0];
-        }
-        if(combinations[deriv_num][j] == 1)
-        {
-          new_coeff0_0 = coeff0_0*dmats1[0][0];
-        }
-    
-      }
-      // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0;
-    }
-    
-    // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
-    // Delete pointer to array of derivatives on FIAT element
-    delete [] derivatives;
-    
-    // Delete pointer to array of combinations of derivatives and transform
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      delete [] combinations[row];
-      delete [] transform[row];
-    }
-    
-    delete [] combinations;
-    delete [] transform;
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    throw std::runtime_error("The vectorised version of evaluate_basis_derivatives() is not yet implemented.");
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
-    
-    const double * const * x = c.coordinates;
-    double result = 0.0;
-    // Iterate over the points:
-    // Evaluate basis functions for affine mapping
-    const double w0 = 1.0 - X[i][0][0] - X[i][0][1];
-    const double w1 = X[i][0][0];
-    const double w2 = X[i][0][1];
-    
-    // Compute affine mapping y = F(X)
-    double y[2];
-    y[0] = w0*x[0][0] + w1*x[1][0] + w2*x[2][0];
-    y[1] = w0*x[0][1] + w1*x[1][1] + w2*x[2][1];
-    
-    // Evaluate function at physical points
-    double values[1];
-    f.evaluate(values, y, c);
-    
-    // Map function values using appropriate mapping
-    // Affine map: Do nothing
-    
-    // Note that we do not map the weights (yet).
-    
-    // Take directional components
-    for(int k = 0; k < 1; k++)
-      result += values[k]*D[i][0][k];
-    // Multiply by weights 
-    result *= W[i][0];
-    
-    return result;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate at vertices and use affine mapping
-    vertex_values[0] = dof_values[0];
-    vertex_values[1] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 1;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    return new advectiondiffusion_0_finite_element_7();
-  }
-
-};
-
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
@@ -7208,165 +6821,6 @@ public:
 
 };
 
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class advectiondiffusion_0_dof_map_7: public ufc::dof_map
-{
-private:
-
-  unsigned int __global_dimension;
-
-public:
-
-  /// Constructor
-  advectiondiffusion_0_dof_map_7() : ufc::dof_map()
-  {
-    __global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~advectiondiffusion_0_dof_map_7()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch ( d )
-    {
-    case 0:
-      return false;
-      break;
-    case 1:
-      return false;
-      break;
-    case 2:
-      return true;
-      break;
-    }
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    __global_dimension = m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return __global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space for a cell
-  virtual unsigned int local_dimension(const ufc::cell& c) const
-  {
-    return 1;
-  }
-
-  /// Return the maximum dimension of the local finite element function space
-  virtual unsigned int max_local_dimension() const
-  {
-    return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    dofs[0] = c.entity_indices[2][0];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch ( facet )
-    {
-    case 0:
-      
-      break;
-    case 1:
-      
-      break;
-    case 2:
-      
-      break;
-    }
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    throw std::runtime_error("Not implemented (introduced in UFC v1.1).");
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 1;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    return new advectiondiffusion_0_dof_map_7();
-  }
-
-};
-
 /// This class defines the interface for the tabulation of the cell
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
@@ -7416,42 +6870,44 @@ public:
     
     // Array of quadrature weights
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
-    const static double FE2_C1[4][6] = \
+    // Value of basis functions at quadrature points.
+    const static double FE1_C0[4][6] = \
     {{0.221761673952367, -0.114792289385376, -0.106969384566991, 0.110742855875331, 0.413297964702014, 0.475959179422654},
     {-0.123197609346857, -0.0637717752201338, 0.186969384566991, 0.193564950308138, 0.722394229114516, 0.0840408205773457},
     {-0.114792289385376, 0.221761673952367, -0.106969384566991, 0.413297964702014, 0.110742855875331, 0.475959179422654},
     {-0.0637717752201337, -0.123197609346857, 0.186969384566991, 0.722394229114516, 0.193564950308138, 0.0840408205773457}};
-    // Array of non-zero columns
-    static const unsigned int nzc2[6] = {6, 7, 8, 9, 10, 11};
-    // Array of non-zero columns
-    static const unsigned int nzc3[6] = {0, 1, 2, 3, 4, 5};
     
+    // Array of non-zero columns
+    static const unsigned int nzc2[6] = {0, 1, 2, 3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc3[6] = {6, 7, 8, 9, 10, 11};
     const static double FE0_D10[4][2] = \
     {{-1, 1},
     {-1, 1},
     {-1, 1},
     {-1, 1}};
+    
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {0, 1};
     // Array of non-zero columns
     static const unsigned int nzc1[2] = {0, 2};
-    
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
+    
     // Number of operations to compute geometry constants: 23
     const double G0 =  - Jinv_00*det;
     const double G1 =  - Jinv_01*det;
     const double G2 =  - Jinv_10*det;
     const double G3 =  - Jinv_11*det;
-    const double G4 = det*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G5 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G6 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G4 = det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G5 = det*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G6 = det*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -7469,8 +6925,8 @@ public:
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 6; r++)
       {
-        F0 += FE2_C1[ip][r]*w[0][nzc3[r]];
-        F1 += FE2_C1[ip][r]*w[0][nzc2[r]];
+        F0 += FE1_C0[ip][r]*w[0][nzc2[r]];
+        F1 += FE1_C0[ip][r]*w[0][nzc3[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 11
@@ -7618,40 +7074,43 @@ public:
     
     // Array of quadrature weights
     const static double W3[3] = {0.277777777777778, 0.444444444444444, 0.277777777777778};
+    // Quadrature points on the UFC reference element: (0.112701665379258), (0.5), (0.887298334620742)
     
-    
-    const static double FE3_f1_C1[3][3] = \
+    // Value of basis functions at quadrature points.
+    const static double FE1_f0_C0[3][3] = \
     {{0.687298334620742, -0.0872983346207417, 0.4},
     {0, 0, 1},
-    {-0.0872983346207417, 0.687298334620742, 0.4}};
-    // Array of non-zero columns
-    static const unsigned int nzc0[3] = {6, 8, 10};
-    // Array of non-zero columns
-    static const unsigned int nzc1[3] = {1, 2, 3};
-    // Array of non-zero columns
-    static const unsigned int nzc6[3] = {0, 2, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc7[3] = {6, 7, 11};
-    // Array of non-zero columns
-    static const unsigned int nzc9[3] = {0, 1, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc10[3] = {7, 8, 9};
+    {-0.0872983346207416, 0.687298334620742, 0.4}};
     
+    // Array of non-zero columns
+    static const unsigned int nzc3[3] = {1, 2, 3};
+    // Array of non-zero columns
+    static const unsigned int nzc4[3] = {7, 8, 9};
+    // Array of non-zero columns
+    static const unsigned int nzc7[3] = {0, 1, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc8[3] = {6, 7, 11};
+    // Array of non-zero columns
+    static const unsigned int nzc9[3] = {6, 8, 10};
+    // Array of non-zero columns
+    static const unsigned int nzc10[3] = {0, 2, 4};
     const static double FE0_f0[3][2] = \
     {{0.887298334620742, 0.112701665379258},
     {0.5, 0.5},
     {0.112701665379258, 0.887298334620742}};
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {1, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc4[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc5[2] = {0, 1};
     
-    // Number of operations to compute geometry constants: 4
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
+    
+    // Number of operations to compute geometry constants: 5
     // Should be added to total operation count.
-    const double G0 = det*w[1][0]*w[3][0];
-    const double G1 = det*w[1][1]*w[3][0];
+    const double G0 = 0.5*det*w[1][0];
+    const double G1 = 0.5*det;
+    const double G2 = 0.5*det*w[1][1];
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -7659,10 +7118,10 @@ public:
     {
     case 0:
       {
-      // Total number of operations to compute element tensor (from this point): 84
+      // Total number of operations to compute element tensor (from this point): 102
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 84
+      // Number of operations to compute element tensor for following IP loop = 102
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
@@ -7673,13 +7132,13 @@ public:
         // Total number of operations to compute function values = 12
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE3_f1_C1[ip][r]*w[0][nzc1[r]];
-          F1 += FE3_f1_C1[ip][r]*w[0][nzc10[r]];
+          F0 += FE1_f0_C0[ip][r]*w[0][nzc3[r]];
+          F1 += FE1_f0_C0[ip][r]*w[0][nzc4[r]];
         }// end loop over 'r'
         
-        // Number of operations to compute ip constants: 4
-        // Number of operations: 4
-        const double Gip0 = W3[ip]*(F0*G0 + F1*G1);
+        // Number of operations to compute ip constants: 10
+        // Number of operations: 10
+        const double Gip0 = W3[ip]*(F0*G0 + F1*G2 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G1);
         
         
         // Number of operations for primary indices = 12
@@ -7688,7 +7147,7 @@ public:
           for (unsigned int k = 0; k < 2; k++)
           {
             // Number of operations to compute entry = 3
-            A[nzc3[j]*3 + nzc3[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip0;
+            A[nzc0[j]*3 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip0;
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -7696,10 +7155,10 @@ public:
       break;
     case 1:
       {
-      // Total number of operations to compute element tensor (from this point): 84
+      // Total number of operations to compute element tensor (from this point): 102
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 84
+      // Number of operations to compute element tensor for following IP loop = 102
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
@@ -7710,13 +7169,13 @@ public:
         // Total number of operations to compute function values = 12
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE3_f1_C1[ip][r]*w[0][nzc6[r]];
-          F1 += FE3_f1_C1[ip][r]*w[0][nzc0[r]];
+          F0 += FE1_f0_C0[ip][r]*w[0][nzc10[r]];
+          F1 += FE1_f0_C0[ip][r]*w[0][nzc9[r]];
         }// end loop over 'r'
         
-        // Number of operations to compute ip constants: 4
-        // Number of operations: 4
-        const double Gip0 = W3[ip]*(F0*G0 + F1*G1);
+        // Number of operations to compute ip constants: 10
+        // Number of operations: 10
+        const double Gip0 = W3[ip]*(F0*G0 + F1*G2 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G1);
         
         
         // Number of operations for primary indices = 12
@@ -7725,7 +7184,7 @@ public:
           for (unsigned int k = 0; k < 2; k++)
           {
             // Number of operations to compute entry = 3
-            A[nzc4[j]*3 + nzc4[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip0;
+            A[nzc1[j]*3 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip0;
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -7733,10 +7192,10 @@ public:
       break;
     case 2:
       {
-      // Total number of operations to compute element tensor (from this point): 84
+      // Total number of operations to compute element tensor (from this point): 102
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 84
+      // Number of operations to compute element tensor for following IP loop = 102
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
@@ -7747,13 +7206,13 @@ public:
         // Total number of operations to compute function values = 12
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE3_f1_C1[ip][r]*w[0][nzc9[r]];
-          F1 += FE3_f1_C1[ip][r]*w[0][nzc7[r]];
+          F0 += FE1_f0_C0[ip][r]*w[0][nzc7[r]];
+          F1 += FE1_f0_C0[ip][r]*w[0][nzc8[r]];
         }// end loop over 'r'
         
-        // Number of operations to compute ip constants: 4
-        // Number of operations: 4
-        const double Gip0 = W3[ip]*(F0*G0 + F1*G1);
+        // Number of operations to compute ip constants: 10
+        // Number of operations: 10
+        const double Gip0 = W3[ip]*(F0*G0 + F1*G2 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G1);
         
         
         // Number of operations for primary indices = 12
@@ -7762,7 +7221,7 @@ public:
           for (unsigned int k = 0; k < 2; k++)
           {
             // Number of operations to compute entry = 3
-            A[nzc5[j]*3 + nzc5[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip0;
+            A[nzc2[j]*3 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip0;
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -7899,66 +7358,70 @@ public:
     
     // Array of quadrature weights
     const static double W3[3] = {0.277777777777778, 0.444444444444444, 0.277777777777778};
+    // Quadrature points on the UFC reference element: (0.112701665379258), (0.5), (0.887298334620742)
     
-    
-    const static double FE3_f1_C1[3][3] = \
-    {{0.687298334620742, -0.0872983346207417, 0.4},
-    {0, 0, 1},
-    {-0.0872983346207417, 0.687298334620742, 0.4}};
-    // Array of non-zero columns
-    static const unsigned int nzc6[3] = {6, 8, 10};
-    // Array of non-zero columns
-    static const unsigned int nzc7[3] = {0, 2, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc8[3] = {0, 1, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc9[3] = {6, 7, 11};
-    // Array of non-zero columns
-    static const unsigned int nzc11[3] = {1, 2, 3};
-    // Array of non-zero columns
-    static const unsigned int nzc12[3] = {7, 8, 9};
-    
+    // Value of basis functions at quadrature points.
     const static double FE0_f1_D10[3][2] = \
     {{-1, 1},
     {-1, 1},
     {-1, 1}};
+    
     // Array of non-zero columns
     static const unsigned int nzc3[2] = {0, 1};
     // Array of non-zero columns
     static const unsigned int nzc10[2] = {0, 2};
-    
     const static double FE0_f0[3][2] = \
     {{0.887298334620742, 0.112701665379258},
     {0.5, 0.5},
     {0.112701665379258, 0.887298334620742}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {1, 2};
     // Array of non-zero columns
     static const unsigned int nzc1[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 1};
+    const static double FE1_f2_C0[3][3] = \
+    {{0.687298334620742, -0.0872983346207416, 0.4},
+    {0, 0, 1},
+    {-0.0872983346207417, 0.687298334620742, 0.4}};
     
-    // Number of operations to compute geometry constants: 104
+    // Array of non-zero columns
+    static const unsigned int nzc4[3] = {0, 1, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc5[3] = {6, 7, 11};
+    // Array of non-zero columns
+    static const unsigned int nzc8[3] = {1, 2, 3};
+    // Array of non-zero columns
+    static const unsigned int nzc9[3] = {7, 8, 9};
+    // Array of non-zero columns
+    static const unsigned int nzc11[3] = {6, 8, 10};
+    // Array of non-zero columns
+    static const unsigned int nzc12[3] = {0, 2, 4};
+    
+    // Number of operations to compute geometry constants: 111
     // Should be added to total operation count.
-    const double G0 =  - det*w[4][0]*(0.5*Jinv0_10*w[1][2] + 0.5*Jinv0_11*w[1][3]);
-    const double G1 =  - det*w[4][0]*(0.5*Jinv0_10*w[1][0] + 0.5*Jinv0_11*w[1][1]);
-    const double G2 =  - det*w[4][0]*(0.5*Jinv1_10*w[1][0] + 0.5*Jinv1_11*w[1][1]);
-    const double G3 =  - det*w[4][0]*(0.5*Jinv1_10*w[1][2] + 0.5*Jinv1_11*w[1][3]);
-    const double G4 =  - det*w[4][0]*(0.5*Jinv1_00*w[1][0] + 0.5*Jinv1_01*w[1][1]);
-    const double G5 = det*w[4][0]*w[5][0]*1/w[2][0]*(w[1][2]*w[1][2] + w[1][3]*w[1][3]);
-    const double G6 = det*w[1][2]*w[3][1];
-    const double G7 = det*w[1][3]*w[3][1];
-    const double G8 =  - det*w[4][0]*(0.5*Jinv1_00*w[1][2] + 0.5*Jinv1_01*w[1][3]);
-    const double G9 =  - det*w[4][0]*(0.5*Jinv0_00*w[1][2] + 0.5*Jinv0_01*w[1][3]);
-    const double G10 =  - det*w[4][0]*(0.5*Jinv0_00*w[1][0] + 0.5*Jinv0_01*w[1][1]);
-    const double G11 = det*w[4][0]*w[5][0]*1/w[2][0]*(w[1][0]*w[1][2] + w[1][1]*w[1][3]);
-    const double G12 = det*w[1][0]*w[3][1];
-    const double G13 = det*w[1][1]*w[3][1];
-    const double G14 = det*w[1][2]*w[3][0];
-    const double G15 = det*w[1][3]*w[3][0];
-    const double G16 = det*w[4][0]*w[5][0]*1/w[2][0]*(w[1][0]*w[1][0] + w[1][1]*w[1][1]);
-    const double G17 = det*w[1][0]*w[3][0];
-    const double G18 = det*w[1][1]*w[3][0];
+    const double G0 =  - det*w[3][0]*(0.5*Jinv0_10*w[1][2] + 0.5*Jinv0_11*w[1][3]);
+    const double G1 =  - det*w[3][0]*(0.5*Jinv0_10*w[1][0] + 0.5*Jinv0_11*w[1][1]);
+    const double G2 =  - det*w[3][0]*(0.5*Jinv0_00*w[1][0] + 0.5*Jinv0_01*w[1][1]);
+    const double G3 =  - det*w[3][0]*(0.5*Jinv1_10*w[1][0] + 0.5*Jinv1_11*w[1][1]);
+    const double G4 =  - det*w[3][0]*(0.5*Jinv1_10*w[1][2] + 0.5*Jinv1_11*w[1][3]);
+    const double G5 = det*w[3][0]*w[4][0]*1/w[2][0]*(w[1][2]*w[1][2] + w[1][3]*w[1][3]);
+    const double G6 = 0.5*det;
+    const double G7 = 0.5*det*w[1][2];
+    const double G8 = 0.5*det*w[1][3];
+    const double G9 =  - det*w[3][0]*(0.5*Jinv1_00*w[1][0] + 0.5*Jinv1_01*w[1][1]);
+    const double G10 =  - det*w[3][0]*(0.5*Jinv1_00*w[1][2] + 0.5*Jinv1_01*w[1][3]);
+    const double G11 =  - det*w[3][0]*(0.5*Jinv0_00*w[1][2] + 0.5*Jinv0_01*w[1][3]);
+    const double G12 = det*w[3][0]*w[4][0]*1/w[2][0]*(w[1][0]*w[1][2] + w[1][1]*w[1][3]);
+    const double G13 =  - 0.5*det*w[1][0];
+    const double G14 =  - 0.5*det;
+    const double G15 =  - 0.5*det*w[1][1];
+    const double G16 =  - 0.5*det*w[1][2];
+    const double G17 =  - 0.5*det*w[1][3];
+    const double G18 = det*w[3][0]*w[4][0]*1/w[2][0]*(w[1][0]*w[1][0] + w[1][1]*w[1][1]);
+    const double G19 = 0.5*det*w[1][0];
+    const double G20 = 0.5*det*w[1][1];
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -7969,25 +7432,29 @@ public:
       {
       case 0:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc11[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc12[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc8[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc9[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc8[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc9[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
           const double Gip0 = W3[ip]*G0;
           
@@ -8003,26 +7470,26 @@ public:
           // Number of operations: 1
           const double Gip4 = W3[ip]*G4;
           
-          // Number of operations: 5
-          const double Gip5 = W3[ip]*(G5 + F0*G6 + F1*G7);
+          // Number of operations: 11
+          const double Gip5 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
           // Number of operations: 1
-          const double Gip6 = W3[ip]*G8;
+          const double Gip6 = W3[ip]*G9;
           
           // Number of operations: 1
-          const double Gip7 = W3[ip]*G9;
+          const double Gip7 = W3[ip]*G10;
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G10;
+          const double Gip8 = W3[ip]*G11;
           
-          // Number of operations: 5
-          const double Gip9 = W3[ip]*(G11 + F0*G12 + F1*G13);
+          // Number of operations: 11
+          const double Gip9 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
-          // Number of operations: 5
-          const double Gip10 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip10 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
           
           // Number of operations for primary indices = 240
@@ -8035,41 +7502,41 @@ public:
               // Number of operations to compute entry = 3
               A[nzc0[j]*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip1;
               // Number of operations to compute entry = 3
-              A[(nzc10[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip2;
+              A[nzc3[j]*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip2;
+              // Number of operations to compute entry = 3
+              A[(nzc10[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip3;
               // Number of operations to compute entry = 3
               A[nzc10[j]*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip1;
               // Number of operations to compute entry = 3
-              A[(nzc10[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip3;
+              A[(nzc10[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip4;
               // Number of operations to compute entry = 3
               A[(nzc0[j] + 3)*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip0;
               // Number of operations to compute entry = 3
-              A[nzc0[j]*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc0[j]*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
               A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip5;
               // Number of operations to compute entry = 3
-              A[(nzc0[j] + 3)*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip6;
+              A[nzc0[j]*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip3;
               // Number of operations to compute entry = 3
-              A[nzc3[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip7;
+              A[nzc0[j]*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip6;
               // Number of operations to compute entry = 3
-              A[nzc3[j]*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip8;
+              A[(nzc0[j] + 3)*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip7;
               // Number of operations to compute entry = 3
-              A[(nzc3[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip6;
+              A[nzc3[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip8;
               // Number of operations to compute entry = 3
-              A[nzc0[j]*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip8;
+              A[(nzc0[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip9;
               // Number of operations to compute entry = 3
-              A[(nzc0[j] + 3)*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip7;
+              A[(nzc3[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip7;
               // Number of operations to compute entry = 3
-              A[nzc0[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip9;
+              A[nzc0[j]*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
               // Number of operations to compute entry = 3
-              A[(nzc0[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip10;
+              A[(nzc0[j] + 3)*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip8;
               // Number of operations to compute entry = 3
-              A[(nzc3[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip4;
+              A[nzc0[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip10;
               // Number of operations to compute entry = 3
               A[nzc0[j]*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip11;
               // Number of operations to compute entry = 3
-              A[(nzc0[j] + 3)*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip3;
+              A[(nzc3[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip6;
+              // Number of operations to compute entry = 3
+              A[(nzc0[j] + 3)*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip4;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8077,60 +7544,64 @@ public:
         break;
       case 1:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc11[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc12[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc8[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc9[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc12[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc11[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
-          const double Gip0 = W3[ip]*G8;
+          const double Gip0 = W3[ip]*G10;
           
           // Number of operations: 1
-          const double Gip1 = W3[ip]*G9;
+          const double Gip1 = W3[ip]*G11;
           
           // Number of operations: 1
           const double Gip2 = W3[ip]*G0;
           
-          // Number of operations: 5
-          const double Gip3 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip3 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
           // Number of operations: 1
-          const double Gip4 = W3[ip]*G2;
+          const double Gip4 = W3[ip]*G3;
           
           // Number of operations: 1
           const double Gip5 = W3[ip]*G1;
           
           // Number of operations: 1
-          const double Gip6 = W3[ip]*G3;
+          const double Gip6 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip7 = W3[ip]*G4;
+          const double Gip7 = W3[ip]*G9;
+          
+          // Number of operations: 11
+          const double Gip8 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G10;
+          const double Gip9 = W3[ip]*G2;
           
-          // Number of operations: 5
-          const double Gip9 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 11
+          const double Gip10 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
-          // Number of operations: 5
-          const double Gip10 = W3[ip]*(G5 + F0*G6 + F1*G7);
-          
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G11 + F0*G12 + F1*G13);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           
           // Number of operations for primary indices = 240
@@ -8153,29 +7624,29 @@ public:
               // Number of operations to compute entry = 3
               A[(nzc10[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip6;
               // Number of operations to compute entry = 3
+              A[(nzc1[j] + 3)*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
+              // Number of operations to compute entry = 3
               A[nzc3[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip1;
               // Number of operations to compute entry = 3
               A[nzc0[j]*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip7;
               // Number of operations to compute entry = 3
               A[nzc0[j]*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip4;
               // Number of operations to compute entry = 3
-              A[(nzc1[j] + 3)*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
+              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip8;
               // Number of operations to compute entry = 3
               A[(nzc3[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip0;
               // Number of operations to compute entry = 3
               A[(nzc3[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip7;
               // Number of operations to compute entry = 3
-              A[nzc3[j]*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip8;
+              A[nzc3[j]*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip9;
               // Number of operations to compute entry = 3
-              A[nzc0[j]*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip8;
+              A[nzc0[j]*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip9;
               // Number of operations to compute entry = 3
               A[nzc10[j]*6 + nzc0[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip5;
               // Number of operations to compute entry = 3
-              A[nzc0[j]*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip9;
+              A[nzc0[j]*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip10;
               // Number of operations to compute entry = 3
               A[(nzc1[j] + 3)*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip10;
               // Number of operations to compute entry = 3
               A[nzc0[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip11;
             }// end loop over 'k'
@@ -8185,25 +7656,29 @@ public:
         break;
       case 2:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc11[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc12[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc8[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc9[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc4[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc5[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
           const double Gip0 = W3[ip]*G1;
           
@@ -8211,34 +7686,34 @@ public:
           const double Gip1 = W3[ip]*G0;
           
           // Number of operations: 1
-          const double Gip2 = W3[ip]*G2;
+          const double Gip2 = W3[ip]*G3;
           
-          // Number of operations: 5
-          const double Gip3 = W3[ip]*(G11 + F0*G12 + F1*G13);
-          
-          // Number of operations: 1
-          const double Gip4 = W3[ip]*G3;
+          // Number of operations: 11
+          const double Gip3 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           // Number of operations: 1
-          const double Gip5 = W3[ip]*G4;
-          
-          // Number of operations: 5
-          const double Gip6 = W3[ip]*(G5 + F0*G6 + F1*G7);
-          
-          // Number of operations: 5
-          const double Gip7 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          const double Gip4 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G10;
+          const double Gip5 = W3[ip]*G9;
+          
+          // Number of operations: 11
+          const double Gip6 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
+          
+          // Number of operations: 11
+          const double Gip7 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
           // Number of operations: 1
-          const double Gip9 = W3[ip]*G8;
-          
-          // Number of operations: 5
-          const double Gip10 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          const double Gip8 = W3[ip]*G2;
           
           // Number of operations: 1
-          const double Gip11 = W3[ip]*G9;
+          const double Gip9 = W3[ip]*G10;
+          
+          // Number of operations: 11
+          const double Gip10 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
+          
+          // Number of operations: 1
+          const double Gip11 = W3[ip]*G11;
           
           
           // Number of operations for primary indices = 240
@@ -8298,60 +7773,64 @@ public:
       {
       case 0:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc7[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc6[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc12[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc11[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc8[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc9[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
           const double Gip0 = W3[ip]*G0;
           
-          // Number of operations: 5
-          const double Gip1 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip1 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
           // Number of operations: 1
-          const double Gip2 = W3[ip]*G3;
+          const double Gip2 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip3 = W3[ip]*G10;
+          const double Gip3 = W3[ip]*G2;
           
           // Number of operations: 1
-          const double Gip4 = W3[ip]*G4;
+          const double Gip4 = W3[ip]*G9;
           
-          // Number of operations: 5
-          const double Gip5 = W3[ip]*(G5 + F0*G6 + F1*G7);
-          
-          // Number of operations: 1
-          const double Gip6 = W3[ip]*G8;
-          
-          // Number of operations: 5
-          const double Gip7 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 11
+          const double Gip5 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G2;
+          const double Gip6 = W3[ip]*G10;
+          
+          // Number of operations: 11
+          const double Gip7 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
           // Number of operations: 1
-          const double Gip9 = W3[ip]*G9;
+          const double Gip8 = W3[ip]*G3;
+          
+          // Number of operations: 1
+          const double Gip9 = W3[ip]*G11;
           
           // Number of operations: 1
           const double Gip10 = W3[ip]*G1;
           
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G11 + F0*G12 + F1*G13);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           
           // Number of operations for primary indices = 240
@@ -8406,60 +7885,64 @@ public:
         break;
       case 1:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc7[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc6[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc12[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc11[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc12[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc11[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
-          const double Gip0 = W3[ip]*G9;
+          const double Gip0 = W3[ip]*G11;
           
           // Number of operations: 1
-          const double Gip1 = W3[ip]*G8;
+          const double Gip1 = W3[ip]*G10;
           
           // Number of operations: 1
           const double Gip2 = W3[ip]*G0;
           
           // Number of operations: 1
-          const double Gip3 = W3[ip]*G10;
+          const double Gip3 = W3[ip]*G2;
           
           // Number of operations: 1
-          const double Gip4 = W3[ip]*G3;
+          const double Gip4 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip5 = W3[ip]*G4;
+          const double Gip5 = W3[ip]*G9;
           
-          // Number of operations: 5
-          const double Gip6 = W3[ip]*(G5 + F0*G6 + F1*G7);
+          // Number of operations: 11
+          const double Gip6 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
+          
+          // Number of operations: 11
+          const double Gip7 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           // Number of operations: 1
-          const double Gip7 = W3[ip]*G1;
+          const double Gip8 = W3[ip]*G1;
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G2;
+          const double Gip9 = W3[ip]*G3;
           
-          // Number of operations: 5
-          const double Gip9 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip10 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
-          // Number of operations: 5
-          const double Gip10 = W3[ip]*(G16 + F0*G17 + F1*G18);
-          
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G11 + F0*G12 + F1*G13);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
           
           // Number of operations for primary indices = 240
@@ -8482,31 +7965,31 @@ public:
               // Number of operations to compute entry = 3
               A[nzc1[j]*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip5;
               // Number of operations to compute entry = 3
-              A[(nzc1[j] + 3)*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
               A[(nzc3[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip1;
               // Number of operations to compute entry = 3
-              A[nzc10[j]*6 + nzc1[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip7;
+              A[(nzc1[j] + 3)*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
               // Number of operations to compute entry = 3
-              A[nzc1[j]*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip8;
+              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip6;
               // Number of operations to compute entry = 3
-              A[(nzc1[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip9;
+              A[nzc1[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip7;
+              // Number of operations to compute entry = 3
+              A[nzc10[j]*6 + nzc1[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip8;
+              // Number of operations to compute entry = 3
+              A[nzc1[j]*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip9;
+              // Number of operations to compute entry = 3
+              A[(nzc1[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip10;
               // Number of operations to compute entry = 3
               A[nzc1[j]*6 + nzc3[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip3;
               // Number of operations to compute entry = 3
               A[(nzc3[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip5;
               // Number of operations to compute entry = 3
-              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[nzc1[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip11;
+              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip11;
               // Number of operations to compute entry = 3
               A[(nzc1[j] + 3)*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip4;
               // Number of operations to compute entry = 3
-              A[nzc1[j]*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip7;
+              A[nzc1[j]*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip8;
               // Number of operations to compute entry = 3
-              A[(nzc10[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip8;
+              A[(nzc10[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip9;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8514,60 +7997,64 @@ public:
         break;
       case 2:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc7[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc6[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc12[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc11[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc4[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc5[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
-          const double Gip0 = W3[ip]*G10;
+          const double Gip0 = W3[ip]*G2;
           
           // Number of operations: 1
           const double Gip1 = W3[ip]*G0;
           
-          // Number of operations: 5
-          const double Gip2 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 1
+          const double Gip2 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip3 = W3[ip]*G2;
+          const double Gip3 = W3[ip]*G3;
           
           // Number of operations: 1
-          const double Gip4 = W3[ip]*G4;
+          const double Gip4 = W3[ip]*G9;
           
-          // Number of operations: 5
-          const double Gip5 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip5 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
+          
+          // Number of operations: 11
+          const double Gip6 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           // Number of operations: 1
-          const double Gip6 = W3[ip]*G3;
+          const double Gip7 = W3[ip]*G10;
           
-          // Number of operations: 1
-          const double Gip7 = W3[ip]*G8;
+          // Number of operations: 11
+          const double Gip8 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
-          // Number of operations: 5
-          const double Gip8 = W3[ip]*(G11 + F0*G12 + F1*G13);
-          
-          // Number of operations: 5
-          const double Gip9 = W3[ip]*(G5 + F0*G6 + F1*G7);
+          // Number of operations: 11
+          const double Gip9 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
           // Number of operations: 1
           const double Gip10 = W3[ip]*G1;
           
           // Number of operations: 1
-          const double Gip11 = W3[ip]*G9;
+          const double Gip11 = W3[ip]*G11;
           
           
           // Number of operations for primary indices = 240
@@ -8580,7 +8067,7 @@ public:
               // Number of operations to compute entry = 3
               A[nzc10[j]*6 + (nzc2[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip1;
               // Number of operations to compute entry = 3
-              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip2;
+              A[(nzc2[j] + 3)*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip2;
               // Number of operations to compute entry = 3
               A[nzc1[j]*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip3;
               // Number of operations to compute entry = 3
@@ -8588,11 +8075,11 @@ public:
               // Number of operations to compute entry = 3
               A[(nzc2[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip5;
               // Number of operations to compute entry = 3
-              A[(nzc2[j] + 3)*6 + (nzc10[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip6;
+              A[nzc1[j]*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip6;
               // Number of operations to compute entry = 3
               A[(nzc2[j] + 3)*6 + (nzc3[k] + 3)] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip7;
               // Number of operations to compute entry = 3
-              A[nzc1[j]*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip8;
+              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip8;
               // Number of operations to compute entry = 3
               A[(nzc2[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*Gip9;
               // Number of operations to compute entry = 3
@@ -8610,7 +8097,7 @@ public:
               // Number of operations to compute entry = 3
               A[(nzc3[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip7;
               // Number of operations to compute entry = 3
-              A[(nzc10[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip6;
+              A[(nzc10[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][k]*FE0_f1_D10[ip][j]*Gip2;
               // Number of operations to compute entry = 3
               A[nzc1[j]*6 + nzc10[k]] += FE0_f0[ip][j]*FE0_f1_D10[ip][k]*Gip10;
               // Number of operations to compute entry = 3
@@ -8627,60 +8114,64 @@ public:
       {
       case 0:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc8[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc9[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc4[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc5[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc8[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc9[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
-          const double Gip0 = W3[ip]*G2;
+          const double Gip0 = W3[ip]*G3;
           
           // Number of operations: 1
           const double Gip1 = W3[ip]*G0;
           
-          // Number of operations: 5
-          const double Gip2 = W3[ip]*(G11 + F0*G12 + F1*G13);
+          // Number of operations: 11
+          const double Gip2 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           // Number of operations: 1
-          const double Gip3 = W3[ip]*G4;
+          const double Gip3 = W3[ip]*G9;
           
           // Number of operations: 1
-          const double Gip4 = W3[ip]*G3;
+          const double Gip4 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip5 = W3[ip]*G10;
+          const double Gip5 = W3[ip]*G2;
           
           // Number of operations: 1
           const double Gip6 = W3[ip]*G1;
           
-          // Number of operations: 5
-          const double Gip7 = W3[ip]*(G5 + F0*G6 + F1*G7);
+          // Number of operations: 11
+          const double Gip7 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G8;
+          const double Gip8 = W3[ip]*G10;
           
           // Number of operations: 1
-          const double Gip9 = W3[ip]*G9;
+          const double Gip9 = W3[ip]*G11;
           
-          // Number of operations: 5
-          const double Gip10 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip10 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
           
           // Number of operations for primary indices = 240
@@ -8735,60 +8226,64 @@ public:
         break;
       case 1:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc8[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc9[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc4[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc5[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc12[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc11[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
+          // Number of operations to compute ip constants: 52
           // Number of operations: 1
-          const double Gip0 = W3[ip]*G2;
-          
-          // Number of operations: 1
-          const double Gip1 = W3[ip]*G8;
+          const double Gip0 = W3[ip]*G3;
           
           // Number of operations: 1
-          const double Gip2 = W3[ip]*G9;
+          const double Gip1 = W3[ip]*G10;
           
           // Number of operations: 1
-          const double Gip3 = W3[ip]*G4;
-          
-          // Number of operations: 5
-          const double Gip4 = W3[ip]*(G11 + F0*G12 + F1*G13);
-          
-          // Number of operations: 5
-          const double Gip5 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          const double Gip2 = W3[ip]*G11;
           
           // Number of operations: 1
-          const double Gip6 = W3[ip]*G3;
+          const double Gip3 = W3[ip]*G9;
+          
+          // Number of operations: 11
+          const double Gip4 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
+          
+          // Number of operations: 11
+          const double Gip5 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
+          
+          // Number of operations: 1
+          const double Gip6 = W3[ip]*G4;
           
           // Number of operations: 1
           const double Gip7 = W3[ip]*G1;
           
           // Number of operations: 1
-          const double Gip8 = W3[ip]*G10;
+          const double Gip8 = W3[ip]*G2;
           
           // Number of operations: 1
           const double Gip9 = W3[ip]*G0;
           
-          // Number of operations: 5
-          const double Gip10 = W3[ip]*(G5 + F0*G6 + F1*G7);
+          // Number of operations: 11
+          const double Gip10 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
           
           // Number of operations for primary indices = 240
@@ -8843,60 +8338,64 @@ public:
         break;
       case 2:
         {
-        // Total number of operations to compute element tensor (from this point): 840
+        // Total number of operations to compute element tensor (from this point): 948
         
         // Loop quadrature points for integral
-        // Number of operations to compute element tensor for following IP loop = 840
+        // Number of operations to compute element tensor for following IP loop = 948
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
           // Function declarations
           double F0 = 0;
           double F1 = 0;
+          double F2 = 0;
+          double F3 = 0;
           
-          // Total number of operations to compute function values = 12
+          // Total number of operations to compute function values = 24
           for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE3_f1_C1[ip][r]*w[0][nzc8[r]];
-            F1 += FE3_f1_C1[ip][r]*w[0][nzc9[r]];
+            F0 += FE1_f2_C0[ip][r]*w[0][nzc4[r]];
+            F1 += FE1_f2_C0[ip][r]*w[0][nzc5[r]];
+            F2 += FE1_f2_C0[ip][r]*w[0][nzc4[r] + 12];
+            F3 += FE1_f2_C0[ip][r]*w[0][nzc5[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations to compute ip constants: 28
-          // Number of operations: 5
-          const double Gip0 = W3[ip]*(G11 + F0*G12 + F1*G13);
+          // Number of operations to compute ip constants: 52
+          // Number of operations: 11
+          const double Gip0 = W3[ip]*(G12 + F2*G16 + F3*G17 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G14);
           
           // Number of operations: 1
-          const double Gip1 = W3[ip]*G2;
+          const double Gip1 = W3[ip]*G3;
           
           // Number of operations: 1
           const double Gip2 = W3[ip]*G0;
           
           // Number of operations: 1
-          const double Gip3 = W3[ip]*G4;
+          const double Gip3 = W3[ip]*G9;
           
           // Number of operations: 1
           const double Gip4 = W3[ip]*G1;
           
           // Number of operations: 1
-          const double Gip5 = W3[ip]*G10;
+          const double Gip5 = W3[ip]*G2;
           
           // Number of operations: 1
-          const double Gip6 = W3[ip]*G3;
+          const double Gip6 = W3[ip]*G4;
           
           // Number of operations: 1
-          const double Gip7 = W3[ip]*G8;
+          const double Gip7 = W3[ip]*G10;
           
-          // Number of operations: 5
-          const double Gip8 = W3[ip]*(G5 + F0*G6 + F1*G7);
+          // Number of operations: 11
+          const double Gip8 = W3[ip]*(G5 + F2*G7 + F3*G8 + std::abs((w[1][2]*F2 + w[1][3]*F3))*G6);
           
-          // Number of operations: 5
-          const double Gip9 = W3[ip]*(G11 + F0*G14 + F1*G15);
+          // Number of operations: 11
+          const double Gip9 = W3[ip]*(G12 + F0*G13 + F1*G15 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G14);
           
           // Number of operations: 1
-          const double Gip10 = W3[ip]*G9;
+          const double Gip10 = W3[ip]*G11;
           
-          // Number of operations: 5
-          const double Gip11 = W3[ip]*(G16 + F0*G17 + F1*G18);
+          // Number of operations: 11
+          const double Gip11 = W3[ip]*(G18 + F0*G19 + F1*G20 + std::abs((w[1][0]*F0 + w[1][1]*F1))*G6);
           
           
           // Number of operations for primary indices = 240
@@ -9066,7 +8565,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(Sum(ComponentTensor(Product(Constant(Cell('triangle', 1), 4), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(IntValue(-1, (), (), {}), Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1), 2, 2), 0), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(Product(Indexed(PositiveRestricted(Function(VectorElement('Lagrange', Cell('triangle', 1), 2, 2), 0)), MultiIndex((Index(6),), {Index(6): 2})), Sum(Product(NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1)), NegativeRestricted(Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 0), 3))), Product(PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1)), PositiveRestricted(Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 0), 3))))), MultiIndex((Index(6),), {Index(6): 2})), MultiIndex((Index(7),), {Index(7): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(8),), {Index(8): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0))), MultiIndex((Index(8),), {Index(8): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(9),), {Index(9): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0))), MultiIndex((Index(9),), {Index(9): 2}))), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(7),), {Index(7): 2})), Sum(Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(11),), {Index(11): 2})), MultiIndex((Index(11),), {Index(11): 2})))), MultiIndex((Index(12),), {Index(12): 2}))), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(14),), {Index(14): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0))), MultiIndex((Index(14),), {Index(14): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(15),), {Index(15): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0))), MultiIndex((Index(15),), {Index(15): 2}))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(Constant(Cell('triangle', 1), 4)))), Sum(Product(Division(Product(PositiveRestricted(Constant(Cell('triangle', 1), 4)), PositiveRestricted(Constant(Cell('triangle', 1), 5))), PositiveRestricted(Constant(Cell('triangle', 1), 2))), IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(16),), {Index(16): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0))), MultiIndex((Index(16),), {Index(16): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(17),), {Index(17): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(19),), {Index(19): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1))), MultiIndex((Index(19),), {Index(19): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(20),), {Index(20): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1))), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21),), {Index(21): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})))), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(25),), {Index(25): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1))), MultiIndex((Index(25),), {Index(25): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1), 2, 1)), MultiIndex((Index(26),), {Index(26): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1))), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2})), PositiveRestricted(Constant(Cell('triangle', 1), 4))))))), Measure('interior_facet', 0, None)), Integral(IndexSum(Product(Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), Indexed(VectorConstant(Cell('triangle', 1), 2, 1), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2})), MultiIndex((Index(28),), {Index(28): 2})), Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 1), Indexed(ComponentTensor(Product(Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 0), 3), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1), 2, 2), 0), MultiIndex((Index(29),), {Index(29): 2}))), MultiIndex((Index(29),), {Index(29): 2})), MultiIndex((Index(30),), {Index(30): 2}))), MultiIndex((Index(30),), {Index(30): 2})), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2})), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(Sum(ComponentTensor(Product(Constant(Cell('triangle', 1, Space(2)), 3), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(IntValue(-1, (), (), {}), Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Sum(PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Product(IntValue(-1, (), (), {}), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Sum(Product(IntValue(-1, (), (), {}), Product(NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), NegativeRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(7),), {Index(7): 2})), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(7),), {Index(7): 2}))), FloatValue(2.0, (), (), {}))))), Product(PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), PositiveRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(8),), {Index(8): 2})), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1), MultiIndex((Index(8),), {Index(8): 2}))), MultiIndex((Index(8),), {Index(8): 2}))), IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(9),), {Index(9): 2})), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1), MultiIndex((Index(9),), {Index(9): 2}))), MultiIndex((Index(9),), {Index(9): 2}))), FloatValue(2.0, (), (), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(11),), {Index(11): 2})), MultiIndex((Index(11),), {Index(11): 2})))), MultiIndex((Index(12),), {Index(12): 2}))), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(14),), {Index(14): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(14),), {Index(14): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(15),), {Index(15): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(15),), {Index(15): 2}))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 3)))), Sum(Product(IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(16),), {Index(16): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(16),), {Index(16): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(17),), {Index(17): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(19),), {Index(19): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(19),), {Index(19): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(20),), {Index(20): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Product(Division(PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 4)), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2))), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 3)))), Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21),), {Index(21): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})))), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(25),), {Index(25): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(25),), {Index(25): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1)), MultiIndex((Index(26),), {Index(26): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2})), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 3))))))), Measure('interior_facet', 0, None)), Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Division(Sum(Abs(IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(27),), {Index(27): 2})), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2}))), IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(28),), {Index(28): 2})), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 1), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2}))), FloatValue(2.0, (), (), {})))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -9078,7 +8577,7 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 6;
+    return 5;
   }
 
   /// Return the number of cell integrals
@@ -9125,9 +8624,6 @@ public:
     case 6:
       return new advectiondiffusion_0_finite_element_6();
       break;
-    case 7:
-      return new advectiondiffusion_0_finite_element_7();
-      break;
     }
     return 0;
   }
@@ -9157,9 +8653,6 @@ public:
       break;
     case 6:
       return new advectiondiffusion_0_dof_map_6();
-      break;
-    case 7:
-      return new advectiondiffusion_0_dof_map_7();
       break;
     }
     return 0;
@@ -10402,13 +9895,15 @@ public:
     
     // Array of quadrature weights
     const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
+    // Value of basis functions at quadrature points.
     const static double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -10518,7 +10013,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10668,7 +10163,7 @@ class CoefficientSet
 public:
 
   CoefficientSet():
-    alpha("alpha"), b("b"), f("f"), h("h"), kappa("kappa"), n("n"), of("of")
+    alpha("alpha"), f("f"), h("h"), kappa("kappa"), n("n"), u("u")
   {}
   
   ~CoefficientSet()
@@ -10676,7 +10171,7 @@ public:
 
   dolfin::uint num_coefficients() const
   {
-    return 7;
+    return 6;
   }
 
   std::string name(dolfin::uint i) const
@@ -10684,12 +10179,11 @@ public:
     switch(i)
     {
     case 0: return "alpha";
-    case 1: return "b";
-    case 2: return "f";
-    case 3: return "h";
-    case 4: return "kappa";
-    case 5: return "n";
-    case 6: return "of";
+    case 1: return "f";
+    case 2: return "h";
+    case 3: return "kappa";
+    case 4: return "n";
+    case 5: return "u";
     default:
         throw std::runtime_error("Invalid coefficient number.");
     }
@@ -10704,12 +10198,11 @@ public:
   }
 
   CoefficientReference alpha;
-  CoefficientReference b;
   CoefficientReference f;
   CoefficientReference h;
   CoefficientReference kappa;
   CoefficientReference n;
-  CoefficientReference of;
+  CoefficientReference u;
 };
 
 class CoefficientSpace_alpha: public dolfin::FunctionSpace
@@ -10719,82 +10212,38 @@ public:
 
   CoefficientSpace_alpha(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_7()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_7()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   CoefficientSpace_alpha(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_7()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_7()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   CoefficientSpace_alpha(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_7()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_7()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_alpha(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_7()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_7()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), mesh)))
   {
       // Do nothing
   }
  
 
   ~CoefficientSpace_alpha()
-  {
-  }
-  
-};
-
-class CoefficientSpace_b: public dolfin::FunctionSpace
-{
-public:
-
-
-  CoefficientSpace_b(const dolfin::Mesh & mesh):
-      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_b(dolfin::Mesh & mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_b(boost::shared_ptr<dolfin::Mesh> mesh):
-      dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), mesh)))
-  {
-      // Do nothing
-  }
-
-  CoefficientSpace_b(boost::shared_ptr<const dolfin::Mesh> mesh):
-      dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), mesh)))
-  {
-      // Do nothing
-  }
- 
-
-  ~CoefficientSpace_b()
   {
   }
   
@@ -10895,32 +10344,32 @@ public:
 
   CoefficientSpace_kappa(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   CoefficientSpace_kappa(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   CoefficientSpace_kappa(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_kappa(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_6()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_6()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), mesh)))
   {
       // Do nothing
   }
@@ -10976,45 +10425,45 @@ public:
   
 };
 
-class CoefficientSpace_of: public dolfin::FunctionSpace
+class CoefficientSpace_u: public dolfin::FunctionSpace
 {
 public:
 
 
-  CoefficientSpace_of(const dolfin::Mesh & mesh):
+  CoefficientSpace_u(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-  CoefficientSpace_of(dolfin::Mesh & mesh):
+  CoefficientSpace_u(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
-  CoefficientSpace_of(boost::shared_ptr<dolfin::Mesh> mesh):
+  CoefficientSpace_u(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), mesh)))
   {
       // Do nothing
   }
 
-  CoefficientSpace_of(boost::shared_ptr<const dolfin::Mesh> mesh):
+  CoefficientSpace_u(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_5()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_0_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_0_dof_map_2()), mesh)))
   {
       // Do nothing
   }
  
 
-  ~CoefficientSpace_of()
+  ~CoefficientSpace_u()
   {
   }
   
@@ -11108,36 +10557,34 @@ public:
   
 };
 
-typedef CoefficientSpace_b Form_0_FunctionSpace_2;
+typedef CoefficientSpace_u Form_0_FunctionSpace_2;
 
 typedef CoefficientSpace_n Form_0_FunctionSpace_3;
 
 typedef CoefficientSpace_h Form_0_FunctionSpace_4;
 
-typedef CoefficientSpace_of Form_0_FunctionSpace_5;
+typedef CoefficientSpace_kappa Form_0_FunctionSpace_5;
 
-typedef CoefficientSpace_kappa Form_0_FunctionSpace_6;
+typedef CoefficientSpace_alpha Form_0_FunctionSpace_6;
 
-typedef CoefficientSpace_alpha Form_0_FunctionSpace_7;
-
-class Form_0_Coefficient_b: public dolfin::Coefficient
+class Form_0_Coefficient_u: public dolfin::Coefficient
 {
 public:
 
-  Form_0_Coefficient_b(dolfin::Form & form):
+  Form_0_Coefficient_u(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_0_Coefficient_b()
+  ~Form_0_Coefficient_u()
   {}
 
-  const Form_0_Coefficient_b& operator=(dolfin::Function & f)
+  const Form_0_Coefficient_u& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_0_Coefficient_b& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_0_Coefficient_u& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -11155,7 +10602,7 @@ public:
 
   std::string name() const
   {
-    return "b";
+    return "u";
   }
 
 };
@@ -11240,46 +10687,6 @@ public:
 
 };
 
-class Form_0_Coefficient_of: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_of(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_of()
-  {}
-
-  const Form_0_Coefficient_of& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_of& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_5(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 3;
-  }
-
-  std::string name() const
-  {
-    return "of";
-  }
-
-};
-
 class Form_0_Coefficient_kappa: public dolfin::Coefficient
 {
 public:
@@ -11305,12 +10712,12 @@ public:
   
   const dolfin::FunctionSpace * create_function_space() const
   {
-    return new Form_0_FunctionSpace_6(form.mesh());
+    return new Form_0_FunctionSpace_5(form.mesh());
   }
   
   dolfin::uint number() const
   {
-    return 4;
+    return 3;
   }
 
   std::string name() const
@@ -11345,12 +10752,12 @@ public:
   
   const dolfin::FunctionSpace * create_function_space() const
   {
-    return new Form_0_FunctionSpace_7(form.mesh());
+    return new Form_0_FunctionSpace_6(form.mesh());
   }
   
   dolfin::uint number() const
   {
-    return 5;
+    return 4;
   }
 
   std::string name() const
@@ -11366,7 +10773,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -11379,7 +10786,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -11393,8 +10800,8 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _b, dolfin::Function & _n, dolfin::Function & _h, dolfin::Function & _of, dolfin::Function & _kappa, dolfin::Function & _alpha):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _u, dolfin::Function & _n, dolfin::Function & _h, dolfin::Function & _kappa, dolfin::Function & _alpha):
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -11402,17 +10809,15 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    boost::shared_ptr<dolfin::Function> _pb = dolfin::reference_to_no_delete_pointer(_b);
+    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
     boost::shared_ptr<dolfin::Function> _pn = dolfin::reference_to_no_delete_pointer(_n);
     boost::shared_ptr<dolfin::Function> _ph = dolfin::reference_to_no_delete_pointer(_h);
-    boost::shared_ptr<dolfin::Function> _pof = dolfin::reference_to_no_delete_pointer(_of);
     boost::shared_ptr<dolfin::Function> _pkappa = dolfin::reference_to_no_delete_pointer(_kappa);
     boost::shared_ptr<dolfin::Function> _palpha = dolfin::reference_to_no_delete_pointer(_alpha);
 
-    b = _pb;
+    u = _pu;
     n = _pn;
     h = _ph;
-    of = _pof;
     kappa = _pkappa;
     alpha = _palpha;
 
@@ -11420,8 +10825,8 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pb, boost::shared_ptr<dolfin::Function> _pn, boost::shared_ptr<dolfin::Function> _ph, boost::shared_ptr<dolfin::Function> _pof, boost::shared_ptr<dolfin::Function> _pkappa, boost::shared_ptr<dolfin::Function> _palpha):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pu, boost::shared_ptr<dolfin::Function> _pn, boost::shared_ptr<dolfin::Function> _ph, boost::shared_ptr<dolfin::Function> _pkappa, boost::shared_ptr<dolfin::Function> _palpha):
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -11429,10 +10834,9 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    b = _pb;
+    u = _pu;
     n = _pn;
     h = _ph;
-    of = _pof;
     kappa = _pkappa;
     alpha = _palpha;
 
@@ -11441,7 +10845,7 @@ public:
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
@@ -11451,7 +10855,7 @@ public:
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
@@ -11462,23 +10866,21 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _b, dolfin::Function & _n, dolfin::Function & _h, dolfin::Function & _of, dolfin::Function & _kappa, dolfin::Function & _alpha):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _u, dolfin::Function & _n, dolfin::Function & _h, dolfin::Function & _kappa, dolfin::Function & _alpha):
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    boost::shared_ptr<dolfin::Function> _pb = dolfin::reference_to_no_delete_pointer(_b);
+    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
     boost::shared_ptr<dolfin::Function> _pn = dolfin::reference_to_no_delete_pointer(_n);
     boost::shared_ptr<dolfin::Function> _ph = dolfin::reference_to_no_delete_pointer(_h);
-    boost::shared_ptr<dolfin::Function> _pof = dolfin::reference_to_no_delete_pointer(_of);
     boost::shared_ptr<dolfin::Function> _pkappa = dolfin::reference_to_no_delete_pointer(_kappa);
     boost::shared_ptr<dolfin::Function> _palpha = dolfin::reference_to_no_delete_pointer(_alpha);
 
-    b = _pb;
+    u = _pu;
     n = _pn;
     h = _ph;
-    of = _pof;
     kappa = _pkappa;
     alpha = _palpha;
 
@@ -11486,16 +10888,15 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pb, boost::shared_ptr<dolfin::Function> _pn, boost::shared_ptr<dolfin::Function> _ph, boost::shared_ptr<dolfin::Function> _pof, boost::shared_ptr<dolfin::Function> _pkappa, boost::shared_ptr<dolfin::Function> _palpha):
-    dolfin::Form(2, 6), b(*this), n(*this), h(*this), of(*this), kappa(*this), alpha(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pu, boost::shared_ptr<dolfin::Function> _pn, boost::shared_ptr<dolfin::Function> _ph, boost::shared_ptr<dolfin::Function> _pkappa, boost::shared_ptr<dolfin::Function> _palpha):
+    dolfin::Form(2, 5), u(*this), n(*this), h(*this), kappa(*this), alpha(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    b = _pb;
+    u = _pu;
     n = _pn;
     h = _ph;
-    of = _pof;
     kappa = _pkappa;
     alpha = _palpha;
 
@@ -11508,10 +10909,9 @@ public:
 
   void update_coefficients(const CoefficientSet & coefficients)
   {
-    b = coefficients.b.function_pointer();
+    u = coefficients.u.function_pointer();
     n = coefficients.n.function_pointer();
     h = coefficients.h.function_pointer();
-    of = coefficients.of.function_pointer();
     kappa = coefficients.kappa.function_pointer();
     alpha = coefficients.alpha.function_pointer();
   }
@@ -11519,12 +10919,11 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string & name) const
   {
-    if(name == "b") return 0;
+    if(name == "u") return 0;
     else if(name == "n") return 1;
     else if(name == "h") return 2;
-    else if(name == "of") return 3;
-    else if(name == "kappa") return 4;
-    else if(name == "alpha") return 5;
+    else if(name == "kappa") return 3;
+    else if(name == "alpha") return 4;
     dolfin::error("Invalid coefficient.");
     return 0;
   }
@@ -11534,12 +10933,11 @@ public:
   {
     switch(i)
     {
-      case 0: return "b";
+      case 0: return "u";
       case 1: return "n";
       case 2: return "h";
-      case 3: return "of";
-      case 4: return "kappa";
-      case 5: return "alpha";
+      case 3: return "kappa";
+      case 4: return "alpha";
     }
     dolfin::error("Invalid coefficient.");
     return "unnamed";
@@ -11548,18 +10946,16 @@ public:
   // Typedefs
   typedef Form_0_FunctionSpace_0 TestSpace;
   typedef Form_0_FunctionSpace_1 TrialSpace;
-  typedef Form_0_FunctionSpace_2 CoefficientSpace_b;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_u;
   typedef Form_0_FunctionSpace_3 CoefficientSpace_n;
   typedef Form_0_FunctionSpace_4 CoefficientSpace_h;
-  typedef Form_0_FunctionSpace_5 CoefficientSpace_of;
-  typedef Form_0_FunctionSpace_6 CoefficientSpace_kappa;
-  typedef Form_0_FunctionSpace_7 CoefficientSpace_alpha;
+  typedef Form_0_FunctionSpace_5 CoefficientSpace_kappa;
+  typedef Form_0_FunctionSpace_6 CoefficientSpace_alpha;
 
   // Coefficients
-  Form_0_Coefficient_b b;
+  Form_0_Coefficient_u u;
   Form_0_Coefficient_n n;
   Form_0_Coefficient_h h;
-  Form_0_Coefficient_of of;
   Form_0_Coefficient_kappa kappa;
   Form_0_Coefficient_alpha alpha;
 };
