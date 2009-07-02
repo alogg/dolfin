@@ -2,7 +2,7 @@
 
 using namespace dolfin;
 
-class tentusscher: public dolfin::ODE
+class Tentusscher: public dolfin::ODE
 {
 
     protected:
@@ -60,13 +60,13 @@ class tentusscher: public dolfin::ODE
         real dt;
 
     public:
-        tentusscher(real t_stop) : dolfin::ODE(19, t_stop), GNa(14.838), R(8314.472), F(96485.3415), T(310.0), RTonF(26.7137606597), Nao(140.0), GK1(5.405), Ko(5.4), GKr(0.153), pKNa(0.03), GCaL(3.98e-05), Cao(2.0), kNaCa(1000.0), gamma(0.35), alpha(2.5), KmNai(87.5), KmCa(1.38), ksat(0.1), PNaK(2.724), KmK(1.0), KmNa(40.0), GpCa(0.1238), KpCa(0.0005), GpK(0.0146), GbCa(0.000592), GbNa(0.00029), Cm(0.185), km2(0.045), maxSR(2.5), minSR(1.0), EC(1.5), k4(0.005), Vc(0.016404), Vsr(0.001094), Vleak(0.00036), Vmaxup(0.006375), Kup(0.00025), Vxfer(0.0038), Vrel(0.102), k3(0.06), km1(0.15), Vss(5.468e-05), Bufc(0.2), Kbufc(0.001), Bufss(0.4), Kbufss(0.00025), Bufsr(10.0), Kbufsr(0.3), Gto(0.294), GKs(0.392)
+        Tentusscher(real t_stop) : dolfin::ODE(19, t_stop), GNa(14.838), R(8314.472), F(96485.3415), T(310.0), RTonF(26.7137606597), Nao(140.0), GK1(5.405), Ko(5.4), GKr(0.153), pKNa(0.03), GCaL(3.98e-05), Cao(2.0), kNaCa(1000.0), gamma(0.35), alpha(2.5), KmNai(87.5), KmCa(1.38), ksat(0.1), PNaK(2.724), KmK(1.0), KmNa(40.0), GpCa(0.1238), KpCa(0.0005), GpK(0.0146), GbCa(0.000592), GbNa(0.00029), Cm(0.185), km2(0.045), maxSR(2.5), minSR(1.0), EC(1.5), k4(0.005), Vc(0.016404), Vsr(0.001094), Vleak(0.00036), Vmaxup(0.006375), Kup(0.00025), Vxfer(0.0038), Vrel(0.102), k3(0.06), km1(0.15), Vss(5.468e-05), Bufc(0.2), Kbufc(0.001), Bufss(0.4), Kbufss(0.00025), Bufsr(10.0), Kbufsr(0.3), Gto(0.294), GKs(0.392)
         {
             ist = 0.0;
             dt = 0.1;
         }
 
-    ~tentusscher() {}
+    ~Tentusscher() {}
 
         void f(const real* u, real t, real* y) {
 
