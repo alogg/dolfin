@@ -790,7 +790,8 @@ public:
       num_derivatives *= 3;
     
     
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    // Declare pointer to two dimensional array that holds combinations 
+    // of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
         
     for (unsigned int j = 0; j < num_derivatives; j++)
