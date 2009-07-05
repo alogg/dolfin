@@ -5,7 +5,7 @@ using namespace dolfin;
 int main (int argc, char* argv[])
 {
   // Application parameter database
-  NewParameters application_parameters("application_parameters");
+  Parameters application_parameters("application_parameters");
 
   // Set application parameters
   application_parameters.add("foo", 1.0);
@@ -13,7 +13,7 @@ int main (int argc, char* argv[])
   application_parameters.add("pc", "amg");
 
   // Solver parameter database
-  NewParameters solver_parameters("solver_parameters");
+  Parameters solver_parameters("solver_parameters");
 
   // Set solver parameters
   solver_parameters.add("max_iterations", 100);
@@ -51,10 +51,10 @@ int main (int argc, char* argv[])
   info(solver.parameters);
   
   // Solver parameter database to be used together with update
-  NewParameters parameter_subset("parameter_subset");
+  Parameters parameter_subset("parameter_subset");
   parameter_subset.add("foo", 3.0);
   
-  NewParameters nested_subset("solver_parameters");
+  Parameters nested_subset("solver_parameters");
   nested_subset.add("max_iterations", 850);
   
   parameter_subset.add(nested_subset);

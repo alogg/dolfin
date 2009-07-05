@@ -1,12 +1,12 @@
 from dolfin import *
-from dolfin.cpp import NewParameters
+from dolfin.cpp import Parameters
 
 # Application parameter database
-app_params = NewParameters("application_parameters",
+app_params = Parameters("application_parameters",
                            foo=1.0,
                            bar=100,
                            pc="amg",
-                           solver = NewParameters("solver",
+                           solver = Parameters("solver",
                                                   max_iterations = 100,
                                                   tolerance = 1e-16,
                                                   relative_tolerance = (1e-16, 1e-16, 1.0),
@@ -41,9 +41,9 @@ logger.info(solver.parameters)
 # Test a the use of update
 
 # Update using an other Parameters
-subset1 = NewParameters("subset",
+subset1 = Parameters("subset",
                        foo=3.0,
-                       nested_subset = NewParameters("solver",
+                       nested_subset = Parameters("solver",
                                                      max_iterations=850))
 
 app_params.update(subset1)

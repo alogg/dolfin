@@ -3760,7 +3760,7 @@ Destructor. ";
 
 Parameter with value type bool.
 
-C++ includes: NewParameter.h ";
+C++ includes: Parameter.h ";
 
 %feature("docstring")  dolfin::NewBoolParameter::NewBoolParameter "
 
@@ -3792,7 +3792,7 @@ Return short string description. ";
 
 Parameter with value type double.
 
-C++ includes: NewParameter.h ";
+C++ includes: Parameter.h ";
 
 %feature("docstring")  dolfin::NewDoubleParameter::NewDoubleParameter
 "
@@ -3830,7 +3830,7 @@ Return short string description. ";
 
 Parameter with value type int.
 
-C++ includes: NewParameter.h ";
+C++ includes: Parameter.h ";
 
 %feature("docstring")  dolfin::NewIntParameter::NewIntParameter "
 
@@ -3861,68 +3861,68 @@ Return range string. ";
 Return short string description. ";
 
 
-// File: classdolfin_1_1NewParameter.xml
-%feature("docstring") dolfin::NewParameter "
+// File: classdolfin_1_1Parameter.xml
+%feature("docstring") dolfin::Parameter "
 
 Base class for parameters.
 
-C++ includes: NewParameter.h ";
+C++ includes: Parameter.h ";
 
-%feature("docstring")  dolfin::NewParameter::NewParameter "
+%feature("docstring")  dolfin::Parameter::Parameter "
 
 Create parameter for given key. ";
 
-%feature("docstring")  dolfin::NewParameter::~NewParameter "
+%feature("docstring")  dolfin::Parameter::~Parameter "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::NewParameter::key "
+%feature("docstring")  dolfin::Parameter::key "
 
 Return parameter key. ";
 
-%feature("docstring")  dolfin::NewParameter::description "
+%feature("docstring")  dolfin::Parameter::description "
 
 Return parameter description. ";
 
-%feature("docstring")  dolfin::NewParameter::access_count "
+%feature("docstring")  dolfin::Parameter::access_count "
 
 Return access count (number of times parameter has been accessed). ";
 
-%feature("docstring")  dolfin::NewParameter::change_count "
+%feature("docstring")  dolfin::Parameter::change_count "
 
 Return change count (number of times parameter has been changed). ";
 
-%feature("docstring")  dolfin::NewParameter::set_range "
+%feature("docstring")  dolfin::Parameter::set_range "
 
 Set range for int-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameter::set_range "
+%feature("docstring")  dolfin::Parameter::set_range "
 
 Set range for double-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameter::set_range "
+%feature("docstring")  dolfin::Parameter::set_range "
 
 Set range for string-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameter::type_str "
+%feature("docstring")  dolfin::Parameter::type_str "
 
 Return value type string. ";
 
-%feature("docstring")  dolfin::NewParameter::value_str "
+%feature("docstring")  dolfin::Parameter::value_str "
 
 Return value string. ";
 
-%feature("docstring")  dolfin::NewParameter::range_str "
+%feature("docstring")  dolfin::Parameter::range_str "
 
 Return range string. ";
 
-%feature("docstring")  dolfin::NewParameter::str "
+%feature("docstring")  dolfin::Parameter::str "
 
 Return short string description. ";
 
 
-// File: classdolfin_1_1NewParameters.xml
-%feature("docstring") dolfin::NewParameters "
+// File: classdolfin_1_1Parameters.xml
+%feature("docstring") dolfin::Parameters "
 
 This class stores a set of parameters. Each parameter is identified by
 a unique string (the key) and a value of some given value type.
@@ -3961,85 +3961,85 @@ p.parse(argc, argv);
 Note: spaces in parameter keys are not allowed (to simplify usage from
 command-line).
 
-C++ includes: NewParameters.h ";
+C++ includes: Parameters.h ";
 
-%feature("docstring")  dolfin::NewParameters::NewParameters "
+%feature("docstring")  dolfin::Parameters::Parameters "
 
 Create empty parameter set. ";
 
-%feature("docstring")  dolfin::NewParameters::~NewParameters "
+%feature("docstring")  dolfin::Parameters::~Parameters "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::NewParameters::NewParameters "
+%feature("docstring")  dolfin::Parameters::Parameters "
 
 Copy constructor. ";
 
-%feature("docstring")  dolfin::NewParameters::key "
+%feature("docstring")  dolfin::Parameters::key "
 
 Return key for parameter set. ";
 
-%feature("docstring")  dolfin::NewParameters::clear "
+%feature("docstring")  dolfin::Parameters::clear "
 
 Clear parameter set. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add int-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add int-valued parameter with given range. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add double-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add double-valued parameter with given range. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add string-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add string-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add string-valued parameter with given range. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add string-valued parameter with given range. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add bool-valued parameter. ";
 
-%feature("docstring")  dolfin::NewParameters::add "
+%feature("docstring")  dolfin::Parameters::add "
 
 Add nested parameter set. ";
 
-%feature("docstring")  dolfin::NewParameters::parse "
+%feature("docstring")  dolfin::Parameters::parse "
 
 Parse parameters from command-line. ";
 
-%feature("docstring")  dolfin::NewParameters::update "
+%feature("docstring")  dolfin::Parameters::update "
 
 Update parameters with another set of parameters. ";
 
-%feature("docstring")  dolfin::NewParameters::str "
+%feature("docstring")  dolfin::Parameters::str "
 
 Return informal string representation (pretty-print). ";
 
-%feature("docstring")  dolfin::NewParameters::get_parameter_keys "
+%feature("docstring")  dolfin::Parameters::get_parameter_keys "
 
 Return a vector of parameter keys. ";
 
-%feature("docstring")  dolfin::NewParameters::get_parameter_set_keys "
+%feature("docstring")  dolfin::Parameters::get_parameter_set_keys "
 
 Return a vector of parameter set keys. ";
 
@@ -4049,7 +4049,7 @@ Return a vector of parameter set keys. ";
 
 Parameter with value type string.
 
-C++ includes: NewParameter.h ";
+C++ includes: Parameter.h ";
 
 %feature("docstring")  dolfin::NewStringParameter::NewStringParameter
 "
@@ -6613,10 +6613,10 @@ Assemble scalar on sub domains. ";
 // File: GlobalParameters_8h.xml
 
 
-// File: NewParameter_8h.xml
+// File: Parameter_8h.xml
 
 
-// File: NewParameters_8h.xml
+// File: Parameters_8h.xml
 
 
 // File: FunctionPlotData_8h.xml
