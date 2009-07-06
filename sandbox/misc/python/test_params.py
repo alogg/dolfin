@@ -1,5 +1,4 @@
 from dolfin import *
-from dolfin.cpp import Parameters
 
 # Application parameter database
 app_params = Parameters("application_parameters",
