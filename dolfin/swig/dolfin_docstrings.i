@@ -29,27 +29,6 @@ facets.
 C++ includes: Assembler.h ";
 
 
-// File: classdolfin_1_1AvgMeshSize.xml
-%feature("docstring") dolfin::AvgMeshSize "
-
-This Function represents the average of the local cell size (average
-of cell sharing a facet) on a given mesh.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::AvgMeshSize::AvgMeshSize "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::AvgMeshSize::eval "
-
-Function evaluation. ";
-
-
 // File: classdolfin_1_1BlockMatrix.xml
 %feature("docstring") dolfin::BlockMatrix "";
 
@@ -300,6 +279,34 @@ C++ includes: Cell.h ";
 %feature("docstring")  dolfin::CellIterator::CellIterator "";
 
 %feature("docstring")  dolfin::CellIterator::CellIterator "";
+
+
+// File: classdolfin_1_1CellSize.xml
+%feature("docstring") dolfin::CellSize "
+
+This Function represents the local cell size on a given mesh.
+
+C++ includes: SpecialFunctions.h ";
+
+%feature("docstring")  dolfin::CellSize::CellSize "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::CellSize::CellSize "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::CellSize::eval "
+
+Function evaluation. ";
+
+%feature("docstring")  dolfin::CellSize::min "
+
+Compute minimal cell diameter. ";
+
+%feature("docstring")  dolfin::CellSize::max "
+
+Compute maximal cell diameter. ";
 
 
 // File: classdolfin_1_1CellType.xml
@@ -2278,47 +2285,6 @@ C++ includes: Interval.h ";
 %feature("docstring")  dolfin::Interval::Interval "";
 
 
-// File: classdolfin_1_1InvFacetArea.xml
-%feature("docstring") dolfin::InvFacetArea "
-
-This function represents the inverse area/length of a cell facet.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::InvFacetArea::InvFacetArea "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::InvFacetArea::eval "
-
-Function evaluation. ";
-
-
-// File: classdolfin_1_1InvMeshSize.xml
-%feature("docstring") dolfin::InvMeshSize "
-
-This Function represents the inverse of the local cell size on a given
-mesh.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::InvMeshSize::InvMeshSize "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::InvMeshSize::eval "
-
-Function evaluation. ";
-
-
 // File: classdolfin_1_1KrylovSolver.xml
 %feature("docstring") dolfin::KrylovSolver "
 
@@ -3520,7 +3486,7 @@ that couples the meshes together.
 
 The following mesh data is created:
 
-1. \"global entity indices 0\" (MeshFunction<uint>)
+1. \"global entity indices 0\" ( MeshFunction<uint>)
 
 This maps each local vertex to its global index.
 
@@ -3529,11 +3495,11 @@ This maps each local vertex to its global index.
 This maps each shared vertex to a list of the processes sharing the
 vertex.
 
-3. \"global entity indices %d\" (MeshFunction<uint>)
+3. \"global entity indices %d\" ( MeshFunction<uint>)
 
 After partitioning, the function number_entities() may be called to
 create global indices for all entities of a given topological
-dimension. These are stored as mesh data (MeshFunction<uint>) named
+dimension. These are stored as mesh data ( MeshFunction<uint>) named
 
 \"global entity indices 1\" \"global entity indices 2\" etc
 
@@ -3547,34 +3513,6 @@ the mesh and then contains only the number entities of dimension 0
 (vertices) and dimension D (cells).
 
 C++ includes: MeshPartitioning.h ";
-
-
-// File: classdolfin_1_1MeshSize.xml
-%feature("docstring") dolfin::MeshSize "
-
-This Function represents the local mesh size on a given mesh.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::MeshSize::MeshSize "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::MeshSize::MeshSize "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::MeshSize::eval "
-
-Function evaluation. ";
-
-%feature("docstring")  dolfin::MeshSize::min "
-
-Compute minimal cell diameter. ";
-
-%feature("docstring")  dolfin::MeshSize::max "
-
-Compute maximal cell diameter. ";
 
 
 // File: classdolfin_1_1MeshTopology.xml
@@ -6636,53 +6574,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
+// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
 
 
-// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
+// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
 
 
-// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
+// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
 
 
-// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
+// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
 
 
-// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
+// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
 
 
-// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
+// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
 
 
-// File: dir_ca8276e2506a0601691073651d5c3550.xml
+// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
 
 
-// File: dir_608877851688f7299a0e613e9ab9e93f.xml
+// File: dir_29c16e73653a7fc876ded90673bae460.xml
 
 
-// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
+// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
 
 
-// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
+// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
 
 
-// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
+// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
 
 
-// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
+// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
 
 
-// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
+// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
 
 
-// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
+// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
 
 
-// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
+// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
 
 
-// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
+// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
 
 
-// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
+// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
 

@@ -120,7 +120,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -263,19 +263,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -365,9 +365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -541,7 +541,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -684,19 +684,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -786,9 +786,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -956,7 +956,7 @@ public:
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.41421356237309}};
     
     // Extract relevant coefficients
@@ -1089,15 +1089,15 @@ public:
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.41421356237309}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -1173,9 +1173,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1343,7 +1343,7 @@ public:
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.41421356237309}};
     
     // Extract relevant coefficients
@@ -1476,15 +1476,15 @@ public:
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.41421356237309}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -1560,9 +1560,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1733,7 +1733,7 @@ public:
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
+      static const double coefficients0[1][1] =   \
       {{1.41421356237309}};
     
       // Extract relevant coefficients
@@ -1761,7 +1761,7 @@ public:
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
+      static const double coefficients0[1][1] =   \
       {{1.41421356237309}};
     
       // Extract relevant coefficients
@@ -1898,15 +1898,15 @@ public:
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
+      static const double coefficients0[1][1] =   \
       {{1.41421356237309}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[1][1] =   \
+      static const double dmats0[1][1] =   \
       {{0}};
     
-      const static double dmats1[1][1] =   \
+      static const double dmats1[1][1] =   \
       {{0}};
     
       // Compute reference derivatives
@@ -1985,15 +1985,15 @@ public:
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
       // Table(s) of coefficients
-      const static double coefficients0[1][1] =   \
+      static const double coefficients0[1][1] =   \
       {{1.41421356237309}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[1][1] =   \
+      static const double dmats0[1][1] =   \
       {{0}};
     
-      const static double dmats1[1][1] =   \
+      static const double dmats1[1][1] =   \
       {{0}};
     
       // Compute reference derivatives
@@ -2071,9 +2071,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[2][1][2] = {{{0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333}}};
-    const static double W[2][1] = {{1}, {1}};
-    const static double D[2][1][2] = {{{1, 0}}, {{0, 1}}};
+    static const double X[2][1][2] = {{{0.333333333333333, 0.333333333333333}}, {{0.333333333333333, 0.333333333333333}}};
+    static const double W[2][1] = {{1}, {1}};
+    static const double D[2][1][2] = {{{1, 0}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2254,7 +2254,7 @@ public:
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.41421356237309}};
     
     // Extract relevant coefficients
@@ -2387,15 +2387,15 @@ public:
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.41421356237309}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -2471,9 +2471,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][2] = {{{0.333333333333333, 0.333333333333333}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -3566,11 +3566,13 @@ public:
     
     
     // Array of quadrature weights
-    const static double W1 = 0.5;
+    static const double W1 = 0.5;
+    // Quadrature points on the UFC reference element: (0.333333333333333, 0.333333333333333)
     
-    
-    const static double FE0_D10[1][2] = \
+    // Value of basis functions at quadrature points.
+    static const double FE0_D10[1][2] = \
     {{-1, 1}};
+    
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {0, 1};
     // Array of non-zero columns
@@ -3712,20 +3714,22 @@ public:
     
     
     // Array of quadrature weights
-    const static double W2[2] = {0.5, 0.5};
+    static const double W2[2] = {0.5, 0.5};
+    // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
-    
-    const static double FE0_f2_D01[2][2] = \
+    // Value of basis functions at quadrature points.
+    static const double FE0_f2_D01[2][2] = \
     {{-1, 1},
     {-1, 1}};
+    
     // Array of non-zero columns
     static const unsigned int nzc5[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc6[2] = {0, 1};
-    
-    const static double FE0_f0[2][2] = \
+    static const double FE0_f0[2][2] = \
     {{0.788675134594813, 0.211324865405187},
     {0.211324865405187, 0.788675134594813}};
+    
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {1, 2};
     // Array of non-zero columns
@@ -3993,20 +3997,22 @@ public:
     
     
     // Array of quadrature weights
-    const static double W2[2] = {0.5, 0.5};
+    static const double W2[2] = {0.5, 0.5};
+    // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
-    
-    const static double FE0_f2_D01[2][2] = \
+    // Value of basis functions at quadrature points.
+    static const double FE0_f2_D01[2][2] = \
     {{-1, 1},
     {-1, 1}};
+    
     // Array of non-zero columns
     static const unsigned int nzc5[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc6[2] = {0, 1};
-    
-    const static double FE0_f0[2][2] = \
+    static const double FE0_f0[2][2] = \
     {{0.788675134594813, 0.211324865405187},
     {0.211324865405187, 0.788675134594813}};
+    
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {1, 2};
     // Array of non-zero columns
@@ -4014,19 +4020,19 @@ public:
     // Array of non-zero columns
     static const unsigned int nzc2[2] = {0, 1};
     
-    // Number of operations to compute geometry constants: 80
+    // Number of operations to compute geometry constants: 83
     // Should be added to total operation count.
     const double G0 =  - det*(0.5*Jinv1_00*w[0][2] + 0.5*Jinv1_01*w[0][3]);
     const double G1 =  - det*(0.5*Jinv1_00*w[0][0] + 0.5*Jinv1_01*w[0][1]);
     const double G2 =  - det*(0.5*Jinv1_10*w[0][2] + 0.5*Jinv1_11*w[0][3]);
     const double G3 =  - det*(0.5*Jinv1_10*w[0][0] + 0.5*Jinv1_11*w[0][1]);
     const double G4 =  - det*(0.5*Jinv0_10*w[0][2] + 0.5*Jinv0_11*w[0][3]);
-    const double G5 = det*1/w[1][0]*(4*w[0][2]*w[0][2] + 4*w[0][3]*w[0][3]);
+    const double G5 = det*1/(w[1][0] + w[1][1])*(8*w[0][2]*w[0][2] + 8*w[0][3]*w[0][3]);
     const double G6 =  - det*(0.5*Jinv0_10*w[0][0] + 0.5*Jinv0_11*w[0][1]);
     const double G7 =  - det*(0.5*Jinv0_00*w[0][0] + 0.5*Jinv0_01*w[0][1]);
-    const double G8 = det*1/w[1][0]*(4*w[0][0]*w[0][2] + 4*w[0][1]*w[0][3]);
+    const double G8 = det*1/(w[1][0] + w[1][1])*(8*w[0][0]*w[0][2] + 8*w[0][1]*w[0][3]);
     const double G9 =  - det*(0.5*Jinv0_00*w[0][2] + 0.5*Jinv0_01*w[0][3]);
-    const double G10 = det*1/w[1][0]*(4*w[0][0]*w[0][0] + 4*w[0][1]*w[0][1]);
+    const double G10 = det*1/(w[1][0] + w[1][1])*(8*w[0][0]*w[0][0] + 8*w[0][1]*w[0][1]);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -5008,7 +5014,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Division(FloatValue(4.0, (), (), {}), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 1))), IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(3),), {Index(3): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(4),), {Index(4): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(5),), {Index(5): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(6),), {Index(6): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(6),), {Index(6): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(7),), {Index(7): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), Sum(Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((Index(8),), {Index(8): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(9),), {Index(9): 2})), MultiIndex((Index(9),), {Index(9): 2})))), MultiIndex((Index(10),), {Index(10): 2}))), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(11),), {Index(11): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(12),), {Index(12): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(12),), {Index(12): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(11),), {Index(11): 2}))), MultiIndex((Index(11),), {Index(11): 2}))), Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(14),), {Index(14): 2})), MultiIndex((Index(14),), {Index(14): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(15),), {Index(15): 2})), MultiIndex((Index(15),), {Index(15): 2})))), MultiIndex((Index(16),), {Index(16): 2}))), MultiIndex((Index(16),), {Index(16): 2})), MultiIndex((Index(17),), {Index(17): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(18),), {Index(18): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(18),), {Index(18): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(19),), {Index(19): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(19),), {Index(19): 2}))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(17),), {Index(17): 2}))))), Measure('interior_facet', 0, None)), Integral(Sum(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Division(FloatValue(8.0, (), (), {}), Constant(Cell('triangle', 1, Space(2)), 1)))), Sum(Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(20),), {Index(20): 2})), MultiIndex((Index(21),), {Index(21): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(21),), {Index(21): 2}))), MultiIndex((Index(21),), {Index(21): 2}))), Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(25),), {Index(25): 2})), MultiIndex((Index(25),), {Index(25): 2})), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2}))))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Division(FloatValue(4.0, (), (), {}), Division(Sum(NegativeRestricted(Constant(Cell('triangle', 1, Space(2)), 1)), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 1))), IntValue(2, (), (), {}))), IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(3),), {Index(3): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(4),), {Index(4): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(5),), {Index(5): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(6),), {Index(6): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(6),), {Index(6): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(7),), {Index(7): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), Sum(Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((Index(8),), {Index(8): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(9),), {Index(9): 2})), MultiIndex((Index(9),), {Index(9): 2})))), MultiIndex((Index(10),), {Index(10): 2}))), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(11),), {Index(11): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(12),), {Index(12): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(12),), {Index(12): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(11),), {Index(11): 2}))), MultiIndex((Index(11),), {Index(11): 2}))), Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(14),), {Index(14): 2})), MultiIndex((Index(14),), {Index(14): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(15),), {Index(15): 2})), MultiIndex((Index(15),), {Index(15): 2})))), MultiIndex((Index(16),), {Index(16): 2}))), MultiIndex((Index(16),), {Index(16): 2})), MultiIndex((Index(17),), {Index(17): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(18),), {Index(18): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(18),), {Index(18): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0)), MultiIndex((Index(19),), {Index(19): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(19),), {Index(19): 2}))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(17),), {Index(17): 2}))))), Measure('interior_facet', 0, None)), Integral(Sum(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Division(FloatValue(8.0, (), (), {}), Constant(Cell('triangle', 1, Space(2)), 1)))), Sum(Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(20),), {Index(20): 2})), MultiIndex((Index(21),), {Index(21): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(21),), {Index(21): 2}))), MultiIndex((Index(21),), {Index(21): 2}))), Product(IntValue(-1, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Indexed(VectorConstant(Cell('triangle', 1, Space(2)), 2, 0), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(25),), {Index(25): 2})), MultiIndex((Index(25),), {Index(25): 2})), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2}))))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5211,7 +5217,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -5354,19 +5360,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -5456,9 +5462,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5632,7 +5638,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -5775,19 +5781,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -5877,9 +5883,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -6319,14 +6325,16 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
-    const static double FE0[4][3] = \
+    // Value of basis functions at quadrature points.
+    static const double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
