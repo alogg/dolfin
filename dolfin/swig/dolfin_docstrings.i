@@ -6057,7 +6057,7 @@ task. ";
 
 %feature("docstring")  dolfin::__debug "";
 
-%feature("docstring")  dolfin::__dolfin_assert "";
+%feature("docstring")  dolfin::__assert "";
 
 %feature("docstring")  dolfin::solve "
 

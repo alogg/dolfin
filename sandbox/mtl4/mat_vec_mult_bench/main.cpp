@@ -8,8 +8,8 @@ int main(int args, char* argv[])
 {
   //dolfin_set("output destination", "silent");
 
-  dolfin_assert(argv[1]);
-  dolfin_assert(argv[2]);
+  assert(argv[1]);
+  assert(argv[2]);
 
   if(!argv[1] && !!argv[2])
     error("This program requires an two integer command line arugment, e.g. ./demo 100 10");   

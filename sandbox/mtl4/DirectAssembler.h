@@ -234,7 +234,7 @@ namespace dolfin{
       // Create boundary mesh
       BoundaryMesh boundary(mesh);
       MeshFunction<uint>* cell_map = boundary.data().meshFunction("cell map");
-      dolfin_assert(cell_map);
+      assert(cell_map);
 
       // Assemble over exterior facets (the cells of the boundary)
       Progress p("Assembling over exterior facets", boundary.numCells());
@@ -256,7 +256,7 @@ namespace dolfin{
 
 	  // Get mesh cell to which mesh facet belongs 
 	  // (pick first, there is only one)
-	  dolfin_assert(mesh_facet.numEntities(mesh.topology().dim()) == 1);
+	  assert(mesh_facet.numEntities(mesh.topology().dim()) == 1);
 	  Cell mesh_cell(mesh, mesh_facet.entities(mesh.topology().dim())[0]);
 
 	  // Get local index of facet with respect to the cell
