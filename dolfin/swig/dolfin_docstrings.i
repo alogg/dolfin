@@ -123,6 +123,38 @@ Number of vectors. ";
 Display vectors. ";
 
 
+// File: classdolfin_1_1BoolParameter.xml
+%feature("docstring") dolfin::BoolParameter "
+
+Parameter with value type bool.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::BoolParameter::BoolParameter "
+
+Create bool-valued parameter. ";
+
+%feature("docstring")  dolfin::BoolParameter::~BoolParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::BoolParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::BoolParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::BoolParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::BoolParameter::str "
+
+Return short string description. ";
+
+
 // File: classdolfin_1_1BoundaryCondition.xml
 %feature("docstring") dolfin::BoundaryCondition "
 
@@ -447,7 +479,7 @@ Display method data. ";
 
 This class implements the direct solution (Cholesky factorization) of
 linear systems of the form Ax = b. Sparse matrices are solved using
-CHOLMODhttp://www.cise.ufl.edu/research/sparse/cholmod/ is installed.
+CHOLMODhttp://www.cise.ufl.edu/research/sparse/cholmod/ if installed.
 
 C++ includes: CholmodCholeskySolver.h ";
 
@@ -946,6 +978,42 @@ Destructor. ";
 %feature("docstring")  dolfin::DomainBoundary::inside "
 
 Return true for points on the boundary. ";
+
+
+// File: classdolfin_1_1DoubleParameter.xml
+%feature("docstring") dolfin::DoubleParameter "
+
+Parameter with value type double.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::DoubleParameter::DoubleParameter "
+
+Create double-valued parameter. ";
+
+%feature("docstring")  dolfin::DoubleParameter::~DoubleParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DoubleParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::DoubleParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::DoubleParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::DoubleParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::DoubleParameter::str "
+
+Return short string description. ";
 
 
 // File: classdolfin_1_1DynamicMeshEditor.xml
@@ -1735,6 +1803,10 @@ Add block of values. ";
 
 Add multiple of given matrix (AXPY operation). ";
 
+%feature("docstring")  dolfin::GenericMatrix::norm "
+
+Return norm of matrix. ";
+
 %feature("docstring")  dolfin::GenericMatrix::getrow "
 
 Get non-zero values of given row. ";
@@ -2285,11 +2357,47 @@ C++ includes: Interval.h ";
 %feature("docstring")  dolfin::Interval::Interval "";
 
 
+// File: classdolfin_1_1IntParameter.xml
+%feature("docstring") dolfin::IntParameter "
+
+Parameter with value type int.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::IntParameter::IntParameter "
+
+Create int-valued parameter. ";
+
+%feature("docstring")  dolfin::IntParameter::~IntParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::IntParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::IntParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::IntParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::IntParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::IntParameter::str "
+
+Return short string description. ";
+
+
 // File: classdolfin_1_1KrylovSolver.xml
 %feature("docstring") dolfin::KrylovSolver "
 
-This class defines an interface for a Krylov solver. The underlying
-Krylov solver type is defined in default_type.h.
+This class defines an interface for a Krylov solver. The approproiate
+solver is chosen on the basis of the matrix/vector type.
 
 C++ includes: KrylovSolver.h ";
 
@@ -2523,7 +2631,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::LUSolver::LUSolver "
 
-LU solver for the built-in LA backends. ";
+LU solver for the built-in LA backends. The type can be \"lu\" or
+\"cholesky\". Cholesky is suitable only for symmetric positive-
+definite matrices. Cholesky is not yet suppprted for all backends
+(which will default to LU. ";
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
@@ -2601,6 +2712,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::Matrix::axpy "
 
 Add multiple of given matrix (AXPY operation). ";
+
+%feature("docstring")  dolfin::Matrix::norm "
+
+Return norm of matrix. ";
 
 %feature("docstring")  dolfin::Matrix::getrow "
 
@@ -3693,150 +3808,6 @@ dolfin::MPIMeshCommunicator::~MPIMeshCommunicator "
 Destructor. ";
 
 
-// File: classdolfin_1_1NewBoolParameter.xml
-%feature("docstring") dolfin::NewBoolParameter "
-
-Parameter with value type bool.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewBoolParameter::NewBoolParameter "
-
-Create bool-valued parameter. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::~NewBoolParameter "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::str "
-
-Return short string description. ";
-
-
-// File: classdolfin_1_1NewDoubleParameter.xml
-%feature("docstring") dolfin::NewDoubleParameter "
-
-Parameter with value type double.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::NewDoubleParameter
-"
-
-Create double-valued parameter. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::~NewDoubleParameter
-"
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::str "
-
-Return short string description. ";
-
-
-// File: classdolfin_1_1NewIntParameter.xml
-%feature("docstring") dolfin::NewIntParameter "
-
-Parameter with value type int.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewIntParameter::NewIntParameter "
-
-Create int-valued parameter. ";
-
-%feature("docstring")  dolfin::NewIntParameter::~NewIntParameter "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewIntParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::NewIntParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewIntParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewIntParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewIntParameter::str "
-
-Return short string description. ";
-
-
-// File: classdolfin_1_1NewStringParameter.xml
-%feature("docstring") dolfin::NewStringParameter "
-
-Parameter with value type string.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewStringParameter::NewStringParameter
-"
-
-Create string-valued parameter. ";
-
-%feature("docstring")  dolfin::NewStringParameter::~NewStringParameter
-"
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewStringParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::NewStringParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewStringParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewStringParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewStringParameter::str "
-
-Return short string description. ";
-
-
 // File: classdolfin_1_1NewtonSolver.xml
 %feature("docstring") dolfin::NewtonSolver "
 
@@ -3863,7 +3834,7 @@ Destructor. ";
 Solve abstract nonlinear problem F(x) = 0 for given vector F and
 Jacobian dF/dx ";
 
-%feature("docstring")  dolfin::NewtonSolver::get_iteration "
+%feature("docstring")  dolfin::NewtonSolver::iteration "
 
 Return Newton iteration number. ";
 
@@ -4241,9 +4212,13 @@ Destructor. ";
 
 Copy constructor. ";
 
-%feature("docstring")  dolfin::Parameters::key "
+%feature("docstring")  dolfin::Parameters::name "
 
-Return key for parameter set. ";
+Return name for parameter set. ";
+
+%feature("docstring")  dolfin::Parameters::rename "
+
+Rename parameter set. ";
 
 %feature("docstring")  dolfin::Parameters::clear "
 
@@ -4802,6 +4777,10 @@ Add block of values. ";
 
 Add multiple of given matrix (AXPY operation). ";
 
+%feature("docstring")  dolfin::STLMatrix::norm "
+
+Return norm of matrix. ";
+
 %feature("docstring")  dolfin::STLMatrix::getrow "
 
 Get non-zero values of given row. ";
@@ -4831,6 +4810,42 @@ Return linear algebra backend factory ";
 %feature("docstring")  dolfin::STLMatrix::resize "
 
 Resize tensor of given rank and dimensions. ";
+
+
+// File: classdolfin_1_1StringParameter.xml
+%feature("docstring") dolfin::StringParameter "
+
+Parameter with value type string.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::StringParameter::StringParameter "
+
+Create string-valued parameter. ";
+
+%feature("docstring")  dolfin::StringParameter::~StringParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::StringParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::StringParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::StringParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::StringParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::StringParameter::str "
+
+Return short string description. ";
 
 
 // File: classdolfin_1_1SubDomain.xml
@@ -4978,6 +4993,20 @@ C++ includes: SpecialFunctions.h ";
 
 Function evaluation (overload for user-defined function, alternate
 version). ";
+
+
+// File: classdolfin_1_1SystemAssembler.xml
+%feature("docstring") dolfin::SystemAssembler "
+
+This class provides implements an assembler for systems of the form Ax
+= b. It differs from the default DOLFIN assembler in that it assembles
+both A and b and the same time (leading to better performance) and in
+that it applies boundary conditions at the time of assembly.
+
+C++ includes: SystemAssembler.h ";
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -5321,6 +5350,10 @@ Add block of values. ";
 
 Add multiple of given matrix (AXPY operation). ";
 
+%feature("docstring")  dolfin::uBLASMatrix::norm "
+
+Return norm of matrix. ";
+
 %feature("docstring")  dolfin::uBLASMatrix::getrow "
 
 Get non-zero values of given row. ";
@@ -5556,7 +5589,7 @@ Return reference to uBLAS vector (non-const version). ";
 This class implements the direct solution (LU factorization) of linear
 systems of the form Ax = b using uBLAS data types. Dense matrices are
 solved using uBLAS LU factorisation, and sparse matrices are solved
-using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) is
+using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) if
 installed. Matrices can also be inverted.
 
 C++ includes: UmfpackLUSolver.h ";
@@ -5808,6 +5841,10 @@ Create vector of size N. ";
 
 Copy constructor. ";
 
+%feature("docstring")  dolfin::Vector::Vector "
+
+Create a Vector from a GenericVetor. ";
+
 %feature("docstring")  dolfin::Vector::~Vector "
 
 Destructor. ";
@@ -6057,8 +6094,6 @@ task. ";
 
 %feature("docstring")  dolfin::__debug "";
 
-%feature("docstring")  dolfin::__assert "";
-
 %feature("docstring")  dolfin::solve "
 
 Solve linear system Ax = b. ";
@@ -6111,6 +6146,10 @@ Assemble tensor on sub domains. ";
 
 %feature("docstring")  dolfin::assemble_system "
 
+Assemble system (A, b). ";
+
+%feature("docstring")  dolfin::assemble_system "
+
 Assemble system (A, b) and apply Dirichlet boundary condition. ";
 
 %feature("docstring")  dolfin::assemble_system "
@@ -6122,18 +6161,11 @@ Assemble system (A, b) and apply Dirichlet boundary conditions. ";
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
 conditions. ";
 
-%feature("docstring")  dolfin::assemble_system_new "
-
-Assemble system (A, b) and apply Dirichlet boundary condition. ";
-
-%feature("docstring")  dolfin::assemble_system_new "
-
-Assemble system (A, b) and apply Dirichlet boundary conditions. ";
-
-%feature("docstring")  dolfin::assemble_system_new "
+%feature("docstring")  dolfin::assemble_system_swig "
 
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
-conditions. ";
+conditions This function removes const from std::vector<const
+DirichletBC*> since SWIG cannot handle it. ";
 
 %feature("docstring")  dolfin::assemble "
 
@@ -6203,6 +6235,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: PeriodicBC_8h.xml
+
+
+// File: SystemAssembler_8h.xml
 
 
 // File: VariationalProblem_8h.xml
