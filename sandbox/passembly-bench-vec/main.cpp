@@ -51,11 +51,9 @@ class DirichletBoundary : public SubDomain
 int main()
 {
   // Create mesh and function space
-  //Mesh mesh("unitsquare.xml.gz");
-
+  Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("refined.xml");
-
-  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  //Mesh mesh("unitsquare_reallysmall.xml.gz");
   info(mesh.data());
 
   Poisson::FunctionSpace V(mesh);
