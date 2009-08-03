@@ -82,8 +82,8 @@ int main()
   //plot(u);
 
   // Save solution in VTK format
-  File file("output.pvd");
-  file << mesh;
+  File file("result/output.pvd");
+  file << u;
 
   return 0;
 }
