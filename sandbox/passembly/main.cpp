@@ -17,9 +17,13 @@
 //     u(x, y) = 0 for x = 0 or x = 1
 
 #include <dolfin.h>
-#include "Poisson.h"
+#include "PoissonP1.h"
+#include "PoissonP2.h"
 
 using namespace dolfin;
+
+//namespace Poisson = PoissonP1;
+namespace Poisson = PoissonP2;
 
 // Source term
 class Source : public Function

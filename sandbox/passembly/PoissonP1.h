@@ -4,8 +4,8 @@
 // Warning: This code was generated with the option '-l dolfin'
 // and contains DOLFIN-specific wrappers that depend on DOLFIN.
 
-#ifndef __POISSON_H
-#define __POISSON_H
+#ifndef __POISSONP1_H
+#define __POISSONP1_H
 
 #include <cmath>
 #include <stdexcept>
@@ -14,18 +14,18 @@
     
 /// This class defines the interface for a finite element.
 
-class poisson_0_finite_element_0: public ufc::finite_element
+class poissonp1_0_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  poisson_0_finite_element_0() : ufc::finite_element()
+  poissonp1_0_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_0_finite_element_0()
+  virtual ~poissonp1_0_finite_element_0()
   {
     // Do nothing
   }
@@ -120,7 +120,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -263,19 +263,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -365,9 +365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -428,25 +428,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new poisson_0_finite_element_0();
+    return new poissonp1_0_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class poisson_0_finite_element_1: public ufc::finite_element
+class poissonp1_0_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  poisson_0_finite_element_1() : ufc::finite_element()
+  poissonp1_0_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_0_finite_element_1()
+  virtual ~poissonp1_0_finite_element_1()
   {
     // Do nothing
   }
@@ -541,7 +541,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -684,19 +684,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -786,9 +786,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -849,7 +849,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new poisson_0_finite_element_1();
+    return new poissonp1_0_finite_element_1();
   }
 
 };
@@ -857,7 +857,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class poisson_0_dof_map_0: public ufc::dof_map
+class poissonp1_0_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -866,13 +866,13 @@ private:
 public:
 
   /// Constructor
-  poisson_0_dof_map_0() : ufc::dof_map()
+  poissonp1_0_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~poisson_0_dof_map_0()
+  virtual ~poissonp1_0_dof_map_0()
   {
     // Do nothing
   }
@@ -1017,7 +1017,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new poisson_0_dof_map_0();
+    return new poissonp1_0_dof_map_0();
   }
 
 };
@@ -1025,7 +1025,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class poisson_0_dof_map_1: public ufc::dof_map
+class poissonp1_0_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -1034,13 +1034,13 @@ private:
 public:
 
   /// Constructor
-  poisson_0_dof_map_1() : ufc::dof_map()
+  poissonp1_0_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~poisson_0_dof_map_1()
+  virtual ~poissonp1_0_dof_map_1()
   {
     // Do nothing
   }
@@ -1185,7 +1185,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new poisson_0_dof_map_1();
+    return new poissonp1_0_dof_map_1();
   }
 
 };
@@ -1194,18 +1194,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson_0_cell_integral_0_quadrature: public ufc::cell_integral
+class poissonp1_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson_0_cell_integral_0_quadrature() : ufc::cell_integral()
+  poissonp1_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_0_cell_integral_0_quadrature()
+  virtual ~poissonp1_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1238,30 +1238,44 @@ public:
     
     
     // Array of quadrature weights
-    const static double W1 = 0.5;
+    static const double W1 = 0.5;
+    // Quadrature points on the UFC reference element: (0.333333333333333, 0.333333333333333)
     
+    // Value of basis functions at quadrature points.
+    static const double FE0_D10[1][2] = \
+    {{-1, 1}};
     
-    const static double FE0_D10[1][3] = \
-    {{-1, 1, 0}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
     
-    const static double FE0_D01[1][3] = \
-    {{-1, 0, 1}};
+    // Number of operations to compute geometry constants: 15
+    const double G0 = W1*det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1 = W1*det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2 = W1*det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 162
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 63
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 162
+    // Number of operations to compute element tensor for following IP loop = 48
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices = 162
-    for (unsigned int j = 0; j < 3; j++)
+    // Number of operations for primary indices = 48
+    for (unsigned int j = 0; j < 2; j++)
     {
-      for (unsigned int k = 0; k < 3; k++)
+      for (unsigned int k = 0; k < 2; k++)
       {
-        // Number of operations to compute entry = 18
-        A[j*3 + k] += ((Jinv_00*FE0_D10[0][j] + Jinv_10*FE0_D01[0][j])*(Jinv_00*FE0_D10[0][k] + Jinv_10*FE0_D01[0][k]) + (Jinv_01*FE0_D10[0][j] + Jinv_11*FE0_D01[0][j])*(Jinv_01*FE0_D10[0][k] + Jinv_11*FE0_D01[0][k]))*W1*det;
+        // Number of operations to compute entry = 3
+        A[nzc1[j]*3 + nzc1[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G0;
+        // Number of operations to compute entry = 3
+        A[nzc0[j]*3 + nzc1[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G1;
+        // Number of operations to compute entry = 3
+        A[nzc0[j]*3 + nzc0[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G2;
+        // Number of operations to compute entry = 3
+        A[nzc1[j]*3 + nzc0[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G1;
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -1272,22 +1286,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson_0_cell_integral_0: public ufc::cell_integral
+class poissonp1_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  poisson_0_cell_integral_0_quadrature integral_0_quadrature;
+  poissonp1_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  poisson_0_cell_integral_0() : ufc::cell_integral()
+  poissonp1_0_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_0_cell_integral_0()
+  virtual ~poissonp1_0_cell_integral_0()
   {
     // Do nothing
   }
@@ -1329,18 +1343,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class poisson_form_0: public ufc::form
+class poissonp1_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  poisson_form_0() : ufc::form()
+  poissonp1_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_form_0()
+  virtual ~poissonp1_form_0()
   {
     // Do nothing
   }
@@ -1348,7 +1362,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1387,10 +1401,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new poisson_0_finite_element_0();
+      return new poissonp1_0_finite_element_0();
       break;
     case 1:
-      return new poisson_0_finite_element_1();
+      return new poissonp1_0_finite_element_1();
       break;
     }
     return 0;
@@ -1402,10 +1416,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new poisson_0_dof_map_0();
+      return new poissonp1_0_dof_map_0();
       break;
     case 1:
-      return new poisson_0_dof_map_1();
+      return new poissonp1_0_dof_map_1();
       break;
     }
     return 0;
@@ -1414,7 +1428,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new poisson_0_cell_integral_0();
+    return new poissonp1_0_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -1433,18 +1447,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class poisson_1_finite_element_0: public ufc::finite_element
+class poissonp1_1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  poisson_1_finite_element_0() : ufc::finite_element()
+  poissonp1_1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_1_finite_element_0()
+  virtual ~poissonp1_1_finite_element_0()
   {
     // Do nothing
   }
@@ -1539,7 +1553,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -1682,19 +1696,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -1784,9 +1798,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1847,25 +1861,25 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new poisson_1_finite_element_0();
+    return new poissonp1_1_finite_element_0();
   }
 
 };
 
 /// This class defines the interface for a finite element.
 
-class poisson_1_finite_element_1: public ufc::finite_element
+class poissonp1_1_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  poisson_1_finite_element_1() : ufc::finite_element()
+  poissonp1_1_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_1_finite_element_1()
+  virtual ~poissonp1_1_finite_element_1()
   {
     // Do nothing
   }
@@ -1960,7 +1974,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -2103,19 +2117,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -2205,9 +2219,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2268,7 +2282,7 @@ public:
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
-    return new poisson_1_finite_element_1();
+    return new poissonp1_1_finite_element_1();
   }
 
 };
@@ -2276,7 +2290,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class poisson_1_dof_map_0: public ufc::dof_map
+class poissonp1_1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -2285,13 +2299,13 @@ private:
 public:
 
   /// Constructor
-  poisson_1_dof_map_0() : ufc::dof_map()
+  poissonp1_1_dof_map_0() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~poisson_1_dof_map_0()
+  virtual ~poissonp1_1_dof_map_0()
   {
     // Do nothing
   }
@@ -2436,7 +2450,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new poisson_1_dof_map_0();
+    return new poissonp1_1_dof_map_0();
   }
 
 };
@@ -2444,7 +2458,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class poisson_1_dof_map_1: public ufc::dof_map
+class poissonp1_1_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -2453,13 +2467,13 @@ private:
 public:
 
   /// Constructor
-  poisson_1_dof_map_1() : ufc::dof_map()
+  poissonp1_1_dof_map_1() : ufc::dof_map()
   {
     __global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~poisson_1_dof_map_1()
+  virtual ~poissonp1_1_dof_map_1()
   {
     // Do nothing
   }
@@ -2604,7 +2618,7 @@ public:
   /// Create a new dof_map for sub dof map i (for a mixed element)
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
-    return new poisson_1_dof_map_1();
+    return new poissonp1_1_dof_map_1();
   }
 
 };
@@ -2613,18 +2627,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson_1_cell_integral_0_quadrature: public ufc::cell_integral
+class poissonp1_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson_1_cell_integral_0_quadrature() : ufc::cell_integral()
+  poissonp1_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_1_cell_integral_0_quadrature()
+  virtual ~poissonp1_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -2653,21 +2667,23 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
-    const static double FE0[4][3] = \
+    // Value of basis functions at quadrature points.
+    static const double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
+    
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 72
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 56
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 72
+    // Number of operations to compute element tensor for following IP loop = 56
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -2680,11 +2696,16 @@ public:
         F0 += FE0[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 12
+      // Number of operations to compute ip constants: 2
+      // Number of operations: 2
+      const double Gip0 = F0*W4[ip]*det;
+      
+      
+      // Number of operations for primary indices = 6
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 4
-        A[j] += FE0[ip][j]*F0*W4[ip]*det;
+        // Number of operations to compute entry = 2
+        A[j] += FE0[ip][j]*Gip0;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -2695,22 +2716,22 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson_1_cell_integral_0: public ufc::cell_integral
+class poissonp1_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  poisson_1_cell_integral_0_quadrature integral_0_quadrature;
+  poissonp1_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
   /// Constructor
-  poisson_1_cell_integral_0() : ufc::cell_integral()
+  poissonp1_1_cell_integral_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_1_cell_integral_0()
+  virtual ~poissonp1_1_cell_integral_0()
   {
     // Do nothing
   }
@@ -2746,18 +2767,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class poisson_form_1: public ufc::form
+class poissonp1_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  poisson_form_1() : ufc::form()
+  poissonp1_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_form_1()
+  virtual ~poissonp1_form_1()
   {
     // Do nothing
   }
@@ -2765,7 +2786,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2804,10 +2825,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new poisson_1_finite_element_0();
+      return new poissonp1_1_finite_element_0();
       break;
     case 1:
-      return new poisson_1_finite_element_1();
+      return new poissonp1_1_finite_element_1();
       break;
     }
     return 0;
@@ -2819,10 +2840,10 @@ public:
     switch ( i )
     {
     case 0:
-      return new poisson_1_dof_map_0();
+      return new poissonp1_1_dof_map_0();
       break;
     case 1:
-      return new poisson_1_dof_map_1();
+      return new poissonp1_1_dof_map_1();
       break;
     }
     return 0;
@@ -2831,7 +2852,7 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
   {
-    return new poisson_1_cell_integral_0();
+    return new poissonp1_1_cell_integral_0();
   }
 
   /// Create a new exterior facet integral on sub domain i
@@ -2862,7 +2883,7 @@ public:
 #include <dolfin/function/Function.h>
 #include <dolfin/function/Coefficient.h>
 
-namespace Poisson
+namespace PoissonP1
 {
 
 class CoefficientReference
@@ -2954,32 +2975,32 @@ public:
 
   CoefficientSpace_f(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   CoefficientSpace_f(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_1()), mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_1()), mesh)))
   {
       // Do nothing
   }
@@ -2998,32 +3019,32 @@ public:
 
   Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_0()), mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_0()), mesh)))
   {
       // Do nothing
   }
@@ -3042,32 +3063,32 @@ public:
 
   Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_1()), mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_0_finite_element_1()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_0_dof_map_1()), mesh)))
   {
       // Do nothing
   }
@@ -3093,7 +3114,7 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_0());
   }
 
   // Constructor
@@ -3108,7 +3129,7 @@ public:
 
     update_coefficients(coefficients);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_0());
   }
 
   // Constructor
@@ -3118,7 +3139,7 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_0());
   }
 
   // Constructor
@@ -3130,7 +3151,7 @@ public:
 
     update_coefficients(coefficients);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_0());
   }
 
   // Destructor
@@ -3170,32 +3191,32 @@ public:
 
   Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
   {
     // Do nothing
   }
 
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_0()), mesh)))
   {
       // Do nothing
   }
 
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poissonp1_1_finite_element_0()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poissonp1_1_dof_map_0()), mesh)))
   {
       // Do nothing
   }
@@ -3261,7 +3282,7 @@ public:
 
     _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3274,7 +3295,7 @@ public:
 
     update_coefficients(coefficients);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3289,7 +3310,7 @@ public:
 
     f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3302,7 +3323,7 @@ public:
 
     f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3311,7 +3332,7 @@ public:
   {
     _function_spaces[0] = _pV0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3322,7 +3343,7 @@ public:
 
     update_coefficients(coefficients);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3335,7 +3356,7 @@ public:
 
     f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Constructor
@@ -3346,7 +3367,7 @@ public:
 
     f = _pf;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new poissonp1_form_1());
   }
 
   // Destructor
@@ -3390,6 +3411,6 @@ typedef Form_0 BilinearForm;
 typedef Form_1 LinearForm;
 typedef Form_0::TestSpace FunctionSpace;
 
-} // namespace Poisson
+} // namespace PoissonP1
 
 #endif
