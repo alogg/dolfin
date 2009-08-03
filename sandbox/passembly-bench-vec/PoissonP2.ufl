@@ -9,11 +9,11 @@
 #
 # Compile this form with FFC: ffc -l dolfin Poisson.ufl.
 
-element = FiniteElement("Lagrange", triangle, 2)
+element = VectorElement("Lagrange", triangle, 1)
 
 v = TestFunction(element)
 u = TrialFunction(element)
 f = Function(element)
 
-a = inner(grad(v), grad(u))*dx
-L = v*f*dx
+a = (inner(grad(v), grad(u)) + inner(v, u))*dx
+L = inner(v, f)*dx

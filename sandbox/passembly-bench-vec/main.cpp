@@ -22,8 +22,8 @@
 
 using namespace dolfin;
 
-namespace Poisson = PoissonP1;
-//namespace Poisson = PoissonP2;
+//namespace Poisson = PoissonP1;
+namespace Poisson = PoissonP2;
 
 // Source term
 class Source : public Function
