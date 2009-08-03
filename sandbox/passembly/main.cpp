@@ -67,6 +67,7 @@ int main()
   problem.parameters("linear_solver") = "iterative"; // Avoid direct solver for now, seems to break
   Function u;
   problem.solve(u);
+  u.vector().disp();
 
   // Plot solution
   //plot(u);
