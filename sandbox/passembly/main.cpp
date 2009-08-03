@@ -43,9 +43,6 @@ class DirichletBoundary : public SubDomain
 
 int main()
 {
-  // Avoid direct solver for now, seems to break
-  dolfin_set("linear solver", "iterative");
-
   // Create mesh and function space
   Mesh mesh("unitsquare.xml.gz");
   info(mesh.data());
@@ -66,6 +63,7 @@ int main()
 
   // Compute solution
   VariationalProblem problem(a, L, bc);
+  problem.parameters("linear_solver") = "iterative"; // Avoid direct solver for now, seems to break
   Function u;
   problem.solve(u);
 
