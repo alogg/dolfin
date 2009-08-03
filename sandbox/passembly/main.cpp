@@ -22,8 +22,8 @@
 
 using namespace dolfin;
 
-//namespace Poisson = PoissonP1;
-namespace Poisson = PoissonP2;
+namespace Poisson = PoissonP1;
+//namespace Poisson = PoissonP2;
 
 // Source term
 class Source : public Function
@@ -71,7 +71,12 @@ int main()
   problem.parameters("linear_solver") = "iterative"; // Avoid direct solver for now, seems to break
   Function u;
   problem.solve(u);
+  cout << "Process num " << dolfin::MPI::process_number() << endl;
   u.vector().disp();
+
+  double norm = u.vector().norm("l2");
+  if (dolfin::MPI::process_number() == 0)
+    cout << "Norm of solution vector: " << norm << endl;
 
   // Plot solution
   //plot(u);
