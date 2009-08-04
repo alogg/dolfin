@@ -23,14 +23,22 @@ int main()
 {
   // Create mesh
   //Mesh mesh("unitsquare_large.xml.gz");
-  Mesh mesh("unitsquare.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
-  //Mesh mesh("unitsquare_reallysmall.xml.gz");
+  Mesh mesh("unitsquare_reallysmall.xml.gz");
 
   // Create function space
   info(mesh.data());
   Poisson::FunctionSpace V(mesh);
   info(mesh.data());
+
+  // For debugging
+  if (dolfin::MPI::process_number() == 0)
+  {
+    mesh.disp();
+    mesh.data().mesh_function("global entity indices 0")->disp();
+    mesh.data().mesh_function("global entity indices 1")->disp();
+  }
 
   // Define variational problem
   Poisson::BilinearForm a(V, V);
@@ -51,7 +59,6 @@ int main()
   double norm = u.vector().norm("l2");
   if (dolfin::MPI::process_number() == 0)
     std::cout << "Norm of solution vector: " << norm << std::endl;
-
 
   // Save solution in VTK format
   File file("result/output.pvd");

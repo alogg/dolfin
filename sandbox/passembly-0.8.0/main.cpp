@@ -24,9 +24,11 @@ int main()
 {
   // Create mesh
   //Mesh mesh("unitsquare_large.xml.gz");
-  Mesh mesh("unitsquare.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
-  //Mesh mesh("unitsquare_reallysmall.xml.gz");
+  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  if (dolfin::MPI::processNumber() == 0)
+    mesh.disp();
 
   // Define variational problem
   Source f(mesh);
