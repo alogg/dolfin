@@ -72,7 +72,7 @@ int main()
   Function u;
   problem.solve(u);
   cout << "Process num " << dolfin::MPI::process_number() << endl;
-  u.vector().disp();
+  //u.vector().disp();
 
   double norm = u.vector().norm("l2");
   if (dolfin::MPI::process_number() == 0)
