@@ -49,7 +49,7 @@ int main()
 {
   // Create mesh and function space
   //Mesh mesh("unitsquare.xml.gz");
-  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  Mesh mesh("unitsquare_small.xml.gz");
   info(mesh.data());
 
   Poisson::FunctionSpace V(mesh);
@@ -78,7 +78,7 @@ int main()
   if (dolfin::MPI::process_number() == 0)
     cout << "Norm of solution vector: " << norm << endl;
 
-  // Plot solution
+  // FIXME: Plot solution 
   //plot(u);
 
   // Save solution in VTK format
