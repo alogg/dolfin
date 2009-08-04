@@ -34,7 +34,8 @@ public:
 int main()
 {
   // Create mesh
-  Mesh mesh("unitsquare.xml.gz");
+  Mesh mesh("unitsquare_large.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
@@ -49,22 +50,11 @@ int main()
   // Avoid direct solver for now, seems to break
   dolfin_set("PDE linear solver", "iterative");
 
-  // Compute solution
-  Function u;
-  pde.solve(u);
-  //u.vector().disp();
+  // Assemble matrix
+  Matrix A;
+  assemble(A, a, mesh);
 
-  // Debugging
-  double norm = u.vector().norm(l2);
-  if (dolfin::MPI::processNumber() == 0)
-    cout << "Norm of solution vector: " << norm << endl;
-
-  // Plot solution
-  //plot(u);
-
-  // Save solution to file
-  //File file("solution.pvd");
-  //file << u;
+  summary();
 
   return 0;
 }

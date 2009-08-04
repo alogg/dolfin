@@ -22,7 +22,8 @@ class Source : public Function
 int main()
 {
   // Create mesh
-  Mesh mesh("unitsquare.xml.gz");
+  Mesh mesh("unitsquare_large.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
@@ -41,22 +42,11 @@ int main()
   // Avoid direct solver for now, seems to break
   problem.parameters("linear_solver") = "iterative";
 
-  // Compute solution
-  Function u;
-  problem.solve(u);
-  //u.vector().disp();
-  
-  // Debugging
-  double norm = u.vector().norm("l2");
-  if (dolfin::MPI::process_number() == 0)
-    cout << "Norm of solution vector: " << norm << endl;
+  // Assemble matrix
+  Matrix A;
+  assemble(A, a);
 
-  // Plot solution
-  //plot(u);
-
-  // Save solution in VTK format
-  //File file("solution.pvd");
-  //file << u;
+  summary();
 
   return 0;
 }
