@@ -3942,18 +3942,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poissonp1_0_cell_integral_0_quadrature: public ufc::cell_integral
+class poissonp1_0_cell_integral_0_tensor: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poissonp1_0_cell_integral_0_quadrature() : ufc::cell_integral()
+  poissonp1_0_cell_integral_0_tensor() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poissonp1_0_cell_integral_0_quadrature()
+  virtual ~poissonp1_0_cell_integral_0_tensor()
   {
     // Do nothing
   }
@@ -3963,6 +3963,10 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
+    // Number of operations to compute geometry tensor:     17
+    // Number of operations to compute tensor contraction:  82
+    // Total number of operations to compute cell tensor:   99
+    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -3984,68 +3988,50 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
+    // Compute geometry tensor
+    const double G0_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G0_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
+    const double G0_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1_ = det;
     
-    // Array of quadrature weights
-    static const double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
-    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
-    
-    // Value of basis functions at quadrature points.
-    static const double FE0_C1_D01[4][6] = \
-    {{0, 0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 0, 1}};
-    
-    static const double FE0_C1_D10[4][6] = \
-    {{0, 0, 0, -1, 1, 0},
-    {0, 0, 0, -1, 1, 0},
-    {0, 0, 0, -1, 1, 0},
-    {0, 0, 0, -1, 1, 0}};
-    
-    static const double FE0_C0_D10[4][6] = \
-    {{-1, 1, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0}};
-    
-    static const double FE0_C0_D01[4][6] = \
-    {{-1, 0, 1, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0}};
-    
-    static const double FE0_C1[4][6] = \
-    {{0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0, 0, 0, 0.280019915499074, 0.0750311102226082, 0.644948974278318},
-    {0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318}};
-    
-    static const double FE0_C0[4][6] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0},
-    {0.280019915499074, 0.0750311102226082, 0.644948974278318, 0, 0, 0},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0}};
-    
-    
-    // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 5472
-    
-    // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 5472
-    for (unsigned int ip = 0; ip < 4; ip++)
-    {
-      
-      // Number of operations for primary indices = 1368
-      for (unsigned int j = 0; j < 6; j++)
-      {
-        for (unsigned int k = 0; k < 6; k++)
-        {
-          // Number of operations to compute entry = 38
-          A[j*6 + k] += ((FE0_C0[ip][j]*FE0_C0[ip][k] + FE0_C1[ip][j]*FE0_C1[ip][k]) + (((Jinv_00*FE0_C0_D10[ip][j] + Jinv_10*FE0_C0_D01[ip][j])*(Jinv_00*FE0_C0_D10[ip][k] + Jinv_10*FE0_C0_D01[ip][k]) + (Jinv_01*FE0_C0_D10[ip][j] + Jinv_11*FE0_C0_D01[ip][j])*(Jinv_01*FE0_C0_D10[ip][k] + Jinv_11*FE0_C0_D01[ip][k])) + ((Jinv_00*FE0_C1_D10[ip][j] + Jinv_10*FE0_C1_D01[ip][j])*(Jinv_00*FE0_C1_D10[ip][k] + Jinv_10*FE0_C1_D01[ip][k]) + (Jinv_01*FE0_C1_D10[ip][j] + Jinv_11*FE0_C1_D01[ip][j])*(Jinv_01*FE0_C1_D10[ip][k] + Jinv_11*FE0_C1_D01[ip][k]))))*W4[ip]*det;
-        }// end loop over 'k'
-      }// end loop over 'j'
-    }// end loop over 'ip'
+    // Compute element tensor
+    A[0] += 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1 + 0.0833333333333332*G1_;
+    A[1] += -0.5*G0_0_0 - 0.5*G0_1_0 + 0.0416666666666666*G1_;
+    A[2] += -0.5*G0_0_1 - 0.5*G0_1_1 + 0.0416666666666666*G1_;
+    A[3] += 0;
+    A[4] += 0;
+    A[5] += 0;
+    A[6] += -0.5*G0_0_0 - 0.5*G0_0_1 + 0.0416666666666666*G1_;
+    A[7] += 0.5*G0_0_0 + 0.0833333333333332*G1_;
+    A[8] += 0.5*G0_0_1 + 0.0416666666666666*G1_;
+    A[9] += 0;
+    A[10] += 0;
+    A[11] += 0;
+    A[12] += -0.5*G0_1_0 - 0.5*G0_1_1 + 0.0416666666666666*G1_;
+    A[13] += 0.5*G0_1_0 + 0.0416666666666666*G1_;
+    A[14] += 0.5*G0_1_1 + 0.0833333333333332*G1_;
+    A[15] += 0;
+    A[16] += 0;
+    A[17] += 0;
+    A[18] += 0;
+    A[19] += 0;
+    A[20] += 0;
+    A[21] += 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1 + 0.0833333333333332*G1_;
+    A[22] += -0.5*G0_0_0 - 0.5*G0_1_0 + 0.0416666666666666*G1_;
+    A[23] += -0.5*G0_0_1 - 0.5*G0_1_1 + 0.0416666666666666*G1_;
+    A[24] += 0;
+    A[25] += 0;
+    A[26] += 0;
+    A[27] += -0.5*G0_0_0 - 0.5*G0_0_1 + 0.0416666666666666*G1_;
+    A[28] += 0.5*G0_0_0 + 0.0833333333333332*G1_;
+    A[29] += 0.5*G0_0_1 + 0.0416666666666666*G1_;
+    A[30] += 0;
+    A[31] += 0;
+    A[32] += 0;
+    A[33] += -0.5*G0_1_0 - 0.5*G0_1_1 + 0.0416666666666666*G1_;
+    A[34] += 0.5*G0_1_0 + 0.0416666666666666*G1_;
+    A[35] += 0.5*G0_1_1 + 0.0833333333333332*G1_;
   }
 
 };
@@ -4058,7 +4044,7 @@ class poissonp1_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  poissonp1_0_cell_integral_0_quadrature integral_0_quadrature;
+  poissonp1_0_cell_integral_0_tensor integral_0_tensor;
 
 public:
 
@@ -4118,7 +4104,7 @@ public:
     A[35] = 0;
     
     // Add all contributions to element tensor
-    integral_0_quadrature.tabulate_tensor(A, w, c);
+    integral_0_tensor.tabulate_tensor(A, w, c);
   }
 
 };
@@ -8170,18 +8156,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poissonp1_1_cell_integral_0_quadrature: public ufc::cell_integral
+class poissonp1_1_cell_integral_0_tensor: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poissonp1_1_cell_integral_0_quadrature() : ufc::cell_integral()
+  poissonp1_1_cell_integral_0_tensor() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poissonp1_1_cell_integral_0_quadrature()
+  virtual ~poissonp1_1_cell_integral_0_tensor()
   {
     // Do nothing
   }
@@ -8191,6 +8177,10 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
+    // Number of operations to compute geometry tensor:     6
+    // Number of operations to compute tensor contraction:  30
+    // Total number of operations to compute cell tensor:   36
+    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -8208,52 +8198,21 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
+    // Compute geometry tensor
+    const double G0_0 = det*w[0][0];
+    const double G0_1 = det*w[0][1];
+    const double G0_2 = det*w[0][2];
+    const double G0_3 = det*w[0][3];
+    const double G0_4 = det*w[0][4];
+    const double G0_5 = det*w[0][5];
     
-    // Array of quadrature weights
-    static const double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
-    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
-    
-    // Value of basis functions at quadrature points.
-    static const double FE0_C1[4][6] = \
-    {{0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0, 0, 0, 0.280019915499074, 0.0750311102226082, 0.644948974278318},
-    {0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318}};
-    
-    static const double FE0_C0[4][6] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0},
-    {0.280019915499074, 0.0750311102226082, 0.644948974278318, 0, 0, 0},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0}};
-    
-    
-    // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 240
-    
-    // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 240
-    for (unsigned int ip = 0; ip < 4; ip++)
-    {
-      
-      // Function declarations
-      double F0 = 0;
-      double F1 = 0;
-      
-      // Total number of operations to compute function values = 24
-      for (unsigned int r = 0; r < 6; r++)
-      {
-        F0 += FE0_C0[ip][r]*w[0][r];
-        F1 += FE0_C1[ip][r]*w[0][r];
-      }// end loop over 'r'
-      
-      // Number of operations for primary indices = 36
-      for (unsigned int j = 0; j < 6; j++)
-      {
-        // Number of operations to compute entry = 6
-        A[j] += (FE0_C0[ip][j]*F0 + FE0_C1[ip][j]*F1)*W4[ip]*det;
-      }// end loop over 'j'
-    }// end loop over 'ip'
+    // Compute element tensor
+    A[0] += 0.0833333333333332*G0_0 + 0.0416666666666666*G0_1 + 0.0416666666666666*G0_2;
+    A[1] += 0.0416666666666666*G0_0 + 0.0833333333333332*G0_1 + 0.0416666666666666*G0_2;
+    A[2] += 0.0416666666666666*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333332*G0_2;
+    A[3] += 0.0833333333333332*G0_3 + 0.0416666666666666*G0_4 + 0.0416666666666666*G0_5;
+    A[4] += 0.0416666666666666*G0_3 + 0.0833333333333332*G0_4 + 0.0416666666666666*G0_5;
+    A[5] += 0.0416666666666666*G0_3 + 0.0416666666666666*G0_4 + 0.0833333333333332*G0_5;
   }
 
 };
@@ -8266,7 +8225,7 @@ class poissonp1_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  poissonp1_1_cell_integral_0_quadrature integral_0_quadrature;
+  poissonp1_1_cell_integral_0_tensor integral_0_tensor;
 
 public:
 
@@ -8296,7 +8255,7 @@ public:
     A[5] = 0;
     
     // Add all contributions to element tensor
-    integral_0_quadrature.tabulate_tensor(A, w, c);
+    integral_0_tensor.tabulate_tensor(A, w, c);
   }
 
 };
