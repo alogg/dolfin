@@ -32,4 +32,4 @@ f = Function(element)
 a = (inner(grad(v), grad(u)) + inner(v, u))*dx
 L = inner(v, f)*dx
 
-compile([a, L, M, element], "PoissonP1", {'log_level': 20, 'format': 'dolfin', 'form_postfix': True, 'precision': '15', 'quadrature_order': 'auto', 'cpp optimize': False, 'cache_dir': None, 'split': False, 'representation': 'auto', 'optimize': False, 'quadrature_rule': None, 'output_dir': '.'}, globals())
+compile([a, L, M, element], "PoissonP1", {'log_level': 20, 'format': 'dolfin', 'form_postfix': True, 'quadrature_order': 'auto', 'precision': '15', 'cpp optimize': False, 'cache_dir': None, 'split': False, 'representation': 'tensor', 'optimize': False, 'quadrature_rule': None, 'output_dir': '.'}, globals())
