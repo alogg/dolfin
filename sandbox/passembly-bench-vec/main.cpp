@@ -51,11 +51,9 @@ class DirichletBoundary : public SubDomain
 int main()
 {
   // Create mesh and function space
-  //Mesh mesh("unitsquare.xml.gz");
-
+  Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("refined.xml");
-
-  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  //Mesh mesh("unitsquare_reallysmall.xml.gz");
   info(mesh.data());
 
   Poisson::FunctionSpace V(mesh);
@@ -74,7 +72,7 @@ int main()
   Function u;
   problem.solve(u);
   cout << "Process num " << dolfin::MPI::process_number() << endl;
-  u.vector().disp();
+  //u.vector().disp();
 
   double norm = u.vector().norm("l2");
   if (dolfin::MPI::process_number() == 0)
