@@ -32,14 +32,6 @@ int main()
   Poisson::FunctionSpace V(mesh);
   info(mesh.data());
 
-  // For debugging
-  if (dolfin::MPI::process_number() == 0)
-  {
-    mesh.disp();
-    mesh.data().mesh_function("global entity indices 0")->disp();
-    mesh.data().mesh_function("global entity indices 1")->disp();
-  }
-
   // Define variational problem
   Poisson::BilinearForm a(V, V);
   Poisson::LinearForm L(V);
