@@ -42,7 +42,6 @@ int main()
   // Avoid direct solver for now, seems to break
   problem.parameters("linear_solver") = "iterative";
   problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-12;
-  problem.parameters["krylov_solver"]("monitor_convergence") = true;
 
   Function u;
   problem.solve(u);
