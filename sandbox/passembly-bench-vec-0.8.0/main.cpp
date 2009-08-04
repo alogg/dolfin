@@ -1,129 +1,70 @@
-// Copyright (C) 2006-2007 Anders Logg.
-// Licensed under the GNU LGPL Version 2.1.
-//
-// First added:  2006-02-07
-// Last changed: 2007-08-20
-//
-// This demo program solves Poisson's equation
-//
-//     - div grad u(x, y) = f(x, y)
-//
-// on the unit square with source f given by
-//
-//     f(x, y) = 500*exp(-((x-0.5)^2 + (y-0.5)^2)/0.02)
-//
-// and boundary conditions given by
-//
-//     u(x, y)     = 0               for x = 0
-//     du/dn(x, y) = 25 sin(5 pi y)  for x = 1
-//     du/dn(x, y) = 0               otherwise
+// Benchmarking parallel assembly (old DOLFIN version / Parafin)
 
 #include <dolfin.h>
 #include "Poisson.h"
+#include "PoissonP2.h"
   
 using namespace dolfin;
 
+// Source term
+class Source : public Function
+{
+public:
+  
+  Source(Mesh& mesh) : Function(mesh) {}
+  
+  void eval(double* values, const double* x) const
+  {
+    values[0] = sin(x[0]);
+    values[1] = sin(x[0]);
+  }
+  
+  unsigned int rank() const
+  {
+    return 1;
+  }
+  
+  unsigned int dim(unsigned int i) const
+  {
+    return 2;
+  }
+  
+};
+
 int main()
 {
-  // Source term
-  class Source : public Function
-  {
-  public:
-    
-    Source(Mesh& mesh) : Function(mesh) {}
-
-//     real eval(const real* x) const
-//     {
-// //       real dx = x[0] - 0.5;
-// //       real dy = x[1] - 0.5;
-// //       return 500.0*exp(-(dx*dx + dy*dy)/0.02);
-//       //return 1.0;
-//       return sin(x[0]);
-//     }
-
-    void eval(double* values, const double* x) const
-    {
-      values[0] = sin(x[0]);
-      values[1] = sin(x[0]);
-    }
-
-    unsigned int rank() const
-    {
-      return 1;
-    }
-
-    unsigned int dim(unsigned int i) const
-    {
-      return 2;
-    }
-
-  };
-
-  // Neumann boundary condition
-  class Flux : public Function
-  {
-  public:
-
-    Flux(Mesh& mesh) : Function(mesh) {}
-
-    real eval(const real* x) const
-    {
-      if (x[0] > DOLFIN_EPS)
-        return 25.0*sin(5.0*DOLFIN_PI*x[1]);
-      else
-        return 0.0;
-    }
-
-  };
-
-  // Sub domain for Dirichlet boundary condition
-  class DirichletBoundary : public SubDomain
-  {
-    bool inside(const real* x, bool on_boundary) const
-    {
-      return x[0] < DOLFIN_EPS && on_boundary;
-    }
-  };
-
   // Create mesh
-  //UnitSquare mesh(32, 32);
-  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  Mesh mesh("unitsquare.xml.gz");
+  //Mesh mesh("unitsquare_small.xml.gz");
+  //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
-  //Mesh mesh("refined.xml");
-
-  // Create functions
+  // Define variational problem
   Source f(mesh);
-  Flux g(mesh);
-
-  // Create boundary condition
-//   Function u0(mesh, 0.0);
-//   DirichletBoundary boundary;
-//   DirichletBC bc(u0, mesh, boundary);
-  
-  // Define PDE
-  PoissonBilinearForm a;
-  PoissonLinearForm L(f);
-
+  // PoissonBilinearForm a;
+  // PoissonLinearForm L(f);
+  PoissonP2BilinearForm a;
+  PoissonP2LinearForm L(f);
   LinearPDE pde(a, L, mesh);
 
+  // Avoid direct solver for now, seems to break
   dolfin_set("PDE linear solver", "iterative");
 
-  // Solve PDE
+  // Compute solution
   Function u;
   pde.solve(u);
+  //u.vector().disp();
 
-  u.vector().disp();
-
+  // Debugging
   double norm = u.vector().norm(l2);
-  cout << "Norm of solution vector: " << norm << endl;
-
+  if (dolfin::MPI::processNumber() == 0)
+    cout << "Norm of solution vector: " << norm << endl;
 
   // Plot solution
-  plot(u);
+  //plot(u);
 
   // Save solution to file
-  File file("poisson.pvd");
-  file << u;
+  //File file("solution.pvd");
+  //file << u;
 
   return 0;
 }
